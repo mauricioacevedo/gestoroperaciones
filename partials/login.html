@@ -1,0 +1,86 @@
+<style>
+.navbar-header {
+    z-index:9999;
+    height: 247px;
+    background: black;
+    -webkit-box-shadow: 7px 7px 2px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 7px 7px 2px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 5px 5px 2px 0px rgba(50, 50, 50, 0.75);
+}
+.drop-shadow{
+    box-shadow: 0px 7px 5px #888888;
+    z-index:999;
+}
+</style>
+<div ng-show="error" class="alert alert-danger">{{error}}</div>
+<!-- comienza prueba -->
+<div class="container-fluid " style="margin-top: 60px">
+            <div class="col-md-3 ">
+                <div class="login-panel panel panel-primary drop-shadow">
+                    <div class="panel-heading " >
+                        <h1 class="panel-title" >Inicie Sesión:</h1>
+                    </div>
+                    <form method="POST" name="form" ng-submit="login()" role="form">
+                    <div class="panel-body">
+                            <fieldset>
+                                
+                                <div class="input-group margin-bottom-sm">
+                                    <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                                    <input class="form-control" placeholder="Usuario" name="username" type="text" required="required"  id="username" ng-model="lform.username" rel="txtTooltip" title="Ingrese el usuario de Fenix" data-toggle="tooltip" data-placement="bottom" autofocus/>
+                                </div>
+                                <p></p>
+                                <div class="input-group margin-top-sm">
+                                    <span class="input-group-addon"><i class="fa fa-asterisk fa-fw"></i></span>
+                                    <input class="form-control" placeholder="password" id="password" name="password" type="password" value="" required="required" ng-model="lform.password"/>
+                                </div>
+                             <!--div class="g-recaptcha" data-sitekey="6LfgMBMTAAAAAFPQK6ANeYvjVW6uEPOqRc26x0QP"></div--> 
+                              
+                            </fieldset>
+                        
+                    </div>
+                    <div class="panel-footer " >
+                              <button type="submit" ng-disabled="form.$invalid || loginexito" class="btn btn-danger" >Entrar</button>
+
+                    </div>
+                    </form>
+                </div>
+            </div><!-- termina div login-->
+
+        	<!--div class="col-md-6" --><!-- Inicia div noticias -->
+
+            	<!--div class="panel panel-primary drop-shadow">
+            		<div class="panel-heading" >
+  						<h1 class="panel-title">Noticias:</h1>
+                     </div>
+        			<div class="media">
+    				<a href="./images/supervisor.png" class="pull-left" style=" margin-bottom:5px; margin-left:5px">
+        				<img src="./images/profiles/jdelgadd.png"  height="60px" width="60px" class="media-object" >
+    				</a>
+    				<div class="media-body">
+        				<h4 class="media-heading">Juliet Delgado<small><i> Bienvenido!</i></small></h4>
+                        <p><span class="glyphicon glyphicon-exclamation-sign "></span> No olvides cerrar sesión cuando termines tu turno.</p>
+    				</div>
+				</div>
+               </div>
+        	</div-->
+
+<div>
+  <div class="col-md-6">
+    <carousel interval="myInterval" no-wrap="noWrapSlides">
+      <slide ng-repeat="slide in slides" active="slide.active">
+        <img ng-src="{{slide.image}}" style="margin:auto;">
+        <div class="carousel-caption">
+          <!--h4>Slide {{$index}}</h4>
+          <p>{{slide.text}}</p-->
+        </div>
+      </slide>
+    </carousel>
+  </div>
+</div>
+
+<!-- Termina div noticias -->
+
+            <div class="col-md-3"><!-- Inicia div Futura -->
+        		
+        	</div><!-- Termina div Futura -->
+ </div><!-- Termina Prueba -->

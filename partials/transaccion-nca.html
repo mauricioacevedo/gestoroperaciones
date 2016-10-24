@@ -1,0 +1,159 @@
+﻿<style type="text/css">
+  .form-horizontal input.ng-invalid.ng-dirty {
+    border-color: #FA787E;
+  }
+
+  .form-horizontal input.ng-valid.ng-dirty {
+    border-color: #78FA89;
+  }
+</style>
+<ol class="breadcrumb">
+  <li><a href="./#/">Asignaciones</a></li>
+  <li><a href="./#/nca/">NCA</a></li>
+  <li class="active">Transacciones NCA</li>
+</ol>
+<div class="view">
+    <div class="container">
+        <div id="legend">
+                <h3>Registrar Nueva Transacción:</h3>
+                <hr style="background:#D8262E; border:0; height:2px" />
+        </div>
+        <!--div class="row"-->
+        <div class="col-xs-6">
+        <form role="form" name="myForm" class="form-horizontal">
+            <!--div class="row"-->
+            <div class= "form-group" ng-class="{error: myForm.name.$invalid}"><!--Inicia Div de Oferta-->
+                <label class= "col-md-2">Oferta: </label>
+                <div class="col-md-4">
+                <input name="name" ng-model="transaccion.OFERTA" type= "text" class= "form-control" placeholder="Oferta" required/>
+                </div>
+            </div><!--Finaliza Div de Oferta-->
+            <div class= "form-group"><!--Inicia Div de Municipio-->
+                <label class= "col-md-2">Municipio: </label>
+                <div class="col-md-4">
+            	<select ng-model="transaccion.MUNICIPIO_ID" class="form-control" style="width: auto;">
+            		<option value='BUCARAMANGA'>BUCARAMANGA</option>
+            		<option value='CALI'>CALI</option>
+            		<option value='SANTA MARTA'>SANTA MARTA</option>
+            		<option value='BARRANQUILLA'>BARRANQUILLA</option>
+            		<option value='MONTERIA'>MONTERIA</option>
+            		<option value='VALLEDUPAR'>VALLEDUPAR</option>
+            		<option value='SINCELEJO'>SINCELEJO</option>
+			        <option value='BOGOTA'>BOGOTA</option>
+                    <option value='DTH'>DTH</option>
+                    <option value='CARTAGENA'>CARTAGENA</option>
+            	</select>
+                </div>
+            </div><!--Finaliza Div de Municipio-->
+            <div class= "form-group"><!--Inicia Div de Transaccion-->
+                <label class= "col-md-2">Transaccion: </label>
+                <div class="col-md-4">
+                    <select ng-model="transaccion.TRANSACCION" class="form-control" style="width: auto;">
+                        <option value='NUEVA'>NUEVA</option>
+                		<option value='MODIFICACION'>MODIFICACION</option>
+                		<option value='CAMBIO DE DOMICILIO'>CAMBIO DE DOMICILIO</option>
+                		<option value='MODIFICACION/NUEVA'>MODIFICACION/NUEVA</option>
+                		<option value='ACTUALIZACION INFRAESTRUCTURA'>ACTUALIZACION INFRAESTRUCTURA</option>
+                		<option value='OT'>OT</option>
+                    </select>
+                </div>
+            </div><!--Finaliza Div de Transaccion-->
+            <div class= "form-group"><!--Inicia Div de Estado-->
+                <label class= "col-md-2">Estado: </label>
+                <div class="col-md-4">
+            	<select ng-model="transaccion.ESTADO" class="form-control" style="width: auto;">
+            		<option value='COBERTURA'>COBERTURA</option>
+            		<option value='CONSTRUCCION'>CONSTRUCCION</option>
+            		<option value='DISPONIBILIDAD'>DISPONIBILIDAD</option>
+            		<option value='ESTUDIOS DE RIESGOS'>ESTUDIOS DE RIESGOS</option>
+            		<option value='RESERVADO'>RESERVADO</option>
+            		<option value='DISENO'>DISENO</option>
+            		<option value='EN PROCESO - PENDIENTE MALA ASIGNACION'>EN PROCESO - PENDIENTE MALA ASIGNACION</option>
+            		<option value='EN PROCESO - PENDIENTE RED EXTERNA'>EN PROCESO - PENDIENTE RED EXTERNA</option>
+                        <option value='EN PROCESO - RECONFIGURACION'>EN PROCESO - RECONFIGURACION</option>
+            		<option value='PROSPECTO'>PROSPECTO</option>
+            	</select>
+                </div>
+            </div><!--Finaliza Div de Estado-->
+            <div class= "form-group"><!--Inicia Div de Fecha-->
+                <label class= "col-md-2">Fecha: </label>
+            	<div class="input-daterange col-sm-2" id="datepicker">
+                    <input type="text" class="form-control" style="min-width: 100px" id="toDate" name="toDate" ng-model="transaccion.FECHA"  placeholder= "Fecha" />
+                </div>
+            </div><!--Finaliza Div de Fecha-->
+            <div class= "form-group"><!--Inicia Div de Incidente-->
+                <label class= "col-md-2">Incidente: </label>
+                <div class="col-md-4">
+                <input ng-model="transaccion.INCIDENTE" type= "text" class= "form-control" placeholder= "Incidente"/>
+                </div>
+            </div><!--Finaliza Div de Incidente-->
+
+            <div class= "form-group"><!--Inicia Div de Estado Final-->
+                <label class= "col-md-2">Estado Final:</label>
+                <div class="col-md-4">
+                    <select ng-model="transaccion.ESTADO_FINAL" class="form-control" style="width: auto;">
+                		<option value='PEDIDO GENERADO'>PEDIDO GENERADO</option>
+                		<option value='CONSTRUCCION'>CONSTRUCCION</option>
+                		<option value='DISPONIBILIDAD'>DISPONIBILIDAD</option>
+                		<option value='ESTUDIOS DE RIESGO'>ESTUDIOS DE RIESGO</option>
+                		<option value='LISTA VERIFICABLE'>LISTA VERIFICABLE</option>
+                		<option value='PROSPECTO'>PROSPECTO</option>
+                		<option value='RECONFIGURAR MOTIVO TECNICO'>RECONFIGURAR MOTIVO TECNICO</option>
+                		<option value='POR AGENDAR'>POR AGENDAR</option>
+                    </select>
+                </div>
+            </div><!--Finaliza Div de Estado Final-->
+
+            <div class= "form-group"><!--Inicia Div de Observaciones -->
+                <label class= "col-md-2">Observacion:</label>
+                <div class="col-md-4">
+                    <select ng-model="transaccion.OBSERVACION" class="form-control" style="width: auto;">
+                		<option value='SE MODIFICA RED EN PNI'>SE MODIFICA RED EN PNI</option>
+                		<option value='SIN COBERTURA'>SIN COBERTURA</option>
+                		<option value='REINTENTO'>REINTENTO</option>
+                		<option value='RED UNIDIRECCIONAL'>RED UNIDIRECCIONAL</option>
+                		<option value='RED PARABOLICA'>RED PARABOLICA</option>
+                		<option value='OBJETO ADDRESS NO ENCONTRADO'>OBJETO ADDRESS NO ENCONTRADO</option>
+                		<option value='SE REALIZA PROCESO DE FACTIBILIDAD MANUAL'>SE REALIZA PROCESO DE FACTIBILIDAD MANUAL</option>
+                		<option value='CIERRE DE PSR ABIERTA'>CIERRE DE PSR ABIERTA</option>
+                		<option value='MODIFICACION DE ID GIS'>MODIFICACION DE ID GIS</option>
+                		<option value='NO PERMITE PASAR A ESTADO "RESERVADO"'>NO PERMITE PASAR A ESTADO "RESERVADO"</option>
+                		<option value='INCONSISTENCIA EN PNI SECTOR SIN RED DE UNE'>INCONSISTENCIA EN PNI SECTOR SIN RED DE UNE</option>
+                		<option value='INCONSISTENCIA EN PNI RED A MAS DE 70 MTS'>INCONSISTENCIA EN PNI RED A MAS DE 70 MTS</option>
+                		<option value='EDIFICIO SIN RED'>EDIFICIO SIN RED</option>
+                		<option value='SE CORRIGE DUPLICIDAD DE TAP'>SE CORRIGE DUPLICIDAD DE TAP</option>
+                		<option value='NODO DESCONECTADO EN PNI SE ESCALA A LA REGIONAL'>NODO DESCONECTADO EN PNI SE ESCALA A LA REGIONAL</option>
+                		<option value='SE ENVIA CR A SOPORTE POR INCONSISTENCIA EN MSS'>SE ENVIA CR A SOPORTE POR INCONSISTENCIA EN MSS</option>
+                		<option value='RECONFIGURAR DATOS INCORRECTOS'>RECONFIGURAR DATOS INCORRECTOS</option>
+                		<option value='NO REQUIERE DISEÑO'>NO REQUIERE DISEÑO</option>
+                		<option value='SE ENVIA CR A SOPORTE COORDENADAS INCORRECTAS'>SE ENVIA CR A SOPORTE COORDENADAS INCORRECTAS</option>
+                    </select>
+                </div>
+            </div><!--Termina Div de Observaciones -->
+             <div class="col-md-6"><!--Inicia Div de Botones -->
+                <br>
+                <div class="control-group">
+                    <div class="controls">
+                    <button ng-show="transaccion.ID==''" ng-click="saveTransaccion(transaccion)" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
+                    <button class="btn btn-success btn-sm" ng-show="transaccion.ID!=''" ng-click="editTransaccionNCA(transaccion);"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
+                    <a href="./#/nca/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</a>
+                    </div>
+                </div>
+            </div><!--Finaliza Div de Botones -->
+        </form>
+    </div>
+    </div>
+</div>
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+<script>
+$('.input-daterange').datepicker({
+     format: 'yyyy-mm-dd',
+     //todayBtn: "linked",
+     autoclose: true
+ });
+</script>

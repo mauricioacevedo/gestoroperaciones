@@ -1,0 +1,583 @@
+<ol class="breadcrumb">
+  <li><a href="./#/indicadores/">Administración</a></li>
+  <li class="active">Indicadores</li>
+</ol>
+<div class="row" ng-controller="TabController">
+    <ul class="nav nav-pills">
+        <!--li ng-class="{ active: isSet(2) }">
+                <a href ng-click="setTab(2)">Pendientes</a>
+        </li-->
+        <li ng-class="{ active: isSet(1) }">
+            <a href ng-click="setTab(1)">Asignaciones</a>
+        </li>
+        <!--<li ng-class="{ active: isSet(3) }">
+            <a href ng-click="setTab(3)">Ingresos/Estudios Asingaciones</a>
+        </li> -->
+        <li ng-class="{ active: isSet(4) }">
+            <a href ng-click="setTab(4)">Productividad Grupo</a>
+        </li>
+        <li ng-class="{ active: isSet(5) }">
+            <a href ng-click="setTab(5)">TMA Petec</a>
+        </li>
+    </ul>
+<div class="col-md-16">
+    <div class="jumbotron">
+        <div ng-show="isSet(1)"><!--COMIENZA VISTA DE Administracion y Feed-->
+            <div class="row"><!--ROW parametrizacion -->
+                <div class="col-bg-8 col-md-height" ><!-- Parametrizacion -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading " >
+                            <h4 class="panel-title" >Configuración Prioridad de Entrega de Pedidos</h4>
+                        </div>
+                        <div class="panel-body"><!--Parametro Pedido -->
+				<div class="col-md-4 ">
+				 </div>
+                            <!--div class="col-md-6 " align="right">
+                                <h4>Parámetro Actual:</h4> 
+                                <font color='red'>{{ordenamientoDemepedido}} </font> <font color='green'><span class="glyphicon glyphicon-ok"></span></font>
+                            </div-->
+                            <div class="col-md-6">
+                                <h4>Seleccione el Parámetro nuevo:</h4>
+                                <form class="form-inline">
+                        	Asignaciones:
+                                <select class="form-control input-sm" id="sel1" ng-model="ordenamientoDemepedidoNuevo" style="width:auto;">
+                                    <option value="FECHA_CITA">FECHA CITA</option>
+                                    <option value="FECHA_ESTADO">FECHA ESTADO</option>
+                                    <option value="FECHA_INGRESO">FECHA INGRESO</option>
+                                </select>
+                                <button class="btn btn-success btn-sm" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO',ordenamientoDemepedidoNuevo);"><span class="glyphicon glyphicon-ok-sign"></span> Guardar</button></form>
+				
+				<form class="form-inline">
+                                Reconfiguracion:
+                                <select class="form-control input-sm" id="sel1" ng-model="ordenamientoDemepedidoReconfiguracion" style="width:auto;">
+                                    <option value="FECHA_CITA">FECHA CITA</option>
+                                    <option value="FECHA_ESTADO">FECHA ESTADO</option>
+                                    <option value="FECHA_INGRESO">FECHA INGRESO</option>
+                                </select>
+                                <button class="btn btn-success btn-sm" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION',ordenamientoDemepedidoReconfiguracion);"><span class="glyphicon glyphicon-ok-sign"></span> Guardar</button></form>
+
+				
+                            </div>
+                        </div>
+                        <div class="panel-footer" >
+                            Última Actualización: <font color='blue'>{{ordenamientoDemepedidoUpdate}}</font>
+                        </div>    
+                    </div>
+                </div><!--Parametrizacion -->
+            </div><!--ROW parametrizacion -->
+            <div class="row"><!--ROW Panel Pendientes -->
+                <div class="col-bg-8" ><!--Panel de pendientes -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading " >
+                            <h2 class="panel-title" >Servicios Pendientes: <font color='Cyan'>{{ parseInt(listado_plazas_bogota.totales)+ parseInt(listado_plazas.totales)}}</font></h2>
+                        </div>
+                        <div class="panel-body panel-body-sm">
+                            <div class="row">
+                                 <div class="col-sm-12" ><!--Grafica -->
+                                    <div align="left">
+                                        <button class="btn btn-primary btn-sm" value="actualizar!" ng-click="actualizarGrafica();"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
+                                    </div>
+                                    <div fusioncharts
+                                        align="center" 
+                                        width="800"
+                                        height="400"
+                                        type="column2d"
+                                        datasource="{{myDataSource}}">
+                                    </div><!--Fusioncharts -->
+                                </div><!--Grafica -->
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6" ><!--Acordeon con Tablas -->
+                                    <accordion close-others="oneAtATime"><!--Acordeones -->
+                                        <accordion-group><!--Fecha Estado -->
+                                            <accordion-heading>
+                                                Concepto por Fecha Concepto: {{listado_conceptosasn.totales}}</i> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                                            </accordion-heading>
+                                            <table class="table small table-striped table-hover table-bordered table-condensed">
+                                                <thead>
+                                                    <th>Concepto</th>
+                                                    <th>TOTAL</th>
+                                                    <th> 0-2h</th>
+                                                    <th> 3-4h</th>
+                                                    <th> 5-6h</th>
+                                                    <th> 7-12h</th>
+                                                    <th> 13-24h</th>
+                                                    <th> 25-48h</th>
+                                                    <th>Mas de 48h</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="datar in listado_conceptosasn">
+                                                        <td><!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->{{datar.CONCEPTO_ID}}</span></td>
+                                                        <td ng-init="listado_conceptosasn.totales = parseInt(listado_conceptosasn.totales) + parseInt(datar.CANTIDAD)">{{datar.CANTIDAD}}</td>
+                                                        <td ng-init="listado_conceptosasn.total02 = parseInt(listado_conceptosasn.total02) + parseInt(datar.Entre02)">{{datar.Entre02}}</td>
+                                                        <td ng-init="listado_conceptosasn.total34 = parseInt(listado_conceptosasn.total34) + parseInt(datar.Entre34)">{{datar.Entre34}}</td>
+                                                        <td ng-init="listado_conceptosasn.total56 = parseInt(listado_conceptosasn.total56) + parseInt(datar.Entre56)">{{datar.Entre56}}</td>
+                                                        <td ng-init="listado_conceptosasn.total712 = parseInt(listado_conceptosasn.total712) + parseInt(datar.Entre712)">{{datar.Entre712}}</td>
+                                                        <td ng-init="listado_conceptosasn.total1324 = parseInt(listado_conceptosasn.total1324) + parseInt(datar.Entre1324)">{{datar.Entre1324}}</td>
+                                                        <td ng-init="listado_conceptosasn.total2548 = parseInt(listado_conceptosasn.total2548) + parseInt(datar.Entre2548)">{{datar.Entre2548}}</td>
+                                                        <td ng-init="listado_conceptosasn.totalmas48 = parseInt(listado_conceptosasn.totalmas48) + parseInt(datar.Masde48)">{{datar.Masde48}}</td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr class="info">
+                                                        <th>TOTALES</th>
+                                                        <th>{{listado_conceptosasn.totales}}</th>
+                                                        <th>{{listado_conceptosasn.total02}}</th>
+                                                        <th>{{listado_conceptosasn.total34}}</th>
+                                                        <th>{{listado_conceptosasn.total56}}</th>
+                                                        <th>{{listado_conceptosasn.total712}}</th>
+                                                        <th>{{listado_conceptosasn.total1324}}</th>
+                                                        <th>{{listado_conceptosasn.total2548}}</th>
+                                                        <th>{{listado_conceptosasn.totalmas48}}</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </accordion-group><!--Fecha Estado -->
+                                    </accordion><!--Fecha Cita -->
+                                </div>
+                                <div class="col-sm-6">
+                                    <accordion close-others="oneAtATime"><!--Acordeones -->
+                                        <accordion-group>
+                                            <accordion-heading>
+                                                Concepto por Fecha Cita: {{listado_conceptosasn.totales}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                                            </accordion-heading>
+                                            <table class="table small table-striped table-hover table-bordered table-condensed">
+                                                <thead>
+                                                    <th width="82">Concepto</th>
+                                                    <th>TOTAL</th>
+                                                    <th>Ayer</th>
+                                                    <th>Hoy</th>
+                                                    <th>Manana</th>
+                                                    <th>Pasado Manana</th>
+                                                    <th>Mas de 3 dias</th>
+                                                    <th>Sin Fecha Cita</th>
+                                                    <th>Viejos</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="data in listado_conceptosfc">
+                                                        <td><!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->{{data.CONCEPTO_ID}}</span></td>
+                                                        <td ng-init="listado_conceptosfc.totales = parseInt(listado_conceptosfc.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
+                                                        <td ng-init="listado_conceptosfc.total02 = parseInt(listado_conceptosfc.total02) + parseInt(data.Ayer)">{{data.Ayer}}</td>
+                                                        <td ng-init="listado_conceptosfc.total34 = parseInt(listado_conceptosfc.total34) + parseInt(data.Hoy)">{{data.Hoy}}</td>
+                                                        <td ng-init="listado_conceptosfc.total56 = parseInt(listado_conceptosfc.total56) + parseInt(data.Manana)">{{data.Manana}}</td>
+                                                        <td ng-init="listado_conceptosfc.total712 = parseInt(listado_conceptosfc.total712) + parseInt(data.Pasado_Manana)">{{data.Pasado_Manana}}</td>
+                                                        <td ng-init="listado_conceptosfc.total1324 = parseInt(listado_conceptosfc.total1324) + parseInt(data.Mas_de_3_dias)">{{data.Mas_de_3_dias}}</td>
+                                                        <td ng-init="listado_conceptosfc.total2548 = parseInt(listado_conceptosfc.total2548) + parseInt(data.Sin_Fecha_Cita)">{{data.Sin_Fecha_Cita}}</td>
+                                                        <td ng-init="listado_conceptosfc.totalmas48 = parseInt(listado_conceptosfc.totalmas48) + parseInt(data.Viejos)">{{data.Viejos}}</td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr class="info">
+                                                        <th>TOTALES</th>
+                                                        <th>{{listado_conceptosfc.totales}}</th>
+                                                        <th>{{listado_conceptosfc.total02}}</th>
+                                                        <th>{{listado_conceptosfc.total34}}</th>
+                                                        <th>{{listado_conceptosfc.total56}}</th>
+                                                        <th>{{listado_conceptosfc.total712}}</th>
+                                                        <th>{{listado_conceptosfc.total1324}}</th>
+                                                        <th>{{listado_conceptosfc.total2548}}</th>
+                                                        <th>{{listado_conceptosfc.totalmas48}}</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </accordion-group><!--Fecha Cita -->
+                                    </accordion><!--Acordeones -->
+                                </div><!--Acordeon con Tablas -->
+                            </div>
+                        </div>
+                        <div class="panel-footer " >
+                            <div class="col-sm-6" align="left">
+                                <span style="vertical-align: middle;">Última Actualización: <font color='blue'>{{lastUpdate}}</font></span> 
+                            </div>
+                            <div  align="right">
+                                <button class="btn btn-success btn-sm" ng-click="csvFenixNal();"  ng-class="{'disabled': listado_plazas.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Exportar Pendientes</button>
+                                <button class="btn btn-success btn-sm" ng-click="csvFenixBog();"  ng-class="{'disabled': listado_plazas.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Exportar Bogotá</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--ROW Pendientes -->
+
+</div><!--ISET-->
+
+
+<div ng-show="isSet(2)"><!--COMIENZA VISTA DE PENDIENTES **no se esta mostrando**-->
+
+    <div class="row">
+			         <button class="btn btn-primary btn-sm" value="actualizar!" ng-click="actualizarGrafica();"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
+			<br>
+			<table>
+			     <tr>
+			     <td>
+			     <h3>Total Servicios Pendientes: <font color='red'>{{ parseInt(listado_plazas_bogota.totales)+ parseInt(listado_plazas.totales)}}</font></h3>
+			<div fusioncharts
+			    align="center" 
+			    width="600"
+			    height="400"
+			    type="pie3d"
+			    datasource="{{myDataSource}}"></div>
+			     </td>
+			 <td>
+			<h3>Pendientes por Plaza/Tiempo/Concepto:</h3>
+
+			  <accordion close-others="oneAtATime">
+    
+			    <accordion-group>
+			        <accordion-heading>
+			            Fenix Nacional: {{listado_plazas.totales}}</i> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+			        </accordion-heading>
+
+
+
+                    <table class="table small table-striped table-bordered table-condensed">
+                            <thead>
+                                    <th>Plaza</th>
+                                    <th>TOTAL</th>
+                                    <th> 0-2h</th>
+                                    <th> 3-4h</th>
+                                    <th> 5-6h</th>
+                                    <th> 7-12h</th>
+                                    <th> 13-24h</th>
+                                    <th> 25-48h</th>
+                                    <th>Mas de 48h</th>
+                            </thead>
+                            <tbody>
+                                    	<tr ng-repeat="data in listado_plazas| orderBy:'fecha_fin':true ">
+                                    		<td>{{data.PLAZA}}</td>
+                                    		<td ng-init="listado_plazas.totales = parseInt(listado_plazas.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
+                                    		<td ng-init="listado_plazas.total02 = parseInt(listado_plazas.total02) + parseInt(data.Entre02)">{{data.Entre02}}</td>
+                                    		<td ng-init="listado_plazas.total34 = parseInt(listado_plazas.total34) + parseInt(data.Entre34)">{{data.Entre34}}</td>
+                                    		<td ng-init="listado_plazas.total56 = parseInt(listado_plazas.total56) + parseInt(data.Entre56)">{{data.Entre56}}</td>
+                                    		<td ng-init="listado_plazas.total712 = parseInt(listado_plazas.total712) + parseInt(data.Entre712)">{{data.Entre712}}</td>
+                                            <td ng-init="listado_plazas.total1324 = parseInt(listado_plazas.total1324) + parseInt(data.Entre1324)">{{data.Entre1324}}</td>
+                                            <td ng-init="listado_plazas.total2548 = parseInt(listado_plazas.total2548) + parseInt(data.Entre2548)">{{data.Entre2548}}</td>
+                                            <td ng-init="listado_plazas.totalmas48 = parseInt(listado_plazas.totalmas48) + parseInt(data.Masde48)">{{data.Masde48}}</td>
+						
+                            		</tr>
+                            </tbody>
+				<tfoot>
+                                        <tr class="info">
+                                                <th>TOTALES</th>
+                                                <th>{{listado_plazas.totales}}</th>
+                                                <th>{{listado_plazas.total02}}</th>
+                                                <th>{{listado_plazas.total34}}</th>
+                                                <th>{{listado_plazas.total56}}</th>
+                                                <th>{{listado_plazas.total712}}</th>
+                                                <th>{{listado_plazas.total1324}}</th>
+                                                <th>{{listado_plazas.total2548}}</th>
+                                                <th>{{listado_plazas.totalmas48}}</th>
+                                        </tr>
+
+				</tfoot>
+                    </table>
+			<button class="btn btn-success btn-sm" ng-click="csvFenixNal();"  ng-class="{'disabled': listado_plazas.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Exportar Pendientes</button>
+    	</accordion-group>
+	<accordion-group>
+                                <accordion-heading>
+                                    Fenix Bogota: {{listado_plazas_bogota.totales}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                                </accordion-heading>
+
+
+
+                    <table class="table small table-striped table-bordered table-condensed">
+                            <thead>
+                                    <th>Plaza</th>
+                                    <th>TOTAL</th>
+                                    <th> 0-2h</th>
+                                    <th> 3-4h</th>
+                                    <th> 5-6h</th>
+                                    <th> 7-12h</th>
+                                    <th> 13-24h</th>
+                                    <th> 25-48h</th>
+                                    <th>Mas de 48h</th>
+                            </thead>
+                            <tbody>
+                                        <tr ng-repeat="data in listado_plazas_bogota| orderBy:'fecha_fin':true ">
+                                                <td>{{data.PLAZA}}</td>
+                                                <td ng-init="listado_plazas_bogota.totales = parseInt(listado_plazas_bogota.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
+                                                <td ng-init="listado_plazas_bogota.total02 = parseInt(listado_plazas_bogota.total02) + parseInt(data.Entre02)">{{data.Entre02}}</td>
+                                                <td ng-init="listado_plazas_bogota.total34 = parseInt(listado_plazas_bogota.total34) + parseInt(data.Entre34)">{{data.Entre34}}</td>
+                                                <td ng-init="listado_plazas_bogota.total56 = parseInt(listado_plazas_bogota.total56) + parseInt(data.Entre56)">{{data.Entre56}}</td>
+                                                <td ng-init="listado_plazas_bogota.total712 = parseInt(listado_plazas_bogota.total712) + parseInt(data.Entre712)">{{data.Entre712}}</td>
+                                                <td ng-init="listado_plazas_bogota.total1324 = parseInt(listado_plazas_bogota.total1324) + parseInt(data.Entre1324)">{{data.Entre1324}}</td>
+                                                <td ng-init="listado_plazas_bogota.total2548 = parseInt(listado_plazas_bogota.total2548) + parseInt(data.Entre2548)">{{data.Entre2548}}</td>
+                                                <td ng-init="listado_plazas_bogota.totalmas48 = parseInt(listado_plazas_bogota.totalmas48) + parseInt(data.Masde48)">{{data.Masde48}}</td>
+
+                                        </tr>
+                            </tbody>
+                                <tfoot>
+                                        <tr class="info">
+                                                <th>TOTALES</th>
+                                                <th>{{listado_plazas_bogota.totales}}</th>
+                                                <th>{{listado_plazas_bogota.total02}}</th>
+                                                <th>{{listado_plazas_bogota.total34}}</th>
+                                                <th>{{listado_plazas_bogota.total56}}</th>
+                                                <th>{{listado_plazas_bogota.total712}}</th>
+                                                <th>{{listado_plazas_bogota.total1324}}</th>
+                                                <th>{{listado_plazas_bogota.total2548}}</th>
+                                                <th>{{listado_plazas_bogota.totalmas48}}</th>
+                                        </tr>
+
+                                </tfoot>
+                    </table>
+			<button class="btn btn-success btn-sm" ng-click="csvFenixBog();" ng-class="{'disabled': listado_plazas_bogota.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Exportar Pendientes</button>
+    </accordion-group>
+   <accordion-group><!--Inicia Acordeon Servicios por Concepto-->
+                    <accordion-heading>
+                        Conceptos: {{listado_conceptosas.totales}}</i> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </accordion-heading>
+
+
+
+                    <table class="table small table-striped table-hover table-bordered table-condensed">
+                            <thead>
+                                    <th>Concepto</th>
+                                    <th>TOTAL</th>
+                                    <th> 0-2h</th>
+                                    <th> 3-4h</th>
+                                    <th> 5-6h</th>
+                                    <th> 7-12h</th>
+                                    <th> 13-24h</th>
+                                    <th> 25-48h</th>
+                                    <th>Mas de 48h</th>
+                            </thead>
+                            <tbody>
+                                        <tr ng-repeat="data in listado_conceptosas">
+                                            <td><!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->{{data.CONCEPTO_ID}}</span></td>
+                                            <td ng-init="listado_conceptosas.totales = parseInt(listado_conceptosas.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
+                                            <td ng-init="listado_conceptosas.total02 = parseInt(listado_conceptosas.total02) + parseInt(data.Entre02)">{{data.Entre02}}</td>
+                                            <td ng-init="listado_conceptosas.total34 = parseInt(listado_conceptosas.total34) + parseInt(data.Entre34)">{{data.Entre34}}</td>
+                                            <td ng-init="listado_conceptosas.total56 = parseInt(listado_conceptosas.total56) + parseInt(data.Entre56)">{{data.Entre56}}</td>
+                                            <td ng-init="listado_conceptosas.total712 = parseInt(listado_conceptosas.total712) + parseInt(data.Entre712)">{{data.Entre712}}</td>
+                                            <td ng-init="listado_conceptosas.total1324 = parseInt(listado_conceptosas.total1324) + parseInt(data.Entre1324)">{{data.Entre1324}}</td>
+                                            <td ng-init="listado_conceptosas.total2548 = parseInt(listado_conceptosas.total2548) + parseInt(data.Entre2548)">{{data.Entre2548}}</td>
+                                            <td ng-init="listado_conceptosas.totalmas48 = parseInt(listado_conceptosas.totalmas48) + parseInt(data.Masde48)">{{data.Masde48}}</td>
+                        
+                                    </tr>
+                            </tbody>
+                <tfoot>
+                                        <tr class="info">
+                                                <th>TOTALES</th>
+                                                <th>{{listado_conceptosas.totales}}</th>
+                                                <th>{{listado_conceptosas.total02}}</th>
+                                                <th>{{listado_conceptosas.total34}}</th>
+                                                <th>{{listado_conceptosas.total56}}</th>
+                                                <th>{{listado_conceptosas.total712}}</th>
+                                                <th>{{listado_conceptosas.total1324}}</th>
+                                                <th>{{listado_conceptosas.total2548}}</th>
+                                                <th>{{listado_conceptosas.totalmas48}}</th>
+                                        </tr>
+
+                </tfoot>
+                    </table>
+            <!--button class="btn btn-md btn-success" ng-click="csvFenixNal();">Csv Fenix Nacional</button -->
+        </accordion-group><!--Finaliza Acordeon Servicios por Concepto-->
+ 
+     </accordion>
+
+
+			 </td>
+			 </tr>
+			 <tr><td colspan='2'>Last Update: {{lastUpdate}}</td> </tr>
+			</table>
+
+
+<!--TERMINA VISTA DE PENDIENTES  Y FEEDS -->
+
+                    </div>
+                  </div>
+        <!--        <div ng-show="isSet(3)">
+                        <div class="row">
+                        <p><h3>Ingresos/Estudios:</h3></p>
+
+				<label class=" input col-sm-3">Seleccione Fecha:</label>
+				<div class="input-daterange col-sm-7" id="datepicker">
+				    <div class="input-group">
+				        <span class="input-group-addon">Desde</span>
+				        <input type="text" class="form-control" style="min-width: 90px" id="fromDate" name="fromDate" value="" />	
+					<span class="input-group-addon">Hasta</span>
+				        <input type="text" class="form-control" style="min-width: 90px" id="toDate" name="toDate" value="" />
+					<span class="input-group-btn">
+						<button class="btn btn-primary btn-sm" value="actualizar!" ng-click="actualizarIngresosEstudiosGrafica();"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
+					</span>
+				    </div>
+				</div>
+				
+
+
+				<br>
+				<label class=" input col-sm-3"> </label>
+				<br>
+
+				<div fusioncharts
+				    align="center" 
+				    width="800"
+				    height="400"
+				    type="msline"
+				    datasource="{{myDataSource2}}"></div>
+                        </div>
+                </div>
+		-->
+
+
+		<div ng-show="isSet(4)">
+                    <div class="row">
+                    <h3>Productividad del Grupo</h3>
+
+		    <label class=" input col-sm-3">Seleccione Fecha:</label>
+                                <div class="input-daterange col-sm-7" id="datepicker">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Desde</span>
+                                        <input type="text" class="form-control" style="min-width: 90px" id="fromDate1" name="fromDate1" value="" />
+                                        <span class="input-group-addon">Hasta</span>
+                                        <input type="text" class="form-control" style="min-width: 90px" id="toDate1" name="toDate1" value="" />
+                                        <span class="input-group-btn">
+                                                <button class="btn btn-primary btn-sm" value="actualizar!" ng-click="actualizarProductividadGrupo();"><span ng-class="{'glyphicon glyphicon-refresh': refresh!='cargando', 'glyphicon glyphicon-refresh fa-spin': refresh=='cargando'}"></span> Actualizar</button>
+                                        </span>
+                                    </div>
+                                </div>
+
+			<table class="table small table-striped table-bordered table-condensed col-md-10">
+                            <thead>
+                                    <th class="text-center">Usuario</th>
+                                    <th class="text-center">Servicios</th>
+                                    <th class="text-center">Pedidos</th>
+                                    <th class="text-center">Buscado</th>
+                                    <th class="text-center">DemePedido</th>
+                                    <th class="text-center">15</th>
+                                    <th class="text-center">99</th>
+                                    <th class="text-center">14</th>
+                                    <th class="text-center">2</th>
+                                    <th class="text-center">PORDE</th>
+                                    <th class="text-center">OTRO</th>
+                                    <th class="text-center">AVG Estudio</th>
+                            </thead>
+                            <tbody align='center'>
+					                   <tr>
+                                                <th class="text-center">TOTALES</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tservicios}}</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tpedidos}}</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tbuscado}}</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tdemePedido}}</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tc15}}</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tc99}}</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tc14}}</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tc2}}</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tPORDE}}</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tOTRO}}</th>
+                                                <th class="text-center"><b><font color='red'>{{formatTime(parseInt(listado_usuarios_produccion.ttestudios/listado_usuarios_produccion.totales))}}</font></b></th>
+                                        </tr>
+
+                                    <tr ng-repeat="data in listado_usuarios_produccion " ng-class="{success: data.servicios > 180}">
+                                    <td ng-init="listado_usuarios_produccion.totales = parseInt(listado_usuarios_produccion.totales) + parseInt(1)">{{data.user}}</td>
+                                    <td ng-init="listado_usuarios_produccion.tservicios = parseInt(listado_usuarios_produccion.tservicios) + parseInt(data.servicios)">{{data.servicios}}</td>
+                                    <td ng-init="listado_usuarios_produccion.tpedidos = parseInt(listado_usuarios_produccion.tpedidos) + parseInt(data.Pedidos)">{{data.Pedidos}}</td>
+                                    <td ng-init="listado_usuarios_produccion.tbuscado = parseInt(listado_usuarios_produccion.tbuscado) + parseInt(data.BUSCADO)">{{data.BUSCADO}}</td>
+                                    <td ng-init="listado_usuarios_produccion.tdemePedido = parseInt(listado_usuarios_produccion.tdemePedido) + parseInt(data.DEMEPEDIDO)">{{data.DEMEPEDIDO}}</td>
+                                    <td ng-init="listado_usuarios_produccion.tc15 = parseInt(listado_usuarios_produccion.tc15) + parseInt(data.c15)">{{data.c15}}</td>
+                                    <td ng-init="listado_usuarios_produccion.tc99 = parseInt(listado_usuarios_produccion.tc99) + parseInt(data.c99)">{{data.c99}}</td>
+                                    <td ng-init="listado_usuarios_produccion.tc14 = parseInt(listado_usuarios_produccion.tc14) + parseInt(data.c14)">{{data.c14}}</td>
+                                    <td ng-init="listado_usuarios_produccion.tc2 = parseInt(listado_usuarios_produccion.tc2) + parseInt(data.c2)">{{data.c2}}</td>
+                                    <td ng-init="listado_usuarios_produccion.tPORDE = parseInt(listado_usuarios_produccion.tPORDE) + parseInt(data.PORDE)">{{data.PORDE}}</td>
+                                    <td ng-init="listado_usuarios_produccion.tOTRO = parseInt(listado_usuarios_produccion.tOTRO) + parseInt(data.OTRO)">{{data.OTRO}}</td>
+                                    <td ng-init="listado_usuarios_produccion.ttestudios = listado_usuarios_produccion.ttestudios + timestrToSec(data.AVG_ESTUDIO_MN)">{{data.AVG_ESTUDIO_MN}}</td>
+                            	    </tr>
+                            </tbody>
+				
+                                <tfoot>
+                                        <tr>
+                                                <th class="text-center">TOTALES</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tservicios}}</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tpedidos}}</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tbuscado}}</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tdemePedido}}</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tc15}}</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tc99}}</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tc14}}</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tc2}}</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tPORDE}}</th>
+                                                <th class="text-center">{{listado_usuarios_produccion.tOTRO}}</th>
+                                                <th class="text-center">{{formatTime(parseInt(listado_usuarios_produccion.ttestudios/listado_usuarios_produccion.totales))}}</th>
+                                        </tr>
+
+                                </tfoot>
+
+                    </table>
+
+                    </div>
+                  </div>
+
+        <div ng-show="isSet(5)">
+                    <div class="row">
+                    <h3>Tiempo Medio de Asignación - PETEC</h3>
+                    <label class=" input col-sm-3">Seleccione Fecha:</label>
+                                <div class="input-daterange col-sm-7" id="datepicker">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Desde</span>
+                                        <input type="text" class="form-control" style="min-width: 90px" id="fromDate2" name="fromDate2" value="" />
+                                        <span class="input-group-addon">Hasta</span>
+                                        <input type="text" class="form-control" style="min-width: 90px" id="toDate2" name="toDate2" value="" />
+                                        <span class="input-group-btn">
+											<button class="btn btn-primary btn-sm" value="actualizar!" ng-click="actualizarTME();"><span ng-class="{'glyphicon glyphicon-refresh': refresh!='cargando', 'glyphicon glyphicon-refresh fa-spin': refresh=='cargando'}"></span> Actualizar</button>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            <table class="table small table-striped table-bordered table-condensed col-md-10">
+                            <thead>
+                                    <th width="10%" class="text-center">Fecha</th>
+                                    <th width="10%" class="text-center">Ingresos</th>
+                                    <th width="10%" class="text-center">Estudios</th>
+                                    <th width="10%" class="text-center">Deme Pedido</th>
+                                    <th width="10%" class="text-center">Buscado</th>
+                                    <th width="12%" class="text-center">Promedio Estudio</th>
+                                    <th width="12%" class="text-center">Promedio Espera</th>
+                                    <th width="12%" class="text-center">Promedio Tma</th>
+                                    <th width="14%" class="text-center">Meta TMA</th>
+                            </thead>
+                            <tbody align="center">
+                                    <tr ng-repeat="data in listado_tme "  ng-class="{danger: data.AVG_TME_HR > 8}">
+                                    <td>{{data.FECHA}}</td>
+                                    <td>{{data.INGRESOS}}</td>
+                                    <td>{{data.ESTUDIOS}}</td>
+                                    <td>{{data.AUTO}}</td>
+                                    <td>{{data.BUSCADO}}</td>
+                                    <td>{{data.AVG_ESTUDIO_MN}}</td>
+                                    <td>{{data.AVG_ESPERA_HR}}</td>
+                                    <td>{{data.AVG_TMA_HR}}</td>
+                                    <td><i ng-class="{'fa fa-arrow-up fa-lg': data.META_TMA > '00:59:59' ,'fa fa-arrow-right fa-lg': data.META_TMA > '00:00:00' ,'fa fa-arrow-down fa-lg': data.META_TMA < '00:00:00' }" ng-style="data.META_TMA > '00:59:59' && {'color':'red'} || data.META_TMA > '00:00:00' && {'color':'#FACC2E'} || data.META_TMA < '00:00:00' && {'color':'green'}"></i>&nbsp;&nbsp;&nbsp;{{data.META_TMA}}</td>
+                            </tr>
+                            </tbody>
+                    </table>
+
+                    </div>
+        </div>
+
+
+
+                  </div>
+
+
+		
+		<!-- END NG-SHOW -->
+
+                </div>
+        </div>
+</div>
+</div><!--Contenedor Admon y Feed -->
+</div><!--ISET1 -->
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+<script>
+$('.input-daterange').datepicker({
+     format: 'yyyy-mm-dd',
+     todayBtn: "linked",
+     autoclose: true
+ });
+</script>
+
+

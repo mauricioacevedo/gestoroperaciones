@@ -1,0 +1,133 @@
+
+<!-- Crud de Usuarios -->
+<!-- 2015-09-18: Estilo corregido -->
+<!-- 2015-09-18: Creacion de div para mensajes de notificacion -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+<ol class="breadcrumb">
+  <li><a href="">Administración</a></li>
+  <li><a href="./#/users/">Usuarios</a></li>
+  <li class="active">Listado Usuarios</li>
+</ol>
+<div class="row" ng-controller="TabController"><!--Div Pestañas Usuarios -->
+    <ul class="nav nav-pills">
+        <li ng-class="{ active: isSet(1) }">
+                <a href ng-click="setTab(1)">Usuarios Gestor</a>
+        </li>
+    </ul>
+
+    <div class="jumbotron">
+            <div class="container-fluid"><!--Contenedor PPAL -->
+                    <div ng-show="isSet(1)"><!-- ISET=? -->
+                        <div class="row-fluid"><!--Div Contenedor Mensajes -->
+                            <div ng-show="success" class="alert alert-success">{{success}}</div>
+                        </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h2 class="page-header"><i class="fa fa-users" aria-hidden="true"></i> Usuarios  <small> Listado</small></h2>
+                                    <hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
+                                    <br>
+                                </div>
+                            </div>
+                        <div class="row"><!--Div Boton Nuevo Usuario -->
+                            <div class="col-lg-9">
+                                        <button class="btn btn-primary btn-sm" value="exportar!" ng-click="newUsuario();"><span class="glyphicon glyphicon-user"></span> Nuevo Usuario</button>
+                                        <button class="btn btn-success btn-sm" value="exportar!" ng-click="csvNCA();"><span class="glyphicon glyphicon-download-alt"></span> Exportar</button>
+                                </div>
+                                <div class="col-lg-3 form-inline">
+                                    <div class="form-group">
+                                       <div class="input-group merged">
+                                        <input type="text" class="form-control pull-right "  class="col-xs-8"  title="Ingrese Nombre o Login a buscar" data-toggle="tooltip" data-placement="top" ng-model="busuario"><span class="input-group-addon"><i class="fa fa-arrow-circle-left fa-fw"></i></span>
+                                       </div>
+                                    </div>
+                                </div>
+                                    
+                        </div>
+                                        
+                            
+                        
+			<br></br>	
+                        <div class="row-fluid">
+                            <p>Total de Usuarios: <b>{{data.totalItems}} </b></p>
+                        </div>
+                        <div class="row-fluid"><!-- Div de Datos -->
+                            <table align="center" width="100%"><!-- Tabla Paginacion -->
+                            <tr> 
+                            <td width="33%" align="right">
+                                <!--pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged()" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination-->
+                            </td>
+                            </tr>
+                            </table><!-- Tabla Paginacion -->
+                            <table class="table small table-striped table-bordered table-hover table-condensed">
+                                <thead>
+                                    <th>Login</th>
+                                    <th>Nombre</th>
+                                    <th>Grupo</th>
+                                    <th>Cedula</th>
+                                    <th>Acciones</th>
+                                </thead>
+                                    <tbody>
+                                        <tr ng-repeat="data in listado_usuarios|filter:busuario | orderBy:'GRUPO':false " ng-show=" data.ID != null">
+                                            <td>{{data.USUARIO_ID}}</td>
+                                            <td>{{data.USUARIO_NOMBRE}}</td>
+                                            <td><span ng-class="{'RECONFIGURACION':'label label-warning', 'NCA':'label label-success','ASIGNACIONES':'label label-success','INCONSISTENCIAS':'label label-success','ACTIVACION':'label label-danger','AGENDAMIENTO':'label label-primary'}[data.GRUPO]">{{data.GRUPO}}</span></td>
+                                            <td>{{data.CEDULA_ID}}</td>
+                                            <td><button class="btn btn-success btn-xs" value="edit!" ng-click="getUsuario(data.ID);"><i class="fa fa-pencil fa-lg"></i></button></td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                            <!--pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged()" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination-->
+                        </div><!-- Div de Datos -->
+
+
+                    </div><!-- ISET=? -->
+                </div><!--Contenedor PPAL -->
+    </div><!--Div Pestañas Usuarios -->
+</div>
+<br>
+<div class="pull-right"><!--Flecha Arriba -->
+    <a href="#" class="scrollToTop"><i class="fa fa-chevron-circle-up fa-2x" data-toggle="tooltip" title="Volver arriba" data-placement="right"></i></a>
+</div>
+<div class="container">
+    <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+<script>
+    $('.input-daterange').datepicker({
+     format: 'yyyy-mm-dd',
+     todayBtn: "linked",
+     autoclose: true
+ });
+</script>
+<script language='javascript'>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+})
+</script>
+<!-- Flecha Arriba Estilo, dentro del head--> 
+<script>            
+$(document).ready(function(){
+    
+    //Check to see if the window is top if not then display button
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 100) {
+            $('.scrollToTop').fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut();
+        }
+    });
+    
+    //Click event to scroll to top
+    $('.scrollToTop').click(function(){
+        $('html, body').animate({scrollTop : 0},800);
+        return false;
+    });
+    
+});
+</script>
+<!-- Flecha Arriba Estilo, dentro del head--> 
+

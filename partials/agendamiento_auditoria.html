@@ -1,0 +1,228 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+<ol class="breadcrumb">
+  <li><a href="./#/agendamiento_auditoria/">Conceptos Agendamiento Auditoria</a></li>
+</ol>
+
+<div class="row" ng-controller="TabController">
+    <ul class="nav nav-pills">
+        <li ng-class="{ active: isSet(1) }">
+                <a href ng-click="setTab(1)">Registros Historicos</a>
+        </li>
+        
+    </ul>
+
+        <div class="col-md-16">
+            <div class="jumbotron">
+                <div ng-show="isSet(1)">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i> Registros  Agendamiento<small> Historicos</small></h2>
+                            <hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
+                            <br>
+                        </div>
+                    </div>
+        <div class="row"> 
+            
+                  <label class=" input col-sm-3">Seleccione Fecha:</label>
+                                <div class="input-daterange col-sm-7" id="datepicker">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Desde</span>
+                                        <input type="text" class="form-control" style="min-width: 90px" id="fromDate" name="fromDate" ng-model="data.fechaIni" />
+                                        <span class="input-group-addon">Hasta</span>
+                                        <input type="text" class="form-control" style="min-width: 90px" id="toDate" name="toDate" ng-model="data.fechaFin" />
+                                        <span class="input-group-btn">
+                                                <button class="btn btn-primary btn-sm" value="actualizar!" ng-click="actualizarlistaauditoria(data.fechaIni,data.fechaFin);"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
+                                                <button class="btn btn-success btn-sm" value="exportar!" ng-click="csvHistoricos();"><span class="glyphicon glyphicon-download-alt"></span> Exportar</button>
+                                        </span>
+                                    </div>
+                                </div>
+        </div>
+
+            <div class="row">
+                <ul class="nav nav-list">
+                  <li class="divider">.</li>
+                </ul>
+             </div>
+                    <div class="row">
+            <table align="center" width="100%">
+            <tr>
+            <td width="50%" align="left">
+
+                Total de Registros: <b>{{data.totalItems}} </b>
+            </td>
+        
+            <td width="50%" align="right">
+                <pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged('listadoPedidos')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+            </td>
+            </tr>
+            </table>
+
+                    <table class="table small table-striped table-hover table-bordered table-condensed">
+                            <thead>
+                                    <th>Novedad</th>
+                                    <th>Ant</th>
+                                    <th>Atl</th>
+                                    <th>BogCobre</th>
+                                    <th>Bog</th>
+                                    <th>Bol</th>
+                                    <th>Boy</th>
+                                    <th>Cal</th>
+                                    <th>Caq</th>
+                                    <th>Ces</th>
+                                    <th>Cun</th>
+                                    <th>Dth</th>
+                                    <th>Hui</th>
+                                    <th>Met</th>
+                                    <th>Norsant</th>
+                                    <th>Quin</th>
+                                    <th>San</th>
+                                    <th>Suc</th>
+                                    <th>Tol</th>
+                                    <th>Val</th>
+                                    <th>ValCau</th>
+                                   
+                            </thead>
+                            <tbody>
+                                    <tr ng-repeat="data in tbl_listado ">
+                                    <td>{{data.NOVEDAD}}</td>
+                                    <td>{{data.ANTIOQUIA}}</td>
+                                    <td>{{data.ATLANTICO}}</td>
+                                    <td>{{data.BOGOTA-COBRE}}</td>
+                                    <td>{{data.BOGOTA}}</td>
+                                    <td>{{data.BOLIVAR}}</td>
+                                    <td>{{data.BOYACA}}</td>
+                                    <td>{{data.CALDAS}}</td>
+                                    <td>{{data.CAQUETA}}</td>
+                                    <td>{{data.CESAR}}</td>
+                                    <td>{{data.CUNDINAMARCA}}</td>
+                                    <td>{{data.DTH}}</td>
+                                    <td>{{data.HUILA}}</td>
+                                    <td>{{data.META}}</td>
+                                    <td>{{data.NORTE_DE_SANTANDER}}</td>
+                                    <td>{{data.QUINDIO}}</td>
+                                    <td>{{data.SANTANDER}}</td>
+                                    <td>{{data.SUCRE}}</td>
+                                    <td>{{data.TOLIMA}}</td>
+                                    <td>{{data.VALLE}}</td>
+                                    <td>{{data.VALLE_DEL_CAUCA}}</td>
+                                  
+                            </tr>
+                            </tbody>
+                    </table>
+            <pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged('listadoPedidos')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+                    </div>
+                  </div>
+            
+    <br>
+<div class="pull-right"><!--Flecha Arriba -->
+    <a href="#" class="scrollToTop"><i class="fa fa-chevron-circle-up fa-2x" data-toggle="tooltip" title="Volver arriba" data-placement="right"></i></a>
+</div>
+    <div class="container">
+         <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+  <script type='text/javascript'>
+        $(document).ready(function () {
+            function exportTableToCSV($table, filename) {
+                var $headers = $table.find('tr:has(th)')
+                    ,$rows = $table.find('tr:has(td)')
+                    // Temporary delimiter characters unlikely to be typed by keyboard
+                    // This is to avoid accidentally splitting the actual contents
+                    ,tmpColDelim = String.fromCharCode(11) // vertical tab character
+                    ,tmpRowDelim = String.fromCharCode(0) // null character
+                    // actual delimiter characters for CSV format
+                    ,colDelim = '","'
+                    ,rowDelim = '"\r\n"';
+                    // Grab text from table into CSV formatted string
+                    var csv = '"';
+                    csv += formatRows($headers.map(grabRow));
+                    csv += rowDelim;
+                    csv += formatRows($rows.map(grabRow)) + '"';
+                    // Data URI
+                    var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+                $(this)
+                    .attr({
+                    'download': filename
+                        ,'href': csvData
+                        //,'target' : '_blank' //if you want it to open in a new window
+                });
+                //------------------------------------------------------------
+                // Helper Functions 
+                //------------------------------------------------------------
+                // Format the output so it has the appropriate delimiters
+                function formatRows(rows){
+                    return rows.get().join(tmpRowDelim)
+                        .split(tmpRowDelim).join(rowDelim)
+                        .split(tmpColDelim).join(colDelim);
+                }
+                // Grab and format a row from the table
+                function grabRow(i,row){
+                     
+                    var $row = $(row);
+                    //for some reason $cols = $row.find('td') || $row.find('th') won't work...
+                    var $cols = $row.find('td'); 
+                    if(!$cols.length) $cols = $row.find('th');  
+                    return $cols.map(grabCol)
+                                .get().join(tmpColDelim);
+                }
+                // Grab and format a column from the table 
+                function grabCol(j,col){
+                    var $col = $(col),
+                        $text = $col.text();
+            $text=$text.replace('MALO','');
+                    return $text.replace('"', '""'); // escape double quotes
+                }
+            }
+            // This must be a hyperlink
+            $("#export").click(function (event) {
+                // var outputFile = 'export'
+                var outputFile = window.prompt("Escriba el nombre del archivo") || 'export';
+                outputFile = outputFile.replace('.csv','') + '.csv'
+                 
+                // CSV
+                exportTableToCSV.apply(this, [$('#dvData>table'), outputFile]);
+                
+                // IF CSV, don't do event.preventDefault() or return false
+                // We actually need this to be a typical hyperlink
+            });
+        });
+    </script>
+<script>
+$('.input-daterange').datepicker({
+     format: 'yyyy-mm-dd',
+     todayBtn: "linked",
+     autoclose: true
+ });
+</script>
+<script language='javascript'>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+})
+</script>
+<!-- Flecha Arriba Estilo, dentro del head--> 
+<script>            
+$(document).ready(function(){
+    
+    //Check to see if the window is top if not then display button
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 100) {
+            $('.scrollToTop').fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut();
+        }
+    });
+    
+    //Click event to scroll to top
+    $('.scrollToTop').click(function(){
+        $('html, body').animate({scrollTop : 0},800);
+        return false;
+    });
+    
+});
+</script>
+<!-- Flecha Arriba Estilo, dentro del head--> 

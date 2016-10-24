@@ -1,0 +1,224 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+<ol class="breadcrumb">
+  <li><a href="./#/scheduling/">Agendamiento</a></li>
+  <li class="active">Conceptos Agendamiento</li>
+
+</ol>
+
+
+<div class="row"><!--ROW parametrizacion -->
+    <div class="col-bg-8 col-md-height" ><!-- Parametrizacion -->
+        <div class="panel panel-primary">
+            <div class="panel-heading " >
+                <h4 class="panel-title" >Configuración Prioridad de Entrega de Pedidos</h4>
+            </div>
+            <div class="panel-body"><!--Parametro Pedido -->
+                <div class="col-md-4 " align="right">
+                </div>
+                <div class="col-md-6">
+                    <h4>Seleccione el Parámetro nuevo:</h4>
+                    <form class="form-inline">
+		    Instalaciones: 
+                    <select class="form-control input-sm" id="sel1" ng-model="ordenamientoDemepedidoNuevo" style="width:auto;">
+                        <!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
+                        <option value="FECHA_ESTADO">FECHA ESTADO</option>
+                        <option value="FECHA_INGRESO">FECHA INGRESO</option>
+                    </select>
+			
+			<select class="form-control input-sm" id="sel1" ng-model="prioridadDemepedidoNuevo" style="width:auto;">
+                        <!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
+                        	<option value="DESC">DESC</option>
+                        	<option value="ASC">ASC</option>
+	               	</select>
+
+	
+                    <button class="btn btn-success btn-sm" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO',ordenamientoDemepedidoNuevo);"><span class="glyphicon glyphicon-ok-sign"></span> Guardar</button>
+		    </form>
+		   
+		<form class="form-inline">
+		    Reparaciones: 
+                    <select class="form-control input-sm" id="sel1" ng-model="ordenamientoDemepedidoNuevoR" style="width:auto;">
+                        <!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
+                        <option value="FECHA_ESTADO">FECHA ESTADO</option>
+                        <option value="FECHA_INGRESO">FECHA INGRESO</option>
+                    </select>
+
+                        <select class="form-control input-sm" id="sel1" ng-model="prioridadDemepedidoNuevoR" style="width:auto;">
+                        <!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
+                                <option value="DESC">DESC</option>
+                                <option value="ASC">ASC</option>
+                        </select>
+
+
+                    <button class="btn btn-success btn-sm" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_REPA',ordenamientoDemepedidoNuevoR);"><span class="glyphicon glyphicon-ok-sign"></span> Guardar</button>
+                    </form>
+          <form class="form-inline">
+            Edatel: 
+                    <select class="form-control input-sm" id="sel1" ng-model="ordenamientoDemepedidoNuevoED" style="width:auto;">
+                        <!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
+                        <option value="FECHA_ESTADO">FECHA ESTADO</option>
+                        <option value="FECHA_INGRESO">FECHA INGRESO</option>
+                    </select>
+
+                        <select class="form-control input-sm" id="sel1" ng-model="prioridadDemepedidoNuevoED" style="width:auto;">
+                        <!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
+                                <option value="DESC">DESC</option>
+                                <option value="ASC">ASC</option>
+                        </select>
+
+
+                    <button class="btn btn-success btn-sm" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_EDATEL',ordenamientoDemepedidoNuevoED);"><span class="glyphicon glyphicon-ok-sign"></span> Guardar</button>
+                    </form>          
+
+                </div>
+            </div>
+            <div class="panel-footer" >
+                Última Actualización: <font color='blue'>{{ordenamientoDemepedidoUpdate}}</font>
+            </div>
+        </div>
+    </div><!--Parametrizacion -->
+</div><!--ROW parametrizacion -->
+
+<!-- ACA COMIENZA LA FIESTA  AGENDAMIENTO-->
+            <div class="row" ng-controller="TabController">
+				<!--    <ul class="nav nav-pills">
+    					<li ng-class="{ active: isSet(1) }">
+        				<a href ng-click="setTab(1)">Conceptos Agendamiento</a>
+    					</li>
+					</ul>   -->
+                <div class="col-bg-8" ><!--Panel de pendientes -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading " >
+                            <h2 class="panel-title" >Servicios Pendientes: <font color='Cyan'>{{totalAGEN}}</font></h2>
+                        </div>
+                         
+                    <div class="panel-body panel-body-sm">
+
+                    <div class="row">
+                        <div class="col-sm-12" ><!--Grafica -->
+                            <div align="left">
+                                <button class="btn btn-primary btn-sm" value="actualizar!" ng-click="actualizarGraficaAgendamiento();"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
+                            </div>
+
+                        <div fusioncharts
+                                            align="center" 
+                                            width="800"
+                                            height="400"
+                                            type="column2d"
+                                            datasource="{{myDataSourceAgendamiento}}">
+                        </div><!--Fusioncharts -->
+                        </div><!--Grafica -->
+					</div><!--terminacion del row grafica-->
+
+					<div class="row">
+                        <div class="col-sm-6"><!--Acordeon con Tablas -->
+                        <accordion close-others="oneAtATime"><!--Acordeones -->
+                            <accordion-group><!--Fecha Cita -->
+                             <accordion-heading>
+                                Concepto según Gestión: {{totalAGEN}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                             </accordion-heading>
+
+                               <table class="table small table-striped table-hover table-bordered table-condensed ">
+                                <thead>
+                                        <th>Concepto</th>
+                                        <th>TOTAL</th>
+                                        <th>Migracion</th>
+                                        <th>Gestionables</th>
+                                        <th>Cita Vencida</th>
+                                        <th>Sin Agenda</th>
+                                        <th>Agendados</th>
+                                </thead>
+                                <tbody>
+                                   <tr ng-repeat="data in tbl_fechacita">
+                                    <td><!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->{{data.CONCEPTOS}}</span></td>
+                                    <td ng-init="tbl_fechacita.totales = parseInt(tbl_fechacita.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
+                                    <td ng-init="tbl_fechacita.total02 = parseInt(tbl_fechacita.total02) + parseInt(data.Migracion)">{{data.Migracion}}</td>
+                                     <td ng-init="tbl_fechacita.total34 = parseInt(tbl_fechacita.total34) + parseInt(data.Gestionables)">{{data.Gestionables}}</td>
+                                     <td ng-init="tbl_fechacita.total56 = parseInt(tbl_fechacita.total56) + parseInt(data.Cita_Vencida)">{{data.Cita_Vencida}}</td>
+                                    <td ng-init="tbl_fechacita.total712 = parseInt(tbl_fechacita.total712) + parseInt(data.Sin_Agenda)">{{data.Sin_Agenda}}</td>
+                                    <td ng-init="tbl_fechacita.total1324 = parseInt(tbl_fechacita.total1324) + parseInt(data.Agendados)">{{data.Agendados}}</td>
+                            
+                                        </tr>
+                                </tbody>
+                                <tfoot>
+                                            <tr class="info">
+                                                    <th>TOTALES</th>
+                                                    <th>{{tbl_fechacita.totales}}</th>
+                                                    <th>{{tbl_fechacita.total02}}</th>
+                                                    <th>{{tbl_fechacita.total34}}</th>
+                                                    <th>{{tbl_fechacita.total56}}</th>
+                                                    <th>{{tbl_fechacita.total712}}</th>
+                                                    <th>{{tbl_fechacita.total1324}}</th>
+                                            </tr>
+
+                                </tfoot>
+                                </table>
+                            </accordion-group><!--Fecha Cita -->
+                        </accordion><!--Acordeones -->
+
+                        </div><!--Acordeon con Tablas -->
+					<div class="col-sm-6"><!--Acordeon con Tablas -->
+                        <accordion close-others="oneAtATime"><!--Acordeones -->
+                            <accordion-group><!--Fecha Cita -->
+                             <accordion-heading>
+                                Pedidos Conceptos Especiales: {{totalPed}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                             </accordion-heading>
+
+                               <table class="table small table-striped table-hover table-bordered table-condensed ">
+                                <thead>
+                                        <th>Departamento</th>
+                                        <th>Concepto</th>
+                                        <th>TOTAL</th>
+                                        <th>Hoy</th>
+                                        <th>Mañana</th>
+                                        <th>Pasado Mañana</th>
+                                        <th>Mas de 3 Días</th>
+                                </thead>
+                                <tbody>
+                                   <tr ng-repeat="dataPed in tbl_pedAgenda">
+                                    <td>{{dataPed.DEPARTAMENTO}}</span></td>
+                                    <td><!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->{{dataPed.CONCEPTOS}}</span></td>
+                                    <td ng-init="tbl_pedAgenda.totales = parseInt(tbl_pedAgenda.totales) + parseInt(dataPed.Cantidad)">{{dataPed.Cantidad}}</td>
+                                    <td ng-init="tbl_pedAgenda.total02 = parseInt(tbl_pedAgenda.total02) + parseInt(dataPed.Hoy)">{{dataPed.Hoy}}</td>
+                                     <td ng-init="tbl_pedAgenda.total34 = parseInt(tbl_pedAgenda.total34) + parseInt(dataPed.Manana)">{{dataPed.Manana}}</td>
+                                     <td ng-init="tbl_pedAgenda.total56 = parseInt(tbl_pedAgenda.total56) + parseInt(dataPed.Pasado_Manana)">{{dataPed.Pasado_Manana}}</td>
+                                    <td ng-init="tbl_pedAgenda.total712 = parseInt(tbl_pedAgenda.total712) + parseInt(dataPed.Mas_de_3_dias)">{{dataPed.Mas_de_3_dias}}</td>
+                                        </tr>
+                                </tbody>
+                                <tfoot>
+                                            <tr class="info">
+                                                    <th colspan='2'>TOTALES</th>
+                                                    <th>{{tbl_pedAgenda.totales}}</th>
+                                                    <th>{{tbl_pedAgenda.total02}}</th>
+                                                    <th>{{tbl_pedAgenda.total34}}</th>
+                                                    <th>{{tbl_pedAgenda.total56}}</th>
+                                                    <th>{{tbl_pedAgenda.total712}}</th>
+                                            </tr>
+
+                                </tfoot>
+                                </table>
+                            </accordion-group><!--Fecha Cita -->
+                        </accordion><!--Acordeones -->
+
+                        </div><!--Acordeon con Tablas -->
+                	</div><!-- terminacion del row de las tablas-->
+
+            </div>
+            <div class="panel-footer " >
+                <div class="col-sm-6" align="left">
+                <span style="vertical-align: middle;">Última Actualización: <font color='blue'>{{lastUpdate}}</font></span> 
+                </div>
+                
+                <div  align="right">
+                <button class="btn btn-success btn-sm" ng-click="csvAgendamiento();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Exportar Pendientes</button>
+                </div>
+            </div>
+        </div>
+    </div><!--ACA TERMINA LA FIESTA AGENDAMIENTO-->
+    </div><!--ROW-->
+
+
+
+
+<div> <br><br><br></div>

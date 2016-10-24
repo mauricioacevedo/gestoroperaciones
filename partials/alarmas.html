@@ -1,0 +1,127 @@
+<ol class="breadcrumb">
+  <li><a href="./#/activacion/">Activación/Desactivación</a></li>
+  <li class="active">Alarmas</li>
+</ol>
+<div class="row" ng-controller="TabController">
+
+        <div class="col-md-16">
+            <div class="jumbotron">
+                <div ng-show="isSet(1)">
+		<div class="row"> 
+				<center><h3>CONFIGURACIÓN DE ALARMAS</h3></center>
+
+		</div>
+
+
+
+			<div class="row">
+				<ul class="nav nav-list">
+				  <li class="divider">.</li>
+				</ul>
+			 </div>
+            <div class="row">
+
+
+              <div class="row"><!--Div Boton Nuevo Cola -->
+                <div class="col-lg-3">
+                    <button class="btn btn-primary btn-sm" value="exportar!" ng-click="nuevaAlarma();">
+                      <span class="fa fa-bullhorn"></span> Nueva Alarma
+                    </button>
+                </div>
+                <div class="col-xs-6" ></div>
+                <div class="col-xs-3" >
+                    <input type="text" class="form-control"  class="col-xs-3" placeholder="Cola ID a Buscar" ng-model="bcola">
+                </div>
+              </div>
+              <div class="row"> 
+                <br>
+              </div>
+              <div class="row" id="listAlarmas">
+                    <table class="table small table-striped table-hover table-bordered table-condensed" width="100%">
+                            <thead>
+                                    <th width="15%">COLA ID</th>
+                                    <th width="30%">RESPONSABLE UNO</th>
+                                    <th width="30%">RESPONSABLE DOS</th>
+                                    <th width="15%">FECHA ACTUALIZACIÓN</th>
+                                    <th width="10%">ACCIONES</th>
+                            </thead>
+                            <tbody>
+                                  <tr ng-repeat="data in listado_alarmas|filter:bcola track by $index| orderBy:'COLA_ID':false  ">
+                                    <td>{{data.COLA_ID}}</td>
+                                    <td><div id="div{{$index}}">{{data.RESPONSABLE1}}</div></td>
+                                    <td><div id="divres{{$index}}">{{data.RESPONSABLE2}}</div></td>
+                                    <td><div id="fechaAct{{$index}}">{{data.FECHA_ACTUALIZACION}}</div></td>
+                                    <td align="center">
+                                      <div id="edi{{$index}}">
+                                        <button class="btn btn-success btn-xs" value="edit!" ng-click="editAlarma($index, data.USUARIO_ID1, data.USUARIO_ID2);"><i class="fa fa-pencil fa-lg"></i></button>
+                                      </div>
+
+                                    <div class='row center-block' id="divsave{{$index}}" style="visibility: hidden; display:none;">
+                                        <div class='col-md-1 col-centered' id='save{{$index}}'>
+                                          <button class='btn btn-primary btn-xs' value='guardar!' ng-click='guardarAlarma($index, data.COLA_ID);'><i class='fa fa-floppy-o fa-lg'></i></button>
+                                        </div>
+                                        <div class='col-md-1 col-centered' id='cancel{{$index}}'>
+                                          <button class='btn btn-danger btn-xs' value='cancelar!' ng-click='cancelarAlarma($index);'><i class='fa fa-times-circle fa-lg'></i></button>
+                                        </div>
+                                  </div>
+                                      <!--<div id="save{{$index}}">
+                                        <button class="btn btn-primary btn-xs" value="guardar!" ng-click="guardarAlarma();"><i class="fa fa-floppy-o fa-lg"></i></button>
+                                      </div> -->
+                                    </td>
+                                  </tr>
+                            </tbody>
+                    </table>
+                </div>    
+                <div class="row" id="newAlarma">
+                    <table class="table small table-striped table-hover table-bordered table-condensed" width="100%">
+                        <thead>
+                            <th width="15%">COLA ID</th>
+                            <th width="30%">RESPONSABLE UNO</th>
+                            <th width="30%">RESPONSABLE DOS</th>
+                            <th width="15%">FECHA ACTUALIZACIÓN</th>
+                            <th width="10%">ACCIONES</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text" class="form-control" ng-model="alarmaNueva.COLA_ID"></td>
+
+                                <td> <select ng-model="alarmaNueva.RESPONSABLE1" class="form-control">
+                                        <option value=""></option>
+                                        <option ng-repeat="usernewUno in usuariosAlarmasNew" value="{{usernewUno.USUARIO_ID}}">{{usernewUno.USUARIO_NOMBRE}}</option>
+                                    </select>
+                                </td>
+                                <td>  <select ng-model="alarmaNueva.RESPONSABLE2" class="form-control">
+                                          <option value=""></option>
+                                          <option ng-repeat="usernewDos in usuariosAlarmasNew" value="{{usernewDos.USUARIO_ID}}">{{usernewDos.USUARIO_NOMBRE}}</option>
+                                        </select>
+                                </td>
+                                <td><div><input type="text" class="form-control" id="fechaAct" ng-model="alarmaNueva.FECHA_ACTUALIZACION"></div></td>
+                                <td align="center">
+                                    <button class='btn btn-primary btn-xs' value='guardar!' ng-click='guardarNuevaAlarma(alarmaNueva);'><i class='fa fa-floppy-o fa-lg'></i>
+                                    </button>
+                                  <button class='btn btn-danger btn-xs' value='cancelar!' ng-click='cancelarGuardarAlarma();'><i class='fa fa-times-circle fa-lg'></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                    </div>
+                  </div>
+            </div>  
+        </div>
+    </div>
+    <div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+
+<script>
+$('#fechaAct').datepicker({
+     format: 'yyyy-mm-dd',
+     todayBtn: "linked",
+     autoclose: true
+ });
+</script>
+

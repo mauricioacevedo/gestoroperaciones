@@ -1,0 +1,272 @@
+﻿<style type="text/css">
+  .form-horizontal input.ng-invalid.ng-dirty {
+    border-color: #FA787E;
+  }
+
+  .form-horizontal input.ng-valid.ng-dirty {
+    border-color: #78FA89;
+  }
+</style>
+<ol class="breadcrumb">
+  <li><a href="./#/actividades/">Actividades</a></li>
+  <li class="active">Transacciones Actividades</li>
+</ol>
+<div class="view">
+    <div class="container">
+        <div id="legend">
+                <h3>Registrar Nueva Transacción:</h3>
+                <hr style="background:#D8262E; border:0; height:2px" />
+        </div>
+        <!--div class="row"-->
+        <div class="col-xs-6">
+        <form role="form" name="myForm" class="form-horizontal">
+            <!--div class="row"-->
+            <div class= "form-group"><!--Inicia Div de Dia-->
+                <label class= "col-md-2">Dia: </label>
+                <div class="col-md-4">
+            	<select ng-model="transaccion.DIA" class="form-control" style="width: auto;">
+                    <option value=''></option>
+            		<option value='LUNES'>LUNES</option>
+            		<option value='MARTES'>MARTES</option>
+            		<option value='MIERCOLES'>MIERCOLES</option>
+            		<option value='JUEVES'>JUEVES</option>
+            		<option value='VIERNES'>VIERNES</option>
+            		<option value='SABADO'>SABADO</option>
+            		<option value='DOMINGO'>DOMINGO</option>
+			        
+            	</select>
+                </div>
+            </div><!--Finaliza Div de Dia-->
+
+               <div class= "form-group"><!--Inicia Div de Fecha-->
+                <label class= "col-md-2">Fecha: </label>
+                <div class="input-daterange col-sm-2" id="datepicker">
+                    <input type="text" class="form-control" style="min-width: 100px" id="toDate" name="toDate" ng-model="transaccion.FECHA"  placeholder= "Fecha" />
+             </div>
+            </div><!--Finaliza Div de Fecha-->
+
+            <div class= "form-group"><!--Inicia Div de Tipo Trabajo-->
+                <label class= "col-md-2">Tipo Trabajo: </label>
+                <div class="col-md-20">
+                    <select  ng-model="transaccion.TIPO_TRABAJO" class="form-control" style="width: auto;">
+                        <option value='ASEGURAMIENTO'>ASEGURAMIENTO</option>
+                		<option value='CAMBIO'>CAMBIO</option>
+                		<option value='DEPURACION'>DEPURACION</option>
+                		<option value='NUEVO'>NUEVO</option>
+                		<option value='RECONEXION'>RECONEXION</option>
+                		<option value='RETIRO'>RETIRO</option>
+                        <option value='SUSPENSION'>SUSPENSION</option>
+                        <option value='TRASLADO'>TRASLADO</option>
+                        <option value='VALIDAR SERVICIO'>VALIDAR SERVICIO</option>
+                    </select>
+                    
+                </div>
+            </div><!--Finaliza Div de Tipo Trabajo-->
+            <div class= "form-group"><!--Inicia Div de Aplicacion/Actividad-->
+                <label class= "col-md-4"> Aplicacion/Actividad: </label>
+                <div class="col-md-4">
+            	<select ng-model="transaccion.APLICACION_ACTIVIDADES" class="form-control" style="width: auto;">
+                    <option value='Seleccione'>Seleccione</option>
+            		<option value='ACTUALIZAR INFORMACION'>ACTUALIZAR INFORMACION</option>
+            		<option value='ATENCION DE LINEA'>ATENCION DE LINEA</option>
+            		<option value='CAPACITACION'>CAPACITACION</option>
+            		<option value='CENTRAL'>CENTRAL</option>
+            		<option value='CNR'>CNR</option>
+            		<option value='CORREOS'>CORREOS</option>
+                    <option value='CR/RQ/TT'>CR/RQ/TT</option>
+                    <option value='ELITE'>ELITE</option>
+                    <option value='FENIX'>FENIX</option>
+                    <option value='INCAPACIDAD'>INCAPACIDAD</option>
+                    <option value='INDISPONIBILIDAD DE SISTEMA'>INDISPONIBILIDAD DE SISTEMA</option>
+                    <option value='INGRESO DE PEDIDO'>INGRESO DE PEDIDO</option>
+                    <option value='INVENTARIO PSR'>INVENTARIO PSR</option>
+                    <option value='MIGRACION'>MIGRACION</option>
+                    <option value='NCA'>NCA</option>
+                    <option value='OPEN'>OPEN</option>
+                    <option value='PERMISO'>PERMISO</option>
+                    <option value='PLATAFORMA'>PLATAFORMA</option>
+                    <option value='PRUEBAS'>PRUEBAS</option>
+                    <option value='REALIMENTACION'>REALIMENTACION</option>
+                    <option value='REUNION'>REUNION</option>
+            	</select>
+                </div>
+            </div><!--Finaliza Div de Aplicacion/Actividad-->
+
+            <div class= "form-group"><!--Inicia Div de Cola-->
+                <label class= "col-md-2">Cola:</label>
+                <div class="col-md-4">
+                    <select ng-model="transaccion.COLA" class="form-control" style="width: auto;">
+                        <option value='Seleccione'>Seleccione</option>
+                		<option value='Activacion/Desactiv equipos monitoreo HFC'>Activacion/Desactiv equipos monitoreo HFC</option>
+                		<option value='ACTIVADOR'>ACTIVADOR</option>
+                		<option value='ACTIVAR LINEA HUAWEI'>ACTIVAR LINEA HUAWEI</option>
+                		<option value='AISLADOS/DESAISLADOS'>AISLADOS/DESAISLADOS</option>
+                		<option value='AMARILLAS'>AMARILLAS</option>
+                		<option value='APR-099'>APR-099</option>
+                		<option value='ARCHIVO GESTION'>ARCHIVO GESTION</option>
+                		<option value='ASEGURAMIENTO NCA'>ASEGURAMIENTO NCA</option>
+                        <option value='ATS'>ATS</option>
+                        <option value='AUDSL'>AUDSL</option>
+                        <option value='BREDRE'>BREDRE</option>
+                        <option value='BUC-ACC'>BUC-ACC</option>
+                        <option value='BUC-ACM'>BUC-ACM</option>
+                        <option value='BUC-IPS'>BUC-IPS</option>
+                        <option value='BUZON'>BUZON</option>
+                        <option value='CAMBIO EQUIPO'>CAMBIO EQUIPO</option>
+                        <option value='CAMBIOID'>CAMBIOID</option>
+                        <option value='CAR-ACC'>CAR-ACC</option>
+                        <option value='CAR-ACM'>CAR-ACM</option>
+                        <option value='CAR-IPS'>CAR-IPS</option>
+                        <option value='CBAPON'>CBAPON</option>
+                        <option value='CI-SUS'>CI-SUS</option>
+                        <option value='CISCO'>CISCO</option>
+                        <option value='CITOFONIA VIRTUAL'>CITOFONIA VIRTUAL</option>
+                        <option value='CLIPS'>CLIPS</option>
+                        <option value='CORREO'>CORREO</option>
+                        <option value='CMSUS'>CMSUS</option>
+                        <option value='COMAN'>COMAN</option>
+                        <option value='CONPPV'>CONPPV</option>
+                         <option value='CONTROL'>CONTROL</option>
+                        <option value='CREACIÓN DE LINEA'>CREACIÓN DE LINEA</option>
+                        <option value='CREACION PSR'>CREACION PSR</option>
+                        <option value='CREAR ACTIVIDAD TERRENO'>CREAR ACTIVIDAD TERRENO</option>
+                         <option value='CREDINT'>CREDINT</option>
+                        <option value='CTVPONS'>CTVPONS</option>
+                        <option value='DEPURAR ARCHIVO'>DEPURAR ARCHIVO</option>
+                        <option value='DISCADOS'>DISCADOS</option>
+                         <option value='DOM'>DOM</option>
+                        <option value='DSLAM'>DSLAM</option>
+                        <option value='DTH'>DTH</option>
+                        <option value='EDATEL'>EDATEL</option>
+                        <option value='ELITE'>ELITE</option>
+                        <option value='ESEGUR'>ESEGUR</option> 
+                        <option value='FAX Y DATAFONO'>FAX Y DATAFONO</option>
+                        <option value='Generacion TT/CR '>Generacion TT/CR </option>
+                        <option value='GESTION BUZON'>GESTION BUZON</option>
+                        <option value='GPON'>GPON</option>
+                        <option value='GPONSR'>GPONSR</option>
+                        <option value='GTC'>GTC</option>
+                        <option value='HABIL'>HABIL</option>
+                        <option value='HSEGUR'>HSEGUR</option>
+                        <option value='IAF'>IAF</option>
+                        <option value='INFORME'>INFORME</option>
+                        <option value='INDISPONIBILIDAD DE SISTEMA'>INDISPONIBILIDAD DE SISTEMA</option>
+                        <option value='IDC'>IDC</option>
+                         <option value='IDIOMA'>IDIOMA</option>
+                        <option value='INGRESAR PEDIDO'>INGRESAR PEDIDO</option>
+                         <option value='INGRESAR REALIMENTACIÓN'>INGRESAR REALIMENTACIÓN</option>
+                        <option value='INTDDV'>INTDDV</option>
+                        <option value='INTFW'>INTFW</option>
+                        <option value='INTHPER'>INTHPER</option>
+                          <option value='INTIP'>INTIP</option>
+                        <option value='INTMOVIL'>INTMOVIL</option>
+                        <option value='INTPLA'>INTPLA</option>
+                        <option value='INTROA'>INTROA</option>
+                         <option value='INTUNX'>INTUNX</option>
+                        <option value='INTVIR'>INTVIR</option>
+                        <option value='INTWIN'>INTWIN</option>
+                        <option value='IVR-PREP'>IVR-PREP</option>
+                        <option value='LDAP4'>LDAP4</option>
+                        <option value='LICIVI'>LICIVI</option>
+                        <option value='LTEAPN'>LTEAPN</option>
+                        <option value='LTEHP'>LTEHP</option>
+                        <option value='LTEIMEI'>LTEIMEI</option>
+                         <option value='LTEIP'>LTEIP</option>
+                        <option value='LTERBM'>LTERBM</option>
+                        <option value='MAC-LOGIN'>MAC-LOGIN</option>
+                        <option value='MAN-IPS'>MAN-IPS</option>
+                        <option value='MIUNE'>MIUNE</option>
+                         <option value='NCA'>NCA</option>
+                        <option value='PENDIENTES OTROS'>PENDIENTES OTROS</option>
+                        <option value='PERMISO'>PERMISO</option>
+                        <option value='PRUEBAS'>PRUEBAS</option>
+                        <option value='PSMPR'>PSMPR</option>
+                         <option value='RQ'>RQ</option>
+                        <option value='RETIRO DE LINEA'>RETIRO DE LINEA</option>
+                        <option value='REUNION'>REUNION</option>
+                         <option value='RIGHTV'>RIGHTV</option>
+                        <option value='SEREQU (HOGAR SEGURO)'>SEREQU (HOGAR SEGURO)</option>
+                        <option value='SERIP'>SERIP</option>
+                         <option value='SERVICIOS ESPECIALES'>SERVICIOS ESPECIALES</option>
+                        <option value='SERVICIOS SUPLEMENTARIOS'>SERVICIOS SUPLEMENTARIOS</option>
+                        <option value='SERVTOE'>SERVTOE</option>
+                        <option value='SHASTA'>SHASTA</option>
+                        <option value='SMART'>SMART</option>
+                         <option value='SOBER'>SOBER</option>
+                        <option value='SUBAS'>SUBAS</option>
+                        <option value='SUGRU'>SUGRU</option>
+                        <option value='SUSPENSION DE LINEA'>SUSPENSION DE LINEA</option>
+                        <option value='TEOIG'>TEOIG</option>
+                        <option value='TOIP'>TOIP</option>
+                        <option value='TOIPON'>TOIPON</option>
+                        <option value='TRGPON'>TRGPON</option>
+                         <option value='TSTDA'>TSTDA</option>
+                        <option value='TSTLIA'>TSTLIA</option>
+                        <option value='TVCAMO'>TVCAMO</option>
+                        <option value='TVCANAL'>TVCANAL</option>
+                        <option value='USRPOR'>USRPOR</option>
+                        <option value='USRSEG'>USRSEG</option>
+                        <option value='VAL-ACC'>VAL-ACC</option>
+                        <option value='VERTIP'>VERTIP</option>
+                        <option value='VMWARE'>VMWARE</option>
+                         <option value='VOIP'>VOIP</option>
+                        <option value='ZEUS'>ZEUS</option>
+
+                    </select>
+                </div>
+            </div><!--Finaliza Div de Cola-->
+              <div class= "form-group"><!--Inicia Div de Amanecieron-->
+                <label class= "col-md-3">Amanecieron: </label>
+                <div class="col-md-4">
+                <input ng-model="transaccion.AMANECIERON" type= "text" class= "form-control" placeholder= "Amanecieron"/>
+                </div>
+            </div><!--Finaliza Div de Amanecieron-->
+                <div class= "form-group"><!--Inicia Div de Gestionados dia-->
+                <label class= "col-md-3">Gestionados dia: </label>
+                <div class="col-md-4">
+                <input ng-model="transaccion.GESTIONADO_DIA" type= "text" class= "form-control" placeholder= "Gestionados dia"/>
+                </div>
+            </div><!--Finaliza Div de Gestionados dia-->
+
+                <div class= "form-group"><!--Inicia Div de Quedan Pendientes-->
+                <label class= "col-md-3">Quedan Pendientes: </label>
+                <div class="col-md-4">
+                <input ng-model="transaccion.QUEDAN_PENDIENTES" type= "text" class= "form-control" placeholder= "Quedan Pendientes"/>
+                </div>
+            </div><!--Finaliza Div de Quedan Pendientes-->
+           
+             <div class= "form-group"><!--Inicia Div de Quedan Observacion-->
+                <label class= "col-md-3">Observacion: </label>
+                <div class="col-md-5">
+                <td><textarea rows='5' cols='20' ng-model="transaccion.OBSERVACIONES"></textarea><br>
+                </div>
+            </div><!--Finaliza Div de Quedan Pendientes-->
+
+           
+             <div class="col-md-6"><!--Inicia Div de Botones -->
+                <br>
+                <div class="control-group">
+                    <div class="controls">
+                    <button ng-show="transaccion.ID==''" ng-click="saveTransaccion1(transaccion)" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
+                    <button class="btn btn-success btn-sm" ng-show="transaccion.ID!=''" ng-click="editTransaccionActividades(transaccion);"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
+                    <a href="./#/actividades/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</a>
+                    </div>
+                </div>
+            </div><!--Finaliza Div de Botones -->
+        </form>
+    </div>
+    </div>
+</div>
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+<script>
+$('.input-daterange').datepicker({
+     format: 'yyyy-mm-dd',
+     //todayBtn: "linked",
+     autoclose: true
+ });
+</script>

@@ -1,0 +1,294 @@
+<ol class="breadcrumb">
+  <li><a href="./#/">Agendamiento</a></li>
+  <li class="active">Registros</li>
+</ol>
+<div class="row" ng-controller="TabController">
+    <ul class="nav nav-pills">
+        <li ng-class="{ active: isSet(1) }">
+                <a href ng-click="setTab(1)">Registros Historicos</a>
+        </li>
+        <li ng-class="{ active: isSet(2) }">
+                <a href ng-click="setTab(2)">Pendientes</a>
+        </li>
+    </ul>
+
+        <div class="col-md-16">
+            <div class="jumbotron">
+                <div ng-show="isSet(1)">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i> Registros  Agendamiento<small> Historicos</small></h2>
+                            <hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
+                            <br>
+                        </div>
+                    </div>
+		<div class="row"> 
+			
+			      <label class=" input col-sm-3">Seleccione Fecha:</label>
+                                <div class="input-daterange col-sm-9" id="datepicker">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Desde</span>
+                                        <input type="text" class="form-control" style="min-width: 90px" id="fromDate" name="fromDate" ng-model="data.fechaIni" />
+                                        <span class="input-group-addon">Hasta</span>
+                                        <input type="text" class="form-control" style="min-width: 90px" id="toDate" name="toDate" ng-model="data.fechaFin" />
+                                        <span class="input-group-btn">
+                                                <button class="btn btn-primary btn-sm" value="actualizar!" ng-click="calcularListado();"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
+                                                <button class="btn btn-success btn-sm" value="exportar!" ng-click="csvHistoricos();"><span class="glyphicon glyphicon-download-alt"></span> Exportar</button>
+                                                <button class="btn btn-info btn-sm" value="exportar!" ng-click="csvHistoricosEdatel();"><span class="glyphicon glyphicon-download-alt"></span> ExportarEdatel</button>
+                                        </span>
+                                    </div>
+                                </div>
+		</div>
+
+          <form class="form-inline" role="form">
+
+              <div class="form-group btn-group">
+
+              
+                <input type="text" size="13px" class="form-control btn-group btn btn-md btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Buscador de Pedido" ng-model="bpedido">
+                <button type="button" class="form-control btn btn-md btn-primary"  title="Buscar Pedido" data-toggle="tooltip" data-placement="top" ng-click="buscarPedidoRegistro1(bpedido);"><i class="fa fa-search" aria-hidden="true"></i></button>
+               
+            
+
+                </div>
+             </form>
+
+			<div class="row">
+				<ul class="nav nav-list">
+				  <li class="divider">.</li>
+				</ul>
+			 </div>
+             <div class="row">
+		    <table align="center" width="100%">
+			<tr>
+		 	<td width="50%" align="left">
+
+				Total de Registros: <b>{{data.totalItems}} </b>
+			</td>
+		
+			<td width="50%" align="right">
+				<pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged('listadoPedidos','listadoPendientes')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+			</td>
+			</tr>
+		    </table>
+            
+
+
+                    <table class="table small table-striped table-hover table-bordered table-condensed">
+                            <thead>
+                                    <th>Usuario</th>
+                                    <th>Fuente</th>
+                                    <th>Concepto</th>
+                                    <th>Pedido</th>
+                                    <th>Fecha</th>
+                                    <th>Proceso</th>
+                                    <th>Duracion</th>
+                            </thead>
+                            <tbody>
+                                    <tr ng-repeat="data in listado_pedidos| orderBy:'fecha_fin':true ">
+                                    <td>{{data.asesor}}</td>
+                                    <td>{{data.fuente}}</td>
+                                    <td>{{data.novedad}}</td>
+                                    <td>{{data.pedido_id}}</td>
+                                    <td>{{data.fecha_fin}}</td>
+                                    <td>{{data.proceso}}</td>
+                                    <td>{{data.duracion}}</td>
+                            </tr>
+                            </tbody>
+                    </table>
+			<pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged('listadoPedidos','listadoPendientes')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+                    </div>
+                  </div>
+                <div ng-show="isSet(2)">
+                    <div class="row">
+                            <div class="col-lg-12">
+                                <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i> Registros  Agendamiento<small> Pendientes</small></h2>
+                                <hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
+                                <br>
+                            </div>
+                        </div>
+                     
+
+			 	<div class="row">
+					<div class="col-lg-9 form-inline">
+					<!--a href="#" id ="export" class="btn btn-success btn-md">Exportar</a-->
+    					<button class="btn btn-success btn-sm" value="exportar" ng-click="csvPendientesAgendamiento();"><span class="glyphicon glyphicon-download-alt"></span> Exportar</button>
+                        <button class="btn btn-success btn-sm" value="expor" ng-click="csvPendientesAgenSiete();"><span class="glyphicon glyphicon-download-alt"></span> Exp Mas 7 Días</button>
+    					<button class="btn btn-danger btn-sm" value="Exportar Malos" ng-click="csvMalosAgendamiento();"><span class="glyphicon glyphicon-download-alt"></span> Exportar Malos</button>
+    					<button class="btn btn-warning btn-sm" value="Exportar AGEN" ng-click="csvAGENToday();"><span class="glyphicon glyphicon-download-alt"></span> Exportar AGEN</button>
+                        <button class="btn btn-info btn-sm" value="Exportar PREDICTIVA" ng-click="csvPendientesAgendamientoPredictiva();"><span class="glyphicon glyphicon-download-alt"></span> Exportar Predictiva</button>
+                        
+					</div>
+
+                    <div class="col-lg-3 form-inline">
+                        <div class="form-group">
+                           <div class="input-group merged">
+                            <input type="text" class="form-control pull-right "  class="col-xs-8"  title="Ingrese Pedido a buscar" data-toggle="tooltip" data-placement="top" placeholder="Buscador de Pedidos"ng-model="bpedido" ng-change="buscarPedidoRegistro(bpedido);"><span class="input-group-addon"><i class="fa fa-arrow-circle-left fa-fw"></i></span>
+                           </div>
+                        </div>
+                    </div>
+
+				</div>
+			 
+    
+			<div class="row">    
+                <div class="col-lg-12 form-inline">
+                    		<table align="center" width="100%">
+                        		<tr>
+                        		<td width="20%" align="left"> Total de Registros: <b>{{data1.totalItems}} </b> </td>
+                                <td  width="20%" align="left"> Total Registros Malos: <font color="red"> <b>{{data.totalItems2}} </b></font> </td>
+
+                        		<td width="50%" align="right">
+                                		<pagination total-items="data1.totalItems" ng-model="data1.currentPage" ng-change="pageChanged('listadoPendientes')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+		                        </td>
+                        		</tr>
+                    		</table>
+                </div>               
+			</div>
+          
+	
+			<div id="dvData">	
+                        <table class="table small table-striped table-hover table-bordered table-condensed">
+                        <thead>
+                        <th>Pedido</th>
+                        <th>Departamento</th>
+                        <th>Tiempo en Concepto</th>
+                        <th>Concepto</th>
+                        <th>Zona</th>
+                        <th>Microzona</th>
+                        <th>Fecha Estado</th>
+                        <th>Fecha Cita <br> Fenix/Modulo</th>
+                        <th>Fuente</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="data in listado_pendientes| orderBy:'FECHA_ESTADO':false "  ng-class="{danger: data.STATUS == 'MALO'}" >
+                                <td>{{data.PEDIDO_ID}}</td>
+                                <td>{{data.DEPARTAMENTO}}</td>
+                                <td><font color="red">{{data.TIEMPO_COLA}}</font></td>
+                                <td>{{data.CONCEPTOS}} <font ng-show="data.STATUS=='MALO'" color='red'><b>MALO</b></font></td>
+                                <td>{{data.SUBZONA_ID}}</td>
+                                <td>{{data.MICROZONA}}</td>
+                                <td>{{data.FECHA_ESTADO}}</td>
+                                <td>{{data.FECHA_CITA_FENIX}}</td>
+                                <td>{{data.FUENTE}}</td>
+                            </tr>
+                        </tbody>
+                        </table>
+			<pagination total-items="data1.totalItems" ng-model="data1.currentPage" ng-change="pageChanged('listadoPendientes')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+<div class="pull-right"><!--Flecha Arriba -->
+    <a href="#" class="scrollToTop"><i class="fa fa-chevron-circle-up fa-2x" data-toggle="tooltip" title="Volver arriba" data-placement="right"></i></a>
+</div>
+    <div class="container">
+         <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+  <script type='text/javascript'>
+        $(document).ready(function () {
+            function exportTableToCSV($table, filename) {
+                var $headers = $table.find('tr:has(th)')
+                    ,$rows = $table.find('tr:has(td)')
+                    // Temporary delimiter characters unlikely to be typed by keyboard
+                    // This is to avoid accidentally splitting the actual contents
+                    ,tmpColDelim = String.fromCharCode(11) // vertical tab character
+                    ,tmpRowDelim = String.fromCharCode(0) // null character
+                    // actual delimiter characters for CSV format
+                    ,colDelim = '","'
+                    ,rowDelim = '"\r\n"';
+                    // Grab text from table into CSV formatted string
+                    var csv = '"';
+                    csv += formatRows($headers.map(grabRow));
+                    csv += rowDelim;
+                    csv += formatRows($rows.map(grabRow)) + '"';
+                    // Data URI
+                    var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+                $(this)
+                    .attr({
+                    'download': filename
+                        ,'href': csvData
+                        //,'target' : '_blank' //if you want it to open in a new window
+                });
+                //------------------------------------------------------------
+                // Helper Functions 
+                //------------------------------------------------------------
+                // Format the output so it has the appropriate delimiters
+                function formatRows(rows){
+                    return rows.get().join(tmpRowDelim)
+                        .split(tmpRowDelim).join(rowDelim)
+                        .split(tmpColDelim).join(colDelim);
+                }
+                // Grab and format a row from the table
+                function grabRow(i,row){
+                     
+                    var $row = $(row);
+                    //for some reason $cols = $row.find('td') || $row.find('th') won't work...
+                    var $cols = $row.find('td'); 
+                    if(!$cols.length) $cols = $row.find('th');  
+                    return $cols.map(grabCol)
+                                .get().join(tmpColDelim);
+                }
+                // Grab and format a column from the table 
+                function grabCol(j,col){
+                    var $col = $(col),
+                        $text = $col.text();
+			$text=$text.replace('MALO','');
+                    return $text.replace('"', '""'); // escape double quotes
+                }
+            }
+            // This must be a hyperlink
+            $("#export").click(function (event) {
+                // var outputFile = 'export'
+                var outputFile = window.prompt("Escriba el nombre del archivo") || 'export';
+                outputFile = outputFile.replace('.csv','') + '.csv'
+                 
+                // CSV
+                exportTableToCSV.apply(this, [$('#dvData>table'), outputFile]);
+                
+                // IF CSV, don't do event.preventDefault() or return false
+                // We actually need this to be a typical hyperlink
+            });
+        });
+    </script>
+<script>
+$('.input-daterange').datepicker({
+     format: 'yyyy-mm-dd',
+     todayBtn: "linked",
+     autoclose: true
+ });
+</script>
+<script language='javascript'>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+})
+</script>
+<!-- Flecha Arriba Estilo, dentro del head--> 
+<script>            
+$(document).ready(function(){
+    
+    //Check to see if the window is top if not then display button
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 100) {
+            $('.scrollToTop').fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut();
+        }
+    });
+    
+    //Click event to scroll to top
+    $('.scrollToTop').click(function(){
+        $('html, body').animate({scrollTop : 0},800);
+        return false;
+    });
+    
+});
+</script>
+<!-- Flecha Arriba Estilo, dentro del head--> 

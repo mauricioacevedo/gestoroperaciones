@@ -1,0 +1,77 @@
+<script>
+   if (window.opener) {
+      /* i'm a popup, add "popup" class to <html> element */
+      /*document.documentElement.className += " footerazo";*/
+      document.getElementById('headerazo').style.display='none';
+      document.getElementById('footerazo').style.display='none';
+   }
+</script>
+<div class="page-header">
+        <h1>Buscador de Disponibilidad GPON</h1>
+</div>
+<div ng-show="error" class="alert alert-danger">{{error}}</div>
+     
+<div class="conaiter">
+
+<div class="panel panel-primary">
+  <div class="panel-body">
+    <form class="navbar-form navbar-center" role="search">
+    <div class="form-group">
+      <input type="text" class="form-control col-xs-4" aria-label="..." ng-model="olt"  placeholder="Olt" autocomplete="on">
+      <input type="text" class="form-control col-xs-4" aria-label="..." ng-model="tarjeta"  placeholder="Tarjeta" autocomplete="on">
+      <input type="text" class="form-control col-xs-4" aria-label="..." ng-model="puerto"  placeholder="Puerto" autocomplete="on">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-md btn-primary dropdown-toggle"  ng-click="buscarGPON(olt,tarjeta,puerto);"><span class="glyphicon glyphicon glyphicon-search"></span> Buscar Puerto</button>
+      </div><!-- /btn-group -->
+    </div><!-- /input-group -->
+  </form>
+</div>
+  <div class="panel-footer">
+	<form name="CmtsForm">
+    
+    <table class="table small table-striped table-bordered table-condensed table-fixed">
+                    <thead style="background-color: #D8D8D8;">
+                            <th>OLT</th>
+                            <th>TARJETA</th>
+                            <th>PUERTO</th>
+                            <th>BW ACCESO</th>
+                            <th>BW TRKSIP</th>
+                            <th>BW EQUIPOS SD</th>
+                            <th>BW EQUIPOS HD</th>
+                            <th>TOTAL</th>
+                            <th>CAPACIDAD DEL PUERTO</th>
+                            <th>DISPONIBLE</th>
+                    </thead>
+                    
+                    <tr ng-repeat="dota in resultado">
+                        <td>{{dota.OLT_ID}}</td>
+                        <td>{{dota.TARJETA_ID}}</td>
+                        <td>{{dota.PUERTO_ID}}</td>
+                        <td>{{dota.VELOCIDAD_ACCESO}} MB</td>
+                        <td>{{dota.PUNTOS_TRKSIP}} MB</td>
+                        <td>{{dota.PUNTOS_SD}} MB</td>
+                        <td>{{dota.PUNTOS_HD}} MB</td>
+                        <td style="background-color: red; color:white;">{{dota.TOTAL}} MB</td>
+                        <td>1600 MB</td>
+                        <td>{{1600-dota.TOTAL}} MB</td>
+
+                    </tr>
+    </table>
+
+
+                <!--td><button id="iniciar" type="button" class="btn btn-md btn-success" onclick="javascript:activar();">Iniciar</a></td-->
+	<div id="warning"></div>
+                
+	</form>
+
+</div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <button class="btn btn-success btn-sm"  value="exportar" ng-click="csvGPON(olt,tarjeta,puerto);" id="exportar_gpon"><span class="glyphicon glyphicon-download-alt"></span> Exportar Servicios</button>
+    <div class="pull-right">
+      <strong><font style="color:green"><i class="fa fa-arrow-circle-up"></i> 0.8 Gbps </font>- <font style="color:red"><i class="fa fa-arrow-circle-down"></i> 1.6 Gbps </font></strong>
+    </div>
+  </div>
+</div>
+</div>

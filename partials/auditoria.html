@@ -1,0 +1,435 @@
+<ol class="breadcrumb">
+  <li><a href="./#/">Auditoria</a></li>
+  
+</ol>
+
+<div class="row"><!--Row DemePedido -->
+  <div class="panel panel-primary">
+      <div class="panel-heading">Registros Malos</div>
+  
+<div class="panel panel-info">
+  <div class="panel-heading">
+      <div class="row"><!--Row Concepto Plaza - -->
+
+        
+        <div class="col-lg-5 col-xs-5">
+
+
+            <form class="form-inline" role="form">
+
+              <div class="form-group btn-group">
+
+               <button id="iniciar" type="button" class="form-control btn-group btn btn-md btn-danger" ng-click="start(pedido);">Deme Pedido Malo</button>
+                <input type="text" size="13px" class="form-control btn-group btn btn-md btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Buscador de Pedido" ng-model="bpedido">
+                <button type="button" class="form-control btn btn-md btn-primary"  title="Buscar Pedido" data-toggle="tooltip" data-placement="top" ng-click="buscarPedidoAgendamiento(bpedido);"><i class="fa fa-search" aria-hidden="true"></i></button>
+                 <button id="manual" type="button" class="form-control btn btn-md btn-warning" title="Ingrese Pedido Manual" data-toggle="tooltip" data-placement="top" ng-click="manual();"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+             
+
+                </div>
+             </form>
+        </div>
+            
+        
+
+    </div><!--Row Concepto Plaza - Buscador Tips -->
+
+</div>
+
+
+    </div><!--Panel Heading -->
+  <div class="panel-body">
+
+    <div class="row"><!--Row Deme Pedido -->
+ 
+      <div ng-show="error" class="alert alert-danger "><!--Muestra error cuando no hay pedidos -->
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{error}}.
+      </div><!--Muestra error cuando no hay pedidos -->
+
+          <div class="col-lg-12 col-xs-12">
+
+              
+              <table class="table small table-striped table-hover table-bordered table-condensed" width="300" style="width: auto !important;" ng-show="mpedido.active==1">
+                   <thead>
+                          <th>Pedido</th>
+                           <th>Fuente</th>
+                           <th>Proceso</th>
+                           <th>Cliente</th>
+                          <th>Novedad</th>
+                          <th>Departamento</th>
+                          <th>Observación</th> 
+                          <th>&nbsp;</th>
+                  </thead>
+
+                  <tr>
+
+
+                          <td><input id='ipedido' ng-model="mpedido.PEDIDO_ID" type="text" class= "form-control" placeholder= "Pedido" /></td>
+                         <td>
+                            <select ng-model="mpedido.FUENTE" class= "form-control">
+                                    <option value='ELITE'>ELITE</option>
+                                    <option value='SIEBEL'>SIEBEL</option>
+                                    <option value='FENIX'>FENIX</option>
+                                    <option value='REDCO'>REDCO</option>
+                                    <option value='EDATEL'>EDATEL</option>
+                                      
+                            </select>
+                          </td>
+                          <td>
+                             
+                            <select type="text" class="form-control col-xs-8" aria-label="" ng-model="mpedido.proceso">
+                                  <OPTION VALUE="INSTALACION">INSTALACION</OPTION>
+                                <OPTION VALUE="REPARACION">REPARACION</OPTION>
+                                  
+                            </select>
+                          </td>
+
+                        <td>
+                          <span ng-show="mpedido.PROGRAMADO"  class="ng-binding label label-danger">[PROGRAMADO]{{mpedido.PROGRAMADO}}</span>
+                            <input type="text" class="form-control col-xs-8" aria-label="" ng-model="mpedido.CLIENTE_ID"> 
+                          </td>
+                          <td>
+                            <select class= "form-control" ng-model="mpedido.NOVEDAD">
+                                  <OPTION VALUE="ESCALADO CR">ESCALADO CR</OPTION>
+                                <OPTION VALUE="RECUPERAR EQUIPOS">RECUPERAR EQUIPOS</OPTION>
+                                <OPTION VALUE="RETIRAR ACCESO">RETIRAR ACCESO</OPTION>
+                                <OPTION VALUE="ERROR SIEBEL">ERROR SIEBEL</OPTION>
+                                <OPTION VALUE="CUMPLIDO">CUMPLIDO</OPTION>
+                                <OPTION VALUE="PENDIENTE AGENDA">PENDIENTE AGENDA</OPTION>
+                                <OPTION VALUE="ANULADO">ANULADO</OPTION>
+                                <OPTION VALUE="OTROS CONCEPTO ESCALADO">OTROS CONCEPTO ESCALADO</OPTION>
+                                <OPTION VALUE="NO APLICA GESTION">NO APLICA GESTION</OPTION>
+                                <OPTION VALUE="DESINSTALAR">DESINSTALAR</OPTION>
+                                <OPTION VALUE="YA ESTA AGENDADO">YA ESTA AGENDADO</OPTION>
+                                <OPTION VALUE="ERRORES DE FACTURACION">ERRORES DE FACTURACION</OPTION>
+                                <OPTION VALUE="INFORMACION-PARA CONFIRMAR LLEGADA DE TECNICO">INFORMACION-PARA CONFIRMAR LLEGADA DE TECNICO</OPTION>
+                                <OPTION VALUE="ESCALAMIENTO INSTALACIONES ANTIOQUIA">ESCALAMIENTO INSTALACIONES ANTIOQUIA</OPTION>
+                                <OPTION VALUE="INFORMACION GENERAL">INFORMACION GENERAL</OPTION>
+                                <OPTION VALUE="AGENDADO">AGENDADO</OPTION>
+                                <OPTION VALUE="AGENDADO SIN CONTACTO">AGENDADO SIN CONTACTO</OPTION>
+                                <OPTION VALUE="SIN CITA">SIN CITA</OPTION>
+                                <OPTION VALUE="PENDIENTE EN OTRO CONCEPTO">PENDIENTE EN OTRO CONCEPTO</OPTION>
+                                <OPTION VALUE="NO APARECE EN MOVILIDAD">NO APARECE EN MOVILIDAD</OPTION>
+                                <OPTION VALUE="NO DESEA EL SERVICIO">NO DESEA EL SERVICIO</OPTION>
+                                <OPTION VALUE="YA ESTA CUMPLIDO">YA ESTA CUMPLIDO</OPTION>
+                                <OPTION VALUE="LIBERACION DE CUPOS">LIBERACION DE CUPOS</OPTION>
+                                <OPTION VALUE="AGENDADO_FUTURO">AGENDADO_FUTURO</OPTION>
+                                 <OPTION VALUE="GESTION REAGE">GESTION REAGE</OPTION>
+                               
+                            </select>
+                                <div  ng-show="mpedido.NOVEDAD=='AGENDADO' || mpedido.NOVEDAD=='AGENDADO_FUTURO' || mpedido.NOVEDAD=='PENDIENTE AGENDA' || mpedido.NOVEDAD=='AGENDADO SIN CONTACTO' "><br>
+
+                                                <div class="col-md-10">
+                                                        <div class="input-daterange control-group" id="datepicker">
+                                                                <label class="control-label" for="toDate">Fecha Cita Propuesta</label><br>
+                                                                <div class="input-group margin-bottom-lg">
+                                                                        <span class="input-group-addon"><i class="fa fa-calendar-plus-o fa-fw"></i></span>
+                                                                        <input type="text" class= "form-control" ng-model="mpedido.FECHA_CITA_REAGENDA">
+
+                                                                </div>
+                                                                <label class="control-label" for="toDate">Jornada Cita</label>  <select  ng-model="mpedido.JORNADA_CITA" > <option>AM</option><option>PM</option></select>
+                                                        </div>
+                                                </div>
+                                                <script>
+                                                        $('.input-daterange').datepicker({
+                                                             format: 'yyyy-mm-dd',
+                                                             //todayBtn: "linked",
+                                                             todayHighlight: true,
+                                                             autoclose: true,
+                                                             language: 'es'
+                                                         });
+                                                </script>
+                                        </div>
+                          </td>
+                      
+                            <td>
+                             
+                            <select type="text" class="form-control col-xs-8" aria-label="" ng-model="mpedido.DEPARTAMENTO">
+                                  <OPTION VALUE="ANTIOQUIA">ANTIOQUIA</OPTION>
+                                <OPTION VALUE="ATLANTICO">ATLANTICO</OPTION>
+                                <OPTION VALUE="BOGOTA D.C">BOGOTA D.C</OPTION>
+                                <OPTION VALUE="BOLIVAR">BOLIVAR</OPTION>
+                                <OPTION VALUE="CALDAS">CALDAS</OPTION>
+                                <OPTION VALUE="CESAR">CESAR</OPTION>
+                                <OPTION VALUE="CORDOBA">CORDOBA</OPTION>
+                                <OPTION VALUE="CUNDINAMARCA">CUNDINAMARCA</OPTION>
+                                <OPTION VALUE="MAGDALENA">MARGDALENA</OPTION>
+                                <OPTION VALUE="NORTE DE SANTANDER">NORTE DE SANTANDER</OPTION>
+                                <OPTION VALUE="QUINDIO">QUINDIO</OPTION>
+                                <OPTION VALUE="SANTANDER">SANTANDER</OPTION>
+                                <OPTION VALUE="SUCRE">SUCRE</OPTION>
+                                 <OPTION VALUE="VALLE">VALLE</OPTION>
+                                  <OPTION VALUE="VALLE DEL CAUCA">VALLE DEL CAUCA</OPTION>
+                                  
+                            </select>
+                          </td>
+                          
+                          <td>
+
+                            <input type="text" class="form-control col-xs-8" aria-label="" ng-model="mpedido.OBSERVACION_GESTOR"> 
+                          </td>
+                          <td>
+                          <button id="mguardar" type="button" class="btn btn-md btn-danger" ng-click="msavePedidomalo();"><span id="mloader"></span>&nbsp; Guardar</button>
+                          </td>
+                  </tr>
+                </table>
+                <div class="row">
+                      <form name="pedidoForm" ng-submit="savePedido(pedido,userID)" novalidate>
+
+                        <table class="table small table-striped table-hover table-bordered table-condensed"  ng-show="peds.length>0">
+                         <thead>
+                            <th>Pedido</th>
+                            <th>Información</th>
+                            <th>Concepto</th>
+                            <th>Actividad</th>
+                            <th>Observación</th>  
+                            <th>Novedad</th>
+                            <th ng-show="tdtd">Nueva Fecha Cita</th>
+                            <th ng-show="service.estado=='MALO'">Motivo</th>
+                        </thead>
+                        
+                        <tr ng-repeat="service in peds track by $index">
+                          <td>{{service.PEDIDO_ID}}</td>
+                          <td class="col-md-5">
+                            <b>SISTEMA:</b><font color="red"><b> {{service.FUENTE}}</b></font><br>
+                            <b>TIEMPO:</b><font color="red"><b> {{service.TIEMPO_TOTAL}} dias</b></font><br>
+                            <b>INTENTOS DE CONTACTO:</b><font color="red"><b> {{service.TODAY_TRIES}}</b></font><br>
+                            <b>NOMBRE_USUARIO:</b> {{service.NOMBRE_USUARIO}}<br> 
+                            <b>CLIENTE_ID:</b> {{service.CLIENTE_ID}}<br>
+                            <b>CELULAR_AVISAR: </b><a ng-href="SIP:{{service.CELULAR_AVISAR}}" >{{service.CELULAR_AVISAR}} <i class="fa fa-phone-square" aria-hidden="true" ></i></a> <br>
+                            <b>TELEFONO_AVISAR:</b> {{service.TELEFONO_AVISAR}} <br>
+                            <b>FECHA_CITA_FENIX:</b> {{service.FECHA_CITA_FENIX}}<br>
+                            <b>CORREO_UNE:</b> {{service.CORREO_UNE}}<br>
+                            <b>DIRECCION_ENVIO:</b> {{service.DIRECCION_ENVIO}}<br>
+                            <b>E_MAIL_AVISAR:</b> {{service.E_MAIL_AVISAR}}<br>
+                            <b>FECHA_INGRESO:</b> {{service.FECHA_INGRESO}}<br>
+                            <b>MICROZONA:</b> {{service.MICROZONA}}<br>
+                            <b>OBSERVACION FENIX:</b> {{service.OBSERVACION_FENIX}}OBSERVACION_GESTOR
+
+
+                            <br>
+                            <span ng-show="service.PROGRAMADO"  class="ng-binding label label-danger">[PROGRAMADO]{{service.PROGRAMADO}}</span>
+                            <br><span ng-show="service.HISTORICO_NOVEDAD" class="ng-binding label label-warning">[ULTIMA NOVEDAD]{{service.HISTORICO_NOVEDAD}}</span>
+
+                                </td>
+                                <!--td>{{service.PRODUCTO}}</td-->
+                                <!--td><font color='red'>{{service.TIEMPO_TOTAL}}</font></td-->
+                                <td><font color='red'>{{service.CONCEPTOS}}</font></td>
+                                <td><font color='red'>{{service.ACTIVIDADES}}</font></td>
+
+
+                                <td><textarea rows='8' cols='20' ng-model="service.OBSERVACION_GESTOR"></textarea><br>
+                                Numero CR:<input type="text" class="form-control col-xs-8" aria-label="..." ng-model="service.NUMERO_CR"></td>
+                                <!--td><select ng-show="isAuthorized(service.CONCEPTO_ID);" class= "form-control" ng-model="service.estado"-->
+                                <td><select class= "form-control" ng-model="service.NOVEDAD">
+                                <OPTION VALUE="ESCALADO CR">ESCALADO CR</OPTION>
+                                <OPTION VALUE="RECUPERAR EQUIPOS">RECUPERAR EQUIPOS</OPTION>
+                                <OPTION VALUE="RETIRAR ACCESO">RETIRAR ACCESO</OPTION>
+                                <OPTION VALUE="ERROR SIEBEL">ERROR SIEBEL</OPTION>
+                                <OPTION VALUE="CUMPLIDO">CUMPLIDO</OPTION>
+                                <OPTION VALUE="PENDIENTE AGENDA">PENDIENTE AGENDA</OPTION>
+                                <OPTION VALUE="ANULADO">ANULADO</OPTION>
+                                <OPTION VALUE="OTROS CONCEPTO ESCALADO">OTROS CONCEPTO ESCALADO</OPTION>
+                                <OPTION VALUE="NO APLICA GESTION">NO APLICA GESTION</OPTION>
+                                <OPTION VALUE="DESINSTALAR">DESINSTALAR</OPTION>
+                                <OPTION VALUE="YA ESTA AGENDADO">YA ESTA AGENDADO</OPTION>
+                                <OPTION VALUE="ERRORES DE FACTURACION">ERRORES DE FACTURACION</OPTION>
+                                 <OPTION VALUE="INFORMACION-PARA CONFIRMAR LLEGADA DE TECNICO">INFORMACION-PARA CONFIRMAR LLEGADA DE TECNICO</OPTION>
+                                <OPTION VALUE="ESCALAMIENTO INSTALACIONES ANTIOQUIA">ESCALAMIENTO INSTALACIONES ANTIOQUIA</OPTION>
+                                <OPTION VALUE="INFORMACION GENERAL">INFORMACION GENERAL</OPTION>
+                                <OPTION VALUE="GESTION REAGE">GESTION REAGE</OPTION>
+
+                                </select>
+                                        <div  ng-show="service.NOVEDAD=='ESCALADO CR' || service.NOVEDAD=='RECUPERAR EQUIPOS' || 
+                                        service.NOVEDAD=='RETIRAR ACCESO'  || service.NOVEDAD=='ERROR SIEBEL' || service.NOVEDAD=='CUMPLIDO'
+                                        || service.NOVEDAD=='PENDIENTE AGENDA'|| service.NOVEDAD=='ANULADO' || service.NOVEDAD=='OTROS CONCEPTO ESCALADO' || service.NOVEDAD=='NO APLICA GESTION'|| service.NOVEDAD=='DESINSTALAR' || service.NOVEDAD=='YA ESTA AGENDADO' "><br>
+
+                                              
+                                                <script>
+                                                        $('.input-daterange').datepicker({
+                                                             format: 'yyyy-mm-dd',
+                                                             //todayBtn: "linked",
+                                                             todayHighlight: true,
+                                                             autoclose: true,
+                                                             language: 'es'
+                                                         });
+                                                </script>
+                                        </div>
+
+
+
+                                        <div  ng-show="service.NOVEDAD!='ESCALADO CR' && service.NOVEDAD!='' && service.NOVEDAD!=undefined && service.NOVEDAD!='RECUPERAR EQUIPOS' && service.NOVEDAD!='RETIRAR ACCESO' && service.NOVEDAD!='ERROR SIEBEL'
+                                        && service.NOVEDAD!='CUMPLIDO'&& service.NOVEDAD!='PENDIENTE AGENDA'&& service.NOVEDAD!='ANULADO'
+                                        && service.NOVEDAD!='OTROS CONCEPTO ESCALADO'&& service.NOVEDAD!='NO APLICA GESTION'&& service.NOVEDAD!='DESINSTALAR' && service.NOVEDAD!='YA ESTA AGENDADO' && service.NOVEDAD!='ERRORES DE FACTURACION' &&service.NOVEDAD!='INFORMACION-PARA CONFIRMAR LLEGADA DE TECNICO' && service.NOVEDAD!='ESCALAMIENTO INSTALACIONES ANTIOQUIA' && service.NOVEDAD!='INFORMACION GENERAL' && service.NOVEDAD!='GESTION REAGE' "><br>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                                <label class="control-label" for="toDate">Fecha Nuevo Contacto</label><br>
+                                                            <div class="input-group date" id="datetimepicker1">
+                                                                <input type="text" id='programacion' class="form-control" ng-model="service.PROGRAMACION">
+                                                                <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <script>
+                                                        $('#datetimepicker1').datetimepicker({
+                                                                locale: 'es',
+                                                                format: 'YYYY-MM-DD HH:00:00'
+                                                        });
+                                                </script>
+
+                                        </div>
+
+                                </td>
+
+                                <td ng-show="service.NOVEDAD=='MALO'"><select class= "form-control" ng-model="service.MOTIVO_MALO">
+                                        <option value="ESCALADO CR">ESCALADO CR</option>
+                                        <option value="RECUPERAR EQUIPOS">RECUPERAR EQUIPOS</option>
+                                        <option value="RETIRAR ACCESO">RETIRAR ACCESO</option>
+                                        <option value="ERROR SIEBEL">ERROR SIEBEL</option>
+                                        <option value="CUMPLIDO">CUMPLIDO</option>
+                                        <option value="ANULADO">ANULADO</option>
+                                        <option value="OTROS CONCEPTO ESCALADO">OTROS CONCEPTO ESCALADO</option>
+                                        <option value="NO APLICA GESTION">NO APLICA GESTION</option>
+                                        <option value="DESINSTALAR">DESINSTALAR</option>
+                                </select></td>
+
+                                <td>
+                                <!--button ng-show="isAuthorized(service.CONCEPTO_ID);" id="mybutt{{$index}}" type="button" class="btn btn-md btn-success" ng-click="savePedido($index)" ><span id="class{{$index}}"></span>&nbsp; Guardar</button-->
+                                <button id="mybutt{{$index}}" type="button" class="btn btn-md btn-danger" ng-click="saveAuditoria($index)" ><span id="class{{$index}}"></span>&nbsp; Guardar</button>
+                                </td>
+
+                        </tr>
+                        </table>
+                                      <!--td><button id="iniciar" type="button" class="btn btn-md btn-success" onclick="javascript:activar();">Iniciar</a></td-->
+                        <div id="warning" ng-model="warnin"></div>
+                                      
+
+                        </form>
+
+                </div>
+    
+
+
+
+            </div>
+
+
+    </div><!-- Row Deme Pedido -->
+</div><!--Panel body -->
+    
+
+
+  </div><!--Panel -->
+</div><!--Row DemePedido -->
+
+<br>
+
+<div class="row"><!--Divisor -->
+  <hr>
+</div><!--Divisor -->
+
+<div class="row" ng-controller="TabController">
+    <!--div class="col-md-2"-->
+      <ul class="nav nav-pills">
+        <li ng-class="{ active: isSet(2) }">
+            <a href ng-click="setTab(2)">Historico</a>
+        </li>
+        <li ng-class="{ active: isSet(1) }">
+            <a href ng-click="setTab(1)">Personal</a>
+        </li>
+      </ul>
+
+
+    <div class="jumbotron">
+          <div ng-show="isSet(2)">
+
+             <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i> Historico  <small>Pedido</small></h2>
+                        <hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
+                        <br>
+                     </div>
+            </div>
+            <div class="row">
+                <table class="table small table-striped table-hover table-bordered table-condensed ">
+                        <thead>
+                        <th>Usuario</th>
+                        <th>Fuente</th>
+                        <th>Novedad</th>
+                        <th>Fecha</th>
+                        <th>Duracion</th>
+                         <th>acceso</th>
+                        <th>Observacion</th>
+                        <!--th>Opciones</th-->
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="data in historico_pedido track by $index| orderBy:'fecha_fin':true ">
+                                <td>{{data.ASESOR}}</td>
+                                <td>{{data.FUENTE}}</td>
+                                <td>{{data.NOVEDAD}}</td>
+                                <td>{{data.FECHA_FIN}}</td>
+                                <td>{{data.DURACION}}</td>
+                                <td>{{data.ACCESO}}</td>
+<td><button type="button" class="btn btn-link btn-md" ng-show="data.OBSERVACION_GESTOR"> 
+<b><i class="fa fa-info-circle" aria-hidden="true" > <span id="cerrar" custom-popover popover-html={{data.OBSERVACION_GESTOR}} data-trigger="focus" popover-placement="right" popover-label="Observaciones"></span></i></b>
+</button></td>
+                                <!--td>Opciones</td-->
+                            </tr>
+                        </tbody>
+                        </table>
+            </div>
+
+           </div>
+        <div ng-show="isSet(1)">
+            <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i> Registros  <small>Historicos de hoy <span class="badge">{{pedidos.length}}</span></small></h2>
+                        <hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
+                        <br>
+                     </div>
+            </div>
+                  
+            <div class="row">
+          <table class="table small table-striped table-hover table-bordered table-condensed ">
+            <thead>
+            <th>Pedido</th>
+            <th>Fuente</th>
+            <th>Estado</th>
+            <th>Fecha</th>
+            <th>Duracion</th>
+            <!--th>Opciones</th-->
+            </thead>
+            <tbody>
+                <tr ng-repeat="data in pedidos| orderBy:'FECHA_FIN':true ">
+                    <td>{{data.PEDIDO_ID}}</td>
+                    <td>{{data.FUENTE}}</td>
+                    <td>{{data.NOVEDAD}}</td>
+                    <td>{{data.FECHA_FIN}}</td>
+                    <td>{{data.DURACION}}</td>
+                    <!--td>Opciones</td-->
+                </tr>
+            </tbody>
+            </table>
+              </div>
+        </div>
+    </div>
+
+
+
+</div>
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+<script language='javascript'>
+$(function () {
+  $('[data-toggle="popover"]').popover()
+  $('[data-toggle="tooltip"]').tooltip();
+  $('.myTip').tooltip();
+})
+</script>

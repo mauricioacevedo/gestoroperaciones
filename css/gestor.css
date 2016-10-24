@@ -1,0 +1,247 @@
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+.LogoFontBlue{
+    font-family: calibri !important;
+    color:#002E6C !important;
+    font-size: 25px !important;
+    font-weight: bold !important;
+}
+.LogoFontRed{
+    font-family: calibri !important;
+    color:#D8262E !important;
+    font-size: 25px !important;
+    font-weight: bold !important;
+}
+.LoginNameFontRed{
+    font-family: calibri !important;
+    color:#D8262E !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+}
+
+/* -------------------------------- 
+
+Modules - reusable parts of our design
+
+-------------------------------- */
+ul.info-list {
+    margin-top: 20px;
+}
+.info-box {
+    margin-bottom: 20px;
+    border-radius: 4px;
+
+}
+.text-white {
+    color: #FFFFFF !important;
+}
+.info-box-azul { /* Divs Azulez */
+    background: #2A2B51 !important;
+    padding: 10px !important;
+    width: 100px;
+  }
+.feed-container .panel-body{
+    width: 100%;
+    height: 200px;
+    overflow-y: scroll;
+
+}
+
+.cd-container {
+  width: 90%;
+  max-width: 768px;
+  margin: 2em auto;
+}
+.cd-container::after {
+  /* clearfix */
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.cd-top {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  position: fixed;
+  bottom: 40px;
+  right: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* image replacement properties */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  background: rgba(232, 98, 86, 0.8) url(../img/cd-top-arrow.svg) no-repeat center 50%;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+  -moz-transition: opacity .3s 0s, visibility 0s .3s;
+  transition: opacity .3s 0s, visibility 0s .3s;
+}
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+  -moz-transition: opacity .3s 0s, visibility 0s 0s;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+.cd-top.cd-is-visible {
+  /* the button becomes visible */
+  visibility: visible;
+  opacity: 1;
+}
+.cd-top.cd-fade-out {
+  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+  opacity: .5;
+}
+.no-touch .cd-top:hover {
+  background-color: #e86256;
+  opacity: 1;
+}
+@media only screen and (min-width: 768px) {
+  .cd-top {
+    right: 20px;
+    bottom: 20px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .cd-top {
+    height: 60px;
+    width: 60px;
+    right: 30px;
+    bottom: 30px;
+  }
+}
+.buscador input[type="text"] {
+    position: relative;
+    }
+input.buscador { font-family: 'FontAwesome'; }
+
+.buscador {
+    background: #F3F2F2;
+    color : black;
+    padding: 5px 5px 5px 5px;
+    width: 60px;
+    border: 1px solid #CCC;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    -webkit-box-shadow: 0 1px 1px #CCC inset, 0 1px 0 #FFF;
+    box-shadow: 0 1px 1px #CCC inset, 0 1px 0 #FFF;
+}
+
+.buscador:focus {
+     background: #FFF;
+    -webkit-box-shadow: 0 0 25px #CCC;
+    -moz-box-shadow: 0 0 25px #ccc;
+    box-shadow: 0 0 25px #CCC;
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    transform: scale(1.05);
+}
+
+.buscador:hover { 
+    border: 1px solid #808080; 
+    box-shadow: inset 0px 1px 2px rgba(0,0,0,0.3); 
+    -moz-box-shadow: inset 0px 1px 2px rgba(0,0,0,0.3); 
+    -webkit-box-shadow: inset 0px 1px 2px rgba(0,0,0,0.3); 
+  } 
+
+
+.filtro input[type="text"] {
+    position: relative;
+    }
+input.filtro { 
+  font-style: normal; 
+  font-weight: bold;
+  text-align: center;
+}
+
+.filtro {
+    background: #F3F2F2;
+    color : black;
+    padding: 5px 5px 5px 5px;
+    width: 60px;
+    border: 1px solid #CCC;
+    width: 33px;
+    height: 18px;
+}
+
+.filtro:focus {
+     background: #FFF;
+
+}
+
+.btn-circle {
+  width: 49px;
+  height: 49px;
+  text-align: center;
+  padding: 5px 0;
+  font-size: 20px;
+  line-height: 2.00;
+  border-radius: 30px;
+}
+.btn-circle-sm {
+  width: 34px;
+  height: 34px;
+  text-align: center;
+  padding: 2px 0;
+  font-size: 19px;
+  line-height: 1.65;
+  border-radius: 30px;
+}
+.btn-circle-xs {
+  width: 22px;
+  height: 22px;
+  text-align: center;
+  padding: 2px 0;
+  font-size: 12px;
+  line-height: 1.20;
+  border-radius: 30px;
+}
+.navbar-pad-derecha {
+    padding-right: 30px ;
+}
+.navbar-pad-izquierda {
+    padding-left: 30px ;
+}
+.navbar-login
+{
+    width: 305px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+@font-face {
+	font-family: 'digi';
+	src: url('../fonts/DS-DIGII.TTF');
+}
+.clock {
+  font-family: 'digi';
+  font-size:50px;
+}
+.Tips{
+  cursor:pointer;
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}

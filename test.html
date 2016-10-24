@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="myApp" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="google" content="notranslate" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/bootstrap-datepicker.js"></script>
+    <link href="css/datepicker3.css" rel="stylesheet">
+
+
+    <style type="text/css">
+    ul>li, a{cursor: pointer;}
+    </style>
+    <title>Gestor Asignaciones</title>
+
+<script language="javascript">
+        function activar(){
+                var ipedido=document.getElementById("ipedido");
+		var submit=document.getElementById("submit");
+		var iniciar=document.getElementById("iniciar");
+                ipedido.disabled=false;
+		
+		iniciar.className = "btn btn-success disabled";
+		submit.className = "btn btn-danger";
+		iniciar.setAttribute("disabled","disabled");
+		submit.removeAttribute("disabled");
+        }
+</script>
+</head>
+
+<body>
+<br><br>
+
+<label class="label-xlg col-sm-2">Date Range:</label>
+<div class="input-daterange col-sm-10" id="datepicker">
+    <div class="input-group">
+        <input type="text" class="form-control" style="min-width: 90px" id="fromDate" name="fromDate" value="" />
+    </div>
+</div>
+
+<script language="javascript">
+ $('#fromDate').datepicker({
+     format: 'yyyy-mm-dd',
+     autoclose: true
+ });
+</script>
+
+</body>
+
+</html>

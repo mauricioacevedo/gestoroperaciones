@@ -1,0 +1,447 @@
+<ol class="breadcrumb">
+  <li><a href="./#/">Asignaciones</a></li>
+  <li class="active">Gestión Ordenes</li>
+</ol>
+
+<div class="row"><!--Row Herramientas-->
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="col-lg-3 col-xs-3">
+        </div>
+        <div class="col-lg-6 col-xs-6">
+          <div class="col-lg-6 col-xs-6">
+                <div class="form-group">
+                   <div class="input-group merged">
+                    
+                    <input type="text" class="form-control  sm" title="Ingrese palabra a buscar" data-toggle="tooltip" data-placement="top" ng-model="nuevoBuscarTip" ng-change="muestraBusquedaTip(nuevoBuscarTip);" placeholder="Buscador de Tips"><span class="input-group-addon"><i class="fa fa-arrow-circle-left fa-fw"></i></span>
+
+                   </div>
+
+                  </div>
+                </div>
+          
+          <div class="col-lg-6 col-xs-6">
+                   <button type="button" onclick="javascript:BuscaNodo();"class="btn btn-primary btn-circle-sm " title="Buscar capacidad HFC" data-toggle="tooltip" data-placement="top"><i class="fa fa-television"></i></button>
+                    <button type="button" onclick="javascript:abrirCalculoDistancia();"class="btn btn-primary btn-circle-sm" title="Buscar capacidad REDCO" data-toggle="tooltip" data-placement="top"><i class="fa fa-tty"></i></button>
+                    <button type="button" onclick="javascript:BuscaGPON();"class="btn btn-primary btn-circle-sm" title="Buscar capacidad GPON" data-toggle="tooltip" data-placement="top"><i class="fa fa-google-plus"></i></button>
+                    <button type="button" onclick="javascript:BuscaGPON();"class="btn btn-primary btn-circle-sm disabled" title="Ayuda guiada" data-toggle="tooltip" data-placement="top"><i class="fa fa-question"></i></button>
+              </div>
+              </div>
+        <div class="col-lg-3 col-xs-3">
+        </div>
+      </div><!--panel body-->
+    </div><!--panel-->
+
+   <div class="row" id="mostrarTIP"><!--Row Buscador de TIPS -->
+      <div class="col-lg-12 col-xs-3">
+          <div class="pull-left">
+              <table class="table small table-striped table-hover table-bordered table-condensed" width="100%">
+                <tbody>
+                  <tr ng-repeat="data in listadoTips|filter:nuevoBuscarTip">
+                    <td><a ng-href="" ng-click="AbreTips(data.ID)">{{data.TITULO}}</a></td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+      </div>
+    </div><!--Row Buscador de TIPS -->
+
+</div><!--Row Herramientas-->
+
+<div class="row"><!--Row DemePedido -->
+<div class="panel panel-info">
+  <div class="panel-heading">
+      <div class="row"><!--Row Concepto Plaza - Buscador Tips -->
+  
+        <div class="col-lg-5 col-xs-5 form-inline">
+         <label for="Concepto">Concepto:</label>
+          <select ng-model="iconcepto" class="form-control ">
+            <option value='O-15'>O-15</option>
+            <option value='O-13'>O-13</option>
+            <option value='O-106'>O-106</option>
+          </select>
+           <b>Plaza:</b>
+                  <select ng-model="iplaza" class="form-control">
+                    <option value="TODOS">TODOS</option>
+                    <option value="MEDELLIN">MEDELLIN</option>
+                    <option value="BARRANQUILLA">BARRANQUILLA</option>
+                    <option value="BOGOTA">BOGOTA</option>
+                    <option value="BOGOTA-COBRE">BOGOTA-COBRE</option>
+                    <option value="CALI">CALI</option>
+                    <option value="CARTAGENA">CARTAGENA</option>
+                    <option value="EJE CAFETERO">EJE CAFETERO</option>
+                    <option value="SANTANDERES">SANTANDERES</option>
+                    <option value="TOLIMA">TOLIMA</option></select>
+                    
+
+        </div>
+    
+        <div class="col-lg-3 col-xs-3">
+
+            <div class="btn-group"> 
+              <button type="button" class="btn btn-md btn-default"  title="Click para copiar" data-toggle="tooltip" data-placement="top" ng-click="executeCopy(pedidoinfo);">{{pedidoinfo}}</button>
+               <button id="iniciar" type="button" class="btn-group btn btn-md btn-success" ng-click="start(pedido);">DemePedido</button>
+              
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-xs-4">
+
+            <form class="form-inline" role="form">
+
+              <div class="form-group btn-group">
+               
+                <input type="text" class="form-control btn-group btn btn-md btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Buscador de Pedido" ng-model="bpedido">
+                <button type="button" class="form-control btn btn-md btn-primary"  title="Buscar Pedido" data-toggle="tooltip" data-placement="top" ng-click="buscarPedido(bpedido,iplaza);"><i class="fa fa-search" aria-hidden="true"></i></button>
+                <button id="manual" type="button" class="form-control btn btn-md btn-warning disabled" title="Ingrese Pedido Manual" data-toggle="tooltip" data-placement="top" ng-click="manual();"><i class="fa fa-user-times" aria-hidden="true"></i></button>
+              </div>
+            </form>
+            
+        </div>
+
+    </div><!--Row Concepto Plaza - Buscador Tips -->
+
+
+
+
+    </div><!--Panel Heading -->
+  <div class="panel-body">
+    <div class="row"><!--Row Deme Pedido -->
+ 
+      <div ng-show="error" class="alert alert-danger "><!--Muestra error cuando no hay pedidos -->
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{error}}. Intente Cambiando de plaza.
+      </div><!--Muestra error cuando no hay pedidos -->
+
+          <div class="col-lg-12 col-xs-18">
+
+              <div class="row">
+                <div  class="container" ng-hide="pedidoinfo!='Pedido'">
+                  <div class="jumbotron">
+                    <center><h3> Presione <strong>DemePedido</strong> para obtener un pedido del Concepto y Plaza seleccionada.</h3></center>
+                  </div>
+                </div>
+              </div>
+              <div class="row"><!--Pedido Manual -->
+                
+                <table class="table small table-striped table-hover table-bordered table-condensed" width="300" style="width: auto !important;" ng-show="mpedido.active==1">
+                   <thead>
+                          <th>Pedido</th>
+                          <th>Fuente de Informacion</th>
+                          <th>Concepto Final</th>
+                          <th>Estado</th>
+                          <th>&nbsp;</th>
+                  </thead>
+                  <tr>
+                          <td><input id='ipedido' ng-model="mpedido.pedido" type="text" class= "form-control" placeholder= "Pedido" /></td>
+                          <td>
+                            <select ng-model="mpedido.fuente" class= "form-control">
+                                    <option value='FENIX BOGOTA'>FENIX BOGOTA</option>
+                                    <option value='NCA'>NCA</option>
+                                    <option value='BACKOFFICE'>BACKOFFICE</option>
+                                    <option value='FENIX_NAL'>FENIX_NAL</option>
+                                      FENIX_NAL
+                            </select>
+                          </td>
+                          <td>
+                            <input type="text" class="form-control col-xs-8" aria-label="" ng-model="mpedido.concepto"> 
+                          </td>
+                          <td>
+                            <select class= "form-control" ng-model="mpedido.estado">
+                                  <option value='PORDE'>PORDE</option>
+                                  <option value='PENDIENTE'>PENDIENTE</option>
+                                  <option value='ANULADO'>ANULADO</option>
+                            </select>
+                          </td>
+                          <td>
+                          <button id="mguardar" type="button" class="btn btn-md btn-success" ng-click="msavePedido();"><span id="mloader"></span>&nbsp; Guardar</button>
+                          </td>
+                  </tr>
+                </table>
+
+                </div><!--Pedido Manual -->
+                <div class="row"><!--Row DemePedido -->
+                  <form name="pedidoForm" ng-submit="savePedido(pedido,userID)" novalidate>
+                    <table>
+                      <tr valign="top">
+                        <td>
+                      <table class="table small table-striped table-hover table-bordered table-condensed"   ng-show="peds.length>0">
+                       <thead>
+                              <th >Pedido</th>
+                              <th >Sub-Sol</th>
+                              <th >Informacion</th>
+                              <th >Tiempo</th>
+                              <th >Concepto</th>
+                              <th >Estado</th>
+                              <th id="motivoMalo">Motivo Malo</th>
+                      </thead>
+                    
+                    <tr ng-repeat="service in peds track by $index">
+                      <td>{{service.PEDIDO_ID}}</td>
+                      <td>{{service.SUBPEDIDO_ID}}-{{service.SOLICITUD_ID}}</td>
+                      <td>
+                          <b>Fecha Cita:</b> {{service.FECHA_CITA}}<br>
+                            <b>Tipo Trabajo:</b> {{service.TIPO_TRABAJO}}<br>
+                            <b>Desc Trabajo:</b> {{service.DESC_TIPO_TRABAJO}}<br>
+                              <div ng-show="service.TIPO_ELEMENTO_ID=='ACCESP'">
+                                <b>Vel. Actual:</b> <span class="label label-warning">{{service.VEL_IDEN}}</span>
+                                <b>Vel. Nueva:</b> <span class="label label-primary">{{service.VEL_SOLI}}</span><br> 
+                              </div>
+                            <b>Direccion:</b> {{service.DIRECCION_SERVICIO}}<br><b>Pagina:</b> {{service.PAGINA_SERVICIO}}<br><b>Estrato:</b> {{service.ESTRATO==''?'Vacio':service.ESTRATO}}<br>
+                            <b>Municipio ID:</b> {{service.MUNICIPIO_ID}}<br>
+                            <b>UEN:</b> {{service.UEN_CALCULADA}}
+                      <!--td>{{service.PRODUCTO}}</td-->
+                      <td><font color='red'>{{service.TIEMPO_COLA}}</font></td>
+                      <td><font color='red'>{{service.CONCEPTO_ID}}</font></td>
+                       
+
+                       <td>
+
+
+                        Estado(Gestión):
+                        <select id="estadoGestion{{$index}}" ng-show="isAuthorized(service.CONCEPTO_ID);" class= "form-control" ng-model="service.estado" ng-change="MaloVisible(peds.length)" ng-init="MaloInvisibleCarga()">
+                              <option value='PORDE'>PORDE</option>
+                              <option value='PENDIENTE'>PENDIENTE</option>
+                              <option value='ANULADO'>ANULADO</option>
+                              <option value='MALO'>MALO</option>
+                        </select> 
+
+                        </div>
+
+                      </td>
+
+                   <td ng-show="service.estado=='MALO'">Motivo : <select class= "form-control" id="dropMotivo{{$index}}" ng-model="service.motivo_malo" style="width: 240px; font-size:11px">
+                                <option value="TELEV EN PETEC">TELEV EN PETEC</option>
+                                <option value="CABEZA DEL PAQUETE EN PETEC">CABEZA DEL PAQUETE EN PETEC</option>
+                                <option value="PEDIDO NO SE DEJA GESTIONAR">PEDIDO NO SE DEJA GESTIONAR</option>
+                                <option value="EQURED EN PETEC">EQURED EN PETEC</option>
+                                <option value="NO REQUIERE ASIGNACION MANUAL">NO REQUIERE ASIGNACION MANUAL</option>
+                                <option value="NO CARGO COMPONENTES">NO CARGO COMPONENTES</option>
+                        </select>
+                        
+                  </td>
+
+                    </tr>
+                    </table>
+                  </td>
+                  <td>
+                  <table class="table small table-striped table-hover table-bordered table-condensed" style="width: auto !important;" ng-show="peds.length>0">
+                    <thead>
+                      <th id="theadAudi" >Auditoria</th>
+                    </thead>
+                    <tr>
+                        <td id="controlesAuditoria">
+                            Analisis:
+                            <select id="dropAnalisis" class= "form-control" ng-model="transaccion.ANALISIS" style="font-size:11px; width: 240px">
+                              <option value="BIEN ESTUDIADO">BIEN ESTUDIADO</option>
+                              <option value="RED MAL ASIGNADA">RED MAL ASIGNADA</option>
+                              <option value="INCONSISTENCIA EN FENIX">INCONSISTENCIA EN FENIX</option>
+                              <option value="RENUMERACION MALA ASIGNACION">RENUMERACION MALA ASIGNACION</option>
+                              <option value="APROBO ALTO RIESGO">APROBO ALTO RIESGO</option>
+                            </select>
+
+                              Usuario Id:
+                              <select id="dropUserID" class= "form-control" style="width: 240px" ng-model="transaccion.usuario_id2" ng-change="getNombre()">
+                                    <option value="EXTERNO" selected="selected">EXTERNO</option>
+                                    <option ng-repeat="data in listado_usuarios" value="{{data.USUARIO_NOMBRE}}">{{data.USUARIO_ID}}</option> 
+                              </select>
+                              Nombre:<br>
+                              <input id="textNombre" type="text" style="width: 240px; font-size:10px"  class="form-control col-xs-8" aria-label="..." disabled><br>
+
+                              Fecha Aprobación:<br>
+                            <div class="input-daterange control-group" id="datepicker" style="width: 240px">
+                                <div class="input-group margin-bottom-sm">
+                                <span class="input-group-addon"><i class="fa fa-calendar-plus-o fa-fw"></i></span>
+                                <input type="text" class="form-control" id="toDate" name="toDate" placeholder= "Fecha" required="true" ng-model="transaccion.FECHA_GESTION"/>
+                            </div>
+
+                            Observación:
+                          <textarea class="form-control" id="txtObservacion" ng-model="transaccion.OBSERVACIONES"name="OBSERVACIONES"></textarea> 
+                      </td>
+
+                        <td>
+                            <button ng-show="isAuthorized(transaccion.CONCEPTO_ID);" id="mybutt" type="button" class="btn btn-md btn-success" ng-click="savePedido(peds.length,transaccion)"><span id="class"></span>&nbsp; Guardar</button>
+                       </td>  
+                    </tr>
+                  </table> 
+                  </td>
+                  </tr>
+                  </table> 
+
+                                  <!--td><button id="iniciar" type="button" class="btn btn-md btn-success" onclick="javascript:activar();">Iniciar</a></td-->
+                    <div id="warning"></div>
+                                  
+
+                    </form>
+
+
+                </div><!--Row DemePedido -->
+    
+
+
+
+                </div><!--Col 12 DemePedido -->
+
+
+            </div><!-- Row Deme Pedido -->
+        </div><!--Panel body -->
+    
+    </div><!--Panel -->
+</div><!--Row ppal -->
+
+<br>
+
+<div class="row"><!--Divisor -->
+  <hr>
+</div><!--Divisor -->
+
+<div class="row" ng-controller="TabController"><!-- Historico de Pedidos -->
+    <!--div class="col-md-2"-->
+      <ul class="nav nav-pills">
+        <li ng-class="{ active: isSet(2) }">
+            <a href ng-click="setTab(2)">Historico</a>
+        </li>
+        <li ng-class="{ active: isSet(1) }">
+            <a href ng-click="setTab(1)">Personal</a>
+        </li>
+      </ul>
+
+    <div class="jumbotron">
+    <div ng-show="isSet(2)">
+
+            <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i> Historico  <small>Pedido</small></h2>
+                        <hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
+                        <br>
+                     </div>
+            </div>
+            <div class="row">
+                        <table class="table small table-striped table-hover table-bordered table-condensed">
+                        <thead>
+                        <th>Usuario</th>
+                        <th>Fuente</th>
+                        <th>Concepto</th>
+                        <th>Estado</th>
+                        <th>Fecha</th>
+                        <th>Duracion</th>
+                        <!--th>Opciones</th-->
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="data in historico_pedido track by $index| orderBy:'fecha_fin':true ">
+                                <td>{{data.user}}</td>
+                                <td>{{data.fuente}}</td>
+                                <td>{{data.concepto_final}}</td>
+                                <td>{{data.estado}}</td>
+                                <td>{{data.fecha_fin}}</td>
+                                <td>{{data.duracion}}</td>
+                                <!--td>Opciones</td-->
+                            </tr>
+                        </tbody>
+                        </table>
+            </div>
+        </div>
+
+
+    <div ng-show="isSet(1)">
+      <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i> Registros  <small>Historicos de hoy <span class="badge">{{data.totalItems}}</span></small></h2>
+                        <hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
+                        <br>
+                     </div>
+            </div>
+            <div class="row">
+        <div class="col-lg-4  form-inline">
+            <b>Buscar por:</b>
+                <select ng-model="data.campo" class="form-control" style="width: auto;">
+                  <option value='User' selected="selected">Usuario</option>
+                  <option value='fuente'>Fuente</option>
+                  <option value='concepto_final'>Concepto</option>
+                  <option value='estado'>Estado</option>
+                  <option value='pedido_id'>Pedido</option>
+                </select>
+            <div class="form-group">
+              <input type="text" size = "7" class="form-control" asia-label="" name="valorCampo" ng-model="data.valorCampo" > 
+            </div>
+          </div>
+
+          <div class="col-lg-8 form-inline">
+            <label class="input col-sm-3">Seleccione Fecha:</label>
+                                <div class="input-daterange col-sm-7" id="datepicker">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Desde</span>
+                                        <input type="text" class="form-control" style="min-width: 100px" id="fromDate" name="fromDate" ng-model="data.fechaIni" />
+                                        <span class="input-group-addon">Hasta</span>
+                                        <input type="text" class="form-control" style="min-width: 100px" id="toDate" name="toDate" ng-model="data.fechaFin" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary btn-sm" value="actualizar!" ng-click="calcularListadoReconfiguracion();"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
+                    <button class="btn btn-success btn-sm" value="exportar!" ng-click="csvHistoricosReconfiguracion();"><span class="glyphicon glyphicon-download-alt"></span> Exportar</button>
+                  </span>
+                  </div>
+                                </div>                          
+            </div>
+            </div>  
+            
+            <div class="row">
+        <table align="center" width="100%">
+          <tr>
+              <td width="50%" align="left">
+                <h3>Registros: {{data.totalItems}}</h3>
+              </td>
+        
+              <td width="50%" align="right">
+                <pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged('listadoPedidos')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+              </td>
+          </tr>
+        </table>
+            <table class="table small table-striped table-hover table-bordered table-condensed">
+                <thead>
+                    <th>Usuario</th>
+                    <th>Fuente</th>
+                    <th>Concepto</th>
+                    <th>Estado</th>
+                    <th>Pedido</th>
+                    <th>Fecha</th>
+                    <th>Duracion</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="data in listado_pedidos| orderBy:'fecha_fin':true ">
+                        <td>{{data.user}}</td>
+                        <td>{{data.fuente}}</td>
+                        <td>{{data.concepto_final}}</td>
+                        <td>{{data.estado}}</td>
+                        <td>{{data.pedido}}</td>
+                        <td>{{data.fecha_fin}}</td>
+                        <td>{{data.duracion}}</td>
+                    </tr>
+                </tbody>
+            </table>
+      <pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged('listadoPedidos')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+            </div><!--Div Row -->     
+      </div><!--Div Iset -->    
+    
+
+        </div><!--Jumbo -->   
+  
+  </div><!--Tab Controller --> <!-- Historico de Pedidos -->
+
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+
+<script language='javascript'>
+$(function () {
+  $('[data-toggle="popover"]').popover();
+  $('[data-toggle="tooltip"]').tooltip();
+})
+</script> 
+<script> 
+$('.input-daterange').datepicker({
+     format: 'yyyy-mm-dd',
+     todayBtn: "linked",
+     autoclose: true
+ });
+</script>  

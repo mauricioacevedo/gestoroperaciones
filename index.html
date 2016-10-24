@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html ng-app="myApp" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="google" content="notranslate" />
+    <link href="css/bootstrap.min1.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/ico" href="images/favicon.ico" />
+    <link href="css/gestor.css" rel="stylesheet">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!--script src='https://www.google.com/recaptcha/api.js'></script-->
+    <script src="js/bootstrap-datepicker.js"></script>
+    <link href="css/datepicker3.css" rel="stylesheet">
+    <!--link href='css/CalendarJulian/fullcalendar.css' rel='stylesheet' / --> <!--css del calendario agendamiento-->
+    <link href='css/CalendarJulian/fullcalendar.print.css' rel='stylesheet' media='print' /><!--css del calendario agendamiento-->
+    <script src="js/moment-with-locales.js"></script>
+    <script src="js/bootstrap-datetimepicker.js"></script>
+    <script src='js/jsJulian/fullcalendar.min.js'></script>
+    <script src='js/jsJulian/lang-all.js'></script>
+    <script src='js/jsJulian/moment.min.js'></script><!--moment.js el que hay en la carpeta js no se esta usando-->
+    <!--<script src="js/jsJulian/controllers.js"></script>-->
+    <link href='css/CalendarJulian/fullcalendar.css' rel='stylesheet' />
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <!--link href='css/CalendarJulian/fullcalendar.print.css' rel='stylesheet' media='print' -->
+    
+    <!--<script src='js/jsJulian/lib/jquery.min.js'></script>--><!--ya hay un jquery-->
+        
+
+<title>Gestor Operaciones</title>
+
+<script language="javascript">
+        function activar(){
+                var ipedido=document.getElementById("ipedido");
+		var submit=document.getElementById("submit");
+		var iniciar=document.getElementById("inicaiar");
+                ipedido.disabled=false;
+		
+		iniciar.className = "btn btn-success disabled";
+		submit.className = "btn btn-danger";
+		iniciar.setAttribute("disabled","disabled");
+		submit.removeAttribute("disabled");
+        }
+</script>
+</head>
+<body>
+ <nav class="navbar navbar-default navbar-static-top" id="headerazo">
+<div style="background:#002E6C">
+    <br>
+</div>
+
+
+
+<div id="logoutdiv"><!-- Logout div -->
+   <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <a class="navbar-brand navbar-pad-izquierda" href=""><span class="LogoFontBlue">Gestor</span> <span class="LogoFontRed">Operaciones</span></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav">
+
+ <li class="dropdown" ng-show="logedUser.GRUPO=='ASIGNACIONES' || logedUser.GRUPO=='RECONFIGURACION' || logedUser.GRUPO=='INCONSISTENCIAS' || logedUser.GRUPO=='NCA' || logedUser.GRUPO=='SUPER'">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Asignaciones <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href=".#/asignacion/"><span class="fa fa-play"></span> Asignacion</a></li>
+                <li><a href=".#/reconfiguracion"><span class="fa fa-play"></span> Reconfiguracion</a></li>
+                <li><a href=".#/nca"><span class="fa fa-play"></span> NCA</a></li>
+                <li><a href=".#/asignacion_ordenes"><span class="fa fa-play"></span> O-XXX</a></li>
+                <li><a href=".#/registros/"><span class="fa fa-list"></span> Registros</a></li>
+                <li  ng-show="logedUser.CARGO_ID=='1'"><a href=".#/indicadores/"><span class="fa fa-bar-chart"></span> Indicadores</a></li>
+            </ul>
+           </li>
+
+
+ <li class="dropdown"  ng-show="logedUser.GRUPO=='AGENDAMIENTO' || logedUser.GRUPO=='SUPER'">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Agendamiento <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href=".#/agendamiento/reagendamiento"><span class="fa fa-play"></span> Reagendamiento</a></li>
+              <li><a href=".#/agendamiento/edatel"><span class="fa fa-play"></span> Edatel</a></li>
+              <li ng-show="logedUser.GRUPO=='AGENDAMIENTO' || logedUser.GRUPO=='SUPER'"><a href=".#/agendamiento/adelantaragenda"><span class="fa fa-hand-o-right"></span>Adelantar Agenda</a></li>
+                <li><a href=".#/scheduling/"><span class="fa fa-repeat"></span> Alarmado Proactivos</a></li>
+                
+		<li><a href=".#/cupos-agendamiento/"><span class="fa fa-list"></span> Ocupacion</a></li>
+    <li><a href=".#/parametrizacion-siebel/"><span class="fa fa-play"></span> Parametrización</a></li>
+		<li><a href=".#/registros-agendamiento/"><span class="fa fa-list"></span> Registros</a></li>
+    <li><a href=".#/auditoria/"><span class="fa fa-play"></span> Auditoria Reagendamiento</a></li>
+    <li><a href=".#/Pedidos_Microzonas/"><span class="fa fa-list"></span> Pedidos Microzona</a></li>
+    <li><a href=".#/tabla_agendamiento/"><span class="fa fa-list"></span> Tabla Agendamiento</a></li>
+     <li><a href=".#/codigo_resultado/"><span class="fa fa-list"></span> Codigo Resultado</a></li>
+     <li  ng-show="logedUser.CARGO_ID=='1'"><a href=".#/agendamiento/"><span class="fa fa-bar-chart"></span> Indicadores</a></li>
+
+            </ul>
+           </li>
+
+   <li class="dropdown" ng-show="logedUser.GRUPO=='ACTIVACION' || logedUser.GRUPO=='SUPER'">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Activación <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                
+                <li><a href=".#/alarmas/"><span class="fa fa-bullhorn"></span> Alarmas</a></li>
+                <li ng-show="logedUser.CARGO_ID<'6'"><a href=".#/activacion/"><span class="fa fa-bar-chart"></span> Indicadores</a></li>
+                <li><a href=".#/actividades/"><span class="fa fa-list"></span> Actividades</a></li>
+            </ul>
+
+    </li>
+
+	 <li class="dropdown" ng-show="logedUser.CARGO_ID<='5' && (logedUser.GRUPO=='ASIGNACIONES' || logedUser.GRUPO=='SUPER')"  >
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administracion <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li ng-show="logedUser.CARGO_ID=='1'"><a href=".#/dashboard/"><span class="fa fa-tachometer"></span> Dashboard</a></li>
+                <li ng-show="logedUser.CARGO_ID=='1'"><a href=".#/users/"><span class="fa fa-users"></span> Usuarios</a></li>
+                <li ng-show="logedUser.CARGO_ID<='5'"><a href=".#/admontips/"><span class="fa fa-file-code-o"></span> Administración Tips</a></li>
+            </ul>
+           </li>
+
+            <li class="dropdown" >
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Herramientas <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="javascript:BuscaNodo();"><span class="fa fa-search"></span> Buscador Nodos HFC</a></li>
+                <li><a href="javascript:BuscaGPON();"><span class="fa fa-search"></span> Buscador GPON</a></li>
+                <li><a href="javascript:abrirCalculoDistancia();"><span class="fa fa-search"></span> Capacidad COBRE</a></li>
+                <li><a href="#/tips/"><span class="fa fa-exclamation-circle"></span> Tips</a></li>
+            </ul>
+           </li>  
+           <li class="dropdown" >
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Documentación <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href=".#/docuactivacion/"><span class="fa fa-file-text"></span> Activación</a></li>
+            </ul>
+           </li> 
+    </ul>
+      <ul class="nav navbar-nav navbar-right navbar-pad-derecha">
+        <li class="dropdown">
+           <a href="" class="dropdown-toggle" data-toggle="dropdown">
+              <button type="button" class="btn btn-primary btn-circle-xs "><i class="fa fa-user"></i></button>
+              <strong>{{logedUser.login}}</strong>
+              <span class="glyphicon glyphicon-chevron-down"></span>
+           </a>
+           <ul class="dropdown-menu">
+             <li> 
+                 <div class="navbar-login">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <p class="text-center">
+                                <button type="button" class="btn btn-primary btn-circle "><i class="fa fa-user fa-3x"></i></button>
+                            </p>
+                        </div>
+                        <div class="col-lg-10">
+                            <p class="text-left"><span class="LoginNameFontRed">{{logedUser.name}}</span><br>
+                                <small><strong>Grupo: </strong>{{logedUser.GRUPO}}</small><br>
+                                <small><strong>Cargo: </strong>{{logedUser.CARGO_ID}}</small><br>
+                                <small><strong>Hora de Inicio: </strong>{{logedUser.hora_ingreso}}</small><br>
+
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    <div class="row">
+                        <div class="form-inline">
+                            <div class="col-lg-12">
+                               <p class="text-right">
+                                             
+                                <!--button  type="button" class="btn form-control btn-md  btn-primary navbar-btn" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#myModal" onclick="">Pausa</button-->
+                                <button id="logout" type="button" class="btn form-control btn-md btn-danger navbar-btn" ng-click="logout();">Salir</button>
+                               
+                               </p>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+              
+             </li>
+               
+           </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- Logout div -->
+</div><!-- /.container-fluid -->
+</nav>
+<!-- Modal Pausa Activa-->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <!--button type="button" class="close" data-dismiss="modal">&times;</button-->
+          <h4 class="modal-title">Pausa Activa</h4>
+        </div>
+        <div class="modal-body">
+            <p>
+              <div digital-clock></div>
+               
+            </p>
+        </div>
+        <div class="modal-footer">
+   
+          <button type="button" class="btn btn-success" data-dismiss="modal">Terminar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div><!-- Modal -->
+  
+<div ng-controller="mymodalcontroller">
+                      <modal lolo="modal1" data-template-url="partials/buscarcmts.html" modal-footer="footer" modal-header="header" data-ng-click-right-button="myRightButton()"></modal>       
+ </div>
+
+<!--PRUEBA KPIS -->
+<!--div class="container-fluid" ng-show="logedUser && logedUser.GRUPO!='AGENDAMIENTO' && logedUser.GRUPO!='FACTIBILIDADES'"-->
+<div class="container-fluid" ng-hide="actualView=='gpon' || actualView=='tip' || actualView=='vecinos' ||  !logedUser || logedUser.GRUPO=='AGENDAMIENTO'||actualView=='dashboard' ">
+
+<div class="col-sm-3"></div>
+    <div class="col-sm-2"><!--Cuadro Asignaciones -->
+      <div class="row no-gutter" >
+        <button data-toggle="collapse" data-target="#nasignaciones" class="btn btn-default btn-md" style="height:40px;width:200px;"><i class="fa fa-sort-desc" style="color:blue; vertical-align: middle;"></i> <span>Asignaciones: </span><strong>{{totalNegocioAsignaciones}}</strong> <i class="{{nasignacionesstyle.ICON}}" style="color:{{nasignacionesstyle.STYLE}};"></i></button>
+      </div>
+      <div class="row no-gutter">
+           <div id="nasignaciones" class="collapse" style="width:200px"></div>
+      </div>
+             
+    </div><!--Cuadro Asignaciones -->
+
+    <div class="col-sm-2"><!--Cuadro Reconfiguraciones -->
+      <div class="row no-gutter">
+        <button data-toggle="collapse" data-target="#nreconfiguracion" class="btn btn-default btn-md" style="height:40px;width:200px"><i class="fa fa-sort-desc" style="color:blue"></i> Reconfigurar: <strong>{{totalNegocioReconfiguracion}}</strong> <i class="{{nreconfiguracionstyle.ICON}}" style="color:{{nreconfiguracionstyle.STYLE}};"></i> </button>
+      </div>
+      <div class="row no-gutter">
+           <div id="nreconfiguracion" class="collapse" style="width:200px"></div>
+      </div>
+             
+    </div><!--Cuadro Reconfiguraciones -->
+
+    <div class="col-sm-2"><!--Cuadro Otros -->
+      <div class="row no-gutter">
+        <button data-toggle="collapse" data-target="#notros" class="btn btn-default btn-md" style="height:40px;width:200px"><i class="fa fa-sort-desc" style="color:blue"></i> Otros:       <strong>{{totalNegocioOtros}}</strong> <i class="{{notrosstyle.ICON}}" style="color:{{notrosstyle.STYLE}};"></i>	</button>
+      </div>
+      <div class="row no-gutter">
+           <div id="notros" class="collapse" style="width:200px"></div>
+      </div>
+             
+    </div><!--Cuadro Otros -->
+
+<div class="col-sm-3"></div>
+</div><!--Container -->
+<!--PRUEBA KPIS -->
+
+<!--PRUEBA KPIS AGENDAMIENTO -->
+<div id="kpisAgendamiento" class="container-fluid" ng-show="logedUser && logedUser.GRUPO=='AGENDAMIENTO' && actualView!='gpon'">
+
+   <div class="col-sm-2"><!--Cuadro -->
+    <div class="row no-gutter">
+        <button data-toggle="collapse" data-target="#nagendamiento" class="btn btn-default btn-md" style="height:40px;width:200px"><i class="fa fa-sort-desc" style="color:blue"></i> Pendientes: <strong>{{totalNegocioAgendamiento}}</strong> <i class="{{nagendamientostyle.ICON}}" style="color:{{nagendamientostyle.STYLE}};"></i> </button>
+      </div>
+      <div class="row no-gutter">
+           <div id="nagendamiento" class="collapse" style="width:200px">
+		
+                        <div ng-repeat='totalDepa in totalesDepartamento'>
+				<accordion close-others="oneAtATime"><!--Acordeon -->
+                                    <accordion-group>
+                                        <accordion-heading>
+						
+					<a ng-href='' ng-click='abreZona(totalDepa.DEPARTAMENTO)'>{{totalDepa.DEPARTAMENTO==""?"VACIOS":totalDepa.DEPARTAMENTO}}</a> {{totalDepa.COUNTER}} 
+                                        </accordion-heading>
+                                        <div ng-bind-html="selected_option">
+					</div>
+                                    </accordion-group><!--Fecha Cita -->
+                                </accordion><!--Acordeones -->
+                      </div>                    
+           </div>
+      </div>
+
+    </div><!--Cuadro-->
+
+    <div class="col-sm-1"></div>
+    <div class="col-sm-2">
+      <br><br>
+        <div id="tablaZona1"></div>
+    </div>
+</div><!--Container -->
+<!--END PRUEBA KPIS  AGENDAMIENTO-->
+</div><!--raro -->
+<br>
+<br>
+
+
+<div class="container"><!--Contendor body -->
+
+    <div ng-view="" id="ng-view"></div>
+</div><!--Contendor body -->
+<div class="navbar navbar-default navbar-fixed-bottom" role="navigation" id="footerazo">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"><img src="./images/logo_tigoune.png" height="67" width="133"></img></div>
+            <div class="col-md-6 text-left"><h3>Gerencia Alistamiento de Operaciones</h3></div>
+            
+        </div>
+    </div>
+</div>
+<script>
+function BuscaNodo() {
+    //window.open("http://10.100.82.125/gestoroperaciones-dev/#/cmts/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
+    window.open(window.location.pathname+"#/cmts/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
+}
+
+function BuscaPagina(pagina) {
+    //window.open("http://10.100.82.125/gestoroperaciones-dev/#/cmts/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
+    window.open("#/vecinos/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=1200px, height=600");
+}
+
+function BuscaGPON(){
+	//window.open("http://10.100.82.125/gestoroperaciones-dev/#/cmts/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
+	window.open(window.location.pathname+"#/gpon/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=50, width=1100, height=450");
+}
+
+function abrirCalculoDistancia(){
+	window.open(window.location.pathname+"#/distancia/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=1200px, height=600");
+}
+
+</script>
+
+<script type="text/javascript" src="js/fusioncharts.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script src="js/angular-cookies.min.js"></script>
+<script src="js/angular-animate.js"></script>
+<script src="js/angular-sanitize.js"></script>
+<script src="js/tinymce/tinymce.min.js"></script>
+<script src="js/tinymce/tinymce.js"></script>
+<!--script src="js/ui-bootstrap-tpls-0.13.3.min.js"></script-->
+<script src="js/ui-bootstrap-tpls-0.12.0.js"></script>
+<script type="text/javascript" src="js/angular-fusioncharts.min.js"></script>
+
+<script src="js/jsjuli/moment.js"></script>
+<script src="js/jsjuli/fullcalendar.js"></script>
+<script src="js/jsjuli/gcal.js"></script>
+<script src="js/jsjuli/calendar.js"></script>
+<script src="js/jsJulian/angular-file-upload.js"></script>
+<!--<script src="js/jsJulian/controllers.js"></script>-->
+
+
+
+<script src="app/app.js"></script>
+<script language='javascript'>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+})
+</script>
+</body>
+</html>

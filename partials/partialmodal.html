@@ -1,0 +1,97 @@
+<div class="container-fluid" ng-controller="mymodalcontroller">
+<div id="{{handler}}" class="modal fade">
+    <div class="modal-dialog" style="width: 80%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{header}}</h4>
+            </div>
+            <div class="modal-body">
+            <div class="conaiter fluid">
+            <div class="row">
+                <p class="text-warning">{{body}}</p>
+                <div >
+                
+                    <div class="col-md-8">
+                    <div class="input-group">
+                      <input type="text" class="form-control col-xs-8" aria-label="..." ng-model="nodo_id" placeholder="Ingrese el nodo a buscar">
+                      <div class="input-group-btn">
+                        <button type="button" class="btn btn-md btn-primary dropdown-toggle"  ng-click="buscarCmts(nodo_id);"><span class="glyphicon glyphicon glyphicon-search"></span> Buscar Nodo</button>
+                      </div><!-- /btn-group -->
+                    </div><!-- /input-group -->
+                  
+                <br>
+                <br>
+
+                    <form name="CmtsForm">
+
+                <table class="table small table-striped table-bordered table-condensed table-fixed">
+                     <thead style="border-top:1px solid gray;">
+                            <th>DIRECCION</th>
+                            <th>SOPORTA_TOIP</th>
+                            <th>SOPORTA_TVDIGITAL</th>
+                            <th>TVDIGITAL_INYECTADA</th>
+                            <th>NODO_DIGITAL</th>
+                    </thead>
+                    
+                    <tr ng-repeat="dota in nodshfc">
+                        <td><span class="badge">{{dota.DIRECCION}}</span></td>
+                        <td><span ng-class="{'SI':'label label-success','NO':'label label-danger'}[dota.SOPORTA_TOIP]">{{dota.SOPORTA_TOIP}}</span></td>
+                        <td><span ng-class="{'SI':'label label-success','NO':'label label-danger'}[dota.SOPORTA_TVDIGITAL]">{{dota.SOPORTA_TVDIGITAL}}</span></td>
+                        <td><span ng-class="{'SI':'label label-success','NO':'label label-danger'}[dota.TVDIGITAL_INYECTADA]">{{dota.TVDIGITAL_INYECTADA}}</span></td>
+                        <td><span ng-class="{'SI':'label label-success','NO':'label label-danger'}[dota.NODO_DIGITAL]">{{dota.NODO_DIGITAL}}</span></td>
+                    </tr>
+                    </table>
+
+                    <table class="table small table-striped table-bordered table-condensed table-fixed">
+                     <thead style="border-top:1px solid gray;">
+                            <th>Nodo</th>
+                            <th>10 Mbps</th>
+                            <th>12 Mbps</th>
+                            <th>15 Mbps</th>
+                            <th>20 Mbps</th>
+                            <th>30 Mbps</th>
+                            <th>CDI</th>
+                            <th>MUNICIPIO</th>
+                    </thead>
+                    
+                    <tr ng-repeat="service in nods | filter:nodo_id">
+                        <td><span class="badge">{{service.Nodo}}</span></td>
+                        <td><span ng-class="{'Disponible':'label label-success','No Disponible':'label label-danger'}[service.Diez_Mbps]">{{service.Diez_Mbps}}</span></td>
+                        <td><span ng-class="{'Disponible':'label label-success','No Disponible':'label label-danger'}[service.Doce_Mbps]">{{service.Doce_Mbps}}</span></td>
+                        <td><span ng-class="{'Disponible':'label label-success','No Disponible':'label label-danger'}[service.Quince_Mbps]">{{service.Quince_Mbps}}</span></td>
+                        <td><span ng-class="{'Disponible':'label label-success','No Disponible':'label label-danger'}[service.Veinte_Mbps]">{{service.Veinte_Mbps}}</span></td>
+                        <td><span ng-class="{'Disponible':'label label-success','No Disponible':'label label-danger'}[service.Treinta_Mbps]">{{service.Treinta_Mbps}}</span></td>
+                        <td>{{service.CDI}}</td>
+                        <td>{{service.MUNICIPIO}}</td>
+                    </tr>
+                    </table>
+
+                    
+                                <!--td><button id="iniciar" type="button" class="btn btn-md btn-success" onclick="javascript:activar();">Iniciar</a></td-->
+                    <div id="warning"></div>
+                                
+                    </form>
+                    
+                  </div>  
+                </div></div>
+            </div><!--row-->
+            </div>
+
+            <div class="container-fluid">
+            <br>
+            <br>
+            <br>
+        </div>
+            <div class="modal-footer">
+
+                <!--<p class="text-left">{{footer}}</p>-->
+
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeToMe('io')">Close</button>
+                <!--<button type="button" class="btn btn-primary" data-ng-click="callbackbuttonright(); $event.stopPropagation()">Launch Alert</button>-->
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>

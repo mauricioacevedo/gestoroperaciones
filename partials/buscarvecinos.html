@@ -1,0 +1,137 @@
+  <script>
+   if (window.opener) {
+      /* i'm a popup, add "popup" class to <html> element */
+      /*document.documentElement.className += " footerazo";*/
+      document.getElementById('headerazo').style.display='none';
+      document.getElementById('footerazo').style.display='none';
+   }
+</script>
+<style>
+table {
+    border-collapse: collapse;
+    height: 30px;
+    width: 100%;
+}
+
+th, td {
+    text-align: center;
+    padding: 6px;
+    font-size: 10px;
+    height: 30px;
+
+}
+
+tr:nth-child(even){background-color: #F3F2F2}
+
+th {
+    background-color: #428bca;
+    color: white;
+}
+
+</style>
+
+                          <div class="row">
+                            <div class="col-lg-12">
+                                <h2 class="page-header"><i class="fa fa-search" aria-hidden="true"></i> Buscador  <small>de Vecinos</small></h2>
+                                <br>
+                            </div>
+                        </div>
+<div class="panel panel-info">
+                  <div class="panel-heading">
+                    <div class="row">
+                      <div class="col-lg-3">
+                        <h4>Pagina: <b><small>{{pagina}}<small></b></h4>
+                      </div>
+                       <div class="col-lg-3">
+                      </div>
+                       <div class="col-lg-3">
+                       </div>
+                       <div class="col-lg-3"> 
+                        <div class="loading-spiner-holder" data-loading ><div class="loading-spiner"><img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="images/loader_bar.gif" /></div></div>
+                       </div>
+                    </div> 
+                  </div> 
+</div>
+ <div class="row" ng-show="vecinos_pagina">
+                  <div class="col-lg-4">
+                    <h4>Total Registros: <b>{{total}}</b></h4>
+                  </div>
+                       <div class="col-lg-8">
+                          <table class="table table-bordered">
+                              <thead>
+                                <tr>
+                                  <th width="23%">REDCO</th>
+                                  <th width="36%">HFC</th>
+                                  <th width="25%">GPON</th>
+                                </tr>
+                              </thead>
+                          </table>
+                      </div>
+  </div>
+<div class="row">
+                   <!-- <table align="center" width="100%">
+                          <tr>
+                          <td width="50%" align="left">
+                            Pagina: <b>{{pagina}} </b>
+                          </td>
+                        
+                         <td width="50%" align="right">
+                            <pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged('vecinos_pagina')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+                          </td>
+                          </tr>
+                    </table>-->
+                <div class="col-lg-12">
+                    <table class="table small table-striped table-hover table-bordered table-condensed" ><!--class="table small table-striped table-hover table-bordered table-condensed" -->
+                            <thead>
+                            <th ng-repeat="key in getKeysOfCollection(vecinos_pagina[0])" >{{key}}
+                               <input class="filtro" type="text" ng-model="search[key]"/></th>
+
+                            </thead>
+                            <tbody>
+                                    <tr ng-repeat="data in vecinos_pagina | filter:search">
+                                          <td>{{data.DIRECCION}}</td>
+                                          <td>{{data.ELEM}}</td>
+                                          <td>{{data.IDENTIF}}</td>
+                                          <td>{{data.MUNI_ID}}</td>
+                                          <td>{{data.TECNO}}</td>
+                                          <td>{{data.NOE_RED}}</td>
+                                          <td>{{data.ARM_R}}</td>
+                                          <td>{{data.STRIP}}</td>
+                                          <td>{{data.PRIM}}</td>
+                                          <td>{{data.CAJA}}</td>
+                                          <td>{{data.TEC}}</td>
+                                          <td>{{data.CDI}}</td>
+                                          <td>{{data.NOE}}</td>
+                                          <td>{{data.AMP}}</td>
+                                          <td>{{data.TIPO_DER}}</td>
+                                          <td>{{data.DER}}</td>
+                                          <td>{{data.TAP}}</td>
+                                          <td>{{data.OLT}}</td>
+                                          <td>{{data.ARM_G}}</td>
+                                          <td>{{data.SPLTT}}</td>
+                                          <td>{{data.NAP}}</td>
+                                          <td>{{data.HILO}}</td>
+                                  </tr>
+                            </tbody>
+                    </table>
+                </div>   
+                   <!-- <pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged('vecinos_pagina')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>-->
+ </div> 
+
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+
+
+
+
+
+
+
+
+
+
+          

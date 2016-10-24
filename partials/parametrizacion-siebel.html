@@ -1,0 +1,206 @@
+<ol class="breadcrumb">
+  <li><a href="./#/">Agendamiento</a></li>
+  <li class="active">Parametrización Siebel</li>
+</ol>
+
+<div class="row">
+	<ul class="nav nav-pills">
+				<!--<li ng-class="{ active: isSet(1) }">
+					 <a href ng-click="setTab(1)">Ingreso por rango de fechas</a>
+				</li>-->
+				<li ng-class="{ active: isSet(2) }">
+					<a href ng-click="setTab(2)">Ingreso por Dia</a>
+				</li>
+			</ul>
+  	<div class="panel panel-info">
+   		<div class="panel-heading">
+   			<div class="row">
+				 	<div class="col-md-2">
+				 		<label  for="departamentos1">Departamento:</label>
+						<select ng-model="departamentos" style="width: 170px" class="form-control" ng-change="getZonas(departamentos)">
+									<option ng-repeat="data in departamentos1" value="{{data.DEPARTAMENTO}}">{{data.DEPARTAMENTO}}</option>
+							 		     <!--   <option value='ATLANTICO'>ATLÁNTICO</option>
+								            <option value='B. CAUCA 1'>B. CAUCA 1</option>
+								            <option value='B. CAUCA 2'>B. CAUCA 2</option>
+								            <option value='BOGOTA'>BOGOTA</option>
+								            <option value='BOLIVAR'>BOLÍVAR</option>
+								            <option value='CENTRO 1'>CENTRO 1</option>
+								            <option value='CESAR'>CESAR</option>
+								            <option value='CORDOBA'>CÓRDOBA</option>
+								            <option value='COSTA 1'>COSTA 1</option>
+								            <option value='MAGDALENA'>MAGDALENA</option>
+								            <option value='MAGDALENA 1'>MAGDALENA 1</option>
+								            <option value='MAGDALENA 3'>MAGDALENA 3</option>
+								            <option value='NORTE 1'>NORTE 1</option>
+								            <option value='NORTE 2'>NORTE 2</option>
+								            <option value='NORTE DE SANTANDER'>N. SANTANDER</option>
+								            <option value='OCCIDENTE 1'>OCCIDENTE 1</option>
+								            <option value='OCCIDENTE 2'>OCCIDENTE 2</option>
+								            <option value='ORIENTE 3'>ORIENTE 3</option>
+								            <option value='ORIENTE 4'>ORIENTE 4</option>
+								            <option value='SANTANDER'>SANTANDER</option>
+								            <option value='SUCRE'>SUCRE</option>
+								            <option value='SUROESTE 1'>SUROESTE 1</option>
+								            <option value='URABA1'>URABA 1</option>
+								            <option value='VALLE DEL CAUCA'>VALLE DEL CAUCA</option>-->
+
+					          </select>	
+					</div>   
+					<div class="col-md-2">       
+					<label>Zona:</label>
+						<select ng-model="zona1" class="form-control" style="width: 150px ;" ng-change="remove();calcularPara(departamentos,zona1)">
+							<option ng-repeat = "zona in zonas">{{zona.ZONA}}</option>
+						</select>
+					</div>
+					<div class="col-md-4 form-inline"  ng-show="isSet(2)" id="myDIV">
+					<!--<div id="myDIV" style= "display:none;">-->
+							<label class=" input col-md-8">Ingresar Cupos para el día: {{lastUpdate}}</label>
+									<div class="input col-md-5" id="jornada">
+		                                <div class="input-group">
+		                                   <span class="input-group-addon">AM</span>
+		                                   <input type="text" class="form-control" id="AM" placeholder= " AM" style="width: 60px" ng-model="AM" />
+		                                   <span class="input-group-addon">PM</span>
+		                                   <input type="text" class="form-control" id="PM" placeholder= " PM" style="width: 60px" ng-model="PM" />
+		                                   <span class="input-group-btn">
+		                            	   <button class="btn btn-success btn-sm" value="guardar" id="guardar" ng-click="guardaPara(departamentos, zona1, AM, PM);"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+		                                        </span>
+		                                </div>
+				       				
+		                        </div>
+					</div>
+
+					<div class="col-md-4" ng-show="isSet(2)" align="right"> 
+				<div class="fileUpload btn btn-primary">
+				    <span class="glyphicon glyphicon-upload"></span> Seleccionar Archivo
+				    <input type="file" class="upload" file-model = "myFile" />
+				</div>
+                             <button class="btn btn-success btn-md" value="cargar" id="cargar" ng-click="uploadFile(departamentos,zona1);"><span class="glyphicon glyphicon-cloud-upload"></span> Cargar</button>
+                             <div class="loading-spiner-holder" data-loading ><div class="loading-spiner"><img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="images/loader.gif" /></div></div>
+                     <div ng-show="error" class="alert alert-danger">
+                      {{error}}
+                    </div>
+					</div>	
+
+					<!--<div class="col-md-7 form-inline" ng-show="isSet(1)">
+							<label class="input col-md-10">Seleccione rango de Fecha y cupos:</label>
+							 <div class="input-group">
+                                <div class="input-daterange col-md-12" id="datepicker">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Desde</span>
+                                        <input type="text" class="form-control" style="width:120px" placeholder= "{{lastUpdate}}" id="fromDate" name="fromDate" ng-model="fechaini" />
+                                        <span class="input-group-addon">Hasta</span>
+                                        <input type="text" class="form-control" style="width:120px" placeholder= "{{lastUpdate}}" id="toDate" name="toDate" ng-model="fechafin" />
+									</div>
+  								</div>
+										<div id="myDIV" style= "display:none;">
+		                                   <span class="input-group-addon">AM</span>
+		                                   <input type="text" class="form-control" id="AM" placeholder= " AM" style="width: 50px" ng-model="AM1" />
+		                                   <span class="input-group-addon">PM</span>
+		                                   <input type="text" class="form-control" id="PM" placeholder= " PM" style="width: 50px" ng-model="PM1" />
+		                                   <span class="input-group-btn">
+		                            	  <button class="btn btn-success btn-sm" value="guardar" id="guardar" ng-click="guardaPara2(departamentos, zona1, fechaini, fechafin, AM1, PM1);">
+		                            	   	<span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+		                                    </span>
+		                                -->
+		                     </div>
+					</div>
+ 			</div>
+ 		</div>
+		<div class="panel-body">
+			<div class="jumbotron">
+				<div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources"></div> 
+			</div>
+		</div>
+		<div class="panel-footer " >
+                <div  align="right">
+                   <button class="btn btn-success btn-sm" ng-click="csvParametrizacionSiebel();"><span class="glyphicon glyphicon-download-alt"></span> Exportar Parametrización</button>
+                   <button class="btn btn-warning btn-sm" ng-click="csvParametrizacionMicrozona(departamentos, zona1);"><span class="glyphicon glyphicon-download-alt"></span> Exportar Microzona</button>
+                </div>
+        </div>
+	</div>	
+</div>
+<style>
+
+	body {
+		/*margin: 40px 10px;*/
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+
+	#calendar {
+		max-width: 200px;
+		margin: 0 auto;
+	}
+
+</style>
+
+	<!--div id='calendar' ng-model='calendario'></div-->
+	
+
+				<!--<table class="table">
+				    <thead>
+				      <tr>
+				      	<th>Jornada</th>
+				        <th><input type="checkbox" id="dia1" value="lunes"> Lunes</th>
+				        <th><input type="checkbox" id="dia2" value="martes"> Martes</th>
+				        <th><input type="checkbox" id="dia3" value="miercoles"> Miercoles</th>
+				        <th><input type="checkbox" id="dia4" value="jueves"> Jueves</th>
+				        <th><input type="checkbox" id="dia5" value="viernes"> Viernes</th>
+				        <th><input type="checkbox" id="dia6" value="sabado"> Sabado</th>
+				        <th><input type="checkbox" id="dia7" value="domingo"> Domingo</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      <tr class="success">
+			           <th>AM</th>
+ 						<td><input type="text" size="5" aria-label="..." ng-model="guardarJornaDia"></td>
+				        <td><input type="text" size="5" aria-label="..." ng-model="guardarJornaDia"></td>
+				        <td><input type="text" size="5" aria-label="..." ng-model="guardarJornaDia"></td>
+				        <td><input type="text" size="5" aria-label="..." ng-model="guardarJornaDia"></td>
+				        <td><input type="text" size="5" aria-label="..." ng-model="guardarJornaDia"></td>
+				        <td><input type="text" size="5" aria-label="..." ng-model="guardarJornaDia"></td>
+				        <td><input type="text" size="5" aria-label="..." ng-model="guardarJornaDia"></td>
+				      </tr>
+			          <tr class="success">
+			           <th>AM</th>
+ 						<td><input type="text" size="5" aria-label="..." ng-model="guardarJornaDia"></td>
+				        <td><input type="text" size="5" aria-label="..." ng-model="guardarJornaDia"></td>
+				        <td><input type="text" size="5" aria-label="..." ng-model="guardarJornaDia"></td>
+				        <td><input type="text" size="5" aria-label="..." ng-model="guardarJornaDia"></td>
+				        <td><input type="text" size="5" aria-label="..." ng-model="guardarJornaDia"></td>
+				        <td><input type="text" size="5" aria-label="..." ng-model="guardarJornaDia"></td>
+				        <td><input type="text" size="5" aria-label="..." ng-model="guardarJornaDia"></td>
+				      </tr>
+				    </tbody>
+				  </table>-->
+		
+				<script>
+					$('#datetimepicker1').datetimepicker({
+						locale: 'es',
+						format: 'YYYY/MM/DD HH:00:00'
+					});
+				</script>
+
+
+
+                <!--td><button id="iniciar" type="button" class="btn btn-md btn-success" onclick="javascript:activar();">Iniciar</a></td-->
+	<div id="warning" ng-model="warnin"></div>
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+<script>
+$('.input-daterange').datepicker({
+     format: 'yyyy/mm/dd',
+     todayBtn: "linked",
+     autoclose: true
+ });
+</script>
+<script language='javascript'>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+})
+</script>

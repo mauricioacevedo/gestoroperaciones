@@ -1,0 +1,72 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+<div class="row" ng-controller="TabController">
+    <ul class="nav nav-pills">
+        <li ng-class="{ active: isSet(1) }">
+                <a href ng-click="setTab(1)">Usuarios Gestor</a>
+        </li>
+    </ul>
+
+        <div class="col-md-16">
+            <div class="jumbotron">
+                <div ng-show="isSet(1)">
+		<div class="row"> 
+				<center><h3>Listado de Usuarios</h3></center>
+                                <div class="input-daterange col-sm-7" id="datepicker">
+                                                <button class="btn btn-success btn-md" value="exportar!" ng-click="csvNCA();">Exportar</button>
+                                </div>
+		</div>
+
+			<div class="row">
+				<ul class="nav nav-list">
+				  <li class="divider">.</li>
+				</ul>
+			 </div>
+                    <div class="row">
+		    <table align="center" width="100%">
+			<tr>
+		 	<td width="33%" align="left">
+
+				Total de Usuarios: <b>{{data.totalItems}} </b>
+			</td>
+			<td width="33%" align="center">
+				<!--a class="btn btn-block btn-primary" href="#/users/usuario"><span class="glyphicon glyphicon-star"></span> Nuevo Usuario</a-->
+				<button class="btn btn-block btn-primary" value="exportar!" ng-click="newUsuario();"><span class="glyphicon glyphicon-star"></span> Nuevo Usuario</button>
+                        </td>	
+			<td width="33%" align="right">
+				<!--pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged()" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination-->
+			</td>
+			</tr>
+		    </table>
+
+                    <table class="table table-striped table-bordered table-hover table-condensed">
+                            <thead>
+                                    <th>Login</th>
+                                    <th>Nombre</th>
+                                    <th>Grupo</th>
+                                    <th>Acciones</th>
+                            </thead>
+                            <tbody>
+                                    <tr ng-repeat="data in listado_usuarios| orderBy:'GRUPO':true ">
+                                    <td>{{data.USUARIO_ID}}</td>
+                                    <td>{{data.USUARIO_NOMBRE}}</td>
+                                    <td>{{data.GRUPO}}</td>
+                                    <td>{{data.CEDULA_ID}}</td>
+                                    <td><button class="btn btn-success btn-sm" value="edit!" ng-click="getUsuario(data.ID);">Editar</button></td>
+                            </tr>
+                            </tbody>
+                    </table>
+			<!--pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged()" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination-->
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+<script>
+$('.input-daterange').datepicker({
+     format: 'yyyy-mm-dd',
+     todayBtn: "linked",
+     autoclose: true
+ });
+</script>
+

@@ -1,0 +1,249 @@
+ <div class="row">
+<div class="col-lg-10 form-inline">
+ <b>Concepto:</b>
+        <select ng-model="iconcepto" class="form-control" style="width: auto;">
+		<option value='14'>14</option>
+		<option value='99'>99</option>
+		<option value='14B2B'>14 CORP</option>
+	</select>
+<b>Plaza:</b>
+        <select ng-model="iplaza" class="form-control" style="width: auto;">
+
+		<option value="TODOS">TODOS</option>
+<option value="MEDELLIN">MEDELLIN</option><option value="BARRANQUILLA">BARRANQUILLA</option><option value="BOGOTA">BOGOTA</option><option value="CALI">CALI</option><option value="CARTAGENA">CARTAGENA</option><option value="EJE CAFETERO">EJE CAFETERO</option><option value="SANTANDERES">SANTANDERES</option><option value="TOLIMA">TOLIMA</option></select>
+</div>
+</div>
+<br>
+<br>
+ <div class="row">
+<div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" class="form-control col-xs-8" aria-label="..." ng-model="bpedido">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-md btn-primary dropdown-toggle"  ng-click="buscarPedido(bpedido);">Buscar Pedido</button>
+	<button id="iniciar" type="button" class="btn btn-md btn-success" ng-click="start(pedido);">Deme Pedido</button>
+	<button id="manual" type="button" class="btn btn-md btn-warning" ng-click="manual();">Pedido Manual</button>
+	
+      </div><!-- /btn-group -->
+    </div><!-- /input-group -->
+  </div>
+</div>
+
+<br>
+        <table class="table table-bordered" width="300" style="width: auto !important;" ng-show="mpedido.active==1">
+         <thead>
+                <th>Pedido</th>
+                <th>Fuente de Informacion</th>
+                <th>Concepto Final</th>
+                <th>Estado</th>
+                <th>&nbsp;</th>
+        </thead>
+        <tr>
+                <td><input id='ipedido' ng-model="mpedido.pedido" type="text" class= "form-control" placeholder= "Pedido" /></td>
+                <td>
+                <select ng-model="mpedido.fuente" class= "form-control">
+                        <option value='FENIX BOGOTA'>FENIX BOGOTA</option>
+                        <option value='NCA'>NCA</option>
+                        <option value='SIEBEL'>SIEBEL</option>
+                        <option value='BACKOFFICE'>BACKOFFICE</option>
+                        <option value='FENIX_NAL'>FENIX_NAL</option>
+FENIX_NAL
+                </select></td>
+                <td><input type="text" class="form-control col-xs-8" aria-label="..." ng-model="mpedido.concepto"> </td>
+
+                <td><select class= "form-control" ng-model="mpedido.estado">
+                        <option value='PORDE'>PORDE</option>
+                        <option value='PENDIENTE'>PENDIENTE</option>
+                        <option value='ANULADO'>ANULADO</option>
+                </select></td>
+
+                <td>
+                <button id="mguardar" type="button" class="btn btn-md btn-success" ng-click="msavePedido();">Guardar</button>
+                </td>
+        </tr>
+        </tr>
+        </table>
+
+
+	<form name="pedidoForm" ng-submit="savePedido(pedido,userID)" novalidate>
+
+	<table class="table table-bordered" width="300" style="width: auto !important;" ng-show="peds.length>0">
+	 <thead>
+        	<th>Pedido</th>
+		<th>Sub-Sol</th>
+        	<th>Informacion</th>
+        	<th>Tiempo</th>
+        	<th>Concepto</th>
+        	<th>Parametros</th>
+        	<th>Estado</th>
+	</thead>
+	
+	<tr ng-repeat="service in peds">
+		<td>{{service.PEDIDO_ID}}</td>
+		<td>{{service.SUBPEDIDO_ID}}-{{service.SOLICITUD_ID}}</td>
+		<td><b>Tipo Trabajo:</b> {{service.TIPO_TRABAJO}}<br> <b>Direccion:</b> {{service.DIRECCION_SERVICIO}}<br><b>Pagina:</b> {{service.PAGINA_SERVICIO}}<br><b>Estrato:</b> {{service.ESTRATO==''?'Vacio':service.ESTRATO}}<br><b>UEN:</b> {{service.UEN_CALCULADA}}<br><b>Elemento ID:</b> {{service.TIPO_ELEMENTO_ID}}<br><b>Municipio ID:</b> {{service.MUNICIPIO_ID}}</td>
+		<!--td>{{service.PRODUCTO}}</td-->
+		<td><font color='red'>{{service.TIEMPO_COLA}}</font></td>
+		<td><font color='red'>{{service.CONCEPTO_ID}}</font></td>
+		 <td>
+		ID Llamada:<input type="text" class="form-control col-xs-8" aria-label="..." ng-model="service.idllamada"><br>
+		Nuevo pedido:<input type="text" class="form-control col-xs-8" aria-label="..." ng-model="service.nuevopedido">
+		</td>
+		<td>
+		Estado(Gestion): <select class= "form-control" ng-model="service.estado">
+		<option value="32 - ANULADO NO CUMPLE CONDICIONES DE INSTALACION">32 - ANULADO NO CUMPLE CONDICIONES DE INSTALACION</option>
+		<option value="36 - ANUL POR COBERTURA">36 - ANUL POR COBERTURA</option>
+		<option value="37 - ANULADO POR MALA ASESORIA">37 - ANULADO POR MALA ASESORIA</option>
+		<option value="40 - ANULADO POR INCUMPLIMIENTO DE ANS">40 - ANULADO POR INCUMPLIMIENTO DE ANS</option>
+		<option value="42 - ANUL POR DECISION DEL CLIENTE">42 - ANUL POR DECISION DEL CLIENTE</option>
+		<option value="43 - ANUL SIN DIPONIBILIDAD TECNICA">43 - ANUL SIN DIPONIBILIDAD TECNICA</option>
+		<option value="46 - ANULADO X RESTRICION DE PLANEACION">46 - ANULADO X RESTRICION DE PLANEACION</option>
+		<option value="98 - ANUL MEJOR OFERTA COMPETENCIA">98 - ANUL MEJOR OFERTA COMPETENCIA</option>
+		<option value="ANUOS - ANUL POR SUSTITUCION DE PEDIDO">ANUOS - ANUL POR SUSTITUCION DE PEDIDO</option>
+		<option value="APRCT - ANUL CLIENTE NO CONTACTADO">APRCT - ANUL CLIENTE NO CONTACTADO</option>
+		<option value="AXGAR - ANUL  POR GARANTIA EN EL INGRESO">AXGAR - ANUL  POR GARANTIA EN EL INGRESO</option>
+		<option value="NO CONTACTADO">NO CONTACTADO</option>
+		<option value="SE ESCALA A OTRA AREA">SE ESCALA A OTRA AREA</option>
+		<option value="SE RECONFIGURA OFERTA CON CLIENTE">SE RECONFIGURA OFERTA CON CLIENTE</option>
+		<option value="SE RECONFIGURA OFERTA SIN CLIENTE">SE RECONFIGURA OFERTA SIN CLIENTE</option>
+		<option value="USUARIO LO PENSARA">USUARIO LO PENSARA</option>
+		<option value="VOLVER A LLAMAR">VOLVER A LLAMAR</option>
+		<option value="YA ESTABA RECONFIGURADO">YA ESTABA RECONFIGURADO</option>
+		<option value="YA SE ENCONTRABA ANULADO">YA SE ENCONTRABA ANULADO</option>
+		<option value="MALO">MALO</option>
+		<option value="PETEC">PETEC </option>
+		<option value="SE CORRIGE CON CLIENTE">SE CORRIGE CON CLIENTE</option>
+		<option value="SE CORRIGE SIN CLIENTE">SE CORRIGE SIN CLIENTE</option>
+                </select>
+		
+		<div ng-show="service.estado == 'VOLVER A LLAMAR' || service.estado == 'NO CONTACTADO'">
+
+			<select class= "form-control" ng-model="service.horaLlamar">
+				<option value="manana">Mañana</option>
+				<option value="09">9am</option>
+				<option value="10">10am</option>
+				<option value="11">11am</option>
+				<option value="12">12m</option>
+				<option value="13">1pm</option>
+				<option value="14">2pm</option>
+				<option value="15">3pm</option>
+				<option value="16">4pm</option>
+				<option value="17">5pm</option>
+				<option value="18">6pm</option>
+				<option value="19">7pm</option>
+			</select>
+		</div>
+		Motivo: <select class= "form-control" ng-model="service.motivo">
+		<option value="ADICIONAR DECODIFICADORES">ADICIONAR DECODIFICADORES</option>
+		<option value="CAMBIO TECNOLOGIA">CAMBIO TECNOLOGIA</option>
+		<option value="ERROR DE INGRESO">ERROR DE INGRESO</option>
+		<option value="INSTALADO CON OTRO PEDIDO">INSTALADO CON OTRO PEDIDO</option>
+		<option value="INSTALAR POR PAR DEDICADO">INSTALAR POR PAR DEDICADO</option>
+		<option value="MALA  ASESORIA">MALA  ASESORIA</option>
+		<option value="MALA  ASIGNACIÓN">MALA  ASIGNACIÓN</option>
+		<option value="NO DESEA EL SERVICIO">NO DESEA EL SERVICIO</option>
+		<option value="NO FUE LO QUE SOLICITO">NO FUE LO QUE SOLICITO</option>
+		<option value="SIN CAPACIDAD (BA)">SIN CAPACIDAD (BA)</option>
+		<option value="SIN CAPACIDAD (DECOS)">SIN CAPACIDAD (DECOS)</option>
+		<option value="SIN COBERTURA BA">SIN COBERTURA BA</option>
+		<option value="SIN COBERTURA TO">SIN COBERTURA TO</option>
+		<option value="SIN COBERTURA TO - BA">SIN COBERTURA TO - BA</option>
+		<option value="SIN COBERTURA TO - BA - TV">SIN COBERTURA TO - BA - TV</option>
+		<option value="SIN COBERTURA TO - TV">SIN COBERTURA TO - TV</option>
+		<option value="SIN COBERTURA TV">SIN COBERTURA TV</option>
+		<option value="SIN COBERTURA TV - BA">SIN COBERTURA TV - BA</option>
+		<option value="TT DESEA MODIFICAR LA OFERTA">TT DESEA MODIFICAR LA OFERTA</option>
+		<option value="INGRESO FENIX EPM-BOGOTA">INGRESO FENIX EPM-BOGOTA</option>
+		<option value="TRASLADO LINEAL">TRASLADO LINEAL</option>
+                </select>
+
+		</td>
+                <td>
+                <button ng-show="isAuthorized(service.CONCEPTO_ID);" id="mybutt{{index}}" type="button" class="btn btn-md btn-success" ng-click="savePedido($index)">Guardar</button>
+                </td>
+
+	</tr>
+	</table>
+                <!--td><button id="iniciar" type="button" class="btn btn-md btn-success" onclick="javascript:activar();">Iniciar</a></td-->
+	<div id="warning"></div>
+                
+
+	</form>
+
+	<div class="row" ng-controller="TabController">
+  	<!--div class="col-md-2"-->
+  		<ul class="nav nav-pills">
+       	<li ng-class="{ active: isSet(2) }">
+          	<a href ng-click="setTab(2)">Historico</a>
+       	</li>
+       	<li ng-class="{ active: isSet(1) }">
+          	<a href ng-click="setTab(1)">Personal</a>
+       	</li>
+     	</ul>
+
+
+	<div class="col-md-16">
+  	    <div class="jumbotron">
+         	<div ng-show="isSet(2)">
+
+                        <p><h3>Historico pedido: <b>{{pedido1}}</b></h3></p>
+
+                        <table class="table table-striped table-bordered">
+                        <thead>
+                        <th>Usuario</th>
+                        <th>Fuente</th>
+                        <th>Concepto</th>
+                        <th>Estado</th>
+                        <th>Fecha</th>
+                        <th>Duracion</th>
+                        <!--th>Opciones</th-->
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="data in historico_pedido track by $index| orderBy:'fecha_fin':true ">
+                                <td>{{data.user}}</td>
+                                <td>{{data.fuente}}</td>
+                                <td>{{data.concepto_final}}</td>
+                                <td>{{data.estado}}</td>
+                                <td>{{data.fecha_fin}}</td>
+                                <td>{{data.duracion}}</td>
+                                <!--td>Opciones</td-->
+                            </tr>
+                        </tbody>
+                        </table>
+
+
+        	  </div>
+		<div ng-show="isSet(1)">
+		        <p><h3>Registros de hoy ({{pedidos.length}}):</h3></p>
+
+		        <table class="table table-striped table-bordered">
+		        <thead>
+		        <th>Pedido</th>
+		        <th>Fuente</th>
+		        <th>Concepto</th>
+		        <th>Estado</th>
+		        <th>Fecha</th>
+		        <th>Duracion</th>
+		        <!--th>Opciones</th-->
+		        </thead>
+		        <tbody>
+		            <tr ng-repeat="data in pedidos| orderBy:'fecha_fin':true ">
+		                <td>{{data.pedido}}</td>
+		                <td>{{data.fuente}}</td>
+		                <td>{{data.concepto_final}}</td>
+		                <td>{{data.estado}}</td>
+		                <td>{{data.fecha_fin}}</td>
+		                <td>{{data.duracion}}</td>
+		                <!--td>Opciones</td-->
+		            </tr>
+		        </tbody>
+		        </table>
+
+     	  	</div>
+	    </div>
+	</div>
+
+
+	</div>
+
+    </div>

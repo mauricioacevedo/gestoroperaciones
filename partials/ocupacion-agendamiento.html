@@ -1,0 +1,184 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+<ol class="breadcrumb">
+  <li><a href="./#/scheduling/">Agendamiento</a></li>
+  <li class="active">Ocupacion Agendas</li>
+</ol>
+<div ng-show="error" class="alert alert-danger">
+	{{error}}
+</div>
+<div class="container"><!-- div ppal -->
+	<div class="panel panel-primary"><!--panel ppal -->
+		<div class="panel-heading " ><!--titulo del panel -->
+                <h4 class="panel-title" >Ocupación Agenda Modulo</h4>
+        </div><!--titulo del panel -->
+		<div class="panel-body"><!--contenido -->
+<div class="row">
+    <div class="col-lg-3 form-inline">
+            <div class="input-group">
+                 <div class="input-daterange" id="datepicker">
+                         <div class="input-group margin-bottom-md">
+                               <span class="input-group-addon"><i class="fa fa-calendar-plus-o fa-fw"></i>Fecha</span>
+                                   <input type="text" style = "width: 70%;"  class= "form-control" ng-model="fechaAgendamiento" ng-change="getOcupacionfecha(fechaAgendamiento, departamento, zona)">
+                         </div>
+                 </div>    
+            </div> 
+    </div><!--Row Columna-->
+    
+    <div class="col-lg-6 form-inline">
+            <label  for="Departamento">Departamento</label>
+            <select ng-model="departamento" style = "width: auto" class="form-control" ng-change="getZonas(departamento);getOcupacion(fechaAgendamiento, departamento, zona)">
+                  <option ng-repeat="dep in departamentos" value="{{dep.DEPARTAMENT}}">{{dep.DEPARTAMENT}}</option>
+            </select>
+            <label  for="Zona">Zona</label>
+            <select ng-model="zona" class="form-control" style = "width: auto;"  ng-change="getOcupacion(fechaAgendamiento, departamento, zona)">
+                <option ng-repeat="zoni in zonas" value="{{zoni.SUBZONA_ID}}">{{zoni.SUBZONA_ID}}</option>
+            </select>
+    </div><!--Row Columna-->
+    <div class="col-md-3" >
+        <button class="btn btn-success btn-sm" value="exportar!" ng-click="csvDatosAgendamiento(fechaAgendamiento, departamento, zona);"><span class="glyphicon glyphicon-download-alt"></span> Exportar Datos</button>
+    </div>
+</div><!--Row Filtros-->
+    <br>
+    <br>
+			<div class="row">
+			
+			<div class="col-md-12">
+                <table class="table table-striped table-hover table-bordered table-condensed small">
+			    <thead>
+			  
+				<tr><th class="text-center">Departamento</th>
+				<th class="text-center">Zona</th>
+				<th class="text-center">Microzona</th>
+				<th class="text-center">Segmento</th>
+        <th class="text-center">Migracion</th>
+        <th class="text-center">Vip</th>
+        <th class="text-center">Bronze</th>
+        <th class="text-center">Gpon</th>
+				<th class="text-center">Param AM</th>
+				<th class="text-center">Disp AM</th>
+				<th class="text-center">Param PM</th>
+				<th class="text-center">Disp PM</th>
+				<th class="text-center">Param HF</th>
+				<th class="text-center">Disp HF</th>
+				<th class="text-center">Total Disp</th>
+				
+				
+				
+				
+			    </tr></thead>
+			     <tbody align='center'>
+				<tr ng-repeat="data in listado_cuposxagendas | filter:departamento1">
+
+                                <td>{{data.DEPARTAMENTO}}</td>
+                                <td>{{data.ZONA}}</td>
+                                <td>{{data.MICROZONA}}</td>
+                                <td>{{data.SEGMENTO}}</td>
+                              <td ng-init="listado_cuposxagendas.MIGRACION = parseInt(listado_cuposxagendas.MIGRACION) + parseInt(data.MIGRACION)">{{data.MIGRACION}}</td>
+                                 <td ng-init="listado_cuposxagendas.VIP = parseInt(listado_cuposxagendas.VIP) + parseInt(data.VIP)">{{data.VIP}}</td>
+                                 <td ng-init="listado_cuposxagendas.BRONZE = parseInt(listado_cuposxagendas.BRONZE) + parseInt(data.BRONZE)">{{data.BRONZE}}</td>
+                                <td ng-init="listado_cuposxagendas.GPON = parseInt(listado_cuposxagendas.GPON) + parseInt(data.GPON)">{{data.GPON}}</td>
+                                <td ng-init="listado_cuposxagendas.tPARAM_AM = parseInt(listado_cuposxagendas.tPARAM_AM) + parseInt(data.PARAM_AM)">{{data.PARAM_AM}}</td>
+                                 <td ng-init="listado_cuposxagendas.tDISP_AM= parseInt(listado_cuposxagendas.tDISP_AM) + parseInt(data.DISP_AM)">{{data.DISP_AM}}</td>
+                                 <td ng-init="listado_cuposxagendas.tPARAM_PM= parseInt(listado_cuposxagendas.tPARAM_PM) + parseInt(data.PARAM_PM)">{{data.PARAM_PM}}</td>
+                                  <td ng-init="listado_cuposxagendas.tDISP_PM = parseInt(listado_cuposxagendas.tDISP_PM) + parseInt(data.DISP_PM)">{{data.DISP_PM}}</td>                       
+                                  <td ng-init="listado_cuposxagendas.tPARAM_HF = parseInt(listado_cuposxagendas.tPARAM_HF) + parseInt(data.PARAM_HF)">{{data.PARAM_HF}}</td>
+                                  <td ng-init="listado_cuposxagendas.tDISP_HF = parseInt(listado_cuposxagendas.tDISP_HF) + parseInt(data.DISP_HF)">{{data.DISP_HF}}</td>                                    
+                                   <td ng-init="listado_cuposxagendas.tTOTAL_DISP = parseInt(listado_cuposxagendas.tTOTAL_DISP) + parseInt(data.TOTAL_DISP)">{{data.TOTAL_DISP}}</td>
+								
+							
+                                <!--td>Opciones</td-->
+                            	</tr>
+			   				 </tbody>
+				  
+                                  <tr>
+                                                <th class="text-center">TOTALES</th>
+                                                <th class="text-center"></th>
+                                                <th class="text-center"></th>
+                                                <th class="text-center"></th>
+                                                <th class="text-center">{{listado_cuposxagendas.MIGRACION}}</th>
+                                                <th class="text-center">{{listado_cuposxagendas.VIP}}</th>
+                                                <th class="text-center">{{listado_cuposxagendas.BRONZE}}</th>
+                                                <th class="text-center">{{listado_cuposxagendas.GPON}}</th>
+                                                <th class="text-center">{{listado_cuposxagendas.tPARAM_AM}}</th>
+                                                <th class="text-center">{{listado_cuposxagendas.tDISP_AM}}</th>
+                                                <th class="text-center">{{listado_cuposxagendas.tPARAM_PM}}</th>
+                                                <th class="text-center">{{listado_cuposxagendas.tDISP_PM}}</th>
+                                                <th class="text-center">{{listado_cuposxagendas.tPARAM_HF}}</th>
+                                                <th class="text-center">{{listado_cuposxagendas.tDISP_HF}}</th>
+                                                <th class="text-center">{{listado_cuposxagendas.tTOTAL_DISP}}</th>
+
+                                               
+                                  </tr>
+                                  
+                                  
+
+                                 				
+                               
+                    </table>
+
+                    </div>
+                  </div>
+                  <br>
+
+				
+			</div>
+		
+			</div>
+			</div><!--contenido -->
+		<div class="pull-right"><!--Flecha Arriba -->
+    <a href="#" class="scrollToTop"><i class="fa fa-chevron-circle-up fa-2x" data-toggle="tooltip" title="Volver arriba" data-placement="right"></i></a>
+</div>
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+		
+	</div><!--panel ppal -->
+
+
+</div><!-- div ppal -->
+
+<div> <br><br><br></div>
+
+      <script>
+  $('.input-daterange').datepicker({
+  format: 'yyyy-mm-dd',
+    //todayBtn: "linked",
+   todayHighlight: true,
+   autoclose: true,
+   language: 'es'
+     });
+   </script>
+    <script language='javascript'>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+})
+</script>
+<!-- Flecha Arriba Estilo, dentro del head--> 
+<script>            
+$(document).ready(function(){
+    
+    //Check to see if the window is top if not then display button
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 100) {
+            $('.scrollToTop').fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut();
+        }
+    });
+    
+    //Click event to scroll to top
+    $('.scrollToTop').click(function(){
+        $('html, body').animate({scrollTop : 0},800);
+        return false;
+    });
+    
+});
+</script>
+<!-- Flecha Arriba Estilo, dentro del head--> 
+

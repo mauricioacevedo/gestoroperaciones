@@ -1,0 +1,558 @@
+
+<div class="container-fluid"><!--Div Principal -->
+    <div class="row"><!--Row Titulo -->
+        <div class="col-lg-12">
+            <h1 class="page-header"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard Alistamiento <small>Pendientes & Kpis</small></h1>
+        </div>
+    </div><!--Row Titulo -->
+    <div class="row">
+        <div class="col-lg-12">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+        </div>
+    </div>
+        <div class="row"><!--Row Pendientes -->
+        <div class="col-lg-3 col-md-6"><!--Row Pendientes Asignaciones -->
+            <div class="panel panel-primary"><!--Panel-->
+                <div class="panel-heading"><!--Panel Heading -->
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-braille fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div><strong><p style="font-size:27px">{{asignacioneskpi}}</p></strong></div>
+                            <div>Asignaciones</div>
+                        </div>
+                    </div>
+                </div><!--Panel Heading -->
+                <a href="./#/indicadores/">
+                <div class="panel-footer">
+                    <span class="pull-left">Ver Detalles</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div></a>
+            </div><!--Panel-->
+
+        </div><!--Row Pendientes Asignaciones -->
+
+        <div class="col-lg-3 col-md-6"><!--Row Pendientes Reconfiguracion -->
+            <div class="panel panel-primary"><!--Panel-->
+                <div class="panel-heading"><!--Panel Heading -->
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-th-large fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div><strong><p style="font-size:27px">{{reconfiguracionkpi}}</p></strong></div>
+                            <div>Reconfiguración</div>
+                        </div>
+                    </div>
+                </div><!--Panel Heading -->
+                <a href="./#/indicadores/">
+                <div class="panel-footer">
+                    <span class="pull-left">Ver Detalles</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div></a>
+            </div><!--Panel-->
+        </div><!--Row Pendientes Reconfiguracion -->
+
+        <div class="col-lg-3 col-md-6"><!--Row Pendientes Agendamiento -->
+            <div class="panel panel-primary"><!--Panel-->
+                <div class="panel-heading"><!--Panel Heading -->
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-history fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div><strong><p style="font-size:27px">{{agendamientokpi}}</p></strong></div>
+                            <div>Agendamiento</div>
+                        </div>
+                    </div>
+                </div><!--Panel Heading -->
+                <a href="./#/agendamiento/">
+                <div class="panel-footer">
+                    <span class="pull-left">Ver Detalles</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div></a>
+            </div><!--Panel-->
+
+        </div><!--Row Pendientes Agendamiento -->
+
+        <div class="col-lg-3 col-md-6"><!--Row Pendientes Activacion Desactivacion -->
+            <div class="panel panel-primary"><!--Panel-->
+                <div class="panel-heading"><!--Panel Heading -->
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-cogs fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div><strong><p style="font-size:27px">{{activacionkpi}}</p></strong></div>
+                            <div>Activación</div>
+                        </div>
+                    </div>
+                </div><!--Panel Heading -->
+                <a href="./#/activacion/">
+                <div class="panel-footer">
+                    <span class="pull-left">Ver Detalles</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div></a>
+            </div><!--Panel-->
+
+        </div><!--Row Pendientes Activacion Desactivacion -->
+    </div><!--Row Pendientes -->
+    
+    <div class="row">
+        <div class="col-lg-12">
+        </div>
+    </div>
+
+    <div class="row" ng-controller="TabController"><!--Row KPIS -->
+        <div class="col-lg-12" >
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-tittle">
+                        <span class="fa-stack" aria-hidden="true">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
+                        </span>
+                         Kpis 
+                     </h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+                      <li ng-class="{ active: isSet(1) }" class="active"><a data-toggle="tab" href ng-click="setTab(1)">General</a></li>
+                      <li ng-class="{ active: isSet(2) }"><a data-toggle="tab" href ng-click="setTab(2);actualizarGraficaAsignaciones();actualizarGraficaAsignacionesMes();actualizarGraficaAsignacionesTecnologia();actualizarGraficaAsignacionesMesCobre(); actualizarGraficaCambioNuevoHFC();actualizarGraficaCambioNuevoREDCO();">Asignaciones</a></li>
+                      <li ng-class="{ active: isSet(3) }"><a data-toggle="tab" href ng-click="setTab(3);actualizarGraficaReconfiguracion();actualizarGraficaReconfiguracionMes();">Reconfiguración</a></li>
+                      <li ng-class="{ active: isSet(4) }"><a data-toggle="tab"  href ng-click="setTab(4);actualizarGraficaAgendamiento();actualizarGraficaAgendamientoPresupuestal();">Agendamiento</a></li>
+                      <li ng-class="{ active: isSet(5) }"><a data-toggle="tab" href ng-click="setTab(5);actualizarGraficaActivacionMes();">Activación</a></li>
+                      <li ng-class="{ active: isSet(6) }"><a data-toggle="tab" href ng-click="setTab(6);">Presupuesto</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                      <div  ng-show="isSet(1)"><!-- Tab Pendientes -->
+                        <br>
+                        <div class="jumbotron">
+                            <div class="row"><!--ROW Activity feed -->
+                                <div class="col-lg-6 "><!-- Activity feed -->
+                                    <div class="feed-container panel panel-default">
+                                        <div class="panel-heading">
+                                            <i class="fa fa-commenting fa-fw"></i>
+                                            Activity Feed
+                                        </div>
+                                        <div class="panel-body">
+                                            <ul class="list-group">
+                                                <li class="list-group-item" ng-repeat="data in listado_feed | orderBy:'fecha':true"> <small>El usuario: {{data.USER}}, usó <span ng-class="{'DEMEPEDIDO':'label label-warning', 'BUSCARPEDIDO':'label label-danger','ESTUDIO':'label label-success','LOGIN':'label label-default','NCA':'label label-primary'}[data.ACCION]">{{data.ACCION}}</span> hace {{data.FECHA2}} </small></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div><!-- Activity feed -->
+                                 <div class="col-lg-6 "><!-- Login feed -->
+                                    <div class="feed-container panel panel-default">
+                                        <div class="panel-heading">
+                                            <i class="fa fa-rss fa-fw"></i>
+                                            Login Feed
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="container">
+                                            <div class="row" style="border-bottom-style: solid; border-width: thin;">
+                                                <div class="col-lg-3">
+                                                    <b>Usuario</b>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <b>Grupo</b>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <b>Status</b>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <b>Fecha</b>
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-repeat="data in login_feed | orderBy:'fecha':true">
+                                                <div class="col-lg-3">
+                                                    <small>{{data.usuario}}</small>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <small><span ng-class="{'RECONFIGURACION':'label label-warning', 'NCA':'label label-success','ASIGNACIONES':'label label-success','ACTIVACION':'label label-danger','INCONSISTENCIAS':'label label-default','AGENDAMIENTO':'label label-default'}[data.grupo]">{{data.grupo}}</span></small>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <small><span ng-class="{'logged in':'label label-info', 'logged off':'label label-danger'}[data.status]">{{data.status}}</span></small>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <small>{{data.fecha_ingreso}}</small>
+                                                </div>
+                                            </div>
+
+                                        </div></div>
+                                    </div>
+                                </div><!-- Login feed -->
+                            </div><!-- Row ppal -->
+
+
+                    
+                        </div>
+                      </div><!-- Tab Pendientes -->
+                        
+                      <div ng-show="isSet(2)"><!-- Tab Asignaciones -->
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="alert alert-info fade in">
+                                    <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Para tener en cuenta:</strong> La asignacion automática se mide sobre tecnologia HFC.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <button class="btn btn-primary btn-sm" title="Actualizar gráfica" data-toggle="tooltip" data-placement="top" value="actualizar!" ng-click="actualizarGraficaAsignaciones();"><span class="glyphicon glyphicon-refresh"></span></button>
+                                    <strong> Asignación últimos 10 días</strong>
+                                </div>
+                                <div class="panel-body">
+
+                                    <div fusioncharts
+                                        align="center" 
+                                        width="480"
+                                        height="400"
+                                        type="mscombi2d"
+                                        datasource="{{myDataSourceAsignaciones}}">
+                                    </div><!--Fusioncharts -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <button class="btn btn-primary btn-sm" title="Actualizar gráfica" data-toggle="tooltip" data-placement="top" value="actualizar!" ng-click="actualizarGraficaAsignacionesMes();"><span class="glyphicon glyphicon-refresh"></span></button>
+                                    <strong> Asignación Automática HFC</strong>
+                                </div>
+                                <div class="panel-body">
+
+                                    <div fusioncharts
+                                        align="center" 
+                                        width="480"
+                                        height="400"
+                                        type="mscombi2d"
+                                        datasource="{{myDataSourceAsignacionesMes}}">
+                                    </div><!--Fusioncharts -->
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                      
+
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <button class="btn btn-primary btn-sm" title="Actualizar gráfica" data-toggle="tooltip" data-placement="top" value="actualizar!" ng-click="actualizarGraficaAsignacionesTecnologia ();"><span class="glyphicon glyphicon-refresh"></span></button>
+                                    <strong> Asignaciones X Tecnologia</strong>
+                                </div>
+                                <div class="panel-body">
+
+                                    <div fusioncharts
+                                        align="center"
+                                        width="480"
+                                        height="400"
+                                        type="stackedcolumn3d"
+                                        datasource="{{myDataSourceAsignacionesTecnologia}}">
+                                    </div><!--Fusioncharts -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <button class="btn btn-primary btn-sm" title="Actualizar gráfica" data-toggle="tooltip" data-placement="top" value="actualizar!" ng-click="actualizarGraficaAsignacionesMesCobre();"><span class="glyphicon glyphicon-refresh"></span></button>
+                                    <strong> Asignación Automática COBRE</strong>
+                                </div>
+                                <div class="panel-body">
+
+                                    <div fusioncharts
+                                        align="center"
+                                        width="480"
+                                        height="400"
+                                        type="mscombi2d"
+                                        datasource="{{myDataSourceAsignacionesMesCobre}}">
+                                    </div><!--Fusioncharts -->
+                                </div>
+                            </div>
+                        </div>
+                          <div class="row">
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <button class="btn btn-primary btn-sm" title="Actualizar gráfica" data-toggle="tooltip" data-placement="top" value="actualizar!" ng-click="actualizarGraficaCambioNuevoHFC();"><span class="glyphicon glyphicon-refresh"></span></button>
+                                    <strong> Asignación Automatica/Manual tipo solicitud  HFC</strong>
+                                </div>
+                                <div class="panel-body">
+
+                                    <div fusioncharts
+                                        align="center" 
+                                        width="500" 
+                                        height="400"
+                                        type="msstackedcolumn2d"
+                                        datasource="{{myDataSourceCambioNuevoHFC}}">
+                                    </div><!--Fusioncharts -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <button class="btn btn-primary btn-sm" title="Actualizar gráfica" data-toggle="tooltip" data-placement="top" value="actualizar!" ng-click="actualizarGraficaCambioNuevoREDCO();"><span class="glyphicon glyphicon-refresh"></span></button>
+                                    <strong> Asignación Automatica/Manual tipo solicitud REDCO</strong>
+                                </div>
+                                <div class="panel-body">
+
+                                    <div fusioncharts
+                                        align="center" 
+                                        width="500"
+                                        height="400"
+                                        type="msstackedcolumn2d"
+                                        datasource="{{myDataSourceCambioNuevoREDCO}}">
+
+                                    </div><!--Fusioncharts -->
+                                    </table>
+                                           <table class="table small table-striped table-hover table-bordered table-condensed">
+                                            <thead>  <tr>
+                                                        <th  rowspan="2"><center>Mes</center></th>
+                                                            <td colspan="3"><b><center>Manual</center></b></td>
+                                                            <td colspan="3"><b><center>Automatico</center></b></td>
+                                                          </tr>
+                                                          <tr>
+                                                            <th><center>Cambio</center></th>
+                                                            <th><center>Nuevo</center></th>
+                                                            <th><center>Total</center></th>
+                                                            <th><center>Cambio</center></th>
+                                                            <th><center>Nuevo</center></th>
+                                                            <th><center>Total</center></th>
+                                                          </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="data in tabla">
+                                                    <td>{{data.FECHA}}</td>
+                                                    <td>{{data.MANUAL_CAMBIO}} %</td>
+                                                    <td>{{data.MANUAL_NUEVO}} %</td>
+                                                    <td>{{data.TOTAL_MANUAL}}</td>
+                                                    <td>{{data.AUTOMATICO_NUEVO}} %</td>
+                                                    <td>{{data.AUTOMATICO_CAMBIO}} %</td>
+                                                    <td>{{data.TOTAL_AUTOMATICO}}</td>
+                                                </tr>
+                                            </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                       </div><!-- Tab Asignaciones -->
+
+
+
+                      <div ng-show="isSet(3)"><!-- Tab Reconfiguracion -->
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="alert alert-info fade in">
+                                    <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Para tener en cuenta:</strong> Los datos recopilados del proceso de reconfiguración, son de la semana pasada.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <button class="btn btn-primary btn-sm" title="Actualizar gráfica" data-toggle="tooltip" data-placement="top" value="actualizar!" ng-click="actualizarGraficaReconfiguracion();"><span class="glyphicon glyphicon-refresh"></span></button>
+                                    <strong> Reconfiguración Total Mensual</strong>
+                                </div>
+                                <div class="panel-body">
+
+                                    <div fusioncharts
+                                        align="center"
+                                        width="480"
+                                        height="400"
+                                        type="mscombi2d"
+                                        datasource="{{myDataSourceReconfiguracion}}">
+                                    </div><!--Fusioncharts -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <button class="btn btn-primary btn-sm" title="Actualizar gráfica" data-toggle="tooltip" data-placement="top" value="actualizar!" ng-click="actualizarGraficaReconfiguracionMes();"><span class="glyphicon glyphicon-refresh"></span></button>
+                                    <strong> Estudios x Reconfiguración Mes</strong>
+                                </div>
+                                <div class="panel-body">
+
+                                    <div fusioncharts
+                                        align="center"
+                                        width="480"
+                                        height="400"
+                                        type="stackedcolumn2d"
+                                        datasource="{{myDataSourceReconfiguracionMes}}">
+                                    </div><!--Fusioncharts -->
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                      </div><!-- Tab Reconfiguracion -->
+
+
+
+
+
+
+
+
+
+
+                      <div ng-show="isSet(5)"><!-- Tab Activacion -->
+                        <br>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <button class="btn btn-primary btn-sm" title="Actualizar gráfica" data-toggle="tooltip" data-placement="top" value="actualizar!" ng-click="actualizarGraficaActivacionMes();"><span class="glyphicon glyphicon-refresh"></span></button>
+                                        <strong> Tiempo Medio Activación</strong>
+                                    </div>
+                                    <div class="panel-body">
+
+                                        <div fusioncharts
+                                            align="center"
+                                            width="680"
+                                            height="400"
+                                            type="column2d"
+                                            datasource="{{myDataSourceActivacionMes}}">
+                                        </div><!--Fusioncharts -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div><!-- Tab Activacion -->
+                      <div ng-show="isSet(4)"><!-- Tab Agendamiento -->
+                        <br>
+                        <div class="row">
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <button class="btn btn-primary btn-sm" title="Actualizar gráfica" data-toggle="tooltip" data-placement="top" value="actualizar!" ng-click="actualizarGraficaAgendamiento();"><span class="glyphicon glyphicon-refresh"></span></button>
+                                    <strong> Agendamiento últimos 10 días</strong>
+                                </div>
+                                <div class="panel-body">
+
+                                    <div fusioncharts
+                                        align="center"
+                                        width="480"
+                                        height="400"
+                                        type="mscombi2d"
+                                        datasource="{{myDataSourceAgendamiento}}">
+                                    </div><!--Fusioncharts -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <button class="btn btn-primary btn-sm" title="Actualizar gráfica" data-toggle="tooltip" data-placement="top" value="actualizar!" ng-click="actualizarGraficaAgendamientoPresupuestal();"><span class="glyphicon glyphicon-refresh"></span></button>
+                                    <strong> Agendamiento Mes</strong>
+                                </div>
+                                <div class="panel-body">
+
+                                    <div fusioncharts
+                                        align="center"
+                                        width="480"
+                                        height="400"
+                                        type="mscombi2d"
+                                        datasource="{{myDataSourceAgendamientoPresupuestal }}">
+                                    </div><!--Fusioncharts -->
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                      </div><!-- Tab Agendamiento -->
+
+
+
+                      <div  class="tab-pane fade">
+                        <h3>Menu 2</h3>
+                        <p>Some content in menu 2.</p>
+                      </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+    </div><!--Row KPIS -->
+    
+
+</div><!--Div Principal -->
+<br>
+<div class="pull-right"><!--Flecha Arriba -->
+    <a href="#" class="scrollToTop"><i class="fa fa-chevron-circle-up fa-2x" data-toggle="tooltip" title="Volver arriba" data-placement="right"></i></a></div>
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+<script>
+$('.input-daterange').datepicker({
+     format: 'yyyy-mm-dd',
+     todayBtn: "linked",
+     autoclose: true
+ });
+</script>
+<script language='javascript'>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+})
+</script>
+<!-- Flecha Arriba Estilo, dentro del head--> 
+<script>            
+$(document).ready(function(){
+    
+    //Check to see if the window is top if not then display button
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 100) {
+            $('.scrollToTop').fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut();
+        }
+    });
+    
+    //Click event to scroll to top
+    $('.scrollToTop').click(function(){
+        $('html, body').animate({scrollTop : 0},800);
+        return false;
+    });
+    
+});
+</script>
+<!-- Flecha Arriba Estilo, dentro del head--> 

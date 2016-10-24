@@ -1,0 +1,159 @@
+<!--Modulo para creación de usuarios nuevos en el gestor -->
+<!--Creado por: Carlos Andres Gonzalez, fecha: 2015-09-10 -->
+<ol class="breadcrumb">
+  <li><a href="./#/">Administración</a></li>
+  <li><a href="./#/users/">Usuarios</a></li>
+  <li class="active">Crear Usuarios</li>
+</ol>
+<div ng-show="success" class="alert alert-success">{{success}}</div>
+
+
+ <!-- <div class="container"><!--Comienza CONTENEDOR -->
+  	        <div id="legend">
+                <h3>Registrar Nuevo Usuario:</h3>
+                <hr style="background:#D8262E; border:0; height:2px" />
+              </div>
+    <form class="form-horizontal"  method="POST">
+
+    	<fieldset>
+    	<div class="col-xs-6"><!--Comienza COL1 con Formulario-->
+              <div class="control-group">
+                <label class="control-label" for="usuario_id">Usuario id</label>
+                <div class="controls">
+                  <input type="text" id="usuario_id" name="usuario_id" placeholder="POTGOMEZA" class="form-control input-md" ng-model="usert.USUARIO_ID" required="true">
+                  <p class="help-block">Escriba el mismo usuario de sesion en Oracle Fenix - En mayusculas</p>
+                </div>
+              </div>
+           
+           	<div class="control-group">
+                <label class="control-label" for="usuario_nombre">Nombre usuario</label>
+                <div class="controls">
+                  <input type="text" id="usuario_nombre" name="usuario_nombre" placeholder="PAOLA GOMEZ" class="form-control input-md" ng-model="usert.USUARIO_NOMBRE" required="true"> 
+                  <p class="help-block">Escriba el nombre del usuario completo - En mayusculas</p>
+                </div>
+              </div>
+
+           	<div class="control-group">
+                <label class="control-label" for="cedula_id">Cedula</label>
+                <div class="controls">
+                  <!--input type="text" id="cedula_id" name="cedula_id" placeholder="8038746" class="form-control input-md" onkeyup="CCtoPWD()" ng-model="usert.CEDULA_ID" required="true"-->
+                  <input type="text" id="cedula_id" name="cedula_id" placeholder="8038746" class="form-control input-md" ng-model="usert.CEDULA_ID" required="true">
+                  <p class="help-block">Escriba el numero de cedula, sin puntos o comas.</p>
+                </div>
+              </div>
+
+           	<div class="control-group">
+                <label class="control-label" for="grupo">Grupo</label>
+                <div class="controls">
+                  <select class="form-control" name="grupo" ng-model="usert.GRUPO" required="true">
+  				  <option value="ACTIVACION">ACTIVACION</option>
+  				  <option value="AGENDAMIENTO">AGENDAMIENTO</option>
+  				  <option value="ASIGNACIONES" style="color:blue" selected="selected">ASIGNACIONES</option>
+  				  <option value="FACTIBILIDADES">FACTIBILIDADES</option>
+  				  <option value="INCONSISTENCIAS">INCONSISTENCIAS</option>
+  				  <option value="NCA" style="color:blue">ASIGNACIONES-NCA</option>
+  				  <option value="PILOTO">PILOTO</option>
+  				  <option value="RECEQ">RECEQ</option>
+  				  <option value="RECONFIGURACION">RECONFIGURACION</option>
+  				</select>
+                  <p class="help-block">Seleccione el grupo al que pertenece el usuario.</p>
+                </div>
+              </div>
+
+           	<div class="control-group">
+                <label class="control-label" for="equipo_id">Equipo_id</label>
+                <div class="controls">
+                  <input type="text" id="equipo_id" name="equipo_id" placeholder="" class="form-control input-md" value='MANUAL' disabled ng-model="usert.EQUIPO_ID">
+                </div>
+              </div>
+             </div><!--Termina COL1 con Formulario-->
+
+  	<div class="col-xs-6"><!--Comienza COL2 con Formulario-->
+              <div class="control-group">
+                <label class="control-label" for="correo_usuario">E-mail</label>
+                <div class="controls">
+                  <input type="email" id="correo_usuario" name="correo_usuario" placeholder="paola.gomez@asesor.une.com.co" class="form-control input-md" ng-model="usert.CORREO_USUARIO" required="true">
+                  <p class="help-block">Escriba el correo corporativo</p>
+                </div>
+              </div>
+
+           	<div class="control-group">
+                <label class="control-label" for="funcion">Funcion</label>
+                <div class="controls">
+                  <select class="form-control" name="Funcion" ng-model="usert.FUNCION"> 
+  				  <option value="ASIGNADOR">ASIGNADOR</option>
+  				  <option value="APOYO">APOYO</option>
+  				  <option value="OTRO">OTRO</option>
+  				</select>
+                  <p class="help-block">Seleccione la funcion del asignador.</p>
+                </div>
+              </div>
+
+  			<div class="control-group">
+                <label class="control-label" for="turno">Turno</label>
+                <div class="controls">
+                  <select class="form-control" name="Turno" ng-model="usert.TURNO">
+  				  <option value="AM">AM</option>
+  				  <option value="PM">PM</option>
+  				</select>
+                </div>
+              </div>
+
+  			<div class="control-group">
+                <label class="control-label" for="cargo_id">Cargo id</label>
+                <div class="controls">
+                  <select class="form-control" name="cargo_id" ng-model="usert.CARGO_ID">
+  				  <option value="1">1-SUPERVISOR</option>
+  				  <option value="2">2-GESTOR TECNICO</option>
+  				  <option value="3">3-GESTOR DE LA INFORMACION</option>
+  				  <option value="4">4-AUXILIAR DE PROYECTOS</option>
+  				  <option value="5">5-SOPORTE NIVEL IV</option>
+  				  <option value="6">6-SOPORTE NIVEL III</option>
+  				  <option value="7">7-SOPORTE NIVEL II</option>
+  				  <option value="8">8-SOPORTE NIVEL I</option>
+  				  <option value="9">9-PRACTICANTE</option>
+  				</select>
+                </div>
+              </div>
+
+  			<div class="control-group">
+                <label class="control-label" for="supervisor">Supervisor</label>
+                <div class="controls">
+                  <select class="form-control" name="supervisor" ng-model="usert.SUPERVISOR">
+  				  <option value="JULIET DELGADO" style="color:blue" selected="selected">JULIET DELGADO</option>
+  				  <option value="MONICA HUERTAS">MONICA HUERTAS</option>
+  				  <option value="OTRO">OTRO</option>
+  				</select>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label" for="password">Password</label>
+                <div class="controls">
+                  <input type="password" id="password" name="passwordi" placeholder="" class="form-control input-md"  ng-model="usert.PASSWORD">
+                  <input type="checkbox" id="checkBox" onclick="enableDisable(this.checked, 'textBox')"><label for="checkbox">Cambiar</label>
+  		<input type="checkbox" id="showhide" onchange="document.getElementById('password').type = this.checked ? 'text' : 'password'"><label for="showhide">Mostrar</label>
+                </div>
+              </div>
+  	</div>
+
+           <div class="col-md-6">
+           		<br>
+              <div class="control-group"><!-- Button -->
+                <div class="controls">
+                  <button class="btn btn-success btn-sm"  ng-show="usert.ID==''" ng-click="saveUsuario(usert);"><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
+                  <button class="btn btn-success btn-sm" ng-show="usert.ID!=''" ng-click="editUsuario(usert);"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
+                  <a href="/gestoroperaciones/#/users/" class="btn btn-danger btn-sm" role="button"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</a>
+  	      </div>
+              </div><!--Termina div Botones -->
+  	 </div>
+
+      </fieldset>
+    </form>
+  <!--</div><!--Termina DIV Formulario Creacion de usuarios -->
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+</div>

@@ -1,0 +1,100 @@
+<!-- Listado Mala Asignacion -->
+<!-- 2015-11-17: Creado por CGONZGO -->
+<ol class="breadcrumb">
+  <li><a href="./#/">Asignaciones</a></li>
+  <li class="active"><a href="./#/ord/">O-XXX</a></li>
+</ol>
+<div class="row" ng-controller="TabController">
+    <ul class="nav nav-pills">
+        <li ng-class="{ active: isSet(1) }">
+                <a href ng-click="setTab(1)">Peiddos en O-XXX</a>
+        </li>
+    </ul>
+
+        <div class="col-md-16">
+            <div class="jumbotron">
+                <div ng-show="isSet(1)">
+		<div class="row"> 
+				<center><h3>Registros Historicos Gestion O-XXX</h3></center>
+				<br>
+			      <label class=" input col-sm-3">Seleccione Fecha:</label>
+                                <div class="input-daterange col-sm-7" id="datepicker">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Desde</span>
+                                        <input type="text" class="form-control" style="min-width: 90px" id="fromDate" name="fromDate" ng-model="data.fechaIni" />
+                                        <span class="input-group-addon">Hasta</span>
+                                        <input type="text" class="form-control" style="min-width: 90px" id="toDate" name="toDate" ng-model="data.fechaFin" />
+                                        <span class="input-group-btn">
+                                                <button class="btn btn-primary btn-sm" value="actualizar!" ng-click="pageChanged();"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
+                                                <button class="btn btn-success btn-sm" value="exportar!" ng-click="csvNCA();"><span class="glyphicon glyphicon-download-alt"></span> Exportar</button>
+                                        </span>
+                                    </div>
+                                </div>
+		</div>
+
+			<div class="row">
+				<ul class="nav nav-list">
+				  <li class="divider">.</li>
+				</ul>
+			 </div>
+                    <div class="row">
+		    <table align="center" width="100%">
+			<tr>
+		 	<td width="33%" align="left">
+
+				Total de Registros: <b>{{data.totalItems}} </b>
+			</td>
+			<td width="33%" align="center">
+				<a class="btn btn-block btn-primary" ng-click="nuevoRegistroOrd();"><span class="glyphicon glyphicon-plus-sign"></span> Nueva Transaccion</a>
+                        </td>	
+			<td width="33%" align="right">
+				<pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged()" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+			</td>
+			</tr>
+		    </table>
+
+                    <table class="table small table-striped table-hover table-bordered table-condensed" width="100%">
+                            <thead>
+                                    <th width="7%">Pedido</th>
+                                    <th width="7%">Usuario</th>
+                                    <th width="10%">Elemento</th>
+                                    <th width="15%">Resultado</th>
+                                    <th width="10%">Concepto Ant</th>
+                                    <th width="10%">Concepto Fin</th>
+                                    <th width="27%">Observacion</th>
+                                    <th width="27%">Fecha</th>
+                            </thead>
+                            <tbody>
+                                    <tr ng-repeat="data in listado_transacciones| orderBy:'FECHA_FIN':true ">
+                                    <td>{{data.PEDIDO_ID}}</td>
+                                    <td>{{data.USUARIO_ID_GESTION}}</td>
+                                    <td>{{data.TIPO_ELEMENTO_ID}}</td>
+                                    <td>{{data.RESULTADO}}</td>
+                                    <td>{{data.CONCEPTO_ACTUAL}}</td>
+                                    <td>{{data.CONCEPTO_FINAL}}</td>
+                                    <td>{{data.OBSERVACIONES}}</td>
+                                    <td>{{data.FECHA_FIN}}</td>
+                                    <td align="center"><button class="btn btn-success btn-xs" value="edit!" ng-disabled="logedUser.CARGO_ID!='1'" ng-click="getTransaccionORD(data.ID);"><i class="fa fa-pencil fa-lg"></i></button></td>
+                            </tr>
+                            </tbody>
+                    </table>
+			<pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged()" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+
+<script>
+$('.input-daterange').datepicker({
+     format: 'yyyy-mm-dd',
+     todayBtn: "linked",
+     autoclose: true
+ });
+</script>

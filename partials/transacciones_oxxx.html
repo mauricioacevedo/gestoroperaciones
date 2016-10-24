@@ -1,0 +1,184 @@
+
+<!-- Formulario Mala Asignacion -->
+<!-- 2015-11-17: Creado por CGONZGO -->
+<ol class="breadcrumb">
+  <li><a href="./#/">Asignaciones</a></li>
+  <li><a href="./#/ord/">O-XXX</a></li>
+  <li class="active">Transaccion Nueva</li>
+</ol>
+<div ng-show="success" class="alert alert-success">{{success}}</div>
+
+
+<div id="legend">
+    <h3>Registrar Nuevo Pedido:</h3>
+    <hr style="background:#002E6C ; border:0; height:2px" />
+</div>
+<form class="form-horizontal"  method="POST">
+
+    <fieldset>
+    <div class="container" ng-class="{error: myForm.name.$invalid}"><!--Comienza COL1 con Formulario-->
+        <div class="row">
+            <div class="col-lg-6"><!--Columna Grande -->
+                
+            <div class="row">
+
+                <div class="col-lg-4">
+                    <div class="input-daterange control-group" id="datepicker">
+                    <label class="control-label" for="toDate">Fecha Gestión</label>
+                    <div class="input-group margin-bottom-sm">
+                        <span class="input-group-addon"><i class="fa fa-calendar-plus-o fa-fw"></i></span>
+                        <input type="text" class="form-control" style="min-width: 100px" id="toDate" name="toDate" placeholder= "Fecha" required="true" ng-model="transaccion.FECHA_GESTION"/>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="control-group">
+                        <label class="control-label" for="PEDIDO_ID">Pedido</label>
+                        <div class="controls">
+                        <input type="text" id="PEDIDO_ID" name="PEDIDO_ID" placeholder="11195897" class="form-control input-md" required="true" ng-model="transaccion.PEDIDO_ID"/>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-4">
+                    <div class="control-group">
+                        <label class="control-label" for="USUARIO_ID_GESTION">Usuario_id</label>
+                        <div class="controls">
+                          <select class="form-control" id="USUARIO_ID_GESTION" name="USUARIO_ID_GESTION"
+                                ng-options="data.USUARIO_NOMBRE as data.USUARIO_ID for data in listado_usuarios | orderBy:'USUARIO_ID'" ng-model="DataUser" required="true"> 
+                            <!--option ng-repeat="data in lista_usuarios" value="data.USUARIO_ID">{{data.USUARIO_ID}} - {{data.USUARIO_NOMBRE}}</option-->
+                            <option value="">Seleccione</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                     <div class="control-group">
+                        <label class="control-label" for="USUARIO_NOMBRE">Nombre Usuario</label>
+                        <div class="input-group margin-bottom-sm">
+                          <input type="text" id="USUARIO_NOMBRE" name="USUARIO_NOMBRE" class="form-control input-md" ng-model="DataUser" disabled><span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+  
+
+            </div><!--Termina la columna 1 -->
+
+        <div class="col-lg-6">
+                
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="control-group">
+                        <label class="control-label" for="TIPO_ELEMENTO_ID">Tipo Elemento</label>
+                        <div class="controls">
+                          <select class="form-control" name="TIPO_ELEMENTO_ID"  required="true" ng-model="transaccion.TIPO_ELEMENTO_ID">
+                          <option value="PAQUETE" selected="true">PAQUETE</option>
+                          <option value="TO_TOIP">TO / TOIP</option>
+                          <option value="ACCESP">ACCESP</option>
+                          <option value="INSHFC">INSHFC</option>
+                          <option value="INSIP">INSIP</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+
+                    <div class="control-group">
+                        <label class="control-label" for="RESULTADO">Resultado</label>
+                        <div class="controls">
+                          <select class="form-control" name="RESULTADO"  required="true" ng-model="transaccion.RESULTADO">
+                          <option value="INCONSISTENCIA EN FENIX">INCONSISTENCIA EN FENIX</option>
+                          <option value="BIEN ESTUDIADA">BIEN ESTUDIADA</option>
+                          <option value="RED MAL ASIGNADA">RED MAL ASIGNADA</option>
+                          <option value="RENUMERACION MAL ASIGNACION">RENUMERACION MAL ASIGNACION</option>
+                          <option value="APROBO ALTO RIESGO">APROBO ALTO RIESGO</option>
+                        </select>
+                        </div>
+                      </div>                
+                  </div>
+                </div>
+
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="control-group">
+                        <label class="control-label" for="CONCEPTO_ACTUAL">Concepto Actual</label>
+                        <div class="input-group margin-bottom-sm">
+                         <select class="form-control" name="CONCEPTO_ACTUAL" ng-model="transaccion.CONCEPTO_ACTUAL">
+                      <option ng-repeat="data in listado_conceptos | orderBy:'CONCEPTO_ID'" value="{{data.CONCEPTO_ID}}">{{data.CONCEPTO_ID}}</option>
+                    </select><span class="input-group-addon"><i class="fa fa-level-down fa-fw"></i></span>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="control-group">
+                    <label class="control-label" for="CONCEPTO_FINAL">Concepto Final</label>
+                    <div class="input-group margin-bottom-sm">
+                      <select class="form-control" name="CONCEPTO_FINAL"  ng-model="transaccion.CONCEPTO_FINAL"> 
+                      <option ng-repeat="data in listado_conceptos | orderBy:'CONCEPTO_ID'" value="{{data.CONCEPTO_ID}}">{{data.CONCEPTO_ID}}</option>
+                    </select><span class="input-group-addon"><i class="fa fa-level-up fa-fw"></i></span>
+                    </div>
+                    </div>
+
+                </div>
+
+                </div>
+
+
+
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="control-group">
+                        <label class="control-label" for="OBSERVACIONES">Observaciones</label>
+                        <div class="controls">
+                         <textarea class="form-control" rows="5" id="OBSERVACIONES" name="OBSERVACIONES" ng-model="$parent.Obs"></textarea>
+                        </div>
+                      </div>
+            </div>
+        </div>
+
+        </div><!--Termina ROW formulario -->
+
+       
+        <div class="row">
+           <div class="col-md-6">
+                <br>
+              <div class="control-group"><!-- Button -->
+                <div class="controls">
+                  <button class="btn btn-success btn-sm"  ng-show="transaccion.ID==''" ng-click="saveTransaccion(transaccion)"><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
+                  <button class="btn btn-success btn-sm" ng-show="transaccion.ID!=''" ng-click="editTransaccionORD(transaccionORD);"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
+                  <a href="./#/ord/" class="btn btn-danger btn-sm" role="button"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</a>
+                </div>
+              </div><!--Termina div Botones -->
+            </div>
+        </div><!--Termina Row Botones -->
+
+    </div><!--Termina div Contenedor -->
+    </fieldset>
+</form>
+
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+<script>
+$('.input-daterange').datepicker({
+     format: 'yyyy-mm-dd',
+     //todayBtn: "linked",
+     autoclose: true
+ });
+</script>
