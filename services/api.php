@@ -8513,7 +8513,7 @@ private function listadoTransaccionesActividades(){
                         		}
 
 		                        	$sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID,CONCEPTOS,CLIENTE_ID,NOMBRE_USUARIO,DEPARTAMENTO,SUBZONA_ID,DIRECCION_ENVIO,FUENTE,PROCESO,CELULAR_AVISAR,TELEFONO_AVISAR) values ($guardar) ";
-                                    //echo var_dump($guardar);
+					         //echo $sqlemail."\n";
 					       	$r = $this->mysqli->query($sqlemail) or die($this->mysqli->error.__LINE__);
 
 			            	
@@ -8532,8 +8532,6 @@ private function listadoTransaccionesActividades(){
 							$TAMANO="";
 							$VISTA="";
 
-
-
 			            $table .= "</tr>";
 			        }
 
@@ -8549,8 +8547,6 @@ private function listadoTransaccionesActividades(){
 
 
                 }
-
-
                 	private function listadoarchivosdocu(){
                 		if($this->get_request_method() != "GET"){
                                 $this->response('',406);
