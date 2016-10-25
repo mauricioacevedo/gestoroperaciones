@@ -8335,7 +8335,7 @@ private function listadoTransaccionesActividades(){
                 }
 
 
-               private function cargar_datos(){
+              private function cargar_datos(){
                        if($this->get_request_method() != "POST"){
                                 $this->response('',406);
                         }
@@ -8464,6 +8464,7 @@ private function listadoTransaccionesActividades(){
 								$FECHA_FIN = gmdate("Y-m-d 00:00:00",$timestamp);//fecha formateada+
 							  	$table .= "<td>";
 							  	}
+
 			                	if($h=="I"){
 			                	$NOVEDAD=strtoupper($cellValue);
 			                	//$NOVEDAD=strtoupper($NOVEDAD);
@@ -8511,8 +8512,8 @@ private function listadoTransaccionesActividades(){
                         			continue;
                         		}
 
-		                        	$sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID,CONCEPTOS,CLIENTE_ID,NOMBRE_USUARIO,DEPARTAMENTO,SUBZONA_ID,DIRECCION_ENVIO,FUENTE,PROCESO,CELULAR_AVISAR,TELEFONO_AVISAR) values ($guardar) ";
-					         //echo $sqlemail."\n";
+		                        	$sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID,CONCEPTOS,CLIENTE_ID,NOMBRE_USUARIO,DEPARTAMENTO,SUBZONA_ID,DIRECCION_ENVIO,FUENTE,PROCESO,CELULAR_AVISAR,TELEFONO_AVISAR,IDENTIFICADOR_ID,FECHA_INGRESO,MICROZONA) values ($guardar) ";
+					         var_dump($guardar);
 					       	$r = $this->mysqli->query($sqlemail) or die($this->mysqli->error.__LINE__);
 
 			            	
