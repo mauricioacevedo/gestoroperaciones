@@ -7373,12 +7373,13 @@ $scope.savePedido = function(index) {
 
     $scope.pedido.PROGRAMACION=document.getElementById('programacion').value;
 
-    if($scope.pedido.NOVEDAD!='AGENDADO'&&$scope.pedido.NOVEDAD!='YA ESTA AGENDADO' &&$scope.pedido.NOVEDAD!='AGENDADO_FUTURO' &&$scope.pedido.NOVEDAD!='YA ESTA AGENDADO-USUARIO'  ){
+   if($scope.pedido.NOVEDAD!='AGENDADO'&&$scope.pedido.NOVEDAD!='YA ESTA AGENDADO'&&$scope.pedido.NOVEDAD!='AGENDADO MANUAL' &&$scope.pedido.NOVEDAD!='AGENDADO_FUTURO' &&$scope.pedido.NOVEDAD!='YA ESTA AGENDADO-USUARIO' && $scope.pedido.NOVEDAD!='ERROR SIEBEL 8.1'  ){
         $scope.pedido.FECHA_CITA_REAGENDA='';
         $scope.pedido.JORNADA_CITA='';
     }else{
         $scope.pedido.PROGRAMACION='';
     }
+
 
     if($scope.pedido.NOVEDAD!='AGENDADO'&&$scope.pedido.NOVEDAD!='YA ESTA AGENDADO' &&$scope.pedido.NOVEDAD!='AGENDADO_FUTURO' &&$scope.pedido.NOVEDAD!='YA ESTA AGENDADO-USUARIO'){
         if($scope.pedido.PROGRAMACION===undefined||$scope.pedido.PROGRAMACION==''){
