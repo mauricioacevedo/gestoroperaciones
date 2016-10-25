@@ -6649,7 +6649,7 @@ $queryConceptosFcita=" select ".
                         	//var_dump($microzona) ;
 			##SE DEBE BUSCAR PRIMERO LOS PROGRAMADOS PARA ASIGNARLOS.....
 			//PENDIENTE: COLOCAR CODIGO PARA TENER EN CUENTA LA PROGRAMACION....................
-				$sql="SELECT b.PEDIDO_ID, b.FECHA_CITA_FENIX, TIMEDIFF( b.PROGRAMACION, NOW( ) ) /3600, b.PROGRAMACION ,b.PROCESO ".
+				$sql="SELECT b.PEDIDO_ID, b.FECHA_CITA_FENIX, TIMEDIFF( b.PROGRAMACION, NOW( ) ) /3600, b.PROGRAMACION ,b.PROCESO,b.IDENTIFICADOR_ID ".
 				" FROM gestor_pendientes_reagendamiento b ".
 				" WHERE b.ASESOR =  '' ".
 				" AND b.STATUS =  'PENDI_AGEN' ".
