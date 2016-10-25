@@ -8461,8 +8461,8 @@ private function listadoTransaccionesActividades(){
 			                	$FUENTE=$cellValue;
 			                	}  
 			                	if($h=="G"){
-			                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
-								$FECHA_FIN = gmdate("Y-m-d",$timestamp);//fecha formateada+
+			                     $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
+								$FECHA_FIN = gmdate("Y-m-d 00:00:00",$timestamp);//fecha formateada+
 							  	$table .= "<td>";
 							  	}
 			                	if($h=="I"){
