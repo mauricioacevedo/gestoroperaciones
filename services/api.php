@@ -8513,7 +8513,7 @@ private function listadoTransaccionesActividades(){
                         		}
 
 		                        	$sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID,CONCEPTOS,CLIENTE_ID,NOMBRE_USUARIO,DEPARTAMENTO,SUBZONA_ID,DIRECCION_ENVIO,FUENTE,PROCESO,CELULAR_AVISAR,TELEFONO_AVISAR,IDENTIFICADOR_ID,FECHA_INGRESO,MICROZONA) values ($guardar) ";
-					         var_dump($sqlemail);
+					        // var_dump($sqlemail);
 					       	$r = $this->mysqli->query($sqlemail) or die($this->mysqli->error.__LINE__);
 
 			            	
