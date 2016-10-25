@@ -8335,7 +8335,7 @@ private function listadoTransaccionesActividades(){
                 }
 
 
-              private function cargar_datos(){               	
+               private function cargar_datos(){
                        if($this->get_request_method() != "POST"){
                                 $this->response('',406);
                         }
@@ -8361,7 +8361,6 @@ private function listadoTransaccionesActividades(){
 						$cliente_id='';
 						$ACCESO='';
 						$ESTADO='';
-
 						
 						$sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','BODEGA DATOS')";
                         	//echo  $user;
@@ -8461,7 +8460,7 @@ private function listadoTransaccionesActividades(){
 			                	$FUENTE=$cellValue;
 			                	}  
 			                	if($h=="G"){
-			                     $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
+			                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
 								$FECHA_FIN = gmdate("Y-m-d 00:00:00",$timestamp);//fecha formateada+
 							  	$table .= "<td>";
 							  	}
