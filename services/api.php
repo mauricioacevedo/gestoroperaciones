@@ -8361,6 +8361,7 @@ private function listadoTransaccionesActividades(){
 						$cliente_id='';
 						$ACCESO='';
 						$ESTADO='';
+                        $IDENTIFICADOR_ID='';
 						
 						$sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','BODEGA DATOS')";
                         	//echo  $user;
@@ -8530,7 +8531,8 @@ private function listadoTransaccionesActividades(){
 							$NOMBRE_ARCHIVO="";
 							$TAMANO="";
 							$VISTA="";
-                       
+                            $IDENTIFICADOR_ID="";
+
 			            $table .= "</tr>";
 			        }
 
