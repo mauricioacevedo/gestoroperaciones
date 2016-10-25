@@ -110,6 +110,7 @@
                             <b>FECHA_INGRESO:</b> {{service.FECHA_INGRESO}}<br>
                             <b>MICROZONA:</b> {{service.MICROZONA}}<br>
                             <b>PROCESO:</b> {{service.PROCESO}}<br>
+                            <b>IDENTIFICADOR_ID:</b> {{service.IDENTIFICADOR_ID}}<br>
                             <b>OBSERVACION :</b> {{service.OBSERVACION_FENIX}}OBSERVACION_GESTOR
 
 
@@ -144,7 +145,7 @@
 
                                 </select>
 
-                                <div  ng-show="service.NOVEDAD=='AGENDADO' || service.NOVEDAD=='YA ESTA AGENDADO' || service.NOVEDAD=='AGENDADO_FUTURO'"><br>
+                                <div  ng-show="service.NOVEDAD=='AGENDADO' || service.NOVEDAD=='YA ESTA AGENDADO' || service.NOVEDAD=='AGENDADO_FUTURO' || service.NOVEDAD=='ERROR SIEBEL 8.1'"><br>
 
                                 <div class="col-md-10">
                                         <div class="input-daterange control-group" id="datepicker">
@@ -197,7 +198,9 @@
                                 </select>
 
                                 
-                                        <div  ng-show="service.NOVEDAD=='AGENDADO' || service.NOVEDAD=='YA ESTA AGENDADO' || service.NOVEDAD=='AGENDADO_FUTURO'  || service.NOVEDAD=='YA ESTA AGENDADO-USUARIO' || service.NOVEDADREPA=='AGENDADO' || service.NOVEDADREPA=='YA ESTA AGENDADO'"><br>
+                                        <div  ng-show="service.NOVEDAD=='AGENDADO' || service.NOVEDAD=='YA ESTA AGENDADO'
+                                         || service.NOVEDAD=='AGENDADO_FUTURO'  || service.NOVEDAD=='YA ESTA AGENDADO-USUARIO'
+                                        || service.NOVEDAD=='ERROR SIEBEL 8.1'"><br>
 
                                                 <div class="col-md-10">
                                                         <div class="input-daterange control-group" id="datepicker">
