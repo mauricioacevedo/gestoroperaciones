@@ -8361,7 +8361,7 @@ private function listadoTransaccionesActividades(){
 						$cliente_id='';
 						$ACCESO='';
 						$ESTADO='';
-                        $IDENTIFICADOR_ID='';
+
 						
 						$sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','BODEGA DATOS')";
                         	//echo  $user;
@@ -8512,7 +8512,7 @@ private function listadoTransaccionesActividades(){
                         			continue;
                         		}
 
-		                        	$sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID,CONCEPTOS,CLIENTE_ID,NOMBRE_USUARIO,DEPARTAMENTO,SUBZONA_ID,DIRECCION_ENVIO,FUENTE,PROCESO,CELULAR_AVISAR,TELEFONO_AVISAR,IDENTIFICADOR_ID) values ($guardar) ";
+		                        	$sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID,CONCEPTOS,CLIENTE_ID,NOMBRE_USUARIO,DEPARTAMENTO,SUBZONA_ID,DIRECCION_ENVIO,FUENTE,PROCESO,CELULAR_AVISAR,TELEFONO_AVISAR) values ($guardar) ";
                                     echo $sqlemail;
 					       	$r = $this->mysqli->query($sqlemail) or die($this->mysqli->error.__LINE__);
 
@@ -8531,7 +8531,7 @@ private function listadoTransaccionesActividades(){
 							$NOMBRE_ARCHIVO="";
 							$TAMANO="";
 							$VISTA="";
-                            $IDENTIFICADOR_ID="";
+
 
 
 			            $table .= "</tr>";
