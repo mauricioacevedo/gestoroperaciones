@@ -7188,7 +7188,7 @@ $queryConceptosFcita=" select ".
 
                         $today = date("Y-m-d");
 
-                        $query1="SELECT b.ID as PARENT_ID,b.PEDIDO_ID,b.FECHA_CITA_FENIX,b.CLIENTE_ID,b.CELULAR_AVISAR,b.CORREO_UNE,b.DIRECCION_ENVIO,b.E_MAIL_AVISAR,b.NOMBRE_USUARIO,b.FECHA_INGRESO,b.TELEFONO_AVISAR,b.CONCEPTOS,b.ACTIVIDADES,b.PROCESO,b.SUBZONA_ID,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_INGRESO),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL,b.MICROZONA,b.OBSERVACION_FENIX,b.FUENTE,b.TODAY_TRIES,b.PROGRAMACION,b.FECHA_ESTADO,(select a.NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID='$pedido' order by a.ID desc limit 1) as HISTORICO_NOVEDAD from gestor_pendientes_reagendamiento b where b.PEDIDO_ID = '$pedido' and STATUS IN ('PENDI_AGEN','MALO') order by b.ID desc limit 1 ";
+                        $query1="SELECT b.ID as PARENT_ID,b.PEDIDO_ID,b.FECHA_CITA_FENIX,b.CLIENTE_ID,b.CELULAR_AVISAR,b.CORREO_UNE,b.DIRECCION_ENVIO,b.E_MAIL_AVISAR,b.NOMBRE_USUARIO,b.FECHA_INGRESO,b.TELEFONO_AVISAR,b.CONCEPTOS,b.ACTIVIDADES,b.PROCESO,b.SUBZONA_ID,b.IDENTIFICADOR_ID,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_INGRESO),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL,b.MICROZONA,b.OBSERVACION_FENIX,b.FUENTE,b.TODAY_TRIES,b.PROGRAMACION,b.FECHA_ESTADO,(select a.NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID='$pedido' order by a.ID desc limit 1) as HISTORICO_NOVEDAD from gestor_pendientes_reagendamiento b where b.PEDIDO_ID = '$pedido' and STATUS IN ('PENDI_AGEN','MALO') order by b.ID desc limit 1 ";
                         //echo $query1;
 
                         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
