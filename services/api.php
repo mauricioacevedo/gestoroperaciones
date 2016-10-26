@@ -4683,14 +4683,18 @@ $queryConceptosFcita=" select ".
 
                         $query="SELECT pm.PEDIDO_ID ".
                                 "  , pm.CLIENTE_ID  ".
-                                " , pm.CELULAR_AVISAR ".
+                                ", pm.CELULAR_AVISAR ".
                                 "  , pm.TELEFONO_AVISAR ".
                                 " , pm.FUENTE ".
-                                " ,pm.NOMBRE_USUARIO ". 
-                                " ,pm.ASESOR ".  
-                                " ,pm.SUBZONA_ID ".                               
+                                " ,pm.NOMBRE_USUARIO ".
+                                " ,pm.ASESOR ".
+                                " ,pm.SUBZONA_ID ".
                                 " ,pm.DEPARTAMENTO ".
-                                " ,pm.PROCESO ".                     
+                                " ,pm.PROCESO ".
+                                " , (SELECT hr.TIEMPO_TOTAL  FROM gestor_historicos_reagendamiento hr WHERE hr.ID = (SELECT ".
+                                " MAX( a.id )  ".
+                                " FROM gestor_historicos_reagendamiento a ".
+                                " WHERE a.PEDIDO_ID =  pm.PEDIDO_ID) )AS TIEMPO_SISTEMA ".
                                 " FROM portalbd.gestor_pendientes_reagendamiento pm ".
                                 " WHERE pm.STATUS IN ('PENDI_AGEN',  'MALO') ";
 
@@ -4699,7 +4703,7 @@ $queryConceptosFcita=" select ".
                         if($r->num_rows > 0){
                                 $result = array();
                                 $fp = fopen("../tmp/$filename", 'w');
-                                fputcsv($fp, array('PEDIDO','CEDULA','PHONE1','PHONE2','APLICATIVO','NOMBRE','IDENTIFICADOR','CIUDAD','DEPTO','PROCESO','OBS1','OBS2','ID_CAMP','FILTRO_BD','IDSCRIPT'),chr (124));
+                                fputcsv($fp, array('PEDIDO','CEDULA','PHONE1','PHONE2','APLICATIVO','NOMBRE','IDENTIFICADOR','CIUDAD','DEPTO','PROCESO','TIEMPO_SISTEMA','OBS1','OBS2','ID_CAMP','FILTRO_BD','IDSCRIPT'),chr (124));
                                 while($row = $r->fetch_assoc()){
 
                                         $result[] = $row;
