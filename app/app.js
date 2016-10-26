@@ -2272,9 +2272,12 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.listado_usuarios_produccion=[];
 	$scope.listado_tme=[];
 	$scope.lastUpdate="";
-    	$scope.ordenamientoDemepedido='';
+    $scope.ordenamientoDemepedido='';
 	$scope.ordenamientoDemepedidoReconfiguracion='';
-    	$scope.ordenamientoDemepedidoUpdate='';
+    $scope.ordenamientoDemepedidoUpdate='';
+	$scope.ordenamientoDemepedidoUpdateReconfiguracion='';
+	$scope.UsuarioParametroReconfiguracion='';
+	$scope.UsuarioParametro='';
 
 
 	$scope.intervalFeed=0;
