@@ -30,34 +30,48 @@
                             <h4 class="panel-title" >Configuración Prioridad de Entrega de Pedidos</h4>
                         </div>
                         <div class="panel-body"><!--Parametro Pedido -->
-				<div class="col-md-4 ">
-				 </div>
+						<div class="col-md-4 ">
+						 </div>
                             <!--div class="col-md-6 " align="right">
                                 <h4>Parámetro Actual:</h4> 
                                 <font color='red'>{{ordenamientoDemepedido}} </font> <font color='green'><span class="glyphicon glyphicon-ok"></span></font>
                             </div-->
-                            <div class="col-md-6">
-                                <h4>Seleccione el Parámetro nuevo:</h4>
-                                <form class="form-inline">
-                        	Asignaciones:
-                                <select class="form-control input-sm" id="sel1" ng-model="ordenamientoDemepedidoNuevo" style="width:auto;">
-                                    <option value="FECHA_CITA">FECHA CITA</option>
-                                    <option value="FECHA_ESTADO">FECHA ESTADO</option>
-                                    <option value="FECHA_INGRESO">FECHA INGRESO</option>
-                                </select>
-                                <button class="btn btn-success btn-sm" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO',ordenamientoDemepedidoNuevo);"><span class="glyphicon glyphicon-ok-sign"></span> Guardar</button></form>
-				
-				<form class="form-inline">
-                                Reconfiguracion:
-                                <select class="form-control input-sm" id="sel1" ng-model="ordenamientoDemepedidoReconfiguracion" style="width:auto;">
-                                    <option value="FECHA_CITA">FECHA CITA</option>
-                                    <option value="FECHA_ESTADO">FECHA ESTADO</option>
-                                    <option value="FECHA_INGRESO">FECHA INGRESO</option>
-                                </select>
-                                <button class="btn btn-success btn-sm" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION',ordenamientoDemepedidoReconfiguracion);"><span class="glyphicon glyphicon-ok-sign"></span> Guardar</button></form>
+						 <div class="col-md-6">
+								<h4>Seleccione el Parámetro nuevo:</h4>
 
-				
-                            </div>
+							 <table class="tg">
+							  <tr>
+								<th >Grupo</th>
+								<th >Ultima Edicion</th>
+								<th >Usuario</th>
+								<th >Editar</th>
+							  </tr>
+							  <tr>
+								<td >Asignaciones</td>
+								<td >hoy</td>
+								<td >cgonzgo</td>
+								<td ><select class="form-control input-sm" id="sel1" ng-model="ordenamientoDemepedidoNuevo" style="width:auto;">
+										<option value="FECHA_CITA">FECHA CITA</option>
+										<option value="FECHA_ESTADO">FECHA ESTADO</option>
+										<option value="FECHA_INGRESO">FECHA INGRESO</option>
+									</select><button class="btn btn-success btn-sm" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO',ordenamientoDemepedidoNuevo);"><span class="glyphicon glyphicon-ok-sign"></span> Guardar</button></td>
+							  </tr>
+							  <tr>
+								<td >Reconfiguracion</td>
+								<td >hoy</td>
+								<td >cgonzgo</td>
+								<td ><select class="form-control input-sm" id="sel1" ng-model="ordenamientoDemepedidoReconfiguracion" style="width:auto;">
+											<option value="FECHA_CITA">FECHA CITA</option>
+											<option value="FECHA_ESTADO">FECHA ESTADO</option>
+											<option value="FECHA_INGRESO">FECHA INGRESO</option>
+										</select></td>
+							  </tr>
+							</table>
+
+
+
+
+						 </div>
                         </div>
                         <div class="panel-footer" >
                             Última Actualización: <font color='blue'>{{ordenamientoDemepedidoUpdate}}</font>
