@@ -2272,12 +2272,9 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.listado_usuarios_produccion=[];
 	$scope.listado_tme=[];
 	$scope.lastUpdate="";
-    $scope.ordenamientoDemepedido='';
+    	$scope.ordenamientoDemepedido='';
 	$scope.ordenamientoDemepedidoReconfiguracion='';
-    $scope.ordenamientoDemepedidoUpdate='';
-	$scope.ordenamientoDemepedidoUpdateReconfiguracion='';
-	$scope.UsuarioParametroReconfiguracion='';
-	$scope.UsuarioParametro='';
+    	$scope.ordenamientoDemepedidoUpdate='';
 
 
 	$scope.intervalFeed=0;
@@ -2350,7 +2347,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		$scope.ordenamientoDemepedido=data.data['VALOR'];
 		$scope.ordenamientoDemepedidoNuevo=data.data['VALOR'];
 		$scope.ordenamientoDemepedidoUpdate=data.data['ULTIMA_ACTUALIZACION'];
-	    $scope.UsuarioParametro=data.data['USUARIO_ID'];
                 return data.data;
         });
 
@@ -2360,7 +2356,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                 $scope.ordenamientoDemepedidoReconfiguracion=data.data['VALOR'];
                 //$scope.ordenamientoDemepedidoNuevo=data.data['VALOR'];
                 $scope.ordenamientoDemepedidoUpdateReconfiguracion=data.data['ULTIMA_ACTUALIZACION'];
-				$scope.UsuarioParametroReconfiguracion=data.data['USUARIO_ID'];
                 return data.data;
         });
 
@@ -4010,8 +4005,18 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
     };
 
 
-    $scope.saveTransaccion1 = function (transaccion){
+    $scope.saveTransaccion1 = function (transaccion,$scope){
         
+             $scope.data = {
+                            singleSelect: null,
+                            multipleSelect: [],
+                            option1: 'option-1'
+                           };
+
+                           $scope.forceUnknownOption = function() {
+                             $scope.data.singleSelect = 'nonsense';
+                           };
+
 
                 if(transaccion.DIA==undefined || transaccion.DIA=="" ){
                         alert("Dia sin informacion.");
