@@ -4692,6 +4692,7 @@ $queryConceptosFcita=" select ".
                                 " ,pm.SUBZONA_ID ".
                                 " ,pm.DEPARTAMENTO ".
                                 " ,pm.PROCESO ".
+                                " ,pm.TECNOLOGIA_ID ".
                                 " , (SELECT hr.TIEMPO_TOTAL  FROM gestor_historicos_reagendamiento hr  WHERE hr.ID = (SELECT    MAX( a.id )".
                                 " FROM gestor_historicos_reagendamiento a ".
                                 " WHERE a.PEDIDO_ID =  pm.PEDIDO_ID) )AS TIEMPO_SISTEMA ".
@@ -4703,7 +4704,7 @@ $queryConceptosFcita=" select ".
                         if($r->num_rows > 0){
                                 $result = array();
                                 $fp = fopen("../tmp/$filename", 'w');
-                                fputcsv($fp, array('PEDIDO','CEDULA','PHONE1','PHONE2','APLICATIVO','NOMBRE','IDENTIFICADOR','CIUDAD','DEPTO','PROCESO','TIEMPO_SISTEMA','OBS1','OBS2','ID_CAMP','FILTRO_BD','IDSCRIPT'),chr (124));
+                                fputcsv($fp, array('PEDIDO','CEDULA','PHONE1','PHONE2','APLICATIVO','NOMBRE','IDENTIFICADOR','CIUDAD','DEPTO','PROCESO','TECNOLOGIA','TIEMPO_SISTEMA','OBS1','OBS2','ID_CAMP','FILTRO_BD','IDSCRIPT'),chr (124));
                                 while($row = $r->fetch_assoc()){
 
                                         $result[] = $row;
