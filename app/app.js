@@ -4007,15 +4007,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 
     $scope.saveTransaccion1 = function (transaccion,$scope){
         
-             $scope.data = {
-                            singleSelect: null,
-                            multipleSelect: [],
-                            option1: 'option-1'
-                           };
 
-                           $scope.forceUnknownOption = function() {
-                             $scope.data.singleSelect = 'nonsense';
-                           };
 
 
                 if(transaccion.DIA==undefined || transaccion.DIA=="" ){
@@ -4030,6 +4022,15 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 
                 if(transaccion.TIPO_TRABAJO==undefined || transaccion.TIPO_TRABAJO==""){
                         alert("Tipo Trabajo sin informacion.");
+                    $scope.data = {
+                            singleSelect: null,
+                            multipleSelect: [],
+                            option1: 'option-1'
+                           };
+
+                           $scope.forceUnknownOption = function() {
+                             $scope.data.singleSelect = 'nonsense';
+                           };
                         return;
                 }
 
