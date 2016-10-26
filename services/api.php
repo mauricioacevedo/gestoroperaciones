@@ -4692,7 +4692,7 @@ $queryConceptosFcita=" select ".
                                 " ,pm.SUBZONA_ID ".
                                 " ,pm.DEPARTAMENTO ".
                                 " ,pm.PROCESO ".
-                                " , (SELECT hr.TIEMPO_TOTAL  FROM gestor_historicos_reagendamiento hr  WHERE hr.ID = (SELECT MAX( a.id )".
+                                " , (SELECT hr.TIEMPO_TOTAL  FROM gestor_historicos_reagendamiento hr  WHERE hr.ID = (SELECT ".   " ,    MAX( a.id )".
                                 " FROM gestor_historicos_reagendamiento a ".
                                 " WHERE a.PEDIDO_ID =  pm.PEDIDO_ID) )AS TIEMPO_SISTEMA ".
                                 " FROM portalbd.gestor_pendientes_reagendamiento pm ".
