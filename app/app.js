@@ -2355,7 +2355,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
                 $scope.ordenamientoDemepedidoReconfiguracion=data.data['VALOR'];
                 //$scope.ordenamientoDemepedidoNuevo=data.data['VALOR'];
-                $scope.ordenamientoDemepedidoUpdate=data.data['ULTIMA_ACTUALIZACION'];
+                $scope.ordenamientoDemepedidoUpdateReconfiguracion=data.data['ULTIMA_ACTUALIZACION'];
                 return data.data;
         });
 
@@ -7073,6 +7073,7 @@ app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $locati
 
         $scope.ordenamientoDemepedido='';
         $scope.ordenamientoDemepedidoUpdate='';
+
         $scope.ordenamientoDemepedidoNuevo='';
 
 
