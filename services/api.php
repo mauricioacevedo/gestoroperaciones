@@ -6148,7 +6148,7 @@ $queryConceptosFcita=" select ".
 			$user = $this->_request['user'];
 
 			$sql="UPDATE gestor_parametros ".
-			" SET VALOR='$value' where VARIABLE='$param'";
+			" SET VALOR='$value', USUARIO_ID='$user' where VARIABLE='$param'";
             			$rr = $this->mysqli->query($sql);
 
 			$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','ADMIN','','','UPDATEPARAMETRO','$param:$value') ";
