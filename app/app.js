@@ -4019,10 +4019,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
                         return;
                 }
 
-                if(transaccion.TIPO_TRABAJO==undefined || transaccion.TIPO_TRABAJO==""){
-                        alert("Tipo Trabajo sin informacion.");
-                        return;
-                }
+
 
                 if(transaccion.APLICACION_ACTIVIDADES==undefined || transaccion.APLICACION_ACTIVIDADES==""){
                         alert("Aplicacion_actividades sin informacion.");
