@@ -4044,20 +4044,6 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
                         return;
                 }
 
-    $scope.selectedItems = [];
-
-    $scope.$watch('selected', function(nowSelected){
-        $scope.selectedItems = [];
-
-        if( ! nowSelected ){
-		    // if not selected then return
-            return;
-        }
-        angular.forEach(nowSelected, function(val){
-            $scope.selectedItems.push( val.id.toString() );
-        });
-    });
-
 
 
         var date1 = new Date();
