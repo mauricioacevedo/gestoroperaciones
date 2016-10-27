@@ -48,7 +48,7 @@
             <div class= "form-group"><!--Inicia Div de Tipo Trabajo-->
                 <label class= "col-md-2" for="multipleSelect">Tipo Trabajo: </label>
                 <div class="col-md-20">
-                  <select name="multipleSelect" id="multipleSelect"  ng-model="data.multipleSelect" multiple>
+                  <select name="multipleSelect" id="multipleSelect"  ng-model="selectedItems" multiple>
                         <option value='ASEGURAMIENTO'>ASEGURAMIENTO</option>
                 		<option value='CAMBIO'>CAMBIO</option>
                 		<option value='DEPURACION'>DEPURACION</option>
@@ -59,7 +59,7 @@
                         <option value='TRASLADO'>TRASLADO</option>
                         <option value='VALIDAR SERVICIO'>VALIDAR SERVICIO</option>
                     </select><br>
-                        <tt>multipleSelect = {{data.multipleSelect}}</tt><br/>
+                        <tt>selectedItems = {{selectedItems}}</tt><br/>
                     
                 </div>
             </div><!--Finaliza Div de Tipo Trabajo-->
