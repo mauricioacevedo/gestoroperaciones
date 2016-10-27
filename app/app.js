@@ -4034,7 +4034,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
                 }
 
                 if(transaccion.AMANECIERON==undefined || transaccion.AMANECIERON==""){
-                        alert("Amanecieron final sin informacion.");
+                        alert("Amanecieron sin informacion.");
                         return;
                 }
                 if(transaccion.GESTIONADO_DIA==undefined || transaccion.GESTIONADO_DIA==""){
