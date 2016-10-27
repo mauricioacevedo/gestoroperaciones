@@ -4043,9 +4043,6 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
                         alert("Quedan_Pendientes sin informacion.");
                         return;
                 }
-                   $scope.saveTransaccion1 = [
-        {id:1, name:"Item 1"}
-    ];
 
     $scope.selectedItems = [];
 
