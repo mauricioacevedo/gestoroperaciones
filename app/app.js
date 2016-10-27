@@ -4020,8 +4020,6 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 
                 if(transaccion.TIPO_TRABAJO==undefined || transaccion.TIPO_TRABAJO==""){
                         alert("Tipo Trabajo sin informacion.");
-                    console.log(transaccion.TIPO_TRABAJO);
-
                         return;
                 }
 
