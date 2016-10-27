@@ -4007,6 +4007,23 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 
     $scope.saveTransaccion1 = function (transaccion,$scope){
         
+         $scope.selected = [
+        {id:1, name:"Item 1"}
+    ];
+
+    $scope.selectedItems = [];
+
+    $scope.$watch('selected', function(nowSelected){
+        $scope.selectedItems = [];
+
+        if( ! nowSelected ){
+		    // if not selected then return
+            return;
+        }
+        angular.forEach(nowSelected, function(val){
+            $scope.selectedItems.push( val.id.toString() );
+        });
+    });
 
 
 
