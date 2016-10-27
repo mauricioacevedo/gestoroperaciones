@@ -4046,7 +4046,8 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
                         alert("Quedan_Pendientes sin informacion.");
                         return;
                 }
-
+       console.log('yo me llamo checho');
+       console.log(transaccion.TIPO_TRABAJO);
 
         var date1 = new Date();
                 var year    = date1.getFullYear();
