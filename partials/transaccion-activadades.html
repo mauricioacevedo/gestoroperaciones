@@ -249,6 +249,9 @@
                 <div class="control-group">
                     <div class="controls">
                     <button ng-show="transaccion.ID==''" ng-click="saveTransaccion1(transaccion)" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
+                        <button type="button" class="btn btn-primary btn-circle-xs pull-right" ng-click="saveTransaccion1(transaccion)" data-toggle="modal" data-target="#myModal" data-backdrop="static" ng-disabled="loading">
+								<i class="fa fa-plus" tooltip data-placement="left" title="Agregar Novedad" aria-hidden="true"></i>
+					</button>
                     <button class="btn btn-success btn-sm" ng-show="transaccion.ID!=''" ng-click="editTransaccionActividades(transaccion);"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
                     <a href="./#/actividades/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</a>
                     </div>
