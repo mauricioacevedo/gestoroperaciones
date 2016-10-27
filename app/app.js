@@ -4062,15 +4062,6 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
         
         //$scope.transaccion.DURACION=$scope.transaccion.FECHA_FIN - $scope.FECHA_INICIO;
         $scope.transaccion.FECHA_INICIO=$scope.FECHA_INICIO;
-            $scope.data = {
-                            singleSelect: null,
-                            multipleSelect: [],
-                            option1: 'option-1'
-                           };
-
-                           $scope.forceUnknownOption = function() {
-                             $scope.data.singleSelect = 'nonsense';
-                           };
         $scope.transaccion.USUARIO=userID;
         $scope.transaccion.USERNAME=$rootScope.logedUser.name;
 
