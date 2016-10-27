@@ -4005,9 +4005,8 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
     };
 
 
-    $scope.saveTransaccion1 = function (transaccion,$scope){
-        
-
+   $scope.saveTransaccion1 = function (transaccion){
+        console.log(transaccion);
 
                 if(transaccion.DIA==undefined || transaccion.DIA=="" ){
                         alert("Dia sin informacion.");
@@ -4019,7 +4018,10 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
                         return;
                 }
 
-
+                if(transaccion.TIPO_TRABAJO==undefined || transaccion.TIPO_TRABAJO==""){
+                        alert("Tipo Trabajo sin informacion.");
+                        return;
+                }
 
                 if(transaccion.APLICACION_ACTIVIDADES==undefined || transaccion.APLICACION_ACTIVIDADES==""){
                         alert("Aplicacion_actividades sin informacion.");
@@ -4043,7 +4045,6 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
                         alert("Quedan_Pendientes sin informacion.");
                         return;
                 }
-
 
 
         var date1 = new Date();
