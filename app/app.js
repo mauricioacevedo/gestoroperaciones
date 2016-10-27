@@ -4022,15 +4022,6 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 
                 if(transaccion.TIPO_TRABAJO==undefined || transaccion.TIPO_TRABAJO==""){
                         alert("Tipo Trabajo sin informacion.");
-                    $scope.data = {
-                            singleSelect: null,
-                            multipleSelect: [],
-                            option1: 'option-1'
-                           };
-
-                           $scope.forceUnknownOption = function() {
-                             $scope.data.singleSelect = 'nonsense';
-                           };
                         return;
                 }
 
@@ -4071,10 +4062,15 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
         
         //$scope.transaccion.DURACION=$scope.transaccion.FECHA_FIN - $scope.FECHA_INICIO;
         $scope.transaccion.FECHA_INICIO=$scope.FECHA_INICIO;
+            $scope.data = {
+                            singleSelect: null,
+                            multipleSelect: [],
+                            option1: 'option-1'
+                           };
 
-        //var df=new Date($scope.transaccion.DURACION);
-        //$scope.transaccion.DURACION= $scope.doubleDigit(df.getHours()-19)+":"+ $scope.doubleDigit(df.getMinutes())+":"+$scope.doubleDigit(df.getSeconds());
-        
+                           $scope.forceUnknownOption = function() {
+                             $scope.data.singleSelect = 'nonsense';
+                           };
         $scope.transaccion.USUARIO=userID;
         $scope.transaccion.USERNAME=$rootScope.logedUser.name;
 
