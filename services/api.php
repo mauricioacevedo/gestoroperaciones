@@ -7513,7 +7513,9 @@ $queryConceptosFcita=" select ".
             
             $useri=$transaccion['USUARIO'];
             $username=$transaccion['USERNAME'];
-            $TIPO_TRABAJO=$transaccion['TIPO_TRABAJO'];
+            $TIPO_TRABAJO=implode(",",$transaccion['TIPO_TRABAJO']);
+
+                    echo $TIPO_TRABAJO;
            
             //echo var_dump($TIPO_TRABAJO);
             //echo var_dump($keys);
