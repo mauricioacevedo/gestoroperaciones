@@ -7940,15 +7940,11 @@ private function listadoTransaccionesActividades(){
                                 $this->response('',406);
                         }
                         $fechaini = $this->_request['fechaInicio'];
-                        $fechafin = $this->_request['fechaFin'];
-                        $TIPO_TRABAJO = array("ASEGURAMIENTO", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo");
-                        $contador;
+
                         $page = $this->_request['page'];
                         $today = date("Y-m-d");
                         //echo var_dump($TIPO_TRABAJO);
-                         for( $contador=0; $contador < 7; $contador++ ) {
-                             echo "El valor de la posición [".$contador."] es [".$aDias[$contador]."]<br/>";
-                         }
+
                         if($page=="undefined"){
                                 $page="0";
                         }else{
