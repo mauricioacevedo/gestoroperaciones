@@ -3936,13 +3936,18 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
             $rootScope.transaccion={};
             $rootScope.transaccion.ID='';
             $location.path('/actividades/transaccion');
+
         
         };
 
 
         $scope.editTransaccionActividades = function (transaccionA){
-                console.log(transaccionA);
+                //console.log(transaccionA);
+                 $scope.ttrabajo=transaccionA.TIPO_TRABAJO;
+                var TTARREGLO = $scope.ttrabajo.split(',');
 
+                $scope.TIPO_TRABAJO=TTARREGLO;
+                //console.log (TTARREGLO);
                 if(transaccionA.DIA==undefined || transaccionA.DIA=="" ){
                         alert("Dia sin informacion.");
                         return;
@@ -3999,9 +4004,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
             $rootScope.transaccion=data.data[0];
             //console.log($scope.transaccion);
             //console.log(data.data[0].TIPO_TRABAJO);
-             $scope.ttrabajo=data.data[0].TIPO_TRABAJO;
-             var TTARREGLO = $scope.ttrabajo.split(',');
-             console.log (TTARREGLO);
+
             $location.path('/actividades/transaccion');
             return data.data;
         });
