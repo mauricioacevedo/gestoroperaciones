@@ -4705,7 +4705,7 @@ $queryConceptosFcita=" select ".
                                 " FROM gestor_historicos_reagendamiento a ".
                                 " WHERE a.PEDIDO_ID =  pm.PEDIDO_ID) )AS TIEMPO_SISTEMA ".
                                 " FROM portalbd.gestor_pendientes_reagendamiento pm ".
-                                " WHERE pm.STATUS IN ('PENDI_AGEN',  'MALO') ";
+                                " WHERE pm.STATUS IN ('PENDI_AGEN') ";
 
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
