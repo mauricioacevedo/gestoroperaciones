@@ -4007,7 +4007,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 
 
    $scope.saveTransaccion1 = function (transaccion){
-        console.log(transaccion);
+        console.log(transaccion.TIPO_TRABAJO);
 
                 if(transaccion.DIA==undefined || transaccion.DIA=="" ){
                         alert("Dia sin informacion.");
