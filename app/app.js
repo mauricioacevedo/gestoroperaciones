@@ -4000,7 +4000,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
             $rootScope.transaccion=data.data[0];
             //console.log($scope.transaccion);
             //console.log(data.data[0].TIPO_TRABAJO);
-               $rootScope.ttrabajo=transaccionA.TIPO_TRABAJO;
+               $rootScope.ttrabajo=  $rootScope.transaccion.TIPO_TRABAJO;
                 var TTARREGLO = $rootScope.ttrabajo.split(',');
 
                 $rootScope.TIPO_TRABAJO=TTARREGLO;
