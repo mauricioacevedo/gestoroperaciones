@@ -7515,7 +7515,7 @@ $queryConceptosFcita=" select ".
             $username=$transaccion['USERNAME'];
             $TIPO_TRABAJO=$transaccion['TIPO_TRABAJO'];
            
-            echo var_dump($TIPO_TRABAJO);
+            //echo var_dump($TIPO_TRABAJO);
             //echo var_dump($keys);
                         foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
                            if(!in_array($desired_key, $keys)) {
@@ -7941,9 +7941,10 @@ private function listadoTransaccionesActividades(){
                         }
                         $fechaini = $this->_request['fechaInicio'];
                         $fechafin = $this->_request['fechaFin'];
+                        $TIPO_TRABAJO=$transaccion['TIPO_TRABAJO'];
                         $page = $this->_request['page'];
                         $today = date("Y-m-d");
-
+                        echo var_dump($TIPO_TRABAJO);
                         if($page=="undefined"){
                                 $page="0";
                         }else{
