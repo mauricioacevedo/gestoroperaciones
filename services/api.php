@@ -7519,7 +7519,7 @@ $queryConceptosFcita=" select ".
 
                    // echo $TIPO_TRABAJO;
            
-            var_dump($transaccion);
+           // var_dump($transaccion);
             //echo var_dump($keys);
                         foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
                            if(!in_array($desired_key, $keys)) {
