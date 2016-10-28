@@ -3943,11 +3943,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 
         $scope.editTransaccionActividades = function (transaccionA){
                 //console.log(transaccionA);
-                 $scope.ttrabajo=transaccionA.TIPO_TRABAJO;
-                var TTARREGLO = $scope.ttrabajo.split(',');
 
-                $scope.TIPO_TRABAJO=TTARREGLO;
-                //console.log (TTARREGLO);
                 if(transaccionA.DIA==undefined || transaccionA.DIA=="" ){
                         alert("Dia sin informacion.");
                         return;
@@ -4004,6 +4000,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
             $rootScope.transaccion=data.data[0];
             //console.log($scope.transaccion);
             //console.log(data.data[0].TIPO_TRABAJO);
+             $scope.pruemauro= " soy ";
 
             $location.path('/actividades/transaccion');
             return data.data;
