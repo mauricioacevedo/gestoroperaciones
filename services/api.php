@@ -7942,7 +7942,7 @@ private function listadoTransaccionesActividades(){
                         $fechaini = $this->_request['fechaInicio'];
                          $fechafin = $this->_request['fechaFin'];
                         $page = $this->_request['page'];
-                        $today = date("Y-m-d");
+                        $today = date("D-m-y");
                         //echo var_dump($TIPO_TRABAJO);
 
                         if($page=="undefined"){
