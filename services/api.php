@@ -7647,7 +7647,8 @@ $queryConceptosFcita=" select ".
                         $keys = array_keys($transa);
                         $columns = '';
                         $values = '';
-            
+                        $TIPO_TRABAJO=implode(",",$transaccion['TIPO_TRABAJO']);
+                        $transaccion['TIPO_TRABAJO']=$TIPO_TRABAJO;
                         $UPDATE="";
                         $SEP="";
                         foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
