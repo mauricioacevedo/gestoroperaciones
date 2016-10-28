@@ -4063,6 +4063,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
         //$scope.transaccion.DURACION=$scope.transaccion.FECHA_FIN - $scope.FECHA_INICIO;
         $scope.transaccion.FECHA_INICIO=$scope.FECHA_INICIO;
         $scope.transaccion.USUARIO=userID;
+        $scope.transaccion.TIPO_TRABAJO=transaccion.TIPO_TRABAJO;
         $scope.transaccion.USERNAME=$rootScope.logedUser.name;
 
         services.insertTransaccionActividades($scope.transaccion).then(function(data){
