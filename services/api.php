@@ -7945,7 +7945,7 @@ private function listadoTransaccionesActividades(){
                         $TIPO_TRABAJO = $_GET['TIPO_TRABAJO'];
                         $page = $this->_request['page'];
                         $today = date("Y-m-d");
-                        echo var_dump($TIPO_TRABAJO);
+                        //echo var_dump($TIPO_TRABAJO);
                         if($page=="undefined"){
                                 $page="0";
                         }else{
