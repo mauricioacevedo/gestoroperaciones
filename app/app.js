@@ -3996,15 +3996,12 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
         //$scope.transaccion={};
         
          services.getTransaccionActividades(actividadesID).then(function(data){
-            //console.log(ncaID);
             $rootScope.transaccion=data.data[0];
-            //console.log($scope.transaccion);
-            //console.log(data.data[0].TIPO_TRABAJO);
                $rootScope.ttrabajo=  $rootScope.transaccion.TIPO_TRABAJO;
                 var TTARREGLO = $rootScope.ttrabajo.split(',');
 
                 $rootScope.TIPO_TRABAJO=TTARREGLO;
-                console.log ( $rootScope.TIPO_TRABAJO);
+               // console.log ( $rootScope.TIPO_TRABAJO);
             $location.path('/actividades/transaccion');
             return data.data;
         });
