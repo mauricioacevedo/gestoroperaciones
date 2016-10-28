@@ -4000,7 +4000,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
             $rootScope.transaccion=data.data[0];
             //console.log($scope.transaccion);
             //console.log(data.data[0].TIPO_TRABAJO);
-             $scope.pruemauro= " soy ";
+             $rootScope.pruemauro= " soy ";
 
             $location.path('/actividades/transaccion');
             return data.data;
