@@ -3998,7 +3998,10 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
             //console.log(ncaID);
             $rootScope.transaccion=data.data[0];
             //console.log($scope.transaccion);
-            console.log(data.data[0].TIPO_TRABAJO);
+            //console.log(data.data[0].TIPO_TRABAJO);
+             $scope.ttrabajo=data.data[0].TIPO_TRABAJO;
+             var TTARREGLO = $scope.ttrabajo.split(',');
+             console.log (TTARREGLO);
             $location.path('/actividades/transaccion');
             return data.data;
         });
