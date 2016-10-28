@@ -4046,8 +4046,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
                         alert("Quedan_Pendientes sin informacion.");
                         return;
                 }
-       console.log('yo me llamo checho');
-       console.log(transaccion.TIPO_TRABAJO);
+
 
         var date1 = new Date();
                 var year    = date1.getFullYear();
@@ -4084,6 +4083,10 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
         var fecha_fin=year+"-"+month+"-"+day;
         $scope.data.fechaIni=fecha_inicio;
         $scope.data.fechaFin=fecha_fin;
+        $scope.data.TIPO_TRABAJO=TIPO_TRABAJO;
+
+      console.log('yo me llamo checho');
+       console.log($scope.data.TIPO_TRABAJO);
 
         //services.getListadotransaccionesNCA(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
     var pathy=$location.path();
