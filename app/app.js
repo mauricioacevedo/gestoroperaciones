@@ -259,7 +259,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
         obj.getListadoTransaccionesActividades = function(userID,fecha_inicio,fecha_fin,page){
-                return $http.get(serviceBase + 'listadoTransaccionesActividades?fechaInicio='+fecha_inicio+'&fechaFin='+fecha_fin+'&page='+page+'&userID='+userID');
+                return $http.get(serviceBase + 'listadoTransaccionesActividades?fechaInicio='+fecha_inicio+'&fechaFin='+fecha_fin+'&page='+page+'&userID='+userID);
         }
 
 	obj.getListadoUsuarios  = function(){
