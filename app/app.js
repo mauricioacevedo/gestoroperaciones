@@ -10234,7 +10234,7 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
 		$scope.historico_pedido=[];
 		$scope.mpedido.active=1;
 		$scope.mpedido.fuente='FENIX_NAL';
-		$scope.pedidoinfo='Manual';
+		//$scope.pedidoinfo='Manual';
         $scope.timeInit=new Date().getTime();
                 var date1 = new Date();
                 var year    = date1.getFullYear();
