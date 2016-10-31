@@ -3942,14 +3942,14 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 
 
         $scope.editTransaccionActividades = function (transaccionA){
-                console.log(transaccionA);
+                console.log(transaccionA.FECHA);
 
                 if(transaccionA.DIA==undefined || transaccionA.DIA=="" ){
                         alert("Dia sin informacion.");
                         return;
                 }
 
-                if(transaccion.FECHA==undefined || transaccion.FECHA==""){
+                if(transaccionA.FECHA==undefined || transaccionA.FECHA==""){
                         alert("Fecha sin informacion.");
                         return;
                 }
@@ -4086,7 +4086,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
         var fecha_fin=year+"-"+month+"-"+day;
         $scope.data.fechaIni=fecha_inicio;
         $scope.data.fechaFin=fecha_fin;
-        //$scope.transaccion.FECHA=year+"-"+month+"-"+day;
+        $scope.transaccionA.FECHA=year+"-"+month+"-"+day;
 
 
         //services.getListadotransaccionesNCA(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
