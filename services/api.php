@@ -7946,9 +7946,11 @@ private function listadoTransaccionesActividades(){
                         }
                         $fechaini = $this->_request['fechaInicio'];
                          $fechafin = $this->_request['fechaFin'];
+                        $fecha= $this->_request['FECHA'];
                         $page = $this->_request['page'];
                         $today = date("Y-m-d");
-                        //echo var_dump($TIPO_TRABAJO);
+                        $fecha
+                        echo ($fecha);
 
                         if($page=="undefined"){
                                 $page="0";
@@ -7971,10 +7973,6 @@ private function listadoTransaccionesActividades(){
                         $query="SELECT * FROM transacciones_actividades where FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59' order by FECHA_FIN desc limit 100 offset $page";
                         //echo $query;
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-
-                        $sql="insert into transacciones_actividades(FECHA) values ('$fechafin') ";
-                                $xx = $this->mysqli->query($sql);
-                        //echo $sql;
                         if($r->num_rows > 0){
                                 $result = array();
                                 while($row = $r->fetch_assoc()){
