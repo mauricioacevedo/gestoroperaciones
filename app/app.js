@@ -5363,6 +5363,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
                                 if($scope.peds[0]=="PEDIDO_OCUPADO"){
                                         $scope.error="El pedido: "+$scope.peds[2] + " está ocupado por:" +$scope.peds[1] ;
+										$scope.pedidoinfo='Pedido';
                                         return;
 
                                 }
