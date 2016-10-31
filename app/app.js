@@ -4086,7 +4086,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
         var fecha_fin=year+"-"+month+"-"+day;
         $scope.data.fechaIni=fecha_inicio;
         $scope.data.fechaFin=fecha_fin;
-        $scope.transaccion.FECHA=year+"-"+month+"-"+day;
+        //$scope.transaccion.FECHA=year+"-"+month+"-"+day;
 
 
         //services.getListadotransaccionesNCA(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
