@@ -1726,7 +1726,7 @@ private function updateFenixReconfiguracion($obj){
                         $id = $this->_request['userID'];
                         $today = date("Y-m-d");
 
-                        $query=" SELECT ID,DIA,FECHA,TIPO_TRABAJO,APLICACION_ACTIVIDADES,COLA,AMANECIERON,GESTIONADO_DIA,QUEDAN_PENDIENTES,OBSERVACION,USUARIO,FECHA_FIN from transacciones_actividades where USUARIO='$id' and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' ";
+                        $query=" SELECT ID,DIA,FECHA,TIPO_TRABAJO,APLICACION_ACTIVIDADES,COLA,AMANECIERON,GESTIONADO_DIA,QUEDAN_PENDIENTES,OBSEVACION,USUARIO,FECHA_FIN from transacciones_actividades where USUARIO='$id' and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' ";
 
                         echo $query;
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
