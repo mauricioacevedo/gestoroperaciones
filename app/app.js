@@ -3942,14 +3942,14 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 
 
         $scope.editTransaccionActividades = function (transaccionA){
-                //console.log(transaccionA);
+                console.log(transaccionA);
 
                 if(transaccionA.DIA==undefined || transaccionA.DIA=="" ){
                         alert("Dia sin informacion.");
                         return;
                 }
 
-                if(transaccionA.FECHA==undefined || transaccionA.FECHA==""){
+                if(transaccion.FECHA==undefined || transaccion.FECHA==""){
                         alert("Fecha sin informacion.");
                         return;
                 }
@@ -4010,7 +4010,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 
 
    $scope.saveTransaccion1 = function (transaccion){
-        console.log(transaccion.TIPO_TRABAJO);
+       // console.log(transaccion.TIPO_TRABAJO);
 
                 if(transaccion.DIA==undefined || transaccion.DIA=="" ){
                         alert("Dia sin informacion.");
