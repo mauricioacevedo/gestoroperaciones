@@ -10081,7 +10081,7 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
                 $scope.busy="";
                 $scope.error="";
                 $scope.pedidoinfo='Pedido';
-                var kami=services.buscarPedido(bpedido,iplaza,$scope.pedido1,$rootScope.logedUser.login,$rootScope.logedUser.name).then(function(data){
+                var kami=services.buscarPedido(bpedido,iplaza,$scope.pedido1,$rootScope.logedUser.login,$rootScope.logedUser.name,'').then(function(data){
                         $scope.peds = data.data;         
                        console.log(data.status);
             var dat=data.status;
