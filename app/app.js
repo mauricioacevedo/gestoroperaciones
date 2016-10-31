@@ -9681,7 +9681,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
 
 
-app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
+app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, $timeout, services) {
     
 
         var userID=$cookieStore.get('logedUser').login;
@@ -10173,7 +10173,7 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
         demePedidoButton.className = "btn btn-success disabled";
 
 
-        var kami=services.demePedido($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name).then(function(data){
+        var kami=services.demePedido($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,'').then(function(data){
                 $scope.peds = data.data;
             if(data.data==''){
                 document.getElementById("warning").innerHTML="No hay Registros";
