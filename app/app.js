@@ -111,6 +111,10 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pedidosPorUserReagendamiento?userID=' + userID);
         }
 
+        obj.getactividadesUser = function(userID){
+                return $http.get(serviceBase + 'actividadesUser?userID=' + userID);
+        }
+
         obj.getPedidosUserAdelantarAgenda = function(userID){
                 return $http.get(serviceBase + 'pedidosPorUserAdelantarAgenda?userID=' + userID);
         }
@@ -3906,7 +3910,12 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
         divi.style.position="relative";
         $rootScope.iconcepto="TODO";
         $rootScope.actualView="actividades";
-                
+        $scope.actividades=[];
+
+    var actividades=services.getactividadesUser(userID).then(function(data){
+            	$scope.actividades=data.data;
+            	return data.data;
+        });
 
     $scope.doubleDigit = function (num){
 

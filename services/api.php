@@ -1719,6 +1719,27 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
                 }
 
+         private function actividadesUser(){
+                        if($this->get_request_method() != "GET"){
+                                $this->response('',406);
+                        }
+                        $id = $this->_request['userID'];
+                        $today = date("Y-m-d");
+
+                        $query=" SELECT ID,DIA,FECHA,TIPO_TRABAJO,APLICACION_ACTIVIDADES,COLA,AMANECIERON,GESTIONADO_DIA,QUEDAN_PENDIENTES,OBSERVACION,USUARIO,FECHA_FIN from transacciones_actividades where USUARIO='$id' and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' ";
+
+                        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+                        if($r->num_rows > 0){
+                                $result = array();
+                                while($row = $r->fetch_assoc()){
+                                        $result[] = $row;
+                                }
+                                $this->response($this->json($result), 200); // send user details
+                        }
+                        $this->response('',204);        // If no records "No Content" status
+                }
+
 
 				private function eliminarfile(){
                         if($this->get_request_method() != "GET"){
