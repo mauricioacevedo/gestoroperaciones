@@ -4086,7 +4086,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
         var fecha_fin=year+"-"+month+"-"+day;
         $scope.data.fechaIni=fecha_inicio;
         $scope.data.fechaFin=fecha_fin;
-        $scope.transaccionA.FECHA=year+"-"+month+"-"+day;
+        //$scope.transaccionA.FECHA=year+"-"+month+"-"+day;
 
 
         //services.getListadotransaccionesNCA(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
@@ -4109,7 +4109,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
                 var minute  = $scope.doubleDigit(date1.getMinutes());
                 var seconds = $scope.doubleDigit(date1.getSeconds());
         $scope.FECHA_INICIO=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
-       $scope.transaccion.FECHA=year+"-"+month+"-"+day;
+       $scope.transaccionA.FECHA=year+"-"+month+"-"+day;
 
       // console.log($scope.transaccion.FECHA);
        }
