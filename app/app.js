@@ -9991,6 +9991,7 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
                         //angular.copy($scope.pedidoSeguro,$scope.pedido);
                         //console.log($scope.pedido);
                         $scope.pedido.fecha=status.data['data'];
+		   				$scope.pedidoinfo='Pedido';
                         $scope.pedido.concepto_final=status.data['msg'];
                        if($scope.pedido.concepto_final=="El pedido bloqueado por Usuario por mas de dos hora, fue liberado por el sistema, usuario no podra gestionarlo hasta despues de una hora!!!"){
                             $scope.error=$scope.pedido.concepto_final;
