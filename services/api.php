@@ -7968,8 +7968,8 @@ private function listadoTransaccionesActividades(){
                         }
                         $fechaini = $this->_request['fechaInicio'];
                          $fechafin = $this->_request['fechaFin'];
-                        $fecha= $this->_request['FECHA'];
                         $page = $this->_request['page'];
+                        $id = $this->_request['userID'];
                         $today = date("Y-m-d");
 
                         //echo ($fecha);
@@ -7992,7 +7992,7 @@ private function listadoTransaccionesActividades(){
                         }
 
 
-                        $query="SELECT * FROM transacciones_actividades where FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59' order by FECHA_FIN desc limit 100 offset $page";
+                        $query="SELECT * FROM transacciones_actividades where ASESOR='$id' and FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59' order by FECHA_FIN desc limit 100 offset $page";
                         //echo $query;
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
                         if($r->num_rows > 0){
