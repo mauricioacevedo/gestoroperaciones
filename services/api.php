@@ -7949,7 +7949,7 @@ private function listadoTransaccionesActividades(){
                         $fecha= $this->_request['FECHA'];
                         $page = $this->_request['page'];
                         $today = date("Y-m-d");
-                        $fecha
+
                         //echo ($fecha);
 
                         if($page=="undefined"){
