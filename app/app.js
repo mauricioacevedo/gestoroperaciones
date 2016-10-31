@@ -10075,34 +10075,58 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
 
 
     $scope.buscarPedido = function(bpedido,iplaza) {
-            $scope.error="";
+        	$scope.error="";
                 $scope.peds={};
                 $scope.mpedido={};
                 $scope.busy="";
                 $scope.error="";
                 $scope.pedidoinfo='Pedido';
-                var kami=services.buscarPedido(bpedido,iplaza,$scope.pedido1,$rootScope.logedUser.login,$rootScope.logedUser.name,'').then(function(data){
+
+                //$scope.pedidoinfo='';
+                var kami=services.buscarPedido(bpedido,iplaza,$scope.pedido1,$rootScope.logedUser.login,$rootScope.logedUser.name).then(function(data){
                         $scope.peds = data.data;         
-                       console.log(data.status);
-            var dat=data.status;
-            //alert("'"+data.status+"'");
+			           console.log(data.status);
+			var dat=data.status;
+			//alert("'"+data.status+"'");
                         if(dat==204){
-                                document.getElementById("warning").innerHTML="No hay Registros";
-                $scope.error="No hay Registros";
+                                document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Plaza";
+				$scope.error="No hay Registros. Intente Cambiando de Plaza";
                         }else{
+
+                                if($scope.peds[0]=="PEDIDO_OCUPADO"){
+                                        $scope.error="El pedido: "+$scope.peds[2] + " está ocupado por:" +$scope.peds[1] ;
+                                        return;
+
+                                }
+
+
                                 document.getElementById("warning").innerHTML="";
                                 $scope.pedido1=$scope.peds[0].PEDIDO_ID;
                                 $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+                                //$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 
-                    //alert("El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR);
-                if($scope.peds[0].STATUS=="PENDI_PETEC"&&$scope.peds[0].ASESOR!=""){
-                    $scope.busy=$scope.peds[0].ASESOR;
-                    
-                    //alert("El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR);
-                    $scope.error="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
-                }
-                                $scope.baby($scope.pedido1);
+					//alert("El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR);
+				/*if($scope.peds[0].STATUS=="PENDI_PETEC"&&$scope.peds[0].ASESOR!=""){
+					$scope.busy=$scope.peds[0].ASESOR;
+					//alert("El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR);
+					$scope.error="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
+				}*/
+
+                        /*   console.log("este es el municipo: " + $scope.peds[0].MUNICIPIO_ID);
+                            $scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
+                            buscar = /ANTCOL/;
+                            $scope.validaMunicipio = buscar.test($scope.peds[0].MUNICIPIO_ID);
+                            console.log("este es el municipo abreviado: " + $scope.validaMunicipio);
+                                $scope.baby($scope.pedido1);*/
                         }
+
+                        //$scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
+                          //  buscar = /ANTCOL/;
+                            //$scope.validaMunicipio = buscar.test($scope.peds[0].MUNICIPIO_ID);
+                            //console.log("esta es la validacion " + $scope.validaMunicipio);
+                            //$rootScope.pagina_servicio_vecinos = $scope.peds[0].PAGINA_SERVICIO;
+                            //console.log("esto es lo que retorna" + $scope.validaMunicipio + " y la pagina " + $scope.peds[0].PAGINA_SERVICIO);
+
                         return data.data;
                 });
                 $scope.timeInit=new Date().getTime();
@@ -10116,14 +10140,7 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
 
                 $scope.fecha_inicio=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
 
-                var pathy=$location.path();
-                if(pathy=="/asignacion_ordenes/"){//esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
-                            services.getListadoUsuarios().then(function(data){
-                            $scope.listado_usuarios=data.data[0];
-                            return data.data;
-                    });
-                }
-        }
+        };
 
 $scope.isAuthorized = function(concept){
 
