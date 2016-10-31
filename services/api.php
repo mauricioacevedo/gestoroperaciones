@@ -7974,7 +7974,7 @@ private function listadoTransaccionesActividades(){
 
                         $sql="insert into transacciones_actividades(FECHA) values ('$fechafin') ";
                                 $xx = $this->mysqli->query($sql);
-                        echo $sql;
+                        //echo $sql;
                         if($r->num_rows > 0){
                                 $result = array();
                                 while($row = $r->fetch_assoc()){
