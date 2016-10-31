@@ -93,7 +93,7 @@
                
                 <input type="text" class="form-control btn-group btn btn-md btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Buscador de Pedido" ng-model="bpedido">
                 <button type="button" class="form-control btn btn-md btn-primary"  title="Buscar Pedido" data-toggle="tooltip" data-placement="top" ng-click="buscarPedido(bpedido,iplaza);"><i class="fa fa-search" aria-hidden="true"></i></button>
-                <button id="manual" type="button" class="form-control btn btn-md btn-warning" title="Ingrese Pedido Manual" data-toggle="tooltip" data-placement="top" ng-click="manual();"><i class="fa fa-user-times" aria-hidden="true"></i></button>
+                <button id="manual" type="button" class="form-control btn btn-md btn-warning disabled" title="Ingrese Pedido Manual" data-toggle="tooltip" data-placement="top" ng-click="manual();"><i class="fa fa-user-times" aria-hidden="true"></i></button>
               </div>
             </form>
             
@@ -123,62 +123,34 @@
               </div>
               <div class="row"><!--Pedido Manual -->
                 
-                <table class="table small table-striped table-hover table-bordered table-condensed" width="300" style="width: auto !important;" ng-show="pedidoinfo='Manual'">
+                <table class="table small table-striped table-hover table-bordered table-condensed" width="300" style="width: auto !important;" ng-show="mpedido.active==1">
                    <thead>
-                          <th>Pedido id</th>
+                          <th>Pedido</th>
+                          <th>Fuente de Informacion</th>
+                          <th>Concepto Final</th>
                           <th>Estado</th>
-                          <th>Auditoria</th>
                           <th>&nbsp;</th>
                   </thead>
                   <tr>
                           <td><input id='ipedido' ng-model="mpedido.pedido" type="text" class= "form-control" placeholder= "Pedido" /></td>
                           <td>
-								<select class= "form-control" ng-model="mpedido.estado">
-									  <option value='PORDE'>PORDE</option>
-									  <option value='PENDIENTE'>PENDIENTE</option>
-									  <option value='ANULADO'>ANULADO</option>
-								</select>
+                            <select ng-model="mpedido.fuente" class= "form-control">
+                                    <option value='FENIX BOGOTA'>FENIX BOGOTA</option>
+                                    <option value='NCA'>NCA</option>
+                                    <option value='BACKOFFICE'>BACKOFFICE</option>
+                                    <option value='FENIX_NAL'>FENIX_NAL</option>
+                                      FENIX_NAL
+                            </select>
                           </td>
                           <td>
-                             <table class="table small table-striped table-hover table-bordered table-condensed" style="width: auto !important;">
-                    <thead>
-                      <th id="theadAudi" >Auditoria</th>
-                    </thead>
-                    <tr>
-                        <td id="controlesAuditoria">
-                            Analisis:
-                            <select id="dropAnalisis" class= "form-control" ng-model="transaccion.ANALISIS" style="font-size:11px; width: 240px">
-                              <option value="BIEN ESTUDIADO">BIEN ESTUDIADO</option>
-                              <option value="RED MAL ASIGNADA">RED MAL ASIGNADA</option>
-                              <option value="INCONSISTENCIA EN FENIX">INCONSISTENCIA EN FENIX</option>
-                              <option value="RENUMERACION MALA ASIGNACION">RENUMERACION MALA ASIGNACION</option>
-                              <option value="APROBO ALTO RIESGO">APROBO ALTO RIESGO</option>
+                            <input type="text" class="form-control col-xs-8" aria-label="" ng-model="mpedido.concepto">
+                          </td>
+                          <td>
+                            <select class= "form-control" ng-model="mpedido.estado">
+                                  <option value='PORDE'>PORDE</option>
+                                  <option value='PENDIENTE'>PENDIENTE</option>
+                                  <option value='ANULADO'>ANULADO</option>
                             </select>
-
-                              Usuario Id:
-                              <select id="dropUserID" class= "form-control" style="width: 240px" ng-model="transaccion.usuario_id2" ng-change="getNombre()">
-                                    <option value="EXTERNO" selected="selected">EXTERNO</option>
-                                    <option ng-repeat="data in listado_usuarios" value="{{data.USUARIO_NOMBRE}}">{{data.USUARIO_ID}}</option>
-                              </select>
-                              Nombre:<br>
-                              <input id="textNombre" type="text" style="width: 240px; font-size:10px"  class="form-control col-xs-8" aria-label="..." disabled><br>
-
-                              Fecha Aprobación:<br>
-                            <div class="input-daterange control-group" id="datepicker" style="width: 240px">
-                                <div class="input-group margin-bottom-sm">
-                                <span class="input-group-addon"><i class="fa fa-calendar-plus-o fa-fw"></i></span>
-                                <input type="text" class="form-control" id="toDate" name="toDate" placeholder= "Fecha" required="true" ng-model="transaccion.FECHA_GESTION"/>
-                            </div>
-
-                            Observación:
-                          <textarea class="form-control" id="txtObservacion" ng-model="transaccion.OBSERVACIONES"name="OBSERVACIONES"></textarea>
-                      </td>
-
-                        <td>
-                            <button ng-show="isAuthorized(transaccion.CONCEPTO_ID);" id="mybutt" type="button" class="btn btn-md btn-success" ng-click="savePedido(peds.length,transaccion)"><span id="class"></span>&nbsp; Guardar</button>
-                       </td>
-                    </tr>
-                  </table>
                           </td>
                           <td>
                           <button id="mguardar" type="button" class="btn btn-md btn-success" ng-click="msavePedido();"><span id="mloader"></span>&nbsp; Guardar</button>
@@ -192,7 +164,7 @@
                     <table>
                       <tr valign="top">
                         <td>
-                      <table class="table small table-striped table-hover table-bordered table-condensed"   ng-show="mpedido.active==1">
+                      <table class="table small table-striped table-hover table-bordered table-condensed"   ng-show="peds.length>0">
                        <thead>
                               <th >Pedido</th>
                               <th >Sub-Sol</th>
