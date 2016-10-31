@@ -10123,17 +10123,42 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
                 }
         }
 
-        $scope.isAuthorized = function(concept){
-                if(concept=="PEXPQ") return false;
-                if(concept=="PSERV") return false;
-                if(concept=="PORDE") return false;
-                if(concept=="ORDEN") return false;
-                if(concept=="PXSLN") return false;
-                if(concept=="POPTO") return false;
+$scope.isAuthorized = function(concept){
 
-                if($scope.busy!="") {
-                        return false;
-                }
+        var CargoID = parseInt($rootScope.logedUser.CARGO_ID);
+
+        if(CargoID>5){
+
+            if(concept=="PEXPQ") return false;
+            if(concept=="PSERV") return false;
+            if(concept=="ORDEN") return false;
+            if(concept=="PXSLN") return false;
+            if(concept=="PFACT") return false;
+            if(concept=="CUMPL") return false;
+            if(concept=="PORDE") return false;
+            if(concept=="FACTU") return false;
+
+        }
+
+
+
+        /* codigo viejo
+
+		if(concept=="PEXPQ") return false;
+		if(concept=="PSERV") return false;
+		if(concept=="ORDEN" && CargoID > 5) return false;
+		if(concept=="PXSLN") return false;
+        if(concept=="PFACT") return false;
+        if(concept=="CUMPL") return false;
+        //alert("concepto:"+concept+ " cargo: "+CargoID );
+        if(concept=="PORDE" && CargoID > 5) return false; */
+
+		//para controlar campos cuando el pedido esta ocupado por alguien mas....
+		if($scope.busy!="") {
+			//alert($scope.busy);
+			return false;
+
+		}
                  return true;
         }
 
