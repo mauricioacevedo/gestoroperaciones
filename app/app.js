@@ -3942,7 +3942,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 
 
         $scope.editTransaccionActividades = function (transaccionA){
-                console.log(transaccionA.FECHA);
+               // console.log(transaccionA.FECHA);
 
                 if(transaccionA.DIA==undefined || transaccionA.DIA=="" ){
                         alert("Dia sin informacion.");
@@ -4058,7 +4058,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
                 var hour    = $scope.doubleDigit(date1.getHours());
                 var minute  = $scope.doubleDigit(date1.getMinutes());
                 var seconds = $scope.doubleDigit(date1.getSeconds());
-         $scope.transaccion.FECHA=day+"-"+month+"-"+year;
+
         $scope.transaccion.FECHA_FIN=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
         $scope.transaccion.FECHA_INICIO=$scope.FECHA_INICIO;
         
