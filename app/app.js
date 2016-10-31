@@ -10140,6 +10140,14 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
 
                 $scope.fecha_inicio=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
 
+		var pathy=$location.path();
+                if(pathy=="/asignacion_ordenes/"){//esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
+                            services.getListadoUsuarios().then(function(data){
+                            $scope.listado_usuarios=data.data[0];
+                            return data.data;
+                    });
+                }
+
         };
 
 $scope.isAuthorized = function(concept){
