@@ -229,6 +229,11 @@ input.filtro {
   color:#D8262E;
   font-weight: bold;
 }
+.DemePedidoBlue{
+  /*color:#FF7800;*/
+  color:#002E6C;
+  font-weight: bold;
+}
 .navbar-pad-derecha {
     padding-right: 30px ;
 }
