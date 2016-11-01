@@ -85,15 +85,20 @@
 											<li class="list-group-item small" ><b>PEDIDO: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.PEDIDO_ID)">
 												{{service.PEDIDO_ID}}
 											</button> </li>
-											<li class="list-group-item small" ><b>FECHA_INGRESO:</b> {{service.FECHA_INGRESO}} </li>
-											<li class="list-group-item small" ><b>MUNICIPIO:</b> {{service.MUNICIPIO_DANE}}  </li>
+
+											<li class="list-group-item small" ><b>MUNICIPIO:</b> {{service.MUNICIPIO_ID}}  </li>
+											<li class="list-group-item small" ><b>UEN_ID:</b> {{service.UEN_CALCULADA}}  </li>
+											<li class="list-group-item small" ><b>DIRECCIÓN:</b> {{service.DIRECCION_SERVICIO}}  </li>
+											<li class="list-group-item small" ><b>PÁGINA:</b> {{service.PAGINA_SERVICIO}}  </li>
 
 										</div>
 
 										<div class="col-md-6">
+											<li class="list-group-item small" ><b>FECHA ESTADO:</b> {{service.FECHA_ESTADO}} </li>
+											<li class="list-group-item small" ><b>CONCEPTO:</b> {{service.CONCEPTO_ID}} </li>
+											<li class="list-group-item small" ><b>TIPO TRABAJO:</b> {{service.TIPO_TRABAJO}} </li>
+											<li class="list-group-item small" ><b>TIEMPO EN COLA:</b> {{service.TIEMPO_COLA}} </li>
 
-											<li class="list-group-item small" ><b>CONCEPTO_ID:</b> {{service.CONCEPTO_ID}} </li>
-											<li class="list-group-item small" ><b>UEN_ID:</b> {{service.UEN_CALCULADA}}  </li>
 
 										</div>
 									</ul>
