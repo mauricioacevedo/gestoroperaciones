@@ -11560,6 +11560,39 @@ app.run(['$rootScope', 'services', function($rootScope, services){
 
 }]);
 
+//Variables Globales
+app.run(function($rootScope, services) {
+
+    $rootScope.daysInMonth = function(year, month) {
+        return new Date(year, month+1,0).getDate();
+    }
+
+    $rootScope.fechaProceso = function() {
+        var tiempo=new Date().getTime();
+                var date1 = new Date();
+                var year    = date1.getFullYear();
+                var month   = (date1.getMonth()+1<=9)?'0'+(date1.getMonth()+1):(date1.getMonth()+1);
+                var day     = (date1.getDate()<=9)?'0'+date1.getDate():date1.getDate();
+                var hour    = (date1.getHours()<=9)?'0'+date1.getHours():date1.getHours();
+                var minute  = (date1.getMinutes()<=9)?'0'+date1.getMinutes():date1.getMinutes();
+                var seconds = (date1.getSeconds()<=9)?'0'+date1.getSeconds():date1.getSeconds();
+
+                tiempo=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
+        return tiempo;
+    }
+
+    $rootScope.executeCopy= function executeCopy(text){
+                var input = document.createElement('textarea');
+                document.body.appendChild(input);
+                input.value = (text);
+                //input.focus();
+                input.select();
+                document.execCommand('Copy');
+                input.remove();
+            };
+
+});
+
 app.run(['$location', '$rootScope', function($location, $rootScope) {
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
