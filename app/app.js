@@ -11221,6 +11221,53 @@ app.config(['$routeProvider',
         redirectTo: '/'
       });
 }]);
+
+app.run(['$rootScope', 'services', function($rootScope, services){
+
+
+      $rootScope.cargos=[
+        {CARGO_ID:'1', VALOR:'SUPERVISOR'},
+        {CARGO_ID:'2', VALOR:'GESTOR TECNICO'},
+        {CARGO_ID:'3', VALOR:'GESTOR DE LA INFORMACION'},
+        {CARGO_ID:'4', VALOR:'AUXILIAR DE PROYECTOS'},
+        {CARGO_ID:'5', VALOR:'SOPORTE NIVEL IV'},
+        {CARGO_ID:'6', VALOR:'SOPORTE NIVEL III'},
+        {CARGO_ID:'7', VALOR:'SOPORTE NIVEL II'},
+        {CARGO_ID:'8', VALOR:'SOPORTE NIVEL I'},
+        {CARGO_ID:'9', VALOR:'PRACTICANTE'},
+        {CARGO_ID:'10', VALOR:'AUXILIAR UNE'},
+        {CARGO_ID:'11', VALOR:'ASISTENTE COMERCIAL'}
+    ];
+
+      $rootScope.grupos = {
+      "type": "select",
+      "name": "grupos",
+      "value": ["SUPER","ACTIVACION", "ASIGNACIONES", "AGENDAMIENTO", "RECONFIGURACION","INCONSISTENCIAS"],
+      "values": ["SUPER","ACTIVACION", "ASIGNACIONES", "AGENDAMIENTO", "RECONFIGURACION","INCONSISTENCIAS"]
+  };
+
+      $rootScope.funciones = {
+      "type": "select",
+      "name": "funciones",
+      "value": ["ASIGNADOR","APOYO", "OTRO", "R14", "SISTEMA"],
+      "values": ["ASIGNADOR","APOYO", "OTRO", "R99", "SISTEMA"]
+  };
+
+      $rootScope.interventores = {
+      "type": "select",
+      "name": "interventores",
+      "value": ["GIOVANI DE JESUS RODRIGUEZ PEREZ","JUAN FERNANDO MUÑOZ ZAPATA", "MONICA TATIANA HUERTAS GIRALDO", "NORBEY ANDRES MIRA DUQUE", "OTRO"],
+      "values": ["GIOVANI DE JESUS RODRIGUEZ PEREZ","JUAN FERNANDO MUÑOZ ZAPATA", "MONICA TATIANA HUERTAS GIRALDO", "NORBEY ANDRES MIRA DUQUE", "OTRO"]
+  };
+
+	$rootScope.estadosSiebel = {
+      "type": "select",
+      "name": "estadosSiebel",
+      "value": ["COBERTURA","CONSTRUCCION", "DISENO", "DISPONIBILIDAD"],
+      "values": ["COBERTURA","CONSTRUCCION", "DISENO", "DISPONIBILIDAD"]
+  };
+
+}]);
 app.run(['$location', '$rootScope', function($location, $rootScope) {
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {

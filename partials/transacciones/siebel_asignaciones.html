@@ -9,7 +9,7 @@
 						<li>
 							<div class="col-md-1 col-xs-1 ">
 								<div data-ng-if="loading">
-									<img alt="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="images/loader.gif" />
+									<img alt="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="img/loader.gif" />
 								</div>
 							</div>
 						</li>
@@ -25,9 +25,9 @@
 								<select
 									class= "btn btn-default btn-xs grupo-select"
 									style="width: 200px"
-									ng-model="pro.SUBPROCESO">
-									<option value="">--Sub Proceso--</option>
-									<option ng-repeat="d in subProcesos " value="{{d.SUB_PROCESO}}">{{d.SUB_PROCESO}}</option>
+									ng-model="pro.EstadoSiebel">
+									<option value="">--Estado --</option>
+									<option ng-repeat="d in estadosSiebel " value="{{d.values}}">{{d.values}}</option>
 								</select>
 
 							</li>
@@ -440,12 +440,7 @@
 						</div><!-- Modal Eliminar Novedad-->
 						<br>
 						<ol class="breadcrumb">
-							<li><a href=".#/dashboard">Home</a> </li>
-							<li><a href="">AAA</a></li>
+							<li><a href=".#/">Home</a> </li>
+							<li><a href="">Asignaciones</a></li>
 							<li class="active">{{title}} </li>
 						</ol>
-						<script>
-						$(function () {
-						$('[data-toggle="tooltip"]').tooltip();
-						})
-						</script>
