@@ -205,6 +205,25 @@ input.filtro {
   line-height: 1.20;
   border-radius: 30px;
 }
+.btn-circle-xss {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  padding: 2px 0;
+  font-size: 11px;
+  line-height: 1.20;
+  border-radius: 30px;
+}
+.btn-DemePedido-xs {
+  width: 120px;
+  height: 22px;
+  text-align: center;
+  padding: 2px 2px;
+  font-size: 12px;
+  border-radius: 20px;
+  font-family: Andale Mono, monospace;
+  font-weight: bold;
+}
 .navbar-pad-derecha {
     padding-right: 30px ;
 }
