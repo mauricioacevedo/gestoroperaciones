@@ -10714,10 +10714,9 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 				divi.style.visibility="visible";
 				divi.style.position="relative";
 
-	console.log(userID);
 
 		$rootScope.logout = function() {
-					services.logout($rootScope.logedUser.login);
+					services.logout(userID);
 					$cookieStore.remove('logedUser');
 					$rootScope.logedUser=undefined;
 					$scope.pedidos={};
