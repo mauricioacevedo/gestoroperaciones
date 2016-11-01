@@ -6268,6 +6268,8 @@ $queryConceptosFcita=" select ".
 			$username=$this->_request['username'];
 			$prioridad=$this->_request['prioridad'];
 
+		   echo $fuente;
+
 			$filename = '../tmp/control-threads.txt';
 			if(file_exists($filename)){
 				sleep(1);
