@@ -79,44 +79,22 @@
 									<b><i class="fa fa-tasks" aria-hidden="true"> </i> INFORMACIÓN</b>
 								</div>
 								<div class="panel-body">
-									<ul class="list-group" ng-repeat="data in InfoPedido as gestion" >
+									<ul class="list-group" ng-repeat="service in peds track by $index as gestion" >
 										<div class="col-md-6">
-											<li class="list-group-item small" ><b>PROCESO:</b> {{data.PROCESO}} </li>
-											<li class="list-group-item small" ><b>SUBPROCESO:</b> {{data.SUBPROCESO}} </li>
-											<li class="list-group-item small" ><b>PEDIDO: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(data.PEDIDO_ID)">
-												{{data.PEDIDO_ID}}
+
+											<li class="list-group-item small" ><b>PEDIDO: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.PEDIDO_ID)">
+												{{service.PEDIDO_ID}}
 											</button> </li>
-											<li class="list-group-item small" ><b>IDENTIFICADOR_ID:</b> {{data.IDENTIFICADOR_ID}} </li>
-											<li class="list-group-item small" ><b>ID_AGENDASSMM:</b> {{data.ID_AGENDASSMM}} </li>
-											<li class="list-group-item small" ><b>FECHA_INGRESO:</b> {{data.FECHA_INGRESO}} </li>
-											<li class="list-group-item small" ><b>ESTADOCRM:</b> {{data.ESTADOCRM}} </li>
-											<li class="list-group-item small" ><b>CPE:</b> {{data.EQUIPO_CPE}} </li>
-											<li class="list-group-item small" ><b>ID_AGENDASSMM:</b> {{data.ID_AGENDASSMM}} </li>
-											<li class="list-group-item small" ><b>MARCA CPE:</b> {{data.MARCA_CPE}} </li>
-											<li class="list-group-item small" ><b>REFERENCIA CPE:</b> {{data.REFERENCIA_CPE}} </li>
-											<li class="list-group-item small" ><b>TIEMPO CONCEPTO:</b> {{data.TIEMPO_COLA}} </li>
-											<li class="list-group-item small" ><b>CLIENTE:</b> {{data.CLIENTE}} </li>
-											<li class="list-group-item small" ><b>NOMBRE_AVISAR:</b> {{data.NOMBRE_AVISAR}} </li>
-											<li class="list-group-item small" ><b>TELEFONO_AVISAR:</b> {{data.TELEFONO_AVISAR}} </li>
-											<li class="list-group-item small" ><b>CELULAR_AVISAR:</b> {{data.CELULAR_AVISAR}} </li>
+											<li class="list-group-item small" ><b>FECHA_INGRESO:</b> {{service.FECHA_INGRESO}} </li>
+											<li class="list-group-item small" ><b>MUNICIPIO:</b> {{service.MUNICIPIO_DANE}}  </li>
 
 										</div>
 
 										<div class="col-md-6">
-											<li class="list-group-item small" ><b>COLA_ID:</b> {{data.COLA_ID}} </li>
-											<li class="list-group-item small" ><b>COLA_ANTERIOR:</b> {{data.COLA_ANTERIOR}} </li>
-											<li class="list-group-item small" ><b>CONCEPTO_ID:</b> {{data.CONCEPTO_ID}} </li>
-											<li class="list-group-item small" ><b>DESCRIPCION_CAUSA_FALLA:</b> {{data.DESCRIPCION_CAUSA_FALLA}}  </li>
-											<li class="list-group-item small" ><b>SERVICIO_FINAL:</b> {{data.SERVICIO_FINAL}} </li>
-											<li class="list-group-item small" ><b>REITERATIVO_HOGAR_30_DIAS:</b> {{data.REITERATIVOS_HOGAR_30_DIAS}}  </li>
-											<li class="list-group-item small" ><b>DIRECCION:</b> {{data.DIRECCION}}  </li>
-											<li class="list-group-item small" ><b>CONTRATO_RESPONSABLE:</b> {{data.CONTRATO_RESPONSABLE}}  </li>
-											<li class="list-group-item small" ><b>UEN_ID:</b> {{data.UEN_ID}}  </li>
-											<li class="list-group-item small" ><b>DEPARTAMENTO_DANE:</b> {{data.DEPARTAMENTO_DANE}}  </li>
-											<li class="list-group-item small" ><b>MUNICIPIO_DANE:</b> {{data.MUNICIPIO_DANE}}  </li>
-											<li class="list-group-item small" ><b>MICROZONA:</b> {{data.MICROZONA}}  </li>
-											<li class="list-group-item small" ><b>CLIENTE_ID:</b> {{data.CLIENTE_ID}} </li>
-											<li class="list-group-item small" ><b>DEPARTAMENTO_DANE:</b> {{data.DEPARTAMENTO_DANE}}  </li>
+
+											<li class="list-group-item small" ><b>CONCEPTO_ID:</b> {{service.CONCEPTO_ID}} </li>
+											<li class="list-group-item small" ><b>UEN_ID:</b> {{service.UEN_CALCULADA}}  </li>
+
 										</div>
 									</ul>
 								</div>

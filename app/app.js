@@ -10746,6 +10746,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 		$scope.popup='';
 		$scope.intervalLightKPIS='';
 		$scope.pedidoinfo='';
+		$scope.errorDatos=null;
 
 		var pedidos=services.getPedidosUser(userID).then(function(data){
 				$scope.pedidos=data.data[0];
@@ -10898,9 +10899,9 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 	// DemePedido --------------------------------------------------------------
 	$scope.baby = function(pedido) {
-		console.log(pedido);
+		//console.log(pedido);
 		services.getPedidosPorPedido(pedido).then(function(data){
-                      console.log(data.data);
+                     // console.log(data.data);
                       $scope.historico_pedido=data.data;
                       return data.data;
                  });
@@ -10910,7 +10911,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 		var pedido1='';
 		$scope.popup='';
-		$scope.errorDatos="";
+		$scope.errorDatos=null;
 
 		if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
 			//alert($scope.peds[0].PEDIDO_ID);
@@ -10944,10 +10945,11 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 				$scope.pedido1=$scope.peds[0].PEDIDO_ID;
                 $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 				$scope.pedidoIsActive=true;
+				$scope.errorDatos=null;
 
 					if($scope.peds[0].STATUS=="PENDI_PETEC"&&$scope.peds[0].ASESOR!=""){
                             $scope.busy=$scope.peds[0].ASESOR;
-							$scope.error="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
+							$scope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
 
                                 }
 
