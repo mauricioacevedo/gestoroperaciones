@@ -6268,7 +6268,7 @@ $queryConceptosFcita=" select ".
 			$username=$this->_request['username'];
 			$prioridad=$this->_request['prioridad'];
 
-		   echo $fuente;
+
 
 			$filename = '../tmp/control-threads.txt';
 			if(file_exists($filename)){
@@ -6316,9 +6316,9 @@ $queryConceptosFcita=" select ".
 
 			$parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
 
-		   if($fuente="SIEBEL"){
+		   /* if($fuente="SIEBEL"){
 			   $concepto=" and b.CONCEPTO_ID='$concepto'";
-		   }
+		   } */
 
 			if($concepto=="PETEC"){
 				if($plaza=="BOGOTA-COBRE"){
