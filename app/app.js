@@ -655,7 +655,7 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 		if(concepto=="Bello"){
 			muni="&municipio=BELANTCOL";
 		}
-		return $http.get(serviceBase + 'demePedido?userID='+user+'&concepto='+concepto+'&pedido_actual='+pedido_actual+'&plaza='+plaza+'&username='+username+'&prioridad='+prioridad+'$fuente='+fuente);
+		return $http.get(serviceBase + 'demePedido?userID='+user+'&concepto='+concepto+'&pedido_actual='+pedido_actual+'&plaza='+plaza+'&username='+username+'&prioridad='+prioridad+'&fuente='+fuente);
     }
 
         obj.demePedidoReconfiguracion = function(user,concepto,pedido_actual,plaza){
