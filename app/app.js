@@ -10839,6 +10839,8 @@ app.config(['$routeProvider',
         templateUrl: 'partials/customers.html',
         controller: 'listCtrl'
       })
+
+	// ASIGNACIONES ------------------------------------------
       .when('/edit-customer/:customerID', {
         title: 'Edit Customers',
         templateUrl: 'partials/edit-customer.html',
@@ -10873,40 +10875,45 @@ app.config(['$routeProvider',
          controller: 'NCACtrl'
       })
 
-    .when('/actividades/', {
-         title: 'Actividades',
-         templateUrl: 'partials/actividades.html',
-         controller: 'ActividadesCtrl'
-      })
-
-        .when('/nca/transaccion', {
+	 .when('/nca/transaccion', {
          title: 'NCA',
          templateUrl: 'partials/transaccion-nca.html',
          controller: 'NCACtrl'
       })
 
-          .when('/actividades/transaccion', {
-         title: 'Actividades',
-         templateUrl: 'partials/transaccion-activadades.html',
-         controller: 'ActividadesCtrl'
+
+	  .when('/admontips/nuevoTip', {
+         title: 'Nuevo Tip',
+         templateUrl: 'partials/editTips.html',
+         controller: 'nuevoTipsCtrl'
       })
 
-       
-
-        .when('/alarmas/', {
-         title: 'Alarmas Activacon',
-         templateUrl: 'partials/alarmas.html',
-         controller: 'AlarmasActivacionCtrl'
+      .when('/tips/', {
+         title: 'TIPS',
+         templateUrl: 'partials/tips.html',
+         controller: 'tipsCtrl',
+         reloadOnSearch: false
       })
 
+      .when('/tips/visualizacionTip/:tipID', {
+         title: 'Tip',
+         templateUrl: 'partials/soloTip.html',
+         controller: 'unicoTipCtrl',
+         resolve: {
+            transtip: function(services, $route){
+                var tipID = $route.current.params.tipID;
+                return services.getVisualizacionTip(tipID);
+            }
+        }
+    })
 
-        .when('/admontips/', {
+	  .when('/admontips/', {
          title: 'Administración Tips',
          templateUrl: 'partials/admontips.html',
          controller: 'AdmonTipsCtrl'
       })
 
-        .when('/admontips/edicionTip/:tipID', {
+      .when('/admontips/edicionTip/:tipID', {
          title: 'Edición Tips',
          templateUrl: 'partials/editTips.html',
          controller: 'editTipsCtrl',
@@ -10918,30 +10925,69 @@ app.config(['$routeProvider',
         }
     })
 
-        .when('/admontips/nuevoTip', {
-         title: 'Nuevo Tip',
-         templateUrl: 'partials/editTips.html',
-         controller: 'nuevoTipsCtrl'
+	.when('/registros/', {
+		 title: 'Registros',
+		 templateUrl: 'partials/registros.html',
+		 controller: 'RegistrosCtrl'
+	})
+
+	.when('/registros/:conceptoid', {
+	 title: 'Registros',
+	 templateUrl: 'partials/registros.html',
+	 controller: 'RegistrosCtrl'
+	})
+
+
+	 .when('/asignacion_ordenes/', {
+		 title: 'Ordenes',
+		 templateUrl: 'partials/asignacion_ordenes.html',
+		 controller: 'PordenesCtrl'
+	  })
+
+		.when('/ord/', {
+		 title: 'ORD',
+		 templateUrl: 'partials/oxxx.html',
+		 controller: 'PordenesCtrl'
+	  })
+
+		.when('/ord/ordtransaccion', {
+		 title: 'ORD',
+		 templateUrl: 'partials/transacciones_oxxx.html',
+		 controller: 'PordenesCtrl'
+	  })
+
+		.when('/tx/siebel_asignaciones', {
+		 title: 'DemePedido Siebel Asignaciones',
+		 templateUrl: 'partials/transacciones/siebel_asignaciones.html',
+		 controller: 'siebelAsignacionesCtrl'
+	  })
+
+
+	//  ------------------------------------------ASIGNACIONES
+
+    .when('/actividades/', {
+         title: 'Actividades',
+         templateUrl: 'partials/actividades.html',
+         controller: 'ActividadesCtrl'
       })
 
-        .when('/tips/', {
-         title: 'TIPS',
-         templateUrl: 'partials/tips.html',
-         controller: 'tipsCtrl',
-         reloadOnSearch: false
+
+     .when('/actividades/transaccion', {
+         title: 'Actividades',
+         templateUrl: 'partials/transaccion-activadades.html',
+         controller: 'ActividadesCtrl'
       })
 
-        .when('/tips/visualizacionTip/:tipID', {
-         title: 'Tip',
-         templateUrl: 'partials/soloTip.html',
-         controller: 'unicoTipCtrl',
-         resolve: {
-            transtip: function(services, $route){
-                var tipID = $route.current.params.tipID;
-                return services.getVisualizacionTip(tipID);
-            }
-        }
-    })
+
+      .when('/alarmas/', {
+         title: 'Alarmas Activacon',
+         templateUrl: 'partials/alarmas.html',
+         controller: 'AlarmasActivacionCtrl'
+      })
+
+
+   // ADMINISTRACION ------------------------------------------
+
 
         .when('/users/', {
          title: 'Gestion Usuarios',
@@ -10962,17 +11008,13 @@ app.config(['$routeProvider',
       })
 
 
-	.when('/registros/', {
-         title: 'Registros',
-         templateUrl: 'partials/registros.html',
-         controller: 'RegistrosCtrl'
-      })
-
         .when('/dashboard/', {
          title: 'Dashboard',
          templateUrl: 'partials/dashboard.html',
          controller: 'DashboardCtrl'
       })
+
+	//  ------------------------------------------ADMINISTRACION
 
         .when('/registros-agendamiento/', {
          title: 'Registros',
@@ -11005,11 +11047,7 @@ app.config(['$routeProvider',
          controller: 'Pedidos_MicrozonasCtrl'
       })
 
-    .when('/registros/:conceptoid', {
-         title: 'Registros',
-         templateUrl: 'partials/registros.html',
-         controller: 'RegistrosCtrl'
-      })
+
 
 	.when('/general/', {
          title: 'General',
@@ -11021,6 +11059,9 @@ app.config(['$routeProvider',
         templateUrl: 'partials/login.html',
         controller: 'login'
       })
+
+	// HERRAMIENTAS ------------------------------------------
+
     .when('/cmts/', {
         title: 'Cmts',
         templateUrl: 'partials/buscarcmts.html',
@@ -11034,12 +11075,6 @@ app.config(['$routeProvider',
         reloadOnSearch: false
       })
 
-     .when('/codigo_resultado/', {
-         title: 'codigo_resultado',
-         templateUrl: 'partials/codigo_resultado.html',
-         controller: 'cargar_datosCtrl'
-      })
-
     .when('/gpon/', {
         title: 'GPON',
         templateUrl: 'partials/buscar_gpon.html',
@@ -11047,11 +11082,19 @@ app.config(['$routeProvider',
         reloadOnSearch: false
       })
 
-.when('/vecinos/:pagina_servicio_vecinos', {
-        title: 'vecinos',
-        templateUrl: 'partials/buscarvecinos.html',
-        controller: 'vecinoscontroller',
-        reloadOnSearch: false
+	.when('/vecinos/:pagina_servicio_vecinos', {
+			title: 'vecinos',
+			templateUrl: 'partials/buscarvecinos.html',
+			controller: 'vecinoscontroller',
+			reloadOnSearch: false
+		  })
+
+// ------------------------------------------HERRAMIENTAS
+
+	     .when('/codigo_resultado/', {
+         title: 'codigo_resultado',
+         templateUrl: 'partials/codigo_resultado.html',
+         controller: 'cargar_datosCtrl'
       })
 
     .when('/scheduling/', {
@@ -11059,6 +11102,7 @@ app.config(['$routeProvider',
          templateUrl: 'partials/scheduling.html',
          controller: 'SchedulingCtrl'
       })
+
      .when('/agendamiento_auditoria/', {
          title: 'Conceptos Agendamiento Auditoria',
          templateUrl: 'partials/agendamiento_auditoria.html',
@@ -11114,23 +11158,7 @@ app.config(['$routeProvider',
          controller: 'ActivacionCtrl'
     })
 
-    .when('/asignacion_ordenes/', {
-         title: 'Ordenes',
-         templateUrl: 'partials/asignacion_ordenes.html',
-         controller: 'PordenesCtrl'
-      })
 
-        .when('/ord/', {
-         title: 'ORD',
-         templateUrl: 'partials/oxxx.html',
-         controller: 'PordenesCtrl'
-      })
-
-        .when('/ord/ordtransaccion', {
-         title: 'ORD',
-         templateUrl: 'partials/transacciones_oxxx.html',
-         controller: 'PordenesCtrl'
-      })
 
         .when('/b2b/', {
          title: 'b2b',
