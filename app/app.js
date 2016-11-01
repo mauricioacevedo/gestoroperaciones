@@ -5348,7 +5348,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
         $scope.$on(
                 "$destroy",
                         function( event ) {
-                            $timeout.cancel(timer);
+                            $timeout.cancel($scope.intervalLightKPIS);
                             clearInterval($scope.intervalLightKPIS);
           });
 
@@ -10867,7 +10867,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
         $scope.$on(
                 "$destroy",
                         function( event ) {
-                            $timeout.cancel(timer);
+                            $timeout.cancel($scope.intervalLightKPIS);
                             clearInterval($scope.intervalLightKPIS);
           });
 
