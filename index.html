@@ -114,14 +114,7 @@
 
     </li>
 
-	 <li class="dropdown" ng-show="logedUser.CARGO_ID<='5' && (logedUser.GRUPO=='ASIGNACIONES' || logedUser.GRUPO=='SUPER')"  >
-            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administracion <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li ng-show="logedUser.CARGO_ID=='1'"><a href=".#/dashboard/"><span class="fa fa-tachometer"></span> Dashboard</a></li>
-                <li ng-show="logedUser.CARGO_ID=='1'"><a href=".#/users/"><span class="fa fa-users"></span> Usuarios</a></li>
-                <li ng-show="logedUser.CARGO_ID<='5'"><a href=".#/admontips/"><span class="fa fa-file-code-o"></span> Administración Tips</a></li>
-            </ul>
-           </li>
+
 
             <li class="dropdown" >
             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Herramientas <span class="caret"></span></a>
@@ -138,6 +131,14 @@
                 <li><a href=".#/docuactivacion/"><span class="fa fa-file-text"></span> Activación</a></li>
             </ul>
            </li> 
+		  <li class="dropdown" ng-show="logedUser.CARGO_ID<='5' && (logedUser.GRUPO=='ASIGNACIONES' || logedUser.GRUPO=='SUPER')"  >
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administracion <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li ng-show="logedUser.CARGO_ID=='1'"><a href=".#/dashboard/"><span class="fa fa-tachometer"></span> Dashboard</a></li>
+                <li ng-show="logedUser.CARGO_ID=='1'"><a href=".#/users/"><span class="fa fa-users"></span> Usuarios</a></li>
+                <li ng-show="logedUser.CARGO_ID<='5'"><a href=".#/admontips/"><span class="fa fa-file-code-o"></span> Administración Tips</a></li>
+            </ul>
+           </li>
     </ul>
       <ul class="nav navbar-nav navbar-right navbar-pad-derecha">
         <li class="dropdown">
