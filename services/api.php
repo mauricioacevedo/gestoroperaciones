@@ -6255,15 +6255,16 @@ $queryConceptosFcita=" select ".
 	
 		//este demepedido valida contra fenix antes de suministrar el pedido...
 		//DemePedidoPetec Principal, Asignaciones - Reconfiguracion.
-                private function demePedido(){
+       private function demePedido(){
 
-                        if($this->get_request_method() != "GET"){
-                                $this->response('',406);
+           if($this->get_request_method() != "GET"){
+              	$this->response('',406);
                         }
-                        $user = $this->_request['userID'];
-                        $concepto = $this->_request['concepto'];
+
+            $user = $this->_request['userID'];
+            $concepto = $this->_request['concepto'];
 			$plaza = $this->_request['plaza'];
-			
+			$fuente = $this->_request['fuente'];
 			$username=$this->_request['username'];
 			$prioridad=$this->_request['prioridad'];
 
@@ -6277,19 +6278,19 @@ $queryConceptosFcita=" select ".
 			
 
 			$user=strtoupper($user);
-                        //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
-                        $pedido_actual = $this->_request['pedido_actual'];
-                        //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
+			//si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
+			$pedido_actual = $this->_request['pedido_actual'];
+			//if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
 			
 			//NO SE PUEDE CONDICIONAR AL PEDIDO ACTUAL, SI LE DA F5 A LA PAGINA NO HAY PEDIDO ACTUAL.. ES MEJOR ASI!!!
-                        $sqlupdate="update informe_petec_pendientesm set ASESOR='' where ASESOR='$user'";
+             $sqlupdate="update informe_petec_pendientesm set ASESOR='' where ASESOR='$user'";
 			//echo $sqlupdate;
-                        $xxx = $this->mysqli->query($sqlupdate);
+            $xxx = $this->mysqli->query($sqlupdate);
                         //}
 
 			//echo "WTF";
-                        $user=strtoupper($user);
-                        $today = date("Y-m-d");
+			$user=strtoupper($user);
+			$today = date("Y-m-d");
 			
 			//1.consulto todo lo que tenga fecha cita de mañana
 			$hora=date("G");
@@ -6304,7 +6305,7 @@ $queryConceptosFcita=" select ".
 			$llamadaReconfiguracion="0";	
 
 			$ATENCION_INMEDIATA="";
-                        $mypedido="";
+            $mypedido="";
 			
 			//2016-08-05: MAURICIO
 			//SE UTILIZA ESTA VARIABLE PARA PARAMETRIZAR EL STATUS 
@@ -6312,6 +6313,10 @@ $queryConceptosFcita=" select ".
 			$STATUS="PENDI_PETEC";
 
 			$parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
+
+		   if($fuente="SIEBEL"){
+			   $concepto=" and b.CONCEPTO_ID='$concepto'";
+		   }
 
 			if($concepto=="PETEC"){
 				if($plaza=="BOGOTA-COBRE"){

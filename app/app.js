@@ -650,12 +650,12 @@ obj.getDepartamentosParametrizacionSiebel = function(){
         return $http.get(serviceBase + 'getPedidos_Microzonas?fecha='+fecha);
     }
 
-    	obj.demePedido = function(user,concepto,pedido_actual,plaza,username,prioridad){	
+    obj.demePedido = function(user,concepto,pedido_actual,plaza,username,prioridad,fuente){
 		var muni=""
 		if(concepto=="Bello"){
 			muni="&municipio=BELANTCOL";
 		}
-return $http.get(serviceBase + 'demePedido?userID='+user+'&concepto='+concepto+'&pedido_actual='+pedido_actual+'&plaza='+plaza+'&username='+username+'&prioridad='+prioridad);
+		return $http.get(serviceBase + 'demePedido?userID='+user+'&concepto='+concepto+'&pedido_actual='+pedido_actual+'&plaza='+plaza+'&username='+username+'&prioridad='+prioridad+'$fuente='+fuente);
     }
 
         obj.demePedidoReconfiguracion = function(user,concepto,pedido_actual,plaza){
@@ -10924,12 +10924,13 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 		$scope.pedido1=pedido1;
 		$scope.error="";
 		$scope.iplaza='TODOS';
+		$scope.fuente="SIEBEL";
 
 		var demePedidoButton=document.getElementById("iniciar");
 			demePedidoButton.setAttribute("disabled","disabled");
 			demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-		var kami=services.demePedido($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,'').then(function(data){
+		var kami=services.demePedido($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,'',$scope.fuente).then(function(data){
 
 			$scope.peds = data.data;
 
