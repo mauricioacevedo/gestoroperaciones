@@ -3905,7 +3905,7 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 });
 
 
-app.controller('Registros-ActivacionCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
+app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
     var userID=$cookieStore.get('logedUser').login;
         $rootScope.logedUser=$cookieStore.get('logedUser');
         document.getElementById('logout').className="btn btn-md btn-danger";
@@ -3948,7 +3948,7 @@ app.controller('Registros-ActivacionCtrl', function ($scope, $rootScope, $locati
         $scope.nuevoRegistroActivadades = function (){
             $rootScope.transaccion={};
             $rootScope.transaccion.ID='';
-            $location.path('/registros-activacion/transaccion');
+            $location.path('/actividades/transaccion');
 
         
         };
@@ -4000,7 +4000,7 @@ app.controller('Registros-ActivacionCtrl', function ($scope, $rootScope, $locati
 
 
                 services.editTransaccionActividades(transaccionA).then(function(data){
-                        $location.path('/registros-activacion/');
+                        $location.path('/actividades/');
                         return data.data;
                 });
         };    
@@ -4015,7 +4015,7 @@ app.controller('Registros-ActivacionCtrl', function ($scope, $rootScope, $locati
 
                 $rootScope.TIPO_TRABAJO=TTARREGLO;
                // console.log ( $rootScope.TIPO_TRABAJO);
-            $location.path('/registros-activacion/transaccion');
+            $location.path('/actividades/transaccion');
             return data.data;
         });
 
@@ -4082,7 +4082,7 @@ app.controller('Registros-ActivacionCtrl', function ($scope, $rootScope, $locati
         $scope.transaccion.USERNAME=$rootScope.logedUser.name;
 
         services.insertTransaccionActividades($scope.transaccion).then(function(data){
-            $location.path('/registros-activacion/');
+            $location.path('/actividades/');
                     return data.data;
                 });
     };
@@ -4105,7 +4105,7 @@ $scope.listado_transaccionesActividades=[];
         //services.getListadotransaccionesNCA(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
     var pathy=$location.path();
 
-        if(pathy=="/registros-activacion/"){//esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
+        if(pathy=="/actividades/"){//esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
         services.getListadoTransaccionesActividades(userID,fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
                     $scope.listado_transaccionesActividades=data.data[0];
                     $scope.data.totalItems=data.data[1];
@@ -4131,7 +4131,7 @@ $scope.listado_transaccionesActividades=[];
         //services.getListadotransaccionesNCA(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
     var pathy=$location.path();
 
-        if(pathy=="/registros-activacion/"){//esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
+        if(pathy=="/actividades/"){//esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
         services.getListadoTransaccionesActividades1(userID,fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
                     $scope.listado_transaccionesActividades1=data.data[0];
                     $scope.data.totalItems1=data.data[1];
@@ -4139,7 +4139,7 @@ $scope.listado_transaccionesActividades=[];
             });
     }
 
-    if(pathy=="/registros-activacion/transaccion"){
+    if(pathy=="/actividades/transaccion"){
         var date1 = new Date();
                 var year    = date1.getFullYear();
                 var month   = $scope.doubleDigit(date1.getMonth()+1);
@@ -11283,19 +11283,18 @@ app.config(['$routeProvider',
 
 	//  ------------------------------------------ASIGNACIONES
 
-    .when('/registros-activacion/', {
-         title: 'Registros-Activacion',
-         templateUrl: 'partials/registros-activacion.html',
-         controller: 'Registros-ActivacionCtrl'
+     .when('/actividades/', {
+         title: 'Actividades',
+         templateUrl: 'partials/actividades.html',
+         controller: 'ActividadesCtrl'
       })
 
 
-     .when('/registros-activacion/transaccion', {
-         title: 'Registros-Activacion',
+      .when('/actividades/transaccion', {
+         title: 'Actividades',
          templateUrl: 'partials/transaccion-activadades.html',
-         controller: 'Registros-ActivacionCtrl'
+         controller: 'ActividadesCtrl'
       })
-
 
       .when('/alarmas/', {
          title: 'Alarmas Activacon',
