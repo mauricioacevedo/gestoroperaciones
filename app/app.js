@@ -5059,7 +5059,7 @@ $scope.actualizarLightKPIS();
 
 
 
-app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
+app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, $timeout, services) {
 
     //var userID = ($routeParams.userID) ? parseInt($routeParams.userID) : 0;
     //
