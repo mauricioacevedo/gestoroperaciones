@@ -10731,6 +10731,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 
 	$scope.pedido='111111111';
+	$scope.pedidoIsActive=false;
 
 	console.log($rootScope.estadosSiebel);
 

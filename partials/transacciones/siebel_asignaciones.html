@@ -26,7 +26,7 @@
 									class= "btn btn-default btn-xs grupo-select"
 									style="width: 200px"
 									ng-model="pro.EstadoSiebel">
-									<option value="">--Estado --</option>
+									<option value="" disabled>--Estado--</option>
 									<option ng-repeat="d in estadosSiebel " value="{{d.ESTADO_ID}}">{{d.ESTADO_ID}}</option>
 								</select>
 
@@ -64,9 +64,9 @@
 				</div>
 
 				<div class="panel-body fixed-panel ">
-					<div class="container-fluid"  ng-show="pedidoIsBuscado==false && pedidoIsActive==false">
+					<div class="container-fluid"  ng-show="pedidoIsActive==false">
 						<div class="jumbotron animated bounceInRight ">
-							<center><h3>Gestión Soporte AAA</h3></center>
+							<center><h3>Gestión Pendientes Siebel</h3></center>
 						</div>
 
 					</div>
