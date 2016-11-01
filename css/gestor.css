@@ -224,6 +224,11 @@ input.filtro {
   font-family: Andale Mono, monospace;
   font-weight: bold;
 }
+.DemePedido{
+  /*color:#FF7800;*/
+  color:#D8262E;
+  font-weight: bold;
+}
 .navbar-pad-derecha {
     padding-right: 30px ;
 }
