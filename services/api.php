@@ -334,34 +334,7 @@
 					
                                         //fputcsv($fp, $row);
 					
-					if($k>10000){//cerra y abrir
-						//echo "la k\n"; 
-						$fp = fopen("../tmp/$filename", 'a');
-						
-						foreach ($result as $fields) {
-						    //fwrite($fp, $fields.";");
 
-
-
-						    fputcsv($fp, $fields,chr (124));
-						}
-						unset($result);
-						$result=NULL;
-						$result=array();
-						
-						unset($rows);
-						//$r->free();
-						//fclose($fp);
-						//unset($fp);
-						//$fp=null;
-						$k=0;
-						//gc_collect_cycles();
-						//time_nanosleep(0, 10000000);
-						//mysql_free_result($r);
-						//ob_implicit_flush();
-						//echo  "Memoria Final real: ".(memory_get_peak_usage()/1024/1024)." MiB r:\n";
-						//$this->getMemoryUsage($r);
-					}
 					
 					$k++;
 					$kk++;
