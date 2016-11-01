@@ -112,20 +112,7 @@
 					<div class="col-lg-9 form-inline">
  						<b>Concepto:</b>
         				<select ng-model="data1.concepto" ng-change="calcularPendientes(data1.concepto)" class="form-control" style="width: auto;">
-    						<option value='TODO'>TODO</option>
-    						<option value='PETEC'>PETEC</option>
-    						<option value='OKRED'>OKRED</option>
-    						<option value='15'>15</option>
-    						<option value='14'>14</option>
-    						<option value='99'>99</option>
-    						<option value='92'>92</option>
-                            <option value='19'>19</option>
-    			            <option value='O-13'>O-13</option>
-    			            <option value='O-15'>O-15</option>
-    			            <option value='O-106'>O-106</option>
-    			            <option value='O-101'>O-101</option>
-    			            <option value='PEOPP'>PEOPP</option>
-                            <option value='PUMED'>PUMED</option>
+    						<option ng-repeat="d in listadoConceptos" value='{{d.CONCEPTO_ID}}'>{{d.CONCEPTO_ID}}</option>
 
 					   </select> 
 					<!--a href="#" id ="export" class="btn btn-success btn-md">Exportar</a-->
