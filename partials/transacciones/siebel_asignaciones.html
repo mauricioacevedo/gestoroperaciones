@@ -25,7 +25,7 @@
 								<select
 									class= "btn btn-default btn-xs grupo-select"
 									style="width: 200px"
-									ng-model="pro.EstadoSiebel">
+									ng-model="iconcepto">
 									<option value="" disabled>--Estado--</option>
 									<option ng-repeat="d in estadosSiebel " value="{{d.ESTADO_ID}}">{{d.ESTADO_ID}}</option>
 								</select>
@@ -34,9 +34,9 @@
 							<li> &nbsp; </li>
 							<li>
 
-								<button id="ped" type="button" class="btn btn-xs btn-default"  ng-show="pedidoIsActive" ng-class="pedidoIsActive==false?'animated bounceOutRight':'animated fadeInUp'" ng-click="executeCopy(pedido)" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="<i class='fa fa-clipboard'></i> Copiar">{{pedido}}
+								<button id="ped" type="button" class="btn btn-xs btn-default"  ng-show="pedidoIsActive" ng-class="pedidoIsActive==false?'animated bounceOutRight':'animated fadeInUp'" ng-click="executeCopy(pedido)" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="<i class='fa fa-clipboard'></i> Copiar">{{pedidoinfo}}
 								</button>
-								<button type="button" class="btn btn-success btn-DemePedido-xs" ng-click="DemePedido(pro)"   ng-disabled="false">
+								<button type="button" class="btn btn-success btn-DemePedido-xs" ng-click="start(pedido);"   ng-disabled="false">
 								DemePedido
 								</button>
 

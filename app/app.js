@@ -10738,7 +10738,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 
 
-	$scope.pedido='111111111';
+	//$scope.pedido='111111111';
 	$scope.pedidoIsActive=false;
 
 
@@ -10872,6 +10872,101 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
           });
 
 	// --------------------------------------------------------------Disque Light KPI
+
+
+
+	// DemePedido --------------------------------------------------------------
+	$scope.baby = function(pedido) {
+		console.log(pedido);
+		services.getPedidosPorPedido(pedido).then(function(data){
+                      console.log(data.data);
+                      $scope.historico_pedido=data.data;
+                      return data.data;
+                 });
+	};
+
+	$scope.start = function(pedido) {
+
+		var pedido1='';
+		$scope.popup='';
+		$scope.errorDatos="";
+
+		if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
+			//alert($scope.peds[0].PEDIDO_ID);
+			 pedido1=$scope.peds[0].PEDIDO_ID;
+
+		}
+		$scope.peds={};
+		$scope.mpedido={};
+		$scope.bpedido='';
+		$scope.busy="";
+		$scope.pedido1=pedido1;
+
+
+		$scope.error="";
+
+		var demePedidoButton=document.getElementById("iniciar");
+			demePedidoButton.setAttribute("disabled","disabled");
+			demePedidoButton.className = "btn btn-success disabled";
+
+		var kami=services.demePedido($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,'').then(function(data){
+
+			$scope.peds = data.data;
+
+			if(data.data==''){
+
+				document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de plaza.";
+				$scope.errorDatos="No hay Registros. Intente Cambiando de plaza.";
+			}else{
+
+				document.getElementById("warning").innerHTML="";
+				$scope.pedido1=$scope.peds[0].PEDIDO_ID;
+                $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+				$scope.pedidoIsActive=true;
+
+					if($scope.peds[0].STATUS=="PENDI_PETEC"&&$scope.peds[0].ASESOR!=""){
+                            $scope.busy=$scope.peds[0].ASESOR;
+							$scope.error="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
+
+                                }
+
+				$scope.baby($scope.pedido1);
+
+			}
+	      		var demePedidoButton=document.getElementById("iniciar");
+	                demePedidoButton.removeAttribute("disabled");
+					demePedidoButton.className = "btn btn-success";
+					return data.data;
+    		});
+
+		$scope.timeInit=new Date().getTime();
+		var date1 = new Date();
+		var year    = date1.getFullYear();
+		var month   = $scope.doubleDigit(date1.getMonth()+1);
+		var day     = $scope.doubleDigit(date1.getDate());
+		var hour    = $scope.doubleDigit(date1.getHours());
+		var minute  = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+		$scope.fecha_inicio=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
+    	};
+
+	// -------------------------------------------------------------- DemePedido
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
