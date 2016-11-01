@@ -179,7 +179,7 @@
 
                             </thead>
                             <tbody>
-                                    <tr ng-repeat="data in listado_transaccionesActividades| orderBy:'FECHA_FIN':true ">
+                                    <tr ng-repeat="data in listado_transaccionesActividades1| orderBy:'FECHA_FIN':true ">
                                     <td>{{data.DIA}}</td>
                                     <td>{{data.FECHA}}</td>
                                     <td>{{data.TIPO_TRABAJO}}</td>
@@ -187,7 +187,7 @@
                                     <td>{{data.COLA}}</td>
                                     <td>{{data.USUARIO}}</td>
                                     <td>{{data.OBSERVACIONES}}</td>
-                                    <td align="center"><button class="btn btn-success btn-xs" value="edit!" ng-click="getTransaccionActividades(data.ID);"><i class="fa fa-pencil-square-o"></i></button></td>
+
                             </tr>
                             </tbody>
                     </table>

@@ -8006,6 +8006,50 @@ private function listadoTransaccionesActividades(){
 
         }
 
+        private function listadoTransaccionesActividades1(){
+             if($this->get_request_method() != "GET"){
+                                $this->response('',406);
+                        }
+                        $fechaini = $this->_request['fechaInicio'];
+                         $fechafin = $this->_request['fechaFin'];
+                        $page = $this->_request['page'];
+                        $id = $this->_request['userID'];
+                        $today = date("Y-m-d");
+
+                        //echo ($fecha);
+
+                        if($page=="undefined"){
+                                $page="0";
+                        }else{
+                                $page=$page-1;
+                        }
+                        $page=$page*100;
+                        //counter
+                        $query="SELECT count(*) as counter from transacciones_actividades where FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59'";
+                        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+                        $counter=0;
+                        if($rr->num_rows > 0){
+                                $result = array();
+                                if($row = $rr->fetch_assoc()){
+                                        $counter = $row['counter'];
+                                }
+                        }
+
+
+                        $query="SELECT * FROM transacciones_actividades where FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59' order by FECHA_FIN desc limit 100 offset $page";
+                        //echo $query;
+                        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+                        if($r->num_rows > 0){
+                                $result = array();
+                                while($row = $r->fetch_assoc()){
+                                        $result[] = $row;
+                                }
+                                $this->response($this->json(array($result,$counter)), 200); // send user details
+                        }
+                        $this->response('',204);        // If no records "No Content" status
+
+        }
+
 
 
 			private function getZonasOcupaagenda(){
