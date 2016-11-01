@@ -10922,13 +10922,12 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 		$scope.bpedido='';
 		$scope.busy="";
 		$scope.pedido1=pedido1;
-
-
 		$scope.error="";
+		$scope.iplaza='TODOS';
 
 		var demePedidoButton=document.getElementById("iniciar");
 			demePedidoButton.setAttribute("disabled","disabled");
-			demePedidoButton.className = "btn btn-success disabled";
+			demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
 		var kami=services.demePedido($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,'').then(function(data){
 
@@ -10956,7 +10955,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			}
 	      		var demePedidoButton=document.getElementById("iniciar");
 	                demePedidoButton.removeAttribute("disabled");
-					demePedidoButton.className = "btn btn-success";
+					demePedidoButton.className = "btn btn-success btn-DemePedido-xs";
 					return data.data;
     		});
 
