@@ -10935,8 +10935,8 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 			if(data.data==''){
 
-				document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de plaza.";
-				$scope.errorDatos="No hay Registros. Intente Cambiando de plaza.";
+				document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Estado.";
+				$scope.errorDatos="No hay Registros. Intente Cambiando de Estado.";
 			}else{
 
 				document.getElementById("warning").innerHTML="";
@@ -10987,7 +10987,17 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 
 
+$scope.doubleDigit= function (num){
 
+		if(num<0){
+			num=0;
+		}
+
+	        if(num<=9){
+        	    return "0"+num;
+	        }
+        	return num;
+	    };
 
 
 });
