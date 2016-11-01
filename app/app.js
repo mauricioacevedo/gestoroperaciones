@@ -10967,7 +10967,7 @@ app.config(['$routeProvider',
 
 		.when('/tx/siebel_asignaciones', {
 		 title: 'DemePedido Siebel Asignaciones',
-		 templateUrl: 'partials/transacciones/siebel_asignaciones.html',
+		 templateUrl: 'partials/transacciones/siebel_asignaciones.html?n=1',
 		 controller: 'siebelAsignacionesCtrl'
 	  })
 
