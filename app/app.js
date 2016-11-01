@@ -10733,15 +10733,36 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 					$location.path('/');
 			};
 
-		//  ---------------------------------Basura del logueo
 
 
+	//  ---------------------------------Basura del logueo
 
+	// Inicio de Variables ---------------------------------
+		$scope.pedidos=[];
+		$scope.pedidosUnicos='';
+		$scope.historico_pedido=[];
+		$rootScope.actualView="tx/siebel_asignaciones";
+		$scope.iconcepto="COBERTURA";
+		$scope.popup='';
+		$scope.intervalLightKPIS='';
+		$scope.pedidoinfo='';
 
-	//$scope.pedido='111111111';
-	$scope.pedidoIsActive=false;
+		var pedidos=services.getPedidosUser(userID).then(function(data){
+				$scope.pedidos=data.data[0];
+				$scope.pedidosUnicos=data.data[1];
+				return data.data;
+					});
 
+		 var original = $scope.pedidos;
+		 var originalUnico=$scope.pedidosUnicos;
 
+		$scope.peds={};
+		$scope.timeInit=0;
+		$scope.pedidos = angular.copy(original);
+
+		$scope.pedidoIsActive=false;
+
+	// ---------------------------------Inicio de Variables
 
 
 // Disque Light KPI --------------------------------------------------------------
