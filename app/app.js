@@ -10705,8 +10705,36 @@ app.controller('distanciacontroller', function ($scope,$route, $rootScope, $loca
 // Controlador para Gestion En Siebel -----------------------------------------------
 app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, $timeout, services) {
 
+	// Basura del logueo ---------------------------------
+		var userID=$cookieStore.get('logedUser').login;
+			document.getElementById('logout').className="btn btn-md btn-danger";
+			var divi=document.getElementById("logoutdiv");
+				divi.style.visibility="visible";
+				divi.style.position="relative";
+
+		$rootScope.logout = function() {
+					services.logout($rootScope.logedUser.login);
+					$cookieStore.remove('logedUser');
+					$rootScope.logedUser=undefined;
+					$scope.pedidos={};
+					clearInterval($scope.intervalLightKPIS);
+					document.getElementById('logout').className="btn btn-md btn-danger hide";
+					var divi=document.getElementById("logoutdiv");
+					divi.style.position="absolute";
+					divi.style.visibility="hidden";
+					$location.path('/');
+			};
+
+		//  ---------------------------------Basura del logueo
+
+
+
 
 	$scope.pedido='111111111';
+
+
+
+
 
 });
 // -----------------------------------------------Controlador para Gestion En Siebel
