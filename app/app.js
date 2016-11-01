@@ -10702,6 +10702,15 @@ app.controller('distanciacontroller', function ($scope,$route, $rootScope, $loca
 
 });
 
+// Controlador para Gestion En Siebel -----------------------------------------------
+app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, $timeout, services) {
+
+
+	$scope.pedido='111111111';
+
+});
+// -----------------------------------------------Controlador para Gestion En Siebel
+
 app.controller('mymodalcontroller', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,services)
 {
     $scope.header = 'Buscador Nodos CMTS';
