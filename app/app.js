@@ -10708,6 +10708,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 
 	// Basura del logueo ---------------------------------
+		$rootScope.logedUser=$cookieStore.get('logedUser');
 		var userID=$cookieStore.get('logedUser').login;
 			document.getElementById('logout').className="btn btn-md btn-danger";
 			var divi=document.getElementById("logoutdiv");
