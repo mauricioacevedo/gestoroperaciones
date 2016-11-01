@@ -10705,12 +10705,16 @@ app.controller('distanciacontroller', function ($scope,$route, $rootScope, $loca
 // Controlador para Gestion En Siebel -----------------------------------------------
 app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, $timeout, services) {
 
+
+
 	// Basura del logueo ---------------------------------
 		var userID=$cookieStore.get('logedUser').login;
 			document.getElementById('logout').className="btn btn-md btn-danger";
 			var divi=document.getElementById("logoutdiv");
 				divi.style.visibility="visible";
 				divi.style.position="relative";
+
+	console.log(userID);
 
 		$rootScope.logout = function() {
 					services.logout($rootScope.logedUser.login);
@@ -10733,7 +10737,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 	$scope.pedido='111111111';
 	$scope.pedidoIsActive=false;
 
-	console.log($rootScope.estadosSiebel);
+
 
 
 
