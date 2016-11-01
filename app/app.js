@@ -7554,7 +7554,7 @@ $scope.savePedido = function(index) {
 
 });
 
-app.controller('AgendamientoCtrl',function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services,$compile) {
+app.controller('AgendamientoCtrl',function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,$timeout, services,$compile) {
     
     	var userID=$cookieStore.get('logedUser').login;
     	$rootScope.logedUser=$cookieStore.get('logedUser');
@@ -8090,7 +8090,7 @@ $scope.actualizarLightKPIS();
         $scope.$on(
                 "$destroy",
                         function( event ) {
-                            $timeout.cancel(timer);
+                            $timeout.cancel($scope.intervalLightKPIS);
                             clearInterval($scope.intervalLightKPIS);
           });
 
