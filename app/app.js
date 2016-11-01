@@ -10831,6 +10831,20 @@ app.directive('modal', function () {
 
     }]);
 
+app.directive('popover', function() {
+   return function(scope, elem) {
+      elem.popover();
+   }
+});
+
+
+
+app.directive('tooltip', function() {
+   return function(scope, elem) {
+      elem.tooltip();
+   }
+});
+
 app.config( [
     '$compileProvider',
     function( $compileProvider )
