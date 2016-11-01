@@ -6362,15 +6362,18 @@ $queryConceptosFcita=" select ".
 				$concepto=" and b.CONCEPTO_ID in ('PETEC','15') and (b.TIPO_ELEMENTO_ID IN ('E2MB','P2MB','INSTIP','CNTXIP','SEDECX','PLANT','PLP','PTLAN','MTLAN', 'PMULT','EPCM','PPCM','PBRI','PPRI','INSTIP','TV','TP','PBRI','BDID','TDID','BDIDE1','TDIDE1','BDODE1','TDODE1','SLL','TC','SLLBRI','TCBRI','SLLE1','TCE1','SLLPRI','TCPRI','SEDEIP','CONECT','ACCESO','SEDECX') )";
 			
 			
+			}else if($fuente=="SIEBEL"){
+					$concepto=" and b.CONCEPTO_ID in ('$concepto')";
 			}else if($concepto=="STBOX"){
-                                $concepto=" and b.CONCEPTO_ID in ('PETEC','15') and (b.TIPO_ELEMENTO_ID IN ('STBOX') )";
+                 $concepto=" and b.CONCEPTO_ID in ('PETEC','15') and (b.TIPO_ELEMENTO_ID IN ('STBOX') )";
 
 
-                        }else if($concepto=="EQURED"){
+                 }else if($concepto=="EQURED"){
 
 				 $concepto=" and b.CONCEPTO_ID in ('PETEC') and (b.RADICADO_TEMPORAL = 'EQURED' )";
 
-                        }else if($concepto=="14" || $concepto=="99" || $concepto=="O-101"){
+                   }else if($concepto=="14" || $concepto=="99" || $concepto=="O-101"){
+
 				$parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION');
 				//reviso si hay llamadas que se deben hacer y las entrego de primeras
 				$sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA ".
