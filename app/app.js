@@ -11262,14 +11262,17 @@ app.run(['$rootScope', 'services', function($rootScope, services){
       "values": ["GIOVANI DE JESUS RODRIGUEZ PEREZ","JUAN FERNANDO MUÑOZ ZAPATA", "MONICA TATIANA HUERTAS GIRALDO", "NORBEY ANDRES MIRA DUQUE", "OTRO"]
   };
 
-	$rootScope.estadosSiebel = {
-      "type": "select",
-      "name": "estadosSiebel",
-      "value": ["COBERTURA","CONSTRUCCION", "DISENO", "DISPONIBILIDAD"],
-      "values": ["COBERTURA","CONSTRUCCION", "DISENO", "DISPONIBILIDAD"]
-  };
+
+	$rootScope.estadosSiebel=[
+        {ESTADO_ID:'COBERTURA', VALOR:'COBERTURA'},
+        {ESTADO_ID:'CONSTRUCCION', VALOR:'CONSTRUCCION'},
+        {ESTADO_ID:'DISENO', VALOR:'DISENO'},
+        {ESTADO_ID:'DISPONIBILIDAD', VALOR:'DISPONIBILIDAD'}
+    ];
+
 
 }]);
+
 app.run(['$location', '$rootScope', function($location, $rootScope) {
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
