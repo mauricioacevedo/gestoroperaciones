@@ -8542,8 +8542,8 @@ private function listadoTransaccionesActividades(){
 			                    if($cellValue !== null){
 			                        $table .= $cellValue;
 			                     }
-						        if($h=="A"){
-			                	$PEDIDO_ID.=$cellValue;
+						        if($h=="I"){
+			                	$PEDIDO_ID=$cellValue;
 			                	}
 			                	if($h=="J"){
 			                	$cliente_id=$cellValue;
@@ -8590,6 +8590,26 @@ private function listadoTransaccionesActividades(){
                        		
                         if ($tname1 == "IMPORTANTES.xlsx"){
 
+                               for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
+			                    $cellValue = $this->get_cell($h.$v, $objPHPExcel);
+
+			                    $table .= "<td>";
+			                    $guardar .=" '$cellValue',";
+
+			                    if($cellValue !== null){
+			                        $table .= $cellValue;
+			                     }
+						        if($h=="A"){
+			                	$PEDIDO_ID.=$cellValue;
+
+			                	if($h=="M"){
+			                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
+								$FECHA_FIN = gmdate("Y-m-d 00:00:00",$timestamp);//fecha formateada+
+							  	$table .= "<td>";
+							  	}
+
+			                }
+
 
                         	$che=explode(",",$guardar);//validacion de datos que carguen pedidos diferentes y omita los repetidos
                         	$pedido=$che[0];
@@ -8610,7 +8630,7 @@ private function listadoTransaccionesActividades(){
                         		}
 
 		                        	$sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID,CONCEPTOS,CLIENTE_ID,NOMBRE_USUARIO,DEPARTAMENTO,SUBZONA_ID,DIRECCION_ENVIO,FUENTE,PROCESO,CELULAR_AVISAR,TELEFONO_AVISAR,IDENTIFICADOR_ID,FECHA_INGRESO,MICROZONA,OBSERVACION_FENIX,TECNOLOGIA_ID) values ($guardar) ";
-					       var_dump($h);
+					       echo($guardar);
 					       	$r = $this->mysqli->query($sqlemail) or die($this->mysqli->error.__LINE__);
 
 			            	
