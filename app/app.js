@@ -10998,6 +10998,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 		$scope.InfoPedido=[];
 		$scope.fecha_inicio=null;
 		$scope.accRdy=false;
+		$scope.InfoGestion={};
 		$scope.InfoPedido.INCIDENTE='NO';
 
 		if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
@@ -11088,6 +11089,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 				  }
 			  );
 		};
+
 	$scope.listarEstados();
 
 	$scope.onChangeAccion=function(){
@@ -11116,6 +11118,30 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			}
 
 		console.log($scope.InfoGestion);
+
+		services.insertTransaccionNCA($scope.InfoGestion).then(
+
+			  function(data){
+
+				  $scope.pedidoIsGuardado=true;
+
+				  return data.data;
+
+
+					}
+			  , function errorCallback(response,status) {
+				  //console.log(status);
+					$scope.errorDatos="No se pudo guardar";
+
+				  }
+			  );
+
+
+
+
+
+
+
 	};
 
 
