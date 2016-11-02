@@ -8590,25 +8590,7 @@ private function listadoTransaccionesActividades(){
                        		
                         if ($tname1 == "IMPORTANTES.xlsx"){
 
-                               for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
-			                    $cellValue = $this->get_cell($h.$v, $objPHPExcel);
 
-			                    $table .= "<td>";
-			                    $guardar .=" '$cellValue',";
-
-			                    if($cellValue !== null){
-			                        $table .= $cellValue;
-			                     }
-						        if($h=="A"){
-			                	$PEDIDO_ID.=$cellValue;
-
-			                	if($h=="M"){
-			                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
-								$FECHA_INGRESO = gmdate("Y-m-d 00:00:00",$timestamp);//fecha formateada+
-							  	$table .= "<td>";
-							  	}
-
-			                }
 
 
                         	$che=explode(",",$guardar);//validacion de datos que carguen pedidos diferentes y omita los repetidos
