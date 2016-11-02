@@ -10993,6 +10993,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 		$scope.popup='';
 		$scope.errorDatos=null;
 		$scope.InfoPedido=[];
+		$scope.fecha_inicio=null;
 
 		if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
 			//alert($scope.peds[0].PEDIDO_ID);
@@ -11027,6 +11028,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
                 $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 				$scope.pedidoIsActive=true;
 				$scope.errorDatos=null;
+				$scope.fecha_inicio=$rootScope.fechaProceso();
 
 					if($scope.peds[0].STATUS=="PENDI_PETEC"&&$scope.peds[0].ASESOR!=""){
                             $scope.busy=$scope.peds[0].ASESOR;
@@ -11089,9 +11091,10 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 	$scope.guardarPedido=function(InfoPedido,gestion,status){
 
-		console.log(InfoPedido);
-		console.log(gestion);
-		console.log(status);
+		$scope.fecha_fin=$rootScope.fechaProceso();
+
+		console.log($scope.fecha_inicio);
+		console.log($scope.fecha_fin);
 	};
 
 
