@@ -146,17 +146,9 @@
 													</option>
 												</select>
 											</div>
-											<div class="form-group small"  ng-class="{ 'has-error' : seguimiento_form.incidente.$pristine && seguimiento_form.subaccion.$invalid}">
+											<div class="form-group small">
 												<label for="incidente">CR Incidente:</label>
-												<select
-													class= "form-control btn-xs"
-													name="incidente"
-													ng-change="onChangeSubAccion()"
-													ng-model="InfoPedido.SUBACCION" required>
-													<option value="" selected="selected">--Seleccione--</option>
-													<option
-													ng-repeat="d in ListaSubAcciones | filter:{ACCION: InfoPedido.ACCION} " value="{{d.SUB_ACCION}}">{{d.SUB_ACCION}}</option>
-												</select>
+												<input type="text" name="incidente" id="incidente" class="form-control btn-xs">
 											</div>
 
 											<div class="form-group small" ng-show="false" >
@@ -169,15 +161,6 @@
 														</span>
 													</div>
 												</div>
-											</div>
-											<div class="form-group small" >
-												<label for="observacion">Observación:</label>
-												<textarea
-												name="observacion"
-												class="form-control"
-												ng-model="InfoPedido.OBSERVACIONES" name="OBSERVACIONES"
-												select-on-click >
-												</textarea>
 											</div>
 											<div>
 												<div class="hide" ng-repeat="e in Observaciones | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO, OBSERVACION_ID: InfoPedido.OBSERVACIONES_PROCESO} as status">
