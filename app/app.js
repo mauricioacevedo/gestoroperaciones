@@ -9646,7 +9646,11 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                     var manual=data.data[1];
                         var automatico=data.data[2];
                         var totales=data.data[3];
+                        var inicial= automatico[0];
+                        var finall=automatico[automatico.length-1];
 
+                        inicial=inicial['value'];
+                        finall=finall['value'];
 
                         $scope.myDataSourceAD = {
                         
@@ -9690,6 +9694,21 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                 }
             ]
         }
+    ],
+
+      "dataset": [
+        {
+            "seriesname": "Manual",
+            "data": manual
+        },
+        {
+            "seriesname": "Automatico",
+            "renderas": "mscolumn2d",
+            "showvalues": "1",
+            "theme":"carbon",
+            "data": automatico
+        },
+
     ],
 
                                 data: data.data[0]
