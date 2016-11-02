@@ -4016,14 +4016,29 @@ $queryConceptosFcita=" select ".
 
                         if($r->num_rows > 0){
                                 $result = array();
-				$total=0;
+                                $categorias=array();
+                                $totales=array();
+                                $automatico=array();
+                                $manual=array();
+                                $i=0;
                                 while($row = $r->fetch_assoc()){
-                                        $row['label']="Cola ".$row['label'];
-					$total=$total + $row['value'];
+                                        $label=$row['FECHA'];
+                                        $total=$row['TOTAL'];
+                                        $auto=$row['AUTOMATICO'];
+                                        $manu=$row['MANUAL'];
+
+                                        $auto=$auto/$total;
+                                        $auto=number_format($auto, 2);
+                                        $manu=number_format($manu/$total, 2);
+
+                                        $categorias[]=array("label"=>"$label");
+                                        $totales[]=array("value"=>"$total");
+                                        $manual[]=array("value"=>"$manu");
+                                        $automatico[]=array("value"=>"$auto", "label"=>"$pauto");
                                         $result[] = $row;
+                                        $i++;
                                 }
-                                $this->response($this->json(array($result,$total)), 200); // send user details
-                        }
+                                $this->response($this->json(array($categorias,$manual,$automatico,$totales,$result)), 200); // send user details
                         $this->response('',204);        // If no records "No Content" status
 
                 }

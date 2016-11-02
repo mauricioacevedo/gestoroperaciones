@@ -9532,6 +9532,18 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
        $scope.actualizarGraficaAD   = function (){
     //TOMAR MUESTRA
                 var data1=services.getPendientesGraficaAD().then(function(data){
+                    //cambio
+                     var categorias=data.data[0];
+                        var manual=data.data[1];
+                        var automatico=data.data[2];
+                        var totales=data.data[3];
+
+                        var inicial= automatico[0];
+                        var finall=automatico[automatico.length-1];
+
+                        inicial=inicial['value'];
+                        finall=finall['value'];
+                        //cambio
                         $scope.myDataSourceAD = {
                              /*   chart: {
                                         caption: "Grafica A y D",
@@ -9568,10 +9580,40 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                                 "showAlternateHGridColor": "0",
                                 "subcaptionFontBold": "0",
                                 "subcaptionFontSize": "14"
-                            },
-                                data: data.data[0]
 
-                        }
+                            },
+                             "categories": [ { "category": categorias } ] ,
+       "trendlines": [
+        {
+            "line": [
+                {
+                    "startvalue": inicial,
+                    "endValue": finall,
+                    "color": "#1aaf5d",
+                    "valueOnRight": "1",
+                    "dashed": "1",
+                    "thickness":"4",
+                    "alpha": "100",
+                    "displayvalue": "Trend"
+                }
+            ]
+        }
+    ],
+    "dataset": [
+        {
+            "seriesname": "Manual Activacion",
+            "data": manual
+        },
+        {
+            "seriesname": "Automatico Activacion",
+            "renderas": "mscolumn2d",
+            "showvalues": "1",
+            "theme":"carbon",
+            "data": automatico
+        },
+
+    ],
+};
                         var date1 = new Date();
                         var year    = date1.getFullYear();
                         var month   = $scope.doubleDigit(date1.getMonth()+1);
