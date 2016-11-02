@@ -96,7 +96,7 @@
 										<div class="col-md-6">
 											<li class="list-group-item small" ><b>TRANSACCION:</b> {{service.DESC_TIPO_TRABAJO}} </li>
 											<li class="list-group-item small" ><b>FECHA ESTADO:</b> {{service.FECHA_ESTADO}} </li>
-											<li class="list-group-item small" ><b>CONCEPTO:</b> {{service.CONCEPTO_ID}} </li>
+											<li class="list-group-item small" ><b>ESTADO:</b> {{service.CONCEPTO_ID}} </li>
 											<li class="list-group-item small" ><b>TIPO TRABAJO:</b> {{service.TIPO_TRABAJO}} </li>
 											<li class="list-group-item small" ><b>TIEMPO EN COLA:</b> {{service.TIEMPO_COLA}} </li>
 
@@ -149,7 +149,7 @@
 											</div>
 											<div class="form-group small">
 												<label for="incidente">CR Incidente:</label>
-												<input type="text" name="incidente" id="incidente" class="form-control btn-xs">
+												<input type="text" name="incidente" id="incidente" class="form-control btn-xs" ng-model="InfoPedido.INCIDENTE">
 											</div>
 
 											<div class="form-group small" ng-show="false" >

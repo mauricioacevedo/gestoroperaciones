@@ -10998,6 +10998,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 		$scope.InfoPedido=[];
 		$scope.fecha_inicio=null;
 		$scope.accRdy=false;
+		$scope.InfoPedido.INCIDENTE='NO';
 
 		if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
 			//alert($scope.peds[0].PEDIDO_ID);
@@ -11097,18 +11098,24 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 		$scope.fecha_fin=$rootScope.fechaProceso();
 
-		console.log(InfoPedido);
-		console.log(gestion);
-		console.log(status)
+
 
 		$scope.InfoGestion={
-			OFERTA:InfoPedido.oferta,
+			OFERTA:gestion.PEDIDO_ID,
+			MUNICIPIO_ID:gestion.MUNICIPIO_ID,
+			TRANSACCION:gestion.DESC_TIPO_TRABAJO,
+			ESTADO:gestion.CONCEPTO_ID,
+			FECHA:gestion.FECHA_ESTADO,
+			DURACION:null,
+			INCIDENTE:gestion.INCIDENTE,
+			FECHA_INICIO:$scope.fecha_inicio,
+			FECHA_FIN:$scope.fecha_fin,
+			ESTADO_FINAL:InfoPedido.ESTADO_PROCESO,
+			OBSERVACION:InfoPedido.OBSERVACIONES_PROCESO,
+			USUARIO:$rootScope.logedUser.login
 			}
 
-
-
-		console.log($scope.fecha_inicio);
-		console.log($scope.fecha_fin);
+		console.log($scope.InfoGestion);
 	};
 
 
