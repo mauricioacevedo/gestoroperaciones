@@ -9642,6 +9642,13 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
           $scope.actualizarseguimientoGraficaAD   = function (){
     //TOMAR MUESTRA
                 var data1=services.getSeguimientoActivacionGraficaAD().then(function(data){
+                    var categorias=data.data[0];
+
+                var inicial= automatico[0];
+			     var finall=automatico[automatico.length-1];
+
+                    inicial=inicial['value'];
+                    finall=finall['value'];
                         $scope.myDataSourceAD = {
                         
 
