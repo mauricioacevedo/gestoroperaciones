@@ -11087,6 +11087,12 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
       $scope.accRdy=true;
  };
 
+	$scope.guardaPedido=function(){
+
+		console.log(InfoPedido);
+		console.log(status);
+	};
+
 
 	// -------------------------------------------------------------- GuardarPedido
 
