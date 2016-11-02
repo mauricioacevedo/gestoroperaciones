@@ -111,7 +111,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 	}
 
 
-//---------------------------------------------------------Agendamiento
+//---------------------------------------------------------------------------------------------Agendamiento
     obj.getPedidosUserAdelantarAgenda = function(userID){
                 return $http.get(serviceBase + 'pedidosPorUserAdelantarAgenda?userID=' + userID);
         }
@@ -386,7 +386,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 
 
 
-//-------------------------------------------------------------------Fin-asignaciones
+
 
 
 
@@ -875,7 +875,7 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 
 	 // -----------------------------  Siebel Asignaciones//
 
-
+//-------------------------------------------------------------------Fin-asignaciones
 
 
 
