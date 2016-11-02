@@ -8542,7 +8542,7 @@ private function listadoTransaccionesActividades(){
 			                    if($cellValue !== null){
 			                        $table .= $cellValue;
 			                     }
-						        if($h=="I"){
+						        if($h=="L"){
 			                	$PEDIDO_ID=$cellValue;
 			                	}
 			                	if($h=="J"){
