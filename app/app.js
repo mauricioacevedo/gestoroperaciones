@@ -9668,6 +9668,24 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                                 "subcaptionFontSize": "14"
                             },
 
+                              "categories": [ { "category": categorias } ] ,
+       "trendlines": [
+        {
+            "line": [
+                {
+                    "startvalue": inicial,
+                    "endValue": finall,
+                    "color": "#1aaf5d",
+                    "valueOnRight": "1",
+                    "dashed": "1",
+                    "thickness":"4",
+                    "alpha": "100",
+                    "displayvalue": "Trend"
+                }
+            ]
+        }
+    ],
+
                                 data: data.data[0]
 
                         }
