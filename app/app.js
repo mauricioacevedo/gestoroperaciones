@@ -9647,8 +9647,8 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                         var automatico=data.data[2];
                         var totales=data.data[3];
 
-                var inicial= automatico[0];
-			     var finall=automatico[automatico.length-1];
+
+
 
                     inicial=inicial['value'];
                     finall=finall['value'];
