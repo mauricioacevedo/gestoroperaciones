@@ -11114,7 +11114,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			OBSERVACION:InfoPedido.OBSERVACIONES_PROCESO,
 			USUARIO:$rootScope.logedUser.login
 			}
-		console.lgo(gestion);
+		console.log(gestion);
 		console.log($scope.InfoGestion);
 	};
 
