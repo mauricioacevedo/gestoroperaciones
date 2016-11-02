@@ -180,7 +180,7 @@
 												</textarea>
 											</div>
 											<div>
-												<div class="hide" ng-repeat="e in Observaciones | filter:{e.ESTADO_ID: InfoPedido.ESTADO_PROCESO, e.OBSERVACION_ID: InfoPedido.OBSERVACIONES_PROCESO} as status">
+												<div class="hide" ng-repeat="e in Observaciones | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO, OBSERVACION_ID: InfoPedido.OBSERVACIONES_PROCESO} as status">
 													<input ng-model="InfoPedido.STATUS">
 												</div>
 											</div>
