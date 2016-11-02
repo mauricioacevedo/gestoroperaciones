@@ -11083,6 +11083,10 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 		};
 	$scope.listarEstados();
 
+	$scope.onChangeAccion=function(){
+      $scope.accRdy=true;
+ };
+
 
 	// -------------------------------------------------------------- GuardarPedido
 
