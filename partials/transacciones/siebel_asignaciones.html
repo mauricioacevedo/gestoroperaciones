@@ -115,7 +115,7 @@
 
 										<form name="seguimiento_form" id="seguimiento_form">
 											<div class="form-group small" ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
-												<label for="estado">Estado Gestionado:</label>
+												<label for="estado">Estado Gestión:</label>
 												<select
 													class= "form-control btn-xs"
 													name="estado"
@@ -129,8 +129,8 @@
 													</option>
 												</select>
 											</div>
-											<div class="form-group small" ng-class="{ 'has-error' : seguimiento_form.accion.$pristine && seguimiento_form.accion.$invalid}">
-												<label for="obs">Observaciones:</label>
+											<div class="form-group small" ng-show="InfoPedido.ESTADO_PROCESO" ng-class="{ 'has-error' : seguimiento_form.accion.$pristine && seguimiento_form.accion.$invalid}">
+												<label for="obs">Observación Gestión:</label>
 												<select
 													class= "form-control btn-xs"
 													name="obs"
