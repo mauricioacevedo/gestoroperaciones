@@ -9648,10 +9648,6 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                         var totales=data.data[3];
 
 
-
-
-                    inicial=inicial['value'];
-                    finall=finall['value'];
                         $scope.myDataSourceAD = {
                         
 
