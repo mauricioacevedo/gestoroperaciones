@@ -11097,6 +11097,16 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 		$scope.fecha_fin=$rootScope.fechaProceso();
 
+		console.log(InfoPedido);
+		console.log(gestion);
+		console.log(status)
+
+		$scope.InfoGestion={
+			OFERTA:InfoPedido.oferta,
+			}
+
+
+
 		console.log($scope.fecha_inicio);
 		console.log($scope.fecha_fin);
 	};
