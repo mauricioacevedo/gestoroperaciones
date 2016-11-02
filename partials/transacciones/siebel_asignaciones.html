@@ -97,7 +97,7 @@
 											<li class="list-group-item small" ><b>FECHA ESTADO:</b> {{service.FECHA_ESTADO}} </li>
 											<li class="list-group-item small" ><b>CONCEPTO:</b> {{service.CONCEPTO_ID}} </li>
 											<li class="list-group-item small" ><b>TIPO TRABAJO:</b> {{service.TIPO_TRABAJO}} </li>
-											<li class="list-group-item small" ><b>TIPO TRANSACCION:</b> {{service.DESC_TIPO_TRABAJO}} </li>
+											<li class="list-group-item small" ><b>TRANSACCION:</b> {{service.DESC_TIPO_TRABAJO}} </li>
 											<li class="list-group-item small" ><b>TIEMPO EN COLA:</b> {{service.TIEMPO_COLA}} </li>
 
 
@@ -146,11 +146,11 @@
 													</option>
 												</select>
 											</div>
-											<div class="form-group small" ng-show="InfoPedido.ACCION" ng-class="{ 'has-error' : seguimiento_form.subaccion.$pristine && seguimiento_form.subaccion.$invalid}">
-												<label for="subaccion">Sub Acción:</label>
+											<div class="form-group small"  ng-class="{ 'has-error' : seguimiento_form.incidente.$pristine && seguimiento_form.subaccion.$invalid}">
+												<label for="incidente">CR Incidente:</label>
 												<select
 													class= "form-control btn-xs"
-													name="subaccion"
+													name="incidente"
 													ng-change="onChangeSubAccion()"
 													ng-model="InfoPedido.SUBACCION" required>
 													<option value="" selected="selected">--Seleccione--</option>
@@ -158,28 +158,8 @@
 													ng-repeat="d in ListaSubAcciones | filter:{ACCION: InfoPedido.ACCION} " value="{{d.SUB_ACCION}}">{{d.SUB_ACCION}}</option>
 												</select>
 											</div>
-											<div class="form-group small" ng-show="InfoPedido.SUBACCION">
-												<label for="gestion">Gestión:</label>
-												<select
-													class= "form-control btn-xs"
-													name="gestion"
-													ng-change="onChangeGestion()"
-													ng-model="InfoPedido.GESTION">
-													<option value="" selected="selected">--Seleccione--</option>
-													<option ng-repeat="d in ListaGestion | filter:{ACCION: InfoPedido.ACCION, SUB_ACCION: InfoPedido.SUBACCION}"  value="{{d.GESTION}}">{{d.GESTION}}</option>
-												</select>
-											</div>
-											<div class="form-group small" ng-show="InfoPedido.GESTION" ng-class="{ 'has-error' : seguimiento_form.subgestion.$pristine}">
-												<label for="subgestion">Sub Gestión:</label>
-												<select
-													class= "form-control btn-xs"
-													name="subgestion"
-													ng-model="InfoPedido.SUBGESTION">
-													<option value="" selected="selected">--Seleccione--</option>
-													<option ng-repeat="d in ListaSubGestion | filter:{ACCION: InfoPedido.ACCION, SUB_ACCION: InfoPedido.SUBACCION, GESTION: InfoPedido.GESTION}" value="{{d.SUB_GESTION}}">{{d.SUB_GESTION}}</option>
-												</select>
-											</div>
-											<div class="form-group small" ng-show="InfoPedido.SUBGESTION=='PROGRAMACION'" >
+
+											<div class="form-group small" ng-show="false" >
 												<label for="programacion">Programación:</label>
 												<div class="control-group" >
 													<div class="input-group margin-bottom-sm">
@@ -190,9 +170,6 @@
 													</div>
 												</div>
 											</div>
-											<div >
-
-											</div>
 											<div class="form-group small" >
 												<label for="observacion">Observación:</label>
 												<textarea
@@ -201,19 +178,11 @@
 												ng-model="InfoPedido.OBSERVACIONES" name="OBSERVACIONES"
 												select-on-click >
 												</textarea>
-												<button type="button" class="btn btn-xs btn-default"
-												ng-click="executeCopy('Grupo:GS AAA, Usuario:'+galletainfo.USUARIO_ID+', Acción:'+InfoPedido.ACCION+', Subacción:'+InfoPedido.SUBACCION+', Observación:  '+InfoPedido.OBSERVACIONES)" ><i class='fa fa-clipboard'> </i> Copiar
-												</button>
 											</div>
 											<div>
-												<div class="hide" ng-repeat="InfoPedido in ListadoParametrosAcciones | filter:{ACCION: InfoPedido.ACCION, SUB_ACCION: InfoPedido.SUBACCION} as model">
+												<div class="hide" ng-repeat="e in Observaciones | filter:{e.ESTADO_ID: InfoPedido.ESTADO_PROCESO, e.OBSERVACION_ID: InfoPedido.OBSERVACIONES_PROCESO} as status">
 													<input ng-model="InfoPedido.STATUS">
 												</div>
-											</div>
-											<div>
-												               <pre>
-													               Grupo:GS AAA, Usuario:{{galletainfo.USUARIO_ID}}, Acción:{{InfoPedido.ACCION}}, Subacción: {{InfoPedido.SUBACCION}}
-												</pre>
 											</div>
 
 										</form>
