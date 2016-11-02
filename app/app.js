@@ -11087,10 +11087,10 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
       $scope.accRdy=true;
  };
 
-	$scope.guardarPedido=function(InfoPedido,status){
+	$scope.guardarPedido=function(InfoPedido,gestion){
 
 		console.log(InfoPedido);
-		console.log(status);
+		console.log(gestion);
 	};
 
 
