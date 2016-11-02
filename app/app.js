@@ -378,6 +378,9 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'getDashboardActivacionMes');
         }
 
+       obj.getSeguimientoActivacionGraficaAD = function(){
+                return $http.get(serviceBase + 'seguimientoactivacionGraficaAD');
+        }
 //------------------------------------------------------fin_Activacion
 
 
@@ -687,9 +690,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pendientesGraficaAD');
         }
 
-         obj.getSeguimientoActivacionGraficaAD = function(){
-                return $http.get(serviceBase + 'seguimientoactivacionGraficaAD');
-        }
+
 
 
 
