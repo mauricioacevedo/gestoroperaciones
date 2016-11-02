@@ -115,7 +115,7 @@
 
 										<form name="seguimiento_form" id="seguimiento_form">
 											<div class="form-group small" ng-class="{ 'has-error' : seguimiento_form.subproceso.$pristine && seguimiento_form.subproceso.$invalid}">
-												<label for="accion">Sub Proceso Gestionado:</label>
+												<label for="accion">Estado Gestionado:</label>
 												<select
 													class= "form-control btn-xs"
 													name="subproceso"
@@ -123,9 +123,9 @@
 													required>
 													<option value="">--Seleccione--</option>
 													<option
-														ng-repeat="d in subProcesos"
-														value="{{d.SUB_PROCESO}}">
-														{{d.SUB_PROCESO}}
+														ng-repeat="d in Estados"
+														value="{{d.ESTADO_ID}}">
+														{{d.ESTADO_ID}}
 													</option>
 												</select>
 											</div>

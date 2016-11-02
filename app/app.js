@@ -809,6 +809,25 @@ obj.getDepartamentosParametrizacionSiebel = function(){
      obj.getCsvSchedulingPedidos = function(login){
             return $http.get(serviceBase + 'csvSchedulingPedidos?login='+login);
      }
+
+	 // Siebel Asignaciones -----------------------------
+
+	 obj.getlistadoOpcionesSiebelAsignaciones= function () {
+     return $http.get(serviceBase + 'listadoOpcionesSiebel');
+        };
+
+
+	 // -----------------------------  Siebel Asignaciones//
+
+
+
+
+
+
+
+
+
+
     	return obj;
 }]);
 
@@ -10981,12 +11000,33 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 	// -------------------------------------------------------------- DemePedido
 
 
+	// GuardarPedido --------------------------------------------------------------
+
+	$scope.listarEstados=function(){
+
+			services.getlistadoOpcionesSiebelAsignaciones().then(
+
+			  function(data){
+
+				  $scope.Observaciones=data.data[0];
+				  $scope.Estados=data.data[1];
+				  $scope.listadoOpcionesSiebel=data.data[2];
+
+				  return data.data;
 
 
+					}
+			  , function errorCallback(response,status) {
+				  //console.log(status);
+					$scope.errorDatos="Sin Procesos";
+
+				  }
+			  );
+		};
+	$scope.listarEstados();
 
 
-
-
+	// -------------------------------------------------------------- GuardarPedido
 
 
 
