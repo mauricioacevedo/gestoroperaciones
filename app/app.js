@@ -10827,6 +10827,9 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 		$scope.intervalLightKPIS='';
 		$scope.pedidoinfo='';
 		$scope.errorDatos=null;
+		$scope.accRdy=false;
+		$scope.fecha_inicio=null;
+		$scope.fecha_fin=null;
 
 		var pedidos=services.getPedidosUser(userID).then(function(data){
 				$scope.pedidos=data.data[0];
@@ -10994,6 +10997,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 		$scope.errorDatos=null;
 		$scope.InfoPedido=[];
 		$scope.fecha_inicio=null;
+		$scope.accRdy=false;
 
 		if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
 			//alert($scope.peds[0].PEDIDO_ID);
