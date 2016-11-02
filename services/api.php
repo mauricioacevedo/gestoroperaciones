@@ -4855,7 +4855,7 @@ $queryConceptosFcita=" select ".
                     
 
                                         $result[] = $row;
-                                        fputcsv($fp, $row);
+                                        fputcsv($fp, $row,chr (124));
                                 }
                                 fclose($fp);
                                 $this->response($this->json(array($filename,$login)), 200); // send user details
