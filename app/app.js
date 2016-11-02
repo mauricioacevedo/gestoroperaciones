@@ -11107,14 +11107,14 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			ESTADO:gestion.CONCEPTO_ID,
 			FECHA:gestion.FECHA_ESTADO,
 			DURACION:null,
-			INCIDENTE:gestion.INCIDENTE,
+			INCIDENTE:InfoPedido.INCIDENTE,
 			FECHA_INICIO:$scope.fecha_inicio,
 			FECHA_FIN:$scope.fecha_fin,
 			ESTADO_FINAL:InfoPedido.ESTADO_PROCESO,
 			OBSERVACION:InfoPedido.OBSERVACIONES_PROCESO,
 			USUARIO:$rootScope.logedUser.login
 			}
-		console.log(gestion);
+
 		console.log($scope.InfoGestion);
 	};
 
