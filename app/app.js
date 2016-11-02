@@ -31,6 +31,7 @@ app.directive('customPopover', function () {
     };
 });
 
+//---cargar aqrchivo agendamiento---------------------------------
 app.service('fileUpload', ['$http','$cookieStore', function ($http,$cookieStore) {
             this.uploadFileToUrl = function(file, uploadUrl){
                var fd = new FormData();
@@ -93,7 +94,9 @@ app.service('fileUpload2', ['$http', function ($http) {
                   });
                }
             };
-         }]);   
+         }]);
+
+//---cargar aqrchivo agendamiento-----------------------------------
 
 app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
   	 var serviceBase = 'services/'
@@ -107,17 +110,286 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 		return $http.get(serviceBase + 'pedidosPorUser?userID=' + userID);
 	}
 
-        obj.getPedidosUserReagendamiento = function(userID){
+
+//---------------------------------------------------------Agendamiento
+    obj.getPedidosUserAdelantarAgenda = function(userID){
+                return $http.get(serviceBase + 'pedidosPorUserAdelantarAgenda?userID=' + userID);
+        }
+
+      obj.getPedidosUserReagendamiento = function(userID){
                 return $http.get(serviceBase + 'pedidosPorUserReagendamiento?userID=' + userID);
         }
 
-        obj.getactividadesUser = function(userID){
+       obj.getLightKPISAgendamiento =function(){
+                return $http.get(serviceBase + 'lightKPISAgendamiento');
+        }
+
+        obj.getPedidosPorPedidoAgendamiento = function(pedido){
+                return $http.get(serviceBase + 'pedidosPorPedidoAgendamiento?pedido=' + pedido);
+        }
+
+       obj.getListadoPedidosAgendamiento = function(fecha_inicio,fecha_fin,page){
+                return $http.get(serviceBase + 'listadoPedidosAgendamiento?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page);
+        }
+
+   obj.getListadoPendientesAgendamiento = function(fecha_inicio,fecha_fin,page){
+                return $http.get(serviceBase + 'listadoPendientesAgendamiento?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page);
+        }
+      obj.getBuscarPedidoAgendamientoRegistro = function(bpedido){
+                return $http.get(serviceBase + 'buscarPedidoAgendamientoRegistro?bpedido='+bpedido);
+        }
+
+        obj.getBuscarPedidoAgendamientoRegistro1 = function(bpedido,page){
+                return $http.get(serviceBase + 'buscarPedidoAgendamientoRegistro1?bpedido='+bpedido+'&page='+page);
+        }
+       obj.getCsvPendientesAgendamiento = function(login){
+                return $http.get(serviceBase + 'csvPendientesAgendamiento?login='+login);
+        }
+
+         obj.getCsvPendientesAgendamientoPredictiva = function(login){
+                return $http.get(serviceBase + 'csvPendientesAgendamientoPredictiva?login='+login);
+        }
+
+	obj.getCsvAGENToday  = function(login){
+                return $http.get(serviceBase + 'csvAGENToday?login='+login);
+        }
+
+
+        obj.getCsvPendientesAgenSiete = function(login){
+                return $http.get(serviceBase + 'csvPendientesAgenSiete?login='+login);
+        }
+
+        obj.getCsvMalos = function(login,concepto){
+                return $http.get(serviceBase + 'csvMalos?login='+login+'&concepto='+concepto);
+        }
+
+        obj.getCsvMalosAgendamiento = function(login){
+                return $http.get(serviceBase + 'csvMalosAgendamiento?login='+login);
+        }
+
+          obj.getCsvAgendamiento  = function(login){
+                return $http.get(serviceBase + 'csvAgendamiento?login='+login);
+        }
+
+    obj.getCsvHistoricosAgendamiento = function(login,fechaIni,fechaFin){
+                return $http.get(serviceBase + 'csvHistoricosAgendamiento?login='+login+'&fechaIni='+fechaIni+'&fechaFin='+fechaFin);
+        }
+
+         obj.getCsvHistoricosAgendamientoEdatel = function(login,fechaIni,fechaFin){
+                return $http.get(serviceBase + 'csvHistoricosAgendamientoEdatel?login='+login+'&fechaIni='+fechaIni+'&fechaFin='+fechaFin);
+        }
+
+
+     obj.getDashboardAgendamiento = function(){
+                return $http.get(serviceBase + 'getDashboardAgendamiento');
+        }
+         obj.getDashboardAgendamientoPresupuestal = function(){
+                return $http.get(serviceBase + 'getDashboardAgendamientoPresupuestal');
+        }
+
+     obj.demePedidoAgendamiento = function(user,departamento,zona,microzona,proceso,pedido_actual,plaza,username){
+
+		console.log("zona="+zona+", microzona="+microzona+", proceso="+proceso);
+		return $http.get(serviceBase+'demePedidoAgendamiento?userID='+user+'&departamento='+departamento+'&pedido_actual='+pedido_actual+'&plaza='+plaza+'&username='+username+'&zona='+zona+'&microzona='+microzona+'&proceso='+proceso);
+    	}
+
+    	obj.demePedidoAgendamientomalo = function(user,pedido_actual,plaza,username){
+
+    		return $http.get(serviceBase+'demePedidoAgendamientomalo?userID='+user+'&pedido_actual='+pedido_actual+'&plaza='+plaza+'&username='+username);
+    	}
+
+    obj.getDepartamentosPendientesReagendamiento = function(){
+		return $http.get(serviceBase + 'getDepartamentosPendientesReagendamiento');
+	}
+	//pantalla de agendamientos general
+        obj.getDepartamentosPendientesReagendamiento = function(proceso){
+                return $http.get(serviceBase + 'getDepartamentosPendientesReagendamiento?proceso='+proceso);
+        }
+
+         obj.getDepartamentosPendientesReagendamientoproceso = function(proceso){
+                return $http.get(serviceBase + 'getDepartamentosPendientesReagendamientoproceso?proceso='+proceso);
+        }
+
+
+    obj.getDepartamentosOcupaagenda = function(){
+        return $http.get(serviceBase + 'getDepartamentosOcupaagenda');
+    }
+
+     obj.getlistadoAgendamientoAuditoria = function(fecha_inicio,fecha_fin){
+                return $http.get(serviceBase + 'listadoAgendamientoAuditoria?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin);
+        }
+        obj.getcsvTabla = function(fecha_inicio,fecha_fin){
+                return $http.get(serviceBase + 'csvTabla?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin);
+        }
+
+         obj.getPendientesGraficaAgendamiento = function(){
+                return $http.get(serviceBase + 'pendientesGraficaAgendamiento');
+        }
+        obj.getPendientesConceptosReagendamiento  = function(){
+                return $http.get(serviceBase + 'pendientesPorConceptoReagendamiento');
+        }
+
+         obj.getZonasOcupaagenda = function(dep){
+                return $http.get(serviceBase + 'getZonasOcupaagenda?departamento='+dep);
+        }
+
+    obj.getDepartamentosAdelantarAgenda = function(){
+        return $http.get(serviceBase + 'getDepartamentosAdelantarAgenda');
+    }
+
+    obj.getPedidoActualmenteAgendado = function(depa, zona, microzona, fecha, asesor, pedido_actual){
+        return $http.get(serviceBase + 'getPedidoActualmenteAgendado?departamento='+depa+'&zona='+zona+'&microzona='+microzona+'&fecha='+fecha+'&asesor='+asesor+'&pedido_actual='+pedido_actual);
+    }
+
+
+	obj.getZonasReagendamiento = function(dep){
+                return $http.get(serviceBase + 'getZonasReagendamiento?departamento='+dep);
+        }
+
+
+    obj.getZonasAdelantarAgenda = function(dep){
+                return $http.get(serviceBase + 'getZonasAdelantarAgenda?departamento='+dep);
+    }
+
+     obj.getMicrozonasReagendamiento = function(zona,depa){
+                return $http.get(serviceBase + 'getMicrozonasReagendamiento?departamento='+depa+'&zona='+zona);
+    }
+
+    obj.getMicrozonasAdelantarAgenda = function(zona,depa){
+                return $http.get(serviceBase + 'getMicrozonasAdelantarAgenda?departamento='+depa+'&zona='+zona);
+    }
+
+	obj.getOcupacion = function(fecha, depa, zona){
+		return $http.get(serviceBase + 'getOcupacionAgendamiento?fecha='+fecha+'&depa='+depa+'&zona='+zona);
+	}
+     obj.getcodigo_resultado = function(fecha){
+        return $http.get(serviceBase + 'getcodigo_resultado?fecha='+fecha);
+    }
+
+
+
+    obj.getPedidos_Microzonas = function(fecha){
+        return $http.get(serviceBase + 'getPedidos_Microzonas?fecha='+fecha);
+    }
+
+     obj.buscarPedidoAgendamiento = function(pedido,pedido_actual,user,username){
+                return $http.get(serviceBase + 'buscarPedidoAgendamiento?pedidoID='+pedido+ '&pedido_actual='+pedido_actual+ '&userID='+user+'&username='+username);
+     }
+      obj.insertPedidoAuditoria = function (pedido) {
+                var data= $http.post(serviceBase + 'insertPedidoAuditoria', {"pedido":pedido});
+        return data;
+        };
+     obj.insertPedidoReagendamiento = function (pedido) {
+                var data= $http.post(serviceBase + 'insertPedidoReagendamiento', {"pedido":pedido});
+                return data;
+        };
+
+        obj.insertPedidoAdelantarAgenda = function (pedido) {
+                var data= $http.post(serviceBase + 'insertPedidoAdelantarAgenda', {"pedido":pedido});
+                return data;
+        };
+     obj.insertMPedidomalo  = function (pedido) {
+                var data= $http.post(serviceBase + 'insertMPedidomalo ', {"pedido":pedido});
+                return data;
+        };
+
+//-----------------------------------------------------------------------------------------fin_Agendamiento
+
+ //-----------------------------------------------------------------------------------Activacion
+       obj.getactividadesUser = function(userID){
                 return $http.get(serviceBase + 'actividadesUser?userID=' + userID);
         }
 
-        obj.getPedidosUserAdelantarAgenda = function(userID){
-                return $http.get(serviceBase + 'pedidosPorUserAdelantarAgenda?userID=' + userID);
+       obj.getListadoActivacion = function(fecha_inicio,fecha_fin,page){
+                return $http.get(serviceBase + 'listadoactivacion?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page);
         }
+
+
+         obj.getListadoActivacionTabla = function(fecha_inicio,fecha_fin){
+                return $http.get(serviceBase + 'listadoactivaciontabla?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin);
+        }
+
+
+      obj.getListadoAlarmasActivacion = function(){
+                return $http.get(serviceBase + 'listadoAlarmasActivacion');
+        }
+
+        obj.getUsuariosAlarmasActivacion = function(){
+                return $http.get(serviceBase + 'usuariosAlarmasActivacion');
+        }
+
+    obj.actualizarAlarmaActivacion = function(responOne,responTwo,cola_id){
+                return $http.get(serviceBase + 'actualizarAlarmaActivacion?responsable1='+responOne+'&responsable2='+responTwo+'&cola_id='+cola_id);
+        }
+
+    obj.insertarAlarmaActivacion = function (nuevaCola) {
+        var data= $http.post(serviceBase + 'insertarAlarmaActivacion', {"nuevaCola":nuevaCola});
+        return data;
+    }
+
+
+       obj.getListadoTransaccionesActividades = function(userID,fecha_inicio,fecha_fin,page){
+                return $http.get(serviceBase + 'listadoTransaccionesActividades?fechaInicio='+fecha_inicio+'&fechaFin='+fecha_fin+'&page='+page+'&userID='+userID);
+        }
+
+         obj.getListadoTransaccionesActividades1 = function(userID,fecha_inicio,fecha_fin,page){
+                return $http.get(serviceBase + 'listadoTransaccionesActividades1?fechaInicio='+fecha_inicio+'&fechaFin='+fecha_fin+'&page='+page+'&userID='+userID);
+        }
+
+     obj.insertTransaccionActividades = function (transaccion) {
+                var data= $http.post(serviceBase + 'insertTransaccionActividades', {"transaccion":transaccion});
+                return data;
+    };
+
+     obj.editTransaccionActividades = function (transaccionA) {
+        var data= $http.post(serviceBase + 'editTransaccionActividades', {"transaccionA":transaccionA});
+        return data;
+    };
+
+
+     obj.getTransaccionActividades = function (actividadesID) {
+        return $http.get(serviceBase + 'getTransaccionActividades?actividadesID='+actividadesID);
+    };
+
+       obj.getCsvactividades = function(login,fechaIni,fechaFin){
+                return $http.get(serviceBase + 'csvactividades?login='+login+'&fechaIni='+fechaIni+'&fechaFin='+fechaFin);
+        }
+
+
+        obj.getCsvListadoActivacion = function(fechaini,fechafin){
+                return $http.get(serviceBase + 'csvListadoActivacion?fechaini='+fechaini+'&fechafin='+fechafin);
+        }
+
+
+        obj.getCsvListadoActivacionnuevo = function(fechaini,fechafin){
+                return $http.get(serviceBase + 'csvListadoActivacionnuevos?fechaini='+fechaini+'&fechafin='+fechafin);
+        }
+
+
+	obj.getCsvActivacion  = function(login){
+                return $http.get(serviceBase + 'csvActivacion?login='+login);
+        }
+
+    obj.pendientesPorConceptoColaActivacion  = function(){
+                return $http.get(serviceBase + 'pendientesPorColaConceptoActivacion');
+        }
+
+     obj.getDashboardActivacionMes = function(){
+                return $http.get(serviceBase + 'getDashboardActivacionMes');
+        }
+
+//------------------------------------------------------fin_Activacion
+
+
+//-------------------------------------------------------------------asignaciones
+
+
+
+
+//-------------------------------------------------------------------Fin-asignaciones
+
+
+
 
 
 	obj.logVista = function(userID,vista){
@@ -133,17 +405,11 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
 
-        obj.getLightKPISAgendamiento =function(){
-                return $http.get(serviceBase + 'lightKPISAgendamiento');
-        }
-
         obj.getPedidosPorPedido = function(pedido){
                 return $http.get(serviceBase + 'pedidosPorPedido?pedido=' + pedido);
         }
 
-        obj.getPedidosPorPedidoAgendamiento = function(pedido){
-                return $http.get(serviceBase + 'pedidosPorPedidoAgendamiento?pedido=' + pedido);
-        }
+
 
 	   obj.getListadoPedidos = function(fecha_inicio,fecha_fin,page,campo,valorCampo){
                 return $http.get(serviceBase + 'listadoPedidos?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page+'&campo='+campo+'&valorCampo='+valorCampo);
@@ -157,26 +423,11 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'listadoPedidosReconfiguracion?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page+'&campo='+campo+'&valorCampo='+valorCampo+'&userID='+userID);
         }
 
-        obj.getListadoPedidosAgendamiento = function(fecha_inicio,fecha_fin,page){
-                return $http.get(serviceBase + 'listadoPedidosAgendamiento?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page);
-        }
-      
 
         obj.getListadoPendientes2 = function(fecha_inicio,fecha_fin,concepto,page){
                 return $http.get(serviceBase + 'listadoPendientes2?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&concepto='+concepto+'&page='+page);
         }
 
-        obj.getListadoPendientesAgendamiento = function(fecha_inicio,fecha_fin,page){
-                return $http.get(serviceBase + 'listadoPendientesAgendamiento?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page);
-        }
-         
-         obj.getListadoActivacion = function(fecha_inicio,fecha_fin,page){
-                return $http.get(serviceBase + 'listadoactivacion?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page);
-        }
-
-        obj.getListadoActivacionTabla = function(fecha_inicio,fecha_fin){
-                return $http.get(serviceBase + 'listadoactivaciontabla?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin);
-        }
 
         obj.getListadoParametrizados = function(depa, zona){
                 return $http.get(serviceBase + 'listadoParametrizadosSiebel?depa='+depa+'&zona='+zona);
@@ -229,22 +480,6 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
             return data;
     };
 
-    obj.getListadoAlarmasActivacion = function(){
-                return $http.get(serviceBase + 'listadoAlarmasActivacion');
-        }
-
-    obj.getUsuariosAlarmasActivacion = function(){
-                return $http.get(serviceBase + 'usuariosAlarmasActivacion');
-        }
-
-    obj.actualizarAlarmaActivacion = function(responOne,responTwo,cola_id){
-                return $http.get(serviceBase + 'actualizarAlarmaActivacion?responsable1='+responOne+'&responsable2='+responTwo+'&cola_id='+cola_id);
-        }
-
-    obj.insertarAlarmaActivacion = function (nuevaCola) {
-        var data= $http.post(serviceBase + 'insertarAlarmaActivacion', {"nuevaCola":nuevaCola});
-        return data;
-    }
 
     obj.insertarDatoParametrizacion = function (depa, zona, AM, PM, fechaformato) {
         return $http.get (serviceBase + 'insertarDatoParametrizacion?depa='+depa+'&zona='+zona+'&AM='+AM+'&PM='+PM+'&fechaformato='+fechaformato);
@@ -258,13 +493,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'listadoTransaccionesNCA?fechaInicio='+fecha_inicio+'&fechaFin='+fecha_fin+'&page='+page);
         }
 
-        obj.getListadoTransaccionesActividades = function(userID,fecha_inicio,fecha_fin,page){
-                return $http.get(serviceBase + 'listadoTransaccionesActividades?fechaInicio='+fecha_inicio+'&fechaFin='+fecha_fin+'&page='+page+'&userID='+userID);
-        }
 
-         obj.getListadoTransaccionesActividades1 = function(userID,fecha_inicio,fecha_fin,page){
-                return $http.get(serviceBase + 'listadoTransaccionesActividades1?fechaInicio='+fecha_inicio+'&fechaFin='+fecha_fin+'&page='+page+'&userID='+userID);
-        }
 
 	obj.getListadoUsuarios  = function(){
                 return $http.get(serviceBase + 'listadoUsuarios');
@@ -294,28 +523,21 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return data;
     };
 
-    obj.insertTransaccionActividades = function (transaccion) {
-                var data= $http.post(serviceBase + 'insertTransaccionActividades', {"transaccion":transaccion});
-                return data;
-    };
+
 
     obj.editTransaccionNCA = function (transaccionNCA) {
         var data= $http.post(serviceBase + 'editTransaccionNCA', {"transaccionNCA":transaccionNCA});
         return data;
     };
 
-    obj.editTransaccionActividades = function (transaccionA) {
-        var data= $http.post(serviceBase + 'editTransaccionActividades', {"transaccionA":transaccionA});
-        return data;
-    };
+
 
     obj.getTransaccionNCA = function (ncaID) {
         return $http.get(serviceBase + 'getTransaccionNCA?ncaID='+ncaID);
     };
 
-     obj.getTransaccionActividades = function (actividadesID) {
-        return $http.get(serviceBase + 'getTransaccionActividades?actividadesID='+actividadesID);
-    };
+
+
     
     obj.getListadoConceptos  = function(){
                 return $http.get(serviceBase + 'getConceptos');
@@ -362,13 +584,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'buscarPedidoRegistro?bpedido='+bpedido+'&concepto='+concepto);
         }
 
-        obj.getBuscarPedidoAgendamientoRegistro = function(bpedido){
-                return $http.get(serviceBase + 'buscarPedidoAgendamientoRegistro?bpedido='+bpedido);
-        }
 
-        obj.getBuscarPedidoAgendamientoRegistro1 = function(bpedido,page){
-                return $http.get(serviceBase + 'buscarPedidoAgendamientoRegistro1?bpedido='+bpedido+'&page='+page);
-        }
 
         obj.getBuscarDatos = function(usuario){
                 return $http.get(serviceBase + 'BuscarDatos?usuario='+usuario);
@@ -380,9 +596,6 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
 
-          obj.getCsvactividades = function(login,fechaIni,fechaFin){
-                return $http.get(serviceBase + 'csvactividades?login='+login+'&fechaIni='+fechaIni+'&fechaFin='+fechaFin);
-        }
 
 	obj.getCsvPendientes = function(login,concepto){
                 return $http.get(serviceBase + 'csvPendientes?login='+login+'&concepto='+concepto);
@@ -391,38 +604,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'csvPreInstalaciones?login='+login);
         }
 		
-        obj.getCsvPendientesAgendamiento = function(login){
-                return $http.get(serviceBase + 'csvPendientesAgendamiento?login='+login);
-        }
 
-         obj.getCsvPendientesAgendamientoPredictiva = function(login){
-                return $http.get(serviceBase + 'csvPendientesAgendamientoPredictiva?login='+login);
-        }
-
-	obj.getCsvAGENToday  = function(login){
-                return $http.get(serviceBase + 'csvAGENToday?login='+login);
-        }
-
-
-        obj.getCsvPendientesAgenSiete = function(login){
-                return $http.get(serviceBase + 'csvPendientesAgenSiete?login='+login);
-        }
-
-        obj.getCsvMalos = function(login,concepto){
-                return $http.get(serviceBase + 'csvMalos?login='+login+'&concepto='+concepto);
-        }
-
-        obj.getCsvMalosAgendamiento = function(login){
-                return $http.get(serviceBase + 'csvMalosAgendamiento?login='+login);
-        }
-        obj.getCsvListadoActivacion = function(fechaini,fechafin){
-                return $http.get(serviceBase + 'csvListadoActivacion?fechaini='+fechaini+'&fechafin='+fechafin);
-        }
-
-
-        obj.getCsvListadoActivacionnuevo = function(fechaini,fechafin){
-                return $http.get(serviceBase + 'csvListadoActivacionnuevos?fechaini='+fechaini+'&fechafin='+fechafin);
-        }
 
 
 	obj.getCsvFenixNal  = function(login){
@@ -437,14 +619,6 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'csvFenixBog?login='+login);
         }
 
-	obj.getCsvActivacion  = function(login){
-                return $http.get(serviceBase + 'csvActivacion?login='+login);
-        }
-
-        obj.getCsvAgendamiento  = function(login){
-                return $http.get(serviceBase + 'csvAgendamiento?login='+login);
-        }
-
 		obj.getCsvHistoricos = function(login,fechaIni,fechaFin,campo,valorCampo){
                 return $http.get(serviceBase + 'csvHistoricos?login='+login+'&fechaIni='+fechaIni+'&fechaFin='+fechaFin+'&campo='+campo+'&valorCampo='+valorCampo);
         }
@@ -453,13 +627,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'csvHistoricosReconfiguracion?userID='+userID+'&fechaIni='+fechaIni+'&fechaFin='+fechaFin+'&campo='+campo+'&valorCampo='+valorCampo);
         }
 
-        obj.getCsvHistoricosAgendamiento = function(login,fechaIni,fechaFin){
-                return $http.get(serviceBase + 'csvHistoricosAgendamiento?login='+login+'&fechaIni='+fechaIni+'&fechaFin='+fechaFin);
-        }
 
-         obj.getCsvHistoricosAgendamientoEdatel = function(login,fechaIni,fechaFin){
-                return $http.get(serviceBase + 'csvHistoricosAgendamientoEdatel?login='+login+'&fechaIni='+fechaIni+'&fechaFin='+fechaFin);
-        }
 
         obj.csvParametrizacionSiebel = function(login){
                 return $http.get(serviceBase + 'csvParametrizacionSiebel?login='+login);
@@ -476,12 +644,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 	obj.getDashboardAsignaciones = function(){
                 return $http.get(serviceBase + 'getDashboardAsignaciones');
         }
-        obj.getDashboardAgendamiento = function(){
-                return $http.get(serviceBase + 'getDashboardAgendamiento');
-        }
-         obj.getDashboardAgendamientoPresupuestal = function(){
-                return $http.get(serviceBase + 'getDashboardAgendamientoPresupuestal');
-        }
+
         obj.getDashboardPendientes = function(){
                 return $http.get(serviceBase + 'getDashboardPendientes');
         }
@@ -514,9 +677,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'getDashboardReconfiguracionMes');
         }
 
-        obj.getDashboardActivacionMes = function(){
-                return $http.get(serviceBase + 'getDashboardActivacionMes');
-        }
+
 
         obj.getPendientesGrafica = function(){
                 return $http.get(serviceBase + 'pendientesGrafica');
@@ -530,12 +691,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'seguimientoactivacionGraficaAD');
         }
 
-        obj.getPendientesGraficaAgendamiento = function(){
-                return $http.get(serviceBase + 'pendientesGraficaAgendamiento');
-        }
-        obj.getPendientesConceptosReagendamiento  = function(){
-                return $http.get(serviceBase + 'pendientesPorConceptoReagendamiento');
-        }
+
 
         obj.getPedidosConAgenda  = function(){
                 return $http.get(serviceBase + 'pedidosConAgenda');
@@ -545,20 +701,12 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 		return $http.get(serviceBase + 'pendientesPorPlaza');
 	}
 
-	obj.pendientesPorConceptoColaActivacion  = function(){
-                return $http.get(serviceBase + 'pendientesPorColaConceptoActivacion');
-        }
 
 	
 	obj.getPendientesIngresosEstudiosGrafica = function(fecha1,fecha2){
                 return $http.get(serviceBase + 'ingresosEstudiosGrafica?fechaIni='+fecha1+'&fechaFin='+fecha2);
         }
-        obj.getlistadoAgendamientoAuditoria = function(fecha_inicio,fecha_fin){
-                return $http.get(serviceBase + 'listadoAgendamientoAuditoria?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin);
-        }
-        obj.getcsvTabla = function(fecha_inicio,fecha_fin){
-                return $http.get(serviceBase + 'csvTabla?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin);
-        }
+
 
 	obj.getTME  = function(fecha1,fecha2){
                 return $http.get(serviceBase + 'calcularDetalleTME?fechaIni='+fecha1+'&fechaFin='+fecha2);
@@ -567,88 +715,22 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'productividadGrupo?fechaIni='+fecha1+'&fechaFin='+fecha2);
         }
 
-        obj.demePedidoAgendamiento = function(user,departamento,zona,microzona,proceso,pedido_actual,plaza,username){
 
-		console.log("zona="+zona+", microzona="+microzona+", proceso="+proceso);
-		return $http.get(serviceBase+'demePedidoAgendamiento?userID='+user+'&departamento='+departamento+'&pedido_actual='+pedido_actual+'&plaza='+plaza+'&username='+username+'&zona='+zona+'&microzona='+microzona+'&proceso='+proceso);
-    	}
-
-    	obj.demePedidoAgendamientomalo = function(user,pedido_actual,plaza,username){
-       
-    		return $http.get(serviceBase+'demePedidoAgendamientomalo?userID='+user+'&pedido_actual='+pedido_actual+'&plaza='+plaza+'&username='+username);
-    	}
     
     
 	//metodo para obtener departamentos de pantalla de auditoria
-	obj.getDepartamentosPendientesReagendamiento = function(){
-		return $http.get(serviceBase + 'getDepartamentosPendientesReagendamiento');
-	}
-	//pantalla de agendamientos general
-        obj.getDepartamentosPendientesReagendamiento = function(proceso){
-                return $http.get(serviceBase + 'getDepartamentosPendientesReagendamiento?proceso='+proceso);
-        }
 
-         obj.getDepartamentosPendientesReagendamientoproceso = function(proceso){
-                return $http.get(serviceBase + 'getDepartamentosPendientesReagendamientoproceso?proceso='+proceso);
-        }
-
-
-
-
-    obj.getDepartamentosOcupaagenda = function(){
-        return $http.get(serviceBase + 'getDepartamentosOcupaagenda');
-    }
 
 obj.getDepartamentosParametrizacionSiebel = function(){
         return $http.get(serviceBase + 'getDepartamentosParametrizacionSiebel');
     }
 
-    obj.getZonasOcupaagenda = function(dep){
-                return $http.get(serviceBase + 'getZonasOcupaagenda?departamento='+dep);
-        }
-
-    obj.getDepartamentosAdelantarAgenda = function(){
-        return $http.get(serviceBase + 'getDepartamentosAdelantarAgenda');
-    }
-
-    obj.getPedidoActualmenteAgendado = function(depa, zona, microzona, fecha, asesor, pedido_actual){
-        return $http.get(serviceBase + 'getPedidoActualmenteAgendado?departamento='+depa+'&zona='+zona+'&microzona='+microzona+'&fecha='+fecha+'&asesor='+asesor+'&pedido_actual='+pedido_actual);
-    }
-
-
-	obj.getZonasReagendamiento = function(dep){
-                return $http.get(serviceBase + 'getZonasReagendamiento?departamento='+dep);
-        }
-
-
-    obj.getZonasAdelantarAgenda = function(dep){
-                return $http.get(serviceBase + 'getZonasAdelantarAgenda?departamento='+dep);
-    }    
 
     obj.getZonasParametrizacionSiebel = function(dep){
                 return $http.get(serviceBase + 'getZonasParametrizacionSiebel?departamento='+dep);
     }    
 
-    obj.getMicrozonasReagendamiento = function(zona,depa){
-                return $http.get(serviceBase + 'getMicrozonasReagendamiento?departamento='+depa+'&zona='+zona);
-    }
 
-    obj.getMicrozonasAdelantarAgenda = function(zona,depa){
-                return $http.get(serviceBase + 'getMicrozonasAdelantarAgenda?departamento='+depa+'&zona='+zona);
-    }
-
-	obj.getOcupacion = function(fecha, depa, zona){
-		return $http.get(serviceBase + 'getOcupacionAgendamiento?fecha='+fecha+'&depa='+depa+'&zona='+zona);
-	}
-     obj.getcodigo_resultado = function(fecha){
-        return $http.get(serviceBase + 'getcodigo_resultado?fecha='+fecha);
-    }
-
-
-    
-    obj.getPedidos_Microzonas = function(fecha){
-        return $http.get(serviceBase + 'getPedidos_Microzonas?fecha='+fecha);
-    }
 
     obj.demePedido = function(user,concepto,pedido_actual,plaza,username,prioridad,fuente){
 		var muni=""
@@ -675,9 +757,6 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 
 
 
-        obj.buscarPedidoAgendamiento = function(pedido,pedido_actual,user,username){
-                return $http.get(serviceBase + 'buscarPedidoAgendamiento?pedidoID='+pedido+ '&pedido_actual='+pedido_actual+ '&userID='+user+'&username='+username);
-        }
 
      
         obj.buscarCmts = function(nnodo){
@@ -696,34 +775,14 @@ obj.getDepartamentosParametrizacionSiebel = function(){
                 var data= $http.post(serviceBase + 'insertPedido', {"pedido":pedido});
 		return data;
         };
-        obj.insertPedidoAuditoria = function (pedido) {
-                var data= $http.post(serviceBase + 'insertPedidoAuditoria', {"pedido":pedido});
-        return data;
-        };
+
 
         obj.insertPedidoReconfiguracion = function (pedido) {
                 var data= $http.post(serviceBase + 'insertPedidoReconfiguracion', {"pedido":pedido});
                 return data;
         };
 
-        obj.insertPedidoReagendamiento = function (pedido) {
-		//console.log("Ya casi: ");
-		//console.log(pedido);
-		//pedido.fecha='';
-	        //pedido.concepto_final='';
-		//pedido['fecha']="";
-		//alert(JSON.stringify(pedido));
-		//console.log("AHORA SI!!!");
-		//console.log(pedido);
 
-                var data= $http.post(serviceBase + 'insertPedidoReagendamiento', {"pedido":pedido});
-                return data;
-        };
-
-        obj.insertPedidoAdelantarAgenda = function (pedido) {
-                var data= $http.post(serviceBase + 'insertPedidoAdelantarAgenda', {"pedido":pedido});
-                return data;
-        };
 
 
         obj.insertMPedido = function (pedido) {
@@ -736,10 +795,7 @@ obj.getDepartamentosParametrizacionSiebel = function(){
                 return data;
         };
       
-       obj.insertMPedidomalo  = function (pedido) {
-                var data= $http.post(serviceBase + 'insertMPedidomalo ', {"pedido":pedido});
-                return data;
-        };
+
 
     	obj.getCustomer = function(customerID){
         	return $http.get(serviceBase + 'customer?id=' + customerID);
