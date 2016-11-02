@@ -8542,8 +8542,8 @@ private function listadoTransaccionesActividades(){
 			                    if($cellValue !== null){
 			                        $table .= $cellValue;
 			                     }
-						        if($h=="L"){
-			                	$PEDIDO_ID=$cellValue;
+						        if($h=="A"){
+			                	$PEDIDO_ID.=$cellValue;
 			                	}
 			                	if($h=="J"){
 			                	$cliente_id=$cellValue;
@@ -8590,9 +8590,7 @@ private function listadoTransaccionesActividades(){
                        		
                         if ($tname1 == "IMPORTANTES.xlsx"){
 
-                            if($h=="A"){
-			                	$PEDIDO_ID.=$cellValue;
-			                	}
+
                         	$che=explode(",",$guardar);//validacion de datos que carguen pedidos diferentes y omita los repetidos
                         	$pedido=$che[0];
 				
