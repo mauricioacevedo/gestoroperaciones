@@ -9642,15 +9642,6 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
           $scope.actualizarseguimientoGraficaAD   = function (){
     //TOMAR MUESTRA
                 var data1=services.getSeguimientoActivacionGraficaAD().then(function(data){
-                    var categorias=data.data[0];
-                    var manual=data.data[1];
-                        var automatico=data.data[2];
-                        var totales=data.data[3];
-                        var inicial= automatico[4];
-                        var finall=automatico[automatico.length-1];
-
-                        inicial=inicial['value'];
-                        finall=finall['value'];
 
                         $scope.myDataSourceAD = {
                         
@@ -9678,38 +9669,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                                 "subcaptionFontSize": "14"
                             },
 
-                              "categories": [ { "category": categorias } ] ,
-       "trendlines": [
-        {
-            "line": [
-                {
-                    "startvalue": inicial,
-                    "endValue": finall,
-                    "color": "#1aaf5d",
-                    "valueOnRight": "1",
-                    "dashed": "1",
-                    "thickness":"4",
-                    "alpha": "100",
-                    "displayvalue": "Trend"
-                }
-            ]
-        }
-    ],
 
-      "dataset": [
-        {
-            "seriesname": "Manual",
-            "data": manual
-        },
-        {
-            "seriesname": "Automatico",
-            "renderas": "mscolumn2d",
-            "showvalues": "1",
-            "theme":"carbon",
-            "data": automatico
-        },
-
-    ],
 
                                 data: data.data[0]
 
