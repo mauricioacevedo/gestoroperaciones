@@ -4820,7 +4820,6 @@ $queryConceptosFcita=" select ".
                        "     WHERE a.PEDIDO_ID =  pm.PEDIDO_ID) )AS ULTIMA_NOVEDAD ". 
 			            ", pm.MICROZONA".
 		                ", pm.SUBZONA_ID".
-			            ", pm.OBSERVACION_FENIX".
                         ", pm.PROCESO".
                         " from portalbd.gestor_pendientes_reagendamiento pm ".
                         " where pm.STATUS='MALO' ";
@@ -4830,7 +4829,7 @@ $queryConceptosFcita=" select ".
                         if($r->num_rows > 0){
                                 $result = array();
                                 $fp = fopen("../tmp/$filename", 'w');
-                                fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','FUENTE','STATUS','CONCEPTOS','FECHA_CITA','ULTIMA_NOVEDAD','MICROZONA','ZONA','OBSERVACION','PROCESO'));
+                                fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','FUENTE','STATUS','CONCEPTOS','FECHA_CITA','ULTIMA_NOVEDAD','MICROZONA','ZONA','OBSERVACION','PROCESO'),chr (124));
                                 while($row = $r->fetch_assoc()){
 
                                         $row['OBSERVACION_FENIX']=str_replace(array("\n","\r"), '/', $row['OBSERVACION_FENIX']);
@@ -4856,7 +4855,7 @@ $queryConceptosFcita=" select ".
                     
 
                                         $result[] = $row;
-                                        fputcsv($fp, $row);
+                                        fputcsv($fp, $row,chr (124));
                                 }
                                 fclose($fp);
                                 $this->response($this->json(array($filename,$login)), 200); // send user details
