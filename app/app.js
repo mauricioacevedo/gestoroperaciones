@@ -10991,6 +10991,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 		var pedido1='';
 		$scope.popup='';
 		$scope.errorDatos=null;
+		$scope.InfoPedido=[];
 
 		if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
 			//alert($scope.peds[0].PEDIDO_ID);
