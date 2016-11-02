@@ -114,14 +114,14 @@
 									<div class="container-fluid">
 
 										<form name="seguimiento_form" id="seguimiento_form">
-											<div class="form-group small" ng-class="{ 'has-error' : seguimiento_form.subproceso.$pristine && seguimiento_form.subproceso.$invalid}">
-												<label for="accion">Estado Gestionado:</label>
+											<div class="form-group small" ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
+												<label for="estado">Estado Gestionado:</label>
 												<select
 													class= "form-control btn-xs"
-													name="subproceso"
-													ng-model="InfoPedido.SUBPROCESO_GESTION"
+													name="estado"
+													ng-model="InfoPedido.ESTADO_PROCESO"
 													required>
-													<option value="">--Seleccione--</option>
+													<option value="" disabled>--Seleccione--</option>
 													<option
 														ng-repeat="d in Estados"
 														value="{{d.ESTADO_ID}}">
@@ -130,18 +130,18 @@
 												</select>
 											</div>
 											<div class="form-group small" ng-class="{ 'has-error' : seguimiento_form.accion.$pristine && seguimiento_form.accion.$invalid}">
-												<label for="accion">Acción:</label>
+												<label for="obs">Observaciones:</label>
 												<select
 													class= "form-control btn-xs"
-													name="accion"
-													ng-model="InfoPedido.ACCION"
+													name="obs"
+													ng-model="InfoPedido.OBSERVACIONES_PROCESO"
 													ng-change="onChangeAccion()" required>
-													<option value="">--Seleccione--</option>
+													<option value="" disabled>--Seleccione--</option>
 													<option
-														ng-repeat="d in ListaAcciones"
+														ng-repeat="d in Observaciones | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO}"
 
-														value="{{d.ACCION}}">
-														{{d.ACCION}}
+														value="{{d.OBSERVACION_ID}}">
+														{{d.OBSERVACION_ID}}
 													</option>
 												</select>
 											</div>
