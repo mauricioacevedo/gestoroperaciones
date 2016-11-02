@@ -8590,6 +8590,9 @@ private function listadoTransaccionesActividades(){
                        		
                         if ($tname1 == "IMPORTANTES.xlsx"){
 
+                            if($h=="A"){
+			                	$PEDIDO_ID.=$cellValue;
+			                	}
                         	$che=explode(",",$guardar);//validacion de datos que carguen pedidos diferentes y omita los repetidos
                         	$pedido=$che[0];
 				
@@ -8608,7 +8611,7 @@ private function listadoTransaccionesActividades(){
                         			continue;
                         		}
 
-		                        	$sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID.,CONCEPTOS,CLIENTE_ID,NOMBRE_USUARIO,DEPARTAMENTO,SUBZONA_ID,DIRECCION_ENVIO,FUENTE,PROCESO,CELULAR_AVISAR,TELEFONO_AVISAR,IDENTIFICADOR_ID,FECHA_INGRESO,MICROZONA,OBSERVACION_FENIX,TECNOLOGIA_ID) values ($guardar) ";
+		                        	$sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID,CONCEPTOS,CLIENTE_ID,NOMBRE_USUARIO,DEPARTAMENTO,SUBZONA_ID,DIRECCION_ENVIO,FUENTE,PROCESO,CELULAR_AVISAR,TELEFONO_AVISAR,IDENTIFICADOR_ID,FECHA_INGRESO,MICROZONA,OBSERVACION_FENIX,TECNOLOGIA_ID) values ($guardar) ";
 					      // var_dump($guardar);
 					       	$r = $this->mysqli->query($sqlemail) or die($this->mysqli->error.__LINE__);
 
