@@ -10758,6 +10758,83 @@ $sqlfenix=
 
 //Terminan funciones para  Transacciones Ordens O-XXX
 
+		private function listadoOpcionesSiebel(){
+
+
+			if($this->get_request_method() != "GET"){
+                        $this->response('',406);
+                        }
+
+            $today = date("Y-m-d");
+
+
+			//$parametro="and p.STATUS='PENDI_REPA'";
+
+            $query= " SELECT ".
+					"	ID ".
+					"	, ESTADO_ID ".
+					"	, OBSERVACION_ID ".
+					"	, STATUS ".
+					"	, USUARIO_ID ".
+					"	FROM portalbd.gestor_opciones_siebel ";
+
+			$queryEstado=" SELECT ".
+						 "	distinct ESTADO_ID ".
+						 "	FROM portalbd.gestor_opciones_siebel ";
+
+			$queryObservacion=" SELECT ".
+							" ESTADO_ID ".
+							" , OBSERVACION_ID ".
+							" , STATUS ".
+							" FROM portalbd.gestor_opciones_siebel ";
+
+
+                       //echo $query;
+                       //
+                    $rObservacion = $this->mysqli->query($queryObservacion);
+
+                        if($rObservacion->num_rows > 0){
+                                $result = array();
+                                while($row=$rObservacion->fetch_assoc()){
+								$observaciones[]=$row;
+
+
+							}
+                        }
+
+                    $rEstado = $this->mysqli->query($queryEstado);
+
+                        if($rEstado->num_rows > 0){
+                                $result = array();
+                                while($row=$rEstado->fetch_assoc()){
+								$estados[]=$row;
+
+
+							}
+                        }
+
+                      $rst = $this->mysqli->query($query);
+
+						if ($rst->num_rows > 0){
+
+							$resultado=array();
+
+							while($row=$rst->fetch_assoc()){
+								$resultado[]=$row;
+
+
+							}
+								$this->response($this->json(array($observaciones,$estados,$resultado)), 201);
+
+
+						}else{
+
+							$error="Ops";
+							$this->response($this->json($error), 400);
+						}
+
+                }
+
 
 	}//cierre de la clase
 	
