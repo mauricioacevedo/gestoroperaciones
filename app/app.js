@@ -11527,13 +11527,6 @@ app.run(['$rootScope', 'services', function($rootScope, services){
   };
 
 
-	$rootScope.estadosSiebel=[
-        {ESTADO_ID:'COBERTURA', VALOR:'COBERTURA'},
-        {ESTADO_ID:'CONSTRUCCION', VALOR:'CONSTRUCCION'},
-        {ESTADO_ID:'DISENO', VALOR:'DISENO'},
-        {ESTADO_ID:'DISPONIBILIDAD', VALOR:'DISPONIBILIDAD'}
-    ];
-
 	$rootScope.listadoConceptos=[
         {CONCEPTO_ID:'TODO', VALOR:'TODO'},
         {CONCEPTO_ID:'PETEC', VALOR:'PETEC'},
@@ -11556,6 +11549,16 @@ app.run(['$rootScope', 'services', function($rootScope, services){
         {CONCEPTO_ID:'DISPONIBILIDAD', VALOR:'DISPONIBILIDAD'}
     ];
 
+	// Listados Siebel -------------------------------------------
+
+		$rootScope.estadosSiebel=[
+			{ESTADO_ID:'COBERTURA', VALOR:'COBERTURA'},
+			{ESTADO_ID:'CONSTRUCCION', VALOR:'CONSTRUCCION'},
+			{ESTADO_ID:'DISENO', VALOR:'DISENO'},
+			{ESTADO_ID:'DISPONIBILIDAD', VALOR:'DISPONIBILIDAD'}
+    	];
+
+	// ------------------------------------------- Listados Siebel
 
 }]);
 
