@@ -9643,6 +9643,9 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
     //TOMAR MUESTRA
                 var data1=services.getSeguimientoActivacionGraficaAD().then(function(data){
                     var categorias=data.data[0];
+                    var manual=data.data[1];
+                        var automatico=data.data[2];
+                        var totales=data.data[3];
 
                 var inicial= automatico[0];
 			     var finall=automatico[automatico.length-1];
