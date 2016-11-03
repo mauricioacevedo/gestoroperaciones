@@ -11078,8 +11078,11 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 			$scope.pedidoActual=pedidoinfo;
 			if($scope.pedidoActual!=''||$scope.pedidoActual!=undefined){
-				$scope.pedidoIsActive=true;
-				$scope.errorDatos='Oferta: '+$scope.pedidoActual+' -Liberado!';
+					$scope.pedidoIsActive=true;
+					$scope.errorDatos='Oferta: '+$scope.pedidoActual+' -Liberado!';
+				if($scope.buscar==null||$scope.buscar==undefined||$scope.buscar==''){
+						$scope.pedidoIsActive=false;
+				}
 			}else{
 				$scope.pedidoIsActive=false;
 				$scope.errorDatos=null;
