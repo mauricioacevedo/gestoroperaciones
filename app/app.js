@@ -11082,6 +11082,8 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 					$scope.errorDatos='Oferta: '+$scope.pedidoActual+' -Liberado!';
 				if($scope.buscar==null||$scope.buscar==undefined||$scope.buscar==''){
 						$scope.pedidoIsActive=false;
+						alert("Ingrese Oferta a buscar");
+						return;
 				}
 			}else{
 				$scope.pedidoIsActive=false;
