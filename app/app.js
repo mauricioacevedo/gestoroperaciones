@@ -11082,8 +11082,8 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			  function(data){
                        $scope.peds = data.data[1];
 				  	   $scope.ocupado=data.data[0];
-			           console.log(data.data);
-				  	console.log($scope.peds);
+				  	   $scope.pedido1=$scope.peds[0].PEDIDO_ID;
+				  	   $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 
 			var dat=data.status;
 			//alert("'"+data.status+"'");
@@ -11098,16 +11098,13 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 				}else{
 
                        if($scope.ocupado==true){
-                                        $scope.busy=$scope.peds.ASESOR;
+                                        $scope.busy=$scope.peds[0].ASESOR;
 										$scope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.busy;
                                         return;
 
                          }
 								$scope.errorDatos=null;
-								$scope.pedido1=$scope.peds[0].PEDIDO_ID;
-                                $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 								$scope.pedidoIsActive=true;
-
 								$scope.fecha_inicio=$rootScope.fechaProceso();
 
 
