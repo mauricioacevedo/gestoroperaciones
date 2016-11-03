@@ -11080,7 +11080,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
           var kami=services.getBuscarOfertaSiebelAsignaciones(buscar,$scope.pedidoActual,$rootScope.logedUser.login).then(
 
 			  function(data){
-                       $scope.peds = data.data[1][0];
+                       $scope.peds = data.data[1];
 				  	   $scope.ocupado=data.data[0];
 			           console.log(data.data);
 				  	console.log($scope.peds);
