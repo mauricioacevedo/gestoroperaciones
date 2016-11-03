@@ -10895,7 +10895,7 @@ $sqlfenix=
 
                         if($rPendi->num_rows > 0){
                                 $result = array();
-                                while($row = $r->fetch_assoc()){
+                                while($row = $rPendi->fetch_assoc()){
 
                                   $result[] = $row;
                                   $ids=$row['ID'];
