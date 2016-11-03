@@ -11097,6 +11097,10 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 				  	   $scope.pedido1=$scope.peds[0].PEDIDO_ID;
 				  	   $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 
+				 if(data.data==''){
+						$scope.errorDatos="No hay Registros. Intente con otra oferta";
+					}else{
+
 			var dat=data.status;
 			//alert("'"+data.status+"'");
                 if(dat==204){
