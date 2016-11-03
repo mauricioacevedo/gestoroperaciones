@@ -11074,16 +11074,12 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 				$scope.errorDatos=null;
 			}
 
-            console.log(buscar);
-			console.log(pedidoinfo);
 
           var kami=services.getBuscarOfertaSiebelAsignaciones(buscar,$scope.pedidoActual,$rootScope.logedUser.login).then(
 
 			  function(data){
                        $scope.peds = data.data[1];
 				  	   $scope.ocupado=data.data[0];
-			           console.log(data.data);
-				  	console.log($scope.peds);
 
 			var dat=data.status;
 			//alert("'"+data.status+"'");
@@ -11093,8 +11089,9 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
                         }else{
 
                                 if($scope.ocupado==true){
-                                        $scope.busy=$scope.peds.ASESOR;
+                                        $scope.busy=$scope.peds[0].ASESOR;
 										$scope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.busy;
+										$scope.accRdy=false;
                                         return;
 
                                 }
