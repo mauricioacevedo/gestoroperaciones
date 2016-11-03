@@ -4035,10 +4035,6 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
         $scope.editTransaccionActividades = function (transaccionA){
                // console.log(transaccionA.FECHA);
 
-                if(transaccionA.DIA==undefined || transaccionA.DIA=="" ){
-                        alert("Dia sin informacion.");
-                        return;
-                }
 
                 if(transaccionA.FECHA==undefined || transaccionA.FECHA==""){
                         alert("Fecha sin informacion.");
