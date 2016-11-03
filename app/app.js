@@ -11099,8 +11099,8 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
                                 }
 								$scope.errorDatos=null;
-								$scope.pedido1=$scope.peds.PEDIDO_ID;
-                                $scope.pedidoinfo=$scope.peds.PEDIDO_ID;
+								$scope.pedido1=$scope.peds[0].PEDIDO_ID;
+                                $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 								$scope.pedidoIsActive=true;
 
 								$scope.fecha_inicio=$rootScope.fechaProceso();
