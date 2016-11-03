@@ -11080,12 +11080,13 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			  function(data){
                        $scope.peds = data.data;
 			           console.log(data.data);
+				  	console.log($scope.peds);
 
 			var dat=data.status;
 			//alert("'"+data.status+"'");
-                        if(dat==204){
-                                document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Plaza";
-				$scope.error="No hay Registros. Intente Cambiando de Plaza";
+                if(dat==204){
+                   document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Plaza";
+					$scope.errorDatos="No hay Registros. Intente Cambiando de Plaza";
                         }else{
 
                                 if($scope.peds[0]=="PEDIDO_OCUPADO"){
@@ -11094,11 +11095,6 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
                                         return;
 
                                 }
-
-
-                                document.getElementById("warning").innerHTML="";
-                                $scope.pedido1=$scope.peds[0].PEDIDO_ID;
-                                $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 
 
                         return data.data;
