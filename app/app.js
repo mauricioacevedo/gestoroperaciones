@@ -11065,7 +11065,6 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			$scope.pedidoActual=pedidoinfo;
 			if($scope.pedidoActual!=''||$scope.pedidoActual!=undefined){
 				$scope.pedidoIsActive=true;
-				$scope.errorClass='warning';
 				$scope.errorDatos='Oferta: '+$scope.pedidoActual+' -Liberado!';
 			}else{
 				$scope.pedidoIsActive=false;
@@ -11075,8 +11074,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
             console.log(buscar);
 			console.log(pedidoinfo);
 
-		/*
-          var kami=services.buscarPedido(bpedido,$scope.pedido1,$rootScope.logedUser.login).then(function(data){
+          var kami=services.buscarPedido(bpedido,$scope.pedidoActual,$rootScope.logedUser.login).then(function(data){
                        $scope.peds = data.data;
 			           console.log(data.data);
 
@@ -11101,7 +11099,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 
                         return data.data;
-                }); */
+                });
 
 
         };
