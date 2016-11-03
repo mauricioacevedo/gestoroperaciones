@@ -10062,6 +10062,7 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
             angular.copy($scope.peds[i],$scope.pedido);
 
             console.log($scope.pedido);
+
             var verificaConcepto = $scope.isAuthorized($scope.pedido.CONCEPTO_ID);
             console.log(verificaConcepto);
             
@@ -10123,7 +10124,8 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
                         //console.log($scope.pedido);
                         $scope.pedido.fecha=status.data['data'];
 		   				$scope.pedidoinfo='Pedido';
-                        $scope.pedido.concepto_final=status.data['msg'];
+                        //$scope.pedido.concepto_final=status.data['msg'];
+		   				$scope.pedido.concepto_final="Sin validacion";
                        if($scope.pedido.concepto_final=="El pedido bloqueado por Usuario por mas de dos hora, fue liberado por el sistema, usuario no podra gestionarlo hasta despues de una hora!!!"){
                             $scope.error=$scope.pedido.concepto_final;
                                 $scope.pedido={};
