@@ -10903,7 +10903,7 @@ $sqlfenix=
                                   $ids=$row['ID'];
                                   $asess=$row['ASESOR'];
 
-                                	if($asess!=''){//este pedido esta ocupado, no deberia hacer la actualizacion de abajo..
+                                	if($asess!='' && $asess!=$user){//este pedido esta ocupado, no deberia hacer la actualizacion de abajo..
                                        $busy=true;
                                         }
 
