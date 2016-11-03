@@ -310,9 +310,12 @@
                                "  where fecha_fin between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' ";
 
 
-                        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+                        //$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
-                        if($r->num_rows > 0){
+                        //Mauricio: CONSULTA REPODEROSA, unbuffered
+                        $this->mysqli->real_query($query) or die($conn->error.__LINE__);
+
+                        if($r = $connm->use_result()){
                                 $result = array();
                                 $fp = fopen("../tmp/$filename", 'w');
 
