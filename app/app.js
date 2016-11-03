@@ -11210,6 +11210,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 				  $scope.error = "";
 				  $scope.iplaza = 'TODOS';
 				  $scope.fuente = "SIEBEL";
+				  $scope.buscar = null;
 				  return data.data;
 
 
