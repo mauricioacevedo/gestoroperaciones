@@ -10928,7 +10928,7 @@ $sqlfenix=
 
 
 
-							$this->response(json_encode($busy,$result), 200); //Resultado final si encontro registros
+							$this->response(json_encode($result), 200); //Resultado final si encontro registros
 
 
 						}else{
