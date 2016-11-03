@@ -10893,7 +10893,7 @@ $sqlfenix=
 
                         $rPendi = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
-                        $busy="";
+                        $busy=false;
 
                         if($rPendi->num_rows > 0){
                                 $result = array();
@@ -10904,18 +10904,21 @@ $sqlfenix=
                                   $asess=$row['ASESOR'];
 
                                 	if($asess!=''){//este pedido esta ocupado, no deberia hacer la actualizacion de abajo..
-                                       $busy="YES";
+                                       $busy=true;
                                         }
 
 								}//chao While
 
                                 $sqlupdate="";
 
-                                if($busy=="YES"){
+                                if($busy==true){
                                         $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1 where ID in ($ids)";
+
+
                                 }else{
                                         $fecha_visto=date("Y-m-d H:i:s");
                                         $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where ID in ($ids)";
+
                                 }
 
                                 $x = $this->mysqli->query($sqlupdate);
@@ -10927,7 +10930,7 @@ $sqlfenix=
 
 
 
-							$this->response(json_encode($result), 200); //Resultado final si encontro registros
+							$this->response(json_encode(array($busy,$result)), 200); //Resultado final si encontro registros
 
 
 						}else{
