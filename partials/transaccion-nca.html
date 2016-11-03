@@ -1,4 +1,4 @@
-﻿<style type="text/css">
+<style type="text/css">
   .form-horizontal input.ng-invalid.ng-dirty {
     border-color: #FA787E;
   }
@@ -32,16 +32,36 @@
                 <label class= "col-md-2">Municipio: </label>
                 <div class="col-md-4">
             	<select ng-model="transaccion.MUNICIPIO_ID" class="form-control" style="width: auto;">
-            		<option value='BUCARAMANGA'>BUCARAMANGA</option>
-            		<option value='CALI'>CALI</option>
-            		<option value='SANTA MARTA'>SANTA MARTA</option>
-            		<option value='BARRANQUILLA'>BARRANQUILLA</option>
-            		<option value='MONTERIA'>MONTERIA</option>
-            		<option value='VALLEDUPAR'>VALLEDUPAR</option>
-            		<option value='SINCELEJO'>SINCELEJO</option>
-			        <option value='BOGOTA'>BOGOTA</option>
-                    <option value='DTH'>DTH</option>
-                    <option value='CARTAGENA'>CARTAGENA</option>
+            		<option value='BARRANCABERMEJA'>BARRANCABERMEJA</option>
+					<option value='BARRANQUILLA'>BARRANQUILLA</option>
+					<option value='BELLO'>BELLO</option>
+					<option value='BOGOTA'>BOGOTA</option>
+					<option value='BUCARAMANGA'>BUCARAMANGA</option>
+					<option value='CALI'>CALI</option>
+					<option value='CARTAGENA'>CARTAGENA</option>
+					<option value='CUCUTA'>CUCUTA</option>
+					<option value='ENVIGADO'>ENVIGADO</option>
+					<option value='FLORIDABLANCA'>FLORIDABLANCA</option>
+					<option value='GIRON'>GIRON</option>
+					<option value='JAMUNDI'>JAMUNDI</option>
+					<option value='LA MESA'>LA MESA</option>
+					<option value='LOS PATIOS'>LOS PATIOS</option>
+					<option value='MALAMBO'>MALAMBO</option>
+					<option value='MONTERIA'>MONTERIA</option>
+					<option value='PALMIRA'>PALMIRA</option>
+					<option value='PIEDECUESTA'>PIEDECUESTA</option>
+					<option value='RIONEGRO'>RIONEGRO</option>
+					<option value='SABANETA'>SABANETA</option>
+					<option value='SANTA MARTA'>SANTA MARTA</option>
+					<option value='SINCELEJO'>SINCELEJO</option>
+					<option value='SOLEDAD'>SOLEDAD</option>
+					<option value='TURBACO'>TURBACO</option>
+					<option value='TURBO'>TURBO</option>
+					<option value='VALLEDUPAR'>VALLEDUPAR</option>
+					<option value='VILLA DEL ROSARIO'>VILLA DEL ROSARIO</option>
+					<option value='VILLAVICENCIO'>VILLAVICENCIO</option>
+					<option value='VILLAVICENCIO'>CARTAGENA</option>
+					<option value='DTH'>DTH</option>
             	</select>
                 </div>
             </div><!--Finaliza Div de Municipio-->
@@ -70,13 +90,19 @@
             		<option value='DISENO'>DISENO</option>
             		<option value='EN PROCESO - PENDIENTE MALA ASIGNACION'>EN PROCESO - PENDIENTE MALA ASIGNACION</option>
             		<option value='EN PROCESO - PENDIENTE RED EXTERNA'>EN PROCESO - PENDIENTE RED EXTERNA</option>
-                        <option value='EN PROCESO - RECONFIGURACION'>EN PROCESO - RECONFIGURACION</option>
+                    <option value='EN PROCESO - RECONFIGURACION'>EN PROCESO - RECONFIGURACION</option>
             		<option value='PROSPECTO'>PROSPECTO</option>
+					<option value='' disabled>--------------------</option>
+					<option value='CANCELAR MOTIVO TECNICO'>CANCELAR MOTIVO TECNICO</option>
+					<option value='RECONFIGURAR POR DISPONIBILIDAD'>RECONFIGURAR POR DISPONIBILIDAD</option>
+					<option value='RECONFIGURAR POR COBERTURA'>RECONFIGURAR POR COBERTURA</option>
+					<option value='RECONFIGURAR MOTIVO TECNICO'>RECONFIGURAR MOTIVO TECNICO</option>
+					<option value='RECONFIGURAR PEDIDO'>RECONFIGURAR PEDIDO</option>
             	</select>
                 </div>
             </div><!--Finaliza Div de Estado-->
             <div class= "form-group"><!--Inicia Div de Fecha-->
-                <label class= "col-md-2">Fecha: </label>
+                <label class= "col-md-2">Fecha Estado: </label>
             	<div class="input-daterange col-sm-2" id="datepicker">
                     <input type="text" class="form-control" style="min-width: 100px" id="toDate" name="toDate" ng-model="transaccion.FECHA"  placeholder= "Fecha" />
                 </div>
@@ -100,6 +126,13 @@
                 		<option value='PROSPECTO'>PROSPECTO</option>
                 		<option value='RECONFIGURAR MOTIVO TECNICO'>RECONFIGURAR MOTIVO TECNICO</option>
                 		<option value='POR AGENDAR'>POR AGENDAR</option>
+						<option value='' disabled>--------------------------</option>
+						<option value='CANCELADO SIN RECONFIGURACION'>CANCELADO SIN RECONFIGURACION</option>
+						<option value='RE APERTURA RECONFIGURADO MISMO NUMERO MISMA AGENDA'>RE APERTURA RECONFIGURADO MISMO NUMERO MISMA AGENDA</option>
+						<option value='PENDIENTE CANCELADO'>PENDIENTE CANCELADO</option>
+						<option value='CERRADO INSTALADO'>CERRADO INSTALADO</option>
+						<option value='CERRADO FACTURADO'>CERRADO FACTURADO</option>
+						<option value='ANULADO'>ANULADO</option>
                     </select>
                 </div>
             </div><!--Finaliza Div de Estado Final-->
@@ -127,6 +160,12 @@
                 		<option value='RECONFIGURAR DATOS INCORRECTOS'>RECONFIGURAR DATOS INCORRECTOS</option>
                 		<option value='NO REQUIERE DISEÑO'>NO REQUIERE DISEÑO</option>
                 		<option value='SE ENVIA CR A SOPORTE COORDENADAS INCORRECTAS'>SE ENVIA CR A SOPORTE COORDENADAS INCORRECTAS</option>
+						<option value='' disabled>------------------------------------------------------</option>
+						<option value='SE CANCELA PEDIDO Y NO SE RECONFIGURA'>SE CANCELA PEDIDO Y NO SE RECONFIGURA</option>
+						<option value='SE REABRE PEDIDO PARA RECONFIGURAR'>SE REABRE PEDIDO PARA RECONFIGURAR</option>
+						<option value='SOLO SE CANCELA EL PENDIENTE'>SOLO SE CANCELA EL PENDIENTE</option>
+						<option value='SE CREA CR PARA CERRAR PEDIDO'>SE CREA CR PARA CERRAR PEDIDO</option>
+						<option value='SE ANULA SOLICITUD'>SE ANULA SOLICITUD</option>
                     </select>
                 </div>
             </div><!--Termina Div de Observaciones -->
