@@ -10924,46 +10924,9 @@ $sqlfenix=
 								$xx = $this->mysqli->query($sqlfeed);
 								//  ---------------------- Feed
 
-							$sqlHistorico=	" SELECT ".
-										  	" COUNT(*) AS REGISTROS ".
-											" , (SELECT U.OBSERVACION FROM portalbd.transacciones_nca U ".
-											"	 where U.ID=C1.ULTIMOID) AS ULTIMOOBS ".
-											" , (SELECT U.ESTADO FROM portalbd.transacciones_nca U ".
-											" where U.ID=C1.ULTIMOID) AS ULTIMOESTADO ".
-											" FROM( ".
-											" SELECT N.ID, ".
-											"	N.OFERTA, ".
-											"	N.MUNICIPIO_ID, ".
-											"	N.TRANSACCION, ".
-											"	N.ESTADO, ".
-											"	N.FECHA, ".
-											"	N.DURACION, ".
-											"	N.INCIDENTE, ".
-											"	N.FECHA_INICIO, ".
-											"	N.FECHA_FIN, ".
-											"	N.ESTADO_FINAL, ".
-											"	N.OBSERVACION, ".
-											"	N.USUARIO, ".
-											"	(SELECT MAX(D.ID) FROM portalbd.transacciones_nca D ".
-											"	WHERE D.OFERTA=N.OFERTA GROUP BY D.OFERTA) AS ULTIMOID ".
-											" FROM portalbd.transacciones_nca N ".
-											" WHERE N.OFERTA='1-1360531137568' ) C1 ".
-											" GROUP BY C1.OFERTA ";
 
-							$rHistorico = $this->mysqli->query($sqlHistorico) or die($this->mysqli->error.__LINE__);
 
-							if($rHistorico->num_rows > 0){
-                                $result = array();
-                                while($row=$rHistorico->fetch_assoc()){
-									$historico[]=$row;
-
-									}
-								}else{
-
-									$historico=array('REGISTROS' => 0,'ULTIMOOBS' =>'SIN','ULTIMOESTADO'=>'SIN');
-							}
-
-							$this->response(json_encode($busy,$result,$historico), 200); //Resultado final si encontro registros
+							$this->response(json_encode($busy,$result, 200); //Resultado final si encontro registros
 
 
 						}else{
