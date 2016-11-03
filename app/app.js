@@ -11081,13 +11081,6 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			$scope.buscar=buscar;
 
 
-			if($scope.pedidoActual!=''||$scope.pedidoActual!=undefined){
-					$scope.pedidoIsActive=true;
-					$scope.errorDatos='Oferta: '+$scope.pedidoActual+' -Liberado!';
-			}else{
-				$scope.pedidoIsActive=false;
-				$scope.errorDatos=null;
-			}
 
           var kami=services.getBuscarOfertaSiebelAsignaciones(buscar,$scope.pedidoActual,$rootScope.logedUser.login).then(
 
@@ -11095,6 +11088,10 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 				 if(data.data==''){
 						$scope.errorDatos="No hay Registros. Intente con otra oferta";
+					 	$scope.peds={};
+						$scope.mpedido={};
+						$scope.busy="";
+						$scope.pedidoIsActive=false;
 					}else{
 
 						$scope.peds = data.data[1];
