@@ -11101,31 +11101,32 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 						$scope.errorDatos="No hay Registros. Intente con otra oferta";
 					}else{
 
-			var dat=data.status;
-			//alert("'"+data.status+"'");
-                if(dat==204){
-                   document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Estado";
-					$scope.errorDatos="No hay Registros. Intente Cambiando de Estado";
-					$scope.peds={};
-					$scope.mpedido={};
-					$scope.busy="";
-					$scope.pedidoIsActive=false;
+						var dat=data.status;
+						//alert("'"+data.status+"'");
+							if(dat==204){
+							   document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Estado";
+								$scope.errorDatos="No hay Registros. Intente Cambiando de Estado";
+								$scope.peds={};
+								$scope.mpedido={};
+								$scope.busy="";
+								$scope.pedidoIsActive=false;
 
-				}else{
+							}else{
 
-                       if($scope.ocupado==true){
-                                        $scope.busy=$scope.peds[0].ASESOR;
-										$scope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.busy;
-                                        return;
+								   if($scope.ocupado==true){
+													$scope.busy=$scope.peds[0].ASESOR;
+													$scope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.busy;
+													return;
 
-                         }
-								$scope.errorDatos=null;
-								$scope.pedidoIsActive=true;
-								$scope.fecha_inicio=$rootScope.fechaProceso();
+									 }
+											$scope.errorDatos=null;
+											$scope.pedidoIsActive=true;
+											$scope.fecha_inicio=$rootScope.fechaProceso();
 
 
-                        return data.data;
-                }
+									return data.data;
+							}
+					}
 			  });
 
 
