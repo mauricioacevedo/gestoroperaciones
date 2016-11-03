@@ -4833,7 +4833,8 @@ $queryConceptosFcita=" select ".
                                 while($row = $r->fetch_assoc()){
 
                                         $row['OBSERVACION_FENIX']=str_replace(array("\n","\r"), '/', $row['OBSERVACION_FENIX']);
-                                        
+                                        $row['ULTIMA_NOVEDAD'] =  str_replace(',', ' ', $row['ULTIMA_NOVEDAD']);
+
 					if($row['ULTIMA_NOVEDAD']=='AGENDADO_FUTURO'||$row['ULTIMA_NOVEDAD']=='AGENDADO'){
 						//echo "detecte agendado futuro!!!\n";
 						$sqlhis="select CONCAT(date_format(FECHA_CITA_REAGENDA,'%Y-%m-%d'),' - ',JORNADA_CITA) AS FECHA_CC from gestor_historicos_reagendamiento WHERE PEDIDO_ID='".$row['PEDIDO_ID']."' order by id desc limit 1";
