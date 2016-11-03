@@ -315,7 +315,7 @@
                         //Mauricio: CONSULTA REPODEROSA, unbuffered
                         $this->mysqli->real_query($query) or die($conn->error.__LINE__);
 
-                        if($r = $connm->use_result()){
+                        if($r = $this->mysqli->use_result()){
                                 $result = array();
                                 $fp = fopen("../tmp/$filename", 'w');
 
