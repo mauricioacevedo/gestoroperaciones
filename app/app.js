@@ -11077,13 +11077,15 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			$scope.pedidoIsGuardado=false;
 
 			$scope.pedidoActual=pedidoinfo;
-			if($scope.pedidoActual!=''||$scope.pedidoActual!=undefined){
-					$scope.pedidoIsActive=true;
-					$scope.errorDatos='Oferta: '+$scope.pedidoActual+' -Liberado!';
-				if($scope.buscar==null||$scope.buscar==undefined||$scope.buscar==''){
+
+			if($scope.buscar==null||$scope.buscar==undefined||$scope.buscar==''){
 						$scope.pedidoIsActive=false;
 						alert("Ingrese Oferta a buscar");
 						return;
+			if($scope.pedidoActual!=''||$scope.pedidoActual!=undefined){
+					$scope.pedidoIsActive=true;
+					$scope.errorDatos='Oferta: '+$scope.pedidoActual+' -Liberado!';
+
 				}
 			}else{
 				$scope.pedidoIsActive=false;
