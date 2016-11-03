@@ -11000,6 +11000,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 		$scope.accRdy=false;
 		$scope.InfoGestion={};
 		$scope.InfoPedido.INCIDENTE='NO';
+		$scope.pedidoIsGuardado=false;
 
 		if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
 			//alert($scope.peds[0].PEDIDO_ID);
@@ -11126,6 +11127,12 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			  function(data){
 
 				  $scope.pedidoIsGuardado=true;
+				  $scope.errorDatos=null;
+				  $scope.InfoPedido=[];
+				  $scope.fecha_inicio=null;
+				  $scope.fecha_fin=null;
+				  $scope.accRdy=false;
+				  $scope.InfoGestion={};
 
 				  return data.data;
 
