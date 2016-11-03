@@ -10964,13 +10964,6 @@ $sqlfenix=
 
 							$this->response(json_encode($busy,$result,$historico), 200); //Resultado final si encontro registros
 
-                        }else{
-
-							//Si el pedido no esta en pendientes, pero tiene historico, igual lo busco. para mostrar el mensaje unicamente
-
-
-							$this->response(json_encode($historico), 200);
-
 
 						}else{
 							$error='No existe';
