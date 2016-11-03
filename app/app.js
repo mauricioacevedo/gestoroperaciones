@@ -11028,6 +11028,8 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 			$scope.peds = data.data;
 
+			console.log($scope.peds);
+
 			if(data.data==''){
 
 				document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Estado.";
@@ -11099,9 +11101,9 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 								$scope.errorDatos=null;
 								$scope.pedido1=$scope.peds.PEDIDO_ID;
                                 $scope.pedidoinfo=$scope.peds.PEDIDO_ID;
-							$scope.pedidoIsActive=true;
+								$scope.pedidoIsActive=true;
 
-							$scope.fecha_inicio=$rootScope.fechaProceso();
+								$scope.fecha_inicio=$rootScope.fechaProceso();
 
 
                         return data.data;
