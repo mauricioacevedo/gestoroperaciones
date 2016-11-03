@@ -10968,7 +10968,7 @@ $sqlfenix=
 
 						}else{
 							$error='No existe';
-							$this->response($error,204);        // No encontramos nada.
+							$this->response(json_encode($error),204);        // No encontramos nada.
 						}
 
 
