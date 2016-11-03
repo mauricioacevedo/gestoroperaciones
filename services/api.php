@@ -310,7 +310,7 @@
                                "  where fecha_fin between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' ";
 
 
-                        $r = $this->mysqli->query($query,MYSQLI_USE_RESULT) or die($this->mysqli->error.__LINE__);
+                        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
                         if($r->num_rows > 0){
                                 $result = array();
@@ -382,6 +382,7 @@
                         $this->response('',204);        // If no records "No Content" status
 
                 }
+
 
                  private function csvHistoricosAgendamientoEdatel(){
                         if($this->get_request_method() != "GET"){
