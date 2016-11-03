@@ -6329,6 +6329,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
     $scope.usert.EQUIPO_ID="MANUAL";
     $scope.usert.ID="";
 
+
     $scope.doubleDigit = function (num){
 
                 if(num<0){
