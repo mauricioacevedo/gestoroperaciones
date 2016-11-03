@@ -11078,7 +11078,10 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 			$scope.pedidoActual=pedidoinfo;
 
-			if(buscar==null||buscar==undefined||buscar==''){
+			console.log(buscar);
+			$scope.buscar=buscar;
+
+			if($scope.buscar==null||$scope.buscar==undefined||$scope.buscar==''){
 						$scope.pedidoIsActive=false;
 						alert("Ingrese Oferta a buscar");
 						return;
