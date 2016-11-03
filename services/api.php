@@ -10969,7 +10969,7 @@ $sqlfenix=
 							//Si el pedido no esta en pendientes, pero tiene historico, igual lo busco. para mostrar el mensaje unicamente
 
 
-
+							$this->response(json_encode($historico), 200);
 
 
 						}else{
