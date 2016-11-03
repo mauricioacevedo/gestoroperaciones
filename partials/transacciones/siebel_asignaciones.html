@@ -4,7 +4,7 @@
 			<div class = "panel panel-default">
 				<div class = "panel-heading">
 					<b><i class="fa fa-bars" aria-hidden="true"></i> DemePedido Siebel</b>
-					<span ng-class="{'color-red': errorClass === 'error', 'color-orange': errorClass === 'warning', 'color-green': s.state === 'ignored'}" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+					<span ng-class="{'danger': errorClass === 'error', 'warning': errorClass === 'warning', 'info': errorClass === 'ignored'}" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
 							<div class="col-md-1 col-xs-1 ">
