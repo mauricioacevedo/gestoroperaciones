@@ -7124,7 +7124,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
                 var login=$rootScope.logedUser.login;
                 services.getCsvHistoricosAgendamiento(login,$scope.data.fechaIni,$scope.data.fechaFin).then(function(data){
                         console.log(data.data[0]);
-                        window.location.href="tmp/"+data.data[0];
+                        //window.location.href="tmp/"+data.data[0];
                         return data.data;
                 });
 
