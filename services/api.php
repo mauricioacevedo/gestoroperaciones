@@ -10890,6 +10890,8 @@ $sqlfenix=
 						"	where m.PEDIDO_ID='$pedido' ".
 						"	AND m.STATUS IN ('PENDI_PETEC','MALO') ";
 
+			echo $query1;
+
                         $rPendi = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
                         $busy="";
