@@ -11103,6 +11103,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 
 		$scope.InfoGestion={
+			ID:gestion.ID,
 			OFERTA:gestion.PEDIDO_ID,
 			MUNICIPIO_ID:gestion.MUNICIPIO_ID,
 			TRANSACCION:gestion.DESC_TIPO_TRABAJO,
@@ -11119,6 +11120,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 		console.log($scope.InfoGestion);
 
+		/*
 		services.insertTransaccionNCA($scope.InfoGestion).then(
 
 			  function(data){
@@ -11134,7 +11136,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 					$scope.errorDatos="No se pudo guardar";
 
 				  }
-			  );
+			  );*/
 
 
 

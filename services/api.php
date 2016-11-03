@@ -1440,8 +1440,7 @@ if($novedad=='AGENDADO'||$novedad=='AGENDADO MANUAL'||$novedad=='AGENDADO_FUTURO
 					$concepto_final=$concepto_anterior;
 					$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado,concepto_final,source) VALUES(".trim($values,',').",'$fecha_estado','$concepto_final','$sourcee')";
                                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-					$sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$today',STATUS='$estadum',ASESOR='' WHERE ID=$iddd ";
-                                        $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
+ $sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$today',STATUS='$estadum',ASESOR='' WHERE ID=$iddd "; $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
                                         //hago la actualizacion en fenix
 					//activity feed.
 					//$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta) values ('$useri','$username','ASIGNACIONES','$concepto_final','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi') ";
@@ -7481,26 +7480,27 @@ $queryConceptosFcita=" select ".
 			$this->response($this->json($error), 400);
 		}
 	
-                 private function insertTransaccionNCA(){
-                       if($this->get_request_method() != "POST"){
+           private function insertTransaccionNCA(){
+
+                 if($this->get_request_method() != "POST"){
                                 $this->response('',406);
                         }
 
-                        $transaccion = json_decode(file_get_contents("php://input"),true);
+               	$transaccion = json_decode(file_get_contents("php://input"),true);
 
-			$transaccion = $transaccion['transaccion'];
-                        $column_names = array('OFERTA','MUNICIPIO_ID','TRANSACCION','ESTADO','FECHA','DURACION','INCIDENTE','FECHA_INICIO','FECHA_FIN','ESTADO_FINAL','OBSERVACION','USUARIO');
-                        $keys = array_keys($transaccion);
-                        $columns = '';
-                        $values = '';
-			
-			$useri=$transaccion['USUARIO'];
-			$username=$transaccion['USERNAME'];
-			
-			$oferta=$transaccion['OFERTA'];
-			$estado_final=$transaccion['ESTADO_FINAL'];
-                        //echo var_dump($transaccion);
-			//echo var_dump($keys);
+				$transaccion = $transaccion['transaccion'];
+                $column_names = array('OFERTA','MUNICIPIO_ID','TRANSACCION','ESTADO','FECHA','DURACION','INCIDENTE','FECHA_INICIO','FECHA_FIN','ESTADO_FINAL','OBSERVACION','USUARIO');
+				$keys = array_keys($transaccion);
+				$columns = '';
+				$values = '';
+
+				$useri=$transaccion['USUARIO'];
+				$username=$transaccion['USERNAME'];
+
+				$oferta=$transaccion['OFERTA'];
+				$estado_final=$transaccion['ESTADO_FINAL'];
+			   	$ID=$transaccion['ID'];
+
                         foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
                            if(!in_array($desired_key, $keys)) {
                                         $$desired_key = '';
@@ -7516,6 +7516,9 @@ $queryConceptosFcita=" select ".
                         if(!empty($transaccion)){
 				//echo $query;
                            	$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+				$sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$today', STATUS='CERRADO_PETEC', ASESOR='' WHERE ID=$iddd ";
+                $rUpdate = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
 
 				$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$useri','$username','NCA','$estado_final','OFERTA: $oferta','NCA') ";
 				$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
