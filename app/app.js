@@ -11078,23 +11078,30 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
           var kami=services.getBuscarOfertaSiebelAsignaciones(buscar,$scope.pedidoActual,$rootScope.logedUser.login).then(
 
 			  function(data){
-                       $scope.peds = data.data;
+                       $scope.peds = data.data[1][0];
+				  	   $scope.ocupado=data.data[0];
 			           console.log(data.data);
 				  	console.log($scope.peds);
 
 			var dat=data.status;
 			//alert("'"+data.status+"'");
                 if(dat==204){
-                   document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Plaza";
-					$scope.errorDatos="No hay Registros. Intente Cambiando de Plaza";
+                   document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Estado";
+					$scope.errorDatos="No hay Registros. Intente Cambiando de Estado";
                         }else{
 
-                                if($scope.peds[0]=="PEDIDO_OCUPADO"){
-                                        $scope.busy=$scope.peds[0].ASESOR;
-										$scope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
+                                if($scope.ocupado==true){
+                                        $scope.busy=$scope.peds.ASESOR;
+										$scope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.busy;
                                         return;
 
                                 }
+								$scope.errorDatos=null;
+								$scope.pedido1=$scope.peds.PEDIDO_ID;
+                                $scope.pedidoinfo=$scope.peds.PEDIDO_ID;
+							$scope.pedidoIsActive=true;
+
+							$scope.fecha_inicio=$rootScope.fechaProceso();
 
 
                         return data.data;
