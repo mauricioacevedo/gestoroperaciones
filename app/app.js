@@ -11092,14 +11092,15 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
           var kami=services.getBuscarOfertaSiebelAsignaciones(buscar,$scope.pedidoActual,$rootScope.logedUser.login).then(
 
 			  function(data){
-                       $scope.peds = data.data[1];
-				  	   $scope.ocupado=data.data[0];
-				  	   $scope.pedido1=$scope.peds[0].PEDIDO_ID;
-				  	   $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 
 				 if(data.data==''){
 						$scope.errorDatos="No hay Registros. Intente con otra oferta";
 					}else{
+
+						$scope.peds = data.data[1];
+				  	   	$scope.ocupado=data.data[0];
+						$scope.pedido1=$scope.peds[0].PEDIDO_ID;
+				  	   	$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 
 						var dat=data.status;
 						//alert("'"+data.status+"'");
