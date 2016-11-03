@@ -10766,7 +10766,7 @@ $sqlfenix=
 
 //Terminan funciones para  Transacciones Ordens O-XXX
 
-		private function listadoOpcionesSiebel(){
+	private function listadoOpcionesSiebel(){
 
 
 			if($this->get_request_method() != "GET"){
@@ -10774,9 +10774,6 @@ $sqlfenix=
                         }
 
             $today = date("Y-m-d");
-
-
-			//$parametro="and p.STATUS='PENDI_REPA'";
 
             $query= " SELECT ".
 					"	ID ".
@@ -10796,12 +10793,9 @@ $sqlfenix=
 							" , STATUS ".
 							" FROM portalbd.gestor_opciones_siebel ";
 
+            $rObservacion = $this->mysqli->query($queryObservacion);
 
-                       //echo $query;
-                       //
-                    $rObservacion = $this->mysqli->query($queryObservacion);
-
-                        if($rObservacion->num_rows > 0){
+                 if($rObservacion->num_rows > 0){
                                 $result = array();
                                 while($row=$rObservacion->fetch_assoc()){
 								$observaciones[]=$row;
@@ -10810,9 +10804,9 @@ $sqlfenix=
 							}
                         }
 
-                    $rEstado = $this->mysqli->query($queryEstado);
+             $rEstado = $this->mysqli->query($queryEstado);
 
-                        if($rEstado->num_rows > 0){
+                   if($rEstado->num_rows > 0){
                                 $result = array();
                                 while($row=$rEstado->fetch_assoc()){
 								$estados[]=$row;
@@ -10821,9 +10815,9 @@ $sqlfenix=
 							}
                         }
 
-                      $rst = $this->mysqli->query($query);
+              $rst = $this->mysqli->query($query);
 
-						if ($rst->num_rows > 0){
+					if ($rst->num_rows > 0){
 
 							$resultado=array();
 
@@ -10842,6 +10836,149 @@ $sqlfenix=
 						}
 
                 }
+		// Busca Pedido Siebel Asignaciones -------------------------
+		private function buscarOfertaSiebelAsignaciones(){
+
+				if($this->get_request_method() != "GET"){
+						$this->response('',406);
+				}
+
+				$pedido = $this->_request['pedidoID'];
+
+				$user = $this->_request['userID'];
+
+				//si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
+				$pedido_actual = $this->_request['pedido_actual'];
+
+				if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
+						$sqlupdate="update informe_petec_pendientesm set ASESOR='' where ASESOR='$user' ";
+						$xxx = $this->mysqli->query($sqlupdate);
+				}
+
+                $user=strtoupper($user);
+                $today = date("Y-m-d");
+
+                $query1=" SELECT ".
+						"	m.ID ".
+						"	, m.PEDIDO_ID ".
+						"	, m.TIPO_ELEMENTO_ID ".
+						"	, m.TIPO_TRABAJO ".
+						"	, m.DESC_TIPO_TRABAJO ".
+						"	, m.FECHA_INGRESO ".
+						"	, m.FECHA_ESTADO ".
+						"	, m.FECHA_CITA ".
+						"	, m.PRODUCTO_ID ".
+						"	, m.PRODUCTO ".
+						"	, m.UEN_CALCULADA ".
+						"	, m.ESTRATO ".
+						"	, m.CONCEPTO_ID ".
+						"	, m.TECNOLOGIA_ID ".
+						"	, m.MUNICIPIO_ID ".
+						"	, m.DIRECCION_SERVICIO ".
+						"	, m.PAGINA_SERVICIO ".
+						"	, m.FECHA_CARGA ".
+						"	, m.FUENTE ".
+						"	, m.STATUS ".
+						"	, m.ASESOR ".
+						"	, m.FECHA_VISTO_ASESOR ".
+						"	, m.ESTUDIOS ".
+						"	, m.VIEWS ".
+						"	, m.CONCEPTO_ANTERIOR ".
+						"	, m.UP2DATE ".
+						"	FROM portalbd.informe_petec_pendientesm m ".
+						"	where m.PEDIDO_ID='$pedido' ".
+						"	AND m.STATUS IN ('PENDI_PETEC','MALO') ";
+
+                        $rPendi = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
+
+                        $busy="";
+
+                        if($rPendi->num_rows > 0){
+                                $result = array();
+                                while($row = $r->fetch_assoc()){
+
+                                  $result[] = $row;
+                                  $ids=$row['ID'];
+                                  $asess=$row['ASESOR'];
+
+                                	if($asess!=''){//este pedido esta ocupado, no deberia hacer la actualizacion de abajo..
+                                       $busy="YES";
+                                        }
+
+								}//chao While
+
+                                $sqlupdate="";
+
+                                if($busy=="YES"){
+                                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1 where ID in ($ids)";
+                                }else{
+                                        $fecha_visto=date("Y-m-d H:i:s");
+                                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where ID in ($ids)";
+                                }
+
+                                $x = $this->mysqli->query($sqlupdate);
+
+								// Feed ----------------------
+								$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','') ";
+								$xx = $this->mysqli->query($sqlfeed);
+								//  ---------------------- Feed
+
+							$sqlHistorico=	" SELECT ".
+										  	" COUNT(*) AS REGISTROS ".
+											" , (SELECT U.OBSERVACION FROM portalbd.transacciones_nca U ".
+											"	 where U.ID=C1.ULTIMOID) AS ULTIMOOBS ".
+											" , (SELECT U.ESTADO FROM portalbd.transacciones_nca U ".
+											" where U.ID=C1.ULTIMOID) AS ULTIMOESTADO ".
+											" FROM( ".
+											" SELECT N.ID, ".
+											"	N.OFERTA, ".
+											"	N.MUNICIPIO_ID, ".
+											"	N.TRANSACCION, ".
+											"	N.ESTADO, ".
+											"	N.FECHA, ".
+											"	N.DURACION, ".
+											"	N.INCIDENTE, ".
+											"	N.FECHA_INICIO, ".
+											"	N.FECHA_FIN, ".
+											"	N.ESTADO_FINAL, ".
+											"	N.OBSERVACION, ".
+											"	N.USUARIO, ".
+											"	(SELECT MAX(D.ID) FROM portalbd.transacciones_nca D ".
+											"	WHERE D.OFERTA=N.OFERTA GROUP BY D.OFERTA) AS ULTIMOID ".
+											" FROM portalbd.transacciones_nca N ".
+											" WHERE N.OFERTA='1-1360531137568' ) C1 ".
+											" GROUP BY C1.OFERTA ";
+
+							$rHistorico = $this->mysqli->query($sqlHistorico) or die($this->mysqli->error.__LINE__);
+
+							if($rHistorico->num_rows > 0){
+                                $result = array();
+                                while($row=$rHistorico->fetch_assoc()){
+									$historico[]=$row;
+
+									}
+								}else{
+
+									$historico=array('REGISTROS' => 0,'ULTIMOOBS' =>'SIN','ULTIMOESTADO'=>'SIN');
+							}
+
+							$this->response(json_encode($busy,$result,$historico), 200); //Resultado final si encontro registros
+
+                        }else{
+
+							//Si el pedido no esta en pendientes, pero tiene historico, igual lo busco. para mostrar el mensaje unicamente
+
+
+
+
+
+						}else{
+							$error='No existe';
+							$this->response($error,204);        // No encontramos nada.
+						}
+
+
+                } // -------------------------Busca Pedido Siebel Asignaciones
 
 
 	}//cierre de la clase

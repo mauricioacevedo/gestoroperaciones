@@ -870,9 +870,12 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 	 // Siebel Asignaciones -----------------------------
 
 	 obj.getlistadoOpcionesSiebelAsignaciones= function () {
-     return $http.get(serviceBase + 'listadoOpcionesSiebel');
+     	return $http.get(serviceBase + 'listadoOpcionesSiebel');
         };
 
+	obj.getBuscarOfertaSiebelAsignaciones = function(pedido,pedido_actual,user){
+        return $http.get(serviceBase + 'buscarOfertaSiebelAsignaciones?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user);
+        }
 
 	 // -----------------------------  Siebel Asignaciones//
 
@@ -11052,20 +11055,64 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 					return data.data;
     		});
 
-		$scope.timeInit=new Date().getTime();
-		var date1 = new Date();
-		var year    = date1.getFullYear();
-		var month   = $scope.doubleDigit(date1.getMonth()+1);
-		var day     = $scope.doubleDigit(date1.getDate());
-		var hour    = $scope.doubleDigit(date1.getHours());
-		var minute  = $scope.doubleDigit(date1.getMinutes());
-		var seconds = $scope.doubleDigit(date1.getSeconds());
-
-		$scope.fecha_inicio=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
     	};
 
 	// -------------------------------------------------------------- DemePedido
 
+	// BuscarPedido ---------------------------------------------------------------
+
+	$scope.buscarPedido = function(buscar,pedidoinfo) {
+        		$scope.error="";
+                $scope.peds={};
+                $scope.mpedido={};
+                $scope.busy="";
+                $scope.error="";
+
+            console.log(buscar);
+			console.log(pedidoinfo);
+
+		/*
+          var kami=services.buscarPedido(bpedido,$scope.pedido1,$rootScope.logedUser.login).then(function(data){
+                       $scope.peds = data.data;
+			           console.log(data.data);
+
+			var dat=data.status;
+			//alert("'"+data.status+"'");
+                        if(dat==204){
+                                document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Plaza";
+				$scope.error="No hay Registros. Intente Cambiando de Plaza";
+                        }else{
+
+                                if($scope.peds[0]=="PEDIDO_OCUPADO"){
+                                        $scope.busy=$scope.peds[0].ASESOR;
+										$scope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
+                                        return;
+
+                                }
+
+
+                                document.getElementById("warning").innerHTML="";
+                                $scope.pedido1=$scope.peds[0].PEDIDO_ID;
+                                $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+
+
+                        return data.data;
+                }); */
+
+
+        };
+
+
+
+
+
+
+
+
+
+
+
+	// --------------------------------------------------------------- BuscarPedido
 
 	// GuardarPedido --------------------------------------------------------------
 
