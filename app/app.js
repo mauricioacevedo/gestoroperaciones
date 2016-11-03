@@ -11120,7 +11120,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 		console.log($scope.InfoGestion);
 
-		/*
+
 		services.insertTransaccionNCA($scope.InfoGestion).then(
 
 			  function(data){
@@ -11136,7 +11136,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 					$scope.errorDatos="No se pudo guardar";
 
 				  }
-			  );*/
+			  );
 
 
 
