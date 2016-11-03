@@ -11065,6 +11065,8 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			$scope.pedidoActual=pedidoinfo;
 			if($scope.pedidoActual!=''||$scope.pedidoActual!=undefined){
 				$scope.pedidoIsActive=true;
+			}else{
+				$scope.pedidoIsActive=false;
 			}
 
             console.log(buscar);
