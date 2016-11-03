@@ -11126,13 +11126,17 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 			  function(data){
 
-				  $scope.pedidoIsGuardado=true;
-				  $scope.errorDatos=null;
-				  $scope.InfoPedido=[];
-				  $scope.fecha_inicio=null;
-				  $scope.fecha_fin=null;
-				  $scope.accRdy=false;
-				  $scope.InfoGestion={};
+				  	$scope.pedidoIsGuardado=true;
+				  	$scope.pedidos=[];
+					$scope.pedidosUnicos='';
+					$scope.historico_pedido=[];
+					$rootScope.actualView="tx/siebel_asignaciones";
+					$scope.iconcepto="COBERTURA";
+					$scope.pedidoinfo='';
+					$scope.errorDatos=null;
+					$scope.accRdy=false;
+					$scope.fecha_inicio=null;
+					$scope.fecha_fin=null;
 
 				  return data.data;
 
