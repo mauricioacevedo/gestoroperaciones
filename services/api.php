@@ -4817,6 +4817,7 @@ $queryConceptosFcita=" select ".
                         ", pm.FECHA_ESTADO".
                         ", pm.FUENTE".
                         ", pm.STATUS".
+                        ", pm.OBSERVACION_FENIX".
 			", pm.CONCEPTOS ".
 			", pm.FECHA_CITA_FENIX ".
                         "  , (SELECT hr.NOVEDAD FROM gestor_historicos_reagendamiento hr WHERE hr.ID = (SELECT MAX( a.id )  ". 
