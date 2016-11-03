@@ -11065,6 +11065,17 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 	// BuscarPedido ---------------------------------------------------------------
 
 	$scope.buscarPedido = function(buscar,pedidoinfo) {
+
+			var pedido1='';
+			$scope.popup='';
+			$scope.errorDatos=null;
+			$scope.InfoPedido=[];
+			$scope.fecha_inicio=null;
+			$scope.accRdy=false;
+			$scope.InfoGestion={};
+			$scope.InfoPedido.INCIDENTE='NO';
+			$scope.pedidoIsGuardado=false;
+
 			$scope.pedidoActual=pedidoinfo;
 			if($scope.pedidoActual!=''||$scope.pedidoActual!=undefined){
 				$scope.pedidoIsActive=true;
