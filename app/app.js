@@ -11062,11 +11062,10 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 	// BuscarPedido ---------------------------------------------------------------
 
 	$scope.buscarPedido = function(buscar,pedidoinfo) {
-        		$scope.error="";
-                $scope.peds={};
-                $scope.mpedido={};
-                $scope.busy="";
-                $scope.error="";
+			$scope.pedidoActual=pedidoinfo;
+			if($scope.pedidoActual!=''||$scope.pedidoActual!=undefined){
+				$scope.pedidoIsActive=true;
+			}
 
             console.log(buscar);
 			console.log(pedidoinfo);
