@@ -4817,7 +4817,6 @@ $queryConceptosFcita=" select ".
                         ", pm.FECHA_ESTADO".
                         ", pm.FUENTE".
                         ", pm.STATUS".
-                        ", pm.OBSERVACION_FENIX".
 			", pm.CONCEPTOS ".
 			", pm.FECHA_CITA_FENIX ".
                         "  , (SELECT hr.NOVEDAD FROM gestor_historicos_reagendamiento hr WHERE hr.ID = (SELECT MAX( a.id )  ". 
@@ -4825,6 +4824,7 @@ $queryConceptosFcita=" select ".
                        "     WHERE a.PEDIDO_ID =  pm.PEDIDO_ID) )AS ULTIMA_NOVEDAD ". 
 			            ", pm.MICROZONA".
 		                ", pm.SUBZONA_ID".
+                        ", pm.OBSERVACION_FENIX".
                         ", pm.PROCESO".
                         " from portalbd.gestor_pendientes_reagendamiento pm ".
                         " where pm.STATUS='MALO' ";
