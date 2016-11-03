@@ -6,7 +6,15 @@
         <div class="panel-heading " ><!--titulo del panel -->
                 <h4 class="panel-title" >Cargar Archivos</h4>
         </div><!--titulo del panel -->
-          
+          <h4>Selecione el Archivo a Cargar</h4>
+                <div ng-show="uploader.isHTML5">
+                    <div nv-file-drop="" upload="upload">
+                        <div nv-file-over="" upload="upload"
+                            over-class="another-file-over-class" class="well my-drop-zone">
+                           <center> Arrastre el archivo a cargar</center>
+                        </div>
+                    </div>
+                </div>
 
         <div class="panel-body"><!--contenido -->
             <div class="row">
