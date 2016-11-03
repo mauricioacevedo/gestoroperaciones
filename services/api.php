@@ -4829,11 +4829,11 @@ $queryConceptosFcita=" select ".
                         if($r->num_rows > 0){
                                 $result = array();
                                 $fp = fopen("../tmp/$filename", 'w');
-                                fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','FUENTE','STATUS','CONCEPTOS','FECHA_CITA','ULTIMA_NOVEDAD','MICROZONA','ZONA','OBSERVACION','PROCESO'),chr (124));
+                                fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','FUENTE','STATUS','CONCEPTOS','FECHA_CITA','ULTIMA_NOVEDAD','MICROZONA','ZONA','OBSERVACION','PROCESO'));
                                 while($row = $r->fetch_assoc()){
 
                                         $row['OBSERVACION_FENIX']=str_replace(array("\n","\r"), '/', $row['OBSERVACION_FENIX']);
-                                        $row['ULTIMA_NOVEDAD'] =  str_replace(',', ' ', $row['ULTIMA_NOVEDAD']);
+
 
 					if($row['ULTIMA_NOVEDAD']=='AGENDADO_FUTURO'||$row['ULTIMA_NOVEDAD']=='AGENDADO'){
 						//echo "detecte agendado futuro!!!\n";
