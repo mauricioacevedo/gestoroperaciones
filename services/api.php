@@ -3989,7 +3989,7 @@ $queryConceptosFcita=" select ".
 				" FROM  informe_petec_pendientesm ".
 				" WHERE (STATUS='PENDI_PETEC' or STATUS='MALO') ".
 				" GROUP BY concepto_id ".
-				" ORDER BY COUNT(*) ASC";
+				" ORDER BY COUNT(*) DESC";
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
                         if($r->num_rows > 0){
