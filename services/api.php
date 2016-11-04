@@ -8471,21 +8471,21 @@ private function listadoTransaccionesActividades(){
 						$ACCESO='';
 						$ESTADO='';
                   //--------------------
-						$CONCEPTOS="";
-                        $CLIENTE_ID="";
-                        $NOMBRE_USUARIO="";
-                        $DEPARTAMENTO="";
-                        $SUBZONA_ID="";
-                        $DIRECCION_ENVIO="";
-                        $FUENTE="";
-                        $PROCESO="";
-                        $CELULAR_AVISAR="";
-                        $TELEFONO_AVISAR="";
-                        $IDENTIFICADOR_ID="";
-                        $FECHA_INGRESO="";
-                        $MICROZONA="";
-                        $OBSERVACION_FENIX="";
-                        $TECNOLOGIA_ID="";
+						$CONCEPTOS='';
+                        $CLIENTE_ID='';
+                        $NOMBRE_USUARIO='';
+                        $DEPARTAMENTO='';
+                        $SUBZONA_ID='';
+                        $DIRECCION_ENVIO='';
+                        $FUENTE='';
+                        $PROCESO='';
+                        $CELULAR_AVISAR='';
+                        $TELEFONO_AVISAR='';
+                        $IDENTIFICADOR_ID='';
+                        $FECHA_INGRESO='';
+                        $MICROZONA='';
+                        $OBSERVACION_FENIX='';
+                        $TECNOLOGIA_ID='';
 
 
 
