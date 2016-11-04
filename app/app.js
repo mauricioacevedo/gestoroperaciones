@@ -2441,6 +2441,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		$scope.ordenamientoDemepedido=data.data['VALOR'];
 		$scope.ordenamientoDemepedidoNuevo=data.data['VALOR'];
 		$scope.ordenamientoDemepedidoUpdate=data.data['ULTIMA_ACTUALIZACION'];
+		$scope.UsuarioParametro=data.data['USUARIO_ID'];
                 return data.data;
         });
 
@@ -2450,6 +2451,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                 $scope.ordenamientoDemepedidoReconfiguracion=data.data['VALOR'];
                 //$scope.ordenamientoDemepedidoNuevo=data.data['VALOR'];
                 $scope.ordenamientoDemepedidoUpdateReconfiguracion=data.data['ULTIMA_ACTUALIZACION'];
+			$scope.UsuarioParametroReconfiguracion=data.data['USUARIO_ID'];
                 return data.data;
         });
 
