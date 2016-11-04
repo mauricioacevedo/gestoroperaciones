@@ -118,9 +118,7 @@
 					<div class="col-md-8">
 
 						<ul class="nav navbar-nav navbar-left">
-							<li>Registros: <span class="badge badge-default">{{results.length}}</span></li>
-							<li>&nbsp;|&nbsp;</li>
-							<li> Total: <span class="label label-success">{{results|sumarNum:'CANTIDAD'}}</span></li>
+
 
 						</ul>
 
@@ -138,7 +136,7 @@
 				<div class = "panel-heading nav navbar-default">
 
 					<ul class="nav navbar-nav navbar-left">
-						<b>Cola + Estados</b>
+						<b>Gráfica de Pendientes</b>
 						<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
 
 					</ul>
@@ -151,7 +149,7 @@
 						<li>
 
 							<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInputCola" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
-							<button type="button" class="btn btn-default btn-circle-xs" ng-click="listaPendiColaid()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
+							<button type="button" class="btn btn-default btn-circle-xs" ng-click="actualizarGrafica()()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
 								<i class="fa fa-refresh"  aria-hidden="true"></i>
 							</button>
 							<button type="button" class="btn btn-default btn-circle-xs" ng-click="csvPendientes(filtroInput)" title="Exportar Pendientes" data-toggle="tooltip" data-placement="left" ng-disabled="loading">
@@ -166,28 +164,13 @@
 				</div>
 				<div class="panel-body fixed-panel" >
 
-					<table class = "table small table-striped table-condensed">
-						<thead>
-					      <tr >
-					      	<th>COLA ID</th>
-					      	<th>TOTAL</th>
-					      	<th>PENDIENTE</th>
-					      	<th>ENRUTADO</th>
-					      	<th>PROGRAMADO</th>
-					      </tr>
-					    </thead>
-					    <tbody>
-					      <tr ng-repeat="data1 in listaKpisColaid | filter:filtroInputCola as resultsci" class="animated bounceInRight">
-					      	 <td ng-class="{'AAA SOPORTE': 'danger'}[data1.COLA_ID]">{{data1.COLA_ID}}</td>
-					      	 <td ng-class="{'AAA SOPORTE': 'danger'}[data1.COLA_ID]">{{data1.CANTIDAD}}</td>
-					      	 <td ng-class="{'AAA SOPORTE': 'danger'}[data1.COLA_ID]">{{data1.PENDIENTE}}</td>
-					         <td ng-class="{'AAA SOPORTE': 'danger'}[data1.COLA_ID]">{{data1.ENRUTADO}}</td>
-					         <td ng-class="{'AAA SOPORTE': 'danger'}[data1.COLA_ID]">{{data1.PROGRAMADO}}</td>
-
-					      </tr>
-					     </tbody>
-
-				   </table>
+					<div fusioncharts
+						align="center"
+						width="800"
+						height="400"
+						type="column2d"
+						datasource="{{myDataSource}}">
+                    </div><!--Fusioncharts -->
 
 				</div>
 				<div class="panel-footer clearfix" >
