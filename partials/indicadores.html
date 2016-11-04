@@ -142,7 +142,7 @@
 						    </div>
 						<li>
 
-							<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInputCola" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
+							<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
 							<button type="button" class="btn btn-default btn-circle-xs" ng-click="actualizarGrafica()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
 								<i class="fa fa-refresh"  aria-hidden="true"></i>
 							</button>
@@ -171,7 +171,7 @@
 								<th>Viejos</th>
 							</thead>
 							<tbody>
-								<tr ng-repeat="data in listado_conceptosfc | filter:filtroInput">
+								<tr ng-repeat="data in listado_conceptosfc | filter:filtroInput as results">
 									<td><!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->{{data.CONCEPTO_ID}}</span></td>
 									<td ng-init="listado_conceptosfc.totales = parseInt(listado_conceptosfc.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
 									<td ng-init="listado_conceptosfc.total02 = parseInt(listado_conceptosfc.total02) + parseInt(data.Ayer)">{{data.Ayer}}</td>
@@ -234,7 +234,7 @@
 						    </div>
 						<li>
 
-							<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInputCola" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
+							<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
 							<button type="button" class="btn btn-default btn-circle-xs" ng-click="actualizarGrafica()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
 								<i class="fa fa-refresh"  aria-hidden="true"></i>
 							</button>
