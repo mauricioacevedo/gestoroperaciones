@@ -2426,10 +2426,12 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                     if(parametro=="FECHA_ORDEN_DEMEPEDIDO"){
                         $scope.UsuarioParametro=data.data['USUARIO_ID'];
 						$scope.ordenamientoDemepedido=data.data['VALOR'];
+						$scope.ordenamientoDemepedidoUpdate=data.data['ULTIMA_ACTUALIZACION'];
                     }
                     if(parametro=="FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION"){
                         $scope.UsuarioParametroReconfiguracion=data.data['USUARIO_ID'];
 						$scope.ordenamientoDemepedidoReconfiguracion=data.data['VALOR'];
+						$scope.ordenamientoDemepedidoUpdateReconfiguracion=data.data['ULTIMA_ACTUALIZACION'];
                                 }
                         return data.data;
                 });
