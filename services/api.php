@@ -8510,7 +8510,7 @@ private function listadoTransaccionesActividades(){
 			                $ext = 'xlsx';
 			            }else{
 			                // Extension no valida
-			                echo -1;
+			                echo "Extension no valida.";
 			                exit();
 			            }
 			 
