@@ -11222,7 +11222,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 		$scope.fecha_fin=$rootScope.fechaProceso();
 		$scope.stautsGo=status[0].STATUS;
 
-		console.log($scope.stautsGo);
+		//console.log($scope.stautsGo);
 
 		$scope.InfoGestion={
 			ID:gestion.ID,
@@ -11238,7 +11238,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			ESTADO_FINAL:InfoPedido.ESTADO_PROCESO,
 			OBSERVACION:InfoPedido.OBSERVACIONES_PROCESO,
 			USUARIO:$rootScope.logedUser.login,
-			STATUS:$scope.stautsGo=status.STATUS
+			STATUS:$scope.stautsGo
 			}
 
 		//console.log($scope.InfoGestion);
