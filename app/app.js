@@ -3016,6 +3016,45 @@ trendlines: [
 
 
 
+//----------Funcion para determinar el color del pendiente --------------------------
+var colorDanger="#E83720";
+var colorWaring="#E8A820";
+var colorNormal="#088A08";
+
+$scope.set_color = function (value) {
+              if (value > 200) {
+                $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorDanger
+                    };
+
+                return $scope.estilo;
+              }
+              else{
+
+                  if(value > 50 && value < 200){
+
+                    $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorWaring
+                    };
+
+                  }else{
+
+                     $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorNormal
+                    };
+                  }
+
+               return $scope.estilo;
+
+              }
+            };
+
+
+
+
 $scope.datepickerOptions = {
     format: 'yyyy-mm-dd',
     language: 'es',
