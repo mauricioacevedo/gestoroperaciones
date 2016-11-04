@@ -221,14 +221,14 @@
 
 				<div class = "panel panel-default">
 					<div class = "panel-heading nav navbar-default">
-						<b><button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="listaFeed()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
+						<b><button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="listado_feed()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
 									<i class="fa fa-refresh"  aria-hidden="true"></i>
 								</button> Feed</b>
 					</div>
 					<div class = "panel-body fixed-panel">
 
 						<ul class="list-group small">
-							<a href="" ng-repeat="data in listaFeeds" class="list-group-item animated slideInRight">{{data.USUARIO}} | <span ng-class= "{'Busco Pedido':'label label-info','Uso DemePedido':'label label-danger','Guardo Pedido':'label label-success','Se logueo':'label label-warning','Se deslogueo':'label label-default' }[data.DESCRIPCION]"> {{data.DESCRIPCION}}</span> | {{data.FECHA_CREACION | timeago}}</a>
+							<a href="" ng-repeat="data in listado_feed" class="list-group-item animated slideInRight">{{data.USER}} | <span ng-class= "{'BUSCARPEDIDO':'label label-info','DEMEPEDIDO':'label label-danger','ESTUDIO':'label label-success','NCA':'label label-success','LOGIN':'label label-default' }[data.ACCION]"> {{data.ACCION}}</span> | {{data.FECHA | timeago}}</a>
 						</ul>
 					</div>
 					<div class = "panel-footer">
