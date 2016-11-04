@@ -521,8 +521,8 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
 
-	obj.insertTransaccionNCA = function (transaccion) {
-                var data= $http.post(serviceBase + 'insertTransaccionNCA', {"transaccion":transaccion});
+	obj.insertTransaccionNCA = function (transaccion,status) {
+                var data= $http.post(serviceBase + 'insertTransaccionNCA', {"transaccion":transaccion,"status":status});
                 return data;
     };
 
@@ -11218,8 +11218,9 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
  };
 
 	$scope.guardarPedido=function(InfoPedido,gestion,status){
-		console.log(status);
+
 		$scope.fecha_fin=$rootScope.fechaProceso();
+		$scope.stautsGo=status.STATUS;
 
 
 
@@ -11239,10 +11240,10 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			USUARIO:$rootScope.logedUser.login
 			}
 
-		console.log($scope.InfoGestion);
+		//console.log($scope.InfoGestion);
 
 
-		services.insertTransaccionNCA($scope.InfoGestion,status).then(
+		services.insertTransaccionNCA($scope.InfoGestion,$scope.stautsGo).then(
 
 			  function(data){
 
