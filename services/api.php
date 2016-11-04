@@ -7507,9 +7507,10 @@ $queryConceptosFcita=" select ".
 				$oferta=$transaccion['OFERTA'];
 				$estado_final=$transaccion['ESTADO_FINAL'];
 			   	$ID=$transaccion['ID'];
+			    $STATUS=$transaccion['STATUS'];
 
 			  	foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
-					if($desired_key=='ID'){
+					if($desired_key=='ID'||$desired_key=='STATUS'){
 			    			continue;
 			    		}
                            if(!in_array($desired_key, $keys)) {
@@ -7527,7 +7528,7 @@ $queryConceptosFcita=" select ".
 				//echo $query;
                            	$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
-				$sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$today', STATUS='CERRADO_PETEC', ASESOR='' WHERE ID=$ID ";
+				$sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$today', STATUS='$STATUS', ASESOR='' WHERE ID=$ID ";
                 $rUpdate = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
 
 				$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$useri','$username','NCA','$estado_final','OFERTA: $oferta','NCA') ";
