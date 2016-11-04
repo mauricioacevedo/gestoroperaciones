@@ -9,7 +9,7 @@
 
 				<div class = "panel panel-default">
 					<div class = "panel-heading nav navbar-default">
-						<b><button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="actualizarGraficaAD()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
+						<b><button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="actualizarGrafica()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
 									<i class="fa fa-refresh"  aria-hidden="true"></i>
 								</button> Conceptos</b>
 					</div>
@@ -27,7 +27,7 @@
 
 				<div class = "panel panel-default">
 					<div class = "panel-heading nav navbar-default ">
-						<b><button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="listaPendiSubprocesos()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
+						<b><button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="actualizarGrafica()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
 									<i class="fa fa-refresh"  aria-hidden="true"></i>
 								</button>Sub Procesos</b>
 					</div>
@@ -67,9 +67,7 @@
 							<button type="button" class="btn btn-default btn-circle-xs" ng-click="listaPendiSubprocesos()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
 								<i class="fa fa-refresh"  aria-hidden="true"></i>
 							</button>
-							<button type="button" class="btn btn-default btn-circle-xs" ng-click="csvFenixNal()"  ng-disabled="loading">
-								<i class="fa fa-cloud-download"  title="Exportar Pendientes" data-toggle="tooltip" data-placement="left" aria-hidden="true"></i>
-							</button>
+
 
 						</li>
 					</ul>
@@ -150,7 +148,7 @@
 						<li>
 
 							<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInputCola" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
-							<button type="button" class="btn btn-default btn-circle-xs" ng-click="actualizarGrafica()()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
+							<button type="button" class="btn btn-default btn-circle-xs" ng-click="actualizarGrafica()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
 								<i class="fa fa-refresh"  aria-hidden="true"></i>
 							</button>
 							<button type="button" class="btn btn-default btn-circle-xs" ng-click="csvPendientes(filtroInput)" title="Exportar Pendientes" data-toggle="tooltip" data-placement="left" ng-disabled="loading">
@@ -164,14 +162,45 @@
 
 				</div>
 				<div class="panel-body fixed-panel" >
-
-					<div fusioncharts
-						align="center"
-						width="500"
-						height="400"
-						type="bar2d"
-						datasource="{{myDataSource}}">
-                    </div><!--Fusioncharts -->
+						<table class="table small table-striped table-hover table-bordered table-condensed">
+							<thead>
+								<th>Concepto</th>
+								<th>TOTAL</th>
+								<th> 0-2h</th>
+								<th> 3-4h</th>
+								<th> 5-6h</th>
+								<th> 7-12h</th>
+								<th> 13-24h</th>
+								<th> 25-48h</th>
+								<th>Mas de 48h</th>
+							</thead>
+							<tbody>
+								<tr ng-repeat="datar in listado_conceptosasn">
+									<td><!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->{{datar.CONCEPTO_ID}}</span></td>
+									<td ng-init="listado_conceptosasn.totales = parseInt(listado_conceptosasn.totales) + parseInt(datar.CANTIDAD)">{{datar.CANTIDAD}}</td>
+									<td ng-init="listado_conceptosasn.total02 = parseInt(listado_conceptosasn.total02) + parseInt(datar.Entre02)">{{datar.Entre02}}</td>
+									<td ng-init="listado_conceptosasn.total34 = parseInt(listado_conceptosasn.total34) + parseInt(datar.Entre34)">{{datar.Entre34}}</td>
+									<td ng-init="listado_conceptosasn.total56 = parseInt(listado_conceptosasn.total56) + parseInt(datar.Entre56)">{{datar.Entre56}}</td>
+									<td ng-init="listado_conceptosasn.total712 = parseInt(listado_conceptosasn.total712) + parseInt(datar.Entre712)">{{datar.Entre712}}</td>
+									<td ng-init="listado_conceptosasn.total1324 = parseInt(listado_conceptosasn.total1324) + parseInt(datar.Entre1324)">{{datar.Entre1324}}</td>
+									<td ng-init="listado_conceptosasn.total2548 = parseInt(listado_conceptosasn.total2548) + parseInt(datar.Entre2548)">{{datar.Entre2548}}</td>
+									<td ng-init="listado_conceptosasn.totalmas48 = parseInt(listado_conceptosasn.totalmas48) + parseInt(datar.Masde48)">{{datar.Masde48}}</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr class="info">
+									<th>TOTALES</th>
+									<th>{{listado_conceptosasn.totales}}</th>
+									<th>{{listado_conceptosasn.total02}}</th>
+									<th>{{listado_conceptosasn.total34}}</th>
+									<th>{{listado_conceptosasn.total56}}</th>
+									<th>{{listado_conceptosasn.total712}}</th>
+									<th>{{listado_conceptosasn.total1324}}</th>
+									<th>{{listado_conceptosasn.total2548}}</th>
+									<th>{{listado_conceptosasn.totalmas48}}</th>
+								</tr>
+							</tfoot>
+						</table>
 
 				</div>
 				<div class="panel-footer clearfix" >
@@ -179,9 +208,7 @@
 					<div class="col-md-8">
 
 						<ul class="nav navbar-nav navbar-left">
-							<li>Registros: <span class="badge badge-default">{{resultsci.length}}</span></li>
-							<li>&nbsp;|&nbsp;</li>
-							<li> Total: <span class="label label-success">{{resultsci|sumarNum:'CANTIDAD'}}</span></li>
+
 
 						</ul>
 
