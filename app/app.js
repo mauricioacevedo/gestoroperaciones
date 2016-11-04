@@ -2359,9 +2359,9 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.listado_usuarios_produccion=[];
 	$scope.listado_tme=[];
 	$scope.lastUpdate="";
-    	$scope.ordenamientoDemepedido='';
+    $scope.ordenamientoDemepedido='';
 	$scope.ordenamientoDemepedidoReconfiguracion='';
-    	$scope.ordenamientoDemepedidoUpdate='';
+    $scope.ordenamientoDemepedidoUpdate='';
 
 
 	$scope.intervalFeed=0;
@@ -2396,6 +2396,13 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 	/* FUNCION PARA ACTUALIZAR LOS PARAMETROS DEL SISTEMA */
 	$scope.updateParametro = function (parametro,valor){
+
+			if(parametro="FECHA_ORDEN_DEMEPEDIDO"){
+				$scope.UsuarioParametro=$rootScope.logedUser.login;
+			}
+			if(parametro="FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION"){
+					$scope.UsuarioParametroReconfiguracion=$rootScope.logedUser.login;
+				}
 
 	        services.updateParametro(parametro,valor,$rootScope.logedUser.login).then(function(data){
                                 var date1 = new Date();
