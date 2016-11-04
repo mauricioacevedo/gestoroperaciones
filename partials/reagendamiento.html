@@ -126,7 +126,38 @@
                                 <td><textarea rows='8' cols='20' ng-model="service.OBSERVACION_GESTOR"></textarea><br>
                                 ID Llamada:<input type="text" class="form-control col-xs-8" aria-label="..." ng-model="service.IDLLAMADA"></td>
                                 <!--td><select ng-show="isAuthorized(service.CONCEPTO_ID);" class= "form-control" ng-model="service.estado"-->
-                                <td><select class= "form-control" ng-model="service.NOVEDAD">
+
+                                 <td ng-show="proceso=='REPARACION'">
+                                <select class= "form-control" ng-model="service.NOVEDAD" >
+                                <option value="AGENDADO">AGENDADO</option>
+                                <option value="AGENDADO_FUTURO">AGENDADO_FUTURO</option>
+                                <option value="CONFIRMA SOLUCION">CONFIRMA SOLUCION</option>
+                                <option value="CAUSA COMUN CONOCIDA">CAUSA COMUN CONOCIDA</option>
+                                <option value="CLIENTE NO AUTORIZA">CLIENTE NO AUTORIZA</option>
+                                <option value="CLIENTE ILOCALIZADO">CLIENTE ILOCALIZADO</option>
+                                <option value="YA ESTA AGENDADO">YA ESTA AGENDADO</option>
+                                <option value="YA ESTA CUMPLIDO">YA ESTA CUMPLIDO</option>
+                                <option value="ERROR SIEBEL 8.1">ERROR SIEBEL 8.1</option>
+
+
+                                </select>
+
+                                <div  ng-show="service.NOVEDAD=='AGENDADO' || service.NOVEDAD=='YA ESTA AGENDADO' || service.NOVEDAD=='AGENDADO_FUTURO'"><br>
+
+                                <div class="col-md-10">
+                                        <div class="input-daterange control-group" id="datepicker">
+                                                <label class="control-label" for="toDate">Fecha Cita Propuesta</label><br>
+                                                <div class="input-group margin-bottom-lg">
+                                                        <span class="input-group-addon"><i class="fa fa-calendar-plus-o fa-fw"></i></span>
+                                                        <input type="text" class= "form-control" ng-model="service.FECHA_CITA_REAGENDA">
+
+                                                </div>
+                                                <label class="control-label" for="toDate">Jornada Cita</label>  <select  ng-model="service.JORNADA_CITA" > <option>AM</option><option>PM</option></select>
+                                     </div>
+                                </div>
+
+                                <td  ng-show="proceso=='INSTALACION'">
+                                <select class= "form-control" ng-model="service.NOVEDAD">
                                 <option value="AGENDADO">AGENDADO</option>
                                 <option value="LLAMAR FUTURO">LLAMAR FUTURO</option>
                                 <option value="AGENDADO_FUTURO">AGENDADO_FUTURO</option>
