@@ -11459,6 +11459,22 @@ app.filter('timeago', function() {
         };
     });
 
+app.filter('sumarNum', function() {
+        return function(data, key) {
+            if (typeof(data) === 'undefined' || typeof(key) === 'undefined') {
+                return 0;
+            }
+
+            var sum = 0;
+            angular.forEach(data, function(obj, objKey){
+                sum+= parseFloat(obj[key]);
+            });
+
+            return sum;
+
+        };
+});
+
 //  ------------------------------------------ Filtros
 
 
