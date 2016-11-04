@@ -2413,7 +2413,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			if(parametro=="FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION"){
                                 $scope.ordenamientoDemepedidoReconfiguracion=valor;
                         }
-			
+						$scope.buscarParametro(parametro);
                         return data.data;
                 });
 
