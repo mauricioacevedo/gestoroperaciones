@@ -11220,7 +11220,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 	$scope.guardarPedido=function(InfoPedido,gestion,status){
 
 		$scope.fecha_fin=$rootScope.fechaProceso();
-		$scope.stautsGo=status.STATUS;
+		$scope.stautsGo=status[0].STATUS;
 
 		console.log($scope.stautsGo);
 
