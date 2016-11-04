@@ -6376,19 +6376,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
     $scope.usert.EQUIPO_ID="MANUAL";
     $scope.usert.ID="";
 
-  fileUpload.filters.push({
-        name: 'extensionFilter',
-        fn: function (item, options) {
-            var filename = item.name;
-            var extension = filename.substring(filename.lastIndexOf('.') + 1).toLowerCase();
-            if (extension == "xlsx" || extension == "xls")
-                return true;
-            else {
-                alert('Formato Invalido. Por favor seleccione un archivo con formato xlsx o xls');
-                return false;
-            }
-        }
-    });
+
 
     $scope.doubleDigit = function (num){
 
