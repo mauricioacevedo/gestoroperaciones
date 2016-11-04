@@ -228,7 +228,7 @@
 					<div class = "panel-body fixed-panel">
 
 						<ul class="list-group small">
-							<a href="" ng-repeat="data in listado_feed" class="list-group-item animated slideInRight">{{data.USER}} | <span ng-class= "{'BUSCARPEDIDO':'label label-info','DEMEPEDIDO':'label label-danger','ESTUDIO':'label label-success','NCA':'label label-success','LOGIN':'label label-default' }[data.ACCION]"> {{data.ACCION}}</span> | {{data.FECHA | timeago}}</a>
+							<a href="" ng-repeat="data in listado_feed" class="list-group-item animated slideInRight">{{data.USER}} | <span ng-class= "{'Busco':'label label-info','Auto':'label label-danger','Guardo':'label label-success','Siebel':'label label-success','Se logueo':'label label-default' }[data.ACCION]"> {{data.ACCION}}</span> | {{data.FECHA | timeago}}</a>
 						</ul>
 					</div>
 					<div class = "panel-footer">

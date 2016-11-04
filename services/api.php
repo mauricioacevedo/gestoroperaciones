@@ -9438,17 +9438,26 @@ $zona = str_replace($no_permitidas, $permitidas ,$zona);
 
 
 
-                        $query="SELECT *, CAST(IF(TIMEDIFF(NOW(), fecha) > '00:01:00', ".
-                        " CASE WHEN MINUTE(TIMEDIFF(NOW(), fecha)) = 1 ".
-                        "   THEN CONCAT(MINUTE(TIMEDIFF(NOW(), fecha)),' Minuto') ".
-                        "   ELSE CONCAT(MINUTE(TIMEDIFF(NOW(), fecha)),' Minutos') END, ".
-                        " CASE WHEN SECOND(TIMEDIFF(NOW(), fecha)) = 1 ".
-                        "   THEN CONCAT(SECOND(TIMEDIFF(NOW(), fecha)),' Segundo') ".
-                        "   ELSE CONCAT(SECOND(TIMEDIFF(NOW(), fecha)),' Segundos')END) ".
-                        "   AS CHAR) AS FECHA2 ".
-                        " FROM activity_feed WHERE fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' ".
-                        " ORDER BY id DESC ".
-                        " LIMIT 10 ";
+                        $query=	" SELECT ".
+								" a.FECHA ".
+								", a.USER ".
+								", a.GRUPO ".
+								", case ".
+								"	when a.ACCION='DEMEPEDIDO' then 'Auto' ".
+								"	when a.ACCION='BUSCARPEDIDO' then 'Busco' ".
+								"	when a.ACCION='ESTUDIO' then 'Guardo' ".
+								"	when a.ACCION='LOGIN' then 'Se logueo' ".
+								"	when a.ACCION='NCA' then 'Siebel' ".
+								"	when a.ACCION='ORD' then 'Audito' ".
+								"	when a.ACCION='BODEGA DATOS' then 'Bodega' ".
+								"	when a.ACCION like '%PENDIENTE' then 'Pendiente' ".
+								"	when a.ACCION like '%UPDATE' then 'Parametro' ".
+								"	else a.ACCION ".
+								" end as ACCION ".
+								" FROM activity_feed a ".
+								" WHERE a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' ".
+								" ORDER BY a.id DESC  ".
+								" LIMIT 10 ";
                         //echo $query;
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
