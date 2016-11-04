@@ -8470,22 +8470,7 @@ private function listadoTransaccionesActividades(){
 						$cliente_id='';
 						$ACCESO='';
 						$ESTADO='';
-                  //--------------------
-						$CONCEPTOS='';
-                        $CLIENTE_ID='';
-                        $NOMBRE_USUARIO='';
-                        $DEPARTAMENTO='';
-                        $SUBZONA_ID='';
-                        $DIRECCION_ENVIO='';
-                        $FUENTE='';
-                        $PROCESO='';
-                        $CELULAR_AVISAR='';
-                        $TELEFONO_AVISAR='';
-                        $IDENTIFICADOR_ID='';
-                        $FECHA_INGRESO='';
-                        $MICROZONA='';
-                        $OBSERVACION_FENIX='';
-                        $TECNOLOGIA_ID='';
+
 
 
 
@@ -8643,7 +8628,7 @@ private function listadoTransaccionesActividades(){
                         			continue;
                         		}
 
-		                        	$sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID,CONCEPTOS,CLIENTE_ID,NOMBRE_USUARIO,DEPARTAMENTO,SUBZONA_ID,DIRECCION_ENVIO,FUENTE,PROCESO,CELULAR_AVISAR,TELEFONO_AVISAR,IDENTIFICADOR_ID,FECHA_INGRESO,MICROZONA,OBSERVACION_FENIX,TECNOLOGIA_ID) values ('$PEDIDO_ID','$CONCEPTOS','$CLIENTE_ID','$NOMBRE_USUARIO','$DEPARTAMENTO','$SUBZONA_ID','$DIRECCION_ENVIO','$FUENTE','$PROCESO','$CELULAR_AVISAR','$TELEFONO_AVISAR','$IDENTIFICADOR_ID','$FECHA_INGRESO','$MICROZONA','$OBSERVACION_FENIX','$TECNOLOGIA_ID') ";
+		                        	$sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID,CONCEPTOS,CLIENTE_ID,NOMBRE_USUARIO,DEPARTAMENTO,SUBZONA_ID,DIRECCION_ENVIO,FUENTE,PROCESO,CELULAR_AVISAR,TELEFONO_AVISAR,IDENTIFICADOR_ID,FECHA_INGRESO,MICROZONA,OBSERVACION_FENIX,TECNOLOGIA_ID) values ($guardar)
 					       echo($sqlemail);
 					       	$r = $this->mysqli->query($sqlemail) or die($this->mysqli->error.__LINE__);
 
@@ -8662,22 +8647,7 @@ private function listadoTransaccionesActividades(){
 							$NOMBRE_ARCHIVO="";
 							$TAMANO="";
 							$VISTA="";
-                            //----------
-                            $CONCEPTOS="";
-                            $CLIENTE_ID="";
-                            $NOMBRE_USUARIO="";
-                            $DEPARTAMENTO="";
-                            $SUBZONA_ID="";
-                            $DIRECCION_ENVIO="";
-                            $FUENTE="";
-                            $PROCESO="";
-                            $CELULAR_AVISAR="";
-                            $TELEFONO_AVISAR="";
-                            $IDENTIFICADOR_ID="";
-                            $FECHA_INGRESO="";
-                            $MICROZONA="";
-                            $OBSERVACION_FENIX="";
-                            $TECNOLOGIA_ID="";
+
 
 
 			            $table .= "</tr>";
