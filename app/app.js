@@ -2742,10 +2742,10 @@ trendlines: [
                         $scope.myDataSource = {
 
                             chart: {
-                                "caption": "Grafica General",
-                                "subCaption": "Conceptos Pendientes",
+                                "caption": "Grafica Pendientes",
+                                "subCaption": "Conceptos",
                                 "xAxisName": "Conceptos",
-                                "yAxisName": "Pedidos Pendientes",
+                                "yAxisName": "Serivicios",
                                 "numberPrefix": "",
                                 "paletteColors": "#0075c2",
                                 "bgColor": "#ffffff",
@@ -2762,7 +2762,9 @@ trendlines: [
                                 "divLineDashed": "1",
                                 "showAlternateHGridColor": "0",
                                 "subcaptionFontBold": "0",
-                                "subcaptionFontSize": "14"
+                                "subcaptionFontSize": "14",
+								"labelDisplay": "rotate",
+            					"slantLabels": "1"
                             },
 
                                 data: data.data
