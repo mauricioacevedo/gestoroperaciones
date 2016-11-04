@@ -6376,7 +6376,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
     $scope.usert.EQUIPO_ID="MANUAL";
     $scope.usert.ID="";
 
-  upload.filters.push({
+  fileUpload.filters.push({
         name: 'extensionFilter',
         fn: function (item, options) {
             var filename = item.name;
