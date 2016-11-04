@@ -8566,7 +8566,6 @@ $scope.start = function(pedido) {
             $scope.error='Recuerde agendar o en su defecto anular el pedido';
             //alert('pedido especial');
             console.log($scope.error);
-
                 $scope.estilo={
                  "color" : "white",
                     "background-color" : "red",
