@@ -19,10 +19,8 @@
 							<a href="" ng-repeat="data in pendientesConceptos as Pendis" class="list-group-item animated slideInRight" ng-style="set_color(parseInt(data.value))">{{data.label}}: <span class = "badge ">{{data.value}}</span></a></span>
 						</ul>
 					</div>
-					<div class="panel-footer nav navbar-default">
-						<ul class="list-group small">
-							<li> Total: <span class="label label-success">{{Pendis|sumarNum:'value'}}</span></li></ul>
-
+					<div class="panel-footer clearfix">
+						Total: <span class="label label-success">{{Pendis|sumarNum:'value'}}</span>
 					</div>
 				</div>
 			</div>
