@@ -11222,7 +11222,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 		$scope.fecha_fin=$rootScope.fechaProceso();
 		$scope.stautsGo=status.STATUS;
 
-
+		console.log($scope.stautsGo);
 
 		$scope.InfoGestion={
 			ID:gestion.ID,
