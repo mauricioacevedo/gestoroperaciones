@@ -171,7 +171,7 @@
 								<th>Viejos</th>
 							</thead>
 							<tbody>
-								<tr ng-repeat="data in listado_conceptosfc">
+								<tr ng-repeat="data in listado_conceptosfc | filter:filtroInput">
 									<td><!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->{{data.CONCEPTO_ID}}</span></td>
 									<td ng-init="listado_conceptosfc.totales = parseInt(listado_conceptosfc.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
 									<td ng-init="listado_conceptosfc.total02 = parseInt(listado_conceptosfc.total02) + parseInt(data.Ayer)">{{data.Ayer}}</td>
@@ -262,7 +262,7 @@
 								<th>Mas de 48h</th>
 							</thead>
 							<tbody>
-								<tr ng-repeat="datar in listado_conceptosasn">
+								<tr ng-repeat="datar in listado_conceptosasn | filter:filtroInput">
 									<td><!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->{{datar.CONCEPTO_ID}}</span></td>
 									<td ng-init="listado_conceptosasn.totales = parseInt(listado_conceptosasn.totales) + parseInt(datar.CANTIDAD)">{{datar.CANTIDAD}}</td>
 									<td ng-init="listado_conceptosasn.total02 = parseInt(listado_conceptosasn.total02) + parseInt(datar.Entre02)">{{datar.Entre02}}</td>
