@@ -2742,8 +2742,8 @@ trendlines: [
                         $scope.myDataSource = {
 
                             chart: {
-                                "caption": "Grafica Pendientes",
-                                "subCaption": "Conceptos",
+                               // "caption": "Grafica Pendientes",
+                                //"subCaption": "Conceptos",
                                 "xAxisName": "Conceptos",
                                 "yAxisName": "Serivicios",
                                 "numberPrefix": "",
@@ -2751,6 +2751,8 @@ trendlines: [
                                 "bgColor": "#ffffff",
                                 "borderAlpha": "20",
                                 "canvasBorderAlpha": "0",
+								"bgColor": "#DDDDDD",
+            					"bgAlpha": "50",
                                 "usePlotGradientColor": "0",
                                 "plotBorderAlpha": "10",
                                 "placevaluesInside": "0",
