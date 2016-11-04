@@ -11218,7 +11218,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
  };
 
 	$scope.guardarPedido=function(InfoPedido,gestion,status){
-
+		console.log(status);
 		$scope.fecha_fin=$rootScope.fechaProceso();
 
 
@@ -11242,7 +11242,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 		console.log($scope.InfoGestion);
 
 
-		services.insertTransaccionNCA($scope.InfoGestion).then(
+		services.insertTransaccionNCA($scope.InfoGestion,status).then(
 
 			  function(data){
 
