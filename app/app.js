@@ -2425,9 +2425,11 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                 services.buscarParametro(parametro).then(function(data){
                     if(parametro=="FECHA_ORDEN_DEMEPEDIDO"){
                         $scope.UsuarioParametro=data.data['USUARIO_ID'];
+						$scope.ordenamientoDemepedido=data.data['VALOR'];
                     }
                     if(parametro=="FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION"){
                         $scope.UsuarioParametroReconfiguracion=data.data['USUARIO_ID'];
+						$scope.ordenamientoDemepedidoReconfiguracion=data.data['VALOR'];
                                 }
                         return data.data;
                 });
