@@ -89,13 +89,13 @@
 								<td >Asignaciones</td>
 								<td ><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
 								<td >{{UsuarioParametro}}</td>
-								<td ><form class="form-inline">
-										<select class="form-control btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevo" style="width:auto;">
+								<td >
+										<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevo" style="width:auto;">
 											<option value="FECHA_CITA">FECHA CITA</option>
 											<option value="FECHA_ESTADO">FECHA ESTADO</option>
 											<option value="FECHA_INGRESO">FECHA INGRESO</option>
 										</select>
-										<button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO',ordenamientoDemepedidoNuevo);"><span class="glyphicon glyphicon-ok-sign"></span> Guardar</button></form>
+										<button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO',ordenamientoDemepedidoNuevo);"><span class="glyphicon glyphicon-ok-sign"></span> Guardar</button>
 								  </td>
 							  </tr>
 							  <tr>
