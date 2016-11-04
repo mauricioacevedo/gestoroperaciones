@@ -8571,7 +8571,7 @@ $scope.start = function(pedido) {
     $scope.set_color = function (service) {
 
 
-        if (service.proceso=='INSTALACION' && service.TODAY_TRIES >= 5) {
+        if (service.PROCESO=='INSTALACION' && service.TODAY_TRIES >= 5) {
             $scope.error='Recuerde agendar o en su defecto anular el pedido';
             alert('pedido especial');
 
@@ -8586,7 +8586,7 @@ $scope.start = function(pedido) {
               }
               else{
 
-                if(service.proceso=='REPARACION' && service.TODAY_TRIES >= 3){
+                if(service.PROCESO=='REPARACION' && service.TODAY_TRIES >= 3){
                 $scope.error='Recuerde agendar o en su defecto cerrar y crear SS';
 
                     $scope.estilo={
