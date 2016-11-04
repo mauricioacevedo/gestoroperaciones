@@ -2794,6 +2794,7 @@ trendlines: [
                                         showpercentvalues: "0",
                                         showpercentintooltip: "0",
                         },
+							$scope.pendientesConceptos=data.data[0];
                                 data: data.data[0]
 
                         }
