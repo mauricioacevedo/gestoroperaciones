@@ -2729,6 +2729,7 @@ trendlines: [
         $scope.actualizarGrafica   = function (){
 	//TOMAR MUESTRA
                 var data1=services.getPendientesGrafica().then(function(data){
+						$scope.pendientesConceptos=data.data;
                         $scope.myDataSource = {
 
                             chart: {
@@ -2794,7 +2795,7 @@ trendlines: [
                                         showpercentvalues: "0",
                                         showpercentintooltip: "0",
                         },
-							$scope.pendientesConceptos=data.data[0];
+
                                 data: data.data[0]
 
                         }
