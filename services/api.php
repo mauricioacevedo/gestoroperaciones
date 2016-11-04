@@ -3995,7 +3995,7 @@ $queryConceptosFcita=" select ".
                         if($r->num_rows > 0){
                                 $result = array();
                                 while($row = $r->fetch_assoc()){
-					$row['label']="Concepto ".$row['label'];
+					$row['label']=" ".$row['label'];
                                         $result[] = $row;
                                 }
                                 $this->response($this->json($result), 200); // send user details
