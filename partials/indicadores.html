@@ -25,7 +25,7 @@
 			<div class="row">
 			<div class="col-md-12">
 
-				<div class = "panel panel-default">
+				<div class = "panel panel-default" ng-hide="true">
 					<div class = "panel-heading nav navbar-default ">
 						<b><button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="actualizarGrafica()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
 									<i class="fa fa-refresh"  aria-hidden="true"></i>
@@ -130,7 +130,7 @@
 				<div class = "panel-heading nav navbar-default">
 
 					<ul class="nav navbar-nav navbar-left">
-						<b>Pendientes Por ANS</b>
+						<b>Pendientes Por Fecha Cita</b>
 						<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
 
 					</ul>
@@ -222,7 +222,7 @@
 				<div class = "panel-heading nav navbar-default">
 
 					<ul class="nav navbar-nav navbar-left">
-						<b>Pendientes Por Alarmados</b>
+						<b>Pendientes Por Ans</b>
 						<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
 
 					</ul>
