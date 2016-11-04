@@ -8020,7 +8020,7 @@ services.buscarParametro('PRIORIDAD_DEMEPEDIDO_AGENDAMIENTO_EDATEL').then(functi
                 $scope.busy="";
                 $scope.error="";
                 $scope.TODAY_TRIES="";
-                var kami=services.buscarPedidoAgendamiento(bpedido,$scope.pedido1,$rootScope.logedUser.login,$rootScope.logedUser.name).then(function(data){
+                var kami=services.buscarPedidoAgendamiento(bpedido,$scope.pedido1,$rootScope.logedUser.login,$scope.proceso,$scope.TODAY_TRIES,$rootScope.logedUser.name).then(function(data){
                         $scope.peds = data.data;
                         
                         var dat=data.status;
