@@ -8470,7 +8470,24 @@ private function listadoTransaccionesActividades(){
 						$cliente_id='';
 						$ACCESO='';
 						$ESTADO='';
-						$CONCEPTOS='';
+                  //--------------------
+						$CONCEPTOS="";
+                        $CLIENTE_ID="";
+                        $NOMBRE_USUARIO="";
+                        $DEPARTAMENTO="";
+                        $SUBZONA_ID="";
+                        $DIRECCION_ENVIO="";
+                        $FUENTE="";
+                        $PROCESO="";
+                        $CELULAR_AVISAR="";
+                        $TELEFONO_AVISAR="";
+                        $IDENTIFICADOR_ID="";
+                        $FECHA_INGRESO="";
+                        $MICROZONA="";
+                        $OBSERVACION_FENIX="";
+                        $TECNOLOGIA_ID="";
+
+
 
 						$sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','BODEGA DATOS')";
                         	//echo  $user;
@@ -8626,7 +8643,7 @@ private function listadoTransaccionesActividades(){
                         			continue;
                         		}
 
-		                        	$sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID,CONCEPTOS,CLIENTE_ID,NOMBRE_USUARIO,DEPARTAMENTO,SUBZONA_ID,DIRECCION_ENVIO,FUENTE,PROCESO,CELULAR_AVISAR,TELEFONO_AVISAR,IDENTIFICADOR_ID,FECHA_INGRESO,MICROZONA,OBSERVACION_FENIX,TECNOLOGIA_ID) values ('$PEDIDO_ID.','$CONCEPTOS') ";
+		                        	$sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID,CONCEPTOS,CLIENTE_ID,NOMBRE_USUARIO,DEPARTAMENTO,SUBZONA_ID,DIRECCION_ENVIO,FUENTE,PROCESO,CELULAR_AVISAR,TELEFONO_AVISAR,IDENTIFICADOR_ID,FECHA_INGRESO,MICROZONA,OBSERVACION_FENIX,TECNOLOGIA_ID) values ('$PEDIDO_ID.','$CONCEPTOS','$CLIENTE_ID','$NOMBRE_USUARIO','$DEPARTAMENTO','$SUBZONA_ID','$DIRECCION_ENVIO','$FUENTE','$PROCESO','$CELULAR_AVISAR','$TELEFONO_AVISAR','$IDENTIFICADOR_ID','$FECHA_INGRESO','$MICROZONA','$OBSERVACION_FENIX','$TECNOLOGIA_ID') ";
 					       echo($sqlemail);
 					       	$r = $this->mysqli->query($sqlemail) or die($this->mysqli->error.__LINE__);
 
@@ -8645,7 +8662,23 @@ private function listadoTransaccionesActividades(){
 							$NOMBRE_ARCHIVO="";
 							$TAMANO="";
 							$VISTA="";
+                            //----------
                             $CONCEPTOS="";
+                            $CLIENTE_ID="";
+                            $NOMBRE_USUARIO="";
+                            $DEPARTAMENTO="";
+                            $SUBZONA_ID="";
+                            $DIRECCION_ENVIO="";
+                            $FUENTE="";
+                            $PROCESO="";
+                            $CELULAR_AVISAR="";
+                            $TELEFONO_AVISAR="";
+                            $IDENTIFICADOR_ID="";
+                            $FECHA_INGRESO="";
+                            $MICROZONA="";
+                            $OBSERVACION_FENIX="";
+                            $TECNOLOGIA_ID="";
+
 
 			            $table .= "</tr>";
 			        }
