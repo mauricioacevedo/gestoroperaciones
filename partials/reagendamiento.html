@@ -92,12 +92,12 @@
                             <th ng-show="service.estado=='MALO'">Motivo</th>
                         </thead>
 
-                        <tr ng-repeat="service in peds track by $index">
+                       <tr ng-repeat="service in peds track by $index">
                           <td>{{service.PEDIDO_ID}}</td>
                           <td class="col-md-5">
                             <b>SISTEMA:</b><font color="red"><b> {{service.FUENTE}}</b></font><br>
                             <b>TIEMPO:</b><font color="red"><b> {{service.TIEMPO_TOTAL}} dias</b></font><br>
-                            <b>INTENTOS DE CONTACTO:</b><font color="red"><b> {{service.TODAY_TRIES}}</b></font><br>
+                            <b>INTENTOS DE CONTACTO:</b><span ng-style="set_color(service);"><b> {{service.TODAY_TRIES}}</b></span><br>
                             <b>NOMBRE_USUARIO:</b> {{service.NOMBRE_USUARIO}}<br>
                             <b>CLIENTE_ID:</b> {{service.CLIENTE_ID}}<br>
                             <b>CELULAR_AVISAR: </b><a ng-href="SIP:{{service.CELULAR_AVISAR}}" >{{service.CELULAR_AVISAR}} <i class="fa fa-phone-square" aria-hidden="true" ></i></a> <br>
@@ -108,7 +108,7 @@
                             <b>E_MAIL_AVISAR:</b> {{service.E_MAIL_AVISAR}}<br>
                             <b>FECHA_INGRESO:</b> {{service.FECHA_INGRESO}}<br>
                             <b>MICROZONA:</b> {{service.MICROZONA}}<br>
-                            <b>IDENTIFICADOR:</b> {{service.IDENTIFICADOR_ID}}<br>
+                            <b>PROCESO:</b> {{service.PROCESO}}<br>
                             <b>OBSERVACION :</b> {{service.OBSERVACION_FENIX}}OBSERVACION_GESTOR
 
 
