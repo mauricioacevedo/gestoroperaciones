@@ -9875,7 +9875,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
     //TOMAR MUESTRA2
                 var data1=services.getPendientesGraficaADSIEBEL().then(function(data){
 
-                        $scope.myDataSourceAD1 = {
+                        $scope.myDataSourceAD = {
 
 
                            chart: {
@@ -9919,6 +9919,25 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                 });
 
     };
+
+    $scope.myDataSourceAD = {
+                        chart: {
+                        caption: "Grafica General",
+                        subcaption: "Pendientes A y D",
+                        startingangle: "120",
+                        showlabels: "0",
+                        showlegend: "1",
+                        enablemultislicing: "0",
+                        slicingdistance: "15",
+                        formatNumberScale: "0",
+                        showpercentvalues: "1",
+                        showpercentintooltip: "0",
+                        plottooltext: "Age group : $label Total visit : $datavalue",
+                        theme: "fint"
+                        },
+                        data: []
+
+        };
                  
 });
 
