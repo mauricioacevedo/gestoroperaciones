@@ -9871,17 +9871,17 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
         };
 
-     $scope.actualizarGraficaADSIEBEL   = function (){
+     $scope.actualizarGraficaADSIEBEL = function (){
     //TOMAR MUESTRA2
                 var data1=services.getPendientesGraficaADSIEBEL().then(function(data){
 
-                        $scope.myDataSourceAD = {
+                        $scope.myDataSourceAD1 = {
 
 
                            chart: {
                                 "caption": "Grafica Activación / SIEBEL",
                                 "subCaption": "Pendientes",
-                                "xAxisName": "Colas",
+                                "xAxisName": "Pedidos",
                                 "yAxisName": "Pendientes",
                                 "numberPrefix": "",
                                 "paletteColors": "#0075c2",
@@ -9917,9 +9917,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
                         return data.data;
                 });
-        $scope.actualizarPendientesPorConceptoSiebelActivacion();
 
-        services.logVista($cookieStore.get('logedUser').login,"Indicadores Activacion y Siebel");
     };
                  
 });

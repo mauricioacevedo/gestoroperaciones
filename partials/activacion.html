@@ -266,114 +266,12 @@
                                     width="900"
                                     height="400"
                                     type="column2d"
-                                    datasource="{{myDataSourceAD}}">
+                                    datasource="{{myDataSourceAD1}}">
                             </div><!--Fusioncharts -->
                         </div><!--Grafica -->
                     </div><!--terminacion del row grafica-->
 
-                    <div class="row">
-                        <div class="col-sm-6"><!--Acordeon con Tablas -->
-                            <accordion close-others="oneAtATime"><!--Acordeones -->
-                                <accordion-group><!--Fecha Cita -->
-                                    <accordion-heading>
-                                        Pendientes Por Cola: {{listado_colas.totales}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                                    </accordion-heading>
-                                    <table class="table small table-striped table-hover table-bordered table-condensed ">
-                                        <thead>
-                                                <th>Cola</th>
-                                                <th>TOTAL</th>
-                                                <th> 0-2h</th>
-                                                <th> 3-4h</th>
-                                                <th> 5-6h</th>
-                                                <th> 7-12h</th>
-                                                <th> 13-24h</th>
-                                                <th> 25-48h</th>
-                                                <th>Mas de 48h</th>
 
-                                        </thead>
-                                        <tbody>
-                                            <tr ng-repeat="data in listado_colas| orderBy:'fecha_fin':true ">
-                                                <td>{{data.COLA_ID}}</td>
-                                                <td ng-init="listado_colas.totales = parseInt(listado_colas.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
-                                                <td ng-init="listado_colas.total02 = parseInt(listado_colas.total02) + parseInt(data.Entre02)">{{data.Entre02}}</td>
-                                                <td ng-init="listado_colas.total34 = parseInt(listado_colas.total34) + parseInt(data.Entre34)">{{data.Entre34}}</td>
-                                                <td ng-init="listado_colas.total56 = parseInt(listado_colas.total56) + parseInt(data.Entre56)">{{data.Entre56}}</td>
-                                                <td ng-init="listado_colas.total712 = parseInt(listado_colas.total712) + parseInt(data.Entre712)">{{data.Entre712}}</td>
-                                                <td ng-init="listado_colas.total1324 = parseInt(listado_colas.total1324) + parseInt(data.Entre1324)">{{data.Entre1324}}</td>
-                                                <td ng-init="listado_colas.total2548 = parseInt(listado_colas.total2548) + parseInt(data.Entre2548)">{{data.Entre2548}}</td>
-                        
-                                                <td ng-init="listado_colas.totalmas48 = parseInt(listado_colas.totalmas48) + parseInt(data.Masde48)">{{data.Masde48}}</td>
-
-                                            </tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>TOTALES</th>
-                                                <th>{{listado_colas.totales}}</th>
-                                                <th>{{listado_colas.total02}}</th>
-                                                <th>{{listado_colas.total34}}</th>
-                                                <th>{{listado_colas.total56}}</th>
-                                                <th>{{listado_colas.total712}}</th>
-                                                <th>{{listado_colas.total1324}}</th>
-                                                <th>{{listado_colas.total2548}}</th>
-                                                <th>{{listado_colas.totalmas48}}</th>
-                                            </tr>
-
-                                        </tfoot>
-                                    </table>
-                                </accordion-group><!--Pendientes Cola -->
-                            </accordion><!--Acordeones -->
-                        </div>
-                       
-                        <div class="col-sm-6">
-                            <accordion close-others="oneAtATime"><!--Acordeones -->
-                                <accordion-group><!--Fecha Cita -->
-                                    <accordion-heading>
-                                        Pendientes Por Concepto: {{listado_conceptos.totales}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                                    </accordion-heading>
-                                    <table class="table small table-striped table-hover table-bordered table-condensed ">
-                                        <thead>
-                                            <th>Cola</th>
-                                            <th>TOTAL</th>
-                                            <th> 0-2h</th>
-                                            <th> 3-4h</th>
-                                            <th> 5-6h</th>
-                                            <th> 7-12h</th>
-                                            <th> 13-24h</th>
-                                            <th> 25-48h</th>
-                                            <th>Mas de 48h</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr ng-repeat="data in listado_conceptos| orderBy:'fecha_fin':true ">
-                                                <td>{{data.CONCEPTO_ID}}</td>
-                                                <td ng-init="listado_conceptos.totales = parseInt(listado_conceptos.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
-                                                <td ng-init="listado_conceptos.total02 = parseInt(listado_conceptos.total02) + parseInt(data.Entre02)">{{data.Entre02}}</td>
-                                                <td ng-init="listado_conceptos.total34 = parseInt(listado_conceptos.total34) + parseInt(data.Entre34)">{{data.Entre34}}</td>
-                                                <td ng-init="listado_conceptos.total56 = parseInt(listado_conceptos.total56) + parseInt(data.Entre56)">{{data.Entre56}}</td>
-                                                <td ng-init="listado_conceptos.total712 = parseInt(listado_conceptos.total712) + parseInt(data.Entre712)">{{data.Entre712}}</td>
-                                                <td ng-init="listado_conceptos.total1324 = parseInt(listado_conceptos.total1324) + parseInt(data.Entre1324)">{{data.Entre1324}}</td>
-                                                <td ng-init="listado_conceptos.total2548 = parseInt(listado_conceptos.total2548) + parseInt(data.Entre2548)">{{data.Entre2548}}</td>
-                                                <td ng-init="listado_conceptos.totalmas48 = parseInt(listado_conceptos.totalmas48) + parseInt(data.Masde48)">{{data.Masde48}}</td>
-                                            </tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>TOTALES</th>
-                                                <th>{{listado_conceptos.totales}}</th>
-                                                <th>{{listado_conceptos.total02}}</th>
-                                                <th>{{listado_conceptos.total34}}</th>
-                                                <th>{{listado_conceptos.total56}}</th>
-                                                <th>{{listado_conceptos.total712}}</th>
-                                                <th>{{listado_conceptos.total1324}}</th>
-                                                <th>{{listado_conceptos.total2548}}</th>
-                                                <th>{{listado_conceptos.totalmas48}}</th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </accordion-group><!--Fecha Cita -->
-                            </accordion><!--Acordeones -->
-                        </div><!--Acordeon con Tablas -->
-                    </div><!-- terminacion del row de las tablas-->
                 </div>
                  
                 <div class="panel-footer">
