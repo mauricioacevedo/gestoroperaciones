@@ -4105,10 +4105,10 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 
         $scope.editTransaccionActividades = function (transaccionA){
                // console.log(transaccionA.FECHA);
-                if(transaccionA.PEDIDO_ID==undefined || transaccionA.PEDIDO_ID==""){
-                        alert("Fecha sin informacion.");
-                        return;
-                }
+               // if(transaccionA.PEDIDO_ID==undefined || transaccionA.PEDIDO_ID==""){
+                 //       alert("Fecha sin informacion.");
+                   //     return;
+                //}
 
                 if(transaccionA.FECHA==undefined || transaccionA.FECHA==""){
                         alert("Fecha sin informacion.");
@@ -4173,10 +4173,10 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
    $scope.saveTransaccion1 = function (transaccion){
        // console.log(transaccion.TIPO_TRABAJO);
 
-                 if(transaccion.PEDIDO_ID==undefined || transaccion.PEDIDO_ID==""){
-                        alert("Fecha sin informacion.");
-                        return;
-                }
+               //  if(transaccion.PEDIDO_ID==undefined || transaccion.PEDIDO_ID==""){
+                 //       alert("Fecha sin informacion.");
+                   //     return;
+            //    }
                 if(transaccion.FECHA==undefined || transaccion.FECHA==""){
                         alert("Fecha sin informacion.");
                         return;
