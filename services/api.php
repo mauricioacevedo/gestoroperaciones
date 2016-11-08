@@ -5303,53 +5303,6 @@ $queryConceptosFcita=" select ".
 
                 }
 
-         private function listadoactivacionsiebel(){
-
-                        if($this->get_request_method() != "GET"){
-                                $this->response('',406);
-
-                        }
-
-                        $today = date("Y-m-d");
-
-                        $query=" SELECT count(*) as counter FROM  gestor_pendientes_activacion_siebel ".
-                                " WHERE (ESTADO='in_progress') " ;
-
-                        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-                        $counter=0;
-                        if($rr->num_rows > 0){
-                                $result = array();
-                                if($row = $rr->fetch_assoc()){
-                                        $counter = $row['counter'];
-                                }
-                        }
-
-                	$query= " SELECT * FROM  gestor_pendientes_activacion_siebel ".
-                            " WHERE (ESTADO='in_progress') ".
-                            " GROUP BY PEDIDO ";
-
-
-						//echo $query;
-						//echo $param  ;
-						// var_dump($query);
-                        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-
-                        if($r->num_rows > 0){
-                                $result = array();
-                                $total=0;
-                                while($row = $r->fetch_assoc()){
-
-                                        $result[] = $row;
-
-                                      // var_dump($result);
-                                }
-
-                                $this->response($this->json(array($result,$counter)), 200); // send user details
-                        }
-                        $this->response('',204);        // If no records "No Content" status
-
-                }
-
 
 
 
