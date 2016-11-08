@@ -294,16 +294,16 @@
                         $filename="Agendamiento-Fenix_NAL-$login-$today.csv";
 
                        $query=" SELECT ".
-                              "  a.PEDIDO_ID,a.CONCEPTOS,a.ACTIVIDADES,a.NOVEDAD,a.FECHA_CITA_FENIX ".
-                              " ,a.FECHA_CITA_REAGENDA,a.JORNADA_CITA ".
-                              "  ,a.FECHA_INGRESO,a.FECHA_CARGA,a.ASESOR,a.FECHA_INICIO,a.FECHA_FIN ".
-                              " ,a.FECHA_ESTADO,a.DURACION,a.OBSERVACION_FENIX ".
-                              "  ,a.OBSERVACION_GESTOR,a.FUENTE,a.ACTIVIDAD_GESTOR,a.ASESORNAME ".
-                              "  ,a.CELULAR_AVISAR,a.CLIENTE_ID,a.CORREO_UNE ".
-                              " ,a.DIRECCION_ENVIO,a.E_MAIL_AVISAR,a.MICROZONA,a.NOMBRE_USUARIO ".
-                              "  ,a.PARENT_ID,a.TELEFONO_AVISAR,a.TIEMPO_TOTAL ".
-                              " ,a.PROGRAMACION,a.SOURCE,a.DEPARTAMENTO,a.ACCESO,a.NUMERO_CR ".
-                              " ,a.IDLLAMADA,a.SUBZONA_ID,a.PROCESO,a.ASESORNAME ".
+                            " a.PEDIDO_ID,a.CONCEPTOS,a.ACTIVIDADES,a.NOVEDAD,a.FECHA_CITA_FENIX ".
+                            " ,a.FECHA_CITA_REAGENDA,a.JORNADA_CITA ".
+                            " ,a.FECHA_INGRESO,a.FECHA_CARGA,a.ASESOR,a.FECHA_INICIO,a.FECHA_FIN ".
+                            " ,a.FECHA_ESTADO,a.DURACION,a.OBSERVACION_FENIX ".
+                            " ,a.OBSERVACION_GESTOR,a.FUENTE,a.ACTIVIDAD_GESTOR,a.ASESORNAME ".
+                            " ,a.CELULAR_AVISAR,a.CLIENTE_ID,a.CORREO_UNE ".
+                            " ,a.DIRECCION_ENVIO,a.E_MAIL_AVISAR,a.MICROZONA,a.NOMBRE_USUARIO ".
+                            " ,a.PARENT_ID,a.TELEFONO_AVISAR,a.TIEMPO_TOTAL ".
+                            " ,a.PROGRAMACION,a.SOURCE,a.DEPARTAMENTO,a.ACCESO,a.NUMERO_CR ".
+                            " ,a.IDLLAMADA,a.SUBZONA_ID,a.PROCESO,a.ASESORNAME ".
                               " , (SELECT hr.TODAY_TRIES FROM gestor_pendientes_reagendamiento hr WHERE hr.ID = (SELECT MAX( b.id )  ".
                               "      FROM gestor_pendientes_reagendamiento b ".
                                "   WHERE b.PEDIDO_ID =  a.PEDIDO_ID) )AS INTENTOS_CONTACTO ".
