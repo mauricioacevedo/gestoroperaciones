@@ -292,6 +292,7 @@
 
                         $today = date("Y-m-d h:i:s");
                         $filename="Agendamiento-Fenix_NAL-$login-$today.csv";
+
                        $query=" SELECT ".
                               "  a.PEDIDO_ID,a.CONCEPTOS,a.ACTIVIDADES,a.NOVEDAD,a.FECHA_CITA_FENIX ".
                               " ,a.FECHA_CITA_REAGENDA,a.JORNADA_CITA ".
