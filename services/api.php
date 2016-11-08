@@ -537,7 +537,7 @@
 
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
-                        if($r->num_rows > 0){
+                        if($r = $this->mysqli->use_result()){
                                 $result = array();
                                 $fp = fopen("../tmp/$filename", 'w');
                                 fputcsv($fp, array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','CAMPO_ERROR','VALOR_CAMPO_ERROR'));
