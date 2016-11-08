@@ -9883,7 +9883,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                            chart: {
                                 "caption": "Grafica Activación / Siebel",
                                 "subCaption": "Pendientes",
-                                "xAxisName": "Pedidos",
+                                "xAxisName": "Pedidos Por Producto",
                                 "yAxisName": "Pendientes",
                                 "numberPrefix": "",
                                 "paletteColors": "#0075c2",
