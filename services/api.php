@@ -4037,10 +4037,10 @@ $queryConceptosFcita=" select ".
                                 $this->response('',406);
                         }
 
-                        $query= " SELECT PEDIDO as label, COUNT(*) as value ".
+                        $query= " SELECT PRODUCTO as label, COUNT(*) as value ".
                                 " FROM  gestor_pendientes_activacion_siebel ".
                                 " WHERE (ESTADO='in_progress') ".
-                                " GROUP BY PEDIDO ".
+                                " GROUP BY PRODUCTO ".
 				                " ORDER BY COUNT(*) DESC ";
                         //echo $query;
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
