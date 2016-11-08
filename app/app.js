@@ -9881,9 +9881,9 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                         $scope.myDataSourceAD = {
 
                            chart: {
-                                "caption": "Grafica Activación / Desactivación",
+                                "caption": "Grafica Activación / Siebel",
                                 "subCaption": "Pendientes",
-                                "xAxisName": "Colas",
+                                "xAxisName": "Pedidos",
                                 "yAxisName": "Pendientes",
                                 "numberPrefix": "",
                                 "paletteColors": "#0075c2",
@@ -9919,9 +9919,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
                         return data.data;
              });
-        $scope.actualizarPendientesPorConceptoColaActivacion();
 
-        services.logVista($cookieStore.get('logedUser').login,"Indicadores Activacion y Desactivacion");
     };
 
      $scope.listadoactivacion3  = function (){
