@@ -4049,7 +4049,7 @@ $queryConceptosFcita=" select ".
                                 $result = array();
 				$total=0;
                                 while($row = $r->fetch_assoc()){
-                                        $row['label']="Cola ".$row['label'];
+                                        $row['label']="Producto".$row['label'];
 					$total=$total + $row['value'];
                                         $result[] = $row;
                                 }
