@@ -380,7 +380,17 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 
        obj.getSeguimientoActivacionGraficaAD = function(){
                 return $http.get(serviceBase + 'seguimientoactivacionGraficaAD');
+
         }
+
+        obj.getPendientesGraficaAD = function(){
+                return $http.get(serviceBase + 'pendientesGraficaAD');
+        }
+
+        obj.getPendientesGraficaADSIEBEL = function(){
+                return $http.get(serviceBase + 'pendientesGraficaAD');
+        }
+
 //------------------------------------------------------fin_Activacion
 
 
@@ -686,9 +696,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pendientesGrafica');
         }
 
-        obj.getPendientesGraficaAD = function(){
-                return $http.get(serviceBase + 'pendientesGraficaAD');
-        }
+
 
 
 
@@ -9862,6 +9870,57 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                         data: []
 
         };
+
+     $scope.actualizarGraficaADSIEBEL   = function (){
+    //TOMAR MUESTRA2
+                var data1=services.getPendientesGraficaADSIEBEL().then(function(data){
+
+                        $scope.myDataSourceAD = {
+
+
+                           chart: {
+                                "caption": "Grafica Activación / SIEBEL",
+                                "subCaption": "Pendientes",
+                                "xAxisName": "Colas",
+                                "yAxisName": "Pendientes",
+                                "numberPrefix": "",
+                                "paletteColors": "#0075c2",
+                                "bgColor": "#ffffff",
+                                "borderAlpha": "20",
+                                "canvasBorderAlpha": "0",
+                                "usePlotGradientColor": "0",
+                                "plotBorderAlpha": "10",
+                                "placevaluesInside": "0",
+                                "rotatevalues": "0",
+                                "valueFontColor": "#0075c2",
+                                "showXAxisLine": "1",
+                                "xAxisLineColor": "#999999",
+                                "divlineColor": "#999999",
+                                "divLineDashed": "1",
+                                "showAlternateHGridColor": "0",
+                                "subcaptionFontBold": "0",
+                                "subcaptionFontSize": "14"
+                            },
+                                data: data.data[0]
+
+                        }
+                        var date1 = new Date();
+                        var year    = date1.getFullYear();
+                        var month   = $scope.doubleDigit(date1.getMonth()+1);
+                        var day     = $scope.doubleDigit(date1.getDate());
+                        var hour    = $scope.doubleDigit(date1.getHours());
+                        var minute  = $scope.doubleDigit(date1.getMinutes());
+                        var seconds = $scope.doubleDigit(date1.getSeconds());
+
+                        $scope.lastUpdate=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
+                        $scope.totalAD= data.data[1]
+
+                        return data.data;
+                });
+        $scope.actualizarPendientesPorConceptoSiebelActivacion();
+
+        services.logVista($cookieStore.get('logedUser').login,"Indicadores Activacion y Siebel");
+    };
                  
 });
 

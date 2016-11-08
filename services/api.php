@@ -4032,6 +4032,34 @@ $queryConceptosFcita=" select ".
 
                 }
 
+        private function pendientesGraficaADSIEBEL(){
+                        if($this->get_request_method() != "GET"){
+                                $this->response('',406);
+                        }
+
+                        $query= " SELECT PEDIDO as label, COUNT(*) as value ".
+                                " FROM  gestor_pendientes_activacion_siebel ".
+                                " WHERE (ESTADO='in_progress') ".
+                                " GROUP BY PEDIDO ".
+				                " ORDER BY COUNT(*) DESC ";
+                        //echo $query;
+                        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+                        if($r->num_rows > 0){
+                                $result = array();
+				$total=0;
+                                while($row = $r->fetch_assoc()){
+                                        $row['label']="Cola ".$row['label'];
+					$total=$total + $row['value'];
+                                        $result[] = $row;
+                                }
+                                $this->response($this->json(array($result,$total)), 200); // send user details
+                        }
+                        $this->response('',204);        // If no records "No Content" status
+
+                }
+
+
                 private function seguimientoactivacionGraficaAD(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
