@@ -21,7 +21,12 @@
         <div class="col-xs-6">
         <form role="form" name="myForm" class="form-horizontal">
             <!--div class="row"-->
-
+               <div class= "form-group"><!--Inicia Div de Quedan Pendientes-->
+                <label class= "col-md-3">PEDIDO: </label>
+                <div class="col-md-4">
+                <input ng-model="transaccion.PEDIDO_ID" type= "text" class= "form-control" placeholder= "Quedan Pendientes"/>
+                </div>
+            </div><!--Finaliza Div de Quedan Pendientes-->
                <div class= "form-group"><!--Inicia Div de Fecha -->
                 <label class= "col-md-2">Fecha: </label>
                 <div class="input-daterange col-sm-2" id="datepicker">
