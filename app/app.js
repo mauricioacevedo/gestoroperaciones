@@ -308,6 +308,9 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
          obj.getListadoActivacionTabla = function(fecha_inicio,fecha_fin){
                 return $http.get(serviceBase + 'listadoactivaciontabla?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin);
         }
+         obj.getListadoActivacionSiebel = function(fecha_inicio,fecha_fin){
+                return $http.get(serviceBase + 'listadoactivacionsiebel?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin);
+        }
 
 
       obj.getListadoAlarmasActivacion = function(){
@@ -9871,7 +9874,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
         };//--------------------------------
 
-    $scope.actualizarGraficaAD   = function (){
+    $scope.actualizarGraficaADS   = function (){
     //TOMAR MUESTRA
                 var data1=services.getPendientesGraficaADSIEBEL().then(function(data){
 
@@ -9915,11 +9918,47 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                         $scope.totalAD= data.data[1]
 
                         return data.data;
-                });
+             });
         $scope.actualizarPendientesPorConceptoColaActivacion();
 
         services.logVista($cookieStore.get('logedUser').login,"Indicadores Activacion y Desactivacion");
-           };
+    };
+
+     $scope.listadoactivacion3  = function (){
+
+                services.getListadoActivacionSiebel($scope.data.fechaini,$scope.data.fechafin,$scope.data.currentPage).then(function(data){
+
+                   // console.log(data);
+                       $scope.listadoactivacionsiebel=data.data[1];
+                       $scope.listadoactivacionsiebel.totales = 0;
+
+                       //$scope.data.totalItems=data.data[1];
+
+                    return data.data;
+               });
+
+
+        };
+
+
+        $scope.myDataSourceAD = {
+                        chart: {
+                        caption: "Grafica General",
+                        subcaption: "Pendientes A y D",
+                        startingangle: "120",
+                        showlabels: "0",
+                        showlegend: "1",
+                        enablemultislicing: "0",
+                        slicingdistance: "15",
+                        formatNumberScale: "0",
+                        showpercentvalues: "1",
+                        showpercentintooltip: "0",
+                        plottooltext: "Age group : $label Total visit : $datavalue",
+                        theme: "fint"
+                        },
+                        data: []
+
+        };
                  
 });
 
