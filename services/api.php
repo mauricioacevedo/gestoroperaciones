@@ -303,7 +303,7 @@
                             " ,a.DIRECCION_ENVIO,a.E_MAIL_AVISAR,a.MICROZONA,a.NOMBRE_USUARIO ".
                             " ,a.PARENT_ID,a.TELEFONO_AVISAR,a.TIEMPO_TOTAL ".
                             " ,a.PROGRAMACION,a.SOURCE,a.DEPARTAMENTO,a.ACCESO,a.NUMERO_CR ".
-                            " ,a.IDLLAMADA,a.SUBZONA_ID,a.PROCESO,a.ASESORNAME ".
+                            " ,a.IDLLAMADA,a.SUBZONA_ID,a.PROCESO,a.ASESOR ".
                               " , (SELECT hr.TODAY_TRIES FROM gestor_pendientes_reagendamiento hr WHERE hr.ID = (SELECT MAX( b.id )  ".
                               "      FROM gestor_pendientes_reagendamiento b ".
                                "   WHERE b.PEDIDO_ID =  a.PEDIDO_ID) )AS INTENTOS_CONTACTO ".
