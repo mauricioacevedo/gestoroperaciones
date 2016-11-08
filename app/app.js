@@ -9660,7 +9660,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                 });
         };
 
-     $scope.csvActivacion  = function (){
+     $scope.csvActivacionSiebel  = function (){
                 var login=$rootScope.logedUser.login;
                 services.getCsvActivacionSiebel(login).then(function(data){
                         window.location.href="tmp/"+data.data[0];
