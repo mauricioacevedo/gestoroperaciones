@@ -390,8 +390,8 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pendientesGraficaAD');
         }
 
-        obj.getPendientesGraficaSiebelAD = function(){
-                return $http.get(serviceBase + 'pendientesGraficaSiebelAD');
+        obj.getPendientesSiebelGraficaAD = function(){
+                return $http.get(serviceBase + 'PendientesSiebelGraficaAD');
         }
 
 //------------------------------------------------------fin_Activacion
