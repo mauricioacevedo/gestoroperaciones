@@ -9871,17 +9871,16 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
         };//--------------------------------
 
-      $scope.actualizarGraficaADSIEBEL   = function (){
+    $scope.actualizarGraficaAD   = function (){
     //TOMAR MUESTRA
                 var data1=services.getPendientesGraficaADSIEBEL().then(function(data){
 
                         $scope.myDataSourceAD = {
 
-
                            chart: {
-                                "caption": "Grafica Activación / Siebel",
+                                "caption": "Grafica Activación / Desactivación",
                                 "subCaption": "Pendientes",
-                                "xAxisName": "Pedidos",
+                                "xAxisName": "Colas",
                                 "yAxisName": "Pendientes",
                                 "numberPrefix": "",
                                 "paletteColors": "#0075c2",
@@ -9921,143 +9920,6 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
         services.logVista($cookieStore.get('logedUser').login,"Indicadores Activacion y Desactivacion");
            };
-
-
-        $scope.actualizarPendientesPorConceptoColaActivacion  = function (){
-                 var data1=services.pendientesPorConceptoColaActivacion().then(function(data){
-
-                        $scope.listado_colas =  data.data[0];
-                        $scope.listado_conceptos =  data.data[1];
-                        $scope.listado_colas.totales = 0;
-                        $scope.listado_colas.total02 = 0;
-                        $scope.listado_colas.total34 = 0;
-                        $scope.listado_colas.total56 = 0;
-                        $scope.listado_colas.total712 = 0;
-                        $scope.listado_colas.total1324 = 0;
-                        $scope.listado_colas.total2548 = 0;
-                        $scope.listado_colas.totalmas48 = 0;
-
-                        $scope.listado_conceptos.totales = 0;
-                        $scope.listado_conceptos.total02 = 0;
-                        $scope.listado_conceptos.total34 = 0;
-                        $scope.listado_conceptos.total56 = 0;
-                        $scope.listado_conceptos.total712 = 0;
-                        $scope.listado_conceptos.total1324 = 0;
-                        $scope.listado_conceptos.total2548 = 0;
-                        $scope.listado_conceptos.totalmas48 = 0;
-
-                });
-
-        };
-
-        $scope.myDataSourceAD = {
-                        chart: {
-                        caption: "Grafica General",
-                        subcaption: "Pendientes A y D",
-                        startingangle: "120",
-                        showlabels: "0",
-                        showlegend: "1",
-                        enablemultislicing: "0",
-                        slicingdistance: "15",
-                        formatNumberScale: "0",
-                        showpercentvalues: "1",
-                        showpercentintooltip: "0",
-                        plottooltext: "Age group : $label Total visit : $datavalue",
-                        theme: "fint"
-                        },
-                        data: []
-
-        };
-
-
-          $scope.actualizarseguimientoGraficaAD   = function (){
-    //TOMAR MUESTRA
-                var data1=services.getSeguimientoActivacionGraficaAD().then(function(data){
-
-                        $scope.myDataSourceAD = {
-
-
-                            chart: {
-                                "caption": "Pedidos Cumplidos / Activación",
-                                "xAxisName": "Colas",
-                                "yAxisName": "Pedidos",
-                                "numberPrefix": "",
-                                "paletteColors": "#0075c2",
-                                "bgColor": "#ffffff",
-                                "borderAlpha": "20",
-                                "canvasBorderAlpha": "0",
-                                "usePlotGradientColor": "0",
-                                "plotBorderAlpha": "10",
-                                "placevaluesInside": "0",
-                                "rotatevalues": "0",
-                                "valueFontColor": "#0075c2",
-                                "showXAxisLine": "1",
-                                "xAxisLineColor": "#999999",
-                                "divlineColor": "#999999",
-                                "divLineDashed": "1",
-                                "showAlternateHGridColor": "0",
-                                "subcaptionFontBold": "0",
-                                "subcaptionFontSize": "14"
-                            },
-
-
-
-                                data: data.data[0]
-
-                        }
-                        var date1 = new Date();
-                        var year    = date1.getFullYear();
-                        var month   = $scope.doubleDigit(date1.getMonth()+1);
-                        var day     = $scope.doubleDigit(date1.getDate());
-                        var hour    = $scope.doubleDigit(date1.getHours());
-                        var minute  = $scope.doubleDigit(date1.getMinutes());
-                        var seconds = $scope.doubleDigit(date1.getSeconds());
-
-                        $scope.lastUpdate=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
-                        $scope.totalAD= data.data[1]
-
-                        return data.data;
-                });
-
-
-           };
-
-
-          $scope.listadoactivacion2  = function (){
-
-                services.getListadoActivacionTabla($scope.data.fechaini,$scope.data.fechafin,$scope.data.currentPage).then(function(data){
-
-                   // console.log(data);
-                       $scope.listadoactivaciontabla=data.data[1];
-                       $scope.listadoactivaciontabla.totales = 0;
-
-                       //$scope.data.totalItems=data.data[1];
-
-                    return data.data;
-               });
-
-
-        };
-
-
-        $scope.myDataSourceAD = {
-                        chart: {
-                        caption: "Grafica General",
-                        subcaption: "Pendientes A y D",
-                        startingangle: "120",
-                        showlabels: "0",
-                        showlegend: "1",
-                        enablemultislicing: "0",
-                        slicingdistance: "15",
-                        formatNumberScale: "0",
-                        showpercentvalues: "1",
-                        showpercentintooltip: "0",
-                        plottooltext: "Age group : $label Total visit : $datavalue",
-                        theme: "fint"
-                        },
-                        data: []
-
-        };
                  
 });
 
