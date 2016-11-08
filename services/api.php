@@ -7550,7 +7550,7 @@ $queryConceptosFcita=" select ".
                         $transaccion = json_decode(file_get_contents("php://input"),true);
 
                         $transaccion = $transaccion['transaccion'];
-                        $column_names = array('DIA','FECHA','TIPO_TRABAJO','APLICACION_ACTIVIDADES','COLA','AMANECIERON','GESTIONADO_DIA','QUEDAN_PENDIENTES','OBSERVACIONES','USUARIO','FECHA_INICIO','FECHA_FIN');
+                        $column_names = array('PEDIDO_ID','DIA','FECHA','TIPO_TRABAJO','APLICACION_ACTIVIDADES','COLA','AMANECIERON','GESTIONADO_DIA','QUEDAN_PENDIENTES','OBSERVACIONES','USUARIO','FECHA_INICIO','FECHA_FIN');
                         $keys = array_keys($transaccion);
                         $columns = '';
                         $values = '';
