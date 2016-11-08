@@ -522,6 +522,38 @@
 
                 }
 
+        private function csvActivacionSiebel(){
+                        if($this->get_request_method() != "GET"){
+                                $this->response('',406);
+                        }
+                        $login = $this->_request['login'];
+
+                        $today = date("Y-m-d h:i:s");
+                        $filename="Fenix_Activacion-$login-$today.csv";
+                        $query= " SELECT * ".
+                                " FROM portalbd.gestor_pendientes_activacion_siebel ".
+                                 " WHERE  ESTADO ='in_progress' ";
+
+
+                        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+                        if($r->num_rows > 0){
+                                $result = array();
+                                $fp = fopen("../tmp/$filename", 'w');
+                                fputcsv($fp, array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','CAMPO_ERROR','VALOR_CAMPO_ERROR'));
+                                while($row = $r->fetch_assoc()){
+                                        $result[] = $row;
+                                        fputcsv($fp, $row);
+                                }
+                                fclose($fp);
+
+                                $this->response($this->json(array($filename,$login)), 200); // send user details
+                        }
+
+                        $this->response('',204);        // If no records "No Content" status
+
+                }
+
 private function csvListadoActivacion(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);

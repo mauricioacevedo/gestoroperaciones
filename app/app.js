@@ -372,6 +372,9 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 	obj.getCsvActivacion  = function(login){
                 return $http.get(serviceBase + 'csvActivacion?login='+login);
         }
+    obj.getCsvActivacionSiebel  = function(login){
+                return $http.get(serviceBase + 'csvActivacionSiebel?login='+login);
+        }
 
     obj.pendientesPorConceptoColaActivacion  = function(){
                 return $http.get(serviceBase + 'pendientesPorColaConceptoActivacion');
@@ -9657,6 +9660,13 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                 });
         };
 
+     $scope.csvActivacion  = function (){
+                var login=$rootScope.logedUser.login;
+                services.getCsvActivacionSiebel(login).then(function(data){
+                        window.location.href="tmp/"+data.data[0];
+                        return data.data;
+                });
+        };
 
         $scope.csvListadoActivacion  = function (fechaini,fechafin){
                 var login=$rootScope.logedUser.login;
