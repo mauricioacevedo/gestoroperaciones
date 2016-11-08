@@ -4032,7 +4032,7 @@ $queryConceptosFcita=" select ".
 
                 }
 
-        private function pendientesGraficaADSIEBEL(){
+        private function pendientesGraficaSiebelAD(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
                         }

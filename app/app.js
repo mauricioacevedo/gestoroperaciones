@@ -390,8 +390,8 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pendientesGraficaAD');
         }
 
-        obj.getPendientesGraficaADSIEBEL = function(){
-                return $http.get(serviceBase + 'pendientesGraficaAD');
+        obj.getPendientesGraficaSiebelAD = function(){
+                return $http.get(serviceBase + 'pendientesGraficaSiebelAD');
         }
 
 //------------------------------------------------------fin_Activacion
@@ -9876,7 +9876,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
     $scope.actualizarGraficaADS   = function (){
     //TOMAR MUESTRA
-                var data1=services.getPendientesGraficaADSIEBEL().then(function(data){
+                var data1=services.getPendientesSiebelGraficaAD().then(function(data){
 
                         $scope.myDataSourceAD = {
 
