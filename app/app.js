@@ -4316,7 +4316,7 @@ $scope.listado_transaccionesActividades=[];
                         $scope.calcularPendientes();
                 }
                 if(usuario.length>=0){
-                    services.getBuscarDatos(usuario,$scope.data.currentPage).then(function(data){
+                    services.getBuscarDatos(usuario).then(function(data){
                     $scope.listado_transaccionesActividades=data.data[0];
                         return data.data;
 

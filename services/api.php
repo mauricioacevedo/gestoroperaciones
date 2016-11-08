@@ -5137,7 +5137,7 @@ $queryConceptosFcita=" select ".
              $query="  SELECT * ".
                     "from transacciones_actividades ".
                     " where USUARIO LIKE '$usuario%' ". 
-                    " order by fecha_fin desc limit 100 "; 
+                    " order by fecha_fin desc ";
              //echo $query;
 
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
