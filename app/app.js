@@ -336,7 +336,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
          obj.getListadoTransaccionesActividades1 = function(userID,fecha_inicio,fecha_fin,page){
-                return $http.get(serviceBase + 'listadoTransaccionesActividades1?fechaInicio='+fecha_inicio+'&fechaFin='+fecha_fin+'&page='+page+'&userID='+userID);
+                return $http.get(serviceBase + 'listadoTransaccionesActividades1?fechaInicio='+fecha_inicio+'&fechaFin='+fecha_fin+'&page='+page);
         }
 
      obj.insertTransaccionActividades = function (transaccion) {
@@ -4279,7 +4279,7 @@ $scope.listado_transaccionesActividades=[];
     var pathy=$location.path();
 
         if(pathy=="/actividades/"){//esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
-        services.getListadoTransaccionesActividades1(userID,fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
+        services.getListadoTransaccionesActividades1($scope.data.fechaIni, $scope.data.fechaFin,$scope.data.currentPage).then(function(data){
                     $scope.listado_transaccionesActividades1=data.data[0];
                     $scope.data.totalItems=data.data[1];
                     return data.data;
