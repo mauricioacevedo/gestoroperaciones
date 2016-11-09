@@ -4317,12 +4317,13 @@ $scope.listado_transaccionesActividades=[];
                 }
                 if(usuario.length>=0){
                     services.getBuscarDatos(usuario).then(function(data){
-                    $scope.listado_transaccionesActividades=data.data[0];
+                    $scope.listado_transaccionesActividades1=data.data[0];
                         return data.data;
 
                     });
                 }
         };
+
 
         $scope.csvactividades = function (){
                 var login=$rootScope.logedUser.login;
