@@ -7978,7 +7978,7 @@ $queryConceptosFcita=" select ".
                                 " ,GESTIONADO_DIA,QUEDAN_PENDIENTES ".
                                 " ,OBSERVACIONES,USUARIO,FECHA_INICIO,FECHA_FIN ".
                                 " from transacciones_actividades ".
-                                " where  FECHA_FIN between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' ";
+                                " order by FECHA ASC ";
 
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
