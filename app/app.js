@@ -6415,7 +6415,7 @@ var userID=$cookieStore.get('logedUser').login;
                var uploadUrl = 'services/cargar_datos';
               // console.log ($scope.user);
                fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
-
+                console.log(file);
             };
 
     fileUpload.uploadFileToUrl({
