@@ -6427,8 +6427,8 @@ var userID=$cookieStore.get('logedUser').login;
      fileUpload.uploadFileToUrl({
         name: 'extensionFilter',
         fn: function (item, options) {
-            var filename = item.name;
-            var extension = filename.substring(filename.lastIndexOf('.') + 1).toLowerCase();
+            var file = item.name;
+            var extension = file.substring(file.lastIndexOf('.') + 1).toLowerCase();
             if (extension == extension == "xlsx" || extension == "xls")
                 return true;
             else {
