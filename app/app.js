@@ -6431,7 +6431,7 @@ var userID=$cookieStore.get('logedUser').login;
                         return data.data;
                 });
 
-     uploadFile.filters.push({
+     uploadUrl.filters.push({
         name: 'extensionFilter',
         fn: function (item, options) {
             var filename = item.name;
