@@ -51,14 +51,7 @@ app.service('fileUpload', ['$http','$cookieStore', function ($http,$cookieStore)
 
 		  responseType: "arraybuffer"
                })
-               .success(function(){
-                alert('El archivo a sido subido correctamente');
 
-               })
-               .error(function(){
-                alert('Ha habido un error al subir el archivo');
-
-               });
             }
          }]);
 
