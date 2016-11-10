@@ -6559,7 +6559,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
     };
 
     console.info('uploadUrl', uploadUrl);
-});
+};
 
             };
     });
