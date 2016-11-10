@@ -6416,9 +6416,9 @@ var userID=$cookieStore.get('logedUser').login;
               // console.log ($scope.user);
                fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
                 console.log(file);
-            };
 
-    fileUpload.uploadFileToUrl({
+
+         fileUpload.uploadFileToUrl({
         name: 'extensionFilter',
         fn: function (item, options) {
             var file = item.name;
@@ -6432,6 +6432,9 @@ var userID=$cookieStore.get('logedUser').login;
 
         }
     });
+};
+
+
 
 });
 
