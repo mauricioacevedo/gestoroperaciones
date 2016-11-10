@@ -8394,7 +8394,7 @@ private function listadoTransaccionesActividades(){
 			"                 AND subz.sbz_subzona IN ('CALDAS','ENVIGADO_1','ENVIGADO_2','ENVIGADO_3','ESTRELLA','GUAYABAL','ITAGUI_1','ITAGUI_2','ITAGUI_3','POBLADO_1','POBLADO_2','SABANETA','SANANTPRA','SUR-ENV','SUR','SUR-SAB')  ".
 			"                 THEN 'SUR'    ".
 			"            WHEN dp.dep_departamento = 'Antioquia'    ".
-			"                 AND subz.sbz_subzona IN ('M1_ORIENTE', 'M2_ORIENTE', 'M3_ORIENTE', 'M4_ORIENTE' , 'M5_ORIENTE' , 'M6_ORIENTE','M7_ORIENTE','M8_ORIENTE',RIO', 'PALMAS', 'SANTAELENA')  ".
+			"                 AND subz.sbz_subzona IN ('M1_ORIENTE', 'M2_ORIENTE', 'M3_ORIENTE', 'M4_ORIENTE' , 'M5_ORIENTE' ,RIO', 'PALMAS', 'SANTAELENA')  ".
 			"                 THEN 'ORIENTE'     ".
 			"			WHEN subz.sbz_subzona IN ('CAR','M1_CARTAGE','M2_CARTAGE','M3_CARTAGE','M4_CARTAGE','M5_CARTAGE') ".
 			"			THEN 'CARTAGENA' ".
