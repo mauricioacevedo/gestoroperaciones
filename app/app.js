@@ -6425,7 +6425,29 @@ var userID=$cookieStore.get('logedUser').login;
                fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
 
             };
+     services.listar().then(function(data){
+                        $scope.listadodocu=data.data[0];
+                        console.log($scope.listadodocu);
+                        return data.data;
+                });
+
+     uploadFile.filters.push({
+        name: 'extensionFilter',
+        fn: function (item, options) {
+            var filename = item.name;
+            var extension = filename.substring(filename.lastIndexOf('.') + 1).toLowerCase();
+            if (extension == extension == "xlsx" || extension == "xls")
+                return true;
+            else {
+                alert('Formato Invalido. Por favor seleccione un archivo con formato xlsx/xls');
+                return false;
+            }
+        }
     });
+
+});
+
+
 app.controller('Pedidos_MicrozonasCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
 
         var userID=$cookieStore.get('logedUser').login;
