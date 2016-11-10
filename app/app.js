@@ -6418,20 +6418,18 @@ var userID=$cookieStore.get('logedUser').login;
                 console.log(file);
 
 
-         fileUpload.uploadFileToUrl({
-        name: 'extensionFilter',
-        fn: function (item, options) {
-            var file = item.name;
-            var extension = file.substring(file.lastIndexOf('.') + 1).toLowerCase();
-            if (extension == extension == "xlsx" || extension == "xls")
-                return true;
-            else {
-                alert('Formato Invalido. Por favor seleccione un archivo con formato xlsx/xls');
-                return false;
-            }
-
-        }
-    });
+       fileUpload.onSuccessItem = function (fileItem, response, status, headers) {
+        //$scope.uploader.queue = [];
+        //$scope.uploader.progress = 0;
+        //console.log(fileItem._file.name);
+        services.listar().then(function(data){
+                        $scope.listadodocu=data.data[0];
+                        console.log($scope.listadodocu);
+                        return data.data;
+                });
+        alert("El archivo "+ fileItem._file.name + " seleccionado se ha cargado correctamente .");
+        $scope.error = '';
+    };
 };
 
 
