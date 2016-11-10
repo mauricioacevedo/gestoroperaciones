@@ -6417,11 +6417,6 @@ var userID=$cookieStore.get('logedUser').login;
                fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
 
             };
-     services.listar().then(function(data){
-                        $scope.listadodocu=data.data[0];
-                        console.log($scope.listadodocu);
-                        return data.data;
-                });
 
      fileUpload.uploadFileToUrl({
         name: 'extensionFilter',
