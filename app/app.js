@@ -51,7 +51,14 @@ app.service('fileUpload', ['$http','$cookieStore', function ($http,$cookieStore)
 
 		  responseType: "arraybuffer"
                })
+                .success(function(){
+                alert('El archivo a sido subido correctamente');
 
+               })
+               .error(function(){
+                alert('Ha habido un error al subir el archivo');
+
+               });
             }
          }]);
 
@@ -6377,7 +6384,7 @@ app.controller('OcupacionAgendamientoCtrl', function ($scope, $rootScope, $locat
 
 app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services, fileUpload){
 
-var userID=$cookieStore.get('logedUser').login;
+        var userID=$cookieStore.get('logedUser').login;
         $rootScope.logedUser=$cookieStore.get('logedUser');
         document.getElementById('logout').className="btn btn-md btn-danger";
         var divi=document.getElementById("logoutdiv");
@@ -6409,33 +6416,16 @@ var userID=$cookieStore.get('logedUser').login;
                 $scope.user=$rootScope.logedUser.login;
 
                var file = $scope.myFile;
-
+               console.log('file is');
+               console.dir(file);
 
 
                var uploadUrl = 'services/cargar_datos';
               // console.log ($scope.user);
                fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
-                console.log(file);
 
-
-       fileUpload.onSuccessItem = function (fileItem, response, status, headers) {
-        //$scope.uploader.queue = [];
-        //$scope.uploader.progress = 0;
-        //console.log(fileItem._file.name);
-        services.listar().then(function(data){
-                        $scope.listadodocu=data.data[0];
-                        console.log($scope.listadodocu);
-                        return data.data;
-                });
-        alert("El archivo "+ fileItem._file.name + " seleccionado se ha cargado correctamente .");
-        $scope.error = '';
-    };
-};
-
-
-
-});
-
+            };
+    });
 
 app.controller('Pedidos_MicrozonasCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
 
