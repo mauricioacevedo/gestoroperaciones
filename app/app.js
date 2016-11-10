@@ -6424,7 +6424,6 @@ var userID=$cookieStore.get('logedUser').login;
             var file = item.name;
             var extension = file.substring(file.lastIndexOf('.') + 1).toLowerCase();
             if (extension == extension == "xlsx" || extension == "xls")
-                 console.log(file);
                 return true;
             else {
                 alert('Formato Invalido. Por favor seleccione un archivo con formato xlsx/xls');
