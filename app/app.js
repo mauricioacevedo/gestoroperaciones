@@ -6402,10 +6402,22 @@ $rootScope.logout = function() {
             divi.style.visibility="hidden";
             $location.path('/');
     };
+    $scope.uploadFile = function(){
+                $scope.user=$rootScope.logedUser.login;
+
+               var file = $scope.myFile;
+               console.log('file is');
+               console.dir(file);
 
 
-   var uploader = $scope.uploader = new FileUploader({
-        url: window.location.protocol + window.location.pathname + 'services/UploadFile1'
+               var uploadUrl = 'services/cargar_datos';
+              // console.log ($scope.user);
+               fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
+
+            };
+
+   var uploadUrl = $scope.fileUpload = new uploadFileToUrl({
+        url: window.location.protocol + window.location.pathname + 'services/cargar_datos'
     });
 
                 services.listar().then(function(data){
@@ -6436,7 +6448,7 @@ $rootScope.logout = function() {
     //$scope.reload();
     //$interval($scope.reload, 5000);
 
-    uploader.filters.push({
+    uploadUrl.filters.push({
         name: 'extensionFilter',
         fn: function (item, options) {
             var filename = item.name;
@@ -6451,7 +6463,7 @@ $rootScope.logout = function() {
         }
     });
 
-    uploader.filters.push({
+    uploadUrl.filters.push({
         name: 'sizeFilter',
         fn: function (item, options) {
             var fileSize = item.size;
@@ -6465,7 +6477,7 @@ $rootScope.logout = function() {
         }
     });
 
-    uploader.filters.push({
+    uploadUrl.filters.push({
         name: 'itemResetFilter',
         fn: function (item, options) {
             if (this.queue.length < 5)
@@ -6479,7 +6491,7 @@ $rootScope.logout = function() {
 
     // CALLBACKS
 
-    uploader.onWhenAddingFileFailed = function (item, filter, options) {
+    uploadUrl.onWhenAddingFileFailed = function (item, filter, options) {
         console.info('onWhenAddingFileFailed', item, filter, options);
         $scope.error = '';
     };
@@ -6487,7 +6499,7 @@ $rootScope.logout = function() {
         alert('Archivos listos para la carga .');
     };*/
 
-    uploader.onSuccessItem = function (fileItem, response, status, headers) {
+    fileUpload.onSuccessItem = function (fileItem, response, status, headers) {
         //$scope.uploader.queue = [];
         //$scope.uploader.progress = 0;
         //console.log(fileItem._file.name);
@@ -6499,42 +6511,42 @@ $rootScope.logout = function() {
         alert("El archivo "+ fileItem._file.name + " seleccionado se ha cargado correctamente .");
         $scope.error = '';
     };
-    uploader.onErrorItem = function (fileItem, response, status, headers) {
+    uploadUrl.onErrorItem = function (fileItem, response, status, headers) {
         alert('No se pudo cargar el archivo . Por favor, inténtelo de nuevo.');
         $scope.error = '';
     };
-    uploader.onCancelItem = function (fileItem, response, status, headers) {
+    uploadUrl.onCancelItem = function (fileItem, response, status, headers) {
         alert('La subida de archivos ha sido cancelada .');
         $scope.error = '';
     };
 
-    uploader.onAfterAddingAll = function(addedFileItems) {
+    uploadUrl.onAfterAddingAll = function(addedFileItems) {
         console.info('onAfterAddingAll', addedFileItems);
         $scope.error = '';
     };
-    uploader.onBeforeUploadItem = function(item) {
+    uploadUrl.onBeforeUploadItem = function(item) {
         console.info('onBeforeUploadItem', item);
         $scope.error = '';
     };
-    uploader.onProgressItem = function(fileItem, progress) {
+    uploadUrl.onProgressItem = function(fileItem, progress) {
         //console.info('onProgressItem', fileItem, progress);
         $scope.error = '';
     };
-    uploader.onProgressAll = function(progress) {
+    uploadUrl.onProgressAll = function(progress) {
         //console.info('onProgressAll', progress);
         $scope.error = '';
     };
 
-    uploader.onCompleteItem = function(fileItem, response, status, headers) {
+    uploadUrl.onCompleteItem = function(fileItem, response, status, headers) {
         console.info('onCompleteItem', fileItem, response, status, headers);
         $scope.error = '';
     };
-    uploader.onCompleteAll = function() {
+    uploadUrl.onCompleteAll = function() {
         console.info('onCompleteAll');
         $scope.error = '';
     };
 
-    console.info('uploader', uploader);
+    console.info('uploadUrl', uploadUrl);
     });
 
 
