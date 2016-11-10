@@ -10113,29 +10113,29 @@ $sqlfenix=
 
 
             $query="SELECT ".
-			" C1.FECHA_DISP ".
-			" ,C1.DEPARTAMENTO ".
-			" , C1.ZONA ".
-			" , C1.MICROZONA ".
-			" , C1.SEGMENTO ".
-			" , C1.MIGRACION ".
-			" , C1.VIP ".
-			" , C1.BRONZE ".
-			" , C1.GPON ".
-			" , C1.PARAM_AM ".
-			" , C1.DISP_AM ".
-			" , C1.PARAM_PM ".
-			" , C1.DISP_PM ".
-			" , C1.PARAM_HF ".
-			" ,(C1.N7+C1.N8+C1.N9+C1.N10+C1.N11+C1.N12+C1.N13+C1.N14+C1.N15+C1.N16+C1.N17+C1.N18+C1.N19)AS DISP_HF ".
-			" ,(C1.DISP_AM + C1.DISP_PM + (C1.N7+C1.N8+C1.N9+C1.N10+C1.N11+C1.N12+C1.N13+C1.N14+C1.N15+C1.N16+C1.N17+C1.N18+C1.N19))AS TOTAL_DISP ".
-			" FROM (select ".
-			"        CASE WHEN dp.dep_departamento = 'Antioquia' THEN 'ANTIOQUIA'   ".
-			"             WHEN dp.dep_departamento = 'Atlantico' THEN 'ATLANTICO' ".
-			"             WHEN dp.dep_departamento = 'Cundinamarca' THEN 'CUNDINAMARCA' ".
-			"             WHEN dp.dep_departamento = 'Bolivar' THEN 'BOLIVAR'  ".
-			"             WHEN dp.dep_departamento = 'Valle del Cauca' THEN 'VALLE DEL CAUCA' END AS DEPARTAMENTO, ".
-			"                   CASE  ".
+            " C1.FECHA_DISP ".
+            " ,C1.DEPARTAMENTO ".
+            " , C1.ZONA ".
+            " , C1.MICROZONA ".
+            " , C1.SEGMENTO ".
+            " , C1.MIGRACION ".
+            " , C1.VIP ".
+            " , C1.BRONZE ".
+            " , C1.GPON ".
+            " , C1.PARAM_AM ".
+            " , C1.DISP_AM ".
+            " , C1.PARAM_PM ".
+            " , C1.DISP_PM ".
+            " , C1.PARAM_HF ".
+            " ,(C1.N7+C1.N8+C1.N9+C1.N10+C1.N11+C1.N12+C1.N13+C1.N14+C1.N15+C1.N16+C1.N17+C1.N18+C1.N19)AS DISP_HF ".
+            " ,(C1.DISP_AM + C1.DISP_PM + (C1.N7+C1.N8+C1.N9+C1.N10+C1.N11+C1.N12+C1.N13+C1.N14+C1.N15+C1.N16+C1.N17+C1.N18+C1.N19))AS TOTAL_DISP ".
+            " FROM (select ".
+            "        CASE WHEN dp.dep_departamento = 'Antioquia' THEN 'ANTIOQUIA'   ".
+            "             WHEN dp.dep_departamento = 'Atlantico' THEN 'ATLANTICO' ".
+            "             WHEN dp.dep_departamento = 'Cundinamarca' THEN 'CUNDINAMARCA' ".
+            "             WHEN dp.dep_departamento = 'Bolivar' THEN 'BOLIVAR'  ".
+            "             WHEN dp.dep_departamento = 'Valle del Cauca' THEN 'VALLE DEL CAUCA' END AS DEPARTAMENTO, ".
+            "                  CASE  ".
 			"                     WHEN (dp.dep_departamento = 'Antioquia'  ".
 			"                     AND subz.sbz_subzona IN ('AMERICA','BUENOS_AIR','CEN','CENTRO','COLON','MIRAFLORES','NUTIBARA','OTRABANDA','SAN_BERN_1','SAN_BERN_2','SAN_JAVIER','VILLAHERMO')) ".
 			"                 THEN 'CENTRO' ".
@@ -10148,59 +10148,61 @@ $sqlfenix=
 			"            WHEN dp.dep_departamento = 'Antioquia'    ".
 			"                 AND subz.sbz_subzona IN ('M1_ORIENTE', 'M2_ORIENTE', 'M3_ORIENTE', 'M4_ORIENTE' , 'M5_ORIENTE' ,'M6_ORIENTE','M7_ORIENTE','M8_ORIENTE','RIO', 'PALMAS', 'SANTAELENA')  ".
 			"                 THEN 'ORIENTE'     ".
+			"			WHEN subz.sbz_subzona IN ('CAN','DEFAULT','ENG','QCA','SUB','NORTE') THEN 'BOGOTA NORTE'  ".
+			"			WHEN subz.sbz_subzona IN ('BOSA','ECA','FRG','TIMIZA','SUR') THEN 'BOGOTA SUR'   ".
 			"			WHEN subz.sbz_subzona IN ('CAR','M1_CARTAGE','M2_CARTAGE','M3_CARTAGE','M4_CARTAGE','M5_CARTAGE') ".
 			"			THEN 'CARTAGENA' ".
 			"			WHEN subz.sbz_subzona IN ('TUR', 'M6_CARTAGE')  ".
 			"			THEN 'TURBACO'  ".
-			"			WHEN subz.sbz_subzona IN ('CAN','DEFAULT','ENG','QCA','SUB','NORTE') THEN 'BOGOTA NORTE'  ".
-			"			WHEN subz.sbz_subzona IN ('BOSA','ECA','FRG','TIMIZA','SUR') THEN 'BOGOTA SUR'  ".
 			"			WHEN subz.sbz_subzona IN ('VAL','Valle del Cauca') THEN 'CALI'   ". 
 			"			WHEN subz.sbz_subzona = 'PAL' THEN 'PALMIRA'  ".
 			"			WHEN subz.sbz_subzona = 'JAM' THEN 'JAMUNDI'  ".
 			"           WHEN dp.dep_departamento IN ('Bolivar','Atlantico','Cundinamarca','Valle del Cauca')    ".
-			"            THEN UPPER(dp.dep_departamento) ".
+			"                 THEN UPPER(dp.dep_departamento) ".
 			"             END AS ZONA, ".
-			"           sbz_subzona AS MICROZONA,sbag.sag_segmento, ".
-			"                 sbag.sag_segmento AS SEGMENTO,agm.agm_fechacita AS FECHA_DISP, ".
-			"                 sbag.sag_cuposam AS PARAM_AM, ".
-			"                 IFNULL((sbag.sag_cuposam-IFNULL(COUNT(IF(agm.agm_jornadacita='AM',1,NULL)),0)),0) AS DISP_AM,sbag.sag_cupospm AS PARAM_PM, ".
-			"                 IFNULL((sbag.sag_cupospm-IFNULL(COUNT(IF(agm.agm_jornadacita='PM',1,NULL)),0)),0) AS DISP_PM,(IFNULL(sbag.sag_cupos7,0)+IFNULL(sbag.sag_cupos8,0)+IFNULL(sbag.sag_cupos9,0)+IFNULL(sbag.sag_cupos10,0)+  ".
-			"                 IFNULL(sbag.sag_cupos11,0)+IFNULL(sbag.sag_cupos12,0)+IFNULL(sbag.sag_cupos13,0)+IFNULL(sbag.sag_cupos14,0)+ ".
-			"                 IFNULL(sbag.sag_cupos15,0)+IFNULL(sbag.sag_cupos16,0)+IFNULL(sbag.sag_cupos17,0)+IFNULL(sbag.sag_cupos18,0)+ ".
-			"                 IFNULL(sbag.sag_cupos19,0))AS PARAM_HF,IFNULL(IF(sbag.sag_cupos7 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='7:00' ,1,NULL)))),IFNULL((sbag.sag_cupos7-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='7:00' ,1,NULL)),0)),0)),0) AS 'N7', ".
-			"         IFNULL(IF(sbag.sag_cupos8 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='8:00' ,1,NULL)))),IFNULL((sbag.sag_cupos8-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='8:00' ,1,NULL)),0)),0)),0) AS 'N8', ".
-			"                 IFNULL(IF(sbag.sag_cupos9 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='9:00' ,1,NULL)))),IFNULL((sbag.sag_cupos9-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='9:00' ,1,NULL)),0)),0)),0) AS 'N9', ".
-			"                 IFNULL(IF(sbag.sag_cupos10 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='10:00' ,1,NULL)))),IFNULL((sbag.sag_cupos10-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='10:00' ,1,NULL)),0)),0)),0) AS 'N10', ".
-			"         IFNULL(IF(sbag.sag_cupos11 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='11:00' ,1,NULL)))),IFNULL((sbag.sag_cupos11-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='11:00' ,1,NULL)),0)),0)),0) AS 'N11', ".
-			"                 IFNULL(IF(sbag.sag_cupos12 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='12:00' ,1,NULL)))),IFNULL((sbag.sag_cupos12-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='12:00' ,1,NULL)),0)),0)),0) AS 'N12', ".
-			"                 IFNULL(IF(sbag.sag_cupos13 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='13:00' ,1,NULL)))),IFNULL((sbag.sag_cupos13-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='13:00' ,1,NULL)),0)),0)),0) AS 'N13', ".
-			"                 IFNULL(IF(sbag.sag_cupos14 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='14:00' ,1,NULL)))),IFNULL((sbag.sag_cupos14-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='14:00' ,1,NULL)),0)),0)),0) AS 'N14', ".
-			"                 IFNULL(IF(sbag.sag_cupos15 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='15:00' ,1,NULL)))),IFNULL((sbag.sag_cupos15-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='15:00' ,1,NULL)),0)),0)),0) AS 'N15', ".
-			"                 IFNULL(IF(sbag.sag_cupos16 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='16:00' ,1,NULL)))),IFNULL((sbag.sag_cupos16-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='16:00' ,1,NULL)),0)),0)),0) AS 'N16', ".
-			"                 IFNULL(IF(sbag.sag_cupos17 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='17:00' ,1,NULL)))),IFNULL((sbag.sag_cupos17-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='17:00' ,1,NULL)),0)),0)),0) AS 'N17', ".
-			"                 IFNULL(IF(sbag.sag_cupos18 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='18:00' ,1,NULL)))),IFNULL((sbag.sag_cupos18-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='18:00' ,1,NULL)),0)),0)),0) AS 'N18', ".
-			"                 IFNULL(IF(sbag.sag_cupos19 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='19:00' ,1,NULL)))),IFNULL((sbag.sag_cupos19-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='19:00' ,1,NULL)),0)),0)),0) AS 'N19', ".
-			"SUM(CASE WHEN sbag.sag_prioridad='migracion' THEN 1 else 0 end ) as MIGRACION ".
-			",SUM(CASE WHEN sbag.sag_prioridad='vip' THEN 1 else 0 end ) as VIP ".
-			",SUM(CASE WHEN sbag.sag_prioridad='Bronze' THEN 1 else 0 end ) as BRONZE ".
-			",SUM(CASE WHEN sbag.sag_prioridad='gpon' THEN 1 else 0 end ) as GPON ".
-			" from agn_agendamientos agm  ".
-			" left join agn_subagendas sbag on agm.agm_agenda = sbag.sag_id  ".
-			" left join agn_agendas ag on sbag.sag_agenda = ag.ads_id ".
-			" left join agn_subzonas  subz on sbag.sag_subzona = subz.sbz_id ".
-			" left join agn_departamentos  dp on ag.ags_departamento = dp.dep_id ".
-			" where agm.agm_fechacita >= ag.ags_fechainicial  ".
-			" AND agm.agm_fechacita <= ag.ags_fechafinal  ".
-			" AND ag.ags_fechafinal >= CURDATE()  ".
-			" AND (agm.agm_estadototal IN ('Agendar','Agendamientos') OR (agm.agm_estadototal IN('Pendiente','Prospecto','')  ".
-			" AND (agm.agm_fechacita > IF(HOUR(CURTIME()) < 16,CURDATE(), DATE_ADD(NOW(), INTERVAL 1 DAY)))))  ".
-			" and agm.agm_fechacita >= date_add(curdate(), interval 1 day) ".
-			" group by agm.agm_agenda,agm.agm_fechacita ".
-			" order by ag.ags_fechafinal ASC ) C1 ".
-			" where C1.FECHA_DISP ='$fecha' ".
-			" $depa ".
+            "           sbz_subzona AS MICROZONA,sbag.sag_segmento, ".
+            "                 sbag.sag_segmento AS SEGMENTO,agm.agm_fechacita AS FECHA_DISP, ".
+            "                 sbag.sag_cuposam AS PARAM_AM, ".
+            "                 IFNULL((sbag.sag_cuposam-IFNULL(COUNT(IF(agm.agm_jornadacita='AM',1,NULL)),0)),0) AS DISP_AM,sbag.sag_cupospm AS PARAM_PM, ".
+            "                 IFNULL((sbag.sag_cupospm-IFNULL(COUNT(IF(agm.agm_jornadacita='PM',1,NULL)),0)),0) AS DISP_PM,(IFNULL(sbag.sag_cupos7,0)+IFNULL(sbag.sag_cupos8,0)+IFNULL(sbag.sag_cupos9,0)+IFNULL(sbag.sag_cupos10,0)+  ".
+            "                 IFNULL(sbag.sag_cupos11,0)+IFNULL(sbag.sag_cupos12,0)+IFNULL(sbag.sag_cupos13,0)+IFNULL(sbag.sag_cupos14,0)+ ".
+            "                 IFNULL(sbag.sag_cupos15,0)+IFNULL(sbag.sag_cupos16,0)+IFNULL(sbag.sag_cupos17,0)+IFNULL(sbag.sag_cupos18,0)+ ".
+            "                 IFNULL(sbag.sag_cupos19,0))AS PARAM_HF,IFNULL(IF(sbag.sag_cupos7 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='7:00' ,1,NULL)))),IFNULL((sbag.sag_cupos7-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='7:00' ,1,NULL)),0)),0)),0) AS 'N7', ".
+            "         IFNULL(IF(sbag.sag_cupos8 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='8:00' ,1,NULL)))),IFNULL((sbag.sag_cupos8-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='8:00' ,1,NULL)),0)),0)),0) AS 'N8', ".
+            "                 IFNULL(IF(sbag.sag_cupos9 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='9:00' ,1,NULL)))),IFNULL((sbag.sag_cupos9-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='9:00' ,1,NULL)),0)),0)),0) AS 'N9', ".
+            "                 IFNULL(IF(sbag.sag_cupos10 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='10:00' ,1,NULL)))),IFNULL((sbag.sag_cupos10-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='10:00' ,1,NULL)),0)),0)),0) AS 'N10', ".
+            "         IFNULL(IF(sbag.sag_cupos11 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='11:00' ,1,NULL)))),IFNULL((sbag.sag_cupos11-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='11:00' ,1,NULL)),0)),0)),0) AS 'N11', ".
+            "                 IFNULL(IF(sbag.sag_cupos12 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='12:00' ,1,NULL)))),IFNULL((sbag.sag_cupos12-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='12:00' ,1,NULL)),0)),0)),0) AS 'N12', ".
+            "                 IFNULL(IF(sbag.sag_cupos13 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='13:00' ,1,NULL)))),IFNULL((sbag.sag_cupos13-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='13:00' ,1,NULL)),0)),0)),0) AS 'N13', ".
+            "                 IFNULL(IF(sbag.sag_cupos14 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='14:00' ,1,NULL)))),IFNULL((sbag.sag_cupos14-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='14:00' ,1,NULL)),0)),0)),0) AS 'N14', ".
+            "                 IFNULL(IF(sbag.sag_cupos15 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='15:00' ,1,NULL)))),IFNULL((sbag.sag_cupos15-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='15:00' ,1,NULL)),0)),0)),0) AS 'N15', ".
+            "                 IFNULL(IF(sbag.sag_cupos16 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='16:00' ,1,NULL)))),IFNULL((sbag.sag_cupos16-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='16:00' ,1,NULL)),0)),0)),0) AS 'N16', ".
+            "                 IFNULL(IF(sbag.sag_cupos17 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='17:00' ,1,NULL)))),IFNULL((sbag.sag_cupos17-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='17:00' ,1,NULL)),0)),0)),0) AS 'N17', ".
+            "                 IFNULL(IF(sbag.sag_cupos18 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='18:00' ,1,NULL)))),IFNULL((sbag.sag_cupos18-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='18:00' ,1,NULL)),0)),0)),0) AS 'N18', ".
+            "                 IFNULL(IF(sbag.sag_cupos19 IS NULL,(-1*(count(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='19:00' ,1,NULL)))),IFNULL((sbag.sag_cupos19-IFNULL(COUNT(IF(agm.agm_jornadacita='Hora Fija' AND agm.agm_horacita='19:00' ,1,NULL)),0)),0)),0) AS 'N19', ".
+            "SUM(CASE WHEN sbag.sag_prioridad='migracion' THEN 1 else 0 end ) as MIGRACION ".
+            ",(CASE WHEN sbag.sag_prioridad='vip' THEN 1 else 0 end ) as VIP ".
+            ",SUM(CASE WHEN sbag.sag_prioridad='bronze' THEN 1 else 0 end ) as BRONZE ".
+            ",SUM(CASE WHEN sbag.sag_prioridad='gpon' THEN 1 else 0 end ) as GPON ".
+            " from agn_agendamientos agm  ".
+            " left join agn_subagendas sbag on agm.agm_agenda = sbag.sag_id  ".
+            " left join agn_agendas ag on sbag.sag_agenda = ag.ads_id ".
+            " left join agn_subzonas  subz on sbag.sag_subzona = subz.sbz_id ".
+            " left join agn_departamentos  dp on ag.ags_departamento = dp.dep_id ".
+            " where agm.agm_fechacita >= ag.ags_fechainicial  ".
+            " AND agm.agm_fechacita <= ag.ags_fechafinal  ".
+            " AND ag.ags_fechafinal >= CURDATE()  ".
+            " AND (agm.agm_estadototal IN ('Agendar','Agendamientos') OR (agm.agm_estadototal IN('Pendiente','Prospecto','')  ".
+            " AND (agm.agm_fechacita > IF(HOUR(CURTIME()) < 16,CURDATE(), DATE_ADD(NOW(), INTERVAL 1 DAY)))))  ".
+            " and agm.agm_fechacita >= date_add(curdate(), interval 1 day) ".
+            " group by agm.agm_agenda,agm.agm_fechacita ".
+            " order by ag.ags_fechafinal ASC ) C1 ".
+            " where C1.FECHA_DISP ='$fechaAgendamiento' ".
+            " $depa ".
 			" $zona ". 
-			" order by C1.DEPARTAMENTO asc, C1.ZONA asc, C1.MICROZONA asc ";
+            " order by C1.DEPARTAMENTO asc, C1.ZONA asc, C1.MICROZONA asc ";
+
+
 
 	//	echo $query;
             $filename="EXPORTE-OCUPACION-$login-$today.csv";	
