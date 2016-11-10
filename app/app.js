@@ -6419,7 +6419,7 @@ var userID=$cookieStore.get('logedUser').login;
             };
 
     fileUpload.uploadFileToUrl({
-        console.log(file);
+        console.log(fileUpload);
         name: 'extensionFilter',
         fn: function (item, options) {
             var file = item.name;
