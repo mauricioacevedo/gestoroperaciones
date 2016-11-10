@@ -6419,6 +6419,7 @@ var userID=$cookieStore.get('logedUser').login;
             };
 
     fileUpload.uploadFileToUrl({
+        console.log(file);
         name: 'extensionFilter',
         fn: function (item, options) {
             var file = item.name;
@@ -6429,7 +6430,7 @@ var userID=$cookieStore.get('logedUser').login;
                 alert('Formato Invalido. Por favor seleccione un archivo con formato xlsx/xls');
                 return false;
             }
-           console.log(file);
+
         }
     });
 
