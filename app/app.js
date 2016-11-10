@@ -6409,8 +6409,7 @@ var userID=$cookieStore.get('logedUser').login;
                 $scope.user=$rootScope.logedUser.login;
 
                var file = $scope.myFile;
-               console.log('file is');
-               console.dir(file);
+
 
 
                var uploadUrl = 'services/cargar_datos';
@@ -6430,6 +6429,7 @@ var userID=$cookieStore.get('logedUser').login;
             var file = item.name;
             var extension = file.substring(file.lastIndexOf('.') + 1).toLowerCase();
             if (extension == extension == "xlsx" || extension == "xls")
+                console.dir(file);
                 return true;
             else {
                 alert('Formato Invalido. Por favor seleccione un archivo con formato xlsx/xls');
