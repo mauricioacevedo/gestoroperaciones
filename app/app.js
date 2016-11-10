@@ -6418,7 +6418,7 @@ var userID=$cookieStore.get('logedUser').login;
 
             };
 
-     fileUpload.uploadFileToUrl({
+     fileUpload.filters.push({
         name: 'extensionFilter',
         fn: function (item, options) {
             var file = item.name;
