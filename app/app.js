@@ -8468,7 +8468,7 @@ $scope.start = function(pedido) {
     
 
 
-    if($scope.pedido.NOVEDAD=='AGENDADO'&&$scope.pedido.NOVEDAD!='YA ESTA AGENDADO'&&$scope.pedido.NOVEDAD!='AGENDADO MANUAL' &&$scope.pedido.NOVEDAD!='AGENDADO_FUTURO' &&$scope.pedido.NOVEDAD!='YA ESTA AGENDADO-USUARIO'  ){
+    if($scope.pedido.NOVEDAD!='AGENDADO'&&$scope.pedido.NOVEDAD!='YA ESTA AGENDADO'&&$scope.pedido.NOVEDAD!='AGENDADO MANUAL' &&$scope.pedido.NOVEDAD!='AGENDADO_FUTURO' &&$scope.pedido.NOVEDAD!='YA ESTA AGENDADO-USUARIO'  ){
         $scope.pedido.FECHA_CITA_REAGENDA='';
         $scope.pedido.JORNADA_CITA='';
         alert('debe llenar FECHA_CITA_REAGENDA y JORNADA_CITA para guardar');
@@ -8496,7 +8496,19 @@ $scope.start = function(pedido) {
                 $scope.pedido.PROGRAMACION='';
 
         }
-    }
+    }else{
+        console.log($scope.pedido.FECHA_CITA_REAGENDA+"||||||"+$scope.pedido.JORNADA_CITA);
+        if($scope.pedido.FECHA_CITA_REAGENDA==''|| $scope.pedido.FECHA_CITA_REAGENDA===undefined){
+                        alert('Por favor incluir la fecha de la reagenda..');
+                        return;
+        }
+
+                if($scope.pedido.JORNADA_CITA==''|| $scope.pedido.JORNADA_CITA===undefined){
+                        alert('Por favor incluir la fecha de la reagenda..');
+                        return;
+                }
+
+
     if($scope.pedido.NOVEDAD=='AGENDADO' || $scope.pedido.NOVEDAD=='PENDIENTE POR OTRO CONCEPTO' || $scope.pedido.NOVEDAD=='NO DESEA EL SERVICIO' || $scope.pedido.NOVEDAD=='YA ESTA CUMPLIDO' ){
         console.log($scope.pedido.NOVEDAD)
         var regexp = /^([0-9]{2,20})$/;
