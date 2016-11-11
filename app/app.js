@@ -8509,6 +8509,20 @@ $scope.start = function(pedido) {
         }
     }
 
+    if($scope.pedido.NOVEDAD=='AGENDADO' ){
+        console.log($scope.pedido.NOVEDAD)
+
+
+        if($scope.pedido.FECHA_CITA_REAGENDA==false || $scope.pedido.IDLLAMADA==undefined || $scope.pedido.JORNADA_CITA==false || $scope.pedido.JORNADA_CITA == undefined){
+            alert('id llamada esta mal gestionado y/o esta vacio');
+
+            return;
+
+        }
+    }
+
+   }
+
 
         $scope.timeInit=new Date().getTime();
         var df=new Date($scope.pedido.DURACION);
