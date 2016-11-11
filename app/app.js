@@ -8496,17 +8496,6 @@ $scope.start = function(pedido) {
                 $scope.pedido.PROGRAMACION='';
 
         }
-    }else{
-        console.log($scope.pedido.FECHA_CITA_REAGENDA+"||||||"+$scope.pedido.JORNADA_CITA);
-        if($scope.pedido.FECHA_CITA_REAGENDA==''|| $scope.pedido.FECHA_CITA_REAGENDA===undefined){
-                        alert('Por favor incluir la fecha de la reagenda..');
-                        return;
-        }
-
-                if($scope.pedido.JORNADA_CITA==''|| $scope.pedido.JORNADA_CITA===undefined){
-                        alert('Por favor incluir la fecha de la reagenda..');
-                        return;
-                }
     }
 
     if($scope.pedido.NOVEDAD=='AGENDADO' || $scope.pedido.NOVEDAD=='PENDIENTE POR OTRO CONCEPTO' || $scope.pedido.NOVEDAD=='NO DESEA EL SERVICIO' || $scope.pedido.NOVEDAD=='YA ESTA CUMPLIDO' ){
