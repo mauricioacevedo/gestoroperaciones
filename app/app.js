@@ -8468,9 +8468,11 @@ $scope.start = function(pedido) {
     
 
 
-    if($scope.pedido.NOVEDAD!='AGENDADO'&&$scope.pedido.NOVEDAD!='YA ESTA AGENDADO'&&$scope.pedido.NOVEDAD!='AGENDADO MANUAL' &&$scope.pedido.NOVEDAD!='AGENDADO_FUTURO' &&$scope.pedido.NOVEDAD!='YA ESTA AGENDADO-USUARIO'  ){
+    if($scope.pedido.NOVEDAD=='AGENDADO'&&$scope.pedido.NOVEDAD!='YA ESTA AGENDADO'&&$scope.pedido.NOVEDAD!='AGENDADO MANUAL' &&$scope.pedido.NOVEDAD!='AGENDADO_FUTURO' &&$scope.pedido.NOVEDAD!='YA ESTA AGENDADO-USUARIO'  ){
         $scope.pedido.FECHA_CITA_REAGENDA='';
         $scope.pedido.JORNADA_CITA='';
+        alert('debe llenar FECHA_CITA_REAGENDA y JORNADA_CITA para guardar');
+
     }else{
         $scope.pedido.PROGRAMACION='';
     }
