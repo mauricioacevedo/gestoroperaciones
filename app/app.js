@@ -8496,7 +8496,7 @@ $scope.start = function(pedido) {
                 $scope.pedido.PROGRAMACION='';
 
         }
-
+    }
     if($scope.pedido.NOVEDAD=='AGENDADO' || $scope.pedido.NOVEDAD=='PENDIENTE POR OTRO CONCEPTO' || $scope.pedido.NOVEDAD=='NO DESEA EL SERVICIO' || $scope.pedido.NOVEDAD=='YA ESTA CUMPLIDO' ){
         console.log($scope.pedido.NOVEDAD)
         var regexp = /^([0-9]{2,20})$/;
