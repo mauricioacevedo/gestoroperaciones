@@ -8507,7 +8507,7 @@ $scope.start = function(pedido) {
                         alert('Por favor incluir la fecha de la reagenda..');
                         return;
                 }
-
+    }
 
     if($scope.pedido.NOVEDAD=='AGENDADO' || $scope.pedido.NOVEDAD=='PENDIENTE POR OTRO CONCEPTO' || $scope.pedido.NOVEDAD=='NO DESEA EL SERVICIO' || $scope.pedido.NOVEDAD=='YA ESTA CUMPLIDO' ){
         console.log($scope.pedido.NOVEDAD)
