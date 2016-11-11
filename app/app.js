@@ -8501,7 +8501,7 @@ $scope.start = function(pedido) {
         console.log($scope.pedido.NOVEDAD)
         var regexp = /^([0-9]{2,20})$/;
 
-        if(regexp.test($scope.pedido.IDLLAMADA)==false || $scope.pedido.IDLLAMADA==undefined ||$scope.pedido.FECHA_CITA_REAGENDA==false || $scope.pedido.IDLLAMADA==undefined || $scope.pedido.JORNADA_CITA==false || $scope.pedido.JORNADA_CITA == undefined){
+        if(regexp.test($scope.pedido.IDLLAMADA)==false || $scope.pedido.IDLLAMADA==undefined ){
             alert('id llamada esta mal gestionado y/o esta vacio');
             
             return;
@@ -8509,8 +8509,6 @@ $scope.start = function(pedido) {
         }
     }
 
-
-   }
 
 
         $scope.timeInit=new Date().getTime();
