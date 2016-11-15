@@ -4255,7 +4255,7 @@ $scope.listado_transaccionesActividades=[];
         if(pathy=="/actividades/"){//esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
         services.getListadoTransaccionesActividades(userID,fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
                     $scope.listado_transaccionesActividades=data.data[0];
-                    $scope.data.totalItems=data.data[1];
+                    $scope.data.totalItems1=data.data[1];
                     return data.data;
             });
     }
@@ -4304,7 +4304,7 @@ $scope.listado_transaccionesActividades=[];
         $scope.pageChanged = function() {
                 services.getListadoTransaccionesActividades($scope.data.fechaIni,$scope.data.fechaFin,$scope.data.currentPage).then(function(data){
                         $scope.listado_transaccionesActividades=data.data[0];
-                        $scope.data.totalItems=data.data[1];
+                        $scope.data.totalItems1=data.data[1];
                         return data.data;
                 });
 
