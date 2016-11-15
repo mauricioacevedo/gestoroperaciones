@@ -569,7 +569,7 @@ private function csvListadoActivacion(){
                         $today = date("Y-m-d h:i:s");
                         $filename="Activacion-Fenix_NAL-$login-$today.csv";
 
-                        $query=" SELECT PEDIDO_ID, SUBPEDIDO_ID, SOLICITUD_ID,TIPO_TRABAJO, FECHA_ENTRADA_GESTOR, FECHA_ULTIMA_GESTOR".
+                        $query=" SELECT PEDIDO_ID, SUBPEDIDO_ID, SOLICITUD_ID,CONCEPTO_ID,COLA_ID,ACTIVIDAD_ID,USUARIO_ID,TIPO_TRABAJO, FECHA_ENTRADA_GESTOR, FECHA_ULTIMA_GESTOR".
                                  " from gestor_seguimiento_activacion".
                                 " where FECHA_ULTIMA_GESTOR between '$fechaini 00:00:00' and '$fechafin 23:59:59' ".
                                 " order by FECHA_ULTIMA_GESTOR  ";
@@ -583,7 +583,7 @@ private function csvListadoActivacion(){
                                 $result = array();
                                 $fp = fopen("../tmp/$filename", 'w');
 
-                                fputcsv($fp, array( 'PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','TIPO_TRABAJO','FECHA_ENTRADA_GESTOR','FECHA_ULTIMA_GESTOR'));
+                                fputcsv($fp, array( 'PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','CONCEPTO_ID','COLA_ID','ACTIVIDAD_ID','USUARIO_ID','TIPO_TRABAJO','FECHA_ENTRADA_GESTOR','FECHA_ULTIMA_GESTOR'));
 
 				fclose($fp);
 
