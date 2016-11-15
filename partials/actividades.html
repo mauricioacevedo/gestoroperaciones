@@ -171,6 +171,314 @@
         </div>
     </div>
     </div>
+<br>
+
+<ol class="breadcrumb">
+  <li><a href=".#/dashboard">Home</a></li>
+  <li class="active">{{title}}</li>
+</ol>
+<!-- Modal Ingreso de Novedades-->
+<div id="myModal"  class="modal fade "  role="dialog">
+  	<div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content" >
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Crear Novedad para el usuario: <span class="label label-info">{{usuarioNovedadTitulo}}</span></h4>
+      </div>
+      <div class="modal-body" >
+
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<div class = "panel panel-default">
+							<div class = "panel-heading navbar-collapsep navbar-default " >
+								<ul class="nav navbar-nav ">
+									<li>
+										<span class="btn btn-primary btn-circle-xs"><b>1</b></span>
+										Seleccione usuario
+										&nbsp;
+									</li>
+									<li>
+
+										<span  class="btn btn-primary btn-circle-xs"><b>2</b></span>
+										Seleccione la Fecha
+										&nbsp;
+									</li>
+									<li>
+										<span class="btn btn-primary btn-circle-xs"><b>3</b></span>
+										Ingrese Cantidad
+										&nbsp;
+									</li>
+									<li>
+										<span class="btn btn-primary btn-circle-xs"><b>4</b></span>
+										Tipo de Reporte
+										&nbsp;
+									</li>
+									<li>
+										<span class="btn btn-primary btn-circle-xs"><b>5</b></span>
+										Observaciones
+										&nbsp;
+									</li>
+								</ul>
+							</div>
+
+							<div class = "panel-heading nav navbar-default" ng-repeat="novedad in novedades track by $index">
+
+								<ul class="nav navbar-nav navbar-left" >
+
+									<li>
+										<i class="fa fa-user fa-fw"></i>
+										<select   class="select2-dropdown grupo-select" style="width: 150px;" select2="" ng-model="novedad.usuarioNovedad" ng-options="c.CEDULA_ID as c.USUARIO_ID group by c.GRUPO for c in  listaUsuarios">
+										  <option value="">Seleccione Usuario</option>
+									  	</select>
+
+
+
+									</li>
+									<li>
+									  	<i class="fa fa-calendar fa-fw"></i>
+										<input style="width:80px" class="btn btn-default btn-xs" type="text" pick-a-date="date" pick-a-date-options="{ format: 'yyyy-mm-dd' }" ng-model="novedad.fechaNovedad" placeholder="Fecha Inicial" />
+									</li>
+									<li>
+										<i class="fa fa-usd fa-fw"></i>
+										<input type="number" step="any" style="width:60px" class="btn btn-default btn-xs" type="text" ng-model="novedad.cantidadNovedad"  required/>
+										<i class="fa fa-cog fa-fw"></i>
+
+									</li>
+									<li>
+										<select   class="select2-dropdown grupo-select" style="width: 150px;" select2="" ng-model="novedad.tipoNovedad" ng-options="c.tipo as c.tipo for c in  listaTipoNov"  required>
+										<option value="">Seleccione Tipo</option>
+										</select>
+										&nbsp;
+									</li>
+									<li>
+										<i class="fa fa-comment" aria-hidden="true"></i>
+										<input style="width:120px" class="btn btn-default btn-xs" type="text"  ng-model="novedad.observaciones" capitalize />
+										&nbsp;
+									</li>
+									<li>
+										<select   class="btn btn-default btn-xs grupo-select" style="width: 80px;"  ng-model="novedad.tipoReporte" required>
+											<option value="NORMAL">NORMAL</option>
+											<option value="AJUSTE">AJUSTE</option>
+										</select>
+									</li>
+
+
+								</ul>
+								<ul class="nav navbar-nav navbar-right">
+									<li>
+										<button type="button" class="btn btn-warning btn-circle-xs pull-left" ng-click="removeNuevaNovedad()" ng-show="$last">
+										<i class="fa fa-minus"  aria-hidden="true"></i>
+										</button>&nbsp;
+									</li>
+
+
+									<li>
+										<button type="button" class="btn btn-warning btn-circle-xs pull-right" ng-show="$last" ng-click="addNuevaNovedad(novedad.usuarioNovedad)">
+										<i class="fa fa-plus"  aria-hidden="true"></i>
+										</button>
+
+									</li>
+								</ul>
+
+							</div><!-- Panel heading NG-REPEAT -->
+
+							<div class="panel-footer">
+
+							<button type="button" class="btn btn-default btn-xs">Novedades a guardar: <span class="badge">{{novedades.length}}</span></button>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+      </div>
+
+      <div class="modal-footer">
+
+
+      	<button type="button" class="btn btn-success" ng-click="guardarNovedad(novedades)" data-dismiss="modal"  >Guardar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+
+  	</div>
+
+</div>
+
+
+<!-- Modal Edicion de novedades-->
+<div id="editarModal"  class="modal fade "  role="dialog">
+  	<div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content" >
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Editar Novedad con el ID: <span class="label label-info">{{idNovedad}}</span></h4>
+      </div>
+      <div class="modal-body" >
+
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<div class = "panel panel-default">
+							<div class = "panel-heading navbar-collapsep navbar-default " >
+								<ul class="nav navbar-nav ">
+									<li>
+										<span class="btn btn-primary btn-circle-xs"><b>1</b></span>
+										Usuario
+										&nbsp;
+									</li>
+									<li>
+
+										<span  class="btn btn-primary btn-circle-xs"><b>2</b></span>
+										Cédula
+										&nbsp;
+									</li>
+									<li>
+
+										<span  class="btn btn-primary btn-circle-xs"><b>3</b></span>
+										Fecha
+										&nbsp;
+									</li>
+									<li>
+										<span class="btn btn-primary btn-circle-xs"><b>4</b></span>
+										Cantidad
+										&nbsp;
+									</li>
+									<li>
+										<span class="btn btn-primary btn-circle-xs"><b>5</b></span>
+										Tipo de Novedad
+										&nbsp;
+									</li>
+									<li>
+										<span class="btn btn-primary btn-circle-xs"><b>6</b></span>
+										Observaciones
+										&nbsp;
+									</li>
+									<li>
+										<span class="btn btn-primary btn-circle-xs"><b>6</b></span>
+										Tipo de Reporte
+										&nbsp;
+									</li>
+								</ul>
+							</div>
+
+							<div class = "panel-heading nav navbar-default">
+
+								<ul class="nav navbar-nav navbar-left" >
+
+									<li>
+										<i class="fa fa-user fa-fw"></i>
+									  	<input style="width:80px" class="btn btn-default btn-xs" type="text"  ng-model="editaInfo.USUARIO_ID" disabled/>
+
+									</li>
+									<li>
+										<i class="fa fa-user fa-fw"></i>
+									  	<input style="width:80px" class="btn btn-default btn-xs" type="text"  ng-model="editaInfo.CEDULA_ID" disabled/>
+
+									</li>
+									<li>
+									  	<i class="fa fa-calendar fa-fw"></i>
+										<input style="width:80px" class="btn btn-default btn-xs" type="text" pick-a-date="date" pick-a-date-options="{ format: 'yyyy-mm-dd' }" ng-model="editaInfo.FECHA_REPORTE"/>
+									</li>
+									<li>
+										<i class="fa fa-usd fa-fw"></i>
+										<input type="text" style="width:60px" class="btn btn-default btn-xs"  ng-model="editaInfo.CANTIDAD_NOVEDADES"  required/>
+										<i class="fa fa-cog fa-fw"></i>
+
+									</li>
+									<li>
+										<select   class="select2-dropdown grupo-select" style="width: 150px;" select2="" ng-model="editaInfo.TIPO_NOVEDAD" ng-options="c.tipo as c.tipo for c in  listaTipoNov" ng-disabled="disabled" required>
+										<option value="">Seleccione Tipo</option>
+										</select>
+										&nbsp;
+									</li>
+									<li>
+										<i class="fa fa-comment" aria-hidden="true"></i>
+										<input style="width:120px" class="btn btn-default btn-xs" type="text"  ng-model="editaInfo.OBSERVACIONES"  />
+										&nbsp;
+									</li>
+									<li>
+										<select   class="btn btn-default btn-xs grupo-select" style="width: 80px;"  ng-model="editaInfo.TIPO_REPORTE" ng-options="p for p in ['NORMAL','AJUSTE']" required>
+
+										</select>
+									</li>
+
+
+								</ul>
+
+
+							</div><!-- Panel heading NG-REPEAT -->
+
+							<div class="panel-footer">
+
+
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+      </div>
+
+      <div class="modal-footer">
+
+
+      	<button type="button" class="btn btn-success" ng-click="editarNovedad(editaInfo)" data-dismiss="modal"  >Editar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+
+  	</div>
+
+</div>
+
+<!-- Modal Eliminar Novedad-->
+<div id="eliminaNovedad" class="modal fade "  role="dialog">
+  	<div class="modal-dialog modal-md">
+
+    <!-- Modal content-->
+    <div class="modal-content" >
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Eliminar Novedad: <span class="label label-info">{{idNovedad}}</span></h4>
+      </div>
+      <div class="modal-body" >
+
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						Esta seguro que quiere elminiar este registro?
+					</div>
+				</div>
+
+			</div>
+
+      </div>
+
+      <div class="modal-footer">
+
+
+      	<button type="button" class="btn btn-success" ng-click="borrarNovedad(idNovedad)" data-dismiss="modal">Eliminar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+
+  	</div>
+
+</div>
+
 
 
 <div class="container">
