@@ -402,15 +402,6 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 
 //-------------------------------------------------------------------asignaciones
 
-
-
-
-
-
-
-
-
-
 	obj.logVista = function(userID,vista){
                 return $http.get(serviceBase + 'logVista?userID=' + userID+'&vista='+vista);
         }
