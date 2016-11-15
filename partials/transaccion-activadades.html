@@ -267,7 +267,7 @@
 								</ul>
 							</div>
 
-							<div class = "panel-heading nav navbar-default" ng-repeat="novedad in novedades track by $index">
+							<div class = "panel-heading nav navbar-default" ng-repeat="data in listado_transaccionesActividades| orderBy:'FECHA_FIN':true ">
 
 								<ul class="nav navbar-nav navbar-left" >
 
