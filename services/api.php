@@ -8110,7 +8110,7 @@ private function listadoTransaccionesActividades(){
                         }
                         $page=$page*100;
                         //counter
-                        $query="SELECT count(*) as counter from transacciones_actividades ";
+                        $query="SELECT count(*) as counter from transacciones_actividades order by FECHA desc limit 100 offset $page";
                         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
                         $counter=0;
                         if($rr->num_rows > 0){
