@@ -4249,7 +4249,7 @@ $scope.listado_transaccionesActividades=[];
         //$scope.transaccionA.FECHA=year+"-"+month+"-"+day;
 
 
-        //services.getListadotransaccionesNCA(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
+
     var pathy=$location.path();
 
         if(pathy=="/actividades/"){//esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
@@ -4275,7 +4275,7 @@ $scope.listado_transaccionesActividades=[];
         //$scope.transaccionA.FECHA=year+"-"+month+"-"+day;
 
 
-        //services.getListadotransaccionesNCA(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
+
     var pathy=$location.path();
 
         if(pathy=="/actividades/"){//esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
