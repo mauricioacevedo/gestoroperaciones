@@ -896,24 +896,7 @@ obj.getDepartamentosParametrizacionSiebel = function(){
     	return obj;
 }]);
 
-app.provider('chaxmpp', function(converse) {
-    // Your custom code can come here..
 
-    // Then when you're ready, you can initialize converse.js
-    converse.waitUntilLoaded().done(function () {
-        converse.initialize({
-            'allow_logout': false,
-            'auto_login': 'true',
-            'auto_reconnect': true,
-            'bosh_service_url': 'http://10.100.82.156:7070/http-bind/',
-            'jid': bare_jid,
-            'keepalive': true,
-            'credentials_url': credentials_url,
-        });
-
-    // More custom code could come here...
-    });
-});
 
 
 app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
