@@ -2528,7 +2528,7 @@ $rootScope.logout = function() {
 
 //-----------------------------fin prueba
 
-app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,converse, services) {
+app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,$http,converse, services) {
    
 
 	var userID=$cookieStore.get('logedUser').login;
