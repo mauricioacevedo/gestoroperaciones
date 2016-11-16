@@ -2469,7 +2469,7 @@ $rootScope.logout = function() {
         //$scope.uploader.queue = [];
         //$scope.uploader.progress = 0;
         //console.log(fileItem._file.name);
-        services.listar().then(function(data){
+        services.cargardatos().then(function(data){
                         $scope.listadodocu=data.data[0];
                         console.log($scope.listadodocu);
                         return data.data;
