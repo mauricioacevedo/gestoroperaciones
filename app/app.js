@@ -2351,7 +2351,7 @@ $rootScope.logout = function() {
 //**********************************Upload*******************************
 
 
-app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,$http, converse,services) {
+app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,$http, $httpProvider, converse,services) {
    
 
 	var userID=$cookieStore.get('logedUser').login;
