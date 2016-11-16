@@ -303,7 +303,7 @@
                             " ,a.DIRECCION_ENVIO,a.E_MAIL_AVISAR,a.MICROZONA,a.NOMBRE_USUARIO ".
                             " ,a.PARENT_ID,a.TELEFONO_AVISAR,a.TIEMPO_TOTAL ".
                             " ,a.PROGRAMACION,a.SOURCE,a.DEPARTAMENTO,a.ACCESO,a.NUMERO_CR ".
-                            " ,a.IDLLAMADA,a.SUBZONA_ID,a.PROCESO,a.OBSERVACION_FENIX".
+                            " ,a.IDLLAMADA,a.SUBZONA_ID,a.PROCESO".
                               " , (SELECT hr.TODAY_TRIES FROM gestor_pendientes_reagendamiento hr WHERE hr.ID = (SELECT MAX( b.id )  ".
                               "      FROM gestor_pendientes_reagendamiento b ".
                                "   WHERE b.PEDIDO_ID =  a.PEDIDO_ID) )AS INTENTOS_CONTACTO ".
@@ -323,7 +323,7 @@
                                 $result = array();
                                 $fp = fopen("../tmp/$filename", 'w');
 
-                                  fputcsv($fp, array( 'PEDIDO_ID','CONCEPTOS','ACTIVIDADES','NOVEDAD','FECHA_CITA_FENIX','FECHA_CITA_REAGENDA','JORNADA_CITA','FECHA_INGRESO','FECHA_CARGA','ASESOR','FECHA_INICIO','FECHA_FIN','FECHA_ESTADO','DURACION','OBSERVACION_FENIX','OBSERVACION_GESTOR','FUENTE','ACTIVIDAD_GESTOR','ASESORNAME','CELULAR_AVISAR','CLIENTE_ID','CORREO_UNE','DIRECCION_ENVIO','E_MAIL_AVISAR','MICROZONA','NOMBRE_USUARIO','PARENT_ID','TELEFONO_AVISAR','TIEMPO_TOTAL','PROGRAMACION','SOURCE','DEPARTAMENTO','ACCESO','NUMERO_CR','IDLLAMADA','SUBZONA_ID','PROCESO','INTENTOS DE CONTACTO','TECNOLOGIA','OBSERVACION'));
+                                  fputcsv($fp, array( 'PEDIDO_ID','CONCEPTOS','ACTIVIDADES','NOVEDAD','FECHA_CITA_FENIX','FECHA_CITA_REAGENDA','JORNADA_CITA','FECHA_INGRESO','FECHA_CARGA','ASESOR','FECHA_INICIO','FECHA_FIN','FECHA_ESTADO','DURACION','OBSERVACION_FENIX','OBSERVACION_GESTOR','FUENTE','ACTIVIDAD_GESTOR','ASESORNAME','CELULAR_AVISAR','CLIENTE_ID','CORREO_UNE','DIRECCION_ENVIO','E_MAIL_AVISAR','MICROZONA','NOMBRE_USUARIO','PARENT_ID','TELEFONO_AVISAR','TIEMPO_TOTAL','PROGRAMACION','SOURCE','DEPARTAMENTO','ACCESO','NUMERO_CR','IDLLAMADA','SUBZONA_ID','PROCESO','INTENTOS DE CONTACTO','TECNOLOGIA'));
 
 				fclose($fp);
 
@@ -332,8 +332,8 @@
 
                                 while($row = $r->fetch_assoc()){
 
-					$row['OBSERVACION_FENIX']= trim(preg_replace('/\s+|', ' ',$row['OBSERVACION_FENIX']));
-					$row['OBSERVACION_GESTOR'] = trim(preg_replace('/\s+|', ' ', $row['OBSERVACION_GESTOR']));
+					//$row['OBSERVACION_FENIX']= trim(preg_replace('/\s+|', ' ',$row['OBSERVACION_FENIX']));
+					//$row['OBSERVACION_GESTOR'] = trim(preg_replace('/\s+|', ' ', $row['OBSERVACION_GESTOR']));
                    //$row['NOVEDAD'] = trim(preg_replace('/\s+|,', ' ', $row['NOVEDAD']));
                    $row['CONCEPTOS'] =  str_replace(',', ' ', $row['CONCEPTOS']);
                    $row['ACTIVIDADES'] =  str_replace(',', ' ', $row['ACTIVIDADES']);
