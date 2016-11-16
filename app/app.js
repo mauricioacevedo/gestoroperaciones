@@ -2400,21 +2400,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                 return num;
             };
 
-//Converse Chat
-	converse.waitUntilLoaded().done(function () {
-        converse.initialize({
-            'allow_logout': false,
-            'auto_login': 'true',
-            'auto_reconnect': true,
-            'bosh_service_url': 'http://10.100.82.156:7070/http-bind/',
-            'jid': bare_jid,
-            'keepalive': true,
-            'credentials_url': credentials_url,
-        });
 
-    // More custom code could come here...
-    });
-	//Converse Chat
 
 
 
