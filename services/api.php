@@ -8809,11 +8809,11 @@ private function listadoTransaccionesActividades(){
 						$ESTADO='';
 
 
-                        $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','BODEGA DATOS')";
+                        $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','PENDIENTES')";
                         	//echo  $user;
                         	$r = $this->mysqli->query($sqlupload) or die($this->mysqli->error.__LINE__);
 
-                    $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$usas','','','','','BODEGA DATOS')";
+                    $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$usas','','','','','PENDIENTES')";
                       $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 			           }
 
