@@ -299,7 +299,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
      obj.eliminarfile1 = function(file){
-                return $http.get(serviceBase + 'eliminarfile?file1='+file);
+                return $http.get(serviceBase + 'eliminarfile1?file='+file);
         }
 
     //----fin prueba
