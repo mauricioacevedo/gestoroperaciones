@@ -8786,6 +8786,8 @@ private function listadoTransaccionesActividades(){
      				if($this->get_request_method() != "POST"){
                                 $this->response('',406);
                         }
+                        require_once '../librerias/importar_excel/reader/Classes/PHPExcel/IOFactory.php';
+						$pedido=json_decode(file_get_contents("php://input"),true);
 						 //ini_set('display_errors', '1');
                         $target_dir = "../uploads/";
                        	$target_file = $target_dir . basename($_FILES["file"]["name"]);
@@ -8794,7 +8796,25 @@ private function listadoTransaccionesActividades(){
 			            $type     = $_FILES['file']['type'];
 						move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
 			            echo $target_file;
+                        $NOMBRE_ARCHIVO=$_FILES["fileUpload"]["name"];
+			            $TAMANO =$_FILES["fileUpload"]["size"];
+			            //$pedido = json_decode(file_get_contents("php://input"),true);
+			             $usas = $this->_request['user'];
+			            //echo var_dump($_FILES);
+			            //echo var_dump($_FILES );
+						//$this->response(json_encode(""),200);
+						$PEDIDO_ID='';
+						$cliente_id='';
+						$ACCESO='';
+						$ESTADO='';
 
+
+                        $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','BODEGA DATOS')";
+                        	//echo  $user;
+                        	$r = $this->mysqli->query($sqlupload) or die($this->mysqli->error.__LINE__);
+
+                    $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$usas','','','','','BODEGA DATOS')";
+                      $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 			           }
 
         //------------------fin prueba
