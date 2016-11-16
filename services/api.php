@@ -8737,7 +8737,7 @@ private function listadoTransaccionesActividades(){
 
 
         //-------------------pruebacargardatos
-        private function cargardatos(){
+        private function listadoarchivosdocu1(){
                 		if($this->get_request_method() != "GET"){
                                 $this->response('',406);
                         }
