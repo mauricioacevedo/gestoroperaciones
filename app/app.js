@@ -2431,15 +2431,16 @@ $rootScope.logout = function() {
     //$scope.reload();
     //$interval($scope.reload, 5000);
 
-    uploader.filters.push({
+     uploader.filters.push({
         name: 'extensionFilter',
         fn: function (item, options) {
             var filename = item.name;
             var extension = filename.substring(filename.lastIndexOf('.') + 1).toLowerCase();
-            if (extension ==  extension == "xlsx" || extension == "xls")
+            if (extension == "pdf" || extension == "ppt" || extension == "pptx" || extension == "doc" || extension == "docx" || extension == "xlsx" || extension == "xls" ||
+                extension == "rtf")
                 return true;
             else {
-                alert('Formato Invalido. Por favor seleccione un archivo con formato xlsx o xls ');
+                alert('Formato Invalido. Por favor seleccione un archivo con formato ppt/pptx/pdf/doc/docs/xlsx/xls o rtf');
                 return false;
             }
         }
