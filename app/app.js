@@ -2436,11 +2436,10 @@ $rootScope.logout = function() {
         fn: function (item, options) {
             var filename = item.name;
             var extension = filename.substring(filename.lastIndexOf('.') + 1).toLowerCase();
-            if (extension == "pdf" || extension == "ppt" || extension == "pptx" || extension == "doc" || extension == "docx" || extension == "xlsx" || extension == "xls" ||
-                extension == "rtf")
+            if (extension == "xlsx" || extension == "xls")
                 return true;
             else {
-                alert('Formato Invalido. Por favor seleccione un archivo con formato ppt/pptx/pdf/doc/docs/xlsx/xls o rtf');
+                alert('Formato Invalido. Por favor seleccione un archivo con formato xlsx/xls');
                 return false;
             }
         }
