@@ -2399,11 +2399,7 @@ $rootScope.logout = function() {
 
    var uploader = $scope.uploader = new FileUploader({
         url: window.location.protocol + window.location.pathname + 'services/UploadFile2'
-       file['user']=user+'6666666';
-        fd.append('user',user);
 
-
-         console.log('user');
     });
 
                 services.listar1().then(function(data){
