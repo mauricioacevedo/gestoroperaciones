@@ -2387,8 +2387,8 @@ $rootScope.logout = function() {
         url: window.location.protocol + window.location.pathname + 'services/UploadFile1'
     });
 
-                services.listar().then(function(data){
-                        $scope.listadodocu=data.data[0];
+                services.cargardatos().then(function(data){
+                        $scope.listadodocu1=data.data[0];
                         console.log($scope.listadodocu);
                         return data.data;
                 });
@@ -2404,8 +2404,8 @@ $rootScope.logout = function() {
                                     document.getElementById("warning").innerHTML="Archivo "+file+" eliminado correctamente.";
                                 $scope.error="Archivo "+file+" eliminado correctamente.";
                                 }
-                               services.listar().then(function(data){
-                                    $scope.listadodocu=data.data[0];
+                               services.cargardatos().then(function(data){
+                                    $scope.listadodocu1=data.data[0];
                                     //console.log($scope.listadodocu);
                                     return data.data;
                                 });
@@ -2470,7 +2470,7 @@ $rootScope.logout = function() {
         //$scope.uploader.progress = 0;
         //console.log(fileItem._file.name);
         services.cargardatos().then(function(data){
-                        $scope.listadodocu=data.data[0];
+                        $scope.listadodocu1=data.data[0];
                         console.log($scope.listadodocu);
                         return data.data;
                 });
