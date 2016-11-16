@@ -2376,7 +2376,7 @@ app.controller('cargar_datos22', function ($scope, $rootScope, $http, $location,
         var divi=document.getElementById("logoutdiv");
         divi.style.visibility="visible";
         divi.style.position="relative";
-        rootScope.actualView="usuarios";
+
 
     //console.log ($rootScope.logedUser)
     $scope.usert={};
