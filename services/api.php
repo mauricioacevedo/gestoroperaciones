@@ -8796,8 +8796,8 @@ private function listadoTransaccionesActividades(){
 			            $type     = $_FILES['file']['type'];
 						move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
 			            echo $target_file;
-                        $NOMBRE_ARCHIVO=$_FILES["fileUpload"]["name"];
-			            $TAMANO =$_FILES["fileUpload"]["size"];
+                        $NOMBRE_ARCHIVO=$_FILES["file"]["name"];
+			            $TAMANO =$_FILES["file"]["size"];
 			            //$pedido = json_decode(file_get_contents("php://input"),true);
 			             $usas = $this->_request['user'];
 			            //echo var_dump($_FILES);
