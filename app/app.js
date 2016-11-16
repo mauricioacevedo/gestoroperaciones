@@ -293,6 +293,17 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return data;
         };
 
+    //----------prueba
+    obj.listar1 = function(){
+                return $http.get(serviceBase + 'listadoarchivosdocu1');
+        }
+
+     obj.eliminarfile1 = function(file){
+                return $http.get(serviceBase + 'eliminarfile?file1='+file);
+        }
+
+    //----fin prueba
+
 //-----------------------------------------------------------------------------------------fin_Agendamiento
 
  //-----------------------------------------------------------------------------------Activacion
@@ -458,6 +469,8 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
     obj.eliminarfile = function(file){
                 return $http.get(serviceBase + 'eliminarfile?file='+file);
         }
+
+
 
     obj.getListadoTips = function(){
                 return $http.get(serviceBase + 'getListadoTips');
@@ -2381,25 +2394,25 @@ $rootScope.logout = function() {
         url: window.location.protocol + window.location.pathname + 'services/UploadFile1'
     });
 
-                services.listar().then(function(data){
-                        $scope.listadodocu=data.data[0];
-                        console.log($scope.listadodocu);
+                services.listar1().then(function(data){
+                        $scope.listadodocu1=data.data[0];
+                        console.log($scope.listadodocu1);
                         return data.data;
                 });
     // FILTERS
 
-        $scope.eliminarfile = function (file){
+        $scope.eliminarfile1 = function (file){
                         //console.log(data.data);
                 var result = confirm("Esta seguro que desea eliminar el archivo "+file+ "?");
                 if (result) {
                                 //Logic to delete the item
-                    services.eliminarfile(file).then(function(data){
+                    services.eliminarfile1(file).then(function(data){
                                 if(data.data=='OK'){
                                     document.getElementById("warning").innerHTML="Archivo "+file+" eliminado correctamente.";
                                 $scope.error="Archivo "+file+" eliminado correctamente.";
                                 }
-                               services.listar().then(function(data){
-                                    $scope.listadodocu=data.data[0];
+                               services.listar1().then(function(data){
+                                    $scope.listadodocu1=data.data[0];
                                     //console.log($scope.listadodocu);
                                     return data.data;
                                 });
@@ -2414,10 +2427,11 @@ $rootScope.logout = function() {
         fn: function (item, options) {
             var filename = item.name;
             var extension = filename.substring(filename.lastIndexOf('.') + 1).toLowerCase();
-            if (extension ==  extension == "xlsx" || extension == "xls")
+            if (extension == "pdf" || extension == "ppt" || extension == "pptx" || extension == "doc" || extension == "docx" || extension == "xlsx" || extension == "xls" ||
+                extension == "rtf")
                 return true;
             else {
-                alert('Formato Invalido. Por favor seleccione un archivo con formato xlsx o xls ');
+                alert('Formato Invalido. Por favor seleccione un archivo con formato ppt/pptx/pdf/doc/docs/xlsx/xls o rtf');
                 return false;
             }
         }
@@ -2463,9 +2477,9 @@ $rootScope.logout = function() {
         //$scope.uploader.queue = [];
         //$scope.uploader.progress = 0;
         //console.log(fileItem._file.name);
-        services.listar().then(function(data){
+        services.listar1().then(function(data){
                         $scope.listadodocu=data.data[0];
-                        console.log($scope.listadodocu);
+                        console.log($scope.listadodocu1);
                         return data.data;
                 });
         alert("El archivo "+ fileItem._file.name + " seleccionado se ha cargado correctamente .");
@@ -2508,6 +2522,10 @@ $rootScope.logout = function() {
 
     console.info('uploader', uploader);
 });
+
+
+
+
 //-----------------------------fin prueba
 
 app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,services) {

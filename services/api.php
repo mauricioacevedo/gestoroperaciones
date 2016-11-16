@@ -1801,6 +1801,29 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
                 }
 
+        //-----------------------------------prueba cargad
+
+        private function eliminarfile1(){
+                        if($this->get_request_method() != "GET"){
+                                $this->response('',406);
+                        }
+                        $file = $this->_request['file'];
+						$dir = "../uploads/";
+								if($dh = opendir($dir)){
+								  if(file_exists($dir.$file)) @unlink($dir.$file);
+								   closedir($dh);
+								   $respuesta = "Archivo eliminado";
+								}
+								//echo $respuesta;
+								$this->response(json_encode("OK"), 200);
+                        // send user details
+
+                        $this->response('',204);        // If no records "No Content" status
+                }
+
+
+        //-------------------------------------fin prueba
+
                 private function pedidosPorUserAdelantarAgenda(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -8733,6 +8756,34 @@ private function listadoTransaccionesActividades(){
 
 
                 }
+
+
+
+        //-------------------pruebacargardatos
+        private function listadoarchivosdocu1(){
+                		if($this->get_request_method() != "GET"){
+                                $this->response('',406);
+                        }
+     				$dir = "../uploads/";
+						// Abre un directorio conocido, y procede a leer el contenido
+						if (is_dir($dir)) {
+						    if ($dh = opendir($dir)) {
+						        while (($file = readdir($dh)) !== false) {
+						        	if(filetype($file) !== "dir"){
+						            	//echo "nombre archivo: $file : tipo archivo: " . filesize($dir . $file) . "\n";
+						        		$result[] = array('nombre'=>$file, 'size'=>round(filesize($dir . $file)/ (1024), 2)." Kb", 'fecha'=>date ("Y-m-d H:i:s",filemtime($dir . $file)));
+						        	}
+						        }
+						        $this->response($this->json(array($result)), 200);
+						        closedir($dh);
+						    }
+						}
+			           }
+
+
+
+        //------------------fin prueba
+
                 	private function listadoarchivosdocu(){
                 		if($this->get_request_method() != "GET"){
                                 $this->response('',406);
