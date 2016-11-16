@@ -546,7 +546,7 @@
                         if($r->num_rows > 0){
                                 $result = array();
                                 $fp = fopen("../tmp/$filename", 'w');
-                                fputcsv($fp, array('ID','ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','CAMPO_ERROR'));
+                                fputcsv($fp, array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','CAMPO_ERROR'));
                                 while($row = $r->fetch_assoc()){
                                         $result[] = $row;
                                         fputcsv($fp, $row);
