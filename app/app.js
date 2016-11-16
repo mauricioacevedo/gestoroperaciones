@@ -2383,7 +2383,7 @@ app.controller('cargar_datos22', function ($scope, $rootScope, $http, $location,
     $scope.usert.EQUIPO_ID="MANUAL";
     $scope.usert.ID="";
 
-    console.log($scope.usert.ID);
+
 
 $rootScope.logout = function() {
             services.logout($rootScope.logedUser.login);
