@@ -2401,7 +2401,7 @@ $rootScope.logout = function() {
         url: window.location.protocol + window.location.pathname + 'services/UploadFile2'
        file['user']=user+'6666666';
         fd.append('user',user);
-       params: {'user':user},
+
 
          console.log('user');
     });
