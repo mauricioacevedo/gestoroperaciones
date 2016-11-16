@@ -2382,7 +2382,7 @@ app.controller('cargar_datos22', function ($scope, $rootScope, $http, $location,
     $scope.usert={};
     $scope.usert.EQUIPO_ID="MANUAL";
     $scope.usert.ID="";
-     console.log($scope.usert);
+
 
 $rootScope.logout = function() {
             services.logout($rootScope.logedUser.login);
@@ -2399,6 +2399,11 @@ $rootScope.logout = function() {
 
    var uploader = $scope.uploader = new FileUploader({
         url: window.location.protocol + window.location.pathname + 'services/UploadFile2'
+       file['user']=user+'6666666';
+        fd.append('user',user);
+       params: {'user':user},
+
+         console.log('user');
     });
 
                 services.listar1().then(function(data){
