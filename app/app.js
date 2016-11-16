@@ -294,8 +294,8 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         };
 
     //----------prueba
-     obj.cargar = function(){
-                return $http.get(serviceBase + 'cargardatos');
+    obj.listar1 = function(){
+                return $http.get(serviceBase + 'listadoarchivosdocu1');
         }
     //----fin prueba
 
@@ -2387,7 +2387,7 @@ $rootScope.logout = function() {
         url: window.location.protocol + window.location.pathname + 'services/UploadFile1'
     });
 
-                services.cargardatos().then(function(data){
+                services.listar1().then(function(data){
                         $scope.listadodocu1=data.data[0];
                         console.log($scope.listadodocu1);
                         return data.data;
@@ -2404,7 +2404,7 @@ $rootScope.logout = function() {
                                     document.getElementById("warning").innerHTML="Archivo "+file+" eliminado correctamente.";
                                 $scope.error="Archivo "+file+" eliminado correctamente.";
                                 }
-                               services.cargardatos().then(function(data){
+                               services.listar1().then(function(data){
                                     $scope.listadodocu1=data.data[0];
                                     //console.log($scope.listadodocu);
                                     return data.data;
@@ -2420,10 +2420,11 @@ $rootScope.logout = function() {
         fn: function (item, options) {
             var filename = item.name;
             var extension = filename.substring(filename.lastIndexOf('.') + 1).toLowerCase();
-            if (extension ==  extension == "xlsx" || extension == "xls")
+            if (extension == "pdf" || extension == "ppt" || extension == "pptx" || extension == "doc" || extension == "docx" || extension == "xlsx" || extension == "xls" ||
+                extension == "rtf")
                 return true;
             else {
-                alert('Formato Invalido. Por favor seleccione un archivo con formato xlsx o xls ');
+                alert('Formato Invalido. Por favor seleccione un archivo con formato ppt/pptx/pdf/doc/docs/xlsx/xls o rtf');
                 return false;
             }
         }
@@ -2469,8 +2470,8 @@ $rootScope.logout = function() {
         //$scope.uploader.queue = [];
         //$scope.uploader.progress = 0;
         //console.log(fileItem._file.name);
-        services.cargardatos().then(function(data){
-                        $scope.listadodocu1=data.data[0];
+        services.listar1().then(function(data){
+                        $scope.listadodocu=data.data[0];
                         console.log($scope.listadodocu1);
                         return data.data;
                 });
@@ -2514,6 +2515,10 @@ $rootScope.logout = function() {
 
     console.info('uploader', uploader);
 });
+
+
+
+
 //-----------------------------fin prueba
 
 app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,services) {
