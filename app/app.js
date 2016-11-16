@@ -2401,7 +2401,7 @@ $rootScope.logout = function() {
                 });
     // FILTERS
 
-        $scope.eliminarfile1 = function (file){
+        $scope.eliminarfile = function (file){
                         //console.log(data.data);
                 var result = confirm("Esta seguro que desea eliminar el archivo "+file+ "?");
                 if (result) {
