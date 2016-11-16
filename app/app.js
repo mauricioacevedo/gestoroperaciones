@@ -2376,6 +2376,13 @@ app.controller('cargar_datos22', function ($scope, $rootScope, $http, $location,
         var divi=document.getElementById("logoutdiv");
         divi.style.visibility="visible";
         divi.style.position="relative";
+        rootScope.actualView="usuarios";
+
+    //console.log ($rootScope.logedUser)
+    $scope.usert={};
+    $scope.usert.EQUIPO_ID="MANUAL";
+    $scope.usert.ID="";
+     console.log($scope.usert);
 
 $rootScope.logout = function() {
             services.logout($rootScope.logedUser.login);
@@ -2427,11 +2434,10 @@ $rootScope.logout = function() {
         fn: function (item, options) {
             var filename = item.name;
             var extension = filename.substring(filename.lastIndexOf('.') + 1).toLowerCase();
-            if (extension == "pdf" || extension == "ppt" || extension == "pptx" || extension == "doc" || extension == "docx" || extension == "xlsx" || extension == "xls" ||
-                extension == "rtf")
+            if (extension ==  extension == "xlsx" || extension == "xls")
                 return true;
             else {
-                alert('Formato Invalido. Por favor seleccione un archivo con formato ppt/pptx/pdf/doc/docs/xlsx/xls o rtf');
+                alert('Formato Invalido. Por favor seleccione un archivo con formato xlsx o xls ');
                 return false;
             }
         }
