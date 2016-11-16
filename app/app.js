@@ -2391,7 +2391,7 @@ $rootScope.logout = function() {
 
 
    var uploader = $scope.uploader = new FileUploader({
-        url: window.location.protocol + window.location.pathname + 'services/UploadFile1'
+        url: window.location.protocol + window.location.pathname + 'services/UploadFile2'
     });
 
                 services.listar1().then(function(data){

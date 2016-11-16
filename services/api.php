@@ -8782,6 +8782,21 @@ private function listadoTransaccionesActividades(){
 
 
 
+         private function UploadFile2(){
+     				if($this->get_request_method() != "POST"){
+                                $this->response('',406);
+                        }
+						 //ini_set('display_errors', '1');
+                        $target_dir = "../uploads/";
+                       	$target_file = $target_dir . basename($_FILES["file"]["name"]);
+                       	//$name     = $_FILES['fileUpload']['name'];
+			            $tname    = $_FILES['file']['tmp_name'];
+			            $type     = $_FILES['file']['type'];
+						move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
+			            echo $target_file;
+
+			           }
+
         //------------------fin prueba
 
                 	private function listadoarchivosdocu(){
