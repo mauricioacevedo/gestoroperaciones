@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngRoute','ngCookies','ng-fusioncharts','ngAnimate','ui.bootstrap','ui.tinymce','ngSanitize','ui.calendar','angularFileUpload']);
+var app = angular.module('myApp', ['ngRoute','ngCookies','ng-fusioncharts','ngAnimate','ui.bootstrap','ui.tinymce','ngSanitize','ui.calendar','angularFileUpload','converse']);
 //Los " Myapp " solapas de parámetros a un elemento HTML en el que se ejecutará la aplicación .
 //Ahora puede agregar controladores , directivas , filtros y más, para su aplicación AngularJS .
 //El módulo ngRoute proporciona enrutamiento y deeplinking Servicios y directivas para aplicaciones angulares .
@@ -895,6 +895,25 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 
     	return obj;
 }]);
+
+app.provider('chaxmpp', function(converse) {
+    // Your custom code can come here..
+
+    // Then when you're ready, you can initialize converse.js
+    converse.waitUntilLoaded().done(function () {
+        converse.initialize({
+            'allow_logout': false,
+            'auto_login': 'true',
+            'auto_reconnect': true,
+            'bosh_service_url': 'http://10.100.82.156:7070/http-bind/',
+            'jid': bare_jid,
+            'keepalive': true,
+            'credentials_url': credentials_url,
+        });
+
+    // More custom code could come here...
+    });
+});
 
 
 app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
