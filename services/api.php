@@ -1801,6 +1801,29 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
                 }
 
+        //-----------------------------------prueba cargad
+
+        private function eliminarfile1(){
+                        if($this->get_request_method() != "GET"){
+                                $this->response('',406);
+                        }
+                        $file = $this->_request['file'];
+						$dir = "../uploads/";
+								if($dh = opendir($dir)){
+								  if(file_exists($dir.$file)) @unlink($dir.$file);
+								   closedir($dh);
+								   $respuesta = "Archivo eliminado";
+								}
+								//echo $respuesta;
+								$this->response(json_encode("OK"), 200);
+                        // send user details
+
+                        $this->response('',204);        // If no records "No Content" status
+                }
+
+
+        //-------------------------------------fin prueba
+
                 private function pedidosPorUserAdelantarAgenda(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);

@@ -297,6 +297,11 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
     obj.listar1 = function(){
                 return $http.get(serviceBase + 'listadoarchivosdocu1');
         }
+
+     obj.eliminarfile1 = function(file){
+                return $http.get(serviceBase + 'eliminarfile?file1='+file);
+        }
+
     //----fin prueba
 
 //-----------------------------------------------------------------------------------------fin_Agendamiento
@@ -464,6 +469,8 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
     obj.eliminarfile = function(file){
                 return $http.get(serviceBase + 'eliminarfile?file='+file);
         }
+
+
 
     obj.getListadoTips = function(){
                 return $http.get(serviceBase + 'getListadoTips');
@@ -2394,12 +2401,12 @@ $rootScope.logout = function() {
                 });
     // FILTERS
 
-        $scope.eliminarfile = function (file){
+        $scope.eliminarfile1 = function (file){
                         //console.log(data.data);
                 var result = confirm("Esta seguro que desea eliminar el archivo "+file+ "?");
                 if (result) {
                                 //Logic to delete the item
-                    services.eliminarfile(file).then(function(data){
+                    services.eliminarfile1(file).then(function(data){
                                 if(data.data=='OK'){
                                     document.getElementById("warning").innerHTML="Archivo "+file+" eliminado correctamente.";
                                 $scope.error="Archivo "+file+" eliminado correctamente.";
