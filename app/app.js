@@ -2528,7 +2528,7 @@ $rootScope.logout = function() {
 
 //-----------------------------fin prueba
 
-app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,services) {
+app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,converse, services) {
    
 
 	var userID=$cookieStore.get('logedUser').login;
@@ -2576,6 +2576,19 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                 }
                 return num;
             };
+
+converse.waitUntilLoaded().done(function () {
+        converse.initialize({
+            'allow_logout': false,
+            'auto_login': 'true',
+            'auto_reconnect': true,
+            'bosh_service_url': bosh_url,
+            'jid': bare_jid,
+            'keepalive': true,
+            'credentials_url': credentials_url,
+        });
+
+	});
 
 
 
