@@ -16,12 +16,12 @@ angular.module('converse', []).service('converse', function() {
 
     // This is the API of the service.
     var service = {
-        'waitUntilLoaded': .constant(loaded_promise),
+        'waitUntilLoaded': constant(loaded_promise),
         'initialize': function initConverse(options) {
-            this.waitUntilLoaded().done(.partial(this.api.initialize, options));
+            this.waitUntilLoaded().done(partial(this.api.initialize, options));
         },
-        'waitUntilConnected': .constant(connected_promise),
-        'waitUntilRosterFetched': .constant(roster_promise),
+        'waitUntilConnected': constant(connected_promise),
+        'waitUntilRosterFetched': constant(roster_promise),
     };
 
     // Here we define the core components of converse.js that will be
