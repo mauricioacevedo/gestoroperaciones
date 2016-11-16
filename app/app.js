@@ -293,6 +293,12 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return data;
         };
 
+    //----------prueba
+     obj.cargar = function(){
+                return $http.get(serviceBase + 'cargardatos');
+        }
+    //----fin prueba
+
 //-----------------------------------------------------------------------------------------fin_Agendamiento
 
  //-----------------------------------------------------------------------------------Activacion
