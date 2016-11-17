@@ -125,9 +125,7 @@
                                 <td>{{data.nombre}}</td>
                                 <td>{{data.size}}</td>
                                 <td>{{data.fecha}}</td>
-                                <td><a href="../uploads/"{{data.nombre}}" download>
-
-                              </a>
+                                <td><a href="../uploads/"{{data.nombre}}" download> </a>
                                 <button class="btn btn-danger btn-sm" value="eliminar" ng-show="logedUser.CARGO_ID<='4'" ng-click="eliminarfi(data.nombre)" popover data-trigger="hover" data-placement="top" data-html="true" data-selector="" data-content="Eliminar Archivo"><span class="glyphicon glyphicon-trash"></span></button>
                               </td>
                             </tr>
