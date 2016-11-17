@@ -2400,9 +2400,6 @@ $rootScope.logout = function() {
 
    var uploader = $scope.uploader = new FileUploader({
         url: window.location.protocol + window.location.pathname + 'services/UploadFile2'
-      var user=$cookieStore.get('logedUser').login;
-
-		      fd.append('user',user);
 
     });
 
