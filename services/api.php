@@ -8801,7 +8801,7 @@ private function listadoTransaccionesActividades(){
                         $usas =$_FILES["file"]["user"];
 			            //$pedido = json_decode(file_get_contents("php://input"),true);
 			            // $usas = $this->_request['user'];
-			           echo var_dump($usas);
+			           //echo var_dump($usas);
 			            //echo var_dump($_FILES );
 						//$this->response(json_encode(""),200);
 						$PEDIDO_ID='';
