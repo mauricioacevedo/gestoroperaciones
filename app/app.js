@@ -2379,11 +2379,11 @@ app.controller('cargar_datos22', function ($scope, $rootScope, $http, $location,
 
 
     //console.log ($rootScope.logedUser)
-    $scope.usert={};
-    $scope.usert.EQUIPO_ID="MANUAL";
-    $scope.usert.ID="";
+    $scope.userID={};
+    $scope.userID.EQUIPO_ID="MANUAL";
+    $scope.user.ID="";
 
-
+console.log($scope.userID);
 
 $rootScope.logout = function() {
             services.logout($rootScope.logedUser.login);
@@ -2400,6 +2400,9 @@ $rootScope.logout = function() {
 
    var uploader = $scope.uploader = new FileUploader({
         url: window.location.protocol + window.location.pathname + 'services/UploadFile2'
+      var user=$cookieStore.get('logedUser').login;
+
+		      fd.append('user',user);
 
     });
 
