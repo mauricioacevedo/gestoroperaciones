@@ -8817,41 +8817,6 @@ private function listadoTransaccionesActividades(){
                     $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$usas','','','','','PENDIENTES')";
                       $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
-             $uploadOk = 1;
-                        // Check if $uploadOk is set to 0 by an error
-                        if ($uploadOk == 0) {
-                            echo  "Lo sentimos , el archivo no se ha subido.";
-                        // if everything is ok, try to upload file
-                        } else {
-
-                           if (move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $target_file)){
-                                echo "El archivo ". basename( $_FILES["fileUpload"]["name"]). " se ha subido.";
-
-                            } else {
-
-                                echo "Ha habido un error al subir el archivo.";
-                            }
-                        }
-                       // var_dump($_FILES);
-                       $tname1 = basename( $_FILES["fileUpload"]["name"]);
-
-			            if($type == 'application/vnd.ms-excel')
-			            {
-			                // Extension excel 97
-			                $ext = 'xls';
-			            }
-			            else if($type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-			            {
-			                // Extension excel 2007 y 2010
-			                $ext = 'xlsx';
-			            }else{
-			                // Extension no valida
-			                echo "Extension no valida.";
-			                exit();
-			            }
-
-			            $xlsx = 'Excel2007';
-			            $xls  = 'Excel5';
 
 			            //creando el lector
 			            $objReader = PHPExcel_IOFactory::createReader($$ext);
