@@ -8817,9 +8817,6 @@ private function listadoTransaccionesActividades(){
                     $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$usas','','','','','PENDIENTES')";
                       $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
-
-
-					$this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
 			     }
 
         //------------------fin prueba
