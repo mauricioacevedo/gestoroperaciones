@@ -2381,10 +2381,11 @@ app.controller('cargar_datos22', function ($scope, $rootScope, $http, $location,
     //console.log ($rootScope.logedUser)
      $scope.usert={};
     $scope.usert.EQUIPO_ID="MANUAL";
+    $scope.usert.usuario=$scope.usuario;
     $scope.usert.ID="";
 
 
-console.log($scope.usert.ID);
+console.log($scope.usuario);
 
 $rootScope.logout = function() {
             services.logout($rootScope.logedUser.login);
