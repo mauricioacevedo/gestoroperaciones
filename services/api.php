@@ -8798,10 +8798,10 @@ private function listadoTransaccionesActividades(){
 			            echo $target_file;
                         $NOMBRE_ARCHIVO=$_FILES["file"]["name"];
 			            $TAMANO =$_FILES["file"]["size"];
-                        $usas =$_FILES["file"]["user"];
+                        //$usas =$_FILES["file"]["user"];
 			            //$pedido = json_decode(file_get_contents("php://input"),true);
-			            // $usas = $this->_request['user'];
-			           //echo var_dump($usas);
+			             $usas = $this->_request['user'];
+			           echo var_dump($usas);
 			            //echo var_dump($_FILES );
 						//$this->response(json_encode(""),200);
 						$PEDIDO_ID='';
