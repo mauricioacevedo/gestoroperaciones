@@ -8817,10 +8817,6 @@ private function listadoTransaccionesActividades(){
                     $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$usas','','','','','PENDIENTES')";
                       $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
-             $sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID,) values ('15372265') ";
-
-             $r = $this->mysqli->query($sqlemail) or die($this->mysqli->error.__LINE__);
-
 
 
                 }
