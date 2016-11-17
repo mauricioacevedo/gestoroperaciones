@@ -8817,20 +8817,6 @@ private function listadoTransaccionesActividades(){
                     $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$usas','','','','','PENDIENTES')";
                       $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
-                  $uploadOk = 1;
-                        // Check if $uploadOk is set to 0 by an error
-                        if ($uploadOk == 0) {
-                            echo  "Lo sentimos , el archivo no se ha subido.";
-                        // if everything is ok, try to upload file
-                        } else {
-
-                           if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)){
-                                echo "El archivo ". basename( $_FILES["file"]["name"]). " se ha subido.";
-                            } else {
-
-                                echo "Ha habido un error al subir el archivo.";
-                            }
-                        }
 
 						//$this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
 
