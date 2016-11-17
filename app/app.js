@@ -2379,9 +2379,10 @@ app.controller('cargar_datos22', function ($scope, $rootScope, $http, $location,
 
 
     //console.log ($rootScope.logedUser)
-    $scope.userID={};
-    $scope.userID.EQUIPO_ID="MANUAL";
-    $scope.user.ID="";
+     $scope.usert={};
+    $scope.usert.EQUIPO_ID="MANUAL";
+    $scope.usert.ID="";
+
 
 console.log($scope.userID);
 
