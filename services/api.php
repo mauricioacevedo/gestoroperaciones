@@ -8821,34 +8821,7 @@ private function listadoTransaccionesActividades(){
 						//$this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
 
 
-                      // var_dump($_FILES);
-                       $tname1 = basename( $_FILES["file"]["name"]);
 
-			            if($type == 'application/vnd.ms-excel')
-			            {
-			                // Extension excel 97
-			                $ext = 'xls';
-			            }
-			            else if($type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-			            {
-			                // Extension excel 2007 y 2010
-			                $ext = 'xlsx';
-			            }else{
-			                // Extension no valida
-			                echo -1;
-			                exit();
-			            }
-
-			            $xlsx = 'Excel2007';
-			            $xls  = 'Excel5';
-
-			            //creando el lector
-			            $objReader = PHPExcel_IOFactory::createReader($$ext);
-
-			            //cargamos el archivo
-			            $objPHPExcel = $objReader->load($target_file);
-
-			            $dim = $objPHPExcel->getActiveSheet()->calculateWorksheetDimension();
 
 			            // list coloca en array $start y $end Lista Coloca en array $ inicio y final $
 			            list($start, $end) = explode(':', $dim);
