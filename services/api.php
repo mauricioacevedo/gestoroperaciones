@@ -8818,59 +8818,44 @@ private function listadoTransaccionesActividades(){
                       $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
 
-						//$this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
+            //cargamos el archivo
+            $lineas = file($target_file);
 
+            //inicializamos variable a 0, esto nos ayudará a indicarle que no lea la primera línea
+            $i=0;
 
+            //Recorremos el bucle para leer línea por línea
+            foreach ($lineas as $linea_num => $linea)
+            {
+               //abrimos bucle
+               /*si es diferente a 0 significa que no se encuentra en la primera línea
+               (con los títulos de las columnas) y por lo tanto puede leerla*/
+               if($i != 0)
+               {
+                   //abrimos condición, solo entrará en la condición a partir de la segunda pasada del bucle.
+                   /* La funcion explode nos ayuda a delimitar los campos, por lo tanto irá
+                   leyendo hasta que encuentre un ; */
+                   $datos = explode(";",$linea);
 
+                   //Almacenamos los datos que vamos leyendo en una variable
+                   $nombre = trim($datos[0]);
+                   $edad = trim($datos[1]);
+                   $profesion = trim($datos[2]);
 
-			            // list coloca en array $start y $end Lista Coloca en array $ inicio y final $
-			            list($start, $end) = explode(':', $dim);
-
-			            if(!preg_match('#([A-Z]+)([0-9]+)#', $start, $rslt)){
-			                return false;
-			            }
-			            list($start, $start_h, $start_v) = $rslt;
-			            if(!preg_match('#([A-Z]+)([0-9]+)#', $end, $rslt)){
-			                return false;
-			            }
-			            list($end, $end_h, $end_v) = $rslt;
-
-			            //empieza  lectura vertical
-			            $table = "<table  border='1'>";
-			            for($v=$start_v; $v<=$end_v; $v++){
-			                //empieza lectura horizontal
-                			if ($v==1) continue;
-			                $table .= "<tr>";
-			                //$filas= $start_h + 1;
-			                for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
-			                    $cellValue = $this->get_cell($h.$v, $objPHPExcel);
-
-			                }
-
-
-
-			                	$pend=" SELECT PEDIDO_ID ".
-					" FROM portalbd.gestor_pendientes_reagendamiento ".
-					" WHERE PEDIDO_ID=$pedido and STATUS IN ('MALO','PENDI_AGEN')";
-                    		$r = $this->mysqli03->query($pend) or die($this->mysqli->error.__LINE__);
-
-
-
-                    		 if($r->num_rows == 0){
-                    				$sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID) values ($PEDIDO_ID) ";
+                   //guardamos en base de datos la línea leida
+                 $sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID) values ('$PEDIDO_ID'') ";
 					      // echo($sqlemail);
 					       	$r = $this->mysqli->query($sqlemail) or die($this->mysqli->error.__LINE__);
 
-                        	}
+                   //cerramos condición
+               }
 
+               /*Cuando pase la primera pasada se incrementará nuestro valor y a la siguiente pasada ya
+               entraremos en la condición, de esta manera conseguimos que no lea la primera línea.*/
+               $i++;
+               //cerramos bucle
 
-
-			            }
-
-					$this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
-
-
-                }
+         }
 
 
 
