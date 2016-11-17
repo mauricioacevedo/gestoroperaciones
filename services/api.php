@@ -8817,6 +8817,98 @@ private function listadoTransaccionesActividades(){
                     $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$usas','','','','','PENDIENTES')";
                       $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
+                  $uploadOk = 1;
+                        // Check if $uploadOk is set to 0 by an error
+                        if ($uploadOk == 0) {
+                            echo  "Lo sentimos , el archivo no se ha subido.";
+                        // if everything is ok, try to upload file
+                        } else {
+
+                           if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)){
+                                echo "El archivo ". basename( $_FILES["file"]["name"]). " se ha subido.";
+                            } else {
+
+                                echo "Ha habido un error al subir el archivo.";
+                            }
+                        }
+
+						//$this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
+
+
+                      // var_dump($_FILES);
+                       $tname1 = basename( $_FILES["file"]["name"]);
+
+			            if($type == 'application/vnd.ms-excel')
+			            {
+			                // Extension excel 97
+			                $ext = 'xls';
+			            }
+			            else if($type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+			            {
+			                // Extension excel 2007 y 2010
+			                $ext = 'xlsx';
+			            }else{
+			                // Extension no valida
+			                echo -1;
+			                exit();
+			            }
+
+			            $xlsx = 'Excel2007';
+			            $xls  = 'Excel5';
+
+			            //creando el lector
+			            $objReader = PHPExcel_IOFactory::createReader($$ext);
+
+			            //cargamos el archivo
+			            $objPHPExcel = $objReader->load($target_file);
+
+			            $dim = $objPHPExcel->getActiveSheet()->calculateWorksheetDimension();
+
+			            // list coloca en array $start y $end Lista Coloca en array $ inicio y final $
+			            list($start, $end) = explode(':', $dim);
+
+			            if(!preg_match('#([A-Z]+)([0-9]+)#', $start, $rslt)){
+			                return false;
+			            }
+			            list($start, $start_h, $start_v) = $rslt;
+			            if(!preg_match('#([A-Z]+)([0-9]+)#', $end, $rslt)){
+			                return false;
+			            }
+			            list($end, $end_h, $end_v) = $rslt;
+
+			            //empieza  lectura vertical
+			            $table = "<table  border='1'>";
+			            for($v=$start_v; $v<=$end_v; $v++){
+			                //empieza lectura horizontal
+                			if ($v==1) continue;
+			                $table .= "<tr>";
+			                //$filas= $start_h + 1;
+			                for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
+			                    $cellValue = $this->get_cell($h.$v, $objPHPExcel);
+
+			                }
+
+
+
+			                	$pend=" SELECT PEDIDO_ID ".
+					" FROM portalbd.gestor_pendientes_reagendamiento ".
+					" WHERE PEDIDO_ID=$pedido and STATUS IN ('MALO','PENDI_AGEN')";
+                    		$r = $this->mysqli03->query($pend) or die($this->mysqli->error.__LINE__);
+
+
+
+                    		 if($r->num_rows == 0){
+                    				$sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID) values ($PEDIDO_ID) ";
+					      // echo($sqlemail);
+					       	$r = $this->mysqli->query($sqlemail) or die($this->mysqli->error.__LINE__);
+
+                        	}
+
+
+
+			            }
+
+					$this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
 
 
                 }
