@@ -706,12 +706,6 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pendientesGrafica');
         }
 
-
-
-
-
-
-
         obj.getPedidosConAgenda  = function(){
                 return $http.get(serviceBase + 'pedidosConAgenda');
         }
@@ -733,11 +727,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 	obj.getProductividadGrupo  = function(fecha1,fecha2){
                 return $http.get(serviceBase + 'productividadGrupo?fechaIni='+fecha1+'&fechaFin='+fecha2);
         }
-
-
-    
-    
-	//metodo para obtener departamentos de pantalla de auditoria
+//metodo para obtener departamentos de pantalla de auditoria
 
 
 obj.getDepartamentosParametrizacionSiebel = function(){
