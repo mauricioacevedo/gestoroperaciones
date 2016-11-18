@@ -3269,6 +3269,37 @@ $scope.datepickerOptions = {
   };
 
 
+//------PRUEBAS API OPENFIRE -----------------------------
+
+
+$scope.ChatRoomMates = function() {
+
+    $scope.url = 'http://10.100.82.156:9090/plugins/restapi/v1/chatrooms?type=all';
+	$scope.token="ty2p9C36vBqCEU7L";
+
+    $http.post($scope.url, {
+			headers: {'Authorization': 'Basic '+$scope.token,
+					  'Content-Type': 'application/json'}}).
+            then(function successCallback(response) {
+
+                console.log(response);
+
+
+                }, function errorCallback(response) {
+
+                    console.log(response);
+
+                        })
+
+
+ };
+
+//------PRUEBAS API OPENFIRE -----------------------------
+
+
+
+
+
 });
 
 
