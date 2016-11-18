@@ -3278,10 +3278,9 @@ $scope.ChatRoomMates = function() {
 	$scope.token="ty2p9C36vBqCEU7L";
 
 
-
     $http.post($scope.url, {
-			headers: {'Content-Type': 'application/json'},
-			auth:('admin','123456')}).
+			headers: {'Authorization': 'Basic YWRtaW46MTIzNDU=',
+					  'Content-Type': 'application/json'}}).
             then(function successCallback(response) {
 
                 console.log(response);
