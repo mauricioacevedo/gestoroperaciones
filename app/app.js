@@ -3278,7 +3278,7 @@ $scope.ChatRoomMates = function() {
 	$scope.token="ty2p9C36vBqCEU7L";
 
 
-	var auth = $base64.encode("admin:12345"),
+	var auth = $base64.encode("admin:12345");
     var headers = {"Authorization": "Basic " + auth};
 
     $http.get($scope.url, {
