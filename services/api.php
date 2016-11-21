@@ -11139,17 +11139,15 @@ $sqlfenix=
 						"	from (SELECT ".
 						"	user as USUARIO ".
 						"	, count(distinct pedido_id) as PEDIDOS ".
-						"	, actividad as ACT ".
 						"	, 'FENIX' as FUENTE  ".
 						"	FROM portalbd.pedidos ".
 						"	where fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
 						"	group by date_format(fecha_fin,'%Y-%m-%d') ".
-						"	, user, actividad ".
+						"	, user".
 						"	UNION ".
 						"	SELECT  ".
 						"	USUARIO as USUARIO ".
 						"	, count(distinct OFERTA) as PEDIDOS ".
-						"	, 'OFERTAS' as ACT ".
 						"	, 'SIEBEL' as FUENTE ".
 						"	FROM portalbd.transacciones_nca ".
 						"	where fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
