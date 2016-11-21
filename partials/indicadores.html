@@ -36,7 +36,8 @@
 						<div class="row">
 							<div class="col-md-12">
 
-							<select id="grupo" name="grupo" class="btn btn-default btn-xs grupo-select" ng-model="grupo.Cuartil" ng-options="g for g in grupos.values">
+							<select id="grupo" name="grupo" class="btn btn-default btn-xs grupo-select" ng-model="grupo.Cuartil" ng-options="g for g in grupos.values"
+									ng-change="topProductivos()">
 							<option value="" disabled>Grupo</option>
 							</select>
 							<button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="topProductivos()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
