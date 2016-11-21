@@ -28,15 +28,15 @@
 			<div class="row">
 			<div class="col-md-12">
 
-				<div class = "panel panel-default" ng-hide="true">
+				<div class = "panel panel-default" >
 					<div class = "panel-heading nav navbar-default ">
 						<b><button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="actualizarGrafica()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
 									<i class="fa fa-refresh"  aria-hidden="true"></i>
-								</button>Sub Procesos</b>
+								</button>Productividad</b>
 					</div>
 					<div class = "panel-heading nav navbar-default fixed-panel">
 						<ul class="list-group small">
-							<a href="" ng-repeat="data in listaKpisSubprocesos" class="list-group-item animated slideInRight" ng-style="set_color(data.CANTIDAD)">{{data.SUBPROCESO}}: <span class = "badge ">{{data.CANTIDAD}}</span></a>
+							<a href="" ng-repeat="datar in listaProductivos" class="list-group-item animated slideInRight" ng-style="set_color(datar.PEDIDOS)">{{datar.USUARIO}}: <span class = "badge ">{{datar.PEDIDOS}}</span></a>
 						</ul>
 					</div>
 				</div>

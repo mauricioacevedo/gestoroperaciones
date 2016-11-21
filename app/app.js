@@ -887,6 +887,10 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 
 	 // -----------------------------  Siebel Asignaciones//
 
+	obj.getPedidosGestorUser = function(){
+        return $http.get(serviceBase + 'PedidosGestorUser');
+        }
+
 //-------------------------------------------------------------------Fin-asignaciones
 
 
@@ -3302,6 +3306,29 @@ $scope.ChatRoomMates = function() {
 
 //------PRUEBAS API OPENFIRE -----------------------------
 
+$scope.topProductivos = function() {
+
+    services.getPedidosGestorUser().then(
+
+      function(data){
+
+            $scope.listaProductivos=data.data;
+
+              return data.data;
+
+
+            }
+      , function errorCallback(response,status) {
+          //console.log(status);
+            $scope.errorDatos="Ops, probelemas";
+
+
+
+          }
+      );
+
+
+ };
 
 
 
