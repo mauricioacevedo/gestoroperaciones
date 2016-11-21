@@ -3352,7 +3352,7 @@ $scope.grupo={};
 $scope.topProductivos = function() {
 	//console.log($scope.grupo);
 
-    services.getPedidosGestorUser($scope.grupo).then(
+    services.getPedidosGestorUser($scope.grupo.Cuartil).then(
 
 
       function(data){
