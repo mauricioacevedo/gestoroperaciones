@@ -3260,7 +3260,46 @@ $scope.set_color = function (value) {
               }
             };
 
+$scope.set_color_Cuartil = function (value) {
 
+              if (value > 4) {
+                $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorDanger
+                    };
+
+                return $scope.estilo;
+              }
+              else{
+
+                  if(value > 3 && value < 4){
+
+                    $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorWaring
+                    };
+
+                  }else{
+
+                    if(value > 2 && value < 3){
+
+                    $scope.estilo={
+					  "list-style-position":"inside",
+					  "border-left": "5px solid "+colorWaring
+                    };
+                  }else{
+
+					  $scope.estilo={
+					  "list-style-position":"inside",
+					  "border-left": "5px solid "+colorNormal
+                    };
+
+				  }
+
+               return $scope.estilo;
+
+              }
+            };
 
 $scope.datepickerOptions = {
     format: 'yyyy-mm-dd',
