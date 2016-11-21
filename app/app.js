@@ -3359,6 +3359,7 @@ $scope.topProductivos = function() {
 
             $scope.listaProductivos=data.data[0];
 		  	$scope.grupo.Cuartil=data.data[1];
+		    $scope.grupo.fecha=data.data[2];
 		  	//console.log($scope.listaProductivos);
 
               return data.data;
