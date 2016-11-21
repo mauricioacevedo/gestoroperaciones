@@ -3260,10 +3260,10 @@ $scope.set_color = function (value) {
               }
             };
 
-$scope.set_color_prod = function (value) {
+$scope.set_color_prod = function (value, cantidad) {
 
 	console.log(value);
-
+	console.log(cantidad);
 
               if (value < 10) {
                 $scope.estilo={
