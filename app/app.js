@@ -3269,8 +3269,8 @@ $scope.set_color_prod = function (valor, cantidad) {
 	var cuartil3=(cuartil2*2)+1;
 
 	console.log(cuartil);
-	console.log(cuartil2);
-	console.log(cuartil3);
+	//console.log(cuartil2);
+	//console.log(cuartil3);
 
 
               if (value <= cuartil) {
