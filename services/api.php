@@ -11132,6 +11132,10 @@ $sqlfenix=
 			$today = date("Y-m-d");
 			$grupo=$this->_request['grupo'];
 
+			if($grupo==""||$grupo=="undefined"){
+				$grupo="ASIGNACIONES";
+			}
+
 				$query= " SET @rank=0  ";
 				$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 				$query=	" 	select ".
@@ -11206,9 +11210,9 @@ $sqlfenix=
 						 "					on p.USUARIO=u.USUARIO_ID ".
 						 "					where p.fecha_fin between '$today 00:00:00' and '$today 23:59:59'  ".
 						 "					) c1 ".
-						 "					where c1.GRUPO in ('ASIGNACIONES') ".
+						 "					where c1.GRUPO in ('$grupo') ".
 						 "				group by c1.USUARIO_ID ) a1 ) a2 ".
-						 "		where c1.GRUPO in ('ASIGNACIONES') ".
+						 "		where c1.GRUPO in ('$grupo') ".
 						 "		group by c1.USUARIO_ID ".
 						 "		order by  count(distinct c1.PEDIDO_ID) desc ) z1  ".
 						 "        order by 3 desc) ul ";
