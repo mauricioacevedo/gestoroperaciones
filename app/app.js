@@ -3313,6 +3313,7 @@ $scope.topProductivos = function() {
       function(data){
 
             $scope.listaProductivos=data.data;
+		  	console.log($scope.listaProductivos);
 
               return data.data;
 
