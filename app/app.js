@@ -2976,7 +2976,7 @@ trendlines: [
                 });
 		//para actualizar la tabla...
 		$scope.actualizarPendientesPorPlaza();
-		$scope.actualizarGrafica();
+
 		//$scope.actualizarGraficaAgendamiento();
 		
 		services.logVista($cookieStore.get('logedUser').login,"Indicadores General");
