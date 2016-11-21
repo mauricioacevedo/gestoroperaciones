@@ -3264,8 +3264,14 @@ $scope.set_color_prod = function (valor, cantidad) {
 
 
 	var value=parseInt(valor.RANK);
+	var cuartil1=Math.floor(value/4);
+	var cuartil2=cuartil1+1;
+	var cuartil3=cuatril1*2;
 
-	var cuartil=Math.floor(value/4);
+	console.log(cuartil1);
+	console.log(cuartil2);
+	console.log(cuartil3);
+
 
               if (value <= cuartil) {
                 $scope.estilo={
