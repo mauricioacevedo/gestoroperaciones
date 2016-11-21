@@ -3260,10 +3260,10 @@ $scope.set_color = function (value) {
               }
             };
 
-$scope.set_color_prod = function (value, length) {
+$scope.set_color_prod = function (value) {
 
 	console.log(value);
-	console.log(length);
+
 
               if (value < 10) {
                 $scope.estilo={
