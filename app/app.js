@@ -2692,6 +2692,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                 });    
     }
 
+	$scope.getFeed();
+
         $scope.actualizarTME  = function (){
             $scope.refresh='cargando';
 		//TOMAR MUESTRA
@@ -2974,6 +2976,7 @@ trendlines: [
                 });
 		//para actualizar la tabla...
 		$scope.actualizarPendientesPorPlaza();
+		$scope.actualizarGrafica();
 		//$scope.actualizarGraficaAgendamiento();
 		
 		services.logVista($cookieStore.get('logedUser').login,"Indicadores General");
