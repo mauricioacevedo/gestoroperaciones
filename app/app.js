@@ -3351,7 +3351,7 @@ $scope.ChatRoomMates = function() {
 //$scope.grupo.Cuartil="ASGINACIONES";
 $scope.topProductivos = function() {
 
-    services.getPedidosGestorUser($scope.grupo.Cuartil).then(
+    services.getPedidosGestorUser().then(
 		console.log($scope.grupo);
 
       function(data){
