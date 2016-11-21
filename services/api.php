@@ -11130,13 +11130,18 @@ $sqlfenix=
 			}
 
 			$today = date("Y-m-d");
-				$query= " SELECT ".
+
+				$query= " SET @rank=0;  ".
+						"	select ".
+						"	@rank:=@rank+1 AS RANK, ".
+						"	c1.* ".
+						"	from (SELECT ".
 						"	user as USUARIO ".
 						"	, count(distinct pedido_id) as PEDIDOS ".
 						"	, actividad as ACT ".
 						"	, 'FENIX' as FUENTE  ".
 						"	FROM portalbd.pedidos ".
-						"	where fecha_fin between '2016-11-21 00:00:00' and '2016-11-21 23:59:59' ".
+						"	where fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
 						"	group by date_format(fecha_fin,'%Y-%m-%d') ".
 						"	, user, actividad ".
 						"	UNION ".
@@ -11146,10 +11151,10 @@ $sqlfenix=
 						"	, 'OFERTAS' as ACT ".
 						"	, 'SIEBEL' as FUENTE ".
 						"	FROM portalbd.transacciones_nca ".
-						"	where fecha_fin between '2016-11-21 00:00:00' and '2016-11-21 23:59:59' ".
+						"	where fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
 						"	group by date_format(fecha_fin,'%Y-%m-%d') ".
 						"	, USUARIO ".
-						"	order by 2 desc";
+						"	order by 2 desc ) c1";
 													//echo $query;
 				$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
