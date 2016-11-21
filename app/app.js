@@ -3260,48 +3260,6 @@ $scope.set_color = function (value) {
               }
             };
 
-$scope.set_color_prod = function (valor, cantidad) {
-
-
-	var value=parseInt(valor.RANK);
-	var cuartil=Math.floor(value/4);
-	var cuartil2=(cuartil*2)+1;
-	var cuartil3=(cuartil2*2)+1;
-
-	console.log(cuartil);
-	//console.log(cuartil2);
-	//console.log(cuartil3);
-
-
-              if (value <= cuartil) {
-                $scope.estilo={
-                  "list-style-position":"inside",
-                  "border-left": "5px solid "+colorNormal
-                    };
-
-                return $scope.estilo;
-              }
-              else{
-
-                  if(value > cuartil && value <= cuartil2){
-
-                    $scope.estilo={
-                  "list-style-position":"inside",
-                  "border-left": "5px solid "+colorWaring
-                    };
-
-                  }else{
-
-                     $scope.estilo={
-                  "list-style-position":"inside",
-                  "border-left": "5px solid "+colorDanger
-                    };
-                  }
-
-               return $scope.estilo;
-
-              }
-            };
 
 
 $scope.datepickerOptions = {
