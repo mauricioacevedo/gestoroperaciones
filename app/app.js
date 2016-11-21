@@ -3262,8 +3262,8 @@ $scope.set_color = function (value) {
 
 $scope.set_color_prod = function (value) {
 
-	console.log(value.length);
-	console.log(cantidad);
+	console.log(value);
+
 
               if (value < 10) {
                 $scope.estilo={
