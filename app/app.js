@@ -3227,6 +3227,7 @@ trendlines: [
 //----------Funcion para determinar el color del pendiente --------------------------
 var colorDanger="#E83720";
 var colorWaring="#E8A820";
+var colorWarningTrans="#ffd699";
 var colorNormal="#088A08";
 
 $scope.set_color = function (value) {
@@ -3289,7 +3290,7 @@ $scope.set_color_Cuartil = function (value) {
 
 					$scope.estiloCuartil={
 					  "list-style-position":"inside",
-					  "border-left": "5px solid "+colorWaring
+					  "border-left": "5px solid "+colorWarningTrans
 					};
 				   return $scope.estiloCuartil;
                   	}
