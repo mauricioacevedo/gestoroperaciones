@@ -37,7 +37,7 @@
 					<div class = "panel-heading nav navbar-default fixed-panel">
 						<ul class="list-group small">
 							<span class="small">
-							<a href="" ng-repeat="datar in listaProductivos as ranks" class="list-group-item animated slideInRight" ng-style="set_color_prod(ranks[0].length,ranks[0].RANK)">{{datar.RANK}} {{datar.USUARIO}} <span class = "badge ">{{datar.PEDIDOS}}</span></a>
+							<a href="" ng-repeat="datar in listaProductivos as ranks" class="list-group-item animated slideInRight" ng-style="set_color_prod(datar)">{{datar.RANK}} {{datar.USUARIO}} <span class = "badge ">{{datar.PEDIDOS}}</span></a>
 							</span>
 						</ul>
 					</div>
