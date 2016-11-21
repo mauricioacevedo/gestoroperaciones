@@ -33,6 +33,9 @@
 						<b><button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="topProductivos()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
 									<i class="fa fa-refresh"  aria-hidden="true"></i>
 								</button>Productividad</b>
+						<select id="grupo" name="grupo" class="btn btn-default btn-xs grupo-select" ng-model="grupo.Cuartil" ng-options="g for g in grupos.values">
+						<option value="" disabled>Grupo</option>
+						</select> &nbsp;
 					</div>
 					<div class = "panel-heading nav navbar-default fixed-panel">
 						<ul class="list-group small">
