@@ -11130,6 +11130,7 @@ $sqlfenix=
 			}
 
 			$today = date("Y-m-d");
+			$grupo="ASIGNACIONES";
 
 				$query= " SET @rank=0  ";
 				$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -11222,7 +11223,7 @@ $sqlfenix=
 								$result[] = $row;
 						}
 
-						$this->response($this->json(array($result)), 200); // send user details
+						$this->response($this->json(array($result,$grupo)), 200); // send user details
 				}
 				$this->response('',204);        // If no records "No Content" status
 
