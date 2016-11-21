@@ -3265,9 +3265,9 @@ $scope.set_color_prod = function (valor, cantidad) {
 
 	var value=parseInt(valor.RANK);
 
-		console.log(cantidad);
+	var cuartil=Math.floor(value/4);
 
-              if (value < 10) {
+              if (value <= cuartil) {
                 $scope.estilo={
                   "list-style-position":"inside",
                   "border-left": "5px solid "+colorNormal
@@ -3277,7 +3277,7 @@ $scope.set_color_prod = function (valor, cantidad) {
               }
               else{
 
-                  if(value > 10 && value < 17){
+                  if(value > cuartil && value <= (cuartil+cuartil){
 
                     $scope.estilo={
                   "list-style-position":"inside",
