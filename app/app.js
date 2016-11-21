@@ -3262,47 +3262,47 @@ $scope.set_color = function (value) {
 
 $scope.set_color_Cuartil = function (value) {
 
-	console.log(value);
+	//console.log(value);
 
               if (value > 4) {
-                $scope.estilo={
+                $scope.estiloCuartil={
                   "list-style-position":"inside",
                   "border-left": "5px solid "+colorDanger
                     };
 
-                return $scope.estilo;
+                return $scope.estiloCuartil;
               }
-              else{
 
-                  if(value > 3 && value < 4){
 
-                    $scope.estilo={
+              if(value >= 3 && value < 4){
+
+                    $scope.estiloCuartil={
                   "list-style-position":"inside",
                   "border-left": "5px solid "+colorWaring
+
                     };
+				  return $scope.estiloCuartil;
 
-                  }else{
+                  }
 
-                    if(value > 2 && value < 3){
+               if(value >= 2 && value < 3){
 
-							$scope.estilo={
-							  "list-style-position":"inside",
-							  "border-left": "5px solid "+colorWaring
-							};
-                  	}else{
+					$scope.estiloCuartil={
+					  "list-style-position":"inside",
+					  "border-left": "5px solid "+colorWaring
+					};
+				   return $scope.estiloCuartil;
+                  	}
 
-						  $scope.estilo={
-						  "list-style-position":"inside",
-						  "border-left": "5px solid "+colorNormal
-						};
+		if(value >= 1 && value < 2){
 
-				  	}
+					$scope.estiloCuartil={
+					  "list-style-position":"inside",
+					  "border-left": "5px solid "+colorNormal
+					};
+				   return $scope.estiloCuartil;
+                  	}
 
-
-
-              }
-				  return $scope.estilo;
-            };
 };
 
 $scope.datepickerOptions = {
