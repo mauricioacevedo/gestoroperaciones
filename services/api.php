@@ -11133,47 +11133,84 @@ $sqlfenix=
 
 				$query= " SET @rank=0  ";
 				$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-				$query=	" select ".
-						"	case ".
-						"		when rank <= c4.cantidad*0.25 then 1 ".
-						"		when rank > c4.cantidad*0.25 and rank <= c4.cantidad*0.50  then 2 ".
-						"		when rank > c4.cantidad*0.50 and rank <= c4.cantidad*0.75  then 3 ".
-						"		else 4 ".
-						"	end as CUARTIL,c4.* ".
-						"	from( ".
-						"	select ".
-						"	@rank:=@rank+1 AS RANK, ".
-						"	c1.*, c3.cantidad ".
-						"	from (SELECT ".
-						"	user as USUARIO ".
-						"	, count(distinct pedido_id) as PEDIDOS ".
-						"	, 'FENIX' as FUENTE  ".
-						"	FROM portalbd.pedidos ".
-						"	where fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
-						"	group by date_format(fecha_fin,'%Y-%m-%d') ".
-						"	, user ".
-						"	UNION ".
-						"	SELECT  ".
-						"	USUARIO as USUARIO ".
-						"	, count(distinct OFERTA) as PEDIDOS ".
-						"	, 'SIEBEL' as FUENTE ".
-						"	FROM portalbd.transacciones_nca ".
-						"	where fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
-						"	group by date_format(fecha_fin,'%Y-%m-%d') ".
-						"	, USUARIO ".
-						"	order by 2 desc ) c1, (select count(*) as Cantidad from (SELECT ".
-						"	user as USUARIO ".
-						"	FROM portalbd.pedidos ".
-						"	where fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
-						"	group by date_format(fecha_fin,'%Y-%m-%d') ".
-						"	, user ".
-						"	UNION ".
-						"	SELECT  ".
-						"	USUARIO as USUARIO ".
-						"	FROM portalbd.transacciones_nca ".
-						"	where fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
-						"	group by date_format(fecha_fin,'%Y-%m-%d') ".
-						"	, USUARIO) c2 ) c3 )c4 ";
+				$query=	" 	select ".
+						 " case ".
+						 "	when ul.RANK <= round(ul.DIVISOR*0.25) then 1 ".
+						 "    when ul.RANK > round(ul.DIVISOR*0.25) and ul.RANK <= round(ul.DIVISOR*0.50)  then 2 ".
+						 "    when ul.RANK > round(ul.DIVISOR*0.50) and ul.RANK <= round(ul.DIVISOR*0.75)  then 3 ".
+						 "    else 4 ".
+						 " end as CUARTIL ".
+						 " , ul.RANK ".
+						 " , ul.USUARIO_ID ".
+						 " , ul.PEDIDOS ".
+						 " , ul.DIVISOR ".
+						 " from( ".
+						 "		select ".
+						 "		@rank:=@rank+1 AS RANK ".
+						 "		,z1.USUARIO_ID ".
+						 "		, z1.PEDIDOS ".
+						 "		, z1.DIVISOR ".
+						 "		from(SELECT ".
+						 "			c1.USUARIO_ID ".
+						 "			, c1.GRUPO ".
+						 "			, group_concat(distinct c1.ACTIVIDAD) as ACTIVIDADES ".
+						 "			, count(distinct c1.PEDIDO_ID) as PEDIDOS ".
+						 "			, a2.DIVISOR ".
+						 "			FROM (SELECT  ".
+						 "				p.USER AS USUARIO_ID ".
+						 "				, u.GRUPO ".
+						 "				, p.PEDIDO_ID ".
+						 "				, p.ACTIVIDAD ".
+						 "				, p.FUENTE ".
+						 "				FROM portalbd.pedidos p ".
+						 "				left join portalbd.tbl_usuarios u ".
+						 "				on p.USER=u.USUARIO_ID ".
+						 "				where p.fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
+						 "				UNION ALL ".
+						 "				SELECT  ".
+						 "				p.USUARIO AS USUARIO_ID ".
+						 "				, u.GRUPO ".
+						 "				, p.OFERTA AS PEDIDO_ID ".
+						 "				, 'NCA' AS ACTIVIDAD ".
+						 "				, 'SIEBEL' AS FUENTE ".
+						 "				FROM portalbd.transacciones_nca p ".
+						 "				left join portalbd.tbl_usuarios u ".
+						 "				on p.USUARIO=u.USUARIO_ID ".
+						 "				where p.fecha_fin between '$today 00:00:00' and '$today 23:59:59' ) c1, ".
+						 "				(select count(*) as DIVISOR from  ".
+						 "					( SELECT ".
+						 "					c1.USUARIO_ID ".
+						 "					, c1.GRUPO ".
+						 "					, group_concat(distinct c1.ACTIVIDAD) as ACTIVIDADES ".
+						 "					, count(distinct c1.PEDIDO_ID) as PEDIDOS ".
+						 "					FROM (SELECT  ".
+						 "					p.USER AS USUARIO_ID ".
+						 "					, u.GRUPO ".
+						 "					, p.PEDIDO_ID ".
+						 "					, p.ACTIVIDAD ".
+						 "					, p.FUENTE ".
+						 "					FROM portalbd.pedidos p ".
+						 "					left join portalbd.tbl_usuarios u ".
+						 "					on p.USER=u.USUARIO_ID ".
+						 "					where p.fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
+						 "					UNION ALL ".
+						 "					SELECT  ".
+						 "					p.USUARIO AS USUARIO_ID ".
+						 "					, u.GRUPO ".
+						 "					, p.OFERTA AS PEDIDO_ID ".
+						 "					, 'NCA' AS ACTIVIDAD ".
+						 "					, 'SIEBEL' AS FUENTE ".
+						 "					FROM portalbd.transacciones_nca p ".
+						 "					left join portalbd.tbl_usuarios u ".
+						 "					on p.USUARIO=u.USUARIO_ID ".
+						 "					where p.fecha_fin between '$today 00:00:00' and '$today 23:59:59'  ".
+						 "					) c1 ".
+						 "					where c1.GRUPO in ('ASIGNACIONES') ".
+						 "				group by c1.USUARIO_ID ) a1 ) a2 ".
+						 "		where c1.GRUPO in ('ASIGNACIONES') ".
+						 "		group by c1.USUARIO_ID ".
+						 "		order by  count(distinct c1.PEDIDO_ID) desc ) z1  ".
+						 "        order by 3 desc) ul ";
 													//echo $query;
 				$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
