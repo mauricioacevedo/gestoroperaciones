@@ -3260,7 +3260,40 @@ $scope.set_color = function (value) {
               }
             };
 
+$scope.set_color_prod = function (value, length) {
 
+	console.log(value);
+	console.log(length);
+
+              if (value < 10) {
+                $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorNormal
+                    };
+
+                return $scope.estilo;
+              }
+              else{
+
+                  if(value > 10 && value < 17){
+
+                    $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorWaring
+                    };
+
+                  }else{
+
+                     $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorDanger
+                    };
+                  }
+
+               return $scope.estilo;
+
+              }
+            };
 
 
 $scope.datepickerOptions = {
