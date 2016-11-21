@@ -3277,7 +3277,7 @@ $scope.set_color_prod = function (valor, cantidad) {
               }
               else{
 
-                  if(value > cuartil && value <= (cuartil+cuartil){
+                  if(value > cuartil && value <= (cuartil+cuartil)){
 
                     $scope.estilo={
                   "list-style-position":"inside",
