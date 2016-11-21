@@ -11131,7 +11131,7 @@ $sqlfenix=
 
 			$today = date("Y-m-d");
 
-				$query= " SET @rank=0;  ".
+				$query= " SET @rank=0  ".
 						"	select ".
 						"	@rank:=@rank+1 AS RANK, ".
 						"	c1.* ".
