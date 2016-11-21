@@ -11121,6 +11121,57 @@ $sqlfenix=
 
                 } // -------------------------Busca Pedido Siebel Asignaciones
 
+	//Listado de Pedidos por Usuario dia actual----------------------------------------
+
+		private function PedidosGestorUser(){
+
+			if($this->get_request_method() != "GET"){
+					$this->response('',406);
+			}
+
+			$today = date("Y-m-d");
+				$query= " SELECT ".
+						"	user as USUARIO ".
+						"	, count(distinct pedido_id) as PEDIDOS ".
+						"	, actividad as ACT ".
+						"	, 'FENIX' as FUENTE  ".
+						"	FROM portalbd.pedidos ".
+						"	where fecha_fin between '2016-11-21 00:00:00' and '2016-11-21 23:59:59' ".
+						"	group by date_format(fecha_fin,'%Y-%m-%d') ".
+						"	, user, actividad ".
+						"	UNION ".
+						"	SELECT  ".
+						"	USUARIO as USUARIO ".
+						"	, count(distinct OFERTA) as PEDIDOS ".
+						"	, 'OFERTAS' as ACT ".
+						"	, 'SIEBEL' as FUENTE ".
+						"	FROM portalbd.transacciones_nca ".
+						"	where fecha_fin between '2016-11-21 00:00:00' and '2016-11-21 23:59:59' ".
+						"	group by date_format(fecha_fin,'%Y-%m-%d') ".
+						"	, USUARIO ".
+						"	order by 2 desc";
+													//echo $query;
+				$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+				if($r->num_rows > 0){
+						$result = array();
+
+						while($row = $r->fetch_assoc()){
+
+								$result[] = $row;
+						}
+
+						$this->response($this->json(array($result)), 200); // send user details
+				}
+				$this->response('',204);        // If no records "No Content" status
+
+		}
+
+		//------------------------Listado de Pedidos por Usuario dia actual
+
+
+
+
 
 	}//cierre de la clase
 	
