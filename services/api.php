@@ -11130,7 +11130,7 @@ $sqlfenix=
 			}
 
 			$today = date("Y-m-d");
-			$grupo="ASIGNACIONES";
+			$grupo=$this->_request['grupo'];
 
 				$query= " SET @rank=0  ";
 				$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);

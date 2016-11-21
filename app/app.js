@@ -887,8 +887,8 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 
 	 // -----------------------------  Siebel Asignaciones//
 
-	obj.getPedidosGestorUser = function(){
-        return $http.get(serviceBase + 'PedidosGestorUser');
+	obj.getPedidosGestorUser = function(grupo){
+        return $http.get(serviceBase + 'PedidosGestorUser?grupo='+grupo);
         }
 
 //-------------------------------------------------------------------Fin-asignaciones
@@ -3352,7 +3352,7 @@ $scope.grupo={};
 $scope.topProductivos = function() {
 	//console.log($scope.grupo);
 
-    services.getPedidosGestorUser().then(
+    services.getPedidosGestorUser($scope.grupo).then(
 
 
       function(data){
