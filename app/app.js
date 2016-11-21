@@ -3260,9 +3260,9 @@ $scope.set_color = function (value) {
               }
             };
 
-$scope.set_color_prod = function (valor) {
+$scope.set_color_prod = function (valor, cantidad) {
 
-	var cantidad=valor.length;
+
 	var value=parseInt(valor.RANK);
 
 		console.log(cantidad);
