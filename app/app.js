@@ -3283,22 +3283,23 @@ $scope.set_color_Cuartil = function (value) {
 
                     if(value > 2 && value < 3){
 
-                    $scope.estilo={
-					  "list-style-position":"inside",
-					  "border-left": "5px solid "+colorWaring
-                    };
-                  }else{
+							$scope.estilo={
+							  "list-style-position":"inside",
+							  "border-left": "5px solid "+colorWaring
+							};
+                  	}else{
 
-					  $scope.estilo={
-					  "list-style-position":"inside",
-					  "border-left": "5px solid "+colorNormal
-                    };
+						  $scope.estilo={
+						  "list-style-position":"inside",
+						  "border-left": "5px solid "+colorNormal
+						};
 
-				  }
+				  	}
 
-               return $scope.estilo;
+
 
               }
+				  return $scope.estilo;
             };
 
 $scope.datepickerOptions = {
