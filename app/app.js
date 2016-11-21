@@ -3264,7 +3264,7 @@ $scope.set_color_Cuartil = function (value) {
 
 	//console.log(value);
 
-              if (value > 4) {
+              if (value >= 4) {
                 $scope.estiloCuartil={
                   "list-style-position":"inside",
                   "border-left": "5px solid "+colorDanger
