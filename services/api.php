@@ -11133,9 +11133,17 @@ $sqlfenix=
 
 				$query= " SET @rank=0  ";
 				$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-				$query=	"	select ".
+				$query=	" select ".
+						"	case ".
+						"		when rank <= c4.cantidad*0.25 then 1 ".
+						"		when rank > c4.cantidad*0.25 and rank <= c4.cantidad*0.50  then 2 ".
+						"		when rank > c4.cantidad*0.50 and rank <= c4.cantidad*0.75  then 3 ".
+						"		else 4 ".
+						"	end as CUARTIL,c4.* ".
+						"	from( ".
+						"	select ".
 						"	@rank:=@rank+1 AS RANK, ".
-						"	c1.* ".
+						"	c1.*, c3.cantidad ".
 						"	from (SELECT ".
 						"	user as USUARIO ".
 						"	, count(distinct pedido_id) as PEDIDOS ".
@@ -11143,7 +11151,7 @@ $sqlfenix=
 						"	FROM portalbd.pedidos ".
 						"	where fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
 						"	group by date_format(fecha_fin,'%Y-%m-%d') ".
-						"	, user".
+						"	, user ".
 						"	UNION ".
 						"	SELECT  ".
 						"	USUARIO as USUARIO ".
@@ -11153,7 +11161,19 @@ $sqlfenix=
 						"	where fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
 						"	group by date_format(fecha_fin,'%Y-%m-%d') ".
 						"	, USUARIO ".
-						"	order by 2 desc ) c1";
+						"	order by 2 desc ) c1, (select count(*) as Cantidad from (SELECT ".
+						"	user as USUARIO ".
+						"	FROM portalbd.pedidos ".
+						"	where fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
+						"	group by date_format(fecha_fin,'%Y-%m-%d') ".
+						"	, user ".
+						"	UNION ".
+						"	SELECT  ".
+						"	USUARIO as USUARIO ".
+						"	FROM portalbd.transacciones_nca ".
+						"	where fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
+						"	group by date_format(fecha_fin,'%Y-%m-%d') ".
+						"	, USUARIO) c2 ) c3 )c4 ";
 													//echo $query;
 				$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
