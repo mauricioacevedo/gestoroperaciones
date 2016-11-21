@@ -3262,8 +3262,10 @@ $scope.set_color = function (value) {
 
 $scope.set_color_prod = function (valor) {
 
+	var cantidad=valor.length;
 	var value=parseInt(valor.RANK);
 
+		console.log(cantidad);
 
               if (value < 10) {
                 $scope.estilo={
