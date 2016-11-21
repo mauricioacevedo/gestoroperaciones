@@ -3301,6 +3301,7 @@ $scope.set_color_Cuartil = function (value) {
               }
 				  return $scope.estilo;
             };
+};
 
 $scope.datepickerOptions = {
     format: 'yyyy-mm-dd',
