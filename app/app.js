@@ -3348,10 +3348,11 @@ $scope.ChatRoomMates = function() {
  };
 
 //------PRUEBAS API OPENFIRE -----------------------------
-$scope.grupo.Cuartil="ASGINACIONES";
+//$scope.grupo.Cuartil="ASGINACIONES";
 $scope.topProductivos = function() {
 
     services.getPedidosGestorUser($scope.grupo.Cuartil).then(
+		console.log($scope.grupo);
 
       function(data){
 
