@@ -4258,7 +4258,7 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 	
 });
 
-
+//------------------------actividades de Activacion-----------------------------------------
 app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
     var userID=$cookieStore.get('logedUser').login;
         $rootScope.logedUser=$cookieStore.get('logedUser');
