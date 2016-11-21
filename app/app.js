@@ -3260,9 +3260,9 @@ $scope.set_color = function (value) {
               }
             };
 
-$scope.set_color_prod = function (value) {
+$scope.set_color_prod = function (valor) {
 
-	console.log(value);
+	var value=parseInt(valor.RANK);
 
 
               if (value < 10) {
@@ -3346,7 +3346,7 @@ $scope.topProductivos = function() {
       function(data){
 
             $scope.listaProductivos=data.data[0];
-		  	console.log($scope.listaProductivos);
+		  	//console.log($scope.listaProductivos);
 
               return data.data;
 
