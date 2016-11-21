@@ -11131,8 +11131,9 @@ $sqlfenix=
 
 			$today = date("Y-m-d");
 
-				$query= " SET @rank=0  ".
-						"	select ".
+				$query= " SET @rank=0  ";
+				$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+				$query=	"	select ".
 						"	@rank:=@rank+1 AS RANK, ".
 						"	c1.* ".
 						"	from (SELECT ".
