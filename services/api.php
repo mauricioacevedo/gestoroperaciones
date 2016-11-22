@@ -7377,7 +7377,7 @@ $queryConceptosFcita=" select ".
                  
 
 
-                private function logout(){
+          private function logout(){
                         if($this->get_request_method() != "POST"){
                                 $this->response('',406);
                         }
@@ -7406,6 +7406,7 @@ $queryConceptosFcita=" select ".
                                         // If success everythig is good send header as "OK" and user details
 					   $idd=$result['id'];
 					   $sqllogin="update registro_ingreso_usuarios set status='logged off',fecha_salida='$fecha',salidas=salidas+1 where id=$idd";
+									unset($_SESSION["loginsession"]);
                                         $rr = $this->mysqli->query($sqllogin);
                                         $this->response($this->json('logged out'), 201);
 
