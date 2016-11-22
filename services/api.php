@@ -7500,6 +7500,8 @@ $queryConceptosFcita=" select ".
 
 			if(!empty($login) and !empty($password)){
 
+				$_SESSION['loginsession'] = time();
+
 				$login=strtoupper($login);
 
 				$stmt = $this->mysqli->prepare("SELECT ID as id, USUARIO_NOMBRE as name, USUARIO_ID as login, GRUPO,CARGO_ID FROM tbl_usuarios WHERE USUARIO_ID = ? AND PASSWORD = MD5(?) LIMIT 1");
@@ -7577,7 +7579,7 @@ $queryConceptosFcita=" select ".
 									}
 								}
 
-								$_SESSION['loginsession'] = time();
+
 
 
 
