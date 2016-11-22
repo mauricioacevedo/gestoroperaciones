@@ -7552,7 +7552,7 @@ $queryConceptosFcita=" select ".
 								{
 									if ( (time() - $_SESSION['loginsession']) <= 1)
 									{
-										$this->response($this->json($result), 201);
+										$this->response($this->json($result), 205);
 										return;
 									}
 									else
