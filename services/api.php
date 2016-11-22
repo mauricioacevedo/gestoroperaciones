@@ -7576,7 +7576,7 @@ $queryConceptosFcita=" select ".
 
 									$result['name']=utf8_encode($result['name']);
 									$this->response($this->json($result), 201);
-								}
+
 
 
 
