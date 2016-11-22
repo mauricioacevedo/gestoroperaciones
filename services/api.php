@@ -11157,6 +11157,13 @@ $sqlfenix=
 						 "		and r.fecha_ingreso between '$today 00:00:00' and '$today 23:59:59' ".
 						 "		and r.usuario=ul.USUARIO_ID ".
 						 "		limit 1 ),'off') as ESTADO ".
+						 " , ifnull((SELECT ".
+						 "		date_format(r.fecha_ingreso,'%H:%i') as HORA ".
+						 "		FROM portalbd.registro_ingreso_usuarios r ".
+						 "		where 1=1 ".
+						 "		and r.fecha_ingreso between '$today 00:00:00' and '$today 23:59:59' ".
+						 "		and r.usuario=ul.USUARIO_ID ".
+						 "		limit 1 ),'00:00') as HORAINICIO ".
 						 " , ul.PEDIDOS ".
 						 " , ul.DIVISOR ".
 						 " from( ".
