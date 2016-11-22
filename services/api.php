@@ -7547,8 +7547,7 @@ $queryConceptosFcita=" select ".
 						//var_dump($result);
 					}else{//make an insert, first time logged in today
 
-						if (isset($_POST) && !empty($_POST))
-							{
+
 								if (isset($_SESSION['loginsession']))
 								{
 									if ( (time() - $_SESSION['loginsession']) <= 1)
@@ -7577,8 +7576,9 @@ $queryConceptosFcita=" select ".
 										//var_dump($result);
 									}
 								}
+
 								$_SESSION['loginsession'] = time();
-							}
+
 
 
 
