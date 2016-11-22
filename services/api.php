@@ -11147,7 +11147,7 @@ $sqlfenix=
 						 " end as CUARTIL ".
 						 " , ul.RANK ".
 						 " , ul.USUARIO_ID ".
-						 " , (SELECT ".
+						 " , ifnull((SELECT ".
 						 "		case ".
 						 "		when r.status='logged in' then 'on' ".
 						 "		else 'off' ".
@@ -11156,7 +11156,7 @@ $sqlfenix=
 						 "		where 1=1 ".
 						 "		and r.fecha_ingreso between '$today 00:00:00' and '$today 23:59:59' ".
 						 "		and r.usuario=ul.USUARIO_ID ".
-						 "		limit 1 ) as ESTADO ".
+						 "		limit 1 ),'off') as ESTADO ".
 						 " , ul.PEDIDOS ".
 						 " , ul.DIVISOR ".
 						 " from( ".
