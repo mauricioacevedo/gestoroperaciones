@@ -11147,6 +11147,16 @@ $sqlfenix=
 						 " end as CUARTIL ".
 						 " , ul.RANK ".
 						 " , ul.USUARIO_ID ".
+						 " , (SELECT ".
+						 "		case ".
+						 "		when r.status='logged in' then 'on' ".
+						 "		else 'off' ".
+						 "		end as estado ".
+						 "		FROM portalbd.registro_ingreso_usuarios r ".
+						 "		where 1=1 ".
+						 "		and r.fecha_ingreso between '$today 00:00:00' and '$today 23:59:59' ".
+						 "		and r.usuario=ul.USUARIO_ID ".
+						 "		limit 1 ) as ESTADO ".
 						 " , ul.PEDIDOS ".
 						 " , ul.DIVISOR ".
 						 " from( ".
