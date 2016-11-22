@@ -7492,15 +7492,13 @@ $queryConceptosFcita=" select ".
 				$this->response('',406);
 			}
 			$params = json_decode(file_get_contents('php://input'),true);
-			//$_SESSION['loginsession'] = time();
+
 
 			$login = $params['username'];
 			$password = $params['password'];
 			$fecha = $params['fecha'];
 
 			if(!empty($login) and !empty($password)){
-
-
 
 				$login=strtoupper($login);
 
@@ -7522,8 +7520,6 @@ $queryConceptosFcita=" select ".
 				if($result = $r->fetch_assoc()) {
 					//$result = $r->fetch_assoc();	
 					// If success everythig is good send header as "OK" and user details
-
-
 
 					$login=$result['login'];
 					//here i can control this session....
@@ -7551,41 +7547,25 @@ $queryConceptosFcita=" select ".
 						//var_dump($result);
 					}else{//make an insert, first time logged in today
 
-
-								if (isset($_SESSION['loginsession']))
-								{
-									if ( (time() - $_SESSION['loginsession']) <= 1)
-									{
-										$sqllogin="update registro_ingreso_usuarios set status='logged in',ingresos=ingresos+1 where id=$idd";
-										$rrr = $this->mysqli->query($sqllogin);
-									}
-									else
-									{
-										$ip=$_SERVER['REMOTE_ADDR'];
-										$sqllogin="insert into registro_ingreso_usuarios(usuario,status,ip,fecha_ingreso) values('$login','logged in','$ip','$fecha')";
-																$rrr = $this->mysqli->query($sqllogin);
-										$idi=$this->mysqli->insert_id;
-										$sqllogin="SELECT fecha_ingreso, date_format(fecha_ingreso,'%H:%i:%s') as hora_ingreso FROM registro_ingreso_usuarios WHERE fecha_ingreso between '$today 00:00:00' and '$today 23:59:59' and usuario='$login' limit 1";
-
-															$rs = $this->mysqli->query($sqllogin);
-										if($rs->num_rows > 0){
-											$result1 = $rs->fetch_assoc();
-											$result['fecha_ingreso']=$result1['fecha_ingreso'];
-																		$result['hora_ingreso']=$result1['hora_ingreso'];
-										}else{
-											$result['fecha_ingreso']='N/A';
-																		$result['hora_ingreso']='N/A';
-										}
-										//echo "kai!! ";
-										//var_dump($result);
-									}
-								}
-
-
 						$_SESSION['loginsession'] = time();
 
+						$ip=$_SERVER['REMOTE_ADDR'];
+						$sqllogin="insert into registro_ingreso_usuarios(usuario,status,ip,fecha_ingreso) values('$login','logged in','$ip','$fecha')";
+                                                $rrr = $this->mysqli->query($sqllogin);
+						$idi=$this->mysqli->insert_id;
+						$sqllogin="SELECT fecha_ingreso, date_format(fecha_ingreso,'%H:%i:%s') as hora_ingreso FROM registro_ingreso_usuarios WHERE fecha_ingreso between '$today 00:00:00' and '$today 23:59:59' and usuario='$login' limit 1";
 
-
+                                        	$rs = $this->mysqli->query($sqllogin);
+						if($rs->num_rows > 0){
+							$result1 = $rs->fetch_assoc();
+							$result['fecha_ingreso']=$result1['fecha_ingreso'];
+                                                        $result['hora_ingreso']=$result1['hora_ingreso'];
+						}else{
+							$result['fecha_ingreso']='N/A';
+                                                        $result['hora_ingreso']='N/A';
+						}
+						//echo "kai!! ";
+						//var_dump($result);
 					}
 
 					$result['name']=utf8_encode($result['name']);
@@ -7598,7 +7578,6 @@ $queryConceptosFcita=" select ".
 			$error = array('status' => "Failed", "msg" => "Invalid User Name or password ($login) - ($password)");
 			$this->response($this->json($error), 400);
 		}
-	
            private function insertTransaccionNCA(){
 
                  if($this->get_request_method() != "POST"){
