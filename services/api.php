@@ -7500,7 +7500,7 @@ $queryConceptosFcita=" select ".
 
 			if(!empty($login) and !empty($password)){
 
-				$_SESSION['loginsession'] = time();
+
 
 				$login=strtoupper($login);
 
@@ -7522,6 +7522,8 @@ $queryConceptosFcita=" select ".
 				if($result = $r->fetch_assoc()) {
 					//$result = $r->fetch_assoc();	
 					// If success everythig is good send header as "OK" and user details
+
+
 
 					$login=$result['login'];
 					//here i can control this session....
@@ -7580,7 +7582,7 @@ $queryConceptosFcita=" select ".
 								}
 
 
-
+						$_SESSION['loginsession'] = time();
 
 
 
