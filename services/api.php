@@ -7492,7 +7492,7 @@ $queryConceptosFcita=" select ".
 				$this->response('',406);
 			}
 			$params = json_decode(file_get_contents('php://input'),true);
-			$_SESSION['loginsession'] = time();
+			//$_SESSION['loginsession'] = time();
 
 			$login = $params['username'];
 			$password = $params['password'];
@@ -7547,14 +7547,17 @@ $queryConceptosFcita=" select ".
 						//var_dump($result);
 					}else{//make an insert, first time logged in today
 
-						if (isset($_SESSION['loginsession'])){
-								if ( (time() - $_SESSION['loginsession']) <= 1)
+						if (isset($_POST) && !empty($_POST))
+							{
+								if (isset($_SESSION['loginsession']))
 								{
-									$this->response($this->json($result), 204);
-									return;
-								}
-								else
-								{
+									if ( (time() - $_SESSION['loginsession']) <= 1)
+									{
+										$this->response($this->json($result), 201);
+										return;
+									}
+									else
+									{
 										$ip=$_SERVER['REMOTE_ADDR'];
 										$sqllogin="insert into registro_ingreso_usuarios(usuario,status,ip,fecha_ingreso) values('$login','logged in','$ip','$fecha')";
 																$rrr = $this->mysqli->query($sqllogin);
@@ -7573,13 +7576,16 @@ $queryConceptosFcita=" select ".
 										//echo "kai!! ";
 										//var_dump($result);
 									}
-
-									$result['name']=utf8_encode($result['name']);
-									$this->response($this->json($result), 201);
-
-
+								}
+								$_SESSION['loginsession'] = time();
+							}
 
 
+
+					}
+
+					$result['name']=utf8_encode($result['name']);
+					$this->response($this->json($result), 201);
 				}
 				$this->response($this->json('User do not exist!!!'), 400);	// If no records "No Content" status
 				
