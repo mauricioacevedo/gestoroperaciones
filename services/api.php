@@ -7492,6 +7492,7 @@ $queryConceptosFcita=" select ".
 				$this->response('',406);
 			}
 			$params = json_decode(file_get_contents('php://input'),true);
+			$_SESSION['loginsession'] = time();
 
 			$login = $params['username'];
 			$password = $params['password'];
@@ -7545,27 +7546,40 @@ $queryConceptosFcita=" select ".
 						//echo "kaiden!! ";
 						//var_dump($result);
 					}else{//make an insert, first time logged in today
-						$ip=$_SERVER['REMOTE_ADDR'];
-						$sqllogin="insert into registro_ingreso_usuarios(usuario,status,ip,fecha_ingreso) values('$login','logged in','$ip','$fecha')";
-                                                $rrr = $this->mysqli->query($sqllogin);
-						$idi=$this->mysqli->insert_id;
-						$sqllogin="SELECT fecha_ingreso, date_format(fecha_ingreso,'%H:%i:%s') as hora_ingreso FROM registro_ingreso_usuarios WHERE fecha_ingreso between '$today 00:00:00' and '$today 23:59:59' and usuario='$login' limit 1";
 
-                                        	$rs = $this->mysqli->query($sqllogin);
-						if($rs->num_rows > 0){
-							$result1 = $rs->fetch_assoc();
-							$result['fecha_ingreso']=$result1['fecha_ingreso'];
-                                                        $result['hora_ingreso']=$result1['hora_ingreso'];
-						}else{
-							$result['fecha_ingreso']='N/A';
-                                                        $result['hora_ingreso']='N/A';
-						}
-						//echo "kai!! ";
-						//var_dump($result);
-					}
-					
-					$result['name']=utf8_encode($result['name']);
-					$this->response($this->json($result), 201);
+						if (isset($_SESSION['loginsession'])){
+								if ( (time() - $_SESSION['loginsession']) <= 1)
+								{
+									$this->response($this->json($result), 204);
+									return;
+								}
+								else
+								{
+										$ip=$_SERVER['REMOTE_ADDR'];
+										$sqllogin="insert into registro_ingreso_usuarios(usuario,status,ip,fecha_ingreso) values('$login','logged in','$ip','$fecha')";
+																$rrr = $this->mysqli->query($sqllogin);
+										$idi=$this->mysqli->insert_id;
+										$sqllogin="SELECT fecha_ingreso, date_format(fecha_ingreso,'%H:%i:%s') as hora_ingreso FROM registro_ingreso_usuarios WHERE fecha_ingreso between '$today 00:00:00' and '$today 23:59:59' and usuario='$login' limit 1";
+
+															$rs = $this->mysqli->query($sqllogin);
+										if($rs->num_rows > 0){
+											$result1 = $rs->fetch_assoc();
+											$result['fecha_ingreso']=$result1['fecha_ingreso'];
+																		$result['hora_ingreso']=$result1['hora_ingreso'];
+										}else{
+											$result['fecha_ingreso']='N/A';
+																		$result['hora_ingreso']='N/A';
+										}
+										//echo "kai!! ";
+										//var_dump($result);
+									}
+
+									$result['name']=utf8_encode($result['name']);
+									$this->response($this->json($result), 201);
+								}
+
+
+
 				}
 				$this->response($this->json('User do not exist!!!'), 400);	// If no records "No Content" status
 				
