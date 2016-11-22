@@ -7547,6 +7547,8 @@ $queryConceptosFcita=" select ".
 						//var_dump($result);
 					}else{//make an insert, first time logged in today
 
+						session_start();
+
 						$_SESSION['loginsession'] = time();
 
 						$ip=$_SERVER['REMOTE_ADDR'];
