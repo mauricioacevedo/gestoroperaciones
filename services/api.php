@@ -7554,8 +7554,8 @@ $queryConceptosFcita=" select ".
 								{
 									if ( (time() - $_SESSION['loginsession']) <= 1)
 									{
-										$this->response($this->json($result), 205);
-										//return;
+										$sqllogin="update registro_ingreso_usuarios set status='logged in',ingresos=ingresos+1 where id=$idd";
+										$rrr = $this->mysqli->query($sqllogin);
 									}
 									else
 									{
