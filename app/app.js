@@ -6708,6 +6708,153 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
                fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
 
             };
+    //console.log($scope.userID);
+
+$rootScope.logout = function() {
+            services.logout($rootScope.logedUser.login);
+            $cookieStore.remove('logedUser');
+            $rootScope.logedUser=undefined;
+            $scope.pedidos={};
+            document.getElementById('logout').className="btn btn-md btn-danger hide";
+            var divi=document.getElementById("logoutdiv");
+            divi.style.position="absolute";
+            divi.style.visibility="hidden";
+            $location.path('/');
+    };
+
+
+   var uploader = $scope.uploader = new FileUploader({
+        url: window.location.protocol + window.location.pathname + 'services/UploadFile2'
+
+    });
+
+                services.listar1().then(function(data){
+                        $scope.listadodocu1=data.data[0];
+                        console.log($scope.listadodocu1);
+                        return data.data;
+                });
+    // FILTERS
+
+        $scope.eliminarfi = function (file){
+                        //console.log(data.data);
+                var result = confirm("Esta seguro que desea eliminar el archivo "+file+ "?");
+                if (result) {
+                                //Logic to delete the item
+                    services.eliminarfile1(file).then(function(data){
+                                if(data.data=='OK'){
+                                    document.getElementById("warning").innerHTML="Archivo "+file+" eliminado correctamente.";
+                                $scope.error="Archivo "+file+" eliminado correctamente.";
+                                }
+                               services.listar1().then(function(data){
+                                    $scope.listadodocu1=data.data[0];
+                                    //console.log($scope.listadodocu);
+                                    return data.data;
+                                });
+                        });
+                };
+        };
+    //$scope.reload();
+    //$interval($scope.reload, 5000);
+
+     uploader.filters.push({
+        name: 'extensionFilter',
+        fn: function (item, options) {
+            var filename = item.name;
+            var extension = filename.substring(filename.lastIndexOf('.') + 1).toLowerCase();
+            if (extension == "xlsx" || extension == "xls")
+                return true;
+            else {
+                alert('Formato Invalido. Por favor seleccione un archivo con formato xlsx/xls');
+                return false;
+            }
+        }
+    });
+
+    uploader.filters.push({
+        name: 'sizeFilter',
+        fn: function (item, options) {
+            var fileSize = item.size;
+            fileSize = parseInt(fileSize) / (1024 * 1024);
+            if (fileSize <= 20)
+                return true;
+            else {
+                alert('El archivo seleccionado excede el límite de tamaño(20 MB). Por favor, seleccione un archivo nuevo y vuelvea a intentarlo .');
+                return false;
+            }
+        }
+    });
+
+    uploader.filters.push({
+        name: 'itemResetFilter',
+        fn: function (item, options) {
+            if (this.queue.length < 5)
+                return true;
+            else {
+                alert('Se ha superado el límite de carga de archivos ');
+                return false;
+            }
+        }
+    });
+
+    // CALLBACKS
+
+    uploader.onWhenAddingFileFailed = function (item, filter, options) {
+        console.info('onWhenAddingFileFailed', item, filter, options);
+        $scope.error = '';
+    };
+    /*uploader.onAfterAddingFile = function (fileItem) {
+        alert('Archivos listos para la carga .');
+    };*/
+
+    uploader.onSuccessItem = function (fileItem, response, status, headers) {
+        //$scope.uploader.queue = [];
+        //$scope.uploader.progress = 0;
+        //console.log(fileItem._file.name);
+        services.listar1().then(function(data){
+                        $scope.listadodocu=data.data[0];
+                        console.log($scope.listadodocu1);
+                        return data.data;
+                });
+        alert("El archivo "+ fileItem._file.name + " seleccionado se ha cargado correctamente .");
+        $scope.error = '';
+    };
+    uploader.onErrorItem = function (fileItem, response, status, headers) {
+        alert('No se pudo cargar el archivo . Por favor, inténtelo de nuevo.');
+        $scope.error = '';
+    };
+    uploader.onCancelItem = function (fileItem, response, status, headers) {
+        alert('La subida de archivos ha sido cancelada .');
+        $scope.error = '';
+    };
+
+    uploader.onAfterAddingAll = function(addedFileItems) {
+        console.info('onAfterAddingAll', addedFileItems);
+        $scope.error = '';
+    };
+    uploader.onBeforeUploadItem = function(item) {
+        console.info('onBeforeUploadItem', item);
+        $scope.error = '';
+    };
+    uploader.onProgressItem = function(fileItem, progress) {
+        //console.info('onProgressItem', fileItem, progress);
+        $scope.error = '';
+    };
+    uploader.onProgressAll = function(progress) {
+        //console.info('onProgressAll', progress);
+        $scope.error = '';
+    };
+
+    uploader.onCompleteItem = function(fileItem, response, status, headers) {
+        console.info('onCompleteItem', fileItem, response, status, headers);
+        $scope.error = '';
+    };
+    uploader.onCompleteAll = function() {
+        console.info('onCompleteAll');
+        $scope.error = '';
+    };
+
+    console.info('uploader', uploader);
+
     });
 
 app.controller('Pedidos_MicrozonasCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
