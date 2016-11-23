@@ -906,7 +906,7 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 
 
 
-app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
+app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {//graficas
         var userID=$cookieStore.get('logedUser').login;
         $rootScope.logedUser=$cookieStore.get('logedUser');
         document.getElementById('logout').className="btn btn-md btn-danger";
