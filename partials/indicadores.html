@@ -204,33 +204,37 @@
 		<div class="col-md-12">
 			<div class = "panel panel-default">
 				<div class = "panel-heading nav navbar-default">
+					<div class="row">
+						<div class="col-md-6">
+						<ul class="nav navbar-nav navbar-left">
+							<b>Pendientes Por Fecha Cita</b>
+							<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
 
-					<ul class="nav navbar-nav navbar-left">
-						<b>Pendientes Por Fecha Cita</b>
-						<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
-
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<div class="col-md-1 col-xs-1 ">
-						            <div data-ng-if="loading">
-										<img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="img/loader.gif" />
-						            </div>
-						    </div>
-						<li>
-							<div class="col-md-12 col-xs-6 ">
-								<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
-								<button type="button" class="btn btn-default btn-circle-xs" ng-click="actualizarGrafica()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
-									<i class="fa fa-refresh"  aria-hidden="true"></i>
-								</button>
-								<button type="button" class="btn btn-default btn-circle-xs" ng-click="csvPendientes(filtroInput)" title="Exportar Pendientes" data-toggle="tooltip" data-placement="left" ng-disabled="loading">
-									<i class="fa fa-cloud-download"  aria-hidden="true"></i>
-								</button>
+						</ul>
+						</div>
+						<div class="col-md-6">
+						<ul class="nav navbar-nav navbar-right">
+							<div class="col-md-1 col-xs-1 ">
+										<div data-ng-if="loading">
+											<img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="img/loader.gif" />
+										</div>
+								</div>
+							<li>
+								<div class="col-md-12 col-xs-6 ">
+									<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
+									<button type="button" class="btn btn-default btn-circle-xs" ng-click="actualizarGrafica()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
+										<i class="fa fa-refresh"  aria-hidden="true"></i>
+									</button>
+									<button type="button" class="btn btn-default btn-circle-xs" ng-click="csvPendientes(filtroInput)" title="Exportar Pendientes" data-toggle="tooltip" data-placement="left" ng-disabled="loading">
+										<i class="fa fa-cloud-download"  aria-hidden="true"></i>
+									</button>
+								</div>
+							</li>
+						</ul>
 							</div>
-						</li>
-					</ul>
 
 
-
+						</div>
 				</div>
 				<div class="panel-body fixed-panel" >
 
