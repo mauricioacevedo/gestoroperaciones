@@ -6720,7 +6720,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 
             };
 
-     var upload = $scope.upload = new fileUpload({
+     var upload = $scope.upload = new uploadFileToUrl({
         url: window.location.protocol + window.location.pathname + 'services/cargar_datos'
 
     });
