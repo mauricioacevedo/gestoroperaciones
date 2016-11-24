@@ -6706,7 +6706,24 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
     $scope.usert.EQUIPO_ID="MANUAL";
     $scope.usert.ID="";
 
-
+ $scope.eliminarfi = function (file){
+                        //console.log(data.data);
+                var result = confirm("Esta seguro que desea eliminar el archivo "+file+ "?");
+                if (result) {
+                                //Logic to delete the item
+                    services.eliminarfile1(file).then(function(data){
+                                if(data.data=='OK'){
+                                    document.getElementById("warning").innerHTML="Archivo "+file+" eliminado correctamente.";
+                                $scope.error="Archivo "+file+" eliminado correctamente.";
+                                }
+                               services.listar1().then(function(data){
+                                    $scope.listadodocu1=data.data[0];
+                                    //console.log($scope.listadodocu);
+                                    return data.data;
+                                });
+                        });
+                };
+        };
 
     $scope.doubleDigit = function (num){
 
