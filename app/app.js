@@ -2379,6 +2379,31 @@ app.controller('cargar_datos22', function ($scope, $rootScope, $http, $location,
     $scope.usert.ID="";
 
 
+    $scope.doubleDigit = function (num){
+
+                if(num<0){
+                        num=0;
+                }
+
+                if(num<=9){
+                    return "0"+num;
+                }
+                return num;
+        };
+
+            $scope.uploadFile = function(){
+                $scope.user=$rootScope.logedUser.login;
+
+               var file = $scope.myFile;
+               console.log('file is');
+               console.dir(file);
+
+
+               var uploadUrl = 'services/cargar_datos';
+              // console.log ($scope.user);
+               fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
+
+            };
 //console.log($scope.userID);
 
 $rootScope.logout = function() {
