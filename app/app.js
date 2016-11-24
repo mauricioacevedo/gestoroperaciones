@@ -51,14 +51,7 @@ app.service('fileUpload', ['$http','$cookieStore', function ($http,$cookieStore)
 
 		  responseType: "arraybuffer"
                })
-                .success(function(){
-                alert('El archivo a sido subido correctamente');
 
-               })
-               .error(function(){
-                alert('Ha habido un error al subir el archivo');
-
-               });
             }
          }]);
 
@@ -6727,7 +6720,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 
             };
 
-     var upload = $scope.upload = new FileUploader({
+     var upload = $scope.upload = new FileUpload({
         url: window.location.protocol + window.location.pathname + 'services/cargar_datos'
 
     });
