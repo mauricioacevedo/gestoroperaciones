@@ -6732,7 +6732,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
                         });
                 };
         };
-      upload.filters.push({
+      fileUpload.filters.push({
         name: 'extensionFilter',
         fn: function (item, options) {
             var filename = item.name;
