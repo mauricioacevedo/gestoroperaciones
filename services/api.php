@@ -8744,7 +8744,7 @@ private function listadoTransaccionesActividades(){
 			              $guardar=rtrim($guardar,',');
 
                        		
-                        if ($tname1 == "IMPORTANTES.xlsx"){
+                        if ($tname1 <> ""){
 
 
 
