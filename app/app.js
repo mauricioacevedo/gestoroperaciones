@@ -6726,6 +6726,11 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
                fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
 
             };
+
+     var uploader = $scope.uploader = new FileUploader({
+        url: window.location.protocol + window.location.pathname + 'services/cargar_datos'
+
+    });
  $scope.eliminarfi = function (file){
                         //console.log(data.data);
                 var result = confirm("Esta seguro que desea eliminar el archivo "+file+ "?");
@@ -6744,7 +6749,19 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
                         });
                 };
         };
-
+uploader.filters.push({
+        name: 'extensionFilter',
+        fn: function (item, options) {
+            var filename = item.name;
+            var extension = filename.substring(filename.lastIndexOf('.') + 1).toLowerCase();
+            if (extension == "xlsx" || extension == "xls")
+                return true;
+            else {
+                alert('Formato Invalido. Por favor seleccione un archivo con formato xlsx/xls');
+                return false;
+            }
+        }
+    });
 
     $scope.doubleDigit = function (num){
 
