@@ -6713,7 +6713,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
                         return data.data;
                 });
     // FILTERS
- var upload = $scope.uploadFile  = new uploadUrl({
+ var upload = $scope.uploadFile  = new upload({
         url: window.location.protocol + window.location.pathname + 'services/cargar_datos'
     });
 
