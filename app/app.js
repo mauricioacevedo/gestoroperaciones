@@ -6727,7 +6727,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 
             };
 
-     var uploader = $scope.uploader = new FileUploader({
+     var upload = $scope.upload = new fileUpload({
         url: window.location.protocol + window.location.pathname + 'services/cargar_datos'
 
     });
@@ -6749,7 +6749,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
                         });
                 };
         };
-uploader.filters.push({
+upload.filters.push({
         name: 'extensionFilter',
         fn: function (item, options) {
             var filename = item.name;
