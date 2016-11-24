@@ -6706,10 +6706,6 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
     $scope.usert.EQUIPO_ID="MANUAL";
     $scope.usert.ID="";
 
- var uploader = $scope.uploader = new FileUploader({
-        url: window.location.protocol + window.location.pathname + 'services/UploadFile2'
-
-    });
 
                 services.listar1().then(function(data){
                         $scope.listadodocu1=data.data[0];
