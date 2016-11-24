@@ -6706,6 +6706,18 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
     $scope.usert.EQUIPO_ID="MANUAL";
     $scope.usert.ID="";
 
+ var uploader = $scope.uploader = new FileUploader({
+        url: window.location.protocol + window.location.pathname + 'services/UploadFile2'
+
+    });
+
+                services.listar1().then(function(data){
+                        $scope.listadodocu1=data.data[0];
+                        console.log($scope.listadodocu1);
+                        return data.data;
+                });
+    // FILTERS
+
  $scope.eliminarfi = function (file){
                         //console.log(data.data);
                 var result = confirm("Esta seguro que desea eliminar el archivo "+file+ "?");
