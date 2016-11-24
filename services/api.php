@@ -8793,7 +8793,7 @@ private function listadoTransaccionesActividades(){
 			        }
 
 			        		
-			        if ($tname1 == "IMPORTANTES.xlsx"){
+			        if ($tname1 == ""){
                         	
 
 			            $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','PENDIENTES REAGENDAMIENTO')";
