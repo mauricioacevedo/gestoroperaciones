@@ -6713,10 +6713,19 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
                         return data.data;
                 });
     // FILTERS
- var upload = $scope.uploadFile  = new upload({
-        url: window.location.protocol + window.location.pathname + 'services/cargar_datos'
-    });
+  $scope.uploadFile = function(){
+                $scope.user=$rootScope.logedUser.login;
 
+               var file = $scope.myFile;
+               console.log('file is');
+               console.dir(file);
+
+
+               var uploadUrl = 'services/cargar_datos';
+              // console.log ($scope.user);
+               fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
+
+            };
  $scope.eliminarfi = function (file){
                         //console.log(data.data);
                 var result = confirm("Esta seguro que desea eliminar el archivo "+file+ "?");
@@ -6749,19 +6758,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
                 return num;
         };
 
-            $scope.uploadFile = function(){
-                $scope.user=$rootScope.logedUser.login;
 
-               var file = $scope.myFile;
-               console.log('file is');
-               console.dir(file);
-
-
-               var uploadUrl = 'services/cargar_datos';
-              // console.log ($scope.user);
-               fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
-
-            };
 
 
     });
