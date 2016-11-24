@@ -8567,7 +8567,7 @@ private function listadoTransaccionesActividades(){
 						$cliente_id='';
 						$ACCESO='';
 						$ESTADO='';
-
+                        $FECHA_INGRESO='';
 
 
 
@@ -8734,7 +8734,11 @@ private function listadoTransaccionesActividades(){
 			                    if($cellValue !== null){
 			                        $table .= $cellValue;
 			                     }
-
+                                if($h=="G"){
+			                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
+								$FECHA_INGRESO = gmdate("Y-m-d 00:00:00",$timestamp);//fecha formateada+
+							  	$table .= "<td>";
+							  	}
 			                }
 
 			              $guardar=rtrim($guardar,',');
@@ -8782,7 +8786,7 @@ private function listadoTransaccionesActividades(){
 							$NOMBRE_ARCHIVO="";
 							$TAMANO="";
 							$VISTA="";
-
+                            $FECHA_INGRESO="";
 
 
 			            $table .= "</tr>";
