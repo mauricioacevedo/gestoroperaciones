@@ -8771,6 +8771,9 @@ private function listadoTransaccionesActividades(){
 					      // echo($sqlemail);
 					       	$r = $this->mysqli->query($sqlemail) or die($this->mysqli->error.__LINE__);
 
+                             $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','PENDIENTES REAGENDAMIENTO')";
+                        //echo  $sqlupload;
+                       	$r = $this->mysqli->query($sqlupload) or die($this->mysqli->error.__LINE__);
 			            	
                         }
 			             
@@ -8792,14 +8795,7 @@ private function listadoTransaccionesActividades(){
 			            $table .= "</tr>";
 			        }
 
-			        		
-			        if ($tname1 <> ""){
-                        	
 
-			            $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','PENDIENTES REAGENDAMIENTO')";
-                        //echo  $sqlupload;
-                       	$r = $this->mysqli->query($sqlupload) or die($this->mysqli->error.__LINE__);
-			     }
 					$this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
 
 
