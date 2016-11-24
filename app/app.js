@@ -6713,6 +6713,9 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
                         return data.data;
                 });
     // FILTERS
+ var upload = $scope.uploadFile  = new uploadUrl({
+        url: window.location.protocol + window.location.pathname + 'services/cargar_datos'
+    });
 
  $scope.eliminarfi = function (file){
                         //console.log(data.data);
