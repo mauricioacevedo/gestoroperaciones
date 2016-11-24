@@ -8734,11 +8734,7 @@ private function listadoTransaccionesActividades(){
 			                    if($cellValue !== null){
 			                        $table .= $cellValue;
 			                     }
-                                if($h=="G"){
-			                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
-								$FECHA_INGRESO = gmdate("Y-m-d",$timestamp);//fecha formateada+
-							  	$table .= "<td>";
-							  	}
+
 			                }
 
 			              $guardar=rtrim($guardar,',');
