@@ -8701,6 +8701,44 @@ private function listadoTransaccionesActividades(){
 					       } 
 
 
+			                $guardar="";
+			              	$PEDIDO_ID="";
+							$cliente_id="";
+							$ACCESO="";
+							$FUENTE="";
+							$FECHA_FIN="";
+							$NOVEDAD="";
+							$NOMBRE_ARCHIVO="";
+							$TAMANO="";
+							$VISTA="";
+
+
+
+			            $table .= "</tr>";
+			        }
+
+                   for($v=$start_v; $v<=$end_v; $v++){
+			                //empieza lectura horizontal
+
+                			if ($v==1) continue;
+			                $table .= "<tr>";
+			                //$filas= $start_h + 1;
+
+
+			                for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
+			                    $cellValue = $this->get_cell($h.$v, $objPHPExcel);
+
+			                    $table .= "<td>";
+			                    $guardar .=" '$cellValue',";
+
+			                    if($cellValue !== null){
+			                        $table .= $cellValue;
+			                     }
+
+			                }
+
+			              $guardar=rtrim($guardar,',');
+
                        		
                         if ($tname1 == "IMPORTANTES.xlsx"){
 
