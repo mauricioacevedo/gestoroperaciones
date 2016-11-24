@@ -6683,7 +6683,7 @@ app.controller('OcupacionAgendamientoCtrl', function ($scope, $rootScope, $locat
 
 });
 
-app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services, fileUpload,FileUploader){
+app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services, fileUpload){
 
         var userID=$cookieStore.get('logedUser').login;
         $rootScope.logedUser=$cookieStore.get('logedUser');
@@ -6720,7 +6720,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 
             };
 
-     var upload = $scope.upload = new FileUploader({
+     var upload = $scope.upload = new fileUpload({
         url: window.location.protocol + window.location.pathname + 'services/cargar_datos'
 
     });
