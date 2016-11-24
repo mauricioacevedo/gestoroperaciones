@@ -51,7 +51,14 @@ app.service('fileUpload', ['$http','$cookieStore', function ($http,$cookieStore)
 
 		  responseType: "arraybuffer"
                })
+                 .success(function(){
+                alert('El archivo a sido subido correctamente');
 
+               })
+               .error(function(){
+                alert('Ha habido un error al subir el archivo');
+
+               });
             }
          }]);
 
@@ -6683,7 +6690,7 @@ app.controller('OcupacionAgendamientoCtrl', function ($scope, $rootScope, $locat
 
 });
 
-app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services, fileUpload,uploadFileToUrl){
+app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services, fileUpload){
 
         var userID=$cookieStore.get('logedUser').login;
         $rootScope.logedUser=$cookieStore.get('logedUser');
@@ -6720,10 +6727,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 
             };
 
-     var upload = $scope.upload = new uploadFileToUrl({
-        url: window.location.protocol + window.location.pathname + 'services/cargar_datos'
 
-    });
  $scope.eliminarfi = function (file){
                         //console.log(data.data);
                 var result = confirm("Esta seguro que desea eliminar el archivo "+file+ "?");
@@ -6742,7 +6746,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
                         });
                 };
         };
-upload.filters.push({
+uploadUrl.filters.push({
         name: 'extensionFilter',
         fn: function (item, options) {
             var filename = item.name;
