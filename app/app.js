@@ -12113,7 +12113,7 @@ $scope.buscarCliente=function(localidad,direccion){
 
 			console.log($scope.eda.localidad);
 
-			if($scope.eda.localidad=='undefined'){
+			if($scope.eda.localidad==undefined){
 				alert("Seleccione localidad");
 				return;
 			}
