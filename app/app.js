@@ -10194,7 +10194,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
     // ------------------------DemePedido activacion --------------------------------------------------------------
     $scope.baby = function(pedido) {
         //console.log(pedido);
-        services.getPedidosPorPedido(pedido).then(function(data){
+        services.pedidosPorPedidoActivacion(pedido).then(function(data){
                      // console.log(data.data);
                       $scope.historico_pedido=data.data;
                       return data.data;
