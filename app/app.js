@@ -412,6 +412,13 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pedidosPorPedidoActivacion?pedido=' + pedido);
         }
 
+           obj.demePedidoActivacion function(user,concepto,pedido_actual,plaza){
+
+                return $http.get(serviceBase + 'demePedidoActivacion');
+        }
+
+
+
 //------------------------------------------------------fin_Activacion
 
 
@@ -10233,7 +10240,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             demePedidoButton.setAttribute("disabled","disabled");
             demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-        var kami=services.demePedido($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,'',$scope.fuente).then(function(data){
+        var kami=services.demePedidoActivacion($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,'',$scope.fuente).then(function(data){
 
             $scope.peds = data.data;
 
@@ -10251,12 +10258,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                 $scope.pedidoIsActive=true;
                 $scope.errorDatos=null;
                 $scope.fecha_inicio=$rootScope.fechaProceso();
-
-                    if($scope.peds[0].STATUS=="PENDI_PETEC"&&$scope.peds[0].ASESOR!=""){
-                            $scope.busy=$scope.peds[0].ASESOR;
-                            $scope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
-
-                                }
 
                 $scope.baby($scope.pedido1);
 
