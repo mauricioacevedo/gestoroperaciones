@@ -12130,8 +12130,8 @@ $scope.buscarCliente=function(localidad,direccion){
 
 					}
 			  , function errorCallback(response,status) {
-				 console.log(response);
-					$scope.errorDatos=response;
+				 //console.log(response);
+					$scope.errorDatos="sin registros. Ingrese otra dirección";
 
 				  }
 			  );
