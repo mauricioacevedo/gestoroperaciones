@@ -11353,6 +11353,61 @@ $sqlfenix=
 
 		}
 
+		private function clientesEdatel(){
+
+			if($this->get_request_method() != "GET"){
+					$this->response('',406);
+			}
+
+			$this->dbConnect03();
+
+			$today = date("Y-m-d");
+			$localidad=$this->_request['localidad'];
+
+			if($localidad==""||$localidad=="undefined"){
+				$localidad="MEDELLIN";
+			}
+
+			$query=	" SELECT ".
+					"	e.LOCALIDAD ".
+					"	, e.PRODUCT_ID ".
+					"	, e. DIREC_INSTALACION ".
+					"	, e.RUTA ".
+					"	, e.DISTRIB ".
+					"	, e.ARM ".
+					"	, e.CAJA ".
+					"	, e.PSCAJA ".
+					"	, e.LISTON ".
+					"	, e.PSLIS ".
+					"	, e.BDOR ".
+					"	, e.PUERTO ".
+					"	, e.IDPTO ".
+					"	, e.HOR ".
+					"	, e.PH ".
+					"	, e.EST_COMP ".
+					"	, e.TIP_PDTO ".
+					"	, e.DESCP_ESTRA ".
+					"	FROM gestor_informes.eda_clientes e ".
+					"	where e.LOCALIDAD='$localidad' ".
+					"	ORDER BY 1 ASC ";
+
+													//echo $query;
+				$r = $this->mysqli03->query($query) or die($this->mysqli03->error.__LINE__);
+
+				if($r->num_rows > 0){
+						$result = array();
+
+						while($row = $r->fetch_assoc()){
+
+								$result[] = $row;
+						}
+
+						$this->response($this->json(array($result,$localidad), 200); // send user details
+				}
+				$this->response('',204);        // If no records "No Content" status
+
+		}
+
 		//------------------------Listado de Localidades Edatel
 
 
