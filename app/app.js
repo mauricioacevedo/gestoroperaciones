@@ -12313,7 +12313,7 @@ app.directive('tooltip', function() {
     };
   });
 
-app..directive('onKeyEnter', ['$parse', function($parse) {
+app.directive('onKeyEnter', ['$parse', function($parse) {
         return {
             restrict: 'A',
             link: function(scope, element, attrs) {
