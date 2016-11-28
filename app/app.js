@@ -885,11 +885,23 @@ obj.getDepartamentosParametrizacionSiebel = function(){
         return $http.get(serviceBase + 'buscarOfertaSiebelAsignaciones?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user);
         }
 
-	 // -----------------------------  Siebel Asignaciones//
+	 // -----------------------------  Siebel Asignaciones
 
 	obj.getPedidosGestorUser = function(grupo){
         return $http.get(serviceBase + 'PedidosGestorUser?grupo='+grupo);
         }
+
+	// Edatel Asignaciones ---------------------------------------------------------
+
+
+	obj.getLocalidadesEdatel = function(localidad){
+        return $http.get(serviceBase + 'LocalidadesEdatel?localidad='+localidad);
+        }
+
+
+
+	// --------------------------------------------------------- Edatel Asignaciones
+
 
 //-------------------------------------------------------------------Fin-asignaciones
 
@@ -11602,7 +11614,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		$scope.pedidos=[];
 		$scope.pedidosUnicos='';
 		$scope.historico_pedido=[];
-		$rootScope.actualView="tx/siebel_asignaciones";
+		$rootScope.actualView="edatel/clientes";
 		$scope.iconcepto="COBERTURA";
 		$scope.popup='';
 		$scope.intervalLightKPIS='';
@@ -11921,15 +11933,16 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 	// GuardarPedido --------------------------------------------------------------
 
-	$scope.listarEstados=function(){
+	$scope.listarLocalidades=function(localidad){
 
-			services.getlistadoOpcionesSiebelAsignaciones().then(
+			$scope.localidad="MEDELLIN";
+			services.getLocalidadesEdatel($scope.localidad).then(
 
 			  function(data){
 
-				  $scope.Observaciones=data.data[0];
-				  $scope.Estados=data.data[1];
-				  $scope.listadoOpcionesSiebel=data.data[2];
+				  console.log(data);
+
+				  $scope.listadoLocalidad=data.data[0];
 
 				  return data.data;
 
@@ -11937,17 +11950,15 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 					}
 			  , function errorCallback(response,status) {
 				  //console.log(status);
-					$scope.errorDatos="Sin Procesos";
+					$scope.errorDatos="Sin localidades";
 
 				  }
 			  );
 		};
 
-	$scope.listarEstados();
+	$scope.listarLocalidades();
 
-	$scope.onChangeAccion=function(){
-      $scope.accRdy=true;
- };
+
 
 	$scope.guardarPedido=function(InfoPedido,gestion,status){
 
