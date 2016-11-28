@@ -11337,7 +11337,7 @@ $sqlfenix=
 					" FROM gestor_informes.eda_clientes e ".
 					" where e.LOCALIDAD='$localidad' ";
 													//echo $query;
-				$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+				$r = $this->mysqli03->query($query) or die($this->mysqli03->error.__LINE__);
 
 				if($r->num_rows > 0){
 						$result = array();
