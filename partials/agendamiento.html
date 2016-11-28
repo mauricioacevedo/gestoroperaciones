@@ -87,7 +87,66 @@
         </div>
     </div><!--Parametrizacion -->
 </div><!--ROW parametrizacion -->
+<div class="panel-body fixed-panel" >
 
+					 <table class="table small table-bordered table-condensed">
+							  <tr>
+								<th >Grupo</th>
+								<th >Ultima Edicion</th>
+								<th >Usuario</th>
+								<th >Editar</th>
+							  </tr>
+							  <tr>
+								<td >Asignaciones</td>
+								<td ><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
+								<td >{{UsuarioParametro}}</td>
+								<td >
+										<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevo" style="width:auto;">
+											<option value="FECHA_CITA">FECHA CITA</option>
+											<option value="FECHA_ESTADO">FECHA ESTADO</option>
+											<option value="FECHA_INGRESO">FECHA INGRESO</option>
+										</select>
+										<button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO',ordenamientoDemepedidoNuevo);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+									<button type="button" class="btn btn-default btn-circle-xs" ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO')"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
+										<i class="fa fa-refresh"  aria-hidden="true"></i>
+									</button>
+								  </td>
+							  </tr>
+							  <tr>
+								<td >Reconfiguracion</td>
+								<td ><font color='blue'>{{ordenamientoDemepedidoUpdateReconfiguracion}}</font></td>
+								<td >{{UsuarioParametroReconfiguracion}}</td>
+								<td >
+                                <select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoReconfiguracion" style="width:auto;">
+                                    <option value="FECHA_CITA">FECHA CITA</option>
+                                    <option value="FECHA_ESTADO">FECHA ESTADO</option>
+                                    <option value="FECHA_INGRESO">FECHA INGRESO</option>
+                                </select>
+                                <button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION',ordenamientoDemepedidoReconfiguracion);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+								  <button type="button" class="btn btn-default btn-circle-xs" ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION')"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
+										<i class="fa fa-refresh"  aria-hidden="true"></i>
+									</button></td>
+							  </tr>
+						</table>
+
+				</div>
+				<div class="panel-footer clearfix" >
+
+					<div class="col-md-8">
+
+						<ul class="nav navbar-nav navbar-left">
+
+
+						</ul>
+
+					</div>
+
+
+				</div>
+
+
+			</div>
+		</div>
 <!-- ACA COMIENZA LA FIESTA  AGENDAMIENTO-->
             <div class="row" ng-controller="TabController">
 				<!--    <ul class="nav nav-pills">
