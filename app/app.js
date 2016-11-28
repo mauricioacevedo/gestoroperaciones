@@ -12090,7 +12090,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 			  function(data){
 
-				  $scope.listadoLocalidad=data.data[0].LOCALIDAD;
+				  $scope.listadoLocalidad=data.data[0][0].LOCALIDAD;
 
 				  return data.data;
 
