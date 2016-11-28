@@ -907,7 +907,7 @@ obj.getDepartamentosParametrizacionSiebel = function(){
         }
 
 	obj.getClientesEdatel = function(localidad){
-        return $http.get(serviceBase + 'clientesEdatel?localidad='+localidad);
+        return $http.get(serviceBase + 'clientesEdatel?localidad='+localidad+'&direccion='+direccion);
         }
 
 	// --------------------------------------------------------- Edatel Asignaciones
@@ -12107,10 +12107,11 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 	$scope.listarLocalidades();
 
 
-$scope.buscarCliente=function(localidad){
+$scope.buscarCliente=function(localidad,direccion){
 
 			$scope.eda.localidad=localidad;
-			services.getClientesEdatel($scope.eda.localidad).then(
+			$scope.eda.direccion=direccion;
+			services.getClientesEdatel($scope.eda.localidad,$scope.eda.direccion).then(
 
 			  function(data){
 

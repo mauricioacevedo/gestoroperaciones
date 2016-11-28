@@ -11364,6 +11364,7 @@ $sqlfenix=
 
 			$today = date("Y-m-d");
 			$localidad=$this->_request['localidad'];
+			$direccion=$this->_request['direccion'];
 
 			if($localidad==""||$localidad=="undefined"){
 				$localidad="MEDELLIN";
@@ -11390,6 +11391,7 @@ $sqlfenix=
 					"	, e.DESCP_ESTRA ".
 					"	FROM gestor_informes.eda_clientes e ".
 					"	where e.LOCALIDAD='$localidad' ".
+					"	and e.DIREC_INSTALACION like '' ".
 					"	ORDER BY 1 ASC ";
 
 													//echo $query;
