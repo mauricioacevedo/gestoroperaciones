@@ -4168,7 +4168,7 @@ $queryConceptosFcita=" select ".
 				" FROM  gestor_pendientes_reagendamiento ".
 				" WHERE  STATUS in  ('PENDI_AGEN') ".
 				" AND (MIGRACION is null or MIGRACION='' OR MIGRACION!='SI') ".
-				" GROUP BY label ASC ";
+				" GROUP BY label DESC ";
 
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
