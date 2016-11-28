@@ -11391,7 +11391,7 @@ $sqlfenix=
 					"	, e.DESCP_ESTRA ".
 					"	FROM gestor_informes.eda_clientes e ".
 					"	where e.LOCALIDAD='$localidad' ".
-					"	and e.DIREC_INSTALACION like '' ".
+					"	and e.DIREC_INSTALACION like '$direccion' ".
 					"	ORDER BY 1 ASC ";
 
 													//echo $query;
