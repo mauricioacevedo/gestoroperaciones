@@ -323,7 +323,7 @@
                                 $result = array();
                                 $fp = fopen("../tmp/$filename", 'w');
 
-                                  fputcsv($fp, array( 'PEDIDO_ID','CONCEPTOS','ACTIVIDADES','NOVEDAD','FECHA_CITA_FENIX','FECHA_CITA_REAGENDA','JORNADA_CITA','FECHA_INGRESO','FECHA_CARGA','ASESOR','FECHA_INICIO','FECHA_FIN','FECHA_ESTADO','DURACION','OBSERVACION_FENIX','OBSERVACION_GESTOR','FUENTE','ACTIVIDAD_GESTOR','ASESORNAME','CELULAR_AVISAR','CLIENTE_ID','CORREO_UNE','DIRECCION_ENVIO','E_MAIL_AVISAR','MICROZONA','NOMBRE_USUARIO','PARENT_ID','TELEFONO_AVISAR','TIEMPO_TOTAL','PROGRAMACION','SOURCE','DEPARTAMENTO','ACCESO','NUMERO_CR','IDLLAMADA','SUBZONA_ID','PROCESO','INTENTOS DE CONTACTO','TECNOLOGIA'));
+                                  fputcsv($fp, array( 'PEDIDO_ID','CONCEPTOS','ACTIVIDADES','NOVEDAD','FECHA_CITA_FENIX','FECHA_CITA_REAGENDA','JORNADA_CITA','FECHA_INGRESO','FECHA_CARGA','ASESOR','FECHA_INICIO','FECHA_FIN','FECHA_ESTADO','DURACION','OBSERVACION_FENIX','OBSERVACION_GESTOR','FUENTE','ACTIVIDAD_GESTOR','ASESORNAME','CELULAR_AVISAR','CLIENTE_ID','CORREO_UNE','DIRECCION_ENVIO','E_MAIL_AVISAR','MICROZONA','NOMBRE_USUARIO','PARENT_ID','TELEFONO_AVISAR','TIEMPO_TOTAL','PROGRAMACION','SOURCE','DEPARTAMENTO','ACCESO','NUMERO_CR','IDLLAMADA','SUBZONA_ID','PROCESO','INTENTOS DE CONTACTO','TECNOLOGIA'),chr (124));
 
 				fclose($fp);
 
@@ -332,8 +332,8 @@
 
                                 while($row = $r->fetch_assoc()){
 
-					//$row['OBSERVACION_FENIX']= trim(preg_replace('/\s+|', ' ',$row['OBSERVACION_FENIX']));
-					//$row['OBSERVACION_GESTOR'] = trim(preg_replace('/\s+|', ' ', $row['OBSERVACION_GESTOR']));
+					$row['OBSERVACION_FENIX']= trim(preg_replace('/\s+|', ' ',$row['OBSERVACION_FENIX']));
+					$row['OBSERVACION_GESTOR'] = trim(preg_replace('/\s+|', ' ', $row['OBSERVACION_GESTOR']));
                    //$row['NOVEDAD'] = trim(preg_replace('/\s+|,', ' ', $row['NOVEDAD']));
                    $row['CONCEPTOS'] =  str_replace(',', ' ', $row['CONCEPTOS']);
                    $row['ACTIVIDADES'] =  str_replace(',', ' ', $row['ACTIVIDADES']);
@@ -350,7 +350,7 @@
 
 
 
-						    fputcsv($fp, $fields);
+						    fputcsv($fp, $fields,chr (124));
 						}
 						unset($result);
 						$result=NULL;
@@ -378,7 +378,7 @@
 				$fp = fopen("../tmp/$filename", 'a');
 
                                 foreach ($result as $fields) {
-                        		fputcsv($fp, $fields);
+                        		fputcsv($fp, $fields,chr (124));
                                 }
 
                                 fclose($fp);
@@ -4168,7 +4168,7 @@ $queryConceptosFcita=" select ".
 				" FROM  gestor_pendientes_reagendamiento ".
 				" WHERE  STATUS in  ('PENDI_AGEN') ".
 				" AND (MIGRACION is null or MIGRACION='' OR MIGRACION!='SI') ".
-				" GROUP BY label ASC ";
+				" GROUP BY label DESC ";
 
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -8567,7 +8567,7 @@ private function listadoTransaccionesActividades(){
 						$cliente_id='';
 						$ACCESO='';
 						$ESTADO='';
-
+                        $FECHA_INGRESO='';
 
 
 
@@ -8701,8 +8701,46 @@ private function listadoTransaccionesActividades(){
 					       } 
 
 
+			                $guardar="";
+			              	$PEDIDO_ID="";
+							$cliente_id="";
+							$ACCESO="";
+							$FUENTE="";
+							$FECHA_FIN="";
+							$NOVEDAD="";
+							$NOMBRE_ARCHIVO="";
+							$TAMANO="";
+							$VISTA="";
+
+
+
+			            $table .= "</tr>";
+			        }
+
+                   for($v=$start_v; $v<=$end_v; $v++){
+			                //empieza lectura horizontal
+
+                			if ($v==1) continue;
+			                $table .= "<tr>";
+			                //$filas= $start_h + 1;
+
+
+			                for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
+			                    $cellValue = $this->get_cell($h.$v, $objPHPExcel);
+
+			                    $table .= "<td>";
+			                    $guardar .=" '$cellValue',";
+
+			                    if($cellValue !== null){
+			                        $table .= $cellValue;
+			                     }
+
+			                }
+
+			              $guardar=rtrim($guardar,',');
+
                        		
-                        if ($tname1 == "IMPORTANTES.xlsx"){
+                        if ($tname1 <> ""){
 
 
 
@@ -8729,6 +8767,9 @@ private function listadoTransaccionesActividades(){
 					      // echo($sqlemail);
 					       	$r = $this->mysqli->query($sqlemail) or die($this->mysqli->error.__LINE__);
 
+                             $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','PENDIENTES REAGENDAMIENTO')";
+                        //echo  $sqlupload;
+                       	$r = $this->mysqli->query($sqlupload) or die($this->mysqli->error.__LINE__);
 			            	
                         }
 			             
@@ -8744,20 +8785,13 @@ private function listadoTransaccionesActividades(){
 							$NOMBRE_ARCHIVO="";
 							$TAMANO="";
 							$VISTA="";
-
+                            $FECHA_INGRESO="";
 
 
 			            $table .= "</tr>";
 			        }
 
-			        		
-			        if ($tname1 == "IMPORTANTES.xlsx"){
-                        	
 
-			            $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','PENDIENTES REAGENDAMIENTO')";
-                        //echo  $sqlupload;
-                       	$r = $this->mysqli->query($sqlupload) or die($this->mysqli->error.__LINE__);
-			     }
 					$this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
 
 
