@@ -412,9 +412,6 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pedidosPorPedidoActivacion?pedido=' + pedido);
         }
 
-          obj.demePedidoActivacion function(){
-                return $http.get(serviceBase + 'demePedidoActivacion');
-        }
 
 
 //------------------------------------------------------fin_Activacion
