@@ -11567,6 +11567,480 @@ $scope.doubleDigit= function (num){
 });
 // -----------------------------------------------Controlador para Gestion En Siebel
 
+// Controlador para Gestion de Edatel -----------------------------------------------
+app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, $timeout, services) {
+
+
+
+	// Basura del logueo ---------------------------------
+		$rootScope.logedUser=$cookieStore.get('logedUser');
+		var userID=$cookieStore.get('logedUser').login;
+			document.getElementById('logout').className="btn btn-md btn-danger";
+			var divi=document.getElementById("logoutdiv");
+				divi.style.visibility="visible";
+				divi.style.position="relative";
+
+
+		$rootScope.logout = function() {
+					services.logout(userID);
+					$cookieStore.remove('logedUser');
+					$rootScope.logedUser=undefined;
+					$scope.pedidos={};
+					clearInterval($scope.intervalLightKPIS);
+					document.getElementById('logout').className="btn btn-md btn-danger hide";
+					var divi=document.getElementById("logoutdiv");
+					divi.style.position="absolute";
+					divi.style.visibility="hidden";
+					$location.path('/');
+			};
+
+
+
+	//  ---------------------------------Basura del logueo
+
+	// Inicio de Variables ---------------------------------
+		$scope.pedidos=[];
+		$scope.pedidosUnicos='';
+		$scope.historico_pedido=[];
+		$rootScope.actualView="tx/siebel_asignaciones";
+		$scope.iconcepto="COBERTURA";
+		$scope.popup='';
+		$scope.intervalLightKPIS='';
+		$scope.pedidoinfo='';
+		$scope.errorDatos=null;
+		$scope.accRdy=false;
+		$scope.fecha_inicio=null;
+		$scope.fecha_fin=null;
+
+		var pedidos=services.getPedidosUser(userID).then(function(data){
+				$scope.pedidos=data.data[0];
+				$scope.pedidosUnicos=data.data[1];
+				return data.data;
+					});
+
+		 var original = $scope.pedidos;
+		 var originalUnico=$scope.pedidosUnicos;
+
+		$scope.peds={};
+		$scope.timeInit=0;
+		$scope.pedidos = angular.copy(original);
+
+		$scope.pedidoIsActive=false;
+
+	// ---------------------------------Inicio de Variables
+
+
+// Disque Light KPI --------------------------------------------------------------
+
+	$scope.intervalLightKPIS = setInterval(function(){
+                $scope.actualizarLightKPIS();
+           },60000);
+
+        $scope.actualizarLightKPIS = function (){
+                services.getLightKPIS().then(function(data){
+			$rootScope.oldlightkpi=$rootScope.lightkpi;
+                        $rootScope.lightkpi=data.data[0];
+
+
+			if($rootScope.oldlightkpi==""||$rootScope.oldlightkpi==undefined){
+				$rootScope.oldlightkpi=$rootScope.lightkpi;
+			}
+
+			//console.log($rootScope.lightkpi);
+			//
+			var arrayLength = $rootScope.lightkpi.length;
+			var arrayLength2 = $rootScope.oldlightkpi.length;
+
+
+			var negocioAsingaciones="<table class='table small table-striped table-hover table-bordered table-condensed'>"+
+                                "<thead>"+
+                                        "<th>Concepto</th>"+
+                                        "<th>Cantidad</th>"+
+                                "</thead>"+
+                                "<tbody>";
+			var negocioReconfiguracion="<table class='table small table-striped table-hover table-bordered table-condensed'>"+
+                                "<thead>"+
+                                        "<th>Concepto</th>"+
+                                        "<th>Cantidad</th>"+
+                                "</thead>"+
+                                "<tbody>";
+
+			var negocioOtros="<table class='table small table-striped table-hover table-bordered table-condensed'>"+
+                                "<thead>"+
+                                        "<th>Concepto</th>"+
+                                        "<th>Cantidad</th>"+
+                                "</thead>"+
+                                "<tbody>";
+
+
+			$rootScope.totalNegocioAsignacionesOld=$rootScope.totalNegocioAsignaciones;
+			$rootScope.totalNegocioReconfiguracionOld=$rootScope.totalNegocioReconfiguracion;
+			$rootScope.totalNegocioOtrosOld=$rootScope.totalNegocioOtros;
+
+
+			$rootScope.totalNegocioAsignaciones=0;
+			$rootScope.totalNegocioReconfiguracion=0;
+			$rootScope.totalNegocioOtros=0;
+
+
+			for (var i = 0; i < arrayLength; i++) {
+				var counter=$rootScope.lightkpi[i].COUNTER;
+				var concepto_id=$rootScope.lightkpi[i].CONCEPTO_ID;
+
+				if(concepto_id=='PETEC'||concepto_id=='OKRED'||concepto_id=='PETEC-BOG'||concepto_id=='PEOPP'||concepto_id=='19'||concepto_id=='O-13'||concepto_id=='O-15'||concepto_id=='O-106'||concepto_id=='PUMED'||concepto_id=='COBERTURA'||concepto_id=='CONSTRUCCION'||concepto_id=='DISENO'||concepto_id=='DISPONIBILIDAD'){
+					negocioAsingaciones+="<tr><td><a href='./#/registros/"+concepto_id+"'>"+concepto_id+"</a></td><td>"+counter+"<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
+					$rootScope.totalNegocioAsignaciones=parseInt($rootScope.totalNegocioAsignaciones)+parseInt(counter);
+				}else if(concepto_id=='14'||concepto_id=='99' ||concepto_id=='92'){
+                        negocioReconfiguracion+="<tr><td><a href='./#/registros/"+concepto_id+"'>"+concepto_id+"</a></td><td>"+counter+"<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
+					$rootScope.totalNegocioReconfiguracion=parseInt($rootScope.totalNegocioReconfiguracion)+parseInt(counter);
+                                }else if(concepto_id=='O-101'){
+                                    negocioReconfiguracion+="<tr><td><a href='./#/registros/"+concepto_id+"'>"+concepto_id+"</a></td><td>"+counter+"<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
+                                    $rootScope.totalNegocioReconfiguracion=parseInt($rootScope.totalNegocioReconfiguracion)+parseInt(counter);
+                                    }else{
+					                   negocioOtros+="<tr><td><a href='./#/registros/"+concepto_id+"'>"+concepto_id+"</a></td><td>"+counter+"<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
+					                   $rootScope.totalNegocioOtros=parseInt($rootScope.totalNegocioOtros)+parseInt(counter);
+				                    }
+			}
+
+			$rootScope.nasignacionesstyle={};
+			$rootScope.nreconfiguracionstyle={};
+			$rootScope.notrosstyle={};
+
+
+			if($rootScope.totalNegocioAsignaciones>$rootScope.totalNegocioAsignacionesOld){
+                        	$rootScope.nasignacionesstyle.ICON="fa fa-arrow-circle-up fa-2x";
+                             	$rootScope.nasignacionesstyle.STYLE="red";
+                        }else if($rootScope.totalNegocioAsignaciones<$rootScope.totalNegocioAsignacionesOld){
+                                $rootScope.nasignacionesstyle.ICON="fa fa-arrow-circle-down fa-2x";
+                                $rootScope.nasignacionesstyle.STYLE="green";
+                        }else {
+                                $rootScope.nasignacionesstyle.ICON="fa fa-minus-circle fa-2x";
+                                $rootScope.nasignacionesstyle.STYLE="gray";
+                        }
+
+                        if($rootScope.totalNegocioReconfiguracion>$rootScope.totalNegocioReconfiguracionOld){
+                                $rootScope.nreconfiguracionstyle.ICON="fa fa-arrow-circle-up fa-2x";
+                                $rootScope.nreconfiguracionstyle.STYLE="red";
+                        }else if($rootScope.totalNegocioReconfiguracion<$rootScope.totalNegocioReconfiguracionOld){
+                                $rootScope.nreconfiguracionstyle.ICON="fa fa-arrow-circle-down fa-2x";
+                                $rootScope.nreconfiguracionstyle.STYLE="green";
+                        }else {
+                                $rootScope.nreconfiguracionstyle.ICON="fa fa-minus-circle fa-2x";
+                                $rootScope.nreconfiguracionstyle.STYLE="gray";
+                        }
+
+
+                        if($rootScope.totalNegocioOtros>$rootScope.totalNegocioOtrosOld){
+                                $rootScope.notrosstyle.ICON="fa fa-arrow-circle-up fa-2x";
+                                $rootScope.notrosstyle.STYLE="red";
+                        }else if($rootScope.totalNegocioOtros<$rootScope.totalNegocioOtrosOld){
+                                $rootScope.notrosstyle.ICON="fa fa-arrow-circle-down fa-2x";
+                                $rootScope.notrosstyle.STYLE="green";
+                        }else {
+                                $rootScope.notrosstyle.ICON="fa fa-minus-circle fa-2x";
+                                $rootScope.notrosstyle.STYLE="gray";
+                        }
+
+
+			document.getElementById("nasignaciones").innerHTML=negocioAsingaciones+"</tbody></table>";
+			document.getElementById("nreconfiguracion").innerHTML=negocioReconfiguracion+"</tbody></table>";
+			document.getElementById("notros").innerHTML=negocioOtros+"</tbody></table>";
+
+                        return data.data;
+                });
+        }
+
+        $scope.$on(
+                "$destroy",
+                        function( event ) {
+                            $timeout.cancel($scope.intervalLightKPIS);
+                            clearInterval($scope.intervalLightKPIS);
+          });
+
+	// --------------------------------------------------------------Disque Light KPI
+
+
+
+	// DemePedido --------------------------------------------------------------
+	$scope.baby = function(pedido) {
+		//console.log(pedido);
+		services.getPedidosPorPedido(pedido).then(function(data){
+                     // console.log(data.data);
+                      $scope.historico_pedido=data.data;
+                      return data.data;
+                 });
+	};
+
+	$scope.start = function(pedido) {
+
+		var pedido1='';
+		$scope.popup='';
+		$scope.errorDatos=null;
+		$scope.InfoPedido=[];
+		$scope.fecha_inicio=null;
+		$scope.accRdy=false;
+		$scope.InfoGestion={};
+		$scope.InfoPedido.INCIDENTE='NO';
+		$scope.pedidoIsGuardado=false;
+
+		if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
+			//alert($scope.peds[0].PEDIDO_ID);
+			 pedido1=$scope.peds[0].PEDIDO_ID;
+
+		}
+		$scope.peds={};
+		$scope.mpedido={};
+		$scope.bpedido='';
+		$scope.busy="";
+		$scope.pedido1=pedido1;
+		$scope.error="";
+		$scope.iplaza='TODOS';
+		$scope.fuente="SIEBEL";
+
+		var demePedidoButton=document.getElementById("iniciar");
+			demePedidoButton.setAttribute("disabled","disabled");
+			demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
+
+		var kami=services.demePedido($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,'',$scope.fuente).then(function(data){
+
+			$scope.peds = data.data;
+
+			console.log($scope.peds);
+
+			if(data.data==''){
+
+				document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Estado.";
+				$scope.errorDatos="No hay Registros. Intente Cambiando de Estado.";
+			}else{
+
+				document.getElementById("warning").innerHTML="";
+				$scope.pedido1=$scope.peds[0].PEDIDO_ID;
+                $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+				$scope.pedidoIsActive=true;
+				$scope.errorDatos=null;
+				$scope.fecha_inicio=$rootScope.fechaProceso();
+
+					if($scope.peds[0].STATUS=="PENDI_PETEC"&&$scope.peds[0].ASESOR!=""){
+                            $scope.busy=$scope.peds[0].ASESOR;
+							$scope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
+
+                                }
+
+				$scope.baby($scope.pedido1);
+
+			}
+	      		var demePedidoButton=document.getElementById("iniciar");
+	                demePedidoButton.removeAttribute("disabled");
+					demePedidoButton.className = "btn btn-success btn-DemePedido-xs";
+					return data.data;
+    		});
+
+    	};
+
+	// -------------------------------------------------------------- DemePedido
+
+	// BuscarPedido ---------------------------------------------------------------
+
+	$scope.buscarPedido = function(buscar,pedidoinfo) {
+
+			var pedido1='';
+			$scope.popup='';
+			$scope.errorDatos=null;
+			$scope.InfoPedido=[];
+			$scope.fecha_inicio=null;
+			$scope.accRdy=false;
+			$scope.InfoGestion={};
+			$scope.InfoPedido.INCIDENTE='NO';
+			$scope.pedidoIsGuardado=false;
+
+			$scope.pedidoActual=pedidoinfo;
+
+			$scope.buscar=buscar;
+
+
+
+          var kami=services.getBuscarOfertaSiebelAsignaciones(buscar,$scope.pedidoActual,$rootScope.logedUser.login).then(
+
+			  function(data){
+
+				 if(data.data==''){
+						$scope.errorDatos="No hay Registros. Intente con otra oferta";
+					 	$scope.peds={};
+						$scope.mpedido={};
+						$scope.busy="";
+						$scope.pedidoIsActive=false;
+					}else{
+
+						$scope.peds = data.data[1];
+				  	   	$scope.ocupado=data.data[0];
+						$scope.pedido1=$scope.peds[0].PEDIDO_ID;
+				  	   	$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+
+						var dat=data.status;
+						//alert("'"+data.status+"'");
+							if(dat==204){
+							   document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Estado";
+								$scope.errorDatos="No hay Registros. Intente Cambiando de Estado";
+								$scope.peds={};
+								$scope.mpedido={};
+								$scope.busy="";
+								$scope.pedidoIsActive=false;
+
+							}else{
+
+								   if($scope.ocupado==true){
+													$scope.busy=$scope.peds[0].ASESOR;
+													$scope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.busy;
+													return;
+
+									 }
+											$scope.errorDatos=null;
+											$scope.pedidoIsActive=true;
+											$scope.fecha_inicio=$rootScope.fechaProceso();
+
+
+									return data.data;
+							}
+					}
+			  });
+
+
+        };
+
+
+
+
+
+
+
+
+
+
+
+	// --------------------------------------------------------------- BuscarPedido
+
+	// GuardarPedido --------------------------------------------------------------
+
+	$scope.listarEstados=function(){
+
+			services.getlistadoOpcionesSiebelAsignaciones().then(
+
+			  function(data){
+
+				  $scope.Observaciones=data.data[0];
+				  $scope.Estados=data.data[1];
+				  $scope.listadoOpcionesSiebel=data.data[2];
+
+				  return data.data;
+
+
+					}
+			  , function errorCallback(response,status) {
+				  //console.log(status);
+					$scope.errorDatos="Sin Procesos";
+
+				  }
+			  );
+		};
+
+	$scope.listarEstados();
+
+	$scope.onChangeAccion=function(){
+      $scope.accRdy=true;
+ };
+
+	$scope.guardarPedido=function(InfoPedido,gestion,status){
+
+		$scope.fecha_fin=$rootScope.fechaProceso();
+		$scope.stautsGo=status[0].STATUS;
+
+		//console.log($scope.stautsGo);
+
+		$scope.InfoGestion={
+			ID:gestion.ID,
+			OFERTA:gestion.PEDIDO_ID,
+			MUNICIPIO_ID:gestion.MUNICIPIO_ID,
+			TRANSACCION:gestion.DESC_TIPO_TRABAJO,
+			ESTADO:gestion.CONCEPTO_ID,
+			FECHA:gestion.FECHA_ESTADO,
+			DURACION:null,
+			INCIDENTE:InfoPedido.INCIDENTE,
+			FECHA_INICIO:$scope.fecha_inicio,
+			FECHA_FIN:$scope.fecha_fin,
+			ESTADO_FINAL:InfoPedido.ESTADO_PROCESO,
+			OBSERVACION:InfoPedido.OBSERVACIONES_PROCESO,
+			USUARIO:$rootScope.logedUser.login,
+			STATUS:$scope.stautsGo
+			}
+
+		//console.log($scope.InfoGestion);
+
+
+		services.insertTransaccionNCA($scope.InfoGestion).then(
+
+			  function(data){
+
+				  $scope.pedidoIsGuardado = true;
+				  $scope.errorDatos = null;
+				  $scope.InfoPedido = [];
+				  $scope.fecha_inicio = null;
+				  $scope.fecha_fin = null;
+				  $scope.accRdy = false;
+				  $scope.InfoGestion = {};
+				  $scope.pedidoOcupado = false
+				  $scope.pedidoIsActive = false
+				  $scope.peds = {};
+				  $scope.mpedido = {};
+				  $scope.bpedido = '';
+				  $scope.busy = "";
+				  $scope.error = "";
+				  $scope.iplaza = 'TODOS';
+				  $scope.fuente = "SIEBEL";
+				  $scope.buscar = null;
+				  return data.data;
+
+
+					}
+			  , function errorCallback(response,status) {
+				  //console.log(status);
+					$scope.errorDatos="No se pudo guardar";
+
+				  }
+			  );
+
+
+
+
+
+
+
+	};
+
+
+	// -------------------------------------------------------------- GuardarPedido
+
+
+
+
+
+
+
+$scope.doubleDigit= function (num){
+
+		if(num<0){
+			num=0;
+		}
+
+	        if(num<=9){
+        	    return "0"+num;
+	        }
+        	return num;
+	    };
+
+
+});
+// -----------------------------------------------Controlador para Gestion de Edatel
+
 app.controller('mymodalcontroller', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,services)
 {
     $scope.header = 'Buscador Nodos CMTS';
