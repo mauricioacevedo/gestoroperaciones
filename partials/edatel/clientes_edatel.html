@@ -88,21 +88,7 @@
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
-						<li class="nav navbar-nav" ng-class="fechiniExpoIO==''?'animated bounceOutRight':'animated bounceInRight'" ng-hide="fechiniExpoIO==''">
-								<span class="label label-primary">Se exportó: {{fechiniExpoIO}} - {{fechafiniExpoIO}}</span>
 
-						</li>
-						<li>
-				        	<i class="fa fa-clock-o" aria-hidden="true"></i>
-				        	Tiempo: <span class="label label-info">{{results|sumar:'Duracion_num'}}</span>&nbsp;
-				        </li>
-				        <li>
-				        	<i class="fa fa-plus-circle " aria-hidden="true"></i>
-				        	Extra: <span class="label label-success">{{results|resta48:'Duracion_num'}}</span>&nbsp;
-				        </li>
-				        <li<button type="button" class="btn btn-primary btn-circle-xs" ng-click="csvIO(fechaini,fechafin)" title="Exportar" data-toggle="tooltip" data-placement="bottom" ng-disabled="loading">
-							<i class="fa fa-cloud-download"  aria-hidden="true"></i>
-						</button></li>
 					</ul>
 
 				</div>
