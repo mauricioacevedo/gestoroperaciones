@@ -11333,7 +11333,7 @@ $sqlfenix=
 			}*/
 
 			$query=	" SELECT ".
-					" distinct trunc(e.LOCALIDAD) as LOCALIDAD ".
+					" distinct trim(e.LOCALIDAD) as LOCALIDAD ".
 					" FROM gestor_informes.eda_clientes e ";
 					//" where e.LOCALIDAD='$localidad' ";
 													//echo $query;
