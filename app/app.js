@@ -12110,6 +12110,11 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 $scope.buscarCliente=function(localidad,direccion){
 
 			$scope.eda.localidad=localidad;
+
+			if($scope.eda.localidad==''||$scope.eda.localidad=='undefined'){
+				alert("Seleccione localida");
+				return;
+			}
 			$scope.eda.direccion=direccion;
 			services.getClientesEdatel($scope.eda.localidad,$scope.eda.direccion).then(
 
