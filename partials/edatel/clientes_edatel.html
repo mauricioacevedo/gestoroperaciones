@@ -20,7 +20,7 @@
 							<div class="col-md-6">
 								<ul class="nav navbar-nav navbar-left">
 									<li>
-										<select id="localidad" name="localidad" class="btn btn-default btn-xs grupo-select" ng-model="edatel.localidad" 	ng-options="g.LOCALIDAD for g in listadoLocalidad"
+										<select id="localidad" name="localidad" class="btn btn-default btn-xs grupo-select" ng-model="eda.localidad" 	ng-options="g for g in listadoLocalidad"
 											>
 											<option value="" disabled>Localidad</option>
 										</select>
@@ -38,7 +38,7 @@
 								<ul class="nav navbar-nav navbar-right">
 
 									<li>
-										{{edatel.localidad.LOCALIDAD}}
+										{{eda.localidad}}
 
 										<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
 										&nbsp;
