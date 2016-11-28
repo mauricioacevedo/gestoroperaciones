@@ -902,7 +902,9 @@ obj.getDepartamentosParametrizacionSiebel = function(){
         return $http.get(serviceBase + 'LocalidadesEdatel');
         }
 
-
+	obj.getClientesEdatel = function(localidad){
+        return $http.get(serviceBase + 'clientesEdatel?localidad='+localidad);
+        }
 
 	// --------------------------------------------------------- Edatel Asignaciones
 
@@ -12107,78 +12109,26 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 	$scope.listarLocalidades();
 
 
+$scope.buscarCliente=function(localidad){
 
-
-	$scope.guardarPedido=function(InfoPedido,gestion,status){
-
-		$scope.fecha_fin=$rootScope.fechaProceso();
-		$scope.stautsGo=status[0].STATUS;
-
-		//console.log($scope.stautsGo);
-
-		$scope.InfoGestion={
-			ID:gestion.ID,
-			OFERTA:gestion.PEDIDO_ID,
-			MUNICIPIO_ID:gestion.MUNICIPIO_ID,
-			TRANSACCION:gestion.DESC_TIPO_TRABAJO,
-			ESTADO:gestion.CONCEPTO_ID,
-			FECHA:gestion.FECHA_ESTADO,
-			DURACION:null,
-			INCIDENTE:InfoPedido.INCIDENTE,
-			FECHA_INICIO:$scope.fecha_inicio,
-			FECHA_FIN:$scope.fecha_fin,
-			ESTADO_FINAL:InfoPedido.ESTADO_PROCESO,
-			OBSERVACION:InfoPedido.OBSERVACIONES_PROCESO,
-			USUARIO:$rootScope.logedUser.login,
-			STATUS:$scope.stautsGo
-			}
-
-		//console.log($scope.InfoGestion);
-
-
-		services.insertTransaccionNCA($scope.InfoGestion).then(
+			//$scope.localidad="MEDELLIN";
+			services.getClientesEdatel($scope.edatel.localidad).then(
 
 			  function(data){
 
-				  $scope.pedidoIsGuardado = true;
-				  $scope.errorDatos = null;
-				  $scope.InfoPedido = [];
-				  $scope.fecha_inicio = null;
-				  $scope.fecha_fin = null;
-				  $scope.accRdy = false;
-				  $scope.InfoGestion = {};
-				  $scope.pedidoOcupado = false
-				  $scope.pedidoIsActive = false
-				  $scope.peds = {};
-				  $scope.mpedido = {};
-				  $scope.bpedido = '';
-				  $scope.busy = "";
-				  $scope.error = "";
-				  $scope.iplaza = 'TODOS';
-				  $scope.fuente = "SIEBEL";
-				  $scope.buscar = null;
+				  $scope.listadoClientes=data.data[0];
+
 				  return data.data;
 
 
 					}
 			  , function errorCallback(response,status) {
 				  //console.log(status);
-					$scope.errorDatos="No se pudo guardar";
+					$scope.errorDatos="Sin Clientes";
 
 				  }
 			  );
-
-
-
-
-
-
-
-	};
-
-
-	// -------------------------------------------------------------- GuardarPedido
-
+		};
 
 
 
