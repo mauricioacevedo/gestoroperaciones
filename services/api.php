@@ -323,7 +323,7 @@
                                 $result = array();
                                 $fp = fopen("../tmp/$filename", 'w');
 
-                                  fputcsv($fp, array( 'PEDIDO_ID','CONCEPTOS','ACTIVIDADES','NOVEDAD','FECHA_CITA_FENIX','FECHA_CITA_REAGENDA','JORNADA_CITA','FECHA_INGRESO','FECHA_CARGA','ASESOR','FECHA_INICIO','FECHA_FIN','FECHA_ESTADO','DURACION','OBSERVACION_FENIX','OBSERVACION_GESTOR','FUENTE','ACTIVIDAD_GESTOR','ASESORNAME','CELULAR_AVISAR','CLIENTE_ID','CORREO_UNE','DIRECCION_ENVIO','E_MAIL_AVISAR','MICROZONA','NOMBRE_USUARIO','PARENT_ID','TELEFONO_AVISAR','TIEMPO_TOTAL','PROGRAMACION','SOURCE','DEPARTAMENTO','ACCESO','NUMERO_CR','IDLLAMADA','SUBZONA_ID','PROCESO','INTENTOS DE CONTACTO','TECNOLOGIA'));
+                                  fputcsv($fp, array( 'PEDIDO_ID','CONCEPTOS','ACTIVIDADES','NOVEDAD','FECHA_CITA_FENIX','FECHA_CITA_REAGENDA','JORNADA_CITA','FECHA_INGRESO','FECHA_CARGA','ASESOR','FECHA_INICIO','FECHA_FIN','FECHA_ESTADO','DURACION','OBSERVACION_FENIX','OBSERVACION_GESTOR','FUENTE','ACTIVIDAD_GESTOR','ASESORNAME','CELULAR_AVISAR','CLIENTE_ID','CORREO_UNE','DIRECCION_ENVIO','E_MAIL_AVISAR','MICROZONA','NOMBRE_USUARIO','PARENT_ID','TELEFONO_AVISAR','TIEMPO_TOTAL','PROGRAMACION','SOURCE','DEPARTAMENTO','ACCESO','NUMERO_CR','IDLLAMADA','SUBZONA_ID','PROCESO','INTENTOS DE CONTACTO','TECNOLOGIA'),chr (124));
 
 				fclose($fp);
 
@@ -332,8 +332,8 @@
 
                                 while($row = $r->fetch_assoc()){
 
-					//$row['OBSERVACION_FENIX']= trim(preg_replace('/\s+|', ' ',$row['OBSERVACION_FENIX']));
-					//$row['OBSERVACION_GESTOR'] = trim(preg_replace('/\s+|', ' ', $row['OBSERVACION_GESTOR']));
+					$row['OBSERVACION_FENIX']= trim(preg_replace('/\s+|', ' ',$row['OBSERVACION_FENIX']));
+					$row['OBSERVACION_GESTOR'] = trim(preg_replace('/\s+|', ' ', $row['OBSERVACION_GESTOR']));
                    //$row['NOVEDAD'] = trim(preg_replace('/\s+|,', ' ', $row['NOVEDAD']));
                    $row['CONCEPTOS'] =  str_replace(',', ' ', $row['CONCEPTOS']);
                    $row['ACTIVIDADES'] =  str_replace(',', ' ', $row['ACTIVIDADES']);
@@ -350,7 +350,7 @@
 
 
 
-						    fputcsv($fp, $fields);
+						    fputcsv($fp, $fields,chr (124));
 						}
 						unset($result);
 						$result=NULL;
