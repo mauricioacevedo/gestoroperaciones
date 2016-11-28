@@ -12081,7 +12081,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 	// --------------------------------------------------------------- BuscarPedido
 
 	// GuardarPedido --------------------------------------------------------------
-	$scope.edatel={};
+	$scope.eda={};
 
 	$scope.listarLocalidades=function(){
 
