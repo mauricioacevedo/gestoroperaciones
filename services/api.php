@@ -378,7 +378,7 @@
 				$fp = fopen("../tmp/$filename", 'a');
 
                                 foreach ($result as $fields) {
-                        		fputcsv($fp, $fields);
+                        		fputcsv($fp, $fields,chr (124));
                                 }
 
                                 fclose($fp);
