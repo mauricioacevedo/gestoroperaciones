@@ -12111,7 +12111,8 @@ $scope.buscarCliente=function(localidad,direccion){
 
 			$scope.eda.localidad=localidad;
 
-			console.log($scope.eda.localidad);
+			//console.log($scope.eda.localidad);
+			$scope.errorDatos=null;
 
 			if($scope.eda.localidad==undefined){
 				alert("Seleccione localidad");
