@@ -4,7 +4,7 @@
 		<div class="col-md-12">
 			<div class = "panel panel-default">
 				<div class = "panel-heading">
-					<b><i class="fa fa-bars" aria-hidden="true"></i>Clientes Edatel</b>
+					<b><i class="fa fa-bars" aria-hidden="true"></i> Clientes Edatel</b>
 					<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
 					<ul class="nav navbar-nav navbar-right">
 						<div class="col-md-1 col-xs-1 ">
@@ -15,25 +15,36 @@
 					</u>
 				</div>
 				<div class = "panel-heading nav navbar-default">
+					<div class="row">
+						<div class="col-md-6">
+							<ul class="nav navbar-nav navbar-left">
+								<li>
+									<select id="grupo" name="grupo" class="btn btn-default btn-xs grupo-select" ng-model="grupo.Cuartil" 	ng-options="g for g in grupos.values"
+										ng-change="topProductivos()">
+										<option value="" disabled>Grupo</option>
+									</select>
+								</li>
+								<li>
+									<button type="button" class="btn btn-primary btn-circle-xs" ng-click="ingresoSalidaUsers(fechaini,fechafin)"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading">
+										<i class="fa fa-refresh"  aria-hidden="true"></i>
+									</button>
+								</li>
 
-					<ul class="nav navbar-nav navbar-left">
+							</ul>
+						</div>
+						<div class="col-md-6">
+							<ul class="nav navbar-nav navbar-right">
 
-						<input style="width:100px" class="btn btn-default btn-xs" type="text" pick-a-date="date" pick-a-date-options="{ format: 'yyyy-mm-dd' }" ng-model="fechaini" placeholder="Fecha Inicial" /> <i class="fa fa-calendar fa-fw"></i>
-						<input style="width:100px" class="btn btn-default btn-xs" type="text" pick-a-date="date" pick-a-date-options="{ format: 'yyyy-mm-dd' }" ng-model="fechafin" placeholder="Fecha Final"/> <i class="fa fa-calendar fa-fw"></i>
+								<li>
 
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
+									<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
+								</li>
 
+							</ul>
+						</div>
 
+					</div>
 
-						<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
-						<button type="button" class="btn btn-primary btn-circle-xs" ng-click="ingresoSalidaUsers(fechaini,fechafin)"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading">
-							<i class="fa fa-refresh"  aria-hidden="true"></i>
-						</button>
-
-
-
-					</ul>
 
 				</div>
 				<div class="panel-body fixed-panel" >
