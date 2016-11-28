@@ -12113,7 +12113,7 @@ $scope.buscarCliente=function(localidad){
 			  function(data){
 
 				  $scope.listadoClientes=data.data[0];
-				  $scope.edatel.localidad.LOCALIDAD=data.data[1];
+				  $scope.edatel.localidad=data.data[1];
 
 				  return data.data;
 
