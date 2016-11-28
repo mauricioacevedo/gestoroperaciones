@@ -11394,7 +11394,7 @@ $sqlfenix=
 					"	and upper(e.DIREC_INSTALACION) like '$direccion' ".
 					"	ORDER BY 1 ASC ";
 
-													//echo $query;
+													echo $query;
 				$r = $this->mysqli03->query($query) or die($this->mysqli03->error.__LINE__);
 
 				if($r->num_rows > 0){
