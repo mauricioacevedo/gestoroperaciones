@@ -6491,7 +6491,7 @@ app.controller('OcupacionAgendamientoCtrl', function ($scope, $rootScope, $locat
 
 });
 
-app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services, fileUpload){
+app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services, fileUpload,FileUploader){
 
         var userID=$cookieStore.get('logedUser').login;
         $rootScope.logedUser=$cookieStore.get('logedUser');
@@ -6507,7 +6507,9 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
     $scope.usert.EQUIPO_ID="MANUAL";
     $scope.usert.ID="";
 
-
+ var uploader = $scope.uploader = new FileUploader({
+        url: window.location.protocol + window.location.pathname + 'services/UploadFile'
+    });
                 services.listar1().then(function(data){
                         $scope.listadodocu1=data.data[0];
                         console.log($scope.listadodocu1);
@@ -6547,6 +6549,20 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
                         });
                 };
         };
+      uploader.filters.push({
+        name: 'extensionFilter',
+        fn: function (item, options) {
+            var filename = item.name;
+            var extension = filename.substring(filename.lastIndexOf('.') + 1).toLowerCase();
+            if (extension == "pdf" || extension == "ppt" || extension == "pptx" || extension == "doc" || extension == "docx" || extension == "xlsx" || extension == "xls" ||
+                extension == "rtf")
+                return true;
+            else {
+                alert('Formato Invalido. Por favor seleccione un archivo con formato ppt/pptx/pdf/doc/docs/xlsx/xls o rtf');
+                return false;
+            }
+        }
+    });
 
     $scope.doubleDigit = function (num){
 
