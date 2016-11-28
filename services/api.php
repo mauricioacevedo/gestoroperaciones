@@ -8611,6 +8611,7 @@ private function listadoTransaccionesActividades(){
 			            }else{
 			                // Extension no valida
 			                echo "Extension no valida.";
+                            echo "  <script language=’JavaScript’> alert(‘JavaScript dentro de PHP’);</script>";
 			                exit();
 			            }
 			 
