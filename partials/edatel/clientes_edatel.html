@@ -1,0 +1,116 @@
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class = "panel panel-default">
+				<div class = "panel-heading">
+					<b><i class="fa fa-bars" aria-hidden="true"></i>Clientes Edatel</b>
+					<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+					<ul class="nav navbar-nav navbar-right">
+						<div class="col-md-1 col-xs-1 ">
+						            <div data-ng-if="loading">
+										<img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="img/loader.gif" />
+						            </div>
+						    </div>
+					</u>
+				</div>
+				<div class = "panel-heading nav navbar-default">
+
+					<ul class="nav navbar-nav navbar-left">
+
+						<input style="width:100px" class="btn btn-default btn-xs" type="text" pick-a-date="date" pick-a-date-options="{ format: 'yyyy-mm-dd' }" ng-model="fechaini" placeholder="Fecha Inicial" /> <i class="fa fa-calendar fa-fw"></i>
+						<input style="width:100px" class="btn btn-default btn-xs" type="text" pick-a-date="date" pick-a-date-options="{ format: 'yyyy-mm-dd' }" ng-model="fechafin" placeholder="Fecha Final"/> <i class="fa fa-calendar fa-fw"></i>
+
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+
+
+
+						<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
+						<button type="button" class="btn btn-primary btn-circle-xs" ng-click="ingresoSalidaUsers(fechaini,fechafin)"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading">
+							<i class="fa fa-refresh"  aria-hidden="true"></i>
+						</button>
+
+
+
+					</ul>
+
+				</div>
+				<div class="panel-body fixed-panel" >
+
+					<table class = "table small table-striped table-condensed">
+						<thead>
+					      <tr >
+					         <th>Fecha</th>
+					         <th>Día</th>
+					         <th>Usuario</th>
+					         <th>Nombre</th>
+					         <th>Cédula</th>
+					         <th>Estado</th>
+					         <th>Ingreso</th>
+					         <th>Salida</th>
+					         <th>Duración</th>
+					         <th >Acción</th>
+					      </tr>
+					    <thead>
+					    <tbody>
+					      <tr ng-repeat="data in listadoIngresoSalidasUsers | orderBy: 'Fecha' | filter:filtroInput as results">
+
+					         <td>{{data.Fecha}}</td>
+					         <td>{{data.NomDia}}</td>
+					         <td><a class="Tips" title="Click para filtrar" ng-click="usuarioFill(data.usuario_id)">{{data.usuario_id}}</a></td>
+					         <td>{{data.nombre}}</td>
+					         <td>{{data.CEDULA_ID}}</td>
+
+					         <td><span ng-class="{'Conec': 'label label-success','Descon': 'label label-danger','Sin datos': 'label label-default','No cerro': 'label label-warning'}[data.Estado]">{{data.Estado}}</span></td>
+					         <td>{{data.Hora_ingreso}}</td>
+					         <td>{{data.Hora_salida}}</td>
+					         <td>{{data.Duracion}}</td>
+					         <td ng-hide="true"><button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="crearnovedad(data.Fecha,data.CEDULA_ID)" data-toggle="modal" data-target="#myModal" data-backdrop="static"  ng-disabled="loading" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="Crear Novedad">
+								<i class="fa fa-plus"  aria-hidden="true" ></i>
+							</button>
+							</td>
+							<td>
+							 	<button ng-show="data.Estado=='No cerro'" type="button" class="btn btn-warning btn-circle-xs" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="Enviar Correo" ng-click="sendEmail(data)" ng-disabled="loading">
+									<i class="fa fa-envelope-o" aria-hidden="true"></i>
+								</button>
+							</td>
+					      </tr>
+					     </tbody>
+
+				   </table>
+
+				</div>
+				<div class="panel-footer clearfix" >
+					<ul class="nav navbar-nav navbar-left">
+						<li>Registros: <span class="badge badge-default">{{results.length}}</span></li>
+
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li class="nav navbar-nav" ng-class="fechiniExpoIO==''?'animated bounceOutRight':'animated bounceInRight'" ng-hide="fechiniExpoIO==''">
+								<span class="label label-primary">Se exportó: {{fechiniExpoIO}} - {{fechafiniExpoIO}}</span>
+
+						</li>
+						<li>
+				        	<i class="fa fa-clock-o" aria-hidden="true"></i>
+				        	Tiempo: <span class="label label-info">{{results|sumar:'Duracion_num'}}</span>&nbsp;
+				        </li>
+				        <li>
+				        	<i class="fa fa-plus-circle " aria-hidden="true"></i>
+				        	Extra: <span class="label label-success">{{results|resta48:'Duracion_num'}}</span>&nbsp;
+				        </li>
+				        <li<button type="button" class="btn btn-primary btn-circle-xs" ng-click="csvIO(fechaini,fechafin)" title="Exportar" data-toggle="tooltip" data-placement="bottom" ng-disabled="loading">
+							<i class="fa fa-cloud-download"  aria-hidden="true"></i>
+						</button></li>
+					</ul>
+
+				</div>
+
+
+			</div>
+		</div>
+
+	</div><!--Row 1 Novedades -->
+
+</div>
