@@ -55,39 +55,46 @@
 						<thead>
 					      <tr >
 					         <th>LOCALIDAD</th>
-					         <th>Día</th>
-					         <th>Usuario</th>
-					         <th>Nombre</th>
-					         <th>Cédula</th>
-					         <th>Estado</th>
-					         <th>Ingreso</th>
-					         <th>Salida</th>
-					         <th>Duración</th>
-					         <th >Acción</th>
+					         <th>PRODUCT_ID</th>
+					         <th>DIRECCION</th>
+					         <th>RUTA</th>
+					         <th>DISTRIB</th>
+					         <th>ARM</th>
+					         <th>CAJA</th>
+					         <th>PSCAJA</th>
+					         <th>LISTON</th>
+					         <th>PSLIS</th>
+							 <th>BDOR</th>
+							 <th>PUERTO</th>
+							 <th>IDPTO</th>
+							 <th>HOR</th>
+							 <th>PH</th>
+							 <th>EST_COMP</th>
+							 <th>TIP_PDTO</th>
+							 <th>DESCP_ESTRA</th>
 					      </tr>
 					    <thead>
 					    <tbody>
 					      <tr ng-repeat="data in listadoClientes | filter:filtroInput as results">
 
 					         <td>{{data.LOCALIDAD}}</td>
-					         <td>{{data.NomDia}}</td>
-					         <td><a class="Tips" title="Click para filtrar" ng-click="usuarioFill(data.usuario_id)">{{data.usuario_id}}</a></td>
-					         <td>{{data.nombre}}</td>
-					         <td>{{data.CEDULA_ID}}</td>
-
-					         <td><span ng-class="{'Conec': 'label label-success','Descon': 'label label-danger','Sin datos': 'label label-default','No cerro': 'label label-warning'}[data.Estado]">{{data.Estado}}</span></td>
-					         <td>{{data.Hora_ingreso}}</td>
-					         <td>{{data.Hora_salida}}</td>
-					         <td>{{data.Duracion}}</td>
-					         <td ng-hide="true"><button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="crearnovedad(data.Fecha,data.CEDULA_ID)" data-toggle="modal" data-target="#myModal" data-backdrop="static"  ng-disabled="loading" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="Crear Novedad">
-								<i class="fa fa-plus"  aria-hidden="true" ></i>
-							</button>
-							</td>
-							<td>
-							 	<button ng-show="data.Estado=='No cerro'" type="button" class="btn btn-warning btn-circle-xs" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="Enviar Correo" ng-click="sendEmail(data)" ng-disabled="loading">
-									<i class="fa fa-envelope-o" aria-hidden="true"></i>
-								</button>
-							</td>
+					         <td>{{data.PRODUCT_ID}}</td>
+					         <td>{{data.DIREC_INSTALACION}}</td>
+					         <td>{{data.RUTA}}</td>
+					         <td>{{data.DISTRIB}}</td>
+					         <td>{{data.ARM}}</td>
+					         <td>{{data.CAJA}}</td>
+					         <td>{{data.PSCAJA}}</td>
+					         <td>{{data.LISTON}}</td>
+					         <td>{{data.PSLIS}}</td>
+							 <td>{{data.BDOR}}</td>
+							  <td>{{data.PUERTO}}</td>
+							  <td>{{data.IDPTO}}</td>
+							  <td>{{data.HOR}}</td>
+							  <td>{{data.PH}}</td>
+							  <td>{{data.EST_COMP}}</td>
+							  <td>{{data.TIP_PDTO}}</td>
+							  <td>{{data.DESCP_ESTRA}}</td>
 					      </tr>
 					     </tbody>
 
