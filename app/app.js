@@ -12089,9 +12089,9 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			services.getLocalidadesEdatel().then(
 
 			  function(data){
-				  console.log(data);
+				  //console.log(data);
 				  $scope.listadoLocalidad=data.data;
-				  console.log($scope.listadoLocalidad);
+				  //console.log($scope.listadoLocalidad);
 				  return data.data;
 
 
