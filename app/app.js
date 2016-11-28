@@ -12107,13 +12107,13 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 $scope.buscarCliente=function(localidad){
 
-			$scope.edatel.localidad=localidad.LOCALIDAD;
+			$scope.edatel.localidad.LOCALIDAD=localidad.LOCALIDAD;
 			services.getClientesEdatel($scope.edatel.localidad).then(
 
 			  function(data){
 
 				  $scope.listadoClientes=data.data[0];
-				  $scope.edatel.localidad=data.data[1];
+				  $scope.edatel.localidad.LOCALIDAD=data.data[1];
 
 				  return data.data;
 
