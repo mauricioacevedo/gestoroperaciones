@@ -12111,8 +12111,8 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 $scope.buscarCliente=function(localidad){
 
-			console.log(localidad);
-			services.getClientesEdatel(localidad).then(
+			$scope.edatel.localidad=localidad.LOCALIDAD;
+			services.getClientesEdatel($scope.edatel.localidad).then(
 
 			  function(data){
 
