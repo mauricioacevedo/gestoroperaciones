@@ -898,8 +898,8 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 	// Edatel Asignaciones ---------------------------------------------------------
 
 
-	obj.getLocalidadesEdatel = function(localidad){
-        return $http.get(serviceBase + 'LocalidadesEdatel?localidad='+localidad);
+	obj.getLocalidadesEdatel = function(){
+        return $http.get(serviceBase + 'LocalidadesEdatel');
         }
 
 
@@ -11728,7 +11728,7 @@ $scope.doubleDigit= function (num){
 });
 // -----------------------------------------------Controlador para Gestion En Siebel
 
-// Controlador para Gestion de Edatel -----------------------------------------------
+// Controlador para Gestion de Edatel Asignaciones -----------------------------------------------
 app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, $timeout, services) {
 
 
@@ -12082,16 +12082,16 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 	// GuardarPedido --------------------------------------------------------------
 
-	$scope.listarLocalidades=function(localidad){
+	$scope.listarLocalidades=function(){
 
-			$scope.localidad="MEDELLIN";
-			services.getLocalidadesEdatel($scope.localidad).then(
+			//$scope.localidad="MEDELLIN";
+			services.getLocalidadesEdatel().then(
 
 			  function(data){
 
 				  console.log(data);
 
-				  $scope.listadoLocalidad=data.data[0];
+				  $scope.listadoLocalidad=data.data[0][0];
 
 				  return data.data;
 

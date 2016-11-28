@@ -11328,14 +11328,14 @@ $sqlfenix=
 			$today = date("Y-m-d");
 			$localidad=$this->_request['localidad'];
 
-			if($localidad==""||$localidad=="undefined"){
+			/*if($localidad==""||$localidad=="undefined"){
 				$localidad="MEDELLIN";
-			}
+			}*/
 
 			$query=	" SELECT ".
 					" distinct e.LOCALIDAD ".
-					" FROM gestor_informes.eda_clientes e ".
-					" where e.LOCALIDAD='$localidad' ";
+					" FROM gestor_informes.eda_clientes e ";
+					//" where e.LOCALIDAD='$localidad' ";
 													//echo $query;
 				$r = $this->mysqli03->query($query) or die($this->mysqli03->error.__LINE__);
 
