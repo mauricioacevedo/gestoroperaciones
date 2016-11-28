@@ -15,39 +15,40 @@
 					</u>
 				</div>
 				<div class = "panel-heading nav navbar-default">
-					<div class="row">
-						<div class="col-md-6">
-							<ul class="nav navbar-nav navbar-left">
-								<li>
-									<select id="grupo" name="grupo" class="btn btn-default btn-xs grupo-select" ng-model="grupo.Cuartil" 	ng-options="g for g in grupos.values"
-										ng-change="topProductivos()">
-										<option value="" disabled>Grupo</option>
-									</select>
-								</li>
-								<li>
-									&nbsp;
-									<button type="button" class="btn btn-primary btn-circle-xs" ng-click="ingresoSalidaUsers(fechaini,fechafin)"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading">
-										<i class="fa fa-refresh"  aria-hidden="true"></i>
-									</button>
-								</li>
+					<div class="container">
+						<div class="row">
+							<div class="col-md-6">
+								<ul class="nav navbar-nav navbar-left">
+									<li>
+										<select id="grupo" name="grupo" class="btn btn-default btn-xs grupo-select" ng-model="grupo.Cuartil" 	ng-options="g for g in grupos.values"
+											ng-change="topProductivos()">
+											<option value="" disabled>Grupo</option>
+										</select>
+									</li>
+									<li>
+										&nbsp;
+										<button type="button" class="btn btn-primary btn-circle-xs" ng-click="ingresoSalidaUsers(fechaini,fechafin)"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading">
+											<i class="fa fa-refresh"  aria-hidden="true"></i>
+										</button>
+									</li>
 
-							</ul>
+								</ul>
+							</div>
+							<div class="col-md-6">
+								<ul class="nav navbar-nav navbar-right">
+
+									<li>
+
+										<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
+										&nbsp;
+									</li>
+
+								</ul>
+							</div>
+
 						</div>
-						<div class="col-md-6">
-							<ul class="nav navbar-nav navbar-right">
 
-								<li>
-
-									<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
-									&nbsp;
-								</li>
-
-							</ul>
 						</div>
-
-					</div>
-
-
 				</div>
 				<div class="panel-body fixed-panel" >
 
