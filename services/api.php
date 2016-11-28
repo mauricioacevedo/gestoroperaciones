@@ -8611,6 +8611,7 @@ private function listadoTransaccionesActividades(){
 			            }else{
 			                // Extension no valida
 			                echo "Extension no valida.";
+                            echo"<script>alert('Usted esta siendo redireccionado a la pagina principal')</script>"
 			                exit();
 			            }
 			 
