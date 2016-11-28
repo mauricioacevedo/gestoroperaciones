@@ -274,3 +274,8 @@ input.filtro {
     opacity: 0;
     filter: alpha(opacity=0);
 }
+.fixed-panel {
+
+  max-height: 400px;
+  overflow-y: scroll;
+}
