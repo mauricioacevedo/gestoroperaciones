@@ -408,6 +408,10 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'PendientesSiebelGraficaAD');
         }
 
+         obj.getpedidosPorPedidoActivacion = function(pedido){
+                return $http.get(serviceBase + 'pedidosPorPedidoActivacion?pedido=' + pedido);
+        }
+
 //------------------------------------------------------fin_Activacion
 
 
@@ -10111,6 +10115,151 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                  
 });
 
+//-------------------------------------demepedidoactivacio------------------------
+app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, $timeout, services) {
+
+
+     // -------------------------------mirar logueo ---------------------------------
+
+        $rootScope.logedUser=$cookieStore.get('logedUser');
+        var userID=$cookieStore.get('logedUser').login;
+            document.getElementById('logout').className="btn btn-md btn-danger";
+            var divi=document.getElementById("logoutdiv");
+                divi.style.visibility="visible";
+                divi.style.position="relative";
+
+
+        $rootScope.logout = function() {
+                    services.logout(userID);
+                    $cookieStore.remove('logedUser');
+                    $rootScope.logedUser=undefined;
+                    $scope.pedidos={};
+                    clearInterval($scope.intervalLightKPIS);
+                    document.getElementById('logout').className="btn btn-md btn-danger hide";
+                    var divi=document.getElementById("logoutdiv");
+                    divi.style.position="absolute";
+                    divi.style.visibility="hidden";
+                    $location.path('/');
+            };
+
+
+
+    //  ---------------------------------fin logueo-------------------------------------------
+
+
+    // ------------------------Variables ---------------------------------
+        $scope.pedidos=[];
+        $scope.pedidosUnicos='';
+        $scope.historico_pedido=[];
+        $rootScope.actualView="/demepedido-activacion";
+        $scope.iconcepto="COBERTURA";
+        $scope.popup='';
+        $scope.intervalLightKPIS='';
+        $scope.pedidoinfo='';
+        $scope.errorDatos=null;
+        $scope.accRdy=false;
+        $scope.fecha_inicio=null;
+        $scope.fecha_fin=null;
+
+        var pedidos=services.getPedidosUser(userID).then(function(data){
+                $scope.pedidos=data.data[0];
+                $scope.pedidosUnicos=data.data[1];
+                return data.data;
+                    });
+
+         var original = $scope.pedidos;
+         var originalUnico=$scope.pedidosUnicos;
+
+        $scope.peds={};
+        $scope.timeInit=0;
+        $scope.pedidos = angular.copy(original);
+
+        $scope.pedidoIsActive=false;
+
+    // ---------------------------------fin Variables----------------------------
+
+
+    // ------------------------DemePedido activacion --------------------------------------------------------------
+    $scope.baby = function(pedido) {
+        //console.log(pedido);
+        services.getPedidosPorPedido(pedido).then(function(data){
+                     // console.log(data.data);
+                      $scope.historico_pedido=data.data;
+                      return data.data;
+                 });
+    };
+
+    $scope.start = function(pedido) {
+
+        var pedido1='';
+        $scope.popup='';
+        $scope.errorDatos=null;
+        $scope.InfoPedido=[];
+        $scope.fecha_inicio=null;
+        $scope.accRdy=false;
+        $scope.InfoGestion={};
+        $scope.InfoPedido.INCIDENTE='NO';
+        $scope.pedidoIsGuardado=false;
+
+        if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
+            //alert($scope.peds[0].PEDIDO_ID);
+             pedido1=$scope.peds[0].PEDIDO_ID;
+
+        }
+        $scope.peds={};
+        $scope.mpedido={};
+        $scope.bpedido='';
+        $scope.busy="";
+        $scope.pedido1=pedido1;
+        $scope.error="";
+        $scope.iplaza='TODOS';
+        $scope.fuente="SIEBEL";
+
+        var demePedidoButton=document.getElementById("iniciar");
+            demePedidoButton.setAttribute("disabled","disabled");
+            demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
+
+        var kami=services.demePedido($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,'',$scope.fuente).then(function(data){
+
+            $scope.peds = data.data;
+
+            console.log($scope.peds);
+
+            if(data.data==''){
+
+                document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Estado.";
+                $scope.errorDatos="No hay Registros. Intente Cambiando de Estado.";
+            }else{
+
+                document.getElementById("warning").innerHTML="";
+                $scope.pedido1=$scope.peds[0].PEDIDO_ID;
+                $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+                $scope.pedidoIsActive=true;
+                $scope.errorDatos=null;
+                $scope.fecha_inicio=$rootScope.fechaProceso();
+
+                    if($scope.peds[0].STATUS=="PENDI_PETEC"&&$scope.peds[0].ASESOR!=""){
+                            $scope.busy=$scope.peds[0].ASESOR;
+                            $scope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
+
+                                }
+
+                $scope.baby($scope.pedido1);
+
+            }
+                var demePedidoButton=document.getElementById("iniciar");
+                    demePedidoButton.removeAttribute("disabled");
+                    demePedidoButton.className = "btn btn-success btn-DemePedido-xs";
+                    return data.data;
+            });
+
+        };
+
+    // -------------------------------------------------------------- fin DemePedido activacion
+});
+
+
+//-------------------------------------demepedidoactivaciofin------------------------
 
 
 app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, $timeout, services) {
@@ -12413,7 +12562,7 @@ app.config(['$routeProvider',
 
 
 	//  ------------------------------------------ASIGNACIONES
-
+//---------------------------------------------INICIOACTIVACION
      .when('/actividades/', {
          title: 'Actividades',
          templateUrl: 'partials/actividades.html',
@@ -12433,6 +12582,13 @@ app.config(['$routeProvider',
          controller: 'AlarmasActivacionCtrl'
       })
 
+
+     .when('/demepedido-activacion', {
+         title: 'DemePedido Activacion',
+         templateUrl: 'partials/demepedido-activacion.html',
+         controller: 'siebelActivacionCtrl'
+      })
+//-----------------------------------------------------------------FIN ACTIVACIO
 
    // ADMINISTRACION ------------------------------------------
 
