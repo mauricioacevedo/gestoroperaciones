@@ -906,7 +906,7 @@ obj.getDepartamentosParametrizacionSiebel = function(){
         return $http.get(serviceBase + 'LocalidadesEdatel');
         }
 
-	obj.getClientesEdatel = function(localidad){
+	obj.getClientesEdatel = function(localidad,direccion){
         return $http.get(serviceBase + 'clientesEdatel?localidad='+localidad+'&direccion='+direccion);
         }
 
