@@ -12082,6 +12082,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 	// GuardarPedido --------------------------------------------------------------
 	$scope.edatel={};
+	$scope.edatel.localidad="MEDELLIN";
 	$scope.listarLocalidades=function(){
 
 			//$scope.localidad="MEDELLIN";
@@ -12104,7 +12105,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		};
 
 	$scope.listarLocalidades();
-	$scope.edatel.localidad="MEDELLIN";
+
 
 
 
