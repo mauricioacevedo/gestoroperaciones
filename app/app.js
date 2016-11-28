@@ -12112,7 +12112,7 @@ $scope.buscarCliente=function(localidad,direccion){
 			$scope.eda.localidad=localidad;
 
 			if(localidad=='' || localidad=='undefined'){
-				alert("Seleccione localida");
+				alert("Seleccione localidad");
 				return;
 			}
 			$scope.eda.direccion=direccion;
