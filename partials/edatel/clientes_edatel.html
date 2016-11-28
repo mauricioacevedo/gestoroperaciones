@@ -24,17 +24,19 @@
 										</select>
 									</li>
 									<li>
-										&nbsp;
-										<button type="button" class="btn btn-primary btn-circle-xs" ng-click="buscarCliente(eda.localidad,eda.direccion)"  title="Actualizar" tooltip data-placement="left" ng-disabled="loading">
-											<i class="fa fa-refresh"  aria-hidden="true"></i>
-										</button>
+
+										<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="eda.direccion" placeholder="Direccion" ng-disabled="loading" select-on-click capitalize/>
+
 									</li>
 									<li>&nbsp;</li>
 									<li>
 
-										<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="eda.direccion" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
-
+										<button type="button" class="btn btn-primary btn-circle-xs" ng-click="buscarCliente(eda.localidad,eda.direccion)"  title="Actualizar" tooltip data-placement="left" ng-disabled="loading">
+											<i class="fa fa-refresh"  aria-hidden="true"></i>
+										</button>
 									</li>
+
+
 
 								</ul>
 							</div>
