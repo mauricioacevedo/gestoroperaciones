@@ -6741,7 +6741,7 @@ $queryConceptosFcita=" select ".
                                  " FROM gestor_pendientes_activacion_siebel  ".
                                  " WHERE STATUS='PENDI_ACTI' ".
                                  " AND ASESOR='' ".
-                                "AND PEDIDO='1-1416269103098'"
+                                "AND PEDIDO='1-1416269103098'".
                                  " AND estado =  'in_progress' ".
                                  " ORDER BY fecha_creacion ASC ";
 
