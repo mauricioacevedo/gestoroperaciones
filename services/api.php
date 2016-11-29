@@ -6756,8 +6756,8 @@ $queryConceptosFcita=" select ".
                                         $ids=$ids.$sep.$row['ID'];
                                         $sep=",";
                                 }
-                    $sqlupdate="update gestor_pendientes_activacion_siebel set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
-                    $x = $this->mysqli->query($sqlupdate);
+                                $sqlupdate="update gestor_pendientes_activacion_siebel set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+                                $x = $this->mysqli->query($sqlupdate);
                 $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
                 $x = $this->mysqli->query($INSERTLOG);
                 $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$user','$username','','','PEDIDO: $mypedido','DEMEPEDIDO')";
@@ -6775,6 +6775,7 @@ $queryConceptosFcita=" select ".
 
                         $this->response('nothing',204);        // If no records "No Content" status
                 }
+
 //--------------------fin demepedido activacion
 		
                 private function demePedidoAgendamiento(){
@@ -11256,7 +11257,7 @@ $sqlfenix=
 
                 $query1=     " SELECT distinct ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER ".
                             " ,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION ".
-                            " ,PRODUCTO,IDSERVICIORAIZ,TRANSACCION ".
+                            " ,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD ".
                              " FROM gestor_pendientes_activacion_siebel  ".
                              " where PEDIDO='$pedido' ".
                              " AND STATUS IN ('PENDI_ACTI') ";
