@@ -5441,7 +5441,7 @@ $queryConceptosFcita=" select ".
                         }
                         $pedido = $this->_request['pedido'];
                         $today = date("Y-m-d");
-                        $query=" SELECT distinct id, order_seq_id,pedido,reference_number,estado,fecha_creacion,tarea_excepcion,fecha_excepcion,producto,idservicioraiz,transaccion from gestor_pendientes_activacion_siebel where pedido like '$pedido%' order by fecha_creacion desc limit 10 ";
+                        $query=" SELECT id, order_seq_id,pedido,reference_number,estado,fecha_creacion,tarea_excepcion,fecha_excepcion,producto,idservicioraiz,transaccion from gestor_pendientes_activacion_siebel where pedido like '$pedido%' order by fecha_creacion desc limit 10 ";
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
                         if($r->num_rows > 0){
