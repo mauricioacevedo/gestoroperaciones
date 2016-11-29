@@ -24,9 +24,18 @@
 								<select
 									class= "btn btn-default btn-xs grupo-select"
 									style="width: 200px"
-									ng-model="iconcepto">
+									ng-model="estado">
 									<option value="" disabled>--Estado--</option>
-									<option ng-repeat="d in estadosSiebel " value="{{d.ESTADO_ID}}">{{d.ESTADO_ID}}</option>
+									<option value='SUSPENDER'>SUSPENDER</option>
+                                    <option value='ELIMINAR'>ELIMINAR</option>
+                                    <option value='ELIMINAR COMUNES'>ELIMINAR COMUNES</option>
+                                    <option value='NUEVO'>NUEVO</option>
+                                    <option value='ACTUALIZAR'>ACTUALIZAR</option>
+                                    <option value='ACTUALIZAR COMUNES'>ACTUALIZAR COMUNES</option>
+                                    <option value='TRASLADO'>TRASLADO</option>
+                                    <option value='TRASLADO RETIRO'>TRASLADO RETIRO</option>
+
+
 								</select>
 
 							</li>
