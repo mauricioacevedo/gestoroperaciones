@@ -19,11 +19,12 @@
 								<ul class="nav navbar-nav navbar-left">
 
 									<li>
-										<ui-select ng-model="prueba">
-											<ui-select-choices repeat="localidad in listadoLocalidad track by $index"
-													 >
+										 <ui-select ng-model="card.id">
+
+											<ui-select-choices repeat="local in listadoLocalidad track by $index">
+												<div ng-bind-html="local"></div>
 											</ui-select-choices>
-											</ui-select>
+										</ui-select>
 									</li>
 									<li>
 										<select id="localidad" name="localidad" class="btn btn-default btn-xs grupo-select" ng-model="eda.localidad" 	ng-options="g for g in listadoLocalidad"
