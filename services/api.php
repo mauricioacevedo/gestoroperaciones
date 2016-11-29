@@ -6739,7 +6739,7 @@ $queryConceptosFcita=" select ".
                         $today = date("Y-m-d");
                         $query=    " SELECT distinct ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER ".
                                     " ,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION ".
-                                    " ,PRODUCTO,IDSERVICIORAIZ,TRANSACCION ".
+                                    " ,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD ".
                                      " FROM gestor_pendientes_activacion_siebel  ".
                                      " WHERE STATUS='PENDI_ACTI' ".
                                      " AND ASESOR='' ".
