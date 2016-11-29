@@ -49,10 +49,32 @@
 
 							</li>
 						</ul>
+                        <ul class="nav navbar-nav navbar-right">
+							<li>
+								<div class="col-lg-1 col-xs-1">
+									<div class="loading-spiner-holder" data-loading ><div class="loading-spiner"><img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="images/loader.gif" /></div></div>
+							 </div></li>
+							<li>
+								<div class="btn-group">
+									<input style="width:140px"  class="btn btn-default btn-xs " type="text" ng-model="buscar" placeholder="Buscar..." ng-disabled="loading" select-on-click capitalize/>
+									<button type="button" class="btn btn-success btn-xs" ng-click="buscarPedido(buscar,pedidoinfo)"   ng-disabled="loading" >
+									<i class="fa fa-search-plus" aria-hidden="true"> </i>
+									</button>
+								</div>
+							</li>
+							<li> &nbsp;</li>
+							<li ng-hide='true'>
+								<button type="button" class="btn btn-warning btn-circle-xss"  ng-click="ProgramadosModal()" data-toggle="modal" data-target="#PedidosProgramados" data-backdrop="static"  title="Pedidos Programados" >
+								<i class="fa fa-calendar-check-o"  aria-hidden="true"> </i>
+								</button>
+							</li>
+						</ul>
 
 					</div>
 
 				</div>
+
+
                 <div class="panel-body fixed-panel ">
 					<div class="container-fluid"  ng-show="pedidoIsActive==false">
 						<div class="jumbotron animated bounceInRight ">

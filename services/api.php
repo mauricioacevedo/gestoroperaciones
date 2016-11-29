@@ -11214,6 +11214,83 @@ $sqlfenix=
 
                 } // -------------------------Busca Pedido Siebel Asignaciones
 
+
+        private function buscarpedidoactivacion(){
+
+                if($this->get_request_method() != "GET"){
+                        $this->response('',406);
+                }
+
+                $pedido = $this->_request['pedidoID'];
+
+                $user = $this->_request['userID'];
+
+                //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
+                $pedido_actual = $this->_request['pedido_actual'];
+
+                if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
+                        $sqlupdate="update informe_petec_pendientesm set ASESOR='' where ASESOR='$user' ";
+                        $xxx = $this->mysqli->query($sqlupdate);
+                }
+
+                $user=strtoupper($user);
+                $today = date("Y-m-d");
+
+                $query1=    " SELECT * ".
+                            " FROM gestor_pendientes_activacion_siebel  ".
+                            " where PEDIDO='$pedido' ".
+                            " AND STATUS IN ('PENDI_ACTI') ";
+
+                        $rPendi = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
+
+                        $busy=false;
+
+                        if($rPendi->num_rows > 0){
+                                $result = array();
+                                while($row = $rPendi->fetch_assoc()){
+
+                                  $result[] = $row;
+                                  $ids=$row['ID'];
+                                  $asess=$row['ASESOR'];
+
+                                    if($asess!='' && $asess!=$user){//este pedido esta ocupado, no deberia hacer la actualizacion de abajo..
+                                       $busy=true;
+                                        }
+
+                                }//chao While
+
+                                $sqlupdate="";
+
+                                if($busy==true){
+                                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1 where ID in ($ids)";
+
+
+                                }else{
+                                        $fecha_visto=date("Y-m-d H:i:s");
+                                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where ID in ($ids)";
+
+                                }
+
+                                $x = $this->mysqli->query($sqlupdate);
+
+                                // Feed ----------------------
+                                $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','') ";
+                                $xx = $this->mysqli->query($sqlfeed);
+                                //  ---------------------- Feed
+
+
+
+                            $this->response(json_encode(array($busy,$result)), 200); //Resultado final si encontro registros
+
+
+                        }else{
+                            $error='No existe';
+                            $this->response(json_encode($error),204);        // No encontramos nada.
+                        }
+
+
+                } // -------------------------Busca Pedido Siebel Asignaciones----------------------
+
 	//Listado de Pedidos por Usuario dia actual----------------------------------------
 
 		private function PedidosGestorUser(){
