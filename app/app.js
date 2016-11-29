@@ -10208,7 +10208,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                  });
     };
 
-    $scope.start1 = function(pedido) {
+    $scope.start = function(pedido) {
 
         var pedido1='';
         $scope.popup='';
