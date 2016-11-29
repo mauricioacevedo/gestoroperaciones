@@ -17,6 +17,8 @@
 						<div class="row">
 							<div class="col-md-8">
 								<ul class="nav navbar-nav navbar-left">
+
+									<li><selectize config="{create:true, maxItems:10}" options='myOptions' ng-model="myModel"></selectize></li>
 									<li>
 										<select id="localidad" name="localidad" class="btn btn-default btn-xs grupo-select" ng-model="eda.localidad" 	ng-options="g for g in listadoLocalidad"
 											>
