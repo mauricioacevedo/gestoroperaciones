@@ -6735,13 +6735,13 @@ $queryConceptosFcita=" select ".
                      if($this->get_request_method() != "GET"){
                                 $this->response('',406);
                         }
-                        //$pedido = $this->_request['pedido'];
+                        $pedido = $this->_request['pedido'];
                         $today = date("Y-m-d");
                         $query=  " SELECT * ".
                                  " FROM gestor_pendientes_activacion_siebel  ".
                                  " WHERE STATUS='PENDI_ACTI' ".
                                  " AND ASESOR='' ".
-                                "AND PEDIDO='1-1416269103098'".
+                                "AND PEDIDO='$pedido'".
                                  " AND estado =  'in_progress' ".
                                  " ORDER BY fecha_creacion ASC ";
 
