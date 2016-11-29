@@ -11450,11 +11450,13 @@ $sqlfenix=
 
 				if($r->num_rows > 0){
 						$result = array();
-						$i=0;
+						//$i=0;
 						while($row = $r->fetch_assoc()){
 
-								$result[$i] = $row['LOCALIDAD'];
-							$i++;
+								//$result[$i] = $row['LOCALIDAD'];
+
+							//		$i++;
+							$result[] = $row[];
 						}
 
 						$this->response($this->json($result), 200); // send user details
