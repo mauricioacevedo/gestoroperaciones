@@ -21,13 +21,13 @@
 									<li>
 										 <ui-select ng-model="person.selectedSingleKey" theme="select2" ng-disabled="disabled" style="min-width: 300px;" title="Choose a person">
 
-										<ui-select-choices repeat="lista in listadolocalidad">
+										<ui-select-choices repeat="lista.LOCALIDAD in listadolocalidad">
 
 										</ui-select-choices>
 									  </ui-select>
 									</li>
 									<li>
-										<select id="localidad" name="localidad" class="btn btn-default btn-xs grupo-select" ng-model="eda.localidad" 	ng-options="g in listadoLocalidad"
+										<select id="localidad" name="localidad" class="btn btn-default btn-xs grupo-select" ng-model="eda.localidad" 	ng-options="g.LOCALIDAD in listadoLocalidad"
 											>
 											<option value="" disabled>Localidad</option>
 										</select>
