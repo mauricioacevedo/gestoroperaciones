@@ -5443,7 +5443,7 @@ $queryConceptosFcita=" select ".
                         }
                         $pedido = $this->_request['pedido'];
                         $today = date("Y-m-d");
-                        $query=" SELECT distinct id, order_seq_id,pedido,reference_number,estado,fecha_creacion,tarea_excepcion,fecha_excepcion,producto,idservicioraiz,transaccion from gestor_pendientes_activacion_siebel where pedido like '$pedido%' order by fecha_creacion desc limit 10 ";
+                        $query=" SELECT id, order_seq_id,pedido,reference_number,estado,fecha_creacion,tarea_excepcion,fecha_excepcion,producto,idservicioraiz,transaccion from gestor_pendientes_activacion_siebel where pedido like '$pedido%' order by fecha_creacion desc limit 10 ";
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
                         if($r->num_rows > 0){
@@ -6457,7 +6457,7 @@ $queryConceptosFcita=" select ".
                                 	" AND ASESOR='' ".
                                 	" AND CONCEPTO_ID = '$concepto' ".
                                 	" AND STATUS='PENDI_PETEC' ".
-					$plaza2.
+					               $plaza2.
                                 	" ORDER BY FECHA_ESTADO ASC ";
 
                                 	$rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
@@ -6735,12 +6735,16 @@ $queryConceptosFcita=" select ".
                      if($this->get_request_method() != "GET"){
                                 $this->response('',406);
                         }
-                        $pedido = $this->_request['pedido'];
+                        //$pedido = $this->_request['pedido'];
                         $today = date("Y-m-d");
-                        $query= " SELECT * ".
-                                " FROM gestor_pendientes_activacion_siebel  ".
-                                " WHERE estado =  'in_progress' ".
+                        $query=  " SELECT * ".
+                                 " FROM gestor_pendientes_activacion_siebel  ".
+                                 " WHERE STATUS='PENDI_ACTI' ".
+                                 " AND ASESOR='' ".
+                                 " AND estado =  'in_progress' ".
                                  " ORDER BY fecha_creacion ASC ";
+
+
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
                         if($r->num_rows > 0){

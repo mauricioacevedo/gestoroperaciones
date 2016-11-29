@@ -19,11 +19,30 @@
 
 					<div class="col-lg-12 col-xs-10">
 						<ul class="nav navbar-nav navbar-left">
+                           <li>
+								<i class="fa fa-globe" aria-hidden="true"> </i>&nbsp;
+								<select
+									class= "btn btn-default btn-xs grupo-select"
+									style="width: 200px"
+									ng-model="transaccion">
+									<option value="" disabled>transaccion</option>
+									<option value='SUSPENDER'>SUSPENDER</option>
+                                    <option value='ELIMINAR'>ELIMINAR</option>
+                                    <option value='ELIMINAR COMUNES'>ELIMINAR COMUNES</option>
+                                    <option value='NUEVO'>NUEVO</option>
+                                    <option value='ACTUALIZAR'>ACTUALIZAR</option>
+                                    <option value='ACTUALIZAR COMUNES'>ACTUALIZAR COMUNES</option>
+                                    <option value='TRASLADO'>TRASLADO</option>
+                                    <option value='TRASLADO RETIRO'>TRASLADO RETIRO</option>
 
+
+								</select>
+
+							</li>
 
 							<li> &nbsp; </li>
 							<li>
-								<button type="button" id="iniciar" class="btn btn-success btn-DemePedido-xs" ng-click="start1(pedido);"   ng-disabled="false">
+								<button type="button" id="iniciar" class="btn btn-success btn-DemePedido-xs" ng-click="start(pedido);"   ng-disabled="false">
 								DemePedido
 								</button>
 
@@ -34,7 +53,46 @@
 					</div>
 
 				</div>
+                <div class="panel-body fixed-panel ">
+					<div class="container-fluid"  ng-show="pedidoIsActive==false">
+						<div class="jumbotron animated bounceInRight ">
+							<center><h3>Gestión Pendientes Activacion</h3></center>
+						</div>
 
+					</div>
+
+					<div class="row "  ng-show="pedidoIsBuscado || pedidoIsActive ">
+
+						<div class="col-md-8">
+							<div class = "panel panel-default">
+								<div class = "panel-heading">
+									<b><i class="fa fa-tasks" aria-hidden="true"> </i> DEMEPEDIDO</b>
+								</div>
+								<div class="panel-body">
+									<ul class="list-group" ng-repeat="service in peds  as gestion" >
+										<div class="col-md-6">
+
+											<li class="list-group-item small" ><b>PEDIDO: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.PEDIDO)">
+												{{service.PEDIDO}}
+											</button> </li>
+
+											<li class="list-group-item small" ><b>ESTADO:</b> {{service.ESTADO}}  </li>
+											<li class="list-group-item small" ><b>FECHA_CREACION:</b> {{service.FECHA_CREACION}}  </li>
+											<li class="list-group-item small" ><b>PRODUCTO:</b> {{service.PRODUCTO}}  </li>
+											<li class="list-group-item small" ><b>IDSERVICIORAIZ:</b> {{service.IDSERVICIORAIZ}}  </li>
+
+										</div>
+
+
+									</ul>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+					</div><!--Panel Body -->
 
 
 		</div>

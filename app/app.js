@@ -10199,15 +10199,16 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
     // ------------------------DemePedido activacion --------------------------------------------------------------
     $scope.baby = function(pedido) {
-        //console.log(pedido);
-        services.pedidosPorPedidoActivacion(pedido).then(function(data){
-                     // console.log(data.data);
+        console.log(pedido);
+        services.getpedidosPorPedidoActivacion(pedido).then(function(data){
+                      //console.log(data.data);
                       $scope.historico_pedido=data.data;
+                      //  console.log($scope.historico_pedido);
                       return data.data;
                  });
     };
 
-    $scope.start1 = function(pedido) {
+    $scope.start = function(pedido) {
 
         var pedido1='';
         $scope.popup='';
@@ -10221,7 +10222,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
         if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
             //alert($scope.peds[0].PEDIDO_ID);
-             pedido1=$scope.peds[0].PEDIDO_ID;
+             pedido1=$scope.peds[0].PEDIDO;
 
         }
         $scope.peds={};
@@ -10230,8 +10231,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.busy="";
         $scope.pedido1=pedido1;
         $scope.error="";
-        $scope.iplaza='TODOS';
-        $scope.fuente="SIEBEL";
+
 
         var demePedidoButton=document.getElementById("iniciar");
             demePedidoButton.setAttribute("disabled","disabled");
@@ -10250,8 +10250,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             }else{
 
                 document.getElementById("warning").innerHTML="";
-                $scope.pedido1=$scope.peds[0].PEDIDO_ID;
-                $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+                $scope.pedido1=$scope.peds[0].PEDIDO;
+                $scope.pedidoinfo=$scope.peds[0].PEDIDO;
                 $scope.pedidoIsActive=true;
                 $scope.errorDatos=null;
                 $scope.fecha_inicio=$rootScope.fechaProceso();
