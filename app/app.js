@@ -12172,7 +12172,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 			  function(data){
 				  //console.log(data);
-				  $scope.listadoLocalidad=data.data[0]['LOCALIDAD'];
+				  $scope.listadoLocalidad=data.data[0].LOCALIDAD;
 				  console.log($scope.listadoLocalidad);
 				  return data.data;
 
