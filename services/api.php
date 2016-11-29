@@ -6756,7 +6756,7 @@ $queryConceptosFcita=" select ".
                                         $ids=$ids.$sep.$row['ID'];
                                         $sep=",";
                                 }
-                                $sqlupdate="update gestor_pendientes_reagendamiento set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+                                $sqlupdate="update gestor_pendientes_activacion_siebel set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
                                 $x = $this->mysqli->query($sqlupdate);
                 $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
                 $x = $this->mysqli->query($INSERTLOG);
