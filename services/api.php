@@ -6737,13 +6737,16 @@ $queryConceptosFcita=" select ".
                         }
                         $pedido = $this->_request['pedido'];
                         $today = date("Y-m-d");
-                        $query=     " SELECT distinct * ".
-                                    " FROM gestor_pendientes_activacion_siebel  ".
-                                    " WHERE STATUS='PENDI_ACTI' ".
-                                    " AND ASESOR='' ".
-                                    " AND PEDIDO = '1-1315440715893' ".
-                                    " AND estado =  'in_progress' ".
-                                    " ORDER BY fecha_creacion ASC ";
+                        $query=    " SELECT distinct ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER ".
+                                    " ,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION ".
+                                    " ,PRODUCTO,IDSERVICIORAIZ,TRANSACCION ".
+                                     " FROM gestor_pendientes_activacion_siebel  ".
+                                     " WHERE STATUS='PENDI_ACTI' ".
+                                     " AND ASESOR='' ".
+                                     " AND PEDIDO = '1-1315440715893' ".
+                                     " AND estado =  'in_progress' ".
+                                     " ORDER BY fecha_creacion ASC ";
+
 
                        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
