@@ -6729,7 +6729,27 @@ $queryConceptosFcita=" select ".
 
 //------------------------demepedidoactivacion
 
+ private function demePedidoActivacion(){
+                     if($this->get_request_method() != "GET"){
+                                $this->response('',406);
+                        }
+                        $pedido = $this->_request['pedido'];
+                        $today = date("Y-m-d");
+                        $query= " SELECT * ".
+                                " FROM gestor_pendientes_activacion_siebel  ".
+                                " WHERE estado =  'in_progress' ".
+                                 " ORDER BY fecha_creacion ASC ";
+                        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
+                        if($r->num_rows > 0){
+                                $result = array();
+                                while($row = $r->fetch_assoc()){
+                                        $result[] = $row;
+                                }
+                                $this->response($this->json($result), 200); // send user details
+                        }
+                        $this->response('',204);        // If no records "No Content" status
+                }
 
 //--------------------fin demepedido activacion
 		
