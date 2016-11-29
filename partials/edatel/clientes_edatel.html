@@ -19,14 +19,11 @@
 								<ul class="nav navbar-nav navbar-left">
 
 									<li>
-										<ui-select ng-model="ctrl.person.selected" theme="select2" ng-disabled="ctrl.disabled" style="min-width: 300px;" title="Choose a person">
-										<ui-select-match placeholder="Select a person in the list or search his name/age...">{{$select.selected.name}}</ui-select-match>
-										<ui-select-choices repeat="g for g in listadoLocalidad">
-										  <div ng-bind-html="person.name | highlight: $select.search"></div>
-										  <small>
-											email: {{g.LOCALIDAD}}
+										<ui-select ng-model="ctrl.country.selected" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country">
+										<ui-select-match placeholder="Select or search a country in the list..."></ui-select-match>
+										<ui-select-choices repeat="gg for gg in listadoLocalidad">
+										  <span ng-bind-html="gg.LOCALIDAD"></span>
 
-										  </small>
 										</ui-select-choices>
 									  </ui-select>
 									</li>
