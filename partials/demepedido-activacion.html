@@ -19,13 +19,15 @@
 
 					<div class="col-lg-12 col-xs-10">
 						<ul class="nav navbar-nav navbar-left">
-                            <li>
+                           <li>
 								<i class="fa fa-globe" aria-hidden="true"> </i>&nbsp;
-								 <select ng-model="estado" class="form-control" style="width: 100px">
-                                    <option value='in_progress'>in_progress</option>
-
-
-                                  </select>
+								<select
+									class= "btn btn-default btn-xs grupo-select"
+									style="width: 200px"
+									ng-model="iconcepto">
+									<option value="" disabled>--Estado--</option>
+									<option ng-repeat="d in estadosSiebel " value="{{d.ESTADO_ID}}">{{d.ESTADO_ID}}</option>
+								</select>
 
 							</li>
 
