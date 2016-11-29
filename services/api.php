@@ -11446,39 +11446,7 @@ $sqlfenix=
 
 		// Listado de Localidades Edatel Asginaciones ------------------------------------
 
-		private function LocalidadesEdatel(){
 
-			if($this->get_request_method() != "GET"){
-					$this->response('',406);
-			}
-
-			$this->dbConnect03();
-
-			$today = date("Y-m-d");
-
-			$query=	" SELECT ".
-					"	e.LOCALIDAD ".
-					"	FROM gestor_informes.eda_clientes e ".
-					"	group by e.LOCALIDAD ".
-					"	ORDER BY 1 ASC ";
-
-													//echo $query;
-				$r = $this->mysqli03->query($query) or die($this->mysqli03->error.__LINE__);
-
-				if($r->num_rows > 0){
-						$result = array();
-
-						while($row = $r->fetch_assoc()){
-
-								$result[] = $row;
-						}
-
-						$this->response($this->json(array($result,$today)), 200);
-				}
-
-				$this->response('',406);        // If no records "No Content" status
-
-		}
 
 		//------------------------Listado de Localidades Edatel
 
