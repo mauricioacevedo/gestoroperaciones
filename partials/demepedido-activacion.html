@@ -34,7 +34,46 @@
 					</div>
 
 				</div>
+                <div class="panel-body fixed-panel ">
+					<div class="container-fluid"  ng-show="pedidoIsActive==false">
+						<div class="jumbotron animated bounceInRight ">
+							<center><h3>Gestión Pendientes Siebel</h3></center>
+						</div>
 
+					</div>
+
+					<div class="row "  ng-show="pedidoIsBuscado || pedidoIsActive ">
+
+						<div class="col-md-8">
+							<div class = "panel panel-default">
+								<div class = "panel-heading">
+									<b><i class="fa fa-tasks" aria-hidden="true"> </i> DEMEPEDIDO</b>
+								</div>
+								<div class="panel-body">
+									<ul class="list-group" ng-repeat="service in peds  as gestion" >
+										<div class="col-md-6">
+
+											<li class="list-group-item small" ><b>PEDIDO: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.PEDIDO_ID)">
+												{{service.PEDIDO}}
+											</button> </li>
+
+											<li class="list-group-item small" ><b>ESTADO:</b> {{service.ESTADO}}  </li>
+											<li class="list-group-item small" ><b>FECHA_CREACION:</b> {{service.FECHA_CREACION}}  </li>
+											<li class="list-group-item small" ><b>PRODUCTO:</b> {{service.PRODUCTO}}  </li>
+											<li class="list-group-item small" ><b>IDSERVICIORAIZ:</b> {{service.IDSERVICIORAIZ}}  </li>
+
+										</div>
+
+
+									</ul>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+					</div><!--Panel Body -->
 
 
 		</div>
