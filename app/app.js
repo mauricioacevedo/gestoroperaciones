@@ -415,7 +415,9 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 		return $http.get(serviceBase+'demePedidoActivacion?userID='+user);
     	}
 
-
+        obj.getBuscarpedidoactivacion = function(pedido,pedido_actual,user){
+        return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user);
+        }
 //------------------------------------------------------fin_Activacion
 
 
@@ -10268,6 +10270,80 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         };
 
     // -------------------------------------------------------------- fin DemePedido activacion
+
+    	// ------------------------------BuscarPedido ----------------------------------------
+
+	$scope.buscarPedido = function(buscar,pedidoinfo) {
+
+			var pedido1='';
+			$scope.popup='';
+			$scope.errorDatos=null;
+			$scope.InfoPedido=[];
+			$scope.fecha_inicio=null;
+			$scope.accRdy=false;
+			$scope.InfoGestion={};
+			$scope.InfoPedido.INCIDENTE='NO';
+			$scope.pedidoIsGuardado=false;
+
+			$scope.pedidoActual=pedidoinfo;
+
+			$scope.buscar=buscar;
+
+
+
+          var kami=services.getBuscarOfertaSiebelAsignaciones(buscar,$scope.pedidoActual,$rootScope.logedUser.login).then(
+
+			  function(data){
+
+				 if(data.data==''){
+						$scope.errorDatos="No hay Registros. Intente con otra oferta";
+					 	$scope.peds={};
+						$scope.mpedido={};
+						$scope.busy="";
+						$scope.pedidoIsActive=false;
+					}else{
+
+						$scope.peds = data.data[1];
+				  	   	$scope.ocupado=data.data[0];
+						$scope.pedido1=$scope.peds[0].PEDIDO_ID;
+				  	   	$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+
+						var dat=data.status;
+						//alert("'"+data.status+"'");
+							if(dat==204){
+							   document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Estado";
+								$scope.errorDatos="No hay Registros. Intente Cambiando de Estado";
+								$scope.peds={};
+								$scope.mpedido={};
+								$scope.busy="";
+								$scope.pedidoIsActive=false;
+
+							}else{
+
+								   if($scope.ocupado==true){
+													$scope.busy=$scope.peds[0].ASESOR;
+													$scope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.busy;
+													return;
+
+									 }
+											$scope.errorDatos=null;
+											$scope.pedidoIsActive=true;
+											$scope.fecha_inicio=$rootScope.fechaProceso();
+
+
+									return data.data;
+							}
+					}
+			  });
+
+
+        };
+
+
+
+
+	// -----------------------------BuscarPedido------------------------------------
+
 });
 
 
@@ -11546,7 +11622,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 
 
-          var kami=services.getBuscarOfertaSiebelAsignaciones(buscar,$scope.pedidoActual,$rootScope.logedUser.login).then(
+          var kami=services.getBuscarpedidoactivacion(buscar,$scope.pedidoActual,$rootScope.logedUser.login).then(
 
 			  function(data){
 
@@ -11560,8 +11636,8 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 						$scope.peds = data.data[1];
 				  	   	$scope.ocupado=data.data[0];
-						$scope.pedido1=$scope.peds[0].PEDIDO_ID;
-				  	   	$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+						$scope.pedido1=$scope.peds[0].PEDIDO;
+				  	   	$scope.pedidoinfo=$scope.peds[0].PEDIDO;
 
 						var dat=data.status;
 						//alert("'"+data.status+"'");
@@ -12873,6 +12949,8 @@ app.run(['$rootScope', 'services', function($rootScope, services){
     	];
 
 	// ------------------------------------------- Listados Siebel
+
+
 
 }]);
 
