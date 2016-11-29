@@ -6746,35 +6746,16 @@ $queryConceptosFcita=" select ".
                                  " ORDER BY fecha_creacion ASC ";
 
 
-                        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+                       $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
                         if($r->num_rows > 0){
                                 $result = array();
-                                $ids="";
-                                $sep="";
                                 while($row = $r->fetch_assoc()){
                                         $result[] = $row;
-                                        $ids=$ids.$sep.$row['ID'];
-                                        $sep=",";
                                 }
-                                $sqlupdate="update gestor_pendientes_activacion_siebel set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
-                                $x = $this->mysqli->query($sqlupdate);
-                $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
-                $x = $this->mysqli->query($INSERTLOG);
-                $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$user','$username','','','PEDIDO: $mypedido','DEMEPEDIDO')";
-                                $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
-
-                //sleep(20);
-                unlink($filename);
-                                echo json_encode($result);
-                                $this->response('', 200); // send user details
-                        }else{//i have pretty heavy problems over here...
-                //$this->response('SYSTEM PANIC!',200);
-                $this->response('No hay registros!',204);
-            }
-            unlink($filename);
-
-                        $this->response('nothing',204);        // If no records "No Content" status
+                                $this->response($this->json($result), 200); // send user details
+                        }
+                        $this->response('',204);        // If no records "No Content" status
                 }
 
 //--------------------fin demepedido activacion
