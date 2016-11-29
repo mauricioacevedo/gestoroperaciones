@@ -2843,7 +2843,7 @@ private function updateFenixReconfiguracion($obj){
                    "   case ".
                    "     when FUENTE='FENIX_BOG' and CONCEPTO_ID='PETEC' then 'PETEC-BOG' ".
                    "     when CONCEPTO_ID='14' AND STATUS='PENDI_RENUMS' then '14-RENUMS' ".
-				   "     when CONCEPTO_ID='PETEC' and RADICADO_TEMPORAL='EQURED' then 'PETEC-EQURED' ".
+				   "     when CONCEPTO_ID='PETEC' and RADICADO_TEMPORAL='EQURED' then 'EQURED' ".
                    "    else CONCEPTO_ID ".
                    "  end as CONCEPTO_ID ".
                    "   FROM informe_petec_pendientesm  ".
@@ -2851,7 +2851,7 @@ private function updateFenixReconfiguracion($obj){
                    "   GROUP BY (case ".
                    "     when FUENTE='FENIX_BOG' and CONCEPTO_ID='PETEC' then 'PETEC-BOG' ".
 		   		   "     when CONCEPTO_ID='14' AND STATUS='PENDI_RENUMS' then '14-RENUMS' ".
-				   "     when CONCEPTO_ID='PETEC' and RADICADO_TEMPORAL='EQURED' then 'PETEC-EQURED' ".
+				   "     when CONCEPTO_ID='PETEC' and RADICADO_TEMPORAL='EQURED' then 'EQURED' ".
                    "     else CONCEPTO_ID ".
                    " end)"; 
 
