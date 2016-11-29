@@ -10201,7 +10201,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
     $scope.baby = function(pedido) {
         //console.log(pedido);
         services.getpedidosPorPedidoActivacion(pedido).then(function(data){
-                     // console.log(data.data);
+                      console.log(data.data);
                       $scope.historico_pedido=data.data;
                       return data.data;
                  });
@@ -10230,8 +10230,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.busy="";
         $scope.pedido1=pedido1;
         $scope.error="";
-        $scope.iplaza='TODOS';
-        $scope.fuente="SIEBEL";
+
 
         var demePedidoButton=document.getElementById("iniciar");
             demePedidoButton.setAttribute("disabled","disabled");
