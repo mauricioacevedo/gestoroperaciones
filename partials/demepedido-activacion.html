@@ -21,13 +21,19 @@
 						<ul class="nav navbar-nav navbar-left">
                             <li>
 								<i class="fa fa-globe" aria-hidden="true"> </i>&nbsp;
-								<select
-									class= "btn btn-default btn-xs grupo-select"
-									style="width: 200px"
-									ng-model="iconcepto">
-									<option value="" disabled>--Estado--</option>
-									<option ng-repeat="d in estadosSiebel " value="{{d.ESTADO_ID}}">{{d.ESTADO_ID}}</option>
-								</select>
+								 <select ng-model="estado" class="form-control" style="width: 100px">
+                                    <option value='PETEC'>PETEC</option>
+                                    <option value='15'>15</option>
+                                    <option value='19'>19</option>
+                                    <option value='PEOPP'>PEOPP</option>
+                                    <option value='PUMED'>PUMED</option>
+                                    <option disabled>───────</option>
+                                    <option value='COORP'>COORP</option>
+                                    <option disabled>───────</option>
+                                    <option value='EQURED'>EQURED</option>
+                                    <option value='STBOX'>STBOX</option>
+
+                                  </select>
 
 							</li>
 
