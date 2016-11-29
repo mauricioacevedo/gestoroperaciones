@@ -10247,8 +10247,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
             if(data.data==''){
 
-                document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Estado.";
-                $scope.errorDatos="No hay Registros. Intente Cambiando de Estado.";
+                document.getElementById("warning").innerHTML="No hay Registros.";
+                $scope.errorDatos="No hay Registros.";
             }else{
 
                 document.getElementById("warning").innerHTML="";
