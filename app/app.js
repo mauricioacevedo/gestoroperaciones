@@ -10222,7 +10222,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
         if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
             //alert($scope.peds[0].PEDIDO_ID);
-             pedido1=$scope.peds[0].PEDIDO_ID;
+             pedido1=$scope.peds[0].PEDIDO;
 
         }
         $scope.peds={};
@@ -10250,8 +10250,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             }else{
 
                 document.getElementById("warning").innerHTML="";
-                $scope.pedido1=$scope.peds[0].PEDIDO_ID;
-                $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+                $scope.pedido1=$scope.peds[0].PEDIDO;
+                $scope.pedidoinfo=$scope.peds[0].PEDIDO;
                 $scope.pedidoIsActive=true;
                 $scope.errorDatos=null;
                 $scope.fecha_inicio=$rootScope.fechaProceso();
