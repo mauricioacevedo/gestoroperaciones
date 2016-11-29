@@ -23,7 +23,7 @@
 											<ui-select-match>
 												<span ng-bind="$select.selected.name"></span>
 											</ui-select-match>
-											<ui-select-choices repeat="g for g in listadoLocalidad">
+											<ui-select-choices repeat="g for g in listadoLocalidad track by g.LOCALIDAD">
 												<span ng-bind="item.name"></span>
 											</ui-select-choices>
 										</ui-select>
