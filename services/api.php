@@ -6727,7 +6727,11 @@ $queryConceptosFcita=" select ".
                         $this->response('nothing',204);        // If no records "No Content" status
                 }
 
+//------------------------demepedidoactivacion
 
+
+
+//--------------------fin demepedido activacion
 		
                 private function demePedidoAgendamiento(){
 
