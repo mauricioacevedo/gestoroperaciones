@@ -19,13 +19,14 @@
 								<ul class="nav navbar-nav navbar-left">
 
 									<li>
-										<ui-select ng-model="ctrl.country.selected" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country">
-										<ui-select-match placeholder="Select or search a country in the list..."></ui-select-match>
-										<ui-select-choices repeat="gg for gg in listadoLocalidad">
-										  <span ng-bind-html="gg.LOCALIDAD"></span>
-
-										</ui-select-choices>
-									  </ui-select>
+										<ui-select ng-model="selected.value">
+											<ui-select-match>
+												<span ng-bind="$select.selected.name"></span>
+											</ui-select-match>
+											<ui-select-choices repeat="g for g in listadoLocalidad">
+												<span ng-bind="item.name"></span>
+											</ui-select-choices>
+										</ui-select>
 									</li>
 									<li>
 										<select id="localidad" name="localidad" class="btn btn-default btn-xs grupo-select" ng-model="eda.localidad" 	ng-options="g for g in listadoLocalidad"
