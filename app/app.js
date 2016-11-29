@@ -12214,25 +12214,15 @@ $scope.buscarCliente=function(localidad,direccion){
 			  );
 		};
 
-$scope.myModel = 1;
+$scope.itemArray = [
+        {id: 1, name: 'first'},
+        {id: 2, name: 'second'},
+        {id: 3, name: 'third'},
+        {id: 4, name: 'fourth'},
+        {id: 5, name: 'fifth'},
+    ];
 
-$scope.myOptions = [
-  {id: 1, title: 'Spectrometer'},
-  {id: 2, title: 'Star Chart'},
-  {id: 3, title: 'Laser Pointer'}
-];
-
-$scope.myConfig = {
-  create: true,
-  valueField: 'id',
-  labelField: 'title',
-  delimiter: '|',
-  placeholder: 'Pick something',
-  onInitialize: function(selectize){
-    // receives the selectize object as an argument
-  },
-  // maxItems: 1
-};
+    $scope.selected = { value: $scope.itemArray[0] };
 
 
 
