@@ -19,12 +19,9 @@
 								<ul class="nav navbar-nav navbar-left">
 
 									<li>
-										<ui-select ng-model="eda.localidad">
-
-											<ui-select-choices repeat="g for g in listadoLocalidad">
-												{{g}}
-											</ui-select-choices>
-										</ui-select>
+										<ui-select-choices repeat="localidad in listadoLocalidad track by $index"
+												 >
+										</ui-select-choices>
 									</li>
 									<li>
 										<select id="localidad" name="localidad" class="btn btn-default btn-xs grupo-select" ng-model="eda.localidad" 	ng-options="g for g in listadoLocalidad"
