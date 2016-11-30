@@ -10371,7 +10371,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             console.log($scope.peds[index]);
                 angular.copy($scope.peds[index],$scope.pedido);
                 console.log($scope.pedido);
-                if($scope.pedido.estado===undefined || $scope.pedido.estado==''){
+                if($scope.pedido.pedido===undefined || $scope.pedido.pedido==''){
                         alert('Por favor diligenciar todos los campos.');
                         loader.className='';
                         return;
