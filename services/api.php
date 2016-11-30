@@ -7711,6 +7711,61 @@ $queryConceptosFcita=" select ".
 
                 }
 
+
+//-----------------------insertactivacion----------------
+
+         private function insertTransaccionsiebelactivacion(){
+
+                 if($this->get_request_method() != "POST"){
+                                $this->response('',406);
+                        }
+
+                $transaccion = json_decode(file_get_contents("php://input"),true);
+
+                $transaccion = $transaccion['transaccion'];
+                $column_names = array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','CAMPO_ERROR','STATUS','ASESOR','FECHA_GESTION');
+                $keys = array_keys($transaccion);
+                $columns = '';
+                $values = '';
+
+                $useri=$transaccion['USUARIO'];
+                $username=$transaccion['USERNAME'];
+
+                foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
+                    if($desired_key=='ID'||$desired_key=='STATUS'){
+                            continue;
+                        }
+                           if(!in_array($desired_key, $keys)) {
+                                        $$desired_key = '';
+                                }else{
+                                        $$desired_key = $transaccion[$desired_key];
+                                }
+                                $columns = $columns.$desired_key.',';
+                                $values = $values."'".$transaccion[$desired_key]."',";
+                        }
+                        $today = date("Y-m-d H:i:s");
+                        $query = "INSERT INTO  gestor_pendientes_activacion_siebel (".trim($columns,',').") VALUES(".trim($values,',').")";
+            //echo $query;
+                        if(!empty($transaccion)){
+                //echo $query;
+                            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+                $sqlupdate="update gestor_pendientes_activacion_siebel set FECHA_GESTION='$today', STATUS='$STATUS', ASESOR='' WHERE ID=$ID ";
+                $rUpdate = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
+
+                $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$useri','$username','NCA','$estado_final','OFERTA: $oferta','NCA') ";
+                $rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+                $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
+
+                        }else{
+                                $this->response('',200);        //"No Content" status
+                                //$this->response("$query",200);        //"No Content" status
+                        }
+
+                }
+
+
+//-------------------------fininsertactivacion*------------------
                 private function insertTransaccionActividades(){
                        if($this->get_request_method() != "POST"){
                                 $this->response('',406);
