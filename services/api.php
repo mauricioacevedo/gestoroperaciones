@@ -560,6 +560,42 @@
 
                 }
 
+
+         private function csvActivacionSiebelinvdom(){
+                        if($this->get_request_method() != "GET"){
+                                $this->response('',406);
+                        }
+                        $login = $this->_request['login'];
+
+                        $today = date("Y-m-d h:i:s");
+                        $filename="Fenix_Activacion-$login-$today.csv";
+                        $query=  " SELECT  PEDIDO,ORDEN,TAREANEMOTECNICO,CODIGO_CIUDAD,NOMBRE_CIUDAD ".
+                                    " ,DEPARTAMENTO,FECHACREACION,ESTADOOSM,ESTADOOSMFUTURO,FECHA_EXCEPCION ".
+                                    " ,PROCESO,IdRaizItem_VALOR,IdRaizItem_CUENTA,NombreItemOrden_VALOR ".
+                                    " ,NombreItemOrden_CUENTA,CodigoUnicoDireccion_VALOR,CodigoUnicoDireccion_CUENTA ".
+                                    " ,DireccionNormalizada_VALOR,DireccionNormalizada_CUENTA,TipoTransaccion_VALOR,TipoTransaccion_CUENTA ".
+                                    " FROM gestor_pendientes_activacion_siebel_invdom ";
+
+
+                        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+                        if($r->num_rows > 0){
+                                $result = array();
+                                $fp = fopen("../tmp/$filename", 'w');
+                                fputcsv($fp, array('PEDIDO','ORDEN','TAREANEMOTECNICO','CODIGO_CIUDAD','NOMBRE_CIUDAD','DEPARTAMENTO','FECHACREACION','ESTADOOSM','ESTADOOSMFUTURO','FECHA_EXCEPCION','PROCESO','IdRaizItem_VALOR','IdRaizItem_CUENTA','NombreItemOrden_VALOR','NombreItemOrden_CUENTA','CodigoUnicoDireccion_VALOR','CodigoUnicoDireccion_CUENTA','DireccionNormalizada_VALOR','DireccionNormalizada_CUENTA','TipoTransaccion_VALOR','TipoTransaccion_CUENTA'));
+                                while($row = $r->fetch_assoc()){
+                                        $result[] = $row;
+                                        fputcsv($fp, $row);
+                                }
+                                fclose($fp);
+
+                                $this->response($this->json(array($filename,$login)), 200); // send user details
+                        }
+
+                        $this->response('',204);        // If no records "No Content" status
+
+                }
+
 private function csvListadoActivacion(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
