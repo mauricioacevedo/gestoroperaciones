@@ -7715,6 +7715,7 @@ $queryConceptosFcita=" select ".
 //-----------------------insertactivacion----------------
 
           private function insertTransaccionsiebelactivacion(){
+
                        if($this->get_request_method() != "POST"){
                                 $this->response('',406);
                         }
@@ -7743,23 +7744,14 @@ $queryConceptosFcita=" select ".
 
                      $query = "INSERT INTO gestor_pendientes_activacion_siebel (".trim($columns,',').",PROGRAMACION,SOURCE ) VALUES(".trim($values,',').",'$programacion','$sourcee')";
 
-                              $FECHA_CITA_REAGENDA=$pedido['FECHA_CITA_REAGENDA'];
-
-                              $JORNADA_CITA=$pedido['JORNADA_CITA'];
-
-
-            //echo($JORNADA_CITA);
-            // echo($programacion);
 
 
                         $today = date("Y-m-d H:i:s");
 
-                        //$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
-                        if(!empty($pedido)){
-                                //$concepto_final=$this->updateFenix($pedido);
-                               // $query = "INSERT INTO gestor_historicos_reagendamiento (".trim($columns,',').",source) VALUES(".trim($values,',').",'MANUAL')";
 
-                                $query = "insert into gestor_pendientes_activacion_siebel (PEDIDO_ID,FUENTE,CLIENTE_ID,NOVEDAD,ASESOR,ASESORNAME,DEPARTAMENTO,OBSERVACION_GESTOR,PROCESO,ACCESO,SOURCE,FECHA_CITA_REAGENDA,JORNADA_CITA,FECHA_INICIO,FECHA_FIN,DURACION) values ('$PEDIDO_ID','$FUENTE','$cliente_id','$novedad','$useri','$username','$DEPARTAMENTO','$OBSERVACION_GESTOR','$proceso','BACKOFFICE','$sourcee','$FECHA_CITA_REAGENDA','$JORNADA_CITA','$today','$today','00:00:00') ";
+                        if(!empty($pedido)){
+
+                                $query = "insert into gestor_pendientes_activacion_siebel (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,CAMPO_ERROR,STATUS,ASESOR,FECHA_GESTION) values ('$ORDER_SEQ_ID','$PEDIDO','$REFERENCE_NUMBER','$ESTADO','$FECHA_CREACION','$TAREA_EXCEPCION','$FECHA_EXCEPCION','$PRODUCTO','$IDSERVICIORAIZ','$TRANSACCION','$CODIGO_CIUDAD','$CAMPO_ERROR','$STATUS','$ASESOR','$ASESOR','$FECHA_GESTION') ";
 
                                 //echo $query;
                                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
