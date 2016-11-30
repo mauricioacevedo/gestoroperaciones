@@ -10357,11 +10357,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
     //------------------------------ GuardarPedido ----------------------------
 
 
-	$scope.listarEstados();
-
-	$scope.onChangeAccion=function(){
-      $scope.accRdy=true;
- };
 
 	$scope.guardar=function(InfoPedido,gestion,status){
 
