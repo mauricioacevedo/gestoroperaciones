@@ -10410,7 +10410,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			CAMPO_ERROR:$scope.CAMPO_ERROR,
 			ASESOR:$scope.ASESOR,
             FECHA_GESTION:$scope.FECHA_GESTION,
-            STATUS:$scope.stautsGo
+            STATUS:$scope.stautsGo,
 			}
 
 		//console.log($scope.InfoGestion);
