@@ -10359,33 +10359,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 
-	 $scope.listarEstados=function(){
-
-			services.getlistadoOpcionesSiebelAsignaciones().then(
-
-			  function(data){
-
-				  $scope.Observaciones=data.data[0];
-				  $scope.Estados=data.data[1];
-				  $scope.listadoOpcionesSiebel=data.data[2];
-
-				  return data.data;
-
-
-					}
-			  , function errorCallback(response,status) {
-				  //console.log(status);
-					$scope.errorDatos="Sin Procesos";
-
-				  }
-			  );
-		};
-
-	$scope.listarEstados();
-
-	$scope.onChangeAccion=function(){
-      $scope.accRdy=true;
- };
 
 	$scope.guardar=function(InfoPedido,gestion,status){
 
