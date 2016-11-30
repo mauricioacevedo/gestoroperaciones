@@ -10359,78 +10359,98 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 
-	 $scope.guardar = function(index) {//validacion datos para ingreso manual
+	 $scope.listarEstados=function(){
+
+			services.getlistadoOpcionesSiebelAsignaciones().then(
+
+			  function(data){
+
+				  $scope.Observaciones=data.data[0];
+				  $scope.Estados=data.data[1];
+				  $scope.listadoOpcionesSiebel=data.data[2];
+
+				  return data.data;
+
+
+					}
+			  , function errorCallback(response,status) {
+				  //console.log(status);
+					$scope.errorDatos="Sin Procesos";
+
+				  }
+			  );
+		};
+
+	$scope.listarEstados();
+
+	$scope.onChangeAccion=function(){
+      $scope.accRdy=true;
+ };
+
+	$scope.guardarPedido=function(InfoPedido,gestion,status){
+
+		$scope.fecha_fin=$rootScope.fechaProceso();
+		$scope.stautsGo=status[0].STATUS;
+
+		//console.log($scope.stautsGo);
+
+		$scope.InfoGestion={
+			ID:gestion.ID,
+			ORDER_SEQ_ID:$scope.ORDER_SEQ_ID,
+			PEDIDO:$scope.PEDIDO,
+            REFERENCE_NUMBER:$scope.REFERENCE_NUMBER,
+			ESTADO:$scope.ESTADO,
+            FECHA_CREACION:$scope.FECHA_CREACION,
+			TAREA_EXCEPCION:$scope.TAREA_EXCEPCION,
+            FECHA_EXCEPCION:$scope.FECHA_EXCEPCION,
+			PRODUCTO:$scope.PRODUCTO,
+            IDSERVICIORAIZ:$scope.IDSERVICIORAIZ,
+			TRANSACCION:$scope.TRANSACCION,
+            CODIGO_CIUDAD:$scope.CODIGO_CIUDAD,
+			CAMPO_ERROR:$scope.CAMPO_ERROR,
+			ASESOR:$scope.ASESOR,
+            FECHA_GESTION:$scope.FECHA_GESTION,
+            STATUS:$scope.stautsGo
+			}
+
+		//console.log($scope.InfoGestion);
+
+
+		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
+
+			  function(data){
+
+				  $scope.pedidoIsGuardado = true;
+				  $scope.errorDatos = null;
+				  $scope.InfoPedido = [];
+				  $scope.fecha_inicio = null;
+				  $scope.fecha_fin = null;
+				  $scope.accRdy = false;
+				  $scope.InfoGestion = {};
+				  $scope.pedidoOcupado = false
+				  $scope.pedidoIsActive = false
+				  $scope.peds = {};
+				  $scope.mpedido = {};
+				  $scope.bpedido = '';
+				  $scope.busy = "";
+				  $scope.error = "";
+				  $scope.iplaza = 'TODOS';
+				  $scope.fuente = "SIEBEL";
+				  $scope.buscar = null;
+				  return data.data;
+
+
+					}
+			  , function errorCallback(response,status) {
+				  //console.log(status);
+					$scope.errorDatos="No se pudo guardar";
+
+				  }
+			  );
 
 
 
-                $scope.pedido={};
-                $scope.error="";
-                angular.copy($scope.mpedido,$scope.pedido);
-            $scope.pedido={};
-            $scope.error="";
-            console.log($scope.peds[index]);
-                angular.copy($scope.peds[index],$scope.pedido);
-                console.log($scope.pedido);
-                if($scope.pedido.pedido===undefined || $scope.pedido.pedido==''){
-                        alert('Por favor diligenciar todos los campos.');
-                        loader.className='';
-                        return;
-                }
 
-        $scope.pedido.ASESOR=$rootScope.logedUser.login;
-        $scope.pedido.ASESORNAME=$rootScope.logedUser.name;
-        $scope.pedido.DURACION=new Date().getTime() - $scope.timeInit;
-
-        //$scope.pedido.PROGRAMACION=$scope.mpedido.PROGRAMACION;
-               // $scope.pedido.ACTIVIDADES="INSTA";
-
-    //console.log($scope.pedido.ACTIVIDAD_GESTOR)
-
-          $scope.timeInit=new Date().getTime();
-                var df=new Date($scope.pedido.duracion);
-            $scope.pedido.duracion= $scope.doubleDigit(df.getHours()-19)+":"+ $scope.doubleDigit(df.getMinutes())+":"+$scope.doubleDigit(df.getSeconds());
-            $scope.pedido.pedido=$scope.peds[index].PEDIDO;
-                $scope.pedido1=$scope.peds[index].PEDIDO;
-
-
-                 services.insertTransaccionsiebelactivacion($scope.pedido).then(function (status) {
-
-                if($scope.pedidos==""){
-                    $scope.pedidos=new Array();
-                }
-
-                if($scope.historico_pedido==""){
-                       $scope.historico_pedido=new Array();
-                }
-
-                $scope.baby($scope.pedido.PEDIDO);
-                $scope.pedido1=$scope.pedido.PEDIDO;
-
-                $scope.timeInit=new Date().getTime();
-                date1 = new Date();
-                year    = date1.getFullYear();
-                month   = $scope.doubleDigit(date1.getMonth()+1);
-                day     = $scope.doubleDigit(date1.getDate());
-                hour    = $scope.doubleDigit(date1.getHours());
-                minute  = $scope.doubleDigit(date1.getMinutes());
-                seconds = $scope.doubleDigit(date1.getSeconds());
-
-                $scope.fecha_gestion=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
-
-
-                $scope.pedido={};
-                $scope.peds={};
-                $scope.pedido1="";
-                $scope.mpedido={};
-                $scope.bpedido='';
-                $scope.historico_pedido=[];
-
-                 $scope.mpedido.active=1;
-                $scope.busy="";
-                $scope.mpedido.active=0;
-                $scope.pedidoinfo='Pedido';
-            });
-        };
 
 
 	// ----------------------------- GuardarPedido------------------------------
