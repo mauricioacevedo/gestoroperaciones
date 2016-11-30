@@ -5366,49 +5366,6 @@ $queryConceptosFcita=" select ".
 
                 }
 
-//----------------listadoactivacioninvdom---
-
-  private function listadoactivacion(){
-
-                        if($this->get_request_method() != "GET"){
-                                $this->response('',406);
-
-                        }
-
-                        $fechaini = $this->_request['fecha_inicio'];
-                        $fechafin = $this->_request['fecha_fin'];
-                        $page = $this->_request['page'];
-                        $today = date("Y-m-d");
-
-                        if($page=="undefined"){
-                                $page="0";
-                        }else{
-                                $page=$page-1;
-                        }
-                        $page=$page*100;
-                        //counter
-
-
-                        $query=" SELECT count(*) as counter ".
-                               " FROM portalbd.gestor_pendientes_activacion_siebel_invdom ";
-
-                        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-                        $counter=0;
-                        if($rr->num_rows > 0){
-                                $result = array();
-                                if($row = $rr->fetch_assoc()){
-                                        $counter = $row['counter'];
-
-                                }
-
-                                $this->response($this->json(array($counter)), 200); // send user details
-                        }
-                        $this->response('',204);        // If no records "No Content" status
-
-                }
-
-
-//----------------finlistadoactivacioninvdom---
 
                 private function listadoactivaciontabla(){
 
