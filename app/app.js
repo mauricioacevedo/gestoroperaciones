@@ -10358,66 +10358,87 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 
-	$scope.guardar=function(InfoPedido,gestion,status){
+	$scope.guardar = function(index) {
 
+                var loader = document.getElementById("class"+index);
+                loader.className='glyphicon glyphicon-refresh fa-spin';
 
-		//console.log($scope.stautsGo);
+                $scope.pedido={};
+                 $scope.error="";
+                console.log($scope.peds[index]);
+                angular.copy($scope.peds[index],$scope.pedido);
+                console.log($scope.pedido);
+                if($scope.pedido.estado===undefined || $scope.pedido.estado==''){
+                        alert('Por favor diligenciar todos los campos.');
+                        loader.className='';
+                        return;
+                }
+                $scope.pedido.user=$rootScope.logedUser.login;
+                $scope.pedido.username=$rootScope.logedUser.name;
+                $scope.pedido.duracion=new Date().getTime() - $scope.timeInit;
 
-		$scope.InfoGestion={
+                $scope.timeInit=new Date().getTime();
+                var df=new Date($scope.pedido.duracion);
+            $scope.pedido.duracion= $scope.doubleDigit(df.getHours()-19)+":"+ $scope.doubleDigit(df.getMinutes())+":"+$scope.doubleDigit(df.getSeconds());
+            $scope.pedido.pedido=$scope.peds[index].PEDIDO;
+                $scope.pedido1=$scope.peds[index].PEDIDO;
 
-			ORDER_SEQ_ID:InfoPedido.ORDER_SEQ_ID,
-			PEDIDO:$scope.PEDIDO,
-			REFERENCE_NUMBER:$scope.REFERENCE_NUMBER,
-			ESTADO:InfoPedido.ESTADO,
-			FECHA_CREACION:InfoPedido.FECHA_CREACION,
-			TAREA_EXCEPCION:InfoPedido.TAREA_EXCEPCION,
-			FECHA_EXCEPCION:$scope.FECHA_EXCEPCION,
-			PRODUCTO:$scope.PRODUCTO,
-			IDSERVICIORAIZ:InfoPedido.IDSERVICIORAIZ,
-			TRANSACCION:InfoPedido.TRANSACCION,
-            CODIGO_CIUDAD:$scope.CODIGO_CIUDAD,
-			CAMPO_ERROR:InfoPedido.CAMPO_ERROR,
-            STATUS:$scope.STATUS,
-			ASESOR:InfoPedido.ASESOR,
-            FECHA_GESTION:InfoPedido.FECHA_GESTION,
-			USUARIO:$rootScope.logedUser.login,
-			STATUS:$scope.stautsGo
-			}
+        if($scope.pedido.source==''){
+            $scope.pedido.source="AUTO";
+        }
 
-		//console.log($scope.InfoGestion);
+                $scope.pedido.fecha_gestion=$scope.fecha_gestion;
 
+                var date1 = new Date();
+                var year    = date1.getFullYear();
+                var month   = $scope.doubleDigit(date1.getMonth()+1);
+                var day     = $scope.doubleDigit(date1.getDate());
+                var hour    = $scope.doubleDigit(date1.getHours());
+                var minute  = $scope.doubleDigit(date1.getMinutes());
+                var seconds = $scope.doubleDigit(date1.getSeconds());
 
-		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
+                $scope.pedido.fecha_gestion=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
 
-			  function(data){
+                var dat= new Date();
 
-				  $scope.pedidoIsGuardado = true;
-				  $scope.errorDatos = null;
-				  $scope.InfoPedido = [];
-				  $scope.FECHA_CREACION = null;
-				  $scope.FECHA_EXCEPCION = null;
-				  $scope.accRdy = false;
-				  $scope.InfoGestion = {};
-				  $scope.pedidoOcupado = false
-				  $scope.pedidoIsActive = false
-				  $scope.peds = {};
-				  $scope.mpedido = {};
-				  $scope.bpedido = '';
-				  $scope.busy = "";
-				  $scope.error = "";
-				  $scope.buscar = null;
-				  return data.data;
+                services.insertTransaccionsiebelactivacion($scope.pedido).then(function (status) {
+                        $scope.calcularListadoReconfiguracion();
+                        $scope.pedido.fecha_gestion=status.data['data'];
+                        $scope.pedido.concepto_final=status.data['msg'];
+                        if($scope.pedido.concepto_final=="El pedido NO ha cambiado de concepto en Fenix!!!"){
+                                alert($scope.pedido.concepto_final);
+                                $scope.pedido.fecha="";
+                                $scope.pedido.concepto_final="";
+                        }else{
+                                $scope.historico_pedido=$scope.historico_pedido.concat(angular.copy($scope.pedido));
+                                $scope.peds.splice(index,1);
+                                 if($scope.pedidos==""){
+                                        $scope.pedidos=new Array();
+                                }
+                                $scope.pedidos=$scope.pedidos.concat($scope.pedido);
+                                if($scope.historico_pedido==""){
+                                        $scope.historico_pedido=new Array();
+                                }
+                                        $scope.pedido=[];
+                                        $scope.busy="";
+                                        $scope.timeInit=new Date().getTime();
+                                        date1 = new Date();
+                                        year    = date1.getFullYear();
+                                        month   = $scope.doubleDigit(date1.getMonth()+1);
+                                        day     = $scope.doubleDigit(date1.getDate());
+                                        hour    = $scope.doubleDigit(date1.getHours());
+                                        minute  = $scope.doubleDigit(date1.getMinutes());
+                                        seconds = $scope.doubleDigit(date1.getSeconds());
 
+                                        $scope.fecha_inicio=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
+                                        $scope.popup='';
 
-					}
-			  , function errorCallback(response,status) {
-				  //console.log(status);
-					$scope.errorDatos="No se pudo guardar";
-
-				  }
-			  );
-
-	};
+                        }
+                    loader.className='';
+                    $scope.pedidoinfo='Pedido';
+               return status;
+           });
+   };
 
 
 	// ----------------------------- GuardarPedido------------------------------
