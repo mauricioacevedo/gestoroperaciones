@@ -10360,7 +10360,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	$scope.guardar=function(InfoPedido,gestion,status){
 
-		$scope.fecha_fin=$rootScope.fechaProceso();
+		$scope.FECHA_GESTION=$rootScope.FECHA_GESTION();
 		$scope.stautsGo=status[0].STATUS;
 
 		//console.log($scope.stautsGo);
@@ -10381,6 +10381,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			CAMPO_ERROR:InfoPedido.CAMPO_ERROR,
             STATUS:$scope.STATUS,
 			ASESOR:InfoPedido.ASESOR,
+            FECHA_GESTION:InfoPedido.FECHA_GESTION,
 			USUARIO:$rootScope.logedUser.login,
 			STATUS:$scope.stautsGo
 			}
