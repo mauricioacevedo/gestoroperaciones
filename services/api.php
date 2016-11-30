@@ -7728,25 +7728,12 @@ $queryConceptosFcita=" select ".
                         $today = date("Y-m-d H:i:s");
                         $today2 = date("Y-m-d");
                         $FECHA_GESTION='';
-                        //$OBSERVACION_GESTOR=$pedido['OBSERVACION_GESTOR'];;
-                        //$FUENTE=$pedido['FUENTE'];
-                        //$novedad=$pedido['NOVEDAD'];
                         $useri=$pedido['ASESOR'];
                         $PEDIDO=$pedido['PEDIDO_'];
 
 
                          $columns = '';
                         $values = '';
-
-
-
-                         if($sourcee=='')$sourcee="MANUAL";
-
-                     $query = "INSERT INTO gestor_historico_activacion (".trim($columns,',').",PROGRAMACION,SOURCE ) VALUES(".trim($values,',').",'$programacion','$sourcee')";
-
-
-
-                        $today = date("Y-m-d H:i:s");
 
 
                         if(!empty($pedido)){
