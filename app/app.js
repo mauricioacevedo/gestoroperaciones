@@ -419,6 +419,11 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user);
         }
 
+         obj.insertTransaccionsiebelactivacion  = function (pedido) {
+                var data= $http.post(serviceBase + 'insertTransaccionsiebelactivacion ', {"pedido":pedido});
+                return data;
+        };
+
 
 
 //------------------------------------------------------fin_Activacion
@@ -10415,7 +10420,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                 $scope.pedido1="";
                 $scope.mpedido={};
                 $scope.bpedido='';
-                $scope.proceso='';
                 $scope.historico_pedido=[];
 
                  $scope.mpedido.active=1;
