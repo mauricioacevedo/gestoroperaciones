@@ -125,8 +125,26 @@
 					</div>
 
 
-					</div><!--Panel Body -->
+				</div><!--Panel Body -->
+                <div class="panel-footer clearfix" >
+						<div class="col-md-6" >
+								<!--Campos futuros en footer izquierda -->
+						</div>
+					<div class="col-md-6">
+						<ul class="nav navbar-nav navbar-right">
+							<li class="nav navbar-nav" ng-class="pedidoIsGuardado==false?'animated bounceOutRight':'animated bounceInRight'" ng-show="pedidoIsGuardado==true">
+								<span class="label label-primary">Pedido Guardado</span>&nbsp;
 
+							</li>
+							<li>
+								<button type="button" class="btn btn-success btn-xs" ng-click="guardarPedido(InfoPedido,gestion[0],status)"  ng-disabled="!accRdy || pedidoOcupado || loading">
+								Guardar
+								</button>
+							</li>
+
+						</ul>
+					</div>
+				</div><!--Panel Footer -->
 
 		</div>
 		</div><!--Row 1 Novedades -->
