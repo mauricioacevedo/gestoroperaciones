@@ -7730,6 +7730,11 @@ $queryConceptosFcita=" select ".
                         $FECHA_GESTION='';
                         $ASESOR=$pedido['ASESOR'];
                         $PEDIDO=$pedido['PEDIDO'];
+                        $ORDER_SEQ_ID=$pedido['ORDER_SEQ_ID'];
+                        $REFERENCE_NUMBER=$pedido['REFERENCE_NUMBER'];
+                        $ESTADO=$pedido['ESTADO'];
+                        $FECHA_CREACION=$pedido['FECHA_CREACION'];
+                        $TAREA_EXCEPCION=$pedido['TAREA_EXCEPCION'];
                       //  echo "(2)";
 
                          $columns = '';
@@ -7738,7 +7743,7 @@ $queryConceptosFcita=" select ".
 
                         if(!empty($pedido)){
 
-                                $query = "insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,STATUS,ASESOR,FECHA_GESTION) values ('$ORDER_SEQ_ID','$PEDIDO','$REFERENCE_NUMBER','$ESTADO','$FECHA_CREACION','$TAREA_EXCEPCION','$FECHA_EXCEPCION','$PRODUCTO','$IDSERVICIORAIZ','$TRANSACCION','$CODIGO_CIUDAD','$STATUS','$ASESOR','$FECHA_GESTION') ";
+                                $query = "insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,STATUS,ASESOR,FECHA_GESTION) values ('$ORDER_SEQ_ID','$PEDIDO','$REFERENCE_NUMBER','$ESTADO','$FECHA_CREACION','$TAREA_EXCEPCION','$FECHA_EXCEPCION','$PRODUCTO','$IDSERVICIORAIZ','$TRANSACCION','$CODIGO_CIUDAD','$STATUS','$ASESOR','$today') ";
 
                               //  echo $query;
                                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
