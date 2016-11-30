@@ -418,6 +418,13 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         obj.getBuscarpedidoactivacion = function(pedido,pedido_actual,user){
         return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user);
         }
+
+
+        obj.insertTransaccionsiebelactivacion = function (transaccion) {
+                var data= $http.post(serviceBase + 'insertTransaccionsiebelactivacion', {"transaccion":transaccion});
+                return data;
+    };
+
 //------------------------------------------------------fin_Activacion
 
 
@@ -10345,10 +10352,81 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
         };
 
+// -----------------------------BuscarPedido------------------------------------
+
+    //------------------------------ GuardarPedido ----------------------------
 
 
+	$scope.listarEstados();
 
-	// -----------------------------BuscarPedido------------------------------------
+	$scope.onChangeAccion=function(){
+      $scope.accRdy=true;
+ };
+
+	$scope.guardar=function(InfoPedido,gestion,status){
+
+		$scope.fecha_fin=$rootScope.fechaProceso();
+		$scope.stautsGo=status[0].STATUS;
+
+		//console.log($scope.stautsGo);
+
+		$scope.InfoGestion={
+
+			ORDER_SEQ_ID:InfoPedido.ORDER_SEQ_ID,
+			PEDIDO:$scope.PEDIDO,
+			REFERENCE_NUMBER:$scope.REFERENCE_NUMBER,
+			ESTADO:InfoPedido.ESTADO,
+			FECHA_CREACION:InfoPedido.FECHA_CREACION,
+			TAREA_EXCEPCION:InfoPedido.TAREA_EXCEPCION,
+			FECHA_EXCEPCION:$scope.FECHA_EXCEPCION,
+			PRODUCTO:$scope.PRODUCTO,
+			IDSERVICIORAIZ:InfoPedido.IDSERVICIORAIZ,
+			TRANSACCION:InfoPedido.TRANSACCION,
+            CODIGO_CIUDAD:$scope.CODIGO_CIUDAD,
+			CAMPO_ERROR:InfoPedido.CAMPO_ERROR,
+			USUARIO:$rootScope.logedUser.login,
+			STATUS:$scope.stautsGo
+			}
+
+		//console.log($scope.InfoGestion);
+
+
+		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
+
+			  function(data){
+
+				  $scope.pedidoIsGuardado = true;
+				  $scope.errorDatos = null;
+				  $scope.InfoPedido = [];
+				  $scope.FECHA_CREACION = null;
+				  $scope.FECHA_EXCEPCION = null;
+				  $scope.accRdy = false;
+				  $scope.InfoGestion = {};
+				  $scope.pedidoOcupado = false
+				  $scope.pedidoIsActive = false
+				  $scope.peds = {};
+				  $scope.mpedido = {};
+				  $scope.bpedido = '';
+				  $scope.busy = "";
+				  $scope.error = "";
+				  $scope.buscar = null;
+				  return data.data;
+
+
+					}
+			  , function errorCallback(response,status) {
+				  //console.log(status);
+					$scope.errorDatos="No se pudo guardar";
+
+				  }
+			  );
+
+	};
+
+
+	// ----------------------------- GuardarPedido------------------------------
+
+
 
 });
 
