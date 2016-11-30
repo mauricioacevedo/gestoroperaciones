@@ -10379,6 +10379,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			TRANSACCION:InfoPedido.TRANSACCION,
             CODIGO_CIUDAD:$scope.CODIGO_CIUDAD,
 			CAMPO_ERROR:InfoPedido.CAMPO_ERROR,
+            STATUS:$scope.STATUS,
+			ASESOR:InfoPedido.ASESOR,
 			USUARIO:$rootScope.logedUser.login,
 			STATUS:$scope.stautsGo
 			}
