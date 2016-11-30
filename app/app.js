@@ -10448,7 +10448,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				  }
 			  );
 
-
+        	};
 
 
 
