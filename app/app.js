@@ -10381,7 +10381,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			CAMPO_ERROR:$scope.peds[0].CAMPO_ERROR,
 			ASESOR:$scope.peds[0].ASESOR,
             FECHA_GESTION:$scope.peds[0].FECHA_GESTION,
-            STATUS:$scope.peds.STATUS,
+            STATUS:$scope.peds[0].STATUS,
 			}
 
 		console.log($scope.InfoGestion);
