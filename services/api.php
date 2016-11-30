@@ -7742,7 +7742,7 @@ $queryConceptosFcita=" select ".
 
                          if($sourcee=='')$sourcee="MANUAL";
 
-                     $query = "INSERT INTO gestor_pendientes_activacion_siebel (".trim($columns,',').",PROGRAMACION,SOURCE ) VALUES(".trim($values,',').",'$programacion','$sourcee')";
+                     $query = "INSERT INTO gestor_historico_activacion (".trim($columns,',').",PROGRAMACION,SOURCE ) VALUES(".trim($values,',').",'$programacion','$sourcee')";
 
 
 
@@ -7751,7 +7751,7 @@ $queryConceptosFcita=" select ".
 
                         if(!empty($pedido)){
 
-                                $query = "insert into gestor_pendientes_activacion_siebel (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,CAMPO_ERROR,STATUS,ASESOR,FECHA_GESTION) values ('$ORDER_SEQ_ID','$PEDIDO','$REFERENCE_NUMBER','$ESTADO','$FECHA_CREACION','$TAREA_EXCEPCION','$FECHA_EXCEPCION','$PRODUCTO','$IDSERVICIORAIZ','$TRANSACCION','$CODIGO_CIUDAD','$CAMPO_ERROR','$STATUS','$ASESOR','$ASESOR','$FECHA_GESTION') ";
+                                $query = "insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,CAMPO_ERROR,STATUS,ASESOR,FECHA_GESTION) values ('$ORDER_SEQ_ID','$PEDIDO','$REFERENCE_NUMBER','$ESTADO','$FECHA_CREACION','$TAREA_EXCEPCION','$FECHA_EXCEPCION','$PRODUCTO','$IDSERVICIORAIZ','$TRANSACCION','$CODIGO_CIUDAD','$CAMPO_ERROR','$STATUS','$ASESOR','$ASESOR','$FECHA_GESTION') ";
 
                                 //echo $query;
                                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
