@@ -10405,8 +10405,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				  $scope.bpedido = '';
 				  $scope.busy = "";
 				  $scope.error = "";
-				  $scope.iplaza = 'TODOS';
-				  $scope.fuente = "SIEBEL";
 				  $scope.buscar = null;
 				  return data.data;
 
