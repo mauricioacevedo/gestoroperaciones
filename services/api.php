@@ -7719,7 +7719,7 @@ $queryConceptosFcita=" select ".
                        if($this->get_request_method() != "POST"){
                                 $this->response('',406);
                         }
-                        echo "(1)";
+
             $pedido = json_decode(file_get_contents("php://input"),true);
             //var_dump($pedido);
                         $column_names = array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','CAMPO_ERROR','STATUS','ASESOR','FECHA_GESTION');
@@ -7746,7 +7746,7 @@ $queryConceptosFcita=" select ".
                               //  $query1 = "insert into gestor_pendientes_reagendamiento (PEDIDO_ID,CLIENTE_ID,ASESOR) values ('$PEDIDO_ID','$cliente_id','$useri') ";
                               // $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
-
+                                echo "(1)";
                                 $this->response(json_encode(array("msg"=>"N/A","data" => $today)),200);
 
                         }else{
