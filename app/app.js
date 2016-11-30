@@ -10376,19 +10376,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
     //console.log($scope.pedido.ACTIVIDAD_GESTOR)
 
 
-                var date1 = new Date();
-                var year    = date1.getFullYear();
-                var month   = $scope.doubleDigit(date1.getMonth()+1);
-                var day     = $scope.doubleDigit(date1.getDate());
-                var hour    = $scope.doubleDigit(date1.getHours());
-                var minute  = $scope.doubleDigit(date1.getMinutes());
-                var seconds = $scope.doubleDigit(date1.getSeconds());
-
-
-                console.log($scope.pedido);
-                console.log($scope.mpedido);
-
-
 
                  services.insertTransaccionsiebelactivacion($scope.pedido).then(function (status) {
 
