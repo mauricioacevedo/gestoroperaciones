@@ -10412,7 +10412,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                 minute  = $scope.doubleDigit(date1.getMinutes());
                 seconds = $scope.doubleDigit(date1.getSeconds());
 
-                $scope.fecha_inicio=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
+                $scope.fecha_gestion=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
 
 
                 $scope.pedido={};
