@@ -7730,7 +7730,7 @@ $queryConceptosFcita=" select ".
                         $FECHA_GESTION='';
                         $useri=$pedido['ASESOR'];
                         $PEDIDO=$pedido['PEDIDO_'];
-
+                        echo "(2)";
 
                          $columns = '';
                         $values = '';
