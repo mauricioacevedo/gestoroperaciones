@@ -7767,7 +7767,7 @@ $queryConceptosFcita=" select ".
 
             $pedido = json_decode(file_get_contents("php://input"),true);
             //var_dump($pedido);
-                        $column_names = array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','STATUS','ASESOR','FECHA_GESTION');
+                        $column_names = array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','STATUS','ASESOR','FECHA_GESTION','TIPIFICACION');
                         $pedido=$pedido['pedido'];
                         $keys = array_keys($pedido);
                         $today = date("Y-m-d H:i:s");
@@ -7791,7 +7791,7 @@ $queryConceptosFcita=" select ".
 
                         if(!empty($pedido)){
 
-                                $query = "insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,STATUS,ASESOR,FECHA_GESTION) values ('$ORDER_SEQ_ID','$PEDIDO','$REFERENCE_NUMBER','$ESTADO','$FECHA_CREACION','$TAREA_EXCEPCION','$FECHA_EXCEPCION','$PRODUCTO','$IDSERVICIORAIZ','$TRANSACCION','$CODIGO_CIUDAD','$STATUS','$ASESOR','$today') ";
+                                $query = "insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,STATUS,ASESOR,FECHA_GESTION,TIPIFICACION) values ('$ORDER_SEQ_ID','$PEDIDO','$REFERENCE_NUMBER','$ESTADO','$FECHA_CREACION','$TAREA_EXCEPCION','$FECHA_EXCEPCION','$PRODUCTO','$IDSERVICIORAIZ','$TRANSACCION','$CODIGO_CIUDAD','$STATUS','$ASESOR','$today','$TIPIFICACION') ";
 
                               //  echo $query;
                                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
