@@ -7735,11 +7735,14 @@ $queryConceptosFcita=" select ".
                         $ESTADO=$pedido['ESTADO'];
                         $FECHA_CREACION=$pedido['FECHA_CREACION'];
                         $TAREA_EXCEPCION=$pedido['TAREA_EXCEPCION'];
-                      //  echo "(2)";
-
-                         $columns = '';
-                        $values = '';
-
+                        $FECHA_EXCEPCION=$pedido['FECHA_EXCEPCION'];
+                        $PRODUCTO=$pedido['PRODUCTO'];
+                        $IDSERVICIORAIZ=$pedido['IDSERVICIORAIZ'];
+                        $TRANSACCION=$pedido['TRANSACCION'];
+                        $CODIGO_CIUDAD=$pedido['CODIGO_CIUDAD'];
+                        $CODIGO_CIUDAD=$pedido['CODIGO_CIUDAD'];
+                        $STATUS=$pedido['STATUS'];
+                        $ASESOR=$pedido['ASESOR'];
 
                         if(!empty($pedido)){
 
