@@ -74,11 +74,10 @@
 
 				</div>
 
-
-                <div class="panel-body fixed-panel ">
+				<div class="panel-body fixed-panel ">
 					<div class="container-fluid"  ng-show="pedidoIsActive==false">
 						<div class="jumbotron animated bounceInRight ">
-							<center><h3>Gestión Pendientes Activacion</h3></center>
+							<center><h3>Gestión Pendientes Siebel</h3></center>
 						</div>
 
 					</div>
@@ -88,42 +87,37 @@
 						<div class="col-md-8">
 							<div class = "panel panel-default">
 								<div class = "panel-heading">
-									<b><i class="fa fa-tasks" aria-hidden="true"> </i> DEMEPEDIDO</b>
+									<b><i class="fa fa-tasks" aria-hidden="true"> </i> INFORMACIÓN</b>
 								</div>
 								<div class="panel-body">
 									<ul class="list-group" ng-repeat="service in peds  as gestion" >
-										<div class="col-md-5">
+										<div class="col-md-6">
 
-											<li class="list-group-item small" ><b>PEDIDO: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.PEDIDO)">
-												{{service.PEDIDO}}
+											<li class="list-group-item small" ><b>PEDIDO: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.PEDIDO_ID)">
+												{{service.PEDIDO_ID}}
 											</button> </li>
 
-											<li class="list-group-item small" ><b>ORDER_SEQ_ID:</b> {{service.ORDER_SEQ_ID}}  </li>
-											<li class="list-group-item small" ><b>ESTADO:</b> {{service.ESTADO}}  </li>
-											<li class="list-group-item small" ><b>FECHA_CREACION:</b> {{service.FECHA_CREACION}}
-                                            <li class="list-group-item small" ><b>TAREA_EXCEPCION:</b> {{service.TAREA_EXCEPCION}}</li>
+											<li class="list-group-item small" ><b>MUNICIPIO:</b> {{service.MUNICIPIO_ID}}  </li>
+											<li class="list-group-item small" ><b>UEN:</b> {{service.UEN_CALCULADA}}  </li>
+											<li class="list-group-item small" ><b>DIRECCIÓN:</b> {{service.DIRECCION_SERVICIO}}  </li>
+											<li class="list-group-item small" ><b>PÁGINA:</b> {{service.PAGINA_SERVICIO}}  </li>
 
 										</div>
 
-                                        <div class="col-md-6">
-											<li class="list-group-item small" ><b>FECHA_EXCEPCION:</b> {{service.FECHA_EXCEPCION}} </li>
-											<li class="list-group-item small" ><b>PRODUCTO:</b> {{service.PRODUCTO}} </li>
-											<li class="list-group-item small" ><b>IDSERVICIORAIZ:</b> {{service.IDSERVICIORAIZ}} </li>
-											<li class="list-group-item small" ><b>TRANSACCION:</b> {{service.TRANSACCION}} </li>
-											<li class="list-group-item small" ><b>CODIGO_CIUDAD:</b> {{service.CODIGO_CIUDAD}}
-                                            </li>
-                                            <li class="list-group-item small" ><b>REFERENCE_NUMBER:</b> {{service.REFERENCE_NUMBER}}  </li>
+										<div class="col-md-6">
+											<li class="list-group-item small" ><b>TRANSACCION:</b> {{service.DESC_TIPO_TRABAJO}} </li>
+											<li class="list-group-item small" ><b>FECHA ESTADO:</b> {{service.FECHA_ESTADO}} </li>
+											<li class="list-group-item small" ><b>ESTADO:</b> {{service.CONCEPTO_ID}} </li>
+											<li class="list-group-item small" ><b>TIPO TRABAJO:</b> {{service.TIPO_TRABAJO}} </li>
+											<li class="list-group-item small" ><b>TIEMPO EN COLA:</b> {{service.TIEMPO_COLA}} </li>
+
 
 										</div>
-
-
 									</ul>
 								</div>
 							</div>
 						</div>
-
-					</div>
-                    <div class="col-md-3">
+						<div class="col-md-4">
 							<div class = "panel panel-default">
 								<div class = "panel-heading">
 									<b><i class="fa fa-cogs" aria-hidden="true"> </i> SEGUIMIENTO</b>
@@ -193,7 +187,10 @@
 						</div>
 					</div>
 
-				</div><!--Panel Body -->
+
+					</div><!--Panel Body -->
+
+
                 <div class="panel-footer clearfix" >
 						<div class="col-md-6" >
 								<!--Campos futuros en footer izquierda -->
