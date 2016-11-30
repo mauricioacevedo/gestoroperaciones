@@ -5337,6 +5337,17 @@ $queryConceptosFcita=" select ".
                                 if($row = $rr->fetch_assoc()){
                                         $counter = $row['counter'];
                                 }
+                        }
+                     $query=" SELECT count(*) as counter ".
+                            " FROM portalbd.gestor_pendientes_activacion_siebel_invdom ";
+
+                        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+                        $counter1=0;
+                        if($rr->num_rows > 0){
+                                $result = array();
+                                if($row = $rr->fetch_assoc()){
+                                        $counter1 = $row['counter'];
+                                }
                         }   
                           
                 	$query= " SELECT COLA_ID,PEDIDO_ID, SUBPEDIDO_ID, SOLICITUD_ID, FECHA_ENTRADA_GESTOR, FECHA_ULTIMA_GESTOR".
@@ -5360,7 +5371,7 @@ $queryConceptosFcita=" select ".
                                       // var_dump($result);
                                 }
 
-                                $this->response($this->json(array($result,$counter)), 200); // send user details
+                                $this->response($this->json(array($result,$counter,$counter1)), 200); // send user details
                         }
                         $this->response('',204);        // If no records "No Content" status
 
