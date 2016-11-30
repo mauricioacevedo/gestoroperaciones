@@ -10360,8 +10360,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	$scope.guardar=function(InfoPedido,gestion,status){
 
-		$scope.FECHA_GESTION=$rootScope.FECHA_GESTION();
-		$scope.stautsGo=status[0].STATUS;
 
 		//console.log($scope.stautsGo);
 
