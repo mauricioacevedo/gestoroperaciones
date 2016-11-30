@@ -10310,7 +10310,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			  function(data){
 
 				 if(data.data==''){
-						$scope.errorDatos="No hay Registros. Intente con otra oferta";
+						$scope.errorDatos="No hay Registros.";
 					 	$scope.peds={};
 						$scope.mpedido={};
 						$scope.busy="";
@@ -10326,7 +10326,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 						//alert("'"+data.status+"'");
 							if(dat==204){
 							   document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Estado";
-								$scope.errorDatos="No hay Registros. Intente Cambiando de Estado";
+								$scope.errorDatos="No hay Registros.";
 								$scope.peds={};
 								$scope.mpedido={};
 								$scope.busy="";
