@@ -420,10 +420,6 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
 
-        obj.insertTransaccionsiebelactivacion = function (transaccion) {
-                var data= $http.post(serviceBase + 'insertTransaccionsiebelactivacion', {"transaccion":transaccion});
-                return data;
-    };
 
 //------------------------------------------------------fin_Activacion
 
@@ -10358,36 +10354,30 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 
-	$scope.guardar = function(index) {
-
-                var loader = document.getElementById("class"+index);
-                loader.className='glyphicon glyphicon-refresh fa-spin';
+	 $scope.guardar = function() {//validacion datos para ingreso manual
 
                 $scope.pedido={};
-                 $scope.error="";
-                console.log($scope.peds[index]);
-                angular.copy($scope.peds[index],$scope.pedido);
-                console.log($scope.pedido);
-                if($scope.pedido.estado===undefined || $scope.pedido.estado==''){
-                        alert('Por favor diligenciar todos los campos.');
-                        loader.className='';
+                $scope.error="";
+                angular.copy($scope.mpedido,$scope.pedido);
+
+                if($scope.mpedido.PEDIDO==""||$scope.mpedido.PEDIDO=={}||$scope.mpedido.PEDIDO === undefined){
+                        alert("Pedido vacio.");
                         return;
                 }
-                $scope.pedido.user=$rootScope.logedUser.login;
-                $scope.pedido.username=$rootScope.logedUser.name;
-                $scope.pedido.duracion=new Date().getTime() - $scope.timeInit;
-
-                $scope.timeInit=new Date().getTime();
-                var df=new Date($scope.pedido.duracion);
-            $scope.pedido.duracion= $scope.doubleDigit(df.getHours()-19)+":"+ $scope.doubleDigit(df.getMinutes())+":"+$scope.doubleDigit(df.getSeconds());
-            $scope.pedido.pedido=$scope.peds[index].PEDIDO;
-                $scope.pedido1=$scope.peds[index].PEDIDO;
-
-        if($scope.pedido.source==''){
-            $scope.pedido.source="AUTO";
+                 if($scope.pedido.NOVEDAD===undefined){
+            alert('Por favor diligenciar la NOVEDAD.');
+            return;
         }
 
-                $scope.pedido.fecha_gestion=$scope.fecha_gestion;
+        $scope.pedido.ASESOR=$rootScope.logedUser.login;
+        $scope.pedido.ASESORNAME=$rootScope.logedUser.name;
+        $scope.pedido.DURACION=new Date().getTime() - $scope.timeInit;
+
+        //$scope.pedido.PROGRAMACION=$scope.mpedido.PROGRAMACION;
+               // $scope.pedido.ACTIVIDADES="INSTA";
+
+    //console.log($scope.pedido.ACTIVIDAD_GESTOR)
+
 
                 var date1 = new Date();
                 var year    = date1.getFullYear();
@@ -10397,48 +10387,51 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                 var minute  = $scope.doubleDigit(date1.getMinutes());
                 var seconds = $scope.doubleDigit(date1.getSeconds());
 
-                $scope.pedido.fecha_gestion=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
 
-                var dat= new Date();
+                console.log($scope.pedido);
+                console.log($scope.mpedido);
 
-                services.insertTransaccionsiebelactivacion($scope.pedido).then(function (status) {
-                        $scope.calcularListadoReconfiguracion();
-                        $scope.pedido.fecha_gestion=status.data['data'];
-                        $scope.pedido.concepto_final=status.data['msg'];
-                        if($scope.pedido.concepto_final=="El pedido NO ha cambiado de concepto en Fenix!!!"){
-                                alert($scope.pedido.concepto_final);
-                                $scope.pedido.fecha="";
-                                $scope.pedido.concepto_final="";
-                        }else{
-                                $scope.historico_pedido=$scope.historico_pedido.concat(angular.copy($scope.pedido));
-                                $scope.peds.splice(index,1);
-                                 if($scope.pedidos==""){
-                                        $scope.pedidos=new Array();
-                                }
-                                $scope.pedidos=$scope.pedidos.concat($scope.pedido);
-                                if($scope.historico_pedido==""){
-                                        $scope.historico_pedido=new Array();
-                                }
-                                        $scope.pedido=[];
-                                        $scope.busy="";
-                                        $scope.timeInit=new Date().getTime();
-                                        date1 = new Date();
-                                        year    = date1.getFullYear();
-                                        month   = $scope.doubleDigit(date1.getMonth()+1);
-                                        day     = $scope.doubleDigit(date1.getDate());
-                                        hour    = $scope.doubleDigit(date1.getHours());
-                                        minute  = $scope.doubleDigit(date1.getMinutes());
-                                        seconds = $scope.doubleDigit(date1.getSeconds());
 
-                                        $scope.fecha_inicio=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
-                                        $scope.popup='';
 
-                        }
-                    loader.className='';
-                    $scope.pedidoinfo='Pedido';
-               return status;
-           });
-   };
+                 services.insertTransaccionsiebelactivacion($scope.pedido).then(function (status) {
+
+                if($scope.pedidos==""){
+                    $scope.pedidos=new Array();
+                }
+                $scope.pedidos=$scope.pedidos.concat($scope.pedido);
+                if($scope.historico_pedido==""){
+                       $scope.historico_pedido=new Array();
+                }
+
+                $scope.baby($scope.pedido.PEDIDO_ID);
+                $scope.pedido1=$scope.pedido.PEDIDO_ID;
+
+                $scope.timeInit=new Date().getTime();
+                date1 = new Date();
+                year    = date1.getFullYear();
+                month   = $scope.doubleDigit(date1.getMonth()+1);
+                day     = $scope.doubleDigit(date1.getDate());
+                hour    = $scope.doubleDigit(date1.getHours());
+                minute  = $scope.doubleDigit(date1.getMinutes());
+                seconds = $scope.doubleDigit(date1.getSeconds());
+
+                $scope.fecha_inicio=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
+
+
+                $scope.pedido={};
+                $scope.peds={};
+                $scope.pedido1="";
+                $scope.mpedido={};
+                $scope.bpedido='';
+                $scope.proceso='';
+                $scope.historico_pedido=[];
+
+                 $scope.mpedido.active=1;
+                $scope.busy="";
+                $scope.mpedido.active=0;
+                $scope.pedidoinfo='Pedido';
+            });
+        };
 
 
 	// ----------------------------- GuardarPedido------------------------------

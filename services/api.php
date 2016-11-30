@@ -7714,56 +7714,68 @@ $queryConceptosFcita=" select ".
 
 //-----------------------insertactivacion----------------
 
-         private function insertTransaccionsiebelactivacion(){
-
-                 if($this->get_request_method() != "POST"){
+          private function insertTransaccionsiebelactivacion(){
+                       if($this->get_request_method() != "POST"){
                                 $this->response('',406);
                         }
-
-                $transaccion = json_decode(file_get_contents("php://input"),true);
-
-                $transaccion = $transaccion['transaccion'];
-                $column_names = array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','CAMPO_ERROR','STATUS','ASESOR','FECHA_GESTION');
-                $keys = array_keys($transaccion);
-                $columns = '';
-                $values = '';
-
-                $useri=$transaccion['USUARIO'];
-                $username=$transaccion['USERNAME'];
-
-                foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
-                    if($desired_key=='ID'||$desired_key=='STATUS'){
-                            continue;
-                        }
-                           if(!in_array($desired_key, $keys)) {
-                                        $$desired_key = '';
-                                }else{
-                                        $$desired_key = $transaccion[$desired_key];
-                                }
-                                $columns = $columns.$desired_key.',';
-                                $values = $values."'".$transaccion[$desired_key]."',";
-                        }
+                        //echo "(1)";
+            $pedido = json_decode(file_get_contents("php://input"),true);
+            //var_dump($pedido);
+                        $column_names = array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','CAMPO_ERROR','STATUS','ASESOR','FECHA_GESTION');
+                        $pedido=$pedido['pedido'];
+                        $keys = array_keys($pedido);
                         $today = date("Y-m-d H:i:s");
-                        $query = "INSERT INTO  gestor_pendientes_activacion_siebel (".trim($columns,',').") VALUES(".trim($values,',').")";
-            //echo $query;
-                        if(!empty($transaccion)){
-                //echo $query;
-                            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+                        $today2 = date("Y-m-d");
+                        $FECHA_GESTION='';
+                        //$OBSERVACION_GESTOR=$pedido['OBSERVACION_GESTOR'];;
+                        //$FUENTE=$pedido['FUENTE'];
+                        //$novedad=$pedido['NOVEDAD'];
+                        $useri=$pedido['ASESOR'];
+                        $PEDIDO=$pedido['PEDIDO_'];
 
-                $sqlupdate="update gestor_pendientes_activacion_siebel set FECHA_GESTION='$today', STATUS='$STATUS', ASESOR='' WHERE ID=$ID ";
-                $rUpdate = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
 
-                $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$useri','$username','NCA','$estado_final','OFERTA: $oferta','NCA') ";
-                $rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
-                $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
+                         $columns = '';
+                        $values = '';
+
+
+
+                         if($sourcee=='')$sourcee="MANUAL";
+
+                     $query = "INSERT INTO gestor_pendientes_activacion_siebel (".trim($columns,',').",PROGRAMACION,SOURCE ) VALUES(".trim($values,',').",'$programacion','$sourcee')";
+
+                              $FECHA_CITA_REAGENDA=$pedido['FECHA_CITA_REAGENDA'];
+
+                              $JORNADA_CITA=$pedido['JORNADA_CITA'];
+
+
+            //echo($JORNADA_CITA);
+            // echo($programacion);
+
+
+                        $today = date("Y-m-d H:i:s");
+
+                        //$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
+                        if(!empty($pedido)){
+                                //$concepto_final=$this->updateFenix($pedido);
+                               // $query = "INSERT INTO gestor_historicos_reagendamiento (".trim($columns,',').",source) VALUES(".trim($values,',').",'MANUAL')";
+
+                                $query = "insert into gestor_pendientes_activacion_siebel (PEDIDO_ID,FUENTE,CLIENTE_ID,NOVEDAD,ASESOR,ASESORNAME,DEPARTAMENTO,OBSERVACION_GESTOR,PROCESO,ACCESO,SOURCE,FECHA_CITA_REAGENDA,JORNADA_CITA,FECHA_INICIO,FECHA_FIN,DURACION) values ('$PEDIDO_ID','$FUENTE','$cliente_id','$novedad','$useri','$username','$DEPARTAMENTO','$OBSERVACION_GESTOR','$proceso','BACKOFFICE','$sourcee','$FECHA_CITA_REAGENDA','$JORNADA_CITA','$today','$today','00:00:00') ";
+
+                                //echo $query;
+                                $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+                                //hago la actualizacion en fenix
+                              //  $query1 = "insert into gestor_pendientes_reagendamiento (PEDIDO_ID,CLIENTE_ID,ASESOR) values ('$PEDIDO_ID','$cliente_id','$useri') ";
+                              // $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
+
+
+                                $this->response(json_encode(array("msg"=>"N/A","data" => $today)),200);
 
                         }else{
                                 $this->response('',200);        //"No Content" status
                                 //$this->response("$query",200);        //"No Content" status
                         }
 
-                }
-
+        }
 
 //-------------------------fininsertactivacion*------------------
                 private function insertTransaccionActividades(){
