@@ -10419,7 +10419,17 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	// ----------------------------- GuardarPedido------------------------------
 
+  $scope.doubleDigit= function (num){
 
+        if(num<0){
+            num=0;
+        }
+
+            if(num<=9){
+                return "0"+num;
+            }
+            return num;
+    };
 
 });
 
