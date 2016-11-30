@@ -10367,8 +10367,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		$scope.InfoGestion={
 			//ID:gestion.ID,
-			ORDER_SEQ_ID:$scope.ORDER_SEQ_ID,
-			PEDIDO:$scope.PEDIDO,
+			ORDER_SEQ_ID:InfoPedido.ORDER_SEQ_ID,
+			PEDIDO:InfoPedido.PEDIDO,
             REFERENCE_NUMBER:$scope.REFERENCE_NUMBER,
 			ESTADO:$scope.ESTADO,
             FECHA_CREACION:$scope.FECHA_CREACION,
