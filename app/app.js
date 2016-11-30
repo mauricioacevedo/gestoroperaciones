@@ -10387,7 +10387,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
       $scope.accRdy=true;
  };
 
-	$scope.guardarPedido=function(InfoPedido,gestion,status){
+	$scope.guardar=function(InfoPedido,gestion,status){
 
 		$scope.fecha_fin=$rootScope.fechaProceso();
 		$scope.stautsGo=status[0].STATUS;
@@ -10450,10 +10450,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
         	};
 
-
-
-
 	// ----------------------------- GuardarPedido------------------------------
+
 //------------declaracion doubleDigit
   $scope.doubleDigit= function (num){
 
