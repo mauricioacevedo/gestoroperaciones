@@ -10359,12 +10359,24 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 
-	 $scope.guardar = function() {//validacion datos para ingreso manual
+	 $scope.guardar = function(index) {//validacion datos para ingreso manual
+
+                 var loader = document.getElementById("class"+index);
+                loader.className='glyphicon glyphicon-refresh fa-spin';
 
                 $scope.pedido={};
                 $scope.error="";
                 angular.copy($scope.mpedido,$scope.pedido);
-
+            $scope.pedido={};
+            $scope.error="";
+            console.log($scope.peds[index]);
+                angular.copy($scope.peds[index],$scope.pedido);
+                console.log($scope.pedido);
+                if($scope.pedido.estado===undefined || $scope.pedido.estado==''){
+                        alert('Por favor diligenciar todos los campos.');
+                        loader.className='';
+                        return;
+                }
 
         $scope.pedido.ASESOR=$rootScope.logedUser.login;
         $scope.pedido.ASESORNAME=$rootScope.logedUser.name;
@@ -10375,6 +10387,11 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
     //console.log($scope.pedido.ACTIVIDAD_GESTOR)
 
+          $scope.timeInit=new Date().getTime();
+                var df=new Date($scope.pedido.duracion);
+            $scope.pedido.duracion= $scope.doubleDigit(df.getHours()-19)+":"+ $scope.doubleDigit(df.getMinutes())+":"+$scope.doubleDigit(df.getSeconds());
+            $scope.pedido.pedido=$scope.peds[index].PEDIDO;
+                $scope.pedido1=$scope.peds[index].PEDIDO;
 
 
                  services.insertTransaccionsiebelactivacion($scope.pedido).then(function (status) {
@@ -10418,7 +10435,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 	// ----------------------------- GuardarPedido------------------------------
-
+//------------declaracion doubleDigit
   $scope.doubleDigit= function (num){
 
         if(num<0){
@@ -10430,6 +10447,9 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             }
             return num;
     };
+
+//------------declaracion doubleDigit
+
 
 });
 
