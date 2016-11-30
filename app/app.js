@@ -10360,14 +10360,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                 $scope.error="";
                 angular.copy($scope.mpedido,$scope.pedido);
 
-                if($scope.mpedido.PEDIDO==""||$scope.mpedido.PEDIDO=={}||$scope.mpedido.PEDIDO === undefined){
-                        alert("Pedido vacio.");
-                        return;
-                }
-                 if($scope.pedido.NOVEDAD===undefined){
-            alert('Por favor diligenciar la NOVEDAD.');
-            return;
-        }
 
         $scope.pedido.ASESOR=$rootScope.logedUser.login;
         $scope.pedido.ASESORNAME=$rootScope.logedUser.name;
