@@ -314,6 +314,9 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
        obj.getListadoActivacion = function(fecha_inicio,fecha_fin,page){
                 return $http.get(serviceBase + 'listadoactivacion?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page);
         }
+        obj.getListadoActivacioninvdom = function(fecha_inicio,fecha_fin,page){
+                return $http.get(serviceBase + 'listadoactivacioninvdom?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page);
+        }
 
 
          obj.getListadoActivacionTabla = function(fecha_inicio,fecha_fin){
@@ -9811,7 +9814,21 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
 
         };
+ //---------------listado gestor_pendientes_activacion_siebel_invdom
+     $scope.listadoactivacion2  = function (){
 
+                services.getListadoActivacioninvdom($scope.data.fechaini,$scope.data.fechafin,$scope.data.currentPage).then(function(data){
+
+                   // console.log(data);
+                       $scope.listadoactivacion=data.data[0];
+                       $scope.data.totalItems=data.data[1];
+
+                    return data.data;
+               });
+
+
+        };
+ //---------------listado gestor_pendientes_activacion_siebel_invdom
 
 
       $scope.listadoactivacion1();
