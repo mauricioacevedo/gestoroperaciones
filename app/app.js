@@ -10382,7 +10382,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                 if($scope.pedidos==""){
                     $scope.pedidos=new Array();
                 }
-                $scope.pedidos=$scope.pedidos.concat($scope.pedido);
+
                 if($scope.historico_pedido==""){
                        $scope.historico_pedido=new Array();
                 }
