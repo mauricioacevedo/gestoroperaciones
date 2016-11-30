@@ -10400,8 +10400,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                        $scope.historico_pedido=new Array();
                 }
 
-                $scope.baby($scope.pedido.PEDIDO_ID);
-                $scope.pedido1=$scope.pedido.PEDIDO_ID;
+                $scope.baby($scope.pedido.PEDIDO);
+                $scope.pedido1=$scope.pedido.PEDIDO;
 
                 $scope.timeInit=new Date().getTime();
                 date1 = new Date();
