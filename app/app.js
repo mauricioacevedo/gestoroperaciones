@@ -10393,7 +10393,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		//console.log($scope.stautsGo);
 
 		$scope.InfoGestion={
-			ID:gestion.ID,
+			//ID:gestion.ID,
 			ORDER_SEQ_ID:$scope.ORDER_SEQ_ID,
 			PEDIDO:$scope.PEDIDO,
             REFERENCE_NUMBER:$scope.REFERENCE_NUMBER,
