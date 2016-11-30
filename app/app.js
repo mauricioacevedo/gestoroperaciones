@@ -10361,8 +10361,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	 $scope.guardar = function(index) {//validacion datos para ingreso manual
 
-                 var loader = document.getElementById("class"+index);
-                loader.className='glyphicon glyphicon-refresh fa-spin';
+
 
                 $scope.pedido={};
                 $scope.error="";
