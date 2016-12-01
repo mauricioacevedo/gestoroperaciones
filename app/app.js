@@ -10377,7 +10377,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.guardar=function(InfoPedido,gestion,status){
 
 
-		//console.log($scope.stautsGo);
+		$scope.stautsGo=status[0].STATUS;
 
 		$scope.InfoGestion={
 			//ID:gestion.ID,
@@ -10395,8 +10395,10 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			CAMPO_ERROR:$scope.peds[0].CAMPO_ERROR,
 			ASESOR:$rootScope.logedUser.login,
             FECHA_GESTION:$scope.peds[0].FECHA_GESTION,
-            STATUS:$rootScope.logedUser.STATUS,
+            //STATUS:scope.peds[0].STATUS,
             TIPIFICACION:$scope.peds[0].TIPIFICACION,
+            STATUS:$scope.stautsGo
+
 			}
 
 		console.log($scope.InfoGestion);
