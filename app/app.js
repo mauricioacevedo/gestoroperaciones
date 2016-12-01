@@ -10410,8 +10410,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				  $scope.pedidoIsGuardado = true;
 				  $scope.errorDatos = null;
 				  $scope.InfoPedido = [];
-				  $scope.fecha_inicio = null;
-				  $scope.fecha_fin = null;
+				  $scope.FECHA_CREACION = null;
+				  $scope.FECHA_EXCEPCION = null;
 				  $scope.accRdy = false;
 				  $scope.InfoGestion = {};
 				  $scope.pedidoOcupado = false
