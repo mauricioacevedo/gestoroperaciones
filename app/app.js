@@ -12310,7 +12310,7 @@ $scope.buscarCliente=function(localidad,direccion){
 
 				  $scope.listadoClientes=data.data[0];
 				  $scope.eda.localidad=data.data[1];
-				  $scope.eda.localidad.LOCALIDAD=$scope.eda.localidad.LOCALIDAD;
+				  //$scope.eda.localidad.LOCALIDAD=$scope.eda.localidad.LOCALIDAD;
 
 				  return data.data;
 
