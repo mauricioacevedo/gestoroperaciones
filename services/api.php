@@ -6780,7 +6780,7 @@ $queryConceptosFcita=" select ".
                       if($this->get_request_method() != "GET"){
                                 $this->response('',406);
                         }
-                        $user = $this->_request['userID'];
+                        $ASESOR = $this->_request['userID'];
                         $departamento = $this->_request['departamento'];
             //$plaza = $this->_request['plaza'];
 
