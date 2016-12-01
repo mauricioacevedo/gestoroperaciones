@@ -10393,7 +10393,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			CAMPO_ERROR:$scope.peds[0].CAMPO_ERROR,
 			ASESOR:$rootScope.logedUser.login,
             FECHA_GESTION:$scope.peds[0].FECHA_GESTION,
-            STATUS:scope.peds[0].STATUS,
+            STATUS:$scope.peds[0].STATUS,
             TIPIFICACION:$scope.peds[0].TIPIFICACION,
 
 
