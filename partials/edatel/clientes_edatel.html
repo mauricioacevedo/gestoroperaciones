@@ -20,9 +20,9 @@
 
 									<li>
 
-										<ui-select ng-model="selected.value">
-										<ui-select-match>
-												<span ng-bind="$select.selected.LOCALIDAD"></span>
+										<ui-select ng-model="eda.localidad" class="btn btn-default btn-xs grupo-select">
+											<ui-select-match>
+												<span ng-bind="$select.eda.LOCALIDAD"></span>
 											</ui-select-match>
 											<ui-select-choices repeat="g  in  listadoLocalidad | filter: $select.search track by $index">
 												{{g.LOCALIDAD}}
