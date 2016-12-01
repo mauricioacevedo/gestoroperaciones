@@ -101,7 +101,7 @@ body > .select2-container.open {
 
 /* Fix input width for Selectize theme */
 .selectize-control.single > .selectize-input > input {
-  width: 90%;
+  width: 100%;
 }
 
 /* Fix line break when there's at least one item selected with the Selectize theme */
@@ -111,7 +111,7 @@ body > .select2-container.open {
 
 /* Fix dropdown width for Selectize theme */
 .selectize-control > .selectize-dropdown {
-  width: 90%;
+  width: 100%;
 }
 
 /* Mark invalid Selectize */
