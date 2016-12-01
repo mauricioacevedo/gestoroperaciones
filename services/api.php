@@ -11560,7 +11560,7 @@ $sqlfenix=
 			$today = date("Y-m-d");
 
 
-			$query=	" SELECT DEPARTAMENTO, LOCALIDAD, REGION FROM gestor_informes.eda_localidades order by 2 asc";
+			$query=	" SELECT DEPARTAMENTO, LOCALIDAD, REGION FROM gestor_informes.eda_localidades order by 1,2 asc";
 					//" where e.LOCALIDAD='$localidad' ";
 
 													//echo $query;
