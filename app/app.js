@@ -10377,8 +10377,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.guardar=function(InfoPedido,gestion,status){
 
 
-		//console.log($scope.stautsGo);
-
 		$scope.InfoGestion={
 			//ID:gestion.ID,
 			ORDER_SEQ_ID:$scope.peds[0].ORDER_SEQ_ID,
@@ -10397,6 +10395,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             FECHA_GESTION:$scope.peds[0].FECHA_GESTION,
             STATUS:$scope.peds[0].STATUS,
             TIPIFICACION:$scope.peds[0].TIPIFICACION,
+
+
 			}
 
 		console.log($scope.InfoGestion);
