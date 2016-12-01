@@ -13068,6 +13068,12 @@ app.run(['$rootScope', 'services', function($rootScope, services){
             {TRANSACCION:'TRASLADO RETIRO', VALOR:'TRASLADO RETIRO'},
         ];
 
+         $rootScope.transaccionActivacion1=[
+            {TIPIFICACION:'CAMBIAR', VALOR:'CAMBIAR'},
+            {TIPIFICACION:'DATOS', VALOR:'DATOS'},
+            {TIPIFICACION:'SOLICITUD', VALOR:'SOLICITUD'},
+            {TIPIFICACION:'NUEVO', VALOR:'NUEVO'},
+        ];
     // ------------------------------------------- Listados activacion--------------
 
 
