@@ -10281,8 +10281,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                 $scope.errorDatos=null;
                  $scope.busy=$scope.peds[0].ASESOR;
                  $scope.busy=$scope.peds[0].TIPIFICACION;
-                 $scope.TIPIFICACION:$scope.peds[0].TIPIFICACION;
-                 $scope.ASESOR:$scope.peds[0].ASESOR;
+
 
                 if($scope.peds[0].STATUS=="PENDI_ACTI"&&$scope.peds[0].ASESOR!=""){
                             $scope.busy=$scope.peds[0].ASESOR;
