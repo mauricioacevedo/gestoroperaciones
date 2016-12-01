@@ -20,8 +20,8 @@
 
 									<li>
 
-										<ui-select ng-model="eda.localidad" style="height:22px;width:150px;font-size:0.75em;">
-											<ui-select-match>
+										<ui-select ng-model="eda.localidad" style="height:22px;width:150px;font-size:0.75em;" append-to-body="true">
+											<ui-select-match placeholder="Localidad">
 												{{eda.localidad.LOCALIDAD}}
 											</ui-select-match>
 											<ui-select-choices repeat="g  in  listadoLocalidad | filter: $select.search track by $index">
