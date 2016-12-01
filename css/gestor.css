@@ -279,3 +279,8 @@ input.filtro {
   max-height: 400px;
   overflow-y: scroll;
 }
+.grupo-select{
+  height: 22px;
+  width:150px;
+  font-size: 0.75em;
+}
