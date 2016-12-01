@@ -24,7 +24,7 @@
 											<ui-select-match placeholder="Localidad">
 												{{eda.localidad.LOCALIDAD}}
 											</ui-select-match>
-											<ui-select-choices group-by="DEPARTAMENTO" repeat="g  in  listadoLocalidad | filter: $select.search track by $index">
+											<ui-select-choices group-by="g.DEPARTAMENTO" repeat="g  in  listadoLocalidad | filter: $select.search track by $index">
 												<div ng-bind-html="g.LOCALIDAD | highlight: $select.search"></div>
 											</ui-select-choices>
 										</ui-select>
