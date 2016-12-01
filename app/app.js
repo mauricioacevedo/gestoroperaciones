@@ -10279,7 +10279,9 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                 $scope.pedidoinfo=$scope.peds[0].PEDIDO;
                 $scope.pedidoIsActive=true;
                 $scope.errorDatos=null;
-                $scope.fecha_inicio=$rootScope.fechaProceso();
+                $scope.TIPIFICACION=$scope.peds[0].TIPIFICACION;
+
+                console.log($scope.TIPIFICACION);
 
                 if($scope.peds[0].STATUS=="PENDI_ACTI"&&$scope.peds[0].ASESOR!=""){
                             $scope.busy=$scope.peds[0].ASESOR;
@@ -10321,7 +10323,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
           var kami=services.getBuscarpedidoactivacion(buscar,$scope.pedidoActual,$rootScope.logedUser.login).then(
-
 			  function(data){
 
 				 if(data.data==''){
@@ -10334,13 +10335,13 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 						$scope.peds = data.data[1];
 				  	   	$scope.ocupado=data.data[0];
-						$scope.pedido1=$scope.peds[0].PEDIDO_ID;
-				  	   	$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+						$scope.pedido1=$scope.peds[0].PEDIDO;
+				  	   	$scope.pedidoinfo=$scope.peds[0].PEDIDO;
 
 						var dat=data.status;
 						//alert("'"+data.status+"'");
 							if(dat==204){
-							   document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Estado";
+							   document.getElementById("warning").innerHTML="No hay Registros.";
 								$scope.errorDatos="No hay Registros.";
 								$scope.peds={};
 								$scope.mpedido={};
@@ -10357,7 +10358,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 									 }
 											$scope.errorDatos=null;
 											$scope.pedidoIsActive=true;
-											$scope.fecha_inicio=$rootScope.fechaProceso();
 
 
 									return data.data;
@@ -10410,8 +10410,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				  $scope.pedidoIsGuardado = true;
 				  $scope.errorDatos = null;
 				  $scope.InfoPedido = [];
-				  $scope.fecha_inicio = null;
-				  $scope.fecha_fin = null;
+				  $scope.FECHA_CREACION = null;
+				  $scope.FECHA_EXCEPCION = null;
 				  $scope.accRdy = false;
 				  $scope.InfoGestion = {};
 				  $scope.pedidoOcupado = false
