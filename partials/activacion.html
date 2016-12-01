@@ -253,7 +253,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading " >
                     <h2 class="panel-title" >Servicios Pendientes Activación / Siebel: <font color='Cyan'>{{totalAD}}</font></h2>
-                    <h2 class="panel-title" >otro dato/ Siebel: <font color='Cyan'>{{data.totalItems}}</font></h2>
+                    <h2 class="panel-title" >otro dato/ Siebel: <font color='Cyan'>{{data.totalItems2}}</font></h2>
                 </div>
                 <div class="panel-body panel-body-sm">
                     <div class="row">
@@ -280,7 +280,8 @@
                         <span style="vertical-align: middle;">Última Actualización: <font color='blue'>{{lastUpdate}}</font></span> 
                     </div>
                     <div  align="right">
-                        <button class="btn btn-success btn-sm" ng-click="csvActivacionSiebel();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Exportar Pendientes</button>
+                        <button class="btn btn-success btn-sm" ng-click="csvActivacionSiebel();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Exportar Pendientes </button>
+                        <button class="btn btn-success btn-sm" ng-click="csvActivacionSiebelinvdom();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Exportar Pendientes invdom </button>
                     </div>
                 </div>
 

@@ -560,6 +560,42 @@
 
                 }
 
+
+         private function csvActivacionSiebelinvdom(){
+                        if($this->get_request_method() != "GET"){
+                                $this->response('',406);
+                        }
+                        $login = $this->_request['login'];
+
+                        $today = date("Y-m-d h:i:s");
+                        $filename="Fenix_Activacion-$login-$today.csv";
+                        $query=  " SELECT  PEDIDO,ORDEN,TAREANEMOTECNICO,CODIGO_CIUDAD,NOMBRE_CIUDAD ".
+                                    " ,DEPARTAMENTO,FECHACREACION,ESTADOOSM,ESTADOOSMFUTURO,FECHA_EXCEPCION ".
+                                    " ,PROCESO,IdRaizItem_VALOR,IdRaizItem_CUENTA,NombreItemOrden_VALOR ".
+                                    " ,NombreItemOrden_CUENTA,CodigoUnicoDireccion_VALOR,CodigoUnicoDireccion_CUENTA ".
+                                    " ,DireccionNormalizada_VALOR,DireccionNormalizada_CUENTA,TipoTransaccion_VALOR,TipoTransaccion_CUENTA ".
+                                    " FROM gestor_pendientes_activacion_siebel_invdom ";
+
+
+                        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+                        if($r->num_rows > 0){
+                                $result = array();
+                                $fp = fopen("../tmp/$filename", 'w');
+                                fputcsv($fp, array('PEDIDO','ORDEN','TAREANEMOTECNICO','CODIGO_CIUDAD','NOMBRE_CIUDAD','DEPARTAMENTO','FECHACREACION','ESTADOOSM','ESTADOOSMFUTURO','FECHA_EXCEPCION','PROCESO','IdRaizItem_VALOR','IdRaizItem_CUENTA','NombreItemOrden_VALOR','NombreItemOrden_CUENTA','CodigoUnicoDireccion_VALOR','CodigoUnicoDireccion_CUENTA','DireccionNormalizada_VALOR','DireccionNormalizada_CUENTA','TipoTransaccion_VALOR','TipoTransaccion_CUENTA'));
+                                while($row = $r->fetch_assoc()){
+                                        $result[] = $row;
+                                        fputcsv($fp, $row);
+                                }
+                                fclose($fp);
+
+                                $this->response($this->json(array($filename,$login)), 200); // send user details
+                        }
+
+                        $this->response('',204);        // If no records "No Content" status
+
+                }
+
 private function csvListadoActivacion(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -5337,6 +5373,17 @@ $queryConceptosFcita=" select ".
                                 if($row = $rr->fetch_assoc()){
                                         $counter = $row['counter'];
                                 }
+                        }
+                     $query=" SELECT count(*) as counter ".
+                            " FROM portalbd.gestor_pendientes_activacion_siebel_invdom ";
+
+                        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+                        $counter1=0;
+                        if($rr->num_rows > 0){
+                                $result = array();
+                                if($row = $rr->fetch_assoc()){
+                                        $counter1 = $row['counter'];
+                                }
                         }   
                           
                 	$query= " SELECT COLA_ID,PEDIDO_ID, SUBPEDIDO_ID, SOLICITUD_ID, FECHA_ENTRADA_GESTOR, FECHA_ULTIMA_GESTOR".
@@ -5360,13 +5407,11 @@ $queryConceptosFcita=" select ".
                                       // var_dump($result);
                                 }
 
-                                $this->response($this->json(array($result,$counter)), 200); // send user details
+                                $this->response($this->json(array($result,$counter,$counter1)), 200); // send user details
                         }
                         $this->response('',204);        // If no records "No Content" status
 
                 }
-
-
 
 
                 private function listadoactivaciontabla(){
@@ -6739,7 +6784,7 @@ $queryConceptosFcita=" select ".
                         $today = date("Y-m-d");
                         $query=    " SELECT distinct ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER ".
                                     " ,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION ".
-                                    " ,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD ".
+                                    " ,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,STATUS,ASESOR ".
                                      " FROM gestor_pendientes_activacion_siebel  ".
                                      " WHERE STATUS='PENDI_ACTI' ".
                                      " AND ASESOR='' ".
@@ -7719,47 +7764,43 @@ $queryConceptosFcita=" select ".
                        if($this->get_request_method() != "POST"){
                                 $this->response('',406);
                         }
-                        //echo "(1)";
+
             $pedido = json_decode(file_get_contents("php://input"),true);
             //var_dump($pedido);
-                        $column_names = array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','CAMPO_ERROR','STATUS','ASESOR','FECHA_GESTION');
+                        $column_names = array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','STATUS','ASESOR','FECHA_GESTION','TIPIFICACION');
                         $pedido=$pedido['pedido'];
                         $keys = array_keys($pedido);
                         $today = date("Y-m-d H:i:s");
                         $today2 = date("Y-m-d");
                         $FECHA_GESTION='';
-                        //$OBSERVACION_GESTOR=$pedido['OBSERVACION_GESTOR'];;
-                        //$FUENTE=$pedido['FUENTE'];
-                        //$novedad=$pedido['NOVEDAD'];
-                        $useri=$pedido['ASESOR'];
-                        $PEDIDO=$pedido['PEDIDO_'];
-
-
-                         $columns = '';
-                        $values = '';
-
-
-
-                         if($sourcee=='')$sourcee="MANUAL";
-
-                     $query = "INSERT INTO gestor_historico_activacion (".trim($columns,',').",PROGRAMACION,SOURCE ) VALUES(".trim($values,',').",'$programacion','$sourcee')";
-
-
-
-                        $today = date("Y-m-d H:i:s");
-
+                        $ASESOR=$pedido['ASESOR'];
+                        $PEDIDO=$pedido['PEDIDO'];
+                        $ORDER_SEQ_ID=$pedido['ORDER_SEQ_ID'];
+                        $REFERENCE_NUMBER=$pedido['REFERENCE_NUMBER'];
+                        $ESTADO=$pedido['ESTADO'];
+                        $FECHA_CREACION=$pedido['FECHA_CREACION'];
+                        $TAREA_EXCEPCION=$pedido['TAREA_EXCEPCION'];
+                        $FECHA_EXCEPCION=$pedido['FECHA_EXCEPCION'];
+                        $PRODUCTO=$pedido['PRODUCTO'];
+                        $IDSERVICIORAIZ=$pedido['IDSERVICIORAIZ'];
+                        $TRANSACCION=$pedido['TRANSACCION'];
+                        $CODIGO_CIUDAD=$pedido['CODIGO_CIUDAD'];
+                        $CODIGO_CIUDAD=$pedido['CODIGO_CIUDAD'];
+                        $STATUS=$pedido['STATUS'];
+                        $ASESOR=$pedido['ASESOR'];
+                        $$TIPIFICACION=$pedido['$TIPIFICACION'];
 
                         if(!empty($pedido)){
 
-                                $query = "insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,CAMPO_ERROR,STATUS,ASESOR,FECHA_GESTION) values ('$ORDER_SEQ_ID','$PEDIDO','$REFERENCE_NUMBER','$ESTADO','$FECHA_CREACION','$TAREA_EXCEPCION','$FECHA_EXCEPCION','$PRODUCTO','$IDSERVICIORAIZ','$TRANSACCION','$CODIGO_CIUDAD','$CAMPO_ERROR','$STATUS','$ASESOR','$ASESOR','$FECHA_GESTION') ";
+                                $query = "insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,STATUS,ASESOR,FECHA_GESTION,TIPIFICACION) values ('$ORDER_SEQ_ID','$PEDIDO','$REFERENCE_NUMBER','$ESTADO','$FECHA_CREACION','$TAREA_EXCEPCION','$FECHA_EXCEPCION','$PRODUCTO','$IDSERVICIORAIZ','$TRANSACCION','$CODIGO_CIUDAD','$STATUS','$ASESOR','$today','$TIPIFICACION') ";
 
-                                //echo $query;
+                              //  echo $query;
                                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
                                 //hago la actualizacion en fenix
                               //  $query1 = "insert into gestor_pendientes_reagendamiento (PEDIDO_ID,CLIENTE_ID,ASESOR) values ('$PEDIDO_ID','$cliente_id','$useri') ";
                               // $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
-
+                              //  echo "(1)";
                                 $this->response(json_encode(array("msg"=>"N/A","data" => $today)),200);
 
                         }else{
