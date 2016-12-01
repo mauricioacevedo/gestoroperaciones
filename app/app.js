@@ -12623,11 +12623,7 @@ app.config( [
     }
 ]);
 
-app.config(function(uiSelectConfig) {
-  uiSelectConfig.theme = 'bootstrap';
-  uiSelectConfig.resetSearchInput = true;
-  uiSelectConfig.appendToBody = true;
-});
+
 
 app.config(['$routeProvider',
   function($routeProvider) {
