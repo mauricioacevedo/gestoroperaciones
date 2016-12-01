@@ -10432,6 +10432,10 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 				  }
 			  );
+         if($scope.pedido.TIPIFICACION===undefined){
+            alert('Por favor diligenciar la TIPIFICACION.');
+            return;
+        }
 
         	};
 
