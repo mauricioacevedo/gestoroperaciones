@@ -11560,9 +11560,7 @@ $sqlfenix=
 			$today = date("Y-m-d");
 
 
-			$query=	" SELECT ".
-					" distinct trim(e.LOCALIDAD) as LOCALIDAD ".
-					" FROM gestor_informes.eda_clientes e ";
+			$query=	" SELECT DEPARTAMENTO, LOCALIDAD, REGION FROM gestor_informes.eda_localidades ";
 					//" where e.LOCALIDAD='$localidad' ";
 
 													//echo $query;
