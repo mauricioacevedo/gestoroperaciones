@@ -12325,17 +12325,7 @@ $scope.buscarCliente=function(localidad,direccion){
 		};
 
 
-	   converse.waitUntilLoaded().done(function () {
-        converse.initialize({
-            'allow_logout': false,
-            'auto_login': 'true',
-            'auto_reconnect': true,
-            'bosh_service_url': bosh_url,
-            'jid': bare_jid,
-            'keepalive': true,
-            'credentials_url': credentials_url,
-        });
-		   });
+
 
 $scope.itemArray = [
         {id: 1, name: 'first'},
