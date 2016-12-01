@@ -10277,15 +10277,16 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                 document.getElementById("warning").innerHTML="";
                 $scope.pedido1=$scope.peds[0].PEDIDO;
                 $scope.pedidoinfo=$scope.peds[0].PEDIDO;
+                $scope.pedidoinfo=$scope.peds[0].TIPIFICACION;
                 $scope.pedidoIsActive=true;
                 $scope.errorDatos=null;
-
+                $scope.TIPIFICACION=$scope.peds[0].TIPIFICACION;
 
 
                 if($scope.peds[0].STATUS=="PENDI_ACTI"&&$scope.peds[0].ASESOR!=""){
                             $scope.busy=$scope.peds[0].ASESOR;
 							$scope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
-                            $scope.TIPIFICACION=$scope.peds[0].TIPIFICACION;
+
                                 }
 
                 $scope.baby($scope.pedido1);
