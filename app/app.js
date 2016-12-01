@@ -10377,7 +10377,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.guardar=function(InfoPedido,gestion,status){
 
 
-		$scope.stautsGo=status[0].STATUS;
+		$scope.stautsGo=scope.peds[0].STATUS;
 
 		$scope.InfoGestion={
 			//ID:gestion.ID,
