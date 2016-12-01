@@ -11574,7 +11574,7 @@ $sqlfenix=
 								$result[] = $row;
 						}
 
-						$this->response($this->json($result), 200); // send user details
+						$this->response($this->json(array($result)), 200); // send user details
 				}
 				$this->response('',406);        // If no records "No Content" status
 
