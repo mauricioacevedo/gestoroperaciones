@@ -20,6 +20,15 @@
 
 									<li>
 
+										<ui-select tagging ng-model="eda.localidad">
+
+											<ui-select-choices repeat="g.LOCALIDAD for g in  listadoLocalidad">
+
+											</ui-select-choices>
+										</ui-select>
+
+
+
 									</li>
 									<li>
 										<select id="localidad" name="localidad" class="btn btn-default btn-xs grupo-select" ng-model="eda.localidad" 	ng-options="g.LOCALIDAD for g in  listadoLocalidad"
