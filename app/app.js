@@ -12623,7 +12623,9 @@ app.config( [
     }
 ]);
 
-
+app.config(function(uiSelectConfig) {
+  uiSelectConfig.theme = 'select2';
+});
 
 app.config(['$routeProvider',
   function($routeProvider) {
