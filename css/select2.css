@@ -337,7 +337,7 @@ Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
     margin: 0;
     cursor: pointer;
 
-    min-height: 1em;
+    min-height: 0.7em;
 
     -webkit-touch-callout: none;
       -webkit-user-select: none;
