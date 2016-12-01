@@ -330,6 +330,7 @@ Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
 
 .select2-results li.select2-result-with-children > .select2-result-label {
     font-weight: bold;
+	font-size: 90%;
 }
 
 .select2-results .select2-result-label {
