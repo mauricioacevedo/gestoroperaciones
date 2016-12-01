@@ -22,7 +22,7 @@
 
 										<ui-select ng-model="eda.localidad">
 											<ui-select-match>
-												{{g.LOCALIDAD}}
+												{{eda.localidad}}
 											</ui-select-match>
 											<ui-select-choices repeat="g  in  listadoLocalidad | filter: $select.search track by $index">
 												<div ng-bind-html="g.LOCALIDAD | highlight: $select.search"></div>
