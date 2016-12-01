@@ -331,7 +331,7 @@ Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
 
 .select2-results li.select2-result-with-children > .select2-result-label {
     font-weight: bold;
-	font-size: small !important;
+	font-size: 0.9em !important;
 }
 
 .select2-results .select2-result-label {
@@ -339,7 +339,7 @@ Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
     margin: 0;
     cursor: pointer;
 
-    min-height: 0.7em;
+    min-height: 0.9em;
 
     -webkit-touch-callout: none;
       -webkit-user-select: none;
@@ -356,7 +356,7 @@ Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
 .select2-results li em {
     background: #feffde;
     font-style: normal;
-	font-size: small;
+	font-size: 0.9em !important;
 }
 
 .select2-results .select2-highlighted em {
