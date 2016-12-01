@@ -10256,17 +10256,17 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.busy="";
         $scope.pedido1=pedido1;
         $scope.error="";
+        $scope.TIPIFICACION="";
 
 
         var demePedidoButton=document.getElementById("iniciar");
             demePedidoButton.setAttribute("disabled","disabled");
             demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
-
         var kami=services.demePedidoActivacion($rootScope.logedUser.login,$rootScope.logedUser.name,'',$scope.pedido1).then(function(data){
 
             $scope.peds = data.data;
 
-            console.log($scope.peds);
+            console.log(data.data);
 
             if(data.data==''){
 
@@ -10279,7 +10279,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                 $scope.pedidoinfo=$scope.peds[0].PEDIDO;
                 $scope.pedidoIsActive=true;
                 $scope.errorDatos=null;
-                $scope.TIPIFICACION=$scope.peds[0].TIPIFICACION;
+
 
                 console.log($scope.TIPIFICACION);
 
@@ -10432,6 +10432,10 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 				  }
 			  );
+         if($scope.peds[0].TIPIFICACION===undefined){
+            alert('Por favor diligenciar la TIPIFICACION.');
+            return;
+        }
 
         	};
 
