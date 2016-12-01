@@ -22,7 +22,7 @@
 
 										<ui-select tagging ng-model="eda.localidad">
 
-											<ui-select-choices repeat="g.LOCALIDAD for g in  listadoLocalidad track by $index">
+											<ui-select-choices repeat="g.LOCALIDAD in  listadoLocalidad track by $index">
 
 											</ui-select-choices>
 										</ui-select>
