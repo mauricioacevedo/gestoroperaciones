@@ -28,14 +28,14 @@ Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
 
 .select2-container .select2-choice {
     display: block;
-    height: 23px;
+    height: 22px;
     padding: 0 0 0 8px;
     overflow: hidden;
     position: relative;
 
     border: 1px solid #aaa;
     white-space: nowrap;
-    line-height: 26px;
+    line-height: 25px;
     color: #444;
     text-decoration: none;
 
@@ -86,12 +86,12 @@ Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
 .select2-container .select2-choice abbr {
     display: none;
     width: 12px;
-    height: 11px;
+    height: 10px;
     position: absolute;
     right: 24px;
     top: 8px;
 
-    font-size: 0.7px;
+    font-size: 0.6px;
     text-decoration: none;
 
     border: 0;
@@ -225,7 +225,7 @@ Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
 
     outline: 0;
     font-family: sans-serif;
-    font-size: 0.8em;
+    font-size: 0.7em;
 
     border: 1px solid #aaa;
     border-radius: 0;
