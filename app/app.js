@@ -10256,6 +10256,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.busy="";
         $scope.pedido1=pedido1;
         $scope.error="";
+        $scope.TIPIFICACION="";
 
 
         var demePedidoButton=document.getElementById("iniciar");
