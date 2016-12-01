@@ -10277,7 +10277,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                 document.getElementById("warning").innerHTML="";
                 $scope.pedido1=$scope.peds[0].PEDIDO;
                 $scope.pedidoinfo=$scope.peds[0].PEDIDO;
-                $scope.pedidoinfo=$scope.peds[0].TIPIFICACION;
                 $scope.pedidoIsActive=true;
                 $scope.errorDatos=null;
                 $scope.TIPIFICACION=$scope.peds[0].TIPIFICACION;
@@ -10324,7 +10323,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
           var kami=services.getBuscarpedidoactivacion(buscar,$scope.pedidoActual,$rootScope.logedUser.login).then(
-
+               console.log($scope.peds);
 			  function(data){
 
 				 if(data.data==''){
@@ -10343,7 +10342,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 						var dat=data.status;
 						//alert("'"+data.status+"'");
 							if(dat==204){
-							   document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Estado";
+							   document.getElementById("warning").innerHTML="No hay Registros.";
 								$scope.errorDatos="No hay Registros.";
 								$scope.peds={};
 								$scope.mpedido={};
