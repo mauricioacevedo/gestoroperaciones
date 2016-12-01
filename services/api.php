@@ -6780,11 +6780,11 @@ $queryConceptosFcita=" select ".
                       if($this->get_request_method() != "GET"){
                                 $this->response('',406);
                         }
-                        $ASESOR = $this->_request['userID'];
+                         $user = $this->_request['userID'];
                         $departamento = $this->_request['departamento'];
             //$plaza = $this->_request['plaza'];
 
-            $ASESOR=$this->_request['ASESOR'];
+            //$user = $this->_request['userID'];
             //var_dump($proceso);
             $filename = '../tmp/control-threads-agen.txt';
             if(file_exists($filename)){
@@ -6797,9 +6797,9 @@ $queryConceptosFcita=" select ".
                         //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
                         $pedido_actual = $this->_request['pedido_actual'];
                         //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
-                        $ASESOR=strtoupper($ASESOR);
+                        $user=strtoupper($user);
             //NO SE PUEDE CONDICIONAR AL PEDIDO ACTUAL, SI LE DA F5 A LA PAGINA NO HAY PEDIDO ACTUAL.. ES MEJOR ASI!!!
-                        $sqlupdate="update gestor_pendientes_reagendamiento set ASESOR='' where ASESOR='$ASESOR'";
+                        $sqlupdate="update gestor_pendientes_reagendamiento set ASESOR='' where ASESOR='$user'";
             //echo $sqlupdate;
                         $xxx = $this->mysqli->query($sqlupdate);
                         //}
