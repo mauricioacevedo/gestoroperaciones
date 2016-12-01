@@ -101,7 +101,7 @@ body > .select2-container.open {
 
 /* Fix input width for Selectize theme */
 .selectize-control.single > .selectize-input > input {
-  width: 100%;
+  width: 90%;
 }
 
 /* Fix line break when there's at least one item selected with the Selectize theme */
@@ -111,7 +111,7 @@ body > .select2-container.open {
 
 /* Fix dropdown width for Selectize theme */
 .selectize-control > .selectize-dropdown {
-  width: 100%;
+  width: 90%;
 }
 
 /* Mark invalid Selectize */
@@ -309,12 +309,12 @@ body > .ui-select-bootstrap.open {
 }
 
 .ui-select-bootstrap .ui-select-match-text {
-    width: 100%;
+    width: 90%;
     padding-right: 1em;
 }
 .ui-select-bootstrap .ui-select-match-text span {
     display: inline-block;
-    width: 100%;
+    width: 90%;
     overflow: hidden;
 }
 .ui-select-bootstrap .ui-select-toggle > a.btn {
