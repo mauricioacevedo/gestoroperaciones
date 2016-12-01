@@ -6777,25 +6777,170 @@ $queryConceptosFcita=" select ".
 //------------------------demepedidoactivacion
 
  private function demePedidoActivacion(){
-                     if($this->get_request_method() != "GET"){
+                      if($this->get_request_method() != "GET"){
                                 $this->response('',406);
                         }
-                        $pedido = $this->_request['pedido'];
+                        $user = $this->_request['userID'];
+                        $departamento = $this->_request['departamento'];
+            //$plaza = $this->_request['plaza'];
+
+            $ASESOR=$this->_request['ASESOR'];
+            //var_dump($proceso);
+            $filename = '../tmp/control-threads-agen.txt';
+            if(file_exists($filename)){
+                sleep(1);
+            }else{
+                $file = fopen($filename, 'w') or die("can't create file");
+                        fclose($file);
+            }
+
+                        //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
+                        $pedido_actual = $this->_request['pedido_actual'];
+                        //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
+                        $ASESOR=strtoupper($ASESOR);
+            //NO SE PUEDE CONDICIONAR AL PEDIDO ACTUAL, SI LE DA F5 A LA PAGINA NO HAY PEDIDO ACTUAL.. ES MEJOR ASI!!!
+                        $sqlupdate="update gestor_pendientes_reagendamiento set ASESOR='' where ASESOR='$ASESOR'";
+            //echo $sqlupdate;
+                        $xxx = $this->mysqli->query($sqlupdate);
+                        //}
+            //echo "WTF";
                         $today = date("Y-m-d");
-                        $query=    " SELECT distinct ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER ".
-                                    " ,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION ".
-                                    " ,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,STATUS,ASESOR ".
-                                     " FROM gestor_pendientes_activacion_siebel  ".
-                                     " WHERE STATUS='PENDI_ACTI' ".
-                                     " AND ASESOR='' ".
-                                     " AND PEDIDO = '1-1315440715893' ".
-                                     " AND estado =  'in_progress' ".
-                                     " ORDER BY fecha_creacion ASC ";
+
+            //1.consulto todo lo que tenga fecha cita de mañana
+            $hora=date("G");
+            $uphold="1";
+            if($hora<11){
+                $uphold="1";
+            }else{
+                $uphold="2";
+            }
+
+                        $mypedido="";
 
 
-                       $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
-                         if($r->num_rows > 0){
+            if($prioridad!=''){
+                    $parametroBusqueda=$prioridad;
+            }
+            if($parametroBusqueda=='') $parametroBusqueda ='FECHA_CREACION';
+
+            $query1=" select b.PEDIDO,b.FECHA_EXCEPCION ".
+                        " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.pedido_id ".
+                        " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
+                        " from gestor_pendientes_activacion_siebel b ".
+                        "  where b.STATUS='PENDI_ACTI'  ".
+                        " and b.ASESOR ='' ".
+                        " and (b.FECHA_CREACION < CURDATE() OR b.FECHA_CREACION='9999-00-00') ".
+                        " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ";
+
+            if($mypedido==""){
+
+            $rr = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
+                        $mypedidoresult=array();
+            $pedidos_ignorados="";
+            if($rr->num_rows > 0){//recorro los registros de la consulta para
+                                while($row = $rr->fetch_assoc()){
+                                        $result[] = $row;
+
+                    //$rta=$this->pedidoOcupadoFenix($row);
+                                        //if($rta=="No rows!!!!"){//me sirve, salgo del ciclo y busco este pedido...
+                                                //echo "el pedido es: ".$row['PEDIDO_ID'];
+                        if($row['BEENHERE']==$user){
+                            $pedidos_ignorados=$pedidos_ignorados.$row['PEDIDO'].',';
+                            //este pedido ya lo vio el dia de hoy
+                            //busco otro pedido----
+                            continue;
+                           }
+
+                                                $mypedido=$row['PEDIDO'];
+                                                $mypedidoresult=$rta;
+                                                break;
+                                        //} //2016-04-12: SE QUITO VALIDACION CONTRA FENIX
+
+                    /*
+                                        if($rta['ESTADO_BLOQUEO']=='N'){//me sirve, salgo del ciclo y busco este pedido...
+                                                //echo "el pedido es: ".$row['PEDIDO_ID'];
+
+                                                if($row['BEENHERE']==$user){
+                                                        $pedidos_ignorados=$pedidos_ignorados.$row['PEDIDO_ID'].',';
+                                                        //este pedido ya lo vio el dia de hoy
+                                                        //busco otro pedido----
+                                                        continue;
+                                                }
+
+                                                $mypedido=$row['PEDIDO_ID'];
+                                                $mypedidoresult=$rta;
+                                                break;
+                                        }*/
+                                }
+            //2.traigo solo los pedidos mas viejos en la base de datos...
+                        } else {
+                $query1=" select b.PEDIDO, b.FECHA_EXCEPCION ,ID ".
+                        " from gestor_pendientes_activacion_siebel b ".
+                        " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
+                        " and (select PRODUCTO from gestor_pendientes_activacion_siebel b  where b.PEDIDO=b.PEDIDO and FECHA_CREACION between '2016-11-30 00:00:00' and '2016-11-30 23:59:59' order by id desc limit 1) not like '%AGENDADO%' ".
+                        " order by ID,b.FECHA_CREACION ASC ";
+                            $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
+                $mypedido="";
+                $mypedidoresult=array();
+                if($r->num_rows > 0){//recorro los registros de la consulta para
+                                    while($row = $r->fetch_assoc()){
+                                            $result[] = $row;
+
+                        $rta=$this->pedidoOcupadoFenix($row);
+                        //var_dump($rta);
+                                            if($rta=="No rows!!!!"){//me sirve, salgo del ciclo y busco este pedido...
+                                                    //echo "el pedido es: ".$row['PEDIDO_ID'];
+
+                                                    $mypedido=$row['PEDIDO_ID'];
+                                                    $mypedidoresult=$rta;
+                                                    break;
+                                            }
+
+                                    }
+
+                }
+
+            }//end if
+
+            }//end mypedido if
+
+            if($mypedido==''){//ya los visite todos, que hago???
+                //echo "YA LOS VISITE TODOS, QUE HAGO?";
+                //EN LAS VISTAS, ACTUALIZO EL USUARIO PARA RESETEAR LA BUSQUEDA
+                $SQL_UPDATE="update vistas_pedidos a set a.user='$user-CICLO' where a.user='$user' AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59'";
+                $xS = $this->mysqli->query($SQL_UPDATE);
+                $pedds=explode(",", $pedidos_ignorados);
+                if(count($pedds)>0){
+                    $mypedido=$pedds[0];
+                }
+            }
+            $fecha_visto= date("Y-m-d H:i:s");
+            //de una lo ocupo cucho cucho!!!!
+            $sqlupdate="update gestor_pendientes_activacion_siebel set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO_ID = '$mypedido' and STATUS='PENDI_AGEN'";
+                        $x = $this->mysqli->query($sqlupdate);
+
+
+            if($PROGRAMADO!="NOT"){
+                $PROGRAMADO=", '$PROGRAMADO' as PROGRAMADO ";
+            }else{
+                $PROGRAMADO="";
+            }
+
+            $query1= " SELECT ID,b.ORDER_SEQ_ID,b.PEDIDO ".
+                    " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
+                    " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
+                    " ,b.CODIGO_CIUDAD,b.CAMPO_ERROR,b.STATUS,b.ASESOR ".
+                    " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
+                    " ,b.FECHA_EXCEPCION $FECHA_CREACION,'AUTO' as source ".
+                    " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
+                    " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
+                    " from gestor_pendientes_activacion_siebel b where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ";
+
+            //echo $query1;
+            $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
+
+                        if($r->num_rows > 0){
                                 $result = array();
                                 $ids="";
                                 $sep="";
@@ -6817,12 +6962,13 @@ $queryConceptosFcita=" select ".
                                 $this->response('', 200); // send user details
                         }else{//i have pretty heavy problems over here...
                 //$this->response('SYSTEM PANIC!',200);
-                $this->response('No hay registros!',204);
+                $this->response(json_encode('No hay registros!'),200);
             }
             unlink($filename);
 
                         $this->response('nothing',204);        // If no records "No Content" status
                 }
+
 
 //--------------------fin demepedido activacion
 		
