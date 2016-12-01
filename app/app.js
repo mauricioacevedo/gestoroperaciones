@@ -10279,8 +10279,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                 $scope.pedidoinfo=$scope.peds[0].PEDIDO;
                 $scope.pedidoIsActive=true;
                 $scope.errorDatos=null;
-                 $scope.busy=$scope.peds[0].ASESOR;
-                 $scope.busy=$scope.peds[0].TIPIFICACION;
+
 
 
                 if($scope.peds[0].STATUS=="PENDI_ACTI"&&$scope.peds[0].ASESOR!=""){
