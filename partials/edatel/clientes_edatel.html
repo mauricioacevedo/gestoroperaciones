@@ -26,6 +26,7 @@
 											</ui-select-match>
 											<ui-select-choices repeat="g  in  listadoLocalidad | filter: $select.search track by $index">
 												<div ng-bind-html="g.LOCALIDAD | highlight: $select.search"></div>
+												 <small ng-bind-html="g.DEPARTAMENTO | highlight: $select.search"></small>
 											</ui-select-choices>
 										</ui-select>
 
