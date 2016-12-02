@@ -10197,14 +10197,13 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.pedidosUnicos='';
         $scope.historico_pedido=[];
         $rootScope.actualView="/demepedido-activacion";
-        $scope.iconcepto="COBERTURA";
         $scope.popup='';
         $scope.intervalLightKPIS='';
         $scope.pedidoinfo='';
         $scope.errorDatos=null;
         $scope.accRdy=false;
-        $scope.fecha_inicio=null;
-        $scope.fecha_fin=null;
+        $scope.FECHA_GESTION=null;
+        $scope.FECHA_CREACION=null;
 
         var pedidos=services.getPedidosUserActivacion(userID).then(function(data){
                 $scope.pedidos=data.data[0];
