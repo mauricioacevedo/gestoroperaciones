@@ -432,6 +432,12 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pedidosPorUserActivacion?userID=' + userID);
         }
 
+
+      obj.getlistadoOpcionesactivacion= function () {
+     	return $http.get(serviceBase + 'listadoOpcionesactivacion');
+        };
+
+
 //------------------------------------------------------fin_Activacion
 
 
@@ -10373,7 +10379,33 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
     //------------------------------ GuardarPedido ----------------------------
 
+    	$scope.listartransacciones=function(){
 
+			services.getlistadoOpcionesactivacion().then(
+
+			  function(data){
+
+
+				  $scope.transacciones=data.data[0];
+				  $scope.listadoOpcionesSiebel=data.data[1];
+
+				  return data.data;
+
+
+					}
+			  , function errorCallback(response,status) {
+				  //console.log(status);
+					$scope.errorDatos="Sin Procesos";
+
+				  }
+			  );
+		};
+
+	$scope.listartransacciones();
+
+	$scope.onChangeAccion=function(){
+      $scope.accRdy=true;
+ };
 
 
 	$scope.guardar=function(InfoPedido,gestion,status){
