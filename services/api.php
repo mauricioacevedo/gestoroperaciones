@@ -6848,7 +6848,7 @@ $queryConceptosFcita=" select ".
             }
             if($parametroBusqueda=='') $parametroBusqueda ='FECHA_CREACION';
 
-            $query1=" select b.PEDIDO,b.FECHA_EXCEPCION ".
+            $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
                         " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.pedido_id ".
                         " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
                         " from gestor_pendientes_activacion_siebel b ".
@@ -6899,7 +6899,7 @@ $queryConceptosFcita=" select ".
                                 }
             //2.traigo solo los pedidos mas viejos en la base de datos...
                         } else {
-                $query1=" select b.PEDIDO, b.FECHA_EXCEPCION ,ID ".
+                $query1=" select distinct b.PEDIDO, b.FECHA_EXCEPCION ,ID ".
                         " from gestor_pendientes_activacion_siebel b ".
                         " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
                         " and (select PRODUCTO from gestor_pendientes_activacion_siebel b  where b.PEDIDO=b.PEDIDO and FECHA_CREACION between '2016-11-30 00:00:00' and '2016-11-30 23:59:59' order by id desc limit 1) not like '%AGENDADO%' ".
