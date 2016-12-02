@@ -2146,7 +2146,6 @@ private function updateFenixReconfiguracion($obj){
                         if($r->num_rows > 0){
                                 $result = array();
                                 while($row = $r->fetch_assoc()){
-                    $row['PRODUCTO']=utf8_encode($row['PRODUCTO']);
                                         $result[] = $row;
                                 }
 
