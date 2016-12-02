@@ -11405,61 +11405,6 @@ $sqlfenix=
 
                 }
 
-        //-----------listadoactivacio
-
-         private function listadoOpcionesactivacion(){
-
-
-            if($this->get_request_method() != "GET"){
-                        $this->response('',406);
-                        }
-
-            $today = date("Y-m-d");
-
-            $query= " SELECT ID , TRANSACCION, STATUS , ASESOR ".
-                   " FROM gestor_pendientes_activacion_siebel ";
-
-
-            $querytransaccion= "SELECT distinct TRANSACCION "
-                          " FROM gestor_pendientes_activacion_siebel ";
-
-
-             $rtransaccion= $this->mysqli->query($queryEstado);
-
-                   if($rtransaccion->num_rows > 0){
-                                $result = array();
-                                while($row=$rtransaccion->fetch_assoc()){
-                                $estados[]=$row;
-
-
-                            }
-                        }
-
-              $rst = $this->mysqli->query($query);
-
-                    if ($rst->num_rows > 0){
-
-                            $resultado=array();
-
-                            while($row=$rst->fetch_assoc()){
-                                $resultado[]=$row;
-
-
-                            }
-                                $this->response($this->json(array($transacciones,$resultado)), 201);
-
-
-                        }else{
-
-                            $error="Ops";
-                            $this->response($this->json($error), 400);
-                        }
-
-                }
-
-
-        //-----------listadoactivacio
-
 
 
 		// Busca Pedido Siebel Asignaciones -------------------------
