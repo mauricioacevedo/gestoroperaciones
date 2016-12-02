@@ -13061,7 +13061,7 @@ app.run(['$rootScope', 'services', function($rootScope, services){
 
         $rootScope.transaccionActivacion=[
             {TRANSACCION:'SUSPENDER', VALOR:'SUSPENDER'},
-            {TRANSACCION:'ELIMINAR', VALOR:'Eliminar'},
+            {TRANSACCION:'ELIMINAR', VALOR:'ELIMINAR'},
             {TRANSACCION:'DISENO', VALOR:'DISENO'},
             {TRANSACCION:'ELIMINAR COMUNES', VALOR:'ELIMINAR COMUNES'},
             {TRANSACCION:'NUEVO', VALOR:'NUEVO'},
