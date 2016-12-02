@@ -2117,49 +2117,6 @@ private function updateFenixReconfiguracion($obj){
 
 
 
-
-        private function transaccionactivaciones(){
-                        if($this->get_request_method() != "GET"){
-                                $this->response('',406);
-                        }
-                        $today = date("Y-m-d");
-
-            $transaccion = $this->_request['transaccion'];
-
-            if($transaccion==""||$transaccion=="TODO"){
-                $transaccion="  ";
-            }else{
-                $transaccion=" and transaccion='$transaccion' ";
-            }
-
-                    $query= " SELECT DISTINCT ( CASE WHEN TRANSACCION =  '' THEN  'VACIOS' ".
-                             "  WHEN TRANSACCION = null THEN 'VACIOS' ".
-                            " ELSE TRANSACCION END) AS TRANSACCION ".
-                            " FROM gestor_pendientes_activacion_siebel ".
-                            " WHERE ESTADO='in_progress' ".
-                            "	AND TRANSACCION='$transaccion' ";
-
-            //echo $query;
-
-                        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-
-                        if($r->num_rows > 0){
-                                $result = array();
-                                while($row = $r->fetch_assoc()){
-                                        $result[] = $row;
-                                }
-
-                //var_dump($result);
-                                $this->response($this->json($result), 200); // send user details
-                        }
-
-
-
-
-                        $this->response('',204);        // If no records "No Content" status
-
-        }
-
                 private function getDepartamentosAdelantarAgenda(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);

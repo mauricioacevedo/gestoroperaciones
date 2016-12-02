@@ -10211,7 +10211,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.accRdy=false;
         $scope.FECHA_GESTION=null;
         $scope.FECHA_CREACION=null;
-        $scope.transaccion="TODO";
+
 
         var pedidos=services.getPedidosUserActivacion(userID).then(function(data){
                 $scope.pedidos=data.data[0];
@@ -10228,17 +10228,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
         $scope.pedidoIsActive=false;
 
-    $scope.getTransaccion = function() {
-
-        $scope.transaccion={};
-
-            services.gettransaccionactivaciones($scope.transaccion).then(function(data){
-            $scope.transaccion=data.data;
-            console.log($scope.transaccion);
-
-                        return data.data;
-                });
-    };
 
     // ---------------------------------fin Variables----------------------------
 
