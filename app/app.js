@@ -10400,7 +10400,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 			}
 
-		console.log($scope.InfoGestion);
+		console.log($scope.peds[0].TIPIFICACION);
 
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
