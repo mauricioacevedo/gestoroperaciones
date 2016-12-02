@@ -434,6 +434,11 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
 
+      obj.gettransaccionactivaciones = function(proceso){
+                return $http.get(serviceBase + 'transaccionactivaciones?transaccion='+transaccion);
+        }
+
+
 //------------------------------------------------------fin_Activacion
 
 
@@ -10206,7 +10211,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.accRdy=false;
         $scope.FECHA_GESTION=null;
         $scope.FECHA_CREACION=null;
-        $scope.transaccion="TRANSACCION";
+        $scope.transaccion="TODO";
 
         var pedidos=services.getPedidosUserActivacion(userID).then(function(data){
                 $scope.pedidos=data.data[0];
@@ -10222,6 +10227,18 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.pedidos = angular.copy(original);
 
         $scope.pedidoIsActive=false;
+
+    $scope.getTransaccion = function() {
+
+        $scope.transaccion={};
+
+            services.gettransaccionactivaciones($scope.transaccion).then(function(data){
+            $scope.transaccion=data.data;
+            //console.log($scope.proceso);
+
+                        return data.data;
+                });
+    };
 
     // ---------------------------------fin Variables----------------------------
 
@@ -10266,7 +10283,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         var demePedidoButton=document.getElementById("iniciar");
             demePedidoButton.setAttribute("disabled","disabled");
             demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
-        var kami=services.demePedidoActivacion($rootScope.logedUser.login,$rootScope.logedUser.name,'',$scope.pedido1).then(function(data){
+        var kami=services.demePedidoActivacion($rootScope.logedUser.login,$scope.transaccion,$rootScope.logedUser.name,'',$scope.pedido1).then(function(data){
 
             $scope.peds = data.data;
 
