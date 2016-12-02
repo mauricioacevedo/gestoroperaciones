@@ -11528,12 +11528,18 @@ $sqlfenix=
                 $user=strtoupper($user);
                 $today = date("Y-m-d");
 
-                $query1=     " SELECT distinct ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER ".
-                            " ,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION ".
-                            " ,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD ".
-                             " FROM gestor_pendientes_activacion_siebel  ".
-                             " where PEDIDO='$pedido' ".
-                             " AND STATUS IN ('PENDI_ACTI') ";
+                $query1=     " SELECT ID,b.ORDER_SEQ_ID,b.PEDIDO ".
+                                " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
+                                " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
+                                " ,b.CODIGO_CIUDAD,b.CAMPO_ERROR,b.STATUS,b.ASESOR,b.TIPIFICACION ".
+                                " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
+                                " ,b.FECHA_EXCEPCION $FECHA_CREACION,'AUTO' as source ".
+                                " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
+                                " where a.PEDIDO='$pedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
+                                " from gestor_pendientes_activacion_siebel b where b.PEDIDO = '$pedido' and b.STATUS='PENDI_ACTI' ";
+
+
+
 
                         $rPendi = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
