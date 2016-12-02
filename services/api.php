@@ -6951,10 +6951,10 @@ $queryConceptosFcita=" select ".
                 $PROGRAMADO="";
             }
 
-            $query1= " SELECT ID,b.ORDER_SEQ_ID,b.PEDIDO ".
+            $query1= " SELECT distinct ID,b.ORDER_SEQ_ID,b.PEDIDO ".
                     " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
                     " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
-                    " ,b.CODIGO_CIUDAD,b.CAMPO_ERROR,b.STATUS,b.ASESOR,b.TIPIFICACION ".
+                    " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR,b.TIPIFICACION ".
                     " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
                     " ,b.FECHA_EXCEPCION $FECHA_CREACION,'AUTO' as source ".
                     " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
