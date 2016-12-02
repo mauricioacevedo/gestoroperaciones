@@ -10204,6 +10204,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.accRdy=false;
         $scope.FECHA_GESTION=null;
         $scope.FECHA_CREACION=null;
+        $scope.transaccion="TRANSACCION";
 
         var pedidos=services.getPedidosUserActivacion(userID).then(function(data){
                 $scope.pedidos=data.data[0];
@@ -10376,7 +10377,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 	$scope.guardar=function(InfoPedido,gestion,status){
-
+        $scope.pedido.TIPIFICACION=$scope.TIPIFICACION;
 
 		$scope.InfoGestion={
 			//ID:gestion.ID,
