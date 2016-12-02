@@ -434,7 +434,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
 
-      obj.gettransaccionactivaciones = function(proceso){
+      obj.gettransaccionactivaciones = function(transaccion){
                 return $http.get(serviceBase + 'transaccionactivaciones?transaccion='+transaccion);
         }
 
