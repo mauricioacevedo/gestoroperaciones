@@ -428,7 +428,9 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return data;
         };
 
-
+      obj.getPedidosUserActivacion = function(userID){
+                return $http.get(serviceBase + 'pedidosPorUserActivacion?userID=' + userID);
+        }
 
 //------------------------------------------------------fin_Activacion
 
@@ -10204,7 +10206,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.fecha_inicio=null;
         $scope.fecha_fin=null;
 
-        var pedidos=services.getPedidosUser(userID).then(function(data){
+        var pedidos=services.getPedidosUserActivacion(userID).then(function(data){
                 $scope.pedidos=data.data[0];
                 $scope.pedidosUnicos=data.data[1];
                 return data.data;
