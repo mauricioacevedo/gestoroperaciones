@@ -416,8 +416,8 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pedidosPorPedidoActivacion?pedido=' + pedido);
         }
         obj.demePedidoActivacion = function(user,pedido_actual,pedido){
-           console.log("transaccion="+transaccion);
-		return $http.get(serviceBase+'demePedidoActivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user+ '&transaccion='+transaccion);
+
+		return $http.get(serviceBase+'demePedidoActivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user);
     	}
 
         obj.getBuscarpedidoactivacion = function(pedido,pedido_actual,user){
@@ -431,11 +431,6 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 
       obj.getPedidosUserActivacion = function(userID){
                 return $http.get(serviceBase + 'pedidosPorUserActivacion?userID=' + userID);
-        }
-
-
-      obj.gettransaccionactivaciones = function(transaccion){
-                return $http.get(serviceBase + 'transaccionactivaciones?transaccion='+transaccion);
         }
 
 
