@@ -6951,7 +6951,7 @@ $queryConceptosFcita=" select ".
                 $PROGRAMADO="";
             }
 
-            $query1= " SELECT distinct ID,b.ORDER_SEQ_ID,b.PEDIDO ".
+            $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
                     " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
                     " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
                     " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR,b.TIPIFICACION ".
