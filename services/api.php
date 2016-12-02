@@ -6954,7 +6954,8 @@ $queryConceptosFcita=" select ".
             $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
                     " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
                     " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
-                    " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR,b.TIPIFICACION ".
+                    " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR,b.TIPIFICACION, ".
+                    " group_concat(b.CAMPO_ERROR ) as EXCEPCIONES ".
                     " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
                     " ,b.FECHA_EXCEPCION $FECHA_CREACION,'AUTO' as source ".
                     " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
