@@ -6956,6 +6956,7 @@ $queryConceptosFcita=" select ".
                     " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
                     " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR,b.TIPIFICACION, ".
                     " group_concat(b.CAMPO_ERROR ) as EXCEPCIONES ".
+                    " ,group_concat(b.PRODUCTO ) as PRODUCTOS ".
                     " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
                     " ,b.FECHA_EXCEPCION $FECHA_CREACION,'AUTO' as source ".
                     " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
