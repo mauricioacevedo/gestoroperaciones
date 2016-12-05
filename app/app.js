@@ -10422,9 +10422,10 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				  $scope.busy = "";
 				  $scope.error = "";
 				  $scope.buscar = null;
+                  console.log($scope.TIPIFICACION);
 				  return data.data;
 
-	   console.log($scope.TIPIFICACION);
+
 					}
 			  , function errorCallback(response,status) {
 				  //console.log(status);
