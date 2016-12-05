@@ -11512,7 +11512,7 @@ $sqlfenix=
 
 
                 } // -------------------------Busca Pedido Siebel Asignaciones
-
+//------------------------buscarpedido activacion
 
         private function buscarpedidoactivacion(){
 
@@ -11528,7 +11528,7 @@ $sqlfenix=
                 $pedido_actual = $this->_request['pedido_actual'];
 
                 if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
-                        $sqlupdate="update informe_petec_pendientesm set ASESOR='' where ASESOR='$user' ";
+                        $sqlupdate="update gestor_pendientes_activacion_siebel set ASESOR='' where ASESOR='$user' ";
                         $xxx = $this->mysqli->query($sqlupdate);
                 }
 
@@ -11570,12 +11570,12 @@ $sqlfenix=
                                 $sqlupdate="";
 
                                 if($busy==true){
-                                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1 where ID in ($ids)";
+                                        $sqlupdate="update gestor_pendientes_activacion_siebel set VIEWS=VIEWS+1 where ID in ($ids)";
 
 
                                 }else{
                                         $fecha_visto=date("Y-m-d H:i:s");
-                                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where ID in ($ids)";
+                                        $sqlupdate="update gestor_pendientes_activacion_siebel set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$FECHA_CREACION' where ID in ($ids)";
 
                                 }
 
@@ -11597,7 +11597,7 @@ $sqlfenix=
                         }
 
 
-                } // -------------------------Busca Pedido Siebel Asignaciones----------------------
+                } // -------------------------Busca Pedido Siebel Activacion----------------------
 
 	//Listado de Pedidos por Usuario dia actual----------------------------------------
 
