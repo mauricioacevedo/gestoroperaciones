@@ -11751,7 +11751,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 						$scope.pedido1=$scope.peds[0].PEDIDO_ID;
 				  	   	$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 
-						console.log(data.data);
+						//console.log(data.data);
 
 						var dat=data.status;
 						//alert("'"+data.status+"'");
