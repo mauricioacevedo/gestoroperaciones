@@ -10251,7 +10251,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.pedidoIsGuardado=false;
 
         if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
-            //alert($scope.peds[0].PEDIDO_ID);
              pedido1=$scope.peds[0].PEDIDO;
 
         }
