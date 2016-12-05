@@ -10399,7 +10399,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             //TIPIFICACION:$scope.peds[0].TIPIFICACION,
             TIPIFICACION:InfoPedido.TIPIFICACION,
 
-            console.log($scope.InfoGestion);
+
 			}
 
 
