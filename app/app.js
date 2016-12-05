@@ -10410,7 +10410,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				  $scope.pedidoIsGuardado = true;
 				  $scope.errorDatos = null;
 				  $scope.InfoPedido = [];
-				  $scope.TIPIFICACION = null;
 				  $scope.FECHA_EXCEPCION = null;
 				  $scope.accRdy = false;
 				  $scope.InfoGestion = {};
@@ -10422,7 +10421,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				  $scope.busy = "";
 				  $scope.error = "";
 				  $scope.buscar = null;
-                  console.log($scope.TIPIFICACION);
 				  return data.data;
 
 
