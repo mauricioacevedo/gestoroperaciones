@@ -10244,7 +10244,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.popup='';
         $scope.errorDatos=null;
         $scope.InfoPedido=[];
-        $scope.fecha_inicio=null;
+        $scope.FECHA_CREACION=null;
         $scope.accRdy=false;
         $scope.InfoGestion={};
         $scope.InfoPedido.INCIDENTE='NO';
@@ -10313,10 +10313,9 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			$scope.popup='';
 			$scope.errorDatos=null;
 			$scope.InfoPedido=[];
-			$scope.fecha_inicio=null;
+			$scope.FECHA_CREACION=null;
 			$scope.accRdy=false;
 			$scope.InfoGestion={};
-			$scope.InfoPedido.INCIDENTE='NO';
 			$scope.pedidoIsGuardado=false;
 
 			$scope.pedidoActual=pedidoinfo;
@@ -10327,7 +10326,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
           var kami=services.getBuscarpedidoactivacion(buscar,$scope.pedidoActual,$rootScope.logedUser.login).then(
 			  function(data){
-                  console.log($scope.peds);
+                  console.log($scope.InfoPedido);
 				 if(data.data==''){
 						$scope.errorDatos="No hay Registros.";
 					 	$scope.peds={};
