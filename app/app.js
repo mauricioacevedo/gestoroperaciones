@@ -10403,6 +10403,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			}
 
 
+        console.log($scope.InfoGestion);
 
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
