@@ -10325,6 +10325,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
           var kami=services.getBuscarpedidoactivacion(buscar,$scope.pedidoActual,$rootScope.logedUser.login).then(
 			  function(data){
+                   $scope.peds = data.data;
+			           console.log(data.status);
 
 				 if(data.data==''){
 						$scope.errorDatos="No hay Registros de activacion.";
