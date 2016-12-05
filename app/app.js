@@ -11748,8 +11748,8 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 						$scope.peds = data.data[1];
 				  	   	$scope.ocupado=data.data[0];
-						$scope.pedido1=$scope.peds[0].PEDIDO;
-				  	   	$scope.pedidoinfo=$scope.peds[0].PEDIDO;
+						$scope.pedido1=$scope.peds[1].PEDIDO;
+				  	   	$scope.pedidoinfo=$scope.peds[1].PEDIDO;
 
 						console.log(data.data);
 
