@@ -10396,15 +10396,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			ASESOR:$rootScope.logedUser.login,
             FECHA_GESTION:$scope.peds[0].FECHA_GESTION,
             STATUS:$scope.peds[0].STATUS,
-            //TIPIFICACION:$scope.peds[0].TIPIFICACION,
-            TIPIFICACION:InfoPedido.TIPIFICACION,
-
-
+            TIPIFICACION:$scope.peds[0].TIPIFICACION,
 			}
-
-
-        console.log($scope.InfoGestion);
-
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
 
