@@ -10326,7 +10326,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
           var kami=services.getBuscarpedidoactivacion(buscar,$scope.pedidoActual,$rootScope.logedUser.login).then(
 			  function(data){
-                  console.log($scope.InfoPedido);
+
 				 if(data.data==''){
 						$scope.errorDatos="No hay Registros.";
 					 	$scope.peds={};
@@ -10339,7 +10339,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				  	   	$scope.ocupado=data.data[0];
 						$scope.pedido1=$scope.peds[0].PEDIDO;
 				  	   	$scope.pedidoinfo=$scope.peds[0].PEDIDO;
-
+                        console.log($scope.peds);
 						var dat=data.status;
 						//alert("'"+data.status+"'");
 							if(dat==204){
