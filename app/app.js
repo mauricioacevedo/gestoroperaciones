@@ -10400,7 +10400,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 			}
 
-		console.log($scope.InfoGestion);
+
 
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
@@ -10410,7 +10410,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				  $scope.pedidoIsGuardado = true;
 				  $scope.errorDatos = null;
 				  $scope.InfoPedido = [];
-				  $scope.FECHA_CREACION = null;
+				  $scope.TIPIFICACION = null;
 				  $scope.FECHA_EXCEPCION = null;
 				  $scope.accRdy = false;
 				  $scope.InfoGestion = {};
@@ -10424,7 +10424,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				  $scope.buscar = null;
 				  return data.data;
 
-
+	   console.log($scope.TIPIFICACION);
 					}
 			  , function errorCallback(response,status) {
 				  //console.log(status);
