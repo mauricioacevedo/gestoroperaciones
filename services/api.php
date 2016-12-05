@@ -1796,6 +1796,30 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
                 }
 
+
+         private function pedidosPorUserActivacion(){
+                        if($this->get_request_method() != "GET"){
+                                $this->response('',406);
+                        }
+                        $id = $this->_request['userID'];
+                        $today = date("Y-m-d");
+                        $query=" SELECT ID,PEDIDO,ESTADO,TIPIFICACION,FECHA_GESTION,TRANSACCION,ASESOR ".
+                                " from gestor_historico_activacion ".
+                                " where ASESOR='$id' ".
+                                " and FECHA_GESTION between '$today 00:00:00' and '$today 23:59:59' ";
+
+                        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+                        if($r->num_rows > 0){
+                                $result = array();
+                                while($row = $r->fetch_assoc()){
+                                        $result[] = $row;
+                                }
+                                $this->response($this->json($result), 200); // send user details
+                        }
+                        $this->response('',204);        // If no records "No Content" status
+                }
+
          private function actividadesUser(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -2090,6 +2114,8 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
 
         }
+
+
 
                 private function getDepartamentosAdelantarAgenda(){
                         if($this->get_request_method() != "GET"){
@@ -6824,7 +6850,7 @@ $queryConceptosFcita=" select ".
             }
             if($parametroBusqueda=='') $parametroBusqueda ='FECHA_CREACION';
 
-            $query1=" select b.PEDIDO,b.FECHA_EXCEPCION ".
+            $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
                         " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.pedido_id ".
                         " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
                         " from gestor_pendientes_activacion_siebel b ".
@@ -6875,10 +6901,10 @@ $queryConceptosFcita=" select ".
                                 }
             //2.traigo solo los pedidos mas viejos en la base de datos...
                         } else {
-                $query1=" select b.PEDIDO, b.FECHA_EXCEPCION ,ID ".
+                $query1=" select distinct b.PEDIDO, b.FECHA_EXCEPCION ,ID ".
                         " from gestor_pendientes_activacion_siebel b ".
                         " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
-                        " and (select PRODUCTO from gestor_pendientes_activacion_siebel b  where b.PEDIDO=b.PEDIDO and FECHA_CREACION between '2016-11-30 00:00:00' and '2016-11-30 23:59:59' order by id desc limit 1) not like '%AGENDADO%' ".
+                        " and (select PRODUCTO from gestor_pendientes_activacion_siebel b  where b.PEDIDO=b.PEDIDO and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id desc limit 1) not like '%AGENDADO%' ".
                         " order by ID,b.FECHA_CREACION ASC ";
                             $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
@@ -6927,10 +6953,12 @@ $queryConceptosFcita=" select ".
                 $PROGRAMADO="";
             }
 
-            $query1= " SELECT ID,b.ORDER_SEQ_ID,b.PEDIDO ".
+            $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
                     " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
                     " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
-                    " ,b.CODIGO_CIUDAD,b.CAMPO_ERROR,b.STATUS,b.ASESOR,b.TIPIFICACION ".
+                    " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR,b.TIPIFICACION, ".
+                    " group_concat(distinct b.CAMPO_ERROR ) as EXCEPCIONES ".
+                    " ,group_concat(distinct b.PRODUCTO ) as PRODUCTOS ".
                     " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
                     " ,b.FECHA_EXCEPCION $FECHA_CREACION,'AUTO' as source ".
                     " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
@@ -11379,6 +11407,9 @@ $sqlfenix=
 						}
 
                 }
+
+
+
 		// Busca Pedido Siebel Asignaciones -------------------------
 		private function buscarOfertaSiebelAsignaciones(){
 
@@ -11504,12 +11535,19 @@ $sqlfenix=
                 $user=strtoupper($user);
                 $today = date("Y-m-d");
 
-                $query1=     " SELECT distinct ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER ".
-                            " ,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION ".
-                            " ,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD ".
-                             " FROM gestor_pendientes_activacion_siebel  ".
-                             " where PEDIDO='$pedido' ".
-                             " AND STATUS IN ('PENDI_ACTI') ";
+                $query1=    " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
+                    " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
+                    " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
+                    " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR,b.TIPIFICACION, ".
+                    " group_concat(distinct b.CAMPO_ERROR ) as EXCEPCIONES ".
+                    " ,group_concat(distinct b.PRODUCTO ) as PRODUCTOS ".
+                    " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
+                    " ,b.FECHA_EXCEPCION $FECHA_CREACION,'AUTO' as source ".
+                    " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
+                    " where a.PEDIDO='$pedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
+                    " from gestor_pendientes_activacion_siebel b where b.PEDIDO = '$pedido' and b.STATUS='PENDI_ACTI' ";
+
+
 
                         $rPendi = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 

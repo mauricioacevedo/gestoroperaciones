@@ -416,6 +416,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pedidosPorPedidoActivacion?pedido=' + pedido);
         }
         obj.demePedidoActivacion = function(user,pedido_actual,pedido){
+
 		return $http.get(serviceBase+'demePedidoActivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user);
     	}
 
@@ -428,6 +429,9 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return data;
         };
 
+      obj.getPedidosUserActivacion = function(userID){
+                return $http.get(serviceBase + 'pedidosPorUserActivacion?userID=' + userID);
+        }
 
 
 //------------------------------------------------------fin_Activacion
@@ -10195,16 +10199,16 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.pedidosUnicos='';
         $scope.historico_pedido=[];
         $rootScope.actualView="/demepedido-activacion";
-        $scope.iconcepto="COBERTURA";
         $scope.popup='';
         $scope.intervalLightKPIS='';
         $scope.pedidoinfo='';
         $scope.errorDatos=null;
         $scope.accRdy=false;
-        $scope.fecha_inicio=null;
-        $scope.fecha_fin=null;
+        $scope.FECHA_GESTION=null;
+        $scope.FECHA_CREACION=null;
 
-        var pedidos=services.getPedidosUser(userID).then(function(data){
+
+        var pedidos=services.getPedidosUserActivacion(userID).then(function(data){
                 $scope.pedidos=data.data[0];
                 $scope.pedidosUnicos=data.data[1];
                 return data.data;
@@ -10218,6 +10222,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.pedidos = angular.copy(original);
 
         $scope.pedidoIsActive=false;
+
 
     // ---------------------------------fin Variables----------------------------
 
@@ -10262,7 +10267,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         var demePedidoButton=document.getElementById("iniciar");
             demePedidoButton.setAttribute("disabled","disabled");
             demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
-        var kami=services.demePedidoActivacion($rootScope.logedUser.login,$rootScope.logedUser.name,'',$scope.pedido1).then(function(data){
+        var kami=services.demePedidoActivacion($rootScope.logedUser.login,$scope.transaccion,$rootScope.logedUser.name,'',$scope.pedido1).then(function(data){
 
             $scope.peds = data.data;
 
@@ -10373,7 +10378,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 
-
 	$scope.guardar=function(InfoPedido,gestion,status){
 
 
@@ -10394,12 +10398,11 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			ASESOR:$rootScope.logedUser.login,
             FECHA_GESTION:$scope.peds[0].FECHA_GESTION,
             STATUS:$scope.peds[0].STATUS,
-            TIPIFICACION:$scope.peds[0].TIPIFICACION,
 
 
 			}
 
-		console.log($scope.InfoGestion);
+		console.log($scope.peds.TIPIFICACION);
 
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
