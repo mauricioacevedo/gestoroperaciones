@@ -10339,7 +10339,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				  	   	$scope.ocupado=data.data[0];
 						$scope.pedido1=$scope.peds[0].PEDIDO;
 				  	   	$scope.pedidoinfo=$scope.peds[0].PEDIDO;
-                        console.log($scope.peds);
+
 						var dat=data.status;
 						//alert("'"+data.status+"'");
 							if(dat==204){
@@ -10400,7 +10400,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 			}
 
-		console.log($scope.peds.TIPIFICACION);
+		console.log($scope.InfoGestion);
 
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
