@@ -110,7 +110,12 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 		return $http.get(serviceBase + 'pedidosPorUser?userID=' + userID);
 	}
 
+//--------------------Servicios Globales
 
+	obj.getGestorConceptos = function(){
+		return $http.get(serviceBase + 'gestorConceptos');
+	}
+// Servicios Globales --------------------
 //---------------------------------------------------------------------------------------------Agendamiento
     obj.getPedidosUserAdelantarAgenda = function(userID){
                 return $http.get(serviceBase + 'pedidosPorUserAdelantarAgenda?userID=' + userID);
@@ -12997,6 +13002,19 @@ app.config(['$routeProvider',
 
 app.run(['$rootScope', 'services', function($rootScope, services){
 
+	$rootScope.getConceptosGestor=function(){
+		services.getGestorConceptos().then(
+			function(data){
+				$rootScope.listadoConceptos=data.data;
+				return data.data;
+			}
+
+		)
+
+	};
+
+	$rootScope.getConceptosGestor();
+
 
       $rootScope.cargos=[
         {CARGO_ID:'1', VALOR:'SUPERVISOR'},
@@ -13033,7 +13051,7 @@ app.run(['$rootScope', 'services', function($rootScope, services){
       "values": ["GIOVANI DE JESUS RODRIGUEZ PEREZ","JUAN FERNANDO MUÑOZ ZAPATA", "MONICA TATIANA HUERTAS GIRALDO", "NORBEY ANDRES MIRA DUQUE", "OTRO"]
   };
 
-
+/*
 	$rootScope.listadoConceptos=[
         {CONCEPTO_ID:'TODO', VALOR:'TODO'},
         {CONCEPTO_ID:'PETEC', VALOR:'PETEC'},
@@ -13055,7 +13073,7 @@ app.run(['$rootScope', 'services', function($rootScope, services){
         {CONCEPTO_ID:'DISENO', VALOR:'DISENO'},
         {CONCEPTO_ID:'DISPONIBILIDAD', VALOR:'DISPONIBILIDAD'},
 		{CONCEPTO_ID:'12-EDATEL', VALOR:'12-EDATEL'}
-    ];
+    ]; */
 
 	// Listados Siebel -------------------------------------------
 
