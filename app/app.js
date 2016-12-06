@@ -12772,6 +12772,12 @@ app.config(['$routeProvider',
 		 controller: 'edatelCtrl'
 	  })
 
+		.when('/tx/edatel_asingaciones', {
+		 title: 'DemePedido Siebel Asignaciones',
+		 templateUrl: 'partials/transacciones/edatel_asignaciones.html?n=1',
+		 controller: 'edatelCtrl'
+	  })
+
 
 	//  ------------------------------------------ASIGNACIONES
 //---------------------------------------------INICIOACTIVACION
