@@ -13009,8 +13009,8 @@ app.run(['$rootScope', 'services', function($rootScope, services){
       $rootScope.grupos = {
       "type": "select",
       "name": "grupos",
-      "value": ["SUPER","ACTIVACION", "ASIGNACIONES", "AGENDAMIENTO", "RECONFIGURACION","INCONSISTENCIAS"],
-      "values": ["SUPER","ACTIVACION", "ASIGNACIONES", "AGENDAMIENTO", "RECONFIGURACION","INCONSISTENCIAS"]
+      "value": ["SUPER","ACTIVACION", "ASIGNACIONES", "AGENDAMIENTO", "RECONFIGURACION","INCONSISTENCIAS","EDATEL"],
+      "values": ["SUPER","ACTIVACION", "ASIGNACIONES", "AGENDAMIENTO", "RECONFIGURACION","INCONSISTENCIAS","EDATEL"]
   };
 
       $rootScope.funciones = {
