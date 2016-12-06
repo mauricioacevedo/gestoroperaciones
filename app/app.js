@@ -12774,7 +12774,7 @@ app.config(['$routeProvider',
 
 		.when('/tx/edatel_asingaciones', {
 		 title: 'DemePedido Edatel Asignaciones',
-		 templateUrl: 'partials/transacciones/edatel_asignaciones.html?n=1',
+		 templateUrl: 'partials/transacciones/edatel_asginaciones.html',
 		 controller: 'edatelCtrl'
 	  })
 
