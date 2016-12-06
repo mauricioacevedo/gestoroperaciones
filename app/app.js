@@ -10266,7 +10266,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.busy="";
         $scope.pedido1=pedido1;
         $scope.error="";
-        $scope.TIPIFICACION='';
+        $scope.TIPIFICACION='CAMBIAR';
         $scope.TRANSACCION='SUSPENDER';
 
 
