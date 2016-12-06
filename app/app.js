@@ -10337,13 +10337,13 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 						$scope.mpedido={};
 						$scope.busy="";
 						$scope.pedidoIsActive=false;
-                     console.log($scope.errorDatos);
+
 					}else{
 
 						$scope.peds = data.data[1];
 				  	   	$scope.ocupado=data.data[0];
-						$scope.pedido1=$scope.peds[0].PEDIDO;
-				  	   	$scope.pedidoinfo=$scope.peds[0].PEDIDO;
+						$scope.pedido1=$scope.peds[0].PEDIDO_ID;
+				  	   	$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 
 						var dat=data.status;
 						//alert("'"+data.status+"'");
