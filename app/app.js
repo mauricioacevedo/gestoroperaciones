@@ -10381,17 +10381,13 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	$scope.guardar=function(InfoPedido,gestion,status){
 
-                if($scope.mpedido.pedido==""||$scope.mpedido.pedido=={}||$scope.mpedido.pedido === undefined){
-                        alert("Pedido vacio.");
-                        return;
-                }
 
 		$scope.InfoGestion={
 			//ID:gestion.ID,
-			ORDER_SEQ_ID:$scope.peds[0].ORDER_SEQ_ID,
-			PEDIDO:$scope.peds[0].PEDIDO,
-            REFERENCE_NUMBER:$scope.peds[0].REFERENCE_NUMBER,
-			ESTADO:$scope.peds[0].ESTADO,
+			ORDER_SEQ_ID:$scope.ORDER_SEQ_ID,
+			PEDIDO:$scope.PEDIDO,
+            REFERENCE_NUMBER:$scope.REFERENCE_NUMBER,
+			ESTADO:$scope.ESTADO,
             FECHA_CREACION:$scope.peds[0].FECHA_CREACION,
 			TAREA_EXCEPCION:$scope.peds[0].TAREA_EXCEPCION,
             FECHA_EXCEPCION:$scope.peds[0].FECHA_EXCEPCION,
