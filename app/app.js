@@ -13153,7 +13153,7 @@ app.run(function($rootScope, services) {
 app.run(['$location', '$rootScope', function($location, $rootScope) {
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        console.log( current );
+        //console.log( current );
         $rootScope.title = current.$$route.title;
     });
 
