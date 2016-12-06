@@ -431,6 +431,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
          obj.insertTransaccionsiebelactivacion  = function (pedido) {
+                console.log("pedido="+pedido+", pedido_actual="+pedido_actual+"tipificacion="tipificacion);
                 var data= $http.post(serviceBase + 'insertTransaccionsiebelactivacion ', {"pedido":pedido});
                 return data;
         };
