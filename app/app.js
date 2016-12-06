@@ -10380,10 +10380,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 	$scope.guardar=function(InfoPedido,gestion,status){
-if($scope.peds[0].PEDIDO==""||$scope.peds[0].PEDIDO=={}||$scope.peds[0].PEDIDO=== undefined){
-                        alert("Pedido vacio.");
-                        return;
-}
+
 		$scope.InfoGestion={
 			//ID:gestion.ID,
 			ORDER_SEQ_ID:$scope.peds[0].ORDER_SEQ_ID,
@@ -10403,6 +10400,8 @@ if($scope.peds[0].PEDIDO==""||$scope.peds[0].PEDIDO=={}||$scope.peds[0].PEDIDO==
             STATUS:$scope.peds[0].STATUS,
             TIPIFICACION:$scope.TIPIFICACION,
 			}
+
+            console.log($scope.InfoGestion);
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
 
