@@ -11,6 +11,13 @@
 							</div>
 							<div class="col-md-6 " ng-show="tools" ng-class="tools==false?'animated bounceOutRight':'animated fadeInUp'">
 								<ul class="nav navbar-nav pull-right">
+									<li>
+										<div class="col-md-1 col-xs-1 ">
+											<div data-ng-if="loading">
+												<img alt="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="img/loader.gif" />
+											</div>
+										</div>
+									</li>
 									<li><span style="color:red" ><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span></li>
 
 									<li >
