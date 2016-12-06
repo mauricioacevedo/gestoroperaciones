@@ -10383,8 +10383,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		$scope.InfoGestion={
 			//ID:gestion.ID,
-			ORDER_SEQ_ID:$scope.peds[0].ORDER_SEQ_ID,
-			PEDIDO:$scope.peds[0].PEDIDO,
+			ORDER_SEQ_ID:$scope.pedido.ORDER_SEQ_ID,
+			PEDIDO:$scope.pedido.PEDIDO,
             REFERENCE_NUMBER:$scope.peds[0].REFERENCE_NUMBER,
 			ESTADO:$scope.peds[0].ESTADO,
             FECHA_CREACION:$scope.peds[0].FECHA_CREACION,
@@ -10398,7 +10398,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			ASESOR:$rootScope.logedUser.login,
             FECHA_GESTION:$scope.peds[0].FECHA_GESTION,
             STATUS:$scope.peds[0].STATUS,
-            TIPIFICACION:$scope.TIPIFICACION,
+            TIPIFICACION:$scope.pedido.TIPIFICACION,
 			}
 
             console.log($scope.InfoGestion);
