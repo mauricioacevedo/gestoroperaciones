@@ -11444,7 +11444,7 @@ app.controller('distanciacontroller', function ($scope,$route, $rootScope, $loca
 // Controlador para Gestion En Siebel -----------------------------------------------
 app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, $timeout, services) {
 
-
+	$scope.tools=true;
 
 	// Basura del logueo ---------------------------------
 		$rootScope.logedUser=$cookieStore.get('logedUser');
@@ -11920,7 +11920,7 @@ $scope.doubleDigit= function (num){
 // Controlador para Gestion de Edatel Asignaciones -----------------------------------------------
 app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, $timeout, services) {
 
-
+	$scope.tools=true;
 
 	// Basura del logueo ---------------------------------
 		$rootScope.logedUser=$cookieStore.get('logedUser');
