@@ -6807,11 +6807,8 @@ $queryConceptosFcita=" select ".
                                 $this->response('',406);
                         }
                          $user = $this->_request['userID'];
-                        $departamento = $this->_request['departamento'];
-            //$plaza = $this->_request['plaza'];
 
-            //$user = $this->_request['userID'];
-            //var_dump($proceso);
+
             $filename = '../tmp/control-threads-agen.txt';
             if(file_exists($filename)){
                 sleep(1);
@@ -6918,7 +6915,7 @@ $queryConceptosFcita=" select ".
                                             if($rta=="No rows!!!!"){//me sirve, salgo del ciclo y busco este pedido...
                                                     //echo "el pedido es: ".$row['PEDIDO_ID'];
 
-                                                    $mypedido=$row['PEDIDO_ID'];
+                                                    $mypedido=$row['PEDIDO'];
                                                     $mypedidoresult=$rta;
                                                     break;
                                             }
@@ -6943,7 +6940,7 @@ $queryConceptosFcita=" select ".
             }
             $fecha_visto= date("Y-m-d H:i:s");
             //de una lo ocupo cucho cucho!!!!
-            $sqlupdate="update gestor_pendientes_activacion_siebel set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO_ID = '$mypedido' and STATUS='PENDI_AGEN'";
+            $sqlupdate="update gestor_pendientes_activacion_siebel set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO = '$mypedido' and STATUS='PENDI_ACTI'";
                         $x = $this->mysqli->query($sqlupdate);
 
 
@@ -6990,7 +6987,7 @@ $queryConceptosFcita=" select ".
                                 $this->response('', 200); // send user details
                         }else{//i have pretty heavy problems over here...
                 //$this->response('SYSTEM PANIC!',200);
-                $this->response(json_encode('No hay registros!'),200);
+                $this->response(json_encode('No hay registros!'),204);
             }
             unlink($filename);
 
