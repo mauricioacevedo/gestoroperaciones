@@ -426,6 +426,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
     	}
 
         obj.getBuscarpedidoactivacion = function(pedido,pedido_actual,user){
+            console.log("pedido="+pedido+", pedido_actual="+pedido_actual+", tipificacion="+tipificacion);
         return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user);
         }
 
