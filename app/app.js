@@ -12773,7 +12773,7 @@ app.config(['$routeProvider',
 	  })
 
 		.when('/tx/edatel_asingaciones', {
-		 title: 'DemePedido Siebel Asignaciones',
+		 title: 'DemePedido Edatel Asignaciones',
 		 templateUrl: 'partials/transacciones/edatel_asignaciones.html?n=1',
 		 controller: 'edatelCtrl'
 	  })
