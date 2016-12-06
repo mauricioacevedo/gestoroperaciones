@@ -10380,7 +10380,9 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 	$scope.guardar=function(InfoPedido,gestion,status){
-
+if($scope.peds[0].PEDIDO==""||$scope.peds[0].PEDIDO=={}||$scope.peds[0].PEDIDO=== undefined){
+                        alert("Pedido vacio.");
+                        return;
 
 		$scope.InfoGestion={
 			//ID:gestion.ID,
@@ -10403,9 +10405,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			}
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
-            if($scope.peds[0].PEDIDO==""||$scope.peds[0].PEDIDO=={}||$scope.peds[0].PEDIDO=== undefined){
-                        alert("Pedido vacio.");
-                        return;
+
                 }
 			  function(data){
 
