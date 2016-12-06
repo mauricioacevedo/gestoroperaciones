@@ -11952,7 +11952,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		$scope.pedidos=[];
 		$scope.pedidosUnicos='';
 		$scope.historico_pedido=[];
-		$rootScope.actualView="edatel/clientes";
+		$rootScope.actualView="edatel";
 		$scope.iconcepto="COBERTURA";
 		$scope.popup='';
 		$scope.intervalLightKPIS='';
@@ -12145,7 +12145,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		$scope.pedido1=pedido1;
 		$scope.error="";
 		$scope.iplaza='TODOS';
-		$scope.fuente="SIEBEL";
+		$scope.fuente="EDATEL";
 
 		var demePedidoButton=document.getElementById("iniciar");
 			demePedidoButton.setAttribute("disabled","disabled");
