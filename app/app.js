@@ -10308,16 +10308,15 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
     	// ------------------------------BuscarPedido ----------------------------------------
 
-	 $scope.buscarPedido = function(buscar,pedidoinfo) {
+	  $scope.buscarPedido = function(buscar,pedidoinfo) {
 
 			var pedido1='';
 			$scope.popup='';
 			$scope.errorDatos=null;
 			$scope.InfoPedido=[];
-			$scope.fecha_inicio=null;
+			$scope.FECHA_CREACION=null;
 			$scope.accRdy=false;
 			$scope.InfoGestion={};
-			$scope.InfoPedido.INCIDENTE='NO';
 			$scope.pedidoIsGuardado=false;
 
 			$scope.pedidoActual=pedidoinfo;
@@ -10330,24 +10329,27 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 			  function(data){
 
+
 				 if(data.data==''){
-						$scope.errorDatos="No hay Registros. Intente con otra oferta";
+
+						$scope.errorDatos="No hay Registros de activacion.";
 					 	$scope.peds={};
 						$scope.mpedido={};
 						$scope.busy="";
 						$scope.pedidoIsActive=false;
+                    // console.log($scope.errorDatos);
 					}else{
 
 						$scope.peds = data.data[1];
 				  	   	$scope.ocupado=data.data[0];
-						$scope.pedido1=$scope.peds[0].PEDIDO_ID;
-				  	   	$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+						$scope.pedido1=$scope.peds[0].PEDIDO;
+				  	   	$scope.pedidoinfo=$scope.peds[0].PEDIDO;
 
 						var dat=data.status;
 						//alert("'"+data.status+"'");
 							if(dat==204){
-							   document.getElementById("warning").innerHTML="No hay Registros. Intente Cambiando de Estado";
-								$scope.errorDatos="No hay Registros. Intente Cambiando de Estado";
+							   document.getElementById("warning").innerHTML="No hay Registros.";
+								$scope.errorDatos="No hay Registros.";
 								$scope.peds={};
 								$scope.mpedido={};
 								$scope.busy="";
@@ -10363,7 +10365,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 									 }
 											$scope.errorDatos=null;
 											$scope.pedidoIsActive=true;
-											$scope.fecha_inicio=$rootScope.fechaProceso();
 
 
 									return data.data;
