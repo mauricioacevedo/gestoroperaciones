@@ -7959,7 +7959,7 @@ $queryConceptosFcita=" select ".
                         $CODIGO_CIUDAD=$pedido['CODIGO_CIUDAD'];
                         $STATUS=$pedido['STATUS'];
                         $ASESOR=$pedido['ASESOR'];
-                        $$TIPIFICACION=$pedido['TIPIFICACION'];
+                        $TIPIFICACION=$pedido['TIPIFICACION'];
 
                         if(!empty($pedido)){
 
