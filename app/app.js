@@ -13003,6 +13003,7 @@ app.config(['$routeProvider',
 
 app.run(['$rootScope', 'services', function($rootScope, services){
 
+	$rootScope.gestor={};
 	$rootScope.getConceptosGestor=function(){
 		services.getGestorConceptos().then(
 			function(data){
