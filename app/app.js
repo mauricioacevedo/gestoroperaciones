@@ -11957,7 +11957,8 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		$scope.pedidos=[];
 		$scope.pedidosUnicos='';
 		$scope.historico_pedido=[];
-		$rootScope.actualView="edatel";
+		$rootScope.actualView="EDATEL";
+		$rootScope.fuente="EDATEL"
 		$scope.iconcepto="12-EDATEL";
 		$scope.popup='';
 		$scope.intervalLightKPIS='';
