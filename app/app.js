@@ -10307,60 +10307,68 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
     	// ------------------------------BuscarPedido ----------------------------------------
 
 	  $scope.buscarPedido = function(buscar,pedidoinfo) {
-                $scope.error="";
-                $scope.peds={};
-                $scope.mpedido={};
-                $scope.busy="";
-                $scope.error="";
 
-           var kami=services.getBuscarpedidoactivacion(buscar,$scope.pedidoActual,$rootScope.logedUser.login).then(
+			var pedido1='';
+			$scope.popup='';
+			$scope.errorDatos=null;
+			$scope.InfoPedido=[];
+			$scope.FECHA_CREACION=null;
+			$scope.accRdy=false;
+			$scope.InfoGestion={};
+			$scope.pedidoIsGuardado=false;
+
+			$scope.pedidoActual=pedidoinfo;
+
+			$scope.buscar=buscar;
+
+
+
+          var kami=services.getBuscarpedidoactivacion(buscar,$scope.pedidoActual,$rootScope.logedUser.login).then(
 
 			  function(data){
-                        $scope.peds = data.data;
-
-                        var dat=data.status;
-
-                        if(dat==204){
-                                document.getElementById("warning").innerHTML="No hay Registros";
-                                $scope.error="No hay Registros";
-                                $scope.historico_pedido={};
-                        }else{
-                                document.getElementById("warning").innerHTML="";
-                                $scope.pedido1=$scope.peds[0].PEDIDO_ID;
-                                $scope.baby($scope.pedido1);
 
 
+				 if(data.data==''){
 
-                                if($scope.peds[0].STATUS=="PENDI_ACTI"&&$scope.peds[0].ASESOR!=""){
-                                        $scope.busy=$scope.peds[0].ASESOR;
-                                        $scope.error="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
-                                }
-                              $scope.tipificacion=$scope.peds[0].TIPIFICACION;
+						$scope.errorDatos="No hay Registros de activacion.";
+					 	$scope.peds={};
+						$scope.mpedido={};
+						$scope.busy="";
+						$scope.pedidoIsActive=false;
+                    // console.log($scope.errorDatos);
+					}else{
+
+						$scope.peds = data.data[1];
+				  	   	$scope.ocupado=data.data[0];
+						$scope.pedido1=$scope.peds[0].PEDIDO;
+				  	   	$scope.pedidoinfo=$scope.peds[0].PEDIDO;
+
+						var dat=data.status;
+						//alert("'"+data.status+"'");
+							if(dat==204){
+							   document.getElementById("warning").innerHTML="No hay Registros.";
+								$scope.errorDatos="No hay Registros.";
+								$scope.peds={};
+								$scope.mpedido={};
+								$scope.busy="";
+								$scope.pedidoIsActive=false;
+
+							}else{
+
+								   if($scope.ocupado==true){
+													$scope.busy=$scope.peds[0].ASESOR;
+													$scope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.busy;
+													return;
+
+									 }
+											$scope.errorDatos=null;
+											$scope.pedidoIsActive=true;
 
 
-
-
-
-                                }
-
-
-
-
-			var demePedidoButton=document.getElementById("iniciar");
-                        demePedidoButton.removeAttribute("disabled");
-                        demePedidoButton.className = "btn btn-success";
-                        return data.data;
-                });
-                $scope.timeInit=new Date().getTime();
-                var date1 = new Date();
-                var year    = date1.getFullYear();
-                var month   = $scope.doubleDigit(date1.getMonth()+1);
-                var day     = $scope.doubleDigit(date1.getDate());
-                var hour    = $scope.doubleDigit(date1.getHours());
-                var minute  = $scope.doubleDigit(date1.getMinutes());
-                var seconds = $scope.doubleDigit(date1.getSeconds());
-
-                $scope.FECHA_GESTION=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
+									return data.data;
+							}
+					}
+			  });
 
 
         };
