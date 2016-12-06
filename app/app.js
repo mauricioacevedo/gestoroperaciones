@@ -11450,6 +11450,7 @@ app.controller('distanciacontroller', function ($scope,$route, $rootScope, $loca
 app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, $timeout, services) {
 
 	$scope.tools=true;
+	$rootScope.gestor.fuentegrupo="SIEBEL";
 
 	// Basura del logueo ---------------------------------
 		$rootScope.logedUser=$cookieStore.get('logedUser');
@@ -13044,8 +13045,8 @@ app.run(['$rootScope', 'services', function($rootScope, services){
       $rootScope.funciones = {
       "type": "select",
       "name": "funciones",
-      "value": ["ASIGNADOR","APOYO", "OTRO", "R14", "SISTEMA"],
-      "values": ["ASIGNADOR","APOYO", "OTRO", "R99", "SISTEMA"]
+      "value": ["ASIGNADOR","APOYO", "OTRO", "R14","R99", "SISTEMA"],
+      "values": ["ASIGNADOR","APOYO", "OTRO", "R14","R99", "SISTEMA"]
   };
 
       $rootScope.interventores = {

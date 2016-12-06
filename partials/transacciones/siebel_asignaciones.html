@@ -38,7 +38,7 @@
 									style="width: 200px"
 									ng-model="iconcepto">
 									<option value="" disabled>--Estado--</option>
-									<option ng-repeat="d in estadosSiebel " value="{{d.ESTADO_ID}}">{{d.ESTADO_ID}}</option>
+									<option ng-repeat="d in listadoConceptos | filter:{FUENTE: gestor.fuentegrupo}" value="{{d.CONCEPTO_ID}}">{{d.CONCEPTO_ID}}</option>
 								</select>
 
 							</li>
