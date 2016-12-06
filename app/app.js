@@ -10267,9 +10267,9 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
         var kami=services.demePedidoActivacion($rootScope.logedUser.login,$scope.transaccion,$rootScope.logedUser.name,'',$scope.pedido1).then(function(data){
 
-            $scope.TIPIFICACION=$scope.peds[0].TIPIFICACION;
-            $scope.peds = data.data;
 
+            $scope.peds = data.data;
+            $scope.TIPIFICACION=$scope.peds[0].TIPIFICACION;
             console.log($scope.peds);
             console.log($scope.TIPIFICACION);
 
