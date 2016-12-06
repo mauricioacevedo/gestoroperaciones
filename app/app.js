@@ -426,7 +426,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
     	}
 
         obj.getBuscarpedidoactivacion = function(pedido,pedido_actual,user){
-            console.log("pedido="+pedido+", pedido_actual="+pedido_actual+", tipificacion="+tipificacion);
+            console.log("pedido="+pedido+", pedido_actual="+pedido_actual);
         return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user);
         }
 
@@ -10324,7 +10324,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			$scope.accRdy=false;
 			$scope.InfoGestion={};
 			$scope.pedidoIsGuardado=false;
-            $scope.tipificacion=null;
+            $scope.tipificacion='';
 			$scope.pedidoActual=pedidoinfo;
 
 			$scope.buscar=buscar;
