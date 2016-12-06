@@ -10324,7 +10324,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			$scope.accRdy=false;
 			$scope.InfoGestion={};
 			$scope.pedidoIsGuardado=false;
-
+            $scope.tipificacion=null;
 			$scope.pedidoActual=pedidoinfo;
 
 			$scope.buscar=buscar;
