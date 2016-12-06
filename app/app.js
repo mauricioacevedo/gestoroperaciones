@@ -13005,7 +13005,7 @@ app.run(['$rootScope', 'services', function($rootScope, services){
 	$rootScope.getConceptosGestor=function(){
 		services.getGestorConceptos().then(
 			function(data){
-				$rootScope.listadoConceptos=data.data;
+				$rootScope.listadoConceptos=data.data[0];
 				return data.data;
 			}
 
