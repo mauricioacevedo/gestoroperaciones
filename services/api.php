@@ -11535,7 +11535,7 @@ $sqlfenix=
                 $user=strtoupper($user);
                 $today = date("Y-m-d");
 
-                $query1=    " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
+                $query1=    " SELECT distinct b.ID,b.ORDER_SEQ_ID,b.PEDIDO ".
                     " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
                     " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
                     " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR,b.TIPIFICACION, ".
@@ -11574,7 +11574,7 @@ $sqlfenix=
 
 
                                 }else{
-                                        $fecha_visto=date("Y-m-d H:i:s");
+                                        $FECHA_CREACION=date("Y-m-d H:i:s");
                                         $sqlupdate="update gestor_pendientes_activacion_siebel set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$FECHA_CREACION' where ID in ($ids)";
 
                                 }
