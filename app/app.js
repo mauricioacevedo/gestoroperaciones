@@ -10331,7 +10331,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 
-                                if($scope.peds[0].STATUS=="PENDI_AGEN"&&$scope.peds[0].ASESOR!=""){
+                                if($scope.peds[0].STATUS=="PENDI_ACTI"&&$scope.peds[0].ASESOR!=""){
                                         $scope.busy=$scope.peds[0].ASESOR;
                                         $scope.error="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
                                 }
