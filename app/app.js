@@ -10380,7 +10380,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 	$scope.guardar=function(InfoPedido,gestion,status){
-         if($scope.mpedido.PEDIDO==""||$scope.mpedido.PEDIDO=={}||$scope.mpedido.PEDIDO=== undefined){
+         if($scope.pedido.PEDIDO==""||$scope.pedido.PEDIDO=={}||$scope.pedido.PEDIDO=== undefined){
                         alert("Pedido vacio.");
                         return;
                 }
