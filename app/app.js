@@ -10342,8 +10342,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 						$scope.peds = data.data[1];
 				  	   	$scope.ocupado=data.data[0];
-						$scope.pedido1=$scope.peds[0].PEDIDO_ID;
-				  	   	$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+						$scope.pedido1=$scope.peds[0].PEDIDO;
+				  	   	$scope.pedidoinfo=$scope.peds[0].PEDIDO;
 
 						var dat=data.status;
 						//alert("'"+data.status+"'");
