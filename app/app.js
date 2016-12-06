@@ -13045,7 +13045,8 @@ app.run(['$rootScope', 'services', function($rootScope, services){
 		{CONCEPTO_ID:'COBERTURA', VALOR:'COBERTURA'},
         {CONCEPTO_ID:'CONSTRUCCION', VALOR:'CONSTRUCCION'},
         {CONCEPTO_ID:'DISENO', VALOR:'DISENO'},
-        {CONCEPTO_ID:'DISPONIBILIDAD', VALOR:'DISPONIBILIDAD'}
+        {CONCEPTO_ID:'DISPONIBILIDAD', VALOR:'DISPONIBILIDAD'},
+		{CONCEPTO_ID:'12-EDATEL', VALOR:'12-EDATEL'}
     ];
 
 	// Listados Siebel -------------------------------------------
