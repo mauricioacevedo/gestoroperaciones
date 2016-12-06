@@ -10212,6 +10212,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.accRdy=false;
         $scope.FECHA_GESTION=null;
         $scope.FECHA_CREACION=null;
+        $scope.TRANSACCION='SUSPENDER';
 
 
         var pedidos=services.getPedidosUserActivacion(userID).then(function(data){
@@ -10266,6 +10267,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.busy="";
         $scope.pedido1=pedido1;
         $scope.error="";
+        $scope.TIPIFICACION='CAMBIAR';
+
 
 
         var demePedidoButton=document.getElementById("iniciar");
@@ -10275,9 +10278,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
             $scope.peds = data.data;
-            $scope.TIPIFICACION=$scope.peds[0].TIPIFICACION;
             console.log($scope.peds);
-            console.log($scope.peds[0].TIPIFICACION);
 
             if(data.data==''){
 
@@ -10324,7 +10325,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			$scope.accRdy=false;
 			$scope.InfoGestion={};
 			$scope.pedidoIsGuardado=false;
-            $scope.tipificacion='';
+            $scope.TIPIFICACION='CAMBIAR';
 			$scope.pedidoActual=pedidoinfo;
 
 			$scope.buscar=buscar;
