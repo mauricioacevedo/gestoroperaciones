@@ -421,11 +421,11 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pedidosPorPedidoActivacion?pedido=' + pedido);
         }
         obj.demePedidoActivacion = function(user,pedido_actual,pedido,transaccion){
-
 		return $http.get(serviceBase+'demePedidoActivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user+ '&transaccion='+transaccion);
     	}
 
         obj.getBuscarpedidoactivacion = function(pedido,pedido_actual,user){
+            console.log("pedido="+pedido+", pedido_actual="+pedido_actual);
         return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user);
         }
 
@@ -10211,6 +10211,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.accRdy=false;
         $scope.FECHA_GESTION=null;
         $scope.FECHA_CREACION=null;
+        $scope.TRANSACCION='SUSPENDER';
 
 
         var pedidos=services.getPedidosUserActivacion(userID).then(function(data){
@@ -10265,6 +10266,9 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.busy="";
         $scope.pedido1=pedido1;
         $scope.error="";
+        $scope.TIPIFICACION='CAMBIAR';
+        $scope.TRANSACCION='SUSPENDER';
+
 
 
         var demePedidoButton=document.getElementById("iniciar");
@@ -10274,9 +10278,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
             $scope.peds = data.data;
-            $scope.TIPIFICACION=$scope.peds[0].TIPIFICACION;
             console.log($scope.peds);
-            console.log($scope.peds[0].TIPIFICACION);
 
             if(data.data==''){
 
@@ -10323,7 +10325,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			$scope.accRdy=false;
 			$scope.InfoGestion={};
 			$scope.pedidoIsGuardado=false;
-
+            $scope.TIPIFICACION='';
 			$scope.pedidoActual=pedidoinfo;
 
 			$scope.buscar=buscar;
@@ -10404,7 +10406,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			ASESOR:$rootScope.logedUser.login,
             FECHA_GESTION:$scope.peds[0].FECHA_GESTION,
             STATUS:$scope.peds[0].STATUS,
-            TIPIFICACION:$scope.peds[0].TIPIFICACION,
+            TIPIFICACION:$scope.TIPIFICACION,
 			}
 
             console.log($scope.InfoGestion);
@@ -10428,6 +10430,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				  $scope.busy = "";
 				  $scope.error = "";
 				  $scope.buscar = null;
+                  $scope.TIPIFICACION='CAMBIAR';
 				  return data.data;
 
 
