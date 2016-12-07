@@ -7827,6 +7827,7 @@ $queryConceptosFcita=" select ".
 					$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
 					//echo "nombre: $name";
+					echo $uniqueid;
 					$sqllogin="SELECT id,fecha_ingreso, date_format(fecha_ingreso,'%H:%i:%s') as hora_ingreso FROM registro_ingreso_usuarios WHERE fecha_ingreso between '$today 00:00:00' and '$today 23:59:59' and usuario='$login' limit 1";
 					//echo $sqllogin;
 					
