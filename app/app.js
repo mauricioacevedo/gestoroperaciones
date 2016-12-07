@@ -421,6 +421,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pedidosPorPedidoActivacion?pedido=' + pedido);
         }
         obj.demePedidoActivacion = function(user,pedido_actual,pedido,transaccion){
+            console.log("pedido="+pedido+", pedido_actual="+pedido_actual+", transaccion="+transaccion);
 		return $http.get(serviceBase+'demePedidoActivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user+ '&transaccion='+transaccion);
     	}
 
@@ -10292,11 +10293,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                 $scope.errorDatos=null;
                 $scope.TRANSACCION=$scope.peds[0].TRANSACCION;
                 $scope.TIPIFICACION=$scope.peds[0].TIPIFICACION;
-                console.log($scope.TIPIFICACION);
-                console.log($scope.peds[0].TIPIFICACION);
-                console.log($scope.TRANSACCION);
-                console.log($scope.peds[0].TRANSACCION);
-
 
 
                 if($scope.peds[0].STATUS=="PENDI_ACTI"&&$scope.peds[0].ASESOR!=""){
