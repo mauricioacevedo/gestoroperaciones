@@ -10210,7 +10210,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.accRdy=false;
         $scope.FECHA_GESTION=null;
         $scope.FECHA_CREACION=null;
-        $scope.TRANSACCION='TODO';
+        $scope.TRANSACCION='SUSPENDER';
 
 
         var pedidos=services.getPedidosUserActivacion(userID).then(function(data){
