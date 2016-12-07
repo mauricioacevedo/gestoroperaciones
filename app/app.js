@@ -10256,6 +10256,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
         if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
              pedido1=$scope.peds[0].PEDIDO;
+            $scope.pedido=$scope.peds[0].PEDIDO;
 
         }
         $scope.peds={};
