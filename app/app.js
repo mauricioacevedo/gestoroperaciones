@@ -6165,7 +6165,7 @@ app.controller('login', function ($scope,$route, $rootScope, $location, $routePa
 		//console.log("DATOS DE LOGIN: ");
 		//console.log(data);
 
-        $scope.loginexito=true;
+        $rootScope.loginexito=true;
 		var id_user=data['id'];
 		$rootScope.logedUser=data;
 		$cookieStore.put('logedUser', data);
@@ -6228,7 +6228,7 @@ app.controller('login', function ($scope,$route, $rootScope, $location, $routePa
 	var error = function () {
           // TODO: apply user notification here..
          $scope.error="Usuario o contraseña invalido..";
-		 $scope.loginexito=false;
+		  $rootScope.loginexito=false;
       	};
 
 
@@ -13008,7 +13008,7 @@ app.config(['$routeProvider',
 app.run(['$rootScope', 'services', function($rootScope, services){
 
 	$rootScope.gestor={};
-
+	console.log( $rootScope.loginexito);
 	console.log($rootScope.gestor);
 	$rootScope.getConceptosGestor=function(){
 		services.getGestorConceptos().then(
