@@ -6898,11 +6898,11 @@ $queryConceptosFcita=" select ".
                                 }
             //2.traigo solo los pedidos mas viejos en la base de datos...
                         } else {
-                $query1=" select distinct b.PEDIDO, b.FECHA_EXCEPCION ,ID ".
-                        " from gestor_pendientes_activacion_siebel b ".
+                $query1=" select distinct b.PEDIDO, b.FECHA_CREACION ,b.ID ".
+                         " from gestor_pendientes_activacion_siebel b ".
                         " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
-                        " and (select PRODUCTO from gestor_pendientes_activacion_siebel b  where b.PEDIDO=b.PEDIDO and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id desc limit 1) not like '%AGENDADO%' ".
-                        " order by ID,b.FECHA_CREACION ASC ";
+                        " and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id ";
+
                             $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
                 $mypedidoresult=array();
