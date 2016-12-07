@@ -10212,6 +10212,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.FECHA_GESTION=null;
         $scope.FECHA_CREACION=null;
         $scope.TRANSACCION='SUSPENDER';
+        $scope.TIPIFICACION='CAMBIAR';
+
 
 
         var pedidos=services.getPedidosUserActivacion(userID).then(function(data){
@@ -10266,8 +10268,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.busy="";
         $scope.pedido1=pedido1;
         $scope.error="";
-        $scope.TIPIFICACION='CAMBIAR';
         $scope.TRANSACCION='SUSPENDER';
+
 
 
 
@@ -10409,7 +10411,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             TIPIFICACION:$scope.TIPIFICACION,
 			}
 
-            console.log($scope.InfoGestion);
+            //console.log($scope.InfoGestion);
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
 
