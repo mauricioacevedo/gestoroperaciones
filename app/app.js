@@ -13008,7 +13008,7 @@ app.config(['$routeProvider',
 app.run(['$rootScope', 'services', function($rootScope, services){
 
 	$rootScope.gestor={};
-	console.log( $rootScope.loginexito);
+
 	console.log($rootScope.gestor);
 	$rootScope.getConceptosGestor=function(){
 		services.getGestorConceptos().then(
@@ -13152,7 +13152,7 @@ app.run(function($rootScope, services) {
 app.run(['$location', '$rootScope', function($location, $rootScope) {
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        //console.log( current );
+        console.log($rootScope.loginexito);
         $rootScope.title = current.$$route.title;
     });
 
