@@ -22,17 +22,15 @@
 
 							<li>
 								<i class="fa fa-globe" aria-hidden="true"> </i>&nbsp;
-
-                           <select
-									class= "btn btn-default btn-xs grupo-select"
-									style="width: 200px"
-									ng-model="iconcepto">
-									<option value="" disabled>--Transaccion--</option>
-									<option ng-repeat="d in transaccionActivacion " value="{{d.TRANSACCION}}">{{d.TRANSACCION}}</option>
-								</select>
+                                    <select
+                                    class= "btn btn-default btn-xs grupo-select"
+                                    style="width: 200px"
+                                    >
+                                    <option value="" disabled>ingrese transaccion</option>
+                                    <option ng-repeat="d in transaccionActivacion " value="{{d.TRANSACCION}}">{{d.TRANSACCION}}</option>
+                                </select>
 
 							</li>
-
 							<li> &nbsp; </li>
 							<li>
 								<button type="button" id="iniciar" class="btn btn-success btn-DemePedido-xs" ng-click="start(pedido);"   ng-disabled="false">

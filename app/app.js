@@ -421,11 +421,11 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pedidosPorPedidoActivacion?pedido=' + pedido);
         }
         obj.demePedidoActivacion = function(user,pedido_actual,pedido,transaccion){
+            //console.log("user="+user+",pedido="+pedido);
 		return $http.get(serviceBase+'demePedidoActivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user+ '&transaccion='+transaccion);
     	}
 
         obj.getBuscarpedidoactivacion = function(pedido,pedido_actual,user){
-            console.log("pedido="+pedido+", pedido_actual="+pedido_actual);
         return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user);
         }
 
@@ -10205,7 +10205,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.historico_pedido=[];
         $rootScope.actualView="/demepedido-activacion";
         $scope.popup='';
-        $scope.intervalLightKPIS='';
         $scope.pedidoinfo='';
         $scope.errorDatos=null;
         $scope.accRdy=false;
@@ -10253,11 +10252,11 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.FECHA_CREACION=null;
         $scope.accRdy=false;
         $scope.InfoGestion={};
-        $scope.InfoPedido.INCIDENTE='NO';
         $scope.pedidoIsGuardado=false;
 
         if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
              pedido1=$scope.peds[0].PEDIDO;
+
 
         }
         $scope.peds={};
@@ -10274,13 +10273,11 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         var demePedidoButton=document.getElementById("iniciar");
             demePedidoButton.setAttribute("disabled","disabled");
             demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
-        var kami=services.demePedidoActivacion($rootScope.logedUser.login,$scope.transaccion,$rootScope.logedUser.name,'',$scope.pedido1).then(function(data){
+        var kami=services.demePedidoActivacion($rootScope.logedUser.login,$scope.pedido1,$scope.TRANSACCION,$rootScope.logedUser.name,'').then(function(data){
 
 
             $scope.peds = data.data;
             console.log($scope.peds);
-            console.log($scope.TRANSACCION);
-            console.log($scope.TIPIFICACION);
 
             if(data.data==''){
 
@@ -10293,8 +10290,9 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                 $scope.pedidoinfo=$scope.peds[0].PEDIDO;
                 $scope.pedidoIsActive=true;
                 $scope.errorDatos=null;
-
-
+                $scope.TRANSACCION=$scope.peds[0].TRANSACCION;
+                $scope.TIPIFICACION=$scope.peds[0].TIPIFICACION;
+                console.log($scope.TRANSACCION);
 
                 if($scope.peds[0].STATUS=="PENDI_ACTI"&&$scope.peds[0].ASESOR!=""){
                             $scope.busy=$scope.peds[0].ASESOR;
@@ -10327,7 +10325,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			$scope.accRdy=false;
 			$scope.InfoGestion={};
 			$scope.pedidoIsGuardado=false;
-            $scope.TIPIFICACION='';
 			$scope.pedidoActual=pedidoinfo;
 
 			$scope.buscar=buscar;
@@ -13095,8 +13092,6 @@ app.run(['$rootScope', 'services', function($rootScope, services){
     	];
 
 	// ------------------------------------------- Listados Siebel
-     // -------------------Listados activacion-------------------------------------------
-
         $rootScope.transaccionActivacion=[
             {TRANSACCION:'SUSPENDER', VALOR:'SUSPENDER'},
             {TRANSACCION:'ELIMINAR', VALOR:'ELIMINAR'},
@@ -13117,8 +13112,6 @@ app.run(['$rootScope', 'services', function($rootScope, services){
             {TIPIFICACION:'NUEVO', VALOR:'NUEVO'},
         ];
     // ------------------------------------------- Listados activacion--------------
-
-
 
 }]);
 
