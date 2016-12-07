@@ -7875,7 +7875,7 @@ $queryConceptosFcita=" select ".
                                                         $result['hora_ingreso']=$result1['hora_ingreso'];
 						}else{
 							$result['fecha_ingreso']='N/A';
-                                                        $result['hora_ingreso']='N/A';
+                                                        $result['hora_ingreso']='Sin login';
 						}
 						//echo "kai!! ";
 						//var_dump($result);
