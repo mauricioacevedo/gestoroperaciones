@@ -6067,7 +6067,7 @@ app.controller('TabController', function ($scope) {
 });
 
 
-app.controller('login', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,services) {
+app.controller('login', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,$timeout, services) {
 
 	$rootScope.loginexito=false;
 	if($cookieStore.get('logedUser')!=undefined){
