@@ -3625,6 +3625,7 @@ app.controller('tipsCtrl', function ($scope, $rootScope, $location, $routeParams
         var divi=document.getElementById("logoutdiv");
         divi.style.visibility="visible";
         divi.style.position="relative";
+		$rootScope.actualView="tips";
 
     //$scope.edicionTip={};
        //$rootScope.iconcepto="TODO";
