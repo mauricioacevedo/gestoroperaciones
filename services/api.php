@@ -7818,15 +7818,20 @@ $queryConceptosFcita=" select ".
 
 					//its a login, search if theres a login today
 					$today = date("Y-m-d");
+					$fechaunique = date("Ymd");
 					$name=$result['name'];
+					$uniqueid=$login."_".$fechaunique;
+
 					 $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$login','$name','LOGIN','logged in','','LOGIN') ";
-                        $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+
+					$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
 					//echo "nombre: $name";
 					$sqllogin="SELECT id,fecha_ingreso, date_format(fecha_ingreso,'%H:%i:%s') as hora_ingreso FROM registro_ingreso_usuarios WHERE fecha_ingreso between '$today 00:00:00' and '$today 23:59:59' and usuario='$login' limit 1";
 					//echo $sqllogin;
 					
 					$rr = $this->mysqli->query($sqllogin);
+
 					if($rr->num_rows > 0){//update just the status, not dates cuz he already loged in early
 						$result1 = $rr->fetch_assoc();
 						$idd=$result1['id'];
@@ -7839,25 +7844,38 @@ $queryConceptosFcita=" select ".
 						//var_dump($result);
 					}else{//make an insert, first time logged in today
 
-						session_start();
+						//session_start();
 
-						$_SESSION['loginsession'] = time();
+						//$_SESSION['loginsession'] = time();
 
 						$ip=$_SERVER['REMOTE_ADDR'];
+
 						$sqllogin="insert into registro_ingreso_usuarios(usuario,status,ip,fecha_ingreso) values('$login','logged in','$ip','$fecha')";
-                                                $rrr = $this->mysqli->query($sqllogin);
+
+						/* $sqllogin="insert into registro_ingreso_usuarios(idunico, usuario,status,ip,fecha_ingreso) values('$uniqueid','$login','logged in','$ip','$fecha')"; // Habilitar esta linea cuando estemos listos */
+
+                        $rrr = $this->mysqli->query($sqllogin);
+
+						if (($this->mysqli->errno)==1062) {
+
+							$sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$login','$name','Error','Registro Duplicado','','LOGIN') ";
+
+							$ractivity = $this->mysqli->query($sqlfeed);
+						}
+
 						$idi=$this->mysqli->insert_id;
+
 						$sqllogin="SELECT fecha_ingreso, date_format(fecha_ingreso,'%H:%i:%s') as hora_ingreso FROM registro_ingreso_usuarios WHERE fecha_ingreso between '$today 00:00:00' and '$today 23:59:59' and usuario='$login' limit 1";
 
-                                        	$rs = $this->mysqli->query($sqllogin);
-						if($rs->num_rows > 0){
-							$result1 = $rs->fetch_assoc();
-							$result['fecha_ingreso']=$result1['fecha_ingreso'];
-                                                        $result['hora_ingreso']=$result1['hora_ingreso'];
-						}else{
-							$result['fecha_ingreso']='N/A';
-                                                        $result['hora_ingreso']='N/A';
-						}
+                        $rs = $this->mysqli->query($sqllogin);
+							if($rs->num_rows > 0){
+								$result1 = $rs->fetch_assoc();
+								$result['fecha_ingreso']=$result1['fecha_ingreso'];
+															$result['hora_ingreso']=$result1['hora_ingreso'];
+							}else{
+								$result['fecha_ingreso']='N/A';
+															$result['hora_ingreso']='Sin login';
+							}
 						//echo "kai!! ";
 						//var_dump($result);
 					}
