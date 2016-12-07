@@ -10278,8 +10278,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
             $scope.peds = data.data;
             console.log($scope.peds);
-            console.log($scope.TRANSACCION);
-
 
             if(data.data==''){
 
@@ -10293,7 +10291,10 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                 $scope.pedidoIsActive=true;
                 $scope.errorDatos=null;
                 $scope.TRANSACCION=$scope.peds[0].TRANSACCION;
+                $scope.TIPIFICACION=$scope.peds[0].TIPIFICACION;
                 console.log($scope.TIPIFICACION);
+                console.log($scope.peds[0].TIPIFICACION);
+                console.log($scope.TRANSACCION);
                 console.log($scope.peds[0].TRANSACCION);
 
 
