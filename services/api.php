@@ -7986,9 +7986,6 @@ $queryConceptosFcita=" select ".
 
                               // echo $query;
                                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-                                //hago la actualizacion en fenix
-                              //  $query1 = "insert into gestor_pendientes_reagendamiento (PEDIDO_ID,CLIENTE_ID,ASESOR) values ('$PEDIDO_ID','$cliente_id','$useri') ";
-                              // $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
                               //  echo "(1)";
                                 $this->response(json_encode(array("msg"=>"N/A","data" => $today)),200);
