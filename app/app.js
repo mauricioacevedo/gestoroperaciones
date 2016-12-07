@@ -6227,7 +6227,8 @@ app.controller('login', function ($scope,$route, $rootScope, $location, $routePa
 
 	var error = function () {
           // TODO: apply user notification here..
-          $scope.error="Usuario o contraseña invalido..";
+         $scope.error="Usuario o contraseña invalido..";
+		 $scope.loginexito=false;
       	};
 
 
