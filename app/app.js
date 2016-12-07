@@ -10252,7 +10252,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.FECHA_CREACION=null;
         $scope.accRdy=false;
         $scope.InfoGestion={};
-        $scope.InfoPedido.INCIDENTE='NO';
         $scope.pedidoIsGuardado=false;
 
         if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
@@ -10273,7 +10272,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         var demePedidoButton=document.getElementById("iniciar");
             demePedidoButton.setAttribute("disabled","disabled");
             demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
-        var kami=services.demePedidoActivacion($rootScope.logedUser.login,$scope.pedido,$scope.TRANSACCION,$rootScope.logedUser.name,'').then(function(data){
+        var kami=services.demePedidoActivacion($rootScope.logedUser.login,$scope.pedido1,$scope.peds,$scope.TRANSACCION,$rootScope.logedUser.name,'').then(function(data){
 
 
             $scope.peds = data.data;
