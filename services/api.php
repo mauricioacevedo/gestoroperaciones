@@ -7860,7 +7860,7 @@ $queryConceptosFcita=" select ".
 
 						if(($this->mysqli->errno)==1062){
 
-							$sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$login','$name','ERROR','Duplicado','','LOGIN') ";
+							$sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$login','$name','ERROR','Duplicado','$uniqueid','LOGIN') ";
                         	$rsqlfeed = $this->mysqli->query($sqlfeed);
 
 						}
