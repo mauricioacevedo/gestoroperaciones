@@ -26,8 +26,12 @@
                                     class= "btn btn-default btn-xs grupo-select"
                                     style="width: 200px"
                                     ng-model="transaccion">
-                                    <option value="" disabled>ingrese transaccion</option>
-                                    <option ng-repeat="d in transaccionActivacion " value="{{d.TRANSACCION}}">{{d.TRANSACCION}}</option>
+                                    <select class= "form-control" ng-model="service.TIPIFICACION" >
+                                         <option value="CAMBIAR">CAMBIAR</option>
+                                            <option value="DATOS">DATOS</option>
+                                            <option value="SOLICITUD">SOLICITUD</option>
+                                            <option value="NUEVO">NUEVO</option>
+
                                 </select>
 
 
