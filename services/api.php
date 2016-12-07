@@ -7984,11 +7984,8 @@ $queryConceptosFcita=" select ".
 
                                 $query = "insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,STATUS,ASESOR,FECHA_GESTION,TIPIFICACION) values ('$ORDER_SEQ_ID','$PEDIDO','$REFERENCE_NUMBER','$ESTADO','$FECHA_CREACION','$TAREA_EXCEPCION','$FECHA_EXCEPCION','$PRODUCTO','$IDSERVICIORAIZ','$TRANSACCION','$CODIGO_CIUDAD','$STATUS','$ASESOR','$today','$TIPIFICACION') ";
 
-                              // echo $query;
+                               //echo $TIPIFICACION;
                                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-                                //hago la actualizacion en fenix
-                              //  $query1 = "insert into gestor_pendientes_reagendamiento (PEDIDO_ID,CLIENTE_ID,ASESOR) values ('$PEDIDO_ID','$cliente_id','$useri') ";
-                              // $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
                               //  echo "(1)";
                                 $this->response(json_encode(array("msg"=>"N/A","data" => $today)),200);
