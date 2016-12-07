@@ -6819,6 +6819,7 @@ $queryConceptosFcita=" select ".
 
                         //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
                         $pedido_actual = $this->_request['pedido_actual'];
+                        echo $pedido_actual;
                         //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
                         $user=strtoupper($user);
             //NO SE PUEDE CONDICIONAR AL PEDIDO ACTUAL, SI LE DA F5 A LA PAGINA NO HAY PEDIDO ACTUAL.. ES MEJOR ASI!!!
