@@ -6069,7 +6069,7 @@ app.controller('TabController', function ($scope) {
 
 app.controller('login', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,services) {
 
-
+	$rootScope.loginexito=false;
 	if($cookieStore.get('logedUser')!=undefined){
 		//hay alguien logeado
 		var id_user=$cookieStore.get('logedUser').id;
