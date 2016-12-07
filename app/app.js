@@ -421,12 +421,11 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pedidosPorPedidoActivacion?pedido=' + pedido);
         }
         obj.demePedidoActivacion = function(user,pedido_actual,pedido,transaccion){
-            console.log("pedido="+pedido+", pedido_actual="+pedido_actual+", transaccion="+transaccion);
+            console.log("pedido="+pedido+",transaccion="+transaccion);
 		return $http.get(serviceBase+'demePedidoActivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user+ '&transaccion='+transaccion);
     	}
 
         obj.getBuscarpedidoactivacion = function(pedido,pedido_actual,user){
-            console.log("pedido="+pedido+", pedido_actual="+pedido_actual);
         return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user);
         }
 
@@ -10211,7 +10210,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.accRdy=false;
         $scope.FECHA_GESTION=null;
         $scope.FECHA_CREACION=null;
-        $scope.TRANSACCION='SUSPENDER';
+        $scope.TRANSACCION='TODO';
 
 
         var pedidos=services.getPedidosUserActivacion(userID).then(function(data){
