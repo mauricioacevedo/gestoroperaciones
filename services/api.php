@@ -7819,6 +7819,8 @@ $queryConceptosFcita=" select ".
 					//its a login, search if theres a login today
 					$today = date("Y-m-d");
 					$name=$result['name'];
+					$fechaunica=date("Ymd");
+					$uniqueid=$login."_".$fechaunica;
 					 $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$login','$name','LOGIN','logged in','','LOGIN') ";
                         $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
@@ -7840,9 +7842,9 @@ $queryConceptosFcita=" select ".
 						//var_dump($result);
 					}else{//make an insert, first time logged in today
 
-						session_start();
+						//session_start();
 
-						$_SESSION['loginsession'] = time();
+						//$_SESSION['loginsession'] = time();
 
 						$ip=$_SERVER['REMOTE_ADDR'];
 						$sqllogin="insert into registro_ingreso_usuarios(usuario,status,ip,fecha_ingreso) values('$login','logged in','$ip','$fecha')";
@@ -7850,7 +7852,7 @@ $queryConceptosFcita=" select ".
 						$idi=$this->mysqli->insert_id;
 						$sqllogin="SELECT fecha_ingreso, date_format(fecha_ingreso,'%H:%i:%s') as hora_ingreso FROM registro_ingreso_usuarios WHERE fecha_ingreso between '$today 00:00:00' and '$today 23:59:59' and usuario='$login' limit 1";
 
-                                        	$rs = $this->mysqli->query($sqllogin);
+                        $rs = $this->mysqli->query($sqllogin);
 						if($rs->num_rows > 0){
 							$result1 = $rs->fetch_assoc();
 							$result['fecha_ingreso']=$result1['fecha_ingreso'];
