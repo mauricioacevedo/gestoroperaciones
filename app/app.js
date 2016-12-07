@@ -6176,7 +6176,9 @@ app.controller('login', function ($scope,$route, $rootScope, $location, $routePa
 		divi.style.position="relative";
 		//alert(data.GRUPO);
 		
-                if($cookieStore.get('logedUser').GRUPO=='ASIGNACIONES'){
+		$timeout(function() {
+
+			if($cookieStore.get('logedUser').GRUPO=='ASIGNACIONES'){
                         $location.path('/asignacion/');
                 }else if($cookieStore.get('logedUser').GRUPO=='AGENDAMIENTO'){
                         $location.path('/agendamiento/reagendamiento');
@@ -6191,6 +6193,10 @@ app.controller('login', function ($scope,$route, $rootScope, $location, $routePa
                 }else{
                         $location.path('/general/'+id_user);
                 }
+
+    		}, 1000);
+
+
 
 /*
 
