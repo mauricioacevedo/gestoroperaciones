@@ -421,7 +421,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pedidosPorPedidoActivacion?pedido=' + pedido);
         }
         obj.demePedidoActivacion = function(user,pedido_actual,pedido,transaccion){
-            console.log("user="+user+",pedido_actual="+pedido_actual);
+            console.log("user="+user+",peds="+peds);
 		return $http.get(serviceBase+'demePedidoActivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user+ '&transaccion='+transaccion);
     	}
 
@@ -10273,7 +10273,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         var demePedidoButton=document.getElementById("iniciar");
             demePedidoButton.setAttribute("disabled","disabled");
             demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
-        var kami=services.demePedidoActivacion($rootScope.logedUser.login,$scope.TRANSACCION,$rootScope.logedUser.name,'',$scope.pedido1,$scope.pedido).then(function(data){
+        var kami=services.demePedidoActivacion($rootScope.logedUser.login,$scope.TRANSACCION,$rootScope.logedUser.name,'',$scope.pedido1,$scope.peds).then(function(data){
 
 
             $scope.peds = data.data;
