@@ -13092,7 +13092,26 @@ app.run(['$rootScope', 'services', function($rootScope, services){
     	];
 
 	// ------------------------------------------- Listados Siebel
+        $rootScope.transaccionActivacion=[
+            {TRANSACCION:'SUSPENDER', VALOR:'SUSPENDER'},
+            {TRANSACCION:'ELIMINAR', VALOR:'ELIMINAR'},
+            {TRANSACCION:'DISENO', VALOR:'DISENO'},
+            {TRANSACCION:'ELIMINAR COMUNES', VALOR:'ELIMINAR COMUNES'},
+            {TRANSACCION:'NUEVO', VALOR:'NUEVO'},
+            {TRANSACCION:'ACTUALIZAR', VALOR:'ACTUALIZAR'},
+            {TRANSACCION:'ACTUALIZAR COMUNES', VALOR:'ACTUALIZAR COMUNES'},
+            {TRANSACCION:'TRASLADO', VALOR:'TRASLADO'},
+            {TRANSACCION:'ACTUALIZAR', VALOR:'ACTUALIZAR'},
+            {TRANSACCION:'TRASLADO RETIRO', VALOR:'TRASLADO RETIRO'},
+        ];
 
+         $rootScope.transaccionActivacion1=[
+            {TIPIFICACION:'CAMBIAR', VALOR:'CAMBIAR'},
+            {TIPIFICACION:'DATOS', VALOR:'DATOS'},
+            {TIPIFICACION:'SOLICITUD', VALOR:'SOLICITUD'},
+            {TIPIFICACION:'NUEVO', VALOR:'NUEVO'},
+        ];
+    // ------------------------------------------- Listados activacion--------------
 
 }]);
 
