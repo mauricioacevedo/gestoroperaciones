@@ -6067,7 +6067,7 @@ app.controller('TabController', function ($scope) {
 });
 
 
-app.controller('login', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,$timeout, services) {
+app.controller('login', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,services) {
 
 	$rootScope.loginexito=false;
 	if($cookieStore.get('logedUser')!=undefined){
@@ -6166,39 +6166,31 @@ app.controller('login', function ($scope,$route, $rootScope, $location, $routePa
 		//console.log(data);
 
         $rootScope.loginexito=true;
-		
-		$timeout(function() {
-			var id_user=data['id'];
-			$rootScope.logedUser=data;
-			$cookieStore.put('logedUser', data);
+		var id_user=data['id'];
+		$rootScope.logedUser=data;
+		$cookieStore.put('logedUser', data);
 
-			document.getElementById('logout').className="btn btn-md btn-danger";
-			var divi=document.getElementById("logoutdiv");
-			divi.style.visibility="visible";
-			divi.style.position="relative";
-			//alert(data.GRUPO);
+		document.getElementById('logout').className="btn btn-md btn-danger";
+	 	var divi=document.getElementById("logoutdiv");
+		divi.style.visibility="visible";
+		divi.style.position="relative";
+		//alert(data.GRUPO);
 
-
-
-				if($cookieStore.get('logedUser').GRUPO=='ASIGNACIONES'){
-							$location.path('/asignacion/');
-					}else if($cookieStore.get('logedUser').GRUPO=='AGENDAMIENTO'){
-							$location.path('/agendamiento/reagendamiento');
-					}else if($cookieStore.get('logedUser').GRUPO=='ACTIVACION'){
-							$location.path('/alarmas/');
-					}else if($cookieStore.get('logedUser').GRUPO=='SUPER'){
-							$location.path('/dashboard/');
-					}else if($cookieStore.get('logedUser').GRUPO=='B2B'){
-							$location.path('/b2b/');
-					}else if($cookieStore.get('logedUser').GRUPO=='RECONFIGURACION'){
-							$location.path('/reconfiguracion/');
-					}else{
-							$location.path('/general/'+id_user);
-					}
-
-    		}, 1000);
-
-
+                if($cookieStore.get('logedUser').GRUPO=='ASIGNACIONES'){
+                        $location.path('/asignacion/');
+                }else if($cookieStore.get('logedUser').GRUPO=='AGENDAMIENTO'){
+                        $location.path('/agendamiento/reagendamiento');
+                }else if($cookieStore.get('logedUser').GRUPO=='ACTIVACION'){
+                        $location.path('/alarmas/');
+                }else if($cookieStore.get('logedUser').GRUPO=='SUPER'){
+                        $location.path('/dashboard/');
+                }else if($cookieStore.get('logedUser').GRUPO=='B2B'){
+                        $location.path('/b2b/');
+                }else if($cookieStore.get('logedUser').GRUPO=='RECONFIGURACION'){
+                        $location.path('/reconfiguracion/');
+                }else{
+                        $location.path('/general/'+id_user);
+                }
 
 /*
 
@@ -10419,7 +10411,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             TIPIFICACION:$scope.TIPIFICACION,
 			}
 
-            //console.log($scope.InfoGestion);
+            console.log($scope.InfoGestion);
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
 
