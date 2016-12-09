@@ -174,20 +174,20 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'csvAgendamiento?login='+login); // exportar todos los pendientes de agendamiento
         }
 
-    obj.getCsvHistoricosAgendamiento = function(login,fechaIni,fechaFin){
+    obj.getCsvHistoricosAgendamiento = function(login,fechaIni,fechaFin){ //exportar historico agendamiento todo
                 return $http.get(serviceBase + 'csvHistoricosAgendamiento?login='+login+'&fechaIni='+fechaIni+'&fechaFin='+fechaFin);
         }
 
-         obj.getCsvHistoricosAgendamientoEdatel = function(login,fechaIni,fechaFin){
+         obj.getCsvHistoricosAgendamientoEdatel = function(login,fechaIni,fechaFin){ // exportar historicos solo edatel
                 return $http.get(serviceBase + 'csvHistoricosAgendamientoEdatel?login='+login+'&fechaIni='+fechaIni+'&fechaFin='+fechaFin);
         }
 
 
      obj.getDashboardAgendamiento = function(){
-                return $http.get(serviceBase + 'getDashboardAgendamiento');
+                return $http.get(serviceBase + 'getDashboardAgendamiento'); // graficas agendamiento
         }
          obj.getDashboardAgendamientoPresupuestal = function(){
-                return $http.get(serviceBase + 'getDashboardAgendamientoPresupuestal');
+                return $http.get(serviceBase + 'getDashboardAgendamientoPresupuestal'); //grafica agendamiento presupuestal
         }
 
      obj.demePedidoAgendamiento = function(user,departamento,zona,microzona,proceso,pedido_actual,plaza,username){
