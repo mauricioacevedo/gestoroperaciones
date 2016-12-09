@@ -236,72 +236,72 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'getZonasOcupaagenda?departamento='+dep);
         }
 
-    obj.getDepartamentosAdelantarAgenda = function(){
+    obj.getDepartamentosAdelantarAgenda = function(){// departamento para delantar agenda
         return $http.get(serviceBase + 'getDepartamentosAdelantarAgenda');
     }
 
-    obj.getPedidoActualmenteAgendado = function(depa, zona, microzona, fecha, asesor, pedido_actual){
+    obj.getPedidoActualmenteAgendado = function(depa, zona, microzona, fecha, asesor, pedido_actual){//pedidos actualmente agen
         return $http.get(serviceBase + 'getPedidoActualmenteAgendado?departamento='+depa+'&zona='+zona+'&microzona='+microzona+'&fecha='+fecha+'&asesor='+asesor+'&pedido_actual='+pedido_actual);
     }
 
 
 	obj.getZonasReagendamiento = function(dep){
-                return $http.get(serviceBase + 'getZonasReagendamiento?departamento='+dep);
+                return $http.get(serviceBase + 'getZonasReagendamiento?departamento='+dep);//pedidos por zonas reagedamiento
         }
 
 
     obj.getZonasAdelantarAgenda = function(dep){
-                return $http.get(serviceBase + 'getZonasAdelantarAgenda?departamento='+dep);
+                return $http.get(serviceBase + 'getZonasAdelantarAgenda?departamento='+dep);//pedidos por zonas adelantaragen
     }
 
-     obj.getMicrozonasReagendamiento = function(zona,depa){
+     obj.getMicrozonasReagendamiento = function(zona,depa){//pedido por microzona reagendamiento
                 return $http.get(serviceBase + 'getMicrozonasReagendamiento?departamento='+depa+'&zona='+zona);
     }
 
-    obj.getMicrozonasAdelantarAgenda = function(zona,depa){
+    obj.getMicrozonasAdelantarAgenda = function(zona,depa){ //pedido por microzona adelantar agenda
                 return $http.get(serviceBase + 'getMicrozonasAdelantarAgenda?departamento='+depa+'&zona='+zona);
     }
 
-	obj.getOcupacion = function(fecha, depa, zona){
+	obj.getOcupacion = function(fecha, depa, zona){ //listado ocupacion agenda
 		return $http.get(serviceBase + 'getOcupacionAgendamiento?fecha='+fecha+'&depa='+depa+'&zona='+zona);
 	}
-     obj.getcodigo_resultado = function(fecha){
+     obj.getcodigo_resultado = function(fecha){ //datos gestor_interacciones_agendamiento
         return $http.get(serviceBase + 'getcodigo_resultado?fecha='+fecha);
     }
 
 
 
-    obj.getPedidos_Microzonas = function(fecha){
+    obj.getPedidos_Microzonas = function(fecha){ //pedidos por microzonas
         return $http.get(serviceBase + 'getPedidos_Microzonas?fecha='+fecha);
     }
 
-     obj.buscarPedidoAgendamiento = function(pedido,pedido_actual,user,username){
+     obj.buscarPedidoAgendamiento = function(pedido,pedido_actual,user,username){//buscarpedidos agendamiento
                 return $http.get(serviceBase + 'buscarPedidoAgendamiento?pedidoID='+pedido+ '&pedido_actual='+pedido_actual+ '&userID='+user+'&username='+username);
      }
-      obj.insertPedidoAuditoria = function (pedido) {
+      obj.insertPedidoAuditoria = function (pedido) {//insert pedidos agendamiento auditoria
                 var data= $http.post(serviceBase + 'insertPedidoAuditoria', {"pedido":pedido});
         return data;
         };
-     obj.insertPedidoReagendamiento = function (pedido) {
+     obj.insertPedidoReagendamiento = function (pedido) {//insert pedidos agendamiento
                 var data= $http.post(serviceBase + 'insertPedidoReagendamiento', {"pedido":pedido});
                 return data;
         };
 
-        obj.insertPedidoAdelantarAgenda = function (pedido) {
+        obj.insertPedidoAdelantarAgenda = function (pedido) {//insert pedidos adelantar agenda
                 var data= $http.post(serviceBase + 'insertPedidoAdelantarAgenda', {"pedido":pedido});
                 return data;
         };
-     obj.insertMPedidomalo  = function (pedido) {
+     obj.insertMPedidomalo  = function (pedido) {//insert pedidos agendamiento malos
                 var data= $http.post(serviceBase + 'insertMPedidomalo ', {"pedido":pedido});
                 return data;
         };
 
 
-    obj.listar1 = function(){
+    obj.listar1 = function(){//listado cargar datos
                 return $http.get(serviceBase + 'listadoarchivosdocu1');
         }
 
-     obj.eliminarfile1 = function(file){
+     obj.eliminarfile1 = function(file){//aliminar dato cargar datos
                 return $http.get(serviceBase + 'eliminarfile1?file='+file);
         }
 
