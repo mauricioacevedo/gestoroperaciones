@@ -221,18 +221,18 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
      obj.getlistadoAgendamientoAuditoria = function(fecha_inicio,fecha_fin){//lista agendamiento auditoria
                 return $http.get(serviceBase + 'listadoAgendamientoAuditoria?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin);
         }
-        obj.getcsvTabla = function(fecha_inicio,fecha_fin){
+        obj.getcsvTabla = function(fecha_inicio,fecha_fin){// tabla agendamiento
                 return $http.get(serviceBase + 'csvTabla?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin);
         }
 
-         obj.getPendientesGraficaAgendamiento = function(){
+         obj.getPendientesGraficaAgendamiento = function(){ //pendientes grafica agendamiento
                 return $http.get(serviceBase + 'pendientesGraficaAgendamiento');
         }
-        obj.getPendientesConceptosReagendamiento  = function(){
+        obj.getPendientesConceptosReagendamiento  = function(){//pendientes por concepto
                 return $http.get(serviceBase + 'pendientesPorConceptoReagendamiento');
         }
 
-         obj.getZonasOcupaagenda = function(dep){
+         obj.getZonasOcupaagenda = function(dep){//pendientes por zonas
                 return $http.get(serviceBase + 'getZonasOcupaagenda?departamento='+dep);
         }
 
