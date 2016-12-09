@@ -118,11 +118,11 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 // Servicios Globales --------------------
 //---------------------------------------------------------------------------------------------Agendamiento
     obj.getPedidosUserAdelantarAgenda = function(userID){
-                return $http.get(serviceBase + 'pedidosPorUserAdelantarAgenda?userID=' + userID);
+                return $http.get(serviceBase + 'pedidosPorUserAdelantarAgenda?userID=' + userID);//usuario adelantar agenda
         }
 
       obj.getPedidosUserReagendamiento = function(userID){
-                return $http.get(serviceBase + 'pedidosPorUserReagendamiento?userID=' + userID);
+                return $http.get(serviceBase + 'pedidosPorUserReagendamiento?userID=' + userID); // pedido por user reagendamiento
         }
 
        obj.getLightKPISAgendamiento =function(){
@@ -130,14 +130,14 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
         obj.getPedidosPorPedidoAgendamiento = function(pedido){
-                return $http.get(serviceBase + 'pedidosPorPedidoAgendamiento?pedido=' + pedido);
+                return $http.get(serviceBase + 'pedidosPorPedidoAgendamiento?pedido=' + pedido); //pedido por pedido agendamiento
         }
 
-       obj.getListadoPedidosAgendamiento = function(fecha_inicio,fecha_fin,page){
+       obj.getListadoPedidosAgendamiento = function(fecha_inicio,fecha_fin,page){//traer datos de pedidos agendamiento
                 return $http.get(serviceBase + 'listadoPedidosAgendamiento?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page);
         }
 
-   obj.getListadoPendientesAgendamiento = function(fecha_inicio,fecha_fin,page){
+   obj.getListadoPendientesAgendamiento = function(fecha_inicio,fecha_fin,page){//lista de pedidos agendamiento
                 return $http.get(serviceBase + 'listadoPendientesAgendamiento?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page);
         }
       obj.getBuscarPedidoAgendamientoRegistro = function(bpedido){
