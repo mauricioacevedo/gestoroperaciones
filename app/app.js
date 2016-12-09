@@ -313,7 +313,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 
  //-----------------------------------------------------------------------------------Activacion
        obj.getactividadesUser = function(userID){
-                return $http.get(serviceBase + 'actividadesUser?userID=' + userID);
+                return $http.get(serviceBase + 'actividadesUser?userID=' + userID);//pedido por user
         }
 
        obj.getListadoActivacion = function(fecha_inicio,fecha_fin,page){
