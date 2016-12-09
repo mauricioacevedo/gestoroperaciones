@@ -202,23 +202,23 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
     	}
 
     obj.getDepartamentosPendientesReagendamiento = function(){
-		return $http.get(serviceBase + 'getDepartamentosPendientesReagendamiento');
+		return $http.get(serviceBase + 'getDepartamentosPendientesReagendamiento');//pendientes por departamento agendamiento
 	}
 	//pantalla de agendamientos general
         obj.getDepartamentosPendientesReagendamiento = function(proceso){
                 return $http.get(serviceBase + 'getDepartamentosPendientesReagendamiento?proceso='+proceso);
         }
 
-         obj.getDepartamentosPendientesReagendamientoproceso = function(proceso){
+         obj.getDepartamentosPendientesReagendamientoproceso = function(proceso){ //departamento por proceso
                 return $http.get(serviceBase + 'getDepartamentosPendientesReagendamientoproceso?proceso='+proceso);
         }
 
 
-    obj.getDepartamentosOcupaagenda = function(){
+    obj.getDepartamentosOcupaagenda = function(){//departamentos ocupadas
         return $http.get(serviceBase + 'getDepartamentosOcupaagenda');
     }
 
-     obj.getlistadoAgendamientoAuditoria = function(fecha_inicio,fecha_fin){
+     obj.getlistadoAgendamientoAuditoria = function(fecha_inicio,fecha_fin){//lista agendamiento auditoria
                 return $http.get(serviceBase + 'listadoAgendamientoAuditoria?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin);
         }
         obj.getcsvTabla = function(fecha_inicio,fecha_fin){
