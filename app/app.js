@@ -191,13 +191,13 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
      obj.demePedidoAgendamiento = function(user,departamento,zona,microzona,proceso,pedido_actual,plaza,username){
-
+         //demepedido agendamiento
 		console.log("zona="+zona+", microzona="+microzona+", proceso="+proceso);
 		return $http.get(serviceBase+'demePedidoAgendamiento?userID='+user+'&departamento='+departamento+'&pedido_actual='+pedido_actual+'&plaza='+plaza+'&username='+username+'&zona='+zona+'&microzona='+microzona+'&proceso='+proceso);
     	}
 
     	obj.demePedidoAgendamientomalo = function(user,pedido_actual,plaza,username){
-
+            //demepedido agendamiento malo
     		return $http.get(serviceBase+'demePedidoAgendamientomalo?userID='+user+'&pedido_actual='+pedido_actual+'&plaza='+plaza+'&username='+username);
     	}
 
