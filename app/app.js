@@ -305,7 +305,9 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'eliminarfile1?file='+file);
         }
 
-
+     obj.getListadoPedidos = function(fecha_inicio,fecha_fin,page,campo,valorCampo){//listados pedidos agendamiento
+                return $http.get(serviceBase + 'listadoPedidos?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page+'&campo='+campo+'&valorCampo='+valorCampo);
+        }
 
 //-----------------------------------------------------------------------------------------fin_Agendamiento
 
@@ -458,15 +460,10 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'csvMalos?login='+login+'&concepto='+concepto);//exportar malos de la tabla informe_petec_pendientesm
         }
 
-        obj.getPedidosPorPedido = function(pedido){
+        obj.getPedidosPorPedido = function(pedido){//ingreso de pedido por pedido tabla pedidos
                 return $http.get(serviceBase + 'pedidosPorPedido?pedido=' + pedido);
         }
 
-
-
-	   obj.getListadoPedidos = function(fecha_inicio,fecha_fin,page,campo,valorCampo){
-                return $http.get(serviceBase + 'listadoPedidos?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page+'&campo='+campo+'&valorCampo='+valorCampo);
-        }
 
         obj.getVecinosPagina = function(pagina_inicial, pagina_final){
                 return $http.get(serviceBase + 'vecinosPagina?pagina_inicial='+pagina_inicial+'&pagina_final='+pagina_final);
