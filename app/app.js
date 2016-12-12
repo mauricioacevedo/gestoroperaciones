@@ -570,14 +570,14 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
 
-	obj.insertTransaccionNCA = function (transaccion) {
+	obj.insertTransaccionNCA = function (transaccion) {//insertar datos NCA
                 var data= $http.post(serviceBase + 'insertTransaccionNCA', {"transaccion":transaccion});
                 return data;
     };
 
 
 
-    obj.editTransaccionNCA = function (transaccionNCA) {
+    obj.editTransaccionNCA = function (transaccionNCA) {//editar datos de NCA cambio
         var data= $http.post(serviceBase + 'editTransaccionNCA', {"transaccionNCA":transaccionNCA});
         return data;
     };
