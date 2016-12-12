@@ -125,7 +125,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pedidosPorUserReagendamiento?userID=' + userID); // pedido por user reagendamiento
         }
 
-       obj.getLightKPISAgendamiento =function(){
+       obj.getLightKPISAgendamiento =function(){//kpis agendamiento
                 return $http.get(serviceBase + 'lightKPISAgendamiento');
         }
 
