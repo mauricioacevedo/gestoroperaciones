@@ -366,61 +366,61 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
     };
 
 
-     obj.getTransaccionActividades = function (actividadesID) {
+     obj.getTransaccionActividades = function (actividadesID) {//transaccion actividades
         return $http.get(serviceBase + 'getTransaccionActividades?actividadesID='+actividadesID);
     };
 
-       obj.getCsvactividades = function(login,fechaIni,fechaFin){
+       obj.getCsvactividades = function(login,fechaIni,fechaFin){//exportar tabla activacion
                 return $http.get(serviceBase + 'csvactividades?login='+login+'&fechaIni='+fechaIni+'&fechaFin='+fechaFin);
         }
 
 
-        obj.getCsvListadoActivacion = function(fechaini,fechafin){
+        obj.getCsvListadoActivacion = function(fechaini,fechafin){//exportar listado activacion
                 return $http.get(serviceBase + 'csvListadoActivacion?fechaini='+fechaini+'&fechafin='+fechafin);
         }
 
 
-        obj.getCsvListadoActivacionnuevo = function(fechaini,fechafin){
+        obj.getCsvListadoActivacionnuevo = function(fechaini,fechafin){//exportar listado activacion nuevos
                 return $http.get(serviceBase + 'csvListadoActivacionnuevos?fechaini='+fechaini+'&fechafin='+fechafin);
         }
 
 
-	obj.getCsvActivacion  = function(login){
+	obj.getCsvActivacion  = function(login){//exportar activacion
                 return $http.get(serviceBase + 'csvActivacion?login='+login);
         }
-    obj.getCsvActivacionSiebel  = function(login){
+    obj.getCsvActivacionSiebel  = function(login){//exportar activacion siebel
                 return $http.get(serviceBase + 'csvActivacionSiebel?login='+login);
         }
 
-    obj.getCsvActivacionSiebelinvdom  = function(login){
+    obj.getCsvActivacionSiebelinvdom  = function(login){//exportar activacion invdom
                 return $http.get(serviceBase + 'csvActivacionSiebelinvdom?login='+login);
         }
 
-    obj.pendientesPorConceptoColaActivacion  = function(){
+    obj.pendientesPorConceptoColaActivacion  = function(){//perdientes por conceptos activacion
                 return $http.get(serviceBase + 'pendientesPorColaConceptoActivacion');
         }
 
-     obj.getDashboardActivacionMes = function(){
+     obj.getDashboardActivacionMes = function(){//grafica activacion mes
                 return $http.get(serviceBase + 'getDashboardActivacionMes');
         }
 
-       obj.getSeguimientoActivacionGraficaAD = function(){
+       obj.getSeguimientoActivacionGraficaAD = function(){//grafica activacion seguimiento
                 return $http.get(serviceBase + 'seguimientoactivacionGraficaAD');
 
         }
 
-        obj.getPendientesGraficaAD = function(){
+        obj.getPendientesGraficaAD = function(){// grafica pendientes activacion
                 return $http.get(serviceBase + 'pendientesGraficaAD');
         }
 
-        obj.getPendientesSiebelGraficaAD = function(){
+        obj.getPendientesSiebelGraficaAD = function(){//pendientes siebel grafica
                 return $http.get(serviceBase + 'PendientesSiebelGraficaAD');
         }
 
-         obj.getpedidosPorPedidoActivacion = function(pedido){
+         obj.getpedidosPorPedidoActivacion = function(pedido){//pedido por pedido activacion
                 return $http.get(serviceBase + 'pedidosPorPedidoActivacion?pedido=' + pedido);
         }
-        obj.demePedidoActivacion = function(user,pedido_actual,pedido,transaccion){
+        obj.demePedidoActivacion = function(user,pedido_actual,pedido,transaccion){//deme pedido activacion
             //console.log("user="+user+",pedido="+pedido);
 		return $http.get(serviceBase+'demePedidoActivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user+ '&transaccion='+transaccion);
     	}
