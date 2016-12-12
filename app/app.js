@@ -425,16 +425,16 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 		return $http.get(serviceBase+'demePedidoActivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user+ '&transaccion='+transaccion);
     	}
 
-        obj.getBuscarpedidoactivacion = function(pedido,pedido_actual,user){
+        obj.getBuscarpedidoactivacion = function(pedido,pedido_actual,user){//buscar pedido activacion
         return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID='+pedido+'&pedido_actual='+pedido_actual+ '&userID='+user);
         }
 
-         obj.insertTransaccionsiebelactivacion  = function (pedido) {
+         obj.insertTransaccionsiebelactivacion  = function (pedido) {//insertar pedidos siebel activacion
                 var data= $http.post(serviceBase + 'insertTransaccionsiebelactivacion ', {"pedido":pedido});
                 return data;
         };
 
-      obj.getPedidosUserActivacion = function(userID){
+      obj.getPedidosUserActivacion = function(userID){//pedidos por user activacion
                 return $http.get(serviceBase + 'pedidosPorUserActivacion?userID=' + userID);
         }
 
