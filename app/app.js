@@ -316,51 +316,51 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'actividadesUser?userID=' + userID);//pedido por user
         }
 
-       obj.getListadoActivacion = function(fecha_inicio,fecha_fin,page){
+       obj.getListadoActivacion = function(fecha_inicio,fecha_fin,page){//Listado activacion
                 return $http.get(serviceBase + 'listadoactivacion?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page);
         }
 
 
-         obj.getListadoActivacionTabla = function(fecha_inicio,fecha_fin){
+         obj.getListadoActivacionTabla = function(fecha_inicio,fecha_fin){//listado tabla activacion
                 return $http.get(serviceBase + 'listadoactivaciontabla?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin);
         }
-         obj.getListadoActivacionSiebel = function(fecha_inicio,fecha_fin){
+         obj.getListadoActivacionSiebel = function(fecha_inicio,fecha_fin){//listado tabla activacion siebel
                 return $http.get(serviceBase + 'listadoactivacionsiebel?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin);
         }
 
 
-      obj.getListadoAlarmasActivacion = function(){
+      obj.getListadoAlarmasActivacion = function(){//listado alarmas acrivacion
                 return $http.get(serviceBase + 'listadoAlarmasActivacion');
         }
 
-        obj.getUsuariosAlarmasActivacion = function(){
+        obj.getUsuariosAlarmasActivacion = function(){//listado alarmas activacion por usuario
                 return $http.get(serviceBase + 'usuariosAlarmasActivacion');
         }
 
-    obj.actualizarAlarmaActivacion = function(responOne,responTwo,cola_id){
+    obj.actualizarAlarmaActivacion = function(responOne,responTwo,cola_id){//listado alarmas activacion
                 return $http.get(serviceBase + 'actualizarAlarmaActivacion?responsable1='+responOne+'&responsable2='+responTwo+'&cola_id='+cola_id);
         }
 
-    obj.insertarAlarmaActivacion = function (nuevaCola) {
+    obj.insertarAlarmaActivacion = function (nuevaCola) {///insertar alarmas activacion
         var data= $http.post(serviceBase + 'insertarAlarmaActivacion', {"nuevaCola":nuevaCola});
         return data;
     }
 
 
-       obj.getListadoTransaccionesActividades = function(userID,fecha_inicio,fecha_fin,page){
+       obj.getListadoTransaccionesActividades = function(userID,fecha_inicio,fecha_fin,page){//listado transaccion actividades
                 return $http.get(serviceBase + 'listadoTransaccionesActividades?fechaInicio='+fecha_inicio+'&fechaFin='+fecha_fin+'&page='+page+'&userID='+userID);
         }
 
-         obj.getListadoTransaccionesActividades1 = function(userID,fecha_inicio,fecha_fin,page){
+         obj.getListadoTransaccionesActividades1 = function(userID,fecha_inicio,fecha_fin,page){//listado para insertar
                 return $http.get(serviceBase + 'listadoTransaccionesActividades1?fechaInicio='+fecha_inicio+'&fechaFin='+fecha_fin+'&page='+page);
         }
 
-     obj.insertTransaccionActividades = function (transaccion) {
+     obj.insertTransaccionActividades = function (transaccion) {//insertar transaccion actividades
                 var data= $http.post(serviceBase + 'insertTransaccionActividades', {"transaccion":transaccion});
                 return data;
     };
 
-     obj.editTransaccionActividades = function (transaccionA) {
+     obj.editTransaccionActividades = function (transaccionA) {// editar transaccion actividades
         var data= $http.post(serviceBase + 'editTransaccionActividades', {"transaccionA":transaccionA});
         return data;
     };
