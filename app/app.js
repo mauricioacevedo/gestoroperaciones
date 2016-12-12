@@ -437,7 +437,13 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
       obj.getPedidosUserActivacion = function(userID){//pedidos por user activacion
                 return $http.get(serviceBase + 'pedidosPorUserActivacion?userID=' + userID);
         }
+       obj.listar = function(){
+                return $http.get(serviceBase + 'listadoarchivosdocu');//listado activacion
+        }
 
+    obj.eliminarfile = function(file){
+                return $http.get(serviceBase + 'eliminarfile?file='+file);//eliminar documento activacion
+        }
 
 //------------------------------------------------------fin_Activacion
 
@@ -491,13 +497,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'actualizarTablaGraficaCambioNuevoREDCO');
         }
 
-    obj.listar = function(){
-                return $http.get(serviceBase + 'listadoarchivosdocu');
-        }
 
-    obj.eliminarfile = function(file){
-                return $http.get(serviceBase + 'eliminarfile?file='+file);
-        }
 
 
 
