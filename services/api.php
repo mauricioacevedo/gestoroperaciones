@@ -11854,25 +11854,67 @@ $sqlfenix=
 			$today = date("Y-m-d");
 
 
-			$query=	" SELECT * FROM portalbd.gestor_opciones_edatel";
-					//" where e.LOCALIDAD='$localidad' ";
+			$query= " SELECT ".
+					"	ID ".
+					"	, ESTADO_ID ".
+					"	, OBSERVACION_ID ".
+					"	, STATUS ".
+					"	, USUARIO_ID ".
+					"	FROM portalbd.gestor_opciones_edatel ";
 
-													//echo $query;
-				$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+			$queryEstado=" SELECT ".
+						 "	distinct ESTADO_ID ".
+						 "	FROM portalbd.gestor_opciones_edatel ";
 
-				if($r->num_rows > 0){
-						$result = array();
+			$queryObservacion=" SELECT ".
+							" ESTADO_ID ".
+							" , OBSERVACION_ID ".
+							" , STATUS ".
+							" FROM portalbd.gestor_opciones_edatel ";
 
-						while($row = $r->fetch_assoc()){
+            $rObservacion = $this->mysqli->query($queryObservacion);
 
-								$result[] = $row;
+                 if($rObservacion->num_rows > 0){
+                                $result = array();
+                                while($row=$rObservacion->fetch_assoc()){
+								$observaciones[]=$row;
+
+
+							}
+                        }
+
+             $rEstado = $this->mysqli->query($queryEstado);
+
+                   if($rEstado->num_rows > 0){
+                                $result = array();
+                                while($row=$rEstado->fetch_assoc()){
+								$estados[]=$row;
+
+
+							}
+                        }
+
+              $rst = $this->mysqli->query($query);
+
+					if ($rst->num_rows > 0){
+
+							$resultado=array();
+
+							while($row=$rst->fetch_assoc()){
+								$resultado[]=$row;
+
+
+							}
+								$this->response($this->json(array($observaciones,$estados,$resultado)), 201);
+
+
+						}else{
+
+							$error="Ops";
+							$this->response($this->json($error), 400);
 						}
 
-						$this->response($this->json(array($result,$today)), 200);
-				}
-				$this->response('',406);        // If no records "No Content" status
-
-		}
+                }
 
 
 		//------------------------Listado de Localidades Edatel
