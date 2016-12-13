@@ -12276,9 +12276,9 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		$scope.fecha_fin=$rootScope.fechaProceso();
 		$scope.stautsGo=status[0].STATUS;
 
-		console.log(InfoPedido);
-		console.log(gestion);
-		console.log(status);
+		console.log(InfoPedido); //Seguimiento
+		console.log(gestion);//GEstion
+		console.log(status); //Cerrado, Pendiente o Malo
 
 		$scope.InfoGestion={
 			ID:gestion.ID,
