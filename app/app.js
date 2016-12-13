@@ -12358,7 +12358,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 				  $scope.Observaciones=data.data[0];
 				  $scope.Estados=data.data[1];
 				  $scope.listadoOpcionesSiebel=data.data[2];
-				  console.log(data.data);
+				  //console.log(data.data);
 				  return data.data;
 
 
