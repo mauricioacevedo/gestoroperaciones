@@ -12369,7 +12369,9 @@ $scope.buscarCliente=function(localidad,direccion){
 			  );
 		};
 
-
+$scope.onChangeAccion=function(){
+      $scope.accRdy=true;
+ };
 
 
 $scope.itemArray = [
@@ -12380,7 +12382,7 @@ $scope.itemArray = [
         {id: 5, name: 'fifth'},
     ];
 
-    $scope.selected = { value: $scope.itemArray[0] };
+$scope.selected = { value: $scope.itemArray[0] };
 
 
 
