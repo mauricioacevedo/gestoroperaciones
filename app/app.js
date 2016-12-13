@@ -12334,6 +12334,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		};
 
 	$scope.listarLocalidades();
+	$scope.listarEstados();
 
 
 $scope.buscarCliente=function(localidad,direccion){
