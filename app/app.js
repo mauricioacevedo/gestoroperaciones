@@ -11964,7 +11964,6 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 
 	//  ---------------------------------Basura del logueo
-
 	// Inicio de Variables ---------------------------------
 		$scope.pedidos=[];
 		$scope.pedidosUnicos='';
@@ -11996,9 +11995,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		$scope.pedidoIsActive=false;
 
 	// ---------------------------------Inicio de Variables
-
-
-// Disque Light KPI --------------------------------------------------------------
+	// Disque Light KPI --------------------------------------------------------------
 
 	$scope.intervalLightKPIS = setInterval(function(){
                 $scope.actualizarLightKPIS();
@@ -12126,9 +12123,6 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
           });
 
 	// --------------------------------------------------------------Disque Light KPI
-
-
-
 	// DemePedido --------------------------------------------------------------
 	$scope.baby = function(pedido) {
 		//console.log(pedido);
@@ -12206,7 +12200,6 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
     	};
 
 	// -------------------------------------------------------------- DemePedido
-
 	// BuscarPedido ---------------------------------------------------------------
 
 	$scope.buscarPedido = function(buscar,pedidoinfo) {
@@ -12275,19 +12268,81 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
         };
 
-
-
-
-
-
-
-
-
-
-
 	// --------------------------------------------------------------- BuscarPedido
-
 	// GuardarPedido --------------------------------------------------------------
+
+	$scope.guardarPedido=function(InfoPedido,gestion,status){
+
+		$scope.fecha_fin=$rootScope.fechaProceso();
+		$scope.stautsGo=status[0].STATUS;
+
+		console.log(InfoPedido);
+		console.log(gestion);
+		console.log(status);
+
+		$scope.InfoGestion={
+			ID:gestion.ID,
+			OFERTA:gestion.PEDIDO_ID,
+			MUNICIPIO_ID:gestion.MUNICIPIO_ID,
+			TRANSACCION:gestion.DESC_TIPO_TRABAJO,
+			ESTADO:gestion.CONCEPTO_ID,
+			FECHA:gestion.FECHA_ESTADO,
+			DURACION:null,
+			INCIDENTE:InfoPedido.INCIDENTE,
+			FECHA_INICIO:$scope.fecha_inicio,
+			FECHA_FIN:$scope.fecha_fin,
+			ESTADO_FINAL:InfoPedido.ESTADO_PROCESO,
+			OBSERVACION:InfoPedido.OBSERVACIONES_PROCESO,
+			USUARIO:$rootScope.logedUser.login,
+			STATUS:$scope.stautsGo
+			}
+
+		console.log($scope.InfoGestion);
+
+/*
+		services.insertTransaccionNCA($scope.InfoGestion).then(
+
+			  function(data){
+
+				  $scope.pedidoIsGuardado = true;
+				  $scope.errorDatos = null;
+				  $scope.InfoPedido = [];
+				  $scope.fecha_inicio = null;
+				  $scope.fecha_fin = null;
+				  $scope.accRdy = false;
+				  $scope.InfoGestion = {};
+				  $scope.pedidoOcupado = false
+				  $scope.pedidoIsActive = false
+				  $scope.peds = {};
+				  $scope.mpedido = {};
+				  $scope.bpedido = '';
+				  $scope.busy = "";
+				  $scope.error = "";
+				  $scope.iplaza = 'TODOS';
+				  $scope.fuente = "SIEBEL";
+				  $scope.buscar = null;
+				  return data.data;
+
+
+					}
+			  , function errorCallback(response,status) {
+				  //console.log(status);
+					$scope.errorDatos="No se pudo guardar";
+
+				  }
+			  ); */
+
+
+
+
+
+
+
+	};
+
+
+
+	//  -------------------------------------------------------------- GuardarPedido
 	$scope.eda={};
 
 	$scope.listarEstados=function(){
