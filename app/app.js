@@ -12158,6 +12158,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		$scope.error="";
 		$scope.iplaza='TODOS';
 		$scope.fuente="EDATEL";
+		$scope.InfoPedido.SOURCE='AUTO';
 
 		var demePedidoButton=document.getElementById("iniciar");
 			demePedidoButton.setAttribute("disabled","disabled");
@@ -12212,6 +12213,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			$scope.accRdy=false;
 			$scope.InfoGestion={};
 			$scope.InfoPedido.INCIDENTE='NO';
+			$scope.InfoPedido.SOURCE='BUSCADO';
 			$scope.pedidoIsGuardado=false;
 
 			$scope.pedidoActual=pedidoinfo;
