@@ -932,6 +932,9 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 	obj.getClientesEdatel = function(localidad,direccion){
         return $http.get(serviceBase + 'clientesEdatel?localidad='+localidad+'&direccion='+direccion);
         }
+	obj.getlistadoOpcionesEdatelAsignaciones= function () {
+     	return $http.get(serviceBase + 'opcionesEdatelAsignaciones');
+        };
 
 	// --------------------------------------------------------- Edatel Asignaciones
 
