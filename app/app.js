@@ -12290,6 +12290,28 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 	// GuardarPedido --------------------------------------------------------------
 	$scope.eda={};
 
+	$scope.listarEstados=function(){
+
+			services.getlistadoOpcionesEdatelAsignaciones().then(
+
+			  function(data){
+
+				  $scope.Observaciones=data.data[0];
+				  $scope.Estados=data.data[1];
+				  $scope.listadoOpcionesSiebel=data.data[2];
+
+				  return data.data;
+
+
+					}
+			  , function errorCallback(response,status) {
+				  //console.log(status);
+					$scope.errorDatos="Sin Procesos";
+
+				  }
+			  );
+		};
+
 	$scope.listarLocalidades=function(){
 
 			//$scope.localidad="MEDELLIN";
