@@ -121,7 +121,7 @@
                         if($r->num_rows > 0){
                                 $result = array();
                                 $fp = fopen("../tmp/$filename", 'w');
-                                fputcsv($fp, array('pedido_id','subpedido_id','solicitud_id','municipio_id',' fuente',' actividad',' fecha_fin',' estado', 'duracion','accion','concepto_final','concepto_anterior','user','idllamada','motivo','nuevopedido','caracteristica'));
+                                fputcsv($fp, array('pedido_id','subpedido_id','solicitud_id','municipio_id',' fuente',' actividad',' fecha_fin',' est0ado', 'duracion','accion','concepto_final','concepto_anterior','user','idllamada','motivo','nuevopedido','caracteristica'));
                                 while($row = $r->fetch_assoc()){
                                         //$result[] = $row;
                                         fputcsv($fp, $row);
