@@ -1,4 +1,12 @@
 
+<script>
+   if (window.opener) {
+      /* i'm a popup, add "popup" class to <html> element */
+      /*document.documentElement.className += " footerazo";*/
+      document.getElementById('headerazo').style.display='none';
+      document.getElementById('footerazo').style.display='none';
+   }
+</script>
 <div class="container-fluid" ng-init="$parent.actualView='tips'">
 	<div class="row">
 		<div class="col-md-12">
