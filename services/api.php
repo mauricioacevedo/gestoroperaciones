@@ -11559,9 +11559,10 @@ $sqlfenix=
 								$rCerrado = $this->mysqli->query($sqlCerrados);
 
 								if($rCerrado->num_rows > 0){
+
 									$busy=false;
                                 	$result = array();
-									while($row = $rPendi->fetch_assoc()){
+									while($row = $rCerrado->fetch_assoc()){
 
 									  $result[] = $row;
 									  $ids=$row['ID'];
