@@ -13218,7 +13218,7 @@ app.run(['$rootScope', 'services', function($rootScope, services){
 }]);
 
 //Variables Globales
-app.run(function($rootScope, services) {
+app.run(function($rootScope, $compile, $window, services) {
 
     $rootScope.daysInMonth = function(year, month) {
         return new Date(year, month+1,0).getDate();
@@ -13247,10 +13247,13 @@ app.run(function($rootScope, services) {
                 document.execCommand('Copy');
                 input.remove();
             };
-	function BuscaNodo() {
-    //window.open("http://10.100.82.125/gestoroperaciones-dev/#/cmts/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
-    window.open(window.location.pathname+"#/cmts/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
-}
+
+
+	$rootScope.BuscaNodo=function(){
+
+		window.open(window.location.pathname+"#/cmts/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
+	}
+
 
 	function BuscaPagina(pagina) {
     //window.open("http://10.100.82.125/gestoroperaciones-dev/#/cmts/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
