@@ -13248,17 +13248,18 @@ app.run(function($rootScope, $compile, $window, services) {
                 input.remove();
             };
 
-
+// BtnTools Buscadores Ventanas --------------------------------------------------------------------------------
 	$rootScope.BuscaNodo=function(){
 
 		window.open(window.location.pathname+"#/cmts/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
 	}
 
+	$rootScope.BuscaPagina=function(pagina){
 
-	function BuscaPagina(pagina) {
-    //window.open("http://10.100.82.125/gestoroperaciones-dev/#/cmts/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
-    window.open("#/vecinos/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=1200px, height=600");
-}
+		window.open("#/vecinos/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=1200px, height=600");
+	}
+
+
 
 	function BuscaGPON(){
 	//window.open("http://10.100.82.125/gestoroperaciones-dev/#/cmts/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
@@ -13272,7 +13273,7 @@ app.run(function($rootScope, $compile, $window, services) {
 	function abrirTips(){
 	window.open(window.location.pathname+"#/tips/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
 }
-
+// --------------------------------------------------------------------------------  BtnTools Buscadores Ventanas
 });
 
 app.run(['$location', '$rootScope', function($location, $rootScope) {
