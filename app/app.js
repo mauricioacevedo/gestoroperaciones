@@ -12404,13 +12404,14 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 				  //console.log(data);
 				  $scope.listadoDistribuidores=data.data[0];
 				  //console.log($scope.listadoLocalidad[1]);
+				  $scope.errorDatos=null;
 				  return data.data;
 
 
 					}
 			  , function errorCallback(response,status) {
 				  //console.log(status);
-					$scope.errorDatos="Sin localidades";
+					$scope.errorDatos="Sin Red.";
 
 				  }
 			  );
