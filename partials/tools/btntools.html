@@ -1,0 +1,18 @@
+<div class="col-md-6 " ng-class="tools==false?'animated bounceOutRight':'animated fadeInUp'">
+	<ul class="nav navbar-nav pull-right">
+		<li>
+			<span style="color:red" ><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span></li>
+		<li> &nbsp; </li>
+		<li >
+			<button type="button" onclick="javascript:BuscaNodo();"class="btn btn-primary btn-circle-xs " title="Buscar capacidad HFC" tooltip data-placement="top"><i class="fa fa-television"></i></button>
+		</li>
+		<li>
+			<button type="button" onclick="javascript:abrirCalculoDistancia();"class="btn btn-primary btn-circle-xs" title="Buscar capacidad REDCO" tooltip data-placement="top"><i class="fa fa-tty"></i></button></li>
+		<li>
+			<button type="button" onclick="javascript:BuscaGPON();"class="btn btn-primary btn-circle-xs" title="Buscar capacidad GPON" tooltip data-placement="top"><i class="fa fa-google-plus"></i></button>
+		</li>
+		<li>
+			<button type="button" onclick="javascript:abrirTips();"class="btn btn-primary btn-circle-xs" title="Tips" tooltip data-placement="top"><i class="fa fa-exclamation-circle"></i></button>
+		</li>
+	</ul>
+</div>

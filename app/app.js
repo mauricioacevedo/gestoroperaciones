@@ -12634,6 +12634,15 @@ app.directive('onKeyEnter', ['$parse', function($parse) {
         };
     }]);
 
+app.directive('btnTools', function ($rootScope,$cookies) {
+
+     return{
+
+         templateUrl: 'partials/tools/btntools.html'
+
+     };
+});
+
 // Filtros ------------------------------------------
 
 app.filter('timeago', function() {
