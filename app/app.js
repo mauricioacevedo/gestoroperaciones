@@ -12418,7 +12418,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 	$scope.listarLocalidades();
 	$scope.listarEstados();
-	$scope.listarDistribuidores();
+	$scope.listarDistribuidores('MEDELLIN');
 
 
 $scope.buscarCliente=function(localidad,direccion){
