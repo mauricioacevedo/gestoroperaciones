@@ -12638,7 +12638,7 @@ app.directive('btnTools', function ($rootScope,$cookies) {
 
      return{
 
-         templateUrl: 'partials/tools/btntools.html'
+         templateUrl: 'partials/directivas/btntools.html'
 
      };
 });
