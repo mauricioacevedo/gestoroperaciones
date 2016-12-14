@@ -13048,6 +13048,12 @@ app.config(['$routeProvider',
 			controller: 'vecinoscontroller',
 			reloadOnSearch: false
 		  })
+	.when('/distriedatel/', {
+			title: 'Red Edatel',
+			templateUrl: 'partials/edatel/distribuidores_edatel.html',
+			controller: 'edatelCtrl',
+			reloadOnSearch: false
+		  })
 
 // ------------------------------------------HERRAMIENTAS
 
@@ -13291,7 +13297,7 @@ app.run(function($rootScope, $compile, $window, services) {
 	}
 
 	$rootScope.BuscaRedEdatel=function(){
-		window.open(window.location.pathname+"#/btn/distriedatel", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
+		window.open(window.location.pathname+"#/distriedatel/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
 	}
 
 
