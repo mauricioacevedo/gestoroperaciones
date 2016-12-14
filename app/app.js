@@ -12397,7 +12397,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 	$scope.listarDistribuidores=function(localidad){
 
-			//$scope.localidad="MEDELLIN";
+			console.log(localidad);
 			services.getDistriEdatel(localidad).then(
 
 			  function(data){
