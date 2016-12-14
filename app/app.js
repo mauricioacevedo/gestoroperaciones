@@ -13297,7 +13297,8 @@ app.run(function($rootScope, $compile, $window, services) {
 	}
 
 	$rootScope.BuscaRedEdatel=function(){
-		$rootScope.actualView='tips';
+		$rootScope.actualView="tips";
+		console.log($rootScope.actualView);
 		window.open(window.location.pathname+"#/distriedatel/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
 	}
 
