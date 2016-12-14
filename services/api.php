@@ -11555,6 +11555,7 @@ $sqlfenix=
 								$rCerrado = $this->mysqli->query($sqlCerrados);
 
 								if($rCerrado->num_rows > 0){
+									$busy=false;
                                 	$result = array();
 									while($row = $rPendi->fetch_assoc()){
 
@@ -11563,30 +11564,28 @@ $sqlfenix=
 									  $asess=$row['ASESOR'];
 
 
-									}//chao While
+										}//chao While
 
                                 $sqlupdate="";
 
                                         $fecha_visto=date("Y-m-d H:i:s");
                                         $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where ID in ($ids)";
 
-                                }
+
 
                                 $xCerrado = $this->mysqli->query($sqlupdate);
 
 								// Feed ----------------------
 								$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','Reabrio pedido') ";
-								$xx = $this->mysqli->query($sqlfeed);
+								$xxCerrado = $this->mysqli->query($sqlfeed);
 								//  ---------------------- Feed
 
 
 
-							$this->response(json_encode(array($busy,$result)), 200); //Resultado final si encontro registros
+								$this->response(json_encode(array($busy,$result)), 200); //Resultado final si encontro registros
 
 
 						}else{
-
-
 
 
 
@@ -11595,7 +11594,8 @@ $sqlfenix=
 						}
 
 
-                } // -------------------------Busca Pedido Siebel Asignaciones
+                }
+		}// -------------------------Busca Pedido Siebel Asignaciones
 //------------------------buscarpedido activacion
 
         private function buscarpedidoactivacion(){
