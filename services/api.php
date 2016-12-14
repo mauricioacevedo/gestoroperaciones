@@ -11778,9 +11778,9 @@ $sqlfenix=
 		}
 
 
-		//------------------------Listado de Localidades Edatel
+		// -----------------------------------------------------------------Listado de Localidades Edatel
 
-
+		// Listado de Clientes Edatel -----------------------------------------------------------------
 		private function clientesEdatel(){
 
 			if($this->get_request_method() != "GET"){
@@ -11838,7 +11838,7 @@ $sqlfenix=
 
 		}
 
-		//------------------------Listado de Localidades Edatel
+		//------------------------Listado de Clientes Edatel
 
 		// Opciones Edatel ------------------------------------
 
@@ -11919,7 +11919,54 @@ $sqlfenix=
 
 		//------------------------Listado de Localidades Edatel
 
+		// Listado de Distribuidores Edatel -----------------------------------------------------------------
+		private function distribuidoresEdatel(){
 
+			if($this->get_request_method() != "GET"){
+					$this->response('',406);
+			}
+
+			$this->dbConnect03();
+
+			$today = date("Y-m-d");
+			$localidad=$this->_request['localidad'];
+			//$direccion=$this->_request['direccion'];
+
+			if($localidad==""||$localidad=="undefined"){
+				$localidad="MEDELLIN";
+			}
+
+			$query=	" SELECT d.ID, ".
+					"	d.DESCRIPTION_DISTRIBUIDOR, ".
+					"   d.LOCALIDAD, ".
+					"	d.LOC, ".
+					"	d.CEN, ".
+					"	d.DISTRI, ".
+					"	d.DEPARTAMENTO, ".
+					"	d.REGION, ".
+					"	d.ZONA, ".
+					"	d.DESCRIPTION_CENTRAL ".
+					" FROM gestor_informes.eda_distribuidores d ".
+					" where d.LOCALIDAD='$localidad' ";
+
+
+				$r = $this->mysqli03->query($query) or die($this->mysqli03->error.__LINE__);
+
+				if($r->num_rows > 0){
+						$result = array();
+
+						while($row = $r->fetch_assoc()){
+
+								$result[] = $row;
+						}
+
+						$this->response($this->json(array($result,$localidad)), 200); // send user details
+				}
+				$this->response('',406);        // If no records "No Content" status
+
+		}
+
+		//------------------------Listado de Clientes Edatel
 
 //------------------------Listado concepts sistema
 
