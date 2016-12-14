@@ -74,7 +74,8 @@
 					<table class = "table small table-striped table-condensed">
 						<thead>
 					      <tr >
-					         <th>LOCALIDAD</th>
+
+					         <th>DEPARTAMENTO</th>
 					         <th>DESC DIST</th>
 					         <th>LOC</th>
 					         <th>CEN</th>
@@ -86,7 +87,8 @@
 					    <tbody>
 					      <tr ng-repeat="data in listadoDistribuidores | filter:filtroInput as results">
 
-					         <td>{{data.LOCALIDAD}}</td>
+					         <td>{{data.DEPARTAMENTO}}</td>
+							 <td>{{data.LOCALIDAD}}</td>
 					         <td>{{data.DESCRIPTION_DISTRIBUIDOR}}</td>
 					         <td>{{data.LOC}}</td>
 					         <td>{{data.CEN}}</td>
