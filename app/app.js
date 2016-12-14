@@ -933,6 +933,9 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 	obj.getlistadoOpcionesEdatelAsignaciones= function () {
      	return $http.get(serviceBase + 'opcionesEdatelAsignaciones');
         };
+	obj.getDistriEdatel = function(localidad){
+        return $http.get(serviceBase + 'distribuidoresEdatel?localidad='+localidad);
+        }
 
 	// --------------------------------------------------------- Edatel Asignaciones
 
@@ -12392,8 +12395,30 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			  );
 		};
 
+	$scope.listarDistribuidores=function(localidad){
+
+			//$scope.localidad="MEDELLIN";
+			services.getDistriEdatel(localidad).then(
+
+			  function(data){
+				  //console.log(data);
+				  $scope.listadoDistribuidores=data.data[0];
+				  //console.log($scope.listadoLocalidad[1]);
+				  return data.data;
+
+
+					}
+			  , function errorCallback(response,status) {
+				  //console.log(status);
+					$scope.errorDatos="Sin localidades";
+
+				  }
+			  );
+		};
+
 	$scope.listarLocalidades();
 	$scope.listarEstados();
+	$scope.listarDistribuidores();
 
 
 $scope.buscarCliente=function(localidad,direccion){
