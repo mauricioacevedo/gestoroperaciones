@@ -185,6 +185,7 @@
 					<div class="panel-footer clearfix" >
 						<div class="col-md-6" >
 								<!--Campos futuros en footer izquierda -->
+							<span ng-class= "{'CERRADO_PETEC':'label label-danger','PENDI_PETEC':'label label-info','MALO':'label label-warning'}[gestion[0].STATUS]" class="label label-info" tooltip data-placement="top" title="Estado">{{gestion[0].STATUS}}</span>
 						</div>
 					<div class="col-md-6">
 						<ul class="nav navbar-nav navbar-right">
