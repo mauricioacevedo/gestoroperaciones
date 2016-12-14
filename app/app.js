@@ -13110,7 +13110,7 @@ app.run(['$rootScope', 'services', function($rootScope, services){
 
 	$rootScope.gestor={};
 
-	console.log($rootScope.gestor);
+	//console.log($rootScope.gestor);
 	$rootScope.getConceptosGestor=function(){
 		services.getGestorConceptos().then(
 			function(data){
@@ -13247,6 +13247,28 @@ app.run(function($rootScope, services) {
                 document.execCommand('Copy');
                 input.remove();
             };
+	function BuscaNodo() {
+    //window.open("http://10.100.82.125/gestoroperaciones-dev/#/cmts/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
+    window.open(window.location.pathname+"#/cmts/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
+}
+
+	function BuscaPagina(pagina) {
+    //window.open("http://10.100.82.125/gestoroperaciones-dev/#/cmts/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
+    window.open("#/vecinos/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=1200px, height=600");
+}
+
+	function BuscaGPON(){
+	//window.open("http://10.100.82.125/gestoroperaciones-dev/#/cmts/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
+	window.open(window.location.pathname+"#/gpon/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=50, width=1100, height=450");
+}
+
+	function abrirCalculoDistancia(){
+	window.open(window.location.pathname+"#/distancia/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=1200px, height=600");
+}
+
+	function abrirTips(){
+	window.open(window.location.pathname+"#/tips/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
+}
 
 });
 
