@@ -147,7 +147,7 @@
 													<option value="" disabled>--Seleccione--</option>
 													<option
 														ng-repeat="d in Observaciones | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO}"
-
+														ng-disabled="disabled[d.OBSERVACION_ID]"
 														value="{{d.OBSERVACION_ID}}">
 														{{d.OBSERVACION_ID}}
 													</option>
