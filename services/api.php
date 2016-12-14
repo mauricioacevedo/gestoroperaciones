@@ -11474,9 +11474,42 @@ $sqlfenix=
 						"	, m.UP2DATE ".
 						"	FROM portalbd.informe_petec_pendientesm m ".
 						"	where m.PEDIDO_ID='$pedido' ".
-						"	AND m.STATUS IN ('PENDI_PETEC','MALO','CERRADO_PETEC') ";
+						"	AND m.STATUS IN ('PENDI_PETEC','MALO') ";
 
-                        $rPendi = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
+				$sqlCerrados=" SELECT ".
+						"	m.ID ".
+						"	, m.PEDIDO_ID ".
+						"	, m.TIPO_ELEMENTO_ID ".
+						"	, m.TIPO_TRABAJO ".
+						"	, m.DESC_TIPO_TRABAJO ".
+						"	, m.FECHA_INGRESO ".
+						"	, m.FECHA_ESTADO ".
+						"	, m.FECHA_CITA ".
+						"	, m.PRODUCTO_ID ".
+						"	, m.PRODUCTO ".
+						"	, m.UEN_CALCULADA ".
+						"	, m.ESTRATO ".
+						"	, m.CONCEPTO_ID ".
+						"	, m.TECNOLOGIA_ID ".
+						"	, m.MUNICIPIO_ID ".
+						"	, m.DIRECCION_SERVICIO ".
+						"	, m.PAGINA_SERVICIO ".
+						"	, m.FECHA_CARGA ".
+						"	, m.FUENTE ".
+						"	, m.STATUS ".
+						"	, m.ASESOR ".
+						"	, m.FECHA_VISTO_ASESOR ".
+						"	, m.ESTUDIOS ".
+						"	, m.VIEWS ".
+						"	, m.CONCEPTO_ANTERIOR ".
+						"	, m.UP2DATE ".
+						"	FROM portalbd.informe_petec_pendientesm m ".
+						"	where m.PEDIDO_ID='$pedido' ".
+						"	AND m.STATUS IN ('CERRADO_PETEC') ".
+					    " 	order by m.ID desc limit 1";
+
+                        $rPendi = $this->mysqli->query($query1);
+
 
                         $busy=false;
 
@@ -11518,7 +11551,53 @@ $sqlfenix=
 							$this->response(json_encode(array($busy,$result)), 200); //Resultado final si encontro registros
 
 
+						}else{ // Si el pedido no esta abierto lo busco en cerrado pero solo devuelvo un solo registro
+								$rCerrado = $this->mysqli->query($sqlCerrados);
+
+								if($rCerrado->num_rows > 0){
+                                $result = array();
+                                while($row = $rPendi->fetch_assoc()){
+
+                                  $result[] = $row;
+                                  $ids=$row['ID'];
+                                  $asess=$row['ASESOR'];
+
+                                	if($asess!='' && $asess!=$user){//este pedido esta ocupado, no deberia hacer la actualizacion de abajo..
+                                       $busy=true;
+                                        }
+
+								}//chao While
+
+                                $sqlupdate="";
+
+                                if($busy==true){
+                                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1 where ID in ($ids)";
+
+
+                                }else{
+                                        $fecha_visto=date("Y-m-d H:i:s");
+                                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where ID in ($ids)";
+
+                                }
+
+                                $x = $this->mysqli->query($sqlupdate);
+
+								// Feed ----------------------
+								$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','Reabrio pedido') ";
+								$xx = $this->mysqli->query($sqlfeed);
+								//  ---------------------- Feed
+
+
+
+							$this->response(json_encode(array($busy,$result)), 200); //Resultado final si encontro registros
+
+
 						}else{
+
+
+
+
+
 							$error='No existe';
 							$this->response(json_encode($error),204);        // No encontramos nada.
 						}
