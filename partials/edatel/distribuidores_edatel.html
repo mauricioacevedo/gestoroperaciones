@@ -80,32 +80,24 @@
 					<table class = "table small table-striped table-condensed">
 						<thead>
 					      <tr >
-					         <th>PRODUCT_ID</th>
-					         <th>DIRECCION</th>
-					         <th>DISTRIB</th>
-					         <th>ARM</th>
-					         <th>CAJA</th>
-					         <th>PSCAJA</th>
-					         <th>LISTON</th>
-					         <th>PSLIS</th>
-							 <th>BDOR</th>
-							 <th>PUERTO</th>
+					         <th>LOCALIDAD</th>
+					         <th>DESC DIST</th>
+					         <th>LOC</th>
+					         <th>CEN</th>
+					         <th>DISTRI</th>
+					         <th>DESCRIPTION_CENTRAL</th>
 
 					      </tr>
 					    <thead>
 					    <tbody>
 					      <tr ng-repeat="data in listadoDistribuidores | filter:filtroInput as results">
 
-					         <td>{{data.PRODUCT_ID}}</td>
-					         <td>{{data.DIREC_INSTALACION}}</td>
-					         <td>{{data.DISTRIB}}</td>
-					         <td>{{data.ARM}}</td>
-					         <td>{{data.CAJA}}</td>
-					         <td>{{data.PSCAJA}}</td>
-					         <td>{{data.LISTON}}</td>
-					         <td>{{data.PSLIS}}</td>
-							 <td>{{data.BDOR}}</td>
-							  <td>{{data.PUERTO}}</td>
+					         <td>{{data.LOCALIDAD}}</td>
+					         <td>{{data.DESCRIPTION_DISTRIBUIDOR}}</td>
+					         <td>{{data.LOC}}</td>
+					         <td>{{data.CEN}}</td>
+					         <td>{{data.DISTRI}}</td>
+					         <td>{{data.DESCRIPTION_CENTRAL}}</td>
 
 					      </tr>
 					     </tbody>
