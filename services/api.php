@@ -11555,32 +11555,24 @@ $sqlfenix=
 								$rCerrado = $this->mysqli->query($sqlCerrados);
 
 								if($rCerrado->num_rows > 0){
-                                $result = array();
-                                while($row = $rPendi->fetch_assoc()){
+                                	$result = array();
+									while($row = $rPendi->fetch_assoc()){
 
-                                  $result[] = $row;
-                                  $ids=$row['ID'];
-                                  $asess=$row['ASESOR'];
+									  $result[] = $row;
+									  $ids=$row['ID'];
+									  $asess=$row['ASESOR'];
 
-                                	if($asess!='' && $asess!=$user){//este pedido esta ocupado, no deberia hacer la actualizacion de abajo..
-                                       $busy=true;
-                                        }
 
-								}//chao While
+									}//chao While
 
                                 $sqlupdate="";
 
-                                if($busy==true){
-                                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1 where ID in ($ids)";
-
-
-                                }else{
                                         $fecha_visto=date("Y-m-d H:i:s");
                                         $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where ID in ($ids)";
 
                                 }
 
-                                $x = $this->mysqli->query($sqlupdate);
+                                $xCerrado = $this->mysqli->query($sqlupdate);
 
 								// Feed ----------------------
 								$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','Reabrio pedido') ";
