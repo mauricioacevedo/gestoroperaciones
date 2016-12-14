@@ -11472,6 +11472,7 @@ $sqlfenix=
 						"	, m.ESTUDIOS ".
 						"	, m.VIEWS ".
 						"	, m.CONCEPTO_ANTERIOR ".
+					    "   , CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(m.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA ".
 						"	, m.UP2DATE ".
 						"	FROM portalbd.informe_petec_pendientesm m ".
 						"	where m.PEDIDO_ID='$pedido' ".
@@ -11504,6 +11505,7 @@ $sqlfenix=
 						"	, m.ESTUDIOS ".
 						"	, m.VIEWS ".
 						"	, m.CONCEPTO_ANTERIOR ".
+						"   , CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(m.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA ".
 						"	, m.UP2DATE ".
 						"	FROM portalbd.informe_petec_pendientesm m ".
 						"	where m.PEDIDO_ID='$pedido' ".
