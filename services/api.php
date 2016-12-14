@@ -11448,6 +11448,7 @@ $sqlfenix=
                 $query1=" SELECT ".
 						"	m.ID ".
 						"	, m.PEDIDO_ID ".
+						"	, m.SUBPEDIDO_ID ".
 						"	, m.TIPO_ELEMENTO_ID ".
 						"	, m.TIPO_TRABAJO ".
 						"	, m.DESC_TIPO_TRABAJO ".
@@ -11479,6 +11480,7 @@ $sqlfenix=
 				$sqlCerrados=" SELECT ".
 						"	m.ID ".
 						"	, m.PEDIDO_ID ".
+						"	, m.SUBPEDIDO_ID ".
 						"	, m.TIPO_ELEMENTO_ID ".
 						"	, m.TIPO_TRABAJO ".
 						"	, m.DESC_TIPO_TRABAJO ".
