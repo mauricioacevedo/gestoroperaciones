@@ -11474,7 +11474,7 @@ $sqlfenix=
 						"	, m.UP2DATE ".
 						"	FROM portalbd.informe_petec_pendientesm m ".
 						"	where m.PEDIDO_ID='$pedido' ".
-						"	AND m.STATUS IN ('PENDI_PETEC','MALO') ";
+						"	AND m.STATUS IN ('PENDI_PETEC','MALO','CERRADO_PETEC') ";
 
                         $rPendi = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 

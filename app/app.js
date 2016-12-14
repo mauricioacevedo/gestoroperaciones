@@ -12239,6 +12239,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 						$scope.pedidoIsActive=false;
 					}else{
 
+						console.log(data.data);
 						$scope.peds = data.data[1];
 				  	   	$scope.ocupado=data.data[0];
 						$scope.pedido1=$scope.peds[0].PEDIDO_ID;
