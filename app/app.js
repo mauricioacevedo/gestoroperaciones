@@ -12397,8 +12397,8 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 	$scope.listarDistribuidores=function(localidad){
 
-			console.log(localidad);
-			services.getDistriEdatel(localidad).then(
+			//console.log(localidad);
+			services.getDistriEdatel(localidad.LOCALIDAD).then(
 
 			  function(data){
 				  //console.log(data);
