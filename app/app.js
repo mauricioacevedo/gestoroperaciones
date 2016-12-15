@@ -12842,6 +12842,10 @@ app.config(function(uiSelectConfig) {
   uiSelectConfig.theme = 'select2';
 });
 
+app.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.interceptors.push('LoadingInterceptor');
+}]);
+
 app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
