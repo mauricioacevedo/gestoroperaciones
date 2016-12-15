@@ -45,9 +45,12 @@
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li>
-								<div class="col-lg-1 col-xs-1">
-									<div class="loading-spiner-holder" data-loading ><div class="loading-spiner"><img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif" /></div></div>
-							 </div></li>
+								<div class="col-md-1 col-xs-1 ">
+									<div data-ng-if="loading">
+										<img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif" />
+									</div>
+								</div>
+							</li>
 							<li>
 								<div class="btn-group">
 									<input style="width:140px"  class="btn btn-default btn-xs " type="text" ng-model="buscar" placeholder="Buscar..." ng-disabled="loading" select-on-click capitalize/>
