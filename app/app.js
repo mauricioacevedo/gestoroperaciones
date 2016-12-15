@@ -952,7 +952,46 @@ obj.getDepartamentosParametrizacionSiebel = function(){
     	return obj;
 }]);
 
+app.service('LoadingInterceptor', ['$q', '$rootScope', '$log',
+function ($q, $rootScope, $log) {
+    'use strict';
 
+    var xhrCreations = 0;
+    var xhrResolutions = 0;
+
+    function isLoading() {
+        return xhrResolutions < xhrCreations;
+    }
+
+    function updateStatus() {
+        $rootScope.loading = isLoading();
+    }
+
+    return {
+        request: function (config) {
+            xhrCreations++;
+            updateStatus();
+            return config;
+        },
+        requestError: function (rejection) {
+            xhrResolutions++;
+            updateStatus();
+            $log.error('Request error:', rejection);
+            return $q.reject(rejection);
+        },
+        response: function (response) {
+            xhrResolutions++;
+            updateStatus();
+            return response;
+        },
+        responseError: function (rejection) {
+            xhrResolutions++;
+            updateStatus();
+            $log.error('Response error:', rejection);
+            return $q.reject(rejection);
+        }
+    };
+}]);
 
 
 app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {//graficas
@@ -12608,6 +12647,36 @@ app.directive('modal', function () {
         };
 
     }]);
+
+ app.directive('loadingo',   ['$http','$rootScope' ,function ($http, $rootScope)
+    {
+        return {
+            restrict: 'A',
+            link: function (scope, elm, attrs)
+            {
+                $rootScope.spinner = false;
+                scope.isLoading = function () {
+                    return $http.pendingRequests.length > 0;
+                };
+
+                scope.$watch(scope.isLoading, function (cargando)
+                {
+                    $rootScope.spinner = cargando;
+                    if(cargando){
+                        elm.removeClass('ng-hide');
+
+                        //console.log($rootScope.spinner);
+
+                    }else{
+                        elm.addClass('ng-hide');
+                         //console.log($rootScope.spinner);
+
+                    }
+                });
+            }
+        };
+
+}]);
 
 app.directive('popover', function() {
    return function(scope, elem) {
