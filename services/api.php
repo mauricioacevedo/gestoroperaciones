@@ -7795,6 +7795,7 @@ $queryConceptosFcita=" select ".
 
 				$login=strtoupper($login);
 
+                /*Mauricio 2016-12-15: this code have some problems!!! $stmt->get_result(); thorws an unholy error!!!
 				$stmt = $this->mysqli->prepare("SELECT ID as id, USUARIO_NOMBRE as name, USUARIO_ID as login, GRUPO,CARGO_ID FROM tbl_usuarios WHERE USUARIO_ID = ? AND PASSWORD = MD5(?) LIMIT 1");
 				$stmt->bind_param('ss', $login,$password);
 				
@@ -7804,10 +7805,10 @@ $queryConceptosFcita=" select ".
 				//while ($row = $result->fetch_assoc()) {
 				    // do something with $row
 				//}
+                */
 
-
-				//$query="SELECT ID as id, USUARIO_NOMBRE as name, USUARIO_ID as login, GRUPO,CARGO_ID FROM tbl_usuarios WHERE USUARIO_ID = '$login' AND PASSWORD = MD5('$password') LIMIT 1";
-				//$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+				$query="SELECT ID as id, USUARIO_NOMBRE as name, USUARIO_ID as login, GRUPO,CARGO_ID FROM tbl_usuarios WHERE USUARIO_ID = '$login' AND PASSWORD = MD5('$password') LIMIT 1";
+				$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
 
 				if($result = $r->fetch_assoc()) {
