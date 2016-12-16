@@ -12350,7 +12350,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			actividad:'ESTUDIO',
 			fecha_fin:$scope.fecha_fin,
 			user:$rootScope.logedUser.login,
-			estado:InfoPedido.ESTADO_PROCESO,
+			estado:$scope.stautsGo,
 			duracion:'',
 			FECHA_ESTADO:gestion.FECHA_ESTADO,
 			fecha_inicio:$scope.fecha_inicio,
