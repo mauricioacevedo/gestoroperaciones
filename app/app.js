@@ -11977,7 +11977,7 @@ $scope.doubleDigit= function (num){
 // -----------------------------------------------Controlador para Gestion En Siebel
 
 // Controlador para Gestion de Edatel Asignaciones -----------------------------------------------
-app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, $timeout, services) {
+app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, $timeout, $notify,services) {
 
 	$scope.tools=true;
 
