@@ -12348,7 +12348,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			ID:gestion.ID
 			}
 
-		console.log($scope.InfoGestionPr);
+		console.log($scope.InfoGestion);
 
 
 		services.insertPedido($scope.InfoGestion).then(
