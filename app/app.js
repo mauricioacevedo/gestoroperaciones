@@ -13324,7 +13324,7 @@ app.run(['$rootScope', 'services', function($rootScope, services){
 }]);
 
 //Variables Globales
-app.run(function($rootScope, $compile, $window, services) {
+app.run(function($rootScope, $compile, $window, notify, services) {
 
     $rootScope.daysInMonth = function(year, month) {
         return new Date(year, month+1,0).getDate();
@@ -13351,6 +13351,7 @@ app.run(function($rootScope, $compile, $window, services) {
                 //input.focus();
                 input.select();
                 document.execCommand('Copy');
+				notify('Copiado');
                 input.remove();
             };
 
@@ -13382,7 +13383,7 @@ app.run(function($rootScope, $compile, $window, services) {
 app.run(['$location', '$rootScope', function($location, $rootScope) {
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        console.log($rootScope.loginexito);
+        //console.log($rootScope.loginexito);
         $rootScope.title = current.$$route.title;
     });
 
