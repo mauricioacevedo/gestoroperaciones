@@ -12326,12 +12326,10 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		//console.log(InfoPedido); //Seguimiento
 		//console.log(gestion);//GEstion
 		//console.log(status); //Cerrado, Pendiente o Malo
-		//var hours = Math.abs($scope.fecha_inicio - $scope.fecha_fin) / 360000;
-		//var hours = Math.floor(Math.abs($scope.fecha_fin - $scope.fecha_inicio) / 36e5)
 
-		var ms = moment($scope.fecha_fin,"DD/MM/YYYY HH:mm:ss").diff(moment($scope.fecha_inicio,"DD/MM/YYYY HH:mm:ss"));
-		var d = moment.duration(ms);
-		var hours = d.format("hh:mm:ss");
+		var fromDate = parseInt(new Date($scope.fecha_inicio).getTime()/1000);
+    	var toDate = parseInt(new Date($scope.fecha_fin).getTime()/1000);
+    	var timeDiff = (toDate - fromDate)/3600;  // will give difference in hrs
 
 		$scope.InfoGestion={
 			pedido:gestion.PEDIDO_ID,
@@ -12340,7 +12338,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			fecha_fin:$scope.fecha_fin,
 			user:$rootScope.logedUser.login,
 			estado:$scope.stautsGo,
-			duracion:hours,
+			duracion:timeDiff,
 			FECHA_ESTADO:gestion.FECHA_ESTADO,
 			fecha_inicio:$scope.fecha_inicio,
 			concepto_final:gestion.CONCEPTO_ID,
