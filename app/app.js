@@ -12323,9 +12323,9 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		$scope.fecha_fin=$rootScope.fechaProceso();
 		$scope.stautsGo=status[0].STATUS;
 
-		console.log(InfoPedido); //Seguimiento
-		console.log(gestion);//GEstion
-		console.log(status); //Cerrado, Pendiente o Malo
+		//console.log(InfoPedido); //Seguimiento
+		//console.log(gestion);//GEstion
+		//console.log(status); //Cerrado, Pendiente o Malo
 
 		$scope.InfoGestion={
 			ID:gestion.ID,
@@ -12344,7 +12344,26 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			STATUS:$scope.stautsGo
 			}
 
-		console.log($scope.InfoGestion);
+		$scope.InfoGestionPr={
+			pedido:gestion.PEDIDO_ID,
+			fuente:InfoPedido.FUENTE,
+			actividad:'ESTUDIO',
+			fecha_fin:$scope.fecha_fin,
+			user:$rootScope.logedUser.login,
+			estado:gestion.ESTADO_FINAL,
+			duracion:'',
+			fecha_estado:gestion.FECHA,
+			fecha_inicio:gestion.FECHA_INICIO,
+			concepto_anterior:gestion.ESTADO,
+			source:InfoPedido.SOURCE,
+			pedido_id:gestion.PEDIDO_ID,
+			subpedido_id:gestion.SUBPEDIDO_ID,
+			municipio_id:gestion.MUNICIPIO_ID,
+			motivo:InfoPedido.OBSERVACIONES_PROCESO,
+			nuevopedido:InfoPedido.INCIDENTE
+			}
+
+		console.log($scope.InfoGestionPr);
 
 /*
 		services.insertTransaccionNCA($scope.InfoGestion).then(
