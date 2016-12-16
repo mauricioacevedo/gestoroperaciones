@@ -12352,7 +12352,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			user:$rootScope.logedUser.login,
 			estado:InfoPedido.ESTADO_PROCESO,
 			duracion:'',
-			fecha_estado:gestion.FECHA,
+			fecha_estado:gestion.FECHA_ESTADO,
 			fecha_inicio:$scope.fecha_inicio,
 			concepto_anterior:gestion.CONCEPTO_ID,
 			source:InfoPedido.SOURCE,
