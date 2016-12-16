@@ -1536,7 +1536,7 @@ if($novedad=='AGENDADO'||$novedad=='AGENDADO MANUAL'||$novedad=='AGENDADO_FUTURO
 	                                $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
                                     $concepto_fen=$concepto_final['CONCEPTO_ID'];
                                 	//cierro el registro en la tabla de automatizacion asignaciones
-        	                        $sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$today',CONCEPTO_ID='".$concepto_final['CONCEPTO_ID']."',STATUS='CERRADO_PETEC' WHERE ID=$iddd ";
+							$sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$today',CONCEPTO_ID='".$concepto_final['CONCEPTO_ID']."',STATUS='CERRADO_PETEC', ASESOR='' WHERE ID=$iddd ";
 
                 	                $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
 

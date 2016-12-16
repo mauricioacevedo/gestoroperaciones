@@ -12338,6 +12338,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			FECHA_ESTADO:gestion.FECHA_ESTADO,
 			fecha_inicio:$scope.fecha_inicio,
 			concepto_final:gestion.CONCEPTO_ID,
+			CONCEPTO_ID:gestion.CONCEPTO_ID,
 			CONCEPTO_ANTERIOR:gestion.CONCEPTO_ID,
 			source:InfoPedido.SOURCE,
 			PEDIDO_ID:gestion.PEDIDO_ID,
