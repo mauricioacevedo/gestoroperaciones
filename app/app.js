@@ -13351,7 +13351,7 @@ app.run(function($rootScope, $compile, $window, notify, services) {
                 //input.focus();
                 input.select();
                 document.execCommand('Copy');
-				notify('Copiado');
+				notify({ message:'Copiado', duration:'1000',position:'right'} );
                 input.remove();
             };
 
