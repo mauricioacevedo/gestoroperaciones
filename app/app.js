@@ -12352,15 +12352,17 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			user:$rootScope.logedUser.login,
 			estado:InfoPedido.ESTADO_PROCESO,
 			duracion:'',
-			fecha_estado:gestion.FECHA_ESTADO,
+			FECHA_ESTADO:gestion.FECHA_ESTADO,
 			fecha_inicio:$scope.fecha_inicio,
-			concepto_anterior:gestion.CONCEPTO_ID,
+			CONCEPTO_ID:gestion.CONCEPTO_ID,
+			CONCEPTO_ANTERIOR:gestion.CONCEPTO_ID,
 			source:InfoPedido.SOURCE,
-			pedido_id:gestion.PEDIDO_ID,
-			subpedido_id:gestion.SUBPEDIDO_ID,
+			PEDIDO_ID:gestion.PEDIDO_ID,
+			SUBPEDIDO_ID:gestion.SUBPEDIDO_ID,
 			municipio_id:gestion.MUNICIPIO_ID,
-			motivo:InfoPedido.OBSERVACIONES_PROCESO,
-			nuevopedido:InfoPedido.INCIDENTE
+			motivo_malo:InfoPedido.OBSERVACIONES_PROCESO,
+			nuevopedido:InfoPedido.INCIDENTE,
+			ID:gestion.ID
 			}
 
 		console.log($scope.InfoGestionPr);
