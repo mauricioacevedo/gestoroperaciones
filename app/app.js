@@ -12353,7 +12353,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			ID:gestion.ID
 			}
 
-		console.log($scope.InfoGestion);
+		//console.log($scope.InfoGestion);
 
 
 		services.insertPedido($scope.InfoGestion).then(
