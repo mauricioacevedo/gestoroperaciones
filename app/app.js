@@ -12342,7 +12342,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			source:InfoPedido.SOURCE,
 			PEDIDO_ID:gestion.PEDIDO_ID,
 			SUBPEDIDO_ID:gestion.SUBPEDIDO_ID,
-			municipio_id:gestion.MUNICIPIO_ID,
+			MUNICIPIO_ID:gestion.MUNICIPIO_ID,
 			motivo_malo:InfoPedido.OBSERVACIONES_PROCESO,
 			nuevopedido:InfoPedido.INCIDENTE,
 			ID:gestion.ID
