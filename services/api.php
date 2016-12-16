@@ -1532,6 +1532,15 @@ if($novedad=='AGENDADO'||$novedad=='AGENDADO MANUAL'||$novedad=='AGENDADO_FUTURO
 
 				}else{
 					//var_dump($concepto_final);
+
+					if($concepto_final['FECHA_FINAL']==''){
+						$concepto_final['FECHA_FINAL']=$today;
+					}
+
+					if($concepto_final['CONCEPTO_ID']==''){
+						$concepto_final['CONCEPTO_ID']=$CONCEPT;
+					}
+
 					$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado,concepto_final,source,concepto_anterior_fenix,fecha_estado_fenix) VALUES(".trim($values,',').",'$fecha_estado','".$concepto_final['CONCEPTO_ID']."','$sourcee','".$concepto_final['CONCEPTO_ID_ANTERIOR_FENIX']."','".$concepto_final['FECHA_FINAL']."')";
 	                                $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
                                     $concepto_fen=$concepto_final['CONCEPTO_ID'];
