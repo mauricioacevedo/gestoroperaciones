@@ -12326,6 +12326,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		//console.log(InfoPedido); //Seguimiento
 		//console.log(gestion);//GEstion
 		//console.log(status); //Cerrado, Pendiente o Malo
+		var hours = Math.abs($scope.fecha_inicio - $scope.fecha_fin) / 36e5;
 
 		$scope.InfoGestion={
 			pedido:gestion.PEDIDO_ID,
@@ -12334,7 +12335,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			fecha_fin:$scope.fecha_fin,
 			user:$rootScope.logedUser.login,
 			estado:$scope.stautsGo,
-			duracion:'',
+			duracion:hours,
 			FECHA_ESTADO:gestion.FECHA_ESTADO,
 			fecha_inicio:$scope.fecha_inicio,
 			concepto_final:gestion.CONCEPTO_ID,
@@ -12349,7 +12350,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			ID:gestion.ID
 			}
 
-		console.log($scope.InfoGestion);
+		//console.log($scope.InfoGestion);
 
 
 		services.insertPedido($scope.InfoGestion).then(
