@@ -12326,7 +12326,8 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		//console.log(InfoPedido); //Seguimiento
 		//console.log(gestion);//GEstion
 		//console.log(status); //Cerrado, Pendiente o Malo
-		var hours = Math.abs($scope.fecha_inicio - $scope.fecha_fin) / 36e5;
+		//var hours = Math.abs($scope.fecha_inicio - $scope.fecha_fin) / 360000;
+		var hours = Math.floor(Math.abs($scope.fecha_fin - $scope.fecha_inicio) / 36e5)
 
 		$scope.InfoGestion={
 			pedido:gestion.PEDIDO_ID,
