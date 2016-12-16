@@ -12328,23 +12328,6 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		//console.log(status); //Cerrado, Pendiente o Malo
 
 		$scope.InfoGestion={
-			ID:gestion.ID,
-			OFERTA:gestion.PEDIDO_ID,
-			MUNICIPIO_ID:gestion.MUNICIPIO_ID,
-			TRANSACCION:gestion.DESC_TIPO_TRABAJO,
-			ESTADO:gestion.CONCEPTO_ID,
-			FECHA:gestion.FECHA_ESTADO,
-			DURACION:null,
-			INCIDENTE:InfoPedido.INCIDENTE,
-			FECHA_INICIO:$scope.fecha_inicio,
-			FECHA_FIN:$scope.fecha_fin,
-			ESTADO_FINAL:InfoPedido.ESTADO_PROCESO,
-			OBSERVACION:InfoPedido.OBSERVACIONES_PROCESO,
-			USUARIO:$rootScope.logedUser.login,
-			STATUS:$scope.stautsGo
-			}
-
-		$scope.InfoGestionPr={
 			pedido:gestion.PEDIDO_ID,
 			fuente:InfoPedido.FUENTE,
 			actividad:'ESTUDIO',
@@ -12367,8 +12350,8 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 		console.log($scope.InfoGestionPr);
 
-/*
-		services.insertTransaccionNCA($scope.InfoGestion).then(
+
+		services.insertPedido($scope.InfoGestion).then(
 
 			  function(data){
 
@@ -12387,7 +12370,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 				  $scope.busy = "";
 				  $scope.error = "";
 				  $scope.iplaza = 'TODOS';
-				  $scope.fuente = "SIEBEL";
+				  $scope.fuente = "EDATEL";
 				  $scope.buscar = null;
 				  return data.data;
 
@@ -12398,7 +12381,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 					$scope.errorDatos="No se pudo guardar";
 
 				  }
-			  ); */
+			  );
 
 
 
