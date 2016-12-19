@@ -244,7 +244,7 @@
 						<div class="panel-body fixed-panel" >
 							<table class = "table small table-striped table-condensed">
 								<thead>
-									<tr >
+									<tr>
 										<th>Pedido</th>
 										<th>Fecha Cita</th>
 										<th>Estado</th>
@@ -255,14 +255,26 @@
 								</thead>
 								<tbody>
 									<tr ng-repeat="data in ListadoPrograUser as progra" class="animated bounceInRight">
-										<td><button type="button" class="btn btn-xs btn-warning" ng-click="executeCopy(data.PEDIDO_ID)">
+										<td>
+											<button type="button" class="btn btn-xs btn-warning" ng-click="executeCopy(data.PEDIDO_ID)">
 											{{data.PEDIDO_ID}}
-										</button></td>
-										<td>{{data.FECHA_CITA}}</td>
-										<td>{{data.STATUS}}</td>
-										<td>{{data.MOTIVO_MALO}}</td>
-										<td ng-class="{'ALARMADO':'label label-warning','GESTIONAR':'label label-danger','SIN CITA':'label label-info'}[data.MENSAJE]">{{data.MENSAJE}}</td>
-										<td>{{data.FECHA_GESTION}}</td>
+											</button>
+										</td>
+										<td>
+											{{data.FECHA_CITA}}
+										</td>
+										<td>
+											{{data.STATUS}}
+										</td>
+										<td>
+											{{data.MOTIVO_MALO}}
+										</td>
+										<td ng-class="{'ALARMADO':'label label-warning','GESTIONAR':'label label-danger','SIN CITA':'label label-info'}[data.MENSAJE]">
+											{{data.MENSAJE}}
+										</td>
+										<td>
+											{{data.FECHA_GESTION}}
+										</td>
 
 									</tr>
 								</tbody>
