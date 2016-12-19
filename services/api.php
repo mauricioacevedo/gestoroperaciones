@@ -6859,7 +6859,7 @@ $queryConceptosFcita=" select ".
             if($parametroBusqueda=='') $parametroBusqueda ='FECHA_CREACION';
 
             $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
-                        " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.pedido ".
+                        " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
                         " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
                         " from gestor_pendientes_activacion_siebel b ".
                         "  where b.STATUS='PENDI_ACTI'  ".
