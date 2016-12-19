@@ -445,13 +445,10 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'eliminarfile?file='+file);//eliminar documento activacion
         }
 
-<<<<<<< HEAD
      obj.gettransaccion = function(transaccion){
                 return $http.get(serviceBase + 'gettransaccion?transaccion='+transaccion);
         }
-=======
 
->>>>>>> origin/master
 
 //------------------------------------------------------fin_Activacion
 
