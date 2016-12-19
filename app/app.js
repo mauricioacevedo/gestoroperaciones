@@ -12271,7 +12271,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			  function(data){
 
 				 if(data.data==''){
-						$scope.errorDatos="No hay Registros. Intente con otra oferta";
+						$scope.errorDatos="No hay Registros. Intente con otro Motivo";
 					 	$scope.peds={};
 						$scope.mpedido={};
 						$scope.busy="";
