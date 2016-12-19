@@ -1011,7 +1011,7 @@ private function csvListadoActivacion(){
 						 $programacion=$datetime->format('Y-m-d 08:00:00');
 						//$tomorrow = date("Y-m-d H:i:s");
 					}else{//pedido programado para entregarse el dia de hoy, mas tarde
-						$today2 = date("Y-m-d ".$pedido['horaLlamar'].":00:00");
+						$today2 = date("Y-m-d ".$pedido['horaLlamar'].":00");
 						//echo "PROGRAMACION: ".$today2;
 						$programacion=$today2;
 					}
