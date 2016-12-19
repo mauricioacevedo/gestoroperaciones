@@ -13399,7 +13399,7 @@ $rootScope.ProgramadosModal=function(){
         services.getListadoProgramados($rootScope.logedUser.login).then(
 
           function(data){
-            $rootScope.errorDatos=null;
+            $rootScope.errorMalos=null;
             $rootScope.ListadoPrograUser=data.data[0];
 
             //console.log(data);
@@ -13408,7 +13408,7 @@ $rootScope.ProgramadosModal=function(){
         }
         , function errorCallback(response) {
 
-            $rootScope.errorDatos="Sin pedidos";
+            $rootScope.errorMalos="Sin pedidos";
 
             //console.log($scope.errorDatos);
 
