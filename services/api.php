@@ -7020,16 +7020,17 @@ $queryConceptosFcita=" select ".
 
 				$transaccion="  ";
 
-				$transaccion="";
+			}else{
+                $transaccion=" and TRANSACCION='$transaccion' ";
+            }
 
-			}
-
-	                $query=" SELECT DISTINCT ( CASE WHEN TRANSACCION =  '' THEN  'VACIOS' ".
-                            " WHEN TRANSACCION = null THEN 'VACIOS'  ".
-                             "  ELSE TRANSACCION END) AS TRANSA ".
+	                $query=" SELECT DISTINCT ( CASE WHEN PRODUCTO =  '' THEN  'VACIOS' ".
+                            " WHEN PRODUCTO = null THEN 'VACIOS'  ".
+                             "  ELSE PRODUCTO END) AS TRANSA ".
                              " FROM gestor_pendientes_activacion_siebel  ".
                              " WHERE STATUS =  'PENDI_ACTI'  ".
                              " and ASESOR =''  ".
+                            $transaccion.
                              " and (FECHA_CREACION <=CURDATE() OR FECHA_CREACION='9999-00-00') ".
                             " ORDER BY 1 ASC ";
 
