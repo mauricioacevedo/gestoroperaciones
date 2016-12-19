@@ -269,8 +269,8 @@
 										<td>
 											{{data.MOTIVO_MALO}}
 										</td>
-										<td ng-class="{'ALARMADO':'label label-warning','GESTIONAR':'label label-danger','SIN CITA':'label label-info'}[data.MENSAJE]">
-											{{data.MENSAJE}}
+										<td>
+											<span ng-class="{'ALARMADO':'label label-warning','GESTIONAR':'label label-danger','SIN CITA':'label label-info'}[data.MENSAJE]">{{data.MENSAJE}}</span>
 										</td>
 										<td>
 											{{data.FECHA_GESTION}}
