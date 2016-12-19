@@ -10318,6 +10318,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.pedido1=pedido1;
         $scope.error="";
         $scope.TRANSACCION='SUSPENDER';
+        $scope.TIPIFICACION='CAMBIAR';
 
 
 
