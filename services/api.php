@@ -7029,7 +7029,7 @@ $queryConceptosFcita=" select ".
                              " and (FECHA_CREACION <=CURDATE() OR FECHA_CREACION='9999-00-00') ".
                             " ORDER BY 1 ASC ";
 
-			//echo $query;
+			echo $query;
 
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
