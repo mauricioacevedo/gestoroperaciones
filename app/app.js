@@ -5109,10 +5109,10 @@ $(document).click(  function (e) {
                 loader.className='glyphicon glyphicon-refresh fa-spin';
 
                 $scope.pedido={};
-		$scope.error="";
-		console.log($scope.peds[index]);
+				$scope.error="";
+		//console.log($scope.peds[index]);
                 angular.copy($scope.peds[index],$scope.pedido);
-                console.log($scope.pedido);
+                //console.log($scope.pedido);
                 if($scope.pedido.estado===undefined || $scope.pedido.estado==''){
                         alert('Por favor diligenciar todos los campos.');
                         loader.className='';
@@ -5189,7 +5189,7 @@ $(document).click(  function (e) {
    };
 		
         $scope.baby = function(pedido) {
-                console.log(pedido);
+                //console.log(pedido);
                 services.getPedidosPorPedido(pedido).then(function(data){
                       console.log(data.data);
                       $scope.historico_pedido=data.data;
@@ -5232,8 +5232,8 @@ $(document).click(  function (e) {
                                 $scope.pedido1=$scope.peds[0].PEDIDO_ID;
                                 $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 
-				console.log("esta es la info que trae el deme pedido");
-				console.log($scope.peds[0].ASESOR);
+				//console.log("esta es la info que trae el deme pedido");
+				//console.log($scope.peds[0].ASESOR);
 				if($scope.peds[0].ASESOR!=""&&$scope.peds[0].ASESOR!=undefined){
                                         $scope.busy=$scope.peds[0].ASESOR;
                                         $scope.error="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
