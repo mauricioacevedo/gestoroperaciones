@@ -7018,8 +7018,6 @@ $queryConceptosFcita=" select ".
 
 			if($transaccion==""||$transaccion=="TODO"){
 				$transaccion="  ";
-			}else{
-				$transaccion=" and TRANSACCION='$transaccion' ";
 			}
 
 	                $query=" SELECT DISTINCT ( CASE WHEN TRANSACCION =  '' THEN  'VACIOS' ".
@@ -7028,7 +7026,6 @@ $queryConceptosFcita=" select ".
                              " FROM gestor_pendientes_activacion_siebel  ".
                              " WHERE STATUS =  'PENDI_ACTI'  ".
                              " and ASESOR =''  ".
-                            $transaccion.
                              " and (FECHA_CREACION <=CURDATE() OR FECHA_CREACION='9999-00-00') ".
                             " ORDER BY 1 ASC ";
 
