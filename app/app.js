@@ -4768,7 +4768,7 @@ app.controller('GeneralCtrl', function ($scope, $rootScope, $location, $routePar
 	
 });
 
-app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
+app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,$timeout, services) {
 
          var userID=$cookieStore.get('logedUser').login;
         document.getElementById('logout').className="btn btn-md btn-danger";
