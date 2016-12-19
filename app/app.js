@@ -13387,8 +13387,7 @@ app.run(function($rootScope, $compile, $window, notify, services) {
 
 
 // --------------------------------------------------------------------------------  BtnTools Buscadores Ventanas
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
 // Mostrar Modal Servicios dejados como Malos-----------------------------------------------------------------
 
@@ -13428,10 +13427,7 @@ $rootScope.ProgramadosModal=function(){
   };
 	$rootScope.listaProgramados();
 // -----------------------------------------------------------------Mostrar Modal Servicios dejados como Malos
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
+
 });
 
 app.run(['$location', '$rootScope', function($location, $rootScope) {
