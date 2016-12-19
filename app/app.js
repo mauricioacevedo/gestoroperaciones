@@ -5381,7 +5381,7 @@ $scope.intervalLightKPIS = setInterval(function(){
         $scope.$on(
                 "$destroy",
                         function( event ) {
-                            $timeout.cancel(timer);
+                            $timeout.cancel($scope.intervalLightKPIS);
                             clearInterval($scope.intervalLightKPIS);
           });
 
