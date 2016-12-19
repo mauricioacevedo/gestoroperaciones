@@ -8479,7 +8479,7 @@ private function listadoTransaccionesActividades(){
                         }
 
 
-                        $query="SELECT * FROM transacciones_actividades where FECHA between '$fechaini 00:00:00' and '$fechafin 23:59:59' order by FECHA desc limit 100 offset $page";
+                        $query="SELECT * FROM transacciones_actividades where USUARIO='$id' and FECHA between '$fechaini 00:00:00' and '$fechafin 23:59:59' order by FECHA desc limit 100 offset $page";
                         //echo $query;
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
                         if($r->num_rows > 0){
