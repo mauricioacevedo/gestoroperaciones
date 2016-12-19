@@ -907,7 +907,7 @@ obj.getDepartamentosParametrizacionSiebel = function(){
         }
 
 	obj.getListadoProgramados = function (usuario_id) {
-     return $http.post(serviceBase + 'listaProgramadosUser', {"usuario_id":usuario_id});
+     return $http.post(serviceBase + 'listaProgramadosUser', {usuario_id:usuario_id});
         };
 
 	// Edatel Asignaciones ---------------------------------------------------------
