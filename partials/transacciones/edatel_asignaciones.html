@@ -236,7 +236,7 @@
 							<ul class="nav navbar-nav navbar-right">
 								<div class="col-md-1 col-xs-1 ">
 									<div data-ng-if="loading">
-										<img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="img/loader.gif" />
+										<img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif" />
 									</div>
 								</div>
 							</ul>
@@ -246,10 +246,10 @@
 								<thead>
 									<tr >
 										<th>Pedido</th>
-										<th>Programación</th>
+										<th>Fecha Cita</th>
 										<th>Estado</th>
-										<th>Fecha Gestión</th>
-										<th>Sub acción</th>
+										<th>Motivo</th>
+										<th>Agenda</th>
 										<th>Gestión</th>
 										<th>Acción</th>
 									</tr>
@@ -259,12 +259,11 @@
 										<td><button type="button" class="btn btn-xs btn-warning" ng-click="executeCopy(data.PEDIDO_ID)">
 											{{data.PEDIDO_ID}}
 										</button></td>
-										<td>{{data.PROGRAMACION}}</td>
+										<td>{{data.FECHA_CITA}}</td>
 										<td>{{data.STATUS}}</td>
-										<td>{{data.FECHA_FIN}}</td>
-										<td>{{data.SUBACCION}}</td>
-										<td>{{data.GESTION}}</td>
-										<td ng-class="{'EN ESPERA':'label label-info','LLAMAR':'label label-danger'}[data.MENSAJE]">{{data.MENSAJE}}</td>
+										<td>{{data.MOTIVO_MALO}}</td>
+										<td ng-class="{'ALARMADO':'label label-warning','GESTIONAR':'label label-danger','SIN CITA':'label label-info'}[data.MENSAJE]">{{data.MENSAJE}}</td>
+										<td>{{data.FECHA_GESTION}}</td>
 										<td> </td>
 
 									</tr>
