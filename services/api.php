@@ -12152,8 +12152,12 @@ $sqlfenix=
             //$this->dbDespachoConnect();
 
 			//$params = json_decode(file_get_contents('php://input'),true);
+		 	$params = json_decode(file_get_contents('php://input'),true);
+                        //$params = file_get_contents('php://input');
 
-			$usuario_id=$this->_request['usuario_id'];
+            $usuario_id = $params['usuario_id'];
+
+			//$usuario_id=$this->_request['usuario_id'];
 
             //$usuario_id = $params['usuario_id'];
             //$usuario_id = $this->_request['usuario_id'];
