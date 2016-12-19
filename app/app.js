@@ -10235,7 +10235,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
      $scope.gettransaccion1 = function() {
 
-        $scope.transaccion={};
+        $scope.Transaccion={};
             services.gettransaccion($scope.transaccion).then(function(data){
             $scope.transaccion=data.data;
             console.log($scope.transaccion);
