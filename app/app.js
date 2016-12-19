@@ -445,9 +445,13 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'eliminarfile?file='+file);//eliminar documento activacion
         }
 
+<<<<<<< HEAD
      obj.gettransaccion = function(transaccion){
                 return $http.get(serviceBase + 'gettransaccion?transaccion='+transaccion);
         }
+=======
+
+>>>>>>> origin/master
 
 //------------------------------------------------------fin_Activacion
 
@@ -10245,6 +10249,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 
+
     //  ---------------------------------fin logueo-------------------------------------------
 
 
@@ -13386,6 +13391,7 @@ app.run(function($rootScope, $compile, $window, notify, services) {
 
 // --------------------------------------------------------------------------------  BtnTools Buscadores Ventanas
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 // Mostrar Modal Servicios dejados como Malos-----------------------------------------------------------------
 
@@ -13425,6 +13431,8 @@ $rootScope.ProgramadosModal=function(){
   };
 	$rootScope.listaProgramados();
 // -----------------------------------------------------------------Mostrar Modal Servicios dejados como Malos
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 });
