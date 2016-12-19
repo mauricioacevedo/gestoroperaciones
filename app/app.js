@@ -1400,7 +1400,7 @@ $scope.actualizarGraficaCambioNuevoREDCO  = function (){
 
     services.actualizarTablaGraficaCambioNuevoREDCO().then(function(data){
             $scope.tabla=data.data[0];
-            console.log ($scope.tabla);
+            //console.log ($scope.tabla);
                 return data.data;
         });
 
@@ -12211,7 +12211,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 			$scope.peds = data.data;
 
-			console.log($scope.peds);
+			//console.log($scope.peds);
 
 			if(data.data==''){
 
@@ -12393,8 +12393,8 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 
 
-
 	};
+
 
 
 
