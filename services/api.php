@@ -12086,7 +12086,96 @@ $sqlfenix=
 		//------------------------Listado de Gestor Conceptos
 
 
+//PEDIDOS PROGRAMADOS POR USER -----------------------------------------------
 
+	private function listaProgramadosUser(){
+
+			$usuario_id="";
+			$parametro="";
+
+
+            if($this->get_request_method() != "POST"){
+                        $this->response('',406);
+                        }
+
+            //$this->dbDespachoConnect();
+
+			$params = json_decode(file_get_contents('php://input'),true);
+
+            $usuario_id = $params['usuario_id'];
+            //$usuario_id = $this->_request['usuario_id'];
+			$today = date("Y-m-d");
+
+
+			if($usuario_id!=''){
+
+				$parametro=" and u.USUARIO_ID ='$usuario_id'";
+			};
+
+
+             $query="	SELECT ".
+					"	P.PEDIDO_ID ".
+					"	, max(P.FECHA_CITA) as FECHA_CITA ".
+					"	, max(P.STATUS) as STATUS ".
+					"	, M.MOTIVO_MALO ".
+					"	, case  ".
+					"		when max(P.FECHA_CITA)='9999-00-00' THEN 'SIN CITA' ".
+					"		when max(P.FECHA_CITA)<=CURRENT_DATE() THEN 'ALARMADO' ".
+					"	    when max(P.FECHA_CITA)=DATE_ADD(CURDATE(), INTERVAL 1 DAY) then 'GESTIONAR' ".
+					"	    else 'EN ESPERA'  ".
+					"	    end as MENSAJE ".
+					"	, M.USER as USUARIO_ID ".
+					"	, M.FECHA_FIN as FECHA_GESTION ".
+					"	FROM portalbd.informe_petec_pendientesm P ".
+					"	inner join (SELECT   ".
+					"				h.ID,  ".
+					"					h.PEDIDO_ID,  ".
+					"					h.user,  ".
+					"					h.estado, ".
+					"					h.MOTIVO_MALO, ".
+					"					h.FECHA_FIN ".
+					"			FROM  ".
+					"				portalbd.pedidos h  ".
+					"			WHERE  ".
+					"				1 = 1 AND h.estado  in ('MALO') ".
+					"					AND h.ID = (SELECT   ".
+					"						MAX(hh.ID)  ".
+					"					FROM  ".
+					"						portalbd.pedidos hh  ".
+					"					WHERE  ".
+					"						hh.PEDIDO_ID = h.PEDIDO_ID ".
+					"					GROUP BY hh.PEDIDO_ID)) M ".
+					"	on P.PEDIDO_ID=M.PEDIDO_ID ".
+					"	WHERE P.STATUS='MALO' ".
+					"	and M.user='$usuario_id' ".
+					"	group by P.PEDIDO_ID ".
+					"	order by 2 asc ";
+
+                      // echo $query;
+                     $rst = $this->mysqli->query($query);
+
+						//echo $this->mysqli->query($sqlLogin);
+						//
+					if ($rst->num_rows > 0){
+
+						$resultado=array();
+
+						while($row=$rst->fetch_assoc()){
+
+							//$row['USUARIO_NOMBRE']=utf8_encode($row['USUARIO_NOMBRE']);
+							$resultado[]=$row;
+
+
+						}
+							$this->response($this->json(array($resultado)), 201);
+
+
+					}else{
+							$error="Sin registros";
+						$this->response($this->json($error), 203);
+					}
+
+         }//-----------------------------------------------PEDIDOS PROGRAMADOS POR USER
 
 
 

@@ -498,9 +498,6 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
 
-
-
-
     obj.getListadoTips = function(){
                 return $http.get(serviceBase + 'getListadoTips');
         }
@@ -543,23 +540,19 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 	
 	obj.getListadoTransaccionesNCA = function(fecha_inicio,fecha_fin,page){
                 return $http.get(serviceBase + 'listadoTransaccionesNCA?fechaInicio='+fecha_inicio+'&fechaFin='+fecha_fin+'&page='+page);
-        }
-
-
+     }
 
 	obj.getListadoUsuarios  = function(){
                 return $http.get(serviceBase + 'listadoUsuarios');
-        }
-
+     }
 
 	obj.updateParametro  = function(parametro,valor,user){
                 return $http.get(serviceBase + 'updateParametro?parametro='+parametro+'&valor='+valor+'&user='+user);
-        }
+     }
 
     obj.buscarParametro  = function(parametro){
                 return $http.get(serviceBase + 'buscarParametro?parametro='+parametro);
     }
-
 
     obj.getFeed  = function(){
                 return $http.get(serviceBase + 'getFeed');
@@ -569,28 +562,20 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'getLoginFeed');
         }
 
-
 	obj.insertTransaccionNCA = function (transaccion) {//insertar datos NCA
                 var data= $http.post(serviceBase + 'insertTransaccionNCA', {"transaccion":transaccion});
                 return data;
     };
-
-
 
     obj.editTransaccionNCA = function (transaccionNCA) {//editar datos de NCA cambio
         var data= $http.post(serviceBase + 'editTransaccionNCA', {"transaccionNCA":transaccionNCA});
         return data;
     };
 
-
-
     obj.getTransaccionNCA = function (ncaID) {
         return $http.get(serviceBase + 'getTransaccionNCA?ncaID='+ncaID);
     };
 
-
-
-    
     obj.getListadoConceptos  = function(){
                 return $http.get(serviceBase + 'getConceptos');
         }
@@ -598,7 +583,6 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
     obj.getListadoTransaccionesORD = function(fecha_inicio,fecha_fin,page){
                 return $http.get(serviceBase + 'listadoTransaccionesORD?fechaInicio='+fecha_inicio+'&fechaFin='+fecha_fin+'&page='+page);
         }
-
 
     obj.insertTransaccionORD = function (transaccion) {
                 var data= $http.post(serviceBase + 'insertTransaccionORD', {"transaccion":transaccion});
@@ -632,18 +616,17 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 		return $http.get(serviceBase + 'getUsuario?userID='+userID);
 	};
 
-        obj.getBuscarPedidoRegistro = function(bpedido,concepto){
+    obj.getBuscarPedidoRegistro = function(bpedido,concepto){
                 return $http.get(serviceBase + 'buscarPedidoRegistro?bpedido='+bpedido+'&concepto='+concepto);
         }
 
 
-
-        obj.getBuscarDatos = function(usuario){
+    obj.getBuscarDatos = function(usuario){
                 return $http.get(serviceBase + 'BuscarDatos?usuario='+usuario);
         }
 
 
-        obj.getCsvNCA = function(login,fechaIni,fechaFin){
+   obj.getCsvNCA = function(login,fechaIni,fechaFin){
                 return $http.get(serviceBase + 'csvNCA?login='+login+'&fechaIni='+fechaIni+'&fechaFin='+fechaFin);
         }
 
@@ -656,8 +639,6 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'csvPreInstalaciones?login='+login);
         }
 		
-
-
 
 	obj.getCsvFenixNal  = function(login){
                 return $http.get(serviceBase + 'csvFenixNal?login='+login);
@@ -919,6 +900,10 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 	obj.getPedidosGestorUser = function(grupo){
         return $http.get(serviceBase + 'PedidosGestorUser?grupo='+grupo);
         }
+
+	obj.getListadoProgramados = function (usuario_id) {
+     return $http.post(serviceBase + 'listaProgramadosUser', {"usuario_id":usuario_id});
+        };
 
 	// Edatel Asignaciones ---------------------------------------------------------
 
