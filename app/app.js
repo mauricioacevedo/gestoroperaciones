@@ -13408,6 +13408,7 @@ $rootScope.ProgramadosModal=function(){
           });
 
   };
+	$rootScope.listaProgramados();
 // -----------------------------------------------------------------Mostrar Modal Servicios dejados como Malos
 });
 
