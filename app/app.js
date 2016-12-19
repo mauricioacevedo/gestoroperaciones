@@ -445,6 +445,10 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'eliminarfile?file='+file);//eliminar documento activacion
         }
 
+     obj.gettransaccion = function(transaccion){
+                return $http.get(serviceBase + 'gettransaccion?transaccion='+transaccion);
+        }
+
 //------------------------------------------------------fin_Activacion
 
 
@@ -10227,6 +10231,17 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                     divi.style.visibility="hidden";
                     $location.path('/');
             };
+
+     $scope.gettransaccion1 = function() {
+
+        $scope.transaccion={};
+            services.gettransaccion($scope.transaccion).then(function(data){
+            $scope.transaccion=data.data;
+            //console.log($scope.proceso);
+
+                        return data.data;
+                });
+    };
 
 
 
