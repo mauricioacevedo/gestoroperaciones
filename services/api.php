@@ -6816,6 +6816,7 @@ $queryConceptosFcita=" select ".
                                 $this->response('',406);
                         }
                          $user = $this->_request['userID'];
+                        $transaccion = $this->_request['transaccion'];
 
 
             $filename = '../tmp/control-threads-agen.txt';
