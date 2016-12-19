@@ -7017,7 +7017,7 @@ $queryConceptosFcita=" select ".
 			$transaccion = $this->_request['transaccion'];
 
 			if($transaccion==""||$transaccion=="TODO"){
-				$transaccion="  ";
+				$transaccion="";
 			}
 
 	                $query=" SELECT DISTINCT ( CASE WHEN TRANSACCION =  '' THEN  'VACIOS' ".
@@ -7029,7 +7029,7 @@ $queryConceptosFcita=" select ".
                              " and (FECHA_CREACION <=CURDATE() OR FECHA_CREACION='9999-00-00') ".
                             " ORDER BY 1 ASC ";
 
-			echo $query;
+			//echo $query;
 
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
