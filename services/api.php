@@ -12204,7 +12204,7 @@ $sqlfenix=
 					"	group by P.PEDIDO_ID ".
 					"	order by 2 asc ";
 
-                      // echo $query;
+                      echo $query;
                      $rst = $this->mysqli->query($query);
 
 						//echo $this->mysqli->query($sqlLogin);
