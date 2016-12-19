@@ -10235,7 +10235,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
      $scope.gettransaccion1 = function() {
 
-        $scope.transaccion={};
+        $scope.Transaccion={};
             services.gettransaccion($scope.transaccion).then(function(data){
             $scope.transaccion=data.data;
             console.log($scope.transaccion);
@@ -10261,7 +10261,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.accRdy=false;
         $scope.FECHA_GESTION=null;
         $scope.FECHA_CREACION=null;
-        $scope.TRANSACCION='SUSPENDER';
+        $scope.TRANSACCION='TODO';
         $scope.TIPIFICACION='CAMBIAR';
 
 
@@ -10318,7 +10318,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.busy="";
         $scope.pedido1=pedido1;
         $scope.error="";
-        $scope.TRANSACCION='SUSPENDER';
+        $scope.TRANSACCION='TODO';
         $scope.TIPIFICACION='CAMBIAR';
 
 
