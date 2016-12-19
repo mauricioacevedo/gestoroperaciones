@@ -10261,7 +10261,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.accRdy=false;
         $scope.FECHA_GESTION=null;
         $scope.FECHA_CREACION=null;
-        $scope.TRANSACCION='TODO';
+        $scope.transaccion='TODO';
         $scope.TIPIFICACION='CAMBIAR';
 
 
