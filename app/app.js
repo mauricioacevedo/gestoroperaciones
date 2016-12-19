@@ -420,9 +420,9 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
          obj.getpedidosPorPedidoActivacion = function(pedido){//pedido por pedido activacion
                 return $http.get(serviceBase + 'pedidosPorPedidoActivacion?pedido=' + pedido);
         }
-        obj.demePedidoActivacion = function(user,pedido,transaccion){//deme pedido activacion
+        obj.demePedidoActivacion = function(user,pedido,transaccion,pedido_actual){//deme pedido activacion
             //console.log("user="+user+",pedido="+pedido);
-		return $http.get(serviceBase+'demePedidoActivacion?pedidoID='+pedido+'&userID='+user+ '&transaccion='+transaccion);
+		return $http.get(serviceBase+'demePedidoActivacion?pedidoID='+pedido+'&userID='+user+ '&transaccion='+transaccion+'&pedido_actual='+pedido_actual);
     	}
 
         obj.getBuscarpedidoactivacion = function(pedido,pedido_actual,user){//buscar pedido activacion
