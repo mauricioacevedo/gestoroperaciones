@@ -11441,6 +11441,7 @@ $sqlfenix=
 				}
 
 				$pedido = $this->_request['pedidoID'];
+				$pedido=trim($pedido," ");
 
 				$user = $this->_request['userID'];
 
