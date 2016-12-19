@@ -13404,7 +13404,7 @@ $rootScope.ProgramadosModal=function(){
 
         $rootScope.ListadoPrograUser=[];
 
-        services.getListadoProgramados($rootScope.galletainfo.USUARIO_ID).then(
+        services.getListadoProgramados($rootScope.logedUser.login).then(
 
           function(data){
             $errorDatos=null;
