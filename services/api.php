@@ -6889,23 +6889,7 @@ $queryConceptosFcita=" select ".
                                                 $mypedido=$row['PEDIDO'];
                                                 $mypedidoresult=$rta;
                                                 break;
-                                        //} //2016-04-12: SE QUITO VALIDACION CONTRA FENIX
 
-                    /*
-                                        if($rta['ESTADO_BLOQUEO']=='N'){//me sirve, salgo del ciclo y busco este pedido...
-                                                //echo "el pedido es: ".$row['PEDIDO_ID'];
-
-                                                if($row['BEENHERE']==$user){
-                                                        $pedidos_ignorados=$pedidos_ignorados.$row['PEDIDO_ID'].',';
-                                                        //este pedido ya lo vio el dia de hoy
-                                                        //busco otro pedido----
-                                                        continue;
-                                                }
-
-                                                $mypedido=$row['PEDIDO_ID'];
-                                                $mypedidoresult=$rta;
-                                                break;
-                                        }*/
                                 }
             //2.traigo solo los pedidos mas viejos en la base de datos...
                         } else {
