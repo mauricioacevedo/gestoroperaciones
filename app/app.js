@@ -12508,15 +12508,44 @@ $scope.onChangeAccion=function(){
  };
 
 
-$scope.itemArray = [
-        {id: 1, name: 'first'},
-        {id: 2, name: 'second'},
-        {id: 3, name: 'third'},
-        {id: 4, name: 'fourth'},
-        {id: 5, name: 'fifth'},
-    ];
+// Mostrar Modal Servicios dejados como Malos-----------------------------------------------------------------
 
-$scope.selected = { value: $scope.itemArray[0] };
+$scope.ProgramadosModal=function(){
+  $scope.listaProgramados();
+  $scope.errorDatos=null;
+  $scope.TituloModal="Pedidos Programados por: ";
+  //$scope.UserProgramados=$scope.usuario_id;
+
+
+};
+
+
+//Obtener listado de Pedidos Programados por User
+  $scope.listaProgramados=function(){
+
+        $scope.ListadoPrograUser=[];
+
+        services.getListadoProgramados($rootScope.logedUser.login).then(
+
+          function(data){
+            $scope.errorDatos=null;
+            $scope.ListadoPrograUser=data.data[0];
+
+            //console.log(data);
+
+            return data.data;
+        }
+        , function errorCallback(response) {
+
+            $scope.errorDatos="Sin pedidos";
+
+            //console.log($scope.errorDatos);
+
+          });
+
+  };
+	//$rootScope.listaProgramados();
+// -----------------------------------------------------------------Mostrar Modal Servicios dejados como Malos
 
 
 
@@ -13389,44 +13418,7 @@ app.run(function($rootScope, $compile, $window, notify, services) {
 // --------------------------------------------------------------------------------  BtnTools Buscadores Ventanas
 
 
-// Mostrar Modal Servicios dejados como Malos-----------------------------------------------------------------
 
-$rootScope.ProgramadosModal=function(){
-  $rootScope.listaProgramados();
-  $rootScope.errorDatos=null;
-  $rootScope.TituloModal="Pedidos Programados por: ";
-  //$scope.UserProgramados=$scope.usuario_id;
-
-
-};
-
-
-//Obtener listado de Pedidos Programados por User
-  $rootScope.listaProgramados=function(){
-
-        $rootScope.ListadoPrograUser=[];
-
-        services.getListadoProgramados($rootScope.logedUser.login).then(
-
-          function(data){
-            $errorDatos=null;
-            $rootScope.ListadoPrograUser=data.data[0];
-
-            //console.log(data);
-
-            return data.data;
-        }
-        , function errorCallback(response) {
-
-            $rootScope.errorDatos="Sin pedidos";
-
-            //console.log($scope.errorDatos);
-
-          });
-
-  };
-	//$rootScope.listaProgramados();
-// -----------------------------------------------------------------Mostrar Modal Servicios dejados como Malos
 
 });
 
