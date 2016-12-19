@@ -10318,6 +10318,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.pedido1=pedido1;
         $scope.error="";
         $scope.TRANSACCION='SUSPENDER';
+        $scope.TIPIFICACION='CAMBIAR';
 
 
 
@@ -10341,9 +10342,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                 $scope.pedidoinfo=$scope.peds[0].PEDIDO;
                 $scope.pedidoIsActive=true;
                 $scope.errorDatos=null;
-                $scope.TRANSACCION=$scope.peds[0].TRANSACCION;
-                $scope.TIPIFICACION=$scope.peds[0].TIPIFICACION;
-                console.log($scope.TRANSACCION);
+
 
                 if($scope.peds[0].STATUS=="PENDI_ACTI"&&$scope.peds[0].ASESOR!=""){
                             $scope.busy=$scope.peds[0].ASESOR;
