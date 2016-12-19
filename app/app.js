@@ -13386,6 +13386,44 @@ app.run(function($rootScope, $compile, $window, notify, services) {
 
 
 // --------------------------------------------------------------------------------  BtnTools Buscadores Ventanas
+
+// Mostrar Modal Servicios dejados como Malos-----------------------------------------------------------------
+
+$rootScope.ProgramadosModal=function(){
+  $rootScope.listaProgramados();
+  $rootScope.errorDatos=null;
+  $rootScope.TituloModal="Pedidos Programados por: ";
+  //$scope.UserProgramados=$scope.usuario_id;
+
+
+};
+
+
+//Obtener listado de Pedidos Programados por User
+  $rootScope.listaProgramados=function(){
+
+        $rootScope.ListadoPrograUser=[];
+
+        services.getListadoProgramados($rootScope.galletainfo.USUARIO_ID).then(
+
+          function(data){
+            $errorDatos=null;
+            $rootScope.ListadoPrograUser=data.data[0];
+
+            //console.log(data);
+
+            return data.data;
+        }
+        , function errorCallback(response) {
+
+            $rootScope.errorDatos="Sin pedidos";
+
+            //console.log($scope.errorDatos);
+
+          });
+
+  };
+// -----------------------------------------------------------------Mostrar Modal Servicios dejados como Malos
 });
 
 app.run(['$location', '$rootScope', function($location, $rootScope) {
