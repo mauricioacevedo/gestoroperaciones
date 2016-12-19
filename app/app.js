@@ -10261,7 +10261,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.accRdy=false;
         $scope.FECHA_GESTION=null;
         $scope.FECHA_CREACION=null;
-        $scope.TRANSACCION='TODO';
+        $scope.transaccion='TODO';
         $scope.TIPIFICACION='CAMBIAR';
 
 
@@ -10318,15 +10318,14 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.busy="";
         $scope.pedido1=pedido1;
         $scope.error="";
-        $scope.TRANSACCION='TODO';
-        $scope.TIPIFICACION='CAMBIAR';
+
 
 
 
         var demePedidoButton=document.getElementById("iniciar");
             demePedidoButton.setAttribute("disabled","disabled");
             demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
-        var kami=services.demePedidoActivacion($rootScope.logedUser.login,$scope.pedido1,$scope.TRANSACCION,$rootScope.logedUser.name,'').then(function(data){
+        var kami=services.demePedidoActivacion($rootScope.logedUser.login,$scope.pedido1,$scope.transaccion,$rootScope.logedUser.name,'').then(function(data){
 
 
             $scope.peds = data.data;
