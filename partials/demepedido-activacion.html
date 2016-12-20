@@ -22,24 +22,12 @@
 
 							<li>
 								<i class="fa fa-globe" aria-hidden="true"> </i>&nbsp;
-
-                                      <select
+                                <select
                                     class= "btn btn-default btn-xs grupo-select"
                                     style="width: 200px"
-                                    ng-model="transaccion" class="form-control" ng-change="gettransaccion1()"
                                     >
                                     <option value="" disabled>ingrese transaccion</option>
-                                    <option value="SUSPENDER">SUSPENDER</option></option>
-                                    <option value="ELIMINAR">ELIMINAR</option>
-                                    <option value="DISENO">DISENO</option>
-                                    <option value="ELIMINAR COMUNES">ELIMINAR COMUNES</option>
-                                    <option value="NUEVO">NUEVO</option>
-                                    <option value="ACTUALIZAR">ACTUALIZAR</option>
-                                    <option value="ACTUALIZAR COMUNES">ACTUALIZAR COMUNES</option>
-                                    <option value="TRASLADO">TRASLADO</option>
-                                    <option value="ACTUALIZAR">ACTUALIZAR</option>
-                                    <option value="TRASLADO RETIRO">TRASLADO RETIRO</option>
-
+                                    <option ng-repeat="d in transaccionActivacion " value="{{d.TRANSACCION}}">{{d.TRANSACCION}}</option>
                                 </select>
 
 
