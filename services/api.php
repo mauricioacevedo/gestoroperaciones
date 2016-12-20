@@ -12174,6 +12174,7 @@ $sqlfenix=
 
              $query="	SELECT ".
 					"	P.PEDIDO_ID ".
+				 	"	, MAX(P.MUNICIPIO_ID) as MUNICIPIO_ID ".
 					"	, max(P.FECHA_CITA) as FECHA_CITA ".
 					"	, max(P.STATUS) as STATUS ".
 					"	, M.MOTIVO_MALO ".
