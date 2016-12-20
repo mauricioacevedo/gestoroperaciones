@@ -250,6 +250,7 @@
 										<th>Estado</th>
 										<th>Motivo</th>
 										<th>Agenda</th>
+										<th>Municipio</th>
 										<th>Fecha Gestión</th>
 									</tr>
 								</thead>
@@ -267,10 +268,13 @@
 											{{data.STATUS}}
 										</td>
 										<td>
-											{{data.MOTIVO_MALO}}
+											<span ng-class="small">{{data.MOTIVO_MALO}}</span>
 										</td>
 										<td>
 											<span ng-class="{'ALARMADO':'label label-warning','GESTIONAR':'label label-danger','SIN CITA':'label label-info'}[data.MENSAJE]">{{data.MENSAJE}}</span>
+										</td>
+										<td>
+											<span ng-class="small">{{data.MUNICIPIO_ID}}</span>
 										</td>
 										<td>
 											{{data.FECHA_GESTION}}
