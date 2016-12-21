@@ -27,25 +27,19 @@
 									<li>
 										<div class="btn-group">
 											<input style="width:140px"  class="btn btn-default btn-xs " type="text" ng-model="bpedido" ng-change="buscarPedidoRegistro(bpedido);"  placeholder="Buscar..." ng-trim="true" ng-disabled="loading" select-on-click capitalize/>
-											<button type="button" class="btn btn-success btn-xs" ng-click="buscarPedidoRegistro(bpedido)"   ng-disabled="loading" >
-											<i class="fa fa-search-plus" aria-hidden="true"> </i>
+											<button type="button" class="btn btn-primary btn-xs" ng-click="buscarPedidoRegistro(bpedido)"   ng-disabled="loading" >
+											<i class="fa fa-search" aria-hidden="true"> </i>
 											</button>
 										</div>
 
 									</li>
 									<li>&nbsp;</li>
 									<li>
-										<div class="input-daterange" id="datepicker">
-											<input type="text" class="btn btn-default btn-xs"  id="fromDate" name="fromDate" ng-model="data.fechaIni" /><i class="fa fa-calendar fa-fw"></i>
-											<input type="text" class="btn btn-default btn-xs"  id="toDate" name="toDate" ng-model="data.fechaFin" /><i class="fa fa-calendar fa-fw"></i>
-											<button type="button" class="btn btn-primary btn-xs" ng-click="calcularListado()"  title="Buscar" tooltip data-placement="left" ng-disabled="loading">
-												<i class="fa fa-search"  aria-hidden="true"></i>
-											</button>
-											<button type="button" class="btn btn-primary btn-xs" ng-click="csvHistoricos()"  title="Exportar" tooltip data-placement="left" ng-disabled="loading">
+
+											<button type="button" class="btn btn-primary btn-xs" ng-click="csvHistoricos()"  title="Exportar" tooltip data-placement="top" ng-disabled="loading">
 												<i class="fa fa-cloud-download"  aria-hidden="true"></i>
 											</button>
 
-										</div>
 									</li>
 
 
