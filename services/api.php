@@ -2844,7 +2844,7 @@ private function updateFenixReconfiguracion($obj){
                                 }
                         }
 				
-			$query="SELECT id, pedido, fuente, actividad, fecha_fin, estado,duracion,accion,concepto_final,user from pedidos where fecha_fin between '$fechaini 00:00:00' and '$fechafin 23:59:59' $filtro order by fecha_fin desc limit 100 offset $page";
+			$query="SELECT id, pedido_id, fuente, actividad, fecha_fin, estado,duracion,accion,concepto_final,user,motivo_malo from pedidos where fecha_fin between '$fechaini 00:00:00' and '$fechafin 23:59:59' $filtro order by fecha_fin desc limit 100 offset $page";
                         
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
