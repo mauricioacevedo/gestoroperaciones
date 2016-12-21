@@ -15,7 +15,7 @@
 				<div class = "panel-heading nav navbar-default">
 
 						<div class="row">
-							<div class="col-md-10">
+							<div class="col-md-12">
 								<ul class="nav navbar-nav navbar-left">
 									<li>
 										<select ng-model="data.campo" class="btn btn-default btn-xs grupo-select">
@@ -36,17 +36,18 @@
 									<li>&nbsp;</li>
 									<li>
 										<div class="input-daterange col-sm-7" id="datepicker">
-											<div class="input-group">
+											<input type="text" class="btn btn-default btn-xs" style="min-width: 100px" id="fromDate" name="fromDate" ng-model="data.fechaIni" />
+											&nbsp;
+											<input type="text" class="btn btn-default btn-xs" style="min-width: 100px" id="toDate" name="toDate" ng-model="data.fechaFin" />
+											&nbsp;
+											<button type="button" class="btn btn-primary btn-xs" ng-click="calcularListado()"  title="Buscar" tooltip data-placement="left" ng-disabled="loading">
+												<i class="fa fa-search"  aria-hidden="true"></i>
+											</button>
+											&nbsp;
+											<button type="button" class="btn btn-primary btn-xs" ng-click="csvHistoricos()"  title="Exportar" tooltip data-placement="left" ng-disabled="loading">
+												<i class="fa fa-search"  aria-hidden="true"></i>
+											</button>
 
-												<input type="text" class="btn btn-default btn-xs" style="min-width: 100px" id="fromDate" name="fromDate" ng-model="data.fechaIni" />
-
-												<input type="text" class="btn btn-default btn-xs" style="min-width: 100px" id="toDate" name="toDate" ng-model="data.fechaFin" />
-											<span class="input-group-btn">
-												<button class="btn btn-primary btn-sm" value="actualizar!" ng-click="calcularListado();"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
-												<button class="btn btn-success btn-sm" value="exportar!" ng-click="csvHistoricos();"><span class="glyphicon glyphicon-download-alt"></span> Exportar</button>
-
-											</span>
-											</div>
 										</div>
 									</li>
 									<li>
@@ -61,13 +62,6 @@
 										<input style="width:200px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize />
 
 									</li>
-
-
-								</ul>
-							</div>
-							<div class="col-md-2">
-								<ul class="nav navbar-nav navbar-right">
-
 
 
 								</ul>
