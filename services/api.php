@@ -3125,15 +3125,8 @@ private function updateFenixReconfiguracion($obj){
                         " from (SELECT ".
                         "     PP.`PEDIDO`, ".
                         "     PP.`PEDIDO_ID`, ".
-                        "     PP.`SUBPEDIDO_ID`, ".
-                        "     PP.`SOLICITUD_ID`, ".
-                        "     PP.`TIPO_ELEMENTO_ID`, ".
                         "     PP.`FECHA_INGRESO`, ".
                         "     PP.`FECHA_ESTADO`, ".
-                        "     PP.`FECHA_FINAL`, ".
-                        "     PP.`PRODUCTO`, ".
-                        "     PP.`UEN_CALCULADA`, ".
-                        "     PP.`ESTRATO`, ".
                         "     case  ".
                         "       when PP.FUENTE='FENIX_NAL' and PP.CONCEPTO_ID='PETEC' then 'PETEC-NAL' ".
                         "       when PP.FUENTE='FENIX_BOG' and PP.CONCEPTO_ID='PETEC' then 'PETEC-BOG' ".
@@ -3169,11 +3162,8 @@ private function updateFenixReconfiguracion($obj){
                         "        WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) >= 25 and HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) <= 48 THEN 'Entre 25-48' ".
                         "        WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) > 48 THEN 'Mas de 48'  ".
                         "     END AS RANGO_PENDIENTE ".
-                        "     , TP.PLAZA ".
                         " FROM `portalbd`.`informe_petec_pendientesm` PP ".
-                        " left join portalbd.tbl_plazas TP ".
-                        " on PP.MUNICIPIO_ID=TP.MUNICIPIO_ID ".
-                        " where (PP.STATUS= 'PENDI_PETEC' or PP.STATUS= 'MALO' ) and PP.FUENTE in ('FENIX_NAL','FENIX_BOG')) C1".
+                        " where (PP.STATUS= 'PENDI_PETEC' or PP.STATUS= 'MALO' ) and PP.FUENTE in ('FENIX_NAL','FENIX_BOG','EDATEL','SIEBEL')) C1".
                         " group by C1.CONCEPTO_ID order by count(*) DESC";
                         $rr = $this->mysqli->query($queryConceptos) or die($this->mysqli->error.__LINE__);
 
