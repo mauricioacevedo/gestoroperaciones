@@ -25,7 +25,12 @@
 									</li>
 									<li>&nbsp;</li>
 									<li>
-										<input class="btn btn-default btn-xs" name="valorCampo" ng-model="data.valorCampo" select-on-click capitalize type="text" placeholder="Palabra">
+										<div class="btn-group">
+											<input style="width:140px"  class="btn btn-default btn-xs " type="text" ng-model="bpedido" ng-change="buscarPedidoRegistro(bpedido);"  placeholder="Buscar..." ng-trim="true" ng-disabled="loading" select-on-click capitalize/>
+											<button type="button" class="btn btn-success btn-xs" ng-click="buscarPedidoRegistro(bpedido)"   ng-disabled="loading" >
+											<i class="fa fa-search-plus" aria-hidden="true"> </i>
+											</button>
+										</div>
 
 									</li>
 									<li>&nbsp;</li>
