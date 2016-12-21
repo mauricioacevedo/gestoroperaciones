@@ -10467,7 +10467,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				  $scope.busy = "";
 				  $scope.error = "";
 				  $scope.buscar = null;
-                  $scope.TIPIFICACION='CAMBIAR';
 				  return data.data;
 
 
