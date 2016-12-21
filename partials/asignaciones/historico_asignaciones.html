@@ -74,7 +74,7 @@
 							<th>Duracion</th>
 						</thead>
 						<tbody>
-							<tr ng-repeat="data in listado_pedidos| orderBy:'fecha_fin':true as results">
+							<tr ng-repeat="data in listado_pedidos| orderBy:'fecha_fin':true | filter:filtroInput as results">
 							<td><span class="small">{{data.user}}</span></td>
 							<td><span class="small">{{data.fuente}}</span></td>
 							<td><span class="small">{{data.concepto_final}}</span></td>
