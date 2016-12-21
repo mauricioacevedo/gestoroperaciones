@@ -74,7 +74,6 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
       <ul class="nav navbar-nav">
-
  <li class="dropdown" ng-show="logedUser.GRUPO=='ASIGNACIONES' || logedUser.GRUPO=='RECONFIGURACION' || logedUser.GRUPO=='INCONSISTENCIAS' || logedUser.GRUPO=='NCA' || logedUser.GRUPO=='SUPER'">
             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Asignaciones <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -90,12 +89,10 @@
 				<li><a href=".#/edatel/clientes/"><span class="fa fa-list"></span> Clientes Edatel</a></li>
 				<li role="separator" class="divider"></li>
                 <li><a href=".#/registros/"><span class="fa fa-list"></span> Registros</a></li>
-
 				<li role="separator" class="divider"></li>
-				<li  ng-show="logedUser.CARGO_ID<='5'"><a href=".#/indicadores/"><span class="fa fa-bar-chart"></span>
-				</li>
-
-			</ul>
+                <li  ng-show="logedUser.CARGO_ID<='5'"><a href=".#/indicadores/"><span class="fa fa-bar-chart"></span> Indicadores</a></li>
+            </ul>
+ </li>
  <li class="dropdown"  ng-show="logedUser.GRUPO=='AGENDAMIENTO' || logedUser.GRUPO=='SUPER'">
             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Agendamiento <span class="caret"></span></a>
             <ul class="dropdown-menu">
