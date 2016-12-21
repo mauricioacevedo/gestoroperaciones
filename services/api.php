@@ -2809,17 +2809,19 @@ private function updateFenixReconfiguracion($obj){
                 }
 
 				
+		// Funcion para listar los registros historicos-----------------------------------------------------------------------
 
-                private function listadoPedidos(){//historico por 1 pedido
-                        if($this->get_request_method() != "GET"){
-                                $this->response('',406);
-                        }
-                        $fechaini = $this->_request['fecha_inicio'];
-                        $fechafin = $this->_request['fecha_fin'];
-                        $page = $this->_request['page'];
-						$campo = $this->_request['campo'];
-						$valorCampo = $this->_request['valorCampo'];
-                        $today = date("Y-m-d");
+       private function listadoPedidos(){//historico por 1 pedido
+			if($this->get_request_method() != "GET"){
+				$this->response('',406);
+				}
+
+			$fechaini = $this->_request['fecha_inicio'];
+			$fechafin = $this->_request['fecha_fin'];
+			$page = $this->_request['page'];
+			$campo = $this->_request['campo'];
+			$valorCampo = $this->_request['valorCampo'];
+			$today = date("Y-m-d");
 		
 			if($page=="undefined"){
 				$page="0";
@@ -2858,6 +2860,7 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
                 }
 
+		// ----------------------------------------------------------------------- Funcion para listar los registros historicos
                 private function lightKPISMaestro(){//listado light de kpis
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
