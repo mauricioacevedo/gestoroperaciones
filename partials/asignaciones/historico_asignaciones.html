@@ -74,7 +74,7 @@
 							<th>Duracion</th>
 						</thead>
 						<tbody>
-							<tr ng-repeat="data in listado_pedidos| orderBy:'fecha_fin':true ">
+							<tr ng-repeat="data in listado_pedidos| orderBy:'fecha_fin':true as results">
 							<td><span class="small">{{data.user}}</span></td>
 							<td><span class="small">{{data.fuente}}</span></td>
 							<td><span class="small">{{data.concepto_final}}</span></td>
@@ -86,7 +86,7 @@
                             </tr>
                         </tbody>
                     </table>
-					<pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged('listadoPedidos')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+
 
 
 				</div>
@@ -97,6 +97,7 @@
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
+						<pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged('listadoPedidos')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
 
 					</ul>
 
