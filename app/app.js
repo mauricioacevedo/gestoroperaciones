@@ -12934,11 +12934,12 @@ app.config(['$routeProvider',
 		 controller: 'RegistrosCtrl'
 	})
 
-	//.when('/registros/:conceptoid', {
-	// title: 'Registros',
-	// templateUrl: 'partials/registros.html',
-	// controller: 'RegistrosCtrl'
-	//})
+	.when('/registros/:conceptoid', {
+	 title: 'Registros',
+	 //templateUrl: 'partials/registros.html',
+	 templateUrl: 'partials/asignaciones/pendientes_asignaciones.html',
+	 controller: 'RegistrosCtrl'
+	})
 
 	.when('/historico_asignaciones/', {
 		 title: 'Registros',
