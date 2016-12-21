@@ -2,7 +2,7 @@
 		<div class="col-md-12">
 			<div class = "panel panel-default">
 				<div class = "panel-heading">
-					<b><i class="fa fa-bars" aria-hidden="true"></i> Clientes Edatel</b>
+					<b><i class="fa fa-bars" aria-hidden="true"></i> Historico de Transacciones</b>
 					<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
 					<ul class="nav navbar-nav navbar-right">
 						<div class="col-md-1 col-xs-1 ">
@@ -15,49 +15,41 @@
 				<div class = "panel-heading nav navbar-default">
 
 						<div class="row">
-							<div class="col-md-8">
+							<div class="col-md-12">
 								<ul class="nav navbar-nav navbar-left">
-
 									<li>
-
-										<ui-select ng-model="eda.localidad" style="width:200px;" append-to-body="true">
-											<ui-select-match placeholder="Localidad">
-												{{eda.localidad.LOCALIDAD}}
-											</ui-select-match>
-											<ui-select-choices repeat="g  in  listadoLocalidad | filter: $select.search track by $index">
-												<div ng-bind-html="g.LOCALIDAD | highlight: $select.search"></div>
-												 <small ng-bind-html="g.DEPARTAMENTO | highlight: $select.search"></small>
-											</ui-select-choices>
-										</ui-select>
-
-
+										<select ng-model="data.campo" class="btn btn-default btn-xs grupo-select">
+											<option value='TODO' selected="selected">TODO</option>
+											<option value='user'>Usuario</option>
+											<option value='fuente'>Fuente</option>
+											<option value='concepto_final'>Concepto</option>
+											<option value='estado'>Estado</option>
+											<option value='pedido_id'>Pedido</option>
+										</select>
 
 									</li>
 									<li>&nbsp;</li>
 									<li>
-
-										<input style="width:200px"  class="btn btn-default btn-xs " type="text" ng-model="eda.direccion" placeholder="Direccion" ng-disabled="loading" select-on-click capitalize on-key-enter="buscarCliente(eda.localidad.LOCALIDAD,eda.direccion)"/>
+										<input class="btn btn-default btn-xs" name="valorCampo" ng-model="data.valorCampo" select-on-click capitalize type="text" placeholder="Palabra">
 
 									</li>
 									<li>&nbsp;</li>
 									<li>
+										<div class="input-daterange col-sm-7" id="datepicker">
+											<input type="text" class="btn btn-default btn-xs" style="min-width: 100px" id="fromDate" name="fromDate" ng-model="data.fechaIni" />
+											&nbsp;
+											<input type="text" class="btn btn-default btn-xs" style="min-width: 100px" id="toDate" name="toDate" ng-model="data.fechaFin" />
+											&nbsp;
+											<button type="button" class="btn btn-primary btn-xs" ng-click="calcularListado()"  title="Buscar" tooltip data-placement="left" ng-disabled="loading">
+												<i class="fa fa-search"  aria-hidden="true"></i>
+											</button>
+											&nbsp;
+											<button type="button" class="btn btn-primary btn-xs" ng-click="csvHistoricos()"  title="Exportar" tooltip data-placement="left" ng-disabled="loading">
+												<i class="fa fa-search"  aria-hidden="true"></i>
+											</button>
 
-										<button type="button" class="btn btn-primary btn-xs" ng-click="buscarCliente(eda.localidad,eda.direccion)"  title="Buscar" tooltip data-placement="left" ng-disabled="loading">
-											<i class="fa fa-search"  aria-hidden="true"></i>
-										</button>
+										</div>
 									</li>
-									<li>&nbsp;</li>
-									<li>
-
-										<input style="width:200px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize />
-
-									</li>
-
-
-								</ul>
-							</div>
-							<div class="col-md-2">
-								<ul class="nav navbar-nav navbar-right">
 
 
 
@@ -122,3 +114,10 @@
 		</div>
 
 	</div><!--Row 1 Novedades -->
+<script>
+$('.input-daterange').datepicker({
+     format: 'yyyy-mm-dd',
+     todayBtn: "linked",
+     autoclose: true
+ });
+</script>
