@@ -3189,70 +3189,44 @@ private function updateFenixReconfiguracion($obj){
 
 
 
-             $query=" select ".
-                    "    C1.CONCEPTO_ID ".
-                    "   , count(*) as CANTIDAD ".
-                    "  , sum(if(C1.RANGO_PENDIENTE='Ayer', 1,0)) as 'Ayer', ".
-                    "    sum(if(C1.RANGO_PENDIENTE='Hoy', 1,0)) as 'Hoy',  ".
-                    "    sum(if(C1.RANGO_PENDIENTE='Manana', 1,0)) as 'Manana', ".
-                    "    sum(if(C1.RANGO_PENDIENTE='Pasado Manana', 1,0)) as 'Pasado_Manana', ".
-                    "    sum(if(C1.RANGO_PENDIENTE='Mas de 3 dias', 1,0)) as 'Mas_de_3_dias',  ".
-                    "    sum(if(C1.RANGO_PENDIENTE='Sin Fecha Cita', 1,0)) as 'Sin_Fecha_Cita', ".
-                    "   sum(if(C1.RANGO_PENDIENTE='Viejos', 1,0)) as 'Viejos' ".
-                    "    from (SELECT ".
-                    "     PP.PEDIDO,  ".
-                    "     PP.PEDIDO_ID, ".
-                    "     PP.SUBPEDIDO_ID, ".
-                    "     PP.SOLICITUD_ID, ".
-                    "     PP.TIPO_ELEMENTO_ID, ".
-                    "     PP.FECHA_INGRESO, ".
-                    "     PP.FECHA_ESTADO, ".
-                    "     PP.FECHA_FINAL, ".
-                    "     PP.FECHA_CITA, ".
-                    "     PP.PRODUCTO, ".
-                    "     PP.UEN_CALCULADA, ".
-                    "     PP.ESTRATO, ".
-                    "     case  ".
-                    "       when PP.FUENTE='FENIX_NAL' and PP.CONCEPTO_ID='PETEC' then 'PETEC-NAL' ".
-                    "       when PP.FUENTE='FENIX_BOG' and PP.CONCEPTO_ID='PETEC' then 'PETEC-BOG' ".
-                    "       else PP.CONCEPTO_ID end as CONCEPTO_ID, ".
-                    "     PP.MUNICIPIO_ID, ".
-                    "     PP.DIRECCION_SERVICIO, ".
-                    "     PP.FECHAINGRESO_SOLA, ".
-                    "     PP.HORAINGRESO, ".
-                    "     DATE((PP.FECHAESTADO_SOLA)) as FECHAESTADO_SOLA, ".
-                    "     PP.HORAESTADO, ".
-                    "     PP.DIANUM_ESTADO, ".
-                    "     PP.DIANOM_ESTADO, ".
-                    "     PP.RANGO_CARGA, ".
-                    "     PP.FECHA_CARGA, ".
-                    "     DATE_FORMAT((PP.FECHA_CARGA),'%H') AS HORA_CARGA, ".
-                    "     PP.DIA_CARGA, ".
-                    "     PP.MESNOMBRE_CARGA, ".
-                    "     PP.MESNUMERO_CARGA, ".
-                    "     PP.SEMANA_CARGA, ".
-                    "     PP.SEMANA_ANO_CARGA, ".
-                    "     PP.ANO_CARGA, ".
-                    "     PP.FUENTE, ".
-                    "     PP.STATUS, ".
-                    "     PP.VIEWS ".
-                    "     , CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_INGRESO)) AS CHAR(255)) AS TIEMPO_PENDIENTE_FULL ".
-                    "     , cast((CASE ".
-                    "        WHEN  PP.FECHA_CITA= DATE_SUB(CURDATE() , INTERVAL 1 DAY) THEN 'Ayer' ".
-                    "        WHEN  PP.FECHA_CITA=current_date() THEN 'Hoy'  ".
-                    "        WHEN  PP.FECHA_CITA=DATE_ADD(CURDATE(), INTERVAL 1 DAY) THEN 'Manana'   ".
-                    "        WHEN  PP.FECHA_CITA=DATE_ADD(CURDATE(), INTERVAL 2 DAY) THEN 'Pasado Manana'   ".
-                    "        WHEN  PP.FECHA_CITA='9999-00-00' OR PP.FECHA_CITA='0000-00-00' THEN 'Sin Fecha Cita' ".
-                    "        WHEN  PP.FECHA_CITA>=DATE_ADD(CURDATE(), INTERVAL 3 DAY) THEN 'Mas de 3 dias' ".
-                    "        WHEN  PP.FECHA_CITA<= DATE_SUB(CURDATE() , INTERVAL 1 DAY) THEN 'Viejos' ".
-                    "        else PP.FECHA_CITA ".
-                    "     END ) as char )AS RANGO_PENDIENTE  ".
-                    "     , TP.PLAZA  ".
-                    "         FROM portalbd.informe_petec_pendientesm PP  ".
-                    "         left join portalbd.tbl_plazas TP ".
-                    "         on PP.MUNICIPIO_ID=TP.MUNICIPIO_ID ".
-                    " where (PP.STATUS= 'PENDI_PETEC' or PP.STATUS= 'MALO' ) and PP.FUENTE in ('FENIX_NAL','FENIX_BOG')) C1 ".
-                    " group by C1.CONCEPTO_ID order by count(*) DESC ";
+             $query=    " select  ".
+						"       C1.CONCEPTO_ID  ".
+						"     , count(*) as CANTIDAD  ".
+						"     , sum(if(C1.RANGO_PENDIENTE='Ayer', 1,0)) as 'Ayer',  ".
+						"       sum(if(C1.RANGO_PENDIENTE='Hoy', 1,0)) as 'Hoy',   ".
+						"       sum(if(C1.RANGO_PENDIENTE='Manana', 1,0)) as 'Manana',  ".
+						"       sum(if(C1.RANGO_PENDIENTE='Pasado Manana', 1,0)) as 'Pasado_Manana',  ".
+						"       sum(if(C1.RANGO_PENDIENTE='Mas de 3 dias', 1,0)) as 'Mas_de_3_dias',   ".
+						"       sum(if(C1.RANGO_PENDIENTE='Sin Fecha Cita', 1,0)) as 'Sin_Fecha_Cita',  ".
+						"      sum(if(C1.RANGO_PENDIENTE='Viejos', 1,0)) as 'Viejos'  ".
+						"       from (SELECT  ".
+						"        PP.PEDIDO,   ".
+						"        PP.PEDIDO_ID,  ".
+						"        PP.FECHA_INGRESO,  ".
+						"        PP.FECHA_ESTADO,  ".
+						"        PP.FECHA_CITA,  ".
+						"        case   ".
+						"          when PP.FUENTE='FENIX_NAL' and PP.CONCEPTO_ID='PETEC' then 'PETEC-NAL'  ".
+						"          when PP.FUENTE='FENIX_BOG' and PP.CONCEPTO_ID='PETEC' then 'PETEC-BOG'  ".
+						"          else PP.CONCEPTO_ID end as CONCEPTO_ID,  ".
+						"        PP.MUNICIPIO_ID,  ".
+						"        DATE((PP.FECHAESTADO_SOLA)) as FECHAESTADO_SOLA,  ".
+						"        DATE_FORMAT((PP.FECHA_CARGA),'%H') AS HORA_CARGA,  ".
+						"        PP.FUENTE,  ".
+						"        PP.STATUS ".
+						"        , cast((CASE  ".
+						"           WHEN  PP.FECHA_CITA= DATE_SUB(CURDATE() , INTERVAL 1 DAY) THEN 'Ayer'  ".
+						"           WHEN  PP.FECHA_CITA=current_date() THEN 'Hoy'   ".
+						"           WHEN  PP.FECHA_CITA=DATE_ADD(CURDATE(), INTERVAL 1 DAY) THEN 'Manana'    ".
+						"           WHEN  PP.FECHA_CITA=DATE_ADD(CURDATE(), INTERVAL 2 DAY) THEN 'Pasado Manana'    ".
+						"           WHEN  PP.FECHA_CITA='9999-00-00' OR PP.FECHA_CITA='0000-00-00' THEN 'Sin Fecha Cita'  ".
+						"           WHEN  PP.FECHA_CITA>=DATE_ADD(CURDATE(), INTERVAL 3 DAY) THEN 'Mas de 3 dias'  ".
+						"           WHEN  PP.FECHA_CITA<= DATE_SUB(CURDATE() , INTERVAL 1 DAY) THEN 'Viejos'  ".
+						"           else PP.FECHA_CITA  ".
+						"        END ) as char )AS RANGO_PENDIENTE    ".
+						"            FROM portalbd.informe_petec_pendientesm PP   ".
+						"    where (PP.STATUS= 'PENDI_PETEC' or PP.STATUS= 'MALO' ) and PP.FUENTE in ('FENIX_NAL','FENIX_BOG','EDATEL','SIEBEL')) C1  ".
+						"    group by C1.CONCEPTO_ID order by count(*) DESC ";
                         //echo $query;
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
