@@ -18,14 +18,9 @@
 							<div class="col-md-12">
 								<ul class="nav navbar-nav navbar-left">
 									<li>
-										<select ng-model="data.campo" class="btn btn-default btn-xs grupo-select">
-											<option value='TODO' selected="selected">TODO</option>
-											<option value='user'>Usuario</option>
-											<option value='fuente'>Fuente</option>
-											<option value='concepto_final'>Concepto</option>
-											<option value='estado'>Estado</option>
-											<option value='pedido_id'>Pedido</option>
-										</select>
+										<select ng-model="data1.concepto" ng-change="calcularPendientes(data1.concepto)" class="btn btn-default btn-xs grupo-select">
+											<option ng-repeat="d in listadoConceptos" value='{{d.CONCEPTO_ID}}'>{{d.CONCEPTO_ID}}</option>
+									    </select>
 
 									</li>
 									<li>&nbsp;</li>
