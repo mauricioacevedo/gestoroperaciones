@@ -12946,6 +12946,18 @@ app.config(['$routeProvider',
 		 controller: 'RegistrosCtrl'
 	})
 
+	.when('/pendientes_asignaciones/', {
+		 title: 'Registros',
+		 templateUrl: 'partials/asignaciones/pendientes_asignaciones.html',
+		 controller: 'RegistrosCtrl'
+	})
+
+	.when('/pendientes_asignaciones/:conceptoid', {
+	 title: 'Registros',
+	 templateUrl: 'partials/pendientes_asignaciones.html',
+	 controller: 'RegistrosCtrl'
+	})
+
 	 .when('/asignacion_ordenes/', {
 		 title: 'Ordenes',
 		 templateUrl: 'partials/asignacion_ordenes.html',
