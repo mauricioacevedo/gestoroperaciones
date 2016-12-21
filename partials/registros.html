@@ -86,14 +86,14 @@
                             </thead>
                             <tbody>
                                     <tr ng-repeat="data in listado_pedidos| orderBy:'fecha_fin':true ">
-                                    <td>{{data.user}}</td>
-                                    <td>{{data.fuente}}</td>
+                                    <td><span class="small">{{data.user}}</span></td>
+                                    <td><span class="small">{{data.fuente}}</span></td>
                                     <td><span class="small">{{data.concepto_final}}</span></td>
-                                    <td>{{data.estado}}</td>
-									<td>{{data.motivo_malo}}</td>
-                                    <td>{{data.pedido}}</td>
-                                    <td>{{data.fecha_fin}}</td>
-                                    <td>{{data.duracion}}</td>
+                                    <td><span class="small">{{data.estado}}</span></td>
+									<td><span class="small">{{data.motivo_malo}}</span></td>
+                                    <td><span class="small">{{data.pedido}}</span></td>
+                                    <td><span class="small">{{data.fecha_fin}}</span></td>
+                                    <td><span class="small">{{data.duracion}}</span></td>
                             </tr>
                             </tbody>
                     </table>
