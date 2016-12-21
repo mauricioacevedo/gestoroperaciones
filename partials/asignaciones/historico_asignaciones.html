@@ -64,31 +64,29 @@
 
 					<table class="table small table-striped table-hover table-bordered table-condensed">
 						<thead>
-							<th>Pedido</th>
-							<th>Tipo Elemento</th>
-							<th>Tiempo en Concepto</th>
-							<th>Concepto</th>
-							<th>UEN</th>
-							<th>Municipio</th>
-							<th>Fecha Estado</th>
-							<th>Fecha Cita</th>
+							<th>Usuario</th>
 							<th>Fuente</th>
+							<th>Concepto</th>
+							<th>Estado</th>
+							<th>Motivo Malo</th>
+							<th>Pedido</th>
+							<th>Fecha</th>
+							<th>Duracion</th>
 						</thead>
 						<tbody>
-							<tr ng-repeat="data in listado_pendientes| orderBy:'FECHA_ESTADO':false "  ng-class="{danger: data.STATUS == 'MALO'}" >
-								<td>{{data.PEDIDO_ID}}-{{data.SUBPEDIDO_ID}}-{{data.SOLICITUD_ID}}</td>
-								<td><span class="small">{{cutString(data.TIPO_ELEMENTO_ID,20)}}</span></td>
-								<td><font color="red">{{data.TIEMPO_COLA}}</font></td>
-								<td>{{data.CONCEPTO_ID}} <font ng-show="data.STATUS=='MALO'" color='red'><b>MALO</b></font></td>
-								<td>{{data.UEN_CALCULADA}}</td>
-								<td><span class="small">{{data.MUNICIPIO_ID}}</span></td>
-								<td><span class="small">{{data.FECHA_ESTADO}}</span></td>
-								<td><span class="small">{{data.FECHA_CITA}}</span></td>
-								<td><span class="small">{{data.FUENTE}}</span></td>
-							</tr>
-						</tbody>
-					</table>
-					<pagination total-items="data1.totalItems" ng-model="data1.currentPage" ng-change="pageChanged('listadoPendientes')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+							<tr ng-repeat="data in listado_pedidos| orderBy:'fecha_fin':true ">
+							<td><span class="small">{{data.user}}</span></td>
+							<td><span class="small">{{data.fuente}}</span></td>
+							<td><span class="small">{{data.concepto_final}}</span></td>
+							<td><span class="small">{{data.estado}}</span></td>
+							<td><span class="small">{{data.motivo_malo}}</span></td>
+							<td><span class="small">{{data.pedido_id}}</span></td>
+							<td><span class="small">{{data.fecha_fin}}</span></td>
+							<td><span class="small">{{data.duracion}}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+					<pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged('listadoPedidos')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
 
 
 				</div>
