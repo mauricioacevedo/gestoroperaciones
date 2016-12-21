@@ -6746,58 +6746,7 @@ private function updateFenixReconfiguracion($obj){
 
 //--------------------fin demepedido activacion
 
-//--------------------transaccion activacion
-      private function gettransaccion(){
-                        if($this->get_request_method() != "GET"){
-                                $this->response('',406);
-                        }
-                        $today = date("Y-m-d");
 
-			$transaccion = $this->_request['transaccion'];
-
-			if($transaccion==""||$transaccion=="TODO"){
-
-				$transaccion="  ";
-
-			}else{
-                $transaccion=" and TRANSACCION='$transaccion' ";
-            }
-
-	                $query=" SELECT DISTINCT ( CASE WHEN PRODUCTO =  '' THEN  'VACIOS' ".
-                            " WHEN PRODUCTO = null THEN 'VACIOS'  ".
-                             "  ELSE PRODUCTO END) AS TRANSA ".
-                             " FROM gestor_pendientes_activacion_siebel  ".
-                             " WHERE STATUS =  'PENDI_ACTI'  ".
-                             " and ASESOR =''  ".
-                            $transaccion.
-                             " and (FECHA_CREACION <=CURDATE() OR FECHA_CREACION='9999-00-00') ".
-                            " ORDER BY 1 ASC ";
-
-			//echo $query;
-
-
-                        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-
-                        if($r->num_rows > 0){
-                                $result = array();
-                                while($row = $r->fetch_assoc()){
-					$row['TRANSA']=utf8_encode($row['TRANSA']);
-                                        $result[] = $row;
-                                }
-
-				//var_dump($result);
-                                $this->response($this->json($result), 200); // send user details
-                        }
-
-
-
-
-                        $this->response('',204);        // If no records "No Content" status
-
-		}
-
-//----------------------fin transaccion activacion
-		
                 private function demePedidoAgendamiento(){
 
                         if($this->get_request_method() != "GET"){
