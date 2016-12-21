@@ -90,7 +90,7 @@
 				<li><a href=".#/edatel/clientes/"><span class="fa fa-list"></span> Clientes Edatel</a></li>
 				<li role="separator" class="divider"></li>
                 <li><a href=".#/registros/"><span class="fa fa-list"></span> Registros</a></li>
-				<ul class="dropdown-menu">
+
 				<li class="menu-item dropdown dropdown-submenu">
 				  <a href="#" title="" class="dropdown-toggle" data-toggle="dropdown">City 1</a>
 				  <ul class="dropdown-menu">
@@ -98,10 +98,10 @@
 					<li class="menu-item"><a href="#">local</a></li>
 					<li class="menu-item"><a href="#">mobile</a></li>
 				  </ul>
+				</li>
 					<li role="separator" class="divider"></li>
-					<li  ng-show="logedUser.CARGO_ID<='5'"><a href=".#/indicadores/"><span class="fa fa-bar-chart"></span> Indicadores</a></li>
-				</ul>
-           </li>
+				<li  ng-show="logedUser.CARGO_ID<='5'"><a href=".#/indicadores/"><span class="fa fa-bar-chart"></span>
+				</li>
 
 
  <li class="dropdown"  ng-show="logedUser.GRUPO=='AGENDAMIENTO' || logedUser.GRUPO=='SUPER'">
