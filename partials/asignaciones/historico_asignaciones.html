@@ -15,8 +15,8 @@
 				<div class = "panel-heading nav navbar-default">
 
 						<div class="row">
-							<div class="col-lg-12">
-								<ul class="nav navbar-nav">
+							<div class="col-lg-9">
+								<ul class="nav navbar-nav navbar-left">
 									<li>
 										<select ng-model="data.campo" class="btn btn-default btn-xs grupo-select">
 											<option value='TODO' selected="selected">TODO</option>
@@ -36,10 +36,9 @@
 									<li>&nbsp;</li>
 									<li>
 										<div class="input-daterange" id="datepicker">
-											<input type="text" class="btn btn-default btn-xs" style="min-width: 100px" id="fromDate" name="fromDate" ng-model="data.fechaIni" />
+											<input type="text" class="btn btn-default btn-xs"  id="fromDate" name="fromDate" ng-model="data.fechaIni" />
 											&nbsp;
-											<input type="text" class="btn btn-default btn-xs" style="min-width: 100px" id="toDate" name="toDate" ng-model="data.fechaFin" />
-											&nbsp;
+											<input type="text" class="btn btn-default btn-xs"  id="toDate" name="toDate" ng-model="data.fechaFin" />
 											<button type="button" class="btn btn-primary btn-xs" ng-click="calcularListado()"  title="Buscar" tooltip data-placement="left" ng-disabled="loading">
 												<i class="fa fa-search"  aria-hidden="true"></i>
 											</button>
