@@ -15,7 +15,7 @@
 				<div class = "panel-heading nav navbar-default">
 
 						<div class="row">
-							<div class="col-lg-9">
+							<div class="col-md-9">
 								<ul class="nav navbar-nav navbar-left">
 									<li>
 										<select ng-model="data.campo" class="btn btn-default btn-xs grupo-select">
@@ -42,7 +42,7 @@
 												<i class="fa fa-search"  aria-hidden="true"></i>
 											</button>
 											<button type="button" class="btn btn-primary btn-xs" ng-click="csvHistoricos()"  title="Exportar" tooltip data-placement="left" ng-disabled="loading">
-												<i class="fa fa-search"  aria-hidden="true"></i>
+												<i class="fa fa-cloud-download"  aria-hidden="true"></i>
 											</button>
 
 										</div>
@@ -50,6 +50,11 @@
 
 
 
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="nav navbar-nav navbar-right">
+									<input style="width:200px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize />
 								</ul>
 							</div>
 
