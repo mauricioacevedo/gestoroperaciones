@@ -10233,18 +10233,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
                     $location.path('/');
             };
 
-     $scope.gettransaccion1 = function() {
-
-        $scope.Transaccion={};
-            services.gettransaccion($scope.transaccion).then(function(data){
-            $scope.transaccion=data.data;
-            console.log($scope.transaccion);
-
-                        return data.data;
-                });
-    };
-
-
 
 
     //  ---------------------------------fin logueo-------------------------------------------
