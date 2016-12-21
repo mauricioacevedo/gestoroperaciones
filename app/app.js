@@ -12953,6 +12953,11 @@ app.config(['$routeProvider',
 	 controller: 'RegistrosCtrl'
 	})
 
+	.when('/historico_asignaciones/', {
+		 title: 'Registros',
+		 templateUrl: 'partials/asignaciones/historico_asignaciones.html',
+		 controller: 'RegistrosCtrl'
+	})
 
 	 .when('/asignacion_ordenes/', {
 		 title: 'Ordenes',
