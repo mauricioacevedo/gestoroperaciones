@@ -764,18 +764,18 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 		return $http.get(serviceBase + 'demePedido?userID='+user+'&concepto='+concepto+'&pedido_actual='+pedido_actual+'&plaza='+plaza+'&username='+username+'&prioridad='+prioridad+'&fuente='+fuente);
     }
 
-        obj.demePedidoReconfiguracion = function(user,concepto,pedido_actual,plaza){
+        obj.demePedidoReconfiguracion = function(user,concepto,pedido_actual,plaza){//deme pedido reconfiguracion
 
                 return $http.get(serviceBase + 'demePedidoReconfiguracion?userID='+user+'&concepto='+concepto+'&pedido_actual='+pedido_actual+'&plaza='+plaza);
         }
 
 	//aca no nos importaria el concepto, sin embargo deberia traerlo para actualizarlo?
-        obj.buscarPedido = function(pedido,plaza,pedido_actual,user,username){
+        obj.buscarPedido = function(pedido,plaza,pedido_actual,user,username){//buscar pedido asignacion
                 return $http.get(serviceBase + 'buscarPedido?pedidoID='+pedido+ '&plaza='+plaza+ '&pedido_actual='+pedido_actual+ '&userID='+user+'&username='+username);
         }
 
 
-	obj.buscarPedidoReconfiguracion = function(pedido,plaza,pedido_actual,user,username){
+	obj.buscarPedidoReconfiguracion = function(pedido,plaza,pedido_actual,user,username){// buscar pedido reconfiguracion
                 return $http.get(serviceBase + 'buscarPedidoReconfiguracion?pedidoID='+pedido+ '&plaza='+plaza+ '&pedido_actual='+pedido_actual+ '&userID='+user+'&username='+username);
         }
 
@@ -783,15 +783,15 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 
 
      
-        obj.buscarCmts = function(nnodo){
+        obj.buscarCmts = function(nnodo){//buscar cmts
                 return $http.get(serviceBase + 'buscarcmts?nodo_id='+nnodo+'');
         }
 
-	obj.getServicesGPON = function (olt,tarjeta,puerto){
+	obj.getServicesGPON = function (olt,tarjeta,puerto){// servicio para gpon
 		return $http.get(serviceBase + 'getServicesGPON?OLT='+olt+'&TARJETA='+tarjeta+'&PUERTO='+puerto+' ');
 	}
 
-    obj.buscarCapaCobre = function (armario){
+    obj.buscarCapaCobre = function (armario){//buscar capacidad cobre
         return $http.get(serviceBase + 'buscarCapaCobre?armario='+armario+' ');
     }
 
