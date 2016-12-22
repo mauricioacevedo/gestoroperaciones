@@ -12586,6 +12586,31 @@ app.controller('mymodalcontroller', function ($scope,$route, $rootScope, $locati
 //Controlador de prueba CHAT
 app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,$http,$firebase, Message,services){
 
+	// Basura del logueo ---------------------------------
+		$rootScope.logedUser=$cookieStore.get('logedUser');
+		var userID=$cookieStore.get('logedUser').login;
+			document.getElementById('logout').className="btn btn-md btn-danger";
+			var divi=document.getElementById("logoutdiv");
+				divi.style.visibility="visible";
+				divi.style.position="relative";
+
+
+		$rootScope.logout = function() {
+					services.logout(userID);
+					$cookieStore.remove('logedUser');
+					$rootScope.logedUser=undefined;
+					$scope.pedidos={};
+					clearInterval($scope.intervalLightKPIS);
+					document.getElementById('logout').className="btn btn-md btn-danger hide";
+					var divi=document.getElementById("logoutdiv");
+					divi.style.position="absolute";
+					divi.style.visibility="hidden";
+					$location.path('/');
+			};
+
+
+
+	//  ---------------------------------Basura del logueo
 	$scope.user="Guest";
 
 	$scope.messages= Message.all;
