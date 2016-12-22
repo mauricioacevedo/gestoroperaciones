@@ -12626,7 +12626,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 app.factory('Message', ['$firebase',
 	function($firebase) {
-		var ref = new firebase('https://geopchat.firebaseio.com/');
+		var ref = new $firebase('https://geopchat.firebaseio.com/');
 		var messages = $firebase(ref.child('messages')).$asArray();
 
 		var Message = {
