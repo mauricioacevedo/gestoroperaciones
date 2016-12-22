@@ -679,15 +679,15 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
               return $http.get(serviceBase + 'csvGPON?OLT='+olt+'&TARJETA='+tarjeta+'&PUERTO='+puerto+"&login="+login);
         }
 
-	obj.getDashboardAsignaciones = function(){
+	obj.getDashboardAsignaciones = function(){//grafica asignacion
                 return $http.get(serviceBase + 'getDashboardAsignaciones');
         }
 
-        obj.getDashboardPendientes = function(){
+        obj.getDashboardPendientes = function(){//grafica pendientes
                 return $http.get(serviceBase + 'getDashboardPendientes');
         }
 
-        obj.getDashboardAsignacionesMes = function(){
+        obj.getDashboardAsignacionesMes = function(){//grafica por asinacion por mes
                 return $http.get(serviceBase + 'getDashboardAsignacionesMes');
         }
 
@@ -703,15 +703,15 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'getDashboardAsignacionesMesCobre');
         }
 
-        obj.getDashboardAsignacionesTecnologia = function(){
+        obj.getDashboardAsignacionesTecnologia = function(){//grafica asignaciones por tecnologia
                 return $http.get(serviceBase + 'getDashboardAsignacionesTecnologia');
         }
 
-	obj.getDashboardReconfiguracion = function(){
+	obj.getDashboardReconfiguracion = function(){//grafica reconfiguracion
                 return $http.get(serviceBase + 'getDashboardReconfiguracion');
         }
 
-        obj.getDashboardReconfiguracionMes = function(){
+        obj.getDashboardReconfiguracionMes = function(){//reconfiguracion grafica mes
                 return $http.get(serviceBase + 'getDashboardReconfiguracionMes');
         }
 
@@ -721,11 +721,11 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pendientesGrafica');
         }
 
-        obj.getPedidosConAgenda  = function(){
+        obj.getPedidosConAgenda  = function(){//pedidos con agendas
                 return $http.get(serviceBase + 'pedidosConAgenda');
         }
 
-	obj.pendientesPorPlaza = function(){
+	obj.pendientesPorPlaza = function(){//pedidos pendientes por plaza
 		return $http.get(serviceBase + 'pendientesPorPlaza');
 	}
 
@@ -739,7 +739,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 	obj.getTME  = function(fecha1,fecha2){
                 return $http.get(serviceBase + 'calcularDetalleTME?fechaIni='+fecha1+'&fechaFin='+fecha2);
         }
-	obj.getProductividadGrupo  = function(fecha1,fecha2){
+	obj.getProductividadGrupo  = function(fecha1,fecha2){//servicio productividad por grupo
                 return $http.get(serviceBase + 'productividadGrupo?fechaIni='+fecha1+'&fechaFin='+fecha2);
         }
 //metodo para obtener departamentos de pantalla de auditoria
@@ -756,7 +756,7 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 
 
 
-    obj.demePedido = function(user,concepto,pedido_actual,plaza,username,prioridad,fuente){
+    obj.demePedido = function(user,concepto,pedido_actual,plaza,username,prioridad,fuente){//deme pedido asignacion
 		var muni=""
 		if(concepto=="Bello"){
 			muni="&municipio=BELANTCOL";
