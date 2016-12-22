@@ -12583,6 +12583,46 @@ app.controller('mymodalcontroller', function ($scope,$route, $rootScope, $locati
  
 });
 
+//Controlador de prueba CHAT
+app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,$http,Message,services){
+
+	$scope.user="Guest";
+
+	$scope.messages= Message.all;
+
+	$scope.inserisci = function(message){
+			Message.create(message);
+		};
+
+
+
+
+});
+
+app.factory('Message', ['$firebase',
+	function($firebase) {
+		var ref = new Firebase('https://geopchat.firebaseio.com/');
+		var messages = $firebase(ref.child('messages')).$asArray();
+
+		var Message = {
+			all: messages,
+			create: function (message) {
+				return messages.$add(message);
+			},
+			get: function (messageId) {
+				return $firebase(ref.child('messages').child(messageId)).$asObject();
+			},
+			delete: function (message) {
+				return messages.$remove(message);
+			}
+		};
+
+		return Message;
+
+	}
+	]);
+
+//Controlador de prueba CHAT
 
 app.directive('modal', function () {
     return {
