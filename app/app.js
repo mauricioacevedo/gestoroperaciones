@@ -467,7 +467,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'lightKPISMaestro');
         }
 
-        obj.getCsvMalos = function(login,concepto){
+        obj.getCsvMalos = function(login,concepto){//estados malos
                 return $http.get(serviceBase + 'csvMalos?login='+login+'&concepto='+concepto);//exportar malos de la tabla informe_petec_pendientesm
         }
 
@@ -476,7 +476,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
 
-        obj.getVecinosPagina = function(pagina_inicial, pagina_final){
+        obj.getVecinosPagina = function(pagina_inicial, pagina_final){// servicio de vecinos
                 return $http.get(serviceBase + 'vecinosPagina?pagina_inicial='+pagina_inicial+'&pagina_final='+pagina_final);
         }
 		
@@ -494,11 +494,11 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'listadoParametrizadosSiebel?depa='+depa+'&zona='+zona);
         }
 
-     obj.getListadoAdmonTips = function(){
+     obj.getListadoAdmonTips = function(){//listados tips
                 return $http.get(serviceBase + 'listadoAdmonTips');
         }
 
-    obj.actualizarTablaGraficaCambioNuevoREDCO = function(){
+    obj.actualizarTablaGraficaCambioNuevoREDCO = function(){//actualizar grafica
                 return $http.get(serviceBase + 'actualizarTablaGraficaCambioNuevoREDCO');
         }
 
@@ -511,7 +511,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         return $http.get(serviceBase + 'getTransaccionTip?id='+id);
     };
 
-    obj.demeCapacidadPorDistancia = function (distancia) {
+    obj.demeCapacidadPorDistancia = function (distancia) {//servicio capacidad por distancia
         return $http.get(serviceBase + 'demeCapacidadPorDistancia?distancia='+distancia);
     };
 
@@ -529,7 +529,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         return data;
     };
 
-    obj.deleteTip = function (id) {
+    obj.deleteTip = function (id) {//eliminar tip
         var data= $http.delete(serviceBase + 'deleteTip?id=' + id);
             return data;
     };
@@ -604,13 +604,13 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
     };
     
 
-	obj.insertUsuario = function (usuario13)  {
+	obj.insertUsuario = function (usuario13)  {//insertar usuario
 		console.log(usuario13);
                 var data= $http.post(serviceBase + 'insertUsuario', {"usuario":usuario13});
                 return data;
         };
 
-	obj.editUsuario = function (usuario)  {
+	obj.editUsuario = function (usuario)  {//editar usuario
                 console.log(usuario);
                 var data= $http.post(serviceBase + 'editUsuario', {"usuario":usuario});
                 return data;
@@ -621,7 +621,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 		return $http.get(serviceBase + 'getUsuario?userID='+userID);
 	};
 
-    obj.getBuscarPedidoRegistro = function(bpedido,concepto){
+    obj.getBuscarPedidoRegistro = function(bpedido,concepto){//buscar por pedido
                 return $http.get(serviceBase + 'buscarPedidoRegistro?bpedido='+bpedido+'&concepto='+concepto);
         }
 
@@ -631,21 +631,21 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
 
-   obj.getCsvNCA = function(login,fechaIni,fechaFin){
+   obj.getCsvNCA = function(login,fechaIni,fechaFin){//exportar NCA
                 return $http.get(serviceBase + 'csvNCA?login='+login+'&fechaIni='+fechaIni+'&fechaFin='+fechaFin);
         }
 
 
 
-	obj.getCsvPendientes = function(login,concepto){
+	obj.getCsvPendientes = function(login,concepto){//exportar pendientes
                 return $http.get(serviceBase + 'csvPendientes?login='+login+'&concepto='+concepto);
         }
-		obj.getCsvPreInstalaciones = function(login){
+		obj.getCsvPreInstalaciones = function(login){//exportar preinstalacion
                 return $http.get(serviceBase + 'csvPreInstalaciones?login='+login);
         }
 		
 
-	obj.getCsvFenixNal  = function(login){
+	obj.getCsvFenixNal  = function(login){//exportar fenix nacional pendientes
                 return $http.get(serviceBase + 'csvFenixNal?login='+login);
         }
 
