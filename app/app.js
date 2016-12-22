@@ -986,6 +986,7 @@ function ($q, $rootScope, $log) {
     };
 }]);
 
+//-----------------------Dashboard graficas y seguimiento------------------
 
 app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {//graficas
         var userID=$cookieStore.get('logedUser').login;
@@ -2275,7 +2276,7 @@ $scope.actualizarGraficaReconfiguracionMes   = function (){
 
 
 });
-
+//----------------------fin -Dashboard graficas y seguimiento------------------
 //**********************************Upload*******************************
 app.controller('DocuActivacion', function ($scope, $rootScope, $http, $location, $routeParams,$cookies,$cookieStore, services, FileUploader) {
     // Uploader Plugin Code
@@ -2436,9 +2437,9 @@ $rootScope.logout = function() {
 
 
 
-//**********************************Upload*******************************
+//**********************************fin Upload*******************************
 
-
+//---------------indicadores procesos
 app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,$http,$base64, services) {
    
 
@@ -3290,6 +3291,9 @@ $scope.topProductivos = function() {
 
 });
 
+//--------------- fin indicadores procesos-----------------------
+
+//------------controlador usuarios -------------------
 
 app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
 	var userID=$cookieStore.get('logedUser').login;
@@ -3433,6 +3437,8 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
        }
 
 });
+
+//------------ fin controlador usuarios ---------------------------
 
 app.controller('AlarmasActivacionCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
     var userID=$cookieStore.get('logedUser').login;
