@@ -807,7 +807,7 @@ obj.getDepartamentosParametrizacionSiebel = function(){
         return $http.get(serviceBase + 'buscarCapaCobre?armario='+armario+' ');
     }
 
-        obj.insertPedido = function (pedido) {
+        obj.insertPedido = function (pedido) {//insertar pedido
                 var data= $http.post(serviceBase + 'insertPedido', {"pedido":pedido});
 		return data;
         };
