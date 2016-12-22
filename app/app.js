@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['base64','ngRoute','ngCookies','ng-fusioncharts','ngAnimate','ui.bootstrap','ui.tinymce','ui.select','ngSanitize','ui.calendar','angularFileUpload','cgNotify']);
+var app = angular.module('myApp', ['base64','ngRoute','ngCookies','ng-fusioncharts','ngAnimate','ui.bootstrap','ui.tinymce','ui.select','ngSanitize','ui.calendar','angularFileUpload','cgNotify','firebase']);
 //Los " Myapp " solapas de parámetros a un elemento HTML en el que se ejecutará la aplicación .
 //Ahora puede agregar controladores , directivas , filtros y más, para su aplicación AngularJS .
 //El módulo ngRoute proporciona enrutamiento y deeplinking Servicios y directivas para aplicaciones angulares .
@@ -13220,6 +13220,12 @@ app.config(['$routeProvider',
          title: 'b2b',
          templateUrl: 'partials/registros_b2b.html',
          controller: 'RegistrosAgendamientoCtrl'
+      })
+
+	.when('/chat/', {
+         title: 'GeoP Chat',
+         templateUrl: 'partials/chat/chatio.html',
+         controller: 'chatioCtrl'
       })
 
       .otherwise({
