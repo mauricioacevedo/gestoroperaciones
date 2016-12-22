@@ -309,6 +309,18 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'listadoPedidos?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page+'&campo='+campo+'&valorCampo='+valorCampo);
         }
 
+         obj.getcsvDatosAgendamiento= function(fecha,login, depa, zona){//exportar datos de agendamiento
+                return $http.get(serviceBase + 'csvDatosAgendamiento?fecha='+ fecha+'&login='+login+'&depa='+depa+'&zona='+zona);
+        }
+
+        obj.getcsvPedidosMicrozonas= function(fecha,login){//exportar por pedido microzona
+                return $http.get(serviceBase + 'csvPedidosMicrozonas?fecha='+ fecha+'&login='+login);
+        }
+
+         obj.getcsvCodigoResultado= function(fecha,login){//exportar codigo de resultados
+                return $http.get(serviceBase + 'csvCodigoResultado?fecha='+ fecha+'&login='+login);
+        }
+
 //-----------------------------------------------------------------------------------------fin_Agendamiento
 
  //-----------------------------------------------------------------------------------Activacion
@@ -863,15 +875,6 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 	obj.login = function (username,password,tiempo) {
                 return $http.post(serviceBase + 'login', {"username":username,"password":password,"fecha":tiempo});
         };
-      obj.getcsvDatosAgendamiento= function(fecha,login, depa, zona){
-                return $http.get(serviceBase + 'csvDatosAgendamiento?fecha='+ fecha+'&login='+login+'&depa='+depa+'&zona='+zona);
-        }
-        obj.getcsvPedidosMicrozonas= function(fecha,login){
-                return $http.get(serviceBase + 'csvPedidosMicrozonas?fecha='+ fecha+'&login='+login);
-        }
-         obj.getcsvCodigoResultado= function(fecha,login){
-                return $http.get(serviceBase + 'csvCodigoResultado?fecha='+ fecha+'&login='+login);
-        }
 
 
      obj.getScheduling = function(page){
