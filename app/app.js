@@ -12614,11 +12614,13 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	//  ---------------------------------Basura del logueo
 
-	var root = firebase.database().ref();
-    var mesg = root.child('messages');
+	var sync = $firebase(ref);
 
-	$scope.users = $firebaseArray(mesg);
-    console.log($scope.users); // this works fine so no problem with firebase connection
+   // if ref points to a data collection
+   $scope.list = sync.$asArray();
+
+   // if ref points to a single record
+   $scope.rec = sync.$asObject();
 
 
 
