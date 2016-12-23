@@ -12641,7 +12641,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		var fechis = new Date();
 		var message={mensaje:$scope.chatxt,
 					user: userID,
-					log: fechis };
+					log: "prueba" };
 		messageRef.$add(message);
 		$scope.listado();
 		//$scope.lista={};
