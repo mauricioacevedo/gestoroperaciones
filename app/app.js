@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['base64','ngRoute','ngCookies','ng-fusioncharts','ngAnimate','ui.bootstrap','ui.tinymce','ui.select','ngSanitize','ui.calendar','angularFileUpload','cgNotify']);
+var app = angular.module('myApp', ['base64','ngRoute','ngCookies','ng-fusioncharts','ngAnimate','ui.bootstrap','ui.tinymce','ui.select','ngSanitize','ui.calendar','angularFileUpload','cgNotify','firebase']);
 //Los " Myapp " solapas de parámetros a un elemento HTML en el que se ejecutará la aplicación .
 //Ahora puede agregar controladores , directivas , filtros y más, para su aplicación AngularJS .
 //El módulo ngRoute proporciona enrutamiento y deeplinking Servicios y directivas para aplicaciones angulares .
@@ -12585,6 +12585,59 @@ app.controller('mymodalcontroller', function ($scope,$route, $rootScope, $locati
  
 });
 
+//Controlador de prueba CHAT
+
+app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,$firebase,$firebaseObject,$firebaseArray,services){
+
+
+	// Basura del logueo ---------------------------------
+		$rootScope.logedUser=$cookieStore.get('logedUser');
+		var userID=$cookieStore.get('logedUser').login;
+			document.getElementById('logout').className="btn btn-md btn-danger";
+			var divi=document.getElementById("logoutdiv");
+				divi.style.visibility="visible";
+				divi.style.position="relative";
+
+
+		$rootScope.logout = function() {
+					services.logout(userID);
+					$cookieStore.remove('logedUser');
+					$rootScope.logedUser=undefined;
+					$scope.pedidos={};
+					clearInterval($scope.intervalLightKPIS);
+					document.getElementById('logout').className="btn btn-md btn-danger hide";
+					var divi=document.getElementById("logoutdiv");
+					divi.style.position="absolute";
+					divi.style.visibility="hidden";
+					$location.path('/');
+			};
+
+
+
+	//  ---------------------------------Basura del logueo
+
+	var root = firebase.database().ref();
+	var messageRef = $firebaseArray(root.child('messages'));
+
+	var adaRef = firebase.database().ref("messages");
+	var key = adaRef.key;  // key === "ada"
+
+	console.log(adaRef);
+
+	$scope.agregar=function(){
+
+		var message="hola";
+		messageRef.$add({ usuario: userID, mensaje: message });
+		//$scope.lista={};
+		$scope.lista=historico;
+	}
+
+
+});
+
+
+
+//Controlador de prueba CHAT
 
 app.directive('modal', function () {
     return {
@@ -13224,12 +13277,18 @@ app.config(['$routeProvider',
          controller: 'RegistrosAgendamientoCtrl'
       })
 
+	.when('/chat/', {
+         title: 'GeoP Chat',
+         templateUrl: 'partials/chat/chatio.html',
+         controller: 'chatioCtrl'
+      })
+
       .otherwise({
         redirectTo: '/'
       });
 }]);
 
-app.run(['$rootScope', 'services', function($rootScope, services){
+app.run(['$rootScope', 'firebase','services', function($rootScope, $firebase,services){
 
 	$rootScope.gestor={};
 
@@ -13432,7 +13491,6 @@ $rootScope.ProgramadosModal=function(){
   };
 	//$rootScope.listaProgramados();
 // -----------------------------------------------------------------Mostrar Modal Servicios dejados como Malos
-
 
 
 });

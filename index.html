@@ -31,6 +31,7 @@
 	<script src='js/select2.min.js'></script>
 
 
+
 	<!--moment.js el que hay en la carpeta js no se esta usando-->
     <!--<script src="js/jsJulian/controllers.js"></script>-->
 
@@ -351,6 +352,9 @@
 <script src="js/select.js"></script>
 <script src="js/angular-notify.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angularFire/2.2.0/angularfire.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+
 
 <!--<script src="http://10.100.82.125/autobots/plugins/conversejs/dist/converse.js"></script>-->
 <!--<script src="js/jsJulian/controllers.js"></script>-->
@@ -387,6 +391,17 @@ function abrirTips(){
 	window.open(window.location.pathname+"#/tips/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
 }
 
+</script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCWB_v8UvuFVD6HzJn0_sT1j0FQG-G9CLk",
+    authDomain: "geopchat.firebaseapp.com",
+    databaseURL: "https://geopchat.firebaseio.com",
+    storageBucket: "geopchat.appspot.com",
+    messagingSenderId: "572359464882"
+  };
+  firebase.initializeApp(config);
 </script>
 </body>
 </html>
