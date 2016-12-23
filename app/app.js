@@ -12588,7 +12588,7 @@ app.controller('mymodalcontroller', function ($scope,$route, $rootScope, $locati
 
 //Controlador de prueba CHAT
 
-app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,$firebase,$firebaseObject,$firebaseArray,services){
+app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,$firebase,$firebaseObject,$firebaseArray,notify,services){
 
 
 	// Basura del logueo ---------------------------------
