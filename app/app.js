@@ -12628,7 +12628,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		$scope.lista = chats[0];
 
 
-		console.log($scope.lista);
+		//console.log($scope.lista);
 	}, function (error) {
         	//error
         	console.log(error.message);
@@ -12641,7 +12641,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	$scope.agregar=function(){
 
 		var fechis = $rootScope.fechaProceso();
-		console.log(fechis);
+		//console.log(fechis);
 		var message={mensaje:$scope.chatxt,
 					user: userID,
 					log: fechis };
