@@ -12619,14 +12619,14 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	var root = firebase.database().ref();
 	var messageRef = $firebaseArray(root.child('messages'));
 
-	var mensajes=$firebaseArray(messageRef).$loaded(function (chats) {
+	var mensajes=$firebaseArray(messageRef.$loaded(function (chats) {
 
 		$scope.lista=chats;
 		console.log(lista);
 		}, function (error) {
         	//error
         	console.log(error.message);
-	});
+	}));
 
 	$scope.agregar=function(){
 
