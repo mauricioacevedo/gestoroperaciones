@@ -12585,7 +12585,7 @@ app.controller('mymodalcontroller', function ($scope,$route, $rootScope, $locati
 
 //Controlador de prueba CHAT
 
-app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,$firebase,services){
+app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,firebaseArray,services){
 
 
 	// Basura del logueo ---------------------------------
@@ -12614,13 +12614,10 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	//  ---------------------------------Basura del logueo
 
+	var root = firebase.database().ref();
 
-var ref = new Firebase("https://geopchat.firebaseio.com/messages");
-
-
-
-          // GET MESSAGES AS AN ARRAY
-          $scope.messages = $firebaseArray(ref);
+	//var ref = new Firebase("https://geopchat.firebaseio.com/messages");
+console.log(root);
 
 
 
