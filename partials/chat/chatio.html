@@ -1,9 +1,14 @@
 
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-md-4">
 
 		<div class = "panel panel-default" >
-			<div class = "panel-heading nav navbar-default">
+			<div class = "panel-heading nav navbar-default ">
+						<div class="row">
+							<div class="col-md-12">
+							<b>Chat</b></div></div>
+			</div>
+			<div class = "panel-body fixed-panel">
 				<ul class="list-group small">
 					<span class="small">
 					<a href="" ng-repeat="msg in lista" class="list-group-item animated slideInRight"><i class="fa fa-user-circle" aria-hidden="true"></i> {{msg.user}}: <span class="small">{{msg.mensaje}} {{msg.log | timeago}}</span></a>
