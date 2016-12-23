@@ -12627,7 +12627,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
         	//success
 		//$scope.lista = chats[0];
 		$scope.lista = chats[0];
-		notify({ message:'Mensaje nuevo', duration:'1000',position:'right'} );
+		//notify({ message:'Mensaje nuevo', duration:'1000',position:'right'} );
 
 		//console.log($scope.lista);
 	}, function (error) {
