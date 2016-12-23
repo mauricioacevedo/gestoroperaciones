@@ -12809,6 +12809,22 @@ app.directive('btnTools', function ($rootScope,$cookies) {
      };
 });
 
+app.directive('schrollBottom', function () {
+  return {
+    scope: {
+      schrollBottom: "="
+    },
+    link: function (scope, element) {
+      scope.$watchCollection('schrollBottom', function (newValue) {
+        if (newValue)
+        {
+          $(element).scrollTop($(element)[0].scrollHeight);
+        }
+      });
+    }
+  }
+})
+
 // Filtros ------------------------------------------
 
 app.filter('timeago', function() {
