@@ -14,15 +14,17 @@
 				</ul>
 			</div>
 			<div class="panel-footer clearfix">
+				<div class="row">
+					<div class="col-md-12">
+						<ul class="nav navbar-nav navbar-right">
+							<li><input style="width:200px"  class="btn btn-default btn-xs " type="text" ng-model="chatxt" ng-trim="true" on-key-enter="agregar()" ng-disabled="loading" /></li>
+							<li><button type="button" class="btn btn-primary btn-xs" ng-click="agregar()" >
+								<i class="fa fa-paper-plane" aria-hidden="true"> </i>
+							</button></li>
 
-				<ul class="nav navbar-nav navbar-right">
-					<li><input style="width:200px"  class="btn btn-default btn-xs " type="text" ng-model="chatxt" ng-trim="true" on-key-enter="agregar()" ng-disabled="loading" /></li>
-					<li><button type="button" class="btn btn-primary btn-xs" ng-click="agregar()" >
-						<i class="fa fa-paper-plane" aria-hidden="true"> </i>
-					</button></li>
-
-				</ul>
-
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 
