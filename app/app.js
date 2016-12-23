@@ -12623,7 +12623,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 		var message="hola";
 		messageRef.$add(message);
-		$scope.lista=messageRef.$getRecord();
+		$scope.lista=messageRef.$getRecord().list;
 	}
 
 
