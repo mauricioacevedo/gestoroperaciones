@@ -12616,7 +12616,6 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	var root = firebase.database().ref();
 	var messageRef = $firebaseArray(root.child('messages'));
-	var historico=root.update('messages');
 
 	var adaRef = firebase.database.ref("messages");
 	var key = adaRef.key;  // key === "ada"
