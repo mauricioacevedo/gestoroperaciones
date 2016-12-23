@@ -12584,36 +12584,43 @@ app.controller('mymodalcontroller', function ($scope,$route, $rootScope, $locati
 });
 
 //Controlador de prueba CHAT
-app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,$http,$firebaseObject, Messages,services){
+
+app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,$http,services){
 
 
-	var self = this;
+	// Basura del logueo ---------------------------------
+		$rootScope.logedUser=$cookieStore.get('logedUser');
+		var userID=$cookieStore.get('logedUser').login;
+			document.getElementById('logout').className="btn btn-md btn-danger";
+			var divi=document.getElementById("logoutdiv");
+				divi.style.visibility="visible";
+				divi.style.position="relative";
 
-        self.messages = Messages();
 
-        self.saveMessage = function () {
-          if (self.name && self.message) {
-              self.messages.$add({ name: self.name, text: self.message });
-              //self.name = null;
-              self.message = null;
-          } else {
-              // Get Lost
-          }
-		};
+		$rootScope.logout = function() {
+					services.logout(userID);
+					$cookieStore.remove('logedUser');
+					$rootScope.logedUser=undefined;
+					$scope.pedidos={};
+					clearInterval($scope.intervalLightKPIS);
+					document.getElementById('logout').className="btn btn-md btn-danger hide";
+					var divi=document.getElementById("logoutdiv");
+					divi.style.position="absolute";
+					divi.style.visibility="hidden";
+					$location.path('/');
+			};
+
+
+
+	//  ---------------------------------Basura del logueo
+
+
+
+
 
 
 });
 
-app.factory('Messages', function($firebase,$firebaseArray){
-
-
-        return function () {
-
-            var ref = new Firebase('https://geopchat.firebaseio.com/'); //set to your app url on firebase.com
-
-            return $firebaseArray(ref);
-        }
-    });
 
 
 //Controlador de prueba CHAT
@@ -13471,14 +13478,6 @@ $rootScope.ProgramadosModal=function(){
 	//$rootScope.listaProgramados();
 // -----------------------------------------------------------------Mostrar Modal Servicios dejados como Malos
 
-var config = {
-    apiKey: "AIzaSyCWB_v8UvuFVD6HzJn0_sT1j0FQG-G9CLk",
-    authDomain: "geopchat.firebaseapp.com",
-    databaseURL: "https://geopchat.firebaseio.com",
-    storageBucket: "geopchat.appspot.com",
-    messagingSenderId: "572359464882"
-  };
-  firebase.initializeApp(config);
 
 });
 
