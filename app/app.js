@@ -12616,7 +12616,9 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	var root = firebase.database().ref();
     var mesg = root.child('messages');
-    console.log(mesg); // this works fine so no problem with firebase connection
+
+	$scope.users = $firebaseArray(mesg);
+    console.log($scope.users); // this works fine so no problem with firebase connection
 
 
 
