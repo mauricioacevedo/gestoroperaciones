@@ -12636,7 +12636,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	$scope.agregar=function(){
 
 		var message=$scope.chatxt;
-		messageRef.$add({ usuario: userID, mensaje: message });
+		messageRef.$add(message);
 		$scope.listado();
 		//$scope.lista={};
 		//return mensajes;
