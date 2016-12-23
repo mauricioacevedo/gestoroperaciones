@@ -12613,7 +12613,7 @@ app.factory('Messages', function($firebaseArray){
 
             return $firebaseArray(ref);
         }
-    }
+    });
 
 
 //Controlador de prueba CHAT
