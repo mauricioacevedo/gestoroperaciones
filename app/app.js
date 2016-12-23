@@ -547,7 +547,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
     };
 
 
-    obj.insertarDatoParametrizacion = function (depa, zona, AM, PM, fechaformato) {
+    obj.insertarDatoParametrizacion = function (depa, zona, AM, PM, fechaformato) {//insertar datos pametrizacion
         return $http.get (serviceBase + 'insertarDatoParametrizacion?depa='+depa+'&zona='+zona+'&AM='+AM+'&PM='+PM+'&fechaformato='+fechaformato);
     }
 
@@ -703,15 +703,15 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'getDashboardAsignacionesMes');
         }
 
-        obj.actualizarGraficaCambioNuevoHFC = function(){
+        obj.actualizarGraficaCambioNuevoHFC = function(){//grafica HFC
                 return $http.get(serviceBase + 'actualizarGraficaCambioNuevoHFC');
         }
 
-        obj.actualizarGraficaCambioNuevoREDCO = function(){
+        obj.actualizarGraficaCambioNuevoREDCO = function(){// grafica REDCO
                 return $http.get(serviceBase + 'actualizarGraficaCambioNuevoREDCO');
         }
 
-        obj.getDashboardAsignacionesMesCobre = function(){
+        obj.getDashboardAsignacionesMesCobre = function(){//grafica asignacion mes cobre
                 return $http.get(serviceBase + 'getDashboardAsignacionesMesCobre');
         }
 
