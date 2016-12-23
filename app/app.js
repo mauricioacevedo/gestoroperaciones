@@ -12639,8 +12639,13 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 
 	$scope.agregar=function(){
-
-		var message=$scope.chatxt;
+		var d = new Date();
+		var d = new Date(milliseconds);
+		var d = new Date(dateString);
+		var d = new Date(year, month, day, hours, minutes, seconds, milliseconds);
+		var message={mensaje:$scope.chatxt,
+					user: userID,
+					fecha: d };
 		messageRef.$add(message);
 		$scope.listado();
 		//$scope.lista={};
