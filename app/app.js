@@ -12604,7 +12604,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 });
 
-app.factory('Messages', function($firebaseArray){
+app.factory('Messages', function($firebase,$firebaseArray){
 
 
         return function () {
