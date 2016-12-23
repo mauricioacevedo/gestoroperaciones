@@ -12584,44 +12584,40 @@ app.controller('mymodalcontroller', function ($scope,$route, $rootScope, $locati
 });
 
 //Controlador de prueba CHAT
-app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,$http,$firebaseObject, Message,services){
+app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,$http,$firebaseObject, Messages,services){
 
 
-	$scope.user="Guest";
+	var self = this;
 
-	$scope.messages= Message.all;
+        self.messages = Messages();
 
-	$scope.inserisci = function(message){
-			Message.create(message);
+        self.saveMessage = function () {
+          if (self.name && self.message) {
+              self.messages.$add({ name: self.name, text: self.message });
+              //self.name = null;
+              self.message = null;
+          } else {
+              // Get Lost
+          }
 		};
-
-
 
 
 });
 
-app.factory('Message', ['$firebase',
-	function($firebase) {
-		var ref = new Firebase('https://geopchat.firebaseio.com/');
-		var messages = $firebase(ref.child('messages')).$asArray();
+app.factory('Messages', Messages);
 
-		var Message = {
-			all: messages,
-			create: function (message) {
-				return messages.$add(message);
-			},
-			get: function (messageId) {
-				return $firebase(ref.child('messages').child(messageId)).$asObject();
-			},
-			delete: function (message) {
-				return messages.$remove(message);
-			}
-		};
+    Messages.$inject = ['$firebaseArray'];
 
-		return Message;
+    function Messages ($firebaseArray) {
 
-	}
-	]);
+        return function () {
+
+            var ref = new Firebase('https://geopchat.firebaseio.com/'); //set to your app url on firebase.com
+
+            return $firebaseArray(ref);
+        }
+    }
+
 
 //Controlador de prueba CHAT
 
