@@ -13270,7 +13270,7 @@ app.config(['$routeProvider',
       });
 }]);
 
-app.run(['$rootScope', 'services', function($rootScope, services){
+app.run(['$rootScope', 'firebase','services', function($rootScope, $firebase,services){
 
 	$rootScope.gestor={};
 
@@ -13474,7 +13474,14 @@ $rootScope.ProgramadosModal=function(){
 	//$rootScope.listaProgramados();
 // -----------------------------------------------------------------Mostrar Modal Servicios dejados como Malos
 
-
+var config = {
+    apiKey: "AIzaSyCWB_v8UvuFVD6HzJn0_sT1j0FQG-G9CLk",
+    authDomain: "geopchat.firebaseapp.com",
+    databaseURL: "https://geopchat.firebaseio.com",
+    storageBucket: "geopchat.appspot.com",
+    messagingSenderId: "572359464882"
+  };
+  firebase.initializeApp(config);
 
 });
 
