@@ -12616,9 +12616,12 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	var root = firebase.database().ref();
 	var messageRef = $firebaseArray(root.child('messages'));
-	var historico=firebase.database().ref().update('messages');
+	var historico=root.update('messages');
 
-	console.log(messageRef);
+	var adaRef = firebase.database.ref("messages");
+	var key = adaRef.key;  // key === "ada"
+
+	console.log(key);
 
 	$scope.agregar=function(){
 
