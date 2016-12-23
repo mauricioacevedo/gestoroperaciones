@@ -12615,7 +12615,12 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	//  ---------------------------------Basura del logueo
 
 
-console.log($firebaseArray);
+var ref = new Firebase("https://geopchat.firebaseio.com/messages");
+
+
+
+          // GET MESSAGES AS AN ARRAY
+          $scope.messages = $firebaseArray(ref);
 
 
 
