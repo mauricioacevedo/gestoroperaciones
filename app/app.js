@@ -3440,6 +3440,8 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 
 //------------ fin controlador usuarios ---------------------------
 
+//-----------------------------inicio alarmas activacion--------------------
+
 app.controller('AlarmasActivacionCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
     var userID=$cookieStore.get('logedUser').login;
         $rootScope.logedUser=$cookieStore.get('logedUser');
@@ -3657,7 +3659,7 @@ app.controller('AlarmasActivacionCtrl', function ($scope, $rootScope, $location,
         }
 
     });
-
+//-----------------------------fin alarmas activacion--------------------
 
 app.controller('tipsCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
         
