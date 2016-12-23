@@ -12639,7 +12639,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	$scope.agregar=function(){
 
 		var fechis = new Date();
-		var fechis=fechis.toDateString;
+		console.log(fechis);
 		var message={mensaje:$scope.chatxt,
 					user: userID,
 					log: "2016-12-23 10:33:00" };
