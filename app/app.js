@@ -12624,17 +12624,16 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		$firebaseArray(root).$loaded(function (chats) {
         	//success
 		$scope.lista = chats[0];
-				console.log($scope.lista);
+
+			var syncArreglo = chats.$asObject();
+			syncArreglo.$bindTo($scope,'messages');
+
+		console.log($scope.lista);
 	}, function (error) {
         	//error
         	console.log(error.message);
 	});
 
-		var syncArreglo = chats.$asObject();
-
-    //Ahora le haremos un 'bind' a una variable de nuestro controlador
-    //BIND: el proceso de la sincronizacion automatica entre el modelo y la vista
-    syncArreglo.$bindTo($scope,'messages');
 
 	};
 
