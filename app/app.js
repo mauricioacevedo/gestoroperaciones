@@ -12620,7 +12620,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	var adaRef = firebase.database().ref("messages");
 	var key = adaRef.key;  // key === "ada"
 
-	console.log(key);
+	console.log(adaRef);
 
 	$scope.agregar=function(){
 
