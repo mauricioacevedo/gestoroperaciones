@@ -12614,15 +12614,10 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	//  ---------------------------------Basura del logueo
 
-	var root = firebase.ref();
-	//var sync = firebase(root);
+	var root = firebase.database().ref();
+	var messageRef = $firebaseArray(root.child('messages'));
 
-   // if ref points to a data collection
-   $scope.list = root.$asArray();
-
-   // if ref points to a single record
-   $scope.rec = root.$asObject();
-
+	console.log(messageRef);
 
 
 });
