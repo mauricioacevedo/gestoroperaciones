@@ -12618,7 +12618,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	//  ---------------------------------Basura del logueo
 
 	// Chat Firebase ---------------------------------------------------
-	var root = firebase.database().ref("messages");
+	var root = firebase.database().ref("messages"); // hace refencia a la tabla donde se almacenan los datos
 	var messageRef = $firebaseArray(root.child('messages'));
 
 	$scope.listado=function(){
@@ -12629,7 +12629,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		$scope.lista = chats;
 
 
-		console.log($scope.lista);
+		//console.log($scope.lista);
 	}, function (error) {
         	//error
         	console.log(error.message);
