@@ -12625,7 +12625,8 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 		$firebaseArray(root).$loaded(function (chats) {
         	//success
-		$scope.lista = chats[0];
+		//$scope.lista = chats[0];
+		$scope.lista = chats;
 
 
 		console.log($scope.lista);
