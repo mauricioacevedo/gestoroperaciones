@@ -12642,7 +12642,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		var fechis=fechis.toDateString;
 		var message={mensaje:$scope.chatxt,
 					user: userID,
-					log: fechis };
+					log: "2016-12-23 10:33:00" };
 		messageRef.$add(message);
 		$scope.listado();
 		//$scope.lista={};
