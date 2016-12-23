@@ -2440,7 +2440,7 @@ $rootScope.logout = function() {
 //**********************************fin Upload*******************************
 
 //---------------indicadores procesos
-app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,$http,$base64,$firebase,$firebaseObject,$firebaseArray, services) {
+app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,$http,$base64, services) {
    
 
 	var userID=$cookieStore.get('logedUser').login;
@@ -3293,44 +3293,6 @@ $scope.topProductivos = function() {
 
 //--------------- fin indicadores procesos-----------------------
 
-// Chat Firebase ---------------------------------------------------
-
-
-	var root = firebase.database().ref();
-	var messageRef = $firebaseArray(root.child('messages'));
-
-	$scope.listado=function(){
-
-		$firebaseArray(root).$loaded(function (chats) {
-        	//success
-		$scope.lista = chats[0];
-
-
-		console.log($scope.lista);
-	}, function (error) {
-        	//error
-        	console.log(error.message);
-	});
-
-
-	};
-
-
-	$scope.agregar=function(){
-
-		var fechis = $rootScope.fechaProceso();
-		console.log(fechis);
-		var message={mensaje:$scope.chatxt,
-					user: userID,
-					log: fechis };
-		messageRef.$add(message);
-		$scope.listado();
-		$scope.chatxt="";
-		//$scope.lista={};
-		//return mensajes;
-	}
-	$scope.listado();
-	// --------------------------------------------------- Chat Firebase
 
 //------------controlador usuarios -------------------
 
