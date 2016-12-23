@@ -12617,17 +12617,20 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	var root = firebase.database().ref();
 	var messageRef = $firebaseArray(root.child('messages'));
 
-	var adaRef = firebase.database().ref("messages");
-	var key = adaRef.key;  // key === "ada"
+	var mensajes=$firebaseArray(messageRef).$loaded(function (chats) {
 
-	console.log(adaRef);
+		$scope.lista=chats;
+		}, function (error) {
+        	//error
+        	console.log(error.message);
+	});
 
 	$scope.agregar=function(){
 
 		var message="hola";
 		messageRef.$add({ usuario: userID, mensaje: message });
 		//$scope.lista={};
-		$scope.lista=historico;
+		return mensajes;
 	}
 
 
