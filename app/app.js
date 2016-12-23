@@ -12620,6 +12620,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	var mensajes=$firebaseArray(messageRef).$loaded(function (chats) {
 
 		$scope.lista=chats;
+		console.log(lista);
 		}, function (error) {
         	//error
         	console.log(error.message);
