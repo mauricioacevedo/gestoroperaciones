@@ -12615,7 +12615,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	//  ---------------------------------Basura del logueo
 
 
-console.log(firebase);
+console.log(firebaseArray);
 
 
 
