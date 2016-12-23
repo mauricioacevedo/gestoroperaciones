@@ -12622,7 +12622,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	$scope.agregar=function(){
 
 		var message="hola";
-		messageRef.$$add({ name: 'Andres', text: message });
+		messageRef.$add({ name: 'Andres', text: message });
 		$scope.lista={};
 		$scope.lista=messageRef.$getRecord().list;
 	}
