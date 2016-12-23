@@ -12625,8 +12625,6 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
         	//success
 		$scope.lista = chats[0];
 
-			var syncArreglo = chats.$asObject();
-			syncArreglo.$bindTo($scope,'messages');
 
 		console.log($scope.lista);
 	}, function (error) {
