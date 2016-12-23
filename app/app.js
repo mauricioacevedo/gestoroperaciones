@@ -12615,7 +12615,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	//  ---------------------------------Basura del logueo
 
 	var root = firebase.database().ref();
-	var sync = $firebase(root);
+	var sync = firebase(root);
 
    // if ref points to a data collection
    $scope.list = sync.$asArray();
