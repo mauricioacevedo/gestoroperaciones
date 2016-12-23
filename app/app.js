@@ -12616,6 +12616,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	var root = firebase.database().ref();
 	var messageRef = $firebaseArray(root.child('messages'));
+	var historico=firebase.database().ref().update('messages');
 
 	console.log(messageRef);
 
@@ -12624,7 +12625,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		var message="hola";
 		messageRef.$add({ usuario: userID, mensaje: message });
 		//$scope.lista={};
-		//$scope.lista=messageRef.$getRecord().list;
+		$scope.lista=historico;
 	}
 
 
