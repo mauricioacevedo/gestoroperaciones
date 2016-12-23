@@ -12619,6 +12619,12 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	console.log(messageRef);
 
+	$scope.agregar=function(){
+
+		var message="hola";
+		messageRef.$add(message);
+	}
+
 
 });
 
