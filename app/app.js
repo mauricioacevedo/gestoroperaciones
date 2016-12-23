@@ -12647,7 +12647,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		//$scope.lista={};
 		//return mensajes;
 	}
-
+$scope.listado();
 
 });
 
