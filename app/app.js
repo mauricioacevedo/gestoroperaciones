@@ -12629,36 +12629,13 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	$scope.listado=function(){
 
-	var myConnectionsRef = firebase.database().ref('users/'+userID+'/connections');
 
-	// stores the timestamp of my last disconnect (the last time I was seen online)
-	var lastOnlineRef = firebase.database().ref('users/'+userID+'/lastOnline');
-	var connectedRef = firebase.database().ref('.info/connected');
+		var usersRef = firebase.database().ref('users');
+		var connectedRef = firebase.database().ref('.info/connected');
 
-	connectedRef.on('value', function(snap) {
-	  if (snap.val() === true) {
-		// We're connected (or reconnected)! Do anything here that should happen only if online (or on reconnect)
+		var connected = $firebaseObject(connectedRef);
 
-		// add this device to my connections list
-		// this value could contain info about the device or a timestamp too
-		  console.log(connectedRef);
-		var con = myConnectionsRef.push(true);
-		$scope.userOnLine=snap.numChildren();
-		console.log("# of online users = " + snap.numChildren());
-
-		// when I disconnect, remove this device
-		con.onDisconnect().remove();
-
-		// when I disconnect, update the last time I was seen online
-		lastOnlineRef.onDisconnect().set(firebase.database.ServerValue.TIMESTAMP);
-	  }
-	});
-
-		listRef.on("value", function(snap) {
-			$scope.userOnLine=snap.numChildren();
-		  console.log("# of online users = " + snap.numChildren());
-		});
-
+		console.log(connected);
 
 
 
@@ -12684,7 +12661,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		$scope.chatxt="";
 		//$scope.lista={};
 		//return mensajes;
-	}
+	};
 	$scope.listado();
 	// --------------------------------------------------- Chat Firebase
 
