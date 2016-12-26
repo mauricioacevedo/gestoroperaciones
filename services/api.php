@@ -7506,7 +7506,7 @@ private function updateFenixReconfiguracion($obj){
 
             //var_dump($result0);
 
-                        $query="SELECT Nodo, trim(Diez_Mbps) as Diez_Mbps, trim(Doce_Mbps) as Doce_Mbps, trim(Quince_Mbps) as Quince_Mbps, trim(Veinte_Mbps) as Veinte_Mbps, trim(Treinta_Mbps) as Treinta_Mbps, CDI, MUNICIPIO FROM portalbd.gestor_cmts where nodo like '%$nodo%' limit 100;";
+                        $query="SELECT Nodo, trim(Diez_Mbps) as Diez_Mbps, trim(Doce_Mbps) as Doce_Mbps, trim(Quince_Mbps) as Quince_Mbps, trim(Veinte_Mbps) as Veinte_Mbps, trim(Treinta_Mbps) as Treinta_Mbps, CDI, MUNICIPIO FROM portalbd.gestor_cmts where nodo like '%$nodo%' limit 100";
 
                          //$this->response($query1,200);
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
