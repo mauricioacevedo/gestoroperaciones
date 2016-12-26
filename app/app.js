@@ -12633,8 +12633,8 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	// stores the timestamp of my last disconnect (the last time I was seen online)
 	var lastOnlineRef = firebase.database().ref('users/'+userID+'/lastOnline');
-
 	var connectedRef = firebase.database().ref('.info/connected');
+
 	connectedRef.on('value', function(snap) {
 	  if (snap.val() === true) {
 		// We're connected (or reconnected)! Do anything here that should happen only if online (or on reconnect)
@@ -12642,6 +12642,8 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		// add this device to my connections list
 		// this value could contain info about the device or a timestamp too
 		var con = myConnectionsRef.push(true);
+		$scope.userOnLine=snap.numChildren();
+		console.log("# of online users = " + snap.numChildren());
 
 		// when I disconnect, remove this device
 		con.onDisconnect().remove();
@@ -12651,7 +12653,10 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	  }
 	});
 
-
+		listRef.on("value", function(snap) {
+			$scope.userOnLine=snap.numChildren();
+		  console.log("# of online users = " + snap.numChildren());
+		});
 
 
 
