@@ -12629,7 +12629,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	$scope.listado=function(){
 
-	var onlineUsers = 0;
+	    var onlineUsers = 0;
         var currentUsers = null;
 
        // var listRef = new Firebase("https://intense-heat-8619.firebaseio.com/presence/");
@@ -12646,6 +12646,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
         listRef.on('value', function(snap) {
             onlineUsers = snap.numChildren();
             currentUsers = $firebaseArray(listRef.orderByChild('status').equalTo(true));
+			$scope.userOnLine=currentUsers;
             $rootScope.$broadcast('onOnlineUser');
         });
 
@@ -12661,12 +12662,6 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
         var getCurrentUsers = function() {
             return currentUsers;
         };
-
-		var usuarios=function(onlineUsers){
-
-			$scope.userOnLine=onlineUsers;
-			console.log($scope.userOnLine);
-		}
 
 		var chats=$firebaseArray(root).$loaded(function (chats) {
         	//success
