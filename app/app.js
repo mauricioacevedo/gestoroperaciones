@@ -12677,7 +12677,8 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
             getOnlineUserCount: getOnlineUserCount,
             setUserStatus: setUserStatus,
             getCurrentUsers: getCurrentUsers,
-			chats:$scope.lista
+			chats:$scope.lista,
+			usuarios:$scope.userOnLine
         }
 
 
