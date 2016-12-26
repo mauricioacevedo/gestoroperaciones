@@ -12653,7 +12653,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		    console.log("# of online users = " + snap.numChildren());
 
 			$firebaseArray(listRef).$loaded(function (users) {
-					$scope.currentUsers = users[0];
+				$scope.currentUsers = users;
 				console.log($scope.currentUsers);
 				}, function (error) {
 						console.log(error.message);
@@ -12700,13 +12700,13 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		var colorDanger="#E83720";
 		var colorWaring="#E8A820";
 		var colorNormal="#088A08";
-		if(userID==$scope.currentUsers[0].name){
+		/*if(userID==$scope.currentUsers[0].name){
 			$scope.estilo={
                   "color": "5px solid "+colorDanger
                     };
 
 
-		}
+		} */
 
 	}
 
