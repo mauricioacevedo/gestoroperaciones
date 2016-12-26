@@ -12637,6 +12637,18 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 		console.log(connected);
 
+		setOnline: function(userID){
+		var connected = $firebaseObject(connectedRef);
+  		var online = $firebaseArray(usersRef.child(userID+'/online'));
+
+  connected.$watch(function (){
+    if(connected.$value === true){
+      online.$add(true).then(function(connectedRef){
+        connectedRef.onDisconnect().remove();
+      });
+    }
+  });
+}
 
 
 		$firebaseArray(root).$loaded(function (chats) {
