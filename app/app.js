@@ -12621,6 +12621,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
 	var messageRef = $firebaseArray(root.child('messages'));
 	var listRef = firebase.database().ref('presence/');
+	var presencia = $firebaseArray(root.child('presence'));
 	var userRef = listRef.push();
 	var presenceRef = firebase.database().ref(".info/connected");
 
@@ -12652,12 +12653,15 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			//console.log($scope.currentUsers);
 		    console.log("# of online users = " + snap.numChildren());
 
-			$firebaseArray(root).$loaded(function (users) {
+			$scope.currentUsers=presencia;
+			console.log($scope.currentUsers);
+
+			/*$firebaseArray(root).$loaded(function (users) {
 				$scope.currentUsers = users[1];
 				console.log($scope.currentUsers);
 				}, function (error) {
 						console.log(error.message);
-				});
+				});*/
 		});
 
 		//console.log(presenceRef);
