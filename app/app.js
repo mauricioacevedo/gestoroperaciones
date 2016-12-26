@@ -12641,6 +12641,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 		// add this device to my connections list
 		// this value could contain info about the device or a timestamp too
+		  console.log(snap);
 		var con = myConnectionsRef.push(true);
 		$scope.userOnLine=snap.numChildren();
 		console.log("# of online users = " + snap.numChildren());
