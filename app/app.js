@@ -12654,6 +12654,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 
 				$scope.currentUsers = $firebaseObject(root.child('presence').child('name'));
+				$scope.currentUsers=$firebaseArray($scope.currentUsers);
 				console.log($scope.currentUsers);
 
 		});
