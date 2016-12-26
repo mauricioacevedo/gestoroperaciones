@@ -12630,6 +12630,9 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	$scope.listado=function(){
 
 		presenceRef.on("value", function(snap) {
+			var estado=snap.val();
+
+			console.log(estado);
 		  if (snap.val()) {
 			// Remove ourselves when we disconnect.
 			userRef.onDisconnect().remove();
