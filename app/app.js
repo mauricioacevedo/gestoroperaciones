@@ -12637,6 +12637,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 		// Number of online users is the number of objects in the presence list.
 		listRef.on("value", function(snap) {
+			$scope.userOnLine=snap.numChildren();
 		  console.log("# of online users = " + snap.numChildren());
 		});
 
