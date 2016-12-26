@@ -12650,7 +12650,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
         });
 
         var setUserStatus = function(name) {
-            userRef.set({ name: name, status: true });
+            userRef.set({ name: userID, status: true });
         }
 
         var getOnlineUserCount = function() {
