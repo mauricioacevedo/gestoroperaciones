@@ -12654,7 +12654,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 			$firebaseArray(root).$loaded(function (users) {
 				$scope.currentUsers = users[1];
-				console.log($scope.currentUsers['name']);
+				console.log($scope.currentUsers);
 				}, function (error) {
 						console.log(error.message);
 				});
