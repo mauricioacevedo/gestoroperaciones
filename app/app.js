@@ -12630,11 +12630,11 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		  if (snap.val()) {
 			// Remove ourselves when we disconnect.
 			userRef.onDisconnect().remove();
-			var fechis = $rootScope.fechaProceso();
+			/*var fechis = $rootScope.fechaProceso();
 			var message={mensaje:'Cerró sesión',
 					user: userID,
 					log: fechis };
-			messageRef.$add(message);
+			messageRef.$add(message);*/
 
 			userRef.set(true);
 		  }
