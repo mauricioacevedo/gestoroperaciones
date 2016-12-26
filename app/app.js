@@ -13116,6 +13116,12 @@ app.config(['$routeProvider',
 		 controller: 'edatelCtrl'
 	  })
 
+	    .when('/indicadores/', {
+         title: 'Indicadores',
+         templateUrl: 'partials/asignaciones/indicadores.html',
+         controller: 'IndicadoresCtrl'
+      })
+
 
 	//  ------------------------------------------ASIGNACIONES
 //---------------------------------------------INICIOACTIVACION
@@ -13159,12 +13165,6 @@ app.config(['$routeProvider',
          title: 'SignUP',
          templateUrl: 'partials/singup.html',
          controller: 'UsersCtrl'
-      })
-
-        .when('/indicadores/', {
-         title: 'Indicadores',
-         templateUrl: 'partials/indicadores.html',
-         controller: 'IndicadoresCtrl'
       })
 
 
