@@ -12654,7 +12654,8 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
         }
 
         var getOnlineUserCount = function() {
-            return onlineUsers;
+			$scope.userOnLine=onlineUsers;
+            return $scope.userOnLine;
         }
 
         var getCurrentUsers = function() {
