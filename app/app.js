@@ -12960,6 +12960,17 @@ app.config(['$httpProvider', function($httpProvider) {
     $httpProvider.interceptors.push('LoadingInterceptor');
 }]);
 
+app.config(function () {
+  var config = {
+    apiKey: "AIzaSyCWB_v8UvuFVD6HzJn0_sT1j0FQG-G9CLk",       // Your Firebase API key
+    authDomain: "geopchat.firebaseapp.com",   // Your Firebase auth domain (*.firebaseapp.com)
+    databaseURL: "https://geopchat.firebaseio.com",   // Your Firebase database URL (*firebaseio.com)
+	storageBucket: "geopchat.appspot.com",
+    messagingSenderId: "572359464882"
+  };
+  firebase.initializeApp(config);
+});
+
 app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
