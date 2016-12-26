@@ -12649,6 +12649,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		listRef.on("value", function(snap) {
 			$scope.userOnLine=snap.numChildren();
 			$scope.currentUsers = $firebaseArray(listRef.orderByChild('status').equalTo(true));
+			console.log($scope.currentUsers.name);
 		    console.log("# of online users = " + snap.numChildren());
 			console.log($scope.currentUsers);
 		});
@@ -12689,7 +12690,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	$scope.userStatus=function(){
 
 		//console.log(userID);
-		console.log($scope.currentUsers[0].name);
+
 		var colorDanger="#E83720";
 		var colorWaring="#E8A820";
 		var colorNormal="#088A08";
