@@ -12661,15 +12661,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
             return currentUsers;
         };
 
-        return {
-            getOnlineUserCount: getOnlineUserCount,
-            setUserStatus: setUserStatus,
-            getCurrentUsers: getCurrentUsers
-        }
-
-
-		//console.log(presenceRef);
-		$firebaseArray(root).$loaded(function (chats) {
+		var chats=$firebaseArray(root).$loaded(function (chats) {
         	//success
 		//$scope.lista = chats[0];
 		$scope.lista = chats[0];
@@ -12680,6 +12672,15 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
         	//error
         	console.log(error.message);
 	});
+        return {
+            getOnlineUserCount: getOnlineUserCount,
+            setUserStatus: setUserStatus,
+            getCurrentUsers: getCurrentUsers,
+			$scope.lista
+        }
+
+
+
 
 
 	};
