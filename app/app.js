@@ -12665,6 +12665,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		var usuarios=function(onlineUsers){
 
 			$scope.userOnLine=onlineUsers;
+			console.log($scope.userOnLine);
 		}
 
 		var chats=$firebaseArray(root).$loaded(function (chats) {
