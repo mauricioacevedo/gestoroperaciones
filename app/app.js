@@ -12629,41 +12629,31 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	$scope.listado=function(){
 
-	    var onlineUsers = 0;
-        var currentUsers = null;
 
-       // var listRef = new Firebase("https://intense-heat-8619.firebaseio.com/presence/");
-        var userRef = listRef.push();
-        //var presenceRef = new Firebase("https://intense-heat-8619.firebaseio.com/.info/connected/");
+		presenceRef.on("value", function(snap) {
+		  if (snap.val()) {
+			// Remove ourselves when we disconnect.
+			userRef.onDisconnect().remove();
+			/*var fechis = $rootScope.fechaProceso();
+			var message={mensaje:'Cerró sesión',
+					user: userID,
+					log: fechis };
+			messageRef.$add(message);*/
 
-        presenceRef.on('value', function(snap) {
-            if (snap.val()) {
-                userRef.onDisconnect().remove();
-                setUserStatus({name, status});
-            }
-        });
+			//userRef.set(true);
+			userRef.set({ name: userID, status: true });
+		  }
+		});
 
-        listRef.on('value', function(snap) {
-            onlineUsers = snap.numChildren();
-            currentUsers = $firebaseArray(listRef.orderByChild('status').equalTo(true));
-			$scope.userOnLine=onlineUsers;
-            $rootScope.$broadcast('onOnlineUser');
-        });
+		// Number of online users is the number of objects in the presence list.
+		listRef.on("value", function(snap) {
+			$scope.userOnLine=snap.numChildren();
+			$scope.currentUsers = $firebaseArray(listRef.orderByChild('status').equalTo(true));
+		    console.log("# of online users = " + snap.numChildren());
+		});
 
-        var setUserStatus = function(name) {
-            userRef.set({ name: userID, status: true });
-        }
-
-        var getOnlineUserCount = function() {
-			//$scope.userOnLine=onlineUsers;
-            return onlineUsers;
-        }
-
-        var getCurrentUsers = function() {
-            return currentUsers;
-        };
-
-		var chats=$firebaseArray(root).$loaded(function (chats) {
+		//console.log(presenceRef);
+		$firebaseArray(root).$loaded(function (chats) {
         	//success
 		//$scope.lista = chats[0];
 		$scope.lista = chats[0];
@@ -12674,15 +12664,6 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
         	//error
         	console.log(error.message);
 	});
-        return {
-            getOnlineUserCount: getOnlineUserCount,
-            setUserStatus: setUserStatus,
-            getCurrentUsers: getCurrentUsers,
-			chats:$scope.lista
-        }
-
-console.log(getOnlineUserCount);
-
 
 
 	};
