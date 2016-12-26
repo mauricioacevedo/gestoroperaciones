@@ -12686,6 +12686,20 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	$scope.listado();
 	// --------------------------------------------------- Chat Firebase
 
+	$scope.userStatus=function(){
+		var colorDanger="#E83720";
+		var colorWaring="#E8A820";
+		var colorNormal="#088A08";
+		if(userID==$scope.currentUsers.name){
+			$scope.estilo={
+                  "color": "5px solid "+colorDanger
+                    };
+
+
+		}
+
+	}
+
 });
 
 
