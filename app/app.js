@@ -12629,39 +12629,38 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	$scope.listado=function(){
 
-		// Number of online users is the number of objects in the presence list.
-		listRef.on("value", function(snap) {
-			$scope.userOnLine=snap.numChildren();
-		  console.log("# of online users = " + snap.numChildren());
-		});
+	var myConnectionsRef = firebase.database().ref('users/'+userID+'/connections');
 
-		presenceRef.on("value", function(snap) {
-		  if (snap.val()) {
-			// Remove ourselves when we disconnect.
-			userRef.onDisconnect().remove();
-			/*var fechis = $rootScope.fechaProceso();
-			var message={mensaje:'Cerró sesión',
-					user: userID,
-					log: fechis };
-			messageRef.$add(message);*/
+	// stores the timestamp of my last disconnect (the last time I was seen online)
+	var lastOnlineRef = firebase.database().ref('users/'+userID+'/lastOnline');
 
-			userRef.set(true);
-		  }
-		});
+	var connectedRef = firebase.database().ref('.info/connected');
+	connectedRef.on('value', function(snap) {
+	  if (snap.val() === true) {
+		// We're connected (or reconnected)! Do anything here that should happen only if online (or on reconnect)
 
+		// add this device to my connections list
+		// this value could contain info about the device or a timestamp too
+		var con = myConnectionsRef.push(true);
 
-		//console.log(presenceRef);
-		$firebaseArray(root).$loaded(function (chats) {
-        	//success
-		//$scope.lista = chats[0];
-		$scope.lista = chats[0];
-		//notify({ message:'Mensaje nuevo', duration:'1000',position:'right'} );
+		// when I disconnect, remove this device
+		con.onDisconnect().remove();
 
-		//console.log($scope.lista);
-	}, function (error) {
-        	//error
-        	console.log(error.message);
+		// when I disconnect, update the last time I was seen online
+		lastOnlineRef.onDisconnect().set(firebase.database.ServerValue.TIMESTAMP);
+	  }
 	});
+
+
+
+
+
+
+		$firebaseArray(root).$loaded(function (chats) {
+			$scope.lista = chats[0];
+		}, function (error) {
+			console.log(error.message);
+		});
 
 
 	};
