@@ -12656,7 +12656,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 				$scope.currentUsers = $firebaseArray(listRef);
 			var query = listRef.orderByChild("status").limitToLast(25);
 			$scope.filteredMessages = $firebaseArray(query);
-				console.log($scope.filteredMessages);
+				console.log($scope.filteredMessages.name);
 
 		});
 
