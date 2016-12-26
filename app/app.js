@@ -12620,7 +12620,8 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	// Chat Firebase ---------------------------------------------------
 	var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
 	var messageRef = $firebaseArray(root.child('messages'));
-	var userRef = root.push();
+	var listRef = firebase.database().ref("presence");
+	var userRef = listRef.push();
 	var presenceRef = firebase.database().ref(".info/connected");
 
 	$scope.listado=function(){
