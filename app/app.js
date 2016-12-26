@@ -12629,28 +12629,44 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	$scope.listado=function(){
 
-		presenceRef.on("value", function(snap) {
-			//var estado=snap.val();
+	var onlineUsers = 0;
+        var currentUsers = null;
 
-			//console.log(estado);
-		  if (snap.val()) {
-			// Remove ourselves when we disconnect.
-			userRef.onDisconnect().remove();
-			/*var fechis = $rootScope.fechaProceso();
-			var message={mensaje:'Cerró sesión',
-					user: userID,
-					log: fechis };
-			messageRef.$add(message);*/
+       // var listRef = new Firebase("https://intense-heat-8619.firebaseio.com/presence/");
+        var userRef = listRef.push();
+        //var presenceRef = new Firebase("https://intense-heat-8619.firebaseio.com/.info/connected/");
 
-			userRef.set(true);
-		  }
-		});
+        presenceRef.on('value', function(snap) {
+            if (snap.val()) {
+                userRef.onDisconnect().remove();
+                setUserStatus({name, status});
+            }
+        });
 
-		// Number of online users is the number of objects in the presence list.
-		listRef.on("value", function(snap) {
-			$scope.userOnLine=snap.numChildren();
-		  console.log("# of online users = " + snap.numChildren());
-		});
+        listRef.on('value', function(snap) {
+            onlineUsers = snap.numChildren();
+            currentUsers = $firebaseArray(listRef.orderByChild('status').equalTo(true));
+            $rootScope.$broadcast('onOnlineUser');
+        });
+
+        var setUserStatus = function(name) {
+            userRef.set({ name: name, status: true });
+        }
+
+        var getOnlineUserCount = function() {
+            return onlineUsers;
+        }
+
+        var getCurrentUsers = function() {
+            return currentUsers;
+        };
+
+        return {
+            getOnlineUserCount: getOnlineUserCount,
+            setUserStatus: setUserStatus,
+            getCurrentUsers: getCurrentUsers
+        }
+
 
 		//console.log(presenceRef);
 		$firebaseArray(root).$loaded(function (chats) {
