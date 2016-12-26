@@ -12620,7 +12620,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	// Chat Firebase ---------------------------------------------------
 	var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
 	var messageRef = $firebaseArray(root.child('messages'));
-	var listRef = firebase.database().ref('presence/'+userID+'/status');
+	var listRef = firebase.database().ref('presence/');
 	var userRef = listRef.push();
 	var presenceRef = firebase.database().ref(".info/connected");
 
@@ -12630,9 +12630,9 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	$scope.listado=function(){
 
 		presenceRef.on("value", function(snap) {
-			var estado=snap.name();
+			//var estado=snap.val();
 
-			console.log(estado);
+			//console.log(estado);
 		  if (snap.val()) {
 			// Remove ourselves when we disconnect.
 			userRef.onDisconnect().remove();
