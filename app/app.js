@@ -12621,7 +12621,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
 	var messageRef = $firebaseArray(root.child('messages'));
 	var userRef = root.push();
-	var presenceRef = new Firebase("https://geopchat.firebaseio.com/.info/connected");
+	var presenceRef = firebase.database().ref(".info/connected");
 
 	$scope.listado=function(){
 
