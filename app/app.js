@@ -12637,7 +12637,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 		console.log(connected);
 
-		setOnline: function(userID){
+		$scope.setOnline=function(userID){
 		var connected = $firebaseObject(connectedRef);
   		var online = $firebaseArray(usersRef.child(userID+'/online'));
 
