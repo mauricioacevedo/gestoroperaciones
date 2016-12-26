@@ -12630,7 +12630,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	$scope.listado=function(){
 
 		presenceRef.on("value", function(snap) {
-			var estado=snap.val();
+			var estado=snap.name();
 
 			console.log(estado);
 		  if (snap.val()) {
