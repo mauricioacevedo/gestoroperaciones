@@ -12620,7 +12620,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	// Chat Firebase ---------------------------------------------------
 	var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
 	var messageRef = $firebaseArray(root.child('messages'));
-	var listRef = firebase.database().ref("presence");
+	var listRef = firebase.database().ref('presence/'+userID+'/');
 	var userRef = listRef.push();
 	var presenceRef = firebase.database().ref(".info/connected");
 
@@ -12629,34 +12629,39 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	$scope.listado=function(){
 
+		presenceRef.on("value", function(snap) {
+		  if (snap.val()) {
+			// Remove ourselves when we disconnect.
+			userRef.onDisconnect().remove();
+			/*var fechis = $rootScope.fechaProceso();
+			var message={mensaje:'Cerró sesión',
+					user: userID,
+					log: fechis };
+			messageRef.$add(message);*/
 
-		var usersRef = firebase.database().ref('users');
-		var connectedRef = firebase.database().ref('.info/connected');
-
-		var connected = $firebaseObject(connectedRef);
-
-		//console.log(connected);
-
-		$scope.setOnline=function(userID){
-		var connected = $firebaseObject(connectedRef);
-  		var online = $firebaseArray(usersRef.child(userID+'/online'));
-
-  connected.$watch(function (){
-    if(connected.$value === true){
-      online.$add(true).then(function(connectedRef){
-        connectedRef.onDisconnect().remove();
-      });
-    }
-  });
-}
-
-
-		$firebaseArray(root).$loaded(function (chats) {
-			$scope.lista = chats[0];
-		}, function (error) {
-			console.log(error.message);
+			userRef.set(true);
+		  }
 		});
-		$scope.userOnLine=Users.setOnline(profile.$id);
+
+		// Number of online users is the number of objects in the presence list.
+		listRef.on("value", function(snap) {
+			$scope.userOnLine=snap.numChildren();
+		  console.log("# of online users = " + snap.numChildren());
+		});
+
+		//console.log(presenceRef);
+		$firebaseArray(root).$loaded(function (chats) {
+        	//success
+		//$scope.lista = chats[0];
+		$scope.lista = chats[0];
+		//notify({ message:'Mensaje nuevo', duration:'1000',position:'right'} );
+
+		//console.log($scope.lista);
+	}, function (error) {
+        	//error
+        	console.log(error.message);
+	});
+
 
 	};
 
