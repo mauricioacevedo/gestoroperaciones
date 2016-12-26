@@ -12648,12 +12648,16 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		// Number of online users is the number of objects in the presence list.
 		listRef.on("value", function(snap) {
 			$scope.userOnLine=snap.numChildren();
-			$scope.currentUsers = $firebaseArray(listRef.orderByChild('status').equalTo(true));
+			//$scope.currentUsers = $firebaseArray(listRef.orderByChild('status').equalTo(true));
 			//console.log($scope.currentUsers);
 		    console.log("# of online users = " + snap.numChildren());
-			//console.log($scope.currentUsers);
-			//console.log($scope.currentUsers('1'));
 
+			$firebaseArray(listRef).$loaded(function (users) {
+					$scope.currentUsers = users[0];
+				console.log($scope.currentUsers);
+				}, function (error) {
+						console.log(error.message);
+				});
 		});
 
 		//console.log(presenceRef);
