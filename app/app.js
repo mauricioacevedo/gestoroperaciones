@@ -12635,7 +12635,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 		var connected = $firebaseObject(connectedRef);
 
-		console.log(connected);
+		//console.log(connected);
 
 		$scope.setOnline=function(userID){
 		var connected = $firebaseObject(connectedRef);
@@ -12656,7 +12656,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		}, function (error) {
 			console.log(error.message);
 		});
-
+		$scope.userOnLine=Users.setOnline(profile.$id);
 
 	};
 
