@@ -12624,9 +12624,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	var userRef = listRef.push();
 	var presenceRef = firebase.database().ref(".info/connected");
 
-	$scope.listado=function(){
-
-		presenceRef.on("value", function(snap) {
+	presenceRef.on("value", function(snap) {
 		  if (snap.val()) {
 			// Remove ourselves when we disconnect.
 			userRef.onDisconnect().remove();
@@ -12639,6 +12637,9 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			userRef.set(true);
 		  }
 		});
+
+
+	$scope.listado=function(){
 
 		// Number of online users is the number of objects in the presence list.
 		listRef.on("value", function(snap) {
