@@ -12688,12 +12688,12 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	$scope.userStatus=function(){
 
-		console.log(userID);
-		console.log($scope.currentUsers[0].name);
+		//console.log(userID);
+		//console.log($scope.currentUsers[0].name);
 		var colorDanger="#E83720";
 		var colorWaring="#E8A820";
 		var colorNormal="#088A08";
-		if(userID==$scope.currentUsers.name){
+		if(userID==$scope.currentUsers[0].name){
 			$scope.estilo={
                   "color": "5px solid "+colorDanger
                     };
