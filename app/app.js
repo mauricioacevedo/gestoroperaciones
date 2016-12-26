@@ -12624,7 +12624,18 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	var userRef = listRef.push();
 	var presenceRef = firebase.database().ref(".info/connected");
 
-	presenceRef.on("value", function(snap) {
+
+
+
+	$scope.listado=function(){
+
+		// Number of online users is the number of objects in the presence list.
+		listRef.on("value", function(snap) {
+			$scope.userOnLine=snap.numChildren();
+		  console.log("# of online users = " + snap.numChildren());
+		});
+
+		presenceRef.on("value", function(snap) {
 		  if (snap.val()) {
 			// Remove ourselves when we disconnect.
 			userRef.onDisconnect().remove();
@@ -12638,14 +12649,6 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		  }
 		});
 
-
-	$scope.listado=function(){
-
-		// Number of online users is the number of objects in the presence list.
-		listRef.on("value", function(snap) {
-			$scope.userOnLine=snap.numChildren();
-		  console.log("# of online users = " + snap.numChildren());
-		});
 
 		//console.log(presenceRef);
 		$firebaseArray(root).$loaded(function (chats) {
