@@ -12635,17 +12635,15 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 		amOnline.on('value', function(snapshot) {
 		  if (snapshot.val()) {
-			userRef.onDisconnect().set(firebase.database.ServerValue.TIMESTAMP);
+			userRef.onDisconnect().remove();
 			userRef.set(true);
 		  }
 		});
 
 
 		listRef.on('value', function(snap) {
-			console.log(snap.val());
-			if(snap.val()===true){
+
 				$scope.userOnLine=snap.numChildren();
-			}
 
 			//$scope.currentUsers = $firebaseArray(listRef.orderByChild('status').equalTo(true));
 			//console.log($scope.currentUsers);
