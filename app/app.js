@@ -8828,6 +8828,18 @@ $scope.start = function(pedido) {
 
     };//FIN SAVEPEDIDO
 
+
+$scope.getFeed = function (){
+		services.getFeed().then(function(data){
+                        $scope.listado_feed=data.data[0];
+			$scope.total_feed=data.data[1];
+                        return data.data;
+                });
+
+	}
+$scope.getFeed();
+
+
   var colorDanger="#E83720";
     var colorWaring="#E8A820";
     var colorNormal="#088A08";
