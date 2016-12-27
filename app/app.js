@@ -12635,7 +12635,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 		amOnline.on('value', function(snapshot) {
 		  if (snapshot.val()) {
-			userRef.onDisconnect().set(firebase.database.ServerValue.TIMESTAMP);
+			userRef.onDisconnect().remove();
 			userRef.set(true);
 		  }
 		});
