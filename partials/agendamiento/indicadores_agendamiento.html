@@ -230,7 +230,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<ul class="nav navbar-nav navbar-left">
-								<b>Pendientes Por Fecha Cita</b>
+								<b>Pendientes según Gestión</b>
 								<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
 
 							</ul>
@@ -263,42 +263,38 @@
 
 						<table class="table small table-striped table-hover table-bordered table-condensed">
 							<thead>
-								<th width="82">Concepto</th>
+								<th>Concepto</th>
 								<th>TOTAL</th>
-								<th>Ayer</th>
-								<th>Hoy</th>
-								<th>Manana</th>
-								<th>Pasado Manana</th>
-								<th>Mas de 3 dias</th>
-								<th>Sin Fecha Cita</th>
-								<th>Viejos</th>
-							</thead>
-							<tbody>
-								<tr ng-repeat="data in listado_conceptosfc | filter:filtroInput as results">
-									<td><!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->{{data.CONCEPTO_ID}}</span></td>
-									<td ng-init="listado_conceptosfc.totales = parseInt(listado_conceptosfc.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
-									<td ng-init="listado_conceptosfc.total02 = parseInt(listado_conceptosfc.total02) + parseInt(data.Ayer)">{{data.Ayer}}</td>
-									<td ng-init="listado_conceptosfc.total34 = parseInt(listado_conceptosfc.total34) + parseInt(data.Hoy)">{{data.Hoy}}</td>
-									<td ng-init="listado_conceptosfc.total56 = parseInt(listado_conceptosfc.total56) + parseInt(data.Manana)">{{data.Manana}}</td>
-									<td ng-init="listado_conceptosfc.total712 = parseInt(listado_conceptosfc.total712) + parseInt(data.Pasado_Manana)">{{data.Pasado_Manana}}</td>
-									<td ng-init="listado_conceptosfc.total1324 = parseInt(listado_conceptosfc.total1324) + parseInt(data.Mas_de_3_dias)">{{data.Mas_de_3_dias}}</td>
-									<td ng-init="listado_conceptosfc.total2548 = parseInt(listado_conceptosfc.total2548) + parseInt(data.Sin_Fecha_Cita)">{{data.Sin_Fecha_Cita}}</td>
-									<td ng-init="listado_conceptosfc.totalmas48 = parseInt(listado_conceptosfc.totalmas48) + parseInt(data.Viejos)">{{data.Viejos}}</td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr class="info">
-									<th>TOTALES</th>
-									<th>{{listado_conceptosfc.totales}}</th>
-									<th>{{listado_conceptosfc.total02}}</th>
-									<th>{{listado_conceptosfc.total34}}</th>
-									<th>{{listado_conceptosfc.total56}}</th>
-									<th>{{listado_conceptosfc.total712}}</th>
-									<th>{{listado_conceptosfc.total1324}}</th>
-									<th>{{listado_conceptosfc.total2548}}</th>
-									<th>{{listado_conceptosfc.totalmas48}}</th>
-								</tr>
-							</tfoot>
+								<th>Migracion</th>
+								<th>Gestionables</th>
+								<th>Cita Vencida</th>
+								<th>Sin Agenda</th>
+								<th>Agendados</th>
+                               </thead>
+                               <tbody>
+                                   <tr ng-repeat="data in tbl_fechacita">
+                                    <td><!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->{{data.CONCEPTOS}}</span></td>
+                                    <td ng-init="tbl_fechacita.totales = parseInt(tbl_fechacita.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
+                                    <td ng-init="tbl_fechacita.total02 = parseInt(tbl_fechacita.total02) + parseInt(data.Migracion)">{{data.Migracion}}</td>
+                                     <td ng-init="tbl_fechacita.total34 = parseInt(tbl_fechacita.total34) + parseInt(data.Gestionables)">{{data.Gestionables}}</td>
+                                     <td ng-init="tbl_fechacita.total56 = parseInt(tbl_fechacita.total56) + parseInt(data.Cita_Vencida)">{{data.Cita_Vencida}}</td>
+                                    <td ng-init="tbl_fechacita.total712 = parseInt(tbl_fechacita.total712) + parseInt(data.Sin_Agenda)">{{data.Sin_Agenda}}</td>
+                                    <td ng-init="tbl_fechacita.total1324 = parseInt(tbl_fechacita.total1324) + parseInt(data.Agendados)">{{data.Agendados}}</td>
+
+                                        </tr>
+                                </tbody>
+                                <tfoot>
+									<tr class="info">
+											<th>TOTALES</th>
+											<th>{{tbl_fechacita.totales}}</th>
+											<th>{{tbl_fechacita.total02}}</th>
+											<th>{{tbl_fechacita.total34}}</th>
+											<th>{{tbl_fechacita.total56}}</th>
+											<th>{{tbl_fechacita.total712}}</th>
+											<th>{{tbl_fechacita.total1324}}</th>
+									</tr>
+
+                                </tfoot>
 						</table>
 
 				</div>
