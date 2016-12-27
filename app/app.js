@@ -12672,6 +12672,14 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		});
 
 
+		//var list = $firebaseArray(ref);
+
+		messageRef.$watch(function(event) {
+		  console.log(event);
+		});
+
+
+
 		mensajes.on('child_added', function(newMessageSnapshot) {
 
 			 $scope.newMessage=newMessageSnapshot.val();
