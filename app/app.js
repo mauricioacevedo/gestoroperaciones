@@ -13343,7 +13343,7 @@ app.config(['$routeProvider',
       })
 
       .when('/agendamiento/', {
-         title: 'Conceptos Agendamiento',
+         title: 'Indicadores Agendamiento',
          templateUrl: 'partials/agendamiento/indicadores_agendamiento.html',
          controller: 'AgendamientoCtrl'
       })
