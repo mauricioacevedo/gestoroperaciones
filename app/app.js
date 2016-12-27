@@ -12637,8 +12637,8 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		amOnline.on('value', function(snapshot) {
 		  if (snapshot.val()) {
 			var sessionRef = userRef.push();
-			sessionRef.child('ended').onDisconnect().set(Firebase.ServerValue.TIMESTAMP);
-			sessionRef.child('began').set(Firebase.ServerValue.TIMESTAMP);
+			sessionRef.child('ended').onDisconnect().set(firebase.database.ServerValue.TIMESTAMP);
+			sessionRef.child('began').set(firebase.database.ServerValue.TIMESTAMP);
 		  }
 		});
 
