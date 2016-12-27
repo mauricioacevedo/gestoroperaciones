@@ -12641,7 +12641,16 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		});
 
 
+		userRef.on("value", function(snapshot) {
+			$scope.userOnLine=snapshot.numChildren();
+			//$scope.currentUsers = $firebaseArray(listRef.orderByChild('status').equalTo(true));
+			//console.log($scope.currentUsers);
+		    console.log("# of online users = " + snap.numChildren());
 
+			//$scope.currentUsers = $firebaseArray(listRef);
+				//console.log($scope.currentUsers.name);
+
+		});
 
 
 		//Listar los chats--------------------------------------------------------
