@@ -12671,18 +12671,12 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
         	console.log(error.message);
 		});
 
-		// retrieve the last record from `ref`
-		root.endAt().limit(1).on('child_added', function(snapshot) {
 
-	   // all records after the last continue to invoke this function
-	   console.log(snapshot.name(), snapshot.val());
+		mensajes.on('child_added', function(newMessageSnapshot) {
 
-		});
-	 /*mensajes.on('child_added', function(newMessageSnapshot) {
-
-		 $scope.newMessage=newMessageSnapshot.val();
-			console.log($scope.newMessage);
-	  }); */
+			 $scope.newMessage=newMessageSnapshot.val();
+				console.log($scope.newMessage);
+		  });
 
 
 	};
