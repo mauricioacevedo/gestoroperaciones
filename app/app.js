@@ -13178,7 +13178,7 @@ app.config(['$routeProvider',
 
 	    .when('/indicadores/', {
          title: 'Indicadores Asignaciones',
-         templateUrl: 'partials/asignaciones/indicadores.html',
+         templateUrl: 'partials/asignaciones/indicadores_asignaciones.html',
          controller: 'IndicadoresCtrl'
       })
 
