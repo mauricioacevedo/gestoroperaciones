@@ -54,7 +54,7 @@
 							<a href="" ng-repeat="datar in listaProductivos as ranks" class="list-group-item animated slideInRight" ng-style="set_color_Cuartil(parseInt(datar.CUARTIL))">{{datar.RANK}} - <span ng-class= "{'on':'label label-info','off':'label label-danger'}[datar.ESTADO]">{{datar.ESTADO}}</span> - {{datar.USUARIO_ID}}  <span class = "badge ">{{datar.PEDIDOS}}</span></a>
 							</span>
 						</ul>-->
-						<div class="jumbotron"><h2>Modulo no disponible</h2></div>
+						<div class="jumbotron"><h4>Modulo no disponible</h4></div>
 					</div>
 					<div class="panel-footer clearfix">
 						<!--Usuarios: <span class="label label-success">{{ranks.length}}</span>-->
@@ -436,11 +436,11 @@
 					<!--<ul class="list-group small">
 						<a href="" ng-repeat="msg in lista" class="list-group-item animated slideInRight"><strong><i ng-style="userStatus()" class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;{{msg.user}}:</strong>&nbsp; {{msg.mensaje}} <br><span class="small">{{msg.log | timeago}}</span> </a>
 					</ul>-->
-					<div class="jumbotron"><h2>Modulo no disponible</h2></div>
+					<div class="jumbotron"><h4>Modulo no disponible</h4></div>
 				</div>
 				<div class="panel-footer clearfix">
 
-						<div class="row">
+						<div class="row" ng-hide="true">
 							<div class="col-xs-12 col-md-12">
 
 										<div class="btn-group btn-group-xs" >
