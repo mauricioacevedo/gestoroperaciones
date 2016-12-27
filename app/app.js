@@ -12644,7 +12644,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 		listRef.on('value', function(snap) {
 
-				$scope.userOnLine=snap.numChildren();
+			$scope.userOnLine=snap.numChildren();
 			$scope.currentUsers={};
 			$scope.currentUsers = snap.val();
 			//console.log($scope.currentUsers);
@@ -12654,6 +12654,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 				//console.log($scope.currentUsers.name);
 
 		});
+
 
 
 		//Listar los chats--------------------------------------------------------
@@ -12668,6 +12669,13 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
         	//error
         	console.log(error.message);
 	});
+
+
+	 messageRef.on('child_added', function(newMessageSnapshot) {
+
+		 $scope.newMessage=newMessageSnapshot.val();
+			console.log($scope.newMessage);
+	  });
 
 
 	};
