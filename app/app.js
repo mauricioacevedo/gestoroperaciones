@@ -12620,9 +12620,9 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	// Chat Firebase ---------------------------------------------------
 	var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
 	var messageRef = $firebaseArray(root.child('messages'));
-	var listRef = firebase.database().ref('presence');
-	var userRef = listRef.push();
-	var presenceRef = firebase.database().ref(".info/connected");
+	//var listRef = firebase.database().ref('presence');
+	//var userRef = listRef.push();
+	//var presenceRef = firebase.database().ref(".info/connected");
 
 
 
@@ -12630,34 +12630,35 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	$scope.listado=function(){
 
 
-		presenceRef.on("value", function(snap) {
-		  if (snap.val()) {
-			// Remove ourselves when we disconnect.
-			userRef.onDisconnect().remove();
-			/*var fechis = $rootScope.fechaProceso();
-			var message={mensaje:'Cerró sesión',
-					user: userID,
-					log: fechis };
-			messageRef.$add(message);*/
+		var amOnline = firebase.database().ref('.info/connected');
+		var userRef = firebase.database().ref('presence/' + userID);
 
-			//userRef.set(true);
-			userRef.set({ name: userID, status: true });
+
+		amOnline.on('value', function(snapshot) {
+		  if (snapshot.val()) {
+			var sessionRef = userRef.push();
+			sessionRef.child('ended').onDisconnect().set(Firebase.ServerValue.TIMESTAMP);
+			sessionRef.child('began').set(Firebase.ServerValue.TIMESTAMP);
 		  }
 		});
 
-		// Number of online users is the number of objects in the presence list.
-		listRef.on("value", function(snap) {
-			$scope.userOnLine=snap.numChildren();
-			//$scope.currentUsers = $firebaseArray(listRef.orderByChild('status').equalTo(true));
-			//console.log($scope.currentUsers);
-		    console.log("# of online users = " + snap.numChildren());
+		document.onIdle = function () {
+		  userRef.set('☆ idle');
+		}
+		document.onAway = function () {
+		  userRef.set('☄ away');
+		}
+		document.onBack = function (isIdle, isAway) {
+		  userRef.set('★ online');
+		}
 
-			$scope.currentUsers = $firebaseArray(listRef);
-				console.log($scope.currentUsers.name);
 
-		});
 
-		//console.log(presenceRef);
+
+
+
+
+		//Listar los chats--------------------------------------------------------
 		$firebaseArray(root).$loaded(function (chats) {
         	//success
 		//$scope.lista = chats[0];
