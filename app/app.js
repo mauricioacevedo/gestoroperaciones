@@ -12666,17 +12666,23 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		//notify({ message:'Mensaje nuevo', duration:'1000',position:'right'} );
 
 		//console.log($scope.lista);
-	}, function (error) {
+		}, function (error) {
         	//error
         	console.log(error.message);
-	});
+		});
 
+		// retrieve the last record from `ref`
+		mensajes.endAt().limit(1).on('child_added', function(snapshot) {
 
-	 mensajes.on('child_added', function(newMessageSnapshot) {
+	   // all records after the last continue to invoke this function
+	   console.log(snapshot.name(), snapshot.val());
+
+		});
+	 /*mensajes.on('child_added', function(newMessageSnapshot) {
 
 		 $scope.newMessage=newMessageSnapshot.val();
 			console.log($scope.newMessage);
-	  });
+	  }); */
 
 
 	};
