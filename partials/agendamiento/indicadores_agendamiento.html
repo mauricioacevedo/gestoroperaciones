@@ -272,7 +272,7 @@
 								<th>Agendados</th>
                                </thead>
                                <tbody>
-                                   <tr ng-repeat="data in tbl_fechacita">
+                                   <tr ng-repeat="data in tbl_fechacita | filter:filtroInput">
                                     <td><!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->{{data.CONCEPTOS}}</span></td>
                                     <td ng-init="tbl_fechacita.totales = parseInt(tbl_fechacita.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
                                     <td ng-init="tbl_fechacita.total02 = parseInt(tbl_fechacita.total02) + parseInt(data.Migracion)">{{data.Migracion}}</td>
@@ -303,8 +303,7 @@
 					<div class="col-md-8">
 
 						<ul class="nav navbar-nav navbar-left">
-
-
+							Total: <span class="label label-success">{{totalAGEN}}</span>
 						</ul>
 
 					</div>
