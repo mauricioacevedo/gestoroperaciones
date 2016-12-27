@@ -12630,29 +12630,13 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	$scope.listado=function(){
 
 
-		//var amOnline = firebase.database().ref('.info/connected');
-		//var userRef = firebase.database().ref('presence/' + userID);
+		var amOnline = firebase.database().ref('.info/connected');
+		var userRef = firebase.database().ref('presence/' + userID);
 
-		var myConnectionsRef = firebase.database().ref('presence/'+userID+'/connections');
-
-		// stores the timestamp of my last disconnect (the last time I was seen online)
-		var lastOnlineRef = firebase.database().ref('presence/'+userID+'/lastOnline');
-
-		var connectedRef = firebase.database().ref('.info/connected');
-
-		connectedRef.on('value', function(snap) {
-		  if (snap.val() === true) {
-			// We're connected (or reconnected)! Do anything here that should happen only if online (or on reconnect)
-
-			// add this device to my connections list
-			// this value could contain info about the device or a timestamp too
-			var con = myConnectionsRef.push(true);
-
-			// when I disconnect, remove this device
-			con.onDisconnect().remove();
-
-			// when I disconnect, update the last time I was seen online
-			lastOnlineRef.onDisconnect().set(firebase.database.ServerValue.TIMESTAMP);
+		amOnline.on('value', function(snapshot) {
+		  if (snapshot.val()) {
+			userRef.onDisconnect().set(firebase.ServerValue.TIMESTAMP);
+			userRef.set(true);
 		  }
 		});
 
