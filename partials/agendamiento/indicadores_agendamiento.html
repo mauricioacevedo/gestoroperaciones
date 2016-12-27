@@ -44,15 +44,10 @@
 							<b>Productividad</b></div></div>
 						<div class="row">
 							<div class="col-md-12">
-
-							<select id="grupo" name="grupo" class="btn btn-default btn-xs grupo-select" ng-model="grupo.Cuartil" ng-options="g for g in grupos.values"
-									ng-change="topProductivos()">
-							<option value="" disabled>Grupo</option>
-							</select>
 							<button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="topProductivos()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
 									<i class="fa fa-refresh"  aria-hidden="true"></i>
 								</button></div>
-					</div></div>
+						</div></div>
 					<div class = "panel-heading nav navbar-default">
 						<ul class="list-group small">
 							<span class="small">
@@ -69,8 +64,6 @@
 
 			</div>
 	</div><!--Colmd3 -->
-
-
 
 		<div class="col-md-6"><!--Colmd6 -->
 		<div class="row">
@@ -107,16 +100,21 @@
 								<th >Editar</th>
 							  </tr>
 							  <tr>
-								<td >Asignaciones</td>
+								<td >Instalaciones</td>
 								<td ><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
-								<td >{{UsuarioParametro}}</td>
+								<td ></td>
 								<td >
-										<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevo" style="width:auto;">
-											<option value="FECHA_CITA">FECHA CITA</option>
-											<option value="FECHA_ESTADO">FECHA ESTADO</option>
-											<option value="FECHA_INGRESO">FECHA INGRESO</option>
-										</select>
-										<button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO',ordenamientoDemepedidoNuevo);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+									<select class="form-control input-sm" id="sel1" ng-model="ordenamientoDemepedidoNuevo">
+										<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
+										<option value="FECHA_ESTADO">FECHA ESTADO</option>
+										<option value="FECHA_INGRESO">FECHA INGRESO</option>
+									</select>
+									<select class="form-control input-sm" id="sel1" ng-model="prioridadDemepedidoNuevo">
+									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
+											<option value="DESC">DESC</option>
+											<option value="ASC">ASC</option>
+									</select>
+										<button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO',ordenamientoDemepedidoNuevo);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
 									<button type="button" class="btn btn-default btn-circle-xs" ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO')"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
 										<i class="fa fa-refresh"  aria-hidden="true"></i>
 									</button>
