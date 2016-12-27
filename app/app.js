@@ -12620,7 +12620,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	// Chat Firebase ---------------------------------------------------
 	var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
 	var messageRef = $firebaseArray(root.child('messages'));
-	//var listRef = firebase.database().ref('presence');
+	var listRef = firebase.database().ref('presence');
 	//var userRef = listRef.push();
 	//var presenceRef = firebase.database().ref(".info/connected");
 
@@ -12641,7 +12641,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		});
 
 
-		userRef.on("value", function(snap) {
+		listRef.on("value", function(snap) {
 			$scope.userOnLine=snap.numChildren();
 			//$scope.currentUsers = $firebaseArray(listRef.orderByChild('status').equalTo(true));
 			//console.log($scope.currentUsers);
