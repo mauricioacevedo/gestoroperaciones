@@ -13184,7 +13184,7 @@ app.config(['$routeProvider',
 
 
 	//  ------------------------------------------ASIGNACIONES
-//---------------------------------------------INICIOACTIVACION
+//---------------------------------------------INICIO ACTIVACION
      .when('/actividades/', {
          title: 'Actividades',
          templateUrl: 'partials/actividades.html',
@@ -13210,7 +13210,7 @@ app.config(['$routeProvider',
          templateUrl: 'partials/demepedido-activacion.html',
          controller: 'siebelActivacionCtrl'
       })
-//-----------------------------------------------------------------FIN ACTIVACIO
+//-----------------------------------------------------------------FIN ACTIVACION
 
    // ADMINISTRACION ------------------------------------------
 
@@ -13344,7 +13344,7 @@ app.config(['$routeProvider',
 
       .when('/agendamiento/', {
          title: 'Conceptos Agendamiento',
-         templateUrl: 'partials/agendamiento.html',
+         templateUrl: 'partials/agendamiento/indicadores_agendamiento.html',
          controller: 'AgendamientoCtrl'
       })
 
