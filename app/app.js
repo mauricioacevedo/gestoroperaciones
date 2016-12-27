@@ -12675,7 +12675,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		//var list = $firebaseArray(ref);
 
 		messageRef.$watch(function(event) {
-		  console.log(event);
+		  //console.log(event);
 		});
 
 
