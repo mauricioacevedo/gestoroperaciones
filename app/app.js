@@ -12683,7 +12683,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		mensajes.on('child_added', function(newMessageSnapshot) {
 
 			 $scope.newMessage=newMessageSnapshot.val();
-				console.log($scope.newMessage);
+				//console.log($scope.newMessage);
 		  });
 
 
