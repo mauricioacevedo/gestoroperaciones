@@ -12642,7 +12642,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 
 		listRef.on('value', function(snap) {
-			if(snap===true){
+			if(snap.val()===true){
 				$scope.userOnLine=snap.numChildren();
 			}
 
