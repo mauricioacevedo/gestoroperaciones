@@ -12620,7 +12620,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	// Chat Firebase ---------------------------------------------------
 	var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
 	var messageRef = $firebaseArray(root.child('messages'));
-	var mensajes = firebase.database().ref('messages');
+	var mensajes = root.child('messages');
 	var listRef = firebase.database().ref('presence');
 	//var userRef = listRef.push();
 	//var presenceRef = firebase.database().ref(".info/connected");
@@ -12672,7 +12672,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		});
 
 		// retrieve the last record from `ref`
-		mensajes.endAt().limit(1).on('child_added', function(snapshot) {
+		root.endAt().limit(1).on('child_added', function(snapshot) {
 
 	   // all records after the last continue to invoke this function
 	   console.log(snapshot.name(), snapshot.val());
