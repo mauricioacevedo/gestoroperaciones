@@ -125,15 +125,13 @@
 									<option value="FECHA_INGRESO">FECHA INGRESO</option>
 								</select>
 
-									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="prioridadDemepedidoNuevoR">
+									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="prioridadDemepedidoNuevoR" style="width:100px;">
 									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
 											<option value="DESC">DESC</option>
 											<option value="ASC">ASC</option>
-									</select>
-                                <button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION',ordenamientoDemepedidoReconfiguracion);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-								  <button type="button" class="btn btn-default btn-circle-xs" ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION')"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
-										<i class="fa fa-refresh"  aria-hidden="true"></i>
-									</button></td>
+								</select>
+                                <button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_REPA',ordenamientoDemepedidoNuevoR);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+								  </td>
 							  </tr>
 						</table>
 
