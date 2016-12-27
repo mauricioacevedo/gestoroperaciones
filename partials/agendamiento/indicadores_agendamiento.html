@@ -117,7 +117,7 @@
 							  </tr>
 							  <tr>
 								<td >Reparaciones</td>
-								<td ><font color='blue'>{{ordenamientoDemepedidoUpdateReconfiguracion}}</font></td>
+								<td ><font color='blue'></font></td>
 								<td >
 									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevoR">
 									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
@@ -131,6 +131,24 @@
 											<option value="ASC">ASC</option>
 								</select>
                                 <button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_REPA',ordenamientoDemepedidoNuevoR);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+								  </td>
+							  </tr>
+							 <tr>
+								<td >Edatel</td>
+								<td ><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
+								<td >
+									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevoED">
+									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
+									<option value="FECHA_ESTADO">FECHA ESTADO</option>
+									<option value="FECHA_INGRESO">FECHA INGRESO</option>
+								</select>
+
+									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="prioridadDemepedidoNuevoED" style="width:100px;">
+									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
+											<option value="DESC">DESC</option>
+											<option value="ASC">ASC</option>
+								</select>
+								<button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_EDATEL',ordenamientoDemepedidoNuevoED);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
 								  </td>
 							  </tr>
 						</table>
