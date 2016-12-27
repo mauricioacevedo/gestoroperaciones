@@ -8621,7 +8621,7 @@ $scope.start = function(pedido) {
                 });
 
 
-            var data3=services.getPedidosConAgenda().then(function(data){
+            /*var data3=services.getPedidosConAgenda().then(function(data){
 
                         $scope.tbl_pedAgenda =  data.data[0];
 
@@ -8635,7 +8635,7 @@ $scope.start = function(pedido) {
 
                         return data.data;
 
-                });
+                });*/
 
 
                 services.logVista($cookieStore.get('logedUser').login,"Indicadores Agendamiento");
