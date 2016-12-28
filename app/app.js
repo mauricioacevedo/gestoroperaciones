@@ -12658,7 +12658,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		listRef.on('value', function(snap) {
 
 			$scope.userOnLine=snap.numChildren();
-			$scope.currentUsers={};
+			$scope.currentUsers=[];
 			$scope.currentUsers = snap.val();
 
 			angular.forEach($scope.currentUsers.$getIndex(), function(key) {
