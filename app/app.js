@@ -12682,7 +12682,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 			var lstUsers = [];
 
-			var log = {};
+			var log = [];
 			angular.forEach($scope.objUsers, function(value, key) {
 			  //this.push(key+':'+value);
 				//this.push('usuario'+key+':'+value);
@@ -12690,8 +12690,14 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			}, log);
 			//$scope.currentUsers=[];
 			console.log(log);
-			console.log(log.usuario);
-			console.log(log['usuario']);
+
+			var logArr = [];
+			angular.forEach(log, function(value, key) {
+			  this.push(key+':'+value);
+				//this.push('usuario'+key+':'+value);
+				//this.push({"usuario":key,"estado":value});
+			}, logArr);
+			console.log(logArr);
 			$scope.currentUsers=log.join('<br>');
 
 
