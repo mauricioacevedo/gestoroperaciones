@@ -12663,7 +12663,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		  //ref.set({ foo: "baz" });  // this would update the database and $scope.data
 		});
 
-		angular.forEach($scope.sessions.$getIndex(), function(key) {
+		angular.forEach($scope.sessions.$indexFor(), function(key) {
 		console.log(key, $scope.sessions[key]);
 	});
 
