@@ -12918,7 +12918,7 @@ app.directive("infobox", function(){
                         var h = t.outerHeight() / 2;
                         //offset.top = offset.top - (infobox.outerHeight() / 2) + h;
 						var tope=t.offset().top - (infobox.outerHeight() / 2) + h;
-						var izquie=t.offset().left - (infobox.outerHeight() / 2) + h;
+						var izquie=t.offset().left - (infobox.outerHeight()  + h);
                       	//t.find("div.infobox").show().offset(offset);
 						t.find("div.infobox").show().offset({top:tope,left:izquie});
                     })
