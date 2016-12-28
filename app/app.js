@@ -12694,8 +12694,12 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 			//$scope.currentUsers=lstUsers.join('<br>');
 			$scope.currentUsers=log;
-			$scope.chuchi=$scope.urlst;
-			console.log($scope.chuchi);
+			$scope.getChuchi=function(){
+				$scope.chuchi=$scope.urlst;
+				console.log($scope.chuchi);
+
+			}
+
 
 
 
