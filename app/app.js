@@ -12755,10 +12755,10 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	// --------------------------------------------------- Chat Firebase
 
-	$scope.userStatus=function(){
+	$scope.userStatus=function(userObj,statusObj){
 
-		//console.log(userID);
-
+		console.log(userObj);
+		console.log(statusObj);
 		var colorDanger="#E83720";
 		var colorWaring="#E8A820";
 		var colorNormal="#088A08";
