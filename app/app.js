@@ -12669,7 +12669,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			  this.push(key);
 			}, log);
 			//$scope.currentUsers=[];
-			$scope.currentUsers=log.join();
+			$scope.currentUsers=log.join('<br>');
 
 
 
