@@ -986,6 +986,217 @@ function ($q, $rootScope, $log) {
     };
 }]);
 
+// Controlador de logueo-------------------------------------------------------
+
+app.controller('login', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,$timeout,$firebase,$firebaseObject,$firebaseArray,services) {
+
+	$rootScope.loginexito=false;
+	if($cookieStore.get('logedUser')!=undefined){
+		//hay alguien logeado
+		var id_user=$cookieStore.get('logedUser').id;
+		document.getElementById('logout').className="btn btn-md btn-danger";
+                var divi=document.getElementById("logoutdiv");
+		divi.style.visibility="visible";
+		divi.style.position="relative";
+
+		if($cookieStore.get('logedUser').GRUPO=='ASIGNACIONES'){
+                        $location.path('/asignacion/');
+                }else if($cookieStore.get('logedUser').GRUPO=='AGENDAMIENTO'){
+                        $location.path('/agendamiento/reagendamiento');
+                }else if($cookieStore.get('logedUser').GRUPO=='ACTIVACION'){
+                        $location.path('/alarmas/');
+                }else if($cookieStore.get('logedUser').GRUPO=='SUPER'){
+                        $location.path('/dashboard/');
+		}else if($cookieStore.get('logedUser').GRUPO=='B2B'){
+                        $location.path('/b2b/');
+                }else if($cookieStore.get('logedUser').GRUPO=='RECONFIGURACION'){
+                        $location.path('/reconfiguracion/');
+		}else{
+                        $location.path('/general/'+id_user);
+                }
+		//$location.path('/asignacion/'+id_user);
+	}else{
+		var userRef = firebase.database().ref('presence/' + userID);
+		amOnline.on('value', function(snapshot) {
+			  if (snapshot.val()) {
+
+				userRef.set(false);
+				userRef.onDisconnect().remove();
+			  }
+			});
+	}
+
+        $scope.doubleDigit = function (num){
+
+                if(num<0){
+                        num=0;
+                }
+
+                if(num<=9){
+                    return "0"+num;
+                }
+                return num;
+        };
+
+	$scope.myInterval = 5000;
+  	$scope.noWrapSlides = false;
+  	var slides = $scope.slides = [];
+  	$scope.addSlide = function(counter) {
+    		var newWidth = 640 + slides.length + 1;
+    		slides.push({
+      			image: './images/reglas/' + counter + '.jpg',
+      			//text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
+        		//['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+    		});
+  	};
+
+	//for (var i=0; i<4; i++) {
+    	$scope.addSlide('1');
+        $scope.addSlide('2');
+        $scope.addSlide('3');
+        $scope.addSlide('4');
+        $scope.addSlide('5');
+        $scope.addSlide('6');
+        $scope.addSlide('7');
+        $scope.addSlide('8');
+        $scope.addSlide('9');
+        $scope.addSlide('10');
+        $scope.addSlide('11');
+        $scope.addSlide('12');
+        $scope.addSlide('13');
+    	$scope.addSlide('14');
+  	//}
+
+
+
+	document.getElementById('logout').className="btn btn-md btn-danger hide";
+	var divi=document.getElementById("logoutdiv");
+	divi.style.position="absolute";
+	divi.style.visibility="hidden";
+
+	$rootScope.actualView="";
+
+      	$scope.login = function() {
+
+		/*
+		var response = grecaptcha.getResponse();
+
+		if(response.length == 0){
+		    //reCaptcha not verified
+		    	alert("Por favor verificar captcha!");
+			return;
+		 }else{
+			//it can continue normally...
+		}
+		*/
+
+        $location.path('/');
+	var success = function (data) {
+		//console.log("DATOS DE LOGIN: ");
+		//console.log(data);
+
+        $rootScope.loginexito=true;
+
+		$timeout(function() {
+			var id_user=data['id'];
+			$rootScope.logedUser=data;
+			$cookieStore.put('logedUser', data);
+
+			document.getElementById('logout').className="btn btn-md btn-danger";
+			var divi=document.getElementById("logoutdiv");
+			divi.style.visibility="visible";
+			divi.style.position="relative";
+			//alert(data.GRUPO);
+
+					if($cookieStore.get('logedUser').GRUPO=='ASIGNACIONES'){
+							$location.path('/asignacion/');
+					}else if($cookieStore.get('logedUser').GRUPO=='AGENDAMIENTO'){
+							$location.path('/agendamiento/reagendamiento');
+					}else if($cookieStore.get('logedUser').GRUPO=='ACTIVACION'){
+							$location.path('/alarmas/');
+					}else if($cookieStore.get('logedUser').GRUPO=='SUPER'){
+							$location.path('/dashboard/');
+					}else if($cookieStore.get('logedUser').GRUPO=='B2B'){
+							$location.path('/b2b/');
+					}else if($cookieStore.get('logedUser').GRUPO=='RECONFIGURACION'){
+							$location.path('/reconfiguracion/');
+					}else{
+							$location.path('/general/'+id_user);
+					}
+
+    	}, 1000);
+
+
+/*
+
+		if(data.GRUPO=='ASIGNACIONES'||data.GRUPO=='INCONSISTENCIAS'){
+			$location.path('/asignacion/'+id_user);
+		}else if(data.GRUPO=='RECONFIGURACION'){
+                        $location.path('/reconfiguracion/');
+			$route.reload();
+                }else if(data.GRUPO=='FACTIBILIDADES'){
+                        $location.path('/gpon/');
+                        $route.reload();
+                } else {
+			//$location.path('/asignacion/'+id_user);
+			$location.path('/general/');
+                        $route.reload();
+
+		}
+
+*/
+
+		/*
+		if(data.GRUPO!='ASIGNACIONES'){
+
+			$location.path('/general/');
+
+		}else{
+          		$location.path('/asignacion/'+id_user);
+			$route.reload();
+			//$window.location.href='/asignacion/'+id_user;
+		}*/
+
+      	};
+
+
+	var error = function () {
+          // TODO: apply user notification here..
+         $scope.error="Usuario o contraseña invalido..";
+		  $rootScope.loginexito=false;
+      	};
+
+
+
+	$rootScope.logout = function() {
+	        services.logout($rootScope.logedUser.login);
+	        $cookieStore.remove('logedUser');
+            $rootScope.logedUser=undefined;
+	        $scope.pedidos={};
+	        document.getElementById('logout').className="btn btn-md btn-danger hide";
+	        var divi=document.getElementById("logoutdiv");
+	        divi.style.position="absolute";
+	        divi.style.visibility="hidden";
+        	$location.path('/');
+	};
+
+               var tiempo=new Date().getTime();
+                var date1 = new Date();
+                var year    = date1.getFullYear();
+                var month   = $scope.doubleDigit(date1.getMonth()+1);
+                var day     = $scope.doubleDigit(date1.getDate());
+                var hour    = $scope.doubleDigit(date1.getHours());
+                var minute  = $scope.doubleDigit(date1.getMinutes());
+                var seconds = $scope.doubleDigit(date1.getSeconds());
+
+                tiempo=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
+
+	services.login($scope.lform.username,$scope.lform.password,tiempo).success(success).error(error);
+      };
+});
+
+//------------------------------------------------------- Controlador de logueo
+
 //-----------------------Dashboard graficas y seguimiento------------------
 
 app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {//graficas
@@ -6112,203 +6323,6 @@ app.controller('TabController', function ($scope) {
 });
 
 
-app.controller('login', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,$timeout,services) {
-
-	$rootScope.loginexito=false;
-	if($cookieStore.get('logedUser')!=undefined){
-		//hay alguien logeado
-		var id_user=$cookieStore.get('logedUser').id;
-		document.getElementById('logout').className="btn btn-md btn-danger";
-                var divi=document.getElementById("logoutdiv");
-		divi.style.visibility="visible";
-		divi.style.position="relative";
-		
-		if($cookieStore.get('logedUser').GRUPO=='ASIGNACIONES'){
-                        $location.path('/asignacion/');
-                }else if($cookieStore.get('logedUser').GRUPO=='AGENDAMIENTO'){
-                        $location.path('/agendamiento/reagendamiento');
-                }else if($cookieStore.get('logedUser').GRUPO=='ACTIVACION'){
-                        $location.path('/alarmas/');
-                }else if($cookieStore.get('logedUser').GRUPO=='SUPER'){
-                        $location.path('/dashboard/');
-		}else if($cookieStore.get('logedUser').GRUPO=='B2B'){
-                        $location.path('/b2b/');
-                }else if($cookieStore.get('logedUser').GRUPO=='RECONFIGURACION'){
-                        $location.path('/reconfiguracion/');
-		}else{
-                        $location.path('/general/'+id_user);
-                }
-		//$location.path('/asignacion/'+id_user);
-	}
-
-        $scope.doubleDigit = function (num){
-
-                if(num<0){
-                        num=0;
-                }
-
-                if(num<=9){
-                    return "0"+num;
-                }
-                return num;
-        };
-
-	$scope.myInterval = 5000;
-  	$scope.noWrapSlides = false;
-  	var slides = $scope.slides = [];
-  	$scope.addSlide = function(counter) {
-    		var newWidth = 640 + slides.length + 1;
-    		slides.push({
-      			image: './images/reglas/' + counter + '.jpg',
-      			//text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
-        		//['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
-    		});
-  	};
-  
-	//for (var i=0; i<4; i++) {
-    	$scope.addSlide('1');
-        $scope.addSlide('2');
-        $scope.addSlide('3');
-        $scope.addSlide('4');
-        $scope.addSlide('5');
-        $scope.addSlide('6');
-        $scope.addSlide('7');
-        $scope.addSlide('8');
-        $scope.addSlide('9');
-        $scope.addSlide('10');
-        $scope.addSlide('11');
-        $scope.addSlide('12');
-        $scope.addSlide('13');
-    	$scope.addSlide('14');
-  	//}
-
-
-
-	document.getElementById('logout').className="btn btn-md btn-danger hide";
-	var divi=document.getElementById("logoutdiv");
-	divi.style.position="absolute";
-	divi.style.visibility="hidden";
-	
-	$rootScope.actualView="";
-	
-      	$scope.login = function() {
-
-		/*
-		var response = grecaptcha.getResponse();
-
-		if(response.length == 0){
-		    //reCaptcha not verified
-		    	alert("Por favor verificar captcha!");
-			return;
-		 }else{
-			//it can continue normally...
-		}	
-		*/
-
-        $location.path('/');
-	var success = function (data) {
-		//console.log("DATOS DE LOGIN: ");
-		//console.log(data);
-
-        $rootScope.loginexito=true;
-
-		$timeout(function() {
-			var id_user=data['id'];
-			$rootScope.logedUser=data;
-			$cookieStore.put('logedUser', data);
-
-			document.getElementById('logout').className="btn btn-md btn-danger";
-			var divi=document.getElementById("logoutdiv");
-			divi.style.visibility="visible";
-			divi.style.position="relative";
-			//alert(data.GRUPO);
-
-					if($cookieStore.get('logedUser').GRUPO=='ASIGNACIONES'){
-							$location.path('/asignacion/');
-					}else if($cookieStore.get('logedUser').GRUPO=='AGENDAMIENTO'){
-							$location.path('/agendamiento/reagendamiento');
-					}else if($cookieStore.get('logedUser').GRUPO=='ACTIVACION'){
-							$location.path('/alarmas/');
-					}else if($cookieStore.get('logedUser').GRUPO=='SUPER'){
-							$location.path('/dashboard/');
-					}else if($cookieStore.get('logedUser').GRUPO=='B2B'){
-							$location.path('/b2b/');
-					}else if($cookieStore.get('logedUser').GRUPO=='RECONFIGURACION'){
-							$location.path('/reconfiguracion/');
-					}else{
-							$location.path('/general/'+id_user);
-					}
-
-    	}, 1000);
-
-
-/*
-
-		if(data.GRUPO=='ASIGNACIONES'||data.GRUPO=='INCONSISTENCIAS'){
-			$location.path('/asignacion/'+id_user);
-		}else if(data.GRUPO=='RECONFIGURACION'){
-                        $location.path('/reconfiguracion/');
-			$route.reload();
-                }else if(data.GRUPO=='FACTIBILIDADES'){
-                        $location.path('/gpon/');
-                        $route.reload();
-                } else {
-			//$location.path('/asignacion/'+id_user);
-			$location.path('/general/');
-                        $route.reload();
-
-		}
-
-*/		
-
-		/*
-		if(data.GRUPO!='ASIGNACIONES'){
-			
-			$location.path('/general/');
-			
-		}else{
-          		$location.path('/asignacion/'+id_user);
-			$route.reload();
-			//$window.location.href='/asignacion/'+id_user;
-		}*/
-
-      	};
-
-
-	var error = function () {
-          // TODO: apply user notification here..
-         $scope.error="Usuario o contraseña invalido..";
-		  $rootScope.loginexito=false;
-      	};
-
-
-
-	$rootScope.logout = function() {
-	        services.logout($rootScope.logedUser.login);
-	        $cookieStore.remove('logedUser');
-            $rootScope.logedUser=undefined;
-	        $scope.pedidos={};
-	        document.getElementById('logout').className="btn btn-md btn-danger hide";
-	        var divi=document.getElementById("logoutdiv");
-	        divi.style.position="absolute";
-	        divi.style.visibility="hidden";
-        	$location.path('/');
-	};
-
-               var tiempo=new Date().getTime();
-                var date1 = new Date();
-                var year    = date1.getFullYear();
-                var month   = $scope.doubleDigit(date1.getMonth()+1);
-                var day     = $scope.doubleDigit(date1.getDate());
-                var hour    = $scope.doubleDigit(date1.getHours());
-                var minute  = $scope.doubleDigit(date1.getMinutes());
-                var seconds = $scope.doubleDigit(date1.getSeconds());
-
-                tiempo=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
-	
-	services.login($scope.lform.username,$scope.lform.password,tiempo).success(success).error(error);
-      };
-});
 
 
 app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams, services, customer) {
@@ -12623,24 +12637,24 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 
 		$rootScope.logout = function() {
-					services.logout(userID);
-					$cookieStore.remove('logedUser');
-					$rootScope.logedUser=undefined;
-					$scope.pedidos={};
-					clearInterval($scope.intervalLightKPIS);
-					document.getElementById('logout').className="btn btn-md btn-danger hide";
-					var divi=document.getElementById("logoutdiv");
-					divi.style.position="absolute";
-					divi.style.visibility="hidden";
-					$location.path('/');
+			services.logout(userID);
+			$cookieStore.remove('logedUser');
+			$rootScope.logedUser=undefined;
+			$scope.pedidos={};
+			clearInterval($scope.intervalLightKPIS);
+			document.getElementById('logout').className="btn btn-md btn-danger hide";
+			var divi=document.getElementById("logoutdiv");
+			divi.style.position="absolute";
+			divi.style.visibility="hidden";
+			$location.path('/');
 
-					amOnline.on('value', function(snapshot) {
-					  if (snapshot.val()) {
+			amOnline.on('value', function(snapshot) {
+			  if (snapshot.val()) {
 
-						userRef.set(true);
-						userRef.onDisconnect().remove();
-					  }
-					});
+				userRef.set(false);
+				userRef.onDisconnect().remove();
+			  }
+			});
 
 			};
 
