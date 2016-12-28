@@ -417,7 +417,9 @@
 						<b>Chat</b></div>
 						<div class="col-md-6">
 							<span class="pull-right">
-								<b><button type="button" class="btn btn-primary btn-xs" popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>Observaciones</code>" data-original-title="">Online: <span class="badge">{{userOnLine}}</span></button></b>
+								<b><button type="button" class="btn btn-primary btn-xs" popover data-trigger="hover" data-placement="left" data-html="true" data-content="<ul class="list-group small">
+						<a href="" ng-repeat="user in currentUsers" class="list-group-item animated slideInRight"><strong><i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;{{user.user}}</strong></a>
+					</ul>" data-original-title="">Online: <span class="badge">{{userOnLine}}</span></button></b>
 							</span>
 						</div>
 					</div>
