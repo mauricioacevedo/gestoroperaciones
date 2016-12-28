@@ -12895,7 +12895,7 @@ app.directive('popover', function() {
 app.directive('custPopover', function ($compile) {
     return {
         scope : {
-            items : '=newvar'
+            objCurrentUsers : '=newvar'
         },
         restrict: 'A',
 
