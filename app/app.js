@@ -12659,11 +12659,14 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		console.log(obj);
 
 		obj.$loaded().then(function() {
-        console.log("loaded record:", obj.$id, obj.someOtherKeyInData);
+        //console.log("loaded record:", obj.$id, obj.someOtherKeyInData);
+
 
        // To iterate the key/value pairs of the object, use angular.forEach()
        angular.forEach(obj, function(value, key) {
           console.log(key, value);
+		$scope.currentUsers=[];
+		$scope.currentUsers = key;
        });
      });
 
