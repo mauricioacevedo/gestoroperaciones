@@ -12654,50 +12654,21 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		  }
 		});
 
-		//var ref = new Firebase(URL); // assume value here is { foo: "bar" }
-
-		var query = root.orderByChild("presence").limitToLast(10);
-
-		var obj =   $firebaseArray(query);
-		console.log(obj['1']);
-
-		/*obj.$loaded().then(function() {
-        //console.log("loaded record:", obj.$id, obj.someOtherKeyInData);
-
-
-       // To iterate the key/value pairs of the object, use angular.forEach()
-       angular.forEach(obj, function(value, key) {
-          console.log(key, value);
-		$scope.currentUsers=[];
-		$scope.currentUsers = key;
-       });
-     });*/
-
-     // To make the data available in the DOM, assign it to $scope
-     //$scope.datica = obj;
-		//console.log($scope.datica.$id);
-
-     // For three-way data bindings, bind it to the scope instead
-     //obj.$bindTo($scope, "datica");
-
-
-
-		/*
 
 		listRef.on('value', function(snap) {
 
 			$scope.userOnLine=snap.numChildren();
-			$scope.currentUsers=[];
+			$scope.currentUsers='';
 			$scope.currentUsers = snap.val();
 
 
-			console.log(snap);
+			//console.log(snap);
 		    //console.log("# of online users = " + snap.numChildren());
 
 			//$scope.currentUsers = $firebaseArray(listRef);
 				//console.log($scope.currentUsers.name);
 
-		});*/
+		});
 
 
 
