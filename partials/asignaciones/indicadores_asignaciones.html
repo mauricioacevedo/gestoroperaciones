@@ -416,7 +416,10 @@
 						<div class="col-md-6">
 						<b>Chat</b></div>
 						<div class="col-md-6">
-							<infobox>
+
+							<span class="pull-right">
+								<b><button type="button" class="btn btn-primary btn-xs" popover data-placement="left"> Online: <span class="badge">{{userOnLine}}</span></button></b>
+								<infobox>
 								 <infobox-title>Usuarios:</infobox-title>
 								 <infobox-body>
 									<div ng-repeat="user in objCurrentUsers | filter:estado=true as stp">
@@ -424,9 +427,6 @@
 									</div>
 								</infobox-body>
 							 </infobox>
-
-							<span class="pull-right">
-								<b><button type="button" class="btn btn-primary btn-xs" popover data-placement="left"> Online: <span class="badge">{{userOnLine}}</span></button></b>
 							</span>
 						</div>
 					</div>
