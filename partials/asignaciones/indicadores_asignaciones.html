@@ -420,7 +420,7 @@
 	  					<div ng-model="urlst" ng-repeat="user in currentUsers | filter:estado=true as stp">{{user.usuario }}</div>
 
 							<span class="pull-right">
-								<b><button type="button" class="btn btn-primary btn-xs" popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>{{stp.usuario}}</code>" ng-click="getChuchi(urlst)"> Online: <span class="badge">{{userOnLine}}</span></button></b>
+								<b><button type="button" class="btn btn-primary btn-xs" popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>{{stp.usuario}}</code>" ng-click="getChuchi(stp)"> Online: <span class="badge">{{userOnLine}}</span></button></b>
 							</span>
 						</div>
 					</div>
