@@ -12672,7 +12672,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
      // To make the data available in the DOM, assign it to $scope
      $scope.datica = obj;
-		console.log($scope.datica['$id']);
+		console.log($scope.datica.$id);
 
      // For three-way data bindings, bind it to the scope instead
      //obj.$bindTo($scope, "datica");
