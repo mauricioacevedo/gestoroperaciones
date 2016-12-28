@@ -12896,7 +12896,7 @@ app.directive("infobox", function(){
             restrict: "E",
             transclude: true,
             scope: { title: "=", content: "=" },
-            template: "<div ng-transclude class='infobox popover right' style='position: absolute; display: none'></div>",
+            template: "<div ng-transclude class='infobox popover left' style='position: absolute; display: none'></div>",
             controller: function($scope){
 
             },
@@ -12907,7 +12907,7 @@ app.directive("infobox", function(){
                 element.parent()
                     .on("mouseover", function(){
                         var t = angular.element(this);
-                        var offset = t.offset(); offset.left += parentWidth;
+                        var offset = t.offset(); offset.right += parentWidth;
                         var h = t.outerHeight() / 2;
                         offset.top = offset.top - (infobox.outerHeight() / 2) + h;
                       t.find("div.infobox").show().offset(offset);
