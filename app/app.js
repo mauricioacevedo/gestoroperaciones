@@ -12696,7 +12696,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			$scope.currentUsers=log;
 			$scope.getChuchi=function(val){
 				console.log(val);
-				$scope.chuchi=val;
+				$scope.chuchi=val.usuario;
 				console.log($scope.chuchi);
 
 			}
