@@ -12660,15 +12660,15 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			$scope.userOnLine=snap.numChildren();
 			$scope.objUsers='';
 			$scope.objUsers = snap.val();
-			console.log($scope.currentUsers);
+			//console.log($scope.currentUsers);
 
 			var lstUsers = [];
 
-			angular.forEach($scope.currentUsers , function(key,val) {
-			  lstUsers.push(key)
-			});
-			$scope.currentUsers=lstUsers;
-			//console.log(snap);
+			var log = [];
+			angular.forEach($scope.objUsers, function(value, key) {
+			  this.push(key + ': ' + value);
+			}, log);
+			console.log(log);
 		    //console.log("# of online users = " + snap.numChildren());
 
 			//$scope.currentUsers = $firebaseArray(listRef);
