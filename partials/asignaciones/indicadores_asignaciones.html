@@ -417,6 +417,11 @@
 						<b>Chat</b></div>
 						<div class="col-md-6">
 							<span class="pull-right">
+								<td ng-repeat="user in currentUsers">
+								  <div popover="{{user)}}" popover-trigger="mouseenter" popover-append-to-body="true">
+									{{user}}
+								  </div>
+								</td>
 								<b><button type="button" class="btn btn-primary btn-xs" popover data-trigger="hover" data-placement="left" data-html="true" data-content="<ul class='list-group small'>
 						<a href='' data-ng-repeat='user in currentUsers as arrUsers' class='list-group-item'><strong><i class='fa fa-user-circle'></i>&nbsp;{{user}}</strong></a>
 					</ul>" data-original-title=""> Online: <span class="badge">{{userOnLine}}</span></button></b>
