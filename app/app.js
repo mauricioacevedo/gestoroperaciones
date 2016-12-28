@@ -12659,7 +12659,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		var query = root.orderByChild("presence").limitToLast(10);
 
 		var obj =   $firebaseArray(query);
-		console.log(obj[1]);
+		console.log(obj['1']);
 
 		/*obj.$loaded().then(function() {
         //console.log("loaded record:", obj.$id, obj.someOtherKeyInData);
