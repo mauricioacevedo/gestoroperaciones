@@ -7434,7 +7434,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 
         };
   
-        $scope.csvHistoricos = function (){
+        $scope.csvHistoricos = function (){//exportar historicos
                 var login=$rootScope.logedUser.login;
                 services.getCsvHistoricosAgendamiento(login,$scope.data.fechaIni,$scope.data.fechaFin).then(function(data){
                         console.log(data.data[0]);
@@ -7445,7 +7445,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
         };
 
 
-         $scope.csvHistoricosEdatel = function (){
+         $scope.csvHistoricosEdatel = function (){// historicos edatel
                 var login=$rootScope.logedUser.login;
                 services.getCsvHistoricosAgendamientoEdatel(login,$scope.data.fechaIni,$scope.data.fechaFin).then(function(data){
                         console.log(data.data[0]);
@@ -7480,7 +7480,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 
 });
 
-
+//---------------------fin agendamiento----------------------
 
 
 app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services,$compile) {
