@@ -12602,20 +12602,24 @@ app.controller('mymodalcontroller', function ($scope,$route, $rootScope, $locati
 
 app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,$sce,$firebase,$firebaseObject,$firebaseArray,notify,services){
 
+
+
+	// Basura del logueo ---------------------------------
+	$rootScope.logedUser=$cookieStore.get('logedUser');
+		var userID=$cookieStore.get('logedUser').login;
+			document.getElementById('logout').className="btn btn-md btn-danger";
+			var divi=document.getElementById("logoutdiv");
+				divi.style.visibility="visible";
+				divi.style.position="relative";
+
+	//  ---------------------------------Basura del logueo
+
 	var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
 	var messageRef = $firebaseArray(root.child('messages'));
 	var mensajes = root.child('messages');
 	var listRef = firebase.database().ref('presence');
 	var amOnline = firebase.database().ref('.info/connected');
 	var userRef = firebase.database().ref('presence/' + userID);
-
-	// Basura del logueo ---------------------------------
-		$rootScope.logedUser=$cookieStore.get('logedUser');
-		var userID=$cookieStore.get('logedUser').login;
-			document.getElementById('logout').className="btn btn-md btn-danger";
-			var divi=document.getElementById("logoutdiv");
-				divi.style.visibility="visible";
-				divi.style.position="relative";
 
 
 		$rootScope.logout = function() {
@@ -12640,7 +12644,6 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 
 
-	//  ---------------------------------Basura del logueo
 
 	// Chat Firebase ---------------------------------------------------
 
