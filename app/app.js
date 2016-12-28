@@ -12875,6 +12875,25 @@ app.directive('popover', function() {
    }
 });
 
+app.directive('tooltip', function() {
+   return function(scope, elem) {
+      elem.tooltip();
+   }
+});
+
+app.directive('toggle', function(){
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs){
+      if (attrs.toggle=="tooltip"){
+        $(element).tooltip();
+      }
+      if (attrs.toggle=="popover"){
+        $(element).popover();
+      }
+    }
+  };
+})
 
 app.directive("infobox", function(){
         return {
@@ -12892,11 +12911,16 @@ app.directive("infobox", function(){
                 element.parent()
                     .on("mouseover", function(){
                         var t = angular.element(this);
-                        var offset = t.offset(); offset.right += parentWidth;
+                        //var offset = t.offset(); offset.right += parentWidth;
+						//console.log(t.offset());
+						//var offset = t.offset(); offset.right;
+						//console.log(offset);
                         var h = t.outerHeight() / 2;
-                        offset.top = offset.top - (infobox.outerHeight() / 2) + h;
-                      t.find("div.infobox").show().offset(offset);
-					//t.find("div.infobox").show();
+                        //offset.top = offset.top - (infobox.outerHeight() / 2) + h;
+						var tope=t.offset().top - (infobox.outerHeight() / 2) + h;
+						var izquie=t.offset().left - (infobox.outerHeight()  + h);
+                      	//t.find("div.infobox").show().offset(offset);
+						t.find("div.infobox").show().offset({top:tope,left:izquie});
                     })
                     .on("mouseout", function(){
                         var t = angular.element(this);
@@ -12922,11 +12946,6 @@ app.directive("infoboxBody", function(){
         }
     });
 
-app.directive('tooltip', function() {
-   return function(scope, elem) {
-      elem.tooltip();
-   }
-});
 
 //Directiva para poner los textos de los input en mayusculas
  app.directive('capitalize', function() {
