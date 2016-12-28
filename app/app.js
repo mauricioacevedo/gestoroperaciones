@@ -12671,7 +12671,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			$scope.currentUsers=[];
 			$scope.currentUsers=log;
 
-			var list=function makeUL($scope.currentUsers) {
+			var list=function makeUL(log) {
 				// Create the list element:
 				var list = document.createElement('ul');
 
