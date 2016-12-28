@@ -12658,6 +12658,21 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		var obj =   $firebaseObject(listRef);
 		console.log(obj);
 
+		obj.$loaded().then(function() {
+        console.log("loaded record:", obj.$id, obj.someOtherKeyInData);
+
+       // To iterate the key/value pairs of the object, use angular.forEach()
+       angular.forEach(obj, function(value, key) {
+          console.log(key, value);
+       });
+     });
+
+     // To make the data available in the DOM, assign it to $scope
+     $scope.datica = obj;
+
+     // For three-way data bindings, bind it to the scope instead
+     obj.$bindTo($scope, "datica");
+
 
 
 		/*
