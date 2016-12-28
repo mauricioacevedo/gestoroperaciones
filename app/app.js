@@ -12659,7 +12659,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 			$scope.userOnLine=snap.numChildren();
 			$scope.currentUsers=[];
-			$scope.currentUsers = snap.value();
+			$scope.currentUsers = snap.val();
 
 
 			console.log(snap);
