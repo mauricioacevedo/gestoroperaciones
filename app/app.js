@@ -12689,17 +12689,11 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 				this.push({"usuario":key,"estado":value});
 			}, log);
 
-			angular.forEach($scope.objUsers, function(value, key) {
-			  this.push(key);
-				//this.push('usuario'+key+':'+value);
-				//this.push({"usuario":key,"estado":value});
-			}, lstUsers);
-
 			//var pru=JSON.stringify(log);
 			//var pro=JSON.parse(pru);
 
-			$scope.currentUsers=lstUsers.join('<br>');
-			//$scope.currentUsers=log;
+			//$scope.currentUsers=lstUsers.join('<br>');
+			$scope.currentUsers=log;
 
 
 
