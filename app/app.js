@@ -12684,10 +12684,10 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 			var log = [];
 			angular.forEach($scope.objUsers, function(value, key) {
-			  this.push(key);
+			  this.push(key,value);
 			}, log);
 			//$scope.currentUsers=[];
-			$scope.currentUsers=log.join('<br>');
+			$scope.currentUsers=log.key.join('<br>');
 
 
 
