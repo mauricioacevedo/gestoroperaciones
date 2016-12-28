@@ -12655,8 +12655,11 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		});
 
 		//var ref = new Firebase(URL); // assume value here is { foo: "bar" }
-		var obj =   $firebaseArray(listRef);
-		console.log(obj[0]);
+
+		var query = root.orderByChild("presence").limitToLast(10);
+
+		var obj =   $firebaseArray(query);
+		console.log(obj);
 
 		/*obj.$loaded().then(function() {
         //console.log("loaded record:", obj.$id, obj.someOtherKeyInData);
