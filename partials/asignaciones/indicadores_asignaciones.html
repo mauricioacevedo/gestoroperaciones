@@ -428,13 +428,13 @@
 									'<table class="table table-condensed">
 									   <tbody>
 										 <tr ng-repeat="user in currentUsers">
-										   <td ng-bind="user"></td>
+										   <td >{{user}}</td>
 										 </tr>
 									   </tbody>
 									 </table>'>
 									  <i class="fa fa-clock-o fa-lg">Click me</i>
 								  </a>
-								<b><button type="button" class="btn btn-primary btn-xs" pipover data-trigger="hover" data-placement="left" data-html="true" data-content="<ul class='list-group small'>
+								<b><button type="button" class="btn btn-primary btn-xs" popover data-trigger="hover" data-placement="left" data-html="true" data-content="<ul class='list-group small'>
 						<a href='' ng-repeat='user in currentUsers' class='list-group-item'><i class='fa fa-user-circle'></i>&nbsp;{{user}}</a>
 					</ul>" data-original-title=""> Online: <span class="badge">{{userOnLine}}</span></button></b>
 							</span>
