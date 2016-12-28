@@ -12687,7 +12687,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			  //this.push(key+':'+value);
 				//this.push('usuario'+key+':'+value);
 				this.push({"usuario":key,"estado":value});
-			}, (log);
+			}, log);
 
 
 			var pru=JSON.parse(JSON.stringif(log));
