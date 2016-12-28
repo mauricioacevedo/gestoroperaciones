@@ -12688,7 +12688,9 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 				this.push({"usuario":key,"estado":value});
 			}, log);
 			//$scope.currentUsers=[];
-			console.log(log[0]);
+			console.log(log);
+			console.log(log.usuario);
+			console.log(log['usuario']);
 			$scope.currentUsers=log.join('<br>');
 
 
