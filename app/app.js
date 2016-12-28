@@ -12875,6 +12875,25 @@ app.directive('popover', function() {
    }
 });
 
+app.directive('tooltip', function() {
+   return function(scope, elem) {
+      elem.tooltip();
+   }
+});
+
+app.directive('toggle', function(){
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs){
+      if (attrs.toggle=="tooltip"){
+        $(element).tooltip();
+      }
+      if (attrs.toggle=="popover"){
+        $(element).popover();
+      }
+    }
+  };
+})
 
 app.directive("infobox", function(){
         return {
@@ -12922,11 +12941,6 @@ app.directive("infoboxBody", function(){
         }
     });
 
-app.directive('tooltip', function() {
-   return function(scope, elem) {
-      elem.tooltip();
-   }
-});
 
 //Directiva para poner los textos de los input en mayusculas
  app.directive('capitalize', function() {
