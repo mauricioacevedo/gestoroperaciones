@@ -417,8 +417,11 @@
 						<b>Chat</b></div>
 						<div class="col-md-6">
 							<span class="pull-right">
-								<b><button type="button" class="btn btn-primary btn-xs" popover data-trigger="hover" data-placement="left" data-html="true" data-content="'<div class='popover'>
-<div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div></div>'" data-original-title="" title=""> Online: <span class="badge">{{userOnLine}}</span></button></b>
+								<b><button type="button" class="btn btn-primary btn-xs" popover data-trigger="hover" data-placement="left" data-html="true" data-content="'<div ng-controller='chatioCtrl'>
+	<ul class='list-group small'>
+		<a href='' ng-repeat='user in currentUsers as arrUsers' class='list-group-item'><strong><i class='fa fa-user-circle'></i>&nbsp;{{user}}</strong></a>
+	</ul>
+</div>" data-original-title="" title=""> Online: <span class="badge">{{userOnLine}}</span></button></b>
 							</span>
 						</div>
 					</div>
