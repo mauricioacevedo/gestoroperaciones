@@ -4740,7 +4740,7 @@ $scope.listado_transaccionesActividades=[];
     
 });
 
-
+///---------------inicio resgistros----------------------
 app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
 	
         var userID=$cookieStore.get('logedUser').login;
@@ -5605,7 +5605,7 @@ $scope.actualizarLightKPIS();
 
 });
 
-
+//-----------------------------ASIGNACIONES
 
 
 app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, $timeout, services) {
