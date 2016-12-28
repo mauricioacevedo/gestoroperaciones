@@ -417,10 +417,10 @@
 						<b>Chat</b></div>
 						<div class="col-md-6">
 
-	  					<div ng-model="urlst" ng-repeat="user in currentUsers | filter:estado=true">{{user.usuario }}</div>
+	  					<div ng-model="urlst" ng-repeat="user in currentUsers | filter:estado=true as stp">{{user.usuario }}</div>
 
 							<span class="pull-right">
-								<b><button type="button" class="btn btn-primary btn-xs" popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>{{urlst}}</code>"> Online: <span class="badge">{{userOnLine}}</span></button></b>
+								<b><button type="button" class="btn btn-primary btn-xs" popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>{{stp.usuario}}</code>"> Online: <span class="badge">{{userOnLine}}</span></button></b>
 							</span>
 						</div>
 					</div>
