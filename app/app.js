@@ -12691,6 +12691,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			}
 
 			$scope.pruebalista=list($scope.currentUsers);
+			console.log($scope.pruebalista);
 
 			//console.log($scope.currentUsers);
 		    //console.log("# of online users = " + snap.numChildren());
