@@ -12687,10 +12687,10 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 				}
 
 				// Finally, return the constructed list:
-				return list;
+				return $sce.trustAsHtml(list);
 			}
 
-			$scope.pruebalista=$sce.trustAsHtml(list($scope.currentUsers));
+			$scope.pruebalista=list($scope.currentUsers);
 			console.log($scope.pruebalista);
 
 			//console.log($scope.currentUsers);
