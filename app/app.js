@@ -12907,7 +12907,7 @@ app.directive("infobox", function(){
                 element.parent()
                     .on("mouseover", function(){
                         var t = angular.element(this);
-                        var offset = t.offset(); offset.right += parentWidth;
+                        var offset = t.offset(); offset.left += parentWidth;
                         var h = t.outerHeight() / 2;
                         offset.top = offset.top - (infobox.outerHeight() / 2) + h;
                       t.find("div.infobox").show().offset(offset);
