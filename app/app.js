@@ -12655,7 +12655,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		});
 
 		//var ref = new Firebase(URL); // assume value here is { foo: "bar" }
-		var obj = userRef.key();
+		var obj = userRef.$ref().key();
 		console.log(obj);
 
 
