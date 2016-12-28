@@ -12671,7 +12671,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			$scope.currentUsers=[];
 			$scope.currentUsers=log;
 
-			var list=function makeUL(array) {
+			$scope.list=function makeUL(array) {
 				// Create the list element:
 				var list = document.createElement('ul');
 
@@ -12690,7 +12690,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 				return $sce.trustAsHtml(list);
 			}
 
-			$scope.pruebalista=list($scope.currentUsers);
+			$scope.pruebalista=$scope.list($scope.currentUsers);
 			console.log($scope.pruebalista);
 
 			//console.log($scope.currentUsers);
