@@ -12680,7 +12680,6 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			$scope.objUsers = snap.val();
 			//console.log($scope.currentUsers);
 
-			var lstUsers = [];
 
 			var log = [];
 			angular.forEach($scope.objUsers, function(value, key) {
@@ -12696,7 +12695,17 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			$scope.currentUsers=log;
 			$scope.getChuchi=function(val){
 				console.log(val);
-				$scope.chuchi=val.usuario;
+
+				var lstUsers = [];
+
+				angular.forEach(val, function(value, key) {
+				  this.push(key);
+					//this.push('usuario'+key+':'+value);
+					//this.push({"usuario":key,"estado":value});
+				}, lstUsers);
+
+
+				$scope.chuchi=lstUsers;
 				console.log($scope.chuchi);
 
 			}
