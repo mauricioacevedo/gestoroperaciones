@@ -12671,7 +12671,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			$scope.currentUsers=[];
 			$scope.currentUsers=log;
 
-			var list=function makeUL(log) {
+			var list=function makeUL(array) {
 				// Create the list element:
 				var list = document.createElement('ul');
 
@@ -12690,9 +12690,9 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 				return list;
 			}
 
-			$scope.pruebalista=list;
+			$scope.pruebalista=list($scope.currentUsers);
 
-			console.log($scope.pruebalista);
+			//console.log($scope.currentUsers);
 		    //console.log("# of online users = " + snap.numChildren());
 
 			//$scope.currentUsers = $firebaseArray(listRef);
