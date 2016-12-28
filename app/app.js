@@ -12655,17 +12655,10 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		});
 
 		//var ref = new Firebase(URL); // assume value here is { foo: "bar" }
-		var obj = $firebaseObject(listRef);
+		var obj = userRef.key();
+		console.log(obj);
 
-		obj.$bindTo($scope, "sessions").then(function() {
-		  console.log($scope.sessions); // { foo: "bar" }
-		  //$scope.data.foo = "baz";  // will be saved to the database
-		  //ref.set({ foo: "baz" });  // this would update the database and $scope.data
-		});
 
-		angular.forEach($scope.sessions.$indexFor(), function(key) {
-		console.log(key, $scope.sessions[key]);
-	});
 
 		/*
 
