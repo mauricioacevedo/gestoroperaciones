@@ -12641,7 +12641,6 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 			amOnline.on('value', function(snapshot) {
 			  if (snapshot.val()) {
-
 				userRef.set(false);
 				userRef.onDisconnect().remove();
 			  }
