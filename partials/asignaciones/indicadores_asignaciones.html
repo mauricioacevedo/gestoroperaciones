@@ -417,7 +417,7 @@
 						<b>Chat</b></div>
 						<div class="col-md-6">
 
-	  <div ng-repeat="user in currentUsers">{{user.usuario }}</div>
+	  <div ng-repeat="user in currentUsers | filter:{user.estado=true}">{{user.usuario }}</div>
 
 							<span class="pull-right">
 								<b><button type="button" class="btn btn-primary btn-xs" popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>{{currentUsers.usuario}}</code>"> Online: <span class="badge">{{userOnLine}}</span></button></b>
