@@ -12913,7 +12913,7 @@ app.directive("infobox", function(){
                         var t = angular.element(this);
                         //var offset = t.offset(); offset.right += parentWidth;
 					console.log(parentWidth);
-						var offset = t.offset(); offset.right += 170;
+						var offset = t.offset(); offset.right += 300;
                         var h = t.outerHeight() / 2;
                         offset.top = offset.top - (infobox.outerHeight() / 2) + h;
                       t.find("div.infobox").show().offset(offset);
