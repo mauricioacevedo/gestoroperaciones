@@ -1015,15 +1015,6 @@ app.controller('login', function ($scope,$route, $rootScope, $location, $routePa
                         $location.path('/general/'+id_user);
                 }
 		//$location.path('/asignacion/'+id_user);
-	}else{
-		var userRef = firebase.database().ref('presence/' + userID);
-		amOnline.on('value', function(snapshot) {
-			  if (snapshot.val()) {
-
-				userRef.set(false);
-				userRef.onDisconnect().remove();
-			  }
-			});
 	}
 
         $scope.doubleDigit = function (num){
