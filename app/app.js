@@ -12705,7 +12705,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 				}, lstUsers);
 
 
-				$scope.chuchi=lstUsers;
+				$scope.chuchi=lstUsers.join('<br>');
 				console.log($scope.chuchi);
 
 			}
