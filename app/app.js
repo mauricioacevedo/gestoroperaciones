@@ -12690,7 +12690,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			}, log);
 
 
-			var pru=JSON.stringify(log);
+			var pru=JSON.parse(log);
 			console.log(pru.usuario);
 			$scope.currentUsers=log.join('<br>');
 
