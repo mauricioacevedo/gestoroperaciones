@@ -12658,11 +12658,16 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		listRef.on('value', function(snap) {
 
 			$scope.userOnLine=snap.numChildren();
-			$scope.currentUsers='';
-			$scope.currentUsers = snap.val();
+			$scope.objUsers='';
+			$scope.objUsers = snap.val();
 			console.log($scope.currentUsers);
 
+			var lstUsers = [];
 
+			angular.forEach($scope.currentUsers , function(key,val) {
+			  lstUsers.push(key)
+			});
+			$scope.currentUsers=lstUsers;
 			//console.log(snap);
 		    //console.log("# of online users = " + snap.numChildren());
 
