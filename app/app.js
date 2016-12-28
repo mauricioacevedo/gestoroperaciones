@@ -12692,7 +12692,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			//var pro=JSON.parse(pru);
 
 			//$scope.currentUsers=lstUsers.join('<br>');
-			$scope.currentUsers=log;
+			$scope.objCurrentUsers=log;
 			$scope.getChuchi=function(val){
 				console.log(val);
 
@@ -12705,8 +12705,8 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 				}, lstUsers);
 
 
-				$scope.chuchi=lstUsers.join('<br>');
-				console.log($scope.chuchi);
+				$scope.currentUsers=lstUsers.join('<br>');
+				//console.log($scope.chuchi);
 
 			}
 
