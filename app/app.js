@@ -12671,27 +12671,6 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			$scope.currentUsers=[];
 			$scope.currentUsers=log;
 
-			$scope.list=function makeUL(array) {
-				// Create the list element:
-				var list = document.createElement('ul');
-
-				for(var i = 0; i < array.length; i++) {
-					// Create the list item:
-					var item = document.createElement('li');
-
-					// Set its contents:
-					item.appendChild(document.createTextNode(array[i]));
-
-					// Add it to the list:
-					list.appendChild(item);
-				}
-
-				// Finally, return the constructed list:
-				return $sce.trustAsHtml(list);
-			}
-
-			$scope.pruebalista=$scope.list($scope.currentUsers);
-			console.log($scope.pruebalista);
 
 			//console.log($scope.currentUsers);
 		    //console.log("# of online users = " + snap.numChildren());
