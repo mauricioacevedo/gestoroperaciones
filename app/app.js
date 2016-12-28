@@ -12659,7 +12659,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 			$scope.userOnLine=snap.numChildren();
 			$scope.currentUsers=[];
-			$scope.currentUsers = $firebaseArray(snap.val());
+			$scope.currentUsers = snap.key();
 
 
 			console.log($scope.currentUsers);
