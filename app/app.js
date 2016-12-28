@@ -12768,7 +12768,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	};
 
 	$scope.listado();
-	$scope.getChuchi($scope.urlst);
+
 	// --------------------------------------------------- Chat Firebase
 
 	$scope.userStatus=function(){
@@ -12892,7 +12892,28 @@ app.directive('popover', function() {
 });
 
 
+app.directive('custPopover', function ($compile) {
+    return {
+        scope : {
+            items : '=newvar'
+        },
+        restrict: 'A',
 
+        template: '<span>Label</span>',
+        link: function (scope, el, attrs) {
+            scope.label = attrs.popoverLabel;
+            var temp = '<ul><li ng-repeat="user in objCurrentUsers | filter:estado=true as stp">{{user.usuario }}</li></ul>';
+            var contents = $compile(temp)(scope);
+            console.log(scope);
+            $(el).popover({
+                trigger: 'click',
+                html: true,
+                content:  contents,
+                placement: attrs.popoverPlacement
+            });
+        }
+    };
+});
 
 app.directive('tooltip', function() {
    return function(scope, elem) {
