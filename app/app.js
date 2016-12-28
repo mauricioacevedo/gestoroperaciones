@@ -12654,6 +12654,16 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		  }
 		});
 
+		//var ref = new Firebase(URL); // assume value here is { foo: "bar" }
+		var obj = $firebaseObject(listRef);
+
+		obj.$bindTo($scope, "data").then(function() {
+		  console.log($scope.data); // { foo: "bar" }
+		  //$scope.data.foo = "baz";  // will be saved to the database
+		  //ref.set({ foo: "baz" });  // this would update the database and $scope.data
+		});
+
+		/*
 
 		listRef.on('value', function(snap) {
 
@@ -12662,7 +12672,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			$scope.currentUsers = snap.val();
 
 
-			console.log(snap);
+			console.log(snap); */
 		    //console.log("# of online users = " + snap.numChildren());
 
 			//$scope.currentUsers = $firebaseArray(listRef);
