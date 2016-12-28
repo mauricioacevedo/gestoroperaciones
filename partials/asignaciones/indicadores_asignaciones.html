@@ -415,18 +415,19 @@
 					<div class="row">
 						<div class="col-md-6">
 						<b>Chat</b></div>
-						<infobox data-placement="left">
+
+						<div class="col-md-6">
+
+							<span class="pull-right">
+								<b><button type="button" class="btn btn-primary btn-xs" popover data-placement="left"> Online: <span class="badge">{{userOnLine}}</span>
+									<infobox data-placement="left">
 								 <!--<infobox-title>Usuarios:</infobox-title>-->
 								 <infobox-body>
 									<div ng-repeat="user in objCurrentUsers | filter:estado=true as statusObj">
 										<code>{{user.usuario}}</code>
 									</div>
 								</infobox-body>
-							 </infobox>
-						<div class="col-md-6">
-
-							<span class="pull-right">
-								<b><button type="button" class="btn btn-primary btn-xs" popover data-placement="left"> Online: <span class="badge">{{userOnLine}}</span></button></b>
+							 </infobox></button></b>
 
 							</span>
 						</div>
