@@ -12694,10 +12694,6 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			//$scope.currentUsers=lstUsers.join('<br>');
 			$scope.objCurrentUsers=log;
 
-
-
-
-
 			//console.log($scope.currentUsers);
 		    //console.log("# of online users = " + snap.numChildren());
 
@@ -12770,8 +12766,9 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		//$scope.lista={};
 		//return mensajes;
 	};
+
 	$scope.listado();
-	$scope.getChuchi();
+	$scope.getChuchi($scope.urlst);
 	// --------------------------------------------------- Chat Firebase
 
 	$scope.userStatus=function(){
