@@ -12658,7 +12658,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		var obj =   $firebaseArray(listRef);
 		console.log(obj);
 
-		obj.$loaded().then(function() {
+		/*obj.$loaded().then(function() {
         //console.log("loaded record:", obj.$id, obj.someOtherKeyInData);
 
 
@@ -12668,7 +12668,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		$scope.currentUsers=[];
 		$scope.currentUsers = key;
        });
-     });
+     });*/
 
      // To make the data available in the DOM, assign it to $scope
      $scope.datica = obj;
