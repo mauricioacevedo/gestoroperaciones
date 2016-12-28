@@ -12735,22 +12735,6 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	};
 
-	$scope.getChuchi=function(val){
-				//console.log(val);
-
-				var lstUsers = [];
-
-				angular.forEach(val, function(value, key) {
-				  this.push(value.usuario);
-					//this.push('usuario'+key+':'+value);
-					//this.push({"usuario":key,"estado":value});
-				}, lstUsers);
-
-
-				$scope.currentUsers=lstUsers.join('<br>');
-				//console.log($scope.chuchi);
-
-			};
 
 
 	$scope.agregar=function(){
