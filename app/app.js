@@ -12693,7 +12693,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 			var logArr = [];
 			angular.forEach(log, function(value, key) {
-			  this.push(key+':'+value);
+			  this.push(key.usuario+':'+value.estado);
 				//this.push('usuario'+key+':'+value);
 				//this.push({"usuario":key,"estado":value});
 			}, logArr);
