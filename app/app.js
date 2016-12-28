@@ -12858,7 +12858,7 @@ app.directive('pipover', function($compile, $timeout){
       $compile(elm)(scope); //compile
       $timeout(function() { //Once That is rendered
         el.removeAttr('popover').attr('data-content',elm.html()); //Update the attribute
-        el.popover(); //set up popover
+        el.pipover(); //set up popover
        });
     }
   }
