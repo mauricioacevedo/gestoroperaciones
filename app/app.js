@@ -12891,29 +12891,50 @@ app.directive('popover', function() {
    }
 });
 
+app.directive("infobox", function(){
+        return {
+            restrict: "E",
+            transclude: true,
+            scope: { title: "=", content: "=" },
+            template: "<div ng-transclude class='infobox popover right' style='position: absolute; display: none'></div>",
+            controller: function($scope){
 
-app.directive('custPopover', function ($compile) {
-    return {
-        scope : {
-            objCurrentUsers : '=newvar'
-        },
-        restrict: 'A',
-
-        template: '<span>Label</span>',
-        link: function (scope, el, attrs) {
-            scope.label = attrs.popoverLabel;
-            var temp = '<ul><li ng-repeat="user in objCurrentUsers | filter:estado=true as stp">{{user.usuario }}</li></ul>';
-            var contents = $compile(temp)(scope);
-            console.log(scope);
-            $(el).popover({
-                trigger: 'click',
-                html: true,
-                content:  contents,
-                placement: attrs.popoverPlacement
-            });
+            },
+            link: function(scope, element, attrs){
+                var parentWidth = element.parent().outerWidth();
+                var infobox = element.find(".infobox");
+                infobox.append("<div class='arrow'></div>")
+                element.parent()
+                    .on("mouseover", function(){
+                        var t = angular.element(this);
+                        var offset = t.offset(); offset.left += parentWidth;
+                        var h = t.outerHeight() / 2;
+                        offset.top = offset.top - (infobox.outerHeight() / 2) + h;
+                        t.find("div.infobox").show().offset(offset);
+                    })
+                    .on("mouseout", function(){
+                        var t = angular.element(this);
+                        t.find(".infobox").hide();
+                    });             }
         }
-    };
-});
+    });
+app.directive("infoboxTitle", function(){
+        return {
+            restrict: "E",
+            transclude: true,
+            require: "^infobox",
+            template: "<div ng-transclude class='popover-title'></div>"
+        }
+    })
+
+app.directive("infoboxBody", function(){
+        return {
+            restrict: "E",
+            transclude: true,
+            require: "^infobox",
+            template: "<div ng-transclude class='popover-content'></div>"
+        }
+    })
 
 app.directive('tooltip', function() {
    return function(scope, elem) {
