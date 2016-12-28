@@ -418,7 +418,7 @@
 						<div class="col-md-6">
 
 	  					<div ng-hide="true" ng-model="urlst" ng-repeat="user in objCurrentUsers | filter:estado=true as stp">{{user.usuario }}</div>
-							<span cust-popover popover-html="Some Poppy Text"  popover-placement="bottom" myId="#myId" newvar="objCurrentUsers" popover-label="Label"></span>
+							<span cust-popover popover-html="Some Poppy Text"  popover-placement="bottom" myId="#myId" newvar="user" popover-label="Label"></span>
 
 							<span class="pull-right">
 								<b><button type="button" class="btn btn-primary btn-xs" popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>{{currentUsers}}</code>" ng-click="getChuchi(stp)"> Online: <span class="badge">{{userOnLine}}</span></button></b>
