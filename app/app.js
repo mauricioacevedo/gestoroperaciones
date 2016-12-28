@@ -12875,41 +12875,51 @@ app.directive('popover', function() {
    }
 });
 
-app.directive('popOver', function ($compile) {
-        var itemsTemplate = "<ul class='unstyled'><li ng-repeat='user in objCurrentUsers | filter:estado=true as statusObj'>{{user.usuario}}</li></ul>";
-        var getTemplate = function (contentType) {
-            var template = '';
-            switch (contentType) {
-                case 'items':
-                    template = itemsTemplate;
-                    break;
-            }
-            return template;
-        }
+
+app.directive("infobox", function(){
         return {
-            restrict: "A",
+            restrict: "E",
             transclude: true,
-            template: "<span ng-transclude></span>",
-            link: function (scope, element, attrs) {
-                var popOverContent;
-                if (scope.items) {
-                    var html = getTemplate("items");
-                    popOverContent = $compile(html)(scope);
-                }
-                var options = {
-                    content: popOverContent,
-                    placement: "left",
-					trigger:"hover",
-                    html: true,
-                    title: scope.title
-                };
-                $(element).popover(options);
+            scope: { title: "=", content: "=" },
+            template: "<div ng-transclude class='infobox popover left' style='position: absolute; display: none'></div>",
+            controller: function($scope){
+
             },
-            scope: {
-                items: '=',
-                title: '@'
-            }
-        };
+            link: function(scope, element, attrs){
+                var parentWidth = element.parent().outerWidth();
+                var infobox = element.find(".infobox");
+                infobox.append("<div class='arrow'></div>")
+                element.parent()
+                    .on("mouseover", function(){
+                        var t = angular.element(this);
+                        var offset = t.offset(); offset.right += parentWidth;
+                        var h = t.outerHeight() / 2;
+                        offset.top = offset.top - (infobox.outerHeight() / 2) + h;
+                      t.find("div.infobox").show().offset(offset);
+					//t.find("div.infobox").show();
+                    })
+                    .on("mouseout", function(){
+                        var t = angular.element(this);
+                        t.find(".infobox").hide();
+                    });             }
+        }
+    });
+app.directive("infoboxTitle", function(){
+        return {
+            restrict: "E",
+            transclude: true,
+            require: "^infobox",
+            template: "<div ng-transclude class='popover-title'></div>"
+        }
+    })
+
+app.directive("infoboxBody", function(){
+        return {
+            restrict: "E",
+            transclude: true,
+            require: "^infobox",
+            template: "<div ng-transclude class='popover-content'></div>"
+        }
     });
 
 app.directive('tooltip', function() {
