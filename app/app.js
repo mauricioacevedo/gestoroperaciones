@@ -12896,7 +12896,7 @@ app.directive("infobox", function(){
             restrict: "E",
             transclude: true,
             scope: { title: "=", content: "=" },
-            template: "<div></div>",
+            template: "<div ng-transclude class='infobox popover right' style='position: left; display: none'></div>",
             controller: function($scope){
 
             },
