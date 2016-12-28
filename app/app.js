@@ -12602,6 +12602,12 @@ app.controller('mymodalcontroller', function ($scope,$route, $rootScope, $locati
 
 app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $routeParams,$cookies,$cookieStore,$sce,$firebase,$firebaseObject,$firebaseArray,notify,services){
 
+	var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
+	var messageRef = $firebaseArray(root.child('messages'));
+	var mensajes = root.child('messages');
+	var listRef = firebase.database().ref('presence');
+	var amOnline = firebase.database().ref('.info/connected');
+	var userRef = firebase.database().ref('presence/' + userID);
 
 	// Basura del logueo ---------------------------------
 		$rootScope.logedUser=$cookieStore.get('logedUser');
@@ -12623,6 +12629,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 					divi.style.position="absolute";
 					divi.style.visibility="hidden";
 					$location.path('/');
+					userRef.onDisconnect().remove();
 			};
 
 
@@ -12630,10 +12637,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	//  ---------------------------------Basura del logueo
 
 	// Chat Firebase ---------------------------------------------------
-	var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
-	var messageRef = $firebaseArray(root.child('messages'));
-	var mensajes = root.child('messages');
-	var listRef = firebase.database().ref('presence');
+
 	//var userRef = listRef.push();
 	//var presenceRef = firebase.database().ref(".info/connected");
 
@@ -12643,8 +12647,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	$scope.listado=function(){
 
 
-		var amOnline = firebase.database().ref('.info/connected');
-		var userRef = firebase.database().ref('presence/' + userID);
+
 
 		amOnline.on('value', function(snapshot) {
 		  if (snapshot.val()) {
