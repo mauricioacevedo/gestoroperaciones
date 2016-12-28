@@ -12917,9 +12917,10 @@ app.directive("infobox", function(){
 						//console.log(offset);
                         var h = t.outerHeight() / 2;
                         //offset.top = offset.top - (infobox.outerHeight() / 2) + h;
-						var tope=t.offset().top - (infobox.outerHeight() / 2) + h
+						var tope=t.offset().top - (infobox.outerHeight() / 2) + h;
+						var izquie=t.offset().left - (infobox.outerHeight() / 2) + h;
                       	//t.find("div.infobox").show().offset(offset);
-						t.find("div.infobox").show().offset({top:tope,left:parentWidth});
+						t.find("div.infobox").show().offset({top:tope,left:izquie});
                     })
                     .on("mouseout", function(){
                         var t = angular.element(this);
