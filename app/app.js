@@ -12634,7 +12634,13 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 					divi.style.visibility="hidden";
 					$location.path('/');
 
-					userRef.onDisconnect().remove();
+					amOnline.on('value', function(snapshot) {
+					  if (snapshot.val()) {
+
+						userRef.set(true);
+						userRef.onDisconnect().remove();
+					  }
+					});
 
 			};
 
