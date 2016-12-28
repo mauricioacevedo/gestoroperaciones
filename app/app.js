@@ -12689,14 +12689,9 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 				this.push({"usuario":key,"estado":value});
 			}, log);
 
-			var arealistArray=[];
-			$scope.arealist=[];
 
-			angular.forEach(log, function(data){
-				   arealistArray.push("usuario":data.usuario,"estado":data.estado);
-			  });
-			$scope.arealist=arealistArray;
-			console.log($scope.arealist);
+
+			console.log(JSON.stringify(log));
 			$scope.currentUsers=log.join('<br>');
 
 
