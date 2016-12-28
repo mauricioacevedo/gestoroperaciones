@@ -12693,22 +12693,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 			//$scope.currentUsers=lstUsers.join('<br>');
 			$scope.objCurrentUsers=log;
-			$scope.getChuchi=function(val){
-				//console.log(val);
 
-				var lstUsers = [];
-
-				angular.forEach(val, function(value, key) {
-				  this.push(value.usuario);
-					//this.push('usuario'+key+':'+value);
-					//this.push({"usuario":key,"estado":value});
-				}, lstUsers);
-
-
-				$scope.currentUsers=lstUsers.join('<br>');
-				//console.log($scope.chuchi);
-
-			}
 
 
 
@@ -12754,6 +12739,23 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	};
 
+	$scope.getChuchi=function(val){
+				//console.log(val);
+
+				var lstUsers = [];
+
+				angular.forEach(val, function(value, key) {
+				  this.push(value.usuario);
+					//this.push('usuario'+key+':'+value);
+					//this.push({"usuario":key,"estado":value});
+				}, lstUsers);
+
+
+				$scope.currentUsers=lstUsers.join('<br>');
+				//console.log($scope.chuchi);
+
+			};
+
 
 	$scope.agregar=function(){
 
@@ -12769,6 +12771,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		//return mensajes;
 	};
 	$scope.listado();
+	$scope.getChuchi();
 	// --------------------------------------------------- Chat Firebase
 
 	$scope.userStatus=function(){
