@@ -12911,10 +12911,11 @@ app.directive("infobox", function(){
                 element.parent()
                     .on("mouseover", function(){
                         var t = angular.element(this);
-                        var offset = t.offset(); offset.right += parentWidth;
+                        //var offset = t.offset(); offset.right += parentWidth;
+						var offset = t.offset(); offset.right += 10;
                         var h = t.outerHeight() / 2;
                         offset.top = offset.top - (infobox.outerHeight() / 2) + h;
-                      t.find("div.infobox").show().offset(offset-10);
+                      t.find("div.infobox").show().offset(offset);
 					//t.find("div.infobox").show();
                     })
                     .on("mouseout", function(){
