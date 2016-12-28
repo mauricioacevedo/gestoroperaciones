@@ -5605,7 +5605,7 @@ $scope.actualizarLightKPIS();
 
 });
 
-//-----------------------------ASIGNACIONES
+//-----------------------------ASIGNACIONES--------------------------------
 
 
 app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, $timeout, services) {
@@ -6290,7 +6290,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 	    };
 
 });
-
+//--------------------fin asignacion-----------------------------
 
 app.controller('listCtrl', function ($scope, services) {
     services.getCustomers().then(function(data){
@@ -6439,8 +6439,7 @@ app.controller('SchedulingCtrl',function ($scope, $rootScope, $location, $routeP
     };
                  
 });
-
-
+//----------------------ocupacion agendas---------------------
 app.controller('OcupacionAgendamientoCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
 
         var userID=$cookieStore.get('logedUser').login;
@@ -6592,6 +6591,7 @@ app.controller('OcupacionAgendamientoCtrl', function ($scope, $rootScope, $locat
 
 });
 
+//-------------------------------cargar datos subir archivo----------------------
 app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services, fileUpload){
 
         var userID=$cookieStore.get('logedUser').login;
@@ -6666,6 +6666,8 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 
 
     });
+//----------------------------------fin subir archivo--------------------
+
 
 app.controller('Pedidos_MicrozonasCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
 
@@ -7228,7 +7230,7 @@ $scope.csvParametrizacionMicrozona = function (depa, zona){
 
 
 
-
+//----------------resgistros agendamiento---------------------------------
 
 app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
 
@@ -7380,7 +7382,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
         };
 
 
-        $scope.buscarPedidoRegistro1  = function (bpedido){
+        $scope.buscarPedidoRegistro1  = function (bpedido){//buscar pedidos
 
                 if(bpedido.length==0||bpedido==''){
                         $scope.calcularPendientes();
@@ -7395,7 +7397,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
                 }
         };
 
-        $scope.csvPendientesAgendamiento  = function (concep){
+        $scope.csvPendientesAgendamiento  = function (concep){//exportar pendientes agendas
                 var login=$rootScope.logedUser.login;
                 services.getCsvPendientesAgendamiento(login).then(function(data){
                         console.log(data.data[0]);
@@ -7404,7 +7406,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
                 });
         };
 
-         $scope.csvPendientesAgendamientoPredictiva  = function (concep){
+         $scope.csvPendientesAgendamientoPredictiva  = function (concep){//exportar predictiva
                 var login=$rootScope.logedUser.login;
                 services.getCsvPendientesAgendamientoPredictiva(login).then(function(data){
                         console.log(data.data[0]);
@@ -7422,7 +7424,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
                 });
         };
 
-        $scope.csvMalosAgendamiento  = function (){
+        $scope.csvMalosAgendamiento  = function (){//exportar status malo en agendamiento
                 var login=$rootScope.logedUser.login;
                 services.getCsvMalosAgendamiento(login).then(function(data){
                         console.log(data.data[0]);
