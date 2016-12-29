@@ -423,9 +423,18 @@
 									<infobox data-placement="left">
 								 <!--<infobox-title>Usuarios:</infobox-title>-->
 								 <infobox-body>
-									 <ul class="list-group small">
-										<a href="" ng-repeat="user in objCurrentUsers as statusObj" class="list-group-item"><i  ng-class="user.estado==true?'sucess':'default'" class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;{{user.usuario}}</span> </a>
-									</ul>
+
+									 <table class="table small table-striped table-hover table-bordered table-condensed">
+
+										<tbody>
+											<tr ng-repeat="user in objCurrentUsers as statusObj">
+											<td>
+												<span ng-class="{'true':'label label-success','false':'label label-default'}[user.estado]">{{user.usuario}}</span>
+											</td>
+
+											</tr>
+										</tbody>
+									</table>
 								</infobox-body>
 							 </infobox></button></b>
 
