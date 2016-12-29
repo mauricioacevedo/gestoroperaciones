@@ -11634,7 +11634,7 @@ $sqlfenix=
 						"	(SELECT COUNT(distinct A.ASESOR) AS DIVISOR ".
 						"	FROM portalbd.gestor_historicos_reagendamiento A ".
 						"	where A.acceso='CONTACT_CENTER' ".
-						"	AND R.PROCESO='$grupo' ".
+						"	AND A.PROCESO='$grupo' ".
 						"	AND A.FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' ) C2 ".
 						" ORDER BY 2 DESC) Z1 ) L1 ";
 													//echo $query;
