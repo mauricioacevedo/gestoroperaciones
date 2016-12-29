@@ -204,12 +204,10 @@
 <!--<button type="button" class="btn btn-link btn-lg" ng-show="service.OBSERVACIONES"> 
 <b><i class="fa fa-info-circle" aria-hidden="true" > <span id="cerrar" custom-popover popover-html={{service.OBSERVACIONES}} data-trigger="focus" popover-placement="right" popover-label="Observaciones"></span></i></b>
  </button>-->
-<button type="button" class="btn btn-default btn-circle-xss pull-right" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="{{service.OBSERVACIONES}}">
-									<i class="fa fa-plus"  aria-hidden="true" ></i>
-								</button>
-<button id="popoverId" ng-click="popoverboton();" ng-show="service.OBSERVACIONES" class="popoverThis btn btn-link btn-md">
-<b><i class="fa fa-info-circle" ></i></b> Observaciones</button>
-<div id="popoverContent" class="hide">{{service.OBSERVACIONES}}</div>
+									<button type="button" class="btn btn-default btn-circle-xss" popover data-trigger="hover" data-placement="rigth" data-html="true" data-selector="" data-content="{{service.OBSERVACIONES}}">
+										<i class="fa fa-info-circle"  aria-hidden="true" ></i> Observaciones
+									</button>
+
                             </td>
               
                             <td><font color='red'>{{service.TIEMPO_COLA}}</font></td>
