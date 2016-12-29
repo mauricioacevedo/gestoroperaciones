@@ -13805,7 +13805,7 @@ $rootScope.ProgramadosModal=function(){
 
 });
 
-app.run(['$location', '$rootScope', function($location, $rootScope, $cookies,$cookieStore,$firebase,$firebaseObject,$firebaseArray) {
+app.run(['$location', '$rootScope', '$cookies','$cookieStore','$firebase','$firebaseObject','$firebaseArray',function($location, $rootScope, $cookies,$cookieStore,$firebase,$firebaseObject,$firebaseArray) {
 
 	var userID=$cookieStore.get('logedUser').login;
 	var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
