@@ -8851,9 +8851,10 @@ $scope.getFeed = function (){
 $scope.getFeed();
 
 
-  	var colorDanger="#E83720";
-    var colorWaring="#E8A820";
-    var colorNormal="#088A08";
+	var colorDanger="#E83720";
+	var colorWaring="#E8A820";
+	var colorWarningTrans="#ffd699";
+	var colorNormal="#088A08";
 
 	$scope.grupo={};
 	$scope.topProductivos = function() {
