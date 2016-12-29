@@ -11859,44 +11859,65 @@ $sqlfenix=
 			};
 
 
-             $query="	SELECT ".
-					"	P.PEDIDO_ID ".
-				 	"	, MAX(P.MUNICIPIO_ID) as MUNICIPIO_ID ".
-					"	, max(P.FECHA_CITA) as FECHA_CITA ".
-					"	, max(P.STATUS) as STATUS ".
-					"	, M.MOTIVO_MALO ".
+             $query="	select ".
+					" c2.PEDIDO_ID ".
+					", c2.MUNICIPIO_ID ".
+					", c2.FECHA_CITA ".
+					", c2.STATUS ".
+					", c2.MOTIVO_MALO ".
+					", c2.MENSAJE ".
+					", c2.USUARIO_ID ".
+					", c2.FECHA_GESTION ".
+					" from (SELECT  ".
+					"	P.PEDIDO_ID  ".
+					"	, MAX(P.MUNICIPIO_ID) as MUNICIPIO_ID  ".
+					"	, max(P.FECHA_CITA) as FECHA_CITA  ".
 					"	, case  ".
-					"		when max(P.FECHA_CITA)='9999-00-00' THEN 'SIN CITA' ".
-					"		when max(P.FECHA_CITA)<=CURRENT_DATE() THEN 'ALARMADO' ".
-					"	    when max(P.FECHA_CITA)=DATE_ADD(CURDATE(), INTERVAL 1 DAY) then 'GESTIONAR' ".
-					"	    else 'EN ESPERA'  ".
+					"		when max(P.STATUS)='PENDI_PETEC' then 'PROGRAMADO' ".
+					"        else max(P.STATUS)  ".
+					"        END as STATUS  ".
+					"    , P.PROGRAMACION ".
+					"	, case   ".
+					"		when max(P.FECHA_CITA)='9999-00-00' THEN 'SIN CITA'  ".
+					"		when max(P.FECHA_CITA)<=CURRENT_DATE() THEN 'ALARMADO'  ".
+					"	    when max(P.FECHA_CITA)=DATE_ADD(CURDATE(), INTERVAL 1 DAY) then 'GESTIONAR'  ".
+					"	    else 'EN ESPERA'   ".
 					"	    end as MENSAJE ".
-					"	, M.USER as USUARIO_ID ".
-					"	, M.FECHA_FIN as FECHA_GESTION ".
-					"	FROM portalbd.informe_petec_pendientesm P ".
-					"	inner join (SELECT   ".
-					"				h.ID,  ".
-					"					h.PEDIDO_ID,  ".
-					"					h.user,  ".
-					"					h.estado, ".
-					"					h.MOTIVO_MALO, ".
-					"					h.FECHA_FIN ".
-					"			FROM  ".
-					"				portalbd.pedidos h  ".
-					"			WHERE  ".
-					"				1 = 1 AND h.estado  in ('MALO') ".
-					"					AND h.ID = (SELECT   ".
-					"						MAX(hh.ID)  ".
-					"					FROM  ".
-					"						portalbd.pedidos hh  ".
-					"					WHERE  ".
-					"						hh.PEDIDO_ID = h.PEDIDO_ID ".
-					"					GROUP BY hh.PEDIDO_ID)) M ".
-					"	on P.PEDIDO_ID=M.PEDIDO_ID ".
-					"	WHERE P.STATUS='MALO' ".
-					"	and M.user='$usuario_id' ".
-					"	group by P.PEDIDO_ID ".
-					"	order by 2 asc ";
+					"	, max(P.CONCEPTO_ID) as ULTCONCEPTO ".
+					"	, max(P.FUENTE) as FUENTE ".
+					"    , (SELECT h.user as USUARIO_ID ".
+					"		FROM   ".
+					"			portalbd.pedidos h   ".
+					"		WHERE   ".
+					"			1 = 1 AND h.estado  in ('MALO','VOLVER A LLAMAR')  ".
+					"				  AND h.ID = (SELECT  MAX(hh.ID)  FROM  portalbd.pedidos hh   ".
+					"				  WHERE  hh.PEDIDO_ID = h.PEDIDO_ID and hh.estado in ('MALO','VOLVER A LLAMAR') ".
+					"				GROUP BY hh.PEDIDO_ID) ".
+					"				and h.PEDIDO_ID=P.PEDIDO_ID) as USUARIO_ID ".
+					"	, (SELECT h.motivo_malo ".
+					"		FROM   ".
+					"			portalbd.pedidos h   ".
+					"		WHERE   ".
+					"			1 = 1 AND h.estado  in ('MALO','VOLVER A LLAMAR')  ".
+					"				  AND h.ID = (SELECT  MAX(hh.ID)  FROM  portalbd.pedidos hh   ".
+					"				  WHERE  hh.PEDIDO_ID = h.PEDIDO_ID and hh.estado in ('MALO','VOLVER A LLAMAR') ".
+					"				GROUP BY hh.PEDIDO_ID) ".
+					"				and h.PEDIDO_ID=P.PEDIDO_ID) as MOTIVO_MALO ".
+					"	, (SELECT h.fecha_fin ".
+					"		FROM   ".
+					"			portalbd.pedidos h   ".
+					"		WHERE   ".
+					"			1 = 1 AND h.estado  in ('MALO','VOLVER A LLAMAR')  ".
+					"				  AND h.ID = (SELECT  MAX(hh.ID)  FROM  portalbd.pedidos hh   ".
+					"				  WHERE  hh.PEDIDO_ID = h.PEDIDO_ID and hh.estado in ('MALO','VOLVER A LLAMAR') ".
+					"				GROUP BY hh.PEDIDO_ID) ".
+					"				and h.PEDIDO_ID=P.PEDIDO_ID) as FECHA_GESTION  ".
+					"	FROM portalbd.informe_petec_pendientesm P  ".
+					"	WHERE P.STATUS in ('MALO') ".
+					"    OR (P.STATUS in ('PENDI_PETEC')  ".
+					"    and P.PROGRAMACION!='') ".
+					"	group by P.PEDIDO_ID ) c2 ".
+					"    where c2.USUARIO_ID='$usuario_id' ";
 
                      // echo $query;
                      $rst = $this->mysqli->query($query);
