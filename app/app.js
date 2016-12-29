@@ -2676,9 +2676,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	        //$location.path('/');
 			//$window.location.reload()
 			//$location.path('/', true);
-			//$state.go('login', null, {reload: true});
-			 $state.go('login');
-				window.location.reload()
+			$state.go('login', null, {reload: true});
+
 	};
 
         $scope.doubleDigit= function (num){
@@ -12717,8 +12716,8 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			var divi=document.getElementById("logoutdiv");
 			divi.style.position="absolute";
 			divi.style.visibility="hidden";
-			$location.path('/');
-
+			//$location.path('/');
+			$state.go('login', null, {reload: true});
 			amOnline.on('value', function(snapshot) {
 			  if (snapshot.val()) {
 				userRef.set(false);
