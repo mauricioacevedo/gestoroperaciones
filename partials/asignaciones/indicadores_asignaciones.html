@@ -424,17 +424,11 @@
 								 <!--<infobox-title>Usuarios:</infobox-title>-->
 								 <infobox-body>
 
-									 <table class="table small table-striped table-hover table-bordered table-condensed">
+									<div ng-repeat="user in objCurrentUsers as statusObj">
 
-										<tbody>
-											<tr ng-repeat="user in objCurrentUsers as statusObj">
-											<td>
-												<span ng-class="{'true':'label label-success','false':'label label-default'}[user.estado]">{{user.usuario}}</span>
-											</td>
+										<span class="small"><i  class="fa fa-user-circle" aria-hidden="true" ng-class="{'true':'text-primary','false':'text-danger'}[user.estado]"></i><span>{{user.usuario}}</span></span>
 
-											</tr>
-										</tbody>
-									</table>
+									</div>
 								</infobox-body>
 							 </infobox></button></b>
 
