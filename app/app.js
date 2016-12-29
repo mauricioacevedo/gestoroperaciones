@@ -13810,7 +13810,7 @@ app.run(['$location', '$rootScope', function($location, $rootScope) {
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         //console.log($rootScope.loginexito);
         $rootScope.title = current.$$route.title;
-		console.log(current.$$route);
+		console.log(current.$$route.controller);
 
     });
 
