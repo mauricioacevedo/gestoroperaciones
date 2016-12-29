@@ -2676,7 +2676,9 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	        //$location.path('/');
 			//$window.location.reload()
 			//$location.path('/', true);
-			$state.go('login', null, {reload: true});
+			//$state.go('login', null, {reload: true});
+			 $state.go('login');
+				window.location.reload()
 	};
 
         $scope.doubleDigit= function (num){
