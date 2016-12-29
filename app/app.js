@@ -13812,7 +13812,7 @@ app.run(['$location', '$rootScope', function($location, $rootScope, $cookies,$co
         $rootScope.title = current.$$route.title;
 		console.log(current.$$route.controller);
 
-		var controlador=current..$$route.controller;
+		var controlador=current.$$route.controller;
 		var userID=$cookieStore.get('logedUser').login;
 		var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
 		var messageRef = $firebaseArray(root.child('messages'));
