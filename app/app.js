@@ -5407,7 +5407,7 @@ $(document).click(  function (e) {
         $scope.baby = function(pedido) {
                 //console.log(pedido);
                 services.getPedidosPorPedido(pedido).then(function(data){
-                      console.log(data.data);
+                      //console.log(data.data);
                       $scope.historico_pedido=data.data;
                       return data.data;
                  });
@@ -5439,7 +5439,7 @@ $(document).click(  function (e) {
 
                 var kami=services.demePedido($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,$scope.prioridad).then(function(data){
                         $scope.peds = data.data;
-                        console.log(data.data);
+                        //console.log(data.data);
                         if(data.data==''){
                                 document.getElementById("warning").innerHTML="No hay Registros";
                                 $scope.error="No hay Registros";
