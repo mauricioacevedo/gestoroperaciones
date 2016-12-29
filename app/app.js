@@ -13805,22 +13805,12 @@ $rootScope.ProgramadosModal=function(){
 
 });
 
-$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-
-        //$rootScope.title = current.$$route.title;
-        //$rootScope.tituloPagina = 'Gestor Operaciones Despacho - '+current.$$route.title;
-
-		console.log(current.$$route.title);
-
-
-
-    });
-
 app.run(['$location', '$rootScope', function($location, $rootScope) {
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         //console.log($rootScope.loginexito);
         $rootScope.title = current.$$route.title;
+		console.log(current.$$route.title);
     });
 
 
