@@ -249,6 +249,7 @@
 										<th>Fecha Cita</th>
 										<th>Estado</th>
 										<th>Motivo</th>
+										<th>Programación</th>
 										<th>Agenda</th>
 										<th>Municipio</th>
 										<th>Fecha Gestión</th>
@@ -262,22 +263,25 @@
 											</button>
 										</td>
 										<td>
-											{{data.FECHA_CITA}}
+											<span class="small">{{data.FECHA_CITA}}</span>
 										</td>
 										<td>
-											{{data.STATUS}}
+											<span class="small">{{data.STATUS}}</span>
 										</td>
 										<td>
 											<span ng-class="small">{{data.MOTIVO_MALO}}</span>
 										</td>
 										<td>
-											<span ng-class="{'ALARMADO':'label label-warning','GESTIONAR':'label label-danger','SIN CITA':'label label-info'}[data.MENSAJE]">{{data.MENSAJE}}</span>
+											<span ng-class="small">{{data.PROGRAMACION}}</span>
+										</td>
+										<td>
+											<span class="small" ng-class="{'ALARMADO':'label label-warning','GESTIONAR':'label label-danger','SIN CITA':'label label-info'}[data.MENSAJE]">{{data.MENSAJE}}</span>
 										</td>
 										<td>
 											<span ng-class="small">{{data.MUNICIPIO_ID}}</span>
 										</td>
 										<td>
-											{{data.FECHA_GESTION}}
+											<span ng-class="small">{{data.FECHA_GESTION}}</span>
 										</td>
 
 									</tr>
