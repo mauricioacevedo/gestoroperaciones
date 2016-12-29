@@ -54,10 +54,10 @@
 							<a href="" ng-repeat="datar in listaProductivos as ranks" class="list-group-item animated slideInRight" ng-style="set_color_Cuartil(parseInt(datar.CUARTIL))">{{datar.RANK}} - <span ng-class= "{'on':'label label-info','off':'label label-danger'}[datar.ESTADO]">{{datar.ESTADO}}</span> - {{datar.USUARIO_ID}}  <span class = "badge ">{{datar.PEDIDOS}}</span></a>
 							</span>
 						</ul>
-						<div class="jumbotron"><h4>Modulo no disponible</h4></div>
+						<!--<div class="jumbotron"><h4>Modulo no disponible</h4></div>-->
 					</div>
 					<div class="panel-footer clearfix">
-						<!--Usuarios: <span class="label label-success">{{ranks.length}}</span>-->
+						Usuarios: <span class="label label-success">{{ranks.length}}</span>
 					</div>
 				</div>
 
