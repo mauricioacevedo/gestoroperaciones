@@ -22,7 +22,7 @@
 									<i class="fa fa-refresh"  aria-hidden="true"></i>
 								</button> Pendientes por Conceptos</b>
 					</div>
-					<div class = "panel-heading nav navbar-default">
+					<div class = "panel-body fixed-panel">
 						<ul class="list-group small">
 							<span class="small">
 							<a href="" ng-repeat="data in tbl_fechacita as Pendis" class="list-group-item animated slideInRight" ng-style="set_color(parseInt(data.value))">{{data.CONCEPTOS}}: <span class = "badge ">{{data.CANTIDAD}}</span></a></span>
