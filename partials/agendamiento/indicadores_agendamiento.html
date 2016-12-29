@@ -48,7 +48,7 @@
 									<i class="fa fa-refresh"  aria-hidden="true"></i>
 								</button></div>
 						</div></div>
-					<div class = "panel-heading nav navbar-default">
+					<div class = "panel-body fixed-panel">
 						<ul class="list-group small">
 							<span class="small">
 							<a href="" ng-repeat="datar in listaProductivos as ranks" class="list-group-item animated slideInRight" ng-style="set_color_Cuartil(parseInt(datar.CUARTIL))">{{datar.RANK}} - <span ng-class= "{'on':'label label-info','off':'label label-danger'}[datar.ESTADO]">{{datar.ESTADO}}</span> - {{datar.USUARIO_ID}}  <span class = "badge ">{{datar.PEDIDOS}}</span></a>
