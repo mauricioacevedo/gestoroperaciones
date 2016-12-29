@@ -2678,7 +2678,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	        var divi=document.getElementById("logoutdiv");
 	        divi.style.position="absolute";
 	        divi.style.visibility="hidden";
-	        $location.path('/');
+	        //$location.path('/');
+			$location.path('/', {reload: true})
 	};
 
         $scope.doubleDigit= function (num){
