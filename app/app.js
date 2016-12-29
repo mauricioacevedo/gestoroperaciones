@@ -2679,7 +2679,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	        divi.style.position="absolute";
 	        divi.style.visibility="hidden";
 	        $location.path('/');
-		window.location.reload()
+		$window.location.reload()
 			//$location.path('/', {reload: true})
 	};
 
