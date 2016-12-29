@@ -11867,6 +11867,7 @@ $sqlfenix=
 					", c2.MOTIVO_MALO ".
 					", c2.MENSAJE ".
 					", c2.USUARIO_ID ".
+				 	", c2.PROGRAMACION ".
 					", c2.FECHA_GESTION ".
 					" from (SELECT  ".
 					"	P.PEDIDO_ID  ".
@@ -11876,7 +11877,7 @@ $sqlfenix=
 					"		when max(P.STATUS)='PENDI_PETEC' then 'PROGRAMADO' ".
 					"        else max(P.STATUS)  ".
 					"        END as STATUS  ".
-					"    , P.PROGRAMACION ".
+					"    , max(P.PROGRAMACION) as PROGRAMACION ".
 					"	, case   ".
 					"		when max(P.FECHA_CITA)='9999-00-00' THEN 'SIN CITA'  ".
 					"		when max(P.FECHA_CITA)<=CURRENT_DATE() THEN 'ALARMADO'  ".
