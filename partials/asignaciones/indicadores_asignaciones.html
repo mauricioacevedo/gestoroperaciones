@@ -423,9 +423,9 @@
 									<infobox data-placement="left">
 								 <!--<infobox-title>Usuarios:</infobox-title>-->
 								 <infobox-body>
-									<div ng-repeat="user in objCurrentUsers | filter:estado=true as statusObj">
-										<code>{{user.usuario}}</code>
-									</div>
+									 <ul class="list-group small">
+										<a href="" ng-repeat="user in objCurrentUsers as statusObj" class="list-group-item animated slideInRight"><i  ng-class="user.estado==true?'sucess':'default'" class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;{{user.usuario}}</span> </a>
+									</ul>
 								</infobox-body>
 							 </infobox></button></b>
 
