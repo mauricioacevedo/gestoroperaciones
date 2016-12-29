@@ -935,7 +935,9 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 
 //-------------------------------------------------------------------Fin-asignaciones
 
-
+	obj.getPedidosGestorUserReagendamiento = function(grupo){
+        return $http.get(serviceBase + 'PedidosGestorUserReagendamiento?grupo='+grupo);
+        }
 
 
 
@@ -8849,11 +8851,39 @@ $scope.getFeed = function (){
 $scope.getFeed();
 
 
-  var colorDanger="#E83720";
+  	var colorDanger="#E83720";
     var colorWaring="#E8A820";
     var colorNormal="#088A08";
 
+	$scope.grupo={};
+	$scope.topProductivos = function() {
+	//console.log($scope.grupo);
 
+    services.getPedidosGestorUserReagendamiento($scope.grupo.Cuartil).then(
+
+
+      function(data){
+
+            $scope.listaProductivos=data.data[0];
+		  	$scope.grupo.Cuartil=data.data[1];
+		    $scope.grupo.fecha=data.data[2];
+		  	//console.log($scope.listaProductivos);
+
+              return data.data;
+
+
+            }
+      , function errorCallback(response,status) {
+          //console.log(status);
+            $scope.errorDatos="Ops, probelemas";
+
+
+
+          }
+      );
+
+
+ };
 
     $scope.set_color = function (service) {
 
@@ -8895,6 +8925,51 @@ $scope.getFeed();
 
               }
             };
+
+	$scope.set_color_Cuartil = function (value) {
+
+	//console.log(value);
+
+              if (value >= 4) {
+                $scope.estiloCuartil={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorDanger
+                    };
+
+                return $scope.estiloCuartil;
+              }
+
+
+              if(value >= 3 && value < 4){
+
+                    $scope.estiloCuartil={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorWaring
+
+                    };
+				  return $scope.estiloCuartil;
+
+                  }
+
+               if(value >= 2 && value < 3){
+
+					$scope.estiloCuartil={
+					  "list-style-position":"inside",
+					  "border-left": "5px solid "+colorWarningTrans
+					};
+				   return $scope.estiloCuartil;
+                  	}
+
+		if(value >= 1 && value < 2){
+
+					$scope.estiloCuartil={
+					  "list-style-position":"inside",
+					  "border-left": "5px solid "+colorNormal
+					};
+				   return $scope.estiloCuartil;
+                  	}
+
+};
 
 });
 
