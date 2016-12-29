@@ -1,37 +1,53 @@
+<div class="col-md-3 col-xs-3" ng-controller="chatioCtrl">
 
-<div class="row">
-	<div class="col-md-3">
+			<div class = "panel panel-default" >
+				<div class = "panel-heading nav navbar-default ">
+					<div class="row">
+						<div class="col-md-6">
+						<b>Chat</b></div>
 
-		<div class = "panel panel-default" >
-			<div class = "panel-heading nav navbar-default ">
-						<div class="row">
-							<div class="col-md-12">
-							<b>Chat</b></div></div>
-			</div>
-			<div class = "panel-body fixed-panel" schroll-bottom="lista">
-				<ul class="list-group small">
-					<a href="" ng-repeat="msg in lista" class="list-group-item animated slideInRight"><strong><i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;{{msg.user}}:</strong>&nbsp; {{msg.mensaje}} <br><span class="small">{{msg.log | timeago}}</span> </a>
-				</ul>
-			</div>
-			<div class="panel-footer clearfix">
-				<div class="row">
-					<div class="col-md-12">
-						<ul class="nav navbar-nav">
-							<li>
-								<div class="btn-group">
-									<input style="width:200px"  class="btn btn-default btn-xs " type="text" ng-model="chatxt" ng-trim="true" on-key-enter="agregar()" ng-disabled="loading" />
-									<button type="button" class="btn btn-primary btn-xs" ng-click="agregar()" >
-										<i class="fa fa-paper-plane" aria-hidden="true"> </i>
-									</button>
-								</div>
-							</li>
+						<div class="col-md-6">
 
-						</ul>
+							<span class="pull-right">
+								<b><button type="button" class="btn btn-primary btn-xs" popover data-placement="left"> Online: <span class="badge">{{userOnLine}}</span>
+									<infobox data-placement="left">
+								 <!--<infobox-title>Usuarios:</infobox-title>-->
+								 <infobox-body>
+
+									<div ng-repeat="user in objCurrentUsers as statusObj">
+
+										<span class="small" ng-class="{'true':'text-success','false':'text-muted'}[user.estado]"><i  class="fa fa-user-circle" aria-hidden="true"></i> {{user.usuario}}</span>
+
+									</div>
+								</infobox-body>
+							 </infobox></button></b>
+
+							</span>
+						</div>
 					</div>
 				</div>
+				<div class = "panel-body fixed-panel" schroll-bottom="lista">
+					<ul class="list-group small">
+						<a href="" ng-repeat="msg in lista as msgobj" class="list-group-item animated slideInRight"><strong><i  class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;{{msg.user}}:</strong>&nbsp; {{msg.mensaje}} <br><span class="small">{{msg.log | timeago}}</span> </a>
+					</ul>
+				</div>
+				<div class="panel-footer clearfix">
+
+						<div class="row">
+							<div class="col-xs-12 col-md-12">
+
+										<div class="btn-group btn-group-xs" >
+											<input   class="btn btn-default" type="text" ng-model="chatxt" ng-trim="true" on-key-enter="agregar()" ng-disabled="loading" placeholder="Escriba su mensaje"/>
+											<button type="button" class="btn btn-primary" ng-click="agregar()" >
+												<i class="fa fa-paper-plane" aria-hidden="true"> </i>
+											</button>
+										</div>
+
+
+							</div>
+						</div>
+
+				</div>
 			</div>
+
 		</div>
-
-	</div>
-
-</div>
