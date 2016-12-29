@@ -2673,10 +2673,10 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	        var divi=document.getElementById("logoutdiv");
 	        divi.style.position="absolute";
 	        divi.style.visibility="hidden";
-	        //$location.path('/');
+	        $location.path('/');
 			//$window.location.reload()
 			//$location.path('/', true);
-			$state.go('login', null, {reload: true});
+			//$state.go('login', null, {reload: true});
 
 	};
 
@@ -12716,8 +12716,8 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 			var divi=document.getElementById("logoutdiv");
 			divi.style.position="absolute";
 			divi.style.visibility="hidden";
-			//$location.path('/');
-			$state.go('login', null, {reload: true});
+			$location.path('/');
+
 			amOnline.on('value', function(snapshot) {
 			  if (snapshot.val()) {
 				userRef.set(false);
