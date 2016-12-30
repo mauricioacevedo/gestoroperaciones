@@ -438,7 +438,7 @@
 				</div>
 				<div class = "panel-body fixed-panel" schroll-bottom="lista">
 					<ul class="list-group small">
-						<a href="" ng-repeat="msg in lista as msgobj" class="list-group-item animated slideInRight"><strong><i  class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;{{msg.user}}:</strong>&nbsp; {{msg.mensaje}} <br><span class="small">{{msg.log | timeago}}</span> </a>
+						<a href="" ng-repeat="msg in lista as msgobj | smilies" class="list-group-item animated slideInRight"><strong><i  class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;{{msg.user}}:</strong>&nbsp; {{msg.mensaje}} <br><span class="small">{{msg.log | timeago}}</span> </a>
 					</ul>
 				</div>
 				<div class="panel-footer clearfix">
@@ -447,6 +447,10 @@
 							<div class="col-xs-12 col-md-12">
 
 										<div class="btn-group btn-group-xs" >
+											 <span class="input-group-addon"
+												smilies-selector="chatxt"
+												smilies-placement="right"
+												smilies-title="Smilies"></span>
 											<input   class="btn btn-default" type="text" ng-model="chatxt" ng-trim="true" on-key-enter="agregar()" ng-disabled="loading" placeholder="Escriba su mensaje"/>
 											<button type="button" class="btn btn-primary" ng-click="agregar()" >
 												<i class="fa fa-paper-plane" aria-hidden="true"> </i>
