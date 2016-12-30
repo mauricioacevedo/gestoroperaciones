@@ -13808,6 +13808,11 @@ $rootScope.ProgramadosModal=function(){
 app.run(['$location', '$rootScope', '$cookies','$cookieStore','$firebase','$firebaseObject','$firebaseArray',function($location, $rootScope, $cookies,$cookieStore,$firebase,$firebaseObject,$firebaseArray) {
 
 
+	$rootScope.$on("$routeChangeStart", function(evt, to, from) {
+
+		 if($cookies.get('logedUser')==undefined){
+				  $location.path('/',true)};
+	});
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         //console.log($rootScope.loginexito);
@@ -13815,8 +13820,6 @@ app.run(['$location', '$rootScope', '$cookies','$cookieStore','$firebase','$fire
 		//console.log(current.$$route.controller);
 
 		var controlador=current.$$route.controller;
-		if($cookieStore.get('logedUser')){
-			location.path('/',true);
 
 		};
 		if(!$rootScope.loginexito){
