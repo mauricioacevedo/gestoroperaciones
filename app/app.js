@@ -12767,7 +12767,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	//var presenceRef = firebase.database().ref(".info/connected");
 
 
-
+	$scope.chatxt="";
 
 	$scope.listado=function(){
 
