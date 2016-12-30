@@ -13811,7 +13811,24 @@ app.run(['$location', '$rootScope', '$cookies','$cookieStore','$firebase','$fire
 	$rootScope.$on("$routeChangeStart", function(evt, to, from) {
 
 		 if($cookieStore.get('logedUser')==undefined){
-				  $location.path('/',true)};
+				  $location.path('/',true);
+
+		 }else{
+
+			var userID=$cookieStore.get('logedUser').login;
+			var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
+			var messageRef = $firebaseArray(root.child('messages'));
+			var mensajes = root.child('messages');
+			var listRef = firebase.database().ref('presence');
+			var amOnline = firebase.database().ref('.info/connected');
+			var userRef = firebase.database().ref('presence/' + userID);
+
+
+		 };
+
+
+
+
 	});
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
