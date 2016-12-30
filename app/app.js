@@ -13810,7 +13810,7 @@ app.run(['$location', '$rootScope', '$cookies','$cookieStore','$firebase','$fire
 
 	$rootScope.$on("$routeChangeStart", function(evt, to, from) {
 
-		 if($cookies.get('logedUser')==undefined){
+		 if($cookieStore.get('logedUser')==undefined){
 				  $location.path('/',true)};
 	});
 
