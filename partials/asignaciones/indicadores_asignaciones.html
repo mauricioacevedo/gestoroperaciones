@@ -445,21 +445,13 @@
 
 						<div class="row">
 							<div class="col-xs-12 col-md-12">
-
-								<div class="btn-group btn-group-sm" >
-
-									<input   class="btn btn-default" type="text" ng-model="chatxt" ng-trim="true" on-key-enter="agregar()" ng-disabled="loading" placeholder="Escriba su mensaje" focus-on-change="chatxt"/>
-									<button type="button" class="btn btn-primary" smilies-selector="chatxt"
+								<div class="input-group">
+								  <span class="input-group-addon"
+										smilies-selector="chatxt"
 										smilies-placement="right"
-										smilies-title="Smilies" >
-										<i class="fa fa-paper-plane" aria-hidden="true"> </i>
-									</button>
-									<button type="button" class="btn btn-primary" ng-click="agregar()" >
-										<i class="fa fa-paper-plane" aria-hidden="true"> </i>
-									</button>
+										smilies-title="Smilies"></span>
+								  <input ng-model="chatxt" focus-on-change="chatxt" class="form-control" on-key-enter="agregar()" ng-disabled="loading" placeholder="Escriba su mensaje">
 								</div>
-
-
 
 							</div>
 						</div>
