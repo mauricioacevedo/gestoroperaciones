@@ -26,24 +26,24 @@
 						</div>
 					</div>
 				</div>
-				<div class = "panel-body fixed-panel" schroll-bottom="lista">
+				<div class = "panel-body fixed-panel" schroll-bottom="msgobj">
 					<ul class="list-group small">
 						<a href="" ng-repeat="msg in lista as msgobj" class="list-group-item animated slideInRight"><strong><i  class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;{{msg.user}}:</strong>&nbsp; <span ng-bind-html="msg.mensaje | smilies"></span><br><span class="small">{{msg.log | timeago}}</span> </a>
 					</ul>
 				</div>
-				<div class="panel-footer clearfix">
-					<div class="btn-group btn-group-xs">
-						<input class="btn btn-default " type="text" ng-model="chatxt" on-key-enter="agregar()" ng-disabled="loading" placeholder="Mensaje...">
-						<button type="button" class="btn btn-primary btn-cuadro-xs"
-							smilies-selector="chatxt"
-							smilies-placement="left"
-							smilies-title="Smilies"></button>
-						<button type="button" class="btn btn-primary" ng-click="agregar()">
-							<i class="fa fa-paper-plane" aria-hidden="true"> </i>
-						</button>
-					</div>
+				<div class="panel-footer clearfix text-center">
+						<div class="btn-group btn-group-xs">
+							<input class="btn btn-default " type="text" ng-model="chatxt" on-key-enter="agregar()" ng-disabled="loading" placeholder="Mensaje...">
+							<button type="button" class="btn btn-primary btn-cuadro-xs"
+								smilies-selector="chatxt"
+								smilies-placement="left"
+								smilies-title="Smilies"></button>
+							<button type="button" class="btn btn-primary" ng-click="agregar()">
+								<i class="fa fa-paper-plane" aria-hidden="true"> </i>
+							</button>
+						</div>
 
-				</div>
+					</div>
 			</div>
 
-</div>
+		</div>
