@@ -32,20 +32,16 @@
 					</ul>
 				</div>
 				<div class="panel-footer clearfix">
-
-					<div class="row">
-						<div class = "panel-heading nav navbar-default pull-right">
-							<ul class="nav navbar-nav">
-								<li><span smilies-selector="chatxt"
-								smilies-placement="right"
-								smilies-title="Smilies"></span></li>
-								<li><input ng-model="chatxt" focus-on-change="chatxt" class="chatTextarea" on-key-enter="agregar()" ng-disabled="loading" placeholder="Mensaje"></li>
-								<li><button type="button" class="btn btn-default btn-xs" ng-click="agregar()" >
-									<i class="fa fa-paper-plane" aria-hidden="true"> </i>
-								</button></li>
-							</ul>
+				   <div class="panel-footer clearfix">
+						<div class="pull-right">
+							<span smilies-selector="chatxt"
+									smilies-placement="right"
+									smilies-title="Smilies"></span>
+							<input ng-model="chatxt" focus-on-change="chatxt" class="chatTextarea" on-key-enter="agregar()" ng-disabled="loading" placeholder="Mensaje">
+							<button type="button" class="btn btn-default btn-xs" ng-click="agregar()" >
+										<i class="fa fa-paper-plane" aria-hidden="true"> </i>
+							</button>
 						</div>
-
 					</div>
 				</div>
 			</div>
