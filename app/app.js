@@ -13827,7 +13827,7 @@ app.run(['$location', '$rootScope', '$cookies','$cookieStore','$firebase','$fire
 
 
 
-		if(controlador!='IndicadoresCtrl'||controlador!='chatioCtrl'){
+		if(controlador!='IndicadoresCtrl'||controlador!='chatioCtrl' && userID!=undefined){
 			amOnline.on('value', function(snapshot) {
 			  	if (snapshot.val()) {
 				userRef.set(false);
