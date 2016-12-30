@@ -336,8 +336,6 @@ input.filtro {
 
 .chatTextarea {
     border-bottom: 1px solid #b2b2b2 !important;
-    height: 34px !important;
-    padding: 5px !important;
-     border: medium none;
+}
 
 /* Chat */
