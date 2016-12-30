@@ -1035,7 +1035,7 @@ app.controller('login', function ($scope,$route, $rootScope, $location, $routePa
   var currIndex = 0;
 
   $scope.addSlide = function() {
-    var newWidth = 600 + slides.length + 1;
+    var newWidth = 0 + slides.length + 1;
     slides.push({
       image: './images/reglas/' + newWidth + '.jpg',
       //text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
@@ -1048,7 +1048,7 @@ app.controller('login', function ($scope,$route, $rootScope, $location, $routePa
     assignNewIndexesToSlides(indexes);
   };
 
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < 14; i++) {
     $scope.addSlide();
   }
 
