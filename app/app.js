@@ -1026,35 +1026,66 @@ app.controller('login', function ($scope,$route, $rootScope, $location, $routePa
                 return num;
         };
 
+// Slides --------------------------------------------------------------------------------
+
 	$scope.myInterval = 5000;
-  	$scope.noWrapSlides = false;
-  	var slides = $scope.slides = [];
-  	$scope.addSlide = function(counter) {
-    		var newWidth = 640 + slides.length + 1;
-    		slides.push({
-      			image: './images/reglas/' + counter + '.jpg',
-      			//text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
-        		//['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
-    		});
-  	};
+  $scope.noWrapSlides = false;
+  $scope.active = 0;
+  var slides = $scope.slides = [];
+  var currIndex = 0;
 
-	//for (var i=0; i<4; i++) {
-    	$scope.addSlide('1');
-        $scope.addSlide('2');
-        $scope.addSlide('3');
-        $scope.addSlide('4');
-        $scope.addSlide('5');
-        $scope.addSlide('6');
-        $scope.addSlide('7');
-        $scope.addSlide('8');
-        $scope.addSlide('9');
-        $scope.addSlide('10');
-        $scope.addSlide('11');
-        $scope.addSlide('12');
-        $scope.addSlide('13');
-    	$scope.addSlide('14');
-  	//}
+  $scope.addSlide = function() {
+    var newWidth = 600 + slides.length + 1;
+    slides.push({
+      image: './images/reglas/' + newWidth + '.jpg',
+      //text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
+      id: currIndex++
+    });
+  };
 
+  $scope.randomize = function() {
+    var indexes = generateIndexesArray();
+    assignNewIndexesToSlides(indexes);
+  };
+
+  for (var i = 0; i < 4; i++) {
+    $scope.addSlide();
+  }
+
+  // Randomize logic below
+
+  function assignNewIndexesToSlides(indexes) {
+    for (var i = 0, l = slides.length; i < l; i++) {
+      slides[i].id = indexes.pop();
+    }
+  }
+
+  function generateIndexesArray() {
+    var indexes = [];
+    for (var i = 0; i < currIndex; ++i) {
+      indexes[i] = i;
+    }
+    return shuffle(indexes);
+  }
+
+
+  function shuffle(array) {
+    var tmp, current, top = array.length;
+
+    if (top) {
+      while (--top) {
+        current = Math.floor(Math.random() * (top + 1));
+        tmp = array[current];
+        array[current] = array[top];
+        array[top] = tmp;
+      }
+    }
+
+    return array;
+  }
+
+
+//  -------------------------------------------------------------------------------- Slides
 
 
 	document.getElementById('logout').className="btn btn-md btn-danger hide";
