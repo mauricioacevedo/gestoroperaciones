@@ -33,19 +33,17 @@
 				</div>
 				<div class="panel-footer clearfix">
 
-					<div class="row">
-						<div class="input-group">
-						  <span class="input-group"
-								smilies-selector="chatxt"
+					<div class="container">
+						<div class = "panel-heading nav navbar-default">
+							<ul class="nav navbar-nav">
+								<li><span smilies-selector="chatxt"
 								smilies-placement="right"
-								smilies-title="Smilies"></span>
-						  <input ng-model="chatxt" focus-on-change="chatxt" class="form-control chatTextarea" on-key-enter="agregar()" ng-disabled="loading" placeholder="Mensaje">
-							<span class="input-group-btn">
-								<button type="button" class="btn btn-default" ng-click="agregar()" >
+								smilies-title="Smilies"></span></li>
+								<li><input ng-model="chatxt" focus-on-change="chatxt" class="chatTextarea" on-key-enter="agregar()" ng-disabled="loading" placeholder="Mensaje"></li>
+								<li><button type="button" class="btn btn-default" ng-click="agregar()" >
 									<i class="fa fa-paper-plane" aria-hidden="true"> </i>
-								</button>
-							</span>
-
+								</button></li>
+							</ul>
 						</div>
 
 					</div>
