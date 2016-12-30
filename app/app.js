@@ -13816,7 +13816,7 @@ app.run(['$location', '$rootScope', '$cookies','$cookieStore','$firebase','$fire
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         //console.log($rootScope.loginexito);
-        $rootScope.title = current.$$route.title;
+        $rootScope.title = 'Gestor Operaciones - '+current.$$route.title;
 		//console.log(current.$$route.controller);
 
 		var controlador=current.$$route.controller;
