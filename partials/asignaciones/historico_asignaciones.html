@@ -98,6 +98,12 @@
 						</ul>
 
 						<ul class="nav navbar-nav navbar-right">
+
+							<ul  uib-pagination class="pagination-sm" total-items="data.totalItems" ng-model="data.currentPage" max-size="6" class="pagination-sm nav navbar-nav navbar-right" boundary-links="true" num-pages="smallnumPages" previous-text="&#8672;" next-text="&#8674;" last-text="Último" first-text="Primero" items-per-page="cantidad" boundary-link-numbers="false" max-size="maxSize" rotate="false" ng-change="pageChanged('listadoPedidos')">
+							</ul>
+
+
+
 							<pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged('listadoPedidos')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
 
 						</ul>
