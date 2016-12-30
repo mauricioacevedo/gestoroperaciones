@@ -34,7 +34,7 @@
 				<div class="panel-footer clearfix">
 
 					<div class="row">
-						<textarea class="chatTextarea" placeholder="Type a message..." rows="10" cols="10" name="message"></textarea>
+						<input ng-model="chatxt" focus-on-change="chatxt" class="chatText" on-key-enter="agregar()" ng-disabled="loading" placeholder="Mensaje">
 					</div>
 					<div class="row">
 
