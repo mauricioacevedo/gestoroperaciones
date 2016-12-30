@@ -13838,6 +13838,14 @@ app.run(['$location', '$rootScope', '$cookies','$cookieStore','$firebase','$fire
 
 		var controlador=current.$$route.controller;
 
+		if(controlador!='IndicadoresCtrl'||controlador!='chatioCtrl'){
+				amOnline.on('value', function(snapshot) {
+					if (snapshot.val()) {
+					userRef.set(false);
+					userRef.onDisconnect().remove();
+				  }
+				})
+		};
 
 
     });
