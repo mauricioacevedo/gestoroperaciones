@@ -12855,7 +12855,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 					user: userID,
 					log: fechis };
 
-		if($scope.chatxt!="";){
+		if($scope.chatxt!=""){
 			messageRef.$add(message);
 			$scope.listado();
 			$scope.chatxt="";
