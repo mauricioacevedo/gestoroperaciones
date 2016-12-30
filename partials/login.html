@@ -68,7 +68,7 @@
  <div class="col-md-9">
 		<div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
 		  <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
-			<img ng-src="{{slide.image}}" style="margin:auto;">
+			<img class="animated slideInRight" ng-src="{{slide.image}}" style="margin:auto;">
 
 		  </div>
 		</div>
