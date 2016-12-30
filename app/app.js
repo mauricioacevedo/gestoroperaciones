@@ -13823,7 +13823,7 @@ app.run(['$location', '$rootScope', '$cookies','$cookieStore','$firebase','$fire
 			var amOnline = firebase.database().ref('.info/connected');
 			var userRef = firebase.database().ref('presence/' + userID);
 
-			 var controlador=current.$$route.controller;
+			 var controlador=to.$$route.controller;
 
 			if(controlador!='IndicadoresCtrl'||controlador!='chatioCtrl'){
 				amOnline.on('value', function(snapshot) {
