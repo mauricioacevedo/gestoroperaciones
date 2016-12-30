@@ -13807,16 +13807,7 @@ $rootScope.ProgramadosModal=function(){
 
 app.run(['$location', '$rootScope', '$cookies','$cookieStore','$firebase','$firebaseObject','$firebaseArray',function($location, $rootScope, $cookies,$cookieStore,$firebase,$firebaseObject,$firebaseArray) {
 
-	var userID=$cookieStore.get('logedUser').login;
-	if(userID!=undefined){
-			var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
-			var messageRef = $firebaseArray(root.child('messages'));
-			var mensajes = root.child('messages');
-			var listRef = firebase.database().ref('presence');
-			var amOnline = firebase.database().ref('.info/connected');
-			var userRef = firebase.database().ref('presence/' + userID);
 
-		};
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         //console.log($rootScope.loginexito);
@@ -13825,19 +13816,6 @@ app.run(['$location', '$rootScope', '$cookies','$cookieStore','$firebase','$fire
 
 		var controlador=current.$$route.controller;
 
-
-		if(userID!=undefined){
-
-			if(controlador!='IndicadoresCtrl'||controlador!='chatioCtrl'){
-				amOnline.on('value', function(snapshot) {
-					if (snapshot.val()) {
-					userRef.set(false);
-					userRef.onDisconnect().remove();
-				  }
-				});
-
-			}
-		};
 
     });
 
