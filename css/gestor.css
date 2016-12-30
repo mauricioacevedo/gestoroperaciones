@@ -224,6 +224,14 @@ input.filtro {
   font-family: Andale Mono, monospace;
   font-weight: bold;
 }
+.btn-cuadro-xs {
+  width: 22px;
+  height: 22px;
+  text-align: center;
+  padding: 2px 0;
+  font-size: 12px;
+  line-height: 1.20;
+}
 .DemePedido{
   /*color:#FF7800;*/
   color:#D8262E;
