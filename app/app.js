@@ -13815,9 +13815,13 @@ app.run(['$location', '$rootScope', '$cookies','$cookieStore','$firebase','$fire
 		//console.log(current.$$route.controller);
 
 		var controlador=current.$$route.controller;
+		if($cookieStore.get('logedUser')){
+			location.path('/',true);
+
+		};
 		if(!$rootScope.loginexito){
 			console.log("no esta logueado");
-		}
+		};
 
 
     });
