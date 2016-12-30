@@ -340,7 +340,7 @@ input.filtro {
     margin: 7px;
     padding: 5px !important;
      border: medium none;
-    width: 95% !important;
+    width: 95%;
 }
 .popup-messages-footer {
     background: #fff none repeat scroll 0 0;
