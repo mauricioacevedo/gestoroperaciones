@@ -442,28 +442,18 @@
 					</ul>
 				</div>
 				<div class="panel-footer clearfix">
-
-						<div class="row">
-							<div class="col-xs-12 col-md-12">
-								<span class="small">
-								<div class="input-group">
-								  <span class="input-group-addon"
-										smilies-selector="chatxt"
-										smilies-placement="right"
-										smilies-title="Smilies"></span>
-								  <input ng-model="chatxt" focus-on-change="chatxt" class="form-control" on-key-enter="agregar()" ng-disabled="loading" placeholder="Mensaje">
-									<span class="input-group-btn">
-										<button type="button" class="btn btn-default" ng-click="agregar()" >
-											<i class="fa fa-paper-plane" aria-hidden="true"> </i>
-										</button>
-									</span>
-
-								</div></span>
-
-							</div>
+						<div class="btn-group btn-group-xs">
+							<input class="btn btn-default " type="text" ng-model="chatxt" on-key-enter="agregar()" ng-disabled="loading" placeholder="Mensaje...">
+							<button type="button" class="btn btn-primary btn-cuadro-xs"
+								smilies-selector="chatxt"
+								smilies-placement="left"
+								smilies-title="Smilies"></button>
+							<button type="button" class="btn btn-primary" ng-click="agregar()">
+								<i class="fa fa-paper-plane" aria-hidden="true"> </i>
+							</button>
 						</div>
 
-				</div>
+					</div>
 			</div>
 
 		</div>
