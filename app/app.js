@@ -13823,6 +13823,16 @@ app.run(['$location', '$rootScope', '$cookies','$cookieStore','$firebase','$fire
 			var amOnline = firebase.database().ref('.info/connected');
 			var userRef = firebase.database().ref('presence/' + userID);
 
+			 var controlador=current.$$route.controller;
+
+			if(controlador!='IndicadoresCtrl'||controlador!='chatioCtrl'){
+				amOnline.on('value', function(snapshot) {
+					if (snapshot.val()) {
+					userRef.set(false);
+					userRef.onDisconnect().remove();
+				  }
+				})
+		};
 
 		 };
 
@@ -13836,16 +13846,6 @@ app.run(['$location', '$rootScope', '$cookies','$cookieStore','$firebase','$fire
         $rootScope.title = 'Gestor Operaciones - '+current.$$route.title;
 		//console.log(current.$$route.controller);
 
-		var controlador=current.$$route.controller;
-
-		if(controlador!='IndicadoresCtrl'||controlador!='chatioCtrl'){
-				amOnline.on('value', function(snapshot) {
-					if (snapshot.val()) {
-					userRef.set(false);
-					userRef.onDisconnect().remove();
-				  }
-				})
-		};
 
 
     });
