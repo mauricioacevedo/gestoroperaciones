@@ -334,25 +334,10 @@ input.filtro {
 }
 /* Chat */
 
-.popup-messages-footer > textarea {
+.chatTextarea {
     border-bottom: 1px solid #b2b2b2 !important;
-    margin: 7px;
+    height: 34px !important;
     padding: 5px !important;
      border: medium none;
-}
-.popup-messages-footer {
-    background: #fff none repeat scroll 0 0;
-    bottom: 0;
-    position: absolute;
-    width: 100%;
-}
-.popup-messages-footer .btn-footer {
-    overflow: hidden;
-    padding: 2px 5px 10px 6px;
-    width: 100%;
-}
-.bg_none {
-    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-    border: medium none;
-}
+
 /* Chat */
