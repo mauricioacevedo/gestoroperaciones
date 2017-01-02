@@ -64,25 +64,21 @@
 
 					<table class="table small table-striped table-hover table-bordered table-condensed">
 						<thead>
-							<th>Usuario</th>
-							<th>Fuente</th>
-							<th>Concepto</th>
-							<th>Estado</th>
-							<th>Motivo Malo</th>
+							<th>Cola</th>
 							<th>Pedido</th>
-							<th>Fecha</th>
-							<th>Duracion</th>
+							<th>Subpedido</th>
+							<th>Solicitud</th>
+							<th>Fecha_Entrada_Gestor</th>
+							<th>Fecha_Ultimo_Gestor</th>
 						</thead>
 						<tbody>
-							<tr ng-repeat="data in listado_pedidos| orderBy:'fecha_fin':true | filter:filtroInput as results">
-							<td><span class="small">{{data.user}}</span></td>
-							<td><span class="small">{{data.fuente}}</span></td>
-							<td><span class="small">{{data.concepto_final}}</span></td>
-							<td><span class="small">{{data.estado}}</span></td>
-							<td><span class="small">{{data.motivo_malo}}</span></td>
-							<td><span class="small">{{data.pedido_id}}</span></td>
-							<td><span class="small">{{data.fecha_fin}}</span></td>
-							<td><span class="small">{{data.duracion}}</span></td>
+							<tr ng-repeat="data in listadoactivacion | filter:filtroInput as results">
+							<td><span class="small">{{data.COLA_ID}}</span></td>
+							<td><span class="small">{{data.PEDIDO_ID}}</span></td>
+							<td><span class="small">{{data.SUBPEDIDO_ID}}</span></td>
+							<td><span class="small">{{data.SOLICITUD_ID}}</span></td>
+							<td><span class="small">{{data.FECHA_ENTRADA_GESTOR}}</span></td>
+							<td><span class="small">{{data.FECHA_ULTIMA_GESTOR}}</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -99,7 +95,7 @@
 
 						<ul class="nav navbar-nav navbar-right">
 
-							<ul  uib-pagination class="pagination-sm" total-items="data.totalItems" ng-model="data.currentPage" max-size="6" boundary-links="true" num-pages="smallnumPages" previous-text="&#8672;" next-text="&#8674;" last-text="Último" first-text="Primero" items-per-page="100" boundary-link-numbers="false" rotate="false" ng-change="pageChanged('listadoPedidos')" class="pagination-sm">
+							<ul  uib-pagination class="pagination-sm" total-items="data.totalItems" ng-model="data.currentPage" max-size="6" boundary-links="true" num-pages="smallnumPages" previous-text="&#8672;" next-text="&#8674;" last-text="Último" first-text="Primero" items-per-page="100" boundary-link-numbers="false" rotate="false" ng-change="pageChanged('listadoactivacion1')" class="pagination-sm">
 							</ul>
 
 
