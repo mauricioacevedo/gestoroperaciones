@@ -3841,20 +3841,7 @@ var msg = {
     }
   };
 
-//MyData.send(msg);
-MyData.send(msg);
-//MyData.send(JSON.stringify({event: "test", data: {"name": "BigInt"}}));
-$scope.MyData = MyData;
 
-  console.log($scope.MyData);
-
-}
-
-//MyData.get();
-
-
-MyData.onmessage = function (event) {
-  console.log(event.data);
 }
 
 
