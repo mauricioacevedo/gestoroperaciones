@@ -59,164 +59,21 @@
 </script>
 </head>
 <body>
- <nav class="navbar navbar-default navbar-static-top" id="headerazo">
-<div style="background:#002E6C">
-    <br>
-</div>
+
+<nav ng-show="galletainfo!=undefined && permiso"  class="navbar navbar-default navbar-fixed-top">
+   <nav style="background:#002E6C">
+      <br></nav>
 
 
 
-<div id="logoutdiv"><!-- Logout div -->
-   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-        <a class="navbar-brand navbar-pad-izquierda" href=""><span class="LogoFontBlue">Gestor</span> <span class="LogoFontRed">Operaciones</span></a>
-    </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-      <ul class="nav navbar-nav">
-		 <li class="dropdown" ng-show="logedUser.GRUPO=='ASIGNACIONES' || logedUser.GRUPO=='RECONFIGURACION' || logedUser.GRUPO=='INCONSISTENCIAS' || logedUser.GRUPO=='NCA' || logedUser.GRUPO=='SUPER'">
-					<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Asignaciones <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href=".#/asignacion/"><i class="fa fa-cog DemePedido"></i> Asignacion</a></li>
-						<li><a href=".#/reconfiguracion"><i class="fa fa-cog DemePedido"></i> Reconfiguracion</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href=".#/tx/siebel_asignaciones"><i class="fa fa-cog DemePedido"></i> Siebel</a></li>
-						<li><a href=".#/nca"><span class="fa fa-play"></span> NCA</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href=".#/asignacion_ordenes"><i class="fa fa-cog DemePedido"></i> O-XXX</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href=".#/tx/edatel_asignaciones"><i class="fa fa-cog DemePedido"></i> Edatel</a></li>
-						<li role="separator" class="divider"></li>
-						<li class="menu-item dropdown dropdown-submenu">
-						  <a href="" title="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa fa-circle-o DemePedidoBlue"></i> Listados</a></a>
-						  <ul class="dropdown-menu">
-							<li class="menu-item"><a href=".#/pendientes_asignaciones/">Pendientes</a></li>
-							<li class="menu-item"><a href=".#/historico_asignaciones/">Historico</a></li>
-							<li class="menu-item"><a href=".#/edatel/clientes/">Clientes Edatel</a></li>
-						  </ul>
-						</li>
-
-						<li role="separator" class="divider"></li>
-						<li  ng-show="logedUser.CARGO_ID<='5'"><a href=".#/indicadores/"><span class="fa fa-bar-chart"></span> Indicadores</a></li>
-					</ul>
-		 </li>
-		 <li class="dropdown"  ng-show="logedUser.GRUPO=='AGENDAMIENTO' || logedUser.GRUPO=='SUPER'">
-			<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Agendamiento <span class="caret"></span></a>
-				<ul class="dropdown-menu">
-				  	<li><a href=".#/agendamiento/reagendamiento"><i class="fa fa-play"></i> Reagendamiento</a></li>
-				  	<li><a href=".#/agendamiento/edatel"><i class="fa fa-play"></i> Edatel</a></li>
-				  	<li ng-show="logedUser.GRUPO=='AGENDAMIENTO' || logedUser.GRUPO=='SUPER'"><a href=".#/agendamiento/adelantaragenda"><i class="fa fa-hand-o-right"></i>Adelantar Agenda</a></li>
-					<li><a href=".#/scheduling/"><i class="fa fa-i"></span> Alarmado Proactivos</a></li>
-					<li><a href=".#/parametrizacion-siebel/"><i class="fa fa-calendar"></i> Parametrización</a></li>
-					<li><a href=".#/auditoria/"><i class="fa fa-play"></i> Auditoria Reagendamiento</a></li>
-				 	<li><a href=".#/codigo_resultado/"><i class="fa fa-cloud-upload"></i> Cargas Manuales</a></li>
-					<li class="menu-item dropdown dropdown-submenu">
-				  		<a href="" title="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa fa-circle-o DemePedidoBlue"></i> Listados</a></a>
-				  <ul class="dropdown-menu">
-					<li class="menu-item"><a href=".#/cupos-agendamiento/"><i class="fa fa-list"></i> Ocupacion</a></li>
-					<li class="menu-item"><a href=".#/registros-agendamiento/"><i class="fa fa-list"></i> Registros</a></li>
-					<li class="menu-item"><a href=".#/Pedidos_Microzonas/"><i class="fa fa-list"> Pedidos Microzona</a></li>
-					<li class="menu-item"><a href=".#/tabla_agendamiento/"><i class="fa fa-list"></i> Tabla Agendamiento</a></li>
-				  </ul>
-				</li>
-					<li role="separator" class="divider"></li>
-					<li  ng-show="logedUser.CARGO_ID=='1'"><a href=".#/agendamiento/"><span class="fa fa-bar-chart"></span> Indicadores</a></li>
-
-				</ul>
-           </li>
-
-		   <li class="dropdown" ng-show="logedUser.GRUPO=='ACTIVACION' || logedUser.GRUPO=='SUPER'">
-				<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Activación <span class="caret"></span></a>
-				<ul class="dropdown-menu">
-
-					<li><a href=".#/alarmas/"><span class="fa fa-bullhorn"></span> Alarmas</a></li>
-					<li><a href=".#/actividades/"><span class="fa fa-list"></span> Registros-Activacion</a></li>
-					<li><a href=".#/demepedido-activacion/"><span class="fa fa-list"></span> Activacion-Demepedido</a></li>
-					<li role="separator" class="divider"></li>
-					<li ng-show="logedUser.CARGO_ID<'6'"><a href=".#/activacion/"><span class="fa fa-bar-chart"></span> Indicadores</a></li>
-				</ul>
-
-			</li>
+</nav><!-- Fin Menu-->
 
 
 
-            <li class="dropdown" >
-            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Herramientas <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="javascript:BuscaNodo();"><span class="fa fa-search"></span> Buscador Nodos HFC</a></li>
-                <li><a href="javascript:BuscaGPON();"><span class="fa fa-search"></span> Buscador GPON</a></li>
-                <li><a href="javascript:abrirCalculoDistancia();"><span class="fa fa-search"></span> Capacidad COBRE</a></li>
-                <li><a href="#/tips/"><span class="fa fa-exclamation-circle"></span> Tips</a></li>
-            </ul>
-           </li>  
-           <li class="dropdown" >
-            	<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Documentación <span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href=".#/docuactivacion/"><span class="fa fa-file-text"></span> Activación</a></li>
-				</ul>
-           </li> 
-		  <li class="dropdown" ng-show="logedUser.CARGO_ID<='5' && (logedUser.GRUPO=='ASIGNACIONES' || logedUser.GRUPO=='SUPER')"  >
-            	<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administracion <span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li ng-show="logedUser.CARGO_ID=='1'"><a href=".#/dashboard/"><span class="fa fa-tachometer DemePedidoBlue"></span> Dashboard</a></li>
-					<li ng-show="logedUser.CARGO_ID=='1'"><a href=".#/users/"><span class="fa fa-users DemePedidoBlue"></span> Usuarios</a></li>
-					<li ng-show="logedUser.CARGO_ID<='5'"><a href=".#/admontips/"><span class="fa fa-file-code-o DemePedidoBlue"></span> Tips</a></li>
-				</ul>
-           </li>
-    </ul>
-      <ul class="nav navbar-nav navbar-right navbar-pad-derecha">
-        <li class="dropdown">
-           <a href="" class="dropdown-toggle" data-toggle="dropdown">
-              <button type="button" class="btn btn-primary btn-circle-xs "><i class="fa fa-user"></i></button>
-              <strong>{{logedUser.login}}</strong>
-              <span class="glyphicon glyphicon-chevron-down"></span>
-           </a>
-           <ul class="dropdown-menu">
-             <li> 
-                 <div class="navbar-login">
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <p class="text-center">
-                                <button type="button" class="btn btn-primary btn-circle "><i class="fa fa-user fa-3x"></i></button>
-                            </p>
-                        </div>
-                        <div class="col-lg-10">
-                            <p class="text-left"><span class="LoginNameFontRed">{{logedUser.name}}</span><br>
-                                <small><strong>Grupo: </strong>{{logedUser.GRUPO}}</small><br>
-                                <small><strong>Cargo: </strong>{{logedUser.CARGO_ID}}</small><br>
-                                <small><strong>Hora de Inicio: </strong>{{logedUser.hora_ingreso}}</small><br>
 
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="divider"></div>
-                    <div class="row">
-                        <div class="form-inline">
-                            <div class="col-lg-12">
-                               <p class="text-right">
-                                             
-                                <!--button  type="button" class="btn form-control btn-md  btn-primary navbar-btn" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#myModal" onclick="">Pausa</button-->
-                                <button id="logout" type="button" class="btn form-control btn-md btn-danger navbar-btn" ng-click="logout();">Salir</button>
-                               
-                               </p>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-              
-             </li>
-               
-           </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- Logout div -->
-</div><!-- /.container-fluid -->
-</nav>
+
+
 <!-- Modal Pausa Activa-->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
