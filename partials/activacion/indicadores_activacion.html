@@ -102,7 +102,7 @@
 				<div class = "panel-heading nav navbar-default">
 
 					<ul class="nav navbar-nav navbar-left">
-						<b>Parámetro de Entrega DemePedido</b>
+						<b>Exportes</b>
 						<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
 
 					</ul>
@@ -122,8 +122,10 @@
 				</div>
 				<div class="panel-body" >
 					<div class="jumbotron">
-						<button class="btn btn-success btn-sm" ng-click="csvActivacionSiebel();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Exportar Pendientes DOM </button>
-                        <button class="btn btn-success btn-sm" ng-click="csvActivacionSiebelinvdom();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Exportar Pendientes invdom </button>
+						<button class="btn btn-success btn-sm" ng-click="csvActivacionSiebel();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Pendientes DOM </button>
+                        <button class="btn btn-success btn-sm" ng-click="csvActivacionSiebelinvdom();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Pendientes invdom </button>
+						<button class="btn btn-success btn-sm" ng-click="csvListadoActivacionnuevos();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Exportar Nuevos</button>
+                        <button class="btn btn-success btn-sm" ng-click="csvListadoActivacion();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Exportar Seguimiento</button>
 
 					</div>
 					<div ng-hide="true"><!-- Borrar este div para habilitar tabla -->
