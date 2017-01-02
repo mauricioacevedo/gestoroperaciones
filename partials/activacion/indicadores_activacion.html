@@ -25,11 +25,11 @@
 					<div class = "panel-body fixed-panel">
 						<ul class="list-group small">
 							<span class="small">
-							<a href="" ng-repeat="data in listado_colas as Pendis" class="list-group-item animated slideInRight" ng-style="set_color(parseInt(data.CANTIDAD))">{{data.COLA_ID}}: <span class = "badge ">{{data.CANTIDAD}}</span></a></span>
+							<a href="" ng-repeat="cola in listado_colas as Pendis" class="list-group-item animated slideInRight" ng-style="set_color(parseInt(data.CANTIDAD))">{{cola.COLA_ID}}: <span class = "badge ">{{cola.CANTIDAD}}</span></a></span>
 						</ul>
 					</div>
 					<div class="panel-footer clearfix">
-						Total: <span class="label label-success">{{data.totalItems}}</span>
+						Total: <span class="label label-success">{{cola.totalItems}}</span>
 					</div>
 				</div>
 			</div>
@@ -283,7 +283,7 @@
 								<th>Mas de 48h</th>
                                </thead>
                                <tbody>
-                                   <tr ng-repeat="in listado_colas| orderBy:'fecha_fin':true | filter:filtroInput">
+                                   <tr ng-repeat="data in listado_colas | orderBy:'fecha_fin':true | filter:filtroInput">
 									   	<td>{{data.COLA_ID}}</td>
 										<td ng-init="listado_colas.totales = parseInt(listado_colas.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
 										<td ng-init="listado_colas.total02 = parseInt(listado_colas.total02) + parseInt(data.Entre02)">{{data.Entre02}}</td>
