@@ -166,9 +166,32 @@
 						<li ng-show="logedUser.CARGO_ID<'6'"><a href=".#/activacion/"><span class="fa fa-bar-chart"></span> Indicadores</a></li>
 					</ul>
 				</li><!-- Activacion -->
-
-
-
+				<!-- Herramientas -->
+				 <li class="dropdown" >
+					<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Herramientas <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="javascript:BuscaNodo();"><span class="fa fa-search"></span> Buscador Nodos HFC</a></li>
+						<li><a href="javascript:BuscaGPON();"><span class="fa fa-search"></span> Buscador GPON</a></li>
+						<li><a href="javascript:abrirCalculoDistancia();"><span class="fa fa-search"></span> Capacidad COBRE</a></li>
+						<li><a href="#/tips/"><span class="fa fa-exclamation-circle"></span> Tips</a></li>
+					</ul>
+				   </li><!-- Herramientas -->
+				<!-- Documentacion -->
+			   	<li class="dropdown" >
+					<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Documentación <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href=".#/docuactivacion/"><span class="fa fa-file-text"></span> Activación</a></li>
+					</ul>
+				   </li><!-- Documentacion -->
+				<!-- Administracion -->
+				<li class="dropdown" ng-show="logedUser.CARGO_ID<='5' && (logedUser.GRUPO=='ASIGNACIONES' || logedUser.GRUPO=='SUPER')"  >
+					<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administracion <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li ng-show="logedUser.CARGO_ID=='1'"><a href=".#/dashboard/"><span class="fa fa-tachometer DemePedidoBlue"></span> Dashboard</a></li>
+						<li ng-show="logedUser.CARGO_ID=='1'"><a href=".#/users/"><span class="fa fa-users DemePedidoBlue"></span> Usuarios</a></li>
+						<li ng-show="logedUser.CARGO_ID<='5'"><a href=".#/admontips/"><span class="fa fa-file-code-o DemePedidoBlue"></span> Tips</a></li>
+					</ul>
+				   </li><!-- Administracion -->
 
 
 
