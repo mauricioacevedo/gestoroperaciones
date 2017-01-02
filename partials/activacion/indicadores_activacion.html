@@ -129,6 +129,12 @@
 							<td>
 								<button class="btn btn-success btn-xs" ng-click="csvActivacionSiebelinvdom();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Pendientes invdom </button>
 							</td>
+							<td>
+								<button class="btn btn-success btn-xs" ng-click="csvListadoActivacionnuevos();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Exportar Nuevos</button>
+							</td>
+							<td>
+								<button class="btn btn-success btn-xs" ng-click="csvListadoActivacion();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Exportar Seguimiento</button>
+							</td>
 						</tr>
 
 					</table>
