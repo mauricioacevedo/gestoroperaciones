@@ -64,6 +64,59 @@
    <nav style="background:#002E6C">
       <br></nav>
 
+	<div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand navbar-pad-izquierda clearfix" href=""><span class="LogoFontBlue">Gestor</span> <span class="LogoFontRed">Operaciones</span></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav" >
+
+              <li class="dropdown" ng-hide="galletainfo.CARGO_ID==3">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Grupo AAA <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+
+                    <li ><a href=".#/dashboard">
+                          <i class="fa fa-cog DemePedido"></i>&nbsp; DemePedido</a></li>
+
+                  <li role="separator" class="divider"></li>
+                  <li ><a href=".#/correo">
+                        <i class="fa fa-envelope DemePedido"></i>&nbsp; Gestión Correo</a></li>
+                  <li role="separator" class="divider"></li>
+
+                  <li><a href=".#/pendientes"><i class="fa fa-bars MenuItem" aria-hidden="true"></i>&nbsp; Pendientes</a></li>
+                  <li><a href=".#/historicos"><i class="fa fa-bars MenuItem" aria-hidden="true"></i>&nbsp; Historicos</a></li>
+                </ul>
+              </li>
+
+            <li class="dropdown" ng-hide="galletainfo.CARGO_ID==3">
+              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administracion <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href=".#/admon/board"><i class="fa fa-tachometer DemePedido" aria-hidden="true"></i>&nbsp; Board</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href=".#/admon/usuarios"><i class="fa fa-user MenuItem" aria-hidden="true"></i>&nbsp; Usuarios</a></li>
+                <li><a href=".#/admon/registrosio"><i class="fa fa-bars MenuItem" aria-hidden="true"></i>&nbsp; Registro Ingresos</a></li>
+                <li role="separator" class="divider"></li>
+                <li ><a href="" >Parametros</a></li>
+
+              </ul>
+            </li>
+            <li class="dropdown" ng-show="galletainfo.CARGO_ID==3">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Consulta <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href=".#/historicos"><i class="fa fa-bars MenuItem" aria-hidden="true"></i>&nbsp; Historicos</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href=".#/admon/registrosio"><i class="fa fa-bars MenuItem" aria-hidden="true"></i>&nbsp; Registro Ingresos</a></li>
+                </ul>
+              </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active">
+
+              <button type="button" class="btn btn-default navbar-btn" title="{{galletainfo.USUARIO_NOMBRE}}" data-toggle="tooltip" data-placement="bottom">{{galletainfo.USUARIO_ID}}</button>
+              <button type="button" class="btn btn-default navbar-btn" ng-click="logout()">Salir <i class="fa fa-sign-out" aria-hidden="true"></i></button></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
 
 
 
