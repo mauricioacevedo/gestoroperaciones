@@ -9552,7 +9552,7 @@ services.buscarParametro('PRIORIDAD_DEMEPEDIDO_AGENDAMIENTO').then(function(data
             $rootScope.totalNegocioAgendamiento=parseInt($rootScope.totalNegocioAgendamiento)+parseInt(counter);
                 }
 
-                     console.log($rootScope.totalesDepartamento);
+                     //console.log($rootScope.totalesDepartamento);
                            
          $rootScope.nagendamientostyle={};
 
