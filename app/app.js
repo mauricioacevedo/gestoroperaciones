@@ -13446,7 +13446,7 @@ app.config(['$routeProvider',
 
 	 .when('/activacion/', {
          title: 'Indicadores Activación',
-         templateUrl: 'partials/indicadores_activacion.html',
+         templateUrl: 'partials/activacion/indicadores_activacion.html',
          controller: 'ActivacionCtrl'
     })
 
