@@ -224,6 +224,14 @@ input.filtro {
   font-family: Andale Mono, monospace;
   font-weight: bold;
 }
+.btn-cuadro-xs {
+  width: 32px;
+  height: 22px;
+  text-align: center;
+  padding: 1px 0;
+  font-size: 12px;
+  line-height: 1.20;
+}
 .DemePedido{
   /*color:#FF7800;*/
   color:#D8262E;
@@ -332,3 +340,13 @@ input.filtro {
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
 }
+/* Chat */
+.chatTextarea {
+    background-color: transparent;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: gray;
+    outline:0;
+  }
+
+/* Chat */

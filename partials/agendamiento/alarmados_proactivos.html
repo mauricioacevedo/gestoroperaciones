@@ -1,0 +1,120 @@
+	<div class="row">
+		<div class="col-md-12">
+			<div class = "panel panel-default">
+				<div class = "panel-heading">
+					<b><i class="fa fa-bars" aria-hidden="true"></i> Alarmados Proactivos</b>
+					<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+					<ul class="nav navbar-nav navbar-right">
+						<div class="col-md-1 col-xs-1 ">
+							<div data-ng-if="loading">
+								<img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif" />
+							</div>
+						</div>
+					</u>
+				</div>
+				<div class = "panel-heading nav navbar-default">
+					<div class="col-md-12">
+						<div class="row">
+							<div class="col-md-12">
+								<ul class="nav navbar-nav navbar-left">
+									<li>&nbsp;</li>
+									<li>
+										<button type="button" class="btn btn-primary btn-xs" ng-click="csvScheduling()"  title="Exportar Todo" tooltip data-placement="top" ng-disabled="loading">
+												<i class="fa fa-cloud-download"  aria-hidden="true"></i>
+											</button>
+									</li>
+									<li>&nbsp;</li>
+									<li>
+										<button type="button" class="btn btn-warning btn-xs" ng-click="csvSchedulingPre()"  title="Exportar Pre " tooltip data-placement="top" ng-disabled="loading">
+												<i class="fa fa-cloud-download"  aria-hidden="true"></i>
+											</button>
+									</li>
+									<li>&nbsp;</li>
+									<li>
+										<button type="button" class="btn btn-danger btn-xs" ng-click="csvSchedulingPedidos()"  title="Exportar Pedidos" tooltip data-placement="top" ng-disabled="loading">
+												<i class="fa fa-cloud-download"  aria-hidden="true"></i>
+											</button>
+									</li>
+								</ul>
+								<ul class="nav navbar-nav navbar-right">
+									<input style="width:200px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize />
+								</ul>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+				<div class="panel-body fixed-panel" >
+
+					<table class="table small table-striped table-hover table-bordered table-condensed">
+                        <thead>
+							<th>Pedido</th>
+							<th>Concepto</th>
+							<th>Fecha Estado</th>
+							<th>Fecha Ingreso</th>
+							<th>Tipo Solicitud</th>
+							<th>Fecha cita</th>
+							<th>Desc Concepto</th>
+							<th>Departamento</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="data in listaScheduling | filter:filtroInput">
+								<td>{{data.pedido_id}}-{{data.subpedido_id}}-{{data.SOLICITUD_ID}}</td>
+								<td><span class="small">{{data.concepto_id}}</span></td>
+								<td><span class="small">{{data.FECHA_ESTADO}}</span></td>
+								<td><span class="small">{{data.FECHA_INGRESO}}</span></td>
+								<td><span class="small">{{data.TIPO_SOLICITUD}}</span></td>
+								<td><span class="small">{{data.FECHA_CITA}}</span></td>
+								<td><span class="small">{{data.DESCRIPCION_CONCEPTO}}</span></td>
+								<td><span class="small">{{data.DEPARTAMENTO}}</span></td>
+                            </tr>
+                        </tbody>
+                        </table>
+
+
+
+
+				</div>
+				<div class="panel-footer clearfix" >
+					<div class="col-md-12">
+						<ul class="nav navbar-nav navbar-left">
+							<li>Registros: <span class="badge badge-default">{{totalScheduling}}</span></li>
+							<li>&nbsp;</li>
+							<li>Pre-formularios: <span class="badge badge-default">{{totalSchedulingPre}}</span></li>
+							<li>&nbsp;</li>
+							<li>Pedidos: <span class="badge badge-default">{{totalSchedulingPedidos}}</span></li>
+
+						</ul>
+
+						<ul class="nav navbar-nav navbar-right">
+
+							<ul  uib-pagination class="pagination-sm" total-items="data.totalItems" ng-model="data.currentPage" max-size="6" boundary-links="true" num-pages="smallnumPages" previous-text="&#8672;" next-text="&#8674;" last-text="Último" first-text="Primero" items-per-page="100" boundary-link-numbers="false" rotate="false" ng-change="pageChanged('listaRegistros')" class="pagination-sm">
+							</ul>
+
+
+							<!-- old pagination
+							<pagination total-items="data1.totalItems" ng-model="data1.currentPage" ng-change="pageChanged('listadoPendientes')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination> -->
+						</ul>
+					</div>
+
+				</div>
+
+
+			</div>
+		</div>
+
+	</div><!--Row 1 Novedades -->
+<br>
+<ol class="breadcrumb">
+	<li><a href=".#/">Home</a> </li>
+	<li><a href="">Agendamiento</a></li>
+	<li class="active">{{title}} </li>
+</ol>
+<script>
+$('.input-daterange').datepicker({
+     format: 'yyyy-mm-dd',
+     todayBtn: "linked",
+     autoclose: true
+ });
+</script>

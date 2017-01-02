@@ -64,23 +64,16 @@
                </div>
         	</div-->
 
-<div>
-  <div class="col-md-6">
-    <carousel interval="myInterval" no-wrap="noWrapSlides">
-      <slide ng-repeat="slide in slides" active="slide.active">
-        <img ng-src="{{slide.image}}" style="margin:auto;">
-        <div class="carousel-caption">
-          <!--h4>Slide {{$index}}</h4>
-          <p>{{slide.text}}</p-->
-        </div>
-      </slide>
-    </carousel>
+
+ <div class="col-md-9">
+		<div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+		  <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+			<img class="animated slideInRight" ng-src="{{slide.image}}" style="margin:auto;">
+
+		  </div>
+		</div>
+
+
   </div>
-</div>
 
-<!-- Termina div noticias -->
-
-            <div class="col-md-3"><!-- Inicia div Futura -->
-        		
-        	</div><!-- Termina div Futura -->
  </div><!-- Termina Prueba -->

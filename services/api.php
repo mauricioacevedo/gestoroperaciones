@@ -11569,6 +11569,95 @@ $sqlfenix=
 
 		//------------------------Listado de Pedidos por Usuario dia actual
 
+		//Listado de Pedidos por Usuario dia actual REAGENDAMIENTO----------------------------------------
+
+		private function PedidosGestorUserReagendamiento(){
+
+			if($this->get_request_method() != "GET"){
+					$this->response('',406);
+			}
+
+			$today = date("Y-m-d");
+			$grupo=$this->_request['grupo'];
+
+			if($grupo==""||$grupo=="undefined"){
+				$grupo="INSTALACION";
+			}
+
+				$query= " SET @rank=0  ";
+				$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+				$query=	" SELECT ".
+						" case  ".
+						"	when L1.RANK <= round(L1.DIVISOR*0.25) then 1  ".
+						"	when L1.RANK > round(L1.DIVISOR*0.25) and L1.RANK <= round(L1.DIVISOR*0.50)  then 2  ".
+						"	when L1.RANK > round(L1.DIVISOR*0.50) and L1.RANK <= round(L1.DIVISOR*0.75)  then 3  ".
+						"	else 4  ".
+						" end as CUARTIL ".
+						", L1.RANK ".
+						", L1.USUARIO_ID ".
+						", ifnull((SELECT  ".
+						"	case  ".
+						"	when r.status='logged in' then 'on'  ".
+						"	else 'off'  ".
+						"	end as estado  ".
+						"	FROM portalbd.registro_ingreso_usuarios r  ".
+						"	where 1=1  ".
+						"	and r.fecha_ingreso between '$today 00:00:00' and '$today 23:59:59'  ".
+						"	and r.usuario=L1.USUARIO_ID  ".
+						"	limit 1 ),'off') as ESTADO  ".
+						", ifnull((SELECT  ".
+						"	date_format(r.fecha_ingreso,'%H:%i') as HORA  ".
+						"	FROM portalbd.registro_ingreso_usuarios r  ".
+						"	where 1=1  ".
+						"	and r.fecha_ingreso between '$today 00:00:00' and '$today 23:59:59'  ".
+						"	and r.usuario=L1.USUARIO_ID  ".
+						"	limit 1 ),'00:00') as HORAINICIO  ".
+						", L1.PEDIDOS ".
+						", L1.DIVISOR ".
+						" FROM (SELECT ".
+						" @rank:=@rank+1 AS RANK ".
+						", Z1.USUARIO_ID ".
+						", Z1.PEDIDOS ".
+						", Z1.DIVISOR ".
+						" FROM(SELECT ".
+						"  C1.USUARIO_ID ".
+						", C1.PEDIDOS ".
+						", C2.DIVISOR ".
+						" FROM (SELECT  ".
+						"	R.ASESOR AS USUARIO_ID ".
+						"	, COUNT(DISTINCT R.PEDIDO_ID) AS PEDIDOS ".
+						"	FROM portalbd.gestor_historicos_reagendamiento R ".
+						"	where R.acceso='CONTACT_CENTER' ".
+						"	AND R.PROCESO='$grupo' ".
+						"	AND R.FECHA_FIN between '$today 00:00:00' and '$today 23:59:59'  ".
+						" GROUP BY R.ASESOR) C1,  ".
+						"	(SELECT COUNT(distinct A.ASESOR) AS DIVISOR ".
+						"	FROM portalbd.gestor_historicos_reagendamiento A ".
+						"	where A.acceso='CONTACT_CENTER' ".
+						"	AND A.PROCESO='$grupo' ".
+						"	AND A.FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' ) C2 ".
+						" ORDER BY 2 DESC) Z1 ) L1 ";
+													//echo $query;
+				$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+				if($r->num_rows > 0){
+						$result = array();
+
+						while($row = $r->fetch_assoc()){
+
+								$result[] = $row;
+						}
+
+						$this->response($this->json(array($result,$grupo,$today)), 200); // send user details
+				}
+				$this->response('',204);        // If no records "No Content" status
+
+		}
+
+		//------------------------Listado de Pedidos por Usuario dia actual REAGENDAMIENTO
+
+
+
 		// Listado de Localidades Edatel Asginaciones ------------------------------------
 
 
@@ -11859,44 +11948,66 @@ $sqlfenix=
 			};
 
 
-             $query="	SELECT ".
-					"	P.PEDIDO_ID ".
-				 	"	, MAX(P.MUNICIPIO_ID) as MUNICIPIO_ID ".
-					"	, max(P.FECHA_CITA) as FECHA_CITA ".
-					"	, max(P.STATUS) as STATUS ".
-					"	, M.MOTIVO_MALO ".
+             $query="	select ".
+					" c2.PEDIDO_ID ".
+					", c2.MUNICIPIO_ID ".
+					", c2.FECHA_CITA ".
+					", c2.STATUS ".
+					", c2.MOTIVO_MALO ".
+					", c2.MENSAJE ".
+					", c2.USUARIO_ID ".
+				 	", c2.PROGRAMACION ".
+					", c2.FECHA_GESTION ".
+					" from (SELECT  ".
+					"	P.PEDIDO_ID  ".
+					"	, MAX(P.MUNICIPIO_ID) as MUNICIPIO_ID  ".
+					"	, max(P.FECHA_CITA) as FECHA_CITA  ".
 					"	, case  ".
-					"		when max(P.FECHA_CITA)='9999-00-00' THEN 'SIN CITA' ".
-					"		when max(P.FECHA_CITA)<=CURRENT_DATE() THEN 'ALARMADO' ".
-					"	    when max(P.FECHA_CITA)=DATE_ADD(CURDATE(), INTERVAL 1 DAY) then 'GESTIONAR' ".
-					"	    else 'EN ESPERA'  ".
+					"		when max(P.STATUS)='PENDI_PETEC' then 'PROGRAMADO' ".
+					"        else max(P.STATUS)  ".
+					"        END as STATUS  ".
+					"    , max(P.PROGRAMACION) as PROGRAMACION ".
+					"	, case   ".
+					"		when max(P.FECHA_CITA)='9999-00-00' THEN 'SIN CITA'  ".
+					"		when max(P.FECHA_CITA)<=CURRENT_DATE() THEN 'ALARMADO'  ".
+					"	    when max(P.FECHA_CITA)=DATE_ADD(CURDATE(), INTERVAL 1 DAY) then 'GESTIONAR'  ".
+					"	    else 'EN ESPERA'   ".
 					"	    end as MENSAJE ".
-					"	, M.USER as USUARIO_ID ".
-					"	, M.FECHA_FIN as FECHA_GESTION ".
-					"	FROM portalbd.informe_petec_pendientesm P ".
-					"	inner join (SELECT   ".
-					"				h.ID,  ".
-					"					h.PEDIDO_ID,  ".
-					"					h.user,  ".
-					"					h.estado, ".
-					"					h.MOTIVO_MALO, ".
-					"					h.FECHA_FIN ".
-					"			FROM  ".
-					"				portalbd.pedidos h  ".
-					"			WHERE  ".
-					"				1 = 1 AND h.estado  in ('MALO') ".
-					"					AND h.ID = (SELECT   ".
-					"						MAX(hh.ID)  ".
-					"					FROM  ".
-					"						portalbd.pedidos hh  ".
-					"					WHERE  ".
-					"						hh.PEDIDO_ID = h.PEDIDO_ID ".
-					"					GROUP BY hh.PEDIDO_ID)) M ".
-					"	on P.PEDIDO_ID=M.PEDIDO_ID ".
-					"	WHERE P.STATUS='MALO' ".
-					"	and M.user='$usuario_id' ".
-					"	group by P.PEDIDO_ID ".
-					"	order by 2 asc ";
+					"	, max(P.CONCEPTO_ID) as ULTCONCEPTO ".
+					"	, max(P.FUENTE) as FUENTE ".
+					"    , (SELECT h.user as USUARIO_ID ".
+					"		FROM   ".
+					"			portalbd.pedidos h   ".
+					"		WHERE   ".
+					"			1 = 1 AND h.estado  in ('MALO','VOLVER A LLAMAR')  ".
+					"				  AND h.ID = (SELECT  MAX(hh.ID)  FROM  portalbd.pedidos hh   ".
+					"				  WHERE  hh.PEDIDO_ID = h.PEDIDO_ID and hh.estado in ('MALO','VOLVER A LLAMAR') ".
+					"				GROUP BY hh.PEDIDO_ID) ".
+					"				and h.PEDIDO_ID=P.PEDIDO_ID) as USUARIO_ID ".
+					"	, (SELECT h.motivo_malo ".
+					"		FROM   ".
+					"			portalbd.pedidos h   ".
+					"		WHERE   ".
+					"			1 = 1 AND h.estado  in ('MALO','VOLVER A LLAMAR')  ".
+					"				  AND h.ID = (SELECT  MAX(hh.ID)  FROM  portalbd.pedidos hh   ".
+					"				  WHERE  hh.PEDIDO_ID = h.PEDIDO_ID and hh.estado in ('MALO','VOLVER A LLAMAR') ".
+					"				GROUP BY hh.PEDIDO_ID) ".
+					"				and h.PEDIDO_ID=P.PEDIDO_ID) as MOTIVO_MALO ".
+					"	, (SELECT h.fecha_fin ".
+					"		FROM   ".
+					"			portalbd.pedidos h   ".
+					"		WHERE   ".
+					"			1 = 1 AND h.estado  in ('MALO','VOLVER A LLAMAR')  ".
+					"				  AND h.ID = (SELECT  MAX(hh.ID)  FROM  portalbd.pedidos hh   ".
+					"				  WHERE  hh.PEDIDO_ID = h.PEDIDO_ID and hh.estado in ('MALO','VOLVER A LLAMAR') ".
+					"				GROUP BY hh.PEDIDO_ID) ".
+					"				and h.PEDIDO_ID=P.PEDIDO_ID) as FECHA_GESTION  ".
+					"	FROM portalbd.informe_petec_pendientesm P  ".
+					"	WHERE P.STATUS in ('MALO') ".
+					"    OR (P.STATUS in ('PENDI_PETEC')  ".
+					"    and P.PROGRAMACION!='') ".
+					"	group by P.PEDIDO_ID ) c2 ".
+					"    where c2.USUARIO_ID='$usuario_id' ";
 
                      // echo $query;
                      $rst = $this->mysqli->query($query);

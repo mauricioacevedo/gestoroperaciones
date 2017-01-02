@@ -1,15 +1,10 @@
-var app = angular.module('myApp', ['base64','ngRoute','ngCookies','ng-fusioncharts','ngAnimate','ui.bootstrap','ui.tinymce','ui.select','ngSanitize','ui.calendar','angularFileUpload','cgNotify','firebase']);
+var app = angular.module('myApp', ['base64','ngRoute','ngCookies','ng-fusioncharts','ngAnimate','ui.bootstrap','ui.tinymce','ui.select','ngSanitize','ui.calendar','angularFileUpload','cgNotify','firebase','angular-smilies']);
 //Los " Myapp " solapas de parámetros a un elemento HTML en el que se ejecutará la aplicación .
 //Ahora puede agregar controladores , directivas , filtros y más, para su aplicación AngularJS .
 //El módulo ngRoute proporciona enrutamiento y deeplinking Servicios y directivas para aplicaciones angulares .
 //El módulo ngCookies proporciona un contenedor conveniente para la lectura y la escritura del navegador cookies.
 //FusionCharts suite XT incluye una amplia gama de gráficos, indicadores y mapas que se pueden utilizar para trazar todo tipo de datos estáticos y en tiempo real .
 
-app.directive('popover', function() {
-   return function(scope, elem) {
-      elem.popover();
-   }
-});
 
 app.directive('customPopover', function () {
     return {
@@ -935,7 +930,9 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 
 //-------------------------------------------------------------------Fin-asignaciones
 
-
+	obj.getPedidosGestorUserReagendamiento = function(grupo){
+        return $http.get(serviceBase + 'PedidosGestorUserReagendamiento?grupo='+grupo);
+        }
 
 
 
@@ -1029,35 +1026,66 @@ app.controller('login', function ($scope,$route, $rootScope, $location, $routePa
                 return num;
         };
 
+// Slides --------------------------------------------------------------------------------
+
 	$scope.myInterval = 5000;
-  	$scope.noWrapSlides = false;
-  	var slides = $scope.slides = [];
-  	$scope.addSlide = function(counter) {
-    		var newWidth = 640 + slides.length + 1;
-    		slides.push({
-      			image: './images/reglas/' + counter + '.jpg',
-      			//text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
-        		//['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
-    		});
-  	};
+  $scope.noWrapSlides = false;
+  $scope.active = 0;
+  var slides = $scope.slides = [];
+  var currIndex = 0;
 
-	//for (var i=0; i<4; i++) {
-    	$scope.addSlide('1');
-        $scope.addSlide('2');
-        $scope.addSlide('3');
-        $scope.addSlide('4');
-        $scope.addSlide('5');
-        $scope.addSlide('6');
-        $scope.addSlide('7');
-        $scope.addSlide('8');
-        $scope.addSlide('9');
-        $scope.addSlide('10');
-        $scope.addSlide('11');
-        $scope.addSlide('12');
-        $scope.addSlide('13');
-    	$scope.addSlide('14');
-  	//}
+  $scope.addSlide = function() {
+    var newWidth = 0 + slides.length + 1;
+    slides.push({
+      image: './images/reglas/' + newWidth + '.jpg',
+      //text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
+      id: currIndex++
+    });
+  };
 
+  $scope.randomize = function() {
+    var indexes = generateIndexesArray();
+    assignNewIndexesToSlides(indexes);
+  };
+
+  for (var i = 0; i < 14; i++) {
+    $scope.addSlide();
+  }
+
+  // Randomize logic below
+
+  function assignNewIndexesToSlides(indexes) {
+    for (var i = 0, l = slides.length; i < l; i++) {
+      slides[i].id = indexes.pop();
+    }
+  }
+
+  function generateIndexesArray() {
+    var indexes = [];
+    for (var i = 0; i < currIndex; ++i) {
+      indexes[i] = i;
+    }
+    return shuffle(indexes);
+  }
+
+
+  function shuffle(array) {
+    var tmp, current, top = array.length;
+
+    if (top) {
+      while (--top) {
+        current = Math.floor(Math.random() * (top + 1));
+        tmp = array[current];
+        array[current] = array[top];
+        array[top] = tmp;
+      }
+    }
+
+    return array;
+  }
+
+
+//  -------------------------------------------------------------------------------- Slides
 
 
 	document.getElementById('logout').className="btn btn-md btn-danger hide";
@@ -2677,6 +2705,10 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	        divi.style.position="absolute";
 	        divi.style.visibility="hidden";
 	        $location.path('/');
+			//$window.location.reload()
+			//$location.path('/', true);
+			//$state.go('login', null, {reload: true});
+
 	};
 
         $scope.doubleDigit= function (num){
@@ -5405,7 +5437,7 @@ $(document).click(  function (e) {
         $scope.baby = function(pedido) {
                 //console.log(pedido);
                 services.getPedidosPorPedido(pedido).then(function(data){
-                      console.log(data.data);
+                      //console.log(data.data);
                       $scope.historico_pedido=data.data;
                       return data.data;
                  });
@@ -5437,7 +5469,7 @@ $(document).click(  function (e) {
 
                 var kami=services.demePedido($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,$scope.prioridad).then(function(data){
                         $scope.peds = data.data;
-                        console.log(data.data);
+                        //console.log(data.data);
                         if(data.data==''){
                                 document.getElementById("warning").innerHTML="No hay Registros";
                                 $scope.error="No hay Registros";
@@ -8849,11 +8881,40 @@ $scope.getFeed = function (){
 $scope.getFeed();
 
 
-  var colorDanger="#E83720";
-    var colorWaring="#E8A820";
-    var colorNormal="#088A08";
+	var colorDanger="#E83720";
+	var colorWaring="#E8A820";
+	var colorWarningTrans="#ffd699";
+	var colorNormal="#088A08";
+
+	$scope.grupo={};
+	$scope.topProductivos = function() {
+	//console.log($scope.grupo);
+
+    services.getPedidosGestorUserReagendamiento($scope.grupo.Cuartil).then(
 
 
+      function(data){
+
+            $scope.listaProductivos=data.data[0];
+		  	$scope.grupo.Cuartil=data.data[1];
+		    $scope.grupo.fecha=data.data[2];
+		  	//console.log($scope.listaProductivos);
+
+              return data.data;
+
+
+            }
+      , function errorCallback(response,status) {
+          //console.log(status);
+            $scope.errorDatos="Ops, probelemas";
+
+
+
+          }
+      );
+
+
+ };
 
     $scope.set_color = function (service) {
 
@@ -8895,6 +8956,51 @@ $scope.getFeed();
 
               }
             };
+
+	$scope.set_color_Cuartil = function (value) {
+
+	//console.log(value);
+
+              if (value >= 4) {
+                $scope.estiloCuartil={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorDanger
+                    };
+
+                return $scope.estiloCuartil;
+              }
+
+
+              if(value >= 3 && value < 4){
+
+                    $scope.estiloCuartil={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorWaring
+
+                    };
+				  return $scope.estiloCuartil;
+
+                  }
+
+               if(value >= 2 && value < 3){
+
+					$scope.estiloCuartil={
+					  "list-style-position":"inside",
+					  "border-left": "5px solid "+colorWarningTrans
+					};
+				   return $scope.estiloCuartil;
+                  	}
+
+		if(value >= 1 && value < 2){
+
+					$scope.estiloCuartil={
+					  "list-style-position":"inside",
+					  "border-left": "5px solid "+colorNormal
+					};
+				   return $scope.estiloCuartil;
+                  	}
+
+};
 
 });
 
@@ -12661,7 +12767,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 	//var presenceRef = firebase.database().ref(".info/connected");
 
 
-
+	$scope.chatxt="";
 
 	$scope.listado=function(){
 
@@ -12748,9 +12854,12 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 		var message={mensaje:$scope.chatxt,
 					user: userID,
 					log: fechis };
-		messageRef.$add(message);
-		$scope.listado();
-		$scope.chatxt="";
+
+		if($scope.chatxt!=""){
+			messageRef.$add(message);
+			$scope.listado();
+			$scope.chatxt="";
+		}
 		//$scope.lista={};
 		//return mensajes;
 	};
@@ -13333,6 +13442,29 @@ app.config(['$routeProvider',
          templateUrl: 'partials/demepedido-activacion.html',
          controller: 'siebelActivacionCtrl'
       })
+<<<<<<< HEAD
+=======
+
+	 .when('/activacion/', {
+         title: 'Indicadores Activación',
+         templateUrl: 'partials/activacion.html',
+         controller: 'ActivacionCtrl'
+    })
+
+	 .when('/pendientes_activacion/', {
+         title: 'Pendientes Activación',
+         templateUrl: 'partials/activacion/pendientes_activacion.html',
+         controller: 'ActivacionCtrl'
+
+	 })
+
+	.when('/historico_activacion/', {
+         title: 'Historico Activación',
+         templateUrl: 'partials/activacion/historico_activacion.html',
+         controller: 'ActivacionCtrl'
+    })
+//-----------------------------------------------------------------FIN ACTIVACION
+>>>>>>> origin/master
 
       .when('/docuactivacion/', {
          title: 'documentacionactivacion',
@@ -13453,7 +13585,7 @@ app.config(['$routeProvider',
 
     .when('/scheduling/', {
          title: 'Alarmados Proactivos',
-         templateUrl: 'partials/scheduling.html',
+         templateUrl: 'partials/agendamiento/alarmados_proactivos.html',
          controller: 'SchedulingCtrl'
       })
 
@@ -13505,6 +13637,7 @@ app.config(['$routeProvider',
          controller: 'AgendamientoCtrl'
       })
 
+<<<<<<< HEAD
          .when('/Pedidos_Microzonas/', {
          title: 'Pedidos_Microzonas',
          templateUrl: 'partials/Pedidos_Microzonas.html',
@@ -13513,6 +13646,13 @@ app.config(['$routeProvider',
 
 
 
+=======
+        .when('/b2b/', {
+         title: 'b2b',
+         templateUrl: 'partials/registros_b2b.html',
+         controller: 'RegistrosAgendamientoCtrl'
+      })
+>>>>>>> origin/master
 
 	.when('/chat/', {
          title: 'GeoP Chat',
@@ -13733,11 +13873,49 @@ $rootScope.ProgramadosModal=function(){
 
 });
 
-app.run(['$location', '$rootScope', function($location, $rootScope) {
+app.run(['$location', '$rootScope', '$cookies','$cookieStore','$firebase','$firebaseObject','$firebaseArray',function($location, $rootScope, $cookies,$cookieStore,$firebase,$firebaseObject,$firebaseArray) {
+
+
+	$rootScope.$on("$routeChangeStart", function(evt, to, from) {
+
+		 if($cookieStore.get('logedUser')==undefined){
+				  $location.path('/',true);
+
+		 }else{
+
+			var userID=$cookieStore.get('logedUser').login;
+			var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
+			var messageRef = $firebaseArray(root.child('messages'));
+			var mensajes = root.child('messages');
+			var listRef = firebase.database().ref('presence');
+			var amOnline = firebase.database().ref('.info/connected');
+			var userRef = firebase.database().ref('presence/' + userID);
+
+			 var controlador=to.$$route.controller;
+
+			if(controlador!='IndicadoresCtrl'||controlador!='chatioCtrl'){
+				amOnline.on('value', function(snapshot) {
+					if (snapshot.val()) {
+					userRef.set(false);
+					userRef.onDisconnect().remove();
+				  }
+				})
+		};
+
+		 };
+
+
+
+
+	});
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         //console.log($rootScope.loginexito);
         $rootScope.title = current.$$route.title;
+		//console.log(current.$$route.controller);
+
+
+
     });
 
 
