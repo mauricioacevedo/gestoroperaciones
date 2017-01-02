@@ -14,39 +14,44 @@
 					</ul>
 				</div>
 				<div class = "panel-heading nav navbar-default">
+					<div class="col-md-12">
+						<div class="row">
+							<div class="col-md-12">
+								<ul class="nav navbar-nav navbar-left">
+									<li>
+										<i class="fa fa-filter" aria-hidden="true"></i>
+										<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
+										<i class="fa fa-globe" aria-hidden="true"></i>
+										<select id="grupo" name="grupo" class="btn btn-default btn-xs grupo-select" ng-model="filtroInput" ng-options="g for g in grupos.values">
+										<option value="" disabled>Grupo</option>
+										</select>
+									</li>
+								</ul>
+								<ul class="nav navbar-nav navbar-right">
+									<li class="nav navbar-nav" ng-class="csvUsers==false?'animated bounceOutRight':'animated bounceInRight'" ng-show="csvUsers==true">
+											<span class="label label-primary">Se exportaron: {{results.length}} Registros</span>&nbsp;
 
-					<ul class="nav navbar-nav navbar-left">
-						<li>
-							<i class="fa fa-filter" aria-hidden="true"></i>
-							<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
-							<i class="fa fa-globe" aria-hidden="true"></i>
-							<select id="grupo" name="grupo" class="btn btn-default btn-xs grupo-select" ng-model="filtroInput" ng-options="g for g in grupos.values">
-							<option value="" disabled>Grupo</option>
-							</select>
-						</li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li class="nav navbar-nav" ng-class="csvUsers==false?'animated bounceOutRight':'animated bounceInRight'" ng-show="csvUsers==true">
-								<span class="label label-primary">Se exportaron: {{results.length}} Registros</span>&nbsp;
-
-						</li>
-						<li>
-
-
-							<button type="button" class="btn btn-primary btn-circle-xs" ng-click="listadoUsuariosGeop()"   ng-disabled="loading" >
-								<i class="fa fa-refresh"  title="Actualizar" data-toggle="tooltip" data-placement="left" aria-hidden="true"></i>
-							</button>
-							<button type="button" class="btn btn-primary btn-circle-xs" ng-click="crearUsuarioModal()" data-toggle="modal" data-target="#editarModal" data-backdrop="static"  ng-disabled="loading" >
-								<i class="fa fa-plus"  aria-hidden="true" ></i>
-							</button>
-							<button type="button" class="btn btn-primary btn-circle-xs" ng-click="csvUsuarios()"  ng-disabled="loading">
-								<i class="fa fa-cloud-download" aria-hidden="true"></i>
-							</button>
-
-						</li>
-					</ul>
+									</li>
+									<li>
 
 
+										<button type="button" class="btn btn-primary btn-circle-xs" ng-click="listadoUsuariosGeop()"   ng-disabled="loading" >
+											<i class="fa fa-refresh"  title="Actualizar" data-toggle="tooltip" data-placement="left" aria-hidden="true"></i>
+										</button>
+										<button type="button" class="btn btn-primary btn-circle-xs" ng-click="crearUsuarioModal()" data-toggle="modal" data-target="#editarModal" data-backdrop="static"  ng-disabled="loading" >
+											<i class="fa fa-plus"  aria-hidden="true" ></i>
+										</button>
+										<button type="button" class="btn btn-primary btn-circle-xs" ng-click="csvUsuarios()"  ng-disabled="loading">
+											<i class="fa fa-cloud-download" aria-hidden="true"></i>
+										</button>
+
+									</li>
+								</ul>
+
+							</div>
+						</div>
+
+					</div>
 
 				</div>
 				<div class="panel-body fixed-panel" >
