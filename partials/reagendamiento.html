@@ -109,7 +109,7 @@
                             <b>FECHA_INGRESO:</b> {{service.FECHA_INGRESO}}<br>
                             <b>MICROZONA:</b> {{service.MICROZONA}}<br>
                             <b>PROCESO:</b> {{service.PROCESO}}<br>
-							<button type="button" class="btn btn-default btn-sm" popover data-trigger="hover" data-placement="rigth" data-html="true" data-selector="" data-content="{{service.OBSERVACION_FENIX}}">
+							<button type="button" class="btn btn-default btn-sm" popover data-trigger="hover" data-placement="rigth" data-html="true" data-selector="" data-content="{{service.OBSERVACION_FENIX || 'SIN OBSERVACIONES' }}">
 										<i class="fa fa-info-circle"  aria-hidden="true" ></i> Observaciones
 									</button>
                             <br>
