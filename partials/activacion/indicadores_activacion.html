@@ -20,12 +20,12 @@
 					<div class = "panel-heading nav navbar-default">
 						<b><button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="actualizarGraficaAgendamiento()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
 									<i class="fa fa-refresh"  aria-hidden="true"></i>
-								</button> Pendientes por Conceptos</b>
+								</button> Pendientes por Cola</b>
 					</div>
 					<div class = "panel-body fixed-panel">
 						<ul class="list-group small">
 							<span class="small">
-							<a href="" ng-repeat="data in tbl_fechacita as Pendis" class="list-group-item animated slideInRight" ng-style="set_color(parseInt(data.value))">{{data.CONCEPTOS}}: <span class = "badge ">{{data.CANTIDAD}}</span></a></span>
+							<a href="" ng-repeat="data in myDataSourceAD as Pendis" class="list-group-item animated slideInRight" ng-style="set_color(parseInt(data.value))">{{data.CONCEPTOS}}: <span class = "badge ">{{data.CANTIDAD}}</span></a></span>
 						</ul>
 					</div>
 					<div class="panel-footer clearfix">
