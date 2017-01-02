@@ -97,28 +97,42 @@
 							<li  ng-show="logedUser.CARGO_ID<='5'"><a href=".#/indicadores/"><span class="fa fa-bar-chart"></span> Indicadores</a></li>
 						</ul>
 				</li><!-- Asignaciones -->
+				<!-- Agendamiento -->
 
-            <li class="dropdown" ng-hide="galletainfo.CARGO_ID==3">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administracion <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href=".#/admon/board"><i class="fa fa-tachometer DemePedido" aria-hidden="true"></i>&nbsp; Board</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href=".#/admon/usuarios"><i class="fa fa-user MenuItem" aria-hidden="true"></i>&nbsp; Usuarios</a></li>
-                <li><a href=".#/admon/registrosio"><i class="fa fa-bars MenuItem" aria-hidden="true"></i>&nbsp; Registro Ingresos</a></li>
-                <li role="separator" class="divider"></li>
-                <li ><a href="" >Parametros</a></li>
+				 <li class="dropdown"  ng-show="logedUser.GRUPO=='AGENDAMIENTO' || logedUser.GRUPO=='SUPER'">
+					<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Agendamiento <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href=".#/agendamiento/reagendamiento"><i class="fa fa-play"></i> Reagendamiento</a></li>
+						<li><a href=".#/agendamiento/edatel"><i class="fa fa-play"></i> Edatel</a></li>
+						<li ng-show="logedUser.GRUPO=='AGENDAMIENTO' || logedUser.GRUPO=='SUPER'"><a href=".#/agendamiento/adelantaragenda"><i class="fa fa-hand-o-right"></i>Adelantar Agenda</a></li>
+						<li><a href=".#/scheduling/"><i class="fa fa-i"></span> Alarmado Proactivos</a></li>
+						<li><a href=".#/parametrizacion-siebel/"><i class="fa fa-calendar"></i> Parametrización</a></li>
+						<li><a href=".#/auditoria/"><i class="fa fa-play"></i> Auditoria Reagendamiento</a></li>
+						<li><a href=".#/codigo_resultado/"><i class="fa fa-cloud-upload"></i> Cargas Manuales</a></li>
+						<li class="menu-item dropdown dropdown-submenu">
+							<a href="" title="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa fa-circle-o DemePedidoBlue"></i> Listados</a></a>
+					  <ul class="dropdown-menu">
+						<li class="menu-item"><a href=".#/cupos-agendamiento/"><i class="fa fa-list"></i> Ocupacion</a></li>
+						<li class="menu-item"><a href=".#/registros-agendamiento/"><i class="fa fa-list"></i> Registros</a></li>
+						<li class="menu-item"><a href=".#/Pedidos_Microzonas/"><i class="fa fa-list"> Pedidos Microzona</a></li>
+						<li class="menu-item"><a href=".#/tabla_agendamiento/"><i class="fa fa-list"></i> Tabla Agendamiento</a></li>
+					  </ul>
+					</li>
+						<li role="separator" class="divider"></li>
+						<li  ng-show="logedUser.CARGO_ID=='1'"><a href=".#/agendamiento/"><span class="fa fa-bar-chart"></span> Indicadores</a></li>
 
-              </ul>
-            </li>
-            <li class="dropdown" ng-show="galletainfo.CARGO_ID==3">
-                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Consulta <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href=".#/historicos"><i class="fa fa-bars MenuItem" aria-hidden="true"></i>&nbsp; Historicos</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href=".#/admon/registrosio"><i class="fa fa-bars MenuItem" aria-hidden="true"></i>&nbsp; Registro Ingresos</a></li>
-                </ul>
-              </li>
+					</ul>
+           		</li>
+
+
+
+
+
+
           </ul>
+
+
+
 		 <ul class="nav navbar-nav navbar-right navbar-pad-derecha">
 				<li class="dropdown">
 				   <a href="" class="dropdown-toggle" data-toggle="dropdown">
