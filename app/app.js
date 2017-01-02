@@ -9096,7 +9096,7 @@ app.controller('AuditoriaCtrl',function ($scope, $rootScope, $location, $routePa
       $scope.microzonas={};
                 services.getDepartamentosPendientesReagendamiento().then(function(data){
          $scope.departamentos=data.data;
-         console.log($scope.departamentos);
+         //console.log($scope.departamentos);
 
                         return data.data;
                 });
