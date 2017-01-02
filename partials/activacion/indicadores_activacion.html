@@ -22,7 +22,7 @@
 									<i class="fa fa-refresh"  aria-hidden="true"></i>
 								</button> Pendientes por Cola</b>
 					</div>
-					<div class = "panel-body fixed-panel">
+					<div class = "panel-body">
 						<ul class="list-group small">
 							<span class="small">
 							<a href="" ng-repeat="cola in listado_colas as Pendis" class="list-group-item animated slideInRight" ng-style="set_color(parseInt(cola.CANTIDAD))">{{cola.COLA_ID}}: <span class = "badge ">{{cola.CANTIDAD}}</span></a></span>
