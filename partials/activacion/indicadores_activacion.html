@@ -121,14 +121,14 @@
 
 				</div>
 				<div class="panel-body" >
-					<div class="container">
+					<div class="container-fluid"><div class="jumbotron">
 						<div class="row"><div class="col-md-12"><button class="btn btn-success btn-sm" ng-click="csvActivacionSiebel();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Pendientes DOM </button>
                         <button class="btn btn-success btn-sm" ng-click="csvActivacionSiebelinvdom();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Pendientes invdom </button></div></div>
 						<div class="row"><div class="col-md-12"><button class="btn btn-success btn-sm" ng-click="csvListadoActivacionnuevos();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Exportar Nuevos</button>
                         <button class="btn btn-success btn-sm" ng-click="csvListadoActivacion();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Exportar Seguimiento</button></div></div>
 
 
-					</div>
+					</div></div>
 					<div ng-hide="true"><!-- Borrar este div para habilitar tabla -->
 					 <table class="table small table-bordered table-condensed">
 							  <tr>
