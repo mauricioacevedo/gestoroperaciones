@@ -9040,7 +9040,7 @@ $scope.set_color_Cuartil = function (value) {
 
 });
 
-app.controller('AuditoriaCtrl',function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services,$compile) {
+app.controller('AuditoriaCtrl',function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,$compile,$timeout,services) {
     
       var userID=$cookieStore.get('logedUser').login;
       $rootScope.logedUser=$cookieStore.get('logedUser');
