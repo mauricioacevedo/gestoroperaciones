@@ -13416,7 +13416,7 @@ app.config(['$routeProvider',
       })
 
 	//-------- ASIGNACIONES ------------------------------------------
-//---------------------------------------------INICIO ACTIVACION----
+//---------------------------------------------INICIO ACTIVACION------
      .when('/actividades/', {
          title: 'Actividades',
          templateUrl: 'partials/actividades.html',
