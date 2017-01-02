@@ -110,6 +110,10 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 	obj.getGestorConceptos = function(){
 		return $http.get(serviceBase + 'gestorConceptos');
 	}
+
+	obj.expCsvUsuarios = function () {
+     return $http.post(serviceBase + 'csvUsuarios');
+        };
 // Servicios Globales --------------------
 //---------------------------------------------------------------------------------------------Agendamiento
     obj.getPedidosUserAdelantarAgenda = function(userID){
