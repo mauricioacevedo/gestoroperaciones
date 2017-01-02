@@ -13437,6 +13437,18 @@ app.config(['$routeProvider',
          templateUrl: 'partials/demepedido-activacion.html',
          controller: 'siebelActivacionCtrl'
       })
+
+	 .when('/activacion/', {
+         title: 'Indicadores Activación',
+         templateUrl: 'partials/activacion.html',
+         controller: 'ActivacionCtrl'
+    })
+
+	 .when('/pendientes_activacion/', {
+         title: 'Pendientes Activación',
+         templateUrl: 'partials/activacion/pendientes_activacion.html',
+         controller: 'ActivacionCtrl'
+    })
 //-----------------------------------------------------------------FIN ACTIVACION
 
    // ADMINISTRACION ------------------------------------------
@@ -13605,15 +13617,6 @@ app.config(['$routeProvider',
          templateUrl: 'partials/auditoria-agendamiento.html',
          controller: 'AgendamientoCtrl'
       })
-
-
-    .when('/activacion/', {
-         title: 'Indicadores Activación',
-         templateUrl: 'partials/activacion.html',
-         controller: 'ActivacionCtrl'
-    })
-
-
 
         .when('/b2b/', {
          title: 'b2b',
