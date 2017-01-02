@@ -20,7 +20,7 @@
 					<div class = "panel-heading nav navbar-default">
 						<b><button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="actualizarPendientesPorConceptoColaActivacion();actualizarGraficaAD()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
 									<i class="fa fa-refresh"  aria-hidden="true"></i>
-								</button> Pendientes por Cola</b>
+								</button> Pendientes Fénix</b>
 					</div>
 					<div class = "panel-body">
 						<ul class="list-group small">
@@ -30,6 +30,28 @@
 					</div>
 					<div class="panel-footer clearfix">
 						Total: <span class="label label-success">{{cola.totalItems}}</span>
+					</div>
+				</div>
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-md-12 col-xs-12">
+
+
+				<div class = "panel panel-default">
+					<div class = "panel-heading nav navbar-default">
+						<b><button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="actualizarPendientesPorConceptoColaActivacion();actualizarGraficaAD()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
+									<i class="fa fa-refresh"  aria-hidden="true"></i>
+								</button>Pendientes Siebel</b>
+					</div>
+					<div class = "panel-body">
+						<ul class="list-group small">
+							<span class="small">
+							<a href="" ng-repeat="siebel in listaPendientesSiebel" class="list-group-item animated slideInRight" ng-style="set_color(parseInt(siebel.values))">{{siebel.label}}: <span class = "badge ">{{siebel.values}}</span></a></span>
+						</ul>
+					</div>
+					<div class="panel-footer clearfix">
+						Total: <span class="label label-success">{{totalAD}}</span>
 					</div>
 				</div>
 			</div>

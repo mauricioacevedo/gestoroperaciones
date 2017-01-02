@@ -10336,7 +10336,8 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                         var seconds = $scope.doubleDigit(date1.getSeconds());
 
                         $scope.lastUpdate=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
-                        $scope.totalAD= data.data[1]
+                        $scope.totalAD= data.data[1];
+						$scope.listaPendientesSiebel=data.data[0];
 
                         return data.data;
              });
