@@ -9575,7 +9575,7 @@ $scope.actualizarLightKPIS();
         $scope.$on(
                 "$destroy",
                         function( event ) {
-                            $timeout.cancel(timer);
+                            //$timeout.cancel(timer);
                             clearInterval($scope.intervalLightKPIS);
           });
 
