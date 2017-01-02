@@ -114,6 +114,19 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 	obj.expCsvUsuarios = function () {
      return $http.post(serviceBase + 'csvUsuarios');
         };
+		//Crud de Usuarios
+	obj.putUsuarioNuevo = function (editaInfo) {
+		 return $http.post(serviceBase + 'crearUsuario',{"editaInfo":editaInfo});
+			};
+
+	obj.editUsuario = function (editaInfo) {
+		 return $http.post(serviceBase + 'editarUsuario',{"editaInfo":editaInfo});
+			};
+
+	obj.deleteUsuario = function (id) {
+		 return $http.post(serviceBase + 'borrarUsuario',{"id":id});
+			};
+//Crud de Usuarios
 // Servicios Globales --------------------
 //---------------------------------------------------------------------------------------------Agendamiento
     obj.getPedidosUserAdelantarAgenda = function(userID){
