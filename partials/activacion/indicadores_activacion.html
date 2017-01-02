@@ -239,7 +239,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<ul class="nav navbar-nav navbar-left">
-								<b>Pendientes según Gestión</b>
+								<b>Pendientes por Cola</b>
 								<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
 
 							</ul>
@@ -272,35 +272,42 @@
 
 						<table class="table small table-striped table-hover table-bordered table-condensed">
 							<thead>
-								<th>Concepto</th>
-								<th>TOTAL</th>
-								<th>Migracion</th>
-								<th>Gestionables</th>
-								<th>Cita Vencida</th>
-								<th>Sin Agenda</th>
-								<th>Agendados</th>
+								<th>Cola</th>
+								<th>Total</th>
+								<th> 0-2h</th>
+								<th> 3-4h</th>
+								<th> 5-6h</th>
+								<th> 7-12h</th>
+								<th> 13-24h</th>
+								<th> 25-48h</th>
+								<th>Mas de 48h</th>
                                </thead>
                                <tbody>
-                                   <tr ng-repeat="data in tbl_fechacita | filter:filtroInput">
-                                    <td><!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->{{data.CONCEPTOS}}</span></td>
-                                    <td ng-init="tbl_fechacita.totales = parseInt(tbl_fechacita.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
-                                    <td ng-init="tbl_fechacita.total02 = parseInt(tbl_fechacita.total02) + parseInt(data.Migracion)">{{data.Migracion}}</td>
-                                     <td ng-init="tbl_fechacita.total34 = parseInt(tbl_fechacita.total34) + parseInt(data.Gestionables)">{{data.Gestionables}}</td>
-                                     <td ng-init="tbl_fechacita.total56 = parseInt(tbl_fechacita.total56) + parseInt(data.Cita_Vencida)">{{data.Cita_Vencida}}</td>
-                                    <td ng-init="tbl_fechacita.total712 = parseInt(tbl_fechacita.total712) + parseInt(data.Sin_Agenda)">{{data.Sin_Agenda}}</td>
-                                    <td ng-init="tbl_fechacita.total1324 = parseInt(tbl_fechacita.total1324) + parseInt(data.Agendados)">{{data.Agendados}}</td>
+                                   <tr ng-repeat="in listado_colas| orderBy:'fecha_fin':true | filter:filtroInput">
+									   	<td>{{data.COLA_ID}}</td>
+										<td ng-init="listado_colas.totales = parseInt(listado_colas.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
+										<td ng-init="listado_colas.total02 = parseInt(listado_colas.total02) + parseInt(data.Entre02)">{{data.Entre02}}</td>
+										<td ng-init="listado_colas.total34 = parseInt(listado_colas.total34) + parseInt(data.Entre34)">{{data.Entre34}}</td>
+										<td ng-init="listado_colas.total56 = parseInt(listado_colas.total56) + parseInt(data.Entre56)">{{data.Entre56}}</td>
+										<td ng-init="listado_colas.total712 = parseInt(listado_colas.total712) + parseInt(data.Entre712)">{{data.Entre712}}</td>
+										<td ng-init="listado_colas.total1324 = parseInt(listado_colas.total1324) + parseInt(data.Entre1324)">{{data.Entre1324}}</td>
+										<td ng-init="listado_colas.total2548 = parseInt(listado_colas.total2548) + parseInt(data.Entre2548)">{{data.Entre2548}}</td>
+
+										<td ng-init="listado_colas.totalmas48 = parseInt(listado_colas.totalmas48) + parseInt(data.Masde48)">{{data.Masde48}}</td>
 
                                         </tr>
                                 </tbody>
                                 <tfoot>
 									<tr class="info">
-											<th>TOTALES</th>
-											<th>{{tbl_fechacita.totales}}</th>
-											<th>{{tbl_fechacita.total02}}</th>
-											<th>{{tbl_fechacita.total34}}</th>
-											<th>{{tbl_fechacita.total56}}</th>
-											<th>{{tbl_fechacita.total712}}</th>
-											<th>{{tbl_fechacita.total1324}}</th>
+									 	<th>Totales</th>
+										<th>{{listado_colas.totales}}</th>
+										<th>{{listado_colas.total02}}</th>
+										<th>{{listado_colas.total34}}</th>
+										<th>{{listado_colas.total56}}</th>
+										<th>{{listado_colas.total712}}</th>
+										<th>{{listado_colas.total1324}}</th>
+										<th>{{listado_colas.total2548}}</th>
+										<th>{{listado_colas.totalmas48}}</th>
 									</tr>
 
                                 </tfoot>
@@ -312,7 +319,7 @@
 					<div class="col-md-8">
 
 						<ul class="nav navbar-nav navbar-left">
-							Total: <span class="label label-success">{{totalAGEN}}</span>
+							Total: <span class="label label-success">{{listado_colas.totales}}</span>
 						</ul>
 
 					</div>
