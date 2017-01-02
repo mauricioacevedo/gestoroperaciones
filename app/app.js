@@ -10342,6 +10342,95 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                         data: []
 
         };
+
+	//----------Funcion para determinar el color del pendiente --------------------------
+var colorDanger="#E83720";
+var colorWaring="#E8A820";
+var colorWarningTrans="#ffd699";
+var colorNormal="#088A08";
+
+$scope.set_color = function (value) {
+              if (value > 200) {
+                $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorDanger
+                    };
+
+                return $scope.estilo;
+              }
+              else{
+
+                  if(value > 50 && value < 200){
+
+                    $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorWaring
+                    };
+
+                  }else{
+
+                     $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorNormal
+                    };
+                  }
+
+               return $scope.estilo;
+
+              }
+            };
+
+$scope.set_color_Cuartil = function (value) {
+
+	//console.log(value);
+
+              if (value >= 4) {
+                $scope.estiloCuartil={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorDanger
+                    };
+
+                return $scope.estiloCuartil;
+              }
+
+
+              if(value >= 3 && value < 4){
+
+                    $scope.estiloCuartil={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorWaring
+
+                    };
+				  return $scope.estiloCuartil;
+
+                  }
+
+               if(value >= 2 && value < 3){
+
+					$scope.estiloCuartil={
+					  "list-style-position":"inside",
+					  "border-left": "5px solid "+colorWarningTrans
+					};
+				   return $scope.estiloCuartil;
+                  	}
+
+		if(value >= 1 && value < 2){
+
+					$scope.estiloCuartil={
+					  "list-style-position":"inside",
+					  "border-left": "5px solid "+colorNormal
+					};
+				   return $scope.estiloCuartil;
+                  	}
+
+};
+
+
+
+
+
+
+
                  
 });
 
