@@ -13497,27 +13497,12 @@ app.config(['$routeProvider',
 
 	//  ------------------------------------------FIN ADMINISTRACION-----
 
-        .when('/registros-agendamiento/', {
-         title: 'Registros',
-         templateUrl: 'partials/registros-reagendamiento.html',
-         controller: 'RegistrosAgendamientoCtrl'
-      })
-
-
-        .when('/cupos-agendamiento/', {
-         title: 'Ocupacion',
-         templateUrl: 'partials/ocupacion-agendamiento.html',
-         controller: 'OcupacionAgendamientoCtrl'
-      })        
-
+	// ----INICIO HERRAMIENTAS ------------------------------------------
         .when('/parametrizacion-siebel/', {
          title: 'parametrizacion',
          templateUrl: 'partials/parametrizacion-siebel.html',
          controller: 'ParametrizacionSiebel'
       })
-
-
-
 
 	.when('/general/', {
          title: 'General',
@@ -13531,7 +13516,7 @@ app.config(['$routeProvider',
       })
 
 
-	// HERRAMIENTAS ------------------------------------------
+	// --- FIN HERRAMIENTAS ------------------------------------------
 
     .when('/cmts/', {
         title: 'Cmts',
@@ -13569,10 +13554,24 @@ app.config(['$routeProvider',
 // ------------------------------------------HERRAMIENTAS
 //--------------------AGENDAMIENTO------------------------
 
+
+        .when('/registros-agendamiento/', {
+         title: 'Registros',
+         templateUrl: 'partials/registros-reagendamiento.html',
+         controller: 'RegistrosAgendamientoCtrl'
+      })
+
+
         .when('/codigo_resultado/', {
          title: 'codigo_resultado',
          templateUrl: 'partials/codigo_resultado.html',
          controller: 'cargar_datosCtrl'
+      })
+
+      .when('/cupos-agendamiento/', {
+         title: 'Ocupacion',
+         templateUrl: 'partials/ocupacion-agendamiento.html',
+         controller: 'OcupacionAgendamientoCtrl'
       })
 
     .when('/scheduling/', {
