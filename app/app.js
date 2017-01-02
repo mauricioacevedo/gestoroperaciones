@@ -7515,7 +7515,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 //---------------------fin agendamiento----------------------
 //-------------------------------adelantar agenda----------------------
 
-app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services,$compile) {
+app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,$compile,$timeout, services,) {
 
         var userID=$cookieStore.get('logedUser').login;
         $rootScope.logedUser=$cookieStore.get('logedUser');
