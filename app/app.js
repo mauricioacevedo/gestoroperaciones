@@ -10426,9 +10426,43 @@ $scope.set_color_Cuartil = function (value) {
 };
 
 
+// Feed --------------------------------------------------------------------------
+
+	$scope.intervalFeed = setInterval(function(){
+                $scope.getFeed();
+                $scope.getLoginFeed();
+           },20000);
+
+
+	$scope.getFeed = function (){
+		services.getFeed().then(function(data){
+                        $scope.listado_feed=data.data[0];
+			$scope.total_feed=data.data[1];
+                        return data.data;
+                });
+
+	}
+
+	$scope.$on(
+       		"$destroy",
+                        function( event ) {
+				clearInterval($scope.intervalFeed);
+                        }
+        );
 
 
 
+    $scope.getLoginFeed = function (){
+        services.getLoginFeed().then(function(data){
+                        $scope.login_feed=data.data[0];
+                        $scope.total_feed=data.data[1];
+                        return data.data;
+                });
+    }
+
+	$scope.getFeed();
+
+//  -------------------------------------------------------------------------- Feed
 
 
                  
