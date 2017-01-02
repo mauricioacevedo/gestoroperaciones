@@ -7551,7 +7551,7 @@ app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $locati
         services.getDepartamentosAdelantarAgenda().then(function(data){
                         $scope.departamentos={};
                         $scope.departamentos=data.data;
-                        console.log($scope.departamentos);
+                        //console.log($scope.departamentos);
 
                         return data.data;
                 });
@@ -7576,7 +7576,7 @@ app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $locati
        // $scope.getDepartamentos();
 
         $scope.getZonas = function(depa) {
-                console.log(depa);
+                //console.log(depa);
                 $scope.zonas={};
                 $scope.microzonas={};
                
@@ -7589,7 +7589,7 @@ app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $locati
 
 
         $scope.getMicrozonas = function(zona,depa){
-                console.log(zona,depa);
+                //console.log(zona,depa);
                 $scope.microzonas={};
 
                 services.getMicrozonasAdelantarAgenda(zona,depa).then(function(data){
@@ -7602,7 +7602,7 @@ app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $locati
 
         $scope.start = function(depa,zona,microzona,fecha) {
             $scope.refresh='cargando';
-            console.log(depa, zona, microzona, fecha);
+            //console.log(depa, zona, microzona, fecha);
             $scope.pedido_actual=0;
 
             services.getPedidoActualmenteAgendado(depa,zona,microzona,fecha,$rootScope.logedUser.login, $scope.pedido_actual).then(function(data){
@@ -7610,7 +7610,7 @@ app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $locati
                     $scope.peds = data.data[0];
                     $scope.pedido1=data.data[1];
 
-                    console.log(data.data);
+                    //console.log(data.data);
 
                     if(data.data==''||data.data=='No hay registros!'){
                         document.getElementById("warning").innerHTML="No hay Registros";
@@ -7631,7 +7631,7 @@ app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $locati
 
                     $scope.refresh='';
                     $scope.peds[0].FECHA_INICIO=new Date().getTime();
-                    console.log($scope.peds[0]);
+                    //console.log($scope.peds[0]);
                     return data.data;
 
 
@@ -7673,7 +7673,7 @@ app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $locati
                 $scope.error="";
                 var kami=services.buscarPedidoAgendamiento(bpedido,$scope.pedido1,$rootScope.logedUser.login,$rootScope.logedUser.name).then(function(data){
                         $scope.peds = data.data;
-                        console.log($scope.peds);
+                        //console.log($scope.peds);
                         var dat=data.status;
 
                         if(dat==204){
@@ -7822,7 +7822,7 @@ $scope.savePedido = function(index) {
     
         $scope.pedido={};
 
-        console.log("Un objeto: "+angular.copy($scope.peds[index],$scope.pedido));
+        //console.log("Un objeto: "+angular.copy($scope.peds[index],$scope.pedido));
 
         if($scope.pedido==undefined||$scope.pedido==''||$scope.pedido.length==0){
                   console.log("estoy malo: "+$scope.pedido+"----"+JSON.stringify($scope.peds[index]));
@@ -7876,7 +7876,7 @@ $scope.savePedido = function(index) {
         }
     
     }else{
-        console.log($scope.pedido.FECHA_CITA_REAGENDA+"||||||"+$scope.pedido.JORNADA_CITA);
+        //console.log($scope.pedido.FECHA_CITA_REAGENDA+"||||||"+$scope.pedido.JORNADA_CITA);
         if($scope.pedido.FECHA_CITA_REAGENDA==''|| $scope.pedido.FECHA_CITA_REAGENDA===undefined){
                         alert('Por favor incluir la fecha de la reagenda..');
                         return;
@@ -7940,8 +7940,8 @@ $scope.savePedido = function(index) {
                     $scope.pedido={};
                     $scope.pedidos="";
             } else{
-            console.log("EL PEDIDO QUEDO ASI: ");
-            console.log($scope.pedido);
+            //console.log("EL PEDIDO QUEDO ASI: ");
+            //console.log($scope.pedido);
                     $scope.historico_pedido=$scope.historico_pedido.concat(angular.copy($scope.pedido));
                     $scope.peds.splice(index,1);
                      if($scope.pedidos==""){
@@ -8538,7 +8538,7 @@ $scope.start = function(pedido) {
               
 
 		if($scope.departamento == undefined||$scope.departamento==''||$scope.departamento.DEPARTAMENT == undefined || $scope.departamento.DEPARTAMENT==''){
-			console.log($scope.departamento);
+			//console.log($scope.departamento);
 			alert("Seleccione un departamento.");
 			return;
 		}
@@ -8704,7 +8704,7 @@ $scope.start = function(pedido) {
 
 
    $scope.savePedido = function(index) {
-    console.log ($scope.pedido);
+    //console.log ($scope.pedido);
 
         var loader = document.getElementById("class"+index);
         loader.className='glyphicon glyphicon-refresh fa-spin';
@@ -8715,7 +8715,7 @@ $scope.start = function(pedido) {
 
         if($scope.pedido==undefined||$scope.pedido==''||$scope.pedido.length==0){
                   console.log("estoy malo: "+$scope.pedido+"----"+JSON.stringify($scope.peds[index]));
-		console.log(Object.prototype.toString.call($scope.peds[index])+" == "+Object.prototype.toString.call($scope.pedido));
+		//console.log(Object.prototype.toString.call($scope.peds[index])+" == "+Object.prototype.toString.call($scope.pedido));
         }else{
                   console.log($scope.pedido);
         }
@@ -8736,7 +8736,7 @@ $scope.start = function(pedido) {
     if(document.getElementById('programacion')==null){
         $scope.pedido.PROGRAMACION="";
 
-        console.log($scope.pedido.PROGRAMACION);
+        //console.log($scope.pedido.PROGRAMACION);
     }else{
         $scope.pedido.PROGRAMACION=document.getElementById('programacion').value;
         
@@ -8774,7 +8774,7 @@ $scope.start = function(pedido) {
     }
 
     if($scope.pedido.NOVEDAD=='AGENDADO' || $scope.pedido.NOVEDAD=='PENDIENTE POR OTRO CONCEPTO' || $scope.pedido.NOVEDAD=='NO DESEA EL SERVICIO' || $scope.pedido.NOVEDAD=='YA ESTA CUMPLIDO' ){
-        console.log($scope.pedido.NOVEDAD)
+        //console.log($scope.pedido.NOVEDAD)
         var regexp = /^([0-9]{2,20})$/;
 
         if(regexp.test($scope.pedido.IDLLAMADA)==false || $scope.pedido.IDLLAMADA==undefined ){
@@ -8836,8 +8836,8 @@ $scope.start = function(pedido) {
                     $scope.pedido={};
                     $scope.pedidos="";
             } else{
-		     console.log("EL PEDIDO QUEDO ASI: ");
-             console.log($scope.pedido);
+		    // console.log("EL PEDIDO QUEDO ASI: ");
+            // console.log($scope.pedido);
                     $scope.historico_pedido=$scope.historico_pedido.concat(angular.copy($scope.pedido));
                     $scope.peds.splice(index,1);
                      if($scope.pedidos==""){
