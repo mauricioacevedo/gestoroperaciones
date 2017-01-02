@@ -3531,6 +3531,7 @@ $scope.topProductivos = function() {
 //------------controlador usuarios -------------------
 
 app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
+
 	var userID=$cookieStore.get('logedUser').login;
         $rootScope.logedUser=$cookieStore.get('logedUser');
         document.getElementById('logout').className="btn btn-md btn-danger";
@@ -3568,108 +3569,294 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
                 $location.path('/');
         };
 
-	$scope.saveUsuario = function (usuar){
-		var date1 = new Date();
-                var year    = date1.getFullYear();
-                var month   = $scope.doubleDigit(date1.getMonth()+1);
-                var day     = $scope.doubleDigit(date1.getDate());
-                var hour    = $scope.doubleDigit(date1.getHours());
-                var minute  = $scope.doubleDigit(date1.getMinutes());
-                var seconds = $scope.doubleDigit(date1.getSeconds());
 
-		services.insertUsuario(usuar).then(function(data){
-			$location.path('/users/');
-			$scope.success="Usuario Creado con exito";
-                	return data.data;
-                });
-	};
 
-        $scope.newUsuario = function (usuar){
+  $scope.errorDatos=null;
+  $scope.fechiniExpoIO="";
+  $scope.fechafiniExpoIO="";
 
-		$scope.usert={};
-        	$scope.usert.EQUIPO_ID="MANUAL";
-        	$scope.usert.ID="";
 
-          	$location.path('/users/usuario');
+$scope.usuarioFill=function(usuario_id){
+            $scope.filtroInput=usuario_id;
+
+
         };
 
 
-        $scope.editUsuario = function (usuar){
+//Obtener listado de usuarios del GEOP
+  $scope.listadoUsuariosGeop=function(usuario_id){
+        $scope.errorDatos=null;
+        services.getListadoUsuarios(usuario_id).then(
 
-                services.editUsuario(usuar).then(function(data){
-                        $location.path('/users/');
+          function(data){
+            $errorDatos=null;
+            $scope.listaUsuarios=data.data;
+
+           // console.log($scope.listaUsuarios);
+            $scope.cantidad=data.data.length;
+            $scope.sortType     = 'USUARIO_ID'; // set the default sort type
+            $scope.sortReverse  = false;  // set the default sort order
+            $scope.csvUsers=false;
+            $scope.fechiniExpoIO='';
+
+            return data.data;
+        }
+        , function errorCallback(response) {
+
+            $scope.errorDatos="Usuario no existe.";
+
+           // console.log($scope.errorDatos);
+
+          });
+
+
+  };
+$scope.listadoUsuariosGeop();
+
+//Exportes: Inicio
+$scope.csvUsuarios  = function (filtroInput){
+
+    services.expCsvUsuarios().then(
+
+      function(data){
+
+      //console.log(data.data[0]);
+      window.location.href="tmp/"+data.data[0];
+                       $scope.csvUsers=true;
                         return data.data;
-                });
-        };
 
-
-	$scope.getUsuario = function (userID){
-		$scope.usert={};
-		
-		 services.getUsuario(userID).then(function(data){
-			$rootScope.usert=data.data[0];
-            $location.path('/users/usuario');
-			//$scope.usert=data.data[0];
-		 	return data.data;
-                });
-
-	};
-
-
-        $scope.listado_usuarios=[];
-	$scope.data = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "" }
-
-        var date1 = new Date();
-        var year  = date1.getFullYear();
-        var month = $scope.doubleDigit(date1.getMonth()+1);
-        var day   = $scope.doubleDigit(date1.getDate());
-
-        var fecha_inicio=year+"-"+month+"-"+day;
-        var fecha_fin=year+"-"+month+"-"+day;
-
-        $scope.data.fechaIni=fecha_inicio;
-        $scope.data.fechaFin=fecha_fin;
-
-        //services.getListadotransaccionesNCA(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
-	var pathy=$location.path();
-
-        if(pathy=="/users/"){//esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
-		services.getListadoUsuarios().then(function(data){
-			console.log(data.data[0]);
-                	$scope.listado_usuarios=data.data[0];
-                	$scope.data.totalItems=data.data[1];
-			$scope.usert={};
-                        $scope.usert.EQUIPO_ID="MANUAL";
-                        $scope.usert.ID="";
-			$scope.usert==undefined;
-                	return data.data;
-        	});
-	}
-
-	if(pathy=="/users/usuario"){
-		var date1 = new Date();
-                var year    = date1.getFullYear();
-               	var month   = $scope.doubleDigit(date1.getMonth()+1);
-       	        var day     = $scope.doubleDigit(date1.getDate());
-                var hour    = $scope.doubleDigit(date1.getHours());
-               	var minute  = $scope.doubleDigit(date1.getMinutes());
-       	        var seconds = $scope.doubleDigit(date1.getSeconds());
-		$scope.FECHA_INICIO=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
-		$scope.usert=$rootScope.usert;
-		console.log($scope.usert);
-		if($scope.usert==undefined){
-			$scope.usert={};
-        	        $scope.usert.EQUIPO_ID="MANUAL";
-	                $scope.usert.ID="";
-		}
-		if($scope.usert=={}){
-                        $scope.usert={};
-                        $scope.usert.EQUIPO_ID="MANUAL";
-                        $scope.usert.ID="";
                 }
-		console.log($scope.usert);
-		$rootScope.usert={};
-       }
+      , function errorCallback(response) {
+
+            $scope.errorDatos="No hay datos.";
+            $scope.csvUsers=false;
+
+            //console.log($scope.errorDatos);
+
+          }
+      );
+
+  };
+//Exportes: Fin
+
+
+
+//modales
+//Modal para editar usuarios
+$scope.editarModal=function(data){
+  $scope.errorDatos=null;
+  $scope.idUsuario=data.ID;
+  $scope.UsuarioNom=data.USUARIO_NOMBRE;
+  $scope.editaInfo=data;
+  $scope.TituloModal="Editar Usuario con el ID:";
+  $scope.UsuarioNuevo=false;
+  //$scope.editaInfo.CARGO_ID=data.CARGO_ID;
+};
+//Modal para Crear Usuario Nuevo
+$scope.crearUsuarioModal=function(){
+  $scope.editaInfo={};
+  $scope.errorDatos=null;
+  $scope.idUsuario='';
+  $scope.UsuarioNom='';
+  $scope.TituloModal="Crear Usuario Nuevo.";
+  $scope.UsuarioNuevo=true;
+};
+//Modal para borrar usuarios.
+$scope.borrarModal=function(data){
+  $scope.errorDatos=null;
+    $scope.idUsuario=data.ID;
+    $scope.UsuarioNom=data.USUARIO_NOMBRE;
+   // console.log(data);
+    console.log("ID a borrar: "+$scope.idUsuario);
+};
+
+
+$scope.borrarUsuario=function(id){
+$scope.idBorrar=id;
+services.deleteUsuario($scope.idBorrar).then(
+  function(data){
+    $scope.listadoUsuariosGeop();
+    $scope.errorDatos=null;
+
+
+  }, function errorCallback(response) {
+
+            $scope.errorDatos="No se borro";
+
+            //console.log($scope.errorDatos);
+
+          }
+
+  );
+
+
+};//Borrar Usuario
+
+//Editar Usuario Servicio
+$scope.editarUsuario=function(editaInfo){
+
+        //console.log(editaInfo);
+
+        services.editUsuario(editaInfo).then(
+
+            function(data){
+
+              $scope.listadoUsuariosGeop();
+              $scope.errorDatos=null;
+
+
+        }, function errorCallback(response) {
+
+                    $scope.errorDatos="Error editando";
+
+                    //console.log($scope.errorDatos);
+
+                  });
+};//Editar Usuario Servicio
+
+//Crear Usuario
+$scope.crearUsuario=function(editaInfo){
+
+services.putUsuarioNuevo(editaInfo).then(
+
+    function(data){
+
+      $scope.listadoUsuariosGeop();
+      $scope.errorDatos=null;
+
+        //console.log(novedades);
+
+}, function errorCallback(response) {
+
+            $scope.errorDatos="Campos vacíos. Revise";
+
+           // console.log($scope.errorDatos);
+
+          });
+};//Crear Usuario
+
+$scope.sendEmail = function(data) {
+
+    //console.log(data);
+    $scope.infoEmail=data;
+    var email=data.Correo;
+    //var email="pepitagota@chupaverlga.com";
+    var ingreso=data.Hora_ingreso;
+    var salida=data.Hora_salida;
+    var fecha=data.Fecha;
+    var nombre=data.nombre;
+    var url="http://10.100.82.125/autobots/plugins/img/";
+    var urlpath=window.location.pathname;
+
+
+
+    var body="Hola <b>"+nombre+"</b>, <br> El dia: <b>"+fecha+"</b>  No cerraste, sesion."
+              +"<br><br><br><br><br><br> Este es un correo generado automaticamente.<br> "
+              +"Si tienes alguna duda por favor acercate al puesto de tu supervisor.<br> "
+              +"<hr><br><img src='"+url+"geop_logo.png'>";
+    //var body="<html><b>Hola</b> "+nombre+",\n El dia: "+fecha+" No cerraste, sesion</html>";
+
+    var subject="Gestor Operaciones: No cerro sesion.";
+
+    $scope.url = 'http://10.100.82.125/autobots/plugins/email_sesiones.php';
+
+    $http.post($scope.url, {"name": nombre, "email": email, "message": body,"fecha":fecha,"asunto":subject}).
+              then(function successCallback(response) {
+
+                console.log("Por fin envio");
+                //console.log(response);
+                $notification.success("Enviado", "Correo enviado exitosamente");
+
+                }, function errorCallback(response) {
+
+                    $timeout(function(){
+                                  $notification.error("Error", "No se envió el correo.", $scope.sendEmailMaunal($scope.infoEmail));
+                                }, 700);
+
+                        })
+
+
+ };
+
+$scope.sendEmailMaunal = function(data) {
+
+    //console.log(data);
+
+    var email=data.Correo;
+    var ingreso=data.Hora_ingreso;
+    var salida=data.Hora_salida;
+    var fecha=data.Fecha;
+    var nombre=data.nombre;
+    var body="Hola "+nombre+",\n El dia: "+fecha+" No cerraste, sesion"
+              +"\n\n\n\n\n\n Este es un correo generado automaticamente.\n"
+              +"Si tienes alguna duda por favor acercate al puesto de tu supervisor.";
+    //var body="<html><b>Hola</b> "+nombre+",\n El dia: "+fecha+" No cerraste, sesion</html>";
+
+    var subject="Gestor Operaciones: No cerró sesión.";
+    var link = "mailto:"+ email
+             + "?subject=" + escape(subject)
+             + "&body=" + escape(body);
+             //+ "&body="+body;
+             //+ "&body=" + encodeURIComponent(body);
+             //+ "&HTMLBody="+escape("<html><head><meta http-equiv='content-type' content='text/html; charset=UTF-8'></head><body><b>Gika</b</body></html>");
+
+    window.location.href = link;
+ };
+
+
+$scope.csvUsuarios  = function (filtroInput){
+
+    services.expCsvUsuarios().then(
+
+      function(data){
+
+      //console.log(data.data[0]);
+      window.location.href="tmp/"+data.data[0];
+                       $scope.csvUsers=true;
+                        return data.data;
+
+                }
+      , function errorCallback(response) {
+
+            $scope.errorDatos="No hay datos.";
+            $scope.csvUsers=false;
+
+            //console.log($scope.errorDatos);
+
+          }
+      );
+
+  };
+
+
+$scope.abrirsuk=function(){
+
+var msg = {
+    type: "message",
+    text: "Holi",
+    id:   '1',
+    date: Date.now(),
+    data:{
+      message: "Hello world!"
+    }
+  };
+
+//MyData.send(msg);
+MyData.send(msg);
+//MyData.send(JSON.stringify({event: "test", data: {"name": "BigInt"}}));
+$scope.MyData = MyData;
+
+  console.log($scope.MyData);
+
+}
+
+//MyData.get();
+
+
+MyData.onmessage = function (event) {
+  console.log(event.data);
+}
+
 
 });
 
