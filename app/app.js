@@ -13442,8 +13442,7 @@ app.config(['$routeProvider',
          templateUrl: 'partials/demepedido-activacion.html',
          controller: 'siebelActivacionCtrl'
       })
-<<<<<<< HEAD
-=======
+
 
 	 .when('/activacion/', {
          title: 'Indicadores Activación',
@@ -13464,7 +13463,7 @@ app.config(['$routeProvider',
          controller: 'ActivacionCtrl'
     })
 //-----------------------------------------------------------------FIN ACTIVACION
->>>>>>> origin/master
+
 
       .when('/docuactivacion/', {
          title: 'documentacionactivacion',
@@ -13637,7 +13636,7 @@ app.config(['$routeProvider',
          controller: 'AgendamientoCtrl'
       })
 
-<<<<<<< HEAD
+
          .when('/Pedidos_Microzonas/', {
          title: 'Pedidos_Microzonas',
          templateUrl: 'partials/Pedidos_Microzonas.html',
@@ -13645,14 +13644,12 @@ app.config(['$routeProvider',
       })
 
 
-
-=======
         .when('/b2b/', {
          title: 'b2b',
          templateUrl: 'partials/registros_b2b.html',
          controller: 'RegistrosAgendamientoCtrl'
       })
->>>>>>> origin/master
+
 
 	.when('/chat/', {
          title: 'GeoP Chat',
