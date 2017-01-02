@@ -8915,8 +8915,44 @@ $scope.getFeed();
 
 
  };
+//----------Funcion para determinar el color del pendiente --------------------------
+var colorDanger="#E83720";
+var colorWaring="#E8A820";
+var colorWarningTrans="#ffd699";
+var colorNormal="#088A08";
 
-    $scope.set_color = function (service) {
+$scope.set_color_pendi = function (value) {
+              if (value > 200) {
+                $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorDanger
+                    };
+
+                return $scope.estilo;
+              }
+              else{
+
+                  if(value > 50 && value < 200){
+
+                    $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorWaring
+                    };
+
+                  }else{
+
+                     $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorNormal
+                    };
+                  }
+
+               return $scope.estilo;
+
+              }
+            };
+
+ $scope.set_color = function (service) {
 
 
         if (service.PROCESO=='INSTALACION' && service.TODAY_TRIES >= 5) {
@@ -8957,7 +8993,7 @@ $scope.getFeed();
               }
             };
 
-	$scope.set_color_Cuartil = function (value) {
+$scope.set_color_Cuartil = function (value) {
 
 	//console.log(value);
 
