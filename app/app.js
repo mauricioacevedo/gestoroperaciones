@@ -3590,7 +3590,7 @@ $scope.usuarioFill=function(usuario_id){
 
           function(data){
             $errorDatos=null;
-            $scope.listaUsuarios=data.data;
+            $scope.listaUsuarios=data.data[0];
 
            // console.log($scope.listaUsuarios);
             $scope.cantidad=data.data.length;
