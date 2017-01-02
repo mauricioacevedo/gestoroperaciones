@@ -6921,7 +6921,7 @@ app.controller('ParametrizacionSiebel', function ($scope, $rootScope, $location,
         $scope.listado_parametrizados=[];
         $scope.departamentos = depa;
         $scope.zona1 = zona;
-        console.log("esta es la lista" + depa + "-" + zona);
+        //console.log("esta es la lista" + depa + "-" + zona);
         services.getListadoParametrizados(depa, zona).then(function(data){
         $scope.listado_parametrizados=data.data;
 		//console.log("esta es la lista" + $scope.events);
@@ -7075,7 +7075,7 @@ $rootScope.guardaPara=function(depa, zona, AM, PM) {
         $scope.uploadFile = function(depa, zona){
                var file = $scope.myFile;
                $scope.name = '';
-               console.log('file is ');
+               //console.log('file is ');
                console.dir(file);
             var uploadUrl = 'services/cargar_datosparame';
               fileUpload2.uploadFileToUrl(file, uploadUrl);
