@@ -12035,6 +12035,291 @@ $sqlfenix=
 
          }//-----------------------------------------------PEDIDOS PROGRAMADOS POR USER
 
+	private function csvUsuarios(){
+
+                if($this->get_request_method() != "POST"){
+                        $this->response('',406);
+                }
+
+
+
+
+			$params = json_decode(file_get_contents('php://input'),true);
+            $usuarioIp=$_SERVER['REMOTE_ADDR'];
+			$usuarioPc=gethostbyaddr($usuarioIp);
+			$galleta=json_decode(stripslashes($_COOKIE['logedUser']),true);
+			$galleta=stripslashes($_COOKIE['logedUser']);
+			$galleta= json_decode($galleta);
+			$galleta = json_decode(json_encode($galleta), True);
+			$usuarioid=$galleta['USUARIO_ID'];
+
+			//echo
+
+			$today = date("Y-m-d");
+			$ano=date("Y");
+
+			$filename="Usuarios_$today.csv";
+
+
+            $query="SELECT u.ID, ".
+								  " u.USUARIO_ID, ".
+								  "  u.USUARIO_NOMBRE, ".
+								  "  SUBSTRING_INDEX(u.USUARIO_NOMBRE, ' ', 1) as NOMBRE, ".
+								  "  u.CEDULA_ID, ".
+								  "  u.GRUPO, ".
+								  "  u.CORREO_USUARIO, ".
+								  "  u.CARGO_ID, ".
+								  "  u.SUPERVISOR, ".
+								  "  u.INTERVENTOR, ".
+								  "  u.ESTADO ".
+								  " FROM portalbd.tbl_usuarios u ".
+								  "	where 1=1 ".
+								  " order by u.USUARIO_ID ASC";
+
+						//echo $query;
+
+                        $rst = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+                        if($rst->num_rows > 0){
+
+                        		/*Insert en log
+								$sql_log="insert into emtelco.re_logoperaciones (USUARIO_ID, TIPO_ACTIVIDAD, DESCRIPCION, IDENTIFICADOR, IP, PC) values(UPPER('$usuarioid'),'EXPORTE','EXPORTO CSV_USUARIOS','LOGIN: $usuarioid','$usuarioIp','$usuarioPc')";
+
+								$rlog = $this->connemtel->query($sql_log) or die($this->connemtel->error.__LINE__);
+								//Insert en log*/
+
+                                $result = array();
+                                $fp = fopen("../tmp/$filename", 'w');
+                                //echo $fp;
+                                $columnas=array( 'REGISTROID',
+												 'USUARIO_ID',
+												 'USUARIO_NOMBRE',
+												 'NOMBRE',
+												 'CEDULA_ID',
+												 'GRUPO',
+												 'CORREO_USUARIO',
+												 'CARGO_ID',
+												 'SUPERVISOR',
+												 'INTERVENTOR',
+												 'ESTADO'
+												 );
+
+                                fputcsv($fp, $columnas,',');
+                                //$carlitos=0;
+                                while($row = $rst->fetch_assoc()){
+
+                                		//$row['OBSERVACIONES']=utf8_decode($row['OBSERVACIONES']);
+                                        //$result[] = $row;
+                                        fputcsv($fp, $row);
+                                        //if($carlitos==0){var_dump($row);$carlitos=1;};
+                                }
+
+                                fclose($fp);
+
+                                $this->response($this->json(array($filename)), 200);
+
+
+                        }
+
+
+                        $this->response('',203);        // If no records "No Content" status
+
+		}
+//CRUD para Usuarios
+//
+//Funcion para crear Usuario Nuevo
+	private function crearUsuario(){
+
+
+            if($this->get_request_method() != "POST"){
+                        $this->response('',406);
+                        }
+
+
+
+			$params = json_decode(file_get_contents('php://input'),true);
+            $usuarioIp=$_SERVER['REMOTE_ADDR'];
+			$usuarioPc=gethostbyaddr($usuarioIp);
+			$galleta=json_decode(stripslashes($_COOKIE['logedUser']),true);
+			$galleta=stripslashes($_COOKIE['logedUser']);
+			$galleta= json_decode($galleta);
+			$galleta = json_decode(json_encode($galleta), True);
+			$usuarioid=$galleta['USUARIO_ID'];
+
+
+			//$id=$params['editaInfo']['ID'];
+			$usuarioEdita=$params['editaInfo']['USUARIO_ID'];
+			$usuarionombreEdita=utf8_decode($params['editaInfo']['USUARIO_NOMBRE']);
+			$cedulaidEdita=$params['editaInfo']['CEDULA_ID'];
+			$grupoEdita=$params['editaInfo']['GRUPO'];
+			$equipoidEdita='MANUAL';
+			$correoEdita=$params['editaInfo']['CORREO_USUARIO'];
+			$funcionEdita=$params['editaInfo']['FUNCION'];
+			$turnoEdita=$params['editaInfo']['TURNO'];
+			$cargoidEdita=$params['editaInfo']['CARGO_ID'];
+			$interventorEdita=utf8_decode($params['editaInfo']['INTERVENTOR']);
+			$supervisorEdita=utf8_decode($params['editaInfo']['SUPERVISOR']);
+			$passEdita=$params['editaInfo']['PASSWORD'];
+			$estadoEdita=$params['editaInfo']['ESTADO'];
+			$funcionEdita=$params['editaInfo']['FUNCION'];
+
+			//echo $grupoEdita;
+
+				$sql = " INSERT INTO portalbd.tbl_usuarios ( ".
+					   " USUARIO_ID, ".
+					   " USUARIO_NOMBRE, ".
+					   " CEDULA_ID, ".
+					   " GRUPO, ".
+					   " EQUIPO_ID, ".
+					   " CORREO_USUARIO, ".
+					   " TURNO, ".
+					   " CARGO_ID, ".
+					   " INTERVENTOR, ".
+					   " SUPERVISOR, ".
+					   " PASSWORD, ".
+					   " ESTADO, ".
+					   " FUNCION) values ( ".
+					   " '$usuarioEdita', ".
+					   " '$usuarionombreEdita', ".
+					   " '$cedulaidEdita', ".
+					   " '$grupoEdita', ".
+					   " '$equipoidEdita', ".
+					   " '$correoEdita', ".
+					   " '$turnoEdita', ".
+					   " '$cargoidEdita', ".
+					   " '$interventorEdita', ".
+					   " '$supervisorEdita', ".
+					   "  MD5('$passEdita'), ".
+					   " '$estadoEdita', ".
+					   " '$funcionEdita') ";
+
+					   //echo $sql;
+				 //$rst = $this->connemtel->query($sql) or die($this->connemtel->error.__LINE__);
+
+				$rst = $this->mysqli->query($sql);
+
+				 //echo $rst;
+
+			/*//Insert en log
+			$sql_log="insert into emtelco.re_logoperaciones (USUARIO_ID, TIPO_ACTIVIDAD, DESCRIPCION, IDENTIFICADOR, IP, PC) values(UPPER('$usuarioid'),'CREAR','CREO EL USUARIO','ID: $usuarioEdita','$usuarioIp','$usuarioPc')";
+
+			$rlog = $this->connemtel->query($sql_log) or die($this->connemtel->error.__LINE__); */
+
+
+			$this->response($this->json($error), 200);
+
+
+         }//Funcion para crear Usuario Nuevo
+          //
+//Funcion para Borrar la novedad
+	private function borrarUsuario(){
+
+            if($this->get_request_method() != "POST"){
+                        $this->response('',406);
+                        }
+
+
+
+			$params = json_decode(file_get_contents('php://input'),true);
+            $usuarioIp=$_SERVER['REMOTE_ADDR'];
+			$usuarioPc=gethostbyaddr($usuarioIp);
+			$galleta=json_decode(stripslashes($_COOKIE['logedUser']),true);
+			$galleta=stripslashes($_COOKIE['logedUser']);
+			$galleta= json_decode($galleta);
+			$galleta = json_decode(json_encode($galleta), True);
+			$usuarioid=$galleta['USUARIO_ID'];
+			$id=$params['id'];
+
+
+
+			$sql = "delete from portalbd.tbl_usuarios where ID=$id ";
+
+
+
+			$rst = $this->mysqli->query($sql);
+
+				 //echo $rst;
+
+			/*//Insert en log
+			$sql_log="insert into emtelco.gopd_logoperaciones (USUARIO_ID, TIPO_ACTIVIDAD, DESCRIPCION, IDENTIFICADOR, IP, PC) values(UPPER('$usuarioid'),'ELIMIAR','ELIMINO EL USUARIO','ID: $id','$usuarioIp','$usuarioPc')";
+
+			$rlog = $this->connemtel->query($sql_log) or die($this->connemtel->error.__LINE__);
+			//Insert en log */
+
+			$this->response($this->json($error), 200);
+
+
+         }//Funcion para listar la productividad del grupo
+
+//Funcion para Editar novedades
+	private function editarUsuario(){
+
+
+            if($this->get_request_method() != "POST"){
+                        $this->response('',406);
+                        }
+
+
+			$params = json_decode(file_get_contents('php://input'),true);
+            $usuarioIp=$_SERVER['REMOTE_ADDR'];
+			$usuarioPc=gethostbyaddr($usuarioIp);
+			$galleta=json_decode(stripslashes($_COOKIE['logedUser']),true);
+			$galleta=stripslashes($_COOKIE['logedUser']);
+			$galleta= json_decode($galleta);
+			$galleta = json_decode(json_encode($galleta), True);
+			$usuarioid=$galleta['USUARIO_ID'];
+
+
+			$id=$params['editaInfo']['ID'];
+			$usuarioEdita=$params['editaInfo']['USUARIO_ID'];
+			$usuarionombreEdita=utf8_decode($params['editaInfo']['USUARIO_NOMBRE']);
+			$cedulaidEdita=$params['editaInfo']['CEDULA_ID'];
+			$grupoEdita=$params['editaInfo']['GRUPO'];
+			$equipoidEdita='MANUAL';
+			$correoEdita=$params['editaInfo']['CORREO_USUARIO'];
+			$funcionEdita=$params['editaInfo']['FUNCION'];
+			$turnoEdita=$params['editaInfo']['TURNO'];
+			$cargoidEdita=$params['editaInfo']['CARGO_ID'];
+			$interventorEdita=utf8_decode($params['editaInfo']['INTERVENTOR']);
+			$supervisorEdita=utf8_decode($params['editaInfo']['SUPERVISOR']);
+			$passEdita=$params['editaInfo']['PASSWORD'];
+			$estadoEdita=$params['editaInfo']['ESTADO'];
+			$funcionEdita=$params['editaInfo']['FUNCION'];
+
+
+
+			$sql = " UPDATE portalbd.tbl_usuarios ".
+					" SET USUARIO_ID='$usuarioEdita' ".
+					" , USUARIO_NOMBRE='$usuarionombreEdita' ".
+					" , CEDULA_ID='$cedulaidEdita' ".
+					" , GRUPO='$grupoEdita' ".
+					" , EQUIPO_ID='$equipoidEdita' ".
+					" , CORREO_USUARIO='$correoEdita' ".
+					" , FUNCION='$funcionEdita' ".
+					" , TURNO='$turnoEdita' ".
+					" , CARGO_ID='$cargoidEdita' ".
+					" , SUPERVISOR='$supervisorEdita' ".
+					" , INTERVENTOR='$interventorEdita' ".
+					" , PASSWORD=MD5('$passEdita') ".
+					" , ESTADO='$estadoEdita' ".
+					" where ID='$id' ";
+
+				//	echo $sql;
+
+
+				 $rst = $this->mysqli->query($sql) or die($this->connemtel->error.__LINE__);
+
+				/* //Insert en log
+					$sql_log="insert into emtelco.re_logoperaciones (USUARIO_ID, TIPO_ACTIVIDAD, DESCRIPCION, IDENTIFICADOR, IP, PC) values(UPPER('$usuarioid'),'EDITAR','EDITO EL USUARIO','ID: $id','$usuarioIp','$usuarioPc')";
+
+					$rlog = $this->connemtel->query($sql_log) or die($this->connemtel->error.__LINE__);
+					//Insert en log */
+
+
+			$this->response($this->json($error), 200);
+
+
+         }//Funcion para listar la productividad del grupo
 
 
 

@@ -110,6 +110,23 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 	obj.getGestorConceptos = function(){
 		return $http.get(serviceBase + 'gestorConceptos');
 	}
+
+	obj.expCsvUsuarios = function () {
+     return $http.post(serviceBase + 'csvUsuarios');
+        };
+		//Crud de Usuarios
+	obj.putUsuarioNuevo = function (editaInfo) {
+		 return $http.post(serviceBase + 'crearUsuario',{"editaInfo":editaInfo});
+			};
+
+	obj.editUsuario = function (editaInfo) {
+		 return $http.post(serviceBase + 'editarUsuario',{"editaInfo":editaInfo});
+			};
+
+	obj.deleteUsuario = function (id) {
+		 return $http.post(serviceBase + 'borrarUsuario',{"id":id});
+			};
+//Crud de Usuarios
 // Servicios Globales --------------------
 //---------------------------------------------------------------------------------------------Agendamiento
     obj.getPedidosUserAdelantarAgenda = function(userID){
@@ -3531,6 +3548,7 @@ $scope.topProductivos = function() {
 //------------controlador usuarios -------------------
 
 app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services) {
+
 	var userID=$cookieStore.get('logedUser').login;
         $rootScope.logedUser=$cookieStore.get('logedUser');
         document.getElementById('logout').className="btn btn-md btn-danger";
@@ -3568,108 +3586,281 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
                 $location.path('/');
         };
 
-	$scope.saveUsuario = function (usuar){
-		var date1 = new Date();
-                var year    = date1.getFullYear();
-                var month   = $scope.doubleDigit(date1.getMonth()+1);
-                var day     = $scope.doubleDigit(date1.getDate());
-                var hour    = $scope.doubleDigit(date1.getHours());
-                var minute  = $scope.doubleDigit(date1.getMinutes());
-                var seconds = $scope.doubleDigit(date1.getSeconds());
 
-		services.insertUsuario(usuar).then(function(data){
-			$location.path('/users/');
-			$scope.success="Usuario Creado con exito";
-                	return data.data;
-                });
-	};
 
-        $scope.newUsuario = function (usuar){
+  $scope.errorDatos=null;
+  $scope.fechiniExpoIO="";
+  $scope.fechafiniExpoIO="";
 
-		$scope.usert={};
-        	$scope.usert.EQUIPO_ID="MANUAL";
-        	$scope.usert.ID="";
 
-          	$location.path('/users/usuario');
+$scope.usuarioFill=function(usuario_id){
+            $scope.filtroInput=usuario_id;
+
+
         };
 
 
-        $scope.editUsuario = function (usuar){
+//Obtener listado de usuarios del GEOP
+  $scope.listadoUsuariosGeop=function(usuario_id){
+        $scope.errorDatos=null;
+        services.getListadoUsuarios(usuario_id).then(
 
-                services.editUsuario(usuar).then(function(data){
-                        $location.path('/users/');
+          function(data){
+            $errorDatos=null;
+            $scope.listaUsuarios=data.data[0];
+
+           // console.log($scope.listaUsuarios);
+            $scope.cantidad=data.data.length;
+            $scope.sortType     = 'USUARIO_ID'; // set the default sort type
+            $scope.sortReverse  = false;  // set the default sort order
+            $scope.csvUsers=false;
+            $scope.fechiniExpoIO='';
+
+            return data.data;
+        }
+        , function errorCallback(response) {
+
+            $scope.errorDatos="Usuario no existe.";
+
+           // console.log($scope.errorDatos);
+
+          });
+
+
+  };
+$scope.listadoUsuariosGeop();
+
+//Exportes: Inicio
+$scope.csvUsuarios  = function (filtroInput){
+
+    services.expCsvUsuarios().then(
+
+      function(data){
+
+      //console.log(data.data[0]);
+      window.location.href="tmp/"+data.data[0];
+                       $scope.csvUsers=true;
                         return data.data;
-                });
-        };
 
-
-	$scope.getUsuario = function (userID){
-		$scope.usert={};
-		
-		 services.getUsuario(userID).then(function(data){
-			$rootScope.usert=data.data[0];
-            $location.path('/users/usuario');
-			//$scope.usert=data.data[0];
-		 	return data.data;
-                });
-
-	};
-
-
-        $scope.listado_usuarios=[];
-	$scope.data = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "" }
-
-        var date1 = new Date();
-        var year  = date1.getFullYear();
-        var month = $scope.doubleDigit(date1.getMonth()+1);
-        var day   = $scope.doubleDigit(date1.getDate());
-
-        var fecha_inicio=year+"-"+month+"-"+day;
-        var fecha_fin=year+"-"+month+"-"+day;
-
-        $scope.data.fechaIni=fecha_inicio;
-        $scope.data.fechaFin=fecha_fin;
-
-        //services.getListadotransaccionesNCA(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
-	var pathy=$location.path();
-
-        if(pathy=="/users/"){//esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
-		services.getListadoUsuarios().then(function(data){
-			console.log(data.data[0]);
-                	$scope.listado_usuarios=data.data[0];
-                	$scope.data.totalItems=data.data[1];
-			$scope.usert={};
-                        $scope.usert.EQUIPO_ID="MANUAL";
-                        $scope.usert.ID="";
-			$scope.usert==undefined;
-                	return data.data;
-        	});
-	}
-
-	if(pathy=="/users/usuario"){
-		var date1 = new Date();
-                var year    = date1.getFullYear();
-               	var month   = $scope.doubleDigit(date1.getMonth()+1);
-       	        var day     = $scope.doubleDigit(date1.getDate());
-                var hour    = $scope.doubleDigit(date1.getHours());
-               	var minute  = $scope.doubleDigit(date1.getMinutes());
-       	        var seconds = $scope.doubleDigit(date1.getSeconds());
-		$scope.FECHA_INICIO=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
-		$scope.usert=$rootScope.usert;
-		console.log($scope.usert);
-		if($scope.usert==undefined){
-			$scope.usert={};
-        	        $scope.usert.EQUIPO_ID="MANUAL";
-	                $scope.usert.ID="";
-		}
-		if($scope.usert=={}){
-                        $scope.usert={};
-                        $scope.usert.EQUIPO_ID="MANUAL";
-                        $scope.usert.ID="";
                 }
-		console.log($scope.usert);
-		$rootScope.usert={};
-       }
+      , function errorCallback(response) {
+
+            $scope.errorDatos="No hay datos.";
+            $scope.csvUsers=false;
+
+            //console.log($scope.errorDatos);
+
+          }
+      );
+
+  };
+//Exportes: Fin
+
+
+
+//modales
+//Modal para editar usuarios
+$scope.editarModal=function(data){
+  $scope.errorDatos=null;
+  $scope.idUsuario=data.ID;
+  $scope.UsuarioNom=data.USUARIO_NOMBRE;
+  $scope.editaInfo=data;
+  $scope.TituloModal="Editar Usuario con el ID:";
+  $scope.UsuarioNuevo=false;
+  //$scope.editaInfo.CARGO_ID=data.CARGO_ID;
+};
+//Modal para Crear Usuario Nuevo
+$scope.crearUsuarioModal=function(){
+  $scope.editaInfo={};
+  $scope.errorDatos=null;
+  $scope.idUsuario='';
+  $scope.UsuarioNom='';
+  $scope.TituloModal="Crear Usuario Nuevo.";
+  $scope.UsuarioNuevo=true;
+};
+//Modal para borrar usuarios.
+$scope.borrarModal=function(data){
+  $scope.errorDatos=null;
+    $scope.idUsuario=data.ID;
+    $scope.UsuarioNom=data.USUARIO_NOMBRE;
+   // console.log(data);
+    console.log("ID a borrar: "+$scope.idUsuario);
+};
+
+
+$scope.borrarUsuario=function(id){
+$scope.idBorrar=id;
+services.deleteUsuario($scope.idBorrar).then(
+  function(data){
+    $scope.listadoUsuariosGeop();
+    $scope.errorDatos=null;
+
+
+  }, function errorCallback(response) {
+
+            $scope.errorDatos="No se borro";
+
+            //console.log($scope.errorDatos);
+
+          }
+
+  );
+
+
+};//Borrar Usuario
+
+//Editar Usuario Servicio
+$scope.editarUsuario=function(editaInfo){
+
+        //console.log(editaInfo);
+
+        services.editUsuario(editaInfo).then(
+
+            function(data){
+
+              $scope.listadoUsuariosGeop();
+              $scope.errorDatos=null;
+
+
+        }, function errorCallback(response) {
+
+                    $scope.errorDatos="Error editando";
+
+                    //console.log($scope.errorDatos);
+
+                  });
+};//Editar Usuario Servicio
+
+//Crear Usuario
+$scope.crearUsuario=function(editaInfo){
+
+services.putUsuarioNuevo(editaInfo).then(
+
+    function(data){
+
+      $scope.listadoUsuariosGeop();
+      $scope.errorDatos=null;
+
+        //console.log(novedades);
+
+}, function errorCallback(response) {
+
+            $scope.errorDatos="Campos vacíos. Revise";
+
+           // console.log($scope.errorDatos);
+
+          });
+};//Crear Usuario
+
+$scope.sendEmail = function(data) {
+
+    //console.log(data);
+    $scope.infoEmail=data;
+    var email=data.Correo;
+    //var email="pepitagota@chupaverlga.com";
+    var ingreso=data.Hora_ingreso;
+    var salida=data.Hora_salida;
+    var fecha=data.Fecha;
+    var nombre=data.nombre;
+    var url="http://10.100.82.125/autobots/plugins/img/";
+    var urlpath=window.location.pathname;
+
+
+
+    var body="Hola <b>"+nombre+"</b>, <br> El dia: <b>"+fecha+"</b>  No cerraste, sesion."
+              +"<br><br><br><br><br><br> Este es un correo generado automaticamente.<br> "
+              +"Si tienes alguna duda por favor acercate al puesto de tu supervisor.<br> "
+              +"<hr><br><img src='"+url+"geop_logo.png'>";
+    //var body="<html><b>Hola</b> "+nombre+",\n El dia: "+fecha+" No cerraste, sesion</html>";
+
+    var subject="Gestor Operaciones: No cerro sesion.";
+
+    $scope.url = 'http://10.100.82.125/autobots/plugins/email_sesiones.php';
+
+    $http.post($scope.url, {"name": nombre, "email": email, "message": body,"fecha":fecha,"asunto":subject}).
+              then(function successCallback(response) {
+
+                console.log("Por fin envio");
+                //console.log(response);
+                $notification.success("Enviado", "Correo enviado exitosamente");
+
+                }, function errorCallback(response) {
+
+                    $timeout(function(){
+                                  $notification.error("Error", "No se envió el correo.", $scope.sendEmailMaunal($scope.infoEmail));
+                                }, 700);
+
+                        })
+
+
+ };
+
+$scope.sendEmailMaunal = function(data) {
+
+    //console.log(data);
+
+    var email=data.Correo;
+    var ingreso=data.Hora_ingreso;
+    var salida=data.Hora_salida;
+    var fecha=data.Fecha;
+    var nombre=data.nombre;
+    var body="Hola "+nombre+",\n El dia: "+fecha+" No cerraste, sesion"
+              +"\n\n\n\n\n\n Este es un correo generado automaticamente.\n"
+              +"Si tienes alguna duda por favor acercate al puesto de tu supervisor.";
+    //var body="<html><b>Hola</b> "+nombre+",\n El dia: "+fecha+" No cerraste, sesion</html>";
+
+    var subject="Gestor Operaciones: No cerró sesión.";
+    var link = "mailto:"+ email
+             + "?subject=" + escape(subject)
+             + "&body=" + escape(body);
+             //+ "&body="+body;
+             //+ "&body=" + encodeURIComponent(body);
+             //+ "&HTMLBody="+escape("<html><head><meta http-equiv='content-type' content='text/html; charset=UTF-8'></head><body><b>Gika</b</body></html>");
+
+    window.location.href = link;
+ };
+
+
+$scope.csvUsuarios  = function (filtroInput){
+
+    services.expCsvUsuarios().then(
+
+      function(data){
+
+      //console.log(data.data[0]);
+      window.location.href="tmp/"+data.data[0];
+                       $scope.csvUsers=true;
+                        return data.data;
+
+                }
+      , function errorCallback(response) {
+
+            $scope.errorDatos="No hay datos.";
+            $scope.csvUsers=false;
+
+            //console.log($scope.errorDatos);
+
+          }
+      );
+
+  };
+
+
+$scope.abrirsuk=function(){
+
+var msg = {
+    type: "message",
+    text: "Holi",
+    id:   '1',
+    date: Date.now(),
+    data:{
+      message: "Hello world!"
+    }
+  };
+
+
+}
+
 
 });
 
@@ -6921,7 +7112,7 @@ app.controller('ParametrizacionSiebel', function ($scope, $rootScope, $location,
         $scope.listado_parametrizados=[];
         $scope.departamentos = depa;
         $scope.zona1 = zona;
-        console.log("esta es la lista" + depa + "-" + zona);
+        //console.log("esta es la lista" + depa + "-" + zona);
         services.getListadoParametrizados(depa, zona).then(function(data){
         $scope.listado_parametrizados=data.data;
 		//console.log("esta es la lista" + $scope.events);
@@ -7075,7 +7266,7 @@ $rootScope.guardaPara=function(depa, zona, AM, PM) {
         $scope.uploadFile = function(depa, zona){
                var file = $scope.myFile;
                $scope.name = '';
-               console.log('file is ');
+               //console.log('file is ');
                console.dir(file);
             var uploadUrl = 'services/cargar_datosparame';
               fileUpload2.uploadFileToUrl(file, uploadUrl);
@@ -7515,7 +7706,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 //---------------------fin agendamiento----------------------
 //-------------------------------adelantar agenda----------------------
 
-app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services,$compile) {
+app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,$compile,$timeout, services) {
 
         var userID=$cookieStore.get('logedUser').login;
         $rootScope.logedUser=$cookieStore.get('logedUser');
@@ -7551,7 +7742,7 @@ app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $locati
         services.getDepartamentosAdelantarAgenda().then(function(data){
                         $scope.departamentos={};
                         $scope.departamentos=data.data;
-                        console.log($scope.departamentos);
+                        //console.log($scope.departamentos);
 
                         return data.data;
                 });
@@ -7576,7 +7767,7 @@ app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $locati
        // $scope.getDepartamentos();
 
         $scope.getZonas = function(depa) {
-                console.log(depa);
+                //console.log(depa);
                 $scope.zonas={};
                 $scope.microzonas={};
                
@@ -7589,7 +7780,7 @@ app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $locati
 
 
         $scope.getMicrozonas = function(zona,depa){
-                console.log(zona,depa);
+                //console.log(zona,depa);
                 $scope.microzonas={};
 
                 services.getMicrozonasAdelantarAgenda(zona,depa).then(function(data){
@@ -7602,7 +7793,7 @@ app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $locati
 
         $scope.start = function(depa,zona,microzona,fecha) {
             $scope.refresh='cargando';
-            console.log(depa, zona, microzona, fecha);
+            //console.log(depa, zona, microzona, fecha);
             $scope.pedido_actual=0;
 
             services.getPedidoActualmenteAgendado(depa,zona,microzona,fecha,$rootScope.logedUser.login, $scope.pedido_actual).then(function(data){
@@ -7610,7 +7801,7 @@ app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $locati
                     $scope.peds = data.data[0];
                     $scope.pedido1=data.data[1];
 
-                    console.log(data.data);
+                    //console.log(data.data);
 
                     if(data.data==''||data.data=='No hay registros!'){
                         document.getElementById("warning").innerHTML="No hay Registros";
@@ -7631,7 +7822,7 @@ app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $locati
 
                     $scope.refresh='';
                     $scope.peds[0].FECHA_INICIO=new Date().getTime();
-                    console.log($scope.peds[0]);
+                    //console.log($scope.peds[0]);
                     return data.data;
 
 
@@ -7673,7 +7864,7 @@ app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $locati
                 $scope.error="";
                 var kami=services.buscarPedidoAgendamiento(bpedido,$scope.pedido1,$rootScope.logedUser.login,$rootScope.logedUser.name).then(function(data){
                         $scope.peds = data.data;
-                        console.log($scope.peds);
+                        //console.log($scope.peds);
                         var dat=data.status;
 
                         if(dat==204){
@@ -7810,7 +8001,7 @@ $scope.actualizarLightKPIS();
         $scope.$on(
                 "$destroy",
                         function( event ) {
-                            $timeout.cancel(timer);
+                            //$timeout.cancel(timer);
                             clearInterval($scope.intervalLightKPIS);
           });
 
@@ -7822,7 +8013,7 @@ $scope.savePedido = function(index) {
     
         $scope.pedido={};
 
-        console.log("Un objeto: "+angular.copy($scope.peds[index],$scope.pedido));
+        //console.log("Un objeto: "+angular.copy($scope.peds[index],$scope.pedido));
 
         if($scope.pedido==undefined||$scope.pedido==''||$scope.pedido.length==0){
                   console.log("estoy malo: "+$scope.pedido+"----"+JSON.stringify($scope.peds[index]));
@@ -7876,7 +8067,7 @@ $scope.savePedido = function(index) {
         }
     
     }else{
-        console.log($scope.pedido.FECHA_CITA_REAGENDA+"||||||"+$scope.pedido.JORNADA_CITA);
+        //console.log($scope.pedido.FECHA_CITA_REAGENDA+"||||||"+$scope.pedido.JORNADA_CITA);
         if($scope.pedido.FECHA_CITA_REAGENDA==''|| $scope.pedido.FECHA_CITA_REAGENDA===undefined){
                         alert('Por favor incluir la fecha de la reagenda..');
                         return;
@@ -7940,8 +8131,8 @@ $scope.savePedido = function(index) {
                     $scope.pedido={};
                     $scope.pedidos="";
             } else{
-            console.log("EL PEDIDO QUEDO ASI: ");
-            console.log($scope.pedido);
+            //console.log("EL PEDIDO QUEDO ASI: ");
+            //console.log($scope.pedido);
                     $scope.historico_pedido=$scope.historico_pedido.concat(angular.copy($scope.pedido));
                     $scope.peds.splice(index,1);
                      if($scope.pedidos==""){
@@ -8538,7 +8729,7 @@ $scope.start = function(pedido) {
               
 
 		if($scope.departamento == undefined||$scope.departamento==''||$scope.departamento.DEPARTAMENT == undefined || $scope.departamento.DEPARTAMENT==''){
-			console.log($scope.departamento);
+			//console.log($scope.departamento);
 			alert("Seleccione un departamento.");
 			return;
 		}
@@ -8704,7 +8895,7 @@ $scope.start = function(pedido) {
 
 
    $scope.savePedido = function(index) {
-    console.log ($scope.pedido);
+    //console.log ($scope.pedido);
 
         var loader = document.getElementById("class"+index);
         loader.className='glyphicon glyphicon-refresh fa-spin';
@@ -8715,7 +8906,7 @@ $scope.start = function(pedido) {
 
         if($scope.pedido==undefined||$scope.pedido==''||$scope.pedido.length==0){
                   console.log("estoy malo: "+$scope.pedido+"----"+JSON.stringify($scope.peds[index]));
-		console.log(Object.prototype.toString.call($scope.peds[index])+" == "+Object.prototype.toString.call($scope.pedido));
+		//console.log(Object.prototype.toString.call($scope.peds[index])+" == "+Object.prototype.toString.call($scope.pedido));
         }else{
                   console.log($scope.pedido);
         }
@@ -8736,7 +8927,7 @@ $scope.start = function(pedido) {
     if(document.getElementById('programacion')==null){
         $scope.pedido.PROGRAMACION="";
 
-        console.log($scope.pedido.PROGRAMACION);
+        //console.log($scope.pedido.PROGRAMACION);
     }else{
         $scope.pedido.PROGRAMACION=document.getElementById('programacion').value;
         
@@ -8774,7 +8965,7 @@ $scope.start = function(pedido) {
     }
 
     if($scope.pedido.NOVEDAD=='AGENDADO' || $scope.pedido.NOVEDAD=='PENDIENTE POR OTRO CONCEPTO' || $scope.pedido.NOVEDAD=='NO DESEA EL SERVICIO' || $scope.pedido.NOVEDAD=='YA ESTA CUMPLIDO' ){
-        console.log($scope.pedido.NOVEDAD)
+        //console.log($scope.pedido.NOVEDAD)
         var regexp = /^([0-9]{2,20})$/;
 
         if(regexp.test($scope.pedido.IDLLAMADA)==false || $scope.pedido.IDLLAMADA==undefined ){
@@ -8836,8 +9027,8 @@ $scope.start = function(pedido) {
                     $scope.pedido={};
                     $scope.pedidos="";
             } else{
-		     console.log("EL PEDIDO QUEDO ASI: ");
-             console.log($scope.pedido);
+		    // console.log("EL PEDIDO QUEDO ASI: ");
+            // console.log($scope.pedido);
                     $scope.historico_pedido=$scope.historico_pedido.concat(angular.copy($scope.pedido));
                     $scope.peds.splice(index,1);
                      if($scope.pedidos==""){
@@ -8915,8 +9106,44 @@ $scope.getFeed();
 
 
  };
+//----------Funcion para determinar el color del pendiente --------------------------
+var colorDanger="#E83720";
+var colorWaring="#E8A820";
+var colorWarningTrans="#ffd699";
+var colorNormal="#088A08";
 
-    $scope.set_color = function (service) {
+$scope.set_color_pendi = function (value) {
+              if (value > 200) {
+                $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorDanger
+                    };
+
+                return $scope.estilo;
+              }
+              else{
+
+                  if(value > 50 && value < 200){
+
+                    $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorWaring
+                    };
+
+                  }else{
+
+                     $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorNormal
+                    };
+                  }
+
+               return $scope.estilo;
+
+              }
+            };
+
+ $scope.set_color = function (service) {
 
 
         if (service.PROCESO=='INSTALACION' && service.TODAY_TRIES >= 5) {
@@ -8957,7 +9184,7 @@ $scope.getFeed();
               }
             };
 
-	$scope.set_color_Cuartil = function (value) {
+$scope.set_color_Cuartil = function (value) {
 
 	//console.log(value);
 
@@ -9004,7 +9231,7 @@ $scope.getFeed();
 
 });
 
-app.controller('AuditoriaCtrl',function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore, services,$compile) {
+app.controller('AuditoriaCtrl',function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,$compile,$timeout,services) {
     
       var userID=$cookieStore.get('logedUser').login;
       $rootScope.logedUser=$cookieStore.get('logedUser');
@@ -9060,7 +9287,7 @@ app.controller('AuditoriaCtrl',function ($scope, $rootScope, $location, $routePa
       $scope.microzonas={};
                 services.getDepartamentosPendientesReagendamiento().then(function(data){
          $scope.departamentos=data.data;
-         console.log($scope.departamentos);
+         //console.log($scope.departamentos);
 
                         return data.data;
                 });
@@ -9516,7 +9743,7 @@ services.buscarParametro('PRIORIDAD_DEMEPEDIDO_AGENDAMIENTO').then(function(data
             $rootScope.totalNegocioAgendamiento=parseInt($rootScope.totalNegocioAgendamiento)+parseInt(counter);
                 }
 
-                     console.log($rootScope.totalesDepartamento);
+                     //console.log($rootScope.totalesDepartamento);
                            
          $rootScope.nagendamientostyle={};
 
@@ -9539,7 +9766,7 @@ $scope.actualizarLightKPIS();
         $scope.$on(
                 "$destroy",
                         function( event ) {
-                            $timeout.cancel(timer);
+                            //$timeout.cancel(timer);
                             clearInterval($scope.intervalLightKPIS);
           });
 
@@ -10300,7 +10527,8 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                         var seconds = $scope.doubleDigit(date1.getSeconds());
 
                         $scope.lastUpdate=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
-                        $scope.totalAD= data.data[1]
+                        $scope.totalAD= data.data[1];
+						$scope.listaPendientesSiebel=data.data[0];
 
                         return data.data;
              });
@@ -10342,6 +10570,129 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                         data: []
 
         };
+
+	//----------Funcion para determinar el color del pendiente --------------------------
+var colorDanger="#E83720";
+var colorWaring="#E8A820";
+var colorWarningTrans="#ffd699";
+var colorNormal="#088A08";
+
+$scope.set_color = function (value) {
+              if (value > 200) {
+                $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorDanger
+                    };
+
+                return $scope.estilo;
+              }
+              else{
+
+                  if(value > 50 && value < 200){
+
+                    $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorWaring
+                    };
+
+                  }else{
+
+                     $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorNormal
+                    };
+                  }
+
+               return $scope.estilo;
+
+              }
+            };
+
+$scope.set_color_Cuartil = function (value) {
+
+	//console.log(value);
+
+              if (value >= 4) {
+                $scope.estiloCuartil={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorDanger
+                    };
+
+                return $scope.estiloCuartil;
+              }
+
+
+              if(value >= 3 && value < 4){
+
+                    $scope.estiloCuartil={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorWaring
+
+                    };
+				  return $scope.estiloCuartil;
+
+                  }
+
+               if(value >= 2 && value < 3){
+
+					$scope.estiloCuartil={
+					  "list-style-position":"inside",
+					  "border-left": "5px solid "+colorWarningTrans
+					};
+				   return $scope.estiloCuartil;
+                  	}
+
+		if(value >= 1 && value < 2){
+
+					$scope.estiloCuartil={
+					  "list-style-position":"inside",
+					  "border-left": "5px solid "+colorNormal
+					};
+				   return $scope.estiloCuartil;
+                  	}
+
+};
+
+
+// Feed --------------------------------------------------------------------------
+
+	$scope.intervalFeed = setInterval(function(){
+                $scope.getFeed();
+                $scope.getLoginFeed();
+           },20000);
+
+
+	$scope.getFeed = function (){
+		services.getFeed().then(function(data){
+                        $scope.listado_feed=data.data[0];
+			$scope.total_feed=data.data[1];
+                        return data.data;
+                });
+
+	}
+
+	$scope.$on(
+       		"$destroy",
+                        function( event ) {
+				clearInterval($scope.intervalFeed);
+                        }
+        );
+
+
+
+    $scope.getLoginFeed = function (){
+        services.getLoginFeed().then(function(data){
+                        $scope.login_feed=data.data[0];
+                        $scope.total_feed=data.data[1];
+                        return data.data;
+                });
+    }
+
+	$scope.getFeed();
+
+//  -------------------------------------------------------------------------- Feed
+
+
                  
 });
 
@@ -13478,7 +13829,7 @@ app.config(['$routeProvider',
 
         .when('/users/', {
          title: 'Gestion Usuarios',
-         templateUrl: 'partials/users.html',
+         templateUrl: 'partials/administracion/listado_usuarios.html',
          controller: 'UsersCtrl'
       })
 
