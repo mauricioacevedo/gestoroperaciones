@@ -58,10 +58,9 @@
 
 					<table class = "table small table-striped table-condensed">
 						<thead>
-					      <tr >
+					      <tr>
 					      	 <th>
-					      	 	<a href="" ng-click="sortType = 'parseInt(ID)'; sortReverse = !sortReverse"">ID <span ng-show="sortType == 'parseInt(ID)' && !sortReverse" class="fa fa-caret-down"></span>
-        						<span ng-show="sortType == 'parseInt(ID)' && sortReverse" class="fa fa-caret-up"></span></a></th>
+					      	 	<a href="" ng-click="sortType = 'ID'; sortReverse = !sortReverse">ID <span ng-show="sortType== 'ID' && !sortReverse" class="fa fa-caret-down"></span><span ng-show="sortType == 'ID' && sortReverse" class="fa fa-caret-up"></span></a></th>
 					      	 <th>
 					      	 	<a href="" ng-click="sortType = 'USUARIO_ID'; sortReverse = !sortReverse"">USUARIO_ID <span ng-show="sortType == 'USUARIO_ID' && !sortReverse" class="fa fa-caret-down"></span>
         						<span ng-show="sortType == 'USUARIO_ID' && sortReverse" class="fa fa-caret-up"></span></a></th>
@@ -81,14 +80,14 @@
 					    </thead>
 					    <tbody>
 					      <tr ng-repeat="data in listaUsuarios  | orderBy:sortType:sortReverse | filter:filtroInput as results" class="animated bounceInRight">
-					      	 <td>{{data.ID}}</td>
-					      	 <td>{{data.USUARIO_ID}}</td>
-					      	 <td>{{data.USUARIO_NOMBRE}}</td>
-					         <td>{{data.CEDULA_ID}}</td>
-					         <td>{{data.GRUPO}}</td>
-					         <td>{{data.CORREO_USUARIO}}</td>
-					         <td><span ng-class="{'1': 'label label-success','4': 'label label-primary','5': 'label label-primary','6': 'label label-danger','7': 'label label-danger','8': 'label label-danger','9': 'label label-danger','10': 'label label-danger'}[data.CARGO_ID]">{{data.CARGO_ID}}</span></td>
-					         <td><span ng-class="{'ACTIVO': 'label label-success','INACTIVO': 'label label-default'}[data.ESTADO]">{{data.ESTADO}}</span></td>
+					      	 <td><span class="small">{{data.ID}}</span></td>
+					      	 <td><span class="small">{{data.USUARIO_ID}}</span></td>
+					      	 <td><span class="small">{{data.USUARIO_NOMBRE}}</span></td>
+					         <td><span class="small">{{data.CEDULA_ID}}</span></td>
+					         <td><span class="small">{{data.GRUPO}}</span></td>
+					         <td><span class="small">{{data.CORREO_USUARIO}}</span></td>
+					         <td><span class="small" ng-class="{'1': 'label label-success','4': 'label label-primary','5': 'label label-primary','6': 'label label-danger','7': 'label label-danger','8': 'label label-danger','9': 'label label-danger','10': 'label label-danger'}[data.CARGO_ID]">{{data.CARGO_ID}}</span></td>
+					         <td><span class="small" ng-class="{'ACTIVO': 'label label-success','INACTIVO': 'label label-default'}[data.ESTADO]">{{data.ESTADO}}</span></td>
 						     <td><button type="button" class="btn btn-default btn-circle-xss" ng-click="editarModal(data)" data-toggle="modal" data-target="#editarModal" data-backdrop="static" ng-disabled="loading" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="Editar: {{data.USUARIO_ID}}">
 									<i class="fa fa-pencil-square-o"  aria-hidden="true"></i>
 								</button>
