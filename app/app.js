@@ -13448,6 +13448,13 @@ app.config(['$routeProvider',
          title: 'Pendientes Activación',
          templateUrl: 'partials/activacion/pendientes_activacion.html',
          controller: 'ActivacionCtrl'
+
+	 })
+
+	.when('/historico_activacion/', {
+         title: 'Historico Activación',
+         templateUrl: 'partials/activacion/historico_activacion.html',
+         controller: 'ActivacionCtrl'
     })
 //-----------------------------------------------------------------FIN ACTIVACION
 
