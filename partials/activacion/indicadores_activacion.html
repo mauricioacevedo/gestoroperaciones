@@ -18,18 +18,18 @@
 
 				<div class = "panel panel-default">
 					<div class = "panel-heading nav navbar-default">
-						<b><button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="actualizarGrafica()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
+						<b><button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="actualizarGraficaAgendamiento()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
 									<i class="fa fa-refresh"  aria-hidden="true"></i>
 								</button> Pendientes por Conceptos</b>
 					</div>
-					<div class = "panel-heading nav navbar-default">
+					<div class = "panel-body fixed-panel">
 						<ul class="list-group small">
 							<span class="small">
-							<a href="" ng-repeat="data in pendientesConceptos as Pendis" class="list-group-item animated slideInRight" ng-style="set_color(parseInt(data.value))">{{data.label}}: <span class = "badge ">{{data.value}}</span></a></span>
+							<a href="" ng-repeat="data in tbl_fechacita as Pendis" class="list-group-item animated slideInRight" ng-style="set_color(parseInt(data.value))">{{data.CONCEPTOS}}: <span class = "badge ">{{data.CANTIDAD}}</span></a></span>
 						</ul>
 					</div>
 					<div class="panel-footer clearfix">
-						Total: <span class="label label-success">{{Pendis|sumarNum:'value'}}</span>
+						Total: <span class="label label-success">{{totalAGEN}}</span>
 					</div>
 				</div>
 			</div>
@@ -41,24 +41,25 @@
 					<div class = "panel-heading nav navbar-default ">
 						<div class="row">
 							<div class="col-md-12">
-							<b>Productividad</b></div></div>
+							<b>Productividad Contact</b></div></div>
 						<div class="row">
 							<div class="col-md-12">
-
-							<select id="grupo" name="grupo" class="btn btn-default btn-xs grupo-select" ng-model="grupo.Cuartil" ng-options="g for g in grupos.values"
-									ng-change="topProductivos()">
-							<option value="" disabled>Grupo</option>
+							<select id="grupo" name="grupo" class="btn btn-default btn-xs grupo-select" ng-model="grupo.Cuartil" ng-change="topProductivos()">
+								<option value="" disabled>---Grupo---</option>
+								<option value="INSTALACION">INSTALACION</option>
+								<option value="REPARACION" >REPARACION</option>
 							</select>
 							<button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="topProductivos()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
 									<i class="fa fa-refresh"  aria-hidden="true"></i>
 								</button></div>
-					</div></div>
-					<div class = "panel-heading nav navbar-default">
+						</div></div>
+					<div class = "panel-body fixed-panel">
 						<ul class="list-group small">
 							<span class="small">
 							<a href="" ng-repeat="datar in listaProductivos as ranks" class="list-group-item animated slideInRight" ng-style="set_color_Cuartil(parseInt(datar.CUARTIL))">{{datar.RANK}} - <span ng-class= "{'on':'label label-info','off':'label label-danger'}[datar.ESTADO]">{{datar.ESTADO}}</span> - {{datar.USUARIO_ID}}  <span class = "badge ">{{datar.PEDIDOS}}</span></a>
 							</span>
 						</ul>
+						<!--<div class="jumbotron"><h4>Modulo no disponible</h4></div>-->
 					</div>
 					<div class="panel-footer clearfix">
 						Usuarios: <span class="label label-success">{{ranks.length}}</span>
@@ -69,8 +70,6 @@
 
 			</div>
 	</div><!--Colmd3 -->
-
-
 
 		<div class="col-md-6"><!--Colmd6 -->
 		<div class="row">
@@ -103,39 +102,60 @@
 							  <tr>
 								<th >Grupo</th>
 								<th >Ultima Edicion</th>
-								<th >Usuario</th>
 								<th >Editar</th>
 							  </tr>
 							  <tr>
-								<td >Asignaciones</td>
+								<td >Instalaciones</td>
 								<td ><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
-								<td >{{UsuarioParametro}}</td>
 								<td >
-										<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevo" style="width:auto;">
-											<option value="FECHA_CITA">FECHA CITA</option>
-											<option value="FECHA_ESTADO">FECHA ESTADO</option>
-											<option value="FECHA_INGRESO">FECHA INGRESO</option>
-										</select>
-										<button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO',ordenamientoDemepedidoNuevo);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-									<button type="button" class="btn btn-default btn-circle-xs" ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO')"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
-										<i class="fa fa-refresh"  aria-hidden="true"></i>
-									</button>
+									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevo">
+										<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
+										<option value="FECHA_ESTADO">FECHA ESTADO</option>
+										<option value="FECHA_INGRESO">FECHA INGRESO</option>
+									</select>
+									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="prioridadDemepedidoNuevo" style="width:100px;">
+									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
+											<option value="DESC">DESC</option>
+											<option value="ASC">ASC</option>
+									</select>
+									<button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO',ordenamientoDemepedidoNuevo);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
 								  </td>
 							  </tr>
 							  <tr>
-								<td >Reconfiguracion</td>
-								<td ><font color='blue'>{{ordenamientoDemepedidoUpdateReconfiguracion}}</font></td>
-								<td >{{UsuarioParametroReconfiguracion}}</td>
+								<td >Reparaciones</td>
+								<td ><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
 								<td >
-                                <select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoReconfiguracion" style="width:auto;">
-                                    <option value="FECHA_CITA">FECHA CITA</option>
-                                    <option value="FECHA_ESTADO">FECHA ESTADO</option>
-                                    <option value="FECHA_INGRESO">FECHA INGRESO</option>
-                                </select>
-                                <button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION',ordenamientoDemepedidoReconfiguracion);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-								  <button type="button" class="btn btn-default btn-circle-xs" ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION')"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
-										<i class="fa fa-refresh"  aria-hidden="true"></i>
-									</button></td>
+									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevoR">
+									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
+									<option value="FECHA_ESTADO">FECHA ESTADO</option>
+									<option value="FECHA_INGRESO">FECHA INGRESO</option>
+								</select>
+
+									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="prioridadDemepedidoNuevoR" style="width:100px;">
+									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
+											<option value="DESC">DESC</option>
+											<option value="ASC">ASC</option>
+								</select>
+                                <button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_REPA',ordenamientoDemepedidoNuevoR);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+								  </td>
+							  </tr>
+							 <tr>
+								<td >Edatel</td>
+								<td ><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
+								<td >
+									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevoED">
+									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
+									<option value="FECHA_ESTADO">FECHA ESTADO</option>
+									<option value="FECHA_INGRESO">FECHA INGRESO</option>
+								</select>
+
+									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="prioridadDemepedidoNuevoED" style="width:100px;">
+									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
+											<option value="DESC">DESC</option>
+											<option value="ASC">ASC</option>
+								</select>
+								<button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_EDATEL',ordenamientoDemepedidoNuevoED);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+								  </td>
 							  </tr>
 						</table>
 
@@ -188,7 +208,7 @@
 					renderAt= "chart-container"
 					width= "500"
 					height= "300"
-					datasource="{{myDataSource}}">
+					datasource="{{myDataSourceAgendamiento}}">
 				</div><!--Fusioncharts -->
 
 			</div>
@@ -216,7 +236,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<ul class="nav navbar-nav navbar-left">
-								<b>Pendientes Por Fecha Cita</b>
+								<b>Pendientes según Gestión</b>
 								<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
 
 							</ul>
@@ -245,46 +265,42 @@
 
 						</div>
 				</div>
-				<div class="panel-body ">
+				<div class="panel-body fixed-panel">
 
 						<table class="table small table-striped table-hover table-bordered table-condensed">
 							<thead>
-								<th width="82">Concepto</th>
+								<th>Concepto</th>
 								<th>TOTAL</th>
-								<th>Ayer</th>
-								<th>Hoy</th>
-								<th>Manana</th>
-								<th>Pasado Manana</th>
-								<th>Mas de 3 dias</th>
-								<th>Sin Fecha Cita</th>
-								<th>Viejos</th>
-							</thead>
-							<tbody>
-								<tr ng-repeat="data in listado_conceptosfc | filter:filtroInput as results">
-									<td><!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->{{data.CONCEPTO_ID}}</span></td>
-									<td ng-init="listado_conceptosfc.totales = parseInt(listado_conceptosfc.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
-									<td ng-init="listado_conceptosfc.total02 = parseInt(listado_conceptosfc.total02) + parseInt(data.Ayer)">{{data.Ayer}}</td>
-									<td ng-init="listado_conceptosfc.total34 = parseInt(listado_conceptosfc.total34) + parseInt(data.Hoy)">{{data.Hoy}}</td>
-									<td ng-init="listado_conceptosfc.total56 = parseInt(listado_conceptosfc.total56) + parseInt(data.Manana)">{{data.Manana}}</td>
-									<td ng-init="listado_conceptosfc.total712 = parseInt(listado_conceptosfc.total712) + parseInt(data.Pasado_Manana)">{{data.Pasado_Manana}}</td>
-									<td ng-init="listado_conceptosfc.total1324 = parseInt(listado_conceptosfc.total1324) + parseInt(data.Mas_de_3_dias)">{{data.Mas_de_3_dias}}</td>
-									<td ng-init="listado_conceptosfc.total2548 = parseInt(listado_conceptosfc.total2548) + parseInt(data.Sin_Fecha_Cita)">{{data.Sin_Fecha_Cita}}</td>
-									<td ng-init="listado_conceptosfc.totalmas48 = parseInt(listado_conceptosfc.totalmas48) + parseInt(data.Viejos)">{{data.Viejos}}</td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr class="info">
-									<th>TOTALES</th>
-									<th>{{listado_conceptosfc.totales}}</th>
-									<th>{{listado_conceptosfc.total02}}</th>
-									<th>{{listado_conceptosfc.total34}}</th>
-									<th>{{listado_conceptosfc.total56}}</th>
-									<th>{{listado_conceptosfc.total712}}</th>
-									<th>{{listado_conceptosfc.total1324}}</th>
-									<th>{{listado_conceptosfc.total2548}}</th>
-									<th>{{listado_conceptosfc.totalmas48}}</th>
-								</tr>
-							</tfoot>
+								<th>Migracion</th>
+								<th>Gestionables</th>
+								<th>Cita Vencida</th>
+								<th>Sin Agenda</th>
+								<th>Agendados</th>
+                               </thead>
+                               <tbody>
+                                   <tr ng-repeat="data in tbl_fechacita | filter:filtroInput">
+                                    <td><!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->{{data.CONCEPTOS}}</span></td>
+                                    <td ng-init="tbl_fechacita.totales = parseInt(tbl_fechacita.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
+                                    <td ng-init="tbl_fechacita.total02 = parseInt(tbl_fechacita.total02) + parseInt(data.Migracion)">{{data.Migracion}}</td>
+                                     <td ng-init="tbl_fechacita.total34 = parseInt(tbl_fechacita.total34) + parseInt(data.Gestionables)">{{data.Gestionables}}</td>
+                                     <td ng-init="tbl_fechacita.total56 = parseInt(tbl_fechacita.total56) + parseInt(data.Cita_Vencida)">{{data.Cita_Vencida}}</td>
+                                    <td ng-init="tbl_fechacita.total712 = parseInt(tbl_fechacita.total712) + parseInt(data.Sin_Agenda)">{{data.Sin_Agenda}}</td>
+                                    <td ng-init="tbl_fechacita.total1324 = parseInt(tbl_fechacita.total1324) + parseInt(data.Agendados)">{{data.Agendados}}</td>
+
+                                        </tr>
+                                </tbody>
+                                <tfoot>
+									<tr class="info">
+											<th>TOTALES</th>
+											<th>{{tbl_fechacita.totales}}</th>
+											<th>{{tbl_fechacita.total02}}</th>
+											<th>{{tbl_fechacita.total34}}</th>
+											<th>{{tbl_fechacita.total56}}</th>
+											<th>{{tbl_fechacita.total712}}</th>
+											<th>{{tbl_fechacita.total1324}}</th>
+									</tr>
+
+                                </tfoot>
 						</table>
 
 				</div>
@@ -293,8 +309,7 @@
 					<div class="col-md-8">
 
 						<ul class="nav navbar-nav navbar-left">
-
-
+							Total: <span class="label label-success">{{totalAGEN}}</span>
 						</ul>
 
 					</div>
@@ -306,11 +321,11 @@
 				</div>
 			</div>
 
-		<div class="col-md-12">
+		<div class="col-md-12" ng-hide="true">
 			<div class = "panel panel-default">
 				<div class = "panel-heading nav navbar-default">
 
-					<div class="row">
+					<div class="row" >
 						<div class="col-md-6">
 							<ul class="nav navbar-nav navbar-left">
 								<b>Pendientes Por ANS</b>
@@ -415,45 +430,35 @@
 					<div class="row">
 						<div class="col-md-6">
 						<b>Chat</b></div>
-
 						<div class="col-md-6">
-
 							<span class="pull-right">
-								<b><button type="button" class="btn btn-primary btn-xs" popover data-placement="left"> Online: <span class="badge">{{userOnLine}}</span>
-									<infobox data-placement="left">
-								 <!--<infobox-title>Usuarios:</infobox-title>-->
-								 <infobox-body>
-
-									<div ng-repeat="user in objCurrentUsers as statusObj">
-
-										<span class="small" ng-class="{'true':'text-success','false':'text-muted'}[user.estado]"><i  class="fa fa-user-circle" aria-hidden="true"></i> {{user.usuario}}</span>
-
-									</div>
-								</infobox-body>
-							 </infobox></button></b>
-
+								<b><button type="button" class="btn btn-primary btn-xs">Online: <span class="badge">{{userOnLine}}</span></button></b>
 							</span>
 						</div>
 					</div>
 				</div>
-				<div class = "panel-body fixed-panel" schroll-bottom="msgobj">
-					<ul class="list-group small">
-						<a href="" ng-repeat="msg in lista as msgobj" class="list-group-item animated slideInRight"><strong><i  class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;{{msg.user}}:</strong>&nbsp; <span ng-bind-html="msg.mensaje | smilies"></span><br><span class="small">{{msg.log | timeago}}</span> </a>
-					</ul>
+				<div class = "panel-body fixed-panel" schroll-bottom="lista">
+					<!--<ul class="list-group small">
+						<a href="" ng-repeat="msg in lista" class="list-group-item animated slideInRight"><strong><i ng-style="userStatus()" class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;{{msg.user}}:</strong>&nbsp; {{msg.mensaje}} <br><span class="small">{{msg.log | timeago}}</span> </a>
+					</ul>-->
+					<div class="jumbotron"><h4>Modulo no disponible</h4></div>
 				</div>
-				<div class="panel-footer clearfix text-center">
-						<div class="btn-group btn-group-xs">
-							<input class="btn btn-default " type="text" ng-model="chatxt" on-key-enter="agregar()" ng-disabled="loading" placeholder="Mensaje...">
-							<button type="button" class="btn btn-primary btn-cuadro-xs"
-								smilies-selector="chatxt"
-								smilies-placement="left"
-								></button>
-							<button type="button" class="btn btn-primary" ng-click="agregar()">
-								<i class="fa fa-paper-plane" aria-hidden="true"> </i>
-							</button>
+				<div class="panel-footer clearfix">
+
+						<div class="row" ng-hide="true">
+							<div class="col-xs-12 col-md-12">
+
+										<div class="btn-group btn-group-xs" >
+											<input   class="btn btn-default" type="text" ng-model="chatxt" ng-trim="true" on-key-enter="agregar()" ng-disabled="loading" placeholder="Escriba su mensaje"/>
+											<button type="button" class="btn btn-primary" ng-click="agregar()" >
+												<i class="fa fa-paper-plane" aria-hidden="true"> </i>
+											</button>
+										</div>
+
+							</div>
 						</div>
 
-					</div>
+				</div>
 			</div>
 
 		</div>
@@ -504,7 +509,11 @@
   <li class="active">{{title}}</li>
 </ol>
 <br><br><br><br><br><br>
-
+<script language='javascript'>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+})
+</script>
 <!-- Flecha Arriba Estilo, dentro del head-->
 <script>
 $(document).ready(function(){
@@ -526,7 +535,7 @@ $(document).ready(function(){
 
 });
 </script>
-
 <!-- Flecha Arriba Estilo, dentro del head-->
+
 
 
