@@ -13554,7 +13554,7 @@ app.config(['$routeProvider',
 
     .when('/scheduling/', {
          title: 'Alarmados Proactivos',
-         templateUrl: 'partials/scheduling.html',
+         templateUrl: 'partials/agendamiento/alarmados_proactivos.html',
          controller: 'SchedulingCtrl'
       })
 

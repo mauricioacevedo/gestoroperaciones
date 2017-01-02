@@ -23,13 +23,13 @@
                     </div>
                     <div class="row-fluid"><!--Div Contenedor de botones y titulo -->
                         <div class="span12"> <!--Div Titulo -->
-                            <center><h3>ALARMADOS PROACTIVOS</h3></center><br>				
+                            <center><h3>ALARMADOS PROACTIVOS</h3></center><br>
                         </div><!--Div Titulo -->
                         <div class="row-fluid">
                             <div class="col-sm-16"><!--Div Boton Nuevo Usuario -->
                                 <button class="btn btn-success btn-sm" value="exportar!" ng-click="csvScheduling();"><span class="glyphicon glyphicon-download-alt"></span> Exportar Todos</button>
                                 <button class="btn btn-success btn-sm" value="exportar!" ng-click="csvSchedulingPre();"><span class="glyphicon glyphicon-download-alt"></span> Exportar Pre</button>
-                                <button class="btn btn-success btn-sm" value="exportar!" ng-click="csvSchedulingPedidos();"><span class="glyphicon glyphicon-download-alt"></span> Exportar Pedidos</button>                               
+                                <button class="btn btn-success btn-sm" value="exportar!" ng-click="csvSchedulingPedidos();"><span class="glyphicon glyphicon-download-alt"></span> Exportar Pedidos</button>
                             </div>
                         </div>
                     </div><!--Div Contenedor de botones y titulo -->
@@ -44,7 +44,7 @@
             </td>
              <td width="20%" align="left">
                 Total de Pedidos: <b>{{totalSchedulingPedidos}}</b>
-            </td> 
+            </td>
             <td width="40%" align="right">
                 <pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged('listaRegistros')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
             </td>
@@ -60,7 +60,7 @@
                                 <th>TIPO SOLICITUD</th>
                                 <th>FECHA CITA</th>
                                 <th>DESCRIPCION CONCEPTO</th>
-                                <th>DEPARTAMENTO</th> 
+                                <th>DEPARTAMENTO</th>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="data in listaScheduling">
