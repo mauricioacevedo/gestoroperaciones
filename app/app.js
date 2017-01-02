@@ -13462,8 +13462,6 @@ app.config(['$routeProvider',
          templateUrl: 'partials/activacion/historico_activacion.html',
          controller: 'ActivacionCtrl'
     })
-//-----------------------------------------------------------------FIN ACTIVACION
-
 
       .when('/docuactivacion/', {
          title: 'documentacionactivacion',
@@ -13471,14 +13469,8 @@ app.config(['$routeProvider',
          controller: 'DocuActivacion'
       })
 
-      .when('/activacion/', {
-         title: 'Indicadores Activación',
-         templateUrl: 'partials/activacion.html',
-         controller: 'ActivacionCtrl'
-    })
+//-----------------------------------------------------------------FIN ACTIVACION
 
-
-//-----------------------------------------------------------------FIN ACTIVACION----
 
    // ------ADMINISTRACION ------------------------------------------
 
