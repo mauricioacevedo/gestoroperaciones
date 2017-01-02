@@ -13637,7 +13637,7 @@ app.config(['$routeProvider',
 
         .when('/users/', {
          title: 'Gestion Usuarios',
-         templateUrl: 'partials/users.html',
+         templateUrl: 'partials/administracion/listado_usuarios.html',
          controller: 'UsersCtrl'
       })
 

@@ -41,18 +41,18 @@
                                        </div>
                                     </div>
                                 </div>
-                                    
+
                         </div>
-                                        
-                            
-                        
-			<br></br>	
+
+
+
+			<br></br>
                         <div class="row-fluid">
                             <p>Total de Usuarios: <b>{{data.totalItems}} </b></p>
                         </div>
                         <div class="row-fluid"><!-- Div de Datos -->
                             <table align="center" width="100%"><!-- Tabla Paginacion -->
-                            <tr> 
+                            <tr>
                             <td width="33%" align="right">
                                 <!--pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged()" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination-->
                             </td>
@@ -108,10 +108,10 @@
   $('[data-toggle="tooltip"]').tooltip();
 })
 </script>
-<!-- Flecha Arriba Estilo, dentro del head--> 
-<script>            
+<!-- Flecha Arriba Estilo, dentro del head-->
+<script>
 $(document).ready(function(){
-    
+
     //Check to see if the window is top if not then display button
     $(window).scroll(function(){
         if ($(this).scrollTop() > 100) {
@@ -120,14 +120,14 @@ $(document).ready(function(){
             $('.scrollToTop').fadeOut();
         }
     });
-    
+
     //Click event to scroll to top
     $('.scrollToTop').click(function(){
         $('html, body').animate({scrollTop : 0},800);
         return false;
     });
-    
+
 });
 </script>
-<!-- Flecha Arriba Estilo, dentro del head--> 
+<!-- Flecha Arriba Estilo, dentro del head-->
 
