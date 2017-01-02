@@ -13142,7 +13142,7 @@ app.config(['$routeProvider',
         controller: 'listCtrl'
       })
 
-	// ASIGNACIONES ------------------------------------------
+	//-------- ASIGNACIONES ------------------------------------------
       .when('/edit-customer/:customerID', {
         title: 'Edit Customers',
         templateUrl: 'partials/edit-customer.html',
@@ -13300,9 +13300,14 @@ app.config(['$routeProvider',
          controller: 'IndicadoresCtrl'
       })
 
+        .when('/b2b/', {
+         title: 'b2b',
+         templateUrl: 'partials/registros_b2b.html',
+         controller: 'RegistrosAgendamientoCtrl'
+      })
 
-	//  ------------------------------------------ASIGNACIONES
-//---------------------------------------------INICIO ACTIVACION
+	//-------- ASIGNACIONES ------------------------------------------
+//---------------------------------------------INICIO ACTIVACION----
      .when('/actividades/', {
          title: 'Actividades',
          templateUrl: 'partials/actividades.html',
@@ -13328,9 +13333,23 @@ app.config(['$routeProvider',
          templateUrl: 'partials/demepedido-activacion.html',
          controller: 'siebelActivacionCtrl'
       })
-//-----------------------------------------------------------------FIN ACTIVACION
 
-   // ADMINISTRACION ------------------------------------------
+      .when('/docuactivacion/', {
+         title: 'documentacionactivacion',
+         templateUrl: 'partials/docuactivacion.html',
+         controller: 'DocuActivacion'
+      })
+
+      .when('/activacion/', {
+         title: 'Indicadores Activación',
+         templateUrl: 'partials/activacion.html',
+         controller: 'ActivacionCtrl'
+    })
+
+
+//-----------------------------------------------------------------FIN ACTIVACION----
+
+   // ------ADMINISTRACION ------------------------------------------
 
 
         .when('/users/', {
@@ -13352,7 +13371,7 @@ app.config(['$routeProvider',
          controller: 'DashboardCtrl'
       })
 
-	//  ------------------------------------------ADMINISTRACION
+	//  ------------------------------------------FIN ADMINISTRACION-----
 
         .when('/registros-agendamiento/', {
          title: 'Registros',
@@ -13373,18 +13392,6 @@ app.config(['$routeProvider',
          controller: 'ParametrizacionSiebel'
       })
 
-        .when('/docuactivacion/', {
-         title: 'documentacionactivacion',
-         templateUrl: 'partials/docuactivacion.html',
-         controller: 'DocuActivacion'
-      })
-
-
-        .when('/Pedidos_Microzonas/', {
-         title: 'Pedidos_Microzonas',
-         templateUrl: 'partials/Pedidos_Microzonas.html',
-         controller: 'Pedidos_MicrozonasCtrl'
-      })
 
 
 
@@ -13436,8 +13443,9 @@ app.config(['$routeProvider',
 		  })
 
 // ------------------------------------------HERRAMIENTAS
+//--------------------AGENDAMIENTO------------------------
 
-	     .when('/codigo_resultado/', {
+        .when('/codigo_resultado/', {
          title: 'codigo_resultado',
          templateUrl: 'partials/codigo_resultado.html',
          controller: 'cargar_datosCtrl'
@@ -13497,20 +13505,14 @@ app.config(['$routeProvider',
          controller: 'AgendamientoCtrl'
       })
 
-
-    .when('/activacion/', {
-         title: 'Indicadores Activación',
-         templateUrl: 'partials/activacion.html',
-         controller: 'ActivacionCtrl'
-    })
-
-
-
-        .when('/b2b/', {
-         title: 'b2b',
-         templateUrl: 'partials/registros_b2b.html',
-         controller: 'RegistrosAgendamientoCtrl'
+         .when('/Pedidos_Microzonas/', {
+         title: 'Pedidos_Microzonas',
+         templateUrl: 'partials/Pedidos_Microzonas.html',
+         controller: 'Pedidos_MicrozonasCtrl'
       })
+
+
+
 
 	.when('/chat/', {
          title: 'GeoP Chat',
@@ -13522,6 +13524,7 @@ app.config(['$routeProvider',
         redirectTo: '/'
       });
 }]);
+//--------------------FIN AGENDAMIENTO------------------------
 
 app.run(['$rootScope', 'firebase','services', function($rootScope, $firebase,services){
 
