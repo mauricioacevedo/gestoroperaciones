@@ -121,7 +121,11 @@
 
 				</div>
 				<div class="panel-body" >
-					<div class="jumbotron"><h4>Módulo no disponible</h4></div>
+					<div class="jumbotron">
+						<button class="btn btn-success btn-sm" ng-click="csvActivacionSiebel();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Exportar Pendientes DOM </button>
+                        <button class="btn btn-success btn-sm" ng-click="csvActivacionSiebelinvdom();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span> Exportar Pendientes invdom </button>
+
+					</div>
 					<div ng-hide="true"><!-- Borrar este div para habilitar tabla -->
 					 <table class="table small table-bordered table-condensed">
 							  <tr>
