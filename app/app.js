@@ -9783,6 +9783,7 @@ $scope.start = function(pedido) {
                 $scope.peds={};
                 $scope.bpedido='';
                 $scope.busy="";
+                $scope.mpedido={};
                 $scope.pedido1=pedido1;
 
                 $scope.error="";
