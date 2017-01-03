@@ -7989,7 +7989,7 @@ private function updateFenixReconfiguracion($obj){
 
 
 
-                private function editUsuario(){
+                private function editUsuarioR(){
                        if($this->get_request_method() != "POST"){
                                 $this->response('',406);
                         }
@@ -12252,7 +12252,7 @@ $sqlfenix=
          }//Funcion para listar la productividad del grupo
 
 //Funcion para Editar novedades
-	private function editarUsuario(){
+	private function editUsuario(){
 
 
             if($this->get_request_method() != "POST"){
