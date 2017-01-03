@@ -422,9 +422,9 @@
 								<b><button type="button" class="btn btn-primary btn-xs" popover data-placement="left"> Online: <span class="badge">{{userOnLine}}</span>
 									<infobox data-placement="left">
 								 <!--<infobox-title>Usuarios:</infobox-title>-->
-								 <infobox-body>
+								 <infobox-body class="fixed-panel">
 
-									<div ng-repeat="user in objCurrentUsers as statusObj | filter:{estado=='true'}">
+									<div ng-repeat="user in objCurrentUsers as statusObj">
 
 										<span class="small" ng-class="{'true':'text-success','false':'text-muted'}[user.estado]"><i  class="fa fa-user-circle" aria-hidden="true"></i> {{user.usuario}}</span>
 
