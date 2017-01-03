@@ -12261,6 +12261,8 @@ $sqlfenix=
 
 
 			$params = json_decode(file_get_contents('php://input'),true);
+
+                        $usuario = $usuario['usuario'];
             $usuarioIp=$_SERVER['REMOTE_ADDR'];
 			$usuarioPc=gethostbyaddr($usuarioIp);
 			$galleta=json_decode(stripslashes($_COOKIE['logedUser']),true);
@@ -12287,7 +12289,7 @@ $sqlfenix=
 			$funcionEdita=$params['editaInfo']['FUNCION'];
 
 
-			//var_dump($params['editaInfo']);
+			var_dump($params['editaInfo']);
 
 			$sql = " UPDATE portalbd.tbl_usuarios ".
 					" SET USUARIO_ID='$usuarioEdita' ".
