@@ -12287,7 +12287,7 @@ $sqlfenix=
 			$funcionEdita=$params['editaInfo']['FUNCION'];
 
 
-			var_dump($params['editaInfo']);
+			//var_dump($params['editaInfo']);
 
 			$sql = " UPDATE portalbd.tbl_usuarios ".
 					" SET USUARIO_ID='$usuarioEdita' ".
