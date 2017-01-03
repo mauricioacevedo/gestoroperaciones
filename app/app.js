@@ -642,9 +642,9 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         
 
 	obj.getUsuario = function (userID) {
-		return $http.get(serviceBase + 'getUsuario?userID='+userID); */
+		return $http.get(serviceBase + 'getUsuario?userID='+userID);
 	};
-
+*/
     obj.getBuscarPedidoRegistro = function(bpedido,concepto){//buscar por pedido
                 return $http.get(serviceBase + 'buscarPedidoRegistro?bpedido='+bpedido+'&concepto='+concepto);
         }
