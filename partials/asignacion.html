@@ -94,23 +94,23 @@
         <div class="col-lg-3 col-xs-3">
 
             <div class="btn-group"> 
-              <button type="button" class="btn btn-md btn-default"  title="Click para copiar" data-toggle="tooltip" data-placement="top" ng-click="executeCopy(pedidoinfo);">{{pedidoinfo}}</button>
-               <button id="iniciar" type="button" class="btn-group btn btn-md btn-success" ng-click="start(pedido);">DemePedido</button>
+              <button type="button" class="btn btn-sm btn-default"  title="Click para copiar" data-toggle="tooltip" data-placement="top" ng-click="executeCopy(pedidoinfo);">{{pedidoinfo}}</button>
+               <button id="iniciar" type="button" class="btn-group btn btn-sm btn-success" ng-click="start(pedido);">DemePedido</button>
 
             </div>
 
         </div>
 
-        <div class="col-lg-3 col-xs-3">
+        <div class="col-lg-3 col-xs-4">
 
             <form class="form-inline" role="form">
 
               <div class="form-group btn-group">
                
-                <input type="text" size="13px" class="form-control btn-group btn btn-md btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Buscador de Pedido" ng-model="bpedido">
-                <button type="button" class="form-control btn btn-md btn-primary"  title="Buscar Pedido" data-toggle="tooltip" data-placement="top" ng-click="buscarPedido(bpedido,iplaza);"><i class="fa fa-search" aria-hidden="true"></i></button>
-                <button id="manual" type="button" class="form-control btn btn-md btn-warning" title="Ingrese Pedido Manual" data-toggle="tooltip" data-placement="top" ng-click="manual();"><i class="fa fa-user-times" aria-hidden="true"></i></button>
-				<button id="manual" type="button" class="form-control btn btn-md btn-warning"   data-toggle="modal" data-target="#PedidosProgramados" data-backdrop="static" ng-click="ProgramadosModal()"><i class="fa fa-calendar-check-o" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Programados/Malos"></i></button>
+                <input type="text" size="13px" class="form-control btn-group btn btn-sm btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Buscador de Pedido" ng-model="bpedido">
+                <button type="button" class="form-control btn btn-sm btn-primary"  title="Buscar Pedido" data-toggle="tooltip" data-placement="top" ng-click="buscarPedido(bpedido,iplaza);"><i class="fa fa-search" aria-hidden="true"></i></button>
+                <button id="manual" type="button" class="form-control btn btn-sm btn-warning" title="Ingrese Pedido Manual" data-toggle="tooltip" data-placement="top" ng-click="manual();"><i class="fa fa-user-times" aria-hidden="true"></i></button>
+				<button id="manual" type="button" class="form-control btn btn-sm btn-warning"   data-toggle="modal" data-target="#PedidosProgramados" data-backdrop="static" ng-click="ProgramadosModal()"><i class="fa fa-calendar-check-o" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Programados/Malos"></i></button>
               </div>
 
 
@@ -176,7 +176,7 @@
                             </select>
                           </td>
                           <td>
-                          <button id="mguardar" type="button" class="btn btn-md btn-success" ng-click="msavePedido();"><span id="mloader"></span>&nbsp; Guardar</button>
+                          <button id="mguardar" type="button" class="btn btn-sm btn-success" ng-click="msavePedido();"><span id="mloader"></span>&nbsp; Guardar</button>
                           </td>
                   </tr>
                 </table>
@@ -275,12 +275,12 @@
                           </td>
 
                                       <td>
-                                      <button ng-show="isAuthorized(service.CONCEPTO_ID);" id="mybutt{{$index}}" type="button" class="btn btn-md btn-success" ng-click="savePedido($index)" ><span id="class{{$index}}"></span>&nbsp; Guardar</button>
+                                      <button ng-show="isAuthorized(service.CONCEPTO_ID);" id="mybutt{{$index}}" type="button" class="btn btn-sm btn-success" ng-click="savePedido($index)" ><span id="class{{$index}}"></span>&nbsp; Guardar</button>
                                       </td>
 
                         </tr>
                         </table>
-                                      <!--td><button id="iniciar" type="button" class="btn btn-md btn-success" onclick="javascript:activar();">Iniciar</a></td-->
+                                      <!--td><button id="iniciar" type="button" class="btn btn-sm btn-success" onclick="javascript:activar();">Iniciar</a></td-->
                         <div id="warning" ng-model="warnin"></div>
                                       
 
