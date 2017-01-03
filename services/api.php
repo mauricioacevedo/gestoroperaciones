@@ -9716,7 +9716,20 @@ $zona = str_replace($no_permitidas, $permitidas ,$zona);
                         }
 
 
-                        $query="SELECT * FROM tbl_usuarios order by GRUPO, USUARIO_NOMBRE ASC";
+                        $query=	" SELECT u.ID, ".
+								" u.USUARIO_ID, ".
+								" u.USUARIO_NOMBRE, ".
+								" u.CEDULA_ID, ".
+								" u.GRUPO, ".
+								" u.EQUIPO_ID, ".
+								" u.CORREO_USUARIO, ".
+								" u.FUNCION, ".
+								" u.TURNO, ".
+								" u.CARGO_ID, ".
+								" u.SUPERVISOR, ".
+								" u.INTERVENTOR, ".
+								" u.ESTADO ".
+								" FROM portalbd.tbl_usuarios u ";
                         //echo $query;
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
