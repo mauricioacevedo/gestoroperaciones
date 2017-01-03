@@ -7989,7 +7989,7 @@ private function updateFenixReconfiguracion($obj){
 
 
 
-                private function editUsuario(){
+                private function editUsuarioR(){
                        if($this->get_request_method() != "POST"){
                                 $this->response('',406);
                         }
@@ -9716,7 +9716,20 @@ $zona = str_replace($no_permitidas, $permitidas ,$zona);
                         }
 
 
-                        $query="SELECT * FROM tbl_usuarios order by GRUPO, USUARIO_NOMBRE ASC";
+                        $query=	" SELECT u.ID, ".
+								" u.USUARIO_ID, ".
+								" u.USUARIO_NOMBRE, ".
+								" u.CEDULA_ID, ".
+								" u.GRUPO, ".
+								" u.EQUIPO_ID, ".
+								" u.CORREO_USUARIO, ".
+								" u.FUNCION, ".
+								" u.TURNO, ".
+								" u.CARGO_ID, ".
+								" u.SUPERVISOR, ".
+								" u.INTERVENTOR, ".
+								" u.ESTADO ".
+								" FROM portalbd.tbl_usuarios u ";
                         //echo $query;
                         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -12261,6 +12274,8 @@ $sqlfenix=
 
 
 			$params = json_decode(file_get_contents('php://input'),true);
+
+                        $usuario = $usuario['usuario'];
             $usuarioIp=$_SERVER['REMOTE_ADDR'];
 			$usuarioPc=gethostbyaddr($usuarioIp);
 			$galleta=json_decode(stripslashes($_COOKIE['logedUser']),true);
@@ -12287,6 +12302,11 @@ $sqlfenix=
 			$funcionEdita=$params['editaInfo']['FUNCION'];
 
 
+			//var_dump($params['editaInfo']);
+
+			if($passEdita!=""){
+					$passcode=" , PASSWORD=MD5('".$passEdita."')";
+				}
 
 			$sql = " UPDATE portalbd.tbl_usuarios ".
 					" SET USUARIO_ID='$usuarioEdita' ".
@@ -12300,11 +12320,11 @@ $sqlfenix=
 					" , CARGO_ID='$cargoidEdita' ".
 					" , SUPERVISOR='$supervisorEdita' ".
 					" , INTERVENTOR='$interventorEdita' ".
-					" , PASSWORD=MD5('$passEdita') ".
+					" $passcode ".
 					" , ESTADO='$estadoEdita' ".
 					" where ID='$id' ";
 
-				//	echo $sql;
+				//echo $sql;
 
 
 				 $rst = $this->mysqli->query($sql) or die($this->connemtel->error.__LINE__);
