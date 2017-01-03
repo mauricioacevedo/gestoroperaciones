@@ -627,7 +627,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         return $http.get(serviceBase + 'getTransaccionORD?ordID='+ordID);
     };
     
-
+/*
 	obj.insertUsuario = function (usuario13)  {//insertar usuario
 		console.log(usuario13);
                 var data= $http.post(serviceBase + 'insertUsuario', {"usuario":usuario13});
@@ -642,7 +642,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         
 
 	obj.getUsuario = function (userID) {
-		return $http.get(serviceBase + 'getUsuario?userID='+userID);
+		return $http.get(serviceBase + 'getUsuario?userID='+userID); */
 	};
 
     obj.getBuscarPedidoRegistro = function(bpedido,concepto){//buscar por pedido
