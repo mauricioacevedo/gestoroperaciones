@@ -5649,7 +5649,7 @@ $(document).click(  function (e) {
 
                 var demePedidoButton=document.getElementById("iniciar");
                 demePedidoButton.setAttribute("disabled","disabled");
-                demePedidoButton.className = "btn btn-success disabled";
+                demePedidoButton.className = "btn btn-sm btn-success disabled";
 
 	
 		if($scope.prioridad=='FECHA_CITA'){
@@ -5680,7 +5680,7 @@ $(document).click(  function (e) {
                         }
                         var demePedidoButton=document.getElementById("iniciar");
                         demePedidoButton.removeAttribute("disabled");
-                        demePedidoButton.className = "btn btn-success";
+                        demePedidoButton.className = "btn btn-sm btn-success";
                         return data.data;
                 });
 
@@ -6442,7 +6442,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 		var demePedidoButton=document.getElementById("iniciar");
 		demePedidoButton.setAttribute("disabled","disabled");
-		demePedidoButton.className = "btn btn-success disabled";
+		demePedidoButton.className = "btn btn-sm btn-success disabled";
 
 		var kami=services.demePedido($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,'').then(function(data){
         		$scope.peds = data.data;
@@ -6482,7 +6482,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 			}
 	                var demePedidoButton=document.getElementById("iniciar");
 	                demePedidoButton.removeAttribute("disabled");
-			demePedidoButton.className = "btn btn-success";
+			demePedidoButton.className = "btn btn-sm btn-success";
 			return data.data;
     		});
 		$scope.timeInit=new Date().getTime();
@@ -7886,7 +7886,7 @@ app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $locati
 
                         var demePedidoButton=document.getElementById("iniciar");
                         demePedidoButton.removeAttribute("disabled");
-                        demePedidoButton.className = "btn btn-success";
+                        demePedidoButton.className = "btn btn-sm btn-success";
                         return data.data;
                 });
                 $scope.timeInit=new Date().getTime();
@@ -8544,7 +8544,7 @@ services.buscarParametro('PRIORIDAD_DEMEPEDIDO_AGENDAMIENTO_EDATEL').then(functi
 
 			var demePedidoButton=document.getElementById("iniciar");
                         demePedidoButton.removeAttribute("disabled");
-                        demePedidoButton.className = "btn btn-success";
+                        demePedidoButton.className = "btn btn-sm btn-success";
                         return data.data;
                 });
                 $scope.timeInit=new Date().getTime();
@@ -8588,7 +8588,7 @@ services.buscarParametro('PRIORIDAD_DEMEPEDIDO_AGENDAMIENTO_EDATEL').then(functi
                         }
                         var demePedidoButton=document.getElementById("iniciar");
                         demePedidoButton.removeAttribute("disabled");
-                        demePedidoButton.className = "btn btn-success";
+                        demePedidoButton.className = "btn btn-sm btn-success";
                         return data.data;
                 });
 
@@ -8737,7 +8737,7 @@ $scope.start = function(pedido) {
 
                 var demePedidoButton=document.getElementById("iniciar");
                 demePedidoButton.setAttribute("disabled","disabled");
-                demePedidoButton.className = "btn btn-success disabled";
+                demePedidoButton.className = "btn btn-sm btn-success disabled";
 
 		if($scope.microzona == undefined || $scope.microzona==''){
 			$scope.microzona='';
@@ -8771,7 +8771,7 @@ $scope.start = function(pedido) {
 
                         var demePedidoButton=document.getElementById("iniciar");
                         demePedidoButton.removeAttribute("disabled");
-                        demePedidoButton.className = "btn btn-success";
+                        demePedidoButton.className = "btn btn-sm btn-success";
                         return data.data;
                 });
                 $scope.timeInit=new Date().getTime();
@@ -9608,7 +9608,7 @@ services.buscarParametro('PRIORIDAD_DEMEPEDIDO_AGENDAMIENTO').then(function(data
 
          var demePedidoButton=document.getElementById("iniciar");
                         demePedidoButton.removeAttribute("disabled");
-                        demePedidoButton.className = "btn btn-danger";
+                        demePedidoButton.className = "btn btn-sm btn-danger";
                         return data.data;
                 });
                 $scope.timeInit=new Date().getTime();
@@ -9651,7 +9651,7 @@ services.buscarParametro('PRIORIDAD_DEMEPEDIDO_AGENDAMIENTO').then(function(data
                         }
                         var demePedidoButton=document.getElementById("iniciar");
                         demePedidoButton.removeAttribute("disabled");
-                        demePedidoButton.className = "btn btn-danger";
+                        demePedidoButton.className = "btn btn-sm btn-danger";
                         return data.data;
                 });
                 $scope.timeInit=new Date().getTime();
@@ -9790,7 +9790,7 @@ $scope.start = function(pedido) {
 
                 var demePedidoButton=document.getElementById("iniciar");
                 demePedidoButton.setAttribute("disabled","disabled");
-                demePedidoButton.className = "btn btn-danger disabled";
+                demePedidoButton.className = "btn btn-sm btn-danger disabled";
 
                 
 
@@ -9813,7 +9813,7 @@ $scope.start = function(pedido) {
 
                         var demePedidoButton=document.getElementById("iniciar");
                         demePedidoButton.removeAttribute("disabled");
-                        demePedidoButton.className = "btn btn-danger";
+                        demePedidoButton.className = "btn btn-sm btn-danger";
                         return data.data;
                 });
                 $scope.timeInit=new Date().getTime();
@@ -11540,7 +11540,7 @@ $scope.isAuthorized = function(concept){
 
         var demePedidoButton=document.getElementById("iniciar");
         demePedidoButton.setAttribute("disabled","disabled");
-        demePedidoButton.className = "btn btn-success disabled";
+        demePedidoButton.className = "btn btn-sm btn-success disabled";
 
 
         var kami=services.demePedido($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,'').then(function(data){
@@ -11565,7 +11565,7 @@ $scope.isAuthorized = function(concept){
             }
                     var demePedidoButton=document.getElementById("iniciar");
                     demePedidoButton.removeAttribute("disabled");
-            demePedidoButton.className = "btn btn-success";
+            demePedidoButton.className = "btn btn-sm btn-success";
             return data.data;
             });
         //console.log("el pedido: "+$scope.pedido1);
