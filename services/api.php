@@ -12287,6 +12287,7 @@ $sqlfenix=
 			$funcionEdita=$params['editaInfo']['FUNCION'];
 
 
+			var_dump($params['editaInfo']);
 
 			$sql = " UPDATE portalbd.tbl_usuarios ".
 					" SET USUARIO_ID='$usuarioEdita' ".
@@ -12304,7 +12305,7 @@ $sqlfenix=
 					" , ESTADO='$estadoEdita' ".
 					" where ID='$id' ";
 
-				//	echo $sql;
+				echo $sql;
 
 
 				 $rst = $this->mysqli->query($sql) or die($this->connemtel->error.__LINE__);
