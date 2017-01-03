@@ -12304,6 +12304,10 @@ $sqlfenix=
 
 			//var_dump($params['editaInfo']);
 
+			if($passEdita!=""){
+					$passcode=" , PASSWORD=MD5('".$passEdita."')";
+				}
+
 			$sql = " UPDATE portalbd.tbl_usuarios ".
 					" SET USUARIO_ID='$usuarioEdita' ".
 					" , USUARIO_NOMBRE='$usuarionombreEdita' ".
@@ -12316,11 +12320,11 @@ $sqlfenix=
 					" , CARGO_ID='$cargoidEdita' ".
 					" , SUPERVISOR='$supervisorEdita' ".
 					" , INTERVENTOR='$interventorEdita' ".
-					" , PASSWORD=MD5('$passEdita') ".
+					" $passcode ".
 					" , ESTADO='$estadoEdita' ".
 					" where ID='$id' ";
 
-				//echo $sql;
+				echo $sql;
 
 
 				 $rst = $this->mysqli->query($sql) or die($this->connemtel->error.__LINE__);
