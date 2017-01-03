@@ -3712,7 +3712,7 @@ services.deleteUsuario($scope.idBorrar).then(
 //Editar Usuario Servicio
 $scope.editarUsuario=function(editaInfo){
 
-        console.log(editaInfo);
+        //console.log(editaInfo);
 
         services.editUsuario(editaInfo).then(
 
