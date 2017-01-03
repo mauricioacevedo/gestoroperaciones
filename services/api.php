@@ -12324,7 +12324,7 @@ $sqlfenix=
 					" , ESTADO='$estadoEdita' ".
 					" where ID='$id' ";
 
-				echo $sql;
+				//echo $sql;
 
 
 				 $rst = $this->mysqli->query($sql) or die($this->connemtel->error.__LINE__);
