@@ -12252,7 +12252,7 @@ $sqlfenix=
          }//Funcion para listar la productividad del grupo
 
 //Funcion para Editar novedades
-	private function editUsuario(){
+	private function editarUsuario(){
 
 
             if($this->get_request_method() != "POST"){
