@@ -9785,7 +9785,6 @@ $scope.start = function(pedido) {
                 $scope.busy="";
                 $scope.mpedido={};
                 $scope.pedido1=pedido1;
-
                 $scope.error="";
 
                 var demePedidoButton=document.getElementById("iniciar");
