@@ -7701,7 +7701,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 		console.log($scope.listado_pedidos);
 
 		$scope.data.totalItems = data.data[1];
-		console.log(data.totalItems);
+		console.log($scope.data.totalItems);
 		$scope.data.campo, $scope.data.valorCampo
 		return data.data;
 	});
