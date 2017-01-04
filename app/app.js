@@ -10412,7 +10412,7 @@ app.controller('ActivacionCtrl', function ($scope, $rootScope, $location, $route
 		});
 
 
-	//};
+	};
 
          $rootScope.nagendamientostyle={};
 
