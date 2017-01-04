@@ -68,7 +68,7 @@ app.service('fileUpload2', ['$http', function ($http) {
 }]);
 
 
- app.directive('fileModel', ['$parse', function ($parse) {
+app.directive('fileModel', ['$parse', function ($parse) {
             return {
                restrict: 'A',
                link: function(scope, element, attrs) {
@@ -86,13 +86,13 @@ app.service('fileUpload2', ['$http', function ($http) {
 
 //---cargar aqrchivo agendamiento-----------------------------------
 
-app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
+app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 	var serviceBase = 'services/'
 	var obj = {};
 
     obj.getCustomers = function () {
-        	return $http.get(serviceBase + 'customers');
-    	}
+		return $http.get(serviceBase + 'customers');
+	}
 
 	obj.getPedidosUser = function(userID){
 		return $http.get(serviceBase + 'pedidosPorUser?userID=' + userID);
