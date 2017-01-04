@@ -10435,7 +10435,7 @@ app.controller('ActivacionCtrl', function ($scope, $rootScope, $location, $route
 
          return data.data;
       });
-   };
+ //  };
 
 $scope.actualizarLightKPIS();
         $scope.$on(
