@@ -62,8 +62,8 @@ app.service('fileUpload2', ['$http', function ($http) {
 				transformRequest: angular.identity,
 				headers: {
 					'Content-Type': undefined
-				}
-			})
+			}
+		})
 			.success(function () {
 
 
