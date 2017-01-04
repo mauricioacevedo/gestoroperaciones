@@ -10399,58 +10399,6 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
         };
 
 
-$scope.start = function(pedido) {
-                var pedido1='';
-                $scope.popup='';
-                $scope.error="";
-                if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
-                         pedido1=$scope.peds[0].PEDIDO_ID;
-                }
-                $scope.peds={};
-                $scope.bpedido='';
-                $scope.busy="";
-                $scope.mpedido={};
-                $scope.pedido1=pedido1;
-                $scope.error="";
-
-                var demePedidoButton=document.getElementById("iniciar");
-                demePedidoButton.setAttribute("disabled","disabled");
-                demePedidoButton.className = "btn btn-danger disabled";
-
-
-
-                var kami=services.demePedidoAgendamientomalo($rootScope.logedUser.login,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,'').then(function(data){
-                        $scope.peds = data.data;
-                        console.log(data.data);
-                        if(data.data==''||data.data=='No hay registros!'){
-                                document.getElementById("warning").innerHTML="No hay Registros";
-                                $scope.error="No hay Registros";
-                        }else{
-                                document.getElementById("warning").innerHTML="";
-                                $scope.pedido1=$scope.peds[0].PEDIDO_ID;
-
-                                if($scope.peds[0].STATUS=="MALO"&&$scope.peds[0].ASESOR!=""){
-                                        $scope.busy=$scope.peds[0].ASESOR;
-                                        $scope.error="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
-                                }
-            $scope.baby($scope.pedido1);
-                        }
-
-                        var demePedidoButton=document.getElementById("iniciar");
-                        demePedidoButton.removeAttribute("disabled");
-                        demePedidoButton.className = "btn btn-danger";
-                        return data.data;
-                });
-                $scope.timeInit=new Date().getTime();
-                var date1 = new Date();
-                var year    = date1.getFullYear();
-                var month   = $scope.doubleDigit(date1.getMonth()+1);
-                var day     = $scope.doubleDigit(date1.getDate());
-                var hour    = $scope.doubleDigit(date1.getHours());
-                var minute  = $scope.doubleDigit(date1.getMinutes());
-                var seconds = $scope.doubleDigit(date1.getSeconds());
-
-
 
       $scope.listadoactivacion1();
 
