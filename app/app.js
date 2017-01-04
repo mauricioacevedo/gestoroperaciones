@@ -10958,7 +10958,7 @@ $scope.start = function(pedido) {
 
 
 
-});
+//});
 
 //-------------------------------------demepedidoactivacio------------------------
 app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, services) {
