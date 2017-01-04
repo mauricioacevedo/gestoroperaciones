@@ -158,24 +158,18 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 	obj.getCsvPendientesAgenSiete = function (login) {
 		return $http.get(serviceBase + 'csvPendientesAgenSiete?login='+login);// pendientes agendamiento de siete dias
 	};
-
-
-
-        obj.getCsvMalosAgendamiento = function (login) {
-                return $http.get(serviceBase + 'csvMalosAgendamiento?login='+login); // exportar datos status malos de agendamiento
-        }
-
-          obj.getCsvAgendamiento  = function (login) {
-                return $http.get(serviceBase + 'csvAgendamiento?login='+login); // exportar todos los pendientes de agendamiento
-        }
-
-    obj.getCsvHistoricosAgendamiento = function (login, fechaIni, fechaFin) { //exportar historico agendamiento todo
-                return $http.get(serviceBase + 'csvHistoricosAgendamiento?login='+login+'&fechaIni='+fechaIni+'&fechaFin='+fechaFin);
-        }
-
-         obj.getCsvHistoricosAgendamientoEdatel = function (login, fechaIni, fechaFin) { // exportar historicos solo edatel
-                return $http.get(serviceBase + 'csvHistoricosAgendamientoEdatel?login='+login+'&fechaIni='+fechaIni+'&fechaFin='+fechaFin);
-        }
+	obj.getCsvMalosAgendamiento = function (login) {
+		return $http.get(serviceBase + 'csvMalosAgendamiento?login='+login); // exportar datos status malos de agendamiento
+	};
+	obj.getCsvAgendamiento  = function (login) {
+		return $http.get(serviceBase + 'csvAgendamiento?login='+login); // exportar todos los pendientes de agendamiento
+	};
+	obj.getCsvHistoricosAgendamiento = function (login, fechaIni, fechaFin) { //exportar historico agendamiento todo
+		return $http.get(serviceBase + 'csvHistoricosAgendamiento?login='+login+'&fechaIni='+fechaIni+'&fechaFin='+fechaFin);
+	};
+	obj.getCsvHistoricosAgendamientoEdatel = function (login, fechaIni, fechaFin) { // exportar historicos solo edatel
+		return $http.get(serviceBase + 'csvHistoricosAgendamientoEdatel?login='+login+'&fechaIni='+fechaIni+'&fechaFin='+fechaFin);
+	};
 
 
      obj.getDashboardAgendamiento = function () {
