@@ -9737,9 +9737,10 @@ $zona = str_replace($no_permitidas, $permitidas ,$zona);
                                 $result = array();
                                 while($row = $r->fetch_assoc()){
                                         //$result[] = $row;
-					//echo "name: ".utf8_encode($row['USUARIO_NOMBRE'])."\n ";
-					$row['USUARIO_NOMBRE']=utf8_encode($row['USUARIO_NOMBRE']);
-					$result[] = $row;
+									//echo "name: ".utf8_encode($row['USUARIO_NOMBRE'])."\n ";
+									$row['USUARIO_NOMBRE']=utf8_encode($row['USUARIO_NOMBRE']);
+									$row['INTERVENTOR']=utf8_encode($row['INTERVENTOR']);
+									$result[] = $row;
                                 }
                                 $this->response($this->json(array($result,$counter)), 200); // send user details
                         }
