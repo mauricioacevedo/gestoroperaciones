@@ -125,18 +125,15 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
     obj.getPedidosUserAdelantarAgenda = function (userID) {
 		return $http.get(serviceBase + 'pedidosPorUserAdelantarAgenda?userID=' + userID);//usuario adelantar agenda
 	};
-
-      obj.getPedidosUserReagendamiento = function (userID) {
-                return $http.get(serviceBase + 'pedidosPorUserReagendamiento?userID=' + userID); // pedido por user reagendamiento
-        }
-
-       obj.getLightKPISAgendamiento =function () {//kpis agendamiento
-                return $http.get(serviceBase + 'lightKPISAgendamiento');
-        }
-
-        obj.getPedidosPorPedidoAgendamiento = function (pedido) {
-                return $http.get(serviceBase + 'pedidosPorPedidoAgendamiento?pedido=' + pedido); //pedido por pedido agendamiento
-        }
+	obj.getPedidosUserReagendamiento = function (userID) {
+		return $http.get(serviceBase + 'pedidosPorUserReagendamiento?userID=' + userID); // pedido por user reagendamiento
+	};
+	obj.getLightKPISAgendamiento =function () {//kpis agendamiento
+		return $http.get(serviceBase + 'lightKPISAgendamiento');
+	};
+	obj.getPedidosPorPedidoAgendamiento = function (pedido) {
+		return $http.get(serviceBase + 'pedidosPorPedidoAgendamiento?pedido=' + pedido); //pedido por pedido agendamiento
+	};
 
        obj.getListadoPedidosAgendamiento = function (fecha_inicio,fecha_fin,page) {//traer datos de pedidos agendamiento
                 return $http.get(serviceBase + 'listadoPedidosAgendamiento?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page);
