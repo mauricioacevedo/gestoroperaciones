@@ -134,37 +134,30 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 	obj.getPedidosPorPedidoAgendamiento = function (pedido) {
 		return $http.get(serviceBase + 'pedidosPorPedidoAgendamiento?pedido=' + pedido); //pedido por pedido agendamiento
 	};
-
-       obj.getListadoPedidosAgendamiento = function (fecha_inicio,fecha_fin,page) {//traer datos de pedidos agendamiento
-                return $http.get(serviceBase + 'listadoPedidosAgendamiento?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page);
-        }
-
-   obj.getListadoPendientesAgendamiento = function (fecha_inicio,fecha_fin,page) {//lista de pedidos agendamiento
-                return $http.get(serviceBase + 'listadoPendientesAgendamiento?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page);
-        }
-      obj.getBuscarPedidoAgendamientoRegistro = function (bpedido) {
-                return $http.get(serviceBase + 'buscarPedidoAgendamientoRegistro?bpedido='+bpedido);// buscar pedido agendamiento
-        }
-
-        obj.getBuscarPedidoAgendamientoRegistro1 = function (bpedido,page) {
-                return $http.get(serviceBase + 'buscarPedidoAgendamientoRegistro1?bpedido='+bpedido+'&page='+page);// buscar pedido agendamiento
-        }
-       obj.getCsvPendientesAgendamiento = function (login) {
-                return $http.get(serviceBase + 'csvPendientesAgendamiento?login='+login); //csv exportar datos pendientes agendamiento
-        }
-
-         obj.getCsvPendientesAgendamientoPredictiva = function (login) {
-                return $http.get(serviceBase + 'csvPendientesAgendamientoPredictiva?login='+login);// exportar agendamiento predictiva
-        }
-
-	obj.getCsvAGENToday  = function(login){
-                return $http.get(serviceBase + 'csvAGENToday?login='+login);//exportar pendientes de la tabla FNX_ORDENES_TRABAJOS
-        }
-
-
-        obj.getCsvPendientesAgenSiete = function (login) {
-                return $http.get(serviceBase + 'csvPendientesAgenSiete?login='+login);// pendientes agendamiento de siete dias
-        }
+	obj.getListadoPedidosAgendamiento = function (fecha_inicio,fecha_fin,page) {//traer datos de pedidos agendamiento
+		return $http.get(serviceBase + 'listadoPedidosAgendamiento?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page);
+	};
+	obj.getListadoPendientesAgendamiento = function (fecha_inicio,fecha_fin,page) {//lista de pedidos agendamiento
+		return $http.get(serviceBase + 'listadoPendientesAgendamiento?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&page='+page);
+	};
+	obj.getBuscarPedidoAgendamientoRegistro = function (bpedido) {
+		return $http.get(serviceBase + 'buscarPedidoAgendamientoRegistro?bpedido='+bpedido);// buscar pedido agendamiento
+	};
+	obj.getBuscarPedidoAgendamientoRegistro1 = function (bpedido,page) {
+		return $http.get(serviceBase + 'buscarPedidoAgendamientoRegistro1?bpedido='+bpedido+'&page='+page);// buscar pedido agendamiento
+	};
+	obj.getCsvPendientesAgendamiento = function (login) {
+		return $http.get(serviceBase + 'csvPendientesAgendamiento?login='+login); //csv exportar datos pendientes agendamiento
+	};
+	obj.getCsvPendientesAgendamientoPredictiva = function (login) {
+		return $http.get(serviceBase + 'csvPendientesAgendamientoPredictiva?login='+login);// exportar agendamiento predictiva
+	};
+	obj.getCsvAGENToday  = function (login) {
+		return $http.get(serviceBase + 'csvAGENToday?login='+login);//exportar pendientes de la tabla FNX_ORDENES_TRABAJOS
+	};
+	obj.getCsvPendientesAgenSiete = function (login) {
+		return $http.get(serviceBase + 'csvPendientesAgenSiete?login='+login);// pendientes agendamiento de siete dias
+	};
 
 
 
