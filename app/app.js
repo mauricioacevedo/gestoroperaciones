@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['base64' , 'ngRoute' , 'ngCookies' , 'ng-fusioncharts' , 'ngAnimate' , 'ui.bootstrap' , 'ui.tinymce' , 'ui.select' , 'ngSanitize' , 'ui.calendar' , 'angularFileUpload' , 'cgNotify' , 'firebase' , 'angular-smilies']);
+var app = angular.module('myApp', ['base64', 'ngRoute', 'ngCookies', 'ng-fusioncharts', 'ngAnimate', 'ui.bootstrap', 'ui.tinymce', 'ui.select', 'ngSanitize', 'ui.calendar', 'angularFileUpload', 'cgNotify', 'firebase', 'angular-smilies']);
 //Los " Myapp " solapas de parámetros a un elemento HTML en el que se ejecutará la aplicación .
 //Ahora puede agregar controladores , directivas , filtros y más, para su aplicación AngularJS .
 //El módulo ngRoute proporciona enrutamiento y deeplinking Servicios y directivas para aplicaciones angulares .
@@ -13,13 +13,13 @@ app.directive('customPopover', function () {
         link: function (scope, el, attrs) {
             scope.label = attrs.popoverLabel;
             $(el).popover({
-				title: function() {
-				return  'Observaciones';
+				title: function () {
+				return 'Observaciones';
 				//'<button id="close-popover" data-toggle="clickover" onclick="$(&quot;#cerrar&quot;).popover(&quot;hide&quot;);">X</button>';
 				},
                 trigger: 'click',
                 html: true,
-                content: attrs.popoverHtml, 
+                content: attrs.popoverHtml,
                 placement: attrs.popoverPlacement
             });
         }
@@ -27,24 +27,19 @@ app.directive('customPopover', function () {
 });
 
 //---cargar aqrchivo agendamiento---------------------------------
-app.service('fileUpload', ['$http','$cookieStore', function ($http,$cookieStore) {
-            this.uploadFileToUrl = function(file, uploadUrl){
-               var fd = new FormData();
-               var user=$cookieStore.get('logedUser').login;               
-               file['user']=user+'6666666';
-               
-		      fd.append('user',user);
-
-               //console.log (file['size']);
-               fd.append('fileUpload', file);
-                            
-               $http.post('services/cargar_datos', fd, {
-		  withCredentials: false,
-                  transformRequest: angular.identity,
-                  headers: {'Content-Type': undefined},
-		  params: {'user':user},
-
-		  responseType: "arraybuffer"
+app.service('fileUpload', ['$http', '$cookieStore', function ($http, $cookieStore) {
+	this.uploadFileToUrl = function (file, uploadUrl) {
+		var fd = new FormData();
+        var user = $cookieStore.get('logedUser').login;
+		file['user'] = user + '6666666';
+		fd.append('user', user);
+		fd.append('fileUpload', file);
+		$http.post('services/cargar_datos', fd, {
+			withCredentials: false,
+			transformRequest: angular.identity,
+			headers: {'Content-Type': undefined},
+			params: {'user':user},
+			responseType: "arraybuffer"
                })
                  .success(function(){
                 alert('El archivo a sido subido correctamente');
