@@ -91,40 +91,40 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 	var obj = {};
 
     obj.getCustomers = function () {
-		return $http.get(serviceBase + 'customers');
-	}
+		return $http.get(serviceBase + 'customers'):
+	};
 
 	obj.getPedidosUser = function (userID) {
 		return $http.get(serviceBase + 'pedidosPorUser?userID=' + userID);
-	}
+	};
 
 //--------------------Servicios Globales
 
 	obj.getGestorConceptos = function () {
 		return $http.get(serviceBase + 'gestorConceptos');
-	}
+	};
 
 	obj.expCsvUsuarios = function () {
-     return $http.post(serviceBase + 'csvUsuarios');
-        };
-		//Crud de Usuarios
+		return $http.post(serviceBase + 'csvUsuarios');
+	};
+//Crud de Usuarios
 	obj.putUsuarioNuevo = function (editaInfo) {
 		return $http.post(serviceBase + 'crearUsuario',{"editaInfo":editaInfo});
-			};
+	};
 
 	obj.editUsuario = function (editaInfo) {
 		return $http.post(serviceBase + 'editarUsuario',{"editaInfo":editaInfo});
-			};
+	};
 
 	obj.deleteUsuario = function (id) {
 		return $http.post(serviceBase + 'borrarUsuario',{"id":id});
-			};
+	};
 //Crud de Usuarios
 // Servicios Globales --------------------
 //---------------------------------------------------------------------------------------------Agendamiento
     obj.getPedidosUserAdelantarAgenda = function (userID) {
-                return $http.get(serviceBase + 'pedidosPorUserAdelantarAgenda?userID=' + userID);//usuario adelantar agenda
-        }
+		return $http.get(serviceBase + 'pedidosPorUserAdelantarAgenda?userID=' + userID);//usuario adelantar agenda
+	};
 
       obj.getPedidosUserReagendamiento = function (userID) {
                 return $http.get(serviceBase + 'pedidosPorUserReagendamiento?userID=' + userID); // pedido por user reagendamiento
@@ -209,12 +209,12 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 		return $http.get(serviceBase + 'getDepartamentosPendientesReagendamiento');//pendientes por departamento agendamiento
 	}
 	//pantalla de agendamientos general
-    obj.getDepartamentosPendientesReagendamiento = function(proceso) {
+    obj.getDepartamentosPendientesReagendamiento = function (proceso) {
 		return $http.get(serviceBase + 'getDepartamentosPendientesReagendamiento?proceso='+proceso);
         }
 
-         obj.getDepartamentosPendientesReagendamientoproceso = function(proceso){ //departamento por proceso
-                return $http.get(serviceBase + 'getDepartamentosPendientesReagendamientoproceso?proceso='+proceso);
+	obj.getDepartamentosPendientesReagendamientoproceso = function (proceso) { //departamento por proceso
+		return $http.get(serviceBase + 'getDepartamentosPendientesReagendamientoproceso?proceso='+proceso);
         }
 
 
@@ -222,8 +222,8 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
         return $http.get(serviceBase + 'getDepartamentosOcupaagenda');
     }
 
-     obj.getlistadoAgendamientoAuditoria = function(fecha_inicio,fecha_fin){//lista agendamiento auditoria
-                return $http.get(serviceBase + 'listadoAgendamientoAuditoria?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin);
+    obj.getlistadoAgendamientoAuditoria = function (fecha_inicio,fecha_fin){//lista agendamiento auditoria
+        return $http.get(serviceBase + 'listadoAgendamientoAuditoria?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin);
         }
         obj.getcsvTabla = function(fecha_inicio,fecha_fin){// tabla agendamiento
                 return $http.get(serviceBase + 'csvTabla?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin);
