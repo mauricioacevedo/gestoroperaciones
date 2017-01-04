@@ -10413,7 +10413,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
          return data.data;
       });
-  //};
+  };
 
 $scope.actualizarLightKPIS();
         $scope.$on(
