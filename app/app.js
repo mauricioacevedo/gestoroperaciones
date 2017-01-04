@@ -10413,13 +10413,7 @@ app.controller('ActivacionCtrl', function ($scope, $rootScope, $location, $route
 
 
 	};
-	//---------------listado gestor_pendientes_activacion_siebel_invdom
 
-	//---------------listado gestor_pendientes_activacion_siebel_invdom
-
-
-                     //console.log($rootScope.totalesDepartamento);
-                           
          $rootScope.nagendamientostyle={};
 
          if($rootScope.totalNegocioAgendamiento>$rootScope.totalNegocioAgendamientoOld){
@@ -10435,7 +10429,7 @@ app.controller('ActivacionCtrl', function ($scope, $rootScope, $location, $route
 
          return data.data;
       });
- //  };
+  };
 
 $scope.actualizarLightKPIS();
         $scope.$on(
