@@ -10397,6 +10397,34 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
 
         };
+
+     $rootScope.nagendamientostyle={};
+
+         if($rootScope.totalNegocioAgendamiento>$rootScope.totalNegocioAgendamientoOld){
+                                $rootScope.nagendamientostyle.ICON="fa fa-arrow-circle-up fa-2x";
+                                $rootScope.nagendamientostyle.STYLE="red";
+                        }else if($rootScope.totalNegocioAgendamiento<$rootScope.totalNegocioAgendamientoOld){
+                                $rootScope.nagendamientostyle.ICON="fa fa-arrow-circle-down fa-2x";
+                                $rootScope.nagendamientostyle.STYLE="green";
+                        }else {
+                                $rootScope.nagendamientostyle.ICON="fa fa-minus-circle fa-2x";
+                                $rootScope.nagendamientostyle.STYLE="gray";
+                        }
+
+         return data.data;
+      });
+  //};
+
+$scope.actualizarLightKPIS();
+        $scope.$on(
+                "$destroy",
+                        function( event ) {
+                            //$timeout.cancel(timer);
+                            clearInterval($scope.intervalLightKPIS);
+          });
+
+////////////////////////////////////////////////////////////////
+
  //---------------listado gestor_pendientes_activacion_siebel_invdom
 
  //---------------listado gestor_pendientes_activacion_siebel_invdom
