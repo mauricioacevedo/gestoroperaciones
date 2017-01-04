@@ -7699,8 +7699,9 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 	services.getListadoPedidosAgendamiento(fecha_inicio, fecha_fin, $scope.data.currentPage).then(function (data) {
 		$scope.listado_pedidos = data.data[0];
 		console.log($scope.listado_pedidos);
-		console.log(data.totalItems);
+
 		$scope.data.totalItems = data.data[1];
+		console.log(data.totalItems);
 		$scope.data.campo, $scope.data.valorCampo
 		return data.data;
 	});
