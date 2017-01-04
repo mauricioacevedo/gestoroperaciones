@@ -38,13 +38,12 @@ app.service('fileUpload', ['$http', '$cookieStore', function ($http, $cookieStor
 			withCredentials: false,
 			transformRequest: angular.identity,
 			headers: {'Content-Type': undefined},
-			params: {'user':user},
+			params: {'user': user},
 			responseType: "arraybuffer"
-               })
-                 .success(function(){
+		})
+                 .success(function () {
                 alert('El archivo a sido subido correctamente');
-
-               })
+		})
                .error(function(){
                 alert('Ha habido un error al subir el archivo');
 
