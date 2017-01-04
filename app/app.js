@@ -43,13 +43,12 @@ app.service('fileUpload', ['$http', '$cookieStore', function ($http, $cookieStor
 		})
                  .success(function () {
                 alert('El archivo a sido subido correctamente');
-		})
-               .error(function(){
+		    })
+               .error(function () {
                 alert('Ha habido un error al subir el archivo');
-
-               });
-            }
-         }]);
+			});
+    }
+}]);
 
 app.service('fileUpload2', ['$http', function ($http) {
             this.uploadFileToUrl = function(file, uploadUrl){
