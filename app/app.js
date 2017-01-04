@@ -76,7 +76,7 @@ app.directive('fileModel', ['$parse', function ($parse) {
                   var modelSetter = model.assign;
                   
                   element.bind('change', function () {
-                     scope.$apply(function () {
+                scope.$apply(function () {
                         modelSetter(scope, element[0].files[0]);
                      });
                   });
@@ -94,7 +94,7 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 		return $http.get(serviceBase + 'customers');
 	}
 
-	obj.getPedidosUser = function(userID){
+	obj.getPedidosUser = function (userID) {
 		return $http.get(serviceBase + 'pedidosPorUser?userID=' + userID);
 	}
 
