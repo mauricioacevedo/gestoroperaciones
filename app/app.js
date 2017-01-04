@@ -91,7 +91,7 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 	var obj = {};
 
     obj.getCustomers = function () {
-		return $http.get(serviceBase + 'customers'):
+		return $http.get(serviceBase + 'customers');
 	};
 
 	obj.getPedidosUser = function (userID) {
