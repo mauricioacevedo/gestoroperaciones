@@ -65,7 +65,7 @@ app.service('fileUpload2', ['$http', function ($http) {
                .error(function () {
                });
             }
-         }]);
+}]);
 
 
  app.directive('fileModel', ['$parse', function ($parse) {
@@ -82,13 +82,13 @@ app.service('fileUpload2', ['$http', function ($http) {
                   });
                }
             };
-         }]);
+}]);
 
 //---cargar aqrchivo agendamiento-----------------------------------
 
 app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
-  	 var serviceBase = 'services/'
-     var obj = {};
+	var serviceBase = 'services/'
+	var obj = {};
 
     obj.getCustomers = function () {
         	return $http.get(serviceBase + 'customers');
