@@ -10498,8 +10498,7 @@ $scope.start = function(pedido) {
                 var hour    = $scope.doubleDigit(date1.getHours());
                 var minute  = $scope.doubleDigit(date1.getMinutes());
                 var seconds = $scope.doubleDigit(date1.getSeconds());
-=======
->>>>>>> origin/master
+
 
 	$scope.listadoactivacion1();
 
