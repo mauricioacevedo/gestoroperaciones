@@ -10417,7 +10417,7 @@ app.controller('ActivacionCtrl', function ($scope, $rootScope, $location, $route
 
 	//---------------listado gestor_pendientes_activacion_siebel_invdom
 
-<<<<<<< HEAD
+
                      //console.log($rootScope.totalesDepartamento);
                            
          $rootScope.nagendamientostyle={};
