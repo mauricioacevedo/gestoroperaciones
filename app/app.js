@@ -10298,260 +10298,168 @@ app.controller('Tabla_agendamientoCtrl', function ($scope, $rootScope, $location
 
 });
 
+app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,$timeout, services) {
+
+      var userID=$cookieStore.get('logedUser').login;
+    $rootScope.logedUser=$cookieStore.get('logedUser');
+    document.getElementById('logout').className="btn btn-md btn-danger";
+    var divi=document.getElementById("logoutdiv");
+    divi.style.visibility="visible";
+    divi.style.position="relative";
+    $scope.lastUpdate="";
+
+     $scope.doubleDigit= function (num){
+
+                if(num<0){
+                        num=0;
+                }
+
+                if(num<=9){
+                    return "0"+num;
+               }
+            return num;
+        };
 
 
-app.controller('ActivacionCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, services) {
+    $scope.data = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaini:"", fechafin: "" };
 
-	var userID = $cookieStore.get('logedUser').login;
-	$rootScope.logedUser = $cookieStore.get('logedUser');
-	document.getElementById('logout').className = "btn btn-md btn-danger";
-	var divi = document.getElementById("logoutdiv");
-	divi.style.visibility = "visible";
-	divi.style.position = "relative";
-	$scope.lastUpdate = "";
+    $scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaini:"", fechafin: "" } ;
 
-	$scope.doubleDigit = function (num) {
-
-		if (num < 0) {
-			num = 0;
-		}
-
-		if (num <= 9) {
-			return "0" + num;
-		}
-		return num;
-	};
+    var date1 = new Date();
+    var year  = date1.getFullYear();
+    var month =  $scope.doubleDigit(date1.getMonth()+1);
+    var day   =  $scope.doubleDigit(date1.getDate());
+    var fechaini=year+"-"+month+"-"+day;
+    var fechafin=year+"-"+month+"-"+day;
 
 
-	$scope.data = {
-		maxSize: 5,
-		currentPage: 1,
-		numPerPage: 100,
-		totalItems: 0,
-		fechaini: "",
-		fechafin: ""
-	};
+    $scope.data.fechaini=fechaini;
+    $scope.data1.fechaini=fechaini;
 
-	$scope.data1 = {
-		maxSize: 5,
-		currentPage: 1,
-		numPerPage: 100,
-		totalItems: 0,
-		fechaini: "",
-		fechafin: ""
-	};
-
-	var date1 = new Date();
-	var year = date1.getFullYear();
-	var month = $scope.doubleDigit(date1.getMonth() + 1);
-	var day = $scope.doubleDigit(date1.getDate());
-	var fechaini = year + "-" + month + "-" + day;
-	var fechafin = year + "-" + month + "-" + day;
-
-
-	$scope.data.fechaini = fechaini;
-	$scope.data1.fechaini = fechaini;
-
-	$scope.data.fechafin = fechafin;
+    $scope.data.fechafin=fechafin;
 
 
 
-	if (!angular.isDefined($scope.currentPage)) {
-		$scope.currentPage = 1;
-	}
+    if(!angular.isDefined($scope.currentPage)){
+                $scope.currentPage = 1;
+        }
 
 
-	$scope.setPage = function (pageNo) {
-		$scope.data.currentPage = pageNo;
-	};
+    $scope.setPage = function (pageNo) {
+            $scope.data.currentPage = pageNo;
+    };
 
-	$rootScope.logout = function () {
-		services.logout($rootScope.logedUser.login);
-		$cookieStore.remove('logedUser');
-		$rootScope.logedUser = undefined;
-		$scope.pedidos = {};
-		document.getElementById('logout').className = "btn btn-md btn-danger hide";
-		var divi = document.getElementById("logoutdiv");
-		divi.style.position = "absolute";
-		divi.style.visibility = "hidden";
-		$location.path('/');
+    $rootScope.logout = function() {
+        services.logout($rootScope.logedUser.login);
+        $cookieStore.remove('logedUser');
+        $rootScope.logedUser=undefined;
+        $scope.pedidos={};
+        document.getElementById('logout').className="btn btn-md btn-danger hide";
+        var divi=document.getElementById("logoutdiv");
+        divi.style.position="absolute";
+        divi.style.visibility="hidden";
+        $location.path('/');
 
-	};
+     };
 
-	$scope.listadoactivacion = [];
+     $scope.listadoactivacion=[];
 
-	$scope.data1.fechafin = fechafin;
+        $scope.data1.fechafin=fechafin;
 
-	$rootScope.actualView = "activacion";
+        $rootScope.actualView="activacion";
 
-	$scope.parseInt = function (numbero) {
-		return parseInt(numbero);
-	};
+        $scope.parseInt =  function (numbero){
+        return parseInt(numbero);
+        };
 
-	$scope.parseFloat = function (numbero) {
-		return parseFloat(numbero);
-	};
+        $scope.parseFloat =  function (numbero){
+                return parseFloat(numbero);
+        };
 
-	$scope.roundFloat = function (numbero) {
-		var num = parseFloat(numbero).toFixed(2);
-		return num;
-	};
-
-
-
-	$scope.listadoactivacion1 = function () {
-
-		services.getListadoActivacion($scope.data.fechaini, $scope.data.fechafin, $scope.data.currentPage).then(function (data) {
-
-			// console.log(data);
-			$scope.listadoactivacion = data.data[0];
-			$scope.data.totalItems = data.data[1];
-			$scope.data.totalItems2 = data.data[2];
-
-			return data.data;
-		});
+        $scope.roundFloat =  function (numbero){
+        var num=parseFloat(numbero).toFixed(2);
+                return num;
+        };
 
 
-	};
 
-         $rootScope.nagendamientostyle={};
+       $scope.listadoactivacion1  = function (){
 
-         if($rootScope.totalNegocioAgendamiento>$rootScope.totalNegocioAgendamientoOld){
-                                $rootScope.nagendamientostyle.ICON="fa fa-arrow-circle-up fa-2x";
-                                $rootScope.nagendamientostyle.STYLE="red";
-                        }else if($rootScope.totalNegocioAgendamiento<$rootScope.totalNegocioAgendamientoOld){
-                                $rootScope.nagendamientostyle.ICON="fa fa-arrow-circle-down fa-2x";
-                                $rootScope.nagendamientostyle.STYLE="green";
-                        }else {
-                                $rootScope.nagendamientostyle.ICON="fa fa-minus-circle fa-2x";
-                                $rootScope.nagendamientostyle.STYLE="gray";
-                        }
+                services.getListadoActivacion($scope.data.fechaini,$scope.data.fechafin,$scope.data.currentPage).then(function(data){
 
-         return data.data;
-      });
-  //};
+                   // console.log(data);
+                       $scope.listadoactivacion=data.data[0];
+                       $scope.data.totalItems=data.data[1];
+                        $scope.data.totalItems2=data.data[2];
 
-$scope.actualizarLightKPIS();
-        $scope.$on(
-                "$destroy",
-                        function( event ) {
-                            //$timeout.cancel(timer);
-                            clearInterval($scope.intervalLightKPIS);
-          });
+                    return data.data;
+               });
 
-////////////////////////////////////////////////////////////////
+
+        };
+ //---------------listado gestor_pendientes_activacion_siebel_invdom
+
+ //---------------listado gestor_pendientes_activacion_siebel_invdom
+
+
+      $scope.listadoactivacion1();
+
+
+    $scope.pageChanged = function(forma) {
+
+            $scope.listadoactivacion1();
    
 
-$scope.start = function(pedido) {
-                var pedido1='';
-                $scope.popup='';
-                $scope.error="";
-                if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
-                         pedido1=$scope.peds[0].PEDIDO_ID;
-                }
-                $scope.peds={};
-                $scope.bpedido='';
-                $scope.busy="";
-                $scope.mpedido={};
-                $scope.pedido1=pedido1;
-                $scope.error="";
+               // console.log($scope.data.concepto);
+    };
 
-                var demePedidoButton=document.getElementById("iniciar");
-                demePedidoButton.setAttribute("disabled","disabled");
-                demePedidoButton.className = "btn btn-danger disabled";
-
-                
-
-                var kami=services.demePedidoAgendamientomalo($rootScope.logedUser.login,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,'').then(function(data){
-                        $scope.peds = data.data;
-                        console.log(data.data);
-                        if(data.data==''||data.data=='No hay registros!'){
-                                document.getElementById("warning").innerHTML="No hay Registros";
-                                $scope.error="No hay Registros";
-                        }else{
-                                document.getElementById("warning").innerHTML="";
-                                $scope.pedido1=$scope.peds[0].PEDIDO_ID;
-
-                                if($scope.peds[0].STATUS=="MALO"&&$scope.peds[0].ASESOR!=""){
-                                        $scope.busy=$scope.peds[0].ASESOR;
-                                        $scope.error="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
-                                }
-            $scope.baby($scope.pedido1);
-                        }
-
-                        var demePedidoButton=document.getElementById("iniciar");
-                        demePedidoButton.removeAttribute("disabled");
-                        demePedidoButton.className = "btn btn-danger";
+  $scope.csvActivacion  = function (){
+                var login=$rootScope.logedUser.login;
+                services.getCsvActivacion(login).then(function(data){
+                        window.location.href="tmp/"+data.data[0];
                         return data.data;
                 });
-                $scope.timeInit=new Date().getTime();
-                var date1 = new Date();
-                var year    = date1.getFullYear();
-                var month   = $scope.doubleDigit(date1.getMonth()+1);
-                var day     = $scope.doubleDigit(date1.getDate());
-                var hour    = $scope.doubleDigit(date1.getHours());
-                var minute  = $scope.doubleDigit(date1.getMinutes());
-                var seconds = $scope.doubleDigit(date1.getSeconds());
+        };
+
+     $scope.csvActivacionSiebel  = function (){
+                var login=$rootScope.logedUser.login;
+                services.getCsvActivacionSiebel(login).then(function(data){
+                        window.location.href="tmp/"+data.data[0];
+                        return data.data;
+                });
+        };
+
+      $scope.csvActivacionSiebelinvdom  = function (){
+                var login=$rootScope.logedUser.login;
+                services.getCsvActivacionSiebelinvdom(login).then(function(data){
+                        window.location.href="tmp/"+data.data[0];
+                        return data.data;
+                });
+        };
+
+        $scope.csvListadoActivacion  = function (fechaini,fechafin){
+                var login=$rootScope.logedUser.login;
+                services.getCsvListadoActivacion($scope.data.fechaini,$scope.data.fechafin,login).then(function(data){
+                        window.location.href="tmp/"+data.data[0];
+                        return data.data;
+                });
+        };
+
+        $scope.csvListadoActivacionnuevos  = function (fechaini,fechafin){
+                var login=$rootScope.logedUser.login;
+                services.getCsvListadoActivacionnuevo($scope.data.fechaini,$scope.data.fechafin,login).then(function(data){
+                        window.location.href="tmp/"+data.data[0];
+                        return data.data;
+                });
+        };
 
 
-	$scope.listadoactivacion1();
+       $scope.actualizarGraficaAD   = function (){
+    //TOMAR MUESTRA
+                var data1=services.getPendientesGraficaAD().then(function(data){
 
-
-	$scope.pageChanged = function (forma) {
-
-		$scope.listadoactivacion1();
-
-
-		// console.log($scope.data.concepto);
-	};
-
-	$scope.csvActivacion = function () {
-		var login = $rootScope.logedUser.login;
-		services.getCsvActivacion(login).then(function (data) {
-			window.location.href = "tmp/" + data.data[0];
-			return data.data;
-		});
-	};
-
-	$scope.csvActivacionSiebel = function () {
-		var login = $rootScope.logedUser.login;
-		services.getCsvActivacionSiebel(login).then(function (data) {
-			window.location.href = "tmp/" + data.data[0];
-			return data.data;
-		});
-	};
-
-	$scope.csvActivacionSiebelinvdom = function () {
-		var login = $rootScope.logedUser.login;
-		services.getCsvActivacionSiebelinvdom(login).then(function (data) {
-			window.location.href = "tmp/" + data.data[0];
-			return data.data;
-		});
-	};
-
-	$scope.csvListadoActivacion = function (fechaini, fechafin) {
-		var login = $rootScope.logedUser.login;
-		services.getCsvListadoActivacion($scope.data.fechaini, $scope.data.fechafin, login).then(function (data) {
-			window.location.href = "tmp/" + data.data[0];
-			return data.data;
-		});
-	};
-
-	$scope.csvListadoActivacionnuevos = function (fechaini, fechafin) {
-		var login = $rootScope.logedUser.login;
-		services.getCsvListadoActivacionnuevo($scope.data.fechaini, $scope.data.fechafin, login).then(function (data) {
-			window.location.href = "tmp/" + data.data[0];
-			return data.data;
-		});
-	};
-
-
-	$scope.actualizarGraficaAD = function () {
-		//TOMAR MUESTRA
-		var data1 = services.getPendientesGraficaAD().then(function (data) {
-
-			$scope.myDataSourceAD = {
-				/*   chart: {
+                        $scope.myDataSourceAD = {
+                             /*   chart: {
                                         caption: "Grafica A y D",
                                         subcaption: "Pendientes",
                                         startingangle: "120",
@@ -10564,395 +10472,397 @@ $scope.start = function(pedido) {
                                         showpercentintooltip: "0",
                         }, */
 
-				chart: {
-					"caption": "Grafica Activación / Desactivación",
-					"subCaption": "Pendientes",
-					"xAxisName": "Colas",
-					"yAxisName": "Pendientes",
-					"numberPrefix": "",
-					"paletteColors": "#0075c2",
-					"bgColor": "#ffffff",
-					"borderAlpha": "20",
-					"canvasBorderAlpha": "0",
-					"usePlotGradientColor": "0",
-					"plotBorderAlpha": "10",
-					"placevaluesInside": "0",
-					"rotatevalues": "0",
-					"valueFontColor": "#0075c2",
-					"showXAxisLine": "1",
-					"xAxisLineColor": "#999999",
-					"divlineColor": "#999999",
-					"divLineDashed": "1",
-					"showAlternateHGridColor": "0",
-					"subcaptionFontBold": "0",
-					"subcaptionFontSize": "14"
-				},
-				data: data.data[0]
+                           chart: {
+                                "caption": "Grafica Activación / Desactivación",
+                                "subCaption": "Pendientes",
+                                "xAxisName": "Colas",
+                                "yAxisName": "Pendientes",
+                                "numberPrefix": "",
+                                "paletteColors": "#0075c2",
+                                "bgColor": "#ffffff",
+                                "borderAlpha": "20",
+                                "canvasBorderAlpha": "0",
+                                "usePlotGradientColor": "0",
+                                "plotBorderAlpha": "10",
+                                "placevaluesInside": "0",
+                                "rotatevalues": "0",
+                                "valueFontColor": "#0075c2",
+                                "showXAxisLine": "1",
+                                "xAxisLineColor": "#999999",
+                                "divlineColor": "#999999",
+                                "divLineDashed": "1",
+                                "showAlternateHGridColor": "0",
+                                "subcaptionFontBold": "0",
+                                "subcaptionFontSize": "14"
+                            },
+                                data: data.data[0]
 
-			}
-			var date1 = new Date();
-			var year = date1.getFullYear();
-			var month = $scope.doubleDigit(date1.getMonth() + 1);
-			var day = $scope.doubleDigit(date1.getDate());
-			var hour = $scope.doubleDigit(date1.getHours());
-			var minute = $scope.doubleDigit(date1.getMinutes());
-			var seconds = $scope.doubleDigit(date1.getSeconds());
+                        }
+                        var date1 = new Date();
+                        var year    = date1.getFullYear();
+                        var month   = $scope.doubleDigit(date1.getMonth()+1);
+                        var day     = $scope.doubleDigit(date1.getDate());
+                        var hour    = $scope.doubleDigit(date1.getHours());
+                        var minute  = $scope.doubleDigit(date1.getMinutes());
+                        var seconds = $scope.doubleDigit(date1.getSeconds());
 
-			$scope.lastUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-			$scope.totalAD = data.data[1]
+                        $scope.lastUpdate=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
+                        $scope.totalAD= data.data[1]
 
-			return data.data;
-		});
-		$scope.actualizarPendientesPorConceptoColaActivacion();
+                        return data.data;
+                });
+        $scope.actualizarPendientesPorConceptoColaActivacion();
 
-		services.logVista($cookieStore.get('logedUser').login, "Indicadores Activacion y Desactivacion");
-	};
-
-
-	$scope.actualizarPendientesPorConceptoColaActivacion = function () {
-		var data1 = services.pendientesPorConceptoColaActivacion().then(function (data) {
-
-			$scope.listado_colas = data.data[0];
-			$scope.listado_conceptos = data.data[1];
-			$scope.listado_colas.totales = 0;
-			$scope.listado_colas.total02 = 0;
-			$scope.listado_colas.total34 = 0;
-			$scope.listado_colas.total56 = 0;
-			$scope.listado_colas.total712 = 0;
-			$scope.listado_colas.total1324 = 0;
-			$scope.listado_colas.total2548 = 0;
-			$scope.listado_colas.totalmas48 = 0;
-
-			$scope.listado_conceptos.totales = 0;
-			$scope.listado_conceptos.total02 = 0;
-			$scope.listado_conceptos.total34 = 0;
-			$scope.listado_conceptos.total56 = 0;
-			$scope.listado_conceptos.total712 = 0;
-			$scope.listado_conceptos.total1324 = 0;
-			$scope.listado_conceptos.total2548 = 0;
-			$scope.listado_conceptos.totalmas48 = 0;
-
-		});
-
-	};
-
-	$scope.myDataSourceAD = {
-		chart: {
-			caption: "Grafica General",
-			subcaption: "Pendientes A y D",
-			startingangle: "120",
-			showlabels: "0",
-			showlegend: "1",
-			enablemultislicing: "0",
-			slicingdistance: "15",
-			formatNumberScale: "0",
-			showpercentvalues: "1",
-			showpercentintooltip: "0",
-			plottooltext: "Age group : $label Total visit : $datavalue",
-			theme: "fint"
-		},
-		data: []
-
-	};
+        services.logVista($cookieStore.get('logedUser').login,"Indicadores Activacion y Desactivacion");
+           };
 
 
-	$scope.actualizarseguimientoGraficaAD = function () {
-		//TOMAR MUESTRA
-		var data1 = services.getSeguimientoActivacionGraficaAD().then(function (data) {
+        $scope.actualizarPendientesPorConceptoColaActivacion  = function (){
+                 var data1=services.pendientesPorConceptoColaActivacion().then(function(data){
 
-			$scope.myDataSourceAD = {
+                        $scope.listado_colas =  data.data[0];
+                        $scope.listado_conceptos =  data.data[1];
+                        $scope.listado_colas.totales = 0;
+                        $scope.listado_colas.total02 = 0;
+                        $scope.listado_colas.total34 = 0;
+                        $scope.listado_colas.total56 = 0;
+                        $scope.listado_colas.total712 = 0;
+                        $scope.listado_colas.total1324 = 0;
+                        $scope.listado_colas.total2548 = 0;
+                        $scope.listado_colas.totalmas48 = 0;
 
+                        $scope.listado_conceptos.totales = 0;
+                        $scope.listado_conceptos.total02 = 0;
+                        $scope.listado_conceptos.total34 = 0;
+                        $scope.listado_conceptos.total56 = 0;
+                        $scope.listado_conceptos.total712 = 0;
+                        $scope.listado_conceptos.total1324 = 0;
+                        $scope.listado_conceptos.total2548 = 0;
+                        $scope.listado_conceptos.totalmas48 = 0;
 
-				chart: {
-					"caption": "Pedidos Cumplidos / Activación",
-					"xAxisName": "Colas",
-					"yAxisName": "Pedidos",
-					"numberPrefix": "",
-					"paletteColors": "#0075c2",
-					"bgColor": "#ffffff",
-					"borderAlpha": "20",
-					"canvasBorderAlpha": "0",
-					"usePlotGradientColor": "0",
-					"plotBorderAlpha": "10",
-					"placevaluesInside": "0",
-					"rotatevalues": "0",
-					"valueFontColor": "#0075c2",
-					"showXAxisLine": "1",
-					"xAxisLineColor": "#999999",
-					"divlineColor": "#999999",
-					"divLineDashed": "1",
-					"showAlternateHGridColor": "0",
-					"subcaptionFontBold": "0",
-					"subcaptionFontSize": "14"
-				},
+                });
 
+        };
 
+        $scope.myDataSourceAD = {
+                        chart: {
+                        caption: "Grafica General",
+                        subcaption: "Pendientes A y D",
+                        startingangle: "120",
+                        showlabels: "0",
+                        showlegend: "1",
+                        enablemultislicing: "0",
+                        slicingdistance: "15",
+                        formatNumberScale: "0",
+                        showpercentvalues: "1",
+                        showpercentintooltip: "0",
+                        plottooltext: "Age group : $label Total visit : $datavalue",
+                        theme: "fint"
+                        },
+                        data: []
 
-				data: data.data[0]
-
-			}
-			var date1 = new Date();
-			var year = date1.getFullYear();
-			var month = $scope.doubleDigit(date1.getMonth() + 1);
-			var day = $scope.doubleDigit(date1.getDate());
-			var hour = $scope.doubleDigit(date1.getHours());
-			var minute = $scope.doubleDigit(date1.getMinutes());
-			var seconds = $scope.doubleDigit(date1.getSeconds());
-
-			$scope.lastUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-			$scope.totalAD = data.data[1]
-
-			return data.data;
-		});
+        };
 
 
-	};
+          $scope.actualizarseguimientoGraficaAD   = function (){
+    //TOMAR MUESTRA
+                var data1=services.getSeguimientoActivacionGraficaAD().then(function(data){
+
+                        $scope.myDataSourceAD = {
 
 
-	$scope.listadoactivacion2 = function () {
-
-		services.getListadoActivacionTabla($scope.data.fechaini, $scope.data.fechafin, $scope.data.currentPage).then(function (data) {
-
-			// console.log(data);
-			$scope.listadoactivaciontabla = data.data[1];
-			$scope.listadoactivaciontabla.totales = 0;
-
-			//$scope.data.totalItems=data.data[1];
-
-			return data.data;
-		});
-
-
-	};
-
-
-	$scope.myDataSourceAD = {
-		chart: {
-			caption: "Grafica General",
-			subcaption: "Pendientes A y D",
-			startingangle: "120",
-			showlabels: "0",
-			showlegend: "1",
-			enablemultislicing: "0",
-			slicingdistance: "15",
-			formatNumberScale: "0",
-			showpercentvalues: "1",
-			showpercentintooltip: "0",
-			plottooltext: "Age group : $label Total visit : $datavalue",
-			theme: "fint"
-		},
-		data: []
-
-	}; //--------------------------------
-
-	$scope.actualizarGraficaADS = function () {
-		//TOMAR MUESTRA
-		var data1 = services.getPendientesSiebelGraficaAD().then(function (data) {
-
-			$scope.myDataSourceAD = {
-
-				chart: {
-					"caption": "Grafica Activación / Siebel",
-					"subCaption": "Pendientes",
-					"xAxisName": "Pedidos Por Producto",
-					"yAxisName": "Pendientes",
-					"numberPrefix": "",
-					"paletteColors": "#0075c2",
-					"bgColor": "#ffffff",
-					"borderAlpha": "20",
-					"canvasBorderAlpha": "0",
-					"usePlotGradientColor": "0",
-					"plotBorderAlpha": "10",
-					"placevaluesInside": "0",
-					"rotatevalues": "0",
-					"valueFontColor": "#0075c2",
-					"showXAxisLine": "1",
-					"xAxisLineColor": "#999999",
-					"divlineColor": "#999999",
-					"divLineDashed": "1",
-					"showAlternateHGridColor": "0",
-					"subcaptionFontBold": "0",
-					"subcaptionFontSize": "14"
-				},
-				data: data.data[0]
-
-			}
-			var date1 = new Date();
-			var year = date1.getFullYear();
-			var month = $scope.doubleDigit(date1.getMonth() + 1);
-			var day = $scope.doubleDigit(date1.getDate());
-			var hour = $scope.doubleDigit(date1.getHours());
-			var minute = $scope.doubleDigit(date1.getMinutes());
-			var seconds = $scope.doubleDigit(date1.getSeconds());
-
-			$scope.lastUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-			$scope.totalAD = data.data[1];
-			$scope.listaPendientesSiebel = data.data[0];
-
-			return data.data;
-		});
-
-	};
-
-	$scope.listadoactivacion3 = function () {
-
-		services.getListadoActivacionSiebel($scope.data.fechaini, $scope.data.fechafin, $scope.data.currentPage).then(function (data) {
-
-			// console.log(data);
-			$scope.listadoactivacionsiebel = data.data[1];
-			$scope.listadoactivacionsiebel.totales = 0;
-
-			//$scope.data.totalItems=data.data[1];
-
-			return data.data;
-		});
+                            chart: {
+                                "caption": "Pedidos Cumplidos / Activación",
+                                "xAxisName": "Colas",
+                                "yAxisName": "Pedidos",
+                                "numberPrefix": "",
+                                "paletteColors": "#0075c2",
+                                "bgColor": "#ffffff",
+                                "borderAlpha": "20",
+                                "canvasBorderAlpha": "0",
+                                "usePlotGradientColor": "0",
+                                "plotBorderAlpha": "10",
+                                "placevaluesInside": "0",
+                                "rotatevalues": "0",
+                                "valueFontColor": "#0075c2",
+                                "showXAxisLine": "1",
+                                "xAxisLineColor": "#999999",
+                                "divlineColor": "#999999",
+                                "divLineDashed": "1",
+                                "showAlternateHGridColor": "0",
+                                "subcaptionFontBold": "0",
+                                "subcaptionFontSize": "14"
+                            },
 
 
-	};
+
+                                data: data.data[0]
+
+                        }
+                        var date1 = new Date();
+                        var year    = date1.getFullYear();
+                        var month   = $scope.doubleDigit(date1.getMonth()+1);
+                        var day     = $scope.doubleDigit(date1.getDate());
+                        var hour    = $scope.doubleDigit(date1.getHours());
+                        var minute  = $scope.doubleDigit(date1.getMinutes());
+                        var seconds = $scope.doubleDigit(date1.getSeconds());
+
+                        $scope.lastUpdate=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
+                        $scope.totalAD= data.data[1]
+
+                        return data.data;
+                });
 
 
-	$scope.myDataSourceAD = {
-		chart: {
-			caption: "Grafica General",
-			subcaption: "Pendientes A y D",
-			startingangle: "120",
-			showlabels: "0",
-			showlegend: "1",
-			enablemultislicing: "0",
-			slicingdistance: "15",
-			formatNumberScale: "0",
-			showpercentvalues: "1",
-			showpercentintooltip: "0",
-			plottooltext: "Age group : $label Total visit : $datavalue",
-			theme: "fint"
-		},
-		data: []
+           };
 
-	};
+
+          $scope.listadoactivacion2  = function (){
+
+                services.getListadoActivacionTabla($scope.data.fechaini,$scope.data.fechafin,$scope.data.currentPage).then(function(data){
+
+                   // console.log(data);
+                       $scope.listadoactivaciontabla=data.data[1];
+                       $scope.listadoactivaciontabla.totales = 0;
+
+                       //$scope.data.totalItems=data.data[1];
+
+                    return data.data;
+               });
+
+
+        };
+
+
+        $scope.myDataSourceAD = {
+                        chart: {
+                        caption: "Grafica General",
+                        subcaption: "Pendientes A y D",
+                        startingangle: "120",
+                        showlabels: "0",
+                        showlegend: "1",
+                        enablemultislicing: "0",
+                        slicingdistance: "15",
+                        formatNumberScale: "0",
+                        showpercentvalues: "1",
+                        showpercentintooltip: "0",
+                        plottooltext: "Age group : $label Total visit : $datavalue",
+                        theme: "fint"
+                        },
+                        data: []
+
+        };//--------------------------------
+
+    $scope.actualizarGraficaADS   = function (){
+    //TOMAR MUESTRA
+                var data1=services.getPendientesSiebelGraficaAD().then(function(data){
+
+                        $scope.myDataSourceAD = {
+
+                           chart: {
+                                "caption": "Grafica Activación / Siebel",
+                                "subCaption": "Pendientes",
+                                "xAxisName": "Pedidos Por Producto",
+                                "yAxisName": "Pendientes",
+                                "numberPrefix": "",
+                                "paletteColors": "#0075c2",
+                                "bgColor": "#ffffff",
+                                "borderAlpha": "20",
+                                "canvasBorderAlpha": "0",
+                                "usePlotGradientColor": "0",
+                                "plotBorderAlpha": "10",
+                                "placevaluesInside": "0",
+                                "rotatevalues": "0",
+                                "valueFontColor": "#0075c2",
+                                "showXAxisLine": "1",
+                                "xAxisLineColor": "#999999",
+                                "divlineColor": "#999999",
+                                "divLineDashed": "1",
+                                "showAlternateHGridColor": "0",
+                                "subcaptionFontBold": "0",
+                                "subcaptionFontSize": "14"
+                            },
+                                data: data.data[0]
+
+                        }
+                        var date1 = new Date();
+                        var year    = date1.getFullYear();
+                        var month   = $scope.doubleDigit(date1.getMonth()+1);
+                        var day     = $scope.doubleDigit(date1.getDate());
+                        var hour    = $scope.doubleDigit(date1.getHours());
+                        var minute  = $scope.doubleDigit(date1.getMinutes());
+                        var seconds = $scope.doubleDigit(date1.getSeconds());
+
+                        $scope.lastUpdate=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
+                        $scope.totalAD= data.data[1];
+						$scope.listaPendientesSiebel=data.data[0];
+
+                        return data.data;
+             });
+
+    };
+
+     $scope.listadoactivacion3  = function (){
+
+                services.getListadoActivacionSiebel($scope.data.fechaini,$scope.data.fechafin,$scope.data.currentPage).then(function(data){
+
+                   // console.log(data);
+                       $scope.listadoactivacionsiebel=data.data[1];
+                       $scope.listadoactivacionsiebel.totales = 0;
+
+                       //$scope.data.totalItems=data.data[1];
+
+                    return data.data;
+               });
+
+
+        };
+
+
+        $scope.myDataSourceAD = {
+                        chart: {
+                        caption: "Grafica General",
+                        subcaption: "Pendientes A y D",
+                        startingangle: "120",
+                        showlabels: "0",
+                        showlegend: "1",
+                        enablemultislicing: "0",
+                        slicingdistance: "15",
+                        formatNumberScale: "0",
+                        showpercentvalues: "1",
+                        showpercentintooltip: "0",
+                        plottooltext: "Age group : $label Total visit : $datavalue",
+                        theme: "fint"
+                        },
+                        data: []
+
+        };
 
 	//----------Funcion para determinar el color del pendiente --------------------------
-	var colorDanger = "#E83720";
-	var colorWaring = "#E8A820";
-	var colorWarningTrans = "#ffd699";
-	var colorNormal = "#088A08";
+var colorDanger="#E83720";
+var colorWaring="#E8A820";
+var colorWarningTrans="#ffd699";
+var colorNormal="#088A08";
 
-	$scope.set_color = function (value) {
-		if (value > 200) {
-			$scope.estilo = {
-				"list-style-position": "inside",
-				"border-left": "5px solid " + colorDanger
-			};
+$scope.set_color = function (value) {
+              if (value > 200) {
+                $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorDanger
+                    };
 
-			return $scope.estilo;
-		} else {
+                return $scope.estilo;
+              }
+              else{
 
-			if (value > 50 && value < 200) {
+                  if(value > 50 && value < 200){
 
-				$scope.estilo = {
-					"list-style-position": "inside",
-					"border-left": "5px solid " + colorWaring
-				};
+                    $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorWaring
+                    };
 
-			} else {
+                  }else{
 
-				$scope.estilo = {
-					"list-style-position": "inside",
-					"border-left": "5px solid " + colorNormal
-				};
-			}
+                     $scope.estilo={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorNormal
+                    };
+                  }
 
-			return $scope.estilo;
+               return $scope.estilo;
 
-		}
-	};
+              }
+            };
 
-	$scope.set_color_Cuartil = function (value) {
+$scope.set_color_Cuartil = function (value) {
 
-		//console.log(value);
+	//console.log(value);
 
-		if (value >= 4) {
-			$scope.estiloCuartil = {
-				"list-style-position": "inside",
-				"border-left": "5px solid " + colorDanger
-			};
+              if (value >= 4) {
+                $scope.estiloCuartil={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorDanger
+                    };
 
-			return $scope.estiloCuartil;
-		}
-
-
-		if (value >= 3 && value < 4) {
-
-			$scope.estiloCuartil = {
-				"list-style-position": "inside",
-				"border-left": "5px solid " + colorWaring
-
-			};
-			return $scope.estiloCuartil;
-
-		}
-
-		if (value >= 2 && value < 3) {
-
-			$scope.estiloCuartil = {
-				"list-style-position": "inside",
-				"border-left": "5px solid " + colorWarningTrans
-			};
-			return $scope.estiloCuartil;
-		}
-
-		if (value >= 1 && value < 2) {
-
-			$scope.estiloCuartil = {
-				"list-style-position": "inside",
-				"border-left": "5px solid " + colorNormal
-			};
-			return $scope.estiloCuartil;
-		}
-
-	};
+                return $scope.estiloCuartil;
+              }
 
 
-	// Feed --------------------------------------------------------------------------
+              if(value >= 3 && value < 4){
 
-	$scope.intervalFeed = setInterval(function () {
-		$scope.getFeed();
-		$scope.getLoginFeed();
-	}, 20000);
+                    $scope.estiloCuartil={
+                  "list-style-position":"inside",
+                  "border-left": "5px solid "+colorWaring
+
+                    };
+				  return $scope.estiloCuartil;
+
+                  }
+
+               if(value >= 2 && value < 3){
+
+					$scope.estiloCuartil={
+					  "list-style-position":"inside",
+					  "border-left": "5px solid "+colorWarningTrans
+					};
+				   return $scope.estiloCuartil;
+                  	}
+
+		if(value >= 1 && value < 2){
+
+					$scope.estiloCuartil={
+					  "list-style-position":"inside",
+					  "border-left": "5px solid "+colorNormal
+					};
+				   return $scope.estiloCuartil;
+                  	}
+
+};
 
 
-	$scope.getFeed = function () {
-		services.getFeed().then(function (data) {
-			$scope.listado_feed = data.data[0];
-			$scope.total_feed = data.data[1];
-			return data.data;
-		});
+// Feed --------------------------------------------------------------------------
+
+	$scope.intervalFeed = setInterval(function(){
+                $scope.getFeed();
+                $scope.getLoginFeed();
+           },20000);
+
+
+	$scope.getFeed = function (){
+		services.getFeed().then(function(data){
+                        $scope.listado_feed=data.data[0];
+			$scope.total_feed=data.data[1];
+                        return data.data;
+                });
 
 	}
 
 	$scope.$on(
-		"$destroy",
-		function (event) {
-			clearInterval($scope.intervalFeed);
-		}
-	);
+       		"$destroy",
+                        function( event ) {
+				clearInterval($scope.intervalFeed);
+                        }
+        );
 
 
 
-	$scope.getLoginFeed = function () {
-		services.getLoginFeed().then(function (data) {
-			$scope.login_feed = data.data[0];
-			$scope.total_feed = data.data[1];
-			return data.data;
-		});
-	}
+    $scope.getLoginFeed = function (){
+        services.getLoginFeed().then(function(data){
+                        $scope.login_feed=data.data[0];
+                        $scope.total_feed=data.data[1];
+                        return data.data;
+                });
+    }
 
 	$scope.getFeed();
 
-	//  -------------------------------------------------------------------------- Feed
+//  -------------------------------------------------------------------------- Feed
 
 
 
-//});
+});
+
 
 //-------------------------------------demepedidoactivacio------------------------
 app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, services) {
@@ -14603,4 +14513,4 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 	});
 
 
-//}]);
+}]);
