@@ -58,11 +58,11 @@ app.service('fileUpload2', ['$http', function ($http) {
                   transformRequest: angular.identity,
                   headers: {'Content-Type': undefined}
                })
-               .success(function(){
+               .success(function () {
 
 
                })
-               .error(function(){
+               .error(function () {
                });
             }
          }]);
@@ -75,8 +75,8 @@ app.service('fileUpload2', ['$http', function ($http) {
                   var model = $parse(attrs.fileModel);
                   var modelSetter = model.assign;
                   
-                  element.bind('change', function(){
-                     scope.$apply(function(){
+                  element.bind('change', function () {
+                     scope.$apply(function () {
                         modelSetter(scope, element[0].files[0]);
                      });
                   });
@@ -90,7 +90,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
   	 var serviceBase = 'services/'
      var obj = {};
 
-    obj.getCustomers = function(){
+    obj.getCustomers = function () {
         	return $http.get(serviceBase + 'customers');
     	}
 
@@ -100,7 +100,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 
 //--------------------Servicios Globales
 
-	obj.getGestorConceptos = function(){
+	obj.getGestorConceptos = function () {
 		return $http.get(serviceBase + 'gestorConceptos');
 	}
 
@@ -130,7 +130,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'pedidosPorUserReagendamiento?userID=' + userID); // pedido por user reagendamiento
         }
 
-       obj.getLightKPISAgendamiento =function(){//kpis agendamiento
+       obj.getLightKPISAgendamiento =function () {//kpis agendamiento
                 return $http.get(serviceBase + 'lightKPISAgendamiento');
         }
 
@@ -188,10 +188,10 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
 
-     obj.getDashboardAgendamiento = function(){
+     obj.getDashboardAgendamiento = function () {
                 return $http.get(serviceBase + 'getDashboardAgendamiento'); // graficas agendamiento
         }
-         obj.getDashboardAgendamientoPresupuestal = function(){
+         obj.getDashboardAgendamientoPresupuestal = function () {
                 return $http.get(serviceBase + 'getDashboardAgendamientoPresupuestal'); //grafica agendamiento presupuestal
         }
 
@@ -206,7 +206,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
     		return $http.get(serviceBase+'demePedidoAgendamientomalo?userID='+user+'&pedido_actual='+pedido_actual+'&plaza='+plaza+'&username='+username);
     	}
 
-    obj.getDepartamentosPendientesReagendamiento = function(){
+    obj.getDepartamentosPendientesReagendamiento = function () {
 		return $http.get(serviceBase + 'getDepartamentosPendientesReagendamiento');//pendientes por departamento agendamiento
 	}
 	//pantalla de agendamientos general
@@ -219,7 +219,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
 
-    obj.getDepartamentosOcupaagenda = function(){//departamentos ocupadas
+    obj.getDepartamentosOcupaagenda = function () {//departamentos ocupadas
         return $http.get(serviceBase + 'getDepartamentosOcupaagenda');
     }
 
@@ -230,10 +230,10 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'csvTabla?fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin);
         }
 
-         obj.getPendientesGraficaAgendamiento = function(){ //pendientes grafica agendamiento
+         obj.getPendientesGraficaAgendamiento = function () { //pendientes grafica agendamiento
                 return $http.get(serviceBase + 'pendientesGraficaAgendamiento');
         }
-        obj.getPendientesConceptosReagendamiento  = function(){//pendientes por concepto
+        obj.getPendientesConceptosReagendamiento  = function () {//pendientes por concepto
                 return $http.get(serviceBase + 'pendientesPorConceptoReagendamiento');
         }
 
@@ -241,7 +241,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'getZonasOcupaagenda?departamento='+dep);
         }
 
-    obj.getDepartamentosAdelantarAgenda = function(){// departamento para delantar agenda
+    obj.getDepartamentosAdelantarAgenda = function () {// departamento para delantar agenda
         return $http.get(serviceBase + 'getDepartamentosAdelantarAgenda');
     }
 
@@ -302,7 +302,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         };
 
 
-    obj.listar1 = function(){//listado cargar datos
+    obj.listar1 = function () {//listado cargar datos
                 return $http.get(serviceBase + 'listadoarchivosdocu1');
         }
 
@@ -346,11 +346,11 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         }
 
 
-      obj.getListadoAlarmasActivacion = function(){//listado alarmas acrivacion
+      obj.getListadoAlarmasActivacion = function () {//listado alarmas acrivacion
                 return $http.get(serviceBase + 'listadoAlarmasActivacion');
         }
 
-        obj.getUsuariosAlarmasActivacion = function(){//listado alarmas activacion por usuario
+        obj.getUsuariosAlarmasActivacion = function () {//listado alarmas activacion por usuario
                 return $http.get(serviceBase + 'usuariosAlarmasActivacion');
         }
 
@@ -413,24 +413,24 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'csvActivacionSiebelinvdom?login='+login);
         }
 
-    obj.pendientesPorConceptoColaActivacion  = function(){//perdientes por conceptos activacion
+    obj.pendientesPorConceptoColaActivacion  = function () {//perdientes por conceptos activacion
                 return $http.get(serviceBase + 'pendientesPorColaConceptoActivacion');
         }
 
-     obj.getDashboardActivacionMes = function(){//grafica activacion mes
+     obj.getDashboardActivacionMes = function () {//grafica activacion mes
                 return $http.get(serviceBase + 'getDashboardActivacionMes');
         }
 
-       obj.getSeguimientoActivacionGraficaAD = function(){//grafica activacion seguimiento
+       obj.getSeguimientoActivacionGraficaAD = function () {//grafica activacion seguimiento
                 return $http.get(serviceBase + 'seguimientoactivacionGraficaAD');
 
         }
 
-        obj.getPendientesGraficaAD = function(){// grafica pendientes activacion
+        obj.getPendientesGraficaAD = function () {// grafica pendientes activacion
                 return $http.get(serviceBase + 'pendientesGraficaAD');
         }
 
-        obj.getPendientesSiebelGraficaAD = function(){//pendientes siebel grafica
+        obj.getPendientesSiebelGraficaAD = function () {//pendientes siebel grafica
                 return $http.get(serviceBase + 'PendientesSiebelGraficaAD');
         }
 
@@ -454,7 +454,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
       obj.getPedidosUserActivacion = function(userID){//pedidos por user activacion
                 return $http.get(serviceBase + 'pedidosPorUserActivacion?userID=' + userID);
         }
-       obj.listar = function(){
+       obj.listar = function () {
                 return $http.get(serviceBase + 'listadoarchivosdocu');//listado activacion
         }
 
@@ -476,11 +476,11 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'logVista?userID=' + userID+'&vista='+vista);
         }
 
-	obj.getLightKPIS =function(){
+	obj.getLightKPIS =function () {
                 return $http.get(serviceBase + 'lightKPIS');
         }
 
-        obj.getLightKPISMaestro =function(){
+        obj.getLightKPISMaestro =function () {
                 return $http.get(serviceBase + 'lightKPISMaestro');
         }
 
@@ -511,16 +511,16 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'listadoParametrizadosSiebel?depa='+depa+'&zona='+zona);
         }
 
-     obj.getListadoAdmonTips = function(){//listados tips
+     obj.getListadoAdmonTips = function () {//listados tips
                 return $http.get(serviceBase + 'listadoAdmonTips');
         }
 
-    obj.actualizarTablaGraficaCambioNuevoREDCO = function(){//actualizar grafica
+    obj.actualizarTablaGraficaCambioNuevoREDCO = function () {//actualizar grafica
                 return $http.get(serviceBase + 'actualizarTablaGraficaCambioNuevoREDCO');
         }
 
 
-    obj.getListadoTips = function(){
+    obj.getListadoTips = function () {
                 return $http.get(serviceBase + 'getListadoTips');
         }
 
@@ -564,7 +564,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'listadoTransaccionesNCA?fechaInicio='+fecha_inicio+'&fechaFin='+fecha_fin+'&page='+page);
      }
 
-	obj.getListadoUsuarios  = function(){
+	obj.getListadoUsuarios  = function () {
                 return $http.get(serviceBase + 'listadoUsuarios');
      }
 
@@ -576,11 +576,11 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
                 return $http.get(serviceBase + 'buscarParametro?parametro='+parametro);
     }
 
-    obj.getFeed  = function(){
+    obj.getFeed  = function () {
                 return $http.get(serviceBase + 'getFeed');
         }
 
-    obj.getLoginFeed  = function(){
+    obj.getLoginFeed  = function () {
                 return $http.get(serviceBase + 'getLoginFeed');
         }
 
@@ -598,7 +598,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
         return $http.get(serviceBase + 'getTransaccionNCA?ncaID='+ncaID);
     };
 
-    obj.getListadoConceptos  = function(){
+    obj.getListadoConceptos  = function () {
                 return $http.get(serviceBase + 'getConceptos');
         }
 
@@ -696,53 +696,53 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
               return $http.get(serviceBase + 'csvGPON?OLT='+olt+'&TARJETA='+tarjeta+'&PUERTO='+puerto+"&login="+login);
         }
 
-	obj.getDashboardAsignaciones = function(){//grafica asignacion
+	obj.getDashboardAsignaciones = function () {//grafica asignacion
                 return $http.get(serviceBase + 'getDashboardAsignaciones');
         }
 
-        obj.getDashboardPendientes = function(){//grafica pendientes
+        obj.getDashboardPendientes = function () {//grafica pendientes
                 return $http.get(serviceBase + 'getDashboardPendientes');
         }
 
-        obj.getDashboardAsignacionesMes = function(){//grafica por asinacion por mes
+        obj.getDashboardAsignacionesMes = function () {//grafica por asinacion por mes
                 return $http.get(serviceBase + 'getDashboardAsignacionesMes');
         }
 
-        obj.actualizarGraficaCambioNuevoHFC = function(){//grafica HFC
+        obj.actualizarGraficaCambioNuevoHFC = function () {//grafica HFC
                 return $http.get(serviceBase + 'actualizarGraficaCambioNuevoHFC');
         }
 
-        obj.actualizarGraficaCambioNuevoREDCO = function(){// grafica REDCO
+        obj.actualizarGraficaCambioNuevoREDCO = function () {// grafica REDCO
                 return $http.get(serviceBase + 'actualizarGraficaCambioNuevoREDCO');
         }
 
-        obj.getDashboardAsignacionesMesCobre = function(){//grafica asignacion mes cobre
+        obj.getDashboardAsignacionesMesCobre = function () {//grafica asignacion mes cobre
                 return $http.get(serviceBase + 'getDashboardAsignacionesMesCobre');
         }
 
-        obj.getDashboardAsignacionesTecnologia = function(){//grafica asignaciones por tecnologia
+        obj.getDashboardAsignacionesTecnologia = function () {//grafica asignaciones por tecnologia
                 return $http.get(serviceBase + 'getDashboardAsignacionesTecnologia');
         }
 
-	obj.getDashboardReconfiguracion = function(){//grafica reconfiguracion
+	obj.getDashboardReconfiguracion = function () {//grafica reconfiguracion
                 return $http.get(serviceBase + 'getDashboardReconfiguracion');
         }
 
-        obj.getDashboardReconfiguracionMes = function(){//reconfiguracion grafica mes
+        obj.getDashboardReconfiguracionMes = function () {//reconfiguracion grafica mes
                 return $http.get(serviceBase + 'getDashboardReconfiguracionMes');
         }
 
 
 
-        obj.getPendientesGrafica = function(){
+        obj.getPendientesGrafica = function () {
                 return $http.get(serviceBase + 'pendientesGrafica');
         }
 
-        obj.getPedidosConAgenda  = function(){//pedidos con agendas
+        obj.getPedidosConAgenda  = function () {//pedidos con agendas
                 return $http.get(serviceBase + 'pedidosConAgenda');
         }
 
-	obj.pendientesPorPlaza = function(){//pedidos pendientes por plaza
+	obj.pendientesPorPlaza = function () {//pedidos pendientes por plaza
 		return $http.get(serviceBase + 'pendientesPorPlaza');
 	}
 
@@ -762,7 +762,7 @@ app.factory("services", ['$http', '$timeout', function($http,$q,$timeout) {
 //metodo para obtener departamentos de pantalla de auditoria
 
 
-obj.getDepartamentosParametrizacionSiebel = function(){
+obj.getDepartamentosParametrizacionSiebel = function () {
         return $http.get(serviceBase + 'getDepartamentosParametrizacionSiebel');
     }
 
@@ -921,7 +921,7 @@ obj.getDepartamentosParametrizacionSiebel = function(){
 	// Edatel Asignaciones ---------------------------------------------------------
 
 
-	obj.getLocalidadesEdatel = function(){
+	obj.getLocalidadesEdatel = function () {
         return $http.get(serviceBase + 'LocalidadesEdatel');
         }
 
@@ -1279,7 +1279,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
                 return num;
             };
 
-	$scope.intervalLightKPIS = setInterval(function(){
+	$scope.intervalLightKPIS = setInterval(function () {
     		$scope.actualizarLightKPIS();
 	},60000);
 
@@ -1297,7 +1297,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 
 	$scope.actualizarLightKPIS();
 
-        $scope.intervalFeed = setInterval(function(){
+        $scope.intervalFeed = setInterval(function () {
                 $scope.getFeed();
                 $scope.getLoginFeed();
            },10000);
@@ -2809,11 +2809,11 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         $scope.fechaInicio=year+"-"+month+"-"+day;
         $scope.fechaFin=year+"-"+month+"-"+day;
 	
-	$scope.intervalGrafica = setInterval(function(){
+	$scope.intervalGrafica = setInterval(function () {
 		$scope.actualizarGrafica();
            },60000);
 
-        $scope.intervalFeed = setInterval(function(){
+        $scope.intervalFeed = setInterval(function () {
                 $scope.getFeed();
                 $scope.getLoginFeed();
            },20000);
@@ -3663,7 +3663,7 @@ $scope.editarModal=function(data){
   //$scope.editaInfo.CARGO_ID=data.CARGO_ID;
 };
 //Modal para Crear Usuario Nuevo
-$scope.crearUsuarioModal=function(){
+$scope.crearUsuarioModal=function () {
   $scope.editaInfo={};
   $scope.errorDatos=null;
   $scope.idUsuario='';
@@ -3779,7 +3779,7 @@ $scope.sendEmail = function(data) {
 
                 }, function errorCallback(response) {
 
-                    $timeout(function(){
+                    $timeout(function () {
                                   $notification.error("Error", "No se envió el correo.", $scope.sendEmailMaunal($scope.infoEmail));
                                 }, 700);
 
@@ -3839,7 +3839,7 @@ $scope.csvUsuarios  = function (filtroInput){
   };
 
 
-$scope.abrirsuk=function(){
+$scope.abrirsuk=function () {
 
 var msg = {
     type: "message",
@@ -4122,7 +4122,7 @@ app.controller('tipsCtrl', function ($scope, $rootScope, $location, $routeParams
 
         };
 
-        $scope.nuevo = function(){
+        $scope.nuevo = function () {
                 $location.path('/admontips/nuevoTip/');
                 
         };
@@ -4289,7 +4289,7 @@ app.controller('AdmonTipsCtrl', function ($scope, $rootScope, $location, $routeP
 
         };
 
-        $scope.nuevo = function(){
+        $scope.nuevo = function () {
                 $location.path('/admontips/nuevoTip/');
                 
         };
@@ -5690,7 +5690,7 @@ $(document).click(  function (e) {
 
         };
 
-$scope.intervalLightKPIS = setInterval(function(){
+$scope.intervalLightKPIS = setInterval(function () {
                 $scope.actualizarLightKPIS();
            },60000);
 
@@ -5907,7 +5907,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
     };
 
-    $scope.pedunicos=function(){
+    $scope.pedunicos=function () {
         var pedunic=services.getPedidosUser(userID).then(function(data){
             $scope.pedidosUnicos=data.data[1];
             return data.data;
@@ -5992,7 +5992,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
        // Disque Light KPI --------------------------------------------------------------
 
-	$scope.intervalLightKPIS = setInterval(function(){
+	$scope.intervalLightKPIS = setInterval(function () {
                 $scope.actualizarLightKPIS();
            },60000);
 
@@ -6831,7 +6831,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
                         return data.data;
                 });
     // FILTERS
-  $scope.uploadFile = function(){
+  $scope.uploadFile = function () {
                 $scope.user=$rootScope.logedUser.login;
 
                var file = $scope.myFile;
@@ -7915,7 +7915,7 @@ app.controller('AgendamientoAdelantarCtrl',function ($scope, $rootScope, $locati
                 $rootScope.selected_option = zonasTabla;
         };
 
-    $scope.intervalLightKPIS = setInterval(function(){
+    $scope.intervalLightKPIS = setInterval(function () {
                 $scope.actualizarLightKPIS();
            },60000);
 
@@ -8618,7 +8618,7 @@ services.buscarParametro('PRIORIDAD_DEMEPEDIDO_AGENDAMIENTO_EDATEL').then(functi
 
 
 	//kpis
-    $scope.intervalLightKPIS = setInterval(function(){
+    $scope.intervalLightKPIS = setInterval(function () {
                 $scope.actualizarLightKPIS();
            },60000);
 
@@ -9679,7 +9679,7 @@ services.buscarParametro('PRIORIDAD_DEMEPEDIDO_AGENDAMIENTO').then(function(data
 
 
    //kpis
-    $scope.intervalLightKPIS = setInterval(function(){
+    $scope.intervalLightKPIS = setInterval(function () {
                 $scope.actualizarLightKPIS();
            },60000);
 
@@ -10650,7 +10650,7 @@ $scope.set_color_Cuartil = function (value) {
 
 // Feed --------------------------------------------------------------------------
 
-	$scope.intervalFeed = setInterval(function(){
+	$scope.intervalFeed = setInterval(function () {
                 $scope.getFeed();
                 $scope.getLoginFeed();
            },20000);
@@ -11025,7 +11025,7 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
         $scope.pedidos = angular.copy(original);
 
 
-        $scope.intervalLightKPIS = setInterval(function(){
+        $scope.intervalLightKPIS = setInterval(function () {
             $scope.actualizarLightKPIS();
         },60000);
 
@@ -12035,7 +12035,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 // Disque Light KPI --------------------------------------------------------------
 
-	$scope.intervalLightKPIS = setInterval(function(){
+	$scope.intervalLightKPIS = setInterval(function () {
                 $scope.actualizarLightKPIS();
            },60000);
 
@@ -12326,7 +12326,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 	// GuardarPedido --------------------------------------------------------------
 
-	$scope.listarEstados=function(){
+	$scope.listarEstados=function () {
 
 			services.getlistadoOpcionesSiebelAsignaciones().then(
 
@@ -12350,7 +12350,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 	$scope.listarEstados();
 
-	$scope.onChangeAccion=function(){
+	$scope.onChangeAccion=function () {
       $scope.accRdy=true;
  };
 
@@ -12509,7 +12509,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 	// ---------------------------------Inicio de Variables
 	// Disque Light KPI --------------------------------------------------------------
 
-	$scope.intervalLightKPIS = setInterval(function(){
+	$scope.intervalLightKPIS = setInterval(function () {
                 $scope.actualizarLightKPIS();
            },60000);
 
@@ -12871,7 +12871,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 	//  -------------------------------------------------------------- GuardarPedido
 	$scope.eda={};
 
-	$scope.listarEstados=function(){
+	$scope.listarEstados=function () {
 
 			services.getlistadoOpcionesEdatelAsignaciones().then(
 
@@ -12893,7 +12893,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			  );
 		};
 
-	$scope.listarLocalidades=function(){
+	$scope.listarLocalidades=function () {
 
 			//$scope.localidad="MEDELLIN";
 			services.getLocalidadesEdatel().then(
@@ -12973,7 +12973,7 @@ $scope.buscarCliente=function(localidad,direccion){
 			  );
 		};
 
-$scope.onChangeAccion=function(){
+$scope.onChangeAccion=function () {
       $scope.accRdy=true;
  };
 
@@ -13114,7 +13114,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 	$scope.chatxt="";
 
-	$scope.listado=function(){
+	$scope.listado=function () {
 
 
 
@@ -13192,7 +13192,7 @@ app.controller('chatioCtrl', function ($scope,$route, $rootScope, $location, $ro
 
 
 
-	$scope.agregar=function(){
+	$scope.agregar=function () {
 
 		var fechis = $rootScope.fechaProceso();
 		//console.log(fechis);
@@ -13261,8 +13261,8 @@ app.directive('modal', function () {
      
      element.addClass('alert alert-info text-center clock');
      
-     scope.updateClock = function(){
-       $timeout(function(){
+     scope.updateClock = function () {
+       $timeout(function () {
          element.text(dateFilter(new Date(), 'HH:mm:ss')); 
          scope.updateClock();
        },1000);
@@ -13339,7 +13339,7 @@ app.directive('tooltip', function() {
    }
 });
 
-app.directive('toggle', function(){
+app.directive('toggle', function () {
   return {
     restrict: 'A',
     link: function(scope, element, attrs){
@@ -13353,7 +13353,7 @@ app.directive('toggle', function(){
   };
 })
 
-app.directive("infobox", function(){
+app.directive("infobox", function () {
         return {
             restrict: "E",
             transclude: true,
@@ -13367,7 +13367,7 @@ app.directive("infobox", function(){
                 var infobox = element.find(".infobox");
                 infobox.append("<div class='arrow'></div>")
                 element.parent()
-                    .on("mouseover", function(){
+                    .on("mouseover", function () {
                         var t = angular.element(this);
                         //var offset = t.offset(); offset.right += parentWidth;
 						//console.log(t.offset());
@@ -13381,13 +13381,13 @@ app.directive("infobox", function(){
                       	//t.find("div.infobox").show().offset(offset);
 						t.find("div.infobox").show().offset({top:tope,left:izquie});
                     })
-                    .on("mouseout", function(){
+                    .on("mouseout", function () {
                         var t = angular.element(this);
                         t.find(".infobox").hide();
                     });             }
         }
     });
-app.directive("infoboxTitle", function(){
+app.directive("infoboxTitle", function () {
         return {
             restrict: "E",
             transclude: true,
@@ -13396,7 +13396,7 @@ app.directive("infoboxTitle", function(){
         }
     })
 
-app.directive("infoboxBody", function(){
+app.directive("infoboxBody", function () {
         return {
             restrict: "E",
             transclude: true,
@@ -14005,7 +14005,7 @@ app.run(['$rootScope', 'firebase','services', function($rootScope, $firebase,ser
 	$rootScope.gestor={};
 
 	//console.log($rootScope.gestor);
-	$rootScope.getConceptosGestor=function(){
+	$rootScope.getConceptosGestor=function () {
 		services.getGestorConceptos().then(
 			function(data){
 				$rootScope.listadoConceptos=data.data[0];
@@ -14144,19 +14144,19 @@ app.run(function($rootScope, $compile, $window, notify, services) {
             };
 
 // BtnTools Buscadores Ventanas --------------------------------------------------------------------------------
-	$rootScope.BuscaNodo=function(){
+	$rootScope.BuscaNodo=function () {
 		window.open(window.location.pathname+"#/cmts/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
 	}
 
-	$rootScope.BuscaGPON=function(){
+	$rootScope.BuscaGPON=function () {
 		window.open(window.location.pathname+"#/gpon/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=50, width=1100, height=450");
 	}
 
-	$rootScope.abrirCalculoDistancia=function(){
+	$rootScope.abrirCalculoDistancia=function () {
 		window.open(window.location.pathname+"#/distancia/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=1200px, height=600");
 	}
 
-	$rootScope.abrirTips=function(){
+	$rootScope.abrirTips=function () {
 		window.open(window.location.pathname+"#/tips/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
 	}
 
@@ -14167,7 +14167,7 @@ app.run(function($rootScope, $compile, $window, notify, services) {
 
 // --------------------------------------------------------------------------------  BtnTools Buscadores Ventanas
 
-$rootScope.ProgramadosModal=function(){
+$rootScope.ProgramadosModal=function () {
   $rootScope.listaProgramados();
   $rootScope.errorDatos=null;
   $rootScope.TituloModal="Pedidos Programados por: ";
@@ -14178,7 +14178,7 @@ $rootScope.ProgramadosModal=function(){
 
 
 //Obtener listado de Pedidos Programados por User
-  $rootScope.listaProgramados=function(){
+  $rootScope.listaProgramados=function () {
 
         $rootScope.ListadoPrograUser=[];
 
