@@ -11993,27 +11993,27 @@ $sqlfenix=
 					"		FROM   ".
 					"			portalbd.pedidos h   ".
 					"		WHERE   ".
-					"			1 = 1 AND h.estado  in ('MALO','VOLVER A LLAMAR')  ".
+					"			1 = 1 AND h.estado  in ('MALO','VOLVER A LLAMAR','PENDIENTE')  ".
 					"				  AND h.ID = (SELECT  MAX(hh.ID)  FROM  portalbd.pedidos hh   ".
-					"				  WHERE  hh.PEDIDO_ID = h.PEDIDO_ID and hh.estado in ('MALO','VOLVER A LLAMAR') ".
+					"				  WHERE  hh.PEDIDO_ID = h.PEDIDO_ID and hh.estado in ('MALO','VOLVER A LLAMAR','PENDIENTE') ".
 					"				GROUP BY hh.PEDIDO_ID) ".
 					"				and h.PEDIDO_ID=P.PEDIDO_ID) as USUARIO_ID ".
 					"	, (SELECT h.motivo_malo ".
 					"		FROM   ".
 					"			portalbd.pedidos h   ".
 					"		WHERE   ".
-					"			1 = 1 AND h.estado  in ('MALO','VOLVER A LLAMAR')  ".
+					"			1 = 1 AND h.estado  in ('MALO','VOLVER A LLAMAR','PENDIENTE')  ".
 					"				  AND h.ID = (SELECT  MAX(hh.ID)  FROM  portalbd.pedidos hh   ".
-					"				  WHERE  hh.PEDIDO_ID = h.PEDIDO_ID and hh.estado in ('MALO','VOLVER A LLAMAR') ".
+					"				  WHERE  hh.PEDIDO_ID = h.PEDIDO_ID and hh.estado in ('MALO','VOLVER A LLAMAR','PENDIENTE') ".
 					"				GROUP BY hh.PEDIDO_ID) ".
 					"				and h.PEDIDO_ID=P.PEDIDO_ID) as MOTIVO_MALO ".
 					"	, (SELECT h.fecha_fin ".
 					"		FROM   ".
 					"			portalbd.pedidos h   ".
 					"		WHERE   ".
-					"			1 = 1 AND h.estado  in ('MALO','VOLVER A LLAMAR')  ".
+					"			1 = 1 AND h.estado  in ('MALO','VOLVER A LLAMAR','PENDIENTE')  ".
 					"				  AND h.ID = (SELECT  MAX(hh.ID)  FROM  portalbd.pedidos hh   ".
-					"				  WHERE  hh.PEDIDO_ID = h.PEDIDO_ID and hh.estado in ('MALO','VOLVER A LLAMAR') ".
+					"				  WHERE  hh.PEDIDO_ID = h.PEDIDO_ID and hh.estado in ('MALO','VOLVER A LLAMAR','PENDIENTE') ".
 					"				GROUP BY hh.PEDIDO_ID) ".
 					"				and h.PEDIDO_ID=P.PEDIDO_ID) as FECHA_GESTION  ".
 					"	FROM portalbd.informe_petec_pendientesm P  ".
