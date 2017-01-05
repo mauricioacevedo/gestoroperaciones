@@ -7745,6 +7745,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 
 
 	$scope.calcularPendientes();
+	$scope.calcularListado();
 
 
 	$scope.cutString = function (str, howMuch) {
