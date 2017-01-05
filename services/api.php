@@ -92,7 +92,7 @@
                 
 //Inicia Mundo Asignaciones Y Reconfiguracion
                 
-
+//------------------------------exportar historico asignaciones-------------------
 		private function csvHistoricos(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -135,7 +135,9 @@
 
 		}
 
-		
+	//---------------------------------fin exportes asignaciones
+
+//---------------------------------exportar historicos reconfiguracion----
 
 		private function csvHistoricosReconfiguracion(){
                         if($this->get_request_method() != "GET"){
@@ -178,6 +180,10 @@
                         $this->response('',204);        // If no records "No Content" status
 
 		}
+
+//---------------------------------fin exportar historicos reconfiguracion----
+
+//--------------------------exportar solo fenix nacional------------------
 		
 		private function csvFenixNal(){
 			if($this->get_request_method() != "GET"){
@@ -222,8 +228,9 @@
                         $this->response('',204);        // If no records "No Content" status
 
 		}
+//--------------------------fin exportar solo fenix nacional------------------
 
-
+//-------------------------exportar fenix bogota--------------------
                 private function csvFenixBog(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -269,18 +276,9 @@
                 }
                 
                 
+  //-------------------------fin exportar fenix bogota--------------------
                 
-                
-                
-                
-                
-                
-                
-                
-//Termina Mundo Asignaciones Y Reconfiguracion              
-                
-
-//Inicia Mundo Agendamiento - Reagendamiento               
+//-----------------------exportar historico agendamiento-----------------------
                 
              private function csvHistoricosAgendamiento(){
                         if($this->get_request_method() != "GET"){
@@ -390,7 +388,9 @@
 
                 }
 
+//----------------------- fin exportar historico agendamiento-----------------------
 
+//----------------------------exportar historico agendamiento edatel-----------------
                  private function csvHistoricosAgendamientoEdatel(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -480,7 +480,9 @@
 
                 }
 		
+//----------------------------fin exportar historico agendamiento edatel-----------------
 
+//-------------------------exportar pendietes activacion ----------------------------
 
                 private function csvActivacion(){
                         if($this->get_request_method() != "GET"){
@@ -526,6 +528,9 @@
 
                 }
 
+//-------------------------fin exportar pendietes activacion ----------------------------
+
+//-------------------------exportar pendientes activacion siebel--------------------------------
         private function csvActivacionSiebel(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -559,7 +564,9 @@
                         $this->response('',204);        // If no records "No Content" status
 
                 }
+//------------------------- fin exportar pendientes activacion siebel--------------------------------
 
+//-----------------------------extortar activacion siebe invdom---------------------------------
 
          private function csvActivacionSiebelinvdom(){
                         if($this->get_request_method() != "GET"){
@@ -596,6 +603,9 @@
 
                 }
 
+//-----------------------------fin extortar activacion siebe invdom---------------------------------
+
+//---------------------------exportar listado activacion seguimiento--------------------------
 private function csvListadoActivacion(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -681,6 +691,10 @@ private function csvListadoActivacion(){
                         $this->response('',204);        // If no records "No Content" status
 
                 }
+
+        //--------------------------- fin exportar listado activacion seguimiento--------------------------
+
+
 		private function csvListadoActivacionnuevos(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
