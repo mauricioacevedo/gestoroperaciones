@@ -1920,6 +1920,8 @@ private function updateFenixReconfiguracion($obj){
 //-----------------------fin actividades por usuario------------------------activacion---------
 
 
+//----------------------eliminar filas subir archivos -------------------activacion---------------
+
 				private function eliminarfile(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -1937,8 +1939,10 @@ private function updateFenixReconfiguracion($obj){
                 
                         $this->response('',204);        // If no records "No Content" status
                 }
+//----------------------fin eliminar filas subir archivos -------------------activacion---------------
 
-        //-----------------------------------prueba cargad
+
+//-----------------------------------eliminar filas subir archivos agendamiento-----------------------
 
         private function eliminarfile1(){
                         if($this->get_request_method() != "GET"){
@@ -1959,7 +1963,7 @@ private function updateFenixReconfiguracion($obj){
                 }
 
 
-        //-------------------------------------fin prueba
+//-----------------------------------fin eliminar filas subir archivos agendamiento-----------------------
 
                 private function pedidosPorUserAdelantarAgenda(){
                         if($this->get_request_method() != "GET"){
