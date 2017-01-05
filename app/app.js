@@ -7728,7 +7728,6 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 
 
 
-	$scope.calcularPendientes();
 
 	$scope.calcularListado = function () {
 
