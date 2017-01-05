@@ -1218,8 +1218,10 @@ if($novedad=='AGENDADO'||$novedad=='AGENDADO MANUAL'||$novedad=='AGENDADO_FUTURO
                         //hago la actualizacion en fenix
                         $this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
 		}
+
 //---------------------fin insert pedido reagendamiento--------------------agendamiento-------------
 
+//---------------------insertar pedido auditoria-----------------agendamiento--------------
 		 private function insertPedidoAuditoria(){
                        if($this->get_request_method() != "POST"){
                                 $this->response('',406);
@@ -1318,7 +1320,9 @@ if($novedad=='AGENDADO'||$novedad=='AGENDADO MANUAL'||$novedad=='AGENDADO_FUTURO
                         $this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
 		}
 
+//---------------------fin insertar pedido auditoria-----------------agendamiento--------------
 
+//--------------------inser pedidos malos --------------------agendamiento-----------------
 
 			private function insertMPedidomalo(){               
                        if($this->get_request_method() != "POST"){
@@ -1391,7 +1395,10 @@ if($novedad=='AGENDADO'||$novedad=='AGENDADO MANUAL'||$novedad=='AGENDADO_FUTURO
                         }
 
 		}
+//-------------------- fin insert pedidos malos --------------------agendamiento-----------------
 
+
+//------------------------insert pedidos adelantar agenda -------------agendamiento-------------
 
     private function insertPedidoAdelantarAgenda(){
                        if($this->get_request_method() != "POST"){
@@ -1457,6 +1464,11 @@ if($novedad=='AGENDADO'||$novedad=='AGENDADO MANUAL'||$novedad=='AGENDADO_FUTURO
                         //hago la actualizacion en fenix
                         $this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
         }
+
+
+//------------------------fin insert pedidos adelantar agenda -------------agendamiento-------------
+
+//--------------------insert pedidos----------------------------------
 
 		private function insertPedido(){
                        if($this->get_request_method() != "POST"){
@@ -1601,6 +1613,11 @@ if($novedad=='AGENDADO'||$novedad=='AGENDADO MANUAL'||$novedad=='AGENDADO_FUTURO
         //Funcion para actualizar Concepto y Fecha estado en PEDIDOS en pendientesm
         //2015-09-17 - Se modifica query para que traiga Concepto y fecha de Novedades - CGONZGO
 
+
+//--------------------fin insert pedidos----------------------------------
+
+//---------------------------------update fenix bogota------base de datos----
+
                 private function updateFenixBogota($obj){
                         $id=$obj['ID'];
                         $pedido_id=$obj['PEDIDO_ID'];
@@ -1680,7 +1697,9 @@ if($novedad=='AGENDADO'||$novedad=='AGENDADO MANUAL'||$novedad=='AGENDADO_FUTURO
                             return "No rows!!!!";
 
 		      }
+//--------------------------------- fin update fenix bogota------base de datos----
 
+//---------------------------------update fenix nacional------base de datos----
 
 		private function updateFenix($obj){
 			$id=$obj['ID'];
@@ -1729,6 +1748,9 @@ if($novedad=='AGENDADO'||$novedad=='AGENDADO MANUAL'||$novedad=='AGENDADO_FUTURO
 				return "No rows!!!!";
 		}
 
+//---------------------------------fin update fenix nacional------base de datos----
+
+//-----------------------update reconfiguracion ----------asignacion--------
 
 private function updateFenixReconfiguracion($obj){
     $id=$obj['ID'];
@@ -1768,7 +1790,9 @@ private function updateFenixReconfiguracion($obj){
     return "No rows!!!!";
 }
 
+//-----------------------fin update reconfiguracion ----------asignacion--------
 
+//---------------------pedidos por usuario ----------asignacion------
 
 		private function pedidosPorUser(){
                         if($this->get_request_method() != "GET"){
@@ -1815,6 +1839,10 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
                                }
 
+//---------------------fin pedidos por usuario ----------asignacion------
+
+//---------------------pedidos por usuario reagendamiento ----------asignacion------
+
 
                 private function pedidosPorUserReagendamiento(){
                         if($this->get_request_method() != "GET"){
@@ -1835,6 +1863,10 @@ private function updateFenixReconfiguracion($obj){
                         }
                         $this->response('',204);        // If no records "No Content" status
                 }
+
+//---------------------fin pedidos por usuario reagendamiento ----------asignacion------
+
+//--------------------- pedidos por usuario activacion ----------activacion------------
 
 
          private function pedidosPorUserActivacion(){
@@ -1860,6 +1892,10 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
                 }
 
+//--------------------- fin pedidos por usuario activacion ----------activacion------------
+
+//-----------------------actividades por usuario------------------------activacion---------
+
          private function actividadesUser(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -1881,6 +1917,7 @@ private function updateFenixReconfiguracion($obj){
                         }
                         $this->response('',204);        // If no records "No Content" status
                 }
+//-----------------------fin actividades por usuario------------------------activacion---------
 
 
 				private function eliminarfile(){
