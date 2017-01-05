@@ -1965,6 +1965,8 @@ private function updateFenixReconfiguracion($obj){
 
 //-----------------------------------fin eliminar filas subir archivos agendamiento-----------------------
 
+//------------------------------------pedidos por usuario adelantar agenda---------------------agendamiento----
+
                 private function pedidosPorUserAdelantarAgenda(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -1985,6 +1987,10 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
                 }
 
+
+//------------------------------------fin pedidos por usuario adelantar agenda---------------------agendamiento----
+
+//--------------------------ingresos por zonas de reagendamiento ---------------------agendamiento----
 		private function getZonasReagendamiento(){
                        if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -2051,7 +2057,9 @@ private function updateFenixReconfiguracion($obj){
 
 		}
 
-		
+//--------------------------fin ingresos por zonas de reagendamiento ---------------------agendamiento----
+
+//--------------------------ingresos por microzonas de reagendamiento ---------------------agendamiento----
 
                 private function getMicrozonasReagendamiento(){
                        if($this->get_request_method() != "GET"){
@@ -2102,7 +2110,9 @@ private function updateFenixReconfiguracion($obj){
 
                 }
 
+//--------------------------fin ingresos por microzonas de reagendamiento ---------------------agendamiento----
 
+//-----------------------------departamento pendientes de reagendamiento -----------agendamiento----
 
 
 		private function getDepartamentosPendientesReagendamiento(){
@@ -2153,6 +2163,11 @@ private function updateFenixReconfiguracion($obj){
 
 		}
 
+
+//-----------------------------fin departamento pendientes de reagendamiento -----------agendamiento----
+
+//-----------------------departamento reagendamiento por proceso----------------agendamiento-------------
+
         private function getDepartamentosPendientesReagendamientoproceso(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -2196,7 +2211,7 @@ private function updateFenixReconfiguracion($obj){
 
         }
 
-
+//-----------------------fin departamento reagendamiento por proceso----------------agendamiento-------------
 
                 private function getDepartamentosAdelantarAgenda(){
                         if($this->get_request_method() != "GET"){
