@@ -3542,6 +3542,7 @@ private function updateFenixReconfiguracion($obj){
                 }
 //------------------fin  Dashboard reconfiguracion gestor_informes.kpi_seguimiento_reconfigura------asignaciones--------
 
+//---------------Dashboard pendientes kpi_pendientes_alistamiento ----------asignaciones------------------
 
                 private function getDashboardPendientes(){
                         if($this->get_request_method() != "GET"){
@@ -3600,8 +3601,9 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
 
                 }
+//---------------fin Dashboard pendientes kpi_pendientes_alistamiento ----------asignaciones------------------
 
-
+//-------------actualizar grafica de cambio nuevo kpi_seguimiento_automatico HFC-------asignacion-----------
                 private function actualizarGraficaCambioNuevoHFC(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -3662,6 +3664,10 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
 
                 }
+
+//-------------fin actualizar grafica de cambio nuevo kpi_seguimiento_automatico HFC-------asignacion-----------
+
+//------------------actualizar grafica cambio nuebo REDCO kpi_seguimiento_automatico----asignaciones-------
 
 				private function actualizarGraficaCambioNuevoREDCO(){
                         if($this->get_request_method() != "GET"){
@@ -3724,6 +3730,10 @@ private function updateFenixReconfiguracion($obj){
 
                 }
 
+//------------------fin actualizar grafica cambio nuebo REDCO kpi_seguimiento_automatico----asignaciones-------
+
+//-------------  Dashboard asignaciones por mes--------------------------asignaciones------------------
+
                 private function getDashboardAsignacionesMes(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -3769,7 +3779,9 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
 
                 }
+//-------------  fin Dashboard asignaciones por mes--------------------------asignaciones------------------
 
+//-----------------------------Dashboard asignaciones mes COBRE ------------------asignaciones-------------
                 private function getDashboardAsignacionesMesCobre(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -3816,7 +3828,9 @@ private function updateFenixReconfiguracion($obj){
 
                 }
 
+//----------------------------- fin Dashboard asignaciones mes COBRE ------------------asignaciones-------------
 
+//------------------------Dashboard asignaciones Tecnologia ------------------------asignaciones------
                   private function getDashboardAsignacionesTecnologia(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -3889,7 +3903,9 @@ private function updateFenixReconfiguracion($obj){
 
                 }
 
-                //DashBoard Activacion TMA
+//------------------------fin Dashboard asignaciones Tecnologia ------------------------asignaciones------
+
+//-------------------- Dashboard reconfiguracion mes ------------------------asignaciones-----------
 
 
                 private function getDashboardReconfiguracionMes(){
@@ -3954,7 +3970,9 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
 
                 }
+//-------------------- fin Dashboard reconfiguracion mes ------------------------asignaciones-----------
 
+//--------------------- Dashboard activacion TMA mes -------------------activacion------------------
                 //DashBoard Activacion TMA
                 private function getDashboardActivacionMes(){
                 	
@@ -3984,7 +4002,7 @@ private function updateFenixReconfiguracion($obj){
 
                 }	
 
-
+//---------------------fin  Dashboard activacion TMA mes -------------------activacion------------------
 
 
 
