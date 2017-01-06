@@ -5318,7 +5318,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 });
 
 
-app.controller('GeneralCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, services) {
+app.controller('generalCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, services) {
 
 	var userID = $cookieStore.get('logedUser').login;
 	document.getElementById('logout').className = "btn btn-md btn-danger";
@@ -14023,7 +14023,7 @@ app.config(['$routeProvider',
 		.when('/general/', {
 				title: 'Consultas',
 				templateUrl: 'partials/general.html',
-				controller: 'GeneralCtrl'
+				controller: 'generalCtrl'
 			})
 
 		.when('/', {
