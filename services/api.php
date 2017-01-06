@@ -2213,6 +2213,8 @@ private function updateFenixReconfiguracion($obj){
 
 //-----------------------fin departamento reagendamiento por proceso----------------agendamiento-------------
 
+//-----------------------departamento adelantar agenda----------------agendamiento-------------
+
                 private function getDepartamentosAdelantarAgenda(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -2240,7 +2242,9 @@ private function updateFenixReconfiguracion($obj){
 
                         $this->response('',204);        // If no records "No Content" status
         }
+//-----------------------fin departamento adelantar agenda----------------agendamiento-------------
 
+//-------------------------parametrizacion por zona ---------------------asignaciones------------
 
         			   private function getZonasParametrizacionSiebel(){
                        if($this->get_request_method() != "GET"){
@@ -2267,6 +2271,10 @@ private function updateFenixReconfiguracion($obj){
                                 $this->response('',204);        // If no records "No Content" status
                 }
 
+//-------------------------parametrizacion por zona ---------------------asignaciones------------
+
+//------------------------parametrizacion por departamento siebel-------asignacion-------------
+
 
 				private function getDepartamentosParametrizacionSiebel(){
                        if($this->get_request_method() != "GET"){
@@ -2290,6 +2298,9 @@ private function updateFenixReconfiguracion($obj){
                                 }
                                 $this->response('',204);        // If no records "No Content" status
                 }
+//------------------------parametrizacion por departamento siebel-------asignacion-------------
+
+//----------------------insertar datos parametrizacion ----------------------asignaciones------
 
                 private function insertarDatoParametrizacion(){
 
@@ -2327,7 +2338,9 @@ private function updateFenixReconfiguracion($obj){
                     $this->response(json_encode("OK"), 200);
                 }
 
+//----------------------fin insertar datos parametrizacion ----------------------asignaciones------
 
+//----------------------insertar datos parametrizacion 2 ----------------------asignaciones------
 
                 	 private function insertarDatoParametrizacion2(){
 
@@ -2375,33 +2388,12 @@ private function updateFenixReconfiguracion($obj){
                         	$this->response(json_encode("OK"), 200);
 
 
-                        /*
+//----------------------insertar datos parametrizacion 2 ----------------------asignaciones------
 
-							$sql= " SELECT ID, FECHA, AM , PM ". 
-	                        "FROM alistamiento.parametrizacion_siebel ". 
-	                        "WHERE DEPARTAMENTO = '$departamento' ".
-	                        "AND ZONA = '$zona' ".
-	                        "AND FECHA = '$fechaformato'";
-                    		$r = $this->mysqli03->query($sql) or die($this->mysqli->error.__LINE__);
-                    		 
-                    		 if($r->num_rows > 0){
-                    				$row= $r->fetch_assoc();
-                    				$ID = $row['ID'];
-                    				$sql= "update alistamiento.parametrizacion_siebel ".
-                        			  	  "set AM='$AM', PM='$PM' WHERE ID='$ID' ";
-                        			 $r = $this->mysqli03->query($sql) or die($this->mysqli->error.__LINE__);
-                        	}  
-                        			else {
-					                        $sql="INSERT INTO alistamiento.parametrizacion_siebel ".
-					                    	" (DEPARTAMENTO, ZONA, FECHA, AM, PM) ".
-					                    	" VALUES ('$departamento','$zona','$fechaformato','$AM','$PM')";
-					                   		$r = $this->mysqli03->query($sql) or die($this->mysqli->error.__LINE__);
-                        			}
-                    $this->response(json_encode("OK"), 200);*/
-                }
-				
 
-//****************
+
+ //-------------------listado parametrizacion siebel ----------------------asignaciones----------
+
                 private function listadoParametrizadosSiebel(){//parametrizados
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -2446,7 +2438,10 @@ private function updateFenixReconfiguracion($obj){
                          $this->response('',204);         // If no records "No Content" status
                 }
 
-                	
+ //-------------------fin listado parametrizacion siebel ----------------------asignaciones----------
+
+//----------------------------exportar parametrizacion siebel --------------------asignaciones-----
+
                 	private function csvParametrizacionSiebel(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -2476,6 +2471,11 @@ private function updateFenixReconfiguracion($obj){
                         }
                         $this->response('',204);   
                      }
+
+
+//----------------------------exportar parametrizacion siebel --------------------asignaciones-----
+
+
 
                      private function csvParametrizacionMicrozona(){
                         if($this->get_request_method() != "GET"){
