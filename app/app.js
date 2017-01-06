@@ -14021,11 +14021,12 @@ app.config(['$routeProvider',
 		})
 
 		.when('/general/', {
-				title: 'General',
+				title: 'Consultas',
 				templateUrl: 'partials/general.html',
 				controller: 'GeneralCtrl'
 			})
-			.when('/', {
+
+		.when('/', {
 				title: 'Login',
 				templateUrl: 'partials/login.html',
 				controller: 'login'
