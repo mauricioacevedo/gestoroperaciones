@@ -1031,7 +1031,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 		} else if ($cookieStore.get('logedUser').GRUPO == 'RECONFIGURACION') {
 			$location.path('/reconfiguracion/');
 		} else {
-			$location.path('/general/' + id_user);
+			$location.path('/general/');
 		}
 		//$location.path('/asignacion/'+id_user);
 	}
