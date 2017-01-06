@@ -2855,6 +2855,7 @@ private function updateFenixReconfiguracion($obj){
                 }
 
 //------------------------pedidos que actualmente se encuentran agendados-----------------------agendamiento-------
+
 //---------------------------listado pedidos reconfiguracion----------------------------------asignacion---------
 
                          //funcionReconfiguracion__Julian
@@ -2961,6 +2962,7 @@ private function updateFenixReconfiguracion($obj){
 
 // -----------------------------fin  Funcion para listar los registros historicos---------------------
 
+//----------------------KPIS maestro---------------------------------------------asignaciones------
 
                 private function lightKPISMaestro(){//listado light de kpis
                         if($this->get_request_method() != "GET"){
@@ -3005,9 +3007,9 @@ private function updateFenixReconfiguracion($obj){
                         }
                         $this->response('',204);        // If no records "No Content" status
                 }
+//----------------------fin KPIS maestro---------------------------------------------asignaciones------
 
-
-
+//----------------------KPIS maestro tabla informe_petec_pendientesm ------------------------asignaciones----
 
                 private function lightKPIS(){//listado light de kpis
                         if($this->get_request_method() != "GET"){
@@ -3041,6 +3043,9 @@ private function updateFenixReconfiguracion($obj){
                         }
                         $this->response('',204);        // If no records "No Content" status
                 }
+//----------------------KPIS maestro tabla informe_petec_pendientesm ------------------------asignaciones----
+
+//----------------------KPIS maestro tabla pendientes_reagendamiento ------------------------agendamiento----
 
 
                 private function lightKPISAgendamiento(){//listado light de kpis
@@ -3067,7 +3072,9 @@ private function updateFenixReconfiguracion($obj){
                         }
                         $this->response('',204);        // If no records "No Content" status
                 }
+//---------------------- fin KPIS maestro tabla pendientes_reagendamiento ------------------------agendamiento----
 
+//------------------pendientes por colas activacion----------------------------activacion-----------------
 
                 private function pendientesPorColaConceptoActivacion(){
                          if($this->get_request_method() != "GET"){
@@ -3209,6 +3216,10 @@ private function updateFenixReconfiguracion($obj){
 
 
 		}
+//------------------pendientes por colas activacion----------------------------activacion----------------
+
+//-------------------pendientes por plaza  informe_petec_pendientesm-------------asignaciones------------
+
 
 		private function pendientesPorPlaza(){
 			 if($this->get_request_method() != "GET"){
@@ -3336,7 +3347,9 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
 
 		}
+//-------------------fin pendientes por plaza  informe_petec_pendientesm-------------asignaciones------------
 
+//----------------Dashboard asignaciones gestor_informes.kpi_seguimiento_automatico-----asignaciones-----
                 private function getDashboardAsignaciones(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -3384,7 +3397,9 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
 
                 }
+//----------------fin Dashboard asignaciones gestor_informes.kpi_seguimiento_automatico-----asignaciones-----
 
+//------------Dashboard agendamiento ------------------------------agendamiento-----------------
                 private function getDashboardAgendamiento(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -3425,7 +3440,9 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
 
                 }
+//------------fin Dashboard agendamiento ------------------------------agendamiento-----------------
 
+//-----------------------Dashboard agendamiento presupuestal-----------agendamiento-----------------
                 private function getDashboardAgendamientoPresupuestal(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -3467,7 +3484,9 @@ private function updateFenixReconfiguracion($obj){
 
                 }
 
+//-----------------------fin Dashboard agendamiento presupuestal-----------agendamiento-----------------
 
+//------------------ Dashboard reconfiguracion gestor_informes.kpi_seguimiento_reconfigura------asignaciones--------
 
                 private function getDashboardReconfiguracion(){
                         if($this->get_request_method() != "GET"){
@@ -3521,7 +3540,7 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
 
                 }
-
+//------------------fin  Dashboard reconfiguracion gestor_informes.kpi_seguimiento_reconfigura------asignaciones--------
 
 
                 private function getDashboardPendientes(){
