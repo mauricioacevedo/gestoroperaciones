@@ -4344,7 +4344,9 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
 
 		}
-//----------------------exportar tabla gestor_historicos_reagendamiento------agendamiento-------------------
+//----------------------fin exportar tabla gestor_historicos_reagendamiento------agendamiento-------------------
+
+//----------------pendientes por concepto reagendamiento-----------------agendamiento---------------------
 
         private function pendientesPorConceptoReagendamiento(){
                 if($this->get_request_method() != "GET"){
@@ -4397,6 +4399,9 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
 
             }
+//----------------fin pendientes por concepto reagendamiento-----------------agendamiento---------------------
+
+//-----------------pendientes con agenda gestor_pendientes_reagendamiento----agendamiento-----------------
 
             private function pedidosConAgenda(){
                 if($this->get_request_method() != "GET"){
@@ -4453,7 +4458,9 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
 
             }    
+//-----------------fin pendientes con agenda gestor_pendientes_reagendamiento----agendamiento-----------------
 
+//----------------productividaded del grupo------------------------------asignaciones--------------------------
 
 		private function productividadGrupo(){
                         if($this->get_request_method() != "GET"){
@@ -4528,7 +4535,9 @@ private function updateFenixReconfiguracion($obj){
 
 
 		}
-		
+//----------------fin productividaded del grupo------------------------------asignaciones--------------------------
+
+//-------------------calcular detalle TMA----------------------------------asignaciones-----------------
 		//esto deberia llamarse calcularDetalleTMA
 		private function calcularDetalleTME(){
 			if($this->get_request_method() != "GET"){
@@ -4605,7 +4614,7 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" stat
 
 		}
-
+//-------------------calcular detalle TMA----------------------------------asignaciones-----------------
 
                 private function ingresosEstudiosGrafica(){
                         if($this->get_request_method() != "GET"){
