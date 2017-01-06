@@ -2387,7 +2387,7 @@ private function updateFenixReconfiguracion($obj){
                         	}
                         	$this->response(json_encode("OK"), 200);
 
-
+                     }
 //----------------------insertar datos parametrizacion 2 ----------------------asignaciones------
 
 
@@ -2473,9 +2473,9 @@ private function updateFenixReconfiguracion($obj){
                      }
 
 
-//----------------------------exportar parametrizacion siebel --------------------asignaciones-----
+//---------------------------- fin exportar parametrizacion siebel --------------------asignaciones-----
 
-
+//-----------------------exportar parametrizacion por microzonas---------------------asignaciones-----
 
                      private function csvParametrizacionMicrozona(){
                         if($this->get_request_method() != "GET"){
@@ -2514,7 +2514,9 @@ private function updateFenixReconfiguracion($obj){
                      }
 
 
-//*******************************
+//-----------------------fin exportar parametrizacion por microzonas---------------------asignaciones-----
+
+//-----------------------------por zonas adelantar agenda------------------------------agendamiento-------
 
                 private function getZonasAdelantarAgenda(){
                        if($this->get_request_method() != "GET"){
@@ -2552,6 +2554,10 @@ private function updateFenixReconfiguracion($obj){
                                 $this->response('',204);        // If no records "No Content" status
                 }
 
+//-----------------------------por zonas adelantar agenda------------------------------agendamiento-------
+
+
+//-----------------------------por microzona adelantar agenda------------------------------agendamiento-------
 
                 private function getMicrozonasAdelantarAgenda(){
                        if($this->get_request_method() != "GET"){
@@ -2596,7 +2602,9 @@ private function updateFenixReconfiguracion($obj){
 
                 }
 
+//----------------------------- fin por microzona adelantar agenda------------------------------agendamiento-------
 
+//------------------------pedidos que actualmente se encuentran agendados-----------------------agendamiento-------
 
                 private function getPedidoActualmenteAgendado(){
                        if($this->get_request_method() != "GET"){
@@ -2845,7 +2853,11 @@ private function updateFenixReconfiguracion($obj){
                         }
                     }  
                 }
-						//funcionReconfiguracion__Julian
+
+//------------------------pedidos que actualmente se encuentran agendados-----------------------agendamiento-------
+//---------------------------listado pedidos reconfiguracion----------------------------------asignacion---------
+
+                         //funcionReconfiguracion__Julian
 				 private function listadoPedidosReconfiguracion(){//historico por 1 pedido
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -2894,9 +2906,9 @@ private function updateFenixReconfiguracion($obj){
                         }
                         $this->response('',204);        // If no records "No Content" status
                 }
+//---------------------------listado pedidos reconfiguracion----------------------------------asignacion---------
 
-				
-		// Funcion para listar los registros historicos-----------------------------------------------------------------------
+//- -------------------Funcion para listar los registros historicos---------------------
 
        private function listadoPedidos(){//historico por 1 pedido
 			if($this->get_request_method() != "GET"){
@@ -2947,7 +2959,9 @@ private function updateFenixReconfiguracion($obj){
                         $this->response('',204);        // If no records "No Content" status
                 }
 
-		// ----------------------------------------------------------------------- Funcion para listar los registros historicos
+// -----------------------------fin  Funcion para listar los registros historicos---------------------
+
+
                 private function lightKPISMaestro(){//listado light de kpis
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
