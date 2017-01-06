@@ -1030,6 +1030,8 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 			$location.path('/b2b/');
 		} else if ($cookieStore.get('logedUser').GRUPO == 'RECONFIGURACION') {
 			$location.path('/reconfiguracion/');
+		} else if ($cookieStore.get('logedUser').GRUPO == 'CONSULTAS') {
+			$location.path('/general/');
 		} else {
 			$location.path('/general/');
 		}
