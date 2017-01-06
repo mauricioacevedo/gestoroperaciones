@@ -1030,8 +1030,10 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 			$location.path('/b2b/');
 		} else if ($cookieStore.get('logedUser').GRUPO == 'RECONFIGURACION') {
 			$location.path('/reconfiguracion/');
+		} else if ($cookieStore.get('logedUser').GRUPO == 'CONSULTAS') {
+			$location.path('/general/');
 		} else {
-			$location.path('/general/' + id_user);
+			$location.path('/general/');
 		}
 		//$location.path('/asignacion/'+id_user);
 	}
@@ -1161,6 +1163,8 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 					$location.path('/b2b/');
 				} else if ($cookieStore.get('logedUser').GRUPO == 'RECONFIGURACION') {
 					$location.path('/reconfiguracion/');
+				} else if ($cookieStore.get('logedUser').GRUPO == 'CONSULTAS') {
+					$location.path('/general/');
 				} else {
 					$location.path('/general/' + id_user);
 				}
@@ -5318,27 +5322,28 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 });
 
 
-app.controller('GeneralCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
+app.controller('generalCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, services) {
 
 	var userID = $cookieStore.get('logedUser').login;
-	$rootScope.logedUser = $cookieStore.get('logedUser');
 	document.getElementById('logout').className = "btn btn-md btn-danger";
 	var divi = document.getElementById("logoutdiv");
 	divi.style.visibility = "visible";
 	divi.style.position = "relative";
+	$rootScope.actualView = "general";
 
-	$rootScope.logout = function () {
+
+$rootScope.logout = function () {
 		services.logout($rootScope.logedUser.login);
 		$cookieStore.remove('logedUser');
 		$rootScope.logedUser = undefined;
 		$scope.pedidos = {};
+		clearInterval($scope.intervalLightKPIS);
 		document.getElementById('logout').className = "btn btn-md btn-danger hide";
 		var divi = document.getElementById("logoutdiv");
 		divi.style.position = "absolute";
 		divi.style.visibility = "hidden";
 		$location.path('/');
 	};
-
 
 });
 
@@ -14020,11 +14025,12 @@ app.config(['$routeProvider',
 		})
 
 		.when('/general/', {
-				title: 'General',
+				title: 'Consultas',
 				templateUrl: 'partials/general.html',
 				controller: 'generalCtrl'
 			})
-			.when('/', {
+
+		.when('/', {
 				title: 'Login',
 				templateUrl: 'partials/login.html',
 				controller: 'login'
