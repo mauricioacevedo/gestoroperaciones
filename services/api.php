@@ -12525,10 +12525,7 @@ private function opcionesGestionAsignaciones(){
 			$today = date("Y-m-d");
 
 
-	var_dump($params);
-	var_dump($params['opciones']);
-	//echo $opciones;
-	echo "Pare aca";
+			echo $params.fuente;
 
             $query=	" SELECT ".
 					"	o.ID, ".
