@@ -12692,6 +12692,11 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		);
 	};
 
+	$scope.onChangeAccion = function () {
+		$scope.accRdy = true;
+		$scope.programar=false;
+	};
+
 	$scope.listarOpcionesAsginacion();//  --------------------------------Cargar Opciones para la gestion
 
 	var pedidos = services.getPedidosUser(userID).then(function (data) {
@@ -13176,9 +13181,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		);
 	};
 
-	$scope.onChangeAccion = function () {
-		$scope.accRdy = true;
-	};
+
 
 
 	// Mostrar Modal Servicios dejados como Malos-----------------------------------------------------------------
