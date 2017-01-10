@@ -12523,7 +12523,8 @@ private function opcionesGestionAsignaciones(){
 
 
 			$today = date("Y-m-d");
-			$opciones=$this->_request['opciones'];
+			$request=$this->_request['opciones'];
+			$opciones = json_decode($request);
 
 	var_dump($opciones);
 
