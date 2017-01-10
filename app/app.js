@@ -12665,12 +12665,11 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 	$scope.fecha_fin = null;
 
 	// Cargar Opciones para la gestion --------------------------------
-	var opciones={
-		config:{
+	var opciones=[{
+
 		fuente: $rootScope.gestor.fuentegrupo,
-		actividad: $scope.actividadGestion
-		}
-	};
+		actividad: $scope.actividadGestio
+	}];
 
 	$scope.listarOpcionesAsginacion = function () {
 
