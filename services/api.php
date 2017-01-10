@@ -12517,26 +12517,27 @@ $sqlfenix=
 private function opcionesGestionAsignaciones(){
 
 
-            if($this->get_request_method() != "POST"){
-                        $this->response('',406);
-                        }
+	if($this->get_request_method() != "POST"){
+				$this->response('',406);
+				}
 
-			$params = json_decode(file_get_contents('php://input'),true);
-			$today = date("Y-m-d");
+	$params 	= json_decode(file_get_contents('php://input'),true);
+	$fuente 	= $params['fuente'];
+	$actividad 	= $params['actividad'];
+	$today		= date("Y-m-d");
 
 
-			echo $params['fuente'];
 
-            $query=	" SELECT ".
-					"	o.ID, ".
-					"	o.ESTADO_ID, ".
-					"	o.OBSERVACION_ID, ".
-					"	o.STATUS, ".
-					"	o.FECHA_CARGA ".
-					" FROM portalbd.gestor_opciones_gestion o ".
-					" where o.ESTADO=1 ".
-					" and o.FUENTE='SIEBEL' ".
-					" and o.ACTIVIDAD='ESTUDIO' ";
+	$query=	" SELECT ".
+			"	o.ID, ".
+			"	o.ESTADO_ID, ".
+			"	o.OBSERVACION_ID, ".
+			"	o.STATUS, ".
+			"	o.FECHA_CARGA ".
+			" FROM portalbd.gestor_opciones_gestion o ".
+			" where o.ESTADO=1 ".
+			" and o.FUENTE='$fuente' ".
+			" and o.ACTIVIDAD='$actividad' ";
 
             $rst = $this->mysqli->query($query);
 
@@ -12551,7 +12552,7 @@ private function opcionesGestionAsignaciones(){
 
 
 						}
-							$this->response($this->json(array($resultado)), 201);
+							$this->response($this->json($resultado), 201);
 
 
 					}else{
