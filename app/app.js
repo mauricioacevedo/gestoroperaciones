@@ -959,7 +959,8 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 		return $http.get(serviceBase + 'PedidosGestorUserReagendamiento?grupo=' + grupo);
 	};
 	obj.getOpcionesGestionAsignaciones = function (opciones) {
-		return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
+		//return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
+		return $http.get(serviceBase + 'opcionesGestionAsignaciones', opciones);
 	};
 
 
@@ -12666,8 +12667,10 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 	// Cargar Opciones para la gestion --------------------------------
 	var opciones={
-		"fuente": $rootScope.gestor.fuentegrupo,
-		"actividad": $scope.actividadGestion
+		config:{
+			fuente: $rootScope.gestor.fuentegrupo,
+			actividad: $scope.actividadGestion
+		}
 	};
 
 	$scope.listarOpcionesAsginacion = function () {
