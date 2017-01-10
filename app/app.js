@@ -13232,6 +13232,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, notify, services) {
 
 	$scope.tools = true;
+	$scope.ltpercent="10%";
 
 
 	// Basura del logueo ---------------------------------
@@ -13303,6 +13304,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 	$scope.onChangeAccion = function () {
 		$scope.accRdy = true;
 		$scope.programar=false;
+		$scope.ltpercent="35%";
 	};
 
 	$scope.listarOpcionesAsginacion();//  --------------------------------Cargar Opciones para la gestion
