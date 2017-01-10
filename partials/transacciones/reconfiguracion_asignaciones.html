@@ -97,11 +97,11 @@
 											</button> </li>
 											<li class="list-group-item small" ><b>LOCALIDAD:</b> {{service.MUNICIPIO_ID}} </li>
 											<li class="list-group-item small" >
-												<b>DIRECCIÓN:</b> {{service.DIRECCION_SERVICIO}}
+												<b>DIRECCIÓN:</b> <span class="small">{{service.DIRECCION_SERVICIO}}</span>
 												<button type="button" class="btn btn-xs btn-default" title="Copiar"
 												ng-click="executeCopy(service.DIRECCION_SERVICIO)" ><i class='fa fa-clipboard'></i> </button>
 											</li>
-											<li class="list-group-item small" ><b>PÁGINA:</b> {{service.PAGINA_SERVICIO}}  </li>
+											<li class="list-group-item small" ><b>PÁGINA:</b> <span class="small">{{service.PAGINA_SERVICIO}}</span>  </li>
 											<li class="list-group-item small" ><b>ESTADO:</b> {{service.CONCEPTO_ID}} </li>
 
 										</div>
