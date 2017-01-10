@@ -13275,6 +13275,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 	$scope.accRdy = false;
 	$scope.fecha_inicio = null;
 	$scope.fecha_fin = null;
+	$scope.programar=false;
 	$scope.eda = {};
 
 	// Cargar Opciones para la gestion --------------------------------
@@ -13303,12 +13304,17 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
 	$scope.onChangeEstado = function () {
 		$scope.ltpercent="35";
+		$scope.programar=false;
 	};
 	$scope.onChangeAccion = function (valor) {
-		console.log(valor);
 		$scope.accRdy = true;
-		$scope.programar=false;
 		$scope.ltpercent="65";
+		if(valor=='VOLVER A LLAMAR'||valor=='GESTIONAR MAS TARDE'){
+			$scope.programar=true;
+		}
+
+
+
 	};
 
 	$scope.listarOpcionesAsginacion();//  --------------------------------Cargar Opciones para la gestion
