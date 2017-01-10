@@ -12188,6 +12188,40 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 	$scope.accRdy = false;
 	$scope.fecha_inicio = null;
 	$scope.fecha_fin = null;
+	$scope.actividadGestion="ESTUDIO";
+
+	// Cargar Opciones para la gestion --------------------------------
+	var opciones={
+			fuente: $rootScope.gestor.fuentegrupo,
+			actividad: $scope.actividadGestion
+	};
+
+	$scope.listarOpcionesAsginacion = function () {
+
+		services.getOpcionesGestionAsignaciones(opciones).then(
+			function (data) {
+				$scope.listaOpcionesGestion=[];
+				$scope.listaOpcionesGestion=data.data;
+				//console.log($scope.listaOpcionesGestion);
+				return data.data;
+
+			},
+			function errorCallback(response, status) {
+				//console.log(status);
+				$scope.errorDatos = "Error, revisar opciones";
+
+			}
+		);
+	};
+
+	$scope.onChangeAccion = function () {
+		$scope.accRdy = true;
+		$scope.programar=false;
+	};
+
+	$scope.listarOpcionesAsginacion();//  --------------------------------Cargar Opciones para la gestion
+
+
 
 	var pedidos = services.getPedidosUser(userID).then(function (data) {
 		$scope.pedidos = data.data[0];

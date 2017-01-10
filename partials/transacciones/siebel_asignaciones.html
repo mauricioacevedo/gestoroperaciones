@@ -129,7 +129,7 @@
 													required>
 													<option value="" disabled>--Seleccione--</option>
 													<option
-														ng-repeat="d in Estados"
+														ng-repeat="d in listaOpcionesGestion | unique:'ESTADO_ID'"
 														value="{{d.ESTADO_ID}}">
 														{{d.ESTADO_ID}}
 													</option>
@@ -144,7 +144,7 @@
 													ng-change="onChangeAccion()" required>
 													<option value="" disabled>--Seleccione--</option>
 													<option
-														ng-repeat="d in Observaciones | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO}"
+														ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO}:true | unique:'OBSERVACION_ID'"
 
 														value="{{d.OBSERVACION_ID}}">
 														{{d.OBSERVACION_ID}}
@@ -168,7 +168,7 @@
 												</div>
 											</div>
 											<div>
-												<div class="hide" ng-repeat="e in Observaciones | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO, OBSERVACION_ID: InfoPedido.OBSERVACIONES_PROCESO} as status">
+												<div class="hide" ng-repeat="InfoPedido in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO, OBSERVACION_ID: InfoPedido.OBSERVACIONES_PROCESO} | unique:'STATUS' as status">
 													<input ng-model="InfoPedido.STATUS">
 												</div>
 											</div>
