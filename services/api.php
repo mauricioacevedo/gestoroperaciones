@@ -12517,19 +12517,16 @@ $sqlfenix=
 private function opcionesGestionAsignaciones(){
 
 
-            if($this->get_request_method() != "GET"){
+            if($this->get_request_method() != "POST"){
                         $this->response('',406);
                         }
 
-
+			$params = json_decode(file_get_contents('php://input'),true);
 			$today = date("Y-m-d");
-			$opciones=$this->_request['opciones'];
-			//$obj = json_encode($opciones);
-			$obj = json_decode($opciones);
-			//$request = json_decode($obj);
 
-	var_dump($obj);
-	var_dump($opciones);
+
+	var_dump($params);
+	var_dump($params['opciones']);
 	//echo $opciones;
 	echo "Pare aca";
 
