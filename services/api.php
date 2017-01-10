@@ -12526,7 +12526,7 @@ private function opcionesGestionAsignaciones(){
 	$actividad 	= $params['actividad'];
 	$today		= date("Y-m-d");
 
-	if($params==null||$params=='undefined'||$params==''){
+	if($actividad=='ADMINISTRACION'){
 		$filtros= "";
 	}else{
 		$filtros= " and o.ESTADO=1 and o.FUENTE='$fuente' and o.ACTIVIDAD='$actividad' ";
