@@ -13140,7 +13140,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 	};
 
 	$scope.listarLocalidades();
-	$scope.listarEstados();
+	//$scope.listarEstados();
 	$scope.listarDistribuidores('MEDELLIN');
 
 
