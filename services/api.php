@@ -12526,18 +12526,25 @@ private function opcionesGestionAsignaciones(){
 	$actividad 	= $params['actividad'];
 	$today		= date("Y-m-d");
 
+	if($params==null||$params=='undefined'||$params==''){
+		$filtros= "";
+	}else{
+		$filtros= " and o.ESTADO=1 and o.FUENTE='$fuente' and o.ACTIVIDAD='$actividad' ";
+	};
 
 
 	$query=	" SELECT ".
-			"	o.ID, ".
-			"	o.ESTADO_ID, ".
-			"	o.OBSERVACION_ID, ".
-			"	o.STATUS, ".
-			"	o.FECHA_CARGA ".
-			" FROM portalbd.gestor_opciones_gestion o ".
-			" where o.ESTADO=1 ".
-			" and o.FUENTE='$fuente' ".
-			" and o.ACTIVIDAD='$actividad' ";
+			"	o.ID ".
+			"	,	o.FUENTE ".
+			"	,	o.ACTIVIDAD ".
+			"	,	o.ESTADO_ID ".
+			"	,	o.OBSERVACION_ID ".
+			"	,	o.USUARIO_ID ".
+			"	,	o.STATUS ".
+			"	,	o.ESTADO ".
+			"	FROM portalbd.gestor_opciones_gestion o ".
+			"	where 1=1 ".
+			" 	$filtros ";
 
             $rst = $this->mysqli->query($query);
 
