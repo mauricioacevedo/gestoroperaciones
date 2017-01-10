@@ -5352,646 +5352,623 @@ $rootScope.logout = function () {
 
 app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, services) {
 
+ var userID=$cookieStore.get('logedUser').login;
+        document.getElementById('logout').className="btn btn-md btn-danger";
+        var divi=document.getElementById("logoutdiv");
+        divi.style.visibility="visible";
+        divi.style.position="relative";
 
-	var userID = $cookieStore.get('logedUser').login;
-	document.getElementById('logout').className = "btn btn-md btn-danger";
-	var divi = document.getElementById("logoutdiv");
-	divi.style.visibility = "visible";
-	divi.style.position = "relative";
+        $scope.pedidos=[];
+        $scope.historico_pedido=[];
+        $rootScope.actualView="reconfiguraciones";
+        $scope.iconcepto="14";
+        $scope.popup='';
+        $scope.cargando='';
+        $scope.pedidoinfo='Pedido';
 
-	$rootScope.gestor={};
-	$scope.pedidos = [];
-	$scope.historico_pedido = [];
-	//$rootScope.actualView = "reconfiguraciones";
-	$rootScope.actualView = "tx/siebel_asignaciones";
-	$scope.iconcepto = "14";
-	$scope.popup = '';
-	$scope.cargando = '';
-	$scope.pedidoinfo = 'Pedido';
-	$rootScope.gestor.fuentegrupo = "RECONFIGURACION";
-	$scope.actividadGestion="RECONFIGURACION";
-	$scope.pedidoIsActive = false;
+		$scope.doubleDigit= function (num){
 
-	$scope.doubleDigit = function (num) {
+                if(num<0){
+                        num=0;
+                }
 
-		if (num < 0) {
-			num = 0;
-		}
+                if(num<=9){
+                    return "0"+num;
+                }
+                return num;
+            };
 
-		if (num <= 9) {
-			return "0" + num;
-		}
-		return num;
-	};
+	$scope.prioridad='FECHA_CITA';
 
-	$scope.prioridad = 'FECHA_CITA';
+				var date1 = new Date();
+                var year    = date1.getFullYear();
+                var month   = $scope.doubleDigit(date1.getMonth()+1);
+                var day     = $scope.doubleDigit(date1.getDate());
 
-	var date1 = new Date();
-	var year = date1.getFullYear();
-	var month = $scope.doubleDigit(date1.getMonth() + 1);
-	var day = $scope.doubleDigit(date1.getDate());
+					$rootScope.logout = function() {
+                services.logout($rootScope.logedUser.login);
+                $cookieStore.remove('logedUser');
+                $rootScope.logedUser=undefined;
+                $scope.pedidos={};
+                document.getElementById('logout').className="btn btn-md btn-danger hide";
+                var divi=document.getElementById("logoutdiv");
+                divi.style.position="absolute";
+                divi.style.visibility="hidden";
+                $location.path('/');
+        };
 
-	$rootScope.logout = function () {
-		services.logout($rootScope.logedUser.login);
-		$cookieStore.remove('logedUser');
-		$rootScope.logedUser = undefined;
-		$scope.pedidos = {};
-		document.getElementById('logout').className = "btn btn-md btn-danger hide";
-		var divi = document.getElementById("logoutdiv");
-		divi.style.position = "absolute";
-		divi.style.visibility = "hidden";
-		$location.path('/');
-	};
-
-	//variables de paginacion_julian
+		//variables de paginacion_julian
 	//$scope.currentPage = 1;
 
-	//oculta los tips para que no se visualicen al inicio.
-	//document.getElementById("mostrarTIP").style.visibility = "hidden";
-	//document.getElementById("mostrarTIP").style.display = "none";
-	$scope.listadoTips = {};
+    //oculta los tips para que no se visualicen al inicio.
+        document.getElementById("mostrarTIP").style.visibility = "hidden";
+        document.getElementById("mostrarTIP").style.display = "none";
+    $scope.listadoTips={};
 
-	//trae los tips para visualizarlo
-	services.getListadoTips().then(function (data) {
-		$scope.listadoTips = data.data[0];
-		return data.data;
-	});
+//trae los tips para visualizarlo
+        services.getListadoTips().then(function(data){
+            $scope.listadoTips=data.data[0];
+            return data.data;
+    });
 
-	//funcion que muestra los tip cuando se digita su busqueda.
-	$scope.muestraBusquedaTip = function (texto) {
+//funcion que muestra los tip cuando se digita su busqueda.
+    $scope.muestraBusquedaTip = function (texto) {
 
-		if (texto.length == 0 || texto == '') {
-			document.getElementById("mostrarTIP").style.visibility = "hidden";
-			document.getElementById("mostrarTIP").style.display = "none";
+            if(texto.length==0||texto==''){
+                document.getElementById("mostrarTIP").style.visibility = "hidden";
+                document.getElementById("mostrarTIP").style.display = "none";
 
-			services.getListadoTips().then(function (data) {
-				$scope.listadoTips = data.data[0];
-				return data.data;
-			});
-		}
-		if (texto.length >= 3) {
-			document.getElementById("mostrarTIP").style.visibility = "visible";
-			document.getElementById("mostrarTIP").style.display = "inline";
-		}
-	};
-
-
-
-	$scope.AbreTips = function (id) {
-
-		$scope.nuevoBuscarTip = "";
-
-		document.getElementById("mostrarTIP").style.visibility = "hidden";
-		document.getElementById("mostrarTIP").style.display = "none";
-
-		services.getListadoTips().then(function (data) {
-			$scope.listadoTips = data.data[0];
-			return data.data;
-		});
-
-		var link = "#/tips/visualizacionTip/" + id;
-		window.open(window.location.pathname + link, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650");
-
-	};
-
-
-	//Funcion para copyclipboard
-	$scope.executeCopy = function executeCopy(text) {
-		var input = document.createElement('textarea');
-		document.body.appendChild(input);
-		input.value = (text);
-		//input.focus();
-		input.select();
-		document.execCommand('Copy');
-		input.remove();
-	};
+                services.getListadoTips().then(function(data){
+                    $scope.listadoTips=data.data[0];
+                    return data.data;
+                });
+            }
+                if(texto.length>=3){
+                document.getElementById("mostrarTIP").style.visibility = "visible";
+                document.getElementById("mostrarTIP").style.display = "inline";
+            }
+    };
 
 
 
-	$scope.data = {
-		maxSize: 5,
-		currentPage: 1,
-		numPerPage: 100,
-		totalItems: 0,
-		fechaIni: "",
-		fechaFin: "",
-		campo: "User",
-		valorCampo: userID
-	}
-	$scope.data.fechaIni = year + "-" + month + "-" + day;
-	$scope.data.fechaFin = year + "-" + month + "-" + day;
+    $scope.AbreTips = function(id){
 
-	$scope.calcularListadoReconfiguracion = function () {
-		$scope.listado_pedidos = [];
-		services.getListadoPedidosReconfiguracion($scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage, $scope.data.campo, $scope.data.valorCampo, userID).then(function (data) {
-			$scope.listado_pedidos = data.data[0];
-			$scope.data.totalItems = data.data[1];
-			return data.data;
-		});
-	};
+        $scope.nuevoBuscarTip="";
 
-	$scope.calcularListadoReconfiguracion();
+        document.getElementById("mostrarTIP").style.visibility = "hidden";
+        document.getElementById("mostrarTIP").style.display = "none";
 
-	//var pedidos=services.getPedidosUser(userID).then(function(data){
-	//              $scope.pedidos=data.data;
-	//            return data.data;
-	//  });
+        services.getListadoTips().then(function(data){
+            $scope.listadoTips=data.data[0];
+            return data.data;
+        });
 
-	//get another portions of data on page changed
-	$scope.pageChanged = function (forma) {
-		if (forma == "listadoPedidos") {
+        var link = "#/tips/visualizacionTip/"+id;
+        window.open(window.location.pathname+ link, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650");
+
+    };
+
+
+//Funcion para copyclipboard
+    $scope.executeCopy= function executeCopy(text){
+                var input = document.createElement('textarea');
+                document.body.appendChild(input);
+                input.value = (text);
+                //input.focus();
+                input.select();
+                document.execCommand('Copy');
+                input.remove();
+            };
+
+
+
+	$scope.data = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin:"", campo:"User", valorCampo: userID }
+		$scope.data.fechaIni=year+"-"+month+"-"+day;
+		$scope.data.fechaFin=year+"-"+month+"-"+day;
+
+		 $scope.calcularListadoReconfiguracion  = function (){
+                $scope.listado_pedidos=[];
+                services.getListadoPedidosReconfiguracion($scope.data.fechaIni,$scope.data.fechaFin,$scope.data.currentPage,$scope.data.campo,$scope.data.valorCampo,userID).then(function(data){
+                        $scope.listado_pedidos=data.data[0];
+						$scope.data.totalItems=data.data[1];
+                        return data.data;
+                });
+        };
+
+		$scope.calcularListadoReconfiguracion();
+
+        //var pedidos=services.getPedidosUser(userID).then(function(data){
+          //              $scope.pedidos=data.data;
+            //            return data.data;
+              //  });
+
+			  //get another portions of data on page changed
+	$scope.pageChanged = function(forma) {
+		if(forma=="listadoPedidos"){
 			$scope.calcularListadoReconfiguracion();
 		}
-		if (forma == "listadoPendientes") {
-			$scope.calcularPendientes($scope.data1.concepto);
-		}
+		if(forma=="listadoPendientes"){
+                        $scope.calcularPendientes($scope.data1.concepto);
+                }
 	};
 
-	$scope.popoverboton = function () {
-		$('#popoverId').popover({
-			html: true,
-			title: "Observaciones",
-			content: function () {
-				return $('#popoverContent').html();
-			}
-		});
-		var isVisible = false;
-		var clickedAway = false;
+$scope.popoverboton= function (){
+$('#popoverId').popover({
+    html: true,
+    title: "Observaciones",
+    content: function () {
+        return $('#popoverContent').html();
+    }
+});
+var isVisible = false;
+var clickedAway = false;
 
-		$('.popoverThis').popover({
-			html: true,
-			trigger: "click"
-		})
-		$(document).click(function (e) {
-			if (isVisible & clickedAway) {
-				$('.popoverThis').popover('hide')
-				isVisible = clickedAway = false
-			} else {
-				clickedAway = true
-			}
-		});
-	};
-
-
-	var original = $scope.pedidos;
-	$scope.peds = {};
-	$scope.timeInit = 0;
-	$rootScope.logedUser = $cookieStore.get('logedUser');
-
-	$scope.pedidos = angular.copy(original);
-
-	$scope.isAuthorized = function (concept) {
-
-		if (concept == "PEXPQ") return false;
-		if (concept == "PSERV") return false;
-		if (concept == "PORDE") return false;
-		if (concept == "ORDEN") return false;
-		if (concept == "PXSLN") return false;
-		if (concept == "POPTO") return false;
-
-		if ($scope.busy != "") {
-			return false;
-
-		}
-		return true;
-	}
+$('.popoverThis').popover({
+    html: true,
+    trigger: "click"
+})
+$(document).click(  function (e) {
+    if (isVisible & clickedAway) {
+        $('.popoverThis').popover('hide')
+        isVisible = clickedAway = false
+    } else {
+        clickedAway = true
+    }
+});
+};
 
 
-	$scope.csvHistoricosReconfiguracion = function () {
-		//var login=$rootScope.logedUser.login;
-		services.getCsvHistoricosReconfiguracion(userID, $scope.data.fechaIni, $scope.data.fechaFin, $scope.data.campo, $scope.data.valorCampo).then(function (data) {
+        var original = $scope.pedidos;
+        $scope.peds={};
+        $scope.timeInit=0;
+        $rootScope.logedUser=$cookieStore.get('logedUser');
+
+        $scope.pedidos = angular.copy(original);
+
+        $scope.isAuthorized = function(concept){
+
+                if(concept=="PEXPQ") return false;
+                if(concept=="PSERV") return false;
+                if(concept=="PORDE") return false;
+                if(concept=="ORDEN") return false;
+                if(concept=="PXSLN") return false;
+                if(concept=="POPTO") return false;
+
+                if($scope.busy!="") {
+                        return false;
+
+                }
+                 return true;
+        }
+
+
+		$scope.csvHistoricosReconfiguracion = function (){
+                //var login=$rootScope.logedUser.login;
+                services.getCsvHistoricosReconfiguracion(userID,$scope.data.fechaIni,$scope.data.fechaFin,$scope.data.campo, $scope.data.valorCampo).then(function(data){
 			console.log(data.data[0]);
-			window.location.href = "tmp/" + data.data[0];
-			return data.data;
-		});
-	};
+                        window.location.href="tmp/"+data.data[0];
+                        return data.data;
+                });
+        };
 
-	$scope.manual = function () {
-		$scope.peds = {};
-		$scope.error = "";
-		$scope.pedido1 = "";
-		$scope.mpedido = {};
-		$scope.bpedido = '';
-		$scope.busy = "";
-		$scope.historico_pedido = [];
-		$scope.mpedido.active = 1;
-		$scope.mpedido.fuente = 'FENIX_NAL';
-		$scope.timeInit = new Date().getTime();
-		var date1 = new Date();
-		var year = date1.getFullYear();
-		var month = $scope.doubleDigit(date1.getMonth() + 1);
-		var day = $scope.doubleDigit(date1.getDate());
-		var hour = $scope.doubleDigit(date1.getHours());
-		var minute = $scope.doubleDigit(date1.getMinutes());
-		var seconds = $scope.doubleDigit(date1.getSeconds());
+       $scope.manual = function() {
+                $scope.peds={};
+		$scope.error="";
+                $scope.pedido1="";
+                $scope.mpedido={};
+                $scope.bpedido='';
+                $scope.busy="";
+                $scope.historico_pedido=[];
+                $scope.mpedido.active=1;
+                $scope.mpedido.fuente='FENIX_NAL';
+                $scope.timeInit=new Date().getTime();
+                var date1 = new Date();
+                var year    = date1.getFullYear();
+                var month   = $scope.doubleDigit(date1.getMonth()+1);
+                var day     = $scope.doubleDigit(date1.getDate());
+                var hour    = $scope.doubleDigit(date1.getHours());
+                var minute  = $scope.doubleDigit(date1.getMinutes());
+                var seconds = $scope.doubleDigit(date1.getSeconds());
 
-		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+                $scope.fecha_inicio=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
 
-	};
+        };
 
-	$scope.buscarPedido = function (bpedido, iplaza) {
+        $scope.buscarPedido = function(bpedido,iplaza) {
 
-		$scope.peds = {};
-		$scope.mpedido = {};
-		$scope.busy = "";
-		$scope.errorDatos  = "";
-		$scope.pedidoinfo = 'Pedido';
-		//console.log(bpedido);
-		var kami = services.buscarPedidoReconfiguracion(bpedido, 'TODOS', $scope.pedido1, $rootScope.logedUser.login, $rootScope.logedUser.name).then(function (data) {
-			$scope.peds = data.data;
-			//console.log(data.data);
-			var dat = data.status;
-			if (dat == 204) {
-				//document.getElementById("warning").innerHTML="No hay Registros";
-				$scope.errorDatos = "No hay Registros";
+                $scope.peds={};
+                $scope.mpedido={};
+                $scope.busy="";
+                $scope.error="";
+                $scope.pedidoinfo='Pedido';
+                //console.log(bpedido);
+                var kami=services.buscarPedidoReconfiguracion(bpedido,iplaza,$scope.pedido1,$rootScope.logedUser.login,$rootScope.logedUser.name).then(function(data){
+                        $scope.peds = data.data;
+                        console.log(data.data);
+                        var dat=data.status;
+                        if(dat==204){
+                                //document.getElementById("warning").innerHTML="No hay Registros";
+                                $scope.error="No hay Registros";
 
-			} else {
-				//document.getElementById("warning").innerHTML="";
-				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
-				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
+                        }else{
+                                //document.getElementById("warning").innerHTML="";
+                                $scope.pedido1=$scope.peds[0].PEDIDO_ID;
+                                $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 
-				if (($scope.peds[0].STATUS == "PENDI_PETEC" || $scope.peds[0].STATUS == "PENDI_RENUMS") && $scope.peds[0].ASESOR != "") {
-					$scope.busy = $scope.peds[0].ASESOR;
-					$scope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
-				}
-				$scope.baby($scope.pedido1);
-			}
-			return data.data;
-		});
-		$scope.timeInit = new Date().getTime();
-		var date1 = new Date();
-		var year = date1.getFullYear();
-		var month = $scope.doubleDigit(date1.getMonth() + 1);
-		var day = $scope.doubleDigit(date1.getDate());
-		var hour = $scope.doubleDigit(date1.getHours());
-		var minute = $scope.doubleDigit(date1.getMinutes());
-		var seconds = $scope.doubleDigit(date1.getSeconds());
+                                if(($scope.peds[0].STATUS=="PENDI_PETEC" || $scope.peds[0].STATUS=="PENDI_RENUMS")&&$scope.peds[0].ASESOR!=""){
+                                        $scope.busy=$scope.peds[0].ASESOR;
+                                        $scope.error="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
+                                }
+                                $scope.baby($scope.pedido1);
+                        }
+                        return data.data;
+                });
+                $scope.timeInit=new Date().getTime();
+                var date1 = new Date();
+                var year    = date1.getFullYear();
+                var month   = $scope.doubleDigit(date1.getMonth()+1);
+                var day     = $scope.doubleDigit(date1.getDate());
+                var hour    = $scope.doubleDigit(date1.getHours());
+                var minute  = $scope.doubleDigit(date1.getMinutes());
+                var seconds = $scope.doubleDigit(date1.getSeconds());
 
-		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+                $scope.fecha_inicio=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
 
-	};
+        };
 
-	$scope.msavePedido = function () {
-		console.log($scope.mpedido);
-		$scope.pedido = {};
-		$scope.errorDatos = "";
-		angular.copy($scope.mpedido, $scope.pedido);
+        $scope.msavePedido = function() {
+                console.log($scope.mpedido);
+                $scope.pedido={};
+		$scope.error="";
+                angular.copy($scope.mpedido,$scope.pedido);
 
-		if ($scope.mpedido.pedido == "" || $scope.mpedido.pedido == {} || $scope.mpedido.pedido === undefined) {
-			alert("Pedido vacio.");
-			return;
-		}
-		$scope.pedido.user = $rootScope.logedUser.login;
-		$scope.pedido.username = $rootScope.logedUser.name;
-		$scope.pedido.duracion = new Date().getTime() - $scope.timeInit;
-		var df = new Date($scope.pedido.duracion);
-		$scope.pedido.duracion = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
-		$scope.pedido.actividad = "RECONFIGURACION";
-		$scope.pedido.concepto_final = $scope.mpedido.concepto;
-		$scope.pedido.fecha_inicio = $scope.fecha_inicio;
+                if($scope.mpedido.pedido==""||$scope.mpedido.pedido=={}||$scope.mpedido.pedido === undefined){
+                        alert("Pedido vacio.");
+                        return;
+                }
+                $scope.pedido.user=$rootScope.logedUser.login;
+                $scope.pedido.username=$rootScope.logedUser.name;
+                $scope.pedido.duracion=new Date().getTime() - $scope.timeInit;
+                var df=new Date($scope.pedido.duracion);
+                $scope.pedido.duracion= $scope.doubleDigit(df.getHours()-19)+":"+ $scope.doubleDigit(df.getMinutes())+":"+ $scope.doubleDigit(df.getSeconds());
+                $scope.pedido.actividad="RECONFIGURACION";
+                $scope.pedido.concepto_final=$scope.mpedido.concepto;
+                $scope.pedido.fecha_inicio=$scope.fecha_inicio;
 
-		var date1 = new Date();
-		var year = date1.getFullYear();
-		var month = $scope.doubleDigit(date1.getMonth() + 1);
-		var day = $scope.doubleDigit(date1.getDate());
-		var hour = $scope.doubleDigit(date1.getHours());
-		var minute = $scope.doubleDigit(date1.getMinutes());
-		var seconds = $scope.doubleDigit(date1.getSeconds());
+                var date1 = new Date();
+                var year    = date1.getFullYear();
+                var month   = $scope.doubleDigit(date1.getMonth()+1);
+                var day     = $scope.doubleDigit(date1.getDate());
+                var hour    = $scope.doubleDigit(date1.getHours());
+                var minute  = $scope.doubleDigit(date1.getMinutes());
+                var seconds = $scope.doubleDigit(date1.getSeconds());
 
-		$scope.pedido.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-		console.log($scope.pedido);
-		services.insertMPedido($scope.pedido);
-		if ($scope.pedidos == "") {
-			$scope.pedidos = new Array();
-		}
-		$scope.pedidos = $scope.pedidos.concat($scope.pedido);
-		if ($scope.historico_pedido == "") {
-			$scope.historico_pedido = new Array();
-		}
-		console.log($scope.historico_pedido);
+                $scope.pedido.fecha_fin=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
+                console.log($scope.pedido);
+                services.insertMPedido($scope.pedido);
+                if($scope.pedidos==""){
+                        $scope.pedidos=new Array();
+                }
+                $scope.pedidos=$scope.pedidos.concat($scope.pedido);
+                if($scope.historico_pedido==""){
+                        $scope.historico_pedido=new Array();
+                }
+                console.log($scope.historico_pedido);
 
-		$scope.baby($scope.pedido.pedido);
-		$scope.pedido1 = $scope.pedido.pedido;
+                $scope.baby($scope.pedido.pedido);
+                $scope.pedido1=$scope.pedido.pedido;
 
-		$scope.timeInit = new Date().getTime();
-		date1 = new Date();
-		year = date1.getFullYear();
-		month = $scope.doubleDigit(date1.getMonth() + 1);
-		day = $scope.doubleDigit(date1.getDate());
-		hour = $scope.doubleDigit(date1.getHours());
-		minute = $scope.doubleDigit(date1.getMinutes());
-		seconds = $scope.doubleDigit(date1.getSeconds());
+                $scope.timeInit=new Date().getTime();
+                date1 = new Date();
+                year    = date1.getFullYear();
+                month   = $scope.doubleDigit(date1.getMonth()+1);
+                day     = $scope.doubleDigit(date1.getDate());
+                hour    = $scope.doubleDigit(date1.getHours());
+                minute  = $scope.doubleDigit(date1.getMinutes());
+                seconds = $scope.doubleDigit(date1.getSeconds());
 
-		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+                $scope.fecha_inicio=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
 
-		$scope.pedido = {};
-		$scope.peds = {};
-		$scope.pedido1 = "";
-		$scope.mpedido = {};
-		$scope.bpedido = '';
-		$scope.historico_pedido = [];
-
-
-		$scope.mpedido.active = 1;
-		$scope.mpedido.fuente = 'FENIX_NAL';
-		$scope.busy = "";
-		$scope.mpedido.active = 0;
-		$scope.pedidoinfo = 'Pedido';
-	};
+                $scope.pedido={};
+                $scope.peds={};
+                $scope.pedido1="";
+                $scope.mpedido={};
+                $scope.bpedido='';
+                $scope.historico_pedido=[];
 
 
-	$scope.savePedido = function (index) {
+                $scope.mpedido.active=1;
+                $scope.mpedido.fuente='FENIX_NAL';
+                $scope.busy="";
+                $scope.mpedido.active=0;
+                $scope.pedidoinfo='Pedido';
+        };
 
-		var loader = document.getElementById("class" + index);
-		loader.className = 'glyphicon glyphicon-refresh fa-spin';
 
-		$scope.pedido = {};
-		$scope.error = "";
+        $scope.savePedido = function(index) {
+
+                var loader = document.getElementById("class"+index);
+                loader.className='glyphicon glyphicon-refresh fa-spin';
+
+                $scope.pedido={};
+				$scope.error="";
 		//console.log($scope.peds[index]);
-		angular.copy($scope.peds[index], $scope.pedido);
-		//console.log($scope.pedido);
-		if ($scope.pedido.estado === undefined || $scope.pedido.estado == '') {
-			alert('Por favor diligenciar todos los campos.');
-			loader.className = '';
-			return;
-		}
-		$scope.pedido.user = $rootScope.logedUser.login;
-		$scope.pedido.username = $rootScope.logedUser.name;
-		$scope.pedido.duracion = new Date().getTime() - $scope.timeInit;
+                angular.copy($scope.peds[index],$scope.pedido);
+                //console.log($scope.pedido);
+                if($scope.pedido.estado===undefined || $scope.pedido.estado==''){
+                        alert('Por favor diligenciar todos los campos.');
+                        loader.className='';
+                        return;
+                }
+                $scope.pedido.user=$rootScope.logedUser.login;
+                $scope.pedido.username=$rootScope.logedUser.name;
+                $scope.pedido.duracion=new Date().getTime() - $scope.timeInit;
 
-		$scope.timeInit = new Date().getTime();
-		var df = new Date($scope.pedido.duracion);
-		$scope.pedido.duracion = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
-		$scope.pedido.pedido = $scope.peds[index].PEDIDO_ID + $scope.peds[index].SUBPEDIDO_ID + $scope.peds[index].SOLICITUD_ID;
-		$scope.pedido1 = $scope.peds[index].PEDIDO_ID;
+                $scope.timeInit=new Date().getTime();
+                var df=new Date($scope.pedido.duracion);
+            $scope.pedido.duracion= $scope.doubleDigit(df.getHours()-19)+":"+ $scope.doubleDigit(df.getMinutes())+":"+$scope.doubleDigit(df.getSeconds());
+            $scope.pedido.pedido=$scope.peds[index].PEDIDO_ID+$scope.peds[index].SUBPEDIDO_ID+$scope.peds[index].SOLICITUD_ID;
+                $scope.pedido1=$scope.peds[index].PEDIDO_ID;
 
-		$scope.pedido.actividad = "RECONFIGURACION";
-		$scope.pedido.fuente = "FENIX_NAL";
+                $scope.pedido.actividad="RECONFIGURACION";
+                $scope.pedido.fuente="FENIX_NAL";
 
-		if ($scope.pedido.source == '') {
-			$scope.pedido.source = "AUTO";
-		}
-
-		$scope.pedido.fecha_inicio = $scope.fecha_inicio;
-
-		var date1 = new Date();
-		var year = date1.getFullYear();
-		var month = $scope.doubleDigit(date1.getMonth() + 1);
-		var day = $scope.doubleDigit(date1.getDate());
-		var hour = $scope.doubleDigit(date1.getHours());
-		var minute = $scope.doubleDigit(date1.getMinutes());
-		var seconds = $scope.doubleDigit(date1.getSeconds());
-
-		$scope.pedido.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-
-		var dat = new Date();
-
-		services.insertPedidoReconfiguracion($scope.pedido).then(function (status) {
-			$scope.calcularListadoReconfiguracion();
-			$scope.pedido.fecha = status.data['data'];
-			$scope.pedido.concepto_final = status.data['msg'];
-			if ($scope.pedido.concepto_final == "El pedido NO ha cambiado de concepto en Fenix!!!") {
-				alert($scope.pedido.concepto_final);
-				$scope.pedido.fecha = "";
-				$scope.pedido.concepto_final = "";
-			} else {
-				$scope.historico_pedido = $scope.historico_pedido.concat(angular.copy($scope.pedido));
-				$scope.peds.splice(index, 1);
-				if ($scope.pedidos == "") {
-					$scope.pedidos = new Array();
-				}
-				$scope.pedidos = $scope.pedidos.concat($scope.pedido);
-				if ($scope.historico_pedido == "") {
-					$scope.historico_pedido = new Array();
-				}
-				$scope.pedido = [];
-				$scope.busy = "";
-				$scope.timeInit = new Date().getTime();
-				date1 = new Date();
-				year = date1.getFullYear();
-				month = $scope.doubleDigit(date1.getMonth() + 1);
-				day = $scope.doubleDigit(date1.getDate());
-				hour = $scope.doubleDigit(date1.getHours());
-				minute = $scope.doubleDigit(date1.getMinutes());
-				seconds = $scope.doubleDigit(date1.getSeconds());
-
-				$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-				$scope.popup = '';
-
-			}
-			loader.className = '';
-			$scope.pedidoinfo = 'Pedido';
-			return status;
-		});
-	};
-
-	$scope.baby = function (pedido) {
-		//console.log(pedido);
-		services.getPedidosPorPedido(pedido).then(function (data) {
-			//console.log(data.data);
-			$scope.historico_pedido = data.data;
-			return data.data;
-		});
-	};
-
-	$scope.start = function (pedido) {
-		var pedido1 = '';
-		$scope.popup = '';
-		$scope.errorDatos = "";
-		$scope.accRdy = false;
-		$scope.InfoPedido = [];
-		$scope.InfoGestion = {};
-		$scope.pedidoIsGuardado = false;
-		$scope.iplaza="TODOS";
-		$scope.fuente="FENIX_NAL";
-		if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
-			pedido1 = $scope.peds[0].PEDIDO_ID;
-		}
-		$scope.peds = {};
-		$scope.mpedido = {};
-		$scope.bpedido = '';
-		$scope.busy = "";
-		$scope.pedido1 = pedido1;
-
-		var demePedidoButton = document.getElementById("iniciar");
-		demePedidoButton.setAttribute("disabled", "disabled");
-		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
-
-
-		if ($scope.prioridad == 'FECHA_CITA') {
-			$scope.prioridad = 'FECHA_CITA';
-		} else {
-			$scope.prioridad = 'FECHA_CITA';
+		if($scope.pedido.source==''){
+			$scope.pedido.source="AUTO";
 		}
 
-		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, $scope.prioridad,$scope.fuente).then(function (data) {
-			$scope.peds = data.data;
-			//console.log(data.data);
-			if (data.data == '') {
-				document.getElementById("warning").innerHTML = "No hay Registros";
-				$scope.error = "No hay Registros";
-			} else {
-				document.getElementById("warning").innerHTML = "";
-				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
-				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
+                $scope.pedido.fecha_inicio=$scope.fecha_inicio;
+
+                var date1 = new Date();
+                var year    = date1.getFullYear();
+                var month   = $scope.doubleDigit(date1.getMonth()+1);
+                var day     = $scope.doubleDigit(date1.getDate());
+                var hour    = $scope.doubleDigit(date1.getHours());
+                var minute  = $scope.doubleDigit(date1.getMinutes());
+                var seconds = $scope.doubleDigit(date1.getSeconds());
+
+                $scope.pedido.fecha_fin=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
+
+                var dat= new Date();
+
+                services.insertPedidoReconfiguracion($scope.pedido).then(function (status) {
+						$scope.calcularListadoReconfiguracion();
+                        $scope.pedido.fecha=status.data['data'];
+                        $scope.pedido.concepto_final=status.data['msg'];
+                        if($scope.pedido.concepto_final=="El pedido NO ha cambiado de concepto en Fenix!!!"){
+                                alert($scope.pedido.concepto_final);
+                                $scope.pedido.fecha="";
+                                $scope.pedido.concepto_final="";
+                        }else{
+                                $scope.historico_pedido=$scope.historico_pedido.concat(angular.copy($scope.pedido));
+                                $scope.peds.splice(index,1);
+                                 if($scope.pedidos==""){
+                                        $scope.pedidos=new Array();
+                                }
+                                $scope.pedidos=$scope.pedidos.concat($scope.pedido);
+                                if($scope.historico_pedido==""){
+                                        $scope.historico_pedido=new Array();
+                                }
+                                        $scope.pedido=[];
+                                        $scope.busy="";
+                                        $scope.timeInit=new Date().getTime();
+                                        date1 = new Date();
+                                        year    = date1.getFullYear();
+                                        month   = $scope.doubleDigit(date1.getMonth()+1);
+                                        day     = $scope.doubleDigit(date1.getDate());
+                                        hour    = $scope.doubleDigit(date1.getHours());
+                                        minute  = $scope.doubleDigit(date1.getMinutes());
+                                        seconds = $scope.doubleDigit(date1.getSeconds());
+
+                                        $scope.fecha_inicio=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
+                                        $scope.popup='';
+
+                        }
+                    loader.className='';
+                    $scope.pedidoinfo='Pedido';
+			   return status;
+		   });
+   };
+
+        $scope.baby = function(pedido) {
+                //console.log(pedido);
+                services.getPedidosPorPedido(pedido).then(function(data){
+                      //console.log(data.data);
+                      $scope.historico_pedido=data.data;
+                      return data.data;
+                 });
+        };
+
+        $scope.start = function(pedido) {
+                var pedido1='';
+                $scope.popup='';
+		$scope.error="";
+                if(JSON.stringify($scope.peds) !=='{}' && $scope.peds.length>0){
+                         pedido1=$scope.peds[0].PEDIDO_ID;
+                }
+                $scope.peds={};
+                $scope.mpedido={};
+                $scope.bpedido='';
+                $scope.busy="";
+                $scope.pedido1=pedido1;
+
+                var demePedidoButton=document.getElementById("iniciar");
+                demePedidoButton.setAttribute("disabled","disabled");
+                demePedidoButton.className = "btn btn-success disabled";
+
+
+		if($scope.prioridad=='FECHA_CITA'){
+			$scope.prioridad='FECHA_CITA';
+		}else{
+			$scope.prioridad='FECHA_CITA';
+		}
+
+                var kami=services.demePedido($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,$scope.prioridad).then(function(data){
+                        $scope.peds = data.data;
+                        //console.log(data.data);
+                        if(data.data==''){
+                                document.getElementById("warning").innerHTML="No hay Registros";
+                                $scope.error="No hay Registros";
+                        }else{
+                                document.getElementById("warning").innerHTML="";
+                                $scope.pedido1=$scope.peds[0].PEDIDO_ID;
+                                $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 
 				//console.log("esta es la info que trae el deme pedido");
 				//console.log($scope.peds[0].ASESOR);
-				if ($scope.peds[0].ASESOR != "" && $scope.peds[0].ASESOR != undefined) {
-					$scope.busy = $scope.peds[0].ASESOR;
-					$scope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
-				}
+				if($scope.peds[0].ASESOR!=""&&$scope.peds[0].ASESOR!=undefined){
+                                        $scope.busy=$scope.peds[0].ASESOR;
+                                        $scope.error="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
+                                }
 
-				$scope.baby($scope.pedido1);
-			}
-			var demePedidoButton = document.getElementById("iniciar");
-			demePedidoButton.removeAttribute("disabled");
-			demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
-			return data.data;
-		});
+                                $scope.baby($scope.pedido1);
+                        }
+                        var demePedidoButton=document.getElementById("iniciar");
+                        demePedidoButton.removeAttribute("disabled");
+                        demePedidoButton.className = "btn btn-success";
+                        return data.data;
+                });
 
-		$scope.timeInit = new Date().getTime();
-		var date1 = new Date();
-		var year = date1.getFullYear();
-		var month = $scope.doubleDigit(date1.getMonth() + 1);
-		var day = $scope.doubleDigit(date1.getDate());
-		var hour = $scope.doubleDigit(date1.getHours());
-		var minute = $scope.doubleDigit(date1.getMinutes());
-		var seconds = $scope.doubleDigit(date1.getSeconds());
+               $scope.timeInit=new Date().getTime();
+                var date1 = new Date();
+                var year    = date1.getFullYear();
+                var month   = $scope.doubleDigit(date1.getMonth()+1);
+                var day     = $scope.doubleDigit(date1.getDate());
+                var hour    = $scope.doubleDigit(date1.getHours());
+                var minute  = $scope.doubleDigit(date1.getMinutes());
+                var seconds = $scope.doubleDigit(date1.getSeconds());
 
-		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+                $scope.fecha_inicio=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
 
-	};
+        };
 
-	$scope.intervalLightKPIS = setInterval(function () {
-		$scope.actualizarLightKPIS();
-	}, 60000);
+$scope.intervalLightKPIS = setInterval(function(){
+                $scope.actualizarLightKPIS();
+           },60000);
 
-	$scope.actualizarLightKPIS = function () {
-		services.getLightKPIS().then(function (data) {
-			$rootScope.oldlightkpi = $rootScope.lightkpi;
-			$rootScope.lightkpi = data.data[0];
-
-
-			if ($rootScope.oldlightkpi == "" || $rootScope.oldlightkpi == undefined) {
-				$rootScope.oldlightkpi = $rootScope.lightkpi;
-			}
-
-			//console.log($rootScope.lightkpi);
-			//
-			var arrayLength = $rootScope.lightkpi.length;
-			var arrayLength2 = $rootScope.oldlightkpi.length;
+        $scope.actualizarLightKPIS = function (){
+                services.getLightKPIS().then(function(data){
+            $rootScope.oldlightkpi=$rootScope.lightkpi;
+                        $rootScope.lightkpi=data.data[0];
 
 
-			var negocioAsingaciones = "<table class='table small table-striped table-hover table-bordered table-condensed'>" +
-				"<thead>" +
-				"<th>Concepto</th>" +
-				"<th>Cantidad</th>" +
-				"</thead>" +
-				"<tbody>";
-			var negocioReconfiguracion = "<table class='table small table-striped table-hover table-bordered table-condensed'>" +
-				"<thead>" +
-				"<th>Concepto</th>" +
-				"<th>Cantidad</th>" +
-				"</thead>" +
-				"<tbody>";
+            if($rootScope.oldlightkpi==""||$rootScope.oldlightkpi==undefined){
+                $rootScope.oldlightkpi=$rootScope.lightkpi;
+            }
 
-			var negocioOtros = "<table class='table small table-striped table-hover table-bordered table-condensed'>" +
-				"<thead>" +
-				"<th>Concepto</th>" +
-				"<th>Cantidad</th>" +
-				"</thead>" +
-				"<tbody>";
+            //console.log($rootScope.lightkpi);
+            //
+            var arrayLength = $rootScope.lightkpi.length;
+            var arrayLength2 = $rootScope.oldlightkpi.length;
 
 
-			$rootScope.totalNegocioAsignacionesOld = $rootScope.totalNegocioAsignaciones;
-			$rootScope.totalNegocioReconfiguracionOld = $rootScope.totalNegocioReconfiguracion;
-			$rootScope.totalNegocioOtrosOld = $rootScope.totalNegocioOtros;
+            var negocioAsingaciones="<table class='table small table-striped table-hover table-bordered table-condensed'>"+
+                                "<thead>"+
+                                        "<th>Concepto</th>"+
+                                        "<th>Cantidad</th>"+
+                                "</thead>"+
+                                "<tbody>";
+            var negocioReconfiguracion="<table class='table small table-striped table-hover table-bordered table-condensed'>"+
+                                "<thead>"+
+                                        "<th>Concepto</th>"+
+                                        "<th>Cantidad</th>"+
+                                "</thead>"+
+                                "<tbody>";
+
+            var negocioOtros="<table class='table small table-striped table-hover table-bordered table-condensed'>"+
+                                "<thead>"+
+                                        "<th>Concepto</th>"+
+                                        "<th>Cantidad</th>"+
+                                "</thead>"+
+                                "<tbody>";
 
 
-			$rootScope.totalNegocioAsignaciones = 0;
-			$rootScope.totalNegocioReconfiguracion = 0;
-			$rootScope.totalNegocioOtros = 0;
+            $rootScope.totalNegocioAsignacionesOld=$rootScope.totalNegocioAsignaciones;
+            $rootScope.totalNegocioReconfiguracionOld=$rootScope.totalNegocioReconfiguracion;
+            $rootScope.totalNegocioOtrosOld=$rootScope.totalNegocioOtros;
 
 
-			for (var i = 0; i < arrayLength; i++) {
-				var counter = $rootScope.lightkpi[i].COUNTER;
-				var concepto_id = $rootScope.lightkpi[i].CONCEPTO_ID;
-
-				if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD') {
-					negocioAsingaciones += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
-					$rootScope.totalNegocioAsignaciones = parseInt($rootScope.totalNegocioAsignaciones) + parseInt(counter);
-				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == '92') {
-					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
-					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
-				} else if (concepto_id == 'O-101') {
-					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
-					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
-				} else {
-					negocioOtros += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
-					$rootScope.totalNegocioOtros = parseInt($rootScope.totalNegocioOtros) + parseInt(counter);
-				}
-			}
-
-			$rootScope.nasignacionesstyle = {};
-			$rootScope.nreconfiguracionstyle = {};
-			$rootScope.notrosstyle = {};
+            $rootScope.totalNegocioAsignaciones=0;
+            $rootScope.totalNegocioReconfiguracion=0;
+            $rootScope.totalNegocioOtros=0;
 
 
-			if ($rootScope.totalNegocioAsignaciones > $rootScope.totalNegocioAsignacionesOld) {
-				$rootScope.nasignacionesstyle.ICON = "fa fa-arrow-circle-up fa-2x";
-				$rootScope.nasignacionesstyle.STYLE = "red";
-			} else if ($rootScope.totalNegocioAsignaciones < $rootScope.totalNegocioAsignacionesOld) {
-				$rootScope.nasignacionesstyle.ICON = "fa fa-arrow-circle-down fa-2x";
-				$rootScope.nasignacionesstyle.STYLE = "green";
-			} else {
-				$rootScope.nasignacionesstyle.ICON = "fa fa-minus-circle fa-2x";
-				$rootScope.nasignacionesstyle.STYLE = "gray";
-			}
+            for (var i = 0; i < arrayLength; i++) {
+                var counter=$rootScope.lightkpi[i].COUNTER;
+                var concepto_id=$rootScope.lightkpi[i].CONCEPTO_ID;
 
-			if ($rootScope.totalNegocioReconfiguracion > $rootScope.totalNegocioReconfiguracionOld) {
-				$rootScope.nreconfiguracionstyle.ICON = "fa fa-arrow-circle-up fa-2x";
-				$rootScope.nreconfiguracionstyle.STYLE = "red";
-			} else if ($rootScope.totalNegocioReconfiguracion < $rootScope.totalNegocioReconfiguracionOld) {
-				$rootScope.nreconfiguracionstyle.ICON = "fa fa-arrow-circle-down fa-2x";
-				$rootScope.nreconfiguracionstyle.STYLE = "green";
-			} else {
-				$rootScope.nreconfiguracionstyle.ICON = "fa fa-minus-circle fa-2x";
-				$rootScope.nreconfiguracionstyle.STYLE = "gray";
-			}
+                if(concepto_id=='PETEC'||concepto_id=='OKRED'||concepto_id=='PETEC-BOG'||concepto_id=='PEOPP'||concepto_id=='19'||concepto_id=='O-13'||concepto_id=='O-15'||concepto_id=='O-106'||concepto_id=='COBERTURA'||concepto_id=='CONSTRUCCION'||concepto_id=='DISENO'||concepto_id=='DISPONIBILIDAD'){
+                    negocioAsingaciones+="<tr><td><a href='./#/registros/"+concepto_id+"'>"+concepto_id+"</a></td><td>"+counter+"<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
+                    $rootScope.totalNegocioAsignaciones=parseInt($rootScope.totalNegocioAsignaciones)+parseInt(counter);
+                }else if(concepto_id=='14'||concepto_id=='99'||concepto_id=='92'){
+                        negocioReconfiguracion+="<tr><td><a href='./#/registros/"+concepto_id+"'>"+concepto_id+"</a></td><td>"+counter+"<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
+                    $rootScope.totalNegocioReconfiguracion=parseInt($rootScope.totalNegocioReconfiguracion)+parseInt(counter);
+                                }else if(concepto_id=='O-101'){
+                                    negocioReconfiguracion+="<tr><td><a href='./#/registros/"+concepto_id+"'>"+concepto_id+"</a></td><td>"+counter+"<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
+                                    $rootScope.totalNegocioReconfiguracion=parseInt($rootScope.totalNegocioReconfiguracion)+parseInt(counter);
+                                    }else{
+                                       negocioOtros+="<tr><td><a href='./#/registros/"+concepto_id+"'>"+concepto_id+"</a></td><td>"+counter+"<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
+                                       $rootScope.totalNegocioOtros=parseInt($rootScope.totalNegocioOtros)+parseInt(counter);
+                                    }
+            }
 
-
-			if ($rootScope.totalNegocioOtros > $rootScope.totalNegocioOtrosOld) {
-				$rootScope.notrosstyle.ICON = "fa fa-arrow-circle-up fa-2x";
-				$rootScope.notrosstyle.STYLE = "red";
-			} else if ($rootScope.totalNegocioOtros < $rootScope.totalNegocioOtrosOld) {
-				$rootScope.notrosstyle.ICON = "fa fa-arrow-circle-down fa-2x";
-				$rootScope.notrosstyle.STYLE = "green";
-			} else {
-				$rootScope.notrosstyle.ICON = "fa fa-minus-circle fa-2x";
-				$rootScope.notrosstyle.STYLE = "gray";
-			}
+            $rootScope.nasignacionesstyle={};
+            $rootScope.nreconfiguracionstyle={};
+            $rootScope.notrosstyle={};
 
 
-			document.getElementById("nasignaciones").innerHTML = negocioAsingaciones + "</tbody></table>";
-			document.getElementById("nreconfiguracion").innerHTML = negocioReconfiguracion + "</tbody></table>";
-			document.getElementById("notros").innerHTML = negocioOtros + "</tbody></table>";
+            if($rootScope.totalNegocioAsignaciones>$rootScope.totalNegocioAsignacionesOld){
+                            $rootScope.nasignacionesstyle.ICON="fa fa-arrow-circle-up fa-2x";
+                                $rootScope.nasignacionesstyle.STYLE="red";
+                        }else if($rootScope.totalNegocioAsignaciones<$rootScope.totalNegocioAsignacionesOld){
+                                $rootScope.nasignacionesstyle.ICON="fa fa-arrow-circle-down fa-2x";
+                                $rootScope.nasignacionesstyle.STYLE="green";
+                        }else {
+                                $rootScope.nasignacionesstyle.ICON="fa fa-minus-circle fa-2x";
+                                $rootScope.nasignacionesstyle.STYLE="gray";
+                        }
 
-			return data.data;
-		});
-	}
-
-	$scope.$on(
-		"$destroy",
-		function (event) {
-			$timeout.cancel($scope.intervalLightKPIS);
-			clearInterval($scope.intervalLightKPIS);
-		});
-
-
-	$scope.actualizarLightKPIS();
+                        if($rootScope.totalNegocioReconfiguracion>$rootScope.totalNegocioReconfiguracionOld){
+                                $rootScope.nreconfiguracionstyle.ICON="fa fa-arrow-circle-up fa-2x";
+                                $rootScope.nreconfiguracionstyle.STYLE="red";
+                        }else if($rootScope.totalNegocioReconfiguracion<$rootScope.totalNegocioReconfiguracionOld){
+                                $rootScope.nreconfiguracionstyle.ICON="fa fa-arrow-circle-down fa-2x";
+                                $rootScope.nreconfiguracionstyle.STYLE="green";
+                        }else {
+                                $rootScope.nreconfiguracionstyle.ICON="fa fa-minus-circle fa-2x";
+                                $rootScope.nreconfiguracionstyle.STYLE="gray";
+                        }
 
 
+                        if($rootScope.totalNegocioOtros>$rootScope.totalNegocioOtrosOld){
+                                $rootScope.notrosstyle.ICON="fa fa-arrow-circle-up fa-2x";
+                                $rootScope.notrosstyle.STYLE="red";
+                        }else if($rootScope.totalNegocioOtros<$rootScope.totalNegocioOtrosOld){
+                                $rootScope.notrosstyle.ICON="fa fa-arrow-circle-down fa-2x";
+                                $rootScope.notrosstyle.STYLE="green";
+                        }else {
+                                $rootScope.notrosstyle.ICON="fa fa-minus-circle fa-2x";
+                                $rootScope.notrosstyle.STYLE="gray";
+                        }
+
+
+            document.getElementById("nasignaciones").innerHTML=negocioAsingaciones+"</tbody></table>";
+            document.getElementById("nreconfiguracion").innerHTML=negocioReconfiguracion+"</tbody></table>";
+            document.getElementById("notros").innerHTML=negocioOtros+"</tbody></table>";
+
+                        return data.data;
+                });
+        }
+
+        $scope.$on(
+                "$destroy",
+                        function( event ) {
+                            $timeout.cancel($scope.intervalLightKPIS);
+                            clearInterval($scope.intervalLightKPIS);
+          });
+
+
+$scope.actualizarLightKPIS();
 });
 
 //-----------------------------ASIGNACIONES--------------------------------
