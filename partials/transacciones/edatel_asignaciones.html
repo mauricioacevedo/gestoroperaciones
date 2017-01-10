@@ -155,7 +155,7 @@
 													ng-change="onChangeAccion()" required>
 													<option value="" disabled>--Seleccione--</option>
 													<option
-														ng-repeat="d in listaOpcionesGestion | unique:'OBSERVACION_ID'"
+														ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO}:true | unique:'OBSERVACION_ID'"
 
 														value="{{d.OBSERVACION_ID}}">
 														{{d.OBSERVACION_ID}}
