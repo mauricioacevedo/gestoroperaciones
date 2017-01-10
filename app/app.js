@@ -13557,7 +13557,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 			function (data) {
 
 				if (data.data == '') {
-					$scope.errorDatos = "No hay Registros. Intente con otro Motivo";
+					$scope.errorDatos = "No hay Registros. Intente con otro Concepto";
 					$scope.peds = {};
 					$scope.mpedido = {};
 					$scope.busy = "";
