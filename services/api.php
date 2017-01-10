@@ -2880,8 +2880,8 @@ private function updateFenixReconfiguracion($obj){
 				$filtro="";
 			}
 			else {
-				//$filtro= " and $campo = '$valorCampo' and user = '$userID'";
-				$filtro= " and $campo = '$valorCampo'";
+				$filtro= " and $campo = '$valorCampo' and user = '$userID'";
+				//$filtro= " and $campo = '$valorCampo'";
 			}
 			$page=$page*100;
 
