@@ -2909,7 +2909,7 @@ private function updateFenixReconfiguracion($obj){
                                 }
                                 $this->response($this->json(array($result,$counter)), 200); // send user details
                         }
-                        $this->response('',200);        // If no records "No Content" status
+                        $this->response('',204);        // If no records "No Content" status
                 }
 //---------------------------listado pedidos reconfiguracion----------------------------------asignacion---------
 
