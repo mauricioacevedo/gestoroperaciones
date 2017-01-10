@@ -12526,7 +12526,7 @@ private function opcionesGestionAsignaciones(){
 			$opciones=$this->_request['opciones'];
 			//$opciones = json_decode($request);
 
-	var_dump($opciones[0]);
+	var_dump($opciones['fuente']);
 	echo "Pare aca";
 
             $query=	" SELECT ".
