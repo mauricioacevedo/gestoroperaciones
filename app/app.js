@@ -13501,8 +13501,8 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
 			if (data.data == '') {
 
-				document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Estado.";
-				$scope.errorDatos = "No hay Registros. Intente Cambiando de Estado.";
+				document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Concepto.";
+				$scope.errorDatos = "No hay Registros. Intente Cambiando de Concepto.";
 			} else {
 
 				document.getElementById("warning").innerHTML = "";
@@ -13573,8 +13573,8 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 					var dat = data.status;
 					//alert("'"+data.status+"'");
 					if (dat == 204) {
-						document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Estado";
-						$scope.errorDatos = "No hay Registros. Intente Cambiando de Estado";
+						document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Concepto";
+						$scope.errorDatos = "No hay Registros. Intente Cambiando de Concepto";
 						$scope.peds = {};
 						$scope.mpedido = {};
 						$scope.busy = "";
