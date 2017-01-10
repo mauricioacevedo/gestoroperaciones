@@ -5359,15 +5359,18 @@ app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $
 	divi.style.visibility = "visible";
 	divi.style.position = "relative";
 
+	$rootScope.gestor={};
 	$scope.pedidos = [];
 	$scope.historico_pedido = [];
-	$rootScope.actualView = "reconfiguraciones";
+	//$rootScope.actualView = "reconfiguraciones";
+	$rootScope.actualView = "tx/siebel_asignaciones";
 	$scope.iconcepto = "14";
 	$scope.popup = '';
 	$scope.cargando = '';
 	$scope.pedidoinfo = 'Pedido';
 	$rootScope.gestor.fuentegrupo = "RECONFIGURACION";
 	$scope.actividadGestion="RECONFIGURACION";
+	$scope.pedidoIsActive = false;
 
 	$scope.doubleDigit = function (num) {
 
@@ -5591,12 +5594,12 @@ app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $
 		$scope.peds = {};
 		$scope.mpedido = {};
 		$scope.busy = "";
-		$scope.error = "";
+		$scope.errorDatos  = "";
 		$scope.pedidoinfo = 'Pedido';
 		//console.log(bpedido);
-		var kami = services.buscarPedidoReconfiguracion(bpedido, iplaza, $scope.pedido1, $rootScope.logedUser.login, $rootScope.logedUser.name).then(function (data) {
+		var kami = services.buscarPedidoReconfiguracion(bpedido, 'TODOS', $scope.pedido1, $rootScope.logedUser.login, $rootScope.logedUser.name).then(function (data) {
 			$scope.peds = data.data;
-			console.log(data.data);
+			//console.log(data.data);
 			var dat = data.status;
 			if (dat == 204) {
 				//document.getElementById("warning").innerHTML="No hay Registros";
@@ -5631,7 +5634,7 @@ app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $
 	$scope.msavePedido = function () {
 		console.log($scope.mpedido);
 		$scope.pedido = {};
-		$scope.error = "";
+		$scope.errorDatos = "";
 		angular.copy($scope.mpedido, $scope.pedido);
 
 		if ($scope.mpedido.pedido == "" || $scope.mpedido.pedido == {} || $scope.mpedido.pedido === undefined) {
@@ -5794,7 +5797,11 @@ app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $
 	$scope.start = function (pedido) {
 		var pedido1 = '';
 		$scope.popup = '';
-		$scope.error = "";
+		$scope.errorDatos = "";
+		$scope.accRdy = false;
+		$scope.InfoPedido = [];
+		$scope.InfoGestion = {};
+		$scope.pedidoIsGuardado = false;
 		if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
 			pedido1 = $scope.peds[0].PEDIDO_ID;
 		}
