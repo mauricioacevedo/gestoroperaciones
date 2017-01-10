@@ -12674,13 +12674,11 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 	$scope.listarOpcionesAsginacion = function () {
 
-		console.log(opciones);
-
 		services.getOpcionesGestionAsignaciones(opciones).then(
 			function (data) {
 				$scope.listaOpcionesGestion=[];
 				$scope.listaOpcionesGestion=data.data;
-				console.log($scope.listaOpcionesGestion);
+				//console.log($scope.listaOpcionesGestion);
 				return data.data;
 
 			},
