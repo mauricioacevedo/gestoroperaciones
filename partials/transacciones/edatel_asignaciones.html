@@ -139,7 +139,8 @@
 													required>
 													<option value="" disabled>--Seleccione--</option>
 													<option
-														ng-repeat="d in Estados"
+														ng-repeat="d in listaOpcionesGestion | unique:'ESTADO_ID'"
+
 														value="{{d.ESTADO_ID}}">
 														{{d.ESTADO_ID}}
 													</option>

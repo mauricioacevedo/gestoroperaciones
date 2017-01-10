@@ -12664,6 +12664,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 	$scope.accRdy = false;
 	$scope.fecha_inicio = null;
 	$scope.fecha_fin = null;
+	$scope.eda = {};
 
 	// Cargar Opciones para la gestion --------------------------------
 	var opciones={
@@ -12677,8 +12678,9 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 		services.getOpcionesGestionAsignaciones(opciones).then(
 			function (data) {
-
-				console.log(data.data);
+				$scope.listaOpcionesGestion=[];
+				$scope.listaOpcionesGestion=data.data[0];
+				console.log($scope.listaOpcionesGestion);
 				return data.data;
 
 			},
@@ -13070,8 +13072,8 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 
 	//  -------------------------------------------------------------- GuardarPedido
-	$scope.eda = {};
 
+	/*
 	$scope.listarEstados = function () {
 
 		services.getlistadoOpcionesEdatelAsignaciones().then(
@@ -13092,7 +13094,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 			}
 		);
-	};
+	}; */
 
 	$scope.listarLocalidades = function () {
 
