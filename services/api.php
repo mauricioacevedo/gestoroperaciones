@@ -12514,7 +12514,56 @@ $sqlfenix=
 
          }//Funcion para listar la productividad del grupo
 
+private function opcionesGestionAsignaciones(){
 
+
+            if($this->get_request_method() != "GET"){
+                        $this->response('',406);
+                        }
+
+
+			$today = date("Y-m-d");
+			$proceso=$this->_request['proceso'];
+
+			if($proceso!='' || $proceso!='undefined'){
+				$parametro="and a.PROCESO='$proceso'";
+			}else{
+				$parametro="";
+			}
+
+            $query=	" SELECT ".
+					"	o.ID, ".
+					"	o.ESTADO_ID, ".
+					"	o.OBSERVACION_ID, ".
+					"	o.STATUS, ".
+					"	o.FECHA_CARGA ".
+					" FROM portalbd.gestor_opciones_gestion o ".
+					" where o.ESTADO=1 ".
+					" and o.FUENTE='SIEBEL' ".
+					" and o.ACTIVIDAD='ESTUDIO' ";
+
+            $rst = $this->connemtel->query($query);
+
+				if ($rst->num_rows > 0){
+
+						$resultado=array();
+
+						while($row=$rst->fetch_assoc()){
+
+							//$row['nombre']=utf8_encode($row['nombre']);
+							$resultado[]=$row;
+
+
+						}
+							$this->response($this->json(array($resultado)), 201);
+
+
+					}else{
+
+						$this->response($this->json($error), 400);
+					}
+
+         }// ------------------------------------------------------------------------ Parametros Acciones Nuevo
 
 
 	}//cierre de la clase
