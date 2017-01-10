@@ -12525,10 +12525,11 @@ private function opcionesGestionAsignaciones(){
 			$today = date("Y-m-d");
 			$opciones=$this->_request['opciones'];
 			//$obj = json_encode($opciones);
-			$obj = json_encode($opciones);
+			$obj = json_decode($opciones);
 			//$request = json_decode($obj);
 
 	var_dump($obj);
+	var_dump($opciones);
 	//echo $opciones;
 	echo "Pare aca";
 
