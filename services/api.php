@@ -12526,9 +12526,9 @@ private function opcionesGestionAsignaciones(){
 			$opciones=$this->_request['opciones'];
 			//$obj = json_encode($opciones);
 			$obj = json_encode($opciones);
-			$request = json_decode($obj);
+			//$request = json_decode($obj);
 
-	var_dump($request);
+	var_dump($obj);
 	//echo $opciones;
 	echo "Pare aca";
 
