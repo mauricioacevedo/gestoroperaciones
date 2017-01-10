@@ -13263,9 +13263,9 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 	$scope.pedidos = [];
 	$scope.pedidosUnicos = '';
 	$scope.historico_pedido = [];
-	$rootScope.actualView = "tx/reconfiguracion";
+	$rootScope.actualView = "RECONFIGURACION";
 	$rootScope.gestor.fuentegrupo = "RECONFIGURACION";
-	$scope.actividadGestion="ESTUDIO";
+	$scope.actividadGestion="RECONFIGURACION";
 	$scope.iconcepto = "14";
 	$scope.popup = '';
 	$scope.intervalLightKPIS = '';
@@ -13278,7 +13278,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
 	// Cargar Opciones para la gestion --------------------------------
 	var opciones={
-			fuente: $rootScope.gestor.fuentegrupo,
+			fuente: 'FENIX_NAL',
 			actividad: $scope.actividadGestion
 	};
 
@@ -13686,52 +13686,6 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
 	//  -------------------------------------------------------------- GuardarPedido
 
-	$scope.listarLocalidades = function () {
-
-		//$scope.localidad="MEDELLIN";
-		services.getLocalidadesEdatel().then(
-
-			function (data) {
-				//console.log(data);
-				$scope.listadoLocalidad = data.data[0];
-				//console.log($scope.listadoLocalidad[1]);
-				return data.data;
-
-
-			},
-			function errorCallback(response, status) {
-				//console.log(status);
-				$scope.errorDatos = "Sin localidades";
-
-			}
-		);
-	};
-
-	$scope.listarDistribuidores = function (localidad) {
-
-		$scope.localdistri = localidad.LOCALIDAD;
-		services.getDistriEdatel($scope.localdistri).then(
-
-			function (data) {
-				//console.log(data);
-				$scope.listadoDistribuidores = data.data[0];
-				//console.log($scope.listadoLocalidad[1]);
-				$scope.errorDatos = null;
-				return data.data;
-
-
-			},
-			function errorCallback(response, status) {
-				//console.log(status);
-				$scope.errorDatos = "Sin Red.";
-
-			}
-		);
-	};
-
-	//$scope.listarLocalidades();
-	//$scope.listarEstados();
-	//$scope.listarDistribuidores('MEDELLIN');
 
 	$scope.doubleDigit = function (num) {
 
