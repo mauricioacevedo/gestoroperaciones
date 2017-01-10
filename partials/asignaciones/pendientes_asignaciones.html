@@ -19,7 +19,7 @@
 								<ul class="nav navbar-nav navbar-left">
 									<li>
 										<select ng-model="data1.concepto" ng-change="calcularPendientes(data1.concepto)" class="btn btn-default btn-xs grupo-select">
-											<option ng-repeat="d in listadoConceptos" value='{{d.CONCEPTO_ID}}'>{{d.CONCEPTO_ID}}</option>
+											<option ng-repeat="d in listadoConceptos | unique:'CONCEPTO_ID'"  value='{{d.CONCEPTO_ID}}'>{{d.CONCEPTO_ID}}</option>
 									    </select>
 
 									</li>
