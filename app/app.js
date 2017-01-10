@@ -5802,6 +5802,7 @@ app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $
 		$scope.InfoPedido = [];
 		$scope.InfoGestion = {};
 		$scope.pedidoIsGuardado = false;
+		$scope.iplaza="TODOS";
 		if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
 			pedido1 = $scope.peds[0].PEDIDO_ID;
 		}
