@@ -5824,7 +5824,7 @@ app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $
 			$scope.prioridad = 'FECHA_CITA';
 		}
 
-		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, $scope.prioridad).then(function (data) {
+		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, $scope.prioridad,$scope.fuente).then(function (data) {
 			$scope.peds = data.data;
 			//console.log(data.data);
 			if (data.data == '') {
