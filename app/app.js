@@ -960,7 +960,7 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 	};
 	obj.getOpcionesGestionAsignaciones = function (opciones) {
 		//return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
-		return $http.get(serviceBase + 'opcionesGestionAsignaciones', opciones);
+		return $http.post(serviceBase + 'opcionesGestionAsignaciones', opciones);
 	};
 
 
