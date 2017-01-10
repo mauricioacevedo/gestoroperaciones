@@ -12416,7 +12416,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 			$scope.peds = data.data;
 
-			console.log($scope.peds);
+			//console.log($scope.peds);
 
 			if (data.data == '') {
 
