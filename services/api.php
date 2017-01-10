@@ -12527,7 +12527,7 @@ private function opcionesGestionAsignaciones(){
 			$opciones = json_decode($request);
 
 	var_dump($opciones);
-
+	echo "Pare aca";
 
             $query=	" SELECT ".
 					"	o.ID, ".
