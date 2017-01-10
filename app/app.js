@@ -5352,6 +5352,7 @@ $rootScope.logout = function () {
 
 app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, services) {
 
+
 	var userID = $cookieStore.get('logedUser').login;
 	document.getElementById('logout').className = "btn btn-md btn-danger";
 	var divi = document.getElementById("logoutdiv");
@@ -5365,6 +5366,8 @@ app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $
 	$scope.popup = '';
 	$scope.cargando = '';
 	$scope.pedidoinfo = 'Pedido';
+	$rootScope.gestor.fuentegrupo = "RECONFIGURACION";
+	$scope.actividadGestion="RECONFIGURACION";
 
 	$scope.doubleDigit = function (num) {
 
@@ -12216,7 +12219,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 	$scope.onChangeAccion = function () {
 		$scope.accRdy = true;
-		$scope.programar=false;
+		//$scope.programar=false;
 	};
 
 	$scope.listarOpcionesAsginacion();//  --------------------------------Cargar Opciones para la gestion
