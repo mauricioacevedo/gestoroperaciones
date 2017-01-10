@@ -5362,6 +5362,7 @@ app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $
         $scope.historico_pedido=[];
         $rootScope.actualView="reconfiguraciones";
         $scope.iconcepto="14";
+		$scope.iplaza="TODOS";
         $scope.popup='';
         $scope.cargando='';
         $scope.pedidoinfo='Pedido';
