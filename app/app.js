@@ -5794,7 +5794,7 @@ $(document).click(  function (e) {
 
                 var demePedidoButton=document.getElementById("iniciar");
                 demePedidoButton.setAttribute("disabled","disabled");
-                demePedidoButton.className = "btn btn-success disabled";
+                demePedidoButton.className = "btn btn-success btn-sm disabled";
 
 
 		if($scope.prioridad=='FECHA_CITA'){
@@ -5825,7 +5825,7 @@ $(document).click(  function (e) {
                         }
                         var demePedidoButton=document.getElementById("iniciar");
                         demePedidoButton.removeAttribute("disabled");
-                        demePedidoButton.className = "btn btn-success";
+                        demePedidoButton.className = "btn btn-success btn-sm";
                         return data.data;
                 });
 
