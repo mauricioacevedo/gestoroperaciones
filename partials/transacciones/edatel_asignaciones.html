@@ -180,7 +180,7 @@
 											</div>
 											<div>
 												<div ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO, OBSERVACION_ID: InfoPedido.OBSERVACIONES_PROCESO} as status">
-													<input ng-model="InfoPedido.STATUS" value="d.STATUS">
+													<input ng-model="InfoPedido.STATUS" value="status.STATUS">
 												</div>
 											</div>
 
