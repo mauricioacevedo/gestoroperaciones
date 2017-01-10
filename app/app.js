@@ -944,7 +944,7 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 		return $http.get(serviceBase + 'clientesEdatel?localidad=' + localidad + '&direccion=' + direccion);
 	};
 	obj.getlistadoOpcionesEdatelAsignaciones = function () {
-		return $http.get(serviceBase + 'opcionesEdatelAsignaciones');
+		return $http.get(serviceBase + 'opcionesEdatelAsignaciones');//Borrar luego
 	};
 	obj.getDistriEdatel = function (localidad) {
 		return $http.get(serviceBase + 'distribuidoresEdatel?localidad=' + localidad);
@@ -958,7 +958,9 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 	obj.getPedidosGestorUserReagendamiento = function (grupo) {
 		return $http.get(serviceBase + 'PedidosGestorUserReagendamiento?grupo=' + grupo);
 	};
-
+	obj.getOpcionesGestionAsignaciones = function (opciones) {
+		return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
+	};
 
 
 	return obj;
@@ -12619,6 +12621,8 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, notify, services) {
 
 	$scope.tools = true;
+	$scope.fuenteGestion="EDATEL";
+	$scope.actividadGestion="ESTUDIO";
 
 	// Basura del logueo ---------------------------------
 	$rootScope.logedUser = $cookieStore.get('logedUser');
