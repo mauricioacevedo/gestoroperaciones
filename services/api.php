@@ -12523,7 +12523,9 @@ private function opcionesGestionAsignaciones(){
 
 
 			$today = date("Y-m-d");
-			$proceso=$this->_request['proceso'];
+			$opciones=$this->_request['opciones'];
+
+	var_dump($opciones);
 
 			if($proceso!='' || $proceso!='undefined'){
 				$parametro="and a.PROCESO='$proceso'";

@@ -12621,8 +12621,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, notify, services) {
 
 	$scope.tools = true;
-	$scope.fuenteGestion="EDATEL";
-	$scope.actividadGestion="ESTUDIO";
+
 
 	// Basura del logueo ---------------------------------
 	$rootScope.logedUser = $cookieStore.get('logedUser');
@@ -12654,7 +12653,8 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 	$scope.pedidosUnicos = '';
 	$scope.historico_pedido = [];
 	$rootScope.actualView = "EDATEL";
-	$rootScope.gestor.fuentegrupo = "EDATEL"
+	$rootScope.gestor.fuentegrupo = "EDATEL";
+	$scope.actividadGestion="ESTUDIO";
 	$scope.iconcepto = "12-EDATEL";
 	$scope.popup = '';
 	$scope.intervalLightKPIS = '';
@@ -12663,6 +12663,31 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 	$scope.accRdy = false;
 	$scope.fecha_inicio = null;
 	$scope.fecha_fin = null;
+
+	// Cargar Opciones para la gestion --------------------------------
+	var opciones=[{
+		fuente: $rootScope.gestor.fuentegrupo,
+		actividad: $scope.actividadGestion
+	}];
+
+	$scope.listarOpcionesAsginacion = function () {
+
+		services.getOpcionesGestionAsignaciones(opciones).then(
+			function (data) {
+
+				console.log(data.data);
+				return data.data;
+
+			},
+			function errorCallback(response, status) {
+				//console.log(status);
+				$scope.errorDatos = "Error, revisar opciones";
+
+			}
+		);
+	}; //  --------------------------------Cargar Opciones para la gestion
+
+	$scope.listarOpcionesAsginacion();
 
 	var pedidos = services.getPedidosUser(userID).then(function (data) {
 		$scope.pedidos = data.data[0];
