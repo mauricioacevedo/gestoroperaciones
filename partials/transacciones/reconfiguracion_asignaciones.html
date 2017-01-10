@@ -92,7 +92,8 @@
 											<li class="list-group-item small" ><b>PEDIDO: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.PEDIDO_ID)">
 												{{service.PEDIDO_ID}}
 											</button> </li>
-											<li class="list-group-item small" ><b>LOCALIDAD:</b> {{service.MUNICIPIO_ID}} </li>
+											<li class="list-group-item small" ><b>AGENDA: </b><span ng-show="service.FECHA_CITA"  class="ng-binding label label-danger">{{service.FECHA_CITA}}</span></li>
+											<li class="list-group-item small" ><b>MUNICIPIO:</b> {{service.MUNICIPIO_ID}} </li>
 											<li class="list-group-item small" >
 												<b>DIRECCIÓN:</b> <span class="small">{{service.DIRECCION_SERVICIO}}</span>
 												<button type="button" class="btn btn-xs btn-default" title="Copiar"
@@ -100,6 +101,9 @@
 											</li>
 											<li class="list-group-item small" ><b>PÁGINA:</b> <span class="small">{{service.PAGINA_SERVICIO}}</span>  </li>
 											<li class="list-group-item small" ><b>ESTADO:</b> {{service.CONCEPTO_ID}} </li>
+											<li class="list-group-item small" >
+												 <button class="btn btn-info btn-sm" uib-popover="{{service.OBSERVACIONES || 'Sin Observaciones'}}" popover-title="Observaciones" popover-append-to-body="true" type="button" class="btn btn-default">OBSERVACIONES</button>
+											</li>
 
 										</div>
 
@@ -110,9 +114,7 @@
 
 											<li class="list-group-item small" ><b>FECHA ESTADO:</b> {{service.FECHA_ESTADO}} </li>
 											<li class="list-group-item small" ><b>TIEMPO EN COLA:</b> {{service.TIEMPO_COLA}} </li>
-											<li class="list-group-item small" >
-												 <button class="btn btn-default btn-sm" uib-popover="{{service.OBSERVACIONES || 'Sin Observaciones'}}" popover-title="Observaciones" popover-append-to-body="true" type="button" class="btn btn-default">OBSERVACIONES</button>
-											</li>
+
 
 
 										</div>
