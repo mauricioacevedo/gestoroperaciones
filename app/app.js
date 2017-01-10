@@ -13301,10 +13301,13 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 		);
 	};
 
+	$scope.onChangeEstado = function () {
+		$scope.ltpercent="35%";
+	};
 	$scope.onChangeAccion = function () {
 		$scope.accRdy = true;
 		$scope.programar=false;
-		$scope.ltpercent="35%";
+		$scope.ltpercent="65%";
 	};
 
 	$scope.listarOpcionesAsginacion();//  --------------------------------Cargar Opciones para la gestion
