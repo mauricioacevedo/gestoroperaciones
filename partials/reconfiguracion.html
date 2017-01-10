@@ -200,7 +200,7 @@
                                     <sapan ng-hide="service.LLAMADAS=='SIN LLAMADAS'"><b>Último contacto: </b><font color="red"><b> {{service.ULTIMO_CONTACTO}}</b></font><br></sapan>
                                     <sapan ng-hide="service.LLAMADAS=='SIN LLAMADAS'"><b>Fecha Programada: </b><font color="red"><b> {{service.PROGRAMACION}}</b></font><br></sapan>
                                     <b>Fecha Cita:</b><span ng-show="service.FECHA_CITA"  class="ng-binding label label-danger">{{service.FECHA_CITA}}</span></b><br><br>
-									<button type="button" class="btn btn-default btn-sm" popover data-trigger="hover" data-placement="rigth" data-html="true" data-selector="" data-content="{{service.OBSERVACIONES}}">
+									<button type="button" class="btn btn-default btn-sm" popover data-trigger="hover" data-placement="rigth" data-html="true" data-selector="" data-content="{{service.OBSERVACIONES | 'Sin Observaciones'}}">
 										<i class="fa fa-info-circle"  aria-hidden="true" ></i> Observaciones
 									</button>
 
