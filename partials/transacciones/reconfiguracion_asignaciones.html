@@ -165,6 +165,11 @@
 													</option>
 												</select>
 											</div>
+											<div class="form-group has-feedback" ng-show="programar">
+												<label for="programacion" class="control-label">Programación:</label>
+												<input type="text" name="programacion" id="programacion" class="form-control" placeholder="id llamada" ng-model="InfoPedido.PROGRAMACION"/>
+												<i class="fa fa-calendar-check-o form-control-feedback"></i>
+											</div>
 											<div class="form-group has-feedback">
 												<label for="incidente" class="control-label">ID Llamada:</label>
 												<input type="text" name="incidente" id="incidente" class="form-control" placeholder="id llamada" ng-model="InfoPedido.IDLLAMADA"/>
@@ -174,23 +179,6 @@
 												<label for="nuevopedido" class="control-label">Nuevo Pedido:</label>
 												<input type="text" name="nuevopedido" id="nuevopedido" class="form-control" placeholder="12458974145" ng-model="InfoPedido.NUEVOPEDIDO"/>
 												<i class="fa fa-briefcase form-control-feedback"></i>
-											</div>
-											<div class="form-group has-feedback" ng-show="programar">
-												<label for="incidente" class="control-label">Programación:</label>
-												<input type="text" name="incidente" id="incidente" class="form-control" placeholder="id llamada" ng-model="InfoPedido.IDLLAMADA"/>
-												<i class="fa fa-phone-square form-control-feedback"></i>
-											</div>
-
-											<div class="form-group small" ng-show="programar" >
-												<label for="programacion">Programación:</label>
-												<div class="control-group" >
-													<div class="input-group margin-bottom-sm">
-														<input class="form-control btn-xs" name="programacion" ng-model="InfoPedido.PROGRAMACION" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" />
-														<span class="input-group-btn">
-															<button type="button" class="btn btn-default"><i class="fa fa-calendar-plus-o fa-fw"></i></button>
-														</span>
-													</div>
-												</div>
 											</div>
 											<div>
 												<div class="hide" ng-repeat="InfoPedido in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO, OBSERVACION_ID: InfoPedido.OBSERVACIONES_PROCESO} | unique:'STATUS' as status">
