@@ -12525,7 +12525,7 @@ private function opcionesGestionAsignaciones(){
 			$today = date("Y-m-d");
 
 
-			echo $params.fuente;
+			echo $params['fuente'];
 
             $query=	" SELECT ".
 					"	o.ID, ".
