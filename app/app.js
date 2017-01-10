@@ -13304,7 +13304,8 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 	$scope.onChangeEstado = function () {
 		$scope.ltpercent="35";
 	};
-	$scope.onChangeAccion = function () {
+	$scope.onChangeAccion = function (valor) {
+		console.log(valor);
 		$scope.accRdy = true;
 		$scope.programar=false;
 		$scope.ltpercent="65";

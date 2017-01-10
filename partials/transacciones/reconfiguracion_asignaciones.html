@@ -155,7 +155,7 @@
 													class= "form-control btn-xs"
 													name="obs"
 													ng-model="InfoPedido.OBSERVACIONES_PROCESO"
-													ng-change="onChangeAccion()" required>
+													ng-change="onChangeAccion(InfoPedido.OBSERVACIONES_PROCESO)" required>
 													<option value="" disabled>--Seleccione--</option>
 													<option
 														ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO}:true | unique:'OBSERVACION_ID'"
