@@ -13910,6 +13910,11 @@ app.config(['$routeProvider',
 			templateUrl: 'partials/reconfiguracion.html',
 			controller: 'ReconfiguracionCtrl'
 		})
+		.when('/tx/reconfiguracion/', {
+			title: 'Reconfiguracion',
+			templateUrl: 'partials/reconfiguracion_asignaciones.html',
+			controller: 'ReconfiguracionCtrl'
+		})
 
 		.when('/nca/', {
 			title: 'NCA',
