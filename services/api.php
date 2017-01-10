@@ -2880,11 +2880,12 @@ private function updateFenixReconfiguracion($obj){
 				$filtro="";
 			}
 			else {
-				$filtro= " and $campo = '$valorCampo' and user = '$userID'";
+				//$filtro= " and $campo = '$valorCampo' and user = '$userID'";
+				$filtro= " and $campo = '$valorCampo'";
 			}
 			$page=$page*100;
 
-			echo $filtro;
+			//echo $filtro;
 			//counter
 			$query="SELECT count(*) as counter from pedidos where fecha_fin between '$fechaini 00:00:00' and '$fechafin 23:59:59' $filtro";
 			$rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
