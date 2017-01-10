@@ -12665,10 +12665,10 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 	$scope.fecha_fin = null;
 
 	// Cargar Opciones para la gestion --------------------------------
-	var opciones=[{
+	var opciones={
 		fuente: $rootScope.gestor.fuentegrupo,
 		actividad: $scope.actividadGestion
-	}];
+	};
 
 	$scope.listarOpcionesAsginacion = function () {
 
@@ -12685,9 +12685,9 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 			}
 		);
-	}; //  --------------------------------Cargar Opciones para la gestion
+	};
 
-	$scope.listarOpcionesAsginacion();
+	$scope.listarOpcionesAsginacion();//  --------------------------------Cargar Opciones para la gestion
 
 	var pedidos = services.getPedidosUser(userID).then(function (data) {
 		$scope.pedidos = data.data[0];
