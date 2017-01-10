@@ -175,8 +175,13 @@
 												<input type="text" name="nuevopedido" id="nuevopedido" class="form-control" placeholder="12458974145" ng-model="InfoPedido.NUEVOPEDIDO"/>
 												<i class="fa fa-briefcase form-control-feedback"></i>
 											</div>
+											<div class="form-group has-feedback" ng-show="programar">
+												<label for="incidente" class="control-label">Programación:</label>
+												<input type="text" name="incidente" id="incidente" class="form-control" placeholder="id llamada" ng-model="InfoPedido.IDLLAMADA"/>
+												<i class="fa fa-phone-square form-control-feedback"></i>
+											</div>
 
-											<div class="form-group small" ng-show="false" >
+											<div class="form-group small" ng-show="programar" >
 												<label for="programacion">Programación:</label>
 												<div class="control-group" >
 													<div class="input-group margin-bottom-sm">
