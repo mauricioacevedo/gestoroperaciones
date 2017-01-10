@@ -5404,8 +5404,8 @@ app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $
 	//$scope.currentPage = 1;
 
 	//oculta los tips para que no se visualicen al inicio.
-	document.getElementById("mostrarTIP").style.visibility = "hidden";
-	document.getElementById("mostrarTIP").style.display = "none";
+	//document.getElementById("mostrarTIP").style.visibility = "hidden";
+	//document.getElementById("mostrarTIP").style.display = "none";
 	$scope.listadoTips = {};
 
 	//trae los tips para visualizarlo
@@ -5600,7 +5600,7 @@ app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $
 			var dat = data.status;
 			if (dat == 204) {
 				//document.getElementById("warning").innerHTML="No hay Registros";
-				$scope.error = "No hay Registros";
+				$scope.errorDatos = "No hay Registros";
 
 			} else {
 				//document.getElementById("warning").innerHTML="";
@@ -5609,7 +5609,7 @@ app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $
 
 				if (($scope.peds[0].STATUS == "PENDI_PETEC" || $scope.peds[0].STATUS == "PENDI_RENUMS") && $scope.peds[0].ASESOR != "") {
 					$scope.busy = $scope.peds[0].ASESOR;
-					$scope.error = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
+					$scope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
 				}
 				$scope.baby($scope.pedido1);
 			}
@@ -5806,7 +5806,7 @@ app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $
 
 		var demePedidoButton = document.getElementById("iniciar");
 		demePedidoButton.setAttribute("disabled", "disabled");
-		demePedidoButton.className = "btn btn-sm btn-success disabled";
+		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
 
 		if ($scope.prioridad == 'FECHA_CITA') {
@@ -5830,14 +5830,14 @@ app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $
 				//console.log($scope.peds[0].ASESOR);
 				if ($scope.peds[0].ASESOR != "" && $scope.peds[0].ASESOR != undefined) {
 					$scope.busy = $scope.peds[0].ASESOR;
-					$scope.error = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
+					$scope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
 				}
 
 				$scope.baby($scope.pedido1);
 			}
 			var demePedidoButton = document.getElementById("iniciar");
 			demePedidoButton.removeAttribute("disabled");
-			demePedidoButton.className = "btn btn-sm btn-success";
+			demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 			return data.data;
 		});
 
