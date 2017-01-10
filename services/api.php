@@ -12527,11 +12527,6 @@ private function opcionesGestionAsignaciones(){
 
 	var_dump($opciones);
 
-			if($proceso!='' || $proceso!='undefined'){
-				$parametro="and a.PROCESO='$proceso'";
-			}else{
-				$parametro="";
-			}
 
             $query=	" SELECT ".
 					"	o.ID, ".
@@ -12544,7 +12539,7 @@ private function opcionesGestionAsignaciones(){
 					" and o.FUENTE='SIEBEL' ".
 					" and o.ACTIVIDAD='ESTUDIO' ";
 
-            $rst = $this->connemtel->query($query);
+            $rst = $this->mysqli->query($query);
 
 				if ($rst->num_rows > 0){
 
