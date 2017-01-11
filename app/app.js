@@ -13583,8 +13583,8 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 					console.log(data.data);
 					$scope.peds = data.data[1];
 					$scope.ocupado = data.data[0];
-					$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
-					$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
+					$scope.pedido1 = $scope.peds.PEDIDO_ID;
+					$scope.pedidoinfo = $scope.peds.PEDIDO_ID;
 
 					var dat = data.status;
 					//alert("'"+data.status+"'");
@@ -13599,7 +13599,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 					} else {
 
 						if ($scope.ocupado == true) {
-							$scope.busy = $scope.peds[0].ASESOR;
+							$scope.busy = $scope.peds.ASESOR;
 							$scope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.busy;
 							return;
 
