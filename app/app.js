@@ -13313,6 +13313,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
 
 	$scope.PedidosPorUser= function (){
+		$scope.TituloModal='';
 		$scope.TituloModal="Pedigos Gestionados por: "+userID;
 		var pedidos = services.getPedidosUser(userID).then(function (data) {
 		$scope.pedidos = data.data[0];
@@ -15059,10 +15060,10 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 	// Modal Historico Pedido--------------------------------------------------------------------------------------
 
 	$rootScope.historicoModal = function (pedido) {
-		//console.log(InfoPedido);
+		$scope.TituloModal='';
+		$rootScope.TituloModal = "Historico del pedido: ";
 		$rootScope.listaHistoricoPedido(pedido);
 		$rootScope.errorDatos = null;
-		$rootScope.TituloModal = "Historico del pedido: ";
 		$rootScope.pedidoHistorico=pedido;
 		//$scope.UserProgramados=$scope.usuario_id;
 
