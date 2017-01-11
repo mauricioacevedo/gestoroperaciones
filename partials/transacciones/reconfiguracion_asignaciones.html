@@ -111,8 +111,8 @@
 											<li class="list-group-item small" ><b>PRODUCTO:</b> {{service.PRODUCTO}} </li>
 											<li class="list-group-item small" ><b>TECNOLOGIA:</b> {{service.TECNOLOGIA_ID}} </li>
 											<li class="list-group-item small" ><b>EJECUTIVO:</b> {{service.EJECUTIVO_ID}} </li>
-											<li class="list-group-item small" ><b>CELULAR:</b> <a ng-href="SIP:003{{service.CELULAR_AVISAR}}" >{{service.CELULAR_AVISAR}} <i class="fa fa-phone-square" aria-hidden="true"></i></a> </li>
-											<li class="list-group-item small" ><b>TELEFONO:</b> <a ng-href="SIP:0{{service.TELEFONO_AVISAR}}" >{{service.TELEFONO_AVISAR}} <i class="fa fa-phone-square" aria-hidden="true"></i></a> </li>
+											<li class="list-group-item small" ><b>CELULAR:</b> <a ng-href="SIP:003{{service.CELULAR_AVISAR || service.TELEFONO_AVISAR}}" >{{service.CELULAR_AVISAR}} <i class="fa fa-phone-square" aria-hidden="true"></i></a> </li>
+											<li class="list-group-item small" ><b>TELEFONO:</b> <a ng-href="SIP:0{{service.TELEFONO_AVISAR || service.CELULAR_AVISAR}}" >{{service.TELEFONO_AVISAR}} <i class="fa fa-phone-square" aria-hidden="true"></i></a> </li>
 											<li class="list-group-item small" ><b>FECHA ESTADO:</b> {{service.FECHA_ESTADO}} </li>
 											<li class="list-group-item small" ><b>TIEMPO EN COLA:</b> {{service.TIEMPO_COLA}} </li>
 
@@ -200,9 +200,7 @@
 						<div class="col-md-6" >
 								<!--Campos futuros en footer izquierda -->
 							<ul class="nav navbar-nav navbar-left animated bounceInRight" ng-show="pedidoIsActive" >
-								<li><span ng-class= "{'CERRADO_PETEC':'label label-danger','PENDI_PETEC':'label label-info','MALO':'label label-warning'}[status[0].STATUS]" class="label label-info" tooltip data-placement="top" title="Estado">{{status[0].STATUS}}</span></li>
-								<li>&nbsp; | &nbsp;</li>
-								<li><span class="label label-primary">{{fechaprogramacion || 'Sin Programación'}}</span>
+								<li><span class="label label-primary" tooltip data-placement="top" title="Programación">{{fechaprogramacion || 'Sin Programación'}}</span>
 								</li>
 							</ul>
 						</div>
