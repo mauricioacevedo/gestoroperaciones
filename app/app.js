@@ -15083,7 +15083,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 	// Modal Historico Pedido--------------------------------------------------------------------------------------
 
 	$rootScope.historicoModal = function (pedido) {
-		$scope.TituloModal='';
+		$rootScope.TituloModal='';
 		$rootScope.TituloModal = "Historico del pedido: ";
 		$rootScope.listaHistoricoPedido(pedido);
 		$rootScope.errorDatos = null;
