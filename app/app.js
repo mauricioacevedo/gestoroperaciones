@@ -181,15 +181,12 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 	obj.getCsvHistoricosAgendamientoEdatel = function (login, fechaIni, fechaFin) { // exportar historicos solo edatel
 		return $http.get(serviceBase + 'csvHistoricosAgendamientoEdatel?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
 	};
-
-
 	obj.getDashboardAgendamiento = function () {
 		return $http.get(serviceBase + 'getDashboardAgendamiento'); // graficas agendamiento
 	};
 	obj.getDashboardAgendamientoPresupuestal = function () {
 		return $http.get(serviceBase + 'getDashboardAgendamientoPresupuestal'); //grafica agendamiento presupuestal
 	};
-
 	obj.demePedidoAgendamiento = function (user, departamento, zona, microzona, proceso, pedido_actual, plaza, username) {
 		//demepedido agendamiento
 		//console.log("zona="+zona+", microzona="+microzona+", proceso="+proceso);
@@ -242,16 +239,13 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 	obj.getPedidoActualmenteAgendado = function (depa, zona, microzona, fecha, asesor, pedido_actual) { //pedidos actualmente agen
 		return $http.get(serviceBase + 'getPedidoActualmenteAgendado?departamento=' + depa + '&zona=' + zona + '&microzona=' + microzona + '&fecha=' + fecha + '&asesor=' + asesor + '&pedido_actual=' + pedido_actual);
 	};
-
-
 	obj.getZonasReagendamiento = function (dep) {
 		return $http.get(serviceBase + 'getZonasReagendamiento?departamento=' + dep); //pedidos por zonas reagedamiento
 	};
 
-
 	obj.getZonasAdelantarAgenda = function (dep) {
 		return $http.get(serviceBase + 'getZonasAdelantarAgenda?departamento=' + dep); //pedidos por zonas adelantaragen
-	}
+	};
 
 	obj.getMicrozonasReagendamiento = function (zona, depa) { //pedido por microzona reagendamiento
 		return $http.get(serviceBase + 'getMicrozonasReagendamiento?departamento=' + depa + '&zona=' + zona);
@@ -302,7 +296,6 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 		});
 		return data;
 	};
-
 
 	obj.listar1 = function () { //listado cargar datos
 		return $http.get(serviceBase + 'listadoarchivosdocu1');
@@ -366,7 +359,6 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 		});
 		return data;
 	};
-
 
 	obj.getListadoTransaccionesActividades = function (userID, fecha_inicio, fecha_fin, page) { //listado transaccion actividades
 		return $http.get(serviceBase + 'listadoTransaccionesActividades?fechaInicio=' + fecha_inicio + '&fechaFin=' + fecha_fin + '&page=' + page + '&userID=' + userID);
@@ -562,7 +554,6 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 		return data;
 	};
 
-
 	obj.insertarDatoParametrizacion = function (depa, zona, AM, PM, fechaformato) { //insertar datos pametrizacion
 		return $http.get(serviceBase + 'insertarDatoParametrizacion?depa=' + depa + '&zona=' + zona + '&AM=' + AM + '&PM=' + PM + '&fechaformato=' + fechaformato);
 	};
@@ -676,7 +667,6 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 		return $http.get(serviceBase + 'csvPreInstalaciones?login=' + login);
 	};
 
-
 	obj.getCsvFenixNal = function (login) { //exportar fenix nacional pendientes
 		return $http.get(serviceBase + 'csvFenixNal?login=' + login);
 	};
@@ -744,8 +734,6 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 	obj.getDashboardReconfiguracionMes = function () { //reconfiguracion grafica mes
 		return $http.get(serviceBase + 'getDashboardReconfiguracionMes');
 	};
-
-
 
 	obj.getPendientesGrafica = function () {
 		return $http.get(serviceBase + 'pendientesGrafica');
@@ -828,7 +816,6 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 		return data;
 	};
 
-
 	obj.insertMPedido = function (pedido) {
 		//console.log(pedido);
 		var data = $http.post(serviceBase + 'insertMPedido', {
@@ -840,7 +827,6 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 		});
 		return data;
 	};
-
 
 	obj.getCustomer = function (customerID) {
 		return $http.get(serviceBase + 'customer?id=' + customerID);
@@ -894,7 +880,6 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 			"fecha": tiempo
 		});
 	};
-
 
 	obj.getScheduling = function (page) {
 		return $http.get(serviceBase + 'listadoScheduling?page=' + page);
@@ -951,7 +936,6 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 	};
 
 	// --------------------------------------------------------- Edatel Asignaciones
-
 
 	//-------------------------------------------------------------------Fin-asignaciones
 
@@ -1032,7 +1016,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 		} else if ($cookieStore.get('logedUser').GRUPO == 'B2B') {
 			$location.path('/b2b/');
 		} else if ($cookieStore.get('logedUser').GRUPO == 'RECONFIGURACION') {
-			$location.path('/reconfiguracion/');
+			$location.path('/tx/reconfiguracion/');
 		} else if ($cookieStore.get('logedUser').GRUPO == 'CONSULTAS') {
 			$location.path('/general/');
 		} else {
@@ -1165,7 +1149,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 				} else if ($cookieStore.get('logedUser').GRUPO == 'B2B') {
 					$location.path('/b2b/');
 				} else if ($cookieStore.get('logedUser').GRUPO == 'RECONFIGURACION') {
-					$location.path('/reconfiguracion/');
+					$location.path('/tx/reconfiguracion/');
 				} else if ($cookieStore.get('logedUser').GRUPO == 'CONSULTAS') {
 					$location.path('/general/');
 				} else {
