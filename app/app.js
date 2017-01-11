@@ -13649,13 +13649,14 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 			motivo_malo: InfoPedido.OBSERVACIONES_PROCESO,
 			idllamada: InfoPedido.IDLLAMADA,
 			nuevopedido: InfoPedido.NUEVOPEDIDO,
+			horaLlamar:InfoPedido.PROGRAMACION,
 			ID: gestion.ID
 		}
 
 		//console.log($scope.InfoGestion);
 
 
-		services.insertPedido($scope.InfoGestion).then(
+		services.insertPedidoReconfiguracion($scope.InfoGestion).then(
 
 			function (data) {
 
