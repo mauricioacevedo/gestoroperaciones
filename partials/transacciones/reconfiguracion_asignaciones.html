@@ -394,7 +394,7 @@
 		<div class="modal-content" >
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">{{TituloModal}} <span class="label label-info">{{pedidoHistorico}} </span> </h4>
+				<h4 class="modal-title">{{TituloModal}}</h4>
 				<span style="color:red" ><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
 			</div>
 			<div class="modal-body" >
@@ -404,30 +404,26 @@
 							<table class = "table small table-striped table-condensed">
 								<thead>
 									<tr >
-										<th><span class="small">ID</span></th>
+										<th><span class="small">PEDIDO</span></th>
 										<th><span class="small">ACTIVIDAD</span></th>
 										<th><span class="small">FECHA_GESTION</span></th>
+										<th><span class="small">DURACION</span></th>
 										<th><span class="small">ESTADO</span></th>
-										<th><span class="small">MOTIVO_MALO</span></th>
-										<th><span class="small">USUARIO_ID</span></th>
-										<th><span class="small">ANTERIOR</span></th>
-										<th><span class="small">FINAL</span></th>
-										<th><span class="small">IDLLAMADA</span></th>
-										<th><span class="small">NUEVOPEDIDO</span></th>
+										<th><span class="small">CONCEPTO FINAL</span></th>
+										<th><span class="small">FUENTE</span></th>
+										<th><span class="small">ID</span></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr ng-repeat="pediUser in pedidos" class="animated bounceInRight">
-										<td><span class="small">{{histo.ID}}</span></td>
-										<td><span class="small">{{histo.ACTIVIDAD}}</span></td>
-										<td><span class="small">{{histo.FECHA_GESTION}}</span></td>
-										<td><span class="small">{{histo.ESTADO}}</span></td>
-										<td><span class="small">{{histo.MOTIVO_MALO || 'Sin Motivo'}}</span></td>
-										<td><span class="small">{{histo.USUARIO_ID}}</span></td>
-										<td><span class="small">{{histo.CONCEPTO_ANTERIOR}}</span></td>
-										<td><span class="small">{{histo.CONCEPTO_FINAL}}</span></td>
-										<td><span class="small">{{histo.IDLLAMADA || 'Sin Llamada'}}</span></td>
-										<td><span class="small">{{histo.NUEVOPEDIDO || 'Sin Nuevo pedido'}}</span></td>
+										<td><span class="small">{{pediUser.pedido}}</span></td>
+										<td><span class="small">{{pediUser.actividad}}</span></td>
+										<td><span class="small">{{pediUser.fecha_fin}}</span></td>
+										<td><span class="small">{{pediUser.duracion}}</span></td>
+										<td><span class="small">{{pediUser.estado}}</span></td>
+										<td><span class="small">{{pediUser.concepto_final}}</span></td>
+										<td><span class="small">{{pediUser.fuente}}</span></td>
+										<td><span class="small">{{pediUser.id}}</span></td>
 
 									</tr>
 								</tbody>
