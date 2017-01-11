@@ -3606,7 +3606,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			},
 			function errorCallback(response, status) {
 				//console.log(status);
-				$scope.errorDatos = "Ops, probelemas";
+				$rootScope.errorDatos = "Ops, probelemas";
 
 
 
@@ -3667,7 +3667,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 
 
 
-	$scope.errorDatos = null;
+	$rootScope.errorDatos = null;
 	$scope.fechiniExpoIO = "";
 	$scope.fechafiniExpoIO = "";
 
@@ -3681,7 +3681,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 
 	//Obtener listado de usuarios del GEOP
 	$scope.listadoUsuariosGeop = function (usuario_id) {
-		$scope.errorDatos = null;
+		$rootScope.errorDatos = null;
 		services.getListadoUsuarios(usuario_id).then(
 
 			function (data) {
@@ -3699,9 +3699,9 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 			},
 			function errorCallback(response) {
 
-				$scope.errorDatos = "Usuario no existe.";
+				$rootScope.errorDatos = "Usuario no existe.";
 
-				// console.log($scope.errorDatos);
+				// console.log($rootScope.errorDatos);
 
 			});
 
@@ -3724,10 +3724,10 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 			},
 			function errorCallback(response) {
 
-				$scope.errorDatos = "No hay datos.";
+				$rootScope.errorDatos = "No hay datos.";
 				$scope.csvUsers = false;
 
-				//console.log($scope.errorDatos);
+				//console.log($rootScope.errorDatos);
 
 			}
 		);
@@ -3740,7 +3740,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 	//modales
 	//Modal para editar usuarios
 	$scope.editarModal = function (data) {
-		$scope.errorDatos = null;
+		$rootScope.errorDatos = null;
 		$scope.idUsuario = data.ID;
 		$scope.UsuarioNom = data.USUARIO_NOMBRE;
 		$scope.editaInfo = data;
@@ -3751,7 +3751,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 	//Modal para Crear Usuario Nuevo
 	$scope.crearUsuarioModal = function () {
 		$scope.editaInfo = {};
-		$scope.errorDatos = null;
+		$rootScope.errorDatos = null;
 		$scope.idUsuario = '';
 		$scope.UsuarioNom = '';
 		$scope.TituloModal = "Crear Usuario Nuevo.";
@@ -3759,7 +3759,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 	};
 	//Modal para borrar usuarios.
 	$scope.borrarModal = function (data) {
-		$scope.errorDatos = null;
+		$rootScope.errorDatos = null;
 		$scope.idUsuario = data.ID;
 		$scope.UsuarioNom = data.USUARIO_NOMBRE;
 		// console.log(data);
@@ -3772,15 +3772,15 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 		services.deleteUsuario($scope.idBorrar).then(
 			function (data) {
 				$scope.listadoUsuariosGeop();
-				$scope.errorDatos = null;
+				$rootScope.errorDatos = null;
 
 
 			},
 			function errorCallback(response) {
 
-				$scope.errorDatos = "No se borro";
+				$rootScope.errorDatos = "No se borro";
 
-				//console.log($scope.errorDatos);
+				//console.log($rootScope.errorDatos);
 
 			}
 
@@ -3799,15 +3799,15 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 			function (data) {
 
 				$scope.listadoUsuariosGeop();
-				$scope.errorDatos = null;
+				$rootScope.errorDatos = null;
 
 
 			},
 			function errorCallback(response) {
 
-				$scope.errorDatos = "Error editando";
+				$rootScope.errorDatos = "Error editando";
 
-				//console.log($scope.errorDatos);
+				//console.log($rootScope.errorDatos);
 
 			});
 	}; //Editar Usuario Servicio
@@ -3820,16 +3820,16 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 			function (data) {
 
 				$scope.listadoUsuariosGeop();
-				$scope.errorDatos = null;
+				$rootScope.errorDatos = null;
 
 				//console.log(novedades);
 
 			},
 			function errorCallback(response) {
 
-				$scope.errorDatos = "Campos vacíos. Revise";
+				$rootScope.errorDatos = "Campos vacíos. Revise";
 
-				// console.log($scope.errorDatos);
+				// console.log($rootScope.errorDatos);
 
 			});
 	}; //Crear Usuario
@@ -3923,10 +3923,10 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 			},
 			function errorCallback(response) {
 
-				$scope.errorDatos = "No hay datos.";
+				$rootScope.errorDatos = "No hay datos.";
 				$scope.csvUsers = false;
 
-				//console.log($scope.errorDatos);
+				//console.log($rootScope.errorDatos);
 
 			}
 		);
@@ -9258,7 +9258,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			},
 			function errorCallback(response, status) {
 				//console.log(status);
-				$scope.errorDatos = "Ops, probelemas";
+				$rootScope.errorDatos = "Ops, probelemas";
 
 
 
@@ -10891,7 +10891,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$rootScope.actualView = "/demepedido-activacion";
 	$scope.popup = '';
 	$scope.pedidoinfo = '';
-	$scope.errorDatos = null;
+	$rootScope.errorDatos = null;
 	$scope.accRdy = false;
 	$scope.FECHA_GESTION = null;
 	$scope.FECHA_CREACION = null;
@@ -10934,7 +10934,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		var pedido1 = '';
 		$scope.popup = '';
-		$scope.errorDatos = null;
+		$rootScope.errorDatos = null;
 		$scope.InfoPedido = [];
 		$scope.FECHA_CREACION = null;
 		$scope.accRdy = false;
@@ -10968,19 +10968,19 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			if (data.data == '') {
 
 				document.getElementById("warning").innerHTML = "No hay Registros.";
-				$scope.errorDatos = "No hay Registros.";
+				$rootScope.errorDatos = "No hay Registros.";
 			} else {
 
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO;
 				$scope.pedidoIsActive = true;
-				$scope.errorDatos = null;
+				$rootScope.errorDatos = null;
 
 
 				if ($scope.peds[0].STATUS == "PENDI_ACTI" && $scope.peds[0].ASESOR != "") {
 					$scope.busy = $scope.peds[0].ASESOR;
-					$scope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
+					$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
 
 				}
 
@@ -11003,7 +11003,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		var pedido1 = '';
 		$scope.popup = '';
-		$scope.errorDatos = null;
+		$rootScope.errorDatos = null;
 		$scope.InfoPedido = [];
 		$scope.FECHA_CREACION = null;
 		$scope.accRdy = false;
@@ -11022,7 +11022,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 				if (data.data == '') {
 
-					$scope.errorDatos = "No hay Registros de activacion.";
+					$rootScope.errorDatos = "No hay Registros de activacion.";
 					$scope.peds = {};
 					$scope.mpedido = {};
 					$scope.busy = "";
@@ -11039,7 +11039,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 					//alert("'"+data.status+"'");
 					if (dat == 204) {
 						document.getElementById("warning").innerHTML = "No hay Registros.";
-						$scope.errorDatos = "No hay Registros.";
+						$rootScope.errorDatos = "No hay Registros.";
 						$scope.peds = {};
 						$scope.mpedido = {};
 						$scope.busy = "";
@@ -11049,11 +11049,11 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 						if ($scope.ocupado == true) {
 							$scope.busy = $scope.peds[0].ASESOR;
-							$scope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.busy;
+							$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.busy;
 							return;
 
 						}
-						$scope.errorDatos = null;
+						$rootScope.errorDatos = null;
 						$scope.pedidoIsActive = true;
 
 
@@ -11100,7 +11100,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			function (data) {
 
 				$scope.pedidoIsGuardado = true;
-				$scope.errorDatos = null;
+				$rootScope.errorDatos = null;
 				$scope.InfoPedido = [];
 				$scope.FECHA_EXCEPCION = null;
 				$scope.accRdy = false;
@@ -11119,7 +11119,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			},
 			function errorCallback(response, status) {
 				//console.log(status);
-				$scope.errorDatos = "No se pudo guardar";
+				$rootScope.errorDatos = "No se pudo guardar";
 
 			}
 		);
@@ -12163,7 +12163,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 	$scope.popup = '';
 	$scope.intervalLightKPIS = '';
 	$scope.pedidoinfo = '';
-	$scope.errorDatos = null;
+	$rootScope.errorDatos = null;
 	$scope.accRdy = false;
 	$scope.fecha_inicio = null;
 	$scope.fecha_fin = null;
@@ -12187,7 +12187,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			},
 			function errorCallback(response, status) {
 				//console.log(status);
-				$scope.errorDatos = "Error, revisar opciones";
+				$rootScope.errorDatos = "Error, revisar opciones";
 
 			}
 		);
@@ -12365,7 +12365,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 		var pedido1 = '';
 		$scope.popup = '';
-		$scope.errorDatos = null;
+		$rootScope.errorDatos = null;
 		$scope.InfoPedido = [];
 		$scope.fecha_inicio = null;
 		$scope.accRdy = false;
@@ -12400,19 +12400,19 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			if (data.data == '') {
 
 				document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Estado.";
-				$scope.errorDatos = "No hay Registros. Intente Cambiando de Estado.";
+				$rootScope.errorDatos = "No hay Registros. Intente Cambiando de Estado.";
 			} else {
 
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoIsActive = true;
-				$scope.errorDatos = null;
+				$rootScope.errorDatos = null;
 				$scope.fecha_inicio = $rootScope.fechaProceso();
 
 				if ($scope.peds[0].STATUS == "PENDI_PETEC" && $scope.peds[0].ASESOR != "") {
 					$scope.busy = $scope.peds[0].ASESOR;
-					$scope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
+					$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
 
 				}
 
@@ -12435,7 +12435,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 		var pedido1 = '';
 		$scope.popup = '';
-		$scope.errorDatos = null;
+		$rootScope.errorDatos = null;
 		$scope.InfoPedido = [];
 		$scope.fecha_inicio = null;
 		$scope.accRdy = false;
@@ -12454,7 +12454,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			function (data) {
 
 				if (data.data == '') {
-					$scope.errorDatos = "No hay Registros. Intente con otra oferta";
+					$rootScope.errorDatos = "No hay Registros. Intente con otra oferta";
 					$scope.peds = {};
 					$scope.mpedido = {};
 					$scope.busy = "";
@@ -12472,7 +12472,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 					//alert("'"+data.status+"'");
 					if (dat == 204) {
 						document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Estado";
-						$scope.errorDatos = "No hay Registros. Intente Cambiando de Estado";
+						$rootScope.errorDatos = "No hay Registros. Intente Cambiando de Estado";
 						$scope.peds = {};
 						$scope.mpedido = {};
 						$scope.busy = "";
@@ -12482,11 +12482,11 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 						if ($scope.ocupado == true) {
 							$scope.busy = $scope.peds[0].ASESOR;
-							$scope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.busy;
+							$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.busy;
 							return;
 
 						}
-						$scope.errorDatos = null;
+						$rootScope.errorDatos = null;
 						$scope.pedidoIsActive = true;
 						$scope.fecha_inicio = $rootScope.fechaProceso();
 
@@ -12527,7 +12527,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			},
 			function errorCallback(response, status) {
 				//console.log(status);
-				$scope.errorDatos = "Sin Procesos";
+				$rootScope.errorDatos = "Sin Procesos";
 
 			}
 		);
@@ -12571,7 +12571,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			function (data) {
 
 				$scope.pedidoIsGuardado = true;
-				$scope.errorDatos = null;
+				$rootScope.errorDatos = null;
 				$scope.InfoPedido = [];
 				$scope.fecha_inicio = null;
 				$scope.fecha_fin = null;
@@ -12593,7 +12593,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			},
 			function errorCallback(response, status) {
 				//console.log(status);
-				$scope.errorDatos = "No se pudo guardar";
+				$rootScope.errorDatos = "No se pudo guardar";
 
 			}
 		);
@@ -12673,7 +12673,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 	$scope.popup = '';
 	$scope.intervalLightKPIS = '';
 	$scope.pedidoinfo = '';
-	$scope.errorDatos = null;
+	$rootScope.errorDatos = null;
 	$scope.accRdy = false;
 	$scope.fecha_inicio = null;
 	$scope.fecha_fin = null;
@@ -12697,7 +12697,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			},
 			function errorCallback(response, status) {
 				//console.log(status);
-				$scope.errorDatos = "Error, revisar opciones";
+				$rootScope.errorDatos = "Error, revisar opciones";
 
 			}
 		);
@@ -12868,7 +12868,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 		var pedido1 = '';
 		$scope.popup = '';
-		$scope.errorDatos = null;
+		$rootScope.errorDatos = null;
 		$scope.InfoPedido = [];
 		$scope.fecha_inicio = null;
 		$scope.accRdy = false;
@@ -12905,19 +12905,19 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			if (data.data == '') {
 
 				document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Estado.";
-				$scope.errorDatos = "No hay Registros. Intente Cambiando de Estado.";
+				$rootScope.errorDatos = "No hay Registros. Intente Cambiando de Estado.";
 			} else {
 
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoIsActive = true;
-				$scope.errorDatos = null;
+				$rootScope.errorDatos = null;
 				$scope.fecha_inicio = $rootScope.fechaProceso();
 
 				if ($scope.peds[0].STATUS == "PENDI_PETEC" && $scope.peds[0].ASESOR != "") {
 					$scope.busy = $scope.peds[0].ASESOR;
-					$scope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
+					$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
 
 				}
 
@@ -12939,7 +12939,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 		var pedido1 = '';
 		$scope.popup = '';
-		$scope.errorDatos = null;
+		$rootScope.errorDatos = null;
 		$scope.InfoPedido = [];
 		$scope.fecha_inicio = null;
 		$scope.accRdy = false;
@@ -12960,7 +12960,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			function (data) {
 
 				if (data.data == '') {
-					$scope.errorDatos = "No hay Registros. Intente con otro Motivo";
+					$rootScope.errorDatos = "No hay Registros. Intente con otro Motivo";
 					$scope.peds = {};
 					$scope.mpedido = {};
 					$scope.busy = "";
@@ -12977,7 +12977,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 					//alert("'"+data.status+"'");
 					if (dat == 204) {
 						document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Estado";
-						$scope.errorDatos = "No hay Registros. Intente Cambiando de Estado";
+						$rootScope.errorDatos = "No hay Registros. Intente Cambiando de Estado";
 						$scope.peds = {};
 						$scope.mpedido = {};
 						$scope.busy = "";
@@ -12987,11 +12987,11 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 						if ($scope.ocupado == true) {
 							$scope.busy = $scope.peds[0].ASESOR;
-							$scope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.busy;
+							$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.busy;
 							return;
 
 						}
-						$scope.errorDatos = null;
+						$rootScope.errorDatos = null;
 						$scope.pedidoIsActive = true;
 						$scope.fecha_inicio = $rootScope.fechaProceso();
 
@@ -13050,7 +13050,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			function (data) {
 
 				$scope.pedidoIsGuardado = true;
-				$scope.errorDatos = null;
+				$rootScope.errorDatos = null;
 				$scope.InfoPedido = [];
 				$scope.fecha_inicio = null;
 				$scope.fecha_fin = null;
@@ -13072,7 +13072,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			},
 			function errorCallback(response, status) {
 				//console.log(status);
-				$scope.errorDatos = "No se pudo guardar";
+				$rootScope.errorDatos = "No se pudo guardar";
 
 			}
 		);
@@ -13106,7 +13106,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			},
 			function errorCallback(response, status) {
 				//console.log(status);
-				$scope.errorDatos = "Sin Procesos";
+				$rootScope.errorDatos = "Sin Procesos";
 
 			}
 		);
@@ -13127,7 +13127,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			},
 			function errorCallback(response, status) {
 				//console.log(status);
-				$scope.errorDatos = "Sin localidades";
+				$rootScope.errorDatos = "Sin localidades";
 
 			}
 		);
@@ -13142,14 +13142,14 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 				//console.log(data);
 				$scope.listadoDistribuidores = data.data[0];
 				//console.log($scope.listadoLocalidad[1]);
-				$scope.errorDatos = null;
+				$rootScope.errorDatos = null;
 				return data.data;
 
 
 			},
 			function errorCallback(response, status) {
 				//console.log(status);
-				$scope.errorDatos = "Sin Red.";
+				$rootScope.errorDatos = "Sin Red.";
 
 			}
 		);
@@ -13165,7 +13165,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		$scope.eda.localidad = localidad;
 
 		//console.log($scope.eda.localidad);
-		$scope.errorDatos = null;
+		$rootScope.errorDatos = null;
 
 		if ($scope.eda.localidad == undefined) {
 			alert("Seleccione localidad");
@@ -13186,7 +13186,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			},
 			function errorCallback(response, status) {
 				//console.log(response);
-				$scope.errorDatos = "sin registros. Ingrese otra dirección";
+				$rootScope.errorDatos = "sin registros. Ingrese otra dirección";
 
 			}
 		);
@@ -13285,7 +13285,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 			},
 			function errorCallback(response, status) {
 				//console.log(status);
-				$scope.errorDatos = "Error, revisar opciones";
+				$rootScope.errorDatos = "Error, revisar opciones";
 
 			}
 		);
@@ -15072,7 +15072,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 				$rootScope.errorMalos = "Sin pedidos";
 
-				//console.log($scope.errorDatos);
+				//console.log($rootScope.errorDatos);
 
 			});
 
@@ -15111,7 +15111,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 				$rootScope.errorMalos = "Sin pedidos";
 
-				//console.log($scope.errorDatos);
+				//console.log($rootScope.errorDatos);
 
 			});
 
