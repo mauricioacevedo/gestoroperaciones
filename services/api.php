@@ -12264,7 +12264,8 @@ $sqlfenix=
 					"	, p.NUEVOPEDIDO ".
 					"	, p.MOTIVO_MALO ".
 					"	from portalbd.pedidos p ".
-					"	where p.pedido_id='$pedido' ";
+					"	where p.pedido_id='$pedido' ".
+				 	"	order by p.ID desc ";
 
                      // echo $query;
                      $rst = $this->mysqli->query($query);
