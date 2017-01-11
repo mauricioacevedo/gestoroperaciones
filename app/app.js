@@ -13703,6 +13703,15 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
 	//  -------------------------------------------------------------- GuardarPedido
 
+	$scope.csvHistoricosReconfiguracion = function (){
+                //var login=$rootScope.logedUser.login;
+                services.getCsvHistoricosReconfiguracion(userID,$scope.data.fechaIni,$scope.data.fechaFin,$scope.data.campo, $scope.data.valorCampo).then(function(data){
+			//console.log(data.data[0]);
+                        window.location.href="tmp/"+data.data[0];
+                        return data.data;
+                });
+        };
+
 
 	$scope.doubleDigit = function (num) {
 
@@ -13718,7 +13727,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
 
 });
-// -----------------------------------------------Controlador para Gestion de Edatel
+// -----------------------------------------------Controlador para Gestion de Reconfiguracion Asignaciones
 
 
 
