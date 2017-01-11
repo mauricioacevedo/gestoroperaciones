@@ -13560,10 +13560,9 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 		var iplaza="TODOS";
 		$scope.pedidoIsGuardado = false;
 		$scope.programar=false;
-
 		$scope.pedidoActual = pedidoinfo;
-
 		$scope.buscar = buscar;
+		$scope.pedidoIsActive=false;
 
 
 
