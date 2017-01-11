@@ -946,6 +946,11 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 		//return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
 		return $http.post(serviceBase + 'opcionesGestionAsignaciones', opciones);
 	};
+	obj.getHistoricoPedido = function (pedido) {
+		return $http.post(serviceBase + 'listaHistoricoPedidos', {
+			pedido: pedido
+		});
+	};
 
 
 	return obj;
