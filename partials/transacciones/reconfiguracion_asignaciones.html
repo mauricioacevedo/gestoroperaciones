@@ -360,12 +360,12 @@
 										<td><span class="small">{{histo.ACTIVIDAD}}</span></td>
 										<td><span class="small">{{histo.FECHA_GESTION}}</span></td>
 										<td><span class="small">{{histo.ESTADO}}</span></td>
-										<td><span class="small">{{histo.MOTIVO_MALO}}</span></td>
+										<td><span class="small">{{histo.MOTIVO_MALO || 'Sin Motivo'}}</span></td>
 										<td><span class="small">{{histo.USUARIO_ID}}</span></td>
 										<td><span class="small">{{histo.CONCEPTO_ANTERIOR}}</span></td>
-										<td><span class="small">{{histo.FINAL}}</span></td>
-										<td><span class="small">{{histo.IDLLAMADA}}</span></td>
-										<td><span class="small">{{histo.NUEVOPEDIDO}}</span></td>
+										<td><span class="small">{{histo.CONCEPTO_FINAL}}</span></td>
+										<td><span class="small">{{histo.IDLLAMADA || 'Sin Llamada'}}</span></td>
+										<td><span class="small">{{histo.NUEVOPEDIDO || 'Sin Nuevo pedido'}}</span></td>
 
 									</tr>
 								</tbody>
