@@ -13265,7 +13265,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 	$scope.fecha_inicio = null;
 	$scope.fecha_fin = null;
 	$scope.programar=false;
-	$scope.eda = {};
+	$scope.data={};
 
 	// Cargar Opciones para la gestion --------------------------------
 	var opciones={
