@@ -13471,6 +13471,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 		$scope.InfoPedido.INCIDENTE = 'NO';
 		$scope.pedidoIsGuardado = false;
 		$scope.programar=false;
+		$scope.pedidoIsActive=false;
 
 		if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
 			//alert($scope.peds[0].PEDIDO_ID);
