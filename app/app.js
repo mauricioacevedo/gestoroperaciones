@@ -13488,7 +13488,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
 		var pedido1 = '';
 		$scope.popup = '';
-		$scope.errorDatos = null;
+		$rootScope.errorDatos = null;
 		$scope.InfoPedido = [];
 		$scope.fecha_inicio = null;
 		$scope.accRdy = false;
@@ -13527,7 +13527,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 			if (data.data == '') {
 
 				document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Concepto.";
-				$scope.errorDatos = "No hay Registros. Intente Cambiando de Concepto.";
+				$rootScope.errorDatos = "No hay Registros. Intente Cambiando de Concepto.";
 			} else {
 
 				document.getElementById("warning").innerHTML = "";
@@ -13540,7 +13540,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
 				if ($scope.peds[0].STATUS == "PENDI_PETEC" && $scope.peds[0].ASESOR != "") {
 					$scope.busy = $scope.peds[0].ASESOR;
-					$scope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
+					$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
 
 				}
 
@@ -13562,7 +13562,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
 		$scope.pedido1 = '';
 		$scope.popup = '';
-		$scope.errorDatos = null;
+		$rootScope.errorDatos = null;
 		$scope.InfoPedido = [];
 		$scope.fecha_inicio = null;
 		$scope.accRdy = false;
@@ -13600,11 +13600,11 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
                                 if(($scope.peds[0].STATUS=="PENDI_PETEC" || $scope.peds[0].STATUS=="PENDI_RENUMS")&&$scope.peds[0].ASESOR!=""){
                                         $scope.busy=$scope.peds[0].ASESOR;
-                                        $scope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
+                                        $rootScope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
                                 }
 
                                 //$scope.baby($scope.pedido1);
-								$scope.errorDatos = null;
+								$rootScope.errorDatos = null;
 								$scope.pedidoIsActive = true;
 								$scope.fecha_inicio = $rootScope.fechaProceso();
                         }
@@ -13663,7 +13663,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 			function (data) {
 
 				$scope.pedidoIsGuardado = true;
-				$scope.errorDatos = null;
+				$rootScope.errorDatos = null;
 				$scope.InfoPedido = [];
 				$scope.fecha_inicio = null;
 				$scope.fecha_fin = null;
@@ -13685,7 +13685,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 			},
 			function errorCallback(response, status) {
 				//console.log(status);
-				$scope.errorDatos = "No se pudo guardar";
+				$rootScope.errorDatos = "No se pudo guardar";
 				$scope.guardando = false
 
 			}
