@@ -13557,7 +13557,6 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 		$scope.peds={};
 		$scope.InfoPedido.INCIDENTE = 'NO';
 		$scope.InfoPedido.SOURCE = 'BUSCADO';
-		$scope.InfoPedido.FUENTE = $scope.fuente;
 		var iplaza="TODOS";
 		$scope.pedidoIsGuardado = false;
 		$scope.programar=false;
@@ -13584,6 +13583,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
                                 //document.getElementById("warning").innerHTML="";
                                 $scope.pedido1=$scope.peds[0].PEDIDO_ID;
                                 $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+								$scope.InfoPedido.FUENTE=$scope.peds[0].FUENTE;
 
                                 if(($scope.peds[0].STATUS=="PENDI_PETEC" || $scope.peds[0].STATUS=="PENDI_RENUMS")&&$scope.peds[0].ASESOR!=""){
                                         $scope.busy=$scope.peds[0].ASESOR;
