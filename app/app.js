@@ -15072,7 +15072,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 			function (data) {
 				$rootScope.errorMalos = null;
-				$rootScope.ListadoHistoricoPedido = data.data[0];
+				$rootScope.ListadoHistoricoPedido = data.data;
 
 				//console.log(data);
 
