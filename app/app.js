@@ -13289,6 +13289,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 	$scope.onChangeEstado = function () {
 		$scope.ltpercent="35";
 		$scope.programar=false;
+		$scope.InfoPedido.OBSERVACIONES_PROCESO=undefined;
 	};
 	$scope.onChangeAccion = function (valor) {
 		$scope.accRdy = true;
