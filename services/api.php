@@ -1025,13 +1025,13 @@ private function csvListadoActivacion(){
 					
                                         //echo "HORA LLLAMAR: ".$pedido['horaLlamar'];
 				
-					$programacion="";
+					$programacion=$pedido['horaLlamar'];
 					
 					if($pedido['horaLlamar']==""){
 						$pedido['horaLlamar']="manana";
 					}					
 
-					if($pedido['horaLlamar']=="manana"){//este pedido se programo para ser entregado mañana
+					/*if($pedido['horaLlamar']=="manana"){//este pedido se programo para ser entregado mañana
 						$datetime = new DateTime('tomorrow');
 						//echo "PROGRAMACION: ".$datetime->format('Y-m-d 08:00:00');
 						 $programacion=$datetime->format('Y-m-d 08:00:00');
@@ -1040,7 +1040,17 @@ private function csvListadoActivacion(){
 						$today2 = date("Y-m-d ".$pedido['horaLlamar'].":00");
 						//echo "PROGRAMACION: ".$today2;
 						$programacion=$today2;
+					}*/ // Programado Viejo, ya no es necesario
+
+					if($pedido['horaLlamar']=="manana"){//Solo si programar viene vacio
+						$datetime = new DateTime('tomorrow');
+						$programacion=$datetime->format('Y-m-d 08:00:00');
+
+					}else{//pedido programado para entregarse el dia de hoy, mas tarde
+
+						$programacion=$pedido['horaLlamar'];
 					}
+
 
 					$pedido = json_decode(file_get_contents("php://input"),true);
 					//$pedido['pedido']['estado']=$estadum." : ".$programacion;
