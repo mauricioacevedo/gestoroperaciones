@@ -13260,7 +13260,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 	$scope.popup = '';
 	$scope.intervalLightKPIS = '';
 	$scope.pedidoinfo = '';
-	$scope.errorDatos = null;
+	$rootScope.errorDatos = null;
 	$scope.accRdy = false;
 	$scope.fecha_inicio = null;
 	$scope.fecha_fin = null;
@@ -13508,7 +13508,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 		$scope.bpedido = '';
 		$scope.busy = "";
 		$scope.pedido1 = pedido1;
-		$scope.error = "";
+		$rootScope.error = "";
 		$scope.iplaza = 'TODOS';
 		$scope.fuente = "FENIX_NAL";
 		$scope.InfoPedido.SOURCE = 'AUTO';
@@ -13535,7 +13535,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
 				$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
 				$scope.pedidoIsActive = true;
-				$scope.errorDatos = null;
+				$rootScope.errorDatos = null;
 				$scope.fecha_inicio = $rootScope.fechaProceso();
 
 				if ($scope.peds[0].STATUS == "PENDI_PETEC" && $scope.peds[0].ASESOR != "") {
@@ -13588,7 +13588,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
                         var dat=data.status;
                         if(dat==204){
                                 //document.getElementById("warning").innerHTML="No hay Registros";
-                                $scope.errorDatos="Sin Registros. Intente con otro concepto.";
+                                $rootScope.errorDatos="Sin Registros. Intente con otro concepto.";
 								$scope.pedidoIsActive = false;
 
                         }else{
