@@ -199,7 +199,7 @@
 					<div class="panel-footer clearfix" >
 						<div class="col-md-6" >
 								<!--Campos futuros en footer izquierda -->
-							<ul class="nav navbar-nav navbar-left animated bounceInRight" ng-show="fechaagenda" >
+							<ul class="nav navbar-nav navbar-left animated bounceInRight" ng-show="pedidoIsActive" >
 								<li><span ng-class= "{'CERRADO_PETEC':'label label-danger','PENDI_PETEC':'label label-info','MALO':'label label-warning'}[status[0].STATUS]" class="label label-info" tooltip data-placement="top" title="Estado">{{status[0].STATUS}}</span></li>
 								<li>&nbsp; | &nbsp;</li>
 								<li><span class="label label-primary">{{fechaprogramacion || 'Sin Programación'}}</span>
