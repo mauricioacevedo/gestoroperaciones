@@ -224,7 +224,7 @@
 								<li>&nbsp; | &nbsp;</li>
 								<li>
 									<button type="button" class="btn btn-info btn-circle-xss" ng-click="PedidosPorUser()" data-toggle="modal" data-target="#HistoricoPedidoUser" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>Historico por {{logedUser.login}}</code>" >
-									<i class="fa fa-rss"  aria-hidden="true"> </i>
+									<i class="fa fa-user-circle"  aria-hidden="true"> </i>
 									</button>
 								</li>
 							</ul>
@@ -423,10 +423,10 @@
 										<div class="input-daterange" id="datepicker">
 											<input type="text" class="btn btn-default btn-xs"  ng-model="data.fechaIni" datetime-picker date-format="yyyy-MM-dd" date-only/><i class="fa fa-calendar fa-fw"></i>
 											<input type="text" class="btn btn-default btn-xs" ng-model="data.fechaFin" datetime-picker date-format="yyyy-MM-dd" date-only/><i class="fa fa-calendar fa-fw"></i>
-											<button type="button" class="btn btn-primary btn-xs" ng-click="calcularListado()"  title="Buscar" tooltip data-placement="left" ng-disabled="loading">
+											<button type="button" class="btn btn-primary btn-xs" ng-click="calcularListadoReconfiguracion()"  title="Buscar" tooltip data-placement="left" ng-disabled="loading">
 												<i class="fa fa-search"  aria-hidden="true"></i>
 											</button>
-											<button type="button" class="btn btn-primary btn-xs" ng-click="csvHistoricos()"  title="Exportar" tooltip data-placement="left" ng-disabled="loading">
+											<button type="button" class="btn btn-primary btn-xs" ng-click="csvHistoricosReconfiguracion()"  title="Exportar" tooltip data-placement="left" ng-disabled="loading">
 												<i class="fa fa-cloud-download"  aria-hidden="true"></i>
 											</button>
 
