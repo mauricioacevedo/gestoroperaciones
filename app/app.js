@@ -15061,7 +15061,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 		services.getListadoProgramados($rootScope.logedUser.login).then(
 
 			function (data) {
-				$rootScope.errorMalos = null;
+				$rootScope.errorDatos = null;
 				$rootScope.ListadoPrograUser = data.data[0];
 
 				//console.log(data);
