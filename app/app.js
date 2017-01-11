@@ -13315,6 +13315,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 	$scope.PedidosPorUser= function (){
 		$scope.TituloModal='';
 		$scope.TituloModal="Pedigos Gestionados por: "+userID;
+		$rootScope.errorDatos = null;
 		var pedidos = services.getPedidosUser(userID).then(function (data) {
 		$scope.pedidos = data.data[0];
 		$scope.pedidosUnicos = data.data[1];
