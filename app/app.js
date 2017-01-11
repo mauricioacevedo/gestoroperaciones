@@ -13484,6 +13484,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 		$scope.InfoGestion = {};
 		$scope.InfoPedido.INCIDENTE = 'NO';
 		$scope.pedidoIsGuardado = false;
+		$scope.programar=false;
 
 		if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
 			//alert($scope.peds[0].PEDIDO_ID);
@@ -13557,6 +13558,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 		$scope.InfoPedido.SOURCE = 'BUSCADO';
 		$scope.InfoPedido.FUENTE = $scope.fuente;
 		$scope.pedidoIsGuardado = false;
+		$scope.programar=false;
 
 		$scope.pedidoActual = pedidoinfo;
 
