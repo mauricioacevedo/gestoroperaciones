@@ -13547,16 +13547,18 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
 	$scope.buscarPedido = function (buscar, pedidoinfo) {
 
-		var pedido1 = '';
+		$scope.pedido1 = '';
 		$scope.popup = '';
 		$scope.errorDatos = null;
 		$scope.InfoPedido = [];
 		$scope.fecha_inicio = null;
 		$scope.accRdy = false;
 		$scope.InfoGestion = {};
+		$scope.peds={};
 		$scope.InfoPedido.INCIDENTE = 'NO';
 		$scope.InfoPedido.SOURCE = 'BUSCADO';
 		$scope.InfoPedido.FUENTE = $scope.fuente;
+		var iplaza="TODOS";
 		$scope.pedidoIsGuardado = false;
 		$scope.programar=false;
 
@@ -13566,7 +13568,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
 
 
-		var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login).then(
+		var kami = services.buscarPedidoReconfiguracion(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login).then(
 
 			function (data) {
 
