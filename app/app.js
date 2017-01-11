@@ -13310,11 +13310,16 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
 	$scope.listarOpcionesAsginacion();//  --------------------------------Cargar Opciones para la gestion
 
-	var pedidos = services.getPedidosUser(userID).then(function (data) {
+
+
+	$scope.PedidosPorUser= function (){
+		$scope.TituloModal="Pedigos Gestionados por: "+userID;
+		var pedidos = services.getPedidosUser(userID).then(function (data) {
 		$scope.pedidos = data.data[0];
 		$scope.pedidosUnicos = data.data[1];
 		return data.data;
-	});
+		});
+	};
 
 	var original = $scope.pedidos;
 	var originalUnico = $scope.pedidosUnicos;
