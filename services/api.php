@@ -1139,7 +1139,7 @@ private function csvListadoActivacion(){
 
 //---------------------insert pedido reagendamiento--------------------agendamiento-------------
 
-                private function insertPedidoReagendamiento(){
+             private function insertPedidoReagendamiento(){
                        if($this->get_request_method() != "POST"){
                                 $this->response('',406);
                         }
@@ -12230,6 +12230,67 @@ $sqlfenix=
 					}
 
          }//-----------------------------------------------PEDIDOS PROGRAMADOS POR USER
+
+		//Historico de Pedidos --------------------------------------------------------
+
+	private function listaHistoricoPedidos(){
+
+			//$usuario_id="";
+			$parametro="";
+
+
+            if($this->get_request_method() != "POST"){
+                        $this->response('',406);
+                        }
+
+            //$this->dbDespachoConnect();
+
+			//$params = json_decode(file_get_contents('php://input'),true);
+		 	$params = json_decode(file_get_contents('php://input'),true);
+                        //$params = file_get_contents('php://input');
+
+            $pedido = $params['pedido'];
+			$today = date("Y-m-d");
+
+             $query="	SELECT ".
+					"	p.ID ".
+					"	, p.ACTIVIDAD ".
+					"	, p.FECHA_FIN as FECHA_GESTION ".
+					"	, p.ESTADO ".
+					"	, p.USER AS USUARIO_ID ".
+					"	, p.CONCEPTO_ANTERIOR ".
+					"	, p.CONCEPTO_FINAL ".
+					"	, p.IDLLAMADA ".
+					"	, p.NUEVOPEDIDO ".
+					"	, p.MOTIVO_MALO ".
+					"	from portalbd.pedidos p ".
+					"	where p.pedido_id='$pedido' ";
+
+                     // echo $query;
+                     $rst = $this->mysqli->query($query);
+
+						//echo $this->mysqli->query($sqlLogin);
+						//
+					if ($rst->num_rows > 0){
+
+						$resultado=array();
+
+						while($row=$rst->fetch_assoc()){
+
+							//$row['USUARIO_NOMBRE']=utf8_encode($row['USUARIO_NOMBRE']);
+							$resultado[]=$row;
+
+
+						}
+							$this->response($this->json(array($resultado)), 201);
+
+
+					}else{
+							$error="Sin registros";
+						$this->response($this->json($error), 403);
+					}
+
+         }//----------------------------------------------- Historico de Pedidos
 
 	private function csvUsuarios(){
 

@@ -15046,6 +15046,43 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 	//$rootScope.listaProgramados();
 	// -----------------------------------------------------------------Mostrar Modal Servicios dejados como Malos
 
+	// Modal Historico Pedido--------------------------------------------------------------------------------------
+
+	$rootScope.HistoricoModal = function () {
+		$rootScope.listaHistoricoPedido();
+		$rootScope.errorDatos = null;
+		$rootScope.TituloModal = "Historico del pedido: ";
+		//$scope.UserProgramados=$scope.usuario_id;
+
+	};
+
+	//Obtener listado de Historico del pedido tal
+	$rootScope.listaHistoricoPedido = function (pedido) {
+
+		$rootScope.ListadoHistoricoPedido = [];
+
+		services.getHistoricoPedido(pedido).then(
+
+			function (data) {
+				$rootScope.errorMalos = null;
+				$rootScope.ListadoHistoricoPedido = data.data[0];
+
+				//console.log(data);
+
+				return data.data;
+			},
+			function errorCallback(response) {
+
+				$rootScope.errorMalos = "Sin pedidos";
+
+				//console.log($scope.errorDatos);
+
+			});
+
+	};
+
+
+	// --------------------------------------------------------------------------------------Modal Historico Pedido
 
 });
 
