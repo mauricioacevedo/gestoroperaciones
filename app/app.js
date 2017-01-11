@@ -13316,7 +13316,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 		$scope.TituloModal='';
 		$scope.TituloModal="Pedigos Gestionados por: "+userID;
 		$rootScope.errorDatos = null;
-		$scope.data = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin:"", campo:"User", valorCampo: userID };
+		$scope.data = { campo:"User", valorCampo: userID };
 		var pedidos = services.getPedidosUser(userID).then(function (data) {
 		$scope.listado_pedidos = data.data[0];
 		$scope.pedidosUnicos = data.data[1];
