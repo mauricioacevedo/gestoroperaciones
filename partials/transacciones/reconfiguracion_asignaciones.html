@@ -199,22 +199,27 @@
 					<div class="panel-footer clearfix" >
 						<div class="col-md-6" >
 								<!--Campos futuros en footer izquierda -->
-							<span ng-class= "{'CERRADO_PETEC':'label label-danger','PENDI_PETEC':'label label-info','MALO':'label label-warning'}[gestion[0].STATUS]" class="label label-info" tooltip data-placement="top" title="Estado">{{gestion[0].STATUS}}</span>
+							<ul class="nav navbar-nav navbar-left animated bounceInRight" ng-show="fechaagenda" >
+								<li><span ng-class= "{'CERRADO_PETEC':'label label-danger','PENDI_PETEC':'label label-info','MALO':'label label-warning'}[status[0].STATUS]" class="label label-info" tooltip data-placement="top" title="Estado">{{status[0].STATUS}}</span></li>
+								<li>&nbsp; | &nbsp;</li>
+								<li><span class="label label-primary">{{fechaprogramacion || 'Sin Programación'}}</span>
+								</li>
+							</ul>
 						</div>
-					<div class="col-md-6">
-						<ul class="nav navbar-nav navbar-right">
-							<li class="nav navbar-nav" ng-class="pedidoIsGuardado==false?'animated bounceOutRight':'animated bounceInRight'" ng-show="pedidoIsGuardado==true">
-								<span class="label label-primary">Pedido Guardado</span>&nbsp;
+						<div class="col-md-6">
+							<ul class="nav navbar-nav navbar-right">
+								<li class="nav navbar-nav" ng-class="pedidoIsGuardado==false?'animated bounceOutRight':'animated bounceInRight'" ng-show="pedidoIsGuardado==true">
+									<span class="label label-primary">Pedido Guardado</span>&nbsp;
 
-							</li>
-							<li>
-								<button type="button" class="btn btn-success btn-xs" ng-click="guardarPedido(InfoPedido,gestion[0],status)"  ng-disabled="!accRdy || pedidoOcupado || loading">
-								Guardar
-								</button>
-							</li>
+								</li>
+								<li>
+									<button type="button" class="btn btn-success btn-xs" ng-click="guardarPedido(InfoPedido,gestion[0],status)"  ng-disabled="!accRdy || pedidoOcupado || loading">
+									Guardar
+									</button>
+								</li>
 
-						</ul>
-					</div>
+							</ul>
+						</div>
 				</div><!--Panel Footer -->
 			</div>
 

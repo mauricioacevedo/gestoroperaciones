@@ -13507,6 +13507,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
+				$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
 				$scope.pedidoIsActive = true;
 				$scope.errorDatos = null;
 				$scope.fecha_inicio = $rootScope.fechaProceso();
@@ -13569,6 +13570,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
                                 $scope.pedido1=$scope.peds[0].PEDIDO_ID;
                                 $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 								$scope.InfoPedido.FUENTE=$scope.peds[0].FUENTE;
+								$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
 
                                 if(($scope.peds[0].STATUS=="PENDI_PETEC" || $scope.peds[0].STATUS=="PENDI_RENUMS")&&$scope.peds[0].ASESOR!=""){
                                         $scope.busy=$scope.peds[0].ASESOR;
@@ -13593,10 +13595,11 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
 		$scope.fecha_fin = $rootScope.fechaProceso();
 		$scope.stautsGo = status[0].STATUS;
+		$scope.pedidoOcupado=true;
 
-		console.log(InfoPedido); //Seguimiento
-		console.log(gestion);//GEstion
-		console.log($scope.stautsGo); //Cerrado, Pendiente o Malo
+		//console.log(InfoPedido); //Seguimiento
+		//console.log(gestion);//GEstion
+		//console.log($scope.stautsGo); //Cerrado, Pendiente o Malo
 
 		var fromDate = parseInt(new Date($scope.fecha_inicio).getTime() / 1000);
 		var toDate = parseInt(new Date($scope.fecha_fin).getTime() / 1000);
@@ -13657,6 +13660,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 			function errorCallback(response, status) {
 				//console.log(status);
 				$scope.errorDatos = "No se pudo guardar";
+				$scope.pedidoOcupado = false
 
 			}
 		);
