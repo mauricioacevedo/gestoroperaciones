@@ -13644,7 +13644,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 				$scope.fecha_fin = null;
 				$scope.accRdy = false;
 				$scope.InfoGestion = {};
-				$scope.pedidoOcupado = false
+				$scope.guardando = false
 				$scope.pedidoIsActive = false
 				$scope.peds = {};
 				$scope.mpedido = {};
@@ -13661,7 +13661,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 			function errorCallback(response, status) {
 				//console.log(status);
 				$scope.errorDatos = "No se pudo guardar";
-				$scope.pedidoOcupado = false
+				$scope.guardando = false
 
 			}
 		);
