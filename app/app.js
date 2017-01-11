@@ -13621,9 +13621,9 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 		$scope.fecha_fin = $rootScope.fechaProceso();
 		$scope.stautsGo = status[0].STATUS;
 
-		//console.log(InfoPedido); //Seguimiento
-		//console.log(gestion);//GEstion
-		//console.log(status); //Cerrado, Pendiente o Malo
+		console.log(InfoPedido); //Seguimiento
+		console.log(gestion);//GEstion
+		console.log($scope.stautsGo); //Cerrado, Pendiente o Malo
 
 		var fromDate = parseInt(new Date($scope.fecha_inicio).getTime() / 1000);
 		var toDate = parseInt(new Date($scope.fecha_fin).getTime() / 1000);
@@ -13632,10 +13632,10 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 		$scope.InfoGestion = {
 			pedido: gestion.PEDIDO_ID,
 			fuente: InfoPedido.FUENTE,
-			actividad: 'ESTUDIO',
+			actividad: 'RECONFIGURACION',
 			fecha_fin: $scope.fecha_fin,
 			user: $rootScope.logedUser.login,
-			estado: $scope.stautsGo,
+			estado: InfoPedido.OBSERVACIONES_PROCESO,
 			duracion: timeDiff,
 			FECHA_ESTADO: gestion.FECHA_ESTADO,
 			fecha_inicio: $scope.fecha_inicio,
@@ -13647,7 +13647,8 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 			SUBPEDIDO_ID: gestion.SUBPEDIDO_ID,
 			MUNICIPIO_ID: gestion.MUNICIPIO_ID,
 			motivo_malo: InfoPedido.OBSERVACIONES_PROCESO,
-			nuevopedido: InfoPedido.INCIDENTE,
+			idllamada: InfoPedido.IDLLAMADA,
+			nuevopedido: InfoPedido.NUEVOPEDIDO,
 			ID: gestion.ID
 		}
 
