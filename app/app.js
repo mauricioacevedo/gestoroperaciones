@@ -13343,7 +13343,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 		});
         };
 
-		$scope.calcularListadoReconfiguracion();
+		$scope.PedidosPorUser();
 
 	// ---------------------------------Inicio de Variables
 	// Disque Light KPI --------------------------------------------------------------
