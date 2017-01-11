@@ -15053,8 +15053,9 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 	// Modal Historico Pedido--------------------------------------------------------------------------------------
 
-	$rootScope.HistoricoModal = function () {
-		$rootScope.listaHistoricoPedido();
+	$rootScope.historicoModal = function (pedido) {
+		console.log(pedido);
+		$rootScope.listaHistoricoPedido(pedido);
 		$rootScope.errorDatos = null;
 		$rootScope.TituloModal = "Historico del pedido: ";
 		//$scope.UserProgramados=$scope.usuario_id;
