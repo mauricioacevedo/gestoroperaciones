@@ -12282,7 +12282,7 @@ $sqlfenix=
 
 
 						}
-							$this->response($this->json(array($resultado)), 201);
+							$this->response($this->json($resultado), 201);
 
 
 					}else{
