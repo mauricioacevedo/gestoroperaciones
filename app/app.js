@@ -13573,11 +13573,12 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 			function (data) {
 
 				$scope.peds = data.data;
-                        console.log(data.data);
+                        //console.log(data.data);
                         var dat=data.status;
                         if(dat==204){
                                 //document.getElementById("warning").innerHTML="No hay Registros";
-                                $scope.errorDatos="No hay Registros";
+                                $scope.errorDatos="Sin Registros. Intente con otro concepto.";
+								$scope.pedidoIsActive = false;
 
                         }else{
                                 //document.getElementById("warning").innerHTML="";
@@ -13589,7 +13590,10 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
                                         $scope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
                                 }
 
-                                $scope.baby($scope.pedido1);
+                                //$scope.baby($scope.pedido1);
+								$scope.errorDatos = null;
+								$scope.pedidoIsActive = true;
+								$scope.fecha_inicio = $rootScope.fechaProceso();
                         }
                         return data.data;
 			});
