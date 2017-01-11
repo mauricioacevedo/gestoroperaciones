@@ -13596,7 +13596,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
 		$scope.fecha_fin = $rootScope.fechaProceso();
 		$scope.stautsGo = status[0].STATUS;
-		$scope.pedidoOcupado=true;
+		$scope.guardando=true;
 
 		//console.log(InfoPedido); //Seguimiento
 		//console.log(gestion);//GEstion

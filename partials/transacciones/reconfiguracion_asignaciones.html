@@ -211,8 +211,8 @@
 
 								</li>
 								<li>
-									<button type="button" class="btn btn-success btn-xs" ng-click="guardarPedido(InfoPedido,gestion[0],status)"  ng-disabled="!accRdy || pedidoOcupado || loading">
-									Guardar
+									<button type="button" class="btn btn-success btn-xs" ng-click="guardarPedido(InfoPedido,gestion[0],status)"  ng-disabled="!accRdy || guardando || loading">
+									Guardar <span ng-show="guardando"><i class="fa fa-spinner fa-spin"></i></span>
 									</button>
 								</li>
 
