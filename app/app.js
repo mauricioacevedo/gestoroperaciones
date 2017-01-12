@@ -13680,7 +13680,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 		//Case para saber donde guardar ----------------------------------------------
 		var dondeGuardar = $scope.iconcepto.FUENTE;
-		switch (color)
+		switch (dondeGuardar)
 		{
 			case "FENIX_NAL":
 				console.log('Llamar Procedimiento de FENIX_NAL');
