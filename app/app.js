@@ -13680,8 +13680,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		if(dondeGuardar=='FENIX_NAL'){
 
 			services.insertPedidoReconfiguracion($scope.InfoGestion).then(function (data) {
-				console.log(data.status);
-				var numeroestado=data.status
+				//console.log(data.status);
+				var numeroestado=data.status;
+
 				if(numeroestado==200){
 					$scope.estadoGuardo=true;
 				}else{
