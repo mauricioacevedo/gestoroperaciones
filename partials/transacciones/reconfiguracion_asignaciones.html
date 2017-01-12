@@ -22,14 +22,7 @@
 
 							<li >
 								<i class="fa fa-globe" aria-hidden="true"> </i>&nbsp;
-								<select
-									class= "btn btn-default btn-xs grupo-select"
-									style="width: 200px"
-									ng-init="iconcepto ={CONCEPTO_ID:'14'}"
-									ng-model="iconcepto">
-									<option value="" disabled>---Concepto---</option>
-									<option ng-repeat="d in listadoConceptos | filter:{GRUPO:actividadGestion}" value="{{d}}">{{d.CONCEPTO_ID}}</option>
-								</select>
+
 								<select ng-init="iconcepto = listadoConceptos[5]"
 										ng-model="iconcepto"
 										ng-options="option.CONCEPTO_ID for option in listadoConceptos">
