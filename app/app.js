@@ -13720,9 +13720,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 
 	}; //  -------------------------------------------------------------- GuardarPedido
-
+var caseval=false;
 	$scope.funcional= function(dondeGuardar){
-			var caseval=false;
+
 			switch (dondeGuardar)
 			{
 				case "FENIX_NAL":
