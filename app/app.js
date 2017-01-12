@@ -13218,7 +13218,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 // -----------------------------------------------Controlador para Gestion de Edatel
 
 // Controlador para Gestion de Edatel Asignaciones -----------------------------------------------
-app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, notify, services) {
+app.controller('gestionAsignaciones', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, notify, services) {
 
 	// Basura del logueo ---------------------------------
 		$rootScope.logedUser = $cookieStore.get('logedUser');
@@ -14400,10 +14400,10 @@ app.config(['$routeProvider',
 			templateUrl: 'partials/reconfiguracion.html',
 			controller: 'ReconfiguracionCtrl'
 		})
-		.when('/tx/reconfiguracion/', {
-			title: 'Reconfiguracion',
-			templateUrl: 'partials/transacciones/reconfiguracion_asignaciones.html',
-			controller: 'reconfiguracionAsignacionesCtrl'
+		.when('/tx/asignaciones/', {
+			title: 'Gestion Asignaciones',
+			templateUrl: 'partials/transacciones/gestion_asignaciones.html',
+			controller: 'gestionAsignaciones'
 		})
 
 		.when('/nca/', {
@@ -14599,7 +14599,7 @@ app.config(['$routeProvider',
 		//-----------------------------------------------------------------FIN ACTIVACION
 
 
-		// ------ADMINISTRACION ------------------------------------------
+		// ADMINISTRACION ------------------------------------------
 
 
 		.when('/users/', {
@@ -14621,9 +14621,9 @@ app.config(['$routeProvider',
 			controller: 'DashboardCtrl'
 		})
 
-		//  ------------------------------------------FIN ADMINISTRACION-----
+		//  ------------------------------------------ ADMINISTRACION
 
-		// ----INICIO HERRAMIENTAS ------------------------------------------
+
 		.when('/parametrizacion-siebel/', {
 			title: 'parametrizacion',
 			templateUrl: 'partials/parametrizacion-siebel.html',
@@ -14643,7 +14643,7 @@ app.config(['$routeProvider',
 			})
 
 
-		// --- FIN HERRAMIENTAS ------------------------------------------
+		// HERRAMIENTAS ------------------------------------------
 
 		.when('/cmts/', {
 				title: 'Cmts',
@@ -14678,7 +14678,7 @@ app.config(['$routeProvider',
 				reloadOnSearch: false
 			})
 
-		// ------------------------------------------HERRAMIENTAS
+		// ------------------------------------------ HERRAMIENTAS
 		//--------------------AGENDAMIENTO------------------------
 
 
