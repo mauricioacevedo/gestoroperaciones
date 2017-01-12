@@ -13295,14 +13295,12 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	};
 
 	$scope.onChangeEstado = function () {
-		$scope.ltpercent="35";
 		$scope.programar=false;
 		$scope.accRdy = false;
 		$scope.InfoPedido.OBSERVACIONES_PROCESO=undefined;
 	};
 	$scope.onChangeAccion = function (valor) {
 		$scope.accRdy = true;
-		$scope.ltpercent="65";
 		if(valor=='VOLVER A LLAMAR'||valor=='GESTIONAR MAS TARDE'){
 			$scope.programar=true;
 		}
