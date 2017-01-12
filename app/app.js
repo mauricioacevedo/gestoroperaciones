@@ -13256,7 +13256,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.iconcepto			= {};						// Objeto de datos que contiene Grupo, Concepto y Fuente.
 	$scope.listaOpcionesGestion = [];						// Arreglo con listado de Opciones para la Gestion.
 	$scope.info					= {};						// Objeto con Info del pedido en gestion.
-	$scope.estadoGuardo			= false;					// Habilita el guardado en la tabla de siebel.
+	//$scope.estadoGuardo			= false;					// Habilita el guardado en la tabla de siebel.
 	$scope.habilitaCr			= false;					// Habilita el campo CR.
 	$scope.programar			= false;					// Habilitar el campo programación.
 	$scope.accRdy				= false; 					// Habilitar el boton de Guardar.
@@ -13501,7 +13501,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		$scope.programar			= false;
 		$scope.pedidoIsActive		= false;
 		$scope.habilitaCr			= false;
-		$scope.estadoGuardo			= false;
+		//$scope.estadoGuardo			= false;
 
 		if($scope.iconcepto.FUENTE=='SIEBEL'){
 			$scope.habilitaCr			= true;
