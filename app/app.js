@@ -13491,17 +13491,19 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 	$scope.start = function (pedido) {
 
-		var pedido1 = '';
-		$scope.popup = '';
-		$rootScope.errorDatos = null;
-		$scope.InfoPedido = [];
-		$scope.fecha_inicio = null;
-		$scope.accRdy = false;
-		$scope.InfoGestion = {};
+		var pedido1 				= '';
+		$scope.popup 				= '';
+		$rootScope.errorDatos 		= null;
+		$scope.InfoPedido 			= [];
+		$scope.fecha_inicio 		= null;
+		$scope.accRdy 				= false;
+		$scope.InfoGestion 			= {};
 		$scope.InfoPedido.INCIDENTE = 'NO';
-		$scope.pedidoIsGuardado = false;
-		$scope.programar=false;
-		$scope.pedidoIsActive=false;
+		$scope.pedidoIsGuardado 	= false;
+		$scope.programar			= false;
+		$scope.pedidoIsActive		= false;
+		$scope.habilitaSiebel		= false;
+		$scope.habilitaCr			= false;
 
 		if($scope.iconcepto.FUENTE=='SIEBEL'){
 			$scope.habilitaSiebel		= true;
@@ -13591,7 +13593,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		$scope.buscar = buscar;
 		$scope.pedidoIsActive=false;
 
-
+		if($scope.iconcepto.FUENTE=='SIEBEL'){
+			$scope.habilitaSiebel		= true;
+			$scope.habilitaCr			= true;
+		};
 
 		var kami = services.buscarPedidoReconfiguracion(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login).then(
 
