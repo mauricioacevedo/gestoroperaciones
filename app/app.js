@@ -13679,33 +13679,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		//var caseval = false;
 		$scope.funcional(dondeGuardar);
 
-		$scope.funcional= function(dondeGuardar){
-			var caseval=false;
-			switch (dondeGuardar)
-			{
-				case "FENIX_NAL":
-					console.log('Llamar Procedimiento de FENIX_NAL');
-					caseval=function(){
-								console.log('Que mierda');
-								return true;
-							};
 
-				break;
-				case "EDATEL":
-					console.log('Llamar Procedimiento de EDATEL');
-				break;
-				case "SIEBEL":
-					console.log('Llamar Procedimiento de SIEBEL');
-				break;
-				case "FENIX_BOG":
-					console.log('Llamar Procedimiento de FENIX_BOG');
-				break;
-				default:
-				console.log('Sin guardar');
-			}
-		return caseval;
-
-		}//----------------------------------------------Case para saber donde guardar
 
 		//Funciones para ejecutar en el Case de arriba --------------------------------------
 		console.log(caseval);
@@ -13747,6 +13721,33 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 	}; //  -------------------------------------------------------------- GuardarPedido
 
+	$scope.funcional= function(dondeGuardar){
+			var caseval=false;
+			switch (dondeGuardar)
+			{
+				case "FENIX_NAL":
+					console.log('Llamar Procedimiento de FENIX_NAL');
+					caseval=function(){
+								console.log('Que mierda');
+								return true;
+							};
+
+				break;
+				case "EDATEL":
+					console.log('Llamar Procedimiento de EDATEL');
+				break;
+				case "SIEBEL":
+					console.log('Llamar Procedimiento de SIEBEL');
+				break;
+				case "FENIX_BOG":
+					console.log('Llamar Procedimiento de FENIX_BOG');
+				break;
+				default:
+				console.log('Sin guardar');
+			}
+		return caseval;
+
+		}//----------------------------------------------Case para saber donde guardar
 
 	$scope.csvHistoricosReconfiguracion = function (){
                 //var login=$rootScope.logedUser.login;
