@@ -13682,10 +13682,13 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				console.log('Llamar Procedimiento de FENIX_NAL');
 				services.insertPedidoReconfiguracion($scope.InfoGestion).then(function (data) {
 					console.log(data);
-					$scope.estadoGuardo=true;
+					if(data.status==200){
+						$scope.estadoGuardo=true;
+					}else{
+						$scope.estadoGuardo=false;
+					}
 					return data;
-				}
-				)
+				})
 
 			break;
 			case "EDATEL":
