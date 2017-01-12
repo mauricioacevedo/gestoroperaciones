@@ -13259,8 +13259,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.data					= {};				// Objeto de datos
 	$scope.iconcepto			= {};				// Objeto de datos que contiene Grupo, Concepto y Fuente.
 
-	// Opciones para cargar las listas de Gestion, segun el grupo, fuente, actividad--------------------------
-	$scope.GenerarOpciones = function () {
+// Opciones para cargar las listas de Gestion, segun el grupo, fuente, actividad--------------------------
+	$scope.GenerarOpcionesGestion = function () {
 		var opciones= {
 			fuente: $scope.iconcepto.FUENTE,
 			actividad: $scope.iconcepto.GRUPO
