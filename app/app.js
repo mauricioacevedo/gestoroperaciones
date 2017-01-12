@@ -13691,8 +13691,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			  }
 			};
 
-	lookupTable["pizza"]();
-	console.log(lookupTable);
+
+	console.log(lookupTable["pizza"];
 
 		if($scope.estadoGuardo){
 			$scope.pedidoIsGuardado			= true;
