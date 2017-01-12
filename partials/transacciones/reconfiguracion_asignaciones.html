@@ -30,6 +30,10 @@
 									<option value="" disabled>---Concepto---</option>
 									<option ng-repeat="d in listadoConceptos | filter:{GRUPO:actividadGestion}" value="{{d}}">{{d.CONCEPTO_ID}}</option>
 								</select>
+								<select ng-init="iconcepto = listadoConceptos[5]"
+										ng-model="iconcepto"
+										ng-options="option.CONCEPTO_ID for option in listadoConceptos">
+								</select>
 
 							</li>
 							<li> &nbsp; </li>
