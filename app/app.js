@@ -13266,7 +13266,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			actividad: $scope.iconcepto.GRUPO
 		};
 
-		$scope.listarOpcionesAsginacion();
+		$scope.listarOpcionesAsginacion(opciones);
 	}//-------------------------------------------------------------------------------------------------------
 
 	/* Habilitar esta linea si se quiere inicializar el iconcepto con algun dato por defecto
@@ -13276,7 +13276,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 
 	// Cargar Opciones para la gestion --------------------------------
-	$scope.listarOpcionesAsginacion = function () {
+	$scope.listarOpcionesAsginacion = function (opciones) {
 
 		services.getOpcionesGestionAsignaciones(opciones).then(
 			function (data) {
