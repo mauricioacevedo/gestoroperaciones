@@ -13263,7 +13263,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	var opciones= {
 		fuente: $scope.iconcepto.FUENTE,
 		actividad: $scope.iconcepto.GRUPO
-	};---------------------------------------------------------------------------------------------------------
+	};//-------------------------------------------------------------------------------------------------------
 
 	/* Habilitar esta linea si se quiere inicializar el iconcepto con algun dato por defecto
 	$scope.iconcepto = { ID: '5', CONCEPTO_ID: '14', GRUPO: $scope.actividadGestion, FUENTE: 'FENIX_NAL'};
