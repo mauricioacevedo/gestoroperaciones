@@ -13590,7 +13590,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		$scope.buscar = buscar;
 		$scope.pedidoIsActive=false;
 		$scope.habilitaCr = false;
-		$scope.estadoGuardo=false;
+		//$scope.estadoGuardo=false;
 
 		if($scope.iconcepto.FUENTE=='SIEBEL'){
 			$scope.habilitaCr			= true;
@@ -13681,7 +13681,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 			services.insertPedidoReconfiguracion($scope.InfoGestion).then(function (data) {
 				console.log(data.status);
-				if(data.status==200){
+				var numeroestado=data.status
+				if(numeroestado==200){
 					$scope.estadoGuardo=true;
 				}else{
 					$scope.estadoGuardo=false;
