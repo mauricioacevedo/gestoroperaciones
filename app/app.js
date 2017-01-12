@@ -13674,29 +13674,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			ID: gestion.ID
 		}
 
-		//Case para saber donde guardar ----------------------------------------------
-		var dondeGuardar = $scope.iconcepto.FUENTE;
 
-		if(dondeGuardar=='FENIX_NAL'){
+		var varDondeGuardar = $scope.iconcepto.FUENTE;
 
-			services.insertPedidoReconfiguracion($scope.InfoGestion).then(function (data) {
-				//console.log(data.status);
-				var numeroestado=data.status;
-
-				if(numeroestado==200){
-					$scope.estadoGuardo=true;
-				}else{
-					$scope.estadoGuardo=false;
-				}
-
-				return data;
-			})
-		}
-
-		// ----------------------------------------------Case para saber donde guardar
-
-
-
+		$scope.dondeGuardar(varDondeGuardar);
 
 	console.log($scope.estadoGuardo);
 
@@ -13732,7 +13713,26 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	}; //  -------------------------------------------------------------- GuardarPedido
 
 
+	//Case para saber donde guardar ----------------------------------------------
+	$scope.dondeGuardar=function (str) {
+			switch (str) {
+				case 'FENIX_NAL':
+					services.insertPedidoReconfiguracion($scope.InfoGestion)
+					$scope.estadoGuardo=true;
+					brake;
+				case 'FENIX_BOG':
+					$scope.estadoGuardo=true;
+					brake;
+				default:
+					return (str);
+		};
 
+
+
+
+
+
+		// ----------------------------------------------Case para saber donde guardar
 
 
 
