@@ -13680,15 +13680,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		{
 			case "FENIX_NAL":
 				console.log('Llamar Procedimiento de FENIX_NAL');
-				services.insertPedidoReconfiguracion($scope.InfoGestion).then(function (data) {
-					console.log(data);
-					if(data.status==200){
-						$scope.estadoGuardo=true;
-					}else{
-						$scope.estadoGuardo=false;
-					}
-					return data;
-				})
+				$scope.GuardarfenixNal();
 
 			break;
 			case "EDATEL":
@@ -13703,6 +13695,20 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			default:
 			console.log('Sin guardar');
 		}//----------------------------------------------Case para saber donde guardar
+
+		//Funciones para ejecutar en el Case de arriba --------------------------------------
+		$scope.GuardarfenixNal = function () {
+			services.insertPedidoReconfiguracion($scope.InfoGestion).then(function (data) {
+					//console.log(data);
+					if(data.status==200){
+						$scope.estadoGuardo=true;
+					}else{
+						$scope.estadoGuardo=false;
+					}
+					return $scope.estadoGuardo;
+				})
+		};
+		//Funciones para ejecutar en el Case de arriba --------------------------------------
 
 		if($scope.estadoGuardo){
 			$scope.pedidoIsGuardado			= true;
