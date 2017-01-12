@@ -13676,19 +13676,23 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 		//Case para saber donde guardar ----------------------------------------------
 		var dondeGuardar = $scope.iconcepto.FUENTE;
-		//var caseval = false;
-		$scope.funcional(dondeGuardar);
 
+		//$scope.funcional(dondeGuardar);
 
+		var lookupTable = {
+			  "pizza": function() {
+				return true;
+			  },
+			  "house": function() {
+				return true;
+			  },
+			  "air":  function() {
+				return true;
+			  }
+			};
 
-		//Funciones para ejecutar en el Case de arriba --------------------------------------
-
-
-
-
-
-
-		//Funciones para ejecutar en el Case de arriba --------------------------------------
+	lookupTable["pizza"]();
+	console.log(lookupTable);
 
 		if($scope.estadoGuardo){
 			$scope.pedidoIsGuardado			= true;
@@ -13720,36 +13724,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 
 	}; //  -------------------------------------------------------------- GuardarPedido
-var caseval=false;
-	$scope.funcional= function(dondeGuardar){
 
-			switch (dondeGuardar)
-			{
-				case "FENIX_NAL":
-					console.log('Llamar Procedimiento de FENIX_NAL');
-					caseval=function(){
-								console.log('Que mierda');
-								var pepa=true;
-								return caseval;
-							};
 
-				break;
-				case "EDATEL":
-					console.log('Llamar Procedimiento de EDATEL');
-				break;
-				case "SIEBEL":
-					console.log('Llamar Procedimiento de SIEBEL');
-				break;
-				case "FENIX_BOG":
-					console.log('Llamar Procedimiento de FENIX_BOG');
-				break;
-				default:
-				console.log('Sin guardar');
-			}
-		console.log(caseval);
-		return caseval;
 
-		}//----------------------------------------------Case para saber donde guardar
 
 
 
