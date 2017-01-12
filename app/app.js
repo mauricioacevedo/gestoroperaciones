@@ -13677,8 +13677,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		//Case para saber donde guardar ----------------------------------------------
 		var dondeGuardar = $scope.iconcepto.FUENTE;
 		//var caseval = false;
+		$scope.funcional(dondeGuardar);
 
-		$scope.funcional= function(){
+		$scope.funcional= function(dondeGuardar){
 			var caseval=false;
 			switch (dondeGuardar)
 			{
