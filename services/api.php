@@ -12601,7 +12601,7 @@ private function opcionesGestionAsignaciones(){
 	if($actividad=='ADMINISTRACION'){
 		$filtros= "";
 	}else{
-		$filtros= " and o.ESTADO=1 and o.FUENTE='$fuente' and o.ACTIVIDAD='$actividad' ";
+		$filtros= " and o.ESTADO=1 and o.FUENTE='$fuente' and o.GRUPO='$actividad' ";
 	};
 
 
