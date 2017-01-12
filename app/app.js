@@ -13245,19 +13245,20 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 	//  ---------------------------------Basura del logueo
 	// Inicio de Variables ---------------------------------------------------------------------------------
-	$scope.tools				= true;				// Herramientas de gestion habilitadas
-	$scope.pedidos				= [];				// Arreglo de pedidos
-	$scope.pedidosUnicos		= '';				// Pedidos Unicos, cantidad
-	$rootScope.actualView		= $route.current.title;		// Vista Actual, sirve para los KPIS
+	$scope.tools				= true;						// Herramientas de gestion habilitadas.
+	$scope.pedidos				= [];						// Arreglo de pedidos.
+	$scope.pedidosUnicos		= '';						// Pedidos Unicos, cantidad.
+	$rootScope.actualView		= $route.current.title;		// Vista Actual, sirve para los KPIS.
 	$scope.intervalLightKPIS	= '';
 	$scope.pedidoinfo			= '';
-	$rootScope.errorDatos		= null; 			// Mensajes de Error
-	$scope.accRdy				= false; 			// Habilitar el boton de Guardar
-	$scope.fecha_inicio 		= null; 			// Fecha Inicial de la gestion
-	$scope.fecha_fin 			= null; 			// Habilitar el campo programación
+	$rootScope.errorDatos		= null; 					// Mensajes de Error.
+	$scope.accRdy				= false; 					// Habilitar el boton de Guardar.
+	$scope.fecha_inicio 		= null; 					// Fecha Inicial de la gestion.
+	$scope.fecha_fin 			= null; 					// Habilitar el campo programación.
 	$scope.programar			= false;
-	$scope.data					= {};				// Objeto de datos
-	$scope.iconcepto			= {};				// Objeto de datos que contiene Grupo, Concepto y Fuente.
+	$scope.data					= {};						// Objeto de datos.
+	$scope.iconcepto			= {};						// Objeto de datos que contiene Grupo, Concepto y Fuente.
+	$scope.listaOpcionesGestion = [];						// Arreglo con listado de Opciones para la Gestion.
 
 	// Opciones para cargar las listas de Gestion, segun el grupo, fuente, actividad--------------------------
 	$scope.GenerarOpcionesGestion = function () {
@@ -13280,7 +13281,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 		services.getOpcionesGestionAsignaciones(opciones).then(
 			function (data) {
-				$scope.listaOpcionesGestion=[];
+
 				$scope.listaOpcionesGestion=data.data;
 				//console.log($scope.listaOpcionesGestion);
 				return data.data;
