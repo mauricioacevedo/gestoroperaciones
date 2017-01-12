@@ -13260,16 +13260,20 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.iconcepto			= {};				// Objeto de datos que contiene Grupo, Concepto y Fuente.
 
 	// Opciones para cargar las listas de Gestion, segun el grupo, fuente, actividad--------------------------
-	var opciones= {
-		fuente: $scope.iconcepto.FUENTE,
-		actividad: $scope.iconcepto.GRUPO
-	};//-------------------------------------------------------------------------------------------------------
+	$scope.GenerarOpciones = function () {
+		var opciones= {
+			fuente: $scope.iconcepto.FUENTE,
+			actividad: $scope.iconcepto.GRUPO
+		};
+		console.log(opciones);
+		return opciones;
+	}//-------------------------------------------------------------------------------------------------------
 
 	/* Habilitar esta linea si se quiere inicializar el iconcepto con algun dato por defecto
 	$scope.iconcepto = { ID: '5', CONCEPTO_ID: '14', GRUPO: $scope.actividadGestion, FUENTE: 'FENIX_NAL'};
 	*/
 
-	console.log(opciones);
+
 
 	// Cargar Opciones para la gestion --------------------------------
 	$scope.listarOpcionesAsginacion = function () {

@@ -25,7 +25,8 @@
 								<select class="btn btn-default btn-xs grupo-select"
 										style="width: 200px"
 										ng-model="iconcepto"
-										ng-options="d.CONCEPTO_ID+'-'+d.FUENTE for d in listadoConceptos track by d.ID ">
+										ng-options="d.CONCEPTO_ID+'-'+d.FUENTE for d in listadoConceptos track by d.ID "
+										ng-change="GenerarOpciones()">
 									  <option value="" disabled>--Concepto--</option>
 								</select>
 							</li>
