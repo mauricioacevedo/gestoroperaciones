@@ -13242,13 +13242,13 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			$location.path('/');
 		};
 
-	console.log($route.current.title);
+
 	//  ---------------------------------Basura del logueo
-	// Inicio de Variables ---------------------------------
+	// Inicio de Variables ---------------------------------------------------------------------------------
 	$scope.tools				= true;				// Herramientas de gestion habilitadas
 	$scope.pedidos				= [];				// Arreglo de pedidos
 	$scope.pedidosUnicos		= '';				// Pedidos Unicos, cantidad
-	$rootScope.actualView		= "DEMEPEDIDO ASGINACIONES";		// Vista Actual, sirve para los KPIS
+	$rootScope.actualView		= $route.current.title;		// Vista Actual, sirve para los KPIS
 	$scope.intervalLightKPIS	= '';
 	$scope.pedidoinfo			= '';
 	$rootScope.errorDatos		= null; 			// Mensajes de Error
@@ -13259,16 +13259,19 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.data					= {};				// Objeto de datos
 	$scope.iconcepto			= {};				// Objeto de datos que contiene Grupo, Concepto y Fuente.
 
-	//$scope.iconcepto = { ID: '5', CONCEPTO_ID: '14', GRUPO: $scope.actividadGestion, FUENTE: 'FENIX_NAL'};
+	// Opciones para cargar las listas de Gestion, segun el grupo, fuente, actividad--------------------------
+	var opciones= {
+		fuente: $scope.iconcepto.FUENTE,
+		actividad: $scope.iconcepto.GRUPO
+	};---------------------------------------------------------------------------------------------------------
 
-	//console.log($scope.iconcepto);
+	/* Habilitar esta linea si se quiere inicializar el iconcepto con algun dato por defecto
+	$scope.iconcepto = { ID: '5', CONCEPTO_ID: '14', GRUPO: $scope.actividadGestion, FUENTE: 'FENIX_NAL'};
+	*/
+
+	console.log(opciones);
 
 	// Cargar Opciones para la gestion --------------------------------
-	var opciones={
-			fuente: $scope.iconcepto.FUENTE,
-			actividad: $scope.iconcepto.GRUPO
-	};
-
 	$scope.listarOpcionesAsginacion = function () {
 
 		services.getOpcionesGestionAsignaciones(opciones).then(
@@ -13304,7 +13307,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 	};
 
-	$scope.listarOpcionesAsginacion();//  --------------------------------Cargar Opciones para la gestion
+	//$scope.listarOpcionesAsginacion();//  --------------------------------Cargar Opciones para la gestion
 
 
 
