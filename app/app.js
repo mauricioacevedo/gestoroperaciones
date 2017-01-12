@@ -13681,13 +13681,13 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 		var lookupTable = {
 			  "pizza": function() {
-				return true;
+				return "pizza";
 			  },
 			  "house": function() {
-				return true;
+				return "house";
 			  },
 			  "air":  function() {
-				return true;
+				return "air";
 			  }
 			};
 
