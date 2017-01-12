@@ -13679,6 +13679,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		//var caseval = false;
 
 		$scope.funcional= function(){
+			var caseval=false;
 			switch (dondeGuardar)
 			{
 				case "FENIX_NAL":
