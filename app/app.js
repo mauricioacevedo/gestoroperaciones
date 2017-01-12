@@ -13676,7 +13676,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 		//Case para saber donde guardar ----------------------------------------------
 		var dondeGuardar = $scope.iconcepto.FUENTE;
-		var caseval = false;
+		//var caseval = false;
 
 		$scope.funcional= function(){
 			switch (dondeGuardar)
@@ -13685,7 +13685,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 					console.log('Llamar Procedimiento de FENIX_NAL');
 					caseval=function(){
 								console.log('Que mierda');
-								return;
+								return true;
 							};
 
 				break;
