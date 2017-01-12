@@ -13256,7 +13256,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.iconcepto			= {};						// Objeto de datos que contiene Grupo, Concepto y Fuente.
 	$scope.listaOpcionesGestion = [];						// Arreglo con listado de Opciones para la Gestion.
 	$scope.info					= {};						// Objeto con Info del pedido en gestion.
-	$scope.habilitaSiebel		= false;					// Habilita el guardado en la tabla de siebel.
+	$scope.estadoGuardo			= false;					// Habilita el guardado en la tabla de siebel.
 	$scope.habilitaCr			= false;					// Habilita el campo CR.
 	$scope.programar			= false;					// Habilitar el campo programación.
 	$scope.accRdy				= false; 					// Habilitar el boton de Guardar.
@@ -13500,11 +13500,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		$scope.pedidoIsGuardado 	= false;
 		$scope.programar			= false;
 		$scope.pedidoIsActive		= false;
-		$scope.habilitaSiebel		= false;
 		$scope.habilitaCr			= false;
+		$scope.estadoGuardo			= false;
 
 		if($scope.iconcepto.FUENTE=='SIEBEL'){
-			$scope.habilitaSiebel		= true;
 			$scope.habilitaCr			= true;
 		};
 
@@ -13521,7 +13520,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		$scope.pedido1 = pedido1;
 		$rootScope.error = "";
 		$scope.iplaza = 'TODOS';
-		$scope.fuente = "FENIX_NAL";
+		$scope.fuente = $scope.iconcepto.FUENTE;
 		$scope.InfoPedido.SOURCE = 'AUTO';
 		$scope.InfoPedido.FUENTE = $scope.fuente;
 
@@ -13590,11 +13589,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		$scope.pedidoActual = pedidoinfo;
 		$scope.buscar = buscar;
 		$scope.pedidoIsActive=false;
-		$scope.habilitaSiebel		= false;
-		$scope.habilitaCr			= false;
+		$scope.habilitaCr = false;
+		$scope.estadoGuardo=false;
 
 		if($scope.iconcepto.FUENTE=='SIEBEL'){
-			$scope.habilitaSiebel		= true;
 			$scope.habilitaCr			= true;
 		};
 
@@ -13682,6 +13680,14 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		{
 			case "FENIX_NAL":
 				console.log('Llamar Procedimiento de FENIX_NAL');
+				services.insertPedidoReconfiguracion($scope.InfoGestion).then(
+				function (data) {
+					$scope.estadoGuardo=true;
+				}, function errorCallback(response, status) {
+					$scope.estadoGuardo=false;
+				}
+				)
+
 			break;
 			case "EDATEL":
 				console.log('Llamar Procedimiento de EDATEL');
@@ -13694,12 +13700,34 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			break;
 			default:
 			console.log('Sin guardar');
+		}//----------------------------------------------Case para saber donde guardar
+
+		if($scope.estadoGuardo){
+			$scope.pedidoIsGuardado			= true;
+			$rootScope.errorDatos 			= null;
+			$scope.InfoPedido 				= [];
+			$scope.fecha_inicio 			= null;
+			$scope.fecha_fin 				= null;
+			$scope.InfoGestion 				= {};
+			$scope.guardando 				= false
+			$scope.pedidoIsActive 			= false
+			$scope.peds 					= {};
+			$scope.mpedido 					= {};
+			$scope.bpedido 					= '';
+			$scope.busy 					= "";
+			$scope.error 					= "";
+			$scope.iplaza 					= 'TODOS';
+			$scope.buscar 					= null;
+			$scope.info						= {};
+			$scope.habilitaSiebel			= false;
+			$scope.habilitaCr				= false;
+			$scope.programar				= false;
+			$scope.accRdy					= false;
+		}else{
+			$rootScope.errorDatos 			= "No se pudo guardar";
+			$scope.guardando 				= false
+
 		}
-
-
-
-		//----------------------------------------------Case para saber donde guardar
-
 
 
 
