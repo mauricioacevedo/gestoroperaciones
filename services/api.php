@@ -12226,7 +12226,7 @@ $sqlfenix=
 
 					}else{
 							$error="Sin registros";
-						$this->response($this->json($error), 204);
+						$this->response($this->json($error), 400);
 					}
 
          }//-----------------------------------------------PEDIDOS PROGRAMADOS POR USER
