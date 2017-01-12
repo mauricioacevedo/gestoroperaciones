@@ -13272,8 +13272,8 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
 	// Cargar Opciones para la gestion --------------------------------
 	var opciones={
-			fuente: 'FENIX_NAL',
-			actividad: $scope.actividadGestion
+			fuente: $scope.iconcepto.FUENTE,
+			actividad: $scope.iconcepto.GRUPO
 	};
 
 	$scope.listarOpcionesAsginacion = function () {
