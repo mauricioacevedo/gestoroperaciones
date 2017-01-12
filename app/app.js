@@ -13682,7 +13682,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 
 		//Funciones para ejecutar en el Case de arriba --------------------------------------
-		console.log(caseval);
+
 
 
 
@@ -13748,6 +13748,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		return caseval;
 
 		}//----------------------------------------------Case para saber donde guardar
+
+	console.log(caseval);
 
 	$scope.csvHistoricosReconfiguracion = function (){
                 //var login=$rootScope.logedUser.login;
