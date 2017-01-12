@@ -13220,53 +13220,45 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 // Controlador para Gestion de Edatel Asignaciones -----------------------------------------------
 app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, notify, services) {
 
-	$scope.tools = true;
-	$scope.ltpercent="10";
-
-
 	// Basura del logueo ---------------------------------
-	$rootScope.logedUser = $cookieStore.get('logedUser');
-	var userID = $cookieStore.get('logedUser').login;
-	document.getElementById('logout').className = "btn btn-md btn-danger";
-	var divi = document.getElementById("logoutdiv");
-	divi.style.visibility = "visible";
-	divi.style.position = "relative";
-
-
-	$rootScope.logout = function () {
-		services.logout(userID);
-		$cookieStore.remove('logedUser');
-		$rootScope.logedUser = undefined;
-		$scope.pedidos = {};
-		clearInterval($scope.intervalLightKPIS);
-		document.getElementById('logout').className = "btn btn-md btn-danger hide";
+		$rootScope.logedUser = $cookieStore.get('logedUser');
+		var userID = $cookieStore.get('logedUser').login;
+		document.getElementById('logout').className = "btn btn-md btn-danger";
 		var divi = document.getElementById("logoutdiv");
-		divi.style.position = "absolute";
-		divi.style.visibility = "hidden";
-		$location.path('/');
-	};
+		divi.style.visibility = "visible";
+		divi.style.position = "relative";
 
 
+		$rootScope.logout = function () {
+			services.logout(userID);
+			$cookieStore.remove('logedUser');
+			$rootScope.logedUser = undefined;
+			$scope.pedidos = {};
+			clearInterval($scope.intervalLightKPIS);
+			document.getElementById('logout').className = "btn btn-md btn-danger hide";
+			var divi = document.getElementById("logoutdiv");
+			divi.style.position = "absolute";
+			divi.style.visibility = "hidden";
+			$location.path('/');
+		};
 
 	//  ---------------------------------Basura del logueo
 	// Inicio de Variables ---------------------------------
-	$scope.pedidos = [];
-	$scope.pedidosUnicos = '';
-	$scope.historico_pedido = [];
-	$rootScope.actualView = "RECONFIGURACION";
-	$rootScope.gestor.fuentegrupo = "RECONFIGURACION";
-	$scope.actividadGestion="RECONFIGURACION";
-	$scope.popup = '';
-	$scope.intervalLightKPIS = '';
-	$scope.pedidoinfo = '';
-	$rootScope.errorDatos = null;
-	$scope.accRdy = false;
-	$scope.fecha_inicio = null;
-	$scope.fecha_fin = null;
-	$scope.programar=false;
-	$scope.data={};
+	$scope.tools				= true;				// Herramientas de gestion habilitadas
+	$scope.pedidos				= [];				// Arreglo de pedidos
+	$scope.pedidosUnicos		= '';				// Pedidos Unicos, cantidad
+	$rootScope.actualView		= "DEMEPEDIDO";		// Vista Actual, sirve para los KPIS
+	$scope.intervalLightKPIS	= '';
+	$scope.pedidoinfo			= '';
+	$rootScope.errorDatos		= null; 			// Mensajes de Error
+	$scope.accRdy				= false; 			// Habilitar el boton de Guardar
+	$scope.fecha_inicio 		= null; 			// Fecha Inicial de la gestion
+	$scope.fecha_fin 			= null; 			// Habilitar el campo programación
+	$scope.programar			= false;
+	$scope.data					= {};				// Objeto de datos
+	$scope.iconcepto			= {};				// Objeto de datos que contiene Grupo, Concepto y Fuente.
 
-	$scope.iconcepto = { ID: '5', CONCEPTO_ID: '14', GRUPO: $scope.actividadGestion, FUENTE: 'FENIX_NAL'};
+	//$scope.iconcepto = { ID: '5', CONCEPTO_ID: '14', GRUPO: $scope.actividadGestion, FUENTE: 'FENIX_NAL'};
 
 	//console.log($scope.iconcepto);
 
