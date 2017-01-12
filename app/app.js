@@ -13240,10 +13240,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			divi.style.position = "absolute";
 			divi.style.visibility = "hidden";
 			$location.path('/');
-		};
+		};//  ---------------------------------Basura del logueo
 
-
-	//  ---------------------------------Basura del logueo
 	// Inicio de Variables ---------------------------------------------------------------------------------
 	$scope.tools				= true;						// Herramientas de gestion habilitadas.
 	$scope.pedidosUnicos		= '';						// Pedidos Unicos, cantidad.
