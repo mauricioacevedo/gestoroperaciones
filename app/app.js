@@ -13242,7 +13242,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			$location.path('/');
 		};
 
-	console.log($location);
+	console.log($$route.title);
 	//  ---------------------------------Basura del logueo
 	// Inicio de Variables ---------------------------------
 	$scope.tools				= true;				// Herramientas de gestion habilitadas
