@@ -13268,7 +13268,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
 	$scope.iconcepto = { ID: '5', CONCEPTO_ID: '14', GRUPO: $scope.actividadGestion, FUENTE: 'FENIX_NAL'};
 
-	console.log($scope.iconcepto);
+	//console.log($scope.iconcepto);
 
 	// Cargar Opciones para la gestion --------------------------------
 	var opciones={
