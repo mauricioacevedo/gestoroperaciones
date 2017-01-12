@@ -25,10 +25,10 @@
 								<select
 									class= "btn btn-default btn-xs grupo-select"
 									style="width: 200px"
-									ng-init="iconcepto = listadoConceptos[4]"
+									ng-init="iconcepto = listadoConceptos.CONCEPTO_ID[4]"
 									ng-model="iconcepto">
 									<option value="" disabled>---Concepto---</option>
-									<option ng-repeat="d in listadoConceptos | filter:{FUENTE: 'FENIX_NAL',GRUPO:actividadGestion}" value="{{d}}">{{d.CONCEPTO_ID}}</option>
+									<option ng-repeat="d in listadoConceptos | filter:{GRUPO:actividadGestion}" value="{{d}}">{{d.CONCEPTO_ID}}</option>
 								</select>
 
 							</li>
