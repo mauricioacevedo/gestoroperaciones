@@ -13517,7 +13517,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 		$scope.InfoPedido.SOURCE = 'AUTO';
 		$scope.InfoPedido.FUENTE = $scope.fuente;
 
-		console.log($scope.iconcepto);
+		//console.log($scope.iconcepto);
 
 		var demePedidoButton = document.getElementById("iniciar");
 		demePedidoButton.setAttribute("disabled", "disabled");
