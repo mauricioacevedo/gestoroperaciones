@@ -13680,13 +13680,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		{
 			case "FENIX_NAL":
 				console.log('Llamar Procedimiento de FENIX_NAL');
-				services.insertPedidoReconfiguracion($scope.InfoGestion).then(
-				function (data) {
+				services.insertPedidoReconfiguracion($scope.InfoGestion).then(function (data) {
+					console.log(data);
 					$scope.estadoGuardo=true;
-					return data.data;
-				}, function errorCallback(response, status) {
-					$scope.estadoGuardo=false;
-					console.log(status);
+					return data;
 				}
 				)
 
