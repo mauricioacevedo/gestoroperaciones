@@ -13682,15 +13682,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			case "FENIX_NAL":
 				console.log('Llamar Procedimiento de FENIX_NAL');
 				caseval=function(){
-							services.insertPedidoReconfiguracion($scope.InfoGestion).then(function (data) {
-									console.log(data.status);
-									if(data.status==200){
-										$scope.estadoGuardo=true;
-									}else{
-										$scope.estadoGuardo=false;
-									}
-									return $scope.estadoGuardo;
-								})
+							console.log('Que mierda');
+							return;
 						};
 
 			break;
