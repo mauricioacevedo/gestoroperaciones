@@ -13683,8 +13683,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				services.insertPedidoReconfiguracion($scope.InfoGestion).then(
 				function (data) {
 					$scope.estadoGuardo=true;
+					return data.data;
 				}, function errorCallback(response, status) {
 					$scope.estadoGuardo=false;
+					console.log(status);
 				}
 				)
 
