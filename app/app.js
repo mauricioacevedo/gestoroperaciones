@@ -13678,49 +13678,31 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			ID: gestion.ID
 		}
 
-		if($scope.habilitaSiebel){
-
-			console.log('Llamar Servicio de Siebel');
-		}else{
-			services.insertPedidoReconfiguracion($scope.InfoGestion).then(
-
-			function (data) {
-
-				$scope.pedidoIsGuardado = true;
-				$rootScope.errorDatos = null;
-				$scope.InfoPedido = [];
-				$scope.fecha_inicio = null;
-				$scope.fecha_fin = null;
-				$scope.InfoGestion = {};
-				$scope.guardando = false
-				$scope.pedidoIsActive = false
-				$scope.peds = {};
-				$scope.mpedido = {};
-				$scope.bpedido = '';
-				$scope.busy = "";
-				$scope.error = "";
-				$scope.iplaza = 'TODOS';
-				//$scope.fuente = "FENIX_NAL";
-				$scope.buscar = null;
-				//$scope.iconcepto			= {};
-				//$scope.listaOpcionesGestion = [];
-				$scope.info					= {};
-				$scope.habilitaSiebel		= false;
-				$scope.habilitaCr			= false;
-				$scope.programar			= false;
-				$scope.accRdy				= false;
-				return data.data;
+		//Case para saber donde guardar ----------------------------------------------
+		var dondeGuardar = $scope.iconcepto.FUENTE;
+		switch (color)
+		{
+			case "FENIX_NAL":
+				console.log('Llamar Procedimiento de FENIX_NAL');
+			break;
+			case "EDATEL":
+				console.log('Llamar Procedimiento de EDATEL');
+			break;
+			case "SIEBEL":
+				console.log('Llamar Procedimiento de SIEBEL');
+			break;
+			case "FENIX_BOG":
+				console.log('Llamar Procedimiento de FENIX_BOG');
+			break;
+			default:
+			console.log('Sin guardar');
+		}
 
 
-			},
-			function errorCallback(response, status) {
-				//console.log(status);
-				$rootScope.errorDatos = "No se pudo guardar";
-				$scope.guardando = false
-			}
-			);
 
-			};
+		//----------------------------------------------Case para saber donde guardar
+
+
 
 
 	}; //  -------------------------------------------------------------- GuardarPedido
