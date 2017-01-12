@@ -13745,11 +13745,12 @@ var caseval=false;
 				default:
 				console.log('Sin guardar');
 			}
+		console.log(caseval);
 		return caseval;
 
 		}//----------------------------------------------Case para saber donde guardar
 
-	console.log(caseval);
+
 
 	$scope.csvHistoricosReconfiguracion = function (){
                 //var login=$rootScope.logedUser.login;
