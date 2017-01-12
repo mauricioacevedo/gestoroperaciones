@@ -13724,8 +13724,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 					$scope.estadoGuardo=true;
 					brake;
 				default:
-					return (str);
-		};
+
+		}
+		return ($scope.estadoGuardo);
+	};
 
 
 
