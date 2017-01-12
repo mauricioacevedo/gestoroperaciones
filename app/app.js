@@ -13259,6 +13259,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.data					= {};						// Objeto de datos.
 	$scope.iconcepto			= {};						// Objeto de datos que contiene Grupo, Concepto y Fuente.
 	$scope.listaOpcionesGestion = [];						// Arreglo con listado de Opciones para la Gestion.
+	$scope.info					= {};						// Objeto con Info del pedido en gestion.
 
 	// Opciones para cargar las listas de Gestion, segun el grupo, fuente, actividad--------------------------
 	$scope.GenerarOpcionesGestion = function () {
@@ -13538,6 +13539,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
 				$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
+				$scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
 				$scope.pedidoIsActive = true;
 				$rootScope.errorDatos = null;
 				$scope.fecha_inicio = $rootScope.fechaProceso();
@@ -13601,6 +13603,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                                 $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 								$scope.InfoPedido.FUENTE=$scope.peds[0].FUENTE;
 								$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
+								$scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
 
                                 if(($scope.peds[0].STATUS=="PENDI_PETEC" || $scope.peds[0].STATUS=="PENDI_RENUMS")&&$scope.peds[0].ASESOR!=""){
                                         $scope.busy=$scope.peds[0].ASESOR;
