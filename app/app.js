@@ -13266,7 +13266,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 	$scope.programar=false;
 	$scope.data={};
 
-	$scope.iconcepto = { ID: 5, CONCEPTO_ID: '14', GRUPO: $scope.actividadGestion, FUENTE: 'FENIX_NAL'};
+	$scope.iconcepto = { ID: '5', CONCEPTO_ID: '14', GRUPO: $scope.actividadGestion, FUENTE: 'FENIX_NAL'};
 
 	console.log($scope.iconcepto);
 
