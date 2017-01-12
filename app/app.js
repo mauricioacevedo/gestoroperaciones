@@ -13699,7 +13699,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		//Funciones para ejecutar en el Case de arriba --------------------------------------
 		function GuardarfenixNal(){
 			services.insertPedidoReconfiguracion($scope.InfoGestion).then(function (data) {
-					//console.log(data);
+					console.log(data.status);
 					if(data.status==200){
 						$scope.estadoGuardo=true;
 					}else{
