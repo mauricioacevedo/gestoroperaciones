@@ -22,7 +22,10 @@
 
 							<li >
 								<i class="fa fa-globe" aria-hidden="true"> </i>&nbsp;
-								<select ng-model="selectedCityId" ng-options="city.id as city.name for city in cities">
+								<select class="btn btn-default btn-xs grupo-select"
+										style="width: 200px"
+										ng-model="iconcepto"
+										ng-options="city.ID as city.CONCEPTO_ID for city in listadoConceptos">
 									  <option value="">-- Select City --</option>
 								</select>
 							</li>
