@@ -13256,7 +13256,6 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 	$rootScope.actualView = "RECONFIGURACION";
 	$rootScope.gestor.fuentegrupo = "RECONFIGURACION";
 	$scope.actividadGestion="RECONFIGURACION";
-	$scope.iconcepto = [{}];
 	$scope.popup = '';
 	$scope.intervalLightKPIS = '';
 	$scope.pedidoinfo = '';
@@ -13266,6 +13265,8 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 	$scope.fecha_fin = null;
 	$scope.programar=false;
 	$scope.data={};
+
+	$scope.iconcepto = { ID: 5, CONCEPTO_ID: '14', GRUPO: $scope.actividadGestion, FUENTE: 'FENIX_NAL'};
 
 	// Cargar Opciones para la gestion --------------------------------
 	var opciones={

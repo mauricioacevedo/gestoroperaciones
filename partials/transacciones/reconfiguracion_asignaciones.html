@@ -22,12 +22,9 @@
 
 							<li >
 								<i class="fa fa-globe" aria-hidden="true"> </i>&nbsp;
-
-								<select
-										ng-model="iconcepto"
-										ng-options="option for option in listadoConceptos">
+								<select ng-model="selectedCityId" ng-options="city.id as city.name for city in cities">
+									  <option value="">-- Select City --</option>
 								</select>
-
 							</li>
 							<li> &nbsp; </li>
 							<li>
