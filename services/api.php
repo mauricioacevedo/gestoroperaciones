@@ -12254,7 +12254,7 @@ $sqlfenix=
 
              $query="	SELECT ".
 					"	p.ID ".
-					"	, p.GRUPO ".
+					"	, p.ACTIVIDAD ".
 					"	, p.FECHA_FIN as FECHA_GESTION ".
 					"	, p.ESTADO ".
 					"	, p.USER AS USUARIO_ID ".
@@ -12608,7 +12608,7 @@ private function opcionesGestionAsignaciones(){
 	$query=	" SELECT ".
 			"	o.ID ".
 			"	,	o.FUENTE ".
-			"	,	o.ACTIVIDAD ".
+			"	,	o.GRUPO ".
 			"	,	o.ESTADO_ID ".
 			"	,	o.OBSERVACION_ID ".
 			"	,	o.USUARIO_ID ".
