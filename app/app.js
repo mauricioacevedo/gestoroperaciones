@@ -14796,7 +14796,7 @@ app.run(['$rootScope', 'firebase', 'services', function ($rootScope, $firebase, 
 	$rootScope.getConceptosGestor = function () {
 		services.getGestorConceptos().then(
 			function (data) {
-				$rootScope.listadoConceptos = data.data[0];
+				$rootScope.listadoConceptos = data.data;
 				return data.data;
 			}
 
