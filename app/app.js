@@ -13312,7 +13312,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 
 
 
-	$scope.PedidosPorUser= function (){
+	$scope.PedidosPorUser= function () {
 		$rootScope.TituloModal='';
 		$rootScope.TituloModal="Pedigos Gestionados por: "+userID;
 		$rootScope.errorDatos = null;
@@ -13513,6 +13513,8 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 		$scope.fuente = "FENIX_NAL";
 		$scope.InfoPedido.SOURCE = 'AUTO';
 		$scope.InfoPedido.FUENTE = $scope.fuente;
+
+		console.log($scope.iconcepto);
 
 		var demePedidoButton = document.getElementById("iniciar");
 		demePedidoButton.setAttribute("disabled", "disabled");
