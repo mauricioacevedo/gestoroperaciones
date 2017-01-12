@@ -133,7 +133,7 @@
 									<div class="container-fluid">
 
 										<form name="seguimiento_form" id="seguimiento_form">
-											<div class="form-group small" ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
+											<div class="form-group " ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
 												<label for="estado" class="control-label">Estado Gestión:</label>
 												<select
 													class= "form-control btn-xs"
@@ -151,7 +151,7 @@
 													</option>
 												</select>
 											</div>
-											<div class="form-group small" ng-show="InfoPedido.ESTADO_PROCESO" ng-class="{ 'has-error' : seguimiento_form.obs.$pristine && seguimiento_form.obs.$invalid}">
+											<div class="form-group " ng-show="InfoPedido.ESTADO_PROCESO" ng-class="{ 'has-error' : seguimiento_form.obs.$pristine && seguimiento_form.obs.$invalid}">
 												<label for="obs" class="control-label">Observación Gestión:</label>
 												<select
 													class= "form-control btn-xs"
@@ -182,9 +182,10 @@
 												<input type="text" name="nuevopedido" id="nuevopedido" class="form-control" placeholder="12458974145" ng-model="InfoPedido.NUEVOPEDIDO"/>
 												<i class="fa fa-briefcase form-control-feedback"></i>
 											</div>
-											<div class="form-group small" ng-show="habilitaCr">
+											<div class="form-group  has-feedback" ng-show="habilitaCr">
 												<label for="incidente" class="control-label">CR Incidente:</label>
 												<input type="text" name="incidente" id="incidente" class="form-control btn-xs" ng-model="InfoPedido.INCIDENTE">
+												<i class="fa fa-flag form-control-feedback"></i>
 											</div>
 											<div>
 												<div class="hide" ng-repeat="InfoPedido in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO, OBSERVACION_ID: InfoPedido.OBSERVACIONES_PROCESO} | unique:'STATUS' as status">
