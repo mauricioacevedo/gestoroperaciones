@@ -13246,20 +13246,22 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	//  ---------------------------------Basura del logueo
 	// Inicio de Variables ---------------------------------------------------------------------------------
 	$scope.tools				= true;						// Herramientas de gestion habilitadas.
-	$scope.pedidos				= [];						// Arreglo de pedidos.
 	$scope.pedidosUnicos		= '';						// Pedidos Unicos, cantidad.
 	$rootScope.actualView		= $route.current.title;		// Vista Actual, sirve para los KPIS.
 	$scope.intervalLightKPIS	= '';
 	$scope.pedidoinfo			= '';
 	$rootScope.errorDatos		= null; 					// Mensajes de Error.
-	$scope.accRdy				= false; 					// Habilitar el boton de Guardar.
 	$scope.fecha_inicio 		= null; 					// Fecha Inicial de la gestion.
-	$scope.fecha_fin 			= null; 					// Habilitar el campo programación.
-	$scope.programar			= false;
+	$scope.fecha_fin 			= null; 					// Fecha Final de la gestion.
+	$scope.pedidos				= [];						// Arreglo de pedidos.
 	$scope.data					= {};						// Objeto de datos.
 	$scope.iconcepto			= {};						// Objeto de datos que contiene Grupo, Concepto y Fuente.
 	$scope.listaOpcionesGestion = [];						// Arreglo con listado de Opciones para la Gestion.
 	$scope.info					= {};						// Objeto con Info del pedido en gestion.
+	$scope.habilitaSiebel		= false;					// Habilita el guardado en la tabla de siebel.
+	$scope.habilitaCr			= false;					// Habilita el campo CR.
+	$scope.programar			= false;					// Habilitar el campo programación.
+	$scope.accRdy				= false; 					// Habilitar el boton de Guardar.
 
 	// Opciones para cargar las listas de Gestion, segun el grupo, fuente, actividad--------------------------
 	$scope.GenerarOpcionesGestion = function () {
@@ -13500,6 +13502,12 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		$scope.pedidoIsGuardado = false;
 		$scope.programar=false;
 		$scope.pedidoIsActive=false;
+
+		if($scope.iconcepto.FUENTE=='SIEBEL'){
+			$scope.habilitaSiebel		= true;
+			$scope.habilitaCr			= true;
+		};
+
 
 		if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
 			//alert($scope.peds[0].PEDIDO_ID);

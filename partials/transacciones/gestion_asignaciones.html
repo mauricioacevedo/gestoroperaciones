@@ -182,6 +182,10 @@
 												<input type="text" name="nuevopedido" id="nuevopedido" class="form-control" placeholder="12458974145" ng-model="InfoPedido.NUEVOPEDIDO"/>
 												<i class="fa fa-briefcase form-control-feedback"></i>
 											</div>
+											<div class="form-group small" ng-show="habilitaCr">
+												<label for="incidente" class="control-label">CR Incidente:</label>
+												<input type="text" name="incidente" id="incidente" class="form-control btn-xs" ng-model="InfoPedido.INCIDENTE">
+											</div>
 											<div>
 												<div class="hide" ng-repeat="InfoPedido in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO, OBSERVACION_ID: InfoPedido.OBSERVACIONES_PROCESO} | unique:'STATUS' as status">
 													<input ng-model="InfoPedido.STATUS">
