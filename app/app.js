@@ -13680,7 +13680,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		{
 			case "FENIX_NAL":
 				console.log('Llamar Procedimiento de FENIX_NAL');
-				$scope.GuardarfenixNal();
+				($scope.GuardarfenixNal()).call();
 
 			break;
 			case "EDATEL":
