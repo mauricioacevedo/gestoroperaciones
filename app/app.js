@@ -13680,7 +13680,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		{
 			case "FENIX_NAL":
 				console.log('Llamar Procedimiento de FENIX_NAL');
-				GuardarfenixNal();
+				$scope.ejecutarFuncion="Reconfiguracion";
 
 			break;
 			case "EDATEL":
@@ -13697,6 +13697,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		}//----------------------------------------------Case para saber donde guardar
 
 		//Funciones para ejecutar en el Case de arriba --------------------------------------
+		console.log($scope.ejecutarFuncion);
 		function GuardarfenixNal(){
 			services.insertPedidoReconfiguracion($scope.InfoGestion).then(function (data) {
 					console.log(data.status);
