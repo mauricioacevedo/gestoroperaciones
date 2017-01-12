@@ -13676,23 +13676,24 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 		//Case para saber donde guardar ----------------------------------------------
 		var dondeGuardar = $scope.iconcepto.FUENTE;
+		if(dondeGuardar=='FENIX_NAL'){
+			services.insertPedidoReconfiguracion($scope.InfoGestion).then(function (data) {
+				//console.log(data.status);
+				if(data.status==200){
+					$scope.estadoGuardo=true;
+				}else{
+					$scope.estadoGuardo=false;
+				}
+				return $scope.estadoGuardo;
+			})
+		}
 
-		//$scope.funcional(dondeGuardar);
-
-		var lookupTable = {
-			  "pizza": function() {
-				return "pizza";
-			  },
-			  "house": function() {
-				return "house";
-			  },
-			  "air":  function() {
-				return "air";
-			  }
-			};
+		// ----------------------------------------------Case para saber donde guardar
 
 
-	console.log(lookupTable["pizza"]);
+
+
+	console.log($scope.estadoGuardo);
 
 		if($scope.estadoGuardo){
 			$scope.pedidoIsGuardado			= true;
