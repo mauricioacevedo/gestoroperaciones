@@ -13256,7 +13256,7 @@ app.controller('reconfiguracionAsignacionesCtrl', function ($scope, $rootScope, 
 	$rootScope.actualView = "RECONFIGURACION";
 	$rootScope.gestor.fuentegrupo = "RECONFIGURACION";
 	$scope.actividadGestion="RECONFIGURACION";
-	$scope.iconcepto = {};
+	$scope.iconcepto = [{CONCEPTO_ID:'14'}];
 	$scope.popup = '';
 	$scope.intervalLightKPIS = '';
 	$scope.pedidoinfo = '';

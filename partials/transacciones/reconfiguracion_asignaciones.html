@@ -26,7 +26,7 @@
 									class= "btn btn-default btn-xs grupo-select"
 									style="width: 200px"
 									ng-model="iconcepto"
-									ng-init="{'CONCEPTO_ID':'14'}">
+									>
 									<option value="" disabled>---Concepto---</option>
 									<option ng-repeat="d in listadoConceptos | filter:{FUENTE: 'FENIX_NAL',GRUPO:actividadGestion}" value="{{d}}">{{d.CONCEPTO_ID}}</option>
 								</select>
