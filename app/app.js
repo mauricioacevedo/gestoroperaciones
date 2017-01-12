@@ -13242,12 +13242,13 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			$location.path('/');
 		};
 
+	console.log($$location);
 	//  ---------------------------------Basura del logueo
 	// Inicio de Variables ---------------------------------
 	$scope.tools				= true;				// Herramientas de gestion habilitadas
 	$scope.pedidos				= [];				// Arreglo de pedidos
 	$scope.pedidosUnicos		= '';				// Pedidos Unicos, cantidad
-	$rootScope.actualView		= "DEMEPEDIDO";		// Vista Actual, sirve para los KPIS
+	$rootScope.actualView		= "DEMEPEDIDO ASGINACIONES";		// Vista Actual, sirve para los KPIS
 	$scope.intervalLightKPIS	= '';
 	$scope.pedidoinfo			= '';
 	$rootScope.errorDatos		= null; 			// Mensajes de Error
