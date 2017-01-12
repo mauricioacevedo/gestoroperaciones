@@ -13655,8 +13655,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 		$scope.InfoGestion = {
 			pedido: gestion.PEDIDO_ID,
-			fuente: InfoPedido.FUENTE,
-			actividad: 'RECONFIGURACION',
+			fuente: $scope.iconcepto.FUENTE,
+			actividad: $scope.iconcepto.GRUPO,
 			fecha_fin: $scope.fecha_fin,
 			user: $rootScope.logedUser.login,
 			estado: InfoPedido.OBSERVACIONES_PROCESO,
@@ -13700,7 +13700,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				$scope.busy = "";
 				$scope.error = "";
 				$scope.iplaza = 'TODOS';
-				$scope.fuente = "FENIX_NAL";
+				//$scope.fuente = "FENIX_NAL";
 				$scope.buscar = null;
 				//$scope.iconcepto			= {};
 				//$scope.listaOpcionesGestion = [];

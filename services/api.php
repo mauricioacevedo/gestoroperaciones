@@ -12254,7 +12254,7 @@ $sqlfenix=
 
              $query="	SELECT ".
 					"	p.ID ".
-					"	, p.ACTIVIDAD ".
+					"	, p.GRUPO ".
 					"	, p.FECHA_FIN as FECHA_GESTION ".
 					"	, p.ESTADO ".
 					"	, p.USER AS USUARIO_ID ".
