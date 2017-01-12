@@ -13746,8 +13746,8 @@ var caseval=false;
 				default:
 				console.log('Sin guardar');
 			}
-		console.log(caseval.pepa);
-		return caseval.pepa;
+		console.log(caseval);
+		return caseval;
 
 		}//----------------------------------------------Case para saber donde guardar
 
