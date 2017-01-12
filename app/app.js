@@ -13729,7 +13729,8 @@ var caseval=false;
 					console.log('Llamar Procedimiento de FENIX_NAL');
 					caseval=function(){
 								console.log('Que mierda');
-								return true;
+								var pepa=true;
+								return pepa;
 							};
 
 				break;
