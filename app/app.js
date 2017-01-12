@@ -13592,6 +13592,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		$scope.pedidoActual = pedidoinfo;
 		$scope.buscar = buscar;
 		$scope.pedidoIsActive=false;
+		$scope.habilitaSiebel		= false;
+		$scope.habilitaCr			= false;
 
 		if($scope.iconcepto.FUENTE=='SIEBEL'){
 			$scope.habilitaSiebel		= true;
@@ -13671,14 +13673,16 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			motivo_malo: InfoPedido.OBSERVACIONES_PROCESO,
 			idllamada: InfoPedido.IDLLAMADA,
 			nuevopedido: InfoPedido.NUEVOPEDIDO,
-			horaLlamar:InfoPedido.PROGRAMACION,
+			horaLlamar: InfoPedido.PROGRAMACION,
+			INCIDENTE: InfoPedido.INCIDENTE,
 			ID: gestion.ID
 		}
 
-		//console.log($scope.InfoGestion);
+		if($scope.habilitaSiebel){
 
-
-		services.insertPedidoReconfiguracion($scope.InfoGestion).then(
+			console.log('Llamar Servicio de Siebel');
+		}else{
+			services.insertPedidoReconfiguracion($scope.InfoGestion).then(
 
 			function (data) {
 
@@ -13687,7 +13691,6 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				$scope.InfoPedido = [];
 				$scope.fecha_inicio = null;
 				$scope.fecha_fin = null;
-				$scope.accRdy = false;
 				$scope.InfoGestion = {};
 				$scope.guardando = false
 				$scope.pedidoIsActive = false
@@ -13699,6 +13702,13 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				$scope.iplaza = 'TODOS';
 				$scope.fuente = "FENIX_NAL";
 				$scope.buscar = null;
+				//$scope.iconcepto			= {};
+				//$scope.listaOpcionesGestion = [];
+				$scope.info					= {};
+				$scope.habilitaSiebel		= false;
+				$scope.habilitaCr			= false;
+				$scope.programar			= false;
+				$scope.accRdy				= false;
 				return data.data;
 
 
@@ -13707,21 +13717,14 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				//console.log(status);
 				$rootScope.errorDatos = "No se pudo guardar";
 				$scope.guardando = false
-
 			}
-		);
+			);
+
+			};
 
 
+	}; //  -------------------------------------------------------------- GuardarPedido
 
-
-
-
-	};
-
-
-
-
-	//  -------------------------------------------------------------- GuardarPedido
 
 	$scope.csvHistoricosReconfiguracion = function (){
                 //var login=$rootScope.logedUser.login;
