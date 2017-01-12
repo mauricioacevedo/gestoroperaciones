@@ -13719,10 +13719,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				case 'FENIX_NAL':
 					services.insertPedidoReconfiguracion($scope.InfoGestion)
 					$scope.estadoGuardo=true;
-					brake;
+					break;
 				case 'FENIX_BOG':
 					$scope.estadoGuardo=true;
-					brake;
+					break;
 				default:
 
 		}
