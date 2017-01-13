@@ -12596,13 +12596,13 @@ private function opcionesGestionAsignaciones(){
 
 	$params 	= json_decode(file_get_contents('php://input'),true);
 	$fuente 	= $params['fuente'];
-	$actividad 	= $params['actividad'];
+	$grupo 	        = $params['grupo'];
 	$today		= date("Y-m-d");
 
-	if($actividad=='ADMINISTRACION'){
+	if($grupo=='ADMINISTRACION'){
 		$filtros= "";
 	}else{
-		$filtros= " and o.ESTADO=1 and o.FUENTE='$fuente' and o.GRUPO='$actividad' ";
+		$filtros= " and o.ESTADO=1 and o.FUENTE='$fuente' and o.GRUPO='$grupo' ";
 	};
 
 
@@ -12610,6 +12610,7 @@ private function opcionesGestionAsignaciones(){
 			"	o.ID ".
 			"	,	o.FUENTE ".
 			"	,	o.GRUPO ".
+                        "	,	o.ACTIVIDAD ".
 			"	,	o.ESTADO_ID ".
 			"	,	o.OBSERVACION_ID ".
 			"	,	o.USUARIO_ID ".

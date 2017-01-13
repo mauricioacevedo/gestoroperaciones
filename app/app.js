@@ -13260,19 +13260,23 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.habilitaCr			= false;					// Habilita el campo CR.
 	$scope.programar			= false;					// Habilitar el campo programación.
 	$scope.accRdy				= false; 					// Habilitar el boton de Guardar.
+	var varDondeGuardar 		= '';
+	var varEstadoGuardar		= '';
+	var varObsesGuardar			= '';
+	var estadoFinal				= '';
 
 	// Opciones para cargar las listas de Gestion, segun el grupo, fuente, actividad--------------------------
 	$scope.GenerarOpcionesGestion = function () {
 		var opciones= {
 			fuente: $scope.iconcepto.FUENTE,
-			actividad: $scope.iconcepto.GRUPO
+			grupo: $scope.iconcepto.GRUPO
 		};
 
 		$scope.listarOpcionesAsginacion(opciones);
 	}//-------------------------------------------------------------------------------------------------------
 
 	/* Habilitar esta linea si se quiere inicializar el iconcepto con algun dato por defecto
-	$scope.iconcepto = { ID: '5', CONCEPTO_ID: '14', GRUPO: $scope.actividadGestion, FUENTE: 'FENIX_NAL'};
+	$scope.iconcepto = { ID: '5', CONCEPTO_ID: '14', GRUPO: $scope.actividadGestion, ACTIVIDAD: 'ESTUDIO' ,FUENTE: 'FENIX_NAL'};
 	*/
 
 
@@ -13649,17 +13653,25 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		var toDate = parseInt(new Date($scope.fecha_fin).getTime() / 1000);
 		var timeDiff = (toDate - fromDate) / 3600; // will give difference in hrs
 
-		var varDondeGuardar = $scope.iconcepto.FUENTE;
+		var varDondeGuardar 	= $scope.iconcepto.FUENTE;
+		var varEstadoGuardar	= $InfoPedido.ESTADO_ID;
+		var varObsesGuardar		= $InfoPedido.OBSERVACIONES_PROCESO;
 
-		if(varDondeGuardar!='SIEBEL'){
+		if (varDondeGuardar=='FENIX_NAL' || varDondeGuardar=='FENIX_BOG') {
+			if (varEstadoGuardar=='MALO') {
+				var estadoFinal='MALO';
+			} else {
+				var estadoFinal=varObsesGuardar;
+			}
+
 
 			$scope.InfoGestion = {
 			pedido: gestion.PEDIDO_ID,
 			fuente: $scope.iconcepto.FUENTE,
-			actividad: $scope.iconcepto.GRUPO,
+			actividad: $scope.iconcepto.ACTIVIDAD,
 			fecha_fin: $scope.fecha_fin,
 			user: $rootScope.logedUser.login,
-			estado: InfoPedido.OBSERVACIONES_PROCESO,
+			estado: estadoFinal,
 			duracion: timeDiff,
 			FECHA_ESTADO: gestion.FECHA_ESTADO,
 			fecha_inicio: $scope.fecha_inicio,
@@ -13677,7 +13689,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			INCIDENTE: InfoPedido.INCIDENTE,
 			ID: gestion.ID
 		};
-		}else{
+		} else if (varDondeGuardar=='SIEBEL') {
 			$scope.InfoGestion = {
 			ID: gestion.ID,
 			OFERTA: gestion.PEDIDO_ID,
