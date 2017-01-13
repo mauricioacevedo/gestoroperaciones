@@ -13679,7 +13679,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 		$scope.dondeGuardar(varDondeGuardar);
 
-	console.log($scope.estadoGuardo);
+		//console.log($scope.estadoGuardo);
 
 		if($scope.estadoGuardo){
 			$scope.pedidoIsGuardado			= true;
