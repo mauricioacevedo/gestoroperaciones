@@ -13716,14 +13716,18 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	//Case para saber donde guardar ----------------------------------------------
 	$scope.dondeGuardar=function (str) {
 			switch (str) {
-				case 'FENIX_NAL':
+				case 'FENIX_NAL': 
 					services.insertPedidoReconfiguracion($scope.InfoGestion)
 					$scope.estadoGuardo=true;
 					break;
 				case 'FENIX_BOG':
 					$scope.estadoGuardo=true;
 					break;
+				case 'SIEBEL':
+					$scope.estadoGuardo=true;
+					break;
 				default:
+					$scope.estadoGuardo=false;
 
 		}
 		return ($scope.estadoGuardo);
