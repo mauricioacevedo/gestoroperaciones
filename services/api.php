@@ -6495,6 +6495,7 @@ private function updateFenixReconfiguracion($obj){
 			
 			
 			}else if($fuente=="SIEBEL"||$fuente=="EDATEL"){
+					$parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ASGINGACIONES_SIEBEL');
 					$concepto=" and b.CONCEPTO_ID in ('$concepto')";
 			}else if($concepto=="STBOX"){
                  $concepto=" and b.CONCEPTO_ID in ('PETEC','15') and (b.TIPO_ELEMENTO_ID IN ('STBOX') )";
