@@ -13649,7 +13649,11 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		var toDate = parseInt(new Date($scope.fecha_fin).getTime() / 1000);
 		var timeDiff = (toDate - fromDate) / 3600; // will give difference in hrs
 
-		$scope.InfoGestion = {
+		var varDondeGuardar = $scope.iconcepto.FUENTE;
+
+		if(varDondeGuardar!='SIEBEL'){
+
+			$scope.InfoGestion = {
 			pedido: gestion.PEDIDO_ID,
 			fuente: $scope.iconcepto.FUENTE,
 			actividad: $scope.iconcepto.GRUPO,
@@ -13672,10 +13676,25 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			horaLlamar: InfoPedido.PROGRAMACION,
 			INCIDENTE: InfoPedido.INCIDENTE,
 			ID: gestion.ID
-		}
-
-
-		var varDondeGuardar = $scope.iconcepto.FUENTE;
+		};
+		}else{
+			$scope.InfoGestion = {
+			ID: gestion.ID,
+			OFERTA: gestion.PEDIDO_ID,
+			MUNICIPIO_ID: gestion.MUNICIPIO_ID,
+			TRANSACCION: gestion.DESC_TIPO_TRABAJO,
+			ESTADO: gestion.CONCEPTO_ID,
+			FECHA: gestion.FECHA_ESTADO,
+			DURACION: timeDiff,
+			INCIDENTE: InfoPedido.INCIDENTE,
+			FECHA_INICIO: $scope.fecha_inicio,
+			FECHA_FIN: $scope.fecha_fin,
+			ESTADO_FINAL: InfoPedido.ESTADO_PROCESO,
+			OBSERVACION: InfoPedido.OBSERVACIONES_PROCESO,
+			USUARIO: $rootScope.logedUser.login,
+			STATUS: $scope.stautsGo
+		};
+		};
 
 		$scope.dondeGuardar(varDondeGuardar);
 
@@ -13724,6 +13743,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 					$scope.estadoGuardo=true;
 					break;
 				case 'SIEBEL':
+					services.insertTransaccionNCA($scope.InfoGestion)
 					$scope.estadoGuardo=true;
 					break;
 				default:
