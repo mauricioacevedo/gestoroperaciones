@@ -13747,19 +13747,23 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 					services.insertTransaccionNCA($scope.InfoGestion)
 					$scope.estadoGuardo=true;
 					break;
+				case 'EDATEL':
+					services.insertPedido($scope.InfoGestion)
+					$scope.estadoGuardo=true;
+					break;
 				default:
 					$scope.estadoGuardo=false;
 
 		}
 		return ($scope.estadoGuardo);
-	};
+	};// ----------------------------------------------Case para saber donde guardar
 
 
 
 
 
 
-		// ----------------------------------------------Case para saber donde guardar
+		
 
 
 
