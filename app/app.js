@@ -13288,7 +13288,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			function (data) {
 
 				$scope.listaOpcionesGestion=data.data;
-				//console.log($scope.listaOpcionesGestion);
+				console.log($scope.listaOpcionesGestion);
 				return data.data;
 
 			},
