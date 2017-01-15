@@ -193,6 +193,11 @@
 													<input ng-model="InfoPedido.STATUS">
 												</div>
 											</div>
+											<div>
+												<div class="hide" ng-repeat="InfoPedido in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO, OBSERVACION_ID: InfoPedido.OBSERVACIONES_PROCESO} | unique:'ACTIVIDAD' as actividad">
+													<input ng-model="InfoPedido.ACTIVIDAD">
+												</div>
+											</div>
 
 										</form>
 									</div>
