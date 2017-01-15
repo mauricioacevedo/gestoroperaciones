@@ -13639,13 +13639,14 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	// --------------------------------------------------------------- BuscarPedido
 	// GuardarPedido --------------------------------------------------------------
 
-	$scope.guardarPedido = function (InfoPedido, gestion, status) {
+	$scope.guardarPedido = function (InfoPedido, gestion, status,actividad) {
 
 		$scope.fecha_fin = $rootScope.fechaProceso();
 		$scope.stautsGo = status[0].STATUS;
+		$scope.actividadGo = actividad[0].ACTIVIDAD;
 		$scope.guardando=true;
 
-		//console.log(InfoPedido); //Seguimiento
+		console.log(InfoPedido); //Seguimiento
 		//console.log(gestion);//GEstion
 		//console.log($scope.stautsGo); //Cerrado, Pendiente o Malo
 		//console.log($scope.iconcepto);
@@ -13669,7 +13670,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			$scope.InfoGestion = {
 			pedido: gestion.PEDIDO_ID,
 			fuente: $scope.iconcepto.FUENTE,
-			actividad: InfoPedido.ACTIVIDAD,
+			actividad: $scope.actividadGo,
 			fecha_fin: $scope.fecha_fin,
 			user: $rootScope.logedUser.login,
 			estado: estadoFinal,
