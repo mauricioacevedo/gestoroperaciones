@@ -13645,9 +13645,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		$scope.stautsGo = status[0].STATUS;
 		$scope.guardando=true;
 
-		console.log(InfoPedido); //Seguimiento
+		//console.log(InfoPedido); //Seguimiento
 		//console.log(gestion);//GEstion
 		//console.log($scope.stautsGo); //Cerrado, Pendiente o Malo
+		console.log($scope.iconcepto);
 
 		var fromDate = parseInt(new Date($scope.fecha_inicio).getTime() / 1000);
 		var toDate = parseInt(new Date($scope.fecha_fin).getTime() / 1000);
