@@ -13654,7 +13654,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		var timeDiff = (toDate - fromDate) / 3600; // will give difference in hrs
 
 		var varDondeGuardar 	= $scope.iconcepto.FUENTE;
-		var varEstadoGuardar	= $InfoPedido.ESTADO_ID;
+		var varEstadoGuardar	= $InfoPedido.ESTADO_PROCESO;
 		var varObsesGuardar		= $InfoPedido.OBSERVACIONES_PROCESO;
 
 		if (varDondeGuardar=='FENIX_NAL' || varDondeGuardar=='FENIX_BOG') {
