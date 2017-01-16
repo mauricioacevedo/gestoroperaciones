@@ -5839,7 +5839,7 @@ private function updateFenixReconfiguracion($obj){
                                 $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','') ";
                                 $xx = $this->mysqli->query($sqlfeed);
                                 //echo json_encode($result);
-                                $this->response(json_encode($result), 200); // send user details
+                                $this->response(json_encode(array($result)), 200); // send user details
 								//$this->response('test', 200); // send user details
                         }else {
 
@@ -11424,73 +11424,73 @@ $sqlfenix=
                 $today = date("Y-m-d");
 
                 $query1=" SELECT ".
-						"	m.ID ".
-						"	, m.PEDIDO_ID ".
-						"	, m.SUBPEDIDO_ID ".
-						"	, m.TIPO_ELEMENTO_ID ".
-						"	, m.TIPO_TRABAJO ".
-						"	, m.DESC_TIPO_TRABAJO ".
-						"	, m.FECHA_INGRESO ".
-						"	, m.FECHA_ESTADO ".
-						"	, m.FECHA_CITA ".
-						"	, m.PRODUCTO_ID ".
-						"	, m.PRODUCTO ".
-						"	, m.UEN_CALCULADA ".
-						"	, m.ESTRATO ".
-						"	, m.CONCEPTO_ID ".
-						"	, m.TECNOLOGIA_ID ".
-						"	, m.MUNICIPIO_ID ".
-						"	, m.DIRECCION_SERVICIO ".
-						"	, m.PAGINA_SERVICIO ".
-						"	, m.FECHA_CARGA ".
-						"	, m.FUENTE ".
-						"	, m.STATUS ".
-						"	, m.ASESOR ".
-						"	, m.FECHA_VISTO_ASESOR ".
-						"	, m.ESTUDIOS ".
-						"	, m.VIEWS ".
-						"	, m.CONCEPTO_ANTERIOR ".
-					    "   , CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(m.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA ".
-						"	, m.UP2DATE ".
-						"	FROM portalbd.informe_petec_pendientesm m ".
-						"	where m.PEDIDO_ID='$pedido' ".
-						"	AND m.STATUS IN ('PENDI_PETEC','MALO') ";
+                        "	m.ID ".
+                        "	, m.PEDIDO_ID ".
+                        "	, m.SUBPEDIDO_ID ".
+                        "	, m.TIPO_ELEMENTO_ID ".
+                        "	, m.TIPO_TRABAJO ".
+                        "	, m.DESC_TIPO_TRABAJO ".
+                        "	, m.FECHA_INGRESO ".
+                        "	, m.FECHA_ESTADO ".
+                        "	, m.FECHA_CITA ".
+                        "	, m.PRODUCTO_ID ".
+                        "	, m.PRODUCTO ".
+                        "	, m.UEN_CALCULADA ".
+                        "	, m.ESTRATO ".
+                        "	, m.CONCEPTO_ID ".
+                        "	, m.TECNOLOGIA_ID ".
+                        "	, m.MUNICIPIO_ID ".
+                        "	, m.DIRECCION_SERVICIO ".
+                        "	, m.PAGINA_SERVICIO ".
+                        "	, m.FECHA_CARGA ".
+                        "	, m.FUENTE ".
+                        "	, m.STATUS ".
+                        "	, m.ASESOR ".
+                        "	, m.FECHA_VISTO_ASESOR ".
+                        "	, m.ESTUDIOS ".
+                        "	, m.VIEWS ".
+                        "	, m.CONCEPTO_ANTERIOR ".
+                        "   , CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(m.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA ".
+                        "	, m.UP2DATE ".
+                        "	FROM portalbd.informe_petec_pendientesm m ".
+                        "	where m.PEDIDO_ID='$pedido' ".
+                        "	AND m.STATUS IN ('PENDI_PETEC','MALO') ";
 
-				$sqlCerrados=" SELECT ".
-						"	m.ID ".
-						"	, m.PEDIDO_ID ".
-						"	, m.SUBPEDIDO_ID ".
-						"	, m.TIPO_ELEMENTO_ID ".
-						"	, m.TIPO_TRABAJO ".
-						"	, m.DESC_TIPO_TRABAJO ".
-						"	, m.FECHA_INGRESO ".
-						"	, m.FECHA_ESTADO ".
-						"	, m.FECHA_CITA ".
-						"	, m.PRODUCTO_ID ".
-						"	, m.PRODUCTO ".
-						"	, m.UEN_CALCULADA ".
-						"	, m.ESTRATO ".
-						"	, m.CONCEPTO_ID ".
-						"	, m.TECNOLOGIA_ID ".
-						"	, m.MUNICIPIO_ID ".
-						"	, m.DIRECCION_SERVICIO ".
-						"	, m.PAGINA_SERVICIO ".
-						"	, m.FECHA_CARGA ".
-						"	, m.FUENTE ".
-						"	, m.STATUS ".
-						"	, m.ASESOR ".
-						"	, m.FECHA_VISTO_ASESOR ".
-						"	, m.ESTUDIOS ".
-						"	, m.VIEWS ".
-						"	, m.CONCEPTO_ANTERIOR ".
-						"   , CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(m.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA ".
-						"	, m.UP2DATE ".
-						"	FROM portalbd.informe_petec_pendientesm m ".
-						"	where m.PEDIDO_ID='$pedido' ".
-						"	AND m.STATUS IN ('CERRADO_PETEC') ".
-					    " 	order by m.ID desc limit 1";
+        $sqlCerrados=   " SELECT ".
+                        "	m.ID ".
+                        "	, m.PEDIDO_ID ".
+                        "	, m.SUBPEDIDO_ID ".
+                        "	, m.TIPO_ELEMENTO_ID ".
+                        "	, m.TIPO_TRABAJO ".
+                        "	, m.DESC_TIPO_TRABAJO ".
+                        "	, m.FECHA_INGRESO ".
+                        "	, m.FECHA_ESTADO ".
+                        "	, m.FECHA_CITA ".
+                        "	, m.PRODUCTO_ID ".
+                        "	, m.PRODUCTO ".
+                        "	, m.UEN_CALCULADA ".
+                        "	, m.ESTRATO ".
+                        "	, m.CONCEPTO_ID ".
+                        "	, m.TECNOLOGIA_ID ".
+                        "	, m.MUNICIPIO_ID ".
+                        "	, m.DIRECCION_SERVICIO ".
+                        "	, m.PAGINA_SERVICIO ".
+                        "	, m.FECHA_CARGA ".
+                        "	, m.FUENTE ".
+                        "	, m.STATUS ".
+                        "	, m.ASESOR ".
+                        "	, m.FECHA_VISTO_ASESOR ".
+                        "	, m.ESTUDIOS ".
+                        "	, m.VIEWS ".
+                        "	, m.CONCEPTO_ANTERIOR ".
+                        "   , CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(m.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA ".
+                        "	, m.UP2DATE ".
+                        "	FROM portalbd.informe_petec_pendientesm m ".
+                        "	where m.PEDIDO_ID='$pedido' ".
+                        "	AND m.STATUS IN ('CERRADO_PETEC') ".
+                        " 	order by m.ID desc limit 1";
 
-                        $rPendi = $this->mysqli->query($query1);
+        $rPendi = $this->mysqli->query($query1);
 
 
                         $busy=false;
