@@ -5811,7 +5811,7 @@ private function updateFenixReconfiguracion($obj){
                                 $xx = $this->mysqli->query($sqlfeed);
                                 //echo json_encode($result);
                                 //$this->response(json_encode($result), 200); // send user details
-                                $this->response(json_encode(array($busy,$result)), 200)
+                                $this->response(json_encode(array($busy,$result)), 200);
 								//$this->response('test', 200); // send user details
                         }else {
 
