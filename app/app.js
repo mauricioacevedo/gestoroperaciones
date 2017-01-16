@@ -13633,7 +13633,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			function (data) {
 
 				$scope.peds = data.data;
-                        //console.log(data.data);
+                    console.log($scope.peds);
                         var dat=data.status;
                         if(dat==204){
                                 //document.getElementById("warning").innerHTML="No hay Registros";
