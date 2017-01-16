@@ -54,10 +54,10 @@
 								<div class="btn-group">
 									<input style="width:140px"  class="btn btn-default btn-xs " type="text" ng-model="buscar" placeholder="Buscar..." ng-trim="true" ng-disabled="loading" select-on-click capitalize/>
 									<select class="btn btn-default btn-xs grupo-select"
-											style="width: 100px"
+											style="width: 70px"
 											ng-model="ifuente"
 											ng-options="d.FUENTE for d in listadoConceptos | unique:'FUENTE' "
-											>
+											ng-change="mirarifuente()">
 									</select>
 							
 									<button type="button" class="btn btn-success btn-xs" ng-click="buscarPedido(buscar,pedidoinfo)"   ng-disabled="loading" >
