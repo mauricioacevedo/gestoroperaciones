@@ -5816,12 +5816,12 @@ private function updateFenixReconfiguracion($obj){
                                 $ids="";
                                 $sep="";
                                 while($row = $r->fetch_assoc()){
-                                        $row['source']='BUSCADO';
-				        $observaciones = $this->quitar_tildes(utf8_encode($row['OBSERVACIONES']));
-				        $row['OBSERVACIONES'] = $observaciones;
-                                        $result[] = $row;
-                                        $ids=$ids.$sep.$row['ID'];
-                                        $asess=$row['ASESOR'];
+                                  $row['source']='BUSCADO';
+									$observaciones = $this->quitar_tildes(utf8_encode($row['OBSERVACIONES']));
+								    $row['OBSERVACIONES'] = $observaciones;
+                                  $result[] = $row;
+                                  $ids=$ids.$sep.$row['ID'];
+                                  $asess=$row['ASESOR'];
                                 if($asess!=''){//este pedido esta ocupado, no deberia hacer la actualizacion de abajo..
                                        $busy="YES";
                                         }
