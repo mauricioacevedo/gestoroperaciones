@@ -13717,7 +13717,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			fecha_fin: $scope.fecha_fin,
 			user: $rootScope.logedUser.login,
 			ESTADO_ID:InfoPedido.ESTADO_PROCESO,
-			estado: estadoFinal,
+			estado: InfoPedido.OBSERVACIONES_PROCESO,
 			duracion: timeDiff,
 			FECHA_ESTADO: gestion.FECHA_ESTADO,
 			fecha_inicio: $scope.fecha_inicio,
