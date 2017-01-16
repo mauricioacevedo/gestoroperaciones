@@ -13642,15 +13642,15 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
                         }else{
                                 //document.getElementById("warning").innerHTML="";
-                                $scope.pedido1=$scope.peds[0].PEDIDO_ID;
-                                $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
-								$scope.InfoPedido.FUENTE=$scope.peds[0].FUENTE;
-								$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
-								$scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
+                                $scope.pedido1=$scope.peds[1].PEDIDO_ID;
+                                $scope.pedidoinfo=$scope.peds[1].PEDIDO_ID;
+								$scope.InfoPedido.FUENTE=$scope.peds[1].FUENTE;
+								$scope.fechaprogramacion=$scope.peds[1].PROGRAMACION;
+								$scope.info.CONCEPTO_ID=$scope.peds[1].CONCEPTO_ID;
 
-                                if(($scope.peds[0].STATUS=="PENDI_PETEC" || $scope.peds[0].STATUS=="PENDI_RENUMS")&&$scope.peds[0].ASESOR!=""){
-                                        $scope.busy=$scope.peds[0].ASESOR;
-                                        $rootScope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
+                                if(($scope.peds[1].STATUS=="PENDI_PETEC" || $scope.peds[1].STATUS=="PENDI_RENUMS")&&$scope.peds[1].ASESOR!=""){
+                                        $scope.busy=$scope.peds[1].ASESOR;
+                                        $rootScope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[1].ASESOR;
                                 }
 
                                 //$scope.baby($scope.pedido1);

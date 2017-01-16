@@ -5839,7 +5839,8 @@ private function updateFenixReconfiguracion($obj){
                                 $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','') ";
                                 $xx = $this->mysqli->query($sqlfeed);
                                 //echo json_encode($result);
-                                $this->response(json_encode(array($result)), 200); // send user details
+                                //$this->response(json_encode($result), 200); // send user details
+                                $this->response(json_encode(array($busy,$result)), 200)
 								//$this->response('test', 200); // send user details
                         }else {
 
@@ -11400,8 +11401,8 @@ $sqlfenix=
 
 
 
-		// Busca Pedido Siebel Asignaciones -------------------------
-		private function buscarOfertaSiebelAsignaciones(){
+// Busca Pedido Siebel Asignaciones -------------------------
+private function buscarOfertaSiebelAsignaciones(){
 
 				if($this->get_request_method() != "GET"){
 						$this->response('',406);
@@ -11523,17 +11524,15 @@ $sqlfenix=
 
                                 $x = $this->mysqli->query($sqlupdate);
 
-								// Feed ----------------------
-								$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','') ";
-								$xx = $this->mysqli->query($sqlfeed);
-								//  ---------------------- Feed
+                                // Feed ----------------------
+                                $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','') ";
+                                $xx = $this->mysqli->query($sqlfeed);
+                                //  ---------------------- Feed
+
+                                $this->response(json_encode(array($busy,$result)), 200); //Resultado final si encontro registros
 
 
-
-							$this->response(json_encode(array($busy,$result)), 200); //Resultado final si encontro registros
-
-
-						}else{ // Si el pedido no esta abierto lo busco en cerrado pero solo devuelvo un solo registro
+				}else{ // Si el pedido no esta abierto lo busco en cerrado pero solo devuelvo un solo registro
 								$rCerrado = $this->mysqli->query($sqlCerrados);
 
 								if($rCerrado->num_rows > 0){
