@@ -5834,7 +5834,7 @@ private function updateFenixReconfiguracion($obj){
 
                 //Función para buscar pedidos directamente en Fenix - Boton BuscarPedido.
                 // 2016-02-02 - Se modifica todo este negocio solo por capricho de Carlos.
-                private function buscarPedidoFenixReconfiguracion($pedido_id){
+               private function buscarPedidoFenixReconfiguracion($pedido_id){
 
                         $this->dbFenixConnect();
                         $connf=$this->connf;
@@ -5931,8 +5931,6 @@ private function updateFenixReconfiguracion($obj){
                                 }
                                 return $success;
                 }
-
-
                 //Función para buscar pedidos directamente en Fenix - Boton BuscarPedido.
                 // 2015-09-17 - Se modifica fecha estado, ahora vamos a novedades por ella - CGONZGO
 		private function buscarPedidoFenix($pedido_id){
