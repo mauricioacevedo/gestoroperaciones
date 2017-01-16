@@ -13598,11 +13598,31 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		$scope.habilitaCr = false;
 		//$scope.estadoGuardo=false;
 
-		if($scope.ifuente.FUENTE=='SIEBEL' || $scope.ifuente.FUENTE=='EDATEL'){
+		
+
+		
+
+		if($scope.ifuente.FUENTE=='SIEBEL'){
 			$scope.habilitaCr			= true;
+			var opciones= {
+			fuente: $scope.ifuente.FUENTE,
+			grupo: 'ASIGNACIONES'
+			};
 			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
+		}else if ($scope.ifuente.FUENTE=='EDATEL'){
+			$scope.habilitaCr			= true;
+			var opciones= {
+			fuente: $scope.ifuente.FUENTE,
+			grupo: 'EDATEL'
+			};
+			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
+
 		}else{
 			$scope.habilitaCr			= false;
+			var opciones= {
+			fuente: $scope.ifuente.FUENTE,
+			grupo: 'RECONFIGURACION'
+			};
 			var kami = services.buscarPedidoReconfiguracion(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login);
 		};
 
@@ -13637,6 +13657,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 								$rootScope.errorDatos = null;
 								$scope.pedidoIsActive = true;
 								$scope.fecha_inicio = $rootScope.fechaProceso();
+								$scope.listarOpcionesAsginacion(opciones);
                         }
                         return data.data;
 			});
