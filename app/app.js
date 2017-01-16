@@ -13280,7 +13280,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.iconcepto = { ID: '5', CONCEPTO_ID: '14', GRUPO: $scope.actividadGestion, ACTIVIDAD: 'ESTUDIO' ,FUENTE: 'FENIX_NAL'};
 	*/
 
-	$scope.ifuente = {FUENTE: 'FENIX_NAL'};
+	$scope.ifuente = {ID: '1', CONCEPTO_ID: 'TODO', GRUPO: 'ASIGNACIONES', FUENTE: 'FENIX_NAL'};
 
 	// Cargar Opciones para la gestion --------------------------------
 	$scope.listarOpcionesAsginacion = function (opciones) {
