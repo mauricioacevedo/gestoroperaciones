@@ -13633,7 +13633,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			function (data) {
 
 				$scope.peds = data.data;
-                    console.log($scope.peds);
+                   // console.log($scope.peds);
                         var dat=data.status;
                         if(dat==204){
                                 //document.getElementById("warning").innerHTML="No hay Registros";
@@ -13641,23 +13641,25 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 								$scope.pedidoIsActive = false;
 
                         }else{
-                                //document.getElementById("warning").innerHTML="";
-								$scope.pedido1=$scope.peds[0].PEDIDO_ID;
-                                $scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
-								$scope.InfoPedido.FUENTE=$scope.peds[0].FUENTE;
-								$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
-								$scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
-
-                                if(($scope.peds[0].STATUS=="PENDI_PETEC" || $scope.peds[0].STATUS=="PENDI_RENUMS")&&$scope.peds[0].ASESOR!=""){
+							$scope.pedido1=$scope.peds[0].PEDIDO_ID;
+							if(($scope.peds[0].STATUS=="PENDI_PETEC" || $scope.peds[0].STATUS=="PENDI_RENUMS")&&$scope.peds[0].ASESOR!=""){
                                         $scope.busy=$scope.peds[0].ASESOR;
                                         $rootScope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
-                                }
+                                }else{
+									
+									$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+									$scope.InfoPedido.FUENTE=$scope.peds[0].FUENTE;
+									$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
+									$scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
 
-                                //$scope.baby($scope.pedido1);
-								$rootScope.errorDatos = null;
-								$scope.pedidoIsActive = true;
-								$scope.fecha_inicio = $rootScope.fechaProceso();
-								$scope.listarOpcionesAsginacion(opciones);
+								
+
+									//$scope.baby($scope.pedido1);
+									$rootScope.errorDatos = null;
+									$scope.pedidoIsActive = true;
+									$scope.fecha_inicio = $rootScope.fechaProceso();
+									$scope.listarOpcionesAsginacion(opciones);
+								}
                         }
                         return data.data;
 			});
