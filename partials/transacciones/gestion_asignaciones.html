@@ -55,8 +55,8 @@
 									<input style="width:140px"  class="btn btn-default btn-xs " type="text" ng-model="buscar" placeholder="Buscar..." ng-trim="true" ng-disabled="loading" select-on-click capitalize/>
 									<select class="btn btn-default btn-xs grupo-select"
 											style="width: 90px"
-											ng-model="ifuente.FUENTE"
-											ng-options="f.FUENTE for f.FUENTE in listadoConceptos | unique:'FUENTE' "
+											ng-model="ifuente"
+											ng-options="f.FUENTE for f in listadoConceptos | unique:'FUENTE' "
 											ng-change="mirarifuente()">
 									</select>
 							
