@@ -56,7 +56,7 @@
 									<select class="btn btn-default btn-xs grupo-select"
 											style="width: 90px"
 											ng-model="ifuente.FUENTE"
-											ng-options="f.FUENTE for f in listadoConceptos | unique:'FUENTE' "
+											ng-options="f.FUENTE for f.FUENTE in listadoConceptos | unique:'FUENTE' "
 											ng-change="mirarifuente()">
 									</select>
 							
