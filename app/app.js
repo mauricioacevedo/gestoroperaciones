@@ -13282,7 +13282,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.mirarifuente = function (){
 		console.log($scope.ifuente);
 	};
-	$scope.ifuente = {ID: "1", CONCEPTO_ID: "TODO", GRUPO: "ASIGNACIONES", FUENTE: "FENIX_NAL", ESTADO: "0"};
+	//$scope.ifuente = {ID: "1", CONCEPTO_ID: "TODO", GRUPO: "ASIGNACIONES", FUENTE: "FENIX_NAL", ESTADO: "0"};
 
 	// Cargar Opciones para la gestion --------------------------------
 	$scope.listarOpcionesAsginacion = function (opciones) {

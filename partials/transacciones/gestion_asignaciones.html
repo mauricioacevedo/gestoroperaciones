@@ -57,6 +57,7 @@
 											style="width: 90px"
 											ng-model="ifuente"
 											ng-options="f.FUENTE for f in listadoConceptos | unique:'FUENTE' "
+											ng-init="ifuente.FUENTE='FENIX_NAL'"
 											ng-change="mirarifuente()">
 									</select>
 							
