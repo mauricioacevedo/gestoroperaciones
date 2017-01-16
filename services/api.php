@@ -5838,7 +5838,7 @@ private function updateFenixReconfiguracion($obj){
                                 $xx = $this->mysqli->query($sqlfeed);
                                 //echo json_encode($result);
                                 //$this->response(json_encode($result), 200); // send user details
-                                $this->response(json_encode(array($busy,$result)), 200);
+                                $this->response(json_encode($result), 200);
 								//$this->response('test', 200); // send user details
                         }else {
 
@@ -11525,7 +11525,7 @@ private function buscarOfertaSiebelAsignaciones(){
                                 $xx = $this->mysqli->query($sqlfeed);
                                 //  ---------------------- Feed
 
-                                $this->response(json_encode(array($busy,$result)), 200); //Resultado final si encontro registros
+                                $this->response(json_encode($result), 200); //Resultado final si encontro registros
 
 
 				}else{ // Si el pedido no esta abierto lo busco en cerrado pero solo devuelvo un solo registro
@@ -11560,7 +11560,7 @@ private function buscarOfertaSiebelAsignaciones(){
 
 
 
-								$this->response(json_encode(array($busy,$result)), 200); //Resultado final si encontro registros
+								$this->response(json_encode($result), 200); //Resultado final si encontro registros
 
 
 						}else{
