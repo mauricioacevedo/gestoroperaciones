@@ -53,7 +53,7 @@
 							<li>
 								<div class="btn-group">
 									<input style="width:140px"  class="btn btn-default btn-xs " type="text" ng-model="buscar" placeholder="Buscar..." ng-trim="true" ng-disabled="loading" select-on-click capitalize/>
-									<select ng-model="ifuente.FUENTE">
+									<select ng-model="ifuente.FUENTE" class="btn btn-default btn-xs grupo-select">
 										<option ng-selected="{{f.FUENTE == 'FENIX_NAL'}}"
 												ng-repeat="f in listadoConceptos | unique:'FUENTE'"
 												value="{{f.FUENTE}}">
