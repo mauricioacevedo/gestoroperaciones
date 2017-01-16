@@ -5762,49 +5762,20 @@ private function updateFenixReconfiguracion($obj){
                         $user=strtoupper($user);
                         $today = date("Y-m-d");
 
-                        $query1=" SELECT ".
-                                " a.ID, ". 
-                                " a.PEDIDO_ID, ". 
-                                " a.SUBPEDIDO_ID, ". 
-                                " a.SOLICITUD_ID, ". 
-                                " a.TIPO_ELEMENTO_ID, ". 
-                                " a.TIPO_TRABAJO, ". 
-                                " a.DESC_TIPO_TRABAJO, ". 
-                                " a.CELULAR_AVISAR, ". 
-                                " a.TELEFONO_AVISAR, ".
-                                " a.PRODUCTO, ". 
-                                " a.TECNOLOGIA_ID, ". 
-                                " a.UEN_CALCULADA, ". 
-                                " a.ESTRATO,MUNICIPIO_ID, ". 
-                                " a.DIRECCION_SERVICIO, ".
-                                " a.PAGINA_SERVICIO, ". 
-                                " CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA, ".
-                                " a.FUENTE, ". 
-                                " a.CONCEPTO_ID, ". 
-                                " a.FECHA_ESTADO, ". 
-                                " a.ASESOR , ". 
-                                " a.STATUS, ". 
-                                " a.CONCEPTO_ANTERIOR, ". 
-                                " a.FECHA_CITA, ".
-                                " a.CANTIDAD_EQU, ". 
-                                " a.EQUIPOS, ". 
-                                " a.CONCEPTOS_EQU, ". 
-                                " a.TIPO_EQUIPOS, ". 
-                                " a.EXTENSIONES, ". 
-                                " a.OBSERVACIONES, ".
-                                " a.EJECUTIVO_ID, ". 
-                                " a.CANAL_ID, ". 
-                                " a.PROGRAMACION, ". 
-                                " cast(ifnull(c.Total_Contactos,'SIN LLAMADAS') AS CHAR(255)) as LLAMADAS, ". 
-                                " c.ULTIMO_CONTACTO ".
-                                " from informe_petec_pendientesm a ".
-                                " left join (SELECT a.pedido_id, count(a.pedido_id) as Total_Contactos, ".
-                                "               max(a.fecha_fin) as Ultimo_Contacto ".
-                                "	        FROM portalbd.pedidos a	".
-                                "	        WHERE a.ESTADO = 'VOLVER A LLAMAR' ".
-                                "	        group by a.PEDIDO_ID) c	".
-                                " on c.PEDIDO_id = a.pedido_id 	".
-                                " WHERE a.PEDIDO_ID='$pedido' and (a.STATUS='PENDI_PETEC' or a.STATUS='BUSCADO_PETEC' or a.STATUS='MALO')	";	
+                        $query1="	SELECT a.ID,a.PEDIDO_ID,a.SUBPEDIDO_ID,a.SOLICITUD_ID,a.TIPO_ELEMENTO_ID, a.TIPO_TRABAJO, a.DESC_TIPO_TRABAJO, a.CELULAR_AVISAR, a.TELEFONO_AVISAR,	".
+								"	a.PRODUCTO,a.UEN_CALCULADA,a.ESTRATO,MUNICIPIO_ID,a.DIRECCION_SERVICIO,	".
+								"	a.PAGINA_SERVICIO,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,	".
+								"	a.FUENTE,a.CONCEPTO_ID,a.FECHA_ESTADO,a.ASESOR,a.STATUS,a.CONCEPTO_ANTERIOR,a.FECHA_CITA,	".
+								"	a.CANTIDAD_EQU,a.EQUIPOS,a.CONCEPTOS_EQU,a.TIPO_EQUIPOS,a.EXTENSIONES, a.OBSERVACIONES, 	".
+								"	a.EJECUTIVO_ID, a.CANAL_ID, a.PROGRAMACION, cast(ifnull(c.Total_Contactos,'SIN LLAMADAS') AS CHAR(255)) as LLAMADAS, c.ULTIMO_CONTACTO	".
+								"	from informe_petec_pendientesm a 	".
+								"	left join (SELECT a.pedido_id, count(a.pedido_id) as Total_Contactos, 	".
+								"	max(a.fecha_fin) as Ultimo_Contacto	".
+								"	FROM portalbd.pedidos a	".
+								"	WHERE a.ESTADO = 'VOLVER A LLAMAR'	 ".
+								"	group by a.PEDIDO_ID) c	".
+								"	on c.PEDIDO_id = a.pedido_id 	".
+								"	WHERE a.PEDIDO_ID='$pedido' and (a.STATUS='PENDI_PETEC' or a.STATUS='BUSCADO_PETEC' or a.STATUS='MALO')	";	
 												
 						//"SELECT a.ID,a.PEDIDO_ID,a.SUBPEDIDO_ID,a.SOLICITUD_ID,a.TIPO_ELEMENTO_ID,a.PRODUCTO,a.UEN_CALCULADA,a.ESTRATO,MUNICIPIO_ID,a.DIRECCION_SERVICIO,a.PAGINA_SERVICIO,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,a.FUENTE,a.CONCEPTO_ID,a.FECHA_ESTADO,a.ASESOR,a.STATUS,a.CONCEPTO_ANTERIOR,a.FECHA_CITA,a.CANTIDAD_EQU,a.EQUIPOS,a.CONCEPTOS_EQU,a.TIPO_EQUIPOS,a.EXTENSIONES, a.OBSERVACIONES, a.EJECUTIVO_ID, a.CANAL_ID from informe_petec_pendientesm a WHERE a.PEDIDO_ID='$pedido' and (a.STATUS='PENDI_PETEC' or a.STATUS='BUSCADO_PETEC' or a.STATUS='MALO') ";
 
@@ -5836,7 +5807,7 @@ private function updateFenixReconfiguracion($obj){
                                 }
 
                                 $x = $this->mysqli->query($sqlupdate);
-                                $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','') ";
+                        $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','') ";
                                 $xx = $this->mysqli->query($sqlfeed);
                                 //echo json_encode($result);
                                 //$this->response(json_encode($result), 200); // send user details
