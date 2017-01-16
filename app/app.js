@@ -13282,7 +13282,6 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.mirarifuente = function (){
 		console.log($scope.ifuente);
 	};
-	//$scope.ifuente = {ID: "1", CONCEPTO_ID: "TODO", GRUPO: "ASIGNACIONES", FUENTE: "FENIX_NAL", ESTADO: "0"};
 
 	// Cargar Opciones para la gestion --------------------------------
 	$scope.listarOpcionesAsginacion = function (opciones) {
@@ -13599,11 +13598,16 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		$scope.habilitaCr = false;
 		//$scope.estadoGuardo=false;
 
-		if($scope.iconcepto.FUENTE=='SIEBEL'){
+		if($scope.ifuente.FUENTE=='SIEBEL' || $scope.ifuente.FUENTE=='EDATEL'){
 			$scope.habilitaCr			= true;
+		}else{
+			$scope.habilitaCr			= false;
+			var kami = services.buscarPedidoReconfiguracion(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login);
 		};
 
-		var kami = services.buscarPedidoReconfiguracion(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login).then(
+
+
+			kami.then(
 
 			function (data) {
 
