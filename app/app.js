@@ -13605,14 +13605,14 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		if($scope.ifuente.FUENTE=='SIEBEL'){
 			$scope.habilitaCr			= true;
 			var opciones= {
-			fuente: $scope.ifuente.FUENTE,
+			fuente: 'SIEBEL',
 			grupo: 'ASIGNACIONES'
 			};
 			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
 		}else if ($scope.ifuente.FUENTE=='EDATEL'){
 			$scope.habilitaCr			= true;
 			var opciones= {
-			fuente: $scope.ifuente.FUENTE,
+			fuente: 'EDATEL',
 			grupo: 'EDATEL'
 			};
 			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
@@ -13620,7 +13620,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		}else{
 			$scope.habilitaCr			= false;
 			var opciones= {
-			fuente: $scope.ifuente.FUENTE,
+			fuente: 'FENIX_NAL',
 			grupo: 'RECONFIGURACION'
 			};
 			var kami = services.buscarPedidoReconfiguracion(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login);
