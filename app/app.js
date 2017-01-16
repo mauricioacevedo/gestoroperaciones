@@ -13254,6 +13254,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.pedidos				= [];						// Arreglo de pedidos.
 	$scope.data					= {};						// Objeto de datos.
 	$scope.iconcepto			= {};						// Objeto de datos que contiene Grupo, Concepto y Fuente.
+	$scope.ifuente				= {};						// Objeto con la fuente para hacer las busquedas.
 	$scope.listaOpcionesGestion = [];						// Arreglo con listado de Opciones para la Gestion.
 	$scope.info					= {};						// Objeto con Info del pedido en gestion.
 	//$scope.estadoGuardo			= false;					// Habilita el guardado en la tabla de siebel.
@@ -13279,7 +13280,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.iconcepto = { ID: '5', CONCEPTO_ID: '14', GRUPO: $scope.actividadGestion, ACTIVIDAD: 'ESTUDIO' ,FUENTE: 'FENIX_NAL'};
 	*/
 
-
+	$scope.ifuente = { ID: '5', CONCEPTO_ID: '14', GRUPO: $scope.actividadGestion, ACTIVIDAD: 'ESTUDIO' ,FUENTE: 'FENIX_NAL'};
 
 	// Cargar Opciones para la gestion --------------------------------
 	$scope.listarOpcionesAsginacion = function (opciones) {
