@@ -95,17 +95,16 @@
 											<li class="list-group-item small" ><b>SUBPEDIDO:</b> <span class="small">{{service.SUBPEDIDO_ID}}</span>  </li>
 											<li class="list-group-item small" ><b>AGENDA: </b><span ng-show="service.FECHA_CITA"  class="ng-binding label label-danger">{{service.FECHA_CITA}}</span></li>
 											<li class="list-group-item small" ><b>MUNICIPIO:</b> {{service.MUNICIPIO_ID}} </li>
+											<li class="list-group-item small" ><b>UEN:</b> {{service.UEN_CALCULADA}} </li>
 											<li class="list-group-item small" >
 												<b>DIRECCIÓN:</b> <span class="small">{{service.DIRECCION_SERVICIO}}</span>
 												<button type="button" class="btn btn-xs btn-default" title="Copiar"
 												ng-click="executeCopy(service.DIRECCION_SERVICIO)" ><i class='fa fa-clipboard'></i> </button>
 											</li>
 											<li class="list-group-item small" ><b>PÁGINA:</b> <span class="small">{{service.PAGINA_SERVICIO}}</span>  </li>
-
 											<li class="list-group-item small" >
 												 <button class="btn btn-info btn-sm" uib-popover="{{service.OBSERVACIONES || 'Sin Observaciones'}}" popover-title="Observaciones" popover-append-to-body="true" type="button" class="btn btn-default">OBSERVACIONES</button>
 											</li>
-
 										</div>
 
 										<div class="col-md-6">
