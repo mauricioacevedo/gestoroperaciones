@@ -8,10 +8,6 @@
        // include_once("/var/www/html/gestorasignaciones/conn_portalbd.php");
 	//include_once("/var/www/html/gestoroperaciones/connections.php");
 	include_once("/var/www/html/gestoroperaciones/connections.php");
-        //1. Inicializar conexion fenix y local mysql
-        //$connf=getConnFenix();
-        //$connm=getConnPortalbd();
-
 
 	date_default_timezone_set('America/Bogota');
 
