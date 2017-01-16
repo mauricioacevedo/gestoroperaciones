@@ -13673,6 +13673,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			actividad: $scope.actividadGo,
 			fecha_fin: $scope.fecha_fin,
 			user: $rootScope.logedUser.login,
+			ESTADO_ID:InfoPedido.ESTADO_PROCESO,
 			estado: estadoFinal,
 			duracion: timeDiff,
 			FECHA_ESTADO: gestion.FECHA_ESTADO,
@@ -13707,6 +13708,32 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			OBSERVACION: InfoPedido.OBSERVACIONES_PROCESO,
 			USUARIO: $rootScope.logedUser.login,
 			STATUS: $scope.stautsGo
+		};
+		} else if (varDondeGuardar=='EDATEL') {
+			$scope.InfoGestion = {
+			pedido: gestion.PEDIDO_ID,
+			fuente: $scope.iconcepto.FUENTE,
+			actividad: $scope.actividadGo,
+			fecha_fin: $scope.fecha_fin,
+			user: $rootScope.logedUser.login,
+			ESTADO_ID:InfoPedido.ESTADO_PROCESO,
+			estado: estadoFinal,
+			duracion: timeDiff,
+			FECHA_ESTADO: gestion.FECHA_ESTADO,
+			fecha_inicio: $scope.fecha_inicio,
+			concepto_final: gestion.CONCEPTO_ID,
+			CONCEPTO_ID: gestion.CONCEPTO_ID,
+			CONCEPTO_ANTERIOR: gestion.CONCEPTO_ID,
+			source: InfoPedido.SOURCE,
+			PEDIDO_ID: gestion.PEDIDO_ID,
+			SUBPEDIDO_ID: gestion.SUBPEDIDO_ID,
+			MUNICIPIO_ID: gestion.MUNICIPIO_ID,
+			motivo_malo: InfoPedido.OBSERVACIONES_PROCESO,
+			idllamada: InfoPedido.IDLLAMADA,
+			nuevopedido: InfoPedido.NUEVOPEDIDO,
+			horaLlamar: InfoPedido.PROGRAMACION,
+			INCIDENTE: InfoPedido.INCIDENTE,
+			ID: gestion.ID
 		};
 		};
 
