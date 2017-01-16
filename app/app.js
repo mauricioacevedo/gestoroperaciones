@@ -6506,7 +6506,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 					$scope.error = $scope.pedido.concepto_final;
 					//$scope.peds.splice(index,1);
 					$scope.peds = [];
-					$scope.pedido = {};
+					$scope.pedido = [];
 					$scope.pedidos = "";
 				} else {
 					$scope.historico_pedido = $scope.historico_pedido.concat(angular.copy($scope.pedido));
@@ -6516,8 +6516,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 					}
 
 					$scope.pedido.concepto_final = $scope.pedido.con_fenix;
-					//$scope.pedidos = $scope.pedidos.concat($scope.pedido);
-					$scope.pedidos = $scope.pedidos.extend($scope.pedido);
+					$scope.pedidos = $scope.pedidos.concat($scope.pedido);
+					//$scope.pedidos = $scope.pedidos.extend($scope.pedido);
 					if ($scope.historico_pedido == "") {
 						$scope.historico_pedido = new Array();
 					}
