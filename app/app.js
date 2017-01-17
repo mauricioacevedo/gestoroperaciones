@@ -9412,6 +9412,9 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 	};
 
+	$scope.actualizarGraficaAgendamiento();
+	$scope.topProductivos();
+
 });
 
 app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $compile, $timeout, services) {
