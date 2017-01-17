@@ -3616,7 +3616,18 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 	};
 
-
+$scope.csvPendientes = function (concep) {
+		var login = $rootScope.logedUser.login;
+		
+		if(concep==''||concep==undefined){
+			concep='TODO';
+		}
+		services.getCsvPendientes(login, concep).then(function (data) {
+			console.log(data.data[0]);
+			window.location.href = "tmp/" + data.data[0];
+			return data.data;
+		});
+	};
 
 
 });
