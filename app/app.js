@@ -6395,7 +6395,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
 		$scope.pedido.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-		console.log($scope.pedido);
+		//console.log($scope.pedido);
 		services.insertMPedido($scope.pedido);
 		if ($scope.pedidos == "") {
 			$scope.pedidos = new Array();
@@ -6404,7 +6404,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		if ($scope.historico_pedido == "") {
 			$scope.historico_pedido = new Array();
 		}
-		console.log($scope.historico_pedido);
+		//console.log($scope.historico_pedido);
 
 		$scope.baby($scope.pedido.pedido);
 		$scope.pedido1 = $scope.pedido.pedido;
@@ -6510,23 +6510,28 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 					$scope.pedidos = [];
 				} else {
 					
+					if ($scope.historico_pedido == "") {
+						$scope.historico_pedido = new Array();
+					}
+					
 					$scope.historico_pedido = $scope.historico_pedido.concat(angular.copy($scope.pedido));
 					//console.log($scope.historico_pedido);
 					$scope.peds.splice(index, 1);
 					
 
 					$scope.pedido.concepto_final = $scope.pedido.con_fenix;
-					//$scope.pedidos = $scope.pedido.extend($scope.pedido);
-					//$scope.pedidos = $scope.pedido.concat($scope.pedido);
-					$scope.pedidos = $scope.pedidos.concat(angular.copy($scope.pedido));
-
 					if ($scope.pedidos == "") {
 						$scope.pedidos = new Array();
 					}
+					//$scope.pedidos = $scope.pedido.extend($scope.pedido);
+					//$scope.pedidos = $scope.pedido.concat($scope.pedido);
+
+					console.log($scope.pedidos);
+					$scope.pedidos = $scope.pedidos.concat(angular.copy($scope.pedido));
+
 					
-					if ($scope.historico_pedido == "") {
-						$scope.historico_pedido = new Array();
-					}
+
+					
 					$scope.pedido = [];
 					$scope.busy = "";
 					$scope.timeInit = new Date().getTime();
