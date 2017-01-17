@@ -3618,7 +3618,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 $scope.csvPendientes = function (concep) {
 		var login = $rootScope.logedUser.login;
-		
+
 		if(concep==''||concep==undefined){
 			concep='TODO';
 		}
@@ -3628,7 +3628,7 @@ $scope.csvPendientes = function (concep) {
 			return data.data;
 		});
 	};
-
+$scope.actualizarGrafica();
 
 });
 
