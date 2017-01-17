@@ -3629,6 +3629,7 @@ $scope.csvPendientes = function (concep) {
 		});
 	};
 $scope.actualizarGrafica();
+$scope.topProductivos();
 
 });
 
