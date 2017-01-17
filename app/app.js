@@ -6520,7 +6520,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 					
 
 					$scope.pedido.concepto_final = $scope.pedido.con_fenix;
-					if ($scope.pedidos == "") {
+					if ($scope.pedidos == "" || $scope.pedidos == undefined ) {
 						$scope.pedidos = new Array();
 					}
 					//$scope.pedidos = $scope.pedido.extend($scope.pedido);
