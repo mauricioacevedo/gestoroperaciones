@@ -6541,7 +6541,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 					//console.log($scope.pedidos);
 					$scope.pedidos = $scope.pedidos.concat(angular.copy($scope.pedido));
 
-					
+					$scope.pedunicos();
 
 					
 					$scope.pedido = [];
