@@ -6519,7 +6519,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 					$scope.pedido.concepto_final = $scope.pedido.con_fenix;
 					//$scope.pedidos = $scope.pedido.extend($scope.pedido);
-					$scope.pedidos = $scope.pedido.concat($scope.pedido);
+					//$scope.pedidos = $scope.pedido.concat($scope.pedido);
+					$scope.pedidos = $scope.pedidos.concat(angular.copy($scope.pedido));
 					if ($scope.historico_pedido == "") {
 						$scope.historico_pedido = new Array();
 					}
