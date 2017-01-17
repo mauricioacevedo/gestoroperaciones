@@ -6314,7 +6314,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		//$scope.pedidoinfo='';
 		var kami = services.buscarPedido(bpedido, iplaza, $scope.pedido1, $rootScope.logedUser.login, $rootScope.logedUser.name).then(function (data) {
 			$scope.peds = data.data;
-			console.log(data.status);
+			//console.log(data.status);
 			var dat = data.status;
 			//alert("'"+data.status+"'");
 			if (dat == 204) {
