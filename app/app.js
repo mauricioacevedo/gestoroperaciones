@@ -6445,7 +6445,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 		//$scope.pedido=$scope.peds[index];
 		angular.copy($scope.peds[index], $scope.pedido);
-		console.log($scope.pedido);
+		//console.log($scope.pedido);
 		//if($scope.pedido.estado===undefined||$scope.pedido.accion===undefined){
 		if ($scope.pedido.estado === undefined) {
 			alert('Por favor diligenciar todos los campos.');
@@ -6511,7 +6511,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				} else {
 					
 					$scope.historico_pedido = $scope.historico_pedido.concat(angular.copy($scope.pedido));
-					//console.log($scope.historico_pedido);
+					console.log($scope.historico_pedido);
 					$scope.peds.splice(index, 1);
 					if ($scope.pedidos == "") {
 						$scope.pedidos = new Array();
