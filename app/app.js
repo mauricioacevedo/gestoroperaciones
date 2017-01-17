@@ -6538,7 +6538,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 					//$scope.pedidos = $scope.pedido.extend($scope.pedido);
 					//$scope.pedidos = $scope.pedido.concat($scope.pedido);
 
-					console.log($scope.pedidos);
+					//console.log($scope.pedidos);
 					$scope.pedidos = $scope.pedidos.concat(angular.copy($scope.pedido));
 
 					
