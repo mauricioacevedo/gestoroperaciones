@@ -6509,7 +6509,9 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 					$scope.pedido = {};
 					$scope.pedidos = [];
 				} else {
+					
 					$scope.historico_pedido = $scope.historico_pedido.concat(angular.copy($scope.pedido));
+					console.log($scope.historico_pedido);
 					$scope.peds.splice(index, 1);
 					if ($scope.pedidos == "") {
 						$scope.pedidos = new Array();
