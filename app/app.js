@@ -3621,9 +3621,6 @@ $scope.tab.activeTabs = 1;
 $scope.tab.setActiveTab = function (tabToSet) {
 	$scope.activeTabs = tabToSet;
 };
-$scope.tab.isSetTab = function (tabToSet){
-	return $scope.activeTabs === tabToSet;
-};
 // ----------------------------------------------------Opciones de Tabs para las Graficas 
 
 $scope.csvPendientes = function (concep) {

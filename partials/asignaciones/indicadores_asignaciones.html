@@ -135,15 +135,17 @@
 		<div class="col-md-12">
             <div class="panel with-nav-tabs panel-default">
                 <div class="panel-heading">
-                        <ul class="nav nav-tabs ">
-                            <li ng-class="{'active' : 'activeTabs == 1'}"><a href="" ng-click="tab.setActiveTab(1)" data-toggle="tab">Pendientes</a></li>
-                            <li ng-class="{'active' : 'activeTabs == 2'}"><a href="" ng-click="tab.setActiveTab(2)" data-toggle="tab">Gestión</a></li>
-                        </ul>
+					<ul class="nav nav-tabs">
+						<li ng-class="{'active' : tab.activeTab == 1}"><a href="" ng-click="tab.setActiveTab(1)">Pendientes</a></li>
+						<li ng-class="{'active' : tab.activeTab == 2}"><a href="" ng-click="tab.setActiveTab(2)">Gestion</a></li>
+					</ul>
                 </div>
                 <div class="panel-body">
                     <div class="tab-content">
-                        <div ng-show="tab.isSetTab(1)" class="tab-pane fade in active">Default 1</div>
-                        <div ng-show="tab.isSetTab(2)" class="tab-pane fade" id="tab2default">Default 2</div>
+                       	<div ng-class="{'tab-pane active': tab.activeTab === 1, 'tab-pane' : tab.activeTab !== 1}">Panel 1 Content</div>
+						<div ng-class="{'tab-pane active': tab.activeTab === 2, 'tab-pane' : tab.activeTab !== 2}">Panel 2 Content</div>
+					
+						</div>
                     </div>
                 </div>
             </div>
