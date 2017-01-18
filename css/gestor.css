@@ -389,10 +389,3 @@ input.filtro {
     background-color: rgba(68,68,68, .23);
     border-bottom-color: transparent;
 }
-.tab-pane{
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
-    color: #4F4E4E;
-}
