@@ -400,3 +400,10 @@ input.filtro {
     color: #fff;
     background-color: #555;
 }
+.tabs-below > .tab-content:after,
+.tabs-right > .tab-content:after,
+.tabs-left > .tab-content:after {
+  content: '';
+  display: block;
+  clear: both;
+}
