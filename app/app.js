@@ -3616,9 +3616,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 	};
 // Opciones de Tabs para las Graficas ----------------------------------------------------
-$scope.tab={};
-$scope.tab.activeTabs = 1;
-$scope.tab.setActiveTab = function (tabToSet) {
+$scope.activeTabs = 1;
+$scope.setActiveTab = function (tabToSet) {
 	$scope.activeTabs = tabToSet;
 };
 // ----------------------------------------------------Opciones de Tabs para las Graficas 
