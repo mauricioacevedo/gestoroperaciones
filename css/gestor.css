@@ -356,6 +356,7 @@ input.filtro {
     bottom: 30px;
     clear:both;
     border-bottom: 1px solid transparent;
+    color: #4F4E4E !important;
 }
 
 .panel-tabs > li {
