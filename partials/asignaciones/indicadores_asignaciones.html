@@ -135,36 +135,15 @@
 		<div class="col-md-12">
             <div class="panel with-nav-tabs panel-default">
                 <div class="panel-heading">
-                      <uib-tabset active="active">
-						<uib-tab  heading="Static title">Static content</uib-tab>
-						<uib-tab  heading="Static title">Static content</uib-tab>
-						<uib-tab  heading="Static title">Static content</uib-tab>
-					</uib-tabset>
-							
-                </div>
-                <div class="panel-body">
-                    <div class="tab-content">
-                  
-							
-                    </div>
-                </div>
-            </div>
-        </div>
-		<div class="col-md-12">
-            <div class="panel with-nav-tabs panel-default">
-                <div class="panel-heading">
                         <ul class="nav nav-tabs ">
-                            <li class="active"><a href="#tab1default" data-toggle="tab">Default 1</a></li>
-                            <li><a href="#tab2default" data-toggle="tab">Default 2</a></li>
+                            <li class="active"><a href="" ng-click="tab.setActiveTab(1)" data-toggle="tab">Pendientes</a></li>
+                            <li><a href="" ng-click="tab.setActiveTab(2)" data-toggle="tab">Gestión</a></li>
                         </ul>
                 </div>
                 <div class="panel-body">
                     <div class="tab-content">
-                        <div class="tab-pane fade in active" id="tab1default">Default 1</div>
-                        <div class="tab-pane fade" id="tab2default">Default 2</div>
-                        <div class="tab-pane fade" id="tab3default">Default 3</div>
-                        <div class="tab-pane fade" id="tab4default">Default 4</div>
-                        <div class="tab-pane fade" id="tab5default">Default 5</div>
+                        <div ng-show="tab.isSetTab(1)" class="tab-pane fade in active">Default 1</div>
+                        <div ng-show="tab.isSetTab(2)" class="tab-pane fade" id="tab2default">Default 2</div>
                     </div>
                 </div>
             </div>

@@ -3615,6 +3615,16 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 
 	};
+// Opciones de Tabs para las Graficas ----------------------------------------------------
+
+$scope.tab.activeTabs = 1;
+$scope.tab.setActiveTab = function (tabToSet) {
+	$scope.activeTabs = tabToSet;
+};
+$scope.tab.isSetTab = function (tabToSet){
+	return $scope.activeTabs === tabToSet;
+};
+// ----------------------------------------------------Opciones de Tabs para las Graficas 
 
 $scope.csvPendientes = function (concep) {
 		var login = $rootScope.logedUser.login;
@@ -3631,9 +3641,7 @@ $scope.csvPendientes = function (concep) {
 $scope.actualizarGrafica();
 $scope.topProductivos();
 
-});
-
-//--------------- fin indicadores procesos-----------------------
+});//--------------- fin Controlador indicadores Asignaciones -----------------------
 
 
 //------------controlador usuarios -------------------
