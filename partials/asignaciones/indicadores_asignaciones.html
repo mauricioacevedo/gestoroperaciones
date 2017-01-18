@@ -137,13 +137,13 @@
                 <div class="panel-heading">
                         <ul class="nav nav-tabs">
                             <li ng-class="{'active' : activeTabs == 1}"><a href="" ng-click="setActiveTab(1)" data-toggle="tab"> Default 1</a></li>
-                            <li><a href="" ng-click="setActiveTab(2)" data-toggle="tab">Default 2</a></li>
+                            <li ng-class="{'active' : activeTabs == 2}"><a href="" ng-click="setActiveTab(2)" data-toggle="tab">Default 2</a></li>
                         </ul>
                 </div>
                 <div class="panel-body">
                     <div class="tab-content">
-                        <div class="tab-pane fade in active" id="tab1default">Default 1</div>
-                        <div class="tab-pane fade" id="tab2default">Default 2</div>
+                        <div ng-class="{'tab-pane fade in active': activeTabs === 1, 'tab-pane' : activeTabs !== 1}" id="tab1default">Default 1</div>
+                        <div ng-class="{'tab-pane fade in active': activeTabs === 2, 'tab-pane' : activeTabs !== 2}" id="tab2default">Default 2</div>
                     </div>
                 </div>
 				<div class="panel-footer clearfix" >
