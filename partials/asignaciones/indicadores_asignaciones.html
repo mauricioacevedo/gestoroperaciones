@@ -135,10 +135,13 @@
 		<div class="col-md-12">
 			<div class="panel with-nav-tabs panel-default">
                 <div class="panel-heading">
-                        <ul class="nav nav-tabs">
-                            <li class="secondary-nav" ng-class="{'active secondary-nav' : activeTabs == 1}"><a href="" ng-click="setActiveTab(1)" data-toggle="tab"> Default 1</a></li>
-                            <li class="secondary-nav" ng-class="{'active secondary-nav' : activeTabs == 2}"><a href="" ng-click="setActiveTab(2)" data-toggle="tab">Default 2</a></li>
-                        </ul>
+					<ul class="nav navbar-nav navbar-left">
+						<b>Gráficas</b>
+					</ul>
+					<ul class="nav navbar-right nav-tabs">
+						<li ng-class="{'active' : activeTabs == 1}"><a href="" ng-click="setActiveTab(1)" data-toggle="tab"> Default 1</a></li>
+						<li ng-class="{'active' : activeTabs == 2}"><a href="" ng-click="setActiveTab(2)" data-toggle="tab">Default 2</a></li>
+					</ul>
                 </div>
                 <div class="panel-body">
                     <div class="tab-content">
