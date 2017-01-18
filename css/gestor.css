@@ -375,14 +375,14 @@ input.filtro {
 
 .panel-tabs > li > a:hover {
     border-color: transparent;
-    color: #ffffff;
+    color: #4F4E4E;
     background-color: transparent;
 }
 
 .panel-tabs > li.active > a,
 .panel-tabs > li.active > a:hover,
 .panel-tabs > li.active > a:focus {
-    color: #ffffff;
+    color: #4F4E4E;
     cursor: default;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
