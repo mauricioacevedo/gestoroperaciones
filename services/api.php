@@ -12343,19 +12343,19 @@ private function buscarOfertaSiebelAsignaciones(){
 
 
             $query="SELECT u.ID, ".
-								  " u.USUARIO_ID, ".
-								  "  u.USUARIO_NOMBRE, ".
-								  "  SUBSTRING_INDEX(u.USUARIO_NOMBRE, ' ', 1) as NOMBRE, ".
-								  "  u.CEDULA_ID, ".
-								  "  u.GRUPO, ".
-								  "  u.CORREO_USUARIO, ".
-								  "  u.CARGO_ID, ".
-								  "  u.SUPERVISOR, ".
-								  "  u.INTERVENTOR, ".
-								  "  u.ESTADO ".
-								  " FROM portalbd.tbl_usuarios u ".
-								  "	where 1=1 ".
-								  " order by u.USUARIO_ID ASC";
+                " u.USUARIO_ID, ".
+                "  u.USUARIO_NOMBRE, ".
+                "  SUBSTRING_INDEX(u.USUARIO_NOMBRE, ' ', 1) as NOMBRE, ".
+                "  u.CEDULA_ID, ".
+                "  u.GRUPO, ".
+                "  u.CORREO_USUARIO, ".
+                "  u.CARGO_ID, ".
+                "  u.SUPERVISOR, ".
+                "  u.INTERVENTOR, ".
+                "  u.ESTADO ".
+                " FROM portalbd.tbl_usuarios u ".
+                "	where 1=1 ".
+                " order by u.USUARIO_ID ASC";
 
 						//echo $query;
 
@@ -12373,17 +12373,17 @@ private function buscarOfertaSiebelAsignaciones(){
                                 $fp = fopen("../tmp/$filename", 'w');
                                 //echo $fp;
                                 $columnas=array( 'REGISTROID',
-												 'USUARIO_ID',
-												 'USUARIO_NOMBRE',
-												 'NOMBRE',
-												 'CEDULA_ID',
-												 'GRUPO',
-												 'CORREO_USUARIO',
-												 'CARGO_ID',
-												 'SUPERVISOR',
-												 'INTERVENTOR',
-												 'ESTADO'
-												 );
+                                                'USUARIO_ID',
+                                                'USUARIO_NOMBRE',
+                                                'NOMBRE',
+                                                'CEDULA_ID',
+                                                'GRUPO',
+                                                'CORREO_USUARIO',
+                                                'CARGO_ID',
+                                                'SUPERVISOR',
+                                                'INTERVENTOR',
+                                                'ESTADO'
+                                                );
 
                                 fputcsv($fp, $columnas,',');
                                 //$carlitos=0;
@@ -12664,6 +12664,105 @@ private function opcionesGestionAsignaciones(){
 					}
 
          }// ------------------------------------------------------------------------ Parametros Acciones Nuevo
+//Funcion para productividad el grupo de asignaciones cada hora-----------------------------------------------
+private function productivdadAsignacionesPorHora(){
+        $parametro="";
+        if($this->get_request_method() != "POST"){
+                $this->response('',406);
+                }
+                $params = json_decode(file_get_contents('php://input'),true);
+                $fecha = $params['fecha'];
+                $today = date("Y-m-d");
+
+                if($fecha==''|| $fecha=='undefined'){
+                        $fecha=$today;
+                }
+
+
+             $query=    " SELECT ".
+                        " G.HORA ".
+                        " , ifnull(G.INGRESOS,0) AS INGRESOS ".
+                        " , ifnull(G.ASIGNADOS,0) AS ASIGNADOS ".
+                        " , ifnull(G.SIEBEL,0) AS SIEBEL ".
+                        " , ifnull(G.RECONFIGURADOS,0) AS RECONFIGURADOS ".
+                        " , (ifnull(G.INGRESOS,0)+ifnull(G.ASIGNADOS,0)+ifnull(G.SIEBEL,0)+ifnull(G.RECONFIGURADOS,0) ) AS GESTIONADOS ".
+                        " FROM(SELECT  ".
+                        " h.HORA ".
+                        " , (SELECT  ".
+                        " 	COUNT(*) AS INGRESOS ".
+                        " 	FROM( SELECT ".
+                        " 	M.PEDIDO_ID ".
+                        " 	, MIN(M.FECHA_ESTADO) AS FECHA_ESTADO ".
+                        " 	, hour(MIN(M.FECHA_ESTADO)) AS HORA ".
+                        " 	FROM informe_petec_pendientesm M ".
+                        " 	WHERE 1=1 ".
+                        " 	AND M.FECHA_ESTADO between '$fecha 00:00:00' and '$fecha 23:59:59' ".
+                        " 	GROUP BY M.PEDIDO_ID ) ING ".
+                        "     where ING.HORA=h.HORA ".
+                        " 	GROUP BY ING.HORA) as INGRESOS ".
+                        " , (SELECT ".
+                        " 	COUNT(*) AS GESTIONADO ".
+                        " 	FROM (SELECT  ".
+                        " 		p.pedido_id, ".
+                        " 		 MAX(p.fecha_fin) AS FECHAFIN, ".
+                        " 		 DATE_FORMAT(MAX(p.fecha_fin),'%H') AS HORA, ".
+                        " 		 DATE_FORMAT(MAX(p.fecha_fin),'%H:00') AS HORA_FULL, ".
+                        " 		 MAX(p.fecha_estado) AS FECHAESTADO ".
+                        " 	FROM portalbd.pedidos p ".
+                        " 	where 1=1 ".
+                        " 	and p.fecha_fin between '$fecha 00:00:00' and '$fecha 23:59:59' ".
+                        " 	and p.actividad='ESTUDIO' ".
+                        " 	AND p.PEDIDO_ID!='' ".
+                        " 	GROUP BY p.pedido_id ) GES ".
+                        "     where GES.HORA=h.HORA ".
+                        " 	GROUP BY GES.HORA) as ASIGNADOS ".
+                        " , (SELECT ".
+                        " 	COUNT(*) AS GESTIONADOS ".
+                        " 	FROM (SELECT  ".
+                        " 	n.OFERTA as PEDIDO_ID ".
+                        " 	, max(n.fecha_fin) as FECHA_FIN ".
+                        " 	, HOUR(MAX(n.fecha_fin)) AS HORA ".
+                        " 	, DATE_FORMAT(MAX(n.fecha_fin),'%H:00') AS HORA_FULL ".
+                        " 	FROM portalbd.transacciones_nca n ".
+                        " 	where n.fecha_fin between '$fecha 00:00:00' and '$fecha 23:59:59' ".
+                        " 	group by n.OFERTA ) SI ".
+                        "     WHERE SI.HORA=h.HORA ".
+                        " 	GROUP BY SI.HORA) AS SIEBEL ".
+                        " , (SELECT ".
+                        " 	COUNT(*) AS GESTIONADO ".
+                        " 	FROM (SELECT  ".
+                        " 		p.pedido_id, ".
+                        " 		 MAX(p.fecha_fin) AS FECHAFIN, ".
+                        " 		 DATE_FORMAT(MAX(p.fecha_fin),'%H') AS HORA, ".
+                        " 		 DATE_FORMAT(MAX(p.fecha_fin),'%H:00') AS HORA_FULL, ".
+                        " 		 MAX(p.fecha_estado) AS FECHAESTADO ".
+                        " 	FROM portalbd.pedidos p ".
+                        " 	where 1=1 ".
+                        " 	and p.fecha_fin between '$fecha 00:00:00' and '$fecha 23:59:59' ".
+                        " 	and p.actividad='RECONFIGURACION' ".
+                        " 	AND p.PEDIDO_ID!='' ".
+                        " 	GROUP BY p.pedido_id ) GES ".
+                        "     where GES.HORA=h.HORA ".
+                        " 	GROUP BY GES.HORA) as RECONFIGURADOS ".
+                        " FROM portalbd.informe_petec_horam h ".
+                        " where 1=1 ".
+                        " and h.FECHA='$fecha' ".
+                        " and h.CONCEPTO='PENDIENTES') G ";
+                        
+                        $rst = $this->mysqli->query($query);
+                        if ($rst->num_rows > 0){
+                                $resultado=array();
+                                while($row=$rst->fetch_assoc()){
+                                        $resultado[]=$row;
+                                        }
+                                        $this->response($this->json($resultado), 201);
+                                        }else{
+                                                $error="Sin registros";
+						$this->response($this->json($error), 403);
+					}
+
+         }//-----------------------------------------------Funcion para productividad el grupo de asignaciones cada hora
+
 
 
 	}//cierre de la clase
