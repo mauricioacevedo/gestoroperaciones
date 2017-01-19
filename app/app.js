@@ -6014,6 +6014,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 	$scope.popup = '';
 	$scope.intervalLightKPIS = '';
 	$scope.pedidoinfo = 'Pedido';
+    $scope.listaOpcionesGestion = [];						// Arreglo con listado de Opciones para la Gestion.
 
 	var pedidos = services.getPedidosUser(userID).then(function (data) {
 		$scope.pedidos = data.data[0];
@@ -6041,6 +6042,34 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.listadoTips = data.data[0];
 		return data.data;
 	});
+
+	$scope.GenerarOpcionesGestion = function () {
+		var opciones= {
+			fuente: 'FENIX_NAL',
+			grupo: 'ASIGNACIONES'
+		};
+
+		$scope.listarOpcionesAsginacion(opciones);
+	}//-------------------------------------------------------------------------------------------------------
+
+    $scope.listarOpcionesAsginacion = function (opciones) {
+
+		services.getOpcionesGestionAsignaciones(opciones).then(
+			function (data) {
+
+				$scope.listaOpcionesGestion=data.data;
+				//console.log($scope.listaOpcionesGestion);
+				return data.data;
+
+			},
+			function errorCallback(response, status) {
+				//console.log(status);
+				$rootScope.errorDatos = "Error, revisar opciones";
+
+			}
+		);
+	};
+
 
 	//funcion que muestra los tip cuando se digita su busqueda.
 	$scope.muestraBusquedaTip = function (texto) {
