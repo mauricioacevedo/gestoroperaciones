@@ -6070,6 +6070,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		);
 	};
 
+    $scope.GenerarOpcionesGestion();
 
 	//funcion que muestra los tip cuando se digita su busqueda.
 	$scope.muestraBusquedaTip = function (texto) {

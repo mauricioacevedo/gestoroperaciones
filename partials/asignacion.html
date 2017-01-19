@@ -59,7 +59,7 @@
   
         <div class="col-lg-5 col-xs-5 form-inline">
          <label  for="conceptos" >Concepto:</label>
-          <select ng-model="iconcepto" class="form-control" style="width: 100px">
+          <select ng-model="iconcepto" class="form-control" style="width: 100px" ng-change="GenerarOpcionesGestion()" >
             <option value='PETEC'>PETEC</option>
             <option value='15'>15</option>
             <option value='19'>19</option>
@@ -252,29 +252,12 @@
                         </div>
                       </td>
 
-                            <td>
-                                          <!--select ng-show="isAuthorized(service.CONCEPTO_ID);" class= "form-control" ng-model="service.estado">
+                                      <td><select ng-show="isAuthorized(service.CONCEPTO_ID);" class= "form-control" ng-model="service.estado">
                                               <option value='PORDE'>PORDE</option>
                                               <option value='PENDIENTE'>PENDIENTE</option>
                                               <option value='ANULADO'>ANULADO</option>
                                               <option value='MALO'>MALO</option>
-                                      </select-->
-                                    <select
-													class= "form-control btn-xs"
-													name="estado"
-													ng-model="InfoPedido.ESTADO_PROCESO"
-													ng-disabled="ocupado"
-													ng-click="onChangeEstado()"
-													required>
-													<option value="" disabled>--Seleccione--</option>
-													<option
-														ng-repeat="d in listaOpcionesGestion | unique:'ESTADO_ID'"
-
-														value="{{d.ESTADO_ID}}">
-														{{d.ESTADO_ID}}
-													</option>
-									</select>
-                            </td>
+                                      </select></td>
                           <td ng-show="service.estado=='MALO'">
                             <select class= "form-control" ng-model="service.motivo_malo">
                                 <option value="TELEV EN PETEC">TELEV EN PETEC</option>
