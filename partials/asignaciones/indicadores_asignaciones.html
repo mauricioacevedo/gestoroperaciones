@@ -155,7 +155,20 @@
 								datasource="{{myDataSource}}">
 							</div><!--Fusioncharts -->
 						   </div>
-                        <div ng-class="{'tab-pane fade in active': activeTabs === 2, 'tab-pane' : activeTabs !== 2}" id="tab2default">Default 2</div>
+                        <div ng-class="{'tab-pane fade in active': activeTabs === 2, 'tab-pane' : activeTabs !== 2}" id="tab2default">
+							<table width="100%" class="table">
+								<thead>
+								<tr>
+								<th ng-repeat="(header, value) in tablaProductividadPorHora">{{header}}</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr ng-repeat="row in tablaProductividadPorHora">
+								<td ng-repeat="cell in row">{{cell}}</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
                     </div>
                 </div>
 				<div class="panel-footer clearfix" >
