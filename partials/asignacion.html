@@ -252,14 +252,47 @@
                         </div>
                       </td>
 
-                                      <td><select ng-show="isAuthorized(service.CONCEPTO_ID);" class= "form-control" ng-model="service.estado">
+                            <td>
+
+                                    <!--select ng-show="isAuthorized(service.CONCEPTO_ID);" class= "form-control" ng-model="service.estado">
                                               <option value='PORDE'>PORDE</option>
                                               <option value='PENDIENTE'>PENDIENTE</option>
                                               <option value='ANULADO'>ANULADO</option>
                                               <option value='MALO'>MALO</option>
-                                      </select></td>
-                          <td ng-show="service.estado=='MALO'">
-                            <select class= "form-control" ng-model="service.motivo_malo">
+                                      </select-->
+                                <select
+													class= "form-control btn-xs"
+													name="estado"
+													ng-model="InfoPedido.ESTADO_PROCESO"
+													ng-disabled="ocupado"
+													ng-click="onChangeEstado()"
+													required>
+													<option value="" disabled>--Seleccione--</option>
+													<option
+														ng-repeat="d in listaOpcionesGestion | unique:'ESTADO_ID'"
+
+														value="{{d.ESTADO_ID}}">
+														{{d.ESTADO_ID}}
+													</option>
+												</select>
+                            </td>
+                          <td ng-show="service.estado=='MALO' || service.estado=='RECONFIGURAR'">
+
+                              <select
+                                    class= "form-control btn-xs"
+                                    name="obs"
+                                    ng-model="InfoPedido.OBSERVACIONES_PROCESO"
+                                    ng-change="onChangeAccion(InfoPedido.OBSERVACIONES_PROCESO)" required>
+                                    <option value="" disabled>--Seleccione--</option>
+                                    <option
+                                        ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO}:true | unique:'OBSERVACION_ID'"
+
+                                        value="{{d.OBSERVACION_ID}}">
+                                        {{d.OBSERVACION_ID}}
+                                    </option>
+                                </select>
+
+                            <!--select class= "form-control" ng-model="service.motivo_malo">
                                 <option value="TELEV EN PETEC">TELEV EN PETEC</option>
                                 <option value="CABEZA DEL PAQUETE EN PETEC">CABEZA DEL PAQUETE EN PETEC</option>
                                 <option value="PEDIDO NO SE DEJA GESTIONAR">PEDIDO NO SE DEJA GESTIONAR</option>
@@ -271,7 +304,7 @@
                                 <option value="PENDIENTE ACCESO">PENDIENTE ACCESO</option>
 
                                 
-                            </select>
+                            </select-->
                           </td>
 
                                       <td>
