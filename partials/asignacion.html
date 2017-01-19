@@ -252,12 +252,29 @@
                         </div>
                       </td>
 
-                                      <td><select ng-show="isAuthorized(service.CONCEPTO_ID);" class= "form-control" ng-model="service.estado">
+                            <td>
+                                          <!--select ng-show="isAuthorized(service.CONCEPTO_ID);" class= "form-control" ng-model="service.estado">
                                               <option value='PORDE'>PORDE</option>
                                               <option value='PENDIENTE'>PENDIENTE</option>
                                               <option value='ANULADO'>ANULADO</option>
                                               <option value='MALO'>MALO</option>
-                                      </select></td>
+                                      </select-->
+                                    <select
+													class= "form-control btn-xs"
+													name="estado"
+													ng-model="InfoPedido.ESTADO_PROCESO"
+													ng-disabled="ocupado"
+													ng-click="onChangeEstado()"
+													required>
+													<option value="" disabled>--Seleccione--</option>
+													<option
+														ng-repeat="d in listaOpcionesGestion | unique:'ESTADO_ID'"
+
+														value="{{d.ESTADO_ID}}">
+														{{d.ESTADO_ID}}
+													</option>
+									</select>
+                            </td>
                           <td ng-show="service.estado=='MALO'">
                             <select class= "form-control" ng-model="service.motivo_malo">
                                 <option value="TELEV EN PETEC">TELEV EN PETEC</option>
