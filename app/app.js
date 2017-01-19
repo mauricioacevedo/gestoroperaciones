@@ -112,7 +112,7 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 	obj.expCsvUsuarios = function () {
 		return $http.post(serviceBase + 'csvUsuarios');
 	};
-	//Crud de Usuarios
+	//Crud de Usuarios-----------------------------------------------------------------------------------------
 	obj.putUsuarioNuevo = function (editaInfo) {
 		return $http.post(serviceBase + 'crearUsuario', {
 			"editaInfo": editaInfo
@@ -130,9 +130,8 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 			"id": id
 		});
 	};
-	//Crud de Usuarios
-	// Servicios Globales --------------------
-	//---------------------------------------------------------------------------------------------Agendamiento
+	//-----------------------------------------------------------------------------------------Crud de Usuarios
+	//Agendamiento---------------------------------------------------------------------------------------------
 	obj.getPedidosUserAdelantarAgenda = function (userID) {
 		return $http.get(serviceBase + 'pedidosPorUserAdelantarAgenda?userID=' + userID); //usuario adelantar agenda
 	};
@@ -262,8 +261,6 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 		return $http.get(serviceBase + 'getcodigo_resultado?fecha=' + fecha);
 	};
 
-
-
 	obj.getPedidos_Microzonas = function (fecha) { //pedidos por microzonas
 		return $http.get(serviceBase + 'getPedidos_Microzonas?fecha=' + fecha);
 	};
@@ -323,7 +320,7 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 
 	//-----------------------------------------------------------------------------------------fin_Agendamiento
 
-	//-----------------------------------------------------------------------------------Activacion
+	//Activacion-----------------------------------------------------------------------------------
 	obj.getactividadesUser = function (userID) {
 		return $http.get(serviceBase + 'actividadesUser?userID=' + userID); //pedido por user
 	};
@@ -470,7 +467,7 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 	//------------------------------------------------------fin_Activacion
 
 
-	//-------------------------------------------------------------------asignaciones
+	//Asignaciones-------------------------------------------------------------------
 
 	obj.logVista = function (userID, vista) {
 		return $http.get(serviceBase + 'logVista?userID=' + userID + '&vista=' + vista);
@@ -949,6 +946,11 @@ app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
 	obj.getHistoricoPedido = function (pedido) {
 		return $http.post(serviceBase + 'listaHistoricoPedidos', {
 			pedido: pedido
+		});
+	};
+	obj.getProductividadAsignacionesPorHora = function (fecha) {
+		return $http.post(serviceBase + 'productivdadAsignacionesPorHora', {
+			fecha: fecha
 		});
 	};
 
@@ -3634,6 +3636,19 @@ $scope.csvPendientes = function (concep) {
 			return data.data;
 		});
 	};
+
+$scope.ProductividadPorHora = function (fecha){
+	services.productivdadAsignacionesPorHora(fecha).then(
+		function (data) {
+			$scope.tablaProductividadPorHora=data.data[0];
+			return data.data;
+		}, 
+		function errorCallback(response, status, data) {
+			$rootScope.errorDatos = data.data[0];
+		}
+	);
+};
+
 $scope.actualizarGrafica();
 $scope.topProductivos();
 
