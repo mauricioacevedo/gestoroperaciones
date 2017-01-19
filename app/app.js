@@ -3638,7 +3638,7 @@ $scope.csvPendientes = function (concep) {
 	};
 
 $scope.ProductividadPorHora = function (fecha){
-	services.productivdadAsignacionesPorHora(fecha).then(
+	services.getProductividadAsignacionesPorHora(fecha).then(
 		function (data) {
 			$scope.tablaProductividadPorHora=data.data[0];
 			return data.data;
