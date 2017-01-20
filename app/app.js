@@ -3582,12 +3582,12 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 			console.log(response);
 
-		})
+		})};//------PRUEBAS API OPENFIRE -----------------------------
 
 
-	};
 
-	//------PRUEBAS API OPENFIRE -----------------------------
+
+
 	$scope.grupo = {};
 	$scope.topProductivos = function () {
 		//console.log($scope.grupo);
@@ -3621,6 +3621,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 $scope.activeTabs = 1;
 $scope.setActiveTab = function (tabToSet) {
 	$scope.activeTabs = tabToSet;
+	$scope.ProductividadPorHora();
+	$scope.actualizarGrafica();
 };
 // ----------------------------------------------------Opciones de Tabs para las Graficas 
 
