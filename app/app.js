@@ -13296,7 +13296,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 });
 // -----------------------------------------------Controlador para Gestion de Edatel
 
-// Controlador para Gestion de Edatel Asignaciones -----------------------------------------------
+// Controlador para Gestion General de los procesos de Asignaciones -----------------------------------------------
 app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $location, $route, $routeParams, $cookies, $cookieStore, $timeout, notify, services) {
 
 	// Basura del logueo ---------------------------------
