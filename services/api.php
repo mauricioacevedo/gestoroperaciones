@@ -1492,6 +1492,7 @@ if($novedad=='AGENDADO'||$novedad=='AGENDADO MANUAL'||$novedad=='AGENDADO_FUTURO
 			$iddd=$pedido['pedido']['ID'];
 
 			$estadum=$pedido['pedido']['estado'];
+            $estadoid=$pedido['pedido']['estado'];
 			$useri=$pedido['pedido']['user'];
 			$username=$pedido['pedido']['username'];
 

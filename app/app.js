@@ -6520,6 +6520,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 			return;
 		}
 		//console.log($scope.pedido);
+		$scope.pedido.ESTADO_ID = $scope.pedido.estado;
 		$scope.pedido.user = $rootScope.logedUser.login;
 		$scope.pedido.username = $rootScope.logedUser.name;
 		$scope.pedido.duracion = new Date().getTime() - $scope.timeInit;
