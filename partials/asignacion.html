@@ -284,7 +284,7 @@
                                     >
                                     <option value="" disabled>--Seleccione--</option>
                                     <option
-                                        ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.ESTADO_PROCESO}:true | unique:'OBSERVACION_ID'"
+                                        ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'"
 
                                         value="{{d.OBSERVACION_ID}}">
                                         {{d.OBSERVACION_ID}}
