@@ -6500,7 +6500,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 	};
 
 	$scope.savePedido = function (index) {
-        console.log(index);
+        //console.log(index);
 
 		var loader = document.getElementById("class" + index);
 		loader.className = 'glyphicon glyphicon-refresh fa-spin';
@@ -6512,7 +6512,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		//$scope.pedido=$scope.peds[index];
 		angular.copy($scope.peds[index], $scope.pedido);
 
-		 console.log($scope.pedido);
+		// console.log($scope.pedido);
 
 		//if($scope.pedido.estado===undefined||$scope.pedido.accion===undefined){
 		if ($scope.pedido.estado === undefined) {
