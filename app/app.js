@@ -15179,8 +15179,8 @@ app.run(['$rootScope', 'firebase', 'services', function ($rootScope, $firebase, 
 		{
 			TRANSACCION: 'TRASLADO RETIRO',
 			VALOR: 'TRASLADO RETIRO'
-		},
-        ];
+		}
+    ];
 
 	$rootScope.transaccionActivacion1 = [
 		{
@@ -15198,7 +15198,7 @@ app.run(['$rootScope', 'firebase', 'services', function ($rootScope, $firebase, 
 		{
 			TIPIFICACION: 'NUEVO',
 			VALOR: 'NUEVO'
-		},
+		}
         ];
 	// ------------------------------------------- Listados activacion--------------
 
@@ -15209,7 +15209,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 	$rootScope.daysInMonth = function (year, month) {
 		return new Date(year, month + 1, 0).getDate();
-	}
+	};
 
 	$rootScope.fechaProceso = function () {
 		var tiempo = new Date().getTime();
@@ -15223,7 +15223,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 		tiempo = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 		return tiempo;
-	}
+	};
 
 	$rootScope.executeCopy = function executeCopy(text) {
 		var input = document.createElement('textarea');
@@ -15243,25 +15243,20 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 	// BtnTools Buscadores Ventanas --------------------------------------------------------------------------------
 	$rootScope.BuscaNodo = function () {
 		window.open(window.location.pathname + "#/cmts/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
-	}
-
+	};
 	$rootScope.BuscaGPON = function () {
 		window.open(window.location.pathname + "#/gpon/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=50, width=1100, height=450");
-	}
-
+	};
 	$rootScope.abrirCalculoDistancia = function () {
 		window.open(window.location.pathname + "#/distancia/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=1200px, height=600");
-	}
-
+	};
 	$rootScope.abrirTips = function () {
 		window.open(window.location.pathname + "#/tips/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
-	}
+	};
 
 	$rootScope.BuscaRedEdatel = function (localidad) {
 		window.open(window.location.pathname + "#/distriedatel/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
-	}
-
-
+	};
 	// --------------------------------------------------------------------------------  BtnTools Buscadores Ventanas
 
 	$rootScope.ProgramadosModal = function () {
@@ -15269,10 +15264,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 		$rootScope.errorDatos = null;
 		$rootScope.TituloModal = "Pedidos Programados por: ";
 		//$scope.UserProgramados=$scope.usuario_id;
-
-
 	};
-
 
 	//Obtener listado de Pedidos Programados por User
 	$rootScope.listaProgramados = function () {
@@ -15310,7 +15302,6 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 		$rootScope.errorDatos = null;
 		$rootScope.pedidoHistorico=pedido;
 		//$scope.UserProgramados=$scope.usuario_id;
-
 	};
 
 	//Obtener listado de Historico del pedido tal
@@ -15349,6 +15340,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 	$rootScope.$on("$routeChangeStart", function (evt, to, from) {
         //console.log(to);
 		console.log(to.grupos);
+        console.log(to.cargos);
 
 		if ($cookieStore.get('logedUser') == undefined) {
 			$location.path('/', true);
@@ -15372,11 +15364,9 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 						userRef.onDisconnect().remove();
 					}
 				})
-			};
+			}
 
-
-
-		};
+		}
 
 
 
@@ -15387,8 +15377,6 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 		//console.log($rootScope.loginexito);
 		$rootScope.title = current.$$route.title;
 		//console.log(current.$$route.controller);
-
-
 
 	});
 
