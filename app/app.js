@@ -15382,9 +15382,10 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 			};
 
 			//Check si el usuario tiene permisos para ingresar a la ruta --------------------
+            console.log(galleta.GRUPO);
 			if (to.grupos.indexOf(galleta.GRUPO)>=0) {
 
-				console.log(galleta.GRUPO);
+
 				console.log("Tiene Permiso");
 
 			}
