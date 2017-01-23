@@ -13766,7 +13766,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		$scope.actividadGo = actividad[0].ACTIVIDAD;
 		$scope.guardando=true;
 
-		console.log(InfoPedido); //Seguimiento
+		//console.log(InfoPedido); //Seguimiento
 		//console.log(gestion);//GEstion
 		//console.log($scope.stautsGo); //Cerrado, Pendiente o Malo
 		//console.log($scope.iconcepto);
