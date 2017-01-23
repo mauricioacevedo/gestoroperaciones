@@ -13363,7 +13363,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		};
 
 		$scope.listarOpcionesAsginacion(opciones);
-	}//-------------------------------------------------------------------------------------------------------
+	};//-------------------------------------------------------------------------------------------------------
 
 	/* Habilitar esta linea si se quiere inicializar el iconcepto con algun dato por defecto
 	$scope.iconcepto = { ID: '5', CONCEPTO_ID: '14', GRUPO: $scope.actividadGestion, ACTIVIDAD: 'ESTUDIO' ,FUENTE: 'FENIX_NAL'};
@@ -13562,7 +13562,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 			return data.data;
 		});
-	}
+	};
 
 	$scope.$on(
 		"$destroy",
@@ -13600,7 +13600,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 		if($scope.iconcepto.FUENTE=='SIEBEL'){
 			$scope.habilitaCr			= true;
-		};
+		}
 
 
 		if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
@@ -13713,7 +13713,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			grupo: 'RECONFIGURACION'
 			};
 			var kami = services.buscarPedidoReconfiguracion(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login);
-		};
+		}
 
 
 
@@ -13870,8 +13870,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			$scope.fecha_inicio 			= null;
 			$scope.fecha_fin 				= null;
 			$scope.InfoGestion 				= {};
-			$scope.guardando 				= false
-			$scope.pedidoIsActive 			= false
+			$scope.guardando 				= false;
+			$scope.pedidoIsActive 			= false;
 			$scope.peds 					= {};
 			$scope.mpedido 					= {};
 			$scope.bpedido 					= '';
@@ -13886,7 +13886,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			$scope.accRdy					= false;
 		}else{
 			$rootScope.errorDatos 			= "No se pudo guardar";
-			$scope.guardando 				= false
+			$scope.guardando 				= false;
 
 		}
 
