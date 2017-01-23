@@ -14614,54 +14614,63 @@ app.config(['$routeProvider',
 					}
 				}
 			})
-			.when('/asignacion/:userID', {
-				title: 'Asignacion',
-				templateUrl: 'partials/asignacion.html',
-				controller: 'AsignacionesCtrl',
-			})
-			.when('/asignacion/', {
-				title: 'Asignacion',
-				templateUrl: 'partials/asignacion.html',
-				controller: 'AsignacionesCtrl'
-			})
-
+        .when('/asignacion/:userID', {
+            title: 'Asignacion',
+            templateUrl: 'partials/asignacion.html',
+            controller: 'AsignacionesCtrl',
+			grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
+        })
+        .when('/asignacion/', {
+            title: 'Asignacion',
+            templateUrl: 'partials/asignacion.html',
+            controller: 'AsignacionesCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
+        })
 		.when('/reconfiguracion/', {
 			title: 'Reconfiguracion',
 			templateUrl: 'partials/reconfiguracion.html',
-			controller: 'ReconfiguracionCtrl'
+			controller: 'ReconfiguracionCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
 		.when('/tx/asignaciones/', {
-			title: 'Gestion Asignaciones',
+			title: "Gestion Asignaciones",
 			templateUrl: 'partials/transacciones/gestion_asignaciones.html',
-			controller: 'gestionAsignacionesCtrl'
+			controller: 'gestionAsignacionesCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
 		.when('/nca/', {
 			title: 'NCA',
 			templateUrl: 'partials/nca.html',
-			controller: 'NCACtrl'
+			controller: 'NCACtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
 		.when('/nca/transaccion', {
 			title: 'NCA',
 			templateUrl: 'partials/transaccion-nca.html',
-			controller: 'NCACtrl'
+			controller: 'NCACtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
-
 		.when('/admontips/nuevoTip', {
 			title: 'Nuevo Tip',
 			templateUrl: 'partials/editTips.html',
-			controller: 'nuevoTipsCtrl'
+			controller: 'nuevoTipsCtrl',
+            grupos: ['ASIGNACIONES','SUPER'],
+            cargos: ['1','2','3','4','5']
 		})
-
 		.when('/tips/', {
 			title: 'TIPS',
 			templateUrl: 'partials/tips.html',
 			controller: 'tipsCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION','ACTIVACION','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9'],
 			reloadOnSearch: false
 		})
-
 		.when('/tips/visualizacionTip/:tipID', {
 			title: 'Tip',
 			templateUrl: 'partials/soloTip.html',
@@ -14673,17 +14682,19 @@ app.config(['$routeProvider',
 				}
 			}
 		})
-
 		.when('/admontips/', {
 			title: 'Administración Tips',
 			templateUrl: 'partials/admontips.html',
-			controller: 'AdmonTipsCtrl'
+			controller: 'AdmonTipsCtrl',
+            grupos: ['ASIGNACIONES','SUPER'],
+            cargos: ['1','2','3','4','5']
 		})
-
 		.when('/admontips/edicionTip/:tipID', {
 			title: 'Edición Tips',
 			templateUrl: 'partials/editTips.html',
 			controller: 'editTipsCtrl',
+            grupos: ['ASIGNACIONES','SUPER'],
+            cargos: ['1','2','3','4','5'],
 			resolve: {
 				transtip: function (services, $route) {
 					var tipID = $route.current.params.tipID;
@@ -14691,320 +14702,302 @@ app.config(['$routeProvider',
 				}
 			}
 		})
-
 		.when('/registros/', {
 			title: 'Registros',
 			templateUrl: 'partials/registros.html',
-			controller: 'RegistrosCtrl'
+			controller: 'RegistrosCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION','ACTIVACION','CONSULTAS','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
 		.when('/registros/:conceptoid', {
 			title: 'Registros',
 			//templateUrl: 'partials/registros.html',
 			templateUrl: 'partials/asignaciones/pendientes_asignaciones.html',
-			controller: 'RegistrosCtrl'
+			controller: 'RegistrosCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION','ACTIVACION','CONSULTAS','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
 		.when('/historico_asignaciones/', {
 			title: 'Registros',
 			templateUrl: 'partials/asignaciones/historico_asignaciones.html',
-			controller: 'RegistrosCtrl'
+			controller: 'RegistrosCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION','ACTIVACION','CONSULTAS','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
 		.when('/pendientes_asignaciones/', {
 			title: 'Registros',
 			templateUrl: 'partials/asignaciones/pendientes_asignaciones.html',
-			controller: 'RegistrosCtrl'
+			controller: 'RegistrosCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION','ACTIVACION','CONSULTAS','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
 		.when('/pendientes_asignaciones/:conceptoid', {
 			title: 'Registros',
 			templateUrl: 'partials/pendientes_asignaciones.html',
-			controller: 'RegistrosCtrl'
+			controller: 'RegistrosCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION','ACTIVACION','CONSULTAS','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
 		.when('/asignacion_ordenes/', {
 			title: 'Ordenes',
 			templateUrl: 'partials/asignacion_ordenes.html',
-			controller: 'PordenesCtrl'
+			controller: 'PordenesCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION','CONSULTAS','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
 		.when('/ord/', {
 			title: 'ORD',
 			templateUrl: 'partials/oxxx.html',
-			controller: 'PordenesCtrl'
+			controller: 'PordenesCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION','CONSULTAS','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
 		.when('/ord/ordtransaccion', {
 			title: 'ORD',
 			templateUrl: 'partials/transacciones_oxxx.html',
-			controller: 'PordenesCtrl'
+			controller: 'PordenesCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION','CONSULTAS','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
 		.when('/tx/siebel_asignaciones', {
 			title: 'DemePedido Siebel Asignaciones',
 			templateUrl: 'partials/transacciones/siebel_asignaciones.html?n=1',
-			controller: 'siebelAsignacionesCtrl'
+			controller: 'siebelAsignacionesCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION','CONSULTAS','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
 		.when('/edatel/clientes', {
 			title: 'DemePedido Siebel Asignaciones',
 			templateUrl: 'partials/edatel/clientes_edatel.html?n=1',
-			controller: 'edatelCtrl'
+			controller: 'edatelCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION','CONSULTAS','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
 		.when('/tx/edatel_asignaciones', {
 			title: 'DemePedido Edatel Asignaciones',
 			templateUrl: 'partials/transacciones/edatel_asignaciones.html',
-			controller: 'edatelCtrl'
+			controller: 'edatelCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION','CONSULTAS','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
 		.when('/indicadores/', {
 			title: 'Indicadores Asignaciones',
 			templateUrl: 'partials/asignaciones/indicadores_asignaciones.html',
 			controller: 'IndicadoresCtrl',
-            grupos: ['ASIGNACIONES', 'SUPER']
+            grupos: ['ASIGNACIONES', 'SUPER'],
+            cargos: ['1','2','3','4','5']
 		})
-
 		.when('/b2b/', {
 			title: 'b2b',
 			templateUrl: 'partials/registros_b2b.html',
-			controller: 'RegistrosAgendamientoCtrl'
+			controller: 'RegistrosAgendamientoCtrl',
+            grupos: ['ASIGNACIONES', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
 		//-------- ASIGNACIONES ------------------------------------------
 		//---------------------------------------------INICIO ACTIVACION------
 		.when('/actividades/', {
 			title: 'Actividades',
 			templateUrl: 'partials/actividades.html',
-			controller: 'ActividadesCtrl'
+			controller: 'ActividadesCtrl',
+            grupos: ['ACTIVACION','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
-
 		.when('/actividades/transaccion', {
 			title: 'Actividades',
 			templateUrl: 'partials/transaccion-activadades.html',
-			controller: 'ActividadesCtrl'
+			controller: 'ActividadesCtrl',
+            grupos: ['ACTIVACION','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
 		.when('/alarmas/', {
 			title: 'Alarmas Activacon',
 			templateUrl: 'partials/alarmas.html',
-			controller: 'AlarmasActivacionCtrl'
+			controller: 'AlarmasActivacionCtrl',
+            grupos: ['ACTIVACION','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
-
 		.when('/demepedido-activacion', {
 			title: 'DemePedido Activacion',
 			templateUrl: 'partials/demepedido-activacion.html',
-			controller: 'siebelActivacionCtrl'
+			controller: 'siebelActivacionCtrl',
+            grupos: ['ACTIVACION','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
-
 		.when('/activacion/', {
 			title: 'Indicadores Activación',
 			templateUrl: 'partials/activacion/indicadores_activacion.html',
-			controller: 'ActivacionCtrl'
+			controller: 'ActivacionCtrl',
+            grupos: ['ACTIVACION','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
 		.when('/pendientes_activacion/', {
 			title: 'Pendientes Activación',
 			templateUrl: 'partials/activacion/pendientes_activacion.html',
-			controller: 'ActivacionCtrl'
-
+			controller: 'ActivacionCtrl',
+			grupos: ['ACTIVACION','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
 		.when('/historico_activacion/', {
 			title: 'Historico Activación',
 			templateUrl: 'partials/activacion/historico_activacion.html',
-			controller: 'ActivacionCtrl'
+			controller: 'ActivacionCtrl',
+            grupos: ['ACTIVACION','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
-
 		.when('/docuactivacion/', {
 			title: 'documentacionactivacion',
 			templateUrl: 'partials/docuactivacion.html',
-			controller: 'DocuActivacion'
-		})
-
-		//-----------------------------------------------------------------FIN ACTIVACION
-
-
+			controller: 'DocuActivacion',
+            grupos: ['ACTIVACION','CONSULTAS','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
+		})//-----------------------------------------------------------------FIN ACTIVACION
 		// ADMINISTRACION ------------------------------------------
-
-
 		.when('/users/', {
 			title: 'Gestion Usuarios',
 			templateUrl: 'partials/administracion/listado_usuarios.html',
-			controller: 'UsersCtrl'
+			controller: 'UsersCtrl',
+            grupos: ['SUPER'],
+            cargos: ['1']
 		})
-
 		.when('/users/usuario', {
 			title: 'SignUP',
 			templateUrl: 'partials/singup.html',
 			controller: 'UsersCtrl'
 		})
-
-
 		.when('/dashboard/', {
 			title: 'Dashboard',
 			templateUrl: 'partials/dashboard.html',
-			controller: 'DashboardCtrl'
-		})
-
-		//  ------------------------------------------ ADMINISTRACION
-
-
-		.when('/parametrizacion-siebel/', {
-			title: 'parametrizacion',
-			templateUrl: 'partials/parametrizacion-siebel.html',
-			controller: 'ParametrizacionSiebel'
-		})
-
+			controller: 'DashboardCtrl',
+            grupos: ['SUPER'],
+			cargos: ['1']
+		})//  ------------------------------------------ ADMINISTRACION
 		.when('/general/', {
 				title: 'Consultas',
 				templateUrl: 'partials/general.html',
 				controller: 'generalCtrl'
-			})
-
+		})
 		.when('/', {
 				title: 'Login',
 				templateUrl: 'partials/login.html',
 				controller: 'login'
-			})
-
-
+		})
+		.when('/chat/', {
+                title: 'GeoP Chat',
+                templateUrl: 'partials/chat/chatio.html',
+                controller: 'chatioCtrl'
+		})
+		.when('/chat/', {
+                title: 'GeoP Chat',
+                templateUrl: 'partials/chat/chatio.html',
+                controller: 'chatioCtrl'
+		})
 		// HERRAMIENTAS ------------------------------------------
-
 		.when('/cmts/', {
 				title: 'Cmts',
 				templateUrl: 'partials/buscarcmts.html',
 				controller: 'mymodalcontroller',
 				reloadOnSearch: false
-			})
-			.when('/distancia/', {
+		})
+		.when('/distancia/', {
 				title: 'Distancia',
 				templateUrl: 'partials/calculo-distancia.html',
 				controller: 'distanciacontroller',
 				reloadOnSearch: false
-			})
-
+		})
 		.when('/gpon/', {
 			title: 'GPON',
 			templateUrl: 'partials/buscar_gpon.html',
 			controller: 'gponcontroller',
 			reloadOnSearch: false
 		})
-
 		.when('/vecinos/:pagina_servicio_vecinos', {
 				title: 'vecinos',
 				templateUrl: 'partials/buscarvecinos.html',
 				controller: 'vecinoscontroller',
 				reloadOnSearch: false
-			})
-			.when('/distriedatel/', {
+		})
+		.when('/distriedatel/', {
 				title: 'Red Edatel',
 				templateUrl: 'partials/edatel/distribuidores_edatel.html',
 				controller: 'edatelCtrl',
 				reloadOnSearch: false
-			})
-
-		// ------------------------------------------ HERRAMIENTAS
+		})// ------------------------------------------ HERRAMIENTAS
 		//--------------------AGENDAMIENTO------------------------
-
-
-		.when('/registros-agendamiento/', {
-			title: 'Registros',
-			templateUrl: 'partials/registros-reagendamiento.html',
-			controller: 'RegistrosAgendamientoCtrl'
+		.when('/parametrizacion-siebel/', {
+			title: 'parametrizacion',
+			templateUrl: 'partials/parametrizacion-siebel.html',
+			controller: 'ParametrizacionSiebel'
 		})
-
-
+		.when('/registros-agendamiento/', {
+		title: 'Registros',
+		templateUrl: 'partials/registros-reagendamiento.html',
+		controller: 'RegistrosAgendamientoCtrl'
+		})
 		.when('/codigo_resultado/', {
 			title: 'codigo_resultado',
 			templateUrl: 'partials/codigo_resultado.html',
 			controller: 'cargar_datosCtrl'
 		})
-
 		.when('/cupos-agendamiento/', {
 			title: 'Ocupacion',
 			templateUrl: 'partials/ocupacion-agendamiento.html',
 			controller: 'OcupacionAgendamientoCtrl'
 		})
-
 		.when('/scheduling/', {
 			title: 'Alarmados Proactivos',
 			templateUrl: 'partials/agendamiento/alarmados_proactivos.html',
 			controller: 'SchedulingCtrl'
 		})
-
 		.when('/agendamiento_auditoria/', {
 				title: 'Conceptos Agendamiento Auditoria',
 				templateUrl: 'partials/agendamiento_auditoria.html',
 				controller: 'AuditoriaCtrl'
-			})
-			.when('/tabla_agendamiento/', {
+		})
+		.when('/tabla_agendamiento/', {
 				title: 'Tabla Agendamiento',
 				templateUrl: 'partials/tabla_agendamiento.html',
 				controller: 'Tabla_agendamientoCtrl'
-			})
-
+		})
 		.when('/agendamiento/', {
 			title: 'Indicadores Agendamiento',
 			templateUrl: 'partials/agendamiento/indicadores_agendamiento.html',
 			controller: 'AgendamientoCtrl'
 		})
-
 		.when('/agendamiento/reagendamiento', {
 			title: 'Pantalla de Reagendamiento',
 			templateUrl: 'partials/reagendamiento.html',
 			controller: 'AgendamientoCtrl'
 		})
-
 		.when('/agendamiento/edatel', {
 			title: 'Pantalla de Agendamiento Edatel',
 			templateUrl: 'partials/edatel.html',
 			controller: 'AgendamientoCtrl'
 		})
-
-
 		.when('/agendamiento/adelantaragenda', {
 			title: 'Pantalla Adelantar agenda',
 			templateUrl: 'partials/adelantaragenda.html',
 			controller: 'AgendamientoAdelantarCtrl'
 		})
-
 		.when('/auditoria', {
 			title: 'Pantalla de Auditoria',
 			templateUrl: 'partials/auditoria.html',
 			controller: 'AuditoriaCtrl'
 		})
-
 		.when('/agendamiento/auditoria', {
 			title: 'Pantalla de Reagendamiento-Auditoria',
 			templateUrl: 'partials/auditoria-agendamiento.html',
 			controller: 'AgendamientoCtrl'
 		})
-
-
 		.when('/Pedidos_Microzonas/', {
 			title: 'Pedidos_Microzonas',
 			templateUrl: 'partials/Pedidos_Microzonas.html',
 			controller: 'Pedidos_MicrozonasCtrl'
 		})
-
-
 		.when('/b2b/', {
 			title: 'b2b',
 			templateUrl: 'partials/registros_b2b.html',
 			controller: 'RegistrosAgendamientoCtrl'
-		})
-
-
-		.when('/chat/', {
-			title: 'GeoP Chat',
-			templateUrl: 'partials/chat/chatio.html',
-			controller: 'chatioCtrl'
 		})
 
 		.otherwise({
@@ -15354,7 +15347,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 
 
 	$rootScope.$on("$routeChangeStart", function (evt, to, from) {
-        console.log(to);
+        //console.log(to);
 		console.log(to.grupos);
 
 		if ($cookieStore.get('logedUser') == undefined) {
