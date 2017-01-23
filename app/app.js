@@ -15381,18 +15381,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 				})
 			};
 
-			//Check si el usuario tiene permisos para ingresar a la ruta --------------------
-            console.log(galleta.GRUPO);
-			if (to.grupos.indexOf(galleta.GRUPO)>=0) {
 
-
-				console.log("Tiene Permiso");
-
-			}else{
-			    alert("Usted no tiene permisos para entrar aca.");
-			    return;
-            }
-            //--------------------Check si el usuario tiene permisos para ingresar a la ruta
 
 		};
 
