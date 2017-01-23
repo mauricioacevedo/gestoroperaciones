@@ -15361,7 +15361,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 			$location.path('/', true);
 
 		} else {
-
+			var galleta = $cookieStore.get('logedUser');
 			var userID = $cookieStore.get('logedUser').login;
 			var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
 			var messageRef = $firebaseArray(root.child('messages'));
@@ -15380,6 +15380,15 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 					}
 				})
 			};
+
+			//Check si el usuario tiene permisos para ingresar a la ruta --------------------
+			if (to.grupos.indexOf(galleta.GRUPO)>=0) {
+
+				console.log(galleta.GRUPO);
+				console.log("Tiene Permiso");
+
+			}
+            //--------------------Check si el usuario tiene permisos para ingresar a la ruta
 
 		};
 
