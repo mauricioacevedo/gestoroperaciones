@@ -1,91 +1,93 @@
 <?php
- 	//error_reporting(E_ALL);
-	//ini_set('display_errors', '1');
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
 
-	require_once("Rest.inc.php");
-        //include_once("/var/www/html/gestorasignaciones/conn_fenix.php");
-        //include_once("/var/www/html/gestorasignaciones/conn_fenix_bogota.php");
-       // include_once("/var/www/html/gestorasignaciones/conn_portalbd.php");
-	//include_once("/var/www/html/gestoroperaciones/connections.php");
-	include_once("/var/www/html/gestoroperaciones/connections.php");
-
-	date_default_timezone_set('America/Bogota');
-
-	class API extends REST {
-	
-		public $data = "";
-		
-		const DB_SERVER = "10.100.82.125";
-		const DB_USER = "root";
-		const DB_PASSWORD = "123456";
-		const DB = "portalbd";
-
-		private $db = NULL;
-		private $mysqli = NULL;
-		private $mysqli03 = NULL;
-		private $connf = NULL;
-		private $connfstby = NULL;
-		private $connfb =NULL;
-		private $mysqliScheduling = NULL;
-		public static $doink=0;
-	
-		public function __construct(){
-			parent::__construct();				// Init parent contructor
-			$this->dbConnect();					// Initiate Database connection
-		}
-
-		/*
-		 *  Connect to Database
-		*/
-
-        	private function dbConnectScheduling(){
-
-	        $this->mysqliScheduling = getConnScheduling();
-    		 }
-
-		private function dbConnect(){
-			//$this->mysqli = new mysqli(self::DB_SERVER, self::DB_USER, self::DB_PASSWORD, self::DB);
-			$this->mysqli = getConnPortalbd();
-		}
-
-                private function dbConnect03(){
-                        //$this->mysqli = new mysqli(self::DB_SERVER, self::DB_USER, self::DB_PASSWORD, self::DB);
-                        $this->mysqli03 = getConnPortalbd03();
-                }
+require_once("Rest.inc.php");
+//include_once("/var/www/html/gestorasignaciones/conn_fenix.php");
+//include_once("/var/www/html/gestorasignaciones/conn_fenix_bogota.php");
+// include_once("/var/www/html/gestorasignaciones/conn_portalbd.php");
+//include_once("/var/www/html/gestoroperaciones/connections.php");
+include_once("/var/www/html/gestoroperaciones/connections.php");
+//1. Inicializar conexion fenix y local mysql
+//$connf=getConnFenix();
+//$connm=getConnPortalbd();
 
 
-		//if i need fenix i get it directly!!!!
-		private function dbFenixConnect(){
-                        //$this->mysqli = new mysqli(self::DB_SERVER, self::DB_USER, self::DB_PASSWORD, self::DB);
-                        $this->connf = getConnFenix();
-                }
+date_default_timezone_set('America/Bogota');
 
-                private function dbFenixSTBYConnect(){
-                       //$this->mysqli = new mysqli(self::DB_SERVER, self::DB_USER, self::DB_PASSWORD, self::DB);
-                        $this->connfstby = getConnFenixSTBY();
-                }
+class API extends REST {
 
-	        private function dbFenixBogotaConnect(){
-        	        //$this->mysqli = new mysqli(self::DB_SERVER, self::DB_USER, self::DB_PASSWORD, self::DB);
-                	$this->connfb = getConnFenixBogota();
-	        }
+    public $data = "";
 
-		/*
-		 * Dynmically call the method based on the query string
-		 */
-		public function processApi(){
-			$func = strtolower(trim(str_replace("/","",$_REQUEST['x'])));
-			
-			//debuger code :)
-			//$this->response($func,200);
-			if((int)method_exists($this,$func) > 0)
-				$this->$func();
-			else
-				$this->response("No, i dont know this service!!  ",404); // If the method not exist with in this class "Page not found".
+    const DB_SERVER = "10.100.82.125";
+    const DB_USER = "root";
+    const DB_PASSWORD = "123456";
+    const DB = "portalbd";
 
-		}
+    private $db = NULL;
+    private $mysqli = NULL;
+    private $mysqli03 = NULL;
+    private $connf = NULL;
+    private $connfstby = NULL;
+    private $connfb =NULL;
+    private $mysqliScheduling = NULL;
+    public static $doink=0;
 
-                
+    public function __construct(){
+        parent::__construct();				// Init parent contructor
+        $this->dbConnect();					// Initiate Database connection
+    }
+
+    /*
+     *  Connect to Database
+    */
+
+    private function dbConnectScheduling(){
+
+        $this->mysqliScheduling = getConnScheduling();
+    }
+
+    private function dbConnect(){
+        //$this->mysqli = new mysqli(self::DB_SERVER, self::DB_USER, self::DB_PASSWORD, self::DB);
+        $this->mysqli = getConnPortalbd();
+    }
+
+    private function dbConnect03(){
+        //$this->mysqli = new mysqli(self::DB_SERVER, self::DB_USER, self::DB_PASSWORD, self::DB);
+        $this->mysqli03 = getConnPortalbd03();
+    }
+
+
+    //if i need fenix i get it directly!!!!
+    private function dbFenixConnect(){
+        //$this->mysqli = new mysqli(self::DB_SERVER, self::DB_USER, self::DB_PASSWORD, self::DB);
+        $this->connf = getConnFenix();
+    }
+
+    private function dbFenixSTBYConnect(){
+        //$this->mysqli = new mysqli(self::DB_SERVER, self::DB_USER, self::DB_PASSWORD, self::DB);
+        $this->connfstby = getConnFenixSTBY();
+    }
+
+    private function dbFenixBogotaConnect(){
+        //$this->mysqli = new mysqli(self::DB_SERVER, self::DB_USER, self::DB_PASSWORD, self::DB);
+        $this->connfb = getConnFenixBogota();
+    }
+
+    /*
+     * Dynmically call the method based on the query string
+     */
+    public function processApi(){
+        $func = strtolower(trim(str_replace("/","",$_REQUEST['x'])));
+
+        //debuger code :)
+        //$this->response($func,200);
+        if((int)method_exists($this,$func) > 0)
+            $this->$func();
+        else
+            $this->response("No, i dont know this service!!  ",404); // If the method not exist with in this class "Page not found".
+
+    }
 //Inicia Mundo Asignaciones Y Reconfiguracion
                 
 //------------------------------exportar historico asignaciones-------------------asignacion
