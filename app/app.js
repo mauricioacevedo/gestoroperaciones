@@ -14749,35 +14749,35 @@ app.config(['$routeProvider',
 			title: 'ORD',
 			templateUrl: 'partials/oxxx.html',
 			controller: 'PordenesCtrl',
-            grupos: ['ASIGNACIONES', 'RECONFIGURACION','CONSULTAS','SUPER'],
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION','SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
 		.when('/ord/ordtransaccion', {
 			title: 'ORD',
 			templateUrl: 'partials/transacciones_oxxx.html',
 			controller: 'PordenesCtrl',
-            grupos: ['ASIGNACIONES', 'RECONFIGURACION','CONSULTAS','SUPER'],
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION','SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
 		.when('/tx/siebel_asignaciones', {
 			title: 'DemePedido Siebel Asignaciones',
 			templateUrl: 'partials/transacciones/siebel_asignaciones.html?n=1',
 			controller: 'siebelAsignacionesCtrl',
-            grupos: ['ASIGNACIONES', 'RECONFIGURACION','CONSULTAS','SUPER'],
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION','SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
 		.when('/edatel/clientes', {
 			title: 'DemePedido Siebel Asignaciones',
 			templateUrl: 'partials/edatel/clientes_edatel.html?n=1',
 			controller: 'edatelCtrl',
-            grupos: ['ASIGNACIONES', 'RECONFIGURACION','CONSULTAS','SUPER'],
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION','SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
 		.when('/tx/edatel_asignaciones', {
 			title: 'DemePedido Edatel Asignaciones',
 			templateUrl: 'partials/transacciones/edatel_asignaciones.html',
 			controller: 'edatelCtrl',
-            grupos: ['ASIGNACIONES', 'RECONFIGURACION','CONSULTAS','SUPER'],
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION','SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
 		.when('/indicadores/', {
