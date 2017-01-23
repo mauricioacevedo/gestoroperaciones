@@ -6175,12 +6175,17 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 		//para controlar campos cuando el pedido esta ocupado por alguien mas....
 		if ($scope.busy != "") {
-			//alert($scope.busy);
-			return false;
+            //alert($scope.busy);
+            return false;
 
-		}
+        }
+        if ($scope.accRdy) {
+            //alert($scope.busy);
+            return true;
+
+        }
 		return true;
-	}
+	};
 
 	$rootScope.logout = function () {
 		services.logout($rootScope.logedUser.login);
