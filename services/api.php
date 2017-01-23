@@ -2123,10 +2123,11 @@ private function updateFenixReconfiguracion($obj){
 
 
 		private function getDepartamentosPendientesReagendamiento(){
-                        if($this->get_request_method() != "GET"){
-                                $this->response('',406);
-                        }
-                        $today = date("Y-m-d");
+
+            if($this->get_request_method() != "GET"){
+                $this->response('',406)
+            }
+            $today = date("Y-m-d");
 			
 			$proceso = $this->_request['proceso'];
 
@@ -2136,17 +2137,17 @@ private function updateFenixReconfiguracion($obj){
 				$PROCESO=" and PROCESO='$proceso' ";
 			}
 
-	                $query=" SELECT DISTINCT ( CASE WHEN DEPARTAMENTO =  '' THEN  'VACIOS' ".
-				"  WHEN DEPARTAMENTO = null THEN 'VACIOS' ".
-				"  WHEN TECNOLOGIA_ID = 'DTH' THEN 'DTH' ".
-				"  ELSE DEPARTAMENTO END) AS DEPARTAMENT ".
-                                " FROM gestor_pendientes_reagendamiento ".
-                                " WHERE STATUS =  'PENDI_AGEN' ".
-				" and ASESOR ='' ".
-				$PROCESO.
-				" and (FECHA_CITA_FENIX <=CURDATE() OR FECHA_CITA_FENIX='9999-00-00') ".
-				" and (MIGRACION='NO' or MIGRACION='' or MIGRACION is null ) ".
-                                " ORDER BY 1 ASC ";
+            $query= " SELECT DISTINCT ( CASE WHEN DEPARTAMENTO =  '' THEN  'VACIOS' ".
+				    "  WHEN DEPARTAMENTO = null THEN 'VACIOS' ".
+				    "  WHEN TECNOLOGIA_ID = 'DTH' THEN 'DTH' ".
+				    "  ELSE DEPARTAMENTO END) AS DEPARTAMENT ".
+                    " FROM gestor_pendientes_reagendamiento ".
+                    " WHERE STATUS =  'PENDI_AGEN' ".
+				    " and ASESOR ='' ".
+				    $PROCESO.
+				    " and (FECHA_CITA_FENIX <=CURDATE() OR FECHA_CITA_FENIX='9999-00-00') ".
+				    " and (MIGRACION='NO' or MIGRACION='' or MIGRACION is null ) ".
+                    " ORDER BY 1 ASC ";
 			
 			//echo $query;
 
