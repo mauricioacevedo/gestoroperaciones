@@ -39,8 +39,8 @@ class API extends REST {
     }
 
     /*
-     *  Connect to Database
-    */
+		 *  Connect to Database
+		*/
 
     private function dbConnectScheduling(){
 
@@ -75,8 +75,8 @@ class API extends REST {
     }
 
     /*
-     * Dynmically call the method based on the query string
-     */
+		 * Dynmically call the method based on the query string
+		 */
     public function processApi(){
         $func = strtolower(trim(str_replace("/","",$_REQUEST['x'])));
 
@@ -88,9 +88,11 @@ class API extends REST {
             $this->response("No, i dont know this service!!  ",404); // If the method not exist with in this class "Page not found".
 
     }
+
+
 //Inicia Mundo Asignaciones Y Reconfiguracion
 
-//------------------------------exportar historico asignaciones-------------------asignacion
+
     private function csvHistoricos(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -133,9 +135,7 @@ class API extends REST {
 
     }
 
-    //---------------------------------fin exportes asignaciones
 
-//---------------------------------exportar historicos reconfiguracion----asignacion
 
     private function csvHistoricosReconfiguracion(){
         if($this->get_request_method() != "GET"){
@@ -178,10 +178,6 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-
-//---------------------------------fin exportar historicos reconfiguracion----
-
-//--------------------------exportar solo fenix nacional------------------asignacion
 
     private function csvFenixNal(){
         if($this->get_request_method() != "GET"){
@@ -226,9 +222,8 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-//--------------------------fin exportar solo fenix nacional------------------
 
-//-------------------------exportar fenix bogota--------------------asignacion
+
     private function csvFenixBog(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -274,9 +269,18 @@ class API extends REST {
     }
 
 
-    //-------------------------fin exportar fenix bogota--------------------
 
-//-----------------------exportar historico agendamiento-----------------------agendamiento
+
+
+
+
+
+
+
+//Termina Mundo Asignaciones Y Reconfiguracion
+
+
+//Inicia Mundo Agendamiento - Reagendamiento
 
     private function csvHistoricosAgendamiento(){
         if($this->get_request_method() != "GET"){
@@ -313,7 +317,7 @@ class API extends REST {
         //$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         //Mauricio: CONSULTA REPODEROSA, unbuffered
-        $this->mysqli->real_query($query) or die($mysqli->error.__LINE__);
+        $this->mysqli->real_query($query) or die($conn->error.__LINE__);
 
         if($r = $this->mysqli->use_result()){
             $result = array();
@@ -386,9 +390,6 @@ class API extends REST {
 
     }
 
-//----------------------- fin exportar historico agendamiento-----------------------
-
-//----------------------------exportar historico agendamiento edatel-----------------agendamiento
 
     private function csvHistoricosAgendamientoEdatel(){
         if($this->get_request_method() != "GET"){
@@ -479,9 +480,7 @@ class API extends REST {
 
     }
 
-//----------------------------fin exportar historico agendamiento edatel-----------------
 
-//-------------------------exportar pendietes activacion ----------------------------activacion
 
     private function csvActivacion(){
         if($this->get_request_method() != "GET"){
@@ -527,9 +526,6 @@ class API extends REST {
 
     }
 
-//-------------------------fin exportar pendietes activacion ----------------------------
-
-//-------------------------exportar pendientes activacion siebel--------------------------------activacion
     private function csvActivacionSiebel(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -563,9 +559,7 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-//------------------------- fin exportar pendientes activacion siebel--------------------------------
 
-//-----------------------------extortar activacion siebe invdom---------------------------------activacion
 
     private function csvActivacionSiebelinvdom(){
         if($this->get_request_method() != "GET"){
@@ -601,10 +595,6 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-
-//-----------------------------fin extortar activacion siebe invdom---------------------------------
-
-//---------------------------exportar listado activacion seguimiento--------------------------activacion
 
     private function csvListadoActivacion(){
         if($this->get_request_method() != "GET"){
@@ -691,12 +681,6 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-
-//--------------------------- fin exportar listado activacion seguimiento--------------------------
-
-//------------------------------------------exportar listado activacion tipo trabajo=nuevo---------activacion
-
-
     private function csvListadoActivacionnuevos(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -784,10 +768,10 @@ class API extends REST {
 
     }
 
-//------------------------------------------fin exportar listado activacion tipo trabajo=nuevo-------activacion
 
 
-//-------------------------exportar datos de preinstalacion---------------------asignaciones
+
+
 
 
 
@@ -854,11 +838,6 @@ class API extends REST {
 
     }
 
-
-//------------------------- fin exportar datos de preinstalacion---------------------
-
-//-- ---------------------exportar agendamiento pedientes-------agendamiento------
-
     private function csvAgendamiento(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -907,9 +886,8 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-//-- --------------------- fin exportar agendamiento pedientes-------agendamiento------
 
-//-------------------------------------insertar pedido ---------asignacion------
+
 
     private function insertMPedido(){
         if($this->get_request_method() != "POST"){
@@ -950,9 +928,7 @@ class API extends REST {
         }
 
     }
-//-------------------------------------fin insertar pedido ---------asignacion------
 
-//-------------insertar pedido reconfiguracion---------------asignacion------------
 
     private function insertPedidoReconfiguracion(){
         if($this->get_request_method() != "POST"){
@@ -960,7 +936,7 @@ class API extends REST {
         }
         //sleep(10);
         $pedido = json_decode(file_get_contents("php://input"),true);
-        $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo');
+        $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo');
         $keys = array_keys($pedido);
         $columns = '';
         $values = '';
@@ -1023,32 +999,22 @@ class API extends REST {
 
                 //echo "HORA LLLAMAR: ".$pedido['horaLlamar'];
 
-                $programacion=$pedido['horaLlamar'];
+                $programacion="";
 
                 if($pedido['horaLlamar']==""){
                     $pedido['horaLlamar']="manana";
                 }
 
-                /*if($pedido['horaLlamar']=="manana"){//este pedido se programo para ser entregado mañana
-						$datetime = new DateTime('tomorrow');
-						//echo "PROGRAMACION: ".$datetime->format('Y-m-d 08:00:00');
-						 $programacion=$datetime->format('Y-m-d 08:00:00');
-						//$tomorrow = date("Y-m-d H:i:s");
-					}else{//pedido programado para entregarse el dia de hoy, mas tarde
-						$today2 = date("Y-m-d ".$pedido['horaLlamar'].":00");
-						//echo "PROGRAMACION: ".$today2;
-						$programacion=$today2;
-					}*/ // Programado Viejo, ya no es necesario
-
-                if($pedido['horaLlamar']=="manana"){//Solo si programar viene vacio
+                if($pedido['horaLlamar']=="manana"){//este pedido se programo para ser entregado mañana
                     $datetime = new DateTime('tomorrow');
+                    //echo "PROGRAMACION: ".$datetime->format('Y-m-d 08:00:00');
                     $programacion=$datetime->format('Y-m-d 08:00:00');
-
+                    //$tomorrow = date("Y-m-d H:i:s");
                 }else{//pedido programado para entregarse el dia de hoy, mas tarde
-
-                    $programacion=$pedido['horaLlamar'];
+                    $today2 = date("Y-m-d ".$pedido['horaLlamar'].":00");
+                    //echo "PROGRAMACION: ".$today2;
+                    $programacion=$today2;
                 }
-
 
                 $pedido = json_decode(file_get_contents("php://input"),true);
                 //$pedido['pedido']['estado']=$estadum." : ".$programacion;
@@ -1131,11 +1097,6 @@ class API extends REST {
         }
 
     }
-
-//-------------fin insertar pedido reconfiguracion---------------asignacion------------
-
-
-//---------------------insert pedido reagendamiento--------------------agendamiento-------------
 
     private function insertPedidoReagendamiento(){
         if($this->get_request_method() != "POST"){
@@ -1227,9 +1188,7 @@ class API extends REST {
         $this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
     }
 
-//---------------------fin insert pedido reagendamiento--------------------agendamiento-------------
 
-//---------------------insertar pedido auditoria-----------------agendamiento--------------
     private function insertPedidoAuditoria(){
         if($this->get_request_method() != "POST"){
             $this->response('',406);
@@ -1328,9 +1287,7 @@ class API extends REST {
         $this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
     }
 
-//---------------------fin insertar pedido auditoria-----------------agendamiento--------------
 
-//--------------------inser pedidos malos --------------------agendamiento-----------------
 
     private function insertMPedidomalo(){
         if($this->get_request_method() != "POST"){
@@ -1403,10 +1360,7 @@ class API extends REST {
         }
 
     }
-//-------------------- fin insert pedidos malos --------------------agendamiento-----------------
 
-
-//------------------------insert pedidos adelantar agenda -------------agendamiento-------------
 
     private function insertPedidoAdelantarAgenda(){
         if($this->get_request_method() != "POST"){
@@ -1473,11 +1427,6 @@ class API extends REST {
         $this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
     }
 
-
-//------------------------fin insert pedidos adelantar agenda -------------agendamiento-------------
-
-//--------------------insert pedidos----------------------------------
-
     private function insertPedido(){
         if($this->get_request_method() != "POST"){
             $this->response('',406);
@@ -1485,7 +1434,7 @@ class API extends REST {
         $pedido = json_decode(file_get_contents("php://input"),true);
         //2015-09-28: se retira seguimiento....
         //$column_names = array('pedido', 'fuente', 'actividad','estado','motivo', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','caracteristica','motivo_malo');
-        $column_names = array('pedido', 'fuente', 'actividad','ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','motivo_malo');
+        $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','motivo_malo');
         $keys = array_keys($pedido);
         $columns = '';
         $values = '';
@@ -1494,7 +1443,6 @@ class API extends REST {
         $iddd=$pedido['pedido']['ID'];
 
         $estadum=$pedido['pedido']['estado'];
-        $estadoid=$pedido['pedido']['estado'];
         $useri=$pedido['pedido']['user'];
         $username=$pedido['pedido']['username'];
 
@@ -1622,11 +1570,6 @@ class API extends REST {
     //Funcion para actualizar Concepto y Fecha estado en PEDIDOS en pendientesm
     //2015-09-17 - Se modifica query para que traiga Concepto y fecha de Novedades - CGONZGO
 
-
-//--------------------fin insert pedidos----------------------------------
-
-//---------------------------------update fenix bogota------base de datos----
-
     private function updateFenixBogota($obj){
         $id=$obj['ID'];
         $pedido_id=$obj['PEDIDO_ID'];
@@ -1706,9 +1649,7 @@ class API extends REST {
         return "No rows!!!!";
 
     }
-//--------------------------------- fin update fenix bogota------base de datos----
 
-//---------------------------------update fenix nacional------base de datos----
 
     private function updateFenix($obj){
         $id=$obj['ID'];
@@ -1757,9 +1698,6 @@ class API extends REST {
         return "No rows!!!!";
     }
 
-//---------------------------------fin update fenix nacional------base de datos----
-
-//-----------------------update reconfiguracion ----------asignacion--------
 
     private function updateFenixReconfiguracion($obj){
         $id=$obj['ID'];
@@ -1799,9 +1737,7 @@ class API extends REST {
         return "No rows!!!!";
     }
 
-//-----------------------fin update reconfiguracion ----------asignacion--------
 
-//---------------------pedidos por usuario ----------asignacion------
 
     private function pedidosPorUser(){
         if($this->get_request_method() != "GET"){
@@ -1848,10 +1784,6 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
     }
 
-//---------------------fin pedidos por usuario ----------asignacion------
-
-//---------------------pedidos por usuario reagendamiento ----------asignacion------
-
 
     private function pedidosPorUserReagendamiento(){
         if($this->get_request_method() != "GET"){
@@ -1872,10 +1804,6 @@ class API extends REST {
         }
         $this->response('',204);        // If no records "No Content" status
     }
-
-//---------------------fin pedidos por usuario reagendamiento ----------asignacion------
-
-//--------------------- pedidos por usuario activacion ----------activacion------------
 
 
     private function pedidosPorUserActivacion(){
@@ -1901,10 +1829,6 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
     }
 
-//--------------------- fin pedidos por usuario activacion ----------activacion------------
-
-//-----------------------actividades por usuario------------------------activacion---------
-
     private function actividadesUser(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -1926,10 +1850,7 @@ class API extends REST {
         }
         $this->response('',204);        // If no records "No Content" status
     }
-//-----------------------fin actividades por usuario------------------------activacion---------
 
-
-//----------------------eliminar filas subir archivos -------------------activacion---------------
 
     private function eliminarfile(){
         if($this->get_request_method() != "GET"){
@@ -1948,10 +1869,8 @@ class API extends REST {
 
         $this->response('',204);        // If no records "No Content" status
     }
-//----------------------fin eliminar filas subir archivos -------------------activacion---------------
 
-
-//-----------------------------------eliminar filas subir archivos agendamiento-----------------------
+    //-----------------------------------prueba cargad
 
     private function eliminarfile1(){
         if($this->get_request_method() != "GET"){
@@ -1972,9 +1891,7 @@ class API extends REST {
     }
 
 
-//-----------------------------------fin eliminar filas subir archivos agendamiento-----------------------
-
-//------------------------------------pedidos por usuario adelantar agenda---------------------agendamiento----
+    //-------------------------------------fin prueba
 
     private function pedidosPorUserAdelantarAgenda(){
         if($this->get_request_method() != "GET"){
@@ -1996,10 +1913,6 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
     }
 
-
-//------------------------------------fin pedidos por usuario adelantar agenda---------------------agendamiento----
-
-//--------------------------ingresos por zonas de reagendamiento ---------------------agendamiento----
     private function getZonasReagendamiento(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -2066,9 +1979,7 @@ class API extends REST {
 
     }
 
-//--------------------------fin ingresos por zonas de reagendamiento ---------------------agendamiento----
 
-//--------------------------ingresos por microzonas de reagendamiento ---------------------agendamiento----
 
     private function getMicrozonasReagendamiento(){
         if($this->get_request_method() != "GET"){
@@ -2119,16 +2030,13 @@ class API extends REST {
 
     }
 
-//--------------------------fin ingresos por microzonas de reagendamiento ---------------------agendamiento----
 
-//-----------------------------departamento pendientes de reagendamiento -----------agendamiento----
 
 
     private function getDepartamentosPendientesReagendamiento(){
-
         if($this->get_request_method() != "GET"){
-            $this->response('',406)
-            }
+            $this->response('',406);
+        }
         $today = date("Y-m-d");
 
         $proceso = $this->_request['proceso'];
@@ -2139,7 +2047,7 @@ class API extends REST {
             $PROCESO=" and PROCESO='$proceso' ";
         }
 
-        $query= " SELECT DISTINCT ( CASE WHEN DEPARTAMENTO =  '' THEN  'VACIOS' ".
+        $query=" SELECT DISTINCT ( CASE WHEN DEPARTAMENTO =  '' THEN  'VACIOS' ".
             "  WHEN DEPARTAMENTO = null THEN 'VACIOS' ".
             "  WHEN TECNOLOGIA_ID = 'DTH' THEN 'DTH' ".
             "  ELSE DEPARTAMENTO END) AS DEPARTAMENT ".
@@ -2172,11 +2080,6 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-
-
-//-----------------------------fin departamento pendientes de reagendamiento -----------agendamiento----
-
-//-----------------------departamento reagendamiento por proceso----------------agendamiento-------------
 
     private function getDepartamentosPendientesReagendamientoproceso(){
         if($this->get_request_method() != "GET"){
@@ -2221,9 +2124,7 @@ class API extends REST {
 
     }
 
-//-----------------------fin departamento reagendamiento por proceso----------------agendamiento-------------
 
-//-----------------------departamento adelantar agenda----------------agendamiento-------------
 
     private function getDepartamentosAdelantarAgenda(){
         if($this->get_request_method() != "GET"){
@@ -2252,9 +2153,7 @@ class API extends REST {
 
         $this->response('',204);        // If no records "No Content" status
     }
-//-----------------------fin departamento adelantar agenda----------------agendamiento-------------
 
-//-------------------------parametrizacion por zona ---------------------asignaciones------------
 
     private function getZonasParametrizacionSiebel(){
         if($this->get_request_method() != "GET"){
@@ -2281,10 +2180,6 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
     }
 
-//-------------------------parametrizacion por zona ---------------------asignaciones------------
-
-//------------------------parametrizacion por departamento siebel-------asignacion-------------
-
 
     private function getDepartamentosParametrizacionSiebel(){
         if($this->get_request_method() != "GET"){
@@ -2308,9 +2203,6 @@ class API extends REST {
         }
         $this->response('',204);        // If no records "No Content" status
     }
-//------------------------parametrizacion por departamento siebel-------asignacion-------------
-
-//----------------------insertar datos parametrizacion ----------------------asignaciones------
 
     private function insertarDatoParametrizacion(){
 
@@ -2348,9 +2240,7 @@ class API extends REST {
         $this->response(json_encode("OK"), 200);
     }
 
-//----------------------fin insertar datos parametrizacion ----------------------asignaciones------
 
-//----------------------insertar datos parametrizacion 2 ----------------------asignaciones------
 
     private function insertarDatoParametrizacion2(){
 
@@ -2397,13 +2287,34 @@ class API extends REST {
         }
         $this->response(json_encode("OK"), 200);
 
+
+        /*
+
+							$sql= " SELECT ID, FECHA, AM , PM ".
+	                        "FROM alistamiento.parametrizacion_siebel ".
+	                        "WHERE DEPARTAMENTO = '$departamento' ".
+	                        "AND ZONA = '$zona' ".
+	                        "AND FECHA = '$fechaformato'";
+                    		$r = $this->mysqli03->query($sql) or die($this->mysqli->error.__LINE__);
+
+                    		 if($r->num_rows > 0){
+                    				$row= $r->fetch_assoc();
+                    				$ID = $row['ID'];
+                    				$sql= "update alistamiento.parametrizacion_siebel ".
+                        			  	  "set AM='$AM', PM='$PM' WHERE ID='$ID' ";
+                        			 $r = $this->mysqli03->query($sql) or die($this->mysqli->error.__LINE__);
+                        	}
+                        			else {
+					                        $sql="INSERT INTO alistamiento.parametrizacion_siebel ".
+					                    	" (DEPARTAMENTO, ZONA, FECHA, AM, PM) ".
+					                    	" VALUES ('$departamento','$zona','$fechaformato','$AM','$PM')";
+					                   		$r = $this->mysqli03->query($sql) or die($this->mysqli->error.__LINE__);
+                        			}
+                    $this->response(json_encode("OK"), 200);*/
     }
-//----------------------insertar datos parametrizacion 2 ----------------------asignaciones------
 
 
-
-    //-------------------listado parametrizacion siebel ----------------------asignaciones----------
-
+//****************
     private function listadoParametrizadosSiebel(){//parametrizados
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -2448,9 +2359,6 @@ class API extends REST {
         $this->response('',204);         // If no records "No Content" status
     }
 
-    //-------------------fin listado parametrizacion siebel ----------------------asignaciones----------
-
-//----------------------------exportar parametrizacion siebel --------------------asignaciones-----
 
     private function csvParametrizacionSiebel(){
         if($this->get_request_method() != "GET"){
@@ -2481,11 +2389,6 @@ class API extends REST {
         }
         $this->response('',204);
     }
-
-
-//---------------------------- fin exportar parametrizacion siebel --------------------asignaciones-----
-
-//-----------------------exportar parametrizacion por microzonas---------------------asignaciones-----
 
     private function csvParametrizacionMicrozona(){
         if($this->get_request_method() != "GET"){
@@ -2524,9 +2427,7 @@ class API extends REST {
     }
 
 
-//-----------------------fin exportar parametrizacion por microzonas---------------------asignaciones-----
-
-//-----------------------------por zonas adelantar agenda------------------------------agendamiento-------
+//*******************************
 
     private function getZonasAdelantarAgenda(){
         if($this->get_request_method() != "GET"){
@@ -2564,10 +2465,6 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
     }
 
-//-----------------------------por zonas adelantar agenda------------------------------agendamiento-------
-
-
-//-----------------------------por microzona adelantar agenda------------------------------agendamiento-------
 
     private function getMicrozonasAdelantarAgenda(){
         if($this->get_request_method() != "GET"){
@@ -2612,9 +2509,7 @@ class API extends REST {
 
     }
 
-//----------------------------- fin por microzona adelantar agenda------------------------------agendamiento-------
 
-//------------------------pedidos que actualmente se encuentran agendados-----------------------agendamiento-------
 
     private function getPedidoActualmenteAgendado(){
         if($this->get_request_method() != "GET"){
@@ -2863,11 +2758,6 @@ class API extends REST {
             }
         }
     }
-
-//------------------------pedidos que actualmente se encuentran agendados-----------------------agendamiento-------
-
-//---------------------------listado pedidos reconfiguracion----------------------------------asignacion---------
-
     //funcionReconfiguracion__Julian
     private function listadoPedidosReconfiguracion(){//historico por 1 pedido
         if($this->get_request_method() != "GET"){
@@ -2891,11 +2781,8 @@ class API extends REST {
         }
         else {
             $filtro= " and $campo = '$valorCampo' and user = '$userID'";
-            //$filtro= " and $campo = '$valorCampo'";
         }
         $page=$page*100;
-
-        //echo $filtro;
         //counter
         $query="SELECT count(*) as counter from pedidos where fecha_fin between '$fechaini 00:00:00' and '$fechafin 23:59:59' $filtro";
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -2909,7 +2796,6 @@ class API extends REST {
 
         $query="SELECT id, pedido, fuente, actividad, fecha_fin, estado,duracion,accion,concepto_final,user from pedidos where fecha_fin between '$fechaini 00:00:00' and '$fechafin 23:59:59' $filtro order by fecha_fin desc limit 100 offset $page";
 
-        //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -2921,9 +2807,9 @@ class API extends REST {
         }
         $this->response('',204);        // If no records "No Content" status
     }
-//---------------------------listado pedidos reconfiguracion----------------------------------asignacion---------
 
-//- -------------------Funcion para listar los registros historicos---------------------
+
+    // Funcion para listar los registros historicos-----------------------------------------------------------------------
 
     private function listadoPedidos(){//historico por 1 pedido
         if($this->get_request_method() != "GET"){
@@ -2974,10 +2860,7 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
     }
 
-// -----------------------------fin  Funcion para listar los registros historicos---------------------
-
-//----------------------KPIS maestro---------------------------------------------asignaciones------
-
+    // ----------------------------------------------------------------------- Funcion para listar los registros historicos
     private function lightKPISMaestro(){//listado light de kpis
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -3021,9 +2904,9 @@ class API extends REST {
         }
         $this->response('',204);        // If no records "No Content" status
     }
-//----------------------fin KPIS maestro---------------------------------------------asignaciones------
 
-//----------------------KPIS maestro tabla informe_petec_pendientesm ------------------------asignaciones----
+
+
 
     private function lightKPIS(){//listado light de kpis
         if($this->get_request_method() != "GET"){
@@ -3057,9 +2940,6 @@ class API extends REST {
         }
         $this->response('',204);        // If no records "No Content" status
     }
-//----------------------KPIS maestro tabla informe_petec_pendientesm ------------------------asignaciones----
-
-//----------------------KPIS maestro tabla pendientes_reagendamiento ------------------------agendamiento----
 
 
     private function lightKPISAgendamiento(){//listado light de kpis
@@ -3086,9 +2966,7 @@ class API extends REST {
         }
         $this->response('',204);        // If no records "No Content" status
     }
-//---------------------- fin KPIS maestro tabla pendientes_reagendamiento ------------------------agendamiento----
 
-//------------------pendientes por colas activacion----------------------------activacion-----------------
 
     private function pendientesPorColaConceptoActivacion(){
         if($this->get_request_method() != "GET"){
@@ -3230,10 +3108,6 @@ class API extends REST {
 
 
     }
-//------------------pendientes por colas activacion----------------------------activacion----------------
-
-//-------------------pendientes por plaza  informe_petec_pendientesm-------------asignaciones------------
-
 
     private function pendientesPorPlaza(){
         if($this->get_request_method() != "GET"){
@@ -3361,9 +3235,7 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-//-------------------fin pendientes por plaza  informe_petec_pendientesm-------------asignaciones------------
 
-//----------------Dashboard asignaciones gestor_informes.kpi_seguimiento_automatico-----asignaciones-----
     private function getDashboardAsignaciones(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -3411,9 +3283,7 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-//----------------fin Dashboard asignaciones gestor_informes.kpi_seguimiento_automatico-----asignaciones-----
 
-//------------Dashboard agendamiento ------------------------------agendamiento-----------------
     private function getDashboardAgendamiento(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -3454,9 +3324,7 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-//------------fin Dashboard agendamiento ------------------------------agendamiento-----------------
 
-//-----------------------Dashboard agendamiento presupuestal-----------agendamiento-----------------
     private function getDashboardAgendamientoPresupuestal(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -3498,9 +3366,7 @@ class API extends REST {
 
     }
 
-//-----------------------fin Dashboard agendamiento presupuestal-----------agendamiento-----------------
 
-//------------------ Dashboard reconfiguracion gestor_informes.kpi_seguimiento_reconfigura------asignaciones--------
 
     private function getDashboardReconfiguracion(){
         if($this->get_request_method() != "GET"){
@@ -3554,9 +3420,8 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-//------------------fin  Dashboard reconfiguracion gestor_informes.kpi_seguimiento_reconfigura------asignaciones--------
 
-//---------------Dashboard pendientes kpi_pendientes_alistamiento ----------asignaciones------------------
+
 
     private function getDashboardPendientes(){
         if($this->get_request_method() != "GET"){
@@ -3615,9 +3480,8 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-//---------------fin Dashboard pendientes kpi_pendientes_alistamiento ----------asignaciones------------------
 
-//-------------actualizar grafica de cambio nuevo kpi_seguimiento_automatico HFC-------asignacion-----------
+
     private function actualizarGraficaCambioNuevoHFC(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -3678,10 +3542,6 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-
-//-------------fin actualizar grafica de cambio nuevo kpi_seguimiento_automatico HFC-------asignacion-----------
-
-//------------------actualizar grafica cambio nuebo REDCO kpi_seguimiento_automatico----asignaciones-------
 
     private function actualizarGraficaCambioNuevoREDCO(){
         if($this->get_request_method() != "GET"){
@@ -3744,10 +3604,6 @@ class API extends REST {
 
     }
 
-//------------------fin actualizar grafica cambio nuebo REDCO kpi_seguimiento_automatico----asignaciones-------
-
-//-------------  Dashboard asignaciones por mes--------------------------asignaciones------------------
-
     private function getDashboardAsignacionesMes(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -3793,9 +3649,7 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-//-------------  fin Dashboard asignaciones por mes--------------------------asignaciones------------------
 
-//-----------------------------Dashboard asignaciones mes COBRE ------------------asignaciones-------------
     private function getDashboardAsignacionesMesCobre(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -3842,9 +3696,7 @@ class API extends REST {
 
     }
 
-//----------------------------- fin Dashboard asignaciones mes COBRE ------------------asignaciones-------------
 
-//------------------------Dashboard asignaciones Tecnologia ------------------------asignaciones------
     private function getDashboardAsignacionesTecnologia(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -3917,9 +3769,7 @@ class API extends REST {
 
     }
 
-//------------------------fin Dashboard asignaciones Tecnologia ------------------------asignaciones------
-
-//-------------------- Dashboard reconfiguracion mes ------------------------asignaciones-----------
+    //DashBoard Activacion TMA
 
 
     private function getDashboardReconfiguracionMes(){
@@ -3984,9 +3834,7 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-//-------------------- fin Dashboard reconfiguracion mes ------------------------asignaciones-----------
 
-//--------------------- Dashboard activacion TMA mes -------------------activacion------------------
     //DashBoard Activacion TMA
     private function getDashboardActivacionMes(){
 
@@ -4016,9 +3864,9 @@ class API extends REST {
 
     }
 
-//----------------------fin  Dashboard activacion TMA mes -------------------activacion------------------
 
-//--------------------grafica con pendientes informe_petec_pendientesm---------asignaciones--------------
+
+
 
     private function pendientesGrafica(){
         if($this->get_request_method() != "GET"){
@@ -4043,10 +3891,6 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-
-//--------------------fin grafica con pendientes informe_petec_pendientesm---------asignaciones--------------
-
-//----------------------grafica pendientes informe_activacion_pendientesm -------activacion------------
 
 
     private function pendientesGraficaAD(){
@@ -4075,10 +3919,6 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-//----------------------grafica pendientes informe_activacion_pendientesm -------activacion------------
-
-
-//--------------------------pendientes siebel grafica gestor_pendientes_activacion_siebel---activacion---
 
     private function PendientesSiebelGraficaAD(){
         if($this->get_request_method() != "GET"){
@@ -4106,10 +3946,6 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-//--------------------------fin pendientes siebel grafica gestor_pendientes_activacion_siebel---activacion---
-
-
-//------------------------seguimiento activacion gestor_seguimiento_activacion---activacion-----------------
 
 
     private function seguimientoactivacionGraficaAD(){
@@ -4146,10 +3982,9 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-//------------------------fin seguimiento activacion gestor_seguimiento_activacion---activacion-----------------
 
 
-//---------------------pendientes grafica reagendamiento---------------------agendamiento-----------------
+
 
     private function pendientesGraficaAgendamiento(){
         if($this->get_request_method() != "GET"){
@@ -4180,9 +4015,7 @@ class API extends REST {
 
     }
 
-//---------------------fin pendientes grafica reagendamiento---------------------agendamiento-----------------
 
-//-------------------------listado agendamiento auditoria gestor_historicos_reagendamiento---agendamiento-----
 
     private function listadoAgendamientoAuditoria(){
 
@@ -4268,10 +4101,6 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-
-    //-------------------------listado agendamiento auditoria gestor_historicos_reagendamiento---agendamiento-----
-
-    //----------------------exportar tabla gestor_historicos_reagendamiento------agendamiento-------------------
     private function csvTabla(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -4358,9 +4187,7 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-//----------------------fin exportar tabla gestor_historicos_reagendamiento------agendamiento-------------------
 
-//----------------pendientes por concepto reagendamiento-----------------agendamiento---------------------
 
     private function pendientesPorConceptoReagendamiento(){
         if($this->get_request_method() != "GET"){
@@ -4413,9 +4240,6 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-//----------------fin pendientes por concepto reagendamiento-----------------agendamiento---------------------
-
-//-----------------pendientes con agenda gestor_pendientes_reagendamiento----agendamiento-----------------
 
     private function pedidosConAgenda(){
         if($this->get_request_method() != "GET"){
@@ -4472,9 +4296,7 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-//-----------------fin pendientes con agenda gestor_pendientes_reagendamiento----agendamiento-----------------
 
-//----------------productividaded del grupo------------------------------asignaciones--------------------------
 
     private function productividadGrupo(){
         if($this->get_request_method() != "GET"){
@@ -4549,9 +4371,7 @@ class API extends REST {
 
 
     }
-//----------------fin productividaded del grupo------------------------------asignaciones--------------------------
 
-//-------------------calcular detalle TMA----------------------------------asignaciones-----------------
     //esto deberia llamarse calcularDetalleTMA
     private function calcularDetalleTME(){
         if($this->get_request_method() != "GET"){
@@ -4628,7 +4448,7 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" stat
 
     }
-//-------------------calcular detalle TMA----------------------------------asignaciones-----------------
+
 
     private function ingresosEstudiosGrafica(){
         if($this->get_request_method() != "GET"){
@@ -5762,49 +5582,22 @@ class API extends REST {
         $user=strtoupper($user);
         $today = date("Y-m-d");
 
-        $query1=" SELECT ".
-            " a.ID ".
-            " , a.PEDIDO_ID ".
-            " , a.SUBPEDIDO_ID ".
-            " , a.SOLICITUD_ID ".
-            " , a.TIPO_ELEMENTO_ID ".
-            " , a.TIPO_TRABAJO ".
-            " , a.DESC_TIPO_TRABAJO ".
-            " , a.CELULAR_AVISAR ".
-            " , a.TELEFONO_AVISAR ".
-            " , a.PRODUCTO ".
-            " , a.TECNOLOGIA_ID ".
-            " , a.UEN_CALCULADA ".
-            " , a.ESTRATO ".
-            " , MUNICIPIO_ID ".
-            " , a.DIRECCION_SERVICIO ".
-            " , a.PAGINA_SERVICIO ".
-            " , CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA ".
-            " , a.FUENTE ".
-            " , a.CONCEPTO_ID ".
-            " , a.FECHA_ESTADO ".
-            " , a.ASESOR ".
-            " , a.STATUS ".
-            " , a.CONCEPTO_ANTERIOR ".
-            " , a.FECHA_CITA ".
-            " , a.CANTIDAD_EQU ".
-            " , a.EQUIPOS ".
-            " , a.CONCEPTOS_EQU ".
-            " , a.TIPO_EQUIPOS ".
-            " , a.EXTENSIONES ".
-            " , a.OBSERVACIONES ".
-            " , a.EJECUTIVO_ID ".
-            " , a.CANAL_ID ".
-            " , a.PROGRAMACION ".
-            " , cast(ifnull(c.Total_Contactos,'SIN LLAMADAS') AS CHAR(255)) as LLAMADAS ".
-            " , c.ULTIMO_CONTACTO	".
-            " from informe_petec_pendientesm a ".
-            " left join (SELECT a.pedido_id, count(a.pedido_id) as Total_Contactos, ".
-            " max(a.fecha_fin) as Ultimo_Contacto	".
-            " FROM portalbd.pedidos a	".
-            " WHERE a.ESTADO = 'VOLVER A LLAMAR'	".
-            " group by a.PEDIDO_ID) c	on c.PEDIDO_id = a.pedido_id ".
-            " WHERE a.PEDIDO_ID='$pedido' and (a.STATUS='PENDI_PETEC' or a.STATUS='BUSCADO_PETEC' or a.STATUS='MALO') ";
+        $query1="	SELECT a.ID,a.PEDIDO_ID,a.SUBPEDIDO_ID,a.SOLICITUD_ID,a.TIPO_ELEMENTO_ID, a.TIPO_TRABAJO, a.DESC_TIPO_TRABAJO, a.CELULAR_AVISAR, a.TELEFONO_AVISAR,	".
+            "	a.PRODUCTO,a.UEN_CALCULADA,a.ESTRATO,MUNICIPIO_ID,a.DIRECCION_SERVICIO,	".
+            "	a.PAGINA_SERVICIO,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,	".
+            "	a.FUENTE,a.CONCEPTO_ID,a.FECHA_ESTADO,a.ASESOR,a.STATUS,a.CONCEPTO_ANTERIOR,a.FECHA_CITA,	".
+            "	a.CANTIDAD_EQU,a.EQUIPOS,a.CONCEPTOS_EQU,a.TIPO_EQUIPOS,a.EXTENSIONES, a.OBSERVACIONES, 	".
+            "	a.EJECUTIVO_ID, a.CANAL_ID, a.PROGRAMACION, cast(ifnull(c.Total_Contactos,'SIN LLAMADAS') AS CHAR(255)) as LLAMADAS, c.ULTIMO_CONTACTO	".
+            "	from informe_petec_pendientesm a 	".
+            "	left join (SELECT a.pedido_id, count(a.pedido_id) as Total_Contactos, 	".
+            "	max(a.fecha_fin) as Ultimo_Contacto	".
+            "	FROM portalbd.pedidos a	".
+            "	WHERE a.ESTADO = 'VOLVER A LLAMAR'	 ".
+            "	group by a.PEDIDO_ID) c	".
+            "	on c.PEDIDO_id = a.pedido_id 	".
+            "	WHERE a.PEDIDO_ID='$pedido' and (a.STATUS='PENDI_PETEC' or a.STATUS='BUSCADO_PETEC' or a.STATUS='MALO')	";
+
+        //"SELECT a.ID,a.PEDIDO_ID,a.SUBPEDIDO_ID,a.SOLICITUD_ID,a.TIPO_ELEMENTO_ID,a.PRODUCTO,a.UEN_CALCULADA,a.ESTRATO,MUNICIPIO_ID,a.DIRECCION_SERVICIO,a.PAGINA_SERVICIO,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,a.FUENTE,a.CONCEPTO_ID,a.FECHA_ESTADO,a.ASESOR,a.STATUS,a.CONCEPTO_ANTERIOR,a.FECHA_CITA,a.CANTIDAD_EQU,a.EQUIPOS,a.CONCEPTOS_EQU,a.TIPO_EQUIPOS,a.EXTENSIONES, a.OBSERVACIONES, a.EJECUTIVO_ID, a.CANAL_ID from informe_petec_pendientesm a WHERE a.PEDIDO_ID='$pedido' and (a.STATUS='PENDI_PETEC' or a.STATUS='BUSCADO_PETEC' or a.STATUS='MALO') ";
 
         //$this->response($query1,200);
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
@@ -5837,8 +5630,7 @@ class API extends REST {
             $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','') ";
             $xx = $this->mysqli->query($sqlfeed);
             //echo json_encode($result);
-            //$this->response(json_encode($result), 200); // send user details
-            $this->response(json_encode($result), 200);
+            $this->response(json_encode($result), 200); // send user details
             //$this->response('test', 200); // send user details
         }else {
 
@@ -5869,8 +5661,6 @@ class API extends REST {
         $sqlfenix="SELECT DISTINCT ".
             "  SOL.PEDIDO_ID as PEDIDO".
             "  , SOL.PEDIDO_ID ".
-            "  , max(SOL.SUBPEDIDO_ID) as SUBPEDIDO_ID ".
-            "  , max(SOL.SOLICITUD_ID) as SOLICITUD_ID ".
             "  , regexp_replace(LISTAGG(SOL.TIPO_ELEMENTO_ID,',') WITHIN GROUP (ORDER BY NULL),'([^,]+)(,\\1)+', '\\1' ) as TIPO_ELEMENTO_ID    ".
             "  , regexp_replace(LISTAGG(FNX_TRABAJOS_SOLICITUDES.TIPO_TRABAJO,',') WITHIN GROUP (ORDER BY NULL),'([^,]+)(,\\1)+', '\\1' ) as TIPO_TRABAJO  ".
             "  , convert((MIN(FNX_TRABAJOS_SOLICITUDES.TIPO_TRABAJO) || '-' || FN_NOMBRE_CARACTERISTICA(MIN(FNX_TRABAJOS_SOLICITUDES.CARACTERISTICA_ID))),'US7ASCII') as DESC_TIPO_TRABAJO   ".
@@ -5958,6 +5748,8 @@ class API extends REST {
         }
         return $success;
     }
+
+
     //Función para buscar pedidos directamente en Fenix - Boton BuscarPedido.
     // 2015-09-17 - Se modifica fecha estado, ahora vamos a novedades por ella - CGONZGO
     private function buscarPedidoFenix($pedido_id){
@@ -6523,7 +6315,6 @@ class API extends REST {
 
 
         }else if($fuente=="SIEBEL"||$fuente=="EDATEL"){
-            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ASGINGACIONES_SIEBEL');
             $concepto=" and b.CONCEPTO_ID in ('$concepto')";
         }else if($concepto=="STBOX"){
             $concepto=" and b.CONCEPTO_ID in ('PETEC','15') and (b.TIPO_ELEMENTO_ID IN ('STBOX') )";
@@ -6953,9 +6744,7 @@ class API extends REST {
     }
 
 
-//--------------------fin demepedido activacion------------------------------
-
-//----------------------------------deme  pedido agendamiento----------------------------
+//--------------------fin demepedido activacion
 
 
     private function demePedidoAgendamiento(){
@@ -7240,7 +7029,7 @@ class API extends REST {
         $this->response('nothing',204);        // If no records "No Content" status
     }
 
-//---------------------------------- fin demepedido agendamiento----------------------------
+
 
     private function demePedidoAgendamientomalo(){
 
@@ -9950,7 +9739,6 @@ class API extends REST {
                 //$result[] = $row;
                 //echo "name: ".utf8_encode($row['USUARIO_NOMBRE'])."\n ";
                 $row['USUARIO_NOMBRE']=utf8_encode($row['USUARIO_NOMBRE']);
-                $row['INTERVENTOR']=utf8_encode($row['INTERVENTOR']);
                 $result[] = $row;
             }
             $this->response($this->json(array($result,$counter)), 200); // send user details
@@ -11397,7 +11185,7 @@ class API extends REST {
 
 
 
-// Busca Pedido Siebel Asignaciones -------------------------
+    // Busca Pedido Siebel Asignaciones -------------------------
     private function buscarOfertaSiebelAsignaciones(){
 
         if($this->get_request_method() != "GET"){
@@ -11453,7 +11241,7 @@ class API extends REST {
             "	where m.PEDIDO_ID='$pedido' ".
             "	AND m.STATUS IN ('PENDI_PETEC','MALO') ";
 
-        $sqlCerrados=   " SELECT ".
+        $sqlCerrados=" SELECT ".
             "	m.ID ".
             "	, m.PEDIDO_ID ".
             "	, m.SUBPEDIDO_ID ".
@@ -11525,7 +11313,9 @@ class API extends REST {
             $xx = $this->mysqli->query($sqlfeed);
             //  ---------------------- Feed
 
-            $this->response(json_encode($result), 200); //Resultado final si encontro registros
+
+
+            $this->response(json_encode(array($busy,$result)), 200); //Resultado final si encontro registros
 
 
         }else{ // Si el pedido no esta abierto lo busco en cerrado pero solo devuelvo un solo registro
@@ -11560,7 +11350,7 @@ class API extends REST {
 
 
 
-                $this->response(json_encode($result), 200); //Resultado final si encontro registros
+                $this->response(json_encode(array($busy,$result)), 200); //Resultado final si encontro registros
 
 
             }else{
@@ -12129,7 +11919,7 @@ class API extends REST {
                 $result[] = $row;
             }
 
-            $this->response($this->json($result), 201); // send user details
+            $this->response($this->json(array($result)), 201); // send user details
         }
         $this->response('',406);        // If no records "No Content" status
 
@@ -12253,72 +12043,10 @@ class API extends REST {
 
         }else{
             $error="Sin registros";
-            $this->response($this->json($error), 400);
-        }
-
-    }//-----------------------------------------------PEDIDOS PROGRAMADOS POR USER
-
-    //Historico de Pedidos --------------------------------------------------------
-
-    private function listaHistoricoPedidos(){
-
-        //$usuario_id="";
-        $parametro="";
-
-
-        if($this->get_request_method() != "POST"){
-            $this->response('',406);
-        }
-
-        //$this->dbDespachoConnect();
-
-        //$params = json_decode(file_get_contents('php://input'),true);
-        $params = json_decode(file_get_contents('php://input'),true);
-        //$params = file_get_contents('php://input');
-
-        $pedido = $params['pedido'];
-        $today = date("Y-m-d");
-
-        $query="	SELECT ".
-            "	p.ID ".
-            "	, p.ACTIVIDAD ".
-            "	, p.FECHA_FIN as FECHA_GESTION ".
-            "	, p.ESTADO ".
-            "	, p.USER AS USUARIO_ID ".
-            "	, p.CONCEPTO_ANTERIOR ".
-            "	, p.CONCEPTO_FINAL ".
-            "	, p.IDLLAMADA ".
-            "	, p.NUEVOPEDIDO ".
-            "	, p.MOTIVO_MALO ".
-            "	from portalbd.pedidos p ".
-            "	where p.pedido_id='$pedido' ".
-            "	order by p.ID desc ";
-
-        // echo $query;
-        $rst = $this->mysqli->query($query);
-
-        //echo $this->mysqli->query($sqlLogin);
-        //
-        if ($rst->num_rows > 0){
-
-            $resultado=array();
-
-            while($row=$rst->fetch_assoc()){
-
-                //$row['USUARIO_NOMBRE']=utf8_encode($row['USUARIO_NOMBRE']);
-                $resultado[]=$row;
-
-
-            }
-            $this->response($this->json($resultado), 201);
-
-
-        }else{
-            $error="Sin registros";
             $this->response($this->json($error), 403);
         }
 
-    }//----------------------------------------------- Historico de Pedidos
+    }//-----------------------------------------------PEDIDOS PROGRAMADOS POR USER
 
     private function csvUsuarios(){
 
@@ -12613,159 +12341,6 @@ class API extends REST {
 
     }//Funcion para listar la productividad del grupo
 
-    private function opcionesGestionAsignaciones(){
-
-
-        if($this->get_request_method() != "POST"){
-            $this->response('',406);
-        }
-
-        $params 	= json_decode(file_get_contents('php://input'),true);
-        $fuente 	= $params['fuente'];
-        $grupo 	        = $params['grupo'];
-        $today		= date("Y-m-d");
-
-        if($grupo=='ADMINISTRACION'){
-            $filtros= "";
-        }else{
-            $filtros= " and o.ESTADO=1 and o.FUENTE='$fuente' and o.GRUPO='$grupo' ";
-        };
-
-
-        $query=	" SELECT ".
-            "	o.ID ".
-            "	,	o.FUENTE ".
-            "	,	o.GRUPO ".
-            "	,	o.ACTIVIDAD ".
-            "	,	o.ESTADO_ID ".
-            "	,	o.OBSERVACION_ID ".
-            "	,	o.USUARIO_ID ".
-            "	,	o.STATUS ".
-            "	,	o.ESTADO ".
-            "	FROM portalbd.gestor_opciones_gestion o ".
-            "	where 1=1 ".
-            " 	$filtros ";
-
-        $rst = $this->mysqli->query($query);
-
-        if ($rst->num_rows > 0){
-
-            $resultado=array();
-
-            while($row=$rst->fetch_assoc()){
-
-                //$row['nombre']=utf8_encode($row['nombre']);
-                $resultado[]=$row;
-
-
-            }
-            $this->response($this->json($resultado), 201);
-
-
-        }else{
-
-            $this->response($this->json($error), 400);
-        }
-
-    }// ------------------------------------------------------------------------ Parametros Acciones Nuevo
-//Funcion para productividad el grupo de asignaciones cada hora-----------------------------------------------
-    private function productivdadAsignacionesPorHora(){
-
-        if($this->get_request_method() != "POST"){
-            $this->response('',406);
-        }
-        $params = json_decode(file_get_contents('php://input'),true);
-        $fecha = $params['fecha'];
-        $today = date("Y-m-d");
-
-        if($fecha==''|| $fecha=='undefined'){
-            $fecha=$today;
-        }
-
-
-        $query=    " SELECT ".
-            " G.HORA ".
-            " , ifnull(G.INGRESOS,0) AS INGRESOS ".
-            " , ifnull(G.ASIGNADOS,0) AS ASIGNADOS ".
-            " , ifnull(G.SIEBEL,0) AS SIEBEL ".
-            " , ifnull(G.RECONFIGURADOS,0) AS RECONFIGURADOS ".
-            " , (ifnull(G.ASIGNADOS,0)+ifnull(G.SIEBEL,0)+ifnull(G.RECONFIGURADOS,0) ) AS GESTIONADOS ".
-            " FROM(SELECT  ".
-            " h.HORA ".
-            " , (SELECT  ".
-            " 	COUNT(*) AS INGRESOS ".
-            " 	FROM( SELECT ".
-            " 	M.PEDIDO_ID ".
-            " 	, MIN(M.FECHA_ESTADO) AS FECHA_ESTADO ".
-            " 	, hour(MIN(M.FECHA_ESTADO)) AS HORA ".
-            " 	FROM informe_petec_pendientesm M ".
-            " 	WHERE 1=1 ".
-            " 	AND M.FECHA_ESTADO between '$fecha 00:00:00' and '$fecha 23:59:59' ".
-            " 	GROUP BY M.PEDIDO_ID ) ING ".
-            "     where ING.HORA=h.HORA ".
-            " 	GROUP BY ING.HORA) as INGRESOS ".
-            " , (SELECT ".
-            " 	COUNT(*) AS GESTIONADO ".
-            " 	FROM (SELECT  ".
-            " 		p.pedido_id, ".
-            " 		 MAX(p.fecha_fin) AS FECHAFIN, ".
-            " 		 DATE_FORMAT(MAX(p.fecha_fin),'%H') AS HORA, ".
-            " 		 DATE_FORMAT(MAX(p.fecha_fin),'%H:00') AS HORA_FULL, ".
-            " 		 MAX(p.fecha_estado) AS FECHAESTADO ".
-            " 	FROM portalbd.pedidos p ".
-            " 	where 1=1 ".
-            " 	and p.fecha_fin between '$fecha 00:00:00' and '$fecha 23:59:59' ".
-            " 	and p.actividad='ESTUDIO' ".
-            " 	AND p.PEDIDO_ID!='' ".
-            " 	GROUP BY p.pedido_id ) GES ".
-            "     where GES.HORA=h.HORA ".
-            " 	GROUP BY GES.HORA) as ASIGNADOS ".
-            " , (SELECT ".
-            " 	COUNT(*) AS GESTIONADOS ".
-            " 	FROM (SELECT  ".
-            " 	n.OFERTA as PEDIDO_ID ".
-            " 	, max(n.fecha_fin) as FECHA_FIN ".
-            " 	, HOUR(MAX(n.fecha_fin)) AS HORA ".
-            " 	, DATE_FORMAT(MAX(n.fecha_fin),'%H:00') AS HORA_FULL ".
-            " 	FROM portalbd.transacciones_nca n ".
-            " 	where n.fecha_fin between '$fecha 00:00:00' and '$fecha 23:59:59' ".
-            " 	group by n.OFERTA ) SI ".
-            "     WHERE SI.HORA=h.HORA ".
-            " 	GROUP BY SI.HORA) AS SIEBEL ".
-            " , (SELECT ".
-            " 	COUNT(*) AS GESTIONADO ".
-            " 	FROM (SELECT  ".
-            " 		p.pedido_id, ".
-            " 		 MAX(p.fecha_fin) AS FECHAFIN, ".
-            " 		 DATE_FORMAT(MAX(p.fecha_fin),'%H') AS HORA, ".
-            " 		 DATE_FORMAT(MAX(p.fecha_fin),'%H:00') AS HORA_FULL, ".
-            " 		 MAX(p.fecha_estado) AS FECHAESTADO ".
-            " 	FROM portalbd.pedidos p ".
-            " 	where 1=1 ".
-            " 	and p.fecha_fin between '$fecha 00:00:00' and '$fecha 23:59:59' ".
-            " 	and p.actividad='RECONFIGURACION' ".
-            " 	AND p.PEDIDO_ID!='' ".
-            " 	GROUP BY p.pedido_id ) GES ".
-            "     where GES.HORA=h.HORA ".
-            " 	GROUP BY GES.HORA) as RECONFIGURADOS ".
-            " FROM portalbd.informe_petec_horam h ".
-            " where 1=1 ".
-            " and h.FECHA='$fecha' ".
-            " and h.CONCEPTO='PENDIENTES') G ";
-
-        $rst = $this->mysqli->query($query);
-        if ($rst->num_rows > 0){
-            $resultado=array();
-            while($row=$rst->fetch_assoc()){
-                $resultado[]=$row;
-            }
-            $this->response($this->json($resultado), 201);
-        }else{
-            $error="Sin registros";
-            $this->response($this->json($error), 403);
-        }
-
-    }//-----------------------------------------------Funcion para productividad el grupo de asignaciones cada hora
 
 
 
