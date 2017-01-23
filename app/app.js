@@ -6722,8 +6722,12 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		return num;
 	};
 
-});
-//--------------------fin asignacion-----------------------------
+    $scope.onChangeAccion = function () {
+        $scope.accRdy = true;
+        //$scope.programar=false;
+    };
+
+});//--------------------fin asignacion-----------------------------
 
 app.controller('listCtrl', function ($scope, services) {
 	services.getCustomers().then(function (data) {
