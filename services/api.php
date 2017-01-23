@@ -936,7 +936,7 @@ class API extends REST {
         }
         //sleep(10);
         $pedido = json_decode(file_get_contents("php://input"),true);
-        $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo');
+        $column_names = array('pedido', 'fuente', 'actividad','ESTADO_ID','estado', 'OBSERVACIONES_PROCESO','user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo');
         $keys = array_keys($pedido);
         $columns = '';
         $values = '';
@@ -1434,7 +1434,7 @@ class API extends REST {
         $pedido = json_decode(file_get_contents("php://input"),true);
         //2015-09-28: se retira seguimiento....
         //$column_names = array('pedido', 'fuente', 'actividad','estado','motivo', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','caracteristica','motivo_malo');
-        $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','motivo_malo');
+        $column_names = array('pedido', 'fuente', 'actividad','ESTADO_ID','estado', 'OBSERVACIONES_PROCESO', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','motivo_malo');
         $keys = array_keys($pedido);
         $columns = '';
         $values = '';
