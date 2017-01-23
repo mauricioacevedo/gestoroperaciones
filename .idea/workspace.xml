@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gestoroperaciones.iml" afterPath="$PROJECT_DIR$/.idea/gestoroperaciones.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/api.php" afterPath="$PROJECT_DIR$/services/api.php" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
     <ignored path="node_modules/angular-notify/package.json" />
@@ -601,7 +597,7 @@
       <option name="presentableId" value="Default" />
       <updated>1485186359179</updated>
       <workItem from="1485186362752" duration="4787000" />
-      <workItem from="1485193173411" duration="8615000" />
+      <workItem from="1485193173411" duration="8655000" />
     </task>
     <task id="LOCAL-00001" summary="Prueba rutas">
       <created>1485187106635</created>
@@ -736,11 +732,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485198953884</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Prueba rutas 2">
+      <created>1485202402482</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1485202402482</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13402000" />
+    <option name="totallyTimeSpent" value="13442000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
