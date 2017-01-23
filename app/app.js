@@ -6053,7 +6053,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		};
 
 		$scope.listarOpcionesAsginacion(opciones);
-	}//-------------------------------------------------------------------------------------------------------
+	};//-------------------------------------------------------------------------------------------------------
 
     $scope.listarOpcionesAsginacion = function (opciones) {
 
@@ -6314,7 +6314,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 			return data.data;
 		});
-	}
+	};
 
 	$scope.$on(
 		"$destroy",
@@ -6354,7 +6354,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		buscar = /ANTCOL/;
 		var rta = buscar.test($scope.peds[index].MUNICIPIO_ID);
 		return rta;
-	}
+	};
 
 	$scope.buscarPedido = function (bpedido, iplaza) {
 		$scope.error = "";
@@ -6804,7 +6804,7 @@ app.controller('SchedulingCtrl', function ($scope, $rootScope, $location, $route
 		currentPage: 1,
 		numPerPage: 100,
 		totalItems: 0
-	}
+	};
 	$scope.listaScheduling = [];
 
 	$rootScope.actualView = "Alarmados";
@@ -6824,7 +6824,7 @@ app.controller('SchedulingCtrl', function ($scope, $rootScope, $location, $route
 
 	if (!angular.isDefined($scope.currentPage)) {
 		$scope.currentPage = 1;
-	};
+	}
 
 	services.getScheduling($scope.data.currentPage).then(function (data) {
 		$scope.listaScheduling = data.data[0];
