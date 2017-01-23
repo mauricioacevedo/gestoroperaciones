@@ -6510,7 +6510,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 		//$scope.pedido=$scope.peds[index];
 		angular.copy($scope.peds[index], $scope.pedido);
-		//console.log($scope.pedido);
+		console.log($scope.pedido);
 		//if($scope.pedido.estado===undefined||$scope.pedido.accion===undefined){
 		if ($scope.pedido.estado === undefined) {
 			alert('Por favor diligenciar todos los campos.');
