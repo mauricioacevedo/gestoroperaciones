@@ -6521,6 +6521,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		}
 		//console.log($scope.pedido);
 		$scope.pedido.ESTADO_ID = $scope.pedido.estado;
+		$scope.pedido.OBSERVACIONES_PROCESO = $scope.pedido.motivo_malo;
 		$scope.pedido.user = $rootScope.logedUser.login;
 		$scope.pedido.username = $rootScope.logedUser.name;
 		$scope.pedido.duracion = new Date().getTime() - $scope.timeInit;
@@ -13792,7 +13793,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			actividad: $scope.actividadGo,
 			fecha_fin: $scope.fecha_fin,
 			user: $rootScope.logedUser.login,
-			ESTADO_ID:InfoPedido.ESTADO_PROCESO,
+			ESTADO_ID: InfoPedido.ESTADO_PROCESO,
+			OBSERVACIONES_PROCESO: InfoPedido.OBSERVACIONES_PROCESO,
 			estado: estadoFinal,
 			duracion: timeDiff,
 			FECHA_ESTADO: gestion.FECHA_ESTADO,
@@ -13837,6 +13839,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			user: $rootScope.logedUser.login,
 			ESTADO_ID:InfoPedido.ESTADO_PROCESO,
 			estado: InfoPedido.OBSERVACIONES_PROCESO,
+			OBSERVACIONES_PROCESO: InfoPedido.OBSERVACIONES_PROCESO,
 			duracion: timeDiff,
 			FECHA_ESTADO: gestion.FECHA_ESTADO,
 			fecha_inicio: $scope.fecha_inicio,
