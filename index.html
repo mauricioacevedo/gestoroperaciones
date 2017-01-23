@@ -260,9 +260,8 @@
         <div class="modal-body">
             <p>
               <div digital-clock></div>
-               
-            </p>
-        </div>
+
+		</div>
         <div class="modal-footer">
    
           <button type="button" class="btn btn-success" data-dismiss="modal">Terminar</button>
@@ -324,19 +323,19 @@
       </div>
       <div class="row no-gutter">
            <div id="nagendamiento" class="collapse" style="width:200px">
-		
+
                         <div ng-repeat='totalDepa in totalesDepartamento'>
 				<accordion close-others="oneAtATime"><!--Acordeon -->
                                     <accordion-group>
                                         <accordion-heading>
-						
-					<a ng-href='' ng-click='abreZona(totalDepa.DEPARTAMENTO)'>{{totalDepa.DEPARTAMENTO==""?"VACIOS":totalDepa.DEPARTAMENTO}}</a> {{totalDepa.COUNTER}} 
+
+					<a ng-href='' ng-click='abreZona(totalDepa.DEPARTAMENTO)'>{{totalDepa.DEPARTAMENTO==""?"VACIOS":totalDepa.DEPARTAMENTO}}</a> {{totalDepa.COUNTER}}
                                         </accordion-heading>
                                         <div ng-bind-html="selected_option">
 					</div>
                                     </accordion-group><!--Fecha Cita -->
                                 </accordion><!--Acordeones -->
-                      </div>                    
+                      </div>
            </div>
       </div>
 
@@ -388,7 +387,6 @@
 <script src="js/angular-base64.min.js"></script>
 <script src="js/select.js"></script>
 <script src="js/angular-notify.js"></script>
-
 <script src="js/angularfire.min.js"></script>
 <script src="js/firebase.js"></script>
 <script src="js/angular-smilies.min.js"></script>
