@@ -6504,6 +6504,11 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		var loader = document.getElementById("class" + index);
 		loader.className = 'glyphicon glyphicon-refresh fa-spin';
 
+		if (!$scope.accRdy) {
+		    alert("Debe Seleccionar la Observaciónn");
+		    return;
+        }
+
 		$scope.pedido = {};
 
 		$scope.error = "";
