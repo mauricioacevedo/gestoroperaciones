@@ -13301,25 +13301,25 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 	// Basura del logueo ---------------------------------
 		$rootScope.logedUser = $cookieStore.get('logedUser');
-		var userID = $cookieStore.get('logedUser').login;
-		document.getElementById('logout').className = "btn btn-md btn-danger";
-		var divi = document.getElementById("logoutdiv");
-		divi.style.visibility = "visible";
-		divi.style.position = "relative";
+        var userID = $cookieStore.get('logedUser').login;
+        document.getElementById('logout').className = "btn btn-md btn-danger";
+        var divi = document.getElementById("logoutdiv");
+        divi.style.visibility = "visible";
+        divi.style.position = "relative";
 
 
-		$rootScope.logout = function () {
-			services.logout(userID);
-			$cookieStore.remove('logedUser');
-			$rootScope.logedUser = undefined;
-			$scope.pedidos = {};
-			clearInterval($scope.intervalLightKPIS);
-			document.getElementById('logout').className = "btn btn-md btn-danger hide";
-			var divi = document.getElementById("logoutdiv");
-			divi.style.position = "absolute";
-			divi.style.visibility = "hidden";
-			$location.path('/');
-		};//  ---------------------------------Basura del logueo
+        $rootScope.logout = function() {
+            services.logout(userID);
+            $cookieStore.remove('logedUser');
+            $rootScope.logedUser = undefined;
+            $scope.pedidos = {};
+            clearInterval($scope.intervalLightKPIS);
+            document.getElementById('logout').className = "btn btn-md btn-danger hide";
+            var divi = document.getElementById("logoutdiv");
+            divi.style.position = "absolute";
+            divi.style.visibility = "hidden";
+            $location.path('/');
+        }; //  ---------------------------------Basura del logueo
 
 	// Inicio de Variables ---------------------------------------------------------------------------------
 	$scope.tools				= true;						// Herramientas de gestion habilitadas.
