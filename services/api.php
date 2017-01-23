@@ -12686,7 +12686,7 @@ class API extends REST {
             " , ifnull(G.ASIGNADOS,0) AS ASIGNADOS ".
             " , ifnull(G.SIEBEL,0) AS SIEBEL ".
             " , ifnull(G.RECONFIGURADOS,0) AS RECONFIGURADOS ".
-            " , ifnull(G.ASIGNADOS,0)+ifnull(G.SIEBEL,0)+ifnull(G.RECONFIGURADOS,0) ) AS GESTIONADOS ".
+            " , (ifnull(G.ASIGNADOS,0)+ifnull(G.SIEBEL,0)+ifnull(G.RECONFIGURADOS,0) ) AS GESTIONADOS ".
             " FROM(SELECT  ".
             " h.HORA ".
             " , (SELECT  ".
