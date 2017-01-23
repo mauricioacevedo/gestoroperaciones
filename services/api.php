@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
 
 require_once("Rest.inc.php");
 //include_once("/var/www/html/gestorasignaciones/conn_fenix.php");
@@ -8,10 +8,6 @@ require_once("Rest.inc.php");
 // include_once("/var/www/html/gestorasignaciones/conn_portalbd.php");
 //include_once("/var/www/html/gestoroperaciones/connections.php");
 include_once("/var/www/html/gestoroperaciones/connections.php");
-//1. Inicializar conexion fenix y local mysql
-//$connf=getConnFenix();
-//$connm=getConnPortalbd();
-
 
 date_default_timezone_set('America/Bogota');
 
@@ -39,8 +35,8 @@ class API extends REST {
     }
 
     /*
-     *  Connect to Database
-    */
+		 *  Connect to Database
+		*/
 
     private function dbConnectScheduling(){
 
@@ -75,8 +71,8 @@ class API extends REST {
     }
 
     /*
-     * Dynmically call the method based on the query string
-     */
+		 * Dynmically call the method based on the query string
+		 */
     public function processApi(){
         $func = strtolower(trim(str_replace("/","",$_REQUEST['x'])));
 
@@ -88,6 +84,8 @@ class API extends REST {
             $this->response("No, i dont know this service!!  ",404); // If the method not exist with in this class "Page not found".
 
     }
+
+
 //Inicia Mundo Asignaciones Y Reconfiguracion
 
 //------------------------------exportar historico asignaciones-------------------asignacion
@@ -313,7 +311,7 @@ class API extends REST {
         //$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         //Mauricio: CONSULTA REPODEROSA, unbuffered
-        $this->mysqli->real_query($query);
+        $this->mysqli->real_query($query) or die($conn->error.__LINE__);
 
         if($r = $this->mysqli->use_result()){
             $result = array();
@@ -435,7 +433,7 @@ class API extends REST {
                 //fputcsv($fp, $row);
 
                 if($k>10000){//cerra y abrir
-                    //echo "la k\n"; 
+                    //echo "la k\n";
                     $fp = fopen("../tmp/$filename", 'a');
 
                     foreach ($result as $fields) {
@@ -648,7 +646,7 @@ class API extends REST {
                 //fputcsv($fp, $row);
 
                 if($k>10000){//cerra y abrir
-                    //echo "la k\n"; 
+                    //echo "la k\n";
                     $fp = fopen("../tmp/$filename", 'a');
 
                     foreach ($result as $fields) {
@@ -740,7 +738,7 @@ class API extends REST {
                 //fputcsv($fp, $row);
 
                 if($k>10000){//cerra y abrir
-                    //echo "la k\n"; 
+                    //echo "la k\n";
                     $fp = fopen("../tmp/$filename", 'a');
 
                     foreach ($result as $fields) {
@@ -1300,7 +1298,7 @@ class API extends REST {
 			} else {
 					$sqlupdate="update gestor_pendientes_reagendamiento set FECHA_ACTUALIZACION='$today',STATUS='CERRADO_AGEN',FECHA_CITA_REAGENDA='$fecha_cita_reagen',TODAY_TRIES=(SELECT COUNT(*) FROM gestor_historicos_reagendamiento WHERE PEDIDO_ID='$PEDIDO_ID' ),PROGRAMACION='',ASESOR='' WHERE ID=$parent ";
 			}
-				
+
 			}*/
 
         if($novedad=='PENDIENTE AGENDA' || $novedad=='INFORMACION-PARA CONFIRMAR LLEGADA DE TECNICO' || $novedad=='INFORMACION GENERAL'){
@@ -1315,7 +1313,7 @@ class API extends REST {
         $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
 
 
-        //   echo "(2)"; 
+        //   echo "(2)";
         $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','AGENDAMIENTO','CERRADO_AGEN','PEDIDO: $PEDIDO_ID','REAGENDAMIENTO','CERRADO_AGEN') ";                        //echo $sqlfeed;
         $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
@@ -1391,7 +1389,7 @@ class API extends REST {
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
             //hago la actualizacion en fenix
-            //  $query1 = "insert into gestor_pendientes_reagendamiento (PEDIDO_ID,CLIENTE_ID,ASESOR) values ('$PEDIDO_ID','$cliente_id','$useri') "; 
+            //  $query1 = "insert into gestor_pendientes_reagendamiento (PEDIDO_ID,CLIENTE_ID,ASESOR) values ('$PEDIDO_ID','$cliente_id','$useri') ";
             // $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
 
@@ -1577,7 +1575,7 @@ class API extends REST {
                 //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta) values ('$useri','$username','ASIGNACIONES','$concepto_final','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi') ";
                 $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','ASIGNACIONES','$estadum','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi','ESTUDIO','$concepto_final') ";
 
-                //echo $sqlfeed;	
+                //echo $sqlfeed;
                 $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
                 $this->response(json_encode(array("msg"=>"$concepto_final","data" => $today)),200);
@@ -1603,7 +1601,7 @@ class API extends REST {
 
                 $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta) values ('$useri','$username','ASIGNACIONES','$concepto_final','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi') ";
                 $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','ASIGNACIONES','$estadum','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi','ESTUDIO','$concepto_final') ";
-                //echo $sqlfeed;	
+                //echo $sqlfeed;
                 $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
                 //hago la actualizacion en fenix
                 $this->response(json_encode(array("msg"=>"$concepto_final","data" => $today,"con_fenix"=> $concepto_fen)),200);
@@ -2125,10 +2123,9 @@ class API extends REST {
 
 
     private function getDepartamentosPendientesReagendamiento(){
-
         if($this->get_request_method() != "GET"){
-            $this->response('',406)
-            }
+            $this->response('',406);
+        }
         $today = date("Y-m-d");
 
         $proceso = $this->_request['proceso'];
@@ -2139,7 +2136,7 @@ class API extends REST {
             $PROCESO=" and PROCESO='$proceso' ";
         }
 
-        $query= " SELECT DISTINCT ( CASE WHEN DEPARTAMENTO =  '' THEN  'VACIOS' ".
+        $query=" SELECT DISTINCT ( CASE WHEN DEPARTAMENTO =  '' THEN  'VACIOS' ".
             "  WHEN DEPARTAMENTO = null THEN 'VACIOS' ".
             "  WHEN TECNOLOGIA_ID = 'DTH' THEN 'DTH' ".
             "  ELSE DEPARTAMENTO END) AS DEPARTAMENT ".
@@ -2636,7 +2633,7 @@ class API extends REST {
         $sqlupdateCleanAsesor="update gestor_pendientes_reagendamiento ".
             " set ASESOR='' WHERE STATUS='ADEN_AGEN' AND ASESOR='$asesor' ";
         //echo "$sqlupdateCleanAsesor";
-        //$this->response('',200); 
+        //$this->response('',200);
         $xx = $this->mysqli->query($sqlupdateCleanAsesor);
 
         // CONSULTO LOS PEDIDOS QUE SE ENCUENTRAN AGENDADOS EN LA FECHA.
@@ -2707,7 +2704,7 @@ class API extends REST {
                                 " FECHA_ACTUALIZACION='$today' , FECHA_CITA_REAGENDA='$fecha_agendamiento' WHERE PEDIDO_ID='$pedido'  ".
                                 " ORDER BY FECHA_ACTUALIZACION DESC LIMIT 1 " ;
                             //echo "$sqlupdate";
-                            //$this->response('',200); 
+                            //$this->response('',200);
                             $xxx = $this->mysqli->query($sqlupdate);
 
                         }else{
@@ -2811,7 +2808,7 @@ class API extends REST {
                         // $result2[] = $row2;
                         // $result3[]=$row3;
 
-                        //echo "encontro pedido ";    
+                        //echo "encontro pedido ";
 
                         //break;
 
@@ -2821,7 +2818,7 @@ class API extends REST {
                 } //cierra while de consulta de microzona.
 
             } //cierra while de pedidos encontrados en el modulo agendamiento.
-            //echo var_dump($row2);                              
+            //echo var_dump($row2);
             //$this->response($this->json($result), 200); // send user details
 
         } //Cierra if si hay pedidos consultados en el modulo agendamiento.
@@ -3887,13 +3884,13 @@ class API extends REST {
                 //$total=$re-$hf-$gp-$ot-$si;
 
 
-                /*                            
+                /*
                                         $re=number_format($re/$total,2);
                                         $hf=number_format($hf/$total,2);
                                         $gp=number_format($gp/$total,2);
                                         $ot=number_format($ot/$total,2);
                                         $si=number_format($si/$total,2);
-					
+
 
 */
 
@@ -4203,7 +4200,7 @@ class API extends REST {
 
 
 
-        //var_dump($fechaini) ; 
+        //var_dump($fechaini) ;
 
 
         if ($fechaini!="" || $fechafin!=""){
@@ -4249,8 +4246,8 @@ class API extends REST {
             "				where  1=1 ".
             "				$param	 ".
             "GROUP BY C1.NOVEDAD ";
-        //echo $query; 		
-        //echo $param  ;  	
+        //echo $query;
+        //echo $param  ;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -4292,7 +4289,7 @@ class API extends REST {
             $fechafin=$today;
         }
 
-        //var_dump($fechaini) ; 
+        //var_dump($fechaini) ;
 
 
         if ($fechaini!="" || $fechafin!=""){
@@ -4339,7 +4336,7 @@ class API extends REST {
             "				where  1=1 ".
             "				$param	 ".
             "GROUP BY C1.NOVEDAD ";
-        //echo $query;				
+        //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -4449,7 +4446,7 @@ class API extends REST {
             " and r.FECHA_CITA_FENIX >= curdate()".
             " and r.FECHA_CITA_FENIX !='9999-00-00'".
             " and r.MIGRACION='NO'".
-            //" and (r.CONCEPTOS like '%AGEN%'". 
+            //" and (r.CONCEPTOS like '%AGEN%'".
             //" or r.CONCEPTOS like '%PROG%')".
             ") C1".
             " GROUP BY C1.DEPARTAMENTO,C1.CONCEPTOS".
@@ -5361,9 +5358,9 @@ class API extends REST {
             " order by FECHA_ULTIMA_GESTOR ASC limit 100 offset $page ";
 
 
-        //echo $query; 		
+        //echo $query;
         //echo $param  ;
-        // var_dump($query);  	
+        // var_dump($query);
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -5402,9 +5399,9 @@ class API extends REST {
             " ORDER BY COUNT(*) ASC ";
 
 
-        //echo $query; 		
+        //echo $query;
         //echo $param  ;
-        // var_dump($query);  	
+        // var_dump($query);
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -5688,16 +5685,16 @@ class API extends REST {
 
                       if ($plaza=="BOGOTA-COBRE"){//pregunta si se debe buscar en fenix Bogotá o se debe buscar en fenix nacional por medio de la plaza.
                         //echo "Esta Entrando por aca para llamar a fenix Bogotá";
-                         $success=$this->buscarPedidoFenixBogota($pedido); 
+                         $success=$this->buscarPedidoFenixBogota($pedido);
 
                       } else{
                         $success=$this->buscarPedidoFenix($pedido);
-                      }      
+                      }
 				if($success=="OK"){//logro encontrar el pedido en fenix he hizo el insert local...
 					//recursion?????
 					//$this->buscarPedido();
 					 $query1="SELECT a.ID,a.PEDIDO_ID,a.SUBPEDIDO_ID,a.SOLICITUD_ID, a.TIPO_TRABAJO, a.DESC_TIPO_TRABAJO, a.VEL_IDEN, a.VEL_SOLI, a.IDENTIFICADOR_ID, a.TIPO_ELEMENTO_ID,a.PRODUCTO ,a.PRODUCTO_ID,a.UEN_CALCULADA,a.ESTRATO,MUNICIPIO_ID,a.DIRECCION_SERVICIO,a.PAGINA_SERVICIO,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,a.FUENTE,a.CONCEPTO_ID,a.FECHA_ESTADO,a.ASESOR,a.STATUS,a.CONCEPTO_ANTERIOR,a.FECHA_CITA,a.CANTIDAD_EQU,a.EQUIPOS,a.CONCEPTOS_EQU,a.TIPO_EQUIPOS,a.EXTENSIONES,a.OBSERVACIONES, a.EJECUTIVO_ID, a.CANAL_ID, a.CELULAR_AVISAR, a.TELEFONO_AVISAR from informe_petec_pendientesm a JOIN (SELECT distinct(a.pedido) as pedido2,(select b.id from informe_petec_pendientesm b where b.pedido=a.pedido order by id desc limit 1 ) as id2 FROM `informe_petec_pendientesm` a WHERE a.PEDIDO_ID='$pedido' and (a.STATUS='PENDI_PETEC' or a.STATUS='BUSCADO_PETEC' or a.STATUS='MALO')) kai on a.id=kai.id2";
-		
+
 		                        $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 		                        $busy="";
 
@@ -5729,7 +5726,7 @@ class API extends REST {
                                 		$this->response(json_encode($result), 200); // send user details
                         		}
 
-							
+
 
 				}
                         }
@@ -6294,7 +6291,7 @@ class API extends REST {
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
                         }
-			
+
 			//1. la idea es buscar primero si hay pedidos para atender en esta hora...
 			$user = $this->_request['userID'];
                         $concepto = $this->_request['concepto'];
@@ -6308,20 +6305,20 @@ class API extends REST {
 				" AND CONCEPTO_ID = '$concepto' ".
 				" AND STATUS='PENDI_PETEC'";
 			$rr = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
-			
-			
+
+
                         $mypedido="";
                         $mypedidoresult=array();
                         $pedidos_ignorados="";
                         if($rr->num_rows > 0){//recorro los registros de la consulta para
                                 while($row = $rr->fetch_assoc()){
-					
+
 				}
 			}else{
-			
+
 			//2. si no tengo nada llamo la funcion demePedido normal
 
-				$this->demePedido(); 	
+				$this->demePedido();
 			}
 		}
 
@@ -6470,7 +6467,7 @@ class API extends REST {
         $mypedido="";
 
         //2016-08-05: MAURICIO
-        //SE UTILIZA ESTA VARIABLE PARA PARAMETRIZAR EL STATUS 
+        //SE UTILIZA ESTA VARIABLE PARA PARAMETRIZAR EL STATUS
 
         $STATUS="PENDI_PETEC";
 
@@ -6639,7 +6636,7 @@ class API extends REST {
                         break;
                     }
 
-                    /*					
+                    /*
                                         if($rta['ESTADO_BLOQUEO']=='N'){//me sirve, salgo del ciclo y busco este pedido...
                                                 //echo "el pedido es: ".$row['PEDIDO_ID'];
 
@@ -6656,7 +6653,7 @@ class API extends REST {
                                         }*/
 
                 }
-                //2.traigo solo los pedidos mas viejos en la base de datos...	
+                //2.traigo solo los pedidos mas viejos en la base de datos...
             } else {
                 $query1="select b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_CITA, b.TIPO_ELEMENTO_ID ".
                     " from informe_petec_pendientesm b ".
@@ -6669,7 +6666,7 @@ class API extends REST {
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
                 $mypedidoresult=array();
-                if($r->num_rows > 0){//recorro los registros de la consulta para 
+                if($r->num_rows > 0){//recorro los registros de la consulta para
                     while($row = $r->fetch_assoc()){
                         $result[] = $row;
 
@@ -7057,7 +7054,7 @@ class API extends REST {
         $rr = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
 
         if($rr->num_rows > 0){//recorro los registros de la consulta para
-            while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO 
+            while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO
                 $result[] = $row;
                 $mypedido=$row['PEDIDO_ID'];
                 $PROGRAMADO=$row['PROGRAMACION'];
@@ -7129,7 +7126,7 @@ class API extends REST {
                     break;
                     //} //2016-04-12: SE QUITO VALIDACION CONTRA FENIX
 
-                    /*					
+                    /*
                                         if($rta['ESTADO_BLOQUEO']=='N'){//me sirve, salgo del ciclo y busco este pedido...
                                                 //echo "el pedido es: ".$row['PEDIDO_ID'];
 
@@ -7145,7 +7142,7 @@ class API extends REST {
                                                 break;
                                         }*/
                 }
-                //2.traigo solo los pedidos mas viejos en la base de datos...	
+                //2.traigo solo los pedidos mas viejos en la base de datos...
             } else {
                 $query1="select b.PEDIDO_ID, b.FECHA_CITA_FENIX ".
                     " from gestor_pendientes_reagendamiento b ".
@@ -7162,7 +7159,7 @@ class API extends REST {
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
                 $mypedidoresult=array();
-                if($r->num_rows > 0){//recorro los registros de la consulta para 
+                if($r->num_rows > 0){//recorro los registros de la consulta para
                     while($row = $r->fetch_assoc()){
                         $result[] = $row;
 
@@ -7312,7 +7309,7 @@ class API extends REST {
             $rr = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
 
                         if($rr->num_rows > 0){//recorro los registros de la consulta para
-                                   while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO 
+                                   while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO
                                         $result[] = $row;
                                         $mypedido=$row['PEDIDO_ID'];
                     $PROGRAMADO=$row['PROGRAMACION'];
@@ -7350,7 +7347,7 @@ class API extends REST {
             " order by b.$parametroBusqueda $ordenamiento ";
         // var_dump($query1);
         //echo "\nmypedicure: $mypedido";
-        //echo $query1; 
+        //echo $query1;
         if($mypedido==""){
 
             $rr = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
@@ -7375,7 +7372,7 @@ class API extends REST {
                     break;
                     //} //2016-04-12: SE QUITO VALIDACION CONTRA FENIX
 
-                    /*                  
+                    /*
                                         if($rta['ESTADO_BLOQUEO']=='N'){//me sirve, salgo del ciclo y busco este pedido...
                                                 //echo "el pedido es: ".$row['PEDIDO_ID'];
 
@@ -7391,7 +7388,7 @@ class API extends REST {
                                                 break;
                                         }*/
                 }
-                //2.traigo solo los pedidos mas viejos en la base de datos...   
+                //2.traigo solo los pedidos mas viejos en la base de datos...
             } else {
                 $query1="select b.PEDIDO_ID, b.FECHA_CITA_FENIX ".
                     " from gestor_pendientes_reagendamiento b ".
@@ -7409,7 +7406,7 @@ class API extends REST {
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
                 $mypedidoresult=array();
-                if($r->num_rows > 0){//recorro los registros de la consulta para 
+                if($r->num_rows > 0){//recorro los registros de la consulta para
                     while($row = $r->fetch_assoc()){
                         $result[] = $row;
 
@@ -7691,7 +7688,7 @@ class API extends REST {
         while($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)){
 
             //if($concepto_id!=$row['CONCEPTO_ID']){
-            //  
+            //
             //}
             $result[] = $row;
         }
@@ -7758,9 +7755,9 @@ class API extends REST {
             /*Mauricio 2016-12-15: this code have some problems!!! $stmt->get_result(); thorws an unholy error!!!
 				$stmt = $this->mysqli->prepare("SELECT ID as id, USUARIO_NOMBRE as name, USUARIO_ID as login, GRUPO,CARGO_ID FROM tbl_usuarios WHERE USUARIO_ID = ? AND PASSWORD = MD5(?) LIMIT 1");
 				$stmt->bind_param('ss', $login,$password);
-				
+
 				$stmt->execute();
-				
+
 				$r = $stmt->get_result();
 				//while ($row = $result->fetch_assoc()) {
 				    // do something with $row
@@ -7772,7 +7769,7 @@ class API extends REST {
 
 
             if($result = $r->fetch_assoc()) {
-                //$result = $r->fetch_assoc();	
+                //$result = $r->fetch_assoc();
                 // If success everythig is good send header as "OK" and user details
 
                 $login=$result['login'];
@@ -8178,7 +8175,7 @@ class API extends REST {
 
 
         $query="select * from transacciones_actividades where ID=$actividades";
-        //echo $query; 
+        //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -8867,7 +8864,7 @@ class API extends REST {
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
-        //$user = $this->_request['userID']; 
+        //$user = $this->_request['userID'];
         require_once '../librerias/importar_excel/reader/Classes/PHPExcel/IOFactory.php';
 
 
@@ -9681,7 +9678,7 @@ class API extends REST {
                 $row['AUTOMATICO_NUEVO']=$row['AUTOMATICO_NUEVO']*100;
 
                 $result[] = $row;
-                //echo $result; 
+                //echo $result;
             }
             $this->response($this->json(array($result)), 200); // send user details
         }
@@ -12607,7 +12604,7 @@ class API extends REST {
 					$rlog = $this->connemtel->query($sql_log) or die($this->connemtel->error.__LINE__);
 					//Insert en log */
 
-        $error ="No guardo";
+
         $this->response($this->json($error), 200);
 
 
@@ -12663,7 +12660,7 @@ class API extends REST {
 
 
         }else{
-            $error="Sin Opciones";
+
             $this->response($this->json($error), 400);
         }
 
@@ -12689,7 +12686,7 @@ class API extends REST {
             " , ifnull(G.ASIGNADOS,0) AS ASIGNADOS ".
             " , ifnull(G.SIEBEL,0) AS SIEBEL ".
             " , ifnull(G.RECONFIGURADOS,0) AS RECONFIGURADOS ".
-            " , (ifnull(G.ASIGNADOS,0)+ifnull(G.SIEBEL,0)+ifnull(G.RECONFIGURADOS,0) ) AS GESTIONADOS ".
+            " , ifnull(G.ASIGNADOS,0)+ifnull(G.SIEBEL,0)+ifnull(G.RECONFIGURADOS,0) ) AS GESTIONADOS ".
             " FROM(SELECT  ".
             " h.HORA ".
             " , (SELECT  ".
