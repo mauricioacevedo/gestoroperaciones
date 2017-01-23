@@ -15388,7 +15388,10 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 
 				console.log("Tiene Permiso");
 
-			}
+			}else{
+			    alert("Usted no tiene permisos para entrar aca.");
+			    return;
+            }
             //--------------------Check si el usuario tiene permisos para ingresar a la ruta
 
 		};
