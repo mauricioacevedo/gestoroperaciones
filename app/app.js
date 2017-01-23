@@ -6147,7 +6147,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 		var CargoID = parseInt($rootScope.logedUser.CARGO_ID);
 
-		if (CargoID > 5) {
+		if (CargoID > 5 ) {
 
 			if (concept == "PEXPQ") return false;
 			if (concept == "PSERV") return false;
@@ -6177,11 +6177,6 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		if ($scope.busy != "") {
             //alert($scope.busy);
             return false;
-
-        }
-        if ($scope.accRdy) {
-            //alert($scope.busy);
-            return true;
 
         }
 		return true;
