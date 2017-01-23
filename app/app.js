@@ -14762,7 +14762,8 @@ app.config(['$routeProvider',
 		.when('/indicadores/', {
 			title: 'Indicadores Asignaciones',
 			templateUrl: 'partials/asignaciones/indicadores_asignaciones.html',
-			controller: 'IndicadoresCtrl'
+			controller: 'IndicadoresCtrl',
+            grupos: ['ASIGNACIONES', 'SUPER']
 		})
 
 		.when('/b2b/', {
@@ -15353,6 +15354,8 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 
 
 	$rootScope.$on("$routeChangeStart", function (evt, to, from) {
+        console.log(to);
+		console.log(to.grupos);
 
 		if ($cookieStore.get('logedUser') == undefined) {
 			$location.path('/', true);
