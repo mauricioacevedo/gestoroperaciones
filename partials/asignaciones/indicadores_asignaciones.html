@@ -14,20 +14,20 @@
                 <div class="col-md-12 col-xs-12">
                     <div class="panel panel-default">
                         <div class="panel-heading nav navbar-default">
-                            <strong>
+                            <b>
                                 <button type="button" class="btn btn-default btn-circle-xs pull-right"
                                         ng-click="actualizarGrafica()" title="Actualizar" data-toggle="tooltip"
                                         data-placement="left" ng-disabled="loading">
                                     <i class="fa fa-refresh" aria-hidden="true"></i>
                                 </button>
-                                Pendientes por Conceptos</strong>
+                                Pendientes por Conceptos</b>
                         </div>
                         <div class="panel-heading nav navbar-default">
                             <ul class="list-group small">
-                                <a href="" ng-repeat="data in pendientesConceptos as Pendis"
-                                   class="list-group-item animated slideInRight small"
-                                   ng-style="set_color(parseInt(data.value))">{{data.label}}: <span
-                                        class="badge ">{{data.value}}</span></a>
+							<span class="small">
+							<a href="" ng-repeat="data in pendientesConceptos as Pendis"
+                               class="list-group-item animated slideInRight" ng-style="set_color(parseInt(data.value))">{{data.label}}: <span
+                                    class="badge ">{{data.value}}</span></a></span>
                             </ul>
                         </div>
                         <div class="panel-footer clearfix">
@@ -42,7 +42,7 @@
                         <div class="panel-heading nav navbar-default ">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <strong>Productividad</strong></div>
+                                    <b>Productividad</b></div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -61,12 +61,13 @@
                         </div>
                         <div class="panel-heading nav navbar-default">
                             <ul class="list-group small">
-                                <a href="" ng-repeat="datar in listaProductivos as ranks"
-                                   class="list-group-item animated slideInRight small"
-                                   ng-style="set_color_Cuartil(parseInt(datar.CUARTIL))">{{datar.RANK}} - <span
-                                        ng-class="{'on':'label label-info','off':'label label-danger'}[datar.ESTADO]">{{datar.ESTADO}}</span>
-                                    - {{datar.USUARIO_ID}} <span
-                                            class="badge ">{{datar.PEDIDOS}}</span></a>
+							<span class="small">
+							<a href="" ng-repeat="datar in listaProductivos as ranks"
+                               class="list-group-item animated slideInRight"
+                               ng-style="set_color_Cuartil(parseInt(datar.CUARTIL))">{{datar.RANK}} - <span
+                                    ng-class="{'on':'label label-info','off':'label label-danger'}[datar.ESTADO]">{{datar.ESTADO}}</span> - {{datar.USUARIO_ID}}  <span
+                                    class="badge ">{{datar.PEDIDOS}}</span></a>
+							</span>
                             </ul>
                         </div>
                         <div class="panel-footer clearfix">
@@ -82,7 +83,24 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading nav navbar-default">
-                            <strong>Parámetro de Entrega DemePedido</strong>
+                            <ul class="nav navbar-nav navbar-left">
+                                <b>Parámetro de Entrega DemePedido</b>
+                                <span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning"
+                                                                              aria-hidden="true"
+                                                                              ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <div class="col-md-1 col-xs-1 ">
+                                        <div data-ng-if="loading">
+                                            <img title="Esperando respuesta" data-toggle="tooltip" data-placement="top"
+                                                 src="img/loader.gif"/>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                </li>
+                            </ul>
                         </div>
                         <div class="panel-body">
                             <table class="table small table-bordered table-condensed">
@@ -94,7 +112,7 @@
                                 </tr>
                                 <tr>
                                     <td>Asignaciones</td>
-                                    <td>{{ordenamientoDemepedidoUpdate}}</td>
+                                    <td><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
                                     <td>{{UsuarioParametro}}</td>
                                     <td>
                                         <select class="btn btn-default btn-xs grupo-select" id="sel1"
@@ -115,10 +133,10 @@
                                 </tr>
                                 <tr>
                                     <td>Reconfiguracion</td>
-                                    <td>{{ordenamientoDemepedidoUpdateReconfiguracion}}</td>
+                                    <td><font color='blue'>{{ordenamientoDemepedidoUpdateReconfiguracion}}</font></td>
                                     <td>{{UsuarioParametroReconfiguracion}}</td>
                                     <td>
-                                        <select class="btn btn-default btn-xs grupo-select"
+                                        <select class="btn btn-default btn-xs grupo-select" id="sel1"
                                                 ng-model="ordenamientoDemepedidoReconfiguracion" style="width:auto;">
                                             <option value="FECHA_CITA">FECHA CITA</option>
                                             <option value="FECHA_ESTADO">FECHA ESTADO</option>
@@ -148,12 +166,17 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <b class="panel-title">Gráficas</b>
+                            <h4 class="panel-title">Gráficas</h4>
                             <span class="pull-right">
                         <!-- Tabs -->
                         <ul class="nav panel-tabs">
-                            <li ng-class="{'active' : activeTabs == 1}"><a href="" ng-click="setActiveTab(1)" data-toggle="tab"><i class="fa fa-bar-chart" aria-hidden="true"></i> Pendientes</a></li>
-                            <li ng-class="{'active' : activeTabs == 2}"><a href="" ng-click="setActiveTab(2);ProductividadPorHora();" data-toggle="tab"><i class="fa fa-bar-chart" aria-hidden="true"></i> Gestión</a></li>
+                            <li ng-class="{'active' : activeTabs == 1}"><a href="" ng-click="setActiveTab(1)"
+                                                                           data-toggle="tab"><i class="fa fa-bar-chart"
+                                                                                                aria-hidden="true"></i> Pendientes</a></li>
+                            <li ng-class="{'active' : activeTabs == 2}"><a href=""
+                                                                           ng-click="setActiveTab(2);ProductividadPorHora();"
+                                                                           data-toggle="tab"><i class="fa fa-bar-chart"
+                                                                                                aria-hidden="true"></i> Gestión</a></li>
                         </ul>
                     </span>
                         </div>
@@ -210,10 +233,21 @@
                         <div class="panel-heading nav navbar-default">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <strong>Pendientes Por Fecha Cita</strong>
+                                    <ul class="nav navbar-nav navbar-left">
+                                        <b>Pendientes Por Fecha Cita</b>
+                                        <span style="color:red" class="pull-right"><i
+                                                class="fa fa-exclamation-triangle warning" aria-hidden="true"
+                                                ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+                                    </ul>
                                 </div>
                                 <div class="col-md-6">
                                     <ul class="nav navbar-nav navbar-right">
+                                        <div class="col-md-1 col-xs-1 ">
+                                            <div data-ng-if="loading">
+                                                <img title="Esperando respuesta" data-toggle="tooltip"
+                                                     data-placement="top" src="img/loader.gif"/>
+                                            </div>
+                                        </div>
                                         <li>
                                             <div class="col-md-12 col-xs-6 ">
                                                 <input style="width:120px" class="btn btn-default btn-xs " type="text"
@@ -254,8 +288,7 @@
                                 <tr ng-repeat="data in listado_conceptosfc | filter:filtroInput as results">
                                     <td>
                                         <!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->
-                                        {{data.CONCEPTO_ID}}
-                                    </td>
+                                        {{data.CONCEPTO_ID}}</span></td>
                                     <td ng-init="listado_conceptosfc.totales = parseInt(listado_conceptosfc.totales) + parseInt(data.CANTIDAD)">
                                         {{data.CANTIDAD}}
                                     </td>
