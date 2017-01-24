@@ -14,13 +14,13 @@
                 <div class="col-md-12 col-xs-12">
                     <div class="panel panel-default">
                         <div class="panel-heading nav navbar-default">
-                            <b>
+                            <strong>
                                 <button type="button" class="btn btn-default btn-circle-xs pull-right"
                                         ng-click="actualizarGrafica()" title="Actualizar" data-toggle="tooltip"
                                         data-placement="left" ng-disabled="loading">
                                     <i class="fa fa-refresh" aria-hidden="true"></i>
                                 </button>
-                                Pendientes por Conceptos</b>
+                                Pendientes por Conceptos</strong>
                         </div>
                         <div class="panel-heading nav navbar-default">
                             <ul class="list-group small">
@@ -28,9 +28,7 @@
                                    class="list-group-item animated slideInRight small"
                                    ng-style="set_color(parseInt(data.value))">{{data.label}}: <span
                                         class="badge ">{{data.value}}</span></a>
-
                             </ul>
-
                         </div>
                         <div class="panel-footer clearfix">
                             Total: <span class="label label-success">{{Pendis|sumarNum:'value'}}</span>
