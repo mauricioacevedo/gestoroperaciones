@@ -1816,7 +1816,7 @@ class API extends REST {
                 " estado, ".
                 " my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as duracion, ".
                 " accion, ".
-                " concepto_final ".
+                " SUBSTRING_INDEX(concepto_final, ',', 3) as concepto_final ".
                 " from pedidos ".
                 " where 1=1 ".
                 " and user='$id' ".
