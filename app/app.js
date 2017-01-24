@@ -13334,7 +13334,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	// Inicio de Variables ---------------------------------------------------------------------------------
 	$scope.tools				= true;						// Herramientas de gestion habilitadas.
 	$scope.pedidosUnicos		= '';						// Pedidos Unicos, cantidad.
-	$rootScope.actualView		= $route.current.title;		// Vista Actual, sirve para los KPIS.
+	$rootScope.actualView		= 'Gestion Asignaciones';	// Vista Actual, sirve para los KPIS.
 	$scope.intervalLightKPIS	= '';
 	$scope.pedidoinfo			= '';
 	$rootScope.errorDatos		= null; 					// Mensajes de Error.
@@ -14882,11 +14882,6 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/chat/chatio.html',
                 controller: 'chatioCtrl'
 		})
-		.when('/chat/', {
-                title: 'GeoP Chat',
-                templateUrl: 'partials/chat/chatio.html',
-                controller: 'chatioCtrl'
-		})
 		// HERRAMIENTAS ------------------------------------------
 		.when('/cmts/', {
 				title: 'Cmts',
@@ -15088,31 +15083,6 @@ app.run(['$rootScope', 'firebase', 'services', function ($rootScope, $firebase, 
 		"values": ["GIOVANI DE JESUS RODRIGUEZ PEREZ", "JUAN FERNANDO MUÑOZ ZAPATA", "MONICA TATIANA HUERTAS GIRALDO", "NORBEY ANDRES MIRA DUQUE", "OTRO"]
 	};
 
-	/*
-		$rootScope.listadoConceptos=[
-	        {CONCEPTO_ID:'TODO', VALOR:'TODO'},
-	        {CONCEPTO_ID:'PETEC', VALOR:'PETEC'},
-			{CONCEPTO_ID:'PEOPP', VALOR:'PEOPP'},
-			{CONCEPTO_ID:'PUMED', VALOR:'PUMED'},
-	        {CONCEPTO_ID:'14', VALOR:'14'},
-	        {CONCEPTO_ID:'15', VALOR:'15'},
-			{CONCEPTO_ID:'19', VALOR:'19'},
-			{CONCEPTO_ID:'21', VALOR:'21'},
-			{CONCEPTO_ID:'92', VALOR:'92'},
-			{CONCEPTO_ID:'99', VALOR:'99'},
-			{CONCEPTO_ID:'O-13', VALOR:'O-13'},
-			{CONCEPTO_ID:'O-15', VALOR:'O-15'},
-			{CONCEPTO_ID:'O-106', VALOR:'O-106'},
-			{CONCEPTO_ID:'O-101', VALOR:'O-101'},
-			{CONCEPTO_ID:'O-15', VALOR:'O-15'},
-			{CONCEPTO_ID:'COBERTURA', VALOR:'COBERTURA'},
-	        {CONCEPTO_ID:'CONSTRUCCION', VALOR:'CONSTRUCCION'},
-	        {CONCEPTO_ID:'DISENO', VALOR:'DISENO'},
-	        {CONCEPTO_ID:'DISPONIBILIDAD', VALOR:'DISPONIBILIDAD'},
-			{CONCEPTO_ID:'12-EDATEL', VALOR:'12-EDATEL'}
-	    ]; */
-
-	// Listados Siebel -------------------------------------------
 
 	$rootScope.estadosSiebel = [
 		{
