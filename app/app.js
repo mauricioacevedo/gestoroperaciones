@@ -13784,9 +13784,6 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         var varEstadoGuardar	= InfoPedido.ESTADO_PROCESO;
         var varObsesGuardar		= InfoPedido.OBSERVACIONES_PROCESO;
 
-		console.log(varDondeGuardar);
-        console.log(varDondeGuardar);
-        console.log(varDondeGuardar);
 
 		if (varDondeGuardar=='FENIX_NAL' || varDondeGuardar=='FENIX_BOG') {
 			if (varEstadoGuardar=='MALO') {
@@ -13866,7 +13863,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			INCIDENTE: InfoPedido.INCIDENTE,
 			ID: gestion.ID
 		};
-		};
+		}
 
 		$scope.dondeGuardar(varDondeGuardar);
 
@@ -13896,9 +13893,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		}else{
 			$rootScope.errorDatos 			= "No se pudo guardar";
 			$scope.guardando 				= false;
-
 		}
-
 
 
 	}; //  -------------------------------------------------------------- GuardarPedido
@@ -13929,15 +13924,6 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		}
 		return ($scope.estadoGuardo);
 	};// ----------------------------------------------Case para saber donde guardar
-
-
-
-
-
-
-		
-
-
 
 	$scope.csvHistoricosReconfiguracion = function (){
                 //var login=$rootScope.logedUser.login;
