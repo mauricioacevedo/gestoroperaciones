@@ -765,10 +765,11 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	};
 
 	obj.demePedido = function (user, concepto, pedido_actual, plaza, username, prioridad, fuente) { //deme pedido asignacion
+		/*
 		var muni = "";
 		if (concepto == "Bello") {
 			muni = "&municipio=BELANTCOL";
-		}
+		} */
 		return $http.get(serviceBase + 'demePedido?userID=' + user + '&concepto=' + concepto + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&prioridad=' + prioridad + '&fuente=' + fuente);
 	};
 
@@ -1303,7 +1304,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 
 			return data.data;
 		});
-	}
+	};
 
 	$scope.actualizarLightKPIS();
 
@@ -1320,7 +1321,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 			return data.data;
 		});
 
-	}
+	};
 
 	$scope.$on(
 		"$destroy",
@@ -1337,7 +1338,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 			$scope.total_feed = data.data[1];
 			return data.data;
 		});
-	}
+	};
 
 	$scope.getFeed();
 	$scope.getLoginFeed();
@@ -2606,7 +2607,7 @@ app.controller('DocuActivacion', function ($scope, $rootScope, $http, $location,
 					return data.data;
 				});
 			});
-		};
+		}
 	};
 	//$scope.reload();
 	//$interval($scope.reload, 5000);
@@ -2864,7 +2865,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			return data.data;
 		});
 
-	}
+	};
 
 	$scope.$on(
 		"$destroy",
@@ -2884,7 +2885,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			$scope.total_feed = data.data[1];
 			return data.data;
 		});
-	}
+	};
 
 	$scope.getFeed();
 
@@ -2903,7 +2904,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 		services.logVista($cookieStore.get('logedUser').login, "TME");
 
-	}
+	};
 
 
 	$scope.actualizarProductividadGrupo = function () {
@@ -2936,7 +2937,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 		services.logVista($cookieStore.get('logedUser').login, "ProductividadGrupo");
 
-	}
+	};
 
 	//funciones para calcular el acumulado del tiempo
 
@@ -2945,7 +2946,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		return (parts[0] * 3600) +
 			(parts[1] * 60) +
 			(+parts[2]);
-	}
+	};
 
 	$scope.pad = function (num) {
 		if (num < 10) {
@@ -2953,7 +2954,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		} else {
 			return "" + num;
 		}
-	}
+	};
 
 	$scope.formatTime = function (seconds) {
 		if (isNaN(seconds)) {
@@ -2961,9 +2962,9 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		}
 		return [$scope.pad(Math.floor(seconds / 3600) % 60),
         $scope.pad(Math.floor(seconds / 60) % 60),
-        $scope.pad(seconds % 60),
+        $scope.pad(seconds % 60)
         ].join(":");
-	}
+	};
 
 
 
@@ -3114,7 +3115,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         }
     ]
 
-				}
+				};
 				//console.log(data.data[2][0].value);
 			return data.data;
 		});
@@ -3181,7 +3182,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 					"bgColor": "#ffffff",
 					"borderAlpha": "20",
 					"canvasBorderAlpha": "0",
-					"bgColor": "#DDDDDD",
 					"bgAlpha": "50",
 					"usePlotGradientColor": "0",
 					"plotBorderAlpha": "10",
@@ -3201,7 +3201,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 				data: data.data
 
-			}
+			};
 			var date1 = new Date();
 			var year = date1.getFullYear();
 			var month = $scope.doubleDigit(date1.getMonth() + 1);
@@ -3237,12 +3237,12 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 					formatNumberScale: "0",
 					slicingdistance: "15",
 					showpercentvalues: "0",
-					showpercentintooltip: "0",
+					showpercentintooltip: "0"
 				},
 
 				data: data.data[0]
 
-			}
+			};
 			var date1 = new Date();
 			var year = date1.getFullYear();
 			var month = $scope.doubleDigit(date1.getMonth() + 1);
@@ -3252,7 +3252,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			var seconds = $scope.doubleDigit(date1.getSeconds());
 
 			$scope.lastUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-			$scope.totalAD = data.data[1]
+			$scope.totalAD = data.data[1];
 
 			return data.data;
 		});
@@ -3434,7 +3434,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 					{
 						label: "00"
-					},
+					}
 		            ]
 		        }
     ],
@@ -3458,7 +3458,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				data: []
         }
     ]
-	}
+	};
 
 
 
@@ -3548,7 +3548,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		language: 'es',
 		autoclose: true,
 		weekStart: 0
-	}
+	};
 
 	$scope.status = {
 		isFirstOpen: true,
@@ -4094,7 +4094,7 @@ app.controller('AlarmasActivacionCtrl', function ($scope, $rootScope, $location,
 
 		var selectorOne = document.getElementById("responUno" + index);
 		var responOne = selectorOne[selectorOne.selectedIndex].value;
-		var selectorTwo = document.getElementById("responDos" + index)
+		var selectorTwo = document.getElementById("responDos" + index);
 		var responTwo = selectorTwo[selectorTwo.selectedIndex].value;
 
 		selectorOne[$scope.res1].selected = true;
@@ -4116,7 +4116,7 @@ app.controller('AlarmasActivacionCtrl', function ($scope, $rootScope, $location,
 		validaEditar = "";
 
 
-	}
+	};
 
 	$rootScope.guardarAlarma = function (index, cola_id) {
 		var selectorOne = document.getElementById("responUno" + index);
@@ -4155,7 +4155,7 @@ app.controller('AlarmasActivacionCtrl', function ($scope, $rootScope, $location,
 		document.getElementById("fechaAct" + index).innerHTML = fecha_act;
 		validaEditar = "";
 
-	}
+	};
 
 	$rootScope.nuevaAlarma = function () {
 		// $scope.alarmaNueva={};
@@ -4172,7 +4172,7 @@ app.controller('AlarmasActivacionCtrl', function ($scope, $rootScope, $location,
 		document.getElementById("newAlarma").style.visibility = "visible";
 		document.getElementById("newAlarma").style.display = "inline";
 
-	}
+	};
 
 	$rootScope.guardarNuevaAlarma = function (nuevaCola) {
 		console.log(nuevaCola);
@@ -4192,7 +4192,7 @@ app.controller('AlarmasActivacionCtrl', function ($scope, $rootScope, $location,
 		document.getElementById("listAlarmas").style.visibility = "visible";
 		document.getElementById("listAlarmas").style.display = "inline";
 
-	}
+	};
 
 	$rootScope.cancelarGuardarAlarma = function () {
 
@@ -4749,7 +4749,7 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 		totalItems: 0,
 		fechaIni: "",
 		fechaFin: ""
-	}
+	};
 
 	var date1 = new Date();
 	var year = date1.getFullYear();
@@ -4995,7 +4995,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 		totalItems: 0,
 		fechaIni: "",
 		fechaFin: ""
-	}
+	};
 
 	var date1 = new Date();
 	var year = date1.getFullYear();
@@ -5028,7 +5028,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 		totalItems: 0,
 		fechaIni: "",
 		fechaFin: ""
-	}
+	};
 
 	var date1 = new Date();
 	var year = date1.getFullYear();
@@ -5144,7 +5144,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 			fechaFin: "",
 			campo: "TODO",
 			valorCampo: ""
-		}
+		};
 		//$scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "",concepto: "TODO" }
 
 	if ($routeParams.conceptoid == undefined) {
@@ -5338,7 +5338,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 		language: 'es',
 		autoclose: true,
 		weekStart: 0
-	}
+	};
 
 	if ($routeParams.conceptoid != undefined) {
 		//alert("hola");
@@ -5486,7 +5486,7 @@ app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $
 
 
 
-	$scope.data = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin:"", campo:"User", valorCampo: userID }
+	$scope.data = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin:"", campo:"User", valorCampo: userID };
 		$scope.data.fechaIni=year+"-"+month+"-"+day;
 		$scope.data.fechaFin=year+"-"+month+"-"+day;
 
@@ -5530,7 +5530,7 @@ var clickedAway = false;
 $('.popoverThis').popover({
     html: true,
     trigger: "click"
-})
+});
 $(document).click(  function (e) {
     if (isVisible & clickedAway) {
         $('.popoverThis').popover('hide')
@@ -5563,7 +5563,7 @@ $(document).click(  function (e) {
 
                 }
                  return true;
-        }
+        };
 
 
 		$scope.csvHistoricosReconfiguracion = function (){
@@ -5982,7 +5982,7 @@ $scope.intervalLightKPIS = setInterval(function(){
 
                         return data.data;
                 });
-        }
+        };
 
         $scope.$on(
                 "$destroy",
@@ -6770,7 +6770,7 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
 
 	$scope.isClean = function () {
 		return angular.equals(original, $scope.customer);
-	}
+	};
 
 	$scope.deleteCustomer = function (customer) {
 		$location.path('/customers');
@@ -6778,15 +6778,6 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
 			services.deleteCustomer(customer.customerNumber);
 	};
 
-	$scope.saveCustomer = function (customer) {
-		$location.path('/customers');
-		if (customerID <= 0) {
-			services.insertCustomer(customer);
-		} else {
-			services.updateCustomer(customerID, customer);
-			service.PROGRAMADO
-		}
-	};
 });
 
 
@@ -7094,7 +7085,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 					return data.data;
 				});
 			});
-		};
+		}
 	};
 
 
@@ -7649,7 +7640,7 @@ app.controller('ParametrizacionSiebel', function ($scope, $rootScope, $location,
 			header: {
 				left: 'today',
 				center: 'title',
-				right: 'prev,next',
+				right: 'prev,next'
 			},
 			dayClick: $scope.alertOnEventClick,
 			eventClick: $scope.alertOnEventClick,
@@ -7715,7 +7706,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 		totalItems: 0,
 		fechaIni: "",
 		fechaFin: ""
-	}
+	};
 
 	/*if($routeParams.conceptoid == undefined){
 	        $scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "",concepto: "TODO" }
@@ -7730,7 +7721,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 		totalItems: 0,
 		fechaIni: "",
 		fechaFin: ""
-	}
+	};
 
 	if (!angular.isDefined($scope.currentPage)) {
 		$scope.currentPage = 1;
@@ -7775,7 +7766,8 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 
 		$scope.data.totalItems = data.data[1];
 		//console.log($scope.data.totalItems);
-		$scope.data.campo, $scope.data.valorCampo
+		$scope.data.campo;
+		$scope.data.valorCampo;
 		return data.data;
 	});
 
@@ -7944,7 +7936,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 		language: 'es',
 		autoclose: true,
 		weekStart: 0
-	}
+	};
 
 	if ($routeParams.conceptoid != undefined) {
 		$scope.calcularPendientes($routeParams.conceptoid);
@@ -8159,7 +8151,7 @@ app.controller('AgendamientoAdelantarCtrl', function ($scope, $rootScope, $locat
 		var n = $rootScope.lightkpi.length;
 
 		var zonasTabla = "<table class='table small table-striped table-hover table-bordered table-condensed'>";
-		zonasTabla += "<thead><th class='text-center'>Zona</th><th class='text-center'>Cantidad</th></thead><tbody>"
+		zonasTabla += "<thead><th class='text-center'>Zona</th><th class='text-center'>Cantidad</th></thead><tbody>";
 
 		for (var i = 0; i < n; i++) {
 			if (departamento === $rootScope.lightkpi[i].DEPARTAMENTO) {
@@ -8858,7 +8850,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 		var n = $rootScope.lightkpi.length;
 
 		var zonasTabla = "<table class='table small table-striped table-hover table-bordered table-condensed'>";
-		zonasTabla += "<thead><th class='text-center'>Zona</th><th class='text-center'>Cantidad</th></thead><tbody>"
+		zonasTabla += "<thead><th class='text-center'>Zona</th><th class='text-center'>Cantidad</th></thead><tbody>";
 
 		for (var i = 0; i < n; i++) {
 			if (departamento === $rootScope.lightkpi[i].DEPARTAMENTO) {
@@ -9317,12 +9309,6 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 	}
 	$scope.getFeed();
-
-
-	var colorDanger = "#E83720";
-	var colorWaring = "#E8A820";
-	var colorWarningTrans = "#ffd699";
-	var colorNormal = "#088A08";
 
 	$scope.grupo = {};
 	$scope.topProductivos = function () {
@@ -11178,8 +11164,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			ASESOR: $rootScope.logedUser.login,
 			FECHA_GESTION: $scope.peds[0].FECHA_GESTION,
 			STATUS: $scope.peds[0].STATUS,
-			TIPIFICACION: $scope.peds[0].TIPIFICACION,
-		}
+			TIPIFICACION: $scope.peds[0].TIPIFICACION
+		};
 
 		console.log($scope.InfoGestion);
 
@@ -11194,8 +11180,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				$scope.FECHA_EXCEPCION = null;
 				$scope.accRdy = false;
 				$scope.InfoGestion = {};
-				$scope.pedidoOcupado = false
-				$scope.pedidoIsActive = false
+				$scope.pedidoOcupado = false;
+				$scope.pedidoIsActive = false;
 				$scope.peds = {};
 				$scope.mpedido = {};
 				$scope.bpedido = '';
@@ -11625,7 +11611,7 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
 		loader.className = '';
 		return status;
 
-	}
+	};
 
 
 	$scope.buscarPedido = function (bpedido, iplaza) {
@@ -11743,7 +11729,7 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
 
 		}
 		return true;
-	}
+	};
 
 	$rootScope.logout = function () {
 		services.logout($rootScope.logedUser.login);
@@ -11829,7 +11815,7 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
 				$scope.listado_usuarios = data.data[0];
 				return data.data;
 			});
-		};
+		}
 
 	};
 
@@ -12004,7 +11990,7 @@ app.controller('gponcontroller', function ($scope, $route, $rootScope, $location
 
 	$scope.closeToMe = function (po) {
 		$scope.nods = [];
-	}
+	};
 
 	$scope.csvGPON = function (olt, tarjeta, puerto) {
 		var login = $cookieStore.get('logedUser').login;
@@ -12012,7 +11998,7 @@ app.controller('gponcontroller', function ($scope, $route, $rootScope, $location
 			window.location.href = "tmp/" + data.data[0];
 			return data.data;
 		});
-	}
+	};
 
 	$scope.buscarGPON = function (olt, tarjeta, puerto) {
 
@@ -12128,7 +12114,7 @@ app.controller('vecinoscontroller', function ($scope, $route, $rootScope, $locat
 			return [];
 		}
 		return Object.keys(obj);
-	}
+	};
 
 
 	$scope.pageChanged = function (forma) {
@@ -12169,7 +12155,7 @@ app.controller('distanciacontroller', function ($scope, $route, $rootScope, $loc
 
 	$scope.closeToMe = function (po) {
 		$scope.nods = [];
-	}
+	};
 
 	$scope.demeCapacidad = function (distancia) {
 
@@ -12427,7 +12413,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 
 			return data.data;
 		});
-	}
+	};
 
 	$scope.$on(
 		"$destroy",
@@ -12650,7 +12636,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 			OBSERVACION: InfoPedido.OBSERVACIONES_PROCESO,
 			USUARIO: $rootScope.logedUser.login,
 			STATUS: $scope.stautsGo
-		}
+		};
 
 		//console.log($scope.InfoGestion);
 
@@ -12666,8 +12652,8 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 				$scope.fecha_fin = null;
 				$scope.accRdy = false;
 				$scope.InfoGestion = {};
-				$scope.pedidoOcupado = false
-				$scope.pedidoIsActive = false
+				$scope.pedidoOcupado = false;
+				$scope.pedidoIsActive = false;
 				$scope.peds = {};
 				$scope.mpedido = {};
 				$scope.bpedido = '';
@@ -12933,7 +12919,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 
 			return data.data;
 		});
-	}
+	};
 
 	$scope.$on(
 		"$destroy",
@@ -13129,7 +13115,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			motivo_malo: InfoPedido.OBSERVACIONES_PROCESO,
 			nuevopedido: InfoPedido.INCIDENTE,
 			ID: gestion.ID
-		}
+		};
 
 		//console.log($scope.InfoGestion);
 
@@ -13145,8 +13131,8 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 				$scope.fecha_fin = null;
 				$scope.accRdy = false;
 				$scope.InfoGestion = {};
-				$scope.pedidoOcupado = false
-				$scope.pedidoIsActive = false
+				$scope.pedidoOcupado = false;
+				$scope.pedidoIsActive = false;
 				$scope.peds = {};
 				$scope.mpedido = {};
 				$scope.bpedido = '';
@@ -13414,7 +13400,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		$rootScope.TituloModal='';
 		$rootScope.TituloModal="Pedigos Gestionados por: "+userID;
 		$rootScope.errorDatos = null;
-		$scope.data = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin:"", campo:"User", valorCampo: userID }
+		$scope.data = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin:"", campo:"User", valorCampo: userID };
 		var pedidos = services.getPedidosUser(userID).then(function (data) {
 		$scope.listado_pedidos = data.data[0];
 		$scope.pedidosUnicos = data.data[1];
@@ -13904,18 +13890,18 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		console.log(str);
 			switch (str) {
 				case 'FENIX_NAL': 
-					services.insertPedidoReconfiguracion($scope.InfoGestion)
+					services.insertPedidoReconfiguracion($scope.InfoGestion);
 					$scope.estadoGuardo=true;
 					break;
 				case 'FENIX_BOG':
 					$scope.estadoGuardo=true;
 					break;
 				case 'SIEBEL':
-					services.insertTransaccionNCA($scope.InfoGestion)
+					services.insertTransaccionNCA($scope.InfoGestion);
 					$scope.estadoGuardo=true;
 					break;
 				case 'EDATEL':
-					services.insertPedido($scope.InfoGestion)
+					services.insertPedido($scope.InfoGestion);
 					$scope.estadoGuardo=true;
 					break;
 				default:
@@ -13982,7 +13968,7 @@ app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $locat
 
 	$scope.closeToMe = function (po) {
 		$scope.nods = [];
-	}
+	};
 
 	$scope.buscarCmts = function (nnodo) {
 
@@ -14494,9 +14480,9 @@ app.filter('timeago', function () {
 			years < 1.5 && substitute(strings.year, 1, strings) ||
 			substitute(strings.years, Math.round(years), strings);
 		//console.log(prefix+words+suffix+separator);
-		prefix.replace(/ /g, '')
-		words.replace(/ /g, '')
-		suffix.replace(/ /g, '')
+		prefix.replace(/ /g, '');
+		words.replace(/ /g, '');
+		suffix.replace(/ /g, '');
 		return (prefix + ' ' + words + ' ' + suffix + ' ' + separator);
 
 	};
