@@ -14343,7 +14343,7 @@ app.directive("infoboxTitle", function () {
 		require: "^infobox",
 		template: "<div ng-transclude class='popover-title'></div>"
 	}
-})
+});
 
 app.directive("infoboxBody", function () {
 	return {
