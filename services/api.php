@@ -12487,7 +12487,7 @@ class API extends REST {
 
 			$rlog = $this->connemtel->query($sql_log) or die($this->connemtel->error.__LINE__); */
 
-
+        $error="No se pudo editar.";
         $this->response($this->json($error), 200);
 
 
@@ -12527,7 +12527,7 @@ class API extends REST {
 
 			$rlog = $this->connemtel->query($sql_log) or die($this->connemtel->error.__LINE__);
 			//Insert en log */
-
+        $error="No se pudo borrar";
         $this->response($this->json($error), 200);
 
 
@@ -12544,7 +12544,7 @@ class API extends REST {
 
         $params = json_decode(file_get_contents('php://input'),true);
 
-        $usuario = $usuario['usuario'];
+        //$usuario = $usuario['usuario'];
         $usuarioIp=$_SERVER['REMOTE_ADDR'];
         $usuarioPc=gethostbyaddr($usuarioIp);
         $galleta=json_decode(stripslashes($_COOKIE['logedUser']),true);
@@ -12596,7 +12596,7 @@ class API extends REST {
         //echo $sql;
 
 
-        $rst = $this->mysqli->query($sql) or die($this->connemtel->error.__LINE__);
+        $rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
 
         /* //Insert en log
 					$sql_log="insert into emtelco.re_logoperaciones (USUARIO_ID, TIPO_ACTIVIDAD, DESCRIPCION, IDENTIFICADOR, IP, PC) values(UPPER('$usuarioid'),'EDITAR','EDITO EL USUARIO','ID: $id','$usuarioIp','$usuarioPc')";
@@ -12604,7 +12604,7 @@ class API extends REST {
 					$rlog = $this->connemtel->query($sql_log) or die($this->connemtel->error.__LINE__);
 					//Insert en log */
 
-
+        $error="No se pudo Editar Usuario.";
         $this->response($this->json($error), 200);
 
 
@@ -12660,12 +12660,15 @@ class API extends REST {
 
 
         }else{
-
+            $error="Verificar Opciones.";
             $this->response($this->json($error), 400);
         }
 
     }// ------------------------------------------------------------------------ Parametros Acciones Nuevo
 //Funcion para productividad el grupo de asignaciones cada hora-----------------------------------------------
+    /**
+     * Funcion para productividad el grupo de asignaciones cada hora-
+     */
     private function productivdadAsignacionesPorHora(){
 
         if($this->get_request_method() != "POST"){
