@@ -24,12 +24,11 @@
                         </div>
                         <div class="panel-heading nav navbar-default">
                             <ul class="list-group small">
-                                <li class="small">
-                                    <a href="" ng-repeat="data in pendientesConceptos as Pendis"
-                                       class="list-group-item animated slideInRight"
-                                       ng-style="set_color(parseInt(data.value))">{{data.label}}: <span
-                                            class="badge ">{{data.value}}</span></a>
-                                </li>
+                                <a href="" ng-repeat="data in pendientesConceptos as Pendis"
+                                   class="list-group-item animated slideInRight"
+                                   ng-style="set_color(parseInt(data.value))">{{data.label}}: <span
+                                        class="badge ">{{data.value}}</span></a>
+
                             </ul>
 
                         </div>
