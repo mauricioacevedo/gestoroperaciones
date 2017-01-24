@@ -1156,7 +1156,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 				} else if ($cookieStore.get('logedUser').GRUPO == 'B2B') {
 					$location.path('/b2b/');
 				} else if ($cookieStore.get('logedUser').GRUPO == 'RECONFIGURACION') {
-					$location.path('/tx/reconfiguracion/');
+					$location.path('/tx/asignaciones/');
 				} else if ($cookieStore.get('logedUser').GRUPO == 'CONSULTAS') {
 					$location.path('/general/');
 				} else {
@@ -15306,7 +15306,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
         //console.log(to);
 		console.log(to.grupos);
         console.log(to.cargos);
-        console.log(to.$$route.controller);
+        //console.log(to.$$route.controller);
 
 		if ($cookieStore.get('logedUser') == undefined) {
 			$location.path('/', true);
