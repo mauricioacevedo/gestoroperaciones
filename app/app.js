@@ -91,8 +91,8 @@ app.directive('fileModel', ['$parse', function ($parse) {
 
 //---cargar aqrchivo agendamiento-----------------------------------
 
-app.factory("services", ['$http', '$timeout', function ($http, $q, $timeout) {
-	var serviceBase = 'services/'
+app.factory("services", ['$http', '$timeout', function ($http) {
+	var serviceBase = 'services/';
 	var obj = {};
 
 	obj.getCustomers = function () {
