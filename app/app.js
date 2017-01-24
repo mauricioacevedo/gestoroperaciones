@@ -1355,7 +1355,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 			formatNumberScale: "0",
 			showpercentvalues: "1",
 			showpercentintooltip: "0",
-			plottooltext: "Age group : $label Total visit : $datavalue",
+			plottooltext: "Age group : $label Total visit : $datavalue"
 		},
 		data: []
 
@@ -1392,7 +1392,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 					"subcaptionFontBold": "0",
 					"subcaptionFontSize": "14",
 					"toolTipBorderColor": "#FFFFFF",
-					"toolTipBgAlpha": "80",
+					"toolTipBgAlpha": "80"
 				},
 				"categories": [{
 					"category": categorias
@@ -1417,7 +1417,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 						"seriesname": "Activacion",
 						"renderas": "area",
 						"data": activacion
-        },
+        }
 
     ]
 			};
@@ -1452,7 +1452,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 			formatNumberScale: "0",
 			showpercentvalues: "1",
 			showpercentintooltip: "0",
-			plottooltext: "Age group : $label Total visit : $datavalue",
+			plottooltext: "Age group : $label Total visit : $datavalue"
 		},
 		data: []
 
@@ -1471,7 +1471,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 			formatNumberScale: "0",
 			showpercentvalues: "1",
 			showpercentintooltip: "0",
-			plottooltext: "Age group : $label Total visit : $datavalue",
+			plottooltext: "Age group : $label Total visit : $datavalue"
 		},
 		data: []
 
@@ -1488,7 +1488,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 			formatNumberScale: "0",
 			showpercentvalues: "1",
 			showpercentintooltip: "0",
-			plottooltext: "Age group : $label Total visit : $datavalue",
+			plottooltext: "Age group : $label Total visit : $datavalue"
 		},
 		data: []
 
@@ -1505,7 +1505,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 			formatNumberScale: "0",
 			showpercentvalues: "1",
 			showpercentintooltip: "0",
-			plottooltext: "Age group : $label Total visit : $datavalue",
+			plottooltext: "Age group : $label Total visit : $datavalue"
 		},
 		data: []
 
@@ -1522,7 +1522,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 			formatNumberScale: "0",
 			showpercentvalues: "1",
 			showpercentintooltip: "0",
-			plottooltext: "Age group : $label Total visit : $datavalue",
+			plottooltext: "Age group : $label Total visit : $datavalue"
 		},
 		data: []
 
@@ -1539,7 +1539,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 			formatNumberScale: "0",
 			showpercentvalues: "1",
 			showpercentintooltip: "0",
-			plottooltext: "Age group : $label Total visit : $datavalue",
+			plottooltext: "Age group : $label Total visit : $datavalue"
 		},
 		data: []
 
@@ -1598,7 +1598,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 					"pyaxisname": "Reconfiguracion",
 					"syaxisname": "Tiempo Promedio",
 					"setadaptiveymin": "1",
-					"setadaptivesymin": "1",
+					"setadaptivesymin": "1"
 				},
 				"categories": [{
 					"category": categorias
@@ -1706,7 +1706,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 					"pyaxisname": "Reconfiguracion",
 					"syaxisname": "Tiempo Promedio",
 					"setadaptiveymin": "1",
-					"setadaptivesymin": "1",
+					"setadaptivesymin": "1"
 				},
 				"categories": [{
 					"category": categorias
@@ -1795,7 +1795,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 					"subcaptionFontBold": "0",
 					"subcaptionFontSize": "14",
 					"toolTipBorderColor": "#FFFFFF",
-					"toolTipBgAlpha": "80",
+					"toolTipBgAlpha": "80"
 				},
 				"categories": [{
 					"category": categorias
@@ -1827,9 +1827,9 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 						"showvalues": "1",
 						"theme": "carbon",
 						"data": automatico
-        },
+        }
 
-    ],
+    ]
 			};
 
 			var date1 = new Date();
@@ -1887,7 +1887,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 					"subcaptionFontBold": "0",
 					"subcaptionFontSize": "14",
 					"toolTipBorderColor": "#FFFFFF",
-					"toolTipBgAlpha": "80",
+					"toolTipBgAlpha": "80"
 				},
 				"categories": [{
 					"category": categorias
@@ -1919,9 +1919,9 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 						"showvalues": "1",
 						"theme": "carbon",
 						"data": automatico
-        },
+        }
 
-    ],
+    ]
 			};
 
 			var date1 = new Date();
@@ -1973,7 +1973,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 					"subcaptionFontBold": "0",
 					"subcaptionFontSize": "14",
 					"toolTipBorderColor": "#FFFFFF",
-					"toolTipBgAlpha": "80",
+					"toolTipBgAlpha": "80"
 				},
 
 				"categories": [{
@@ -2040,7 +2040,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 					"subcaptionFontBold": "0",
 					"subcaptionFontSize": "14",
 					"toolTipBorderColor": "#FFFFFF",
-					"toolTipBgAlpha": "80",
+					"toolTipBgAlpha": "80"
 				},
 
 				"categories": [{
@@ -2089,7 +2089,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 			formatNumberScale: "0",
 			showpercentvalues: "1",
 			showpercentintooltip: "0",
-			plottooltext: "Age group : $label Total visit : $datavalue",
+			plottooltext: "Age group : $label Total visit : $datavalue"
 		},
 		data: []
 
@@ -2128,7 +2128,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 					"formatNumberScale": "0",
 					"decimalSeparator": ",",
 					"thousandSeparator": ".",
-					"rotateValues": "1",
+					"rotateValues": "1"
 				},
 
 				"categories": [{
@@ -2178,7 +2178,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 			formatNumberScale: "0",
 			showpercentvalues: "1",
 			showpercentintooltip: "0",
-			plottooltext: "Age group : $label Total visit : $datavalue",
+			plottooltext: "Age group : $label Total visit : $datavalue"
 		},
 		data: []
 
@@ -2195,7 +2195,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 			formatNumberScale: "0",
 			showpercentvalues: "1",
 			showpercentintooltip: "0",
-			plottooltext: "Age group : $label Total visit : $datavalue",
+			plottooltext: "Age group : $label Total visit : $datavalue"
 		},
 		data: []
 
@@ -2242,7 +2242,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 					"pyaxisname": "Reconfiguracion",
 					"syaxisname": "Tiempo Promedio",
 					"setadaptiveymin": "1",
-					"setadaptivesymin": "1",
+					"setadaptivesymin": "1"
 					//  "stack100percent": "1",
 
 				},
@@ -2269,7 +2269,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 					{
 						"seriesname": "sin",
 						"data": sin
-                        },
+                        }
 
                     ]
 			};
@@ -2301,7 +2301,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 			formatNumberScale: "0",
 			showpercentvalues: "1",
 			showpercentintooltip: "0",
-			plottooltext: "Age group : $label Total visit : $datavalue",
+			plottooltext: "Age group : $label Total visit : $datavalue"
 		},
 		data: []
 
@@ -2342,7 +2342,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 					"toolTipBgAlpha": "80",
 					"labelDisplay": "rotate",
 					"slantLabels": "1",
-					"rotateValues": "1",
+					"rotateValues": "1"
 				},
 				"categories": [{
 					"category": categorias
@@ -2362,7 +2362,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 						"seriesname": "Pedidos en 99",
 						"renderas": "mscolumn2d",
 						"data": p99
-                        },
+                        }
                     ]
 			};
 			var date1 = new Date();
@@ -2394,7 +2394,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 			formatNumberScale: "0",
 			showpercentvalues: "1",
 			showpercentintooltip: "0",
-			plottooltext: "Age group : $label Total visit : $datavalue",
+			plottooltext: "Age group : $label Total visit : $datavalue"
 		},
 		data: []
 
@@ -2439,7 +2439,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 					"pyaxisname": "Reconfiguracion",
 					"syaxisname": "Tiempo Promedio",
 					"setadaptiveymin": "1",
-					"setadaptivesymin": "1",
+					"setadaptivesymin": "1"
 					//	"stack100percent": "1",
 
 				},
@@ -2458,7 +2458,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 					{
 						"seriesname": "Pedidos en 99",
 						"data": p99
-                        },
+                        }
                     ]
 			};
 			var date1 = new Date();
@@ -2489,7 +2489,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 			formatNumberScale: "0",
 			showpercentvalues: "1",
 			showpercentintooltip: "0",
-			plottooltext: "Age group : $label Total visit : $datavalue",
+			plottooltext: "Age group : $label Total visit : $datavalue"
 		},
 		data: []
 
@@ -2526,12 +2526,12 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 					"subcaptionFontBold": "0",
 					"subcaptionFontSize": "14",
 					"toolTipBorderColor": "#FFFFFF",
-					"toolTipBgAlpha": "80",
+					"toolTipBgAlpha": "80"
 
 				},
 				data: data.data
 
-			}
+			};
 
 
 			var date1 = new Date();
