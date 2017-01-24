@@ -15306,6 +15306,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
         //console.log(to);
 		console.log(to.grupos);
         console.log(to.cargos);
+        console.log(to.$$route.controller);
 
 		if ($cookieStore.get('logedUser') == undefined) {
 			$location.path('/', true);
