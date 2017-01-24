@@ -765,7 +765,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	};
 
 	obj.demePedido = function (user, concepto, pedido_actual, plaza, username, prioridad, fuente) { //deme pedido asignacion
-		var muni = ""
+		var muni = "";
 		if (concepto == "Bello") {
 			muni = "&municipio=BELANTCOL";
 		}
