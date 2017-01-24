@@ -1807,7 +1807,20 @@ class API extends REST {
         }
         $id = $this->_request['userID'];
         $today = date("Y-m-d");
-        $query="SELECT id, pedido, fuente, actividad, fecha_fin, estado,duracion,accion,concepto_final from pedidos where user='$id' and fecha_fin between '$today 00:00:00' and '$today 23:59:59'";
+        $query="SELECT ".
+                " id, ".
+                " pedido, ".
+                " fuente, ".
+                " actividad, ".
+                " fecha_fin, ".
+                " estado, ".
+                " my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as duracion, ".
+                " accion, ".
+                " concepto_final ".
+                " from pedidos ".
+                " where 1=1 ".
+                " and user='$id' ".
+                " and fecha_fin between '$today 00:00:00' and '$today 23:59:59'";
 
         $queryPediUnico="SELECT ".
             " count(distinct pedido_id) as pedidos ".
