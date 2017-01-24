@@ -148,19 +148,19 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4 class="panel-title">Gráficas</h4>
+                            <stron>Gráficas</stron>
                             <span class="pull-right">
-                        <!-- Tabs -->
-                        <ul class="nav panel-tabs">
-                            <li ng-class="{'active' : activeTabs == 1}"><a href="" ng-click="setActiveTab(1)"
-                                                                           data-toggle="tab"><i class="fa fa-bar-chart"
-                                                                                                aria-hidden="true"></i> Pendientes</a></li>
-                            <li ng-class="{'active' : activeTabs == 2}"><a href=""
-                                                                           ng-click="setActiveTab(2);ProductividadPorHora();"
-                                                                           data-toggle="tab"><i class="fa fa-bar-chart"
-                                                                                                aria-hidden="true"></i> Gestión</a></li>
-                        </ul>
-                    </span>
+                            <!-- Tabs -->
+                            <ul class="nav panel-tabs">
+                                <li ng-class="{'active' : activeTabs == 1}"><a href="" ng-click="setActiveTab(1)"
+                                                                               data-toggle="tab"><i class="fa fa-bar-chart"
+                                                                                                    aria-hidden="true"></i> Pendientes</a></li>
+                                <li ng-class="{'active' : activeTabs == 2}"><a href=""
+                                                                               ng-click="setActiveTab(2);ProductividadPorHora();"
+                                                                               data-toggle="tab"><i class="fa fa-bar-chart"
+                                                                                                    aria-hidden="true"></i> Gestión</a></li>
+                            </ul>
+                        </span>
                         </div>
                         <div class="panel-body">
                             <div class="tab-content">
@@ -215,21 +215,10 @@
                         <div class="panel-heading nav navbar-default">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <ul class="nav navbar-nav navbar-left">
-                                        <b>Pendientes Por Fecha Cita</b>
-                                        <span style="color:red" class="pull-right"><i
-                                                class="fa fa-exclamation-triangle warning" aria-hidden="true"
-                                                ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
-                                    </ul>
+                                    <strong>Pendientes Por Fecha Cita</strong>
                                 </div>
                                 <div class="col-md-6">
                                     <ul class="nav navbar-nav navbar-right">
-                                        <div class="col-md-1 col-xs-1 ">
-                                            <div data-ng-if="loading">
-                                                <img title="Esperando respuesta" data-toggle="tooltip"
-                                                     data-placement="top" src="img/loader.gif"/>
-                                            </div>
-                                        </div>
                                         <li>
                                             <div class="col-md-12 col-xs-6 ">
                                                 <input style="width:120px" class="btn btn-default btn-xs " type="text"
@@ -270,7 +259,7 @@
                                 <tr ng-repeat="data in listado_conceptosfc | filter:filtroInput as results">
                                     <td>
                                         <!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->
-                                        {{data.CONCEPTO_ID}}</span></td>
+                                        {{data.CONCEPTO_ID}}</td>
                                     <td ng-init="listado_conceptosfc.totales = parseInt(listado_conceptosfc.totales) + parseInt(data.CANTIDAD)">
                                         {{data.CANTIDAD}}
                                     </td>
