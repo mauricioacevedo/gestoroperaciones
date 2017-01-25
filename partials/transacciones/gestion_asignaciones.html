@@ -565,7 +565,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="pediUser in listado_pedidos" class="animated bounceInRight">
+                                <tr ng-repeat="pediUser in listado_pedidos as pedis" class="animated bounceInRight">
                                     <td><span class="small">{{pediUser.pedido}}</span></td>
                                     <td><span class="small">{{pediUser.actividad}}</span></td>
                                     <td><span class="small">{{pediUser.fecha_fin}}</span></td>
@@ -585,6 +585,7 @@
             </div>
             <div class="modal-footer">
                 <span class="pull-left">Pedidos: {{pedidosUnicos}}</span>
+                <span class="pull-left">Transacciones: {{pedis.lenght}}</span>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
