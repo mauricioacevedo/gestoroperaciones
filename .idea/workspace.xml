@@ -88,8 +88,18 @@
       <file leaf-file-name="gestion_asignaciones.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="632">
-              <caret line="586" column="120" lean-forward="false" selection-start-line="586" selection-start-column="120" selection-end-line="586" selection-end-column="120" />
+            <state relative-caret-position="649">
+              <caret line="587" column="103" lean-forward="false" selection-start-line="587" selection-start-column="103" selection-end-line="587" selection-end-column="103" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="indicadores_asignaciones.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/partials/asignaciones/indicadores_asignaciones.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="548">
+              <caret line="73" column="86" lean-forward="false" selection-start-line="73" selection-start-column="80" selection-end-line="73" selection-end-column="86" />
               <folding />
             </state>
           </provider>
@@ -253,6 +263,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="transacciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gestoroperaciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gestoroperaciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="partials" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="asignaciones" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -698,14 +726,7 @@
       <workItem from="1485290506463" duration="2655000" />
       <workItem from="1485349768959" duration="610000" />
       <workItem from="1485367851294" duration="632000" />
-      <workItem from="1485370984850" duration="879000" />
-    </task>
-    <task id="LOCAL-00024" summary="Prueba rutas 2">
-      <created>1485203202071</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1485203202071</updated>
+      <workItem from="1485370984850" duration="1612000" />
     </task>
     <task id="LOCAL-00025" summary="Prueba rutas 2">
       <created>1485203266521</created>
@@ -1043,11 +1064,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485372029136</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Prueba rutas 2">
+      <created>1485372156491</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1485372156491</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39724000" />
+    <option name="totallyTimeSpent" value="40457000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1224,13 +1252,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/asignaciones/indicadores_asignaciones.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="540" column="37" lean-forward="false" selection-start-line="540" selection-start-column="37" selection-end-line="540" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1281,10 +1302,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/partials/asignaciones/indicadores_asignaciones.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="548">
+          <caret line="73" column="86" lean-forward="false" selection-start-line="73" selection-start-column="80" selection-end-line="73" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="632">
-          <caret line="586" column="120" lean-forward="false" selection-start-line="586" selection-start-column="120" selection-end-line="586" selection-end-column="120" />
+        <state relative-caret-position="649">
+          <caret line="587" column="103" lean-forward="false" selection-start-line="587" selection-start-column="103" selection-end-line="587" selection-end-column="103" />
           <folding />
         </state>
       </provider>
