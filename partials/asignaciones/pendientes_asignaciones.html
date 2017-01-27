@@ -81,7 +81,7 @@
 							<th>Priorizar</th>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="data in listado_pendientes| orderBy:'FECHA_ESTADO':false | filter:filtroInput"  ng-class="{danger: data.STATUS == 'MALO'}" >
+                            <tr ng-repeat="data in listado_pendientes| orderBy:'FECHA_ESTADO':false | filter:filtroInput as InfoPed"  ng-class="{danger: data.STATUS == 'MALO'}" >
 								<td>{{data.PEDIDO_ID}}-{{data.SUBPEDIDO_ID}}-{{data.SOLICITUD_ID}}</td>
 								<td><span class="small">{{cutString(data.TIPO_ELEMENTO_ID,20)}}</span></td>
 								<td><font color="red">{{data.TIEMPO_COLA}}</font></td>
@@ -98,7 +98,7 @@
 											  ng-model="data.PRIORIDAD"
 											  ng-true-value="'ARBOL'"
 											  ng-false-value="'NO'"
-											  ng-change="habilitarPrioridad(data)"
+											  ng-change="habilitarPrioridad(InfoPed)"
 											  true-label="Si"
 											  false-label="No">
 									</switcher>
