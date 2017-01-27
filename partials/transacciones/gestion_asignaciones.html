@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class = "panel panel-default">
+                <div class = "panel-heading">
 
                     <div class="row">
                         <div class="col-md-6 col-xs-12">
@@ -10,18 +10,17 @@
 
                         </div>
                         <!--Botones de herramientas -->
-                        <btn-tools class="col-md-6 " ng-show="tools"
-                                   ng-class="tools==false?'animated bounceOutRight':'animated fadeInUp'"></btn-tools>
+                        <btn-tools class="col-md-6 " ng-show="tools" ng-class="tools==false?'animated bounceOutRight':'animated fadeInUp'"> </btn-tools>
                         <!--Botones de herramientas -->
                     </div>
 
                 </div>
-                <div class="panel-heading nav navbar-default">
+                <div class = "panel-heading nav navbar-default">
 
                     <div class="col-lg-12 col-xs-10">
                         <ul class="nav navbar-nav navbar-left">
 
-                            <li>
+                            <li >
                                 <i class="fa fa-globe" aria-hidden="true"> </i>&nbsp;
                                 <select class="btn btn-default btn-xs grupo-select"
                                         style="width: 200px"
@@ -34,14 +33,9 @@
                             <li> &nbsp; </li>
                             <li>
 
-                                <button id="ped" type="button" class="btn btn-xs btn-default" ng-show="pedidoIsActive"
-                                        ng-class="pedidoIsActive==false?'animated bounceOutRight':'animated fadeInUp'"
-                                        ng-click="executeCopy(pedidoinfo)" popover data-trigger="hover"
-                                        data-placement="left" data-html="true" data-selector=""
-                                        data-content="<i class='fa fa-clipboard'></i> Copiar">{{pedidoinfo}}
+                                <button id="ped" type="button" class="btn btn-xs btn-default"  ng-show="pedidoIsActive" ng-class="pedidoIsActive==false?'animated bounceOutRight':'animated fadeInUp'" ng-click="executeCopy(pedidoinfo)" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="<i class='fa fa-clipboard'></i> Copiar">{{pedidoinfo}}
                                 </button>
-                                <button type="button" id="iniciar" class="btn btn-success btn-DemePedido-xs"
-                                        ng-click="start(pedido);" ng-disabled="false">
+                                <button type="button" id="iniciar" class="btn btn-success btn-DemePedido-xs" ng-click="start(pedido);"   ng-disabled="false">
                                     DemePedido
                                 </button>
 
@@ -52,18 +46,14 @@
                             <li>
                                 <div class="col-md-1 col-xs-1 ">
                                     <div data-ng-if="loading">
-                                        <img title="Esperando respuesta" tooltip data-placement="top"
-                                             src="images/loader.gif"/>
+                                        <img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif" />
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="btn-group">
-                                    <input style="width:140px" class="btn btn-default btn-xs " type="text"
-                                           ng-model="buscar" placeholder="Buscar..." ng-trim="true"
-                                           ng-disabled="loading" select-on-click capitalize/>
-                                    <select ng-model="ifuente.FUENTE" style="width: 100px"
-                                            class="btn btn-success btn-xs grupo-select" ng-change="mirarifuente()">
+                                    <input style="width:140px"  class="btn btn-default btn-xs " type="text" ng-model="buscar" placeholder="Buscar..." ng-trim="true" ng-disabled="loading" select-on-click capitalize/>
+                                    <select ng-model="ifuente.FUENTE" style="width: 100px" class="btn btn-success btn-xs grupo-select" ng-change="mirarifuente()">
                                         <option ng-selected="{{f.FUENTE == 'FENIX_NAL'}}"
                                                 ng-repeat="f in listadoConceptos | unique:'FUENTE'"
                                                 value="{{f.FUENTE}}">
@@ -72,19 +62,15 @@
                                     </select>
 
 
-                                    <button type="button" class="btn btn-success btn-xs"
-                                            ng-click="buscarPedido(buscar,pedidoinfo)" ng-disabled="loading">
+                                    <button type="button" class="btn btn-success btn-xs" ng-click="buscarPedido(buscar,pedidoinfo)"   ng-disabled="loading" >
                                         <i class="fa fa-search" aria-hidden="true"> </i>
                                     </button>
                                 </div>
                             </li>
                             <li> &nbsp;</li>
                             <li>
-                                <button type="button" class="btn btn-warning btn-circle-xss"
-                                        ng-click="ProgramadosModal()" data-toggle="modal"
-                                        data-target="#PedidosProgramados" data-backdrop="static">
-                                    <i class="fa fa-calendar-check-o" tooltip data-placement="top"
-                                       title="Programados o Malos" aria-hidden="true"> </i>
+                                <button type="button" class="btn btn-warning btn-circle-xss"  ng-click="ProgramadosModal()" data-toggle="modal" data-target="#PedidosProgramados" data-backdrop="static">
+                                    <i class="fa fa-calendar-check-o" tooltip data-placement="top" title="Programados o Malos"aria-hidden="true"> </i>
                                 </button>
                             </li>
                         </ul>
@@ -93,106 +79,73 @@
                 </div>
 
                 <div class="panel-body fixed-panel ">
-                    <div class="container-fluid" ng-show="pedidoIsActive==false">
+                    <div class="container-fluid"  ng-show="pedidoIsActive==false">
                         <div class="jumbotron animated bounceInRight ">
                             <center><h3>Gestión Pendientes {{iconcepto.GRUPO}}</h3></center>
                         </div>
 
                     </div>
 
-                    <div class="row " ng-show="pedidoIsBuscado || pedidoIsActive ">
+                    <div class="row "  ng-show="pedidoIsBuscado || pedidoIsActive ">
 
                         <div class="col-md-8">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
+                            <div class = "panel panel-default">
+                                <div class = "panel-heading">
                                     <b><i class="fa fa-tasks" aria-hidden="true"> </i> INFORMACIÓN</b>
                                     <span class="pull-right">Concepto: <span class="btn btn-info btn-xs">{{info.CONCEPTO_ID}}</span></span>
                                 </div>
                                 <div class="panel-body">
-                                    <div class="col-md-6">
-                                        <ul class="list-group" ng-repeat="service in peds  as gestion">
-                                            <li class="list-group-item small"><b>PEDIDO: </b>
-                                                <button type="button" class="btn btn-xs btn-info"
-                                                        ng-click="executeCopy(service.PEDIDO_ID)">
-                                                    {{service.PEDIDO_ID}}
-                                                </button>
-                                            </li>
-                                            <li class="list-group-item small"><b>SUBPEDIDO:</b> <span class="small">{{service.SUBPEDIDO_ID}}</span>
-                                            </li>
-                                            <li class="list-group-item small"><b>AGENDA: </b><span
-                                                    ng-show="service.FECHA_CITA" class="ng-binding label label-danger">{{service.FECHA_CITA}}</span>
-                                            </li>
-                                            <li class="list-group-item small"><b>MUNICIPIO:</b> {{service.MUNICIPIO_ID}}
-                                            </li>
-                                            <li class="list-group-item small"><b>UEN:</b> {{service.UEN_CALCULADA}}</li>
-                                            <li class="list-group-item small">
-                                                <b>DIRECCIÓN:</b> <span
-                                                    class="small">{{service.DIRECCION_SERVICIO}}</span>
+                                    <ul class="list-group" ng-repeat="service in peds  as gestion" >
+                                        <div class="col-md-6">
+
+                                            <li class="list-group-item small" ><b>PEDIDO: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.PEDIDO_ID)">
+                                                {{service.PEDIDO_ID}}
+                                            </button> </li>
+                                            <li class="list-group-item small" ><b>SUBPEDIDO:</b> <span class="small">{{service.SUBPEDIDO_ID}}</span>  </li>
+                                            <li class="list-group-item small" ><b>AGENDA: </b><span ng-show="service.FECHA_CITA"  class="ng-binding label label-danger">{{service.FECHA_CITA}}</span></li>
+                                            <li class="list-group-item small" ><b>MUNICIPIO:</b> {{service.MUNICIPIO_ID}} </li>
+                                            <li class="list-group-item small" ><b>UEN:</b> {{service.UEN_CALCULADA}} </li>
+                                            <li class="list-group-item small" >
+                                                <b>DIRECCIÓN:</b> <span class="small">{{service.DIRECCION_SERVICIO}}</span>
                                                 <button type="button" class="btn btn-xs btn-default" title="Copiar"
-                                                        ng-click="executeCopy(service.DIRECCION_SERVICIO)"><i
-                                                        class='fa fa-clipboard'></i></button>
+                                                        ng-click="executeCopy(service.DIRECCION_SERVICIO)" ><i class='fa fa-clipboard'></i> </button>
                                             </li>
-                                            <li class="list-group-item small"><b>PÁGINA:</b> <span class="small">{{service.PAGINA_SERVICIO}}</span>
-                                                <button type="button" class="btn btn-xs btn-default" title="Copiar"
-                                                        ng-click="executeCopy(service.PAGINA_SERVICIO)"><i
-                                                        class='fa fa-clipboard'></i></button>
+                                            <li class="list-group-item small" ><b>PÁGINA:</b> <span class="small">{{service.PAGINA_SERVICIO}}</span>  </li>
+                                            <li class="list-group-item small" >
+                                                <button class="btn btn-info btn-sm" uib-popover="{{service.OBSERVACIONES || 'Sin Observaciones'}}" popover-title="Observaciones" popover-append-to-body="true" type="button" class="btn btn-default">OBSERVACIONES</button>
                                             </li>
-                                            <li class="list-group-item small">
-                                                <button class="btn btn-info btn-sm"
-                                                        uib-popover="{{service.OBSERVACIONES || 'Sin Observaciones'}}"
-                                                        popover-title="Observaciones" popover-append-to-body="true"
-                                                        type="button" class="btn btn-default">OBSERVACIONES
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                        </div>
 
-                                    <div class="col-md-6">
-                                        <ul>
-                                            <li class="list-group-item small"><b>TIPO TX:</b>
-                                                {{service.DESC_TIPO_TRABAJO}}
-                                            </li>
-                                            <li class="list-group-item small"><b>PRODUCTO:</b> {{service.PRODUCTO}}</li>
-                                            <li class="list-group-item small"><b>TECNOLOGIA:</b>
-                                                {{service.TECNOLOGIA_ID}}
-                                            </li>
-                                            <li class="list-group-item small"><b>EJECUTIVO:</b> {{service.EJECUTIVO_ID}}
-                                            </li>
-                                            <li class="list-group-item small"><b>CELULAR:</b> <a
-                                                    ng-href="SIP:003{{service.CELULAR_AVISAR || service.TELEFONO_AVISAR}}">{{service.CELULAR_AVISAR
-                                                || service.TELEFONO_AVISAR}} <i class="fa fa-phone-square"
-                                                                                aria-hidden="true"></i></a></li>
-                                            <li class="list-group-item small"><b>TELEFONO:</b> <a
-                                                    ng-href="SIP:0{{service.TELEFONO_AVISAR || service.CELULAR_AVISAR}}">{{service.TELEFONO_AVISAR
-                                                || service.CELULAR_AVISAR}} <i class="fa fa-phone-square"
-                                                                               aria-hidden="true"></i></a></li>
-                                            <li class="list-group-item small"><b>FECHA ESTADO:</b>
-                                                {{service.FECHA_ESTADO}}
-                                            </li>
-                                            <li class="list-group-item small"><b>TIEMPO EN COLA:</b>
-                                                {{service.TIEMPO_COLA}}
-                                            </li>
+                                        <div class="col-md-6">
+                                            <li class="list-group-item small" ><b>TIPO TX:</b> {{service.DESC_TIPO_TRABAJO}} </li>
+                                            <li class="list-group-item small" ><b>PRODUCTO:</b> {{service.PRODUCTO}} </li>
+                                            <li class="list-group-item small" ><b>TECNOLOGIA:</b> {{service.TECNOLOGIA_ID}} </li>
+                                            <li class="list-group-item small" ><b>EJECUTIVO:</b> {{service.EJECUTIVO_ID}} </li>
+                                            <li class="list-group-item small" ><b>CELULAR:</b> <a ng-href="SIP:003{{service.CELULAR_AVISAR || service.TELEFONO_AVISAR}}" >{{service.CELULAR_AVISAR || service.TELEFONO_AVISAR}} <i class="fa fa-phone-square" aria-hidden="true"></i></a> </li>
+                                            <li class="list-group-item small" ><b>TELEFONO:</b> <a ng-href="SIP:0{{service.TELEFONO_AVISAR || service.CELULAR_AVISAR}}" >{{service.TELEFONO_AVISAR || service.CELULAR_AVISAR}} <i class="fa fa-phone-square" aria-hidden="true"></i></a> </li>
+                                            <li class="list-group-item small" ><b>FECHA ESTADO:</b> {{service.FECHA_ESTADO}} </li>
+                                            <li class="list-group-item small" ><b>TIEMPO EN COLA:</b> {{service.TIEMPO_COLA}} </li>
 
-                                        </ul>
-                                    </div>
 
+
+                                        </div>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
+                            <div class = "panel panel-default">
+                                <div class = "panel-heading">
                                     <b><i class="fa fa-cogs" aria-hidden="true"> </i> SEGUIMIENTO</b>
                                 </div>
-                                <div class="panel-heading">
+                                <div class = "panel-heading">
                                     <div class="container-fluid">
 
                                         <form name="seguimiento_form" id="seguimiento_form">
-                                            <div class="form-group "
-                                                 ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
+                                            <div class="form-group " ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
                                                 <label for="estado" class="control-label">Estado Gestión:</label>
-                                                <select id="estado"
-                                                        class="form-control btn-xs"
+                                                <select
+                                                        class= "form-control btn-xs"
                                                         name="estado"
                                                         ng-model="InfoPedido.ESTADO_PROCESO"
                                                         ng-disabled="ocupado"
@@ -207,15 +160,13 @@
                                                     </option>
                                                 </select>
                                             </div>
-                                            <div class="form-group " ng-show="InfoPedido.ESTADO_PROCESO"
-                                                 ng-class="{ 'has-error' : seguimiento_form.obs.$pristine && seguimiento_form.obs.$invalid}">
+                                            <div class="form-group " ng-show="InfoPedido.ESTADO_PROCESO" ng-class="{ 'has-error' : seguimiento_form.obs.$pristine && seguimiento_form.obs.$invalid}">
                                                 <label for="obs" class="control-label">Observación Gestión:</label>
-                                                <select id="obs"
-                                                        class="form-control btn-xs"
+                                                <select
+                                                        class= "form-control btn-xs"
                                                         name="obs"
                                                         ng-model="InfoPedido.OBSERVACIONES_PROCESO"
-                                                        ng-change="onChangeAccion(InfoPedido.OBSERVACIONES_PROCESO)"
-                                                        required>
+                                                        ng-change="onChangeAccion(InfoPedido.OBSERVACIONES_PROCESO)" required>
                                                     <option value="" disabled>--Seleccione--</option>
                                                     <option
                                                             ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO}:true | unique:'OBSERVACION_ID'"
@@ -227,40 +178,31 @@
                                             </div>
                                             <div class="form-group has-feedback" ng-show="programar">
                                                 <label for="programacion" class="control-label">Programación:</label>
-                                                <input type="text" name="programacion" id="programacion"
-                                                       class="form-control" placeholder="id llamada"
-                                                       ng-model="InfoPedido.PROGRAMACION" datetime-picker
-                                                       date-format="yyyy-MM-dd HH:mm:ss"/>
+                                                <input type="text" name="programacion" id="programacion" class="form-control" placeholder="id llamada" ng-model="InfoPedido.PROGRAMACION" datetime-picker date-format="yyyy-MM-dd HH:mm:ss"/>
                                                 <i class="fa fa-calendar-check-o form-control-feedback"></i>
                                             </div>
                                             <div class="form-group has-feedback">
-                                                <label for="llamada" class="control-label">ID Llamada:</label>
-                                                <input type="text" name="llamada" id="llamada" class="form-control"
-                                                       placeholder="id llamada" ng-model="InfoPedido.IDLLAMADA"/>
+                                                <label for="incidente" class="control-label">ID Llamada:</label>
+                                                <input type="text" name="incidente" id="incidente" class="form-control" placeholder="id llamada" ng-model="InfoPedido.IDLLAMADA"/>
                                                 <i class="fa fa-phone-square form-control-feedback"></i>
                                             </div>
                                             <div class="form-group has-feedback">
                                                 <label for="nuevopedido" class="control-label">Nuevo Pedido:</label>
-                                                <input type="text" name="nuevopedido" id="nuevopedido"
-                                                       class="form-control" placeholder="12458974145"
-                                                       ng-model="InfoPedido.NUEVOPEDIDO"/>
+                                                <input type="text" name="nuevopedido" id="nuevopedido" class="form-control" placeholder="12458974145" ng-model="InfoPedido.NUEVOPEDIDO"/>
                                                 <i class="fa fa-briefcase form-control-feedback"></i>
                                             </div>
                                             <div class="form-group  has-feedback" ng-show="habilitaCr">
                                                 <label for="incidente" class="control-label">CR Incidente:</label>
-                                                <input type="text" name="incidente" id="incidente"
-                                                       class="form-control btn-xs" ng-model="InfoPedido.INCIDENTE">
+                                                <input type="text" name="incidente" id="incidente" class="form-control btn-xs" ng-model="InfoPedido.INCIDENTE">
                                                 <i class="fa fa-flag form-control-feedback"></i>
                                             </div>
                                             <div>
-                                                <div class="hide"
-                                                     ng-repeat="InfoPedido in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO, OBSERVACION_ID: InfoPedido.OBSERVACIONES_PROCESO} | unique:'STATUS' as status">
+                                                <div class="hide" ng-repeat="InfoPedido in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO, OBSERVACION_ID: InfoPedido.OBSERVACIONES_PROCESO} | unique:'STATUS' as status">
                                                     <input ng-model="InfoPedido.STATUS">
                                                 </div>
                                             </div>
                                             <div>
-                                                <div class="hide"
-                                                     ng-repeat="InfoPedido in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO, OBSERVACION_ID: InfoPedido.OBSERVACIONES_PROCESO} | unique:'ACTIVIDAD' as actividad">
+                                                <div class="hide" ng-repeat="InfoPedido in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO, OBSERVACION_ID: InfoPedido.OBSERVACIONES_PROCESO} | unique:'ACTIVIDAD' as actividad">
                                                     <input ng-model="InfoPedido.ACTIVIDAD">
                                                 </div>
                                             </div>
@@ -274,46 +216,35 @@
 
 
                 </div><!--Panel Body -->
-                <div class="panel-footer clearfix">
-                    <div class="col-md-6">
+                <div class="panel-footer clearfix" >
+                    <div class="col-md-6" >
                         <!--Campos futuros en footer izquierda -->
-                        <ul class="nav navbar-nav navbar-left animated bounceInRight" ng-show="pedidoIsActive">
+                        <ul class="nav navbar-nav navbar-left animated bounceInRight" ng-show="pedidoIsActive" >
                             <li><span class="label label-primary" tooltip data-placement="top" title="Programación">{{fechaprogramacion || 'Sin Programación'}}</span>
                             </li>
                         </ul>
                     </div>
                     <div class="col-md-6">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="nav navbar-nav"
-                                ng-class="pedidoIsGuardado==false?'animated bounceOutRight':'animated bounceInRight'"
-                                ng-show="pedidoIsGuardado==true">
+                            <li class="nav navbar-nav" ng-class="pedidoIsGuardado==false?'animated bounceOutRight':'animated bounceInRight'" ng-show="pedidoIsGuardado==true">
                                 <span class="label label-primary">Pedido Guardado</span>&nbsp;
 
                             </li>
                             <li>
-                                <button type="button" class="btn btn-success btn-xs"
-                                        ng-click="guardarPedido(InfoPedido,gestion[0],status,actividad)"
-                                        ng-disabled="!accRdy || guardando || loading">
+                                <button type="button" class="btn btn-success btn-xs" ng-click="guardarPedido(InfoPedido,gestion[0],status,actividad)"  ng-disabled="!accRdy || guardando || loading">
                                     Guardar <span ng-show="guardando"><i class="fa fa-spinner fa-spin"></i></span>
                                 </button>
                             </li>
                             <li>&nbsp; | &nbsp;</li>
                             <li>
-                                <button type="button" class="btn btn-info btn-circle-xss"
-                                        ng-click="historicoModal(gestion[0].PEDIDO_ID)" data-toggle="modal"
-                                        data-target="#HistoricoPedido" data-backdrop="static" popover
-                                        data-trigger="hover" data-placement="left" data-html="true"
-                                        data-content="<code>Historico</code>" ng-disabled="!pedidoIsActive">
-                                    <i class="fa fa-rss" aria-hidden="true"> </i>
+                                <button type="button" class="btn btn-info btn-circle-xss" ng-click="historicoModal(gestion[0].PEDIDO_ID)" data-toggle="modal" data-target="#HistoricoPedido" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>Historico</code>"   ng-disabled="!pedidoIsActive">
+                                    <i class="fa fa-rss"  aria-hidden="true"> </i>
                                 </button>
                             </li>
                             <li>&nbsp; | &nbsp;</li>
                             <li>
-                                <button type="button" class="btn btn-info btn-circle-xss" ng-click="PedidosPorUser()"
-                                        data-toggle="modal" data-target="#HistoricoPedidoUser" data-backdrop="static"
-                                        popover data-trigger="hover" data-placement="left" data-html="true"
-                                        data-content="<code>Historico por {{logedUser.login}}</code>">
-                                    <i class="fa fa-user-circle" aria-hidden="true"> </i>
+                                <button type="button" class="btn btn-info btn-circle-xss" ng-click="PedidosPorUser()" data-toggle="modal" data-target="#HistoricoPedidoUser" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>Historico por {{logedUser.login}}</code>" >
+                                    <i class="fa fa-user-circle"  aria-hidden="true"> </i>
                                 </button>
                             </li>
                         </ul>
@@ -325,33 +256,31 @@
     </div><!--Row 1 Novedades -->
 </div><!--Container ppal -->
 <!-- Modal Historico Pedidos-->
-<div id="PedidosProgramados" class="modal fade " role="dialog">
+<div id="PedidosProgramados" class="modal fade "  role="dialog">
     <div class="modal-dialog modal-lg">
         <!-- Modal content-->
-        <div class="modal-content">
+        <div class="modal-content" >
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">{{TituloModal}} <span class="label label-info">{{logedUser.login}} </span></h4>
+                <h4 class="modal-title">{{TituloModal}} <span class="label label-info">{{logedUser.login}} </span> </h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" >
                 <div class="row"><!--Row Programados por USER -->
                     <div class="col-md-12">
 
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
+                        <div class = "panel panel-default">
+                            <div class = "panel-heading">
                                 <b><i class="fa fa-bars" aria-hidden="true"></i> Pedidos Malos </b>
-                                <div class="col-md-1 col-xs-1 ">
-                                    <ul class="nav navbar-nav navbar-right">
-
-                                            <div data-ng-if="loading">
-                                                <img title="Esperando respuesta" tooltip data-placement="top"
-                                                     src="images/loader.gif"/>
-                                            </div>
-                                    </ul>
-                                </div>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <div class="col-md-1 col-xs-1 ">
+                                        <div data-ng-if="loading">
+                                            <img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif" />
+                                        </div>
+                                    </div>
+                                </ul>
                             </div>
-                            <div class="panel-body fixed-panel">
-                                <table class="table small table-striped table-condensed">
+                            <div class="panel-body fixed-panel" >
+                                <table class = "table small table-striped table-condensed">
                                     <thead>
                                     <tr>
                                         <th>Pedido</th>
@@ -367,8 +296,7 @@
                                     <tbody>
                                     <tr ng-repeat="data in ListadoPrograUser as progra" class="animated bounceInRight">
                                         <td>
-                                            <button type="button" class="btn btn-xs btn-warning"
-                                                    ng-click="executeCopy(data.PEDIDO_ID)">
+                                            <button type="button" class="btn btn-xs btn-warning" ng-click="executeCopy(data.PEDIDO_ID)">
                                                 {{data.PEDIDO_ID}}
                                             </button>
                                         </td>
@@ -385,8 +313,7 @@
                                             <span class="small">{{data.PROGRAMACION}}</span>
                                         </td>
                                         <td>
-                                            <span class="small"
-                                                  ng-class="{'ALARMADO':'label label-warning','GESTIONAR':'label label-danger','SIN CITA':'label label-info'}[data.MENSAJE]">{{data.MENSAJE}}</span>
+                                            <span class="small" ng-class="{'ALARMADO':'label label-warning','GESTIONAR':'label label-danger','SIN CITA':'label label-info'}[data.MENSAJE]">{{data.MENSAJE}}</span>
                                         </td>
                                         <td>
                                             <span class="small">{{data.MUNICIPIO_ID}}</span>
@@ -400,11 +327,10 @@
                                 </table>
 
                             </div>
-                            <div class="panel-footer clearfix">
+                            <div class="panel-footer clearfix" >
                                 <div class="col-md-6">
                                     <ul class="nav navbar-nav navbar-left">
-                                        <li>Registros: <span class="badge badge-default">{{progra.length}} {{errorMalos}}</span>
-                                        </li>
+                                        <li>Registros: <span class="badge badge-default">{{progra.length}} {{errorMalos}}</span></li>
 
                                     </ul>
 
@@ -426,23 +352,22 @@
     </div>
 </div><!-- Modal Programados-->
 <!-- Modal Historico Pedidos-->
-<div id="HistoricoPedido" class="modal fade " role="dialog">
+<div id="HistoricoPedido" class="modal fade "  role="dialog">
     <div class="modal-dialog modal-lg">
         <!-- Modal content-->
-        <div class="modal-content">
+        <div class="modal-content" >
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">{{TituloModal}} <span class="label label-info">{{pedidoHistorico}} </span></h4>
-                <span style="color:red"><i class="fa fa-exclamation-triangle warning" aria-hidden="true"
-                                           ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+                <h4 class="modal-title">{{TituloModal}} <span class="label label-info">{{pedidoHistorico}} </span> </h4>
+                <span style="color:red" ><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
             </div>
-            <div class="modal-body">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div class="panel-body fixed-panel">
-                            <table class="table small table-striped table-condensed">
+            <div class="modal-body" >
+                <div class = "panel panel-default">
+                    <div class = "panel-heading">
+                        <div class="panel-body fixed-panel" >
+                            <table class = "table small table-striped table-condensed">
                                 <thead>
-                                <tr>
+                                <tr >
                                     <th><span class="small">ID</span></th>
                                     <th><span class="small">ACTIVIDAD</span></th>
                                     <th><span class="small">FECHA_GESTION</span></th>
@@ -483,17 +408,16 @@
     </div>
 </div><!-- Modal Eliminar Novedad-->
 <!-- Modal Historico Pedidos Por USER-->
-<div id="HistoricoPedidoUser" class="modal fade " role="dialog">
+<div id="HistoricoPedidoUser" class="modal fade "  role="dialog">
     <div class="modal-dialog modal-lg">
         <!-- Modal content-->
-        <div class="modal-content">
+        <div class="modal-content" >
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">{{TituloModal}}</h4>
-                <span style="color:red"><i class="fa fa-exclamation-triangle warning" aria-hidden="true"
-                                           ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+                <span style="color:red" ><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
             </div>
-            <div class="panel-heading nav navbar-default">
+            <div class = "panel-heading nav navbar-default">
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-12">
@@ -511,33 +435,24 @@
                                 </li>
                                 <li>&nbsp;</li>
                                 <li>
-                                    <input style="width:150px" class="btn btn-default btn-xs" name="valorCampo"
-                                           ng-model="data.valorCampo" select-on-click capitalize type="text"
-                                           placeholder="Palabra">
+                                    <input style="width:150px" class="btn btn-default btn-xs" name="valorCampo" ng-model="data.valorCampo" select-on-click capitalize type="text" placeholder="Palabra">
 
                                 </li>
                                 <li>&nbsp;</li>
                                 <li>
                                     <div class="input-daterange" id="datepicker">
-                                        <input type="text" class="btn btn-default btn-xs" ng-model="data.fechaIni"
-                                               datetime-picker date-format="yyyy-MM-dd" date-only/><i
-                                            class="fa fa-calendar fa-fw"></i>
-                                        <input type="text" class="btn btn-default btn-xs" ng-model="data.fechaFin"
-                                               datetime-picker date-format="yyyy-MM-dd" date-only/><i
-                                            class="fa fa-calendar fa-fw"></i>
-                                        <button type="button" class="btn btn-primary btn-xs"
-                                                ng-click="calcularListadoReconfiguracion()" title="Buscar" tooltip
-                                                data-placement="left" ng-disabled="loading">
-                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        <input type="text" class="btn btn-default btn-xs"  ng-model="data.fechaIni" datetime-picker date-format="yyyy-MM-dd" date-only/><i class="fa fa-calendar fa-fw"></i>
+                                        <input type="text" class="btn btn-default btn-xs" ng-model="data.fechaFin" datetime-picker date-format="yyyy-MM-dd" date-only/><i class="fa fa-calendar fa-fw"></i>
+                                        <button type="button" class="btn btn-primary btn-xs" ng-click="calcularListadoReconfiguracion()"  title="Buscar" tooltip data-placement="left" ng-disabled="loading">
+                                            <i class="fa fa-search"  aria-hidden="true"></i>
                                         </button>
-                                        <button type="button" class="btn btn-primary btn-xs"
-                                                ng-click="csvHistoricosReconfiguracion()" title="Exportar" tooltip
-                                                data-placement="left" ng-disabled="loading">
-                                            <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                        <button type="button" class="btn btn-primary btn-xs" ng-click="csvHistoricosReconfiguracion()"  title="Exportar" tooltip data-placement="left" ng-disabled="loading">
+                                            <i class="fa fa-cloud-download"  aria-hidden="true"></i>
                                         </button>
 
                                     </div>
                                 </li>
+
 
 
                             </ul>
@@ -547,13 +462,13 @@
                 </div>
 
             </div>
-            <div class="modal-body">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div class="panel-body fixed-panel">
-                            <table class="table small table-striped table-condensed">
+            <div class="modal-body" >
+                <div class = "panel panel-default">
+                    <div class = "panel-heading">
+                        <div class="panel-body fixed-panel" >
+                            <table class = "table small table-striped table-condensed">
                                 <thead>
-                                <tr>
+                                <tr >
                                     <th><span class="small">PEDIDO</span></th>
                                     <th><span class="small">ACTIVIDAD</span></th>
                                     <th><span class="small">FECHA_GESTION</span></th>
@@ -593,7 +508,7 @@
 </div><!-- Modal Eliminar Novedad-->
 <br>
 <ol class="breadcrumb">
-    <li><a href=".#/">Home</a></li>
+    <li><a href=".#/">Home</a> </li>
     <li><a href="">Asignaciones</a></li>
-    <li class="active">{{title}}</li>
+    <li class="active">{{title}} </li>
 </ol>
