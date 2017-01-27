@@ -13574,84 +13574,84 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 	$scope.start = function (pedido) {
 
-		var pedido1 				= '';
-		$scope.popup 				= '';
-		$rootScope.errorDatos 		= null;
-		$scope.InfoPedido 			= [];
-		$scope.fecha_inicio 		= null;
-		$scope.accRdy 				= false;
-		$scope.InfoGestion 			= {};
-		$scope.InfoPedido.INCIDENTE = 'NO';
-		$scope.pedidoIsGuardado 	= false;
-		$scope.programar			= false;
-		$scope.pedidoIsActive		= false;
-		$scope.habilitaCr			= false;
-		//$scope.estadoGuardo			= false;
+        var pedido1 				= '';
+        $scope.popup 				= '';
+        $rootScope.errorDatos 		= null;
+        $scope.InfoPedido 			= [];
+        $scope.fecha_inicio 		= null;
+        $scope.accRdy 				= false;
+        $scope.InfoGestion 			= {};
+        $scope.InfoPedido.INCIDENTE = 'NO';
+        $scope.pedidoIsGuardado 	= false;
+        $scope.programar			= false;
+        $scope.pedidoIsActive		= false;
+        $scope.habilitaCr			= false;
+        //$scope.estadoGuardo			= false;
 
-		if($scope.iconcepto.FUENTE=='SIEBEL'){
-			$scope.habilitaCr			= true;
-		}
+        if($scope.iconcepto.FUENTE=='SIEBEL'){
+            $scope.habilitaCr			= true;
+        }
 
 
-		if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
-			//alert($scope.peds[0].PEDIDO_ID);
-			pedido1 = $scope.peds[0].PEDIDO_ID;
+        if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
+            //alert($scope.peds[0].PEDIDO_ID);
+            pedido1 = $scope.peds[0].PEDIDO_ID;
 
-		}
-		$scope.peds = {};
-		$scope.mpedido = {};
-		$scope.bpedido = '';
-		$scope.busy = "";
-		$scope.pedido1 = pedido1;
-		$rootScope.error = "";
-		$scope.iplaza = 'TODOS';
-		$scope.fuente = $scope.iconcepto.FUENTE;
-		$scope.InfoPedido.SOURCE = 'AUTO';
-		$scope.InfoPedido.FUENTE = $scope.fuente;
+        }
+        $scope.peds = {};
+        $scope.mpedido = {};
+        $scope.bpedido = '';
+        $scope.busy = "";
+        $scope.pedido1 = pedido1;
+        $rootScope.error = "";
+        $scope.iplaza = 'TODOS';
+        $scope.fuente = $scope.iconcepto.FUENTE;
+        $scope.InfoPedido.SOURCE = 'AUTO';
+        $scope.InfoPedido.FUENTE = $scope.fuente;
 
-		//console.log($scope.iconcepto);
+        //console.log($scope.iconcepto);
 
-		var demePedidoButton = document.getElementById("iniciar");
-		demePedidoButton.setAttribute("disabled", "disabled");
-		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
+        var demePedidoButton = document.getElementById("iniciar");
+        demePedidoButton.setAttribute("disabled", "disabled");
+        demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE).then(function (data) {
+        var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE).then(function (data) {
 
-			$scope.peds = data.data;
+            $scope.peds = data.data;
 
-			//console.log($scope.peds);
+            //console.log($scope.peds);
 
-			if (data.data == '') {
+            if (data.data == '') {
 
-				document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Concepto.";
-				$rootScope.errorDatos = "No hay Registros. Intente Cambiando de Concepto.";
-			} else {
+                document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Concepto.";
+                $rootScope.errorDatos = "No hay Registros. Intente Cambiando de Concepto.";
+            } else {
 
-				document.getElementById("warning").innerHTML = "";
-				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
-				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
-				$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
-				$scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
-				$scope.pedidoIsActive = true;
-				$rootScope.errorDatos = null;
-				$scope.fecha_inicio = $rootScope.fechaProceso();
+                document.getElementById("warning").innerHTML = "";
+                $scope.pedido1 = $scope.peds[0].PEDIDO_ID;
+                $scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
+                $scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
+                $scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
+                $scope.pedidoIsActive = true;
+                $rootScope.errorDatos = null;
+                $scope.fecha_inicio = $rootScope.fechaProceso();
 
-				if ($scope.peds[0].STATUS == "PENDI_PETEC" && $scope.peds[0].ASESOR != "") {
-					$scope.busy = $scope.peds[0].ASESOR;
-					$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
+                if ($scope.peds[0].STATUS == "PENDI_PETEC" && $scope.peds[0].ASESOR != "") {
+                    $scope.busy = $scope.peds[0].ASESOR;
+                    $rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
 
-				}
+                }
 
-				$scope.baby($scope.pedido1);
+                $scope.baby($scope.pedido1);
 
-			}
-			var demePedidoButton = document.getElementById("iniciar");
-			demePedidoButton.removeAttribute("disabled");
-			demePedidoButton.className = "btn btn-success btn-DemePedido-xs";
-			return data.data;
-		});
+            }
+            var demePedidoButton = document.getElementById("iniciar");
+            demePedidoButton.removeAttribute("disabled");
+            demePedidoButton.className = "btn btn-success btn-DemePedido-xs";
+            return data.data;
+        });
 
-	};
+    };
 
 	// -------------------------------------------------------------- DemePedido
 	// BuscarPedido ---------------------------------------------------------------
