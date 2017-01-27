@@ -13705,7 +13705,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			var kami = services.buscarPedidoReconfiguracion(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login);
 		}
 
-
+|
 
 			kami.then(
 
@@ -13728,6 +13728,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 									
 									$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 									$scope.InfoPedido.FUENTE=$scope.peds[0].FUENTE;
+									conole.log($scope.InfoPedido.FUENTE);
 									$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
 									$scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
 
