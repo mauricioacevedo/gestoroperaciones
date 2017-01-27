@@ -78,7 +78,7 @@
 							<th>Fecha Estado</th>
 							<th>Fecha Cita</th>
 							<th>Fuente</th>
-							<th>Priorizar</th>
+							<th ng-show="logedUser.login=='DEMO'">Priorizar</th>
                         </thead>
                         <tbody>
                             <tr ng-repeat="data in listado_pendientes| orderBy:'FECHA_ESTADO':false | filter:filtroInput as InfoPed"  ng-class="{danger: data.STATUS == 'MALO'}" >
@@ -92,7 +92,7 @@
 								<td><span class="small">{{data.FECHA_ESTADO}}</span></td>
 								<td><span class="small">{{data.FECHA_CITA}}</span></td>
 								<td><span class="small">{{data.FUENTE}}</span></td>
-								<td>
+								<td ng-show="logedUser.login=='DEMO'">
 									<switcher class="styled"
 											  ng-model="data.PRIORIDAD"
 											  true-value="'ARBOL'"
