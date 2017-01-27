@@ -93,15 +93,11 @@
 								<td><span class="small">{{data.FECHA_CITA}}</span></td>
 								<td><span class="small">{{data.FUENTE}}</span></td>
 								<td>
-									<form role="form">
-										<div class="checkbox checkbox-info checkbox-circle">
-											<input type="checkbox" id="checkbox1"
-											   ng-model="data.PRIORIDAD"
-											   ng-true-value="'ARBOL'"
-											   ng-false-value="'NO'"
-											   ng-change="habilitarPrioridad(data.PRIORIDAD)">
-										</div>
-									</form>
+									<input id="checkbox" type="checkbox" class=""
+									   ng-model="data.PRIORIDAD"
+									   ng-true-value="'ARBOL'"
+									   ng-false-value="'NO'"
+									   ng-change="habilitarPrioridad(data)">
 								</td>
                             </tr>
                         </tbody>
