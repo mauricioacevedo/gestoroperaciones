@@ -5345,9 +5345,8 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 		$scope.calcularPendientes($routeParams.conceptoid);
 	}
 
-	$scope.habilitarPrioridad = function (ped,est){
-		console.log(ped);
-        console.log(est);
+	$scope.habilitarPrioridad = function (pedinfo){
+		console.log(pedinfo);
 	};
 
 });
