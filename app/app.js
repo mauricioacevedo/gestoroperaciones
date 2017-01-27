@@ -13586,6 +13586,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         $scope.programar			= false;
         $scope.pedidoIsActive		= false;
         $scope.habilitaCr			= false;
+        $scope.buscar				= '';
         //$scope.estadoGuardo			= false;
 
         if($scope.iconcepto.FUENTE=='SIEBEL'){
@@ -13727,7 +13728,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 									
 									$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 									$scope.InfoPedido.FUENTE=$scope.peds[0].FUENTE;
-									console.log($scope.InfoPedido.FUENTE);
+									//console.log($scope.InfoPedido.FUENTE);
 									$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
 									$scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
 
@@ -13785,7 +13786,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 			$scope.InfoGestion = {
 			pedido: gestion.PEDIDO_ID,
-			fuente: $scope.iconcepto.FUENTE,
+			fuente: varDondeGuardar,
 			actividad: $scope.actividadGo,
 			fecha_fin: $scope.fecha_fin,
 			user: $rootScope.logedUser.login,
