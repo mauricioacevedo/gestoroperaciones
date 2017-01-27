@@ -12806,19 +12806,15 @@ class API extends REST {
                 " where PEDIDO_ID='$pedido' ";
 
         $rst = $this->mysqli->query($query);
-        $numRows=$this->db->affected_rows();
 
-        echo $numRows;
-
-/*
-        if($this->mysqli->affected_rows() >= 0){
+        if($rst->num_rows >= 0){
             $msg="Prioridad Actualizada";
             $this->response($this->json($msg), 201);
-        }else{
-            $msg="No se pudo dar prioridad";
+        }else {
+            $msg = "No se pudo dar prioridad";
             $this->response($this->json($msg), 403);
-        }*/
 
+        }
 
     }//-----------------------------------------------Fin funcion
 
