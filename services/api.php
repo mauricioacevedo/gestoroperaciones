@@ -6427,6 +6427,7 @@ class API extends REST {
     //DemePedidoPetec Principal, Asignaciones - Reconfiguracion.
     private function demePedido(){
 
+
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
