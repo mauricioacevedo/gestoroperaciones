@@ -98,7 +98,7 @@
 											  ng-model="data.PRIORIDAD"
 											  ng-true-value="'ARBOL'"
 											  ng-false-value="'NO'"
-											  ng-change="habilitarPrioridad(InfoPed)"
+											  ng-change="habilitarPrioridad(data.PEDIDO_ID,data.PRIORIDAD)"
 											  true-label="Si"
 											  false-label="No">
 									</switcher>
