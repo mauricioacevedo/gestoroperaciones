@@ -13705,7 +13705,6 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			var kami = services.buscarPedidoReconfiguracion(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login);
 		}
 
-|
 
 			kami.then(
 
