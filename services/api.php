@@ -12781,7 +12781,42 @@ class API extends REST {
         }
 
     }//-----------------------------------------------Funcion para productividad el grupo de asignaciones cada hora
+//Funcion para Habilitar Prioridad Arbol en Peiddos-----------------------------------------------
+    /**
+     * Funcion para que los pedidos tengan prioridad absoluta.
+     */
+    private function otorgarPrioridadAbsoluta(){
 
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+        $params = json_decode(file_get_contents('php://input'),true);
+        $prioridad = $params['prioridad'];
+        $pedido = $params['pedido_id'];
+        $usuario_id = $params['usuario_id'];
+        $today = date("Y-m-d H:i:s");
+
+        if($prioridad==''|| $prioridad=='undefined'){
+            $prioridad='NO';
+        }
+
+
+        $query= " update portalbd.informe_petec_pendientesm ".
+                " set RADICADO_TEMPORAL='$prioridad' ".
+                " where PEDIDO_ID='$pedido' ";
+
+        $rst = $this->mysqli->query($query);
+
+        if($rst->affected_rows() >= 0){
+            $msg="Prioridad Actualizada";
+            $this->response($this->json($msg), 201);
+        }else{
+            $msg="No se pudo dar prioridad";
+            $this->response($this->json($msg), 403);
+        }
+
+
+    }//-----------------------------------------------Fin funcion
 
 
 }//cierre de la clase

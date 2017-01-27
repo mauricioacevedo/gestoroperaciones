@@ -954,6 +954,13 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 			fecha: fecha
 		});
 	};
+    obj.putPrioridadPedidos = function (pedido_id, prioridad, usuario_id) {
+        return $http.post(serviceBase + 'otorgarPrioridadAbsoluta', {
+            pedido_id: pedido_id,
+            prioridad: prioridad,
+            usuario_id: usuario_id
+        });
+    };
 
 
 	return obj;
@@ -5347,6 +5354,11 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
 	$scope.habilitarPrioridad = function (pedinfo){
 		console.log(pedinfo);
+		services.putPrioridadPedidos(pedinfo.PEDIDO_ID,pedinfo.PRIORIDAD,userID).then(
+			function(data) {
+				console.log(data);
+            }
+		);
 	};
 
 });
