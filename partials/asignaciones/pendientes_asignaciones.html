@@ -93,11 +93,17 @@
 								<td><span class="small">{{data.FECHA_CITA}}</span></td>
 								<td><span class="small">{{data.FUENTE}}</span></td>
 								<td>
-									<input id="checkbox" type="checkbox" class=""
-									   ng-model="data.PRIORIDAD"
-									   ng-true-value="'ARBOL'"
-									   ng-false-value="'NO'"
-									   ng-change="habilitarPrioridad(data)">
+									<div class="onoffswitch">
+										<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
+											   ng-model="data.PRIORIDAD"
+											   ng-true-value="'ARBOL'"
+											   ng-false-value="'NO'"
+											   ng-change="habilitarPrioridad(data)">
+										<label class="onoffswitch-label" for="myonoffswitch">
+											<span class="onoffswitch-inner"></span>
+											<span class="onoffswitch-switch"></span>
+										</label>
+									</div>
 								</td>
                             </tr>
                         </tbody>
