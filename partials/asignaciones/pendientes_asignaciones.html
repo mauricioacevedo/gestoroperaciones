@@ -78,6 +78,7 @@
 							<th>Fecha Estado</th>
 							<th>Fecha Cita</th>
 							<th>Fuente</th>
+							<th>Priorizar</th>
                         </thead>
                         <tbody>
                             <tr ng-repeat="data in listado_pendientes| orderBy:'FECHA_ESTADO':false | filter:filtroInput"  ng-class="{danger: data.STATUS == 'MALO'}" >
@@ -91,6 +92,12 @@
 								<td><span class="small">{{data.FECHA_ESTADO}}</span></td>
 								<td><span class="small">{{data.FECHA_CITA}}</span></td>
 								<td><span class="small">{{data.FUENTE}}</span></td>
+								<td>
+									<div class="checkbox checkbox-primary">
+										<input id="checkbox" type="checkbox" ng-model="data.PRIORIDAD"
+											   ng-true-value="'ARBOL'" ng-false-value="'NO'">
+									</div>
+								</td>
                             </tr>
                         </tbody>
                         </table>
