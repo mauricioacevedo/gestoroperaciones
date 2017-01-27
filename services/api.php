@@ -12796,9 +12796,9 @@ class API extends REST {
         $usuario_id = $params['usuario_id'];
         $today = date("Y-m-d H:i:s");
 
-        if($prioridad==''|| $prioridad=='undefined'){
+        /*if($prioridad==''|| $prioridad=='undefined'){
             $prioridad='NO';
-        }
+        }*/
 
 
         $query= " update portalbd.informe_petec_pendientesm ".
@@ -12806,14 +12806,16 @@ class API extends REST {
                 " where PEDIDO_ID='$pedido' ";
 
         $rst = $this->mysqli->query($query);
-
+        $msg="Prioridad Actualizada";
+        $this->response($this->json($msg), 201);
+/*
         if($rst->affected_rows() >= 0){
             $msg="Prioridad Actualizada";
             $this->response($this->json($msg), 201);
         }else{
             $msg="No se pudo dar prioridad";
             $this->response($this->json($msg), 403);
-        }
+        } */
 
 
     }//-----------------------------------------------Fin funcion

@@ -5354,7 +5354,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
 	$scope.habilitarPrioridad = function (pedinfo){
 		console.log(pedinfo);
-		services.putPrioridadPedidos(pedinfo.PEDIDO_ID,pedinfo.PRIORIDAD,userID).then(
+		services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.PRIORIDAD,userID).then(
 			function(data) {
 				console.log(data);
             }
