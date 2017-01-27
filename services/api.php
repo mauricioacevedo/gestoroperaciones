@@ -2940,6 +2940,7 @@ class API extends REST {
             $this->response('',406);
         }
 
+
         $fechaini = $this->_request['fecha_inicio'];
         $fechafin = $this->_request['fecha_fin'];
         $page = $this->_request['page'];
