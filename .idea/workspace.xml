@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" afterPath="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
     <ignored path="node_modules/angular-notify/package.json" />
@@ -271,11 +272,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="327">
-              <caret line="960" column="34" lean-forward="true" selection-start-line="960" selection-start-column="34" selection-end-line="960" selection-end-column="34" />
+              <caret line="5356" column="73" lean-forward="false" selection-start-line="5356" selection-start-column="73" selection-end-line="5356" selection-end-column="73" />
               <folding>
                 <marker date="1485551919171" expanded="true" signature="180652:180658" ph="&amp;nbsp;" />
                 <marker date="1485551919171" expanded="true" signature="180658:180664" ph="&amp;nbsp;" />
@@ -319,6 +320,16 @@
                 <marker date="1485551919171" expanded="true" signature="420779:420785" ph="&amp;nbsp;" />
                 <marker date="1485551919171" expanded="true" signature="443841:443874" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pendientes_asignaciones.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="461">
+              <caret line="98" column="65" lean-forward="false" selection-start-line="98" selection-start-column="65" selection-end-line="98" selection-end-column="65" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -368,10 +379,10 @@
         <option value="$PROJECT_DIR$/css/gestor.css" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/node_modules/angular-switcher/dist/angular-switcher.css" />
-        <option value="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" />
         <option value="$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html" />
         <option value="$PROJECT_DIR$/services/api.php" />
         <option value="$PROJECT_DIR$/app/app.js" />
+        <option value="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" />
       </list>
     </option>
   </component>
@@ -490,20 +501,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="asignaciones" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gestoroperaciones" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gestoroperaciones" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -949,14 +946,7 @@
       <workItem from="1485349768959" duration="610000" />
       <workItem from="1485367851294" duration="632000" />
       <workItem from="1485370984850" duration="3085000" />
-      <workItem from="1485522291246" duration="15736000" />
-    </task>
-    <task id="LOCAL-00061" summary="Prueba rutas 2">
-      <created>1485285281737</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1485285281737</updated>
+      <workItem from="1485522291246" duration="15873000" />
     </task>
     <task id="LOCAL-00062" summary="Prueba rutas 2">
       <created>1485285397399</created>
@@ -1294,11 +1284,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485551970866</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="Prueba rutas 2">
+      <created>1485552033448</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1485552033448</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57666000" />
+    <option name="totallyTimeSpent" value="57803000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1496,14 +1493,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="54" lean-forward="false" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="99" column="61" lean-forward="false" selection-start-line="99" selection-start-column="61" selection-end-line="99" selection-end-column="61" />
           <folding />
         </state>
       </provider>
@@ -1763,7 +1752,7 @@
     <entry file="file://$PROJECT_DIR$/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="327">
-          <caret line="960" column="34" lean-forward="true" selection-start-line="960" selection-start-column="34" selection-end-line="960" selection-end-column="34" />
+          <caret line="5356" column="73" lean-forward="false" selection-start-line="5356" selection-start-column="73" selection-end-line="5356" selection-end-column="73" />
           <folding>
             <marker date="1485551919171" expanded="true" signature="180652:180658" ph="&amp;nbsp;" />
             <marker date="1485551919171" expanded="true" signature="180658:180664" ph="&amp;nbsp;" />
@@ -1807,6 +1796,14 @@
             <marker date="1485551919171" expanded="true" signature="420779:420785" ph="&amp;nbsp;" />
             <marker date="1485551919171" expanded="true" signature="443841:443874" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="461">
+          <caret line="98" column="65" lean-forward="false" selection-start-line="98" selection-start-column="65" selection-end-line="98" selection-end-column="65" />
+          <folding />
         </state>
       </provider>
     </entry>
