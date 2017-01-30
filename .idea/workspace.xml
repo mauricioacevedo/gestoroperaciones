@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" afterPath="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
@@ -329,8 +328,8 @@
       <file leaf-file-name="pendientes_asignaciones.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="98" column="71" lean-forward="false" selection-start-line="98" selection-start-column="71" selection-end-line="98" selection-end-column="71" />
+            <state relative-caret-position="544">
+              <caret line="99" column="95" lean-forward="false" selection-start-line="99" selection-start-column="95" selection-end-line="99" selection-end-column="95" />
               <folding />
             </state>
           </provider>
@@ -1023,14 +1022,7 @@
       <workItem from="1485367851294" duration="632000" />
       <workItem from="1485370984850" duration="3085000" />
       <workItem from="1485522291246" duration="17387000" />
-      <workItem from="1485776806295" duration="13699000" />
-    </task>
-    <task id="LOCAL-00106" summary="Prueba rutas 2">
-      <created>1485532883889</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1485532883889</updated>
+      <workItem from="1485776806295" duration="13878000" />
     </task>
     <task id="LOCAL-00107" summary="Prueba rutas 2">
       <created>1485546440177</created>
@@ -1368,11 +1360,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485802142599</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485802225967</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1485802225967</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73016000" />
+    <option name="totallyTimeSpent" value="73195000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2177,8 +2176,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="98" column="71" lean-forward="false" selection-start-line="98" selection-start-column="71" selection-end-line="98" selection-end-column="71" />
+        <state relative-caret-position="544">
+          <caret line="99" column="95" lean-forward="false" selection-start-line="99" selection-start-column="95" selection-end-line="99" selection-end-column="95" />
           <folding />
         </state>
       </provider>
