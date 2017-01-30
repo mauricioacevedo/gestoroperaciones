@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['base64', 'ngRoute', 'ngCookies', 'ng-fusioncharts', 'ngAnimate', 'ui.bootstrap', 'ui.tinymce', 'ui.select', 'ngSanitize', 'ui.calendar', 'angularFileUpload', 'cgNotify', 'firebase', 'angular-smilies', 'angularjs-datetime-picker','switcher']);
+var app = angular.module('myApp', ['base64', 'ngRoute', 'ngCookies', 'ng-fusioncharts', 'ngAnimate', 'ui.bootstrap', 'ui.tinymce', 'ui.select', 'ngSanitize', 'ui.calendar', 'angularFileUpload', 'cgNotify', 'firebase', 'angular-smilies', 'angularjs-datetime-picker','switcher','toggle-switch']);
 //Los " Myapp " solapas de parámetros a un elemento HTML en el que se ejecutará la aplicación .
 //Ahora puede agregar controladores , directivas , filtros y más, para su aplicación AngularJS .
 //El módulo ngRoute proporciona enrutamiento y deeplinking Servicios y directivas para aplicaciones angulares .
@@ -5356,7 +5356,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
 	$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'MHUERTAS', 'DEMO'];
 	$scope.habilitarPrioridad = function (pedinfo){
-		console.log(enabled);
+		console.log(switchStatus);
 		services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.PRIORIDAD,userID).then(
 			function(data) {
                 $scope.data.RADICADO_TEMPORAL=pedinfo.PRIORIDAD;
@@ -14442,32 +14442,7 @@ app.directive('schrollBottom', function () {
 		}
 	}
 });
-app.directive('switch', function(){
-    return {
-        restrict: 'AE'
-        , replace: true
-        , transclude: true
-        , template: function(element, attrs) {
-            var html = '';
-            html += '<span';
-            html +=   ' class="switch' + (attrs.class ? ' ' + attrs.class : '') + '"';
-            html +=   attrs.ngModel ? ' ng-click="' + attrs.disabled + ' ? ' + attrs.ngModel + ' : ' + attrs.ngModel + '=!' + attrs.ngModel + (attrs.ngChange ? '; ' + attrs.ngChange + '()"' : '"') : '';
-            html +=   ' ng-class="{ checked:' + attrs.ngModel + ', disabled:' + attrs.disabled + ' }"';
-            html +=   '>';
-            html +=   '<small></small>';
-            html +=   '<input type="checkbox"';
-            html +=     attrs.id ? ' id="' + attrs.id + '"' : '';
-            html +=     attrs.name ? ' name="' + attrs.name + '"' : '';
-            html +=     attrs.ngModel ? ' ng-model="' + attrs.ngModel + '"' : '';
-            html +=     ' style="display:none" />';
-            html +=     '<span class="switch-text">'; /*adding new container for switch text*/
-            html +=     attrs.on ? '<span class="on">'+attrs.on+'</span>' : ''; /*switch text on value set by user in directive html markup*/
-            html +=     attrs.off ? '<span class="off">'+attrs.off + '</span>' : ' ';  /*switch text off value set by user in directive html markup*/
-            html += '</span>';
-            return html;
-        }
-    }
-});
+
 
 // Filtros ------------------------------------------
 
