@@ -12817,8 +12817,9 @@ class API extends REST {
                 " set RADICADO_TEMPORAL='$prioridad' ".
                 " where PEDIDO_ID='$pedido' ";
 
-        //$rst = $this->mysqli->query($query);
-        if($this->mysqli->query($query)===TRUE){
+        $rst = $this->mysqli->query($query);
+        if($rst===TRUE){
+            echo "si";
             $msg="Prioridad Actualizada";
 
             $sql_log=   "insert into portalbd.activity_feed ( ".
