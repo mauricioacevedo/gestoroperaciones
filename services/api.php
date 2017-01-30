@@ -12849,7 +12849,7 @@ class API extends REST {
 
         }else{
             $msg = "No se pudo dar prioridad";
-            $this->response($this->json($msg), 403);
+            $this->response($this->json(array($msg)), 403);
         }
 
     }//-----------------------------------------------Fin funcion
