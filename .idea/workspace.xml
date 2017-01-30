@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" afterPath="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
     <ignored path="node_modules/angular-notify/package.json" />
@@ -328,8 +328,8 @@
       <file leaf-file-name="pendientes_asignaciones.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="98" column="70" lean-forward="true" selection-start-line="98" selection-start-column="56" selection-end-line="98" selection-end-column="70" />
+            <state relative-caret-position="595">
+              <caret line="102" column="61" lean-forward="true" selection-start-line="102" selection-start-column="61" selection-end-line="102" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -388,8 +388,8 @@
         <option value="$PROJECT_DIR$/partials/asignaciones/indicadores_asignaciones.html" />
         <option value="$PROJECT_DIR$/services/api.php" />
         <option value="$PROJECT_DIR$/node_modules/angular-switcher/dist/angular-switcher.js" />
-        <option value="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" />
         <option value="$PROJECT_DIR$/app/app.js" />
+        <option value="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" />
       </list>
     </option>
   </component>
@@ -968,14 +968,7 @@
       <workItem from="1485367851294" duration="632000" />
       <workItem from="1485370984850" duration="3085000" />
       <workItem from="1485522291246" duration="17387000" />
-      <workItem from="1485776806295" duration="17017000" />
-    </task>
-    <task id="LOCAL-00118" summary="Prueba rutas 2">
-      <created>1485785816039</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1485785816040</updated>
+      <workItem from="1485776806295" duration="17117000" />
     </task>
     <task id="LOCAL-00119" summary="Prueba rutas 2">
       <created>1485786637845</created>
@@ -1313,11 +1306,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485805199297</updated>
     </task>
-    <option name="localTasksCounter" value="167" />
+    <task id="LOCAL-00167" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485807513174</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1485807513174</updated>
+    </task>
+    <option name="localTasksCounter" value="168" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76334000" />
+    <option name="totallyTimeSpent" value="76434000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2122,8 +2122,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="98" column="70" lean-forward="true" selection-start-line="98" selection-start-column="56" selection-end-line="98" selection-end-column="70" />
+        <state relative-caret-position="595">
+          <caret line="102" column="61" lean-forward="true" selection-start-line="102" selection-start-column="61" selection-end-line="102" selection-end-column="61" />
           <folding />
         </state>
       </provider>
