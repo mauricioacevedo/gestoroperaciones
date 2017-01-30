@@ -12843,7 +12843,7 @@ class API extends REST {
                 ",'$usuarioIp' ".
                 ",'$usuarioPc')";
 
-            echo $sql_log;
+           // echo $sql_log;
             $rlog = $this->mysqli->query($sql_log);
             $this->response($this->json($msg), 201);
         }else{
