@@ -12823,7 +12823,7 @@ class API extends REST {
             $msg="Prioridad Actualizada";
 
             $sql_log=   "insert into portalbd.activity_feed ( ".
-                ", USER ".
+                " USER ".
                 ", USERNAME ".
                 ", GRUPO ".
                 ", STATUS ".
@@ -12843,45 +12843,13 @@ class API extends REST {
                 ",'$usuarioIp' ".
                 ",'$usuarioPc')";
 
-            echo $sql_log;
+            //echo $sql_log;
             $rlog = $this->mysqli->query($sql_log);
             $this->response($this->json($msg), 201);
         }else{
             $msg = "No se pudo dar prioridad";
             $this->response($this->json($msg), 403);
         }
-        /*
-        if($rst->num_rows >= 0){
-            $msg="Prioridad Actualizada";
-
-            $sql_log=   "insert into portalbd.activity_feed ( ".
-                        ", USER ".
-                        ", USERNAME ".
-                        ", GRUPO ".
-                        ", STATUS ".
-                        ", PEDIDO_OFERTA ".
-                        ", ACCION ".
-                        ", CONCEPTO_ID ".
-                        ", IP_HOST ".
-                        ", CP_HOST ".
-                        ") values( ".
-                        " UPPER('$usuario_id')".
-                        ", UPPER('$nombreGalleta')".
-                        ", UPPER('$grupoGalleta')".
-                        ",'PRIORIZO PEDIDO' ".
-                        ",'$pedido' ".
-                        ",'PRIORIZAR' ".
-                        ",'PRIORIZADO' ".
-                        ",'$usuarioIp' ".
-                        ",'$usuarioPc')";
-
-            $rlog = $this->mysqli->query($sql_log);
-            $this->response($this->json($msg), 201);
-        }else {
-            $msg = "No se pudo dar prioridad";
-            $this->response($this->json($msg), 403);
-
-        } */
 
     }//-----------------------------------------------Fin funcion
 
