@@ -5226,7 +5226,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
                 return data.data;
         });
 	*/
-	$scope.PRIORIDAD=false;
+
 	$scope.calcularPendientes = function (sconcept) {
 		$scope.listado_pendientes = [];
 		var date1 = new Date();
@@ -5356,8 +5356,8 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
 	$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'MHUERTAS', 'DEMO'];
 	$scope.habilitarPrioridad = function (pedinfo){
-		console.log(pedinfo);
-	/*	services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.PRIORIDAD,userID).then(
+		console.log(enabled);
+		services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.PRIORIDAD,userID).then(
 			function(data) {
                 $scope.data.RADICADO_TEMPORAL=pedinfo.PRIORIDAD;
 				notify({
@@ -5367,7 +5367,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
                 });
 				//console.log(data);
             }
-		); */
+		);
 	};
 
 });
@@ -14441,7 +14441,33 @@ app.directive('schrollBottom', function () {
 			});
 		}
 	}
-})
+});
+app.directive('switch', function(){
+    return {
+        restrict: 'AE'
+        , replace: true
+        , transclude: true
+        , template: function(element, attrs) {
+            var html = '';
+            html += '<span';
+            html +=   ' class="switch' + (attrs.class ? ' ' + attrs.class : '') + '"';
+            html +=   attrs.ngModel ? ' ng-click="' + attrs.disabled + ' ? ' + attrs.ngModel + ' : ' + attrs.ngModel + '=!' + attrs.ngModel + (attrs.ngChange ? '; ' + attrs.ngChange + '()"' : '"') : '';
+            html +=   ' ng-class="{ checked:' + attrs.ngModel + ', disabled:' + attrs.disabled + ' }"';
+            html +=   '>';
+            html +=   '<small></small>';
+            html +=   '<input type="checkbox"';
+            html +=     attrs.id ? ' id="' + attrs.id + '"' : '';
+            html +=     attrs.name ? ' name="' + attrs.name + '"' : '';
+            html +=     attrs.ngModel ? ' ng-model="' + attrs.ngModel + '"' : '';
+            html +=     ' style="display:none" />';
+            html +=     '<span class="switch-text">'; /*adding new container for switch text*/
+            html +=     attrs.on ? '<span class="on">'+attrs.on+'</span>' : ''; /*switch text on value set by user in directive html markup*/
+            html +=     attrs.off ? '<span class="off">'+attrs.off + '</span>' : ' ';  /*switch text off value set by user in directive html markup*/
+            html += '</span>';
+            return html;
+        }
+    }
+});
 
 // Filtros ------------------------------------------
 
