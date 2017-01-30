@@ -92,7 +92,7 @@
 								<td><span class="small">{{data.FECHA_ESTADO}}</span></td>
 								<td><span class="small">{{data.FECHA_CITA}}</span></td>
 								<td><span class="small">{{data.FUENTE}}</span></td>
-								<td ng-show="logedUser.login=='DEMO'">
+								<td ng-show = "idPermisos.indexOf(logedUser.login)!=-1">
 									<switcher class="styled"
 											  ng-model="data.PRIORIDAD"
 											  true-value="'NO'"
