@@ -12839,7 +12839,7 @@ class API extends REST {
                 ",'PRIORIZO PEDIDO' ".
                 ",'$pedido' ".
                 ",'PRIORIZAR' ".
-                ",'PRIORIZADO' ".
+                ",'$prioridad' ".
                 ",'$usuarioIp' ".
                 ",'$usuarioPc')";
 
