@@ -5303,7 +5303,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 							$scope.data.PRIORIDAD=true;
 						}
                 }
-                //console.log($scope.data.PRIORIDAD);
+                console.log($scope.data.PRIORIDAD);
 				return data.data;
 			});
 		}
