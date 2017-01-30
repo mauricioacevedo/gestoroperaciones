@@ -5355,11 +5355,9 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
     $scope.isChecked = function(data){
         var match = false;
-        for(var i=0 ; i < data.length; i++) {
-            if(data[i].RADICADO_TEMPORAL == 'ARBOL'){
-                match = true;
-            }
-        }
+        if(data=='ARBOL'){
+        	match=true;
+		}
         return match;
     };
 
