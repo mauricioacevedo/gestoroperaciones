@@ -12799,9 +12799,9 @@ class API extends REST {
         $galleta        =   stripslashes($_COOKIE['logedUser']);
         $galleta        =   json_decode($galleta);
         $galleta        =   json_decode(json_encode($galleta), True);
-        $usuarioGalleta =   $galleta['USUARIO_ID'];
-
-        var_dump($galleta);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
 
         $params = json_decode(file_get_contents('php://input'),true);
         $prioridad = $params['prioridad'];
@@ -12813,7 +12813,6 @@ class API extends REST {
             $prioridad='NO';
         }*/
 
-
         $query= " update portalbd.informe_petec_pendientesm ".
                 " set RADICADO_TEMPORAL='$prioridad' ".
                 " where PEDIDO_ID='$pedido' ";
@@ -12824,7 +12823,6 @@ class API extends REST {
             $msg="Prioridad Actualizada";
             $this->response($this->json($msg), 201);
             $sql_log=   "insert into emtelco.re_logoperaciones ( ".
-                        "  FECHA ".
                         ", USER ".
                         ", USERNAME ".
                         ", GRUPO ".
@@ -12835,10 +12833,13 @@ class API extends REST {
                         ", IP_HOST ".
                         ", CP_HOST ".
                         ") values( ".
-                        " UPPER('$usuarioid')".
-                        ",'CREAR' ".
-                        ",'CREO EL USUARIO' ".
-                        ",'ID: $usuarioEdita' ".
+                        " UPPER('$usuario_id')".
+                        ", UPPER('$nombreGalleta')".
+                        ", UPPER('$grupoGalleta')".
+                        ",'PRIORIZO PEDIDO' ".
+                        ",'$pedido' ".
+                        ",'PRIORIZAR' ".
+                        ",'PRIORIZADO' ".
                         ",'$usuarioIp' ".
                         ",'$usuarioPc')";
 
