@@ -12824,7 +12824,7 @@ class API extends REST {
 
             $sql_log=   "insert into portalbd.activity_feed ( ".
                 " USER ".
-                ", USERNAME ".
+                ", USER_NAME ".
                 ", GRUPO ".
                 ", STATUS ".
                 ", PEDIDO_OFERTA ".
@@ -12843,7 +12843,7 @@ class API extends REST {
                 ",'$usuarioIp' ".
                 ",'$usuarioPc')";
 
-            //echo $sql_log;
+            echo $sql_log;
             $rlog = $this->mysqli->query($sql_log);
             $this->response($this->json($msg), 201);
         }else{
