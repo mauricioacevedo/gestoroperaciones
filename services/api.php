@@ -12689,6 +12689,8 @@ class API extends REST {
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
+
+
         $params = json_decode(file_get_contents('php://input'),true);
         $fecha = $params['fecha'];
         $today = date("Y-m-d");
@@ -12790,6 +12792,17 @@ class API extends REST {
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
+
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['USUARIO_ID'];
+
+        var_dump($galleta);
+
         $params = json_decode(file_get_contents('php://input'),true);
         $prioridad = $params['prioridad'];
         $pedido = $params['pedido_id'];
@@ -12810,6 +12823,26 @@ class API extends REST {
         if($rst->num_rows >= 0){
             $msg="Prioridad Actualizada";
             $this->response($this->json($msg), 201);
+            $sql_log=   "insert into emtelco.re_logoperaciones ( ".
+                        "  FECHA ".
+                        ", USER ".
+                        ", USERNAME ".
+                        ", GRUPO ".
+                        ", STATUS ".
+                        ", PEDIDO_OFERTA ".
+                        ", ACCION ".
+                        ", CONCEPTO_ID ".
+                        ", IP_HOST ".
+                        ", CP_HOST ".
+                        ") values( ".
+                        " UPPER('$usuarioid')".
+                        ",'CREAR' ".
+                        ",'CREO EL USUARIO' ".
+                        ",'ID: $usuarioEdita' ".
+                        ",'$usuarioIp' ".
+                        ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
         }else {
             $msg = "No se pudo dar prioridad";
             $this->response($this->json($msg), 403);
