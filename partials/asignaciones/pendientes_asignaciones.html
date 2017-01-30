@@ -69,15 +69,16 @@
 					<table class="table small table-striped table-hover table-bordered table-condensed">
                         <thead>
 							<th>Pedido</th>
-							<th>Tipo Elemento</th>
+							<th>Tipo</th>
 							<th>Tiempo</th>
 							<th>Programación</th>
 							<th>Concepto</th>
-							<th>UEN</th>
+							<th>Uen</th>
 							<th>Municipio</th>
 							<th>Fecha Estado</th>
 							<th>Fecha Cita</th>
 							<th>Fuente</th>
+							<th>Prioridad</th>
 							<th ng-show = "idPermisos.indexOf(logedUser.login)!=-1">Priorizar</th>
                         </thead>
                         <tbody>
@@ -92,6 +93,7 @@
 								<td><span class="small">{{data.FECHA_ESTADO}}</span></td>
 								<td><span class="small">{{data.FECHA_CITA}}</span></td>
 								<td><span class="small">{{data.FUENTE}}</span></td>
+								<td><span class="small">{{data.RADICADO_TEMPORAL || 'NO'}}</span></td>
 								<td ng-show = "idPermisos.indexOf(logedUser.login)!=-1">
 									<switcher class="styled"
 											  ng-model="data.PRIORIDAD"

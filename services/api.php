@@ -5090,7 +5090,15 @@ class API extends REST {
             $concepto="";
         }
 
-        $query="SELECT a.ID,a.PEDIDO_ID,a.PEDIDO,a.SUBPEDIDO_ID,a.SOLICITUD_ID,a.TIPO_ELEMENTO_ID,a.PRODUCTO,a.UEN_CALCULADA,a.ESTRATO,MUNICIPIO_ID,a.DIRECCION_SERVICIO,a.PAGINA_SERVICIO,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,a.FUENTE,a.CONCEPTO_ID,a.FECHA_ESTADO, a.FECHA_CITA,a.STATUS,a.PROGRAMACION from informe_petec_pendientesm a where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto AND a.PEDIDO_ID LIKE '$bpedido%' order by a.FECHA_ESTADO ";
+        $query="SELECT a.ID,a.PEDIDO_ID,a.PEDIDO,a.SUBPEDIDO_ID,a.SOLICITUD_ID ".
+                ", a.TIPO_ELEMENTO_ID, a.PRODUCTO, a.UEN_CALCULADA ".
+                ", a.ESTRATO, a.MUNICIPIO_ID, a.DIRECCION_SERVICIO, a.PAGINA_SERVICIO ".
+                ", CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA ".
+                ", a.FUENTE, a.CONCEPTO_ID, a.FECHA_ESTADO, a.FECHA_CITA, a.STATUS, a.PROGRAMACION ".
+                ", RADICADO_TEMPORAL ".
+                " from informe_petec_pendientesm a ".
+                " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
+                " AND a.PEDIDO_ID LIKE '$bpedido%' order by a.FECHA_ESTADO ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -5240,7 +5248,16 @@ class API extends REST {
             }
         }
 
-        $query="SELECT a.ID,a.PEDIDO_ID,a.PEDIDO,a.SUBPEDIDO_ID,a.SOLICITUD_ID,a.TIPO_ELEMENTO_ID,a.PRODUCTO,a.UEN_CALCULADA,a.ESTRATO,MUNICIPIO_ID,a.DIRECCION_SERVICIO,a.PAGINA_SERVICIO,cast(my_sec_to_time(timestampdiff(second,FECHA_ESTADO,current_timestamp()))AS CHAR(255)) as TIEMPO_COLA,a.FUENTE,a.CONCEPTO_ID,a.FECHA_ESTADO, a.FECHA_CITA,a.STATUS,a.PROGRAMACION from informe_petec_pendientesm a where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto order by a.FECHA_ESTADO ASC limit 100 offset $page";
+        $query= "SELECT a.ID ".
+                ", a.PEDIDO_ID, a.PEDIDO, a.SUBPEDIDO_ID, a.SOLICITUD_ID ".
+                ", a.TIPO_ELEMENTO_ID, a.PRODUCTO, a.UEN_CALCULADA ".
+                ", a.ESTRATO, a.MUNICIPIO_ID, a.DIRECCION_SERVICIO, a.PAGINA_SERVICIO ".
+                ", cast(my_sec_to_time(timestampdiff(second,FECHA_ESTADO,current_timestamp()))AS CHAR(255)) as TIEMPO_COLA ".
+                ", a.FUENTE, a.CONCEPTO_ID, a.FECHA_ESTADO, a.FECHA_CITA, a.STATUS, a.PROGRAMACION ".
+                ", a.RADICADO_TEMPORAL ".
+                " from informe_petec_pendientesm a ".
+                " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
+                " order by a.FECHA_ESTADO ASC limit 100 offset $page";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
