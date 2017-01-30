@@ -329,7 +329,7 @@
         <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
-              <caret line="68" column="46" lean-forward="false" selection-start-line="68" selection-start-column="46" selection-end-line="68" selection-end-column="46" />
+              <caret line="68" column="86" lean-forward="false" selection-start-line="68" selection-start-column="86" selection-end-line="68" selection-end-column="86" />
               <folding />
             </state>
           </provider>
@@ -966,14 +966,7 @@
       <workItem from="1485367851294" duration="632000" />
       <workItem from="1485370984850" duration="3085000" />
       <workItem from="1485522291246" duration="17387000" />
-      <workItem from="1485776806295" duration="8339000" />
-    </task>
-    <task id="LOCAL-00090" summary="Prueba rutas 2">
-      <created>1485528348395</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1485528348395</updated>
+      <workItem from="1485776806295" duration="8443000" />
     </task>
     <task id="LOCAL-00091" summary="Prueba rutas 2">
       <created>1485528429633</created>
@@ -1311,11 +1304,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485793012451</updated>
     </task>
-    <option name="localTasksCounter" value="139" />
+    <task id="LOCAL-00139" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485793123663</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1485793123663</updated>
+    </task>
+    <option name="localTasksCounter" value="140" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67656000" />
+    <option name="totallyTimeSpent" value="67760000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1376,7 +1376,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Prueba rutas" />
     <MESSAGE value="Prueba rutas 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Prueba rutas 2" />
+    <MESSAGE value="Prioridad en Los pedidos. Funciona Bien" />
+    <option name="LAST_COMMIT_MESSAGE" value="Prioridad en Los pedidos. Funciona Bien" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -2112,7 +2113,7 @@
     <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="68" column="46" lean-forward="false" selection-start-line="68" selection-start-column="46" selection-end-line="68" selection-end-column="46" />
+          <caret line="68" column="86" lean-forward="false" selection-start-line="68" selection-start-column="86" selection-end-line="68" selection-end-column="86" />
           <folding />
         </state>
       </provider>
