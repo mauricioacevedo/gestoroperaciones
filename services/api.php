@@ -12820,7 +12820,6 @@ class API extends REST {
         $rst = $this->mysqli->query($query);
         if($rst===TRUE){
             $msg="Prioridad Actualizada";
-            $this->response($this->json(array($msg)), 201);
 
             $sql_log=   "insert into portalbd.activity_feed ( ".
                 " USER ".
@@ -12845,6 +12844,8 @@ class API extends REST {
 
            // echo $sql_log;
             $rlog = $this->mysqli->query($sql_log);
+
+            $this->response($this->json(array($msg)), 201);
 
         }else{
             $msg = "No se pudo dar prioridad";
