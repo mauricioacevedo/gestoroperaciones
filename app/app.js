@@ -5226,7 +5226,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
                 return data.data;
         });
 	*/
-
+	$scope.PRIORIDAD=false;
 	$scope.calcularPendientes = function (sconcept) {
 		$scope.listado_pendientes = [];
 		var date1 = new Date();
@@ -5240,7 +5240,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 			$scope.listado_pendientes = data.data[0];
 			$scope.data1.totalItems = data.data[1];
 			$scope.data1.concepto = sconcept;
-            $scope.data.PRIORIDAD=$scope.listado_pendientes.RADICADO_TEMPORAL;
+            //$scope.data.PRIORIDAD=$scope.listado_pendientes.RADICADO_TEMPORAL;
 			return data.data;
 		});
 	};
@@ -5296,7 +5296,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 			services.getBuscarPedidoRegistro(bpedido, $scope.data1.concepto).then(function (data) {
 				//console.log(data.data[0]);
 				$scope.listado_pendientes = data.data[0];
-                $scope.data.PRIORIDAD='ARBOL';
+                //$scope.data.PRIORIDAD='ARBOL';
 				return data.data;
 			});
 		}
