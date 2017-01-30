@@ -328,8 +328,8 @@
       <file leaf-file-name="pendientes_asignaciones.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="90" column="28" lean-forward="false" selection-start-line="90" selection-start-column="28" selection-end-line="90" selection-end-column="28" />
+            <state relative-caret-position="612">
+              <caret line="103" column="61" lean-forward="false" selection-start-line="103" selection-start-column="61" selection-end-line="103" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -968,14 +968,7 @@
       <workItem from="1485367851294" duration="632000" />
       <workItem from="1485370984850" duration="3085000" />
       <workItem from="1485522291246" duration="17387000" />
-      <workItem from="1485776806295" duration="17919000" />
-    </task>
-    <task id="LOCAL-00121" summary="Prueba rutas 2">
-      <created>1485787216203</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1485787216203</updated>
+      <workItem from="1485776806295" duration="17949000" />
     </task>
     <task id="LOCAL-00122" summary="Prueba rutas 2">
       <created>1485787878848</created>
@@ -1313,11 +1306,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485808312579</updated>
     </task>
-    <option name="localTasksCounter" value="170" />
+    <task id="LOCAL-00170" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485808512966</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1485808512966</updated>
+    </task>
+    <option name="localTasksCounter" value="171" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77236000" />
+    <option name="totallyTimeSpent" value="77266000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2122,8 +2122,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="90" column="28" lean-forward="false" selection-start-line="90" selection-start-column="28" selection-end-line="90" selection-end-column="28" />
+        <state relative-caret-position="612">
+          <caret line="103" column="61" lean-forward="false" selection-start-line="103" selection-start-column="61" selection-end-line="103" selection-end-column="61" />
           <folding />
         </state>
       </provider>
