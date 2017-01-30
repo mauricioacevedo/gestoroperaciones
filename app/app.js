@@ -5114,7 +5114,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 });
 
 ///---------------inicio resgistros----------------------
-app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
+app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services, notify) {
 
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
@@ -5356,7 +5356,12 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 		console.log(pedinfo);
 		services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.PRIORIDAD,userID).then(
 			function(data) {
-				console.log(data);
+				notify({
+                    message: data.data[0],
+                    duration: '1000',
+                    position: 'right'
+                });
+				//console.log(data);
             }
 		);
 	};
