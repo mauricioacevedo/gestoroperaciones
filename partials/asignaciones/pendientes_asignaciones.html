@@ -96,10 +96,10 @@
 								<td><span class="small">{{data.RADICADO_TEMPORAL || 'NO'}}</span></td>
 								<td ng-show = "idPermisos.indexOf(logedUser.login)!=-1">
 									<switcher class="styled"
-											  ng-model="data.PRIORIDAD"
+											  ng-model="PRIORIDAD"
 											  true-value="'ARBOL'"
 											  false-value="'NO'"
-											  ng-change="habilitarPrioridad(data)"
+											  ng-change="habilitarPrioridad(PRIORIDAD)"
 											  true-label="SI"
 											  false-label="NO">
 									</switcher>
