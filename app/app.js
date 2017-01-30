@@ -5352,6 +5352,17 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 		//alert("hola");
 		$scope.calcularPendientes($routeParams.conceptoid);
 	}
+
+    $scope.isChecked = function(data){
+        var match = false;
+        for(var i=0 ; i < data.length; i++) {
+            if(data[i].RADICADO_TEMPORAL == 'ARBOL'){
+                match = true;
+            }
+        }
+        return match;
+    };
+
 	$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'MHUERTAS', 'DEMO'];
 	$scope.habilitarPrioridad = function (pedinfo){
 		console.log(pedinfo);
