@@ -5369,6 +5369,10 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
             }
 		);
 	};
+    $scope.darPrioridad = function (pedinfo){
+        console.log(pedinfo);
+
+    };
 
 });
 
