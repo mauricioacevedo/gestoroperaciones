@@ -93,11 +93,10 @@
 								<td><span class="small">{{data.FECHA_ESTADO}}</span></td>
 								<td><span class="small">{{data.FECHA_CITA}}</span></td>
 								<td><span class="small">{{data.FUENTE}}</span></td>
-								<td><span class="small" >{{data.RADICADO_TEMPORAL || 'NO'}}</span></td>
+								<td><span class="small" ng-init="data.RADICADO_TEMPORAL == 'ARBOL' ? data.PRIORIDAD=true:data.PRIORIDAD=false; ">{{data.RADICADO_TEMPORAL || 'NO'}}</span></td>
 								<td ng-show = "idPermisos.indexOf(logedUser.login)!=-1">
 									<switcher class="styled"
 											  ng-model="data.PRIORIDAD"
-											  ng-init="{true:data.RADICADO_TEMPORAL == 'ARBOL'} "
 											  true-value="'NO'"
 											  false-value="'ARBOL'"
 											  ng-change="habilitarPrioridad(data)"
