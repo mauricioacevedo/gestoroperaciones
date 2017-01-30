@@ -136,7 +136,7 @@
                                     <td><font color='blue'>{{ordenamientoDemepedidoUpdateReconfiguracion}}</font></td>
                                     <td>{{UsuarioParametroReconfiguracion}}</td>
                                     <td>
-                                        <select class="btn btn-default btn-xs grupo-select" id="sel1"
+                                        <select class="btn btn-default btn-xs grupo-select" id="demerec"
                                                 ng-model="ordenamientoDemepedidoReconfiguracion" style="width:auto;">
                                             <option value="FECHA_CITA">FECHA CITA</option>
                                             <option value="FECHA_ESTADO">FECHA ESTADO</option>
@@ -205,8 +205,17 @@
                                         <th>Reconfigurados</th>
                                         <th>Gestionados</th>
                                         </thead>
+                                        <tfoot>
+                                        <tr>
+                                            <td>Totales</td>
+                                            <td>{{prodtbl | sumarNum:'INGRESOS'}}</td>
+                                            <td>$180</td>
+                                            <td>$180</td>
+                                            <td>$180</td>
+                                        </tr>
+                                        </tfoot>
                                         <tbody>
-                                        <tr ng-repeat="prod in tablaProductividadPorHora">
+                                        <tr ng-repeat="prod in tablaProductividadPorHora as prodtbl">
                                             <td>{{prod.HORA}}</td>
                                             <td>{{prod.INGRESOS}}</td>
                                             <td>{{prod.ASIGNADOS}}</td>
