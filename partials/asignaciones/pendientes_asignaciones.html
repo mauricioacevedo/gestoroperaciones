@@ -78,7 +78,7 @@
 							<th>Fecha Estado</th>
 							<th>Fecha Cita</th>
 							<th>Fuente</th>
-							<th ng-show = "['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'DEMO'].indexOf(logedUser.login)!=-1">Priorizar</th>
+							<th ng-show = "idPermisos.indexOf(logedUser.login)!=-1">Priorizar</th>
                         </thead>
                         <tbody>
                             <tr ng-repeat="data in listado_pendientes| orderBy:'FECHA_ESTADO':false | filter:filtroInput as InfoPed"  ng-class="{danger: data.STATUS == 'MALO'}" >

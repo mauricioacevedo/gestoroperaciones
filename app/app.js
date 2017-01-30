@@ -5124,7 +5124,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 	divi.style.position = "relative";
 	//$rootScope.iconcepto="TODO";
 	$scope.checho = "-1";
-
+    $scope.idPermisos=[];
 	//alert($routeParams.conceptoid);
 
 	$scope.doubleDigit = function (num) {
@@ -5351,7 +5351,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 		//alert("hola");
 		$scope.calcularPendientes($routeParams.conceptoid);
 	}
-
+	$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'MHUERTAS', 'DEMO'];
 	$scope.habilitarPrioridad = function (pedinfo){
 		console.log(pedinfo);
 		services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.PRIORIDAD,userID).then(
