@@ -5296,7 +5296,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 			services.getBuscarPedidoRegistro(bpedido, $scope.data1.concepto).then(function (data) {
 				console.log(data.data[0]);
 				$scope.listado_pendientes = data.data[0];
-                console.log($scope.listado_pendientes.RADICADO_TEMPORAL);
+                console.log(data.data[0].RADICADO_TEMPORAL);
 				return data.data;
 			});
 		}
