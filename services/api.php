@@ -12821,8 +12821,8 @@ class API extends REST {
 
         if($rst->num_rows >= 0){
             $msg="Prioridad Actualizada";
-            $this->response($this->json($msg), 201);
-            $sql_log=   "insert into emtelco.re_logoperaciones ( ".
+
+            $sql_log=   "insert into portalbd.activity_feed ( ".
                         ", USER ".
                         ", USERNAME ".
                         ", GRUPO ".
@@ -12844,6 +12844,7 @@ class API extends REST {
                         ",'$usuarioPc')";
 
             $rlog = $this->mysqli->query($sql_log);
+            $this->response($this->json($msg), 201);
         }else {
             $msg = "No se pudo dar prioridad";
             $this->response($this->json($msg), 403);
