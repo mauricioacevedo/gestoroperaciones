@@ -5296,14 +5296,14 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 			services.getBuscarPedidoRegistro(bpedido, $scope.data1.concepto).then(function (data) {
 				//console.log(data.data[0]);
 				$scope.listado_pendientes = data.data[0];
-                $scope.data.PRIORIDAD=false;
+                $scope.selex=false;
                 for (var i = 0; i < $scope.listado_pendientes.length; i++) {
                     var item = $scope.listado_pendientes[i].RADICADO_TEMPORAL;
 						if(item==='ARBOL'){
-							$scope.data.PRIORIDAD=true;
+							$scope.selex=true;
 						}
                 }
-                console.log($scope.data.PRIORIDAD);
+                console.log($scope.selex);
 				return data.data;
 			});
 		}

@@ -97,6 +97,7 @@
 								<td ng-show = "idPermisos.indexOf(logedUser.login)!=-1">
 									<switcher class="styled"
 											  ng-model="data.PRIORIDAD"
+											  ng-checked="selex"
 											  true-value="'NO'"
 											  false-value="'ARBOL'"
 											  ng-change="habilitarPrioridad(data)"
