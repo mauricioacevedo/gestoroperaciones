@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/api.php" afterPath="$PROJECT_DIR$/services/api.php" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
     <ignored path="node_modules/angular-notify/package.json" />
@@ -39,8 +38,8 @@
       <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="772">
-              <caret line="12847" column="59" lean-forward="false" selection-start-line="12847" selection-start-column="59" selection-end-line="12847" selection-end-column="59" />
+            <state relative-caret-position="789">
+              <caret line="12848" column="0" lean-forward="true" selection-start-line="12848" selection-start-column="0" selection-end-line="12848" selection-end-column="0" />
               <folding>
                 <marker date="1485789405657" expanded="true" signature="37314:37403" ph="INSERT INTO pedidos... " />
                 <marker date="1485789405657" expanded="true" signature="39755:39857" ph="INSERT INTO pedidos... " />
@@ -935,14 +934,7 @@
       <workItem from="1485367851294" duration="632000" />
       <workItem from="1485370984850" duration="3085000" />
       <workItem from="1485522291246" duration="17387000" />
-      <workItem from="1485776806295" duration="6000000" />
-    </task>
-    <task id="LOCAL-00083" summary="Prueba rutas 2">
-      <created>1485525535472</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1485525535472</updated>
+      <workItem from="1485776806295" duration="6004000" />
     </task>
     <task id="LOCAL-00084" summary="Prueba rutas 2">
       <created>1485527637988</created>
@@ -1280,11 +1272,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485789088973</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="Prueba rutas 2">
+      <created>1485789409863</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1485789409863</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65317000" />
+    <option name="totallyTimeSpent" value="65321000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1853,8 +1852,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="772">
-          <caret line="12847" column="59" lean-forward="false" selection-start-line="12847" selection-start-column="59" selection-end-line="12847" selection-end-column="59" />
+        <state relative-caret-position="789">
+          <caret line="12848" column="0" lean-forward="true" selection-start-line="12848" selection-start-column="0" selection-end-line="12848" selection-end-column="0" />
           <folding>
             <marker date="1485789405657" expanded="true" signature="37314:37403" ph="INSERT INTO pedidos... " />
             <marker date="1485789405657" expanded="true" signature="39755:39857" ph="INSERT INTO pedidos... " />
