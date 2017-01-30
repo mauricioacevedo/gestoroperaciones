@@ -12819,7 +12819,7 @@ class API extends REST {
 
         $rst = $this->mysqli->query($query);
         if($rst===TRUE){
-            echo "si";
+
             $msg="Prioridad Actualizada";
 
             $sql_log=   "insert into portalbd.activity_feed ( ".
@@ -12843,6 +12843,7 @@ class API extends REST {
                 ",'$usuarioIp' ".
                 ",'$usuarioPc')";
 
+            echo $sql_log;
             $rlog = $this->mysqli->query($sql_log);
             $this->response($this->json($msg), 201);
         }else{
