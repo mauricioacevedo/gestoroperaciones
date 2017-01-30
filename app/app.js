@@ -5354,6 +5354,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 	}
 
     $scope.isChecked = function(data){
+		console.log(data);
         var match = false;
         if(data=='ARBOL'){
         	match=true;
