@@ -66,8 +66,8 @@
                                class="list-group-item animated slideInRight"
                                ng-style="set_color_Cuartil(parseInt(datar.CUARTIL))">{{datar.RANK}} - <span
                                     ng-class="{'on':'label label-info','off':'label label-danger'}[datar.ESTADO]">{{datar.ESTADO}}</span> - {{datar.USUARIO_ID}}  <span
-                                    class="label label-default pull-right"  popover popover-placement="top" uib-popover="{{datar.PEDIDOS}}" uib-title="Pedidos" popover-trigger="'mouseenter'">{{datar.PEDIDOS}} <i class="fa fa-cog" aria-hidden="true"></i></span> <span
-                                    class="label label-warning pull-right" tooltip title="Buscados" data-placement="top">{{datar.BUSCADOS}}  </span></a>
+                                    class="label label-default pull-right" popover popover-title="Pedidos" popover-placement="top" uib-popover="{{datar.PEDIDOS}}"  popover-trigger="'mouseenter'">{{datar.PEDIDOS}} <i class="fa fa-cog" aria-hidden="true"></i></span> <span
+                                    class="label label-warning pull-right" popover popover-title="Buscados" popover-placement="top" uib-popover="{{datar.BUSCADOS}}"  popover-trigger="'mouseenter'">{{datar.BUSCADOS}}  </span></a>
 							</span>
                             </ul>
                         </div>
