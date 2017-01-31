@@ -394,6 +394,7 @@ input.filtro {
 {
     position: relative;
     background: white;
+    margin: 1px 0 0;
     width: 40px;
     height: 20px;
     -webkit-appearance: initial;
