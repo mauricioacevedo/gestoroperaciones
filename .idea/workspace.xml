@@ -39,8 +39,8 @@
       <file leaf-file-name="indicadores_asignaciones.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/asignaciones/indicadores_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="69" column="161" lean-forward="false" selection-start-line="69" selection-start-column="161" selection-end-line="69" selection-end-column="161" />
+            <state relative-caret-position="428">
+              <caret line="68" column="142" lean-forward="false" selection-start-line="68" selection-start-column="142" selection-end-line="68" selection-end-column="142" />
               <folding />
             </state>
           </provider>
@@ -763,21 +763,7 @@
       <workItem from="1485370984850" duration="3085000" />
       <workItem from="1485522291246" duration="17387000" />
       <workItem from="1485776806295" duration="20697000" />
-      <workItem from="1485862026442" duration="14369000" />
-    </task>
-    <task id="LOCAL-00212" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485867368291</created>
-      <option name="number" value="00212" />
-      <option name="presentableId" value="LOCAL-00212" />
-      <option name="project" value="LOCAL" />
-      <updated>1485867368291</updated>
-    </task>
-    <task id="LOCAL-00213" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485867460653</created>
-      <option name="number" value="00213" />
-      <option name="presentableId" value="LOCAL-00213" />
-      <option name="project" value="LOCAL" />
-      <updated>1485867460653</updated>
+      <workItem from="1485862026442" duration="14675000" />
     </task>
     <task id="LOCAL-00214" summary="Prioridad en Los pedidos. Funciona Bien">
       <created>1485867518953</created>
@@ -1108,11 +1094,25 @@
       <option name="project" value="LOCAL" />
       <updated>1485879096870</updated>
     </task>
-    <option name="localTasksCounter" value="261" />
+    <task id="LOCAL-00261" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485879178995</created>
+      <option name="number" value="00261" />
+      <option name="presentableId" value="LOCAL-00261" />
+      <option name="project" value="LOCAL" />
+      <updated>1485879178995</updated>
+    </task>
+    <task id="LOCAL-00262" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485879379329</created>
+      <option name="number" value="00262" />
+      <option name="presentableId" value="LOCAL-00262" />
+      <option name="project" value="LOCAL" />
+      <updated>1485879379329</updated>
+    </task>
+    <option name="localTasksCounter" value="263" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94383000" />
+    <option name="totallyTimeSpent" value="94689000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1939,8 +1939,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/asignaciones/indicadores_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="69" column="161" lean-forward="false" selection-start-line="69" selection-start-column="161" selection-end-line="69" selection-end-column="161" />
+        <state relative-caret-position="428">
+          <caret line="68" column="142" lean-forward="false" selection-start-line="68" selection-start-column="142" selection-end-line="68" selection-end-column="142" />
           <folding />
         </state>
       </provider>
