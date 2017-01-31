@@ -101,8 +101,8 @@
       <file leaf-file-name="gestor.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/css/gestor.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="408" column="46" lean-forward="false" selection-start-line="408" selection-start-column="46" selection-end-line="408" selection-end-column="46" />
+            <state relative-caret-position="548">
+              <caret line="418" column="18" lean-forward="false" selection-start-line="418" selection-start-column="18" selection-end-line="418" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -713,14 +713,7 @@
       <workItem from="1485370984850" duration="3085000" />
       <workItem from="1485522291246" duration="17387000" />
       <workItem from="1485776806295" duration="20697000" />
-      <workItem from="1485862026442" duration="10426000" />
-    </task>
-    <task id="LOCAL-00194" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485865184380</created>
-      <option name="number" value="00194" />
-      <option name="presentableId" value="LOCAL-00194" />
-      <option name="project" value="LOCAL" />
-      <updated>1485865184380</updated>
+      <workItem from="1485862026442" duration="10501000" />
     </task>
     <task id="LOCAL-00195" summary="Prioridad en Los pedidos. Funciona Bien">
       <created>1485865265245</created>
@@ -1058,11 +1051,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485872461321</updated>
     </task>
-    <option name="localTasksCounter" value="243" />
+    <task id="LOCAL-00243" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485872497718</created>
+      <option name="number" value="00243" />
+      <option name="presentableId" value="LOCAL-00243" />
+      <option name="project" value="LOCAL" />
+      <updated>1485872497718</updated>
+    </task>
+    <option name="localTasksCounter" value="244" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90440000" />
+    <option name="totallyTimeSpent" value="90515000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1887,8 +1887,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/gestor.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="408" column="46" lean-forward="false" selection-start-line="408" selection-start-column="46" selection-end-line="408" selection-end-column="46" />
+        <state relative-caret-position="548">
+          <caret line="418" column="18" lean-forward="false" selection-start-line="418" selection-start-column="18" selection-end-line="418" selection-end-column="18" />
           <folding />
         </state>
       </provider>
