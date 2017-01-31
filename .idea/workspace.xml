@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" afterPath="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
@@ -90,21 +88,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/index.html">
+      <file leaf-file-name="pendientes_asignaciones.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="69" lean-forward="false" selection-start-line="24" selection-start-column="69" selection-end-line="24" selection-end-column="69" />
+            <state relative-caret-position="612">
+              <caret line="104" column="43" lean-forward="false" selection-start-line="104" selection-start-column="43" selection-end-line="104" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pendientes_asignaciones.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
+      <file leaf-file-name="gestor.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/gestor.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="101" column="80" lean-forward="false" selection-start-line="101" selection-start-column="80" selection-end-line="101" selection-end-column="80" />
+            <state relative-caret-position="327">
+              <caret line="396" column="13" lean-forward="false" selection-start-line="396" selection-start-column="13" selection-end-line="396" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -162,12 +160,12 @@
         <option value="$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html" />
         <option value="$PROJECT_DIR$/partials/asignaciones/indicadores_asignaciones.html" />
         <option value="$PROJECT_DIR$/node_modules/angular-switcher/dist/angular-switcher.js" />
-        <option value="$PROJECT_DIR$/css/gestor.css" />
         <option value="$PROJECT_DIR$/node_modules/angular-toggle-switch/angular-toggle-switch.css" />
         <option value="$PROJECT_DIR$/services/api.php" />
-        <option value="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" />
         <option value="$PROJECT_DIR$/app/app.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/css/gestor.css" />
+        <option value="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" />
       </list>
     </option>
   </component>
@@ -267,25 +265,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="partials" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gestoroperaciones" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gestoroperaciones" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="partials" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="asignaciones" />
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -733,203 +713,7 @@
       <workItem from="1485370984850" duration="3085000" />
       <workItem from="1485522291246" duration="17387000" />
       <workItem from="1485776806295" duration="20697000" />
-      <workItem from="1485862026442" duration="5821000" />
-    </task>
-    <task id="LOCAL-00169" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485808312579</created>
-      <option name="number" value="00169" />
-      <option name="presentableId" value="LOCAL-00169" />
-      <option name="project" value="LOCAL" />
-      <updated>1485808312579</updated>
-    </task>
-    <task id="LOCAL-00170" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485808512966</created>
-      <option name="number" value="00170" />
-      <option name="presentableId" value="LOCAL-00170" />
-      <option name="project" value="LOCAL" />
-      <updated>1485808512966</updated>
-    </task>
-    <task id="LOCAL-00171" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485808552301</created>
-      <option name="number" value="00171" />
-      <option name="presentableId" value="LOCAL-00171" />
-      <option name="project" value="LOCAL" />
-      <updated>1485808552301</updated>
-    </task>
-    <task id="LOCAL-00172" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485808623078</created>
-      <option name="number" value="00172" />
-      <option name="presentableId" value="LOCAL-00172" />
-      <option name="project" value="LOCAL" />
-      <updated>1485808623078</updated>
-    </task>
-    <task id="LOCAL-00173" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485808749420</created>
-      <option name="number" value="00173" />
-      <option name="presentableId" value="LOCAL-00173" />
-      <option name="project" value="LOCAL" />
-      <updated>1485808749420</updated>
-    </task>
-    <task id="LOCAL-00174" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485808884051</created>
-      <option name="number" value="00174" />
-      <option name="presentableId" value="LOCAL-00174" />
-      <option name="project" value="LOCAL" />
-      <updated>1485808884051</updated>
-    </task>
-    <task id="LOCAL-00175" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485809012386</created>
-      <option name="number" value="00175" />
-      <option name="presentableId" value="LOCAL-00175" />
-      <option name="project" value="LOCAL" />
-      <updated>1485809012386</updated>
-    </task>
-    <task id="LOCAL-00176" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485810214284</created>
-      <option name="number" value="00176" />
-      <option name="presentableId" value="LOCAL-00176" />
-      <option name="project" value="LOCAL" />
-      <updated>1485810214285</updated>
-    </task>
-    <task id="LOCAL-00177" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485811388593</created>
-      <option name="number" value="00177" />
-      <option name="presentableId" value="LOCAL-00177" />
-      <option name="project" value="LOCAL" />
-      <updated>1485811388593</updated>
-    </task>
-    <task id="LOCAL-00178" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485811436991</created>
-      <option name="number" value="00178" />
-      <option name="presentableId" value="LOCAL-00178" />
-      <option name="project" value="LOCAL" />
-      <updated>1485811436991</updated>
-    </task>
-    <task id="LOCAL-00179" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485811527584</created>
-      <option name="number" value="00179" />
-      <option name="presentableId" value="LOCAL-00179" />
-      <option name="project" value="LOCAL" />
-      <updated>1485811527584</updated>
-    </task>
-    <task id="LOCAL-00180" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485862430672</created>
-      <option name="number" value="00180" />
-      <option name="presentableId" value="LOCAL-00180" />
-      <option name="project" value="LOCAL" />
-      <updated>1485862430676</updated>
-    </task>
-    <task id="LOCAL-00181" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485862485599</created>
-      <option name="number" value="00181" />
-      <option name="presentableId" value="LOCAL-00181" />
-      <option name="project" value="LOCAL" />
-      <updated>1485862485600</updated>
-    </task>
-    <task id="LOCAL-00182" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485862609066</created>
-      <option name="number" value="00182" />
-      <option name="presentableId" value="LOCAL-00182" />
-      <option name="project" value="LOCAL" />
-      <updated>1485862609066</updated>
-    </task>
-    <task id="LOCAL-00183" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485862825858</created>
-      <option name="number" value="00183" />
-      <option name="presentableId" value="LOCAL-00183" />
-      <option name="project" value="LOCAL" />
-      <updated>1485862825858</updated>
-    </task>
-    <task id="LOCAL-00184" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485862887891</created>
-      <option name="number" value="00184" />
-      <option name="presentableId" value="LOCAL-00184" />
-      <option name="project" value="LOCAL" />
-      <updated>1485862887891</updated>
-    </task>
-    <task id="LOCAL-00185" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485862936173</created>
-      <option name="number" value="00185" />
-      <option name="presentableId" value="LOCAL-00185" />
-      <option name="project" value="LOCAL" />
-      <updated>1485862936174</updated>
-    </task>
-    <task id="LOCAL-00186" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485863244900</created>
-      <option name="number" value="00186" />
-      <option name="presentableId" value="LOCAL-00186" />
-      <option name="project" value="LOCAL" />
-      <updated>1485863244900</updated>
-    </task>
-    <task id="LOCAL-00187" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485863334120</created>
-      <option name="number" value="00187" />
-      <option name="presentableId" value="LOCAL-00187" />
-      <option name="project" value="LOCAL" />
-      <updated>1485863334120</updated>
-    </task>
-    <task id="LOCAL-00188" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485863576164</created>
-      <option name="number" value="00188" />
-      <option name="presentableId" value="LOCAL-00188" />
-      <option name="project" value="LOCAL" />
-      <updated>1485863576164</updated>
-    </task>
-    <task id="LOCAL-00189" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485864104869</created>
-      <option name="number" value="00189" />
-      <option name="presentableId" value="LOCAL-00189" />
-      <option name="project" value="LOCAL" />
-      <updated>1485864104869</updated>
-    </task>
-    <task id="LOCAL-00190" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485864152169</created>
-      <option name="number" value="00190" />
-      <option name="presentableId" value="LOCAL-00190" />
-      <option name="project" value="LOCAL" />
-      <updated>1485864152169</updated>
-    </task>
-    <task id="LOCAL-00191" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485864278725</created>
-      <option name="number" value="00191" />
-      <option name="presentableId" value="LOCAL-00191" />
-      <option name="project" value="LOCAL" />
-      <updated>1485864278726</updated>
-    </task>
-    <task id="LOCAL-00192" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485864423406</created>
-      <option name="number" value="00192" />
-      <option name="presentableId" value="LOCAL-00192" />
-      <option name="project" value="LOCAL" />
-      <updated>1485864423406</updated>
-    </task>
-    <task id="LOCAL-00193" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485864625399</created>
-      <option name="number" value="00193" />
-      <option name="presentableId" value="LOCAL-00193" />
-      <option name="project" value="LOCAL" />
-      <updated>1485864625399</updated>
-    </task>
-    <task id="LOCAL-00194" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485865184380</created>
-      <option name="number" value="00194" />
-      <option name="presentableId" value="LOCAL-00194" />
-      <option name="project" value="LOCAL" />
-      <updated>1485865184380</updated>
-    </task>
-    <task id="LOCAL-00195" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485865265245</created>
-      <option name="number" value="00195" />
-      <option name="presentableId" value="LOCAL-00195" />
-      <option name="project" value="LOCAL" />
-      <updated>1485865265245</updated>
-    </task>
-    <task id="LOCAL-00196" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485865350910</created>
-      <option name="number" value="00196" />
-      <option name="presentableId" value="LOCAL-00196" />
-      <option name="project" value="LOCAL" />
-      <updated>1485865350910</updated>
+      <workItem from="1485862026442" duration="10595000" />
     </task>
     <task id="LOCAL-00197" summary="Prioridad en Los pedidos. Funciona Bien">
       <created>1485865405952</created>
@@ -1078,11 +862,207 @@
       <option name="project" value="LOCAL" />
       <updated>1485867836545</updated>
     </task>
-    <option name="localTasksCounter" value="218" />
+    <task id="LOCAL-00218" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485867882975</created>
+      <option name="number" value="00218" />
+      <option name="presentableId" value="LOCAL-00218" />
+      <option name="project" value="LOCAL" />
+      <updated>1485867882975</updated>
+    </task>
+    <task id="LOCAL-00219" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485868738784</created>
+      <option name="number" value="00219" />
+      <option name="presentableId" value="LOCAL-00219" />
+      <option name="project" value="LOCAL" />
+      <updated>1485868738784</updated>
+    </task>
+    <task id="LOCAL-00220" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485868951616</created>
+      <option name="number" value="00220" />
+      <option name="presentableId" value="LOCAL-00220" />
+      <option name="project" value="LOCAL" />
+      <updated>1485868951616</updated>
+    </task>
+    <task id="LOCAL-00221" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485868981578</created>
+      <option name="number" value="00221" />
+      <option name="presentableId" value="LOCAL-00221" />
+      <option name="project" value="LOCAL" />
+      <updated>1485868981578</updated>
+    </task>
+    <task id="LOCAL-00222" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485869038863</created>
+      <option name="number" value="00222" />
+      <option name="presentableId" value="LOCAL-00222" />
+      <option name="project" value="LOCAL" />
+      <updated>1485869038863</updated>
+    </task>
+    <task id="LOCAL-00223" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485869122747</created>
+      <option name="number" value="00223" />
+      <option name="presentableId" value="LOCAL-00223" />
+      <option name="project" value="LOCAL" />
+      <updated>1485869122747</updated>
+    </task>
+    <task id="LOCAL-00224" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485869217944</created>
+      <option name="number" value="00224" />
+      <option name="presentableId" value="LOCAL-00224" />
+      <option name="project" value="LOCAL" />
+      <updated>1485869217944</updated>
+    </task>
+    <task id="LOCAL-00225" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485869246688</created>
+      <option name="number" value="00225" />
+      <option name="presentableId" value="LOCAL-00225" />
+      <option name="project" value="LOCAL" />
+      <updated>1485869246688</updated>
+    </task>
+    <task id="LOCAL-00226" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485869357804</created>
+      <option name="number" value="00226" />
+      <option name="presentableId" value="LOCAL-00226" />
+      <option name="project" value="LOCAL" />
+      <updated>1485869357804</updated>
+    </task>
+    <task id="LOCAL-00227" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485869435766</created>
+      <option name="number" value="00227" />
+      <option name="presentableId" value="LOCAL-00227" />
+      <option name="project" value="LOCAL" />
+      <updated>1485869435766</updated>
+    </task>
+    <task id="LOCAL-00228" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485869491674</created>
+      <option name="number" value="00228" />
+      <option name="presentableId" value="LOCAL-00228" />
+      <option name="project" value="LOCAL" />
+      <updated>1485869491674</updated>
+    </task>
+    <task id="LOCAL-00229" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485869515994</created>
+      <option name="number" value="00229" />
+      <option name="presentableId" value="LOCAL-00229" />
+      <option name="project" value="LOCAL" />
+      <updated>1485869515994</updated>
+    </task>
+    <task id="LOCAL-00230" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485870291680</created>
+      <option name="number" value="00230" />
+      <option name="presentableId" value="LOCAL-00230" />
+      <option name="project" value="LOCAL" />
+      <updated>1485870291680</updated>
+    </task>
+    <task id="LOCAL-00231" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485870742601</created>
+      <option name="number" value="00231" />
+      <option name="presentableId" value="LOCAL-00231" />
+      <option name="project" value="LOCAL" />
+      <updated>1485870742601</updated>
+    </task>
+    <task id="LOCAL-00232" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485871274486</created>
+      <option name="number" value="00232" />
+      <option name="presentableId" value="LOCAL-00232" />
+      <option name="project" value="LOCAL" />
+      <updated>1485871274486</updated>
+    </task>
+    <task id="LOCAL-00233" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485871534590</created>
+      <option name="number" value="00233" />
+      <option name="presentableId" value="LOCAL-00233" />
+      <option name="project" value="LOCAL" />
+      <updated>1485871534590</updated>
+    </task>
+    <task id="LOCAL-00234" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485871595210</created>
+      <option name="number" value="00234" />
+      <option name="presentableId" value="LOCAL-00234" />
+      <option name="project" value="LOCAL" />
+      <updated>1485871595210</updated>
+    </task>
+    <task id="LOCAL-00235" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485871788223</created>
+      <option name="number" value="00235" />
+      <option name="presentableId" value="LOCAL-00235" />
+      <option name="project" value="LOCAL" />
+      <updated>1485871788223</updated>
+    </task>
+    <task id="LOCAL-00236" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485871820397</created>
+      <option name="number" value="00236" />
+      <option name="presentableId" value="LOCAL-00236" />
+      <option name="project" value="LOCAL" />
+      <updated>1485871820397</updated>
+    </task>
+    <task id="LOCAL-00237" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485871921541</created>
+      <option name="number" value="00237" />
+      <option name="presentableId" value="LOCAL-00237" />
+      <option name="project" value="LOCAL" />
+      <updated>1485871921541</updated>
+    </task>
+    <task id="LOCAL-00238" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485871931934</created>
+      <option name="number" value="00238" />
+      <option name="presentableId" value="LOCAL-00238" />
+      <option name="project" value="LOCAL" />
+      <updated>1485871931934</updated>
+    </task>
+    <task id="LOCAL-00239" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485872327270</created>
+      <option name="number" value="00239" />
+      <option name="presentableId" value="LOCAL-00239" />
+      <option name="project" value="LOCAL" />
+      <updated>1485872327270</updated>
+    </task>
+    <task id="LOCAL-00240" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485872392569</created>
+      <option name="number" value="00240" />
+      <option name="presentableId" value="LOCAL-00240" />
+      <option name="project" value="LOCAL" />
+      <updated>1485872392569</updated>
+    </task>
+    <task id="LOCAL-00241" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485872433881</created>
+      <option name="number" value="00241" />
+      <option name="presentableId" value="LOCAL-00241" />
+      <option name="project" value="LOCAL" />
+      <updated>1485872433881</updated>
+    </task>
+    <task id="LOCAL-00242" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485872461321</created>
+      <option name="number" value="00242" />
+      <option name="presentableId" value="LOCAL-00242" />
+      <option name="project" value="LOCAL" />
+      <updated>1485872461321</updated>
+    </task>
+    <task id="LOCAL-00243" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485872497718</created>
+      <option name="number" value="00243" />
+      <option name="presentableId" value="LOCAL-00243" />
+      <option name="project" value="LOCAL" />
+      <updated>1485872497718</updated>
+    </task>
+    <task id="LOCAL-00244" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485872573491</created>
+      <option name="number" value="00244" />
+      <option name="presentableId" value="LOCAL-00244" />
+      <option name="project" value="LOCAL" />
+      <updated>1485872573491</updated>
+    </task>
+    <task id="LOCAL-00245" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485872633901</created>
+      <option name="number" value="00245" />
+      <option name="presentableId" value="LOCAL-00245" />
+      <option name="project" value="LOCAL" />
+      <updated>1485872633901</updated>
+    </task>
+    <option name="localTasksCounter" value="246" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85835000" />
+    <option name="totallyTimeSpent" value="90609000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1581,14 +1561,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/gestor.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="752">
-          <caret line="392" column="0" lean-forward="true" selection-start-line="392" selection-start-column="0" selection-end-line="392" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/angular-toggle-switch/angular-toggle-switch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1847,10 +1819,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="101" column="80" lean-forward="false" selection-start-line="101" selection-start-column="80" selection-end-line="101" selection-end-column="80" />
+        <state relative-caret-position="408">
+          <caret line="24" column="69" lean-forward="false" selection-start-line="24" selection-start-column="69" selection-end-line="24" selection-end-column="69" />
           <folding />
         </state>
       </provider>
@@ -1905,10 +1877,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/css/gestor.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="69" lean-forward="false" selection-start-line="24" selection-start-column="69" selection-end-line="24" selection-end-column="69" />
+        <state relative-caret-position="327">
+          <caret line="396" column="13" lean-forward="false" selection-start-line="396" selection-start-column="13" selection-end-line="396" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="104" column="43" lean-forward="false" selection-start-line="104" selection-start-column="43" selection-end-line="104" selection-end-column="43" />
           <folding />
         </state>
       </provider>
