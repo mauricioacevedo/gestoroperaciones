@@ -713,14 +713,7 @@
       <workItem from="1485370984850" duration="3085000" />
       <workItem from="1485522291246" duration="17387000" />
       <workItem from="1485776806295" duration="20697000" />
-      <workItem from="1485862026442" duration="8674000" />
-    </task>
-    <task id="LOCAL-00182" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485862609066</created>
-      <option name="number" value="00182" />
-      <option name="presentableId" value="LOCAL-00182" />
-      <option name="project" value="LOCAL" />
-      <updated>1485862609066</updated>
+      <workItem from="1485862026442" duration="9206000" />
     </task>
     <task id="LOCAL-00183" summary="Prioridad en Los pedidos. Funciona Bien">
       <created>1485862825858</created>
@@ -1058,11 +1051,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485870291680</updated>
     </task>
-    <option name="localTasksCounter" value="231" />
+    <task id="LOCAL-00231" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485870742601</created>
+      <option name="number" value="00231" />
+      <option name="presentableId" value="LOCAL-00231" />
+      <option name="project" value="LOCAL" />
+      <updated>1485870742601</updated>
+    </task>
+    <option name="localTasksCounter" value="232" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88688000" />
+    <option name="totallyTimeSpent" value="89220000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

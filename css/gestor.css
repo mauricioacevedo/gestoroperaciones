@@ -394,13 +394,13 @@ input.filtro {
 {
     position: relative;
     background: white;
-    width: 50px;
-    height: 27px;
+    width: 40px;
+    height: 22px;
     -webkit-appearance: initial;
     border-radius: 3px;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     outline:none;
-    font-size: 9px;
+    font-size: 10px;
     font-family: Trebuchet, Arial, sans-serif;
     font-weight: bold;
     cursor:pointer;
@@ -411,24 +411,24 @@ input.filtro {
     position:absolute;
     top:5%;
     display:block;
-    line-height:32px;
+    line-height:20px;
     width:45%;
     height:90%;
-    background:#fff;
+    background:#EE214C;
     box-sizing:border-box;
     text-align:center;
     transition: all 0.3s ease-in 0s;
-    color:black;
+    color:white;
     border:#888 1px solid;
     border-radius:3px;
 }
 .flipswitch:after
 {
     left:2%;
-    content: "OFF";
+    content: "No";
 }
 .flipswitch:checked:after
 {
     left:53%;
-    content: "ON";
+    content: "Si";
 }
