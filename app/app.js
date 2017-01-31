@@ -5197,6 +5197,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
 
 	$scope.listado_pedidos = [];
+    $scope.data = {};
 	var date1 = new Date();
 	var year = date1.getFullYear();
 	var month = $scope.doubleDigit(date1.getMonth() + 1);
