@@ -2971,7 +2971,15 @@ class API extends REST {
             }
         }
 
-        $query="SELECT id, pedido_id, fuente, actividad, fecha_fin, estado,duracion,accion,concepto_final,user,motivo_malo from pedidos where fecha_fin between '$fechaini 00:00:00' and '$fechafin 23:59:59' $filtro order by fecha_fin desc limit 100 offset $page";
+        $query="SELECT id, pedido_id, fuente, actividad ".
+                ", fecha_fin, estado ".
+                ", my_sec_to_time(timestampdiff(second, fecha_inicio, fecha_fin)) as duracion ".
+                ", accion ".
+                ", SUBSTRING_INDEX(SUBSTRING_INDEX(concepto_final, ',', 3), ' ', -1) as concepto_fianl ".
+                ",user,motivo_malo ".
+                " from pedidos ".
+                " where fecha_fin between '$fechaini 00:00:00' ".
+                " and '$fechafin 23:59:59' $filtro order by fecha_fin desc limit 100 offset $page";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -6443,7 +6451,7 @@ class API extends REST {
 
 
     //este demepedido valida contra fenix antes de suministrar el pedido...
-    //DemePedidoPetec Principal, Asignaciones - Reconfiguracion.
+    //DemePedidoPetec Principal, Asignaciones - Reconfiguracion - Edatel - Siebel.
     private function demePedido(){
 
 
