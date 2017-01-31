@@ -7086,7 +7086,7 @@ class API extends REST {
             $zona.
             $microzona.
             " and (select count(*) from gestor_historicos_reagendamiento a where a.PEDIDO_ID=b.PEDIDO_ID and a.FECHA_FIN between '$today 00:00:00' and '$today 23:59:59') <1 ".
-            " and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
+            //" and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
             " ORDER BY PROGRAMACION ASC ";
         //PENDIENTE: COLOCAR CODIGO PARA TENER EN CUENTA LA PROGRAMACION....................
         $PROGRAMADO="NOT";
@@ -7129,7 +7129,7 @@ class API extends REST {
             " and b.ASESOR ='' ".
             " and (b.FECHA_CITA_FENIX < CURDATE() OR b.FECHA_CITA_FENIX='9999-00-00') ".
             " and (b.FECHA_CITA_REAGENDA < CURDATE() OR b.FECHA_CITA_REAGENDA='9999-00-00' OR b.FECHA_CITA_REAGENDA='') ".
-            " and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
+            //" and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
             " and b.CONCEPTOS NOT LIKE '%REAGE%' ".
             " AND (b.PROGRAMACION='' or b.PROGRAMACION is null ) ".
             " and (select count(*) from gestor_historicos_reagendamiento a where a.PEDIDO_ID=b.PEDIDO_ID and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59') <1 ".
@@ -7191,7 +7191,7 @@ class API extends REST {
                     "  $departamento ".
                     $zona.
                     $microzona.
-                    " and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
+                   // " and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
                     " and (select NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID=b.PEDIDO_ID and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' order by id desc limit 1) not like '%AGENDADO%' ".
                     //$plaza.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
