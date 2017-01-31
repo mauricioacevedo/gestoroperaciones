@@ -11735,18 +11735,21 @@ class API extends REST {
             "		and r.usuario=ul.USUARIO_ID ".
             "		limit 1 ),'00:00') as HORAINICIO ".
             " , ul.PEDIDOS ".
+            " , ul.BUSCADOS  ".
             " , ul.DIVISOR ".
             " from( ".
             "		select ".
             "		@rank:=@rank+1 AS RANK ".
             "		,z1.USUARIO_ID ".
             "		, z1.PEDIDOS ".
+            "       , z1.BUSCADOS ".
             "		, z1.DIVISOR ".
             "		from(SELECT ".
             "			c1.USUARIO_ID ".
             "			, c1.GRUPO ".
             "			, group_concat(distinct c1.ACTIVIDAD) as ACTIVIDADES ".
             "			, count(distinct c1.PEDIDO_ID) as PEDIDOS ".
+            "			, (count(distinct case when c1.source='BUSCADO' then c1.PEDIDO_ID else 0 end)) as BUSCADOS ".
             "			, a2.DIVISOR ".
             "			FROM (SELECT  ".
             "				p.USER AS USUARIO_ID ".
@@ -11758,6 +11761,7 @@ class API extends REST {
             "				left join portalbd.tbl_usuarios u ".
             "				on p.USER=u.USUARIO_ID ".
             "				where p.fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
+            "               and p.pedido_id!='' ".
             "				UNION ALL ".
             "				SELECT  ".
             "				p.USUARIO AS USUARIO_ID ".
@@ -11785,6 +11789,7 @@ class API extends REST {
             "					left join portalbd.tbl_usuarios u ".
             "					on p.USER=u.USUARIO_ID ".
             "					where p.fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
+            "                   and p.pedido_id!='' ".
             "					UNION ALL ".
             "					SELECT  ".
             "					p.USUARIO AS USUARIO_ID ".
