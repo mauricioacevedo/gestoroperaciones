@@ -5246,11 +5246,10 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
             angular.forEach($scope.listado_pendientes, function(value){
                 if(value.RADICADO_TEMPORAL == "ARBOL"){
                     $scope.data.PRIORIDAD=true;
-                    arealistArray.push($scope.data.PRIORIDAD);
+                    $scope.data.push($scope.data.PRIORIDAD);
 				}
 
             });
-            $scope.listado_pendientes=arealistArray;
 			return data.data;
 		});
 	};
