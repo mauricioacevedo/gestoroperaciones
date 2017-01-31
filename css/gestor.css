@@ -413,6 +413,7 @@ input[type=checkbox].css-checkbox {
     margin:-1px;
     padding:0;
     border:0;
+    display: table;
 }
 
 input[type=checkbox].css-checkbox + label.css-label {
