@@ -97,8 +97,9 @@
 								<td ng-show = "idPermisos.indexOf(logedUser.login)!=-1">
 
 											<input type="checkbox"
-												   ng-model="data.PRIORIDAD"
+												   ng-model="data.RADICADO_TEMPORAL"
 												   name="string"
+												   ng-true-value="'ARBOL'"
 												   ng-change="habilitarPrioridad(data)">
 
 								</td>
