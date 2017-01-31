@@ -394,13 +394,13 @@ input.filtro {
 {
     position: relative;
     background: white;
-    width: 60px;
-    height: 30px;
+    width: 50px;
+    height: 27px;
     -webkit-appearance: initial;
     border-radius: 3px;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     outline:none;
-    font-size: 11px;
+    font-size: 9px;
     font-family: Trebuchet, Arial, sans-serif;
     font-weight: bold;
     cursor:pointer;
