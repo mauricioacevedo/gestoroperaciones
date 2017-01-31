@@ -5254,7 +5254,8 @@ class API extends REST {
                 ", a.ESTRATO, a.MUNICIPIO_ID, a.DIRECCION_SERVICIO, a.PAGINA_SERVICIO ".
                 ", cast(my_sec_to_time(timestampdiff(second,FECHA_ESTADO,current_timestamp()))AS CHAR(255)) as TIEMPO_COLA ".
                 ", a.FUENTE, a.CONCEPTO_ID, a.FECHA_ESTADO, a.FECHA_CITA, a.STATUS, a.PROGRAMACION ".
-                ", a.RADICADO_TEMPORAL ".
+                ", a.RADICADO_TEMPORAL='ARBOL'  ".
+                ", if(a.RADICADO_TEMPORAL='ARBOL','true','false') as PRIORIDAD ".
                 " from informe_petec_pendientesm a ".
                 " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
                 " order by a.FECHA_ESTADO ASC limit 100 offset $page";
