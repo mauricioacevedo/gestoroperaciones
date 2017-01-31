@@ -406,6 +406,7 @@ input.filtro {
     font-weight: bold;
     cursor:pointer;
     border:1px solid #ddd;
+    z-index: 0;
 }
 .flipswitch:after
 {
@@ -422,6 +423,7 @@ input.filtro {
     color:white;
     border:#888 1px solid;
     border-radius:3px;
+    z-index: 0;
 }
 .flipswitch:after
 {
