@@ -91,8 +91,8 @@
       <file leaf-file-name="angular-toggle-switch.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/node_modules/angular-toggle-switch/angular-toggle-switch.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+            <state relative-caret-position="-166">
+              <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -775,14 +775,7 @@
       <workItem from="1485370984850" duration="3085000" />
       <workItem from="1485522291246" duration="17387000" />
       <workItem from="1485776806295" duration="20697000" />
-      <workItem from="1485862026442" duration="1210000" />
-    </task>
-    <task id="LOCAL-00137" summary="Prueba rutas 2">
-      <created>1485791431027</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1485791431027</updated>
+      <workItem from="1485862026442" duration="1299000" />
     </task>
     <task id="LOCAL-00138" summary="Prueba rutas 2">
       <created>1485793012451</created>
@@ -1120,11 +1113,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485862936174</updated>
     </task>
-    <option name="localTasksCounter" value="186" />
+    <task id="LOCAL-00186" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485863244900</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1485863244900</updated>
+    </task>
+    <option name="localTasksCounter" value="187" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81224000" />
+    <option name="totallyTimeSpent" value="81313000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1493,8 +1493,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/angular-toggle-switch/angular-toggle-switch.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+        <state relative-caret-position="-166">
+          <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
           <folding />
         </state>
       </provider>
