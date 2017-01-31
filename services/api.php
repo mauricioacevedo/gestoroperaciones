@@ -11758,6 +11758,7 @@ class API extends REST {
             "				, p.PEDIDO_ID ".
             "				, p.ACTIVIDAD ".
             "				, p.FUENTE ".
+            "				, p.source ".
             "				FROM portalbd.pedidos p ".
             "				left join portalbd.tbl_usuarios u ".
             "				on p.USER=u.USUARIO_ID ".
@@ -11770,6 +11771,7 @@ class API extends REST {
             "				, p.OFERTA AS PEDIDO_ID ".
             "				, 'NCA' AS ACTIVIDAD ".
             "				, 'SIEBEL' AS FUENTE ".
+            "				, 'AUTO' as source ".
             "				FROM portalbd.transacciones_nca p ".
             "				left join portalbd.tbl_usuarios u ".
             "				on p.USUARIO=u.USUARIO_ID ".
@@ -11786,6 +11788,7 @@ class API extends REST {
             "					, p.PEDIDO_ID ".
             "					, p.ACTIVIDAD ".
             "					, p.FUENTE ".
+            "					, p.source ".
             "					FROM portalbd.pedidos p ".
             "					left join portalbd.tbl_usuarios u ".
             "					on p.USER=u.USUARIO_ID ".
@@ -11798,6 +11801,7 @@ class API extends REST {
             "					, p.OFERTA AS PEDIDO_ID ".
             "					, 'NCA' AS ACTIVIDAD ".
             "					, 'SIEBEL' AS FUENTE ".
+            "					, 'AUTO' as source ".
             "					FROM portalbd.transacciones_nca p ".
             "					left join portalbd.tbl_usuarios u ".
             "					on p.USUARIO=u.USUARIO_ID ".
