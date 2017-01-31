@@ -5242,11 +5242,11 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 			$scope.data1.totalItems = data.data[1];
 			$scope.data1.concepto = sconcept;
             angular.forEach($scope.listado_pendientes, function(value, key){
-            	console.log(value);
-                console.log(key);
+            	console.log(value.RADICADO_TEMPORAL);
                 if(value.RADICADO_TEMPORAL == "ARBOL")
                     $scope.data.PRIORIDAD=true;
             });
+            console.log($scope.data.PRIORIDAD);
 			return data.data;
 		});
 	};
