@@ -5239,16 +5239,17 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 		var fecha_fin = year + "-" + month + "-" + day;
 
 		services.getListadoPendientes2(fecha_inicio, fecha_fin, sconcept, $scope.data1.currentPage).then(function (data) {
-			$scope.listado_pendientes = data.data[0];
+
 			$scope.data1.totalItems = data.data[1];
 			$scope.data1.concepto = sconcept;
-            angular.forEach($scope.listado_pendientes, function(value){
+            angular.forEach(data.data[0], function(value){
                 if(value.RADICADO_TEMPORAL == "ARBOL"){
                     $scope.data.PRIORIDAD=true;
-                    $scope.listado_pendientes.push($scope.data.PRIORIDAD);
+                    data.data[0].push($scope.data.PRIORIDAD);
 				}
 
             });
+            $scope.listado_pendientes = data.data[0];
 			return data.data;
 		});
 	};
