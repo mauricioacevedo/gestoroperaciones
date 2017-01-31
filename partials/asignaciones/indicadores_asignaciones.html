@@ -63,6 +63,7 @@
                             <ul class="list-group small">
 							<span class="small">
 							<a href="" ng-repeat="datar in listaProductivos as ranks"
+                               popover popover-placement="left" uib-popover-html="'<b>Cuartil:</b> ' +{{datar.CUARTIL}}"  popover-trigger="'mouseenter'"
                                class="list-group-item animated slideInRight"
                                ng-style="set_color_Cuartil(parseInt(datar.CUARTIL))">{{datar.RANK}} - <span
                                     ng-class="{'on':'label label-info','off':'label label-danger'}[datar.ESTADO]">{{datar.ESTADO}}</span> - {{datar.USUARIO_ID}}  <span
