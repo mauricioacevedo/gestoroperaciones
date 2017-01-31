@@ -404,9 +404,9 @@ input.filtro {
     outline:none;
     font-size: inherit;
     /*font-size: 65%;
-    font-size: 9px;*/
+    font-size: 9px;
+    font-weight: bold;*/
     font-family: Trebuchet, Arial, sans-serif;
-    font-weight: bold;
     cursor:pointer;
     border:1px solid #ddd;
     z-index: 0;
