@@ -395,12 +395,12 @@ input.filtro {
     position: relative;
     background: white;
     width: 40px;
-    height: 22px;
+    height: 20px;
     -webkit-appearance: initial;
     border-radius: 3px;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     outline:none;
-    font-size: 10px;
+    font-size: 9px;
     font-family: Trebuchet, Arial, sans-serif;
     font-weight: bold;
     cursor:pointer;
@@ -411,7 +411,7 @@ input.filtro {
     position:absolute;
     top:5%;
     display:block;
-    line-height:20px;
+    line-height:18px;
     width:45%;
     height:90%;
     background:#EE214C;
