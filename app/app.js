@@ -5356,7 +5356,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
 	$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'MHUERTAS', 'DEMO'];
 	$scope.habilitarPrioridad = function (pedinfo){
-		console.log(switchStatus);
+		console.log(pedinfo);
 		services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.PRIORIDAD,userID).then(
 			function(data) {
                 $scope.data.RADICADO_TEMPORAL=pedinfo.PRIORIDAD;
@@ -5369,10 +5369,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
             }
 		);
 	};
-    $scope.darPrioridad = function (pedinfo){
-        console.log(pedinfo);
 
-    };
 
 });
 
