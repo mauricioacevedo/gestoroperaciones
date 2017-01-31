@@ -2975,7 +2975,7 @@ class API extends REST {
                 ", fecha_fin, estado ".
                 ", my_sec_to_time(timestampdiff(second, fecha_inicio, fecha_fin)) as duracion ".
                 ", accion ".
-                ", SUBSTRING_INDEX(SUBSTRING_INDEX(concepto_final, ',', 3), ' ', -1) as concepto_fianl ".
+                ", SUBSTRING_INDEX(SUBSTRING_INDEX(concepto_final, ',', 3), ' ', -1) as concepto_final ".
                 ",user,motivo_malo ".
                 " from pedidos ".
                 " where fecha_fin between '$fechaini 00:00:00' ".
