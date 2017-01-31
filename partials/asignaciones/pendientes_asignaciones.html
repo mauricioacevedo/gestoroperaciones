@@ -101,13 +101,13 @@
 										   ng-true-value="'ARBOL'"
 										   ng-change="habilitarPrioridad(data)">
 
-									<switcher class="styled"
-											  ng-model="data.RADICADO_TEMPORAL"
-											  true-value="'ARBOL'"
-											  ng-change="habilitarPrioridad(data)"
-											  true-label="SI"
-											  false-label="NO">
-									</switcher>
+									<toggle-switch
+											ng-model="data.RADICADO_TEMPORAL"
+											on-label="SI"
+											off-label="NO"
+											knob-label="ARBOL"
+											ng-change="habilitarPrioridad(data)">
+										<toggle-switch>
 
 								</td>
                             </tr>
