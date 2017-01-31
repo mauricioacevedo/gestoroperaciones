@@ -5197,7 +5197,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
 
 	$scope.listado_pedidos = [];
-    $scope.data = {};
+
 	var date1 = new Date();
 	var year = date1.getFullYear();
 	var month = $scope.doubleDigit(date1.getMonth() + 1);
@@ -5230,6 +5230,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
 	$scope.calcularPendientes = function (sconcept) {
 		$scope.listado_pendientes = [];
+        $scope.data = {};
 		var date1 = new Date();
 		var year = date1.getFullYear();
 		var month = date1.getMonth() + 1;
@@ -5241,11 +5242,10 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 			$scope.listado_pendientes = data.data[0];
 			$scope.data1.totalItems = data.data[1];
 			$scope.data1.concepto = sconcept;
-            angular.forEach($scope.listado_pendientes, function(value, key){
+            angular.forEach($scope.listado_pendientes, function(value){
                 if(value.RADICADO_TEMPORAL == "ARBOL"){
                     $scope.data.PRIORIDAD=true;
-				}else{
-                    $scope.data.PRIORIDAD=false;
+                    $scope.data.push($scope.data.PRIORIDAD);
 				}
 
             });
