@@ -91,8 +91,8 @@
       <file leaf-file-name="pendientes_asignaciones.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="97" column="64" lean-forward="false" selection-start-line="97" selection-start-column="64" selection-end-line="97" selection-end-column="64" />
+            <state relative-caret-position="544">
+              <caret line="101" column="57" lean-forward="false" selection-start-line="101" selection-start-column="57" selection-end-line="101" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -764,21 +764,7 @@
       <workItem from="1485370984850" duration="3085000" />
       <workItem from="1485522291246" duration="17387000" />
       <workItem from="1485776806295" duration="20697000" />
-      <workItem from="1485862026442" duration="398000" />
-    </task>
-    <task id="LOCAL-00131" summary="Prueba rutas 2">
-      <created>1485789088973</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1485789088973</updated>
-    </task>
-    <task id="LOCAL-00132" summary="Prueba rutas 2">
-      <created>1485789409863</created>
-      <option name="number" value="00132" />
-      <option name="presentableId" value="LOCAL-00132" />
-      <option name="project" value="LOCAL" />
-      <updated>1485789409863</updated>
+      <workItem from="1485862026442" duration="575000" />
     </task>
     <task id="LOCAL-00133" summary="Prueba rutas 2">
       <created>1485789414097</created>
@@ -1109,11 +1095,25 @@
       <option name="project" value="LOCAL" />
       <updated>1485811527584</updated>
     </task>
-    <option name="localTasksCounter" value="180" />
+    <task id="LOCAL-00180" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485862430672</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1485862430676</updated>
+    </task>
+    <task id="LOCAL-00181" summary="Prioridad en Los pedidos. Funciona Bien">
+      <created>1485862485599</created>
+      <option name="number" value="00181" />
+      <option name="presentableId" value="LOCAL-00181" />
+      <option name="project" value="LOCAL" />
+      <updated>1485862485600</updated>
+    </task>
+    <option name="localTasksCounter" value="182" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80412000" />
+    <option name="totallyTimeSpent" value="80589000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1471,10 +1471,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/angular-toggle-switch/angular-toggle-switch.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="97" column="64" lean-forward="false" selection-start-line="97" selection-start-column="64" selection-end-line="97" selection-end-column="64" />
+        <state relative-caret-position="544">
+          <caret line="101" column="57" lean-forward="false" selection-start-line="101" selection-start-column="57" selection-end-line="101" selection-end-column="57" />
           <folding />
         </state>
       </provider>
