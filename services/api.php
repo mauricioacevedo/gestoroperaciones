@@ -2962,7 +2962,7 @@ class API extends REST {
         $page=$page*100;
         //counter
         $query="SELECT count(*) as counter from pedidos where fecha_fin between '$fechaini 00:00:00' and '$fechafin 23:59:59' $filtro";
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $rr = $this->mysqli->query($query);
         $counter=0;
         if($rr->num_rows > 0){
             $result = array();
@@ -2981,7 +2981,7 @@ class API extends REST {
                 " where fecha_fin between '$fechaini 00:00:00' ".
                 " and '$fechafin 23:59:59' $filtro order by fecha_fin desc limit 100 offset $page";
 
-        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $r = $this->mysqli->query($query);
 
         if($r->num_rows > 0){
             $result = array();
