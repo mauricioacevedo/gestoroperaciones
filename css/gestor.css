@@ -419,13 +419,13 @@ input[type=checkbox].css-checkbox {
 input[type=checkbox].css-checkbox + label.css-label {
     padding-left:20px;
     height:15px;
-    display:inline-block;
     line-height:15px;
     background-repeat:no-repeat;
     background-position: 0 0;
     font-size:15px;
     vertical-align:middle;
     cursor:pointer;
+    display: table;
 }
 
 input[type=checkbox].css-checkbox:checked + label.css-label {
