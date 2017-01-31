@@ -8369,7 +8369,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('DIA','FECHA','TIPO_TRABAJO','APLICACION_ACTIVIDADES','COLA','AMANECIERON','GESTIONADO_DIA','QUEDAN_PENDIENTES','OBSERVACIONES','USUARIO','FECHA_INICIO','FECHA_FIN'));
+            fputcsv($fp, array('DIA','FECHA','TIPO_TRABAJO','APLICACION_ACTIVIDADES','COLA','AMANECIERON','GESTIONADO_DIA','QUEDAN_PENDIENTES','OBSERVACIONES','USUARIO','FECHA_INICIO','FECHA_FIN','DURACION'));
             while($row = $r->fetch_assoc()){
                 //$result[] = $row;
                 fputcsv($fp, $row);
