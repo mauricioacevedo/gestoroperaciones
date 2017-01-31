@@ -82,7 +82,7 @@
 							<th ng-show = "idPermisos.indexOf(logedUser.login)!=-1">Priorizar</th>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="data in listado_pendientes  track by $index"  ng-class="{danger: data.STATUS == 'MALO'}" >
+                            <tr ng-repeat="data in listado_pendientes  | orderBy:'FECHA_ESTADO':false | filter:filtroInput  as InfoPed"  ng-class="{danger: data.STATUS == 'MALO'}" >
 								<td>{{data.PEDIDO_ID}}-{{data.SUBPEDIDO_ID}}-{{data.SOLICITUD_ID}}</td>
 								<td><span class="small">{{cutString(data.TIPO_ELEMENTO_ID,20)}}</span></td>
 								<td><font color="red">{{data.TIEMPO_COLA}}</font></td>
@@ -93,7 +93,7 @@
 								<td><span class="small">{{data.FECHA_ESTADO}}</span></td>
 								<td><span class="small">{{data.FECHA_CITA}}</span></td>
 								<td><span class="small">{{data.FUENTE}}</span></td>
-								<td><span class="small">{{data.PRIORIDAD}}</span></td>
+								<td><span class="small">{{data.RADICADO_TEMPORAL || 'NO'}}</span></td>
 								<td ng-show = "idPermisos.indexOf(logedUser.login)!=-1">
 
 									<toggle-switch
