@@ -96,11 +96,12 @@
 								<td><span class="small">{{data.RADICADO_TEMPORAL || 'NO'}}</span></td>
 								<td ng-show = "idPermisos.indexOf(logedUser.login)!=-1">
 
-									<toggle-switch
+									<toggle-switch class="btn-xs"
 											ng-model="data.PRIORIDAD"
 											on-label="SI"
 											off-label="NO"
-											ng-change="darPrioridad(switchStatus)">
+											knob-label="ARBOL"
+											ng-change="habilitarPrioridad(data)">
 										<toggle-switch>
 
 								</td>
