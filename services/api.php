@@ -8360,6 +8360,7 @@ class API extends REST {
             " ,APLICACION_ACTIVIDADES,COLA,AMANECIERON ".
             " ,GESTIONADO_DIA,QUEDAN_PENDIENTES ".
             " ,OBSERVACIONES,USUARIO,FECHA_INICIO,FECHA_FIN ".
+            " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION"
             " from transacciones_actividades ".
             " order by FECHA ASC ";
 
