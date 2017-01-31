@@ -12826,9 +12826,11 @@ class API extends REST {
         $usuario_id = $params['usuario_id'];
         $today = date("Y-m-d H:i:s");
 
-        /*if($prioridad==''|| $prioridad=='undefined'){
+        if($prioridad){
+            $prioridad='ARBOL';
+        }else{
             $prioridad='NO';
-        }*/
+        }
 
         $query= " update portalbd.informe_petec_pendientesm ".
                 " set RADICADO_TEMPORAL='$prioridad' ".
