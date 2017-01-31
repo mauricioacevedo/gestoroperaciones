@@ -103,6 +103,12 @@
 											knob-label="ARBOL"
 											ng-change="habilitarPrioridad(data)">
 										<toggle-switch>
+											<input type="checkbox"
+												   ng-model="data.PRIORIDAD"
+												   name="string"
+												   ng-true-value="ARBOL"
+												   ng-false-value="NO"
+												   ng-change="habilitarPrioridad(data)">
 
 								</td>
                             </tr>
