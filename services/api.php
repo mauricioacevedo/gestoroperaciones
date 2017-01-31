@@ -8356,7 +8356,7 @@ class API extends REST {
 
         $filename="ACTIVIDADES-$login-$today.csv";
 
-        $query= " SELECT DIA,FECHA,TIPO_TRABAJO ".
+        $query= " SELECT FECHA,TIPO_TRABAJO ".
             " ,APLICACION_ACTIVIDADES,COLA,AMANECIERON ".
             " ,GESTIONADO_DIA,QUEDAN_PENDIENTES ".
             " ,OBSERVACIONES,USUARIO,FECHA_INICIO,FECHA_FIN ".
