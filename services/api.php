@@ -2158,7 +2158,7 @@ class API extends REST {
             " and ASESOR ='' ".
             $PROCESO.
             " and (FECHA_CITA_FENIX <=CURDATE() OR FECHA_CITA_FENIX='9999-00-00') ".
-            " and (MIGRACION='NO' or MIGRACION='' or MIGRACION is null ) ".
+            //" and (MIGRACION='NO' or MIGRACION='' or MIGRACION is null ) ".
             " ORDER BY 1 ASC ";
 
         //echo $query;
