@@ -5240,7 +5240,10 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 			$scope.listado_pendientes = data.data[0];
 			$scope.data1.totalItems = data.data[1];
 			$scope.data1.concepto = sconcept;
-            //$scope.data.PRIORIDAD=$scope.listado_pendientes.RADICADO_TEMPORAL;
+            angular.forEach($scope.listado_pendientes, function(value, key){
+                if(value.RADICADO_TEMPORAL == "ARBOL")
+                    $scope.data.PRIORIDAD=true;
+            });
 			return data.data;
 		});
 	};
@@ -5296,7 +5299,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 			services.getBuscarPedidoRegistro(bpedido, $scope.data1.concepto).then(function (data) {
 				//console.log(data.data[0]);
 				$scope.listado_pendientes = data.data[0];
-                //$scope.data.PRIORIDAD='ARBOL';
+
 				return data.data;
 			});
 		}
