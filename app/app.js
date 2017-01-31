@@ -5242,13 +5242,6 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
 			$scope.data1.totalItems = data.data[1];
 			$scope.data1.concepto = sconcept;
-            angular.forEach(data.data[0], function(value){
-                if(value.RADICADO_TEMPORAL == "ARBOL"){
-                    $scope.data.PRIORIDAD=true;
-                    data.data[0].push($scope.data.PRIORIDAD);
-				}
-
-            });
             $scope.listado_pendientes = data.data[0];
 			return data.data;
 		});
