@@ -66,15 +66,8 @@
 				</div>
 				<div class="panel-body fixed-panel" >
 
-					<div ng-repeat="(key, value) in listado_pendientes | groupBy:'PEDIDO_ID'">
-						<table>
-							<thead>
-								{{ key }}
-							</thead>
-							<tbody>
-								<tr ng-repeat="PEDIDO_ID in value">{{ PEDIDO_ID }} </tr>
-							</tbody>
-						</table>
+					<div ng-repeat="dati group by dati.PEDIDO_ID in listado_pendientes ">
+						{{ dati.PEDIDO_ID }}
 
 					</div>
 
