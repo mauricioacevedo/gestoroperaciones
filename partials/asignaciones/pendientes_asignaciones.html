@@ -66,6 +66,13 @@
 				</div>
 				<div class="panel-body fixed-panel" >
 
+					<div ng-repeat="(key, value) in listado_pendientes">
+						<div>{{ key }}</div>
+						<div ng-repeat="PEDIDO_ID in value">
+							<div>{{ PEDIDO_ID }}</div>
+						</div>
+					</div>
+
 					<table class="table small table-striped table-hover table-bordered">
                         <thead>
 							<th>Pedido</th>
@@ -82,7 +89,7 @@
 							<th ng-show = "idPermisos.indexOf(logedUser.login)!=-1">Priorizar</th>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="data in listado_pendientes  | groupBy: 'PEDIDO_ID' " ng-class="{warning: data.STATUS == 'MALO'}">
+                            <tr ng-repeat="data in listado_pendientes  | orderBy:'FECHA_ESTADO':false | filter:filtroInput  as InfoPed" ng-class="{warning: data.STATUS == 'MALO'}">
 								<td>{{data.PEDIDO_ID}}-{{data.SUBPEDIDO_ID}}-{{data.SOLICITUD_ID}}</td>
 								<td><span class="small">{{cutString(data.TIPO_ELEMENTO_ID,20)}}</span></td>
 								<td><font color="red">{{data.TIEMPO_COLA}}</font></td>
