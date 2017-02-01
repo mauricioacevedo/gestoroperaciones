@@ -69,7 +69,7 @@
 					<div ng-repeat="(key, value) in listado_pendientes">
 						<table>
 							<thead>
-								<th>{{ key }}</th>
+								<th ng-repeat="key in key">{{ key }}</th>
 							</thead>
 							<tbody>
 								<tr ng-repeat="PEDIDO_ID in value">{{ PEDIDO_ID }} </tr>
