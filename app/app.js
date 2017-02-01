@@ -15314,8 +15314,8 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 
 	$rootScope.$on("$routeChangeStart", function (evt, to, from) {
         //console.log(to);
-		console.log(to.grupos);
-        console.log(to.cargos);
+		//console.log(to.grupos);
+        //console.log(to.cargos);
         //console.log(to.$$route.controller);
 
 		if ($cookieStore.get('logedUser') == undefined) {
@@ -15332,7 +15332,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 			var userRef = firebase.database().ref('presence/' + userID);
 
 			var controlador = to.$$route.controller;
-
+ /*
 			if (controlador != 'IndicadoresCtrl' || controlador != 'chatioCtrl') {
 				amOnline.on('value', function (snapshot) {
 					if (snapshot.val()) {
@@ -15340,7 +15340,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 						userRef.onDisconnect().remove();
 					}
 				})
-			}
+			} */
 
 		}
 
