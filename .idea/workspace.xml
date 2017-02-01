@@ -92,7 +92,7 @@
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -715,14 +715,7 @@
       <workItem from="1485862026442" duration="23071000" />
       <workItem from="1485948865677" duration="310000" />
       <workItem from="1485949326639" duration="5816000" />
-      <workItem from="1485960907417" duration="7763000" />
-    </task>
-    <task id="LOCAL-00258" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485878777579</created>
-      <option name="number" value="00258" />
-      <option name="presentableId" value="LOCAL-00258" />
-      <option name="project" value="LOCAL" />
-      <updated>1485878777579</updated>
+      <workItem from="1485960907417" duration="8207000" />
     </task>
     <task id="LOCAL-00259" summary="Prioridad en Los pedidos. Funciona Bien">
       <created>1485878974641</created>
@@ -1060,11 +1053,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485979939433</updated>
     </task>
-    <option name="localTasksCounter" value="307" />
+    <task id="LOCAL-00307" summary="Errordatos null">
+      <created>1485979962566</created>
+      <option name="number" value="00307" />
+      <option name="presentableId" value="LOCAL-00307" />
+      <option name="project" value="LOCAL" />
+      <updated>1485979962566</updated>
+    </task>
+    <option name="localTasksCounter" value="308" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116974000" />
+    <option name="totallyTimeSpent" value="117418000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1863,7 +1863,7 @@
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
