@@ -12394,20 +12394,22 @@ class API extends REST {
         $filename="Usuarios_$today.csv";
 
 
-        $query="SELECT u.ID, ".
-            " u.USUARIO_ID, ".
-            "  u.USUARIO_NOMBRE, ".
-            "  SUBSTRING_INDEX(u.USUARIO_NOMBRE, ' ', 1) as NOMBRE, ".
-            "  u.CEDULA_ID, ".
-            "  u.GRUPO, ".
-            "  u.CORREO_USUARIO, ".
-            "  u.CARGO_ID, ".
-            "  u.SUPERVISOR, ".
-            "  u.INTERVENTOR, ".
-            "  u.ESTADO ".
-            " FROM portalbd.tbl_usuarios u ".
-            "	where 1=1 ".
-            " order by u.USUARIO_ID ASC";
+        $query="SELECT ".
+               " u.ID, ".
+               " u.USUARIO_ID, ".
+               " u.USUARIO_NOMBRE, ".
+               " SUBSTRING_INDEX(u.USUARIO_NOMBRE, ' ', 1) as NOMBRE, ".
+               " u.CEDULA_ID, ".
+               " u.GRUPO, ".
+               " u.CORREO_USUARIO, ".
+               " concat(u.CARGO_ID,'-',c.NOMBRE_CARGO) as CARGO_ID, ".
+               " u.SUPERVISOR, ".
+               " u.INTERVENTOR, ".
+               " u.ESTADO ".
+               " FROM portalbd.tbl_usuarios u ".
+               " left join portalbd.tbl_cargos c on u.CARGO_ID=c.ID_CARGO ".
+               " where 1=1  ".
+               " order by 5, 3 asc ";
 
         //echo $query;
 
