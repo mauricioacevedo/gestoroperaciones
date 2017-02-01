@@ -8361,6 +8361,7 @@ class API extends REST {
             " ,GESTIONADO_DIA,QUEDAN_PENDIENTES ".
             " ,OBSERVACIONES,USUARIO,FECHA_INICIO,FECHA_FIN ".
             " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION".
+             " ,(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION_SEGUNDOS".
             " from transacciones_actividades ".
             " order by FECHA ASC ";
 
@@ -8369,7 +8370,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('FECHA','TIPO_TRABAJO','APLICACION_ACTIVIDADES','COLA','AMANECIERON','GESTIONADO_DIA','QUEDAN_PENDIENTES','OBSERVACIONES','USUARIO','FECHA_INICIO','FECHA_FIN','DURACION'));
+            fputcsv($fp, array('FECHA','TIPO_TRABAJO','APLICACION_ACTIVIDADES','COLA','AMANECIERON','GESTIONADO_DIA','QUEDAN_PENDIENTES','OBSERVACIONES','USUARIO','FECHA_INICIO','FECHA_FIN','DURACION','DURACION_SEGUNDOS'));
             while($row = $r->fetch_assoc()){
                 //$result[] = $row;
                 fputcsv($fp, $row);
