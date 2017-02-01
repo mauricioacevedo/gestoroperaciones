@@ -13364,6 +13364,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	var varObsesGuardar			= '';
 	var estadoFinal				= '';
 
+    $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
+
 	// Opciones para cargar las listas de Gestion, segun el grupo, fuente, actividad--------------------------
 	$scope.GenerarOpcionesGestion = function () {
 		var opciones= {
@@ -15022,8 +15024,6 @@ app.run(['$rootScope', 'firebase', 'services', function ($rootScope, $firebase, 
 		)
 
 	};
-
-	$rootScope.getConceptosGestor();
 
 
 	$rootScope.cargos = [
