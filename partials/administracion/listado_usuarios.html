@@ -86,7 +86,7 @@
 					         <td><span class="small">{{data.CEDULA_ID}}</span></td>
 					         <td><span class="small">{{data.GRUPO}}</span></td>
 					         <td><span class="small">{{data.CORREO_USUARIO}}</span></td>
-					         <td><span class="small" ng-class="{'1': 'label label-success','4': 'label label-primary','5': 'label label-primary','6': 'label label-danger','7': 'label label-danger','8': 'label label-danger','9': 'label label-danger','10': 'label label-danger'}[data.CARGO_ID]">{{data.CARGO_ID}} - {{data.NOMBRE_CARGO}}</span></td>
+					         <td>{{data.CARGO_ID}} - {{data.NOMBRE_CARGO}}</td>
 					         <td><span class="small" ng-class="{'ACTIVO': 'label label-success','INACTIVO': 'label label-default'}[data.ESTADO]">{{data.ESTADO}}</span></td>
 						     <td><button type="button" class="btn btn-default btn-circle-xss" ng-click="editarModal(data)" data-toggle="modal" data-target="#editarModal" data-backdrop="static" ng-disabled="loading" >
 									<i class="fa fa-pencil-square-o"  aria-hidden="true" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="Editar: {{data.USUARIO_ID}}"></i>

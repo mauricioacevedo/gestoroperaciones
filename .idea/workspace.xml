@@ -273,8 +273,8 @@
       <file leaf-file-name="listado_usuarios.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/administracion/listado_usuarios.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="376" column="0" lean-forward="true" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
+            <state relative-caret-position="272">
+              <caret line="88" column="74" lean-forward="false" selection-start-line="88" selection-start-column="74" selection-end-line="88" selection-end-column="74" />
               <folding />
             </state>
           </provider>
@@ -312,8 +312,8 @@
       <find>listadoPendientes2</find>
       <find>pendientesGrafica</find>
       <find>csvUsuarios</find>
-      <find>listadoUsuarios</find>
       <find>grupo</find>
+      <find>listadoUsuarios</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -1018,14 +1018,7 @@
       <workItem from="1485776806295" duration="20697000" />
       <workItem from="1485862026442" duration="23071000" />
       <workItem from="1485948865677" duration="310000" />
-      <workItem from="1485949326639" duration="1639000" />
-    </task>
-    <task id="LOCAL-00230" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485870291680</created>
-      <option name="number" value="00230" />
-      <option name="presentableId" value="LOCAL-00230" />
-      <option name="project" value="LOCAL" />
-      <updated>1485870291680</updated>
+      <workItem from="1485949326639" duration="1902000" />
     </task>
     <task id="LOCAL-00231" summary="Prioridad en Los pedidos. Funciona Bien">
       <created>1485870742601</created>
@@ -1363,11 +1356,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485950631665</updated>
     </task>
-    <option name="localTasksCounter" value="279" />
+    <task id="LOCAL-00279" summary="Historico">
+      <created>1485950985223</created>
+      <option name="number" value="00279" />
+      <option name="presentableId" value="LOCAL-00279" />
+      <option name="project" value="LOCAL" />
+      <updated>1485950985223</updated>
+    </task>
+    <option name="localTasksCounter" value="280" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105034000" />
+    <option name="totallyTimeSpent" value="105297000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2104,8 +2104,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/administracion/listado_usuarios.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="376" column="0" lean-forward="true" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
+        <state relative-caret-position="272">
+          <caret line="88" column="74" lean-forward="false" selection-start-line="88" selection-start-column="74" selection-end-line="88" selection-end-column="74" />
           <folding />
         </state>
       </provider>
