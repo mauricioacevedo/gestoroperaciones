@@ -22,7 +22,7 @@
 										<i class="fa fa-filter" aria-hidden="true"></i>
 										<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
 										<i class="fa fa-globe" aria-hidden="true"></i>
-										<select id="grupo" name="grupo" class="btn btn-default btn-xs grupo-select" ng-model="filtroInput" ng-options="g for g in grupos.values">
+										<select id="grupos" name="grupos" class="btn btn-default btn-xs grupo-select" ng-model="filtroInput" ng-options="g for g in grupos.values">
 										<option value="" disabled>Grupo</option>
 										</select>
 									</li>
@@ -86,7 +86,7 @@
 					         <td><span class="small">{{data.CEDULA_ID}}</span></td>
 					         <td><span class="small">{{data.GRUPO}}</span></td>
 					         <td><span class="small">{{data.CORREO_USUARIO}}</span></td>
-					         <td><span class="small" ng-class="{'1': 'label label-success','4': 'label label-primary','5': 'label label-primary','6': 'label label-danger','7': 'label label-danger','8': 'label label-danger','9': 'label label-danger','10': 'label label-danger'}[data.CARGO_ID]">{{data.CARGO_ID}}</span></td>
+					         <td><span class="small" ng-class="{'1': 'label label-success','4': 'label label-primary','5': 'label label-primary','6': 'label label-danger','7': 'label label-danger','8': 'label label-danger','9': 'label label-danger','10': 'label label-danger'}[data.CARGO_ID]">{{data.CARGO_ID}} - {{data.NOMBRE_CARGO}}</span></td>
 					         <td><span class="small" ng-class="{'ACTIVO': 'label label-success','INACTIVO': 'label label-default'}[data.ESTADO]">{{data.ESTADO}}</span></td>
 						     <td><button type="button" class="btn btn-default btn-circle-xss" ng-click="editarModal(data)" data-toggle="modal" data-target="#editarModal" data-backdrop="static" ng-disabled="loading" >
 									<i class="fa fa-pencil-square-o"  aria-hidden="true" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="Editar: {{data.USUARIO_ID}}"></i>
@@ -112,9 +112,9 @@
 						</ul>
 
 					</div>
-					<div>
+					<div class="col-md-6">
 
-					</div class="col-md-6">
+					</div>
 
 				</div>
 
