@@ -4,9 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/services/api.php" line="6454" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.htaccess" afterPath="$PROJECT_DIR$/.htaccess" />
+    <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="Historico">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
     <ignored path="node_modules/angular-notify/package.json" />
@@ -36,11 +36,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name=".htaccess" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".htaccess" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.htaccess">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
               <caret line="4" column="9" lean-forward="false" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+              <folding>
+                <marker date="1485961309299" expanded="true" signature="6:170" ph="&lt;ifmodule mod_deflate.c&gt;" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="402">
+              <caret line="5126" column="31" lean-forward="false" selection-start-line="5126" selection-start-column="31" selection-end-line="5126" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -82,7 +94,6 @@
       <find>gestionAsignacionesCtrl</find>
       <find>demePedido</find>
       <find>demePedido()</find>
-      <find>registrosCtrl</find>
       <find>listadoPedidos()</find>
       <find>pendientesGrafica</find>
       <find>csvUsuarios</find>
@@ -90,6 +101,7 @@
       <find>listadoUsuarios</find>
       <find>listadoPendientes2</find>
       <find>img</find>
+      <find>registrosCtrl</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -112,12 +124,12 @@
         <option value="$PROJECT_DIR$/node_modules/angular-toggle-switch/angular-toggle-switch.css" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/css/gestor.css" />
-        <option value="$PROJECT_DIR$/app/app.js" />
         <option value="$PROJECT_DIR$/partials/asignaciones/indicadores_asignaciones.html" />
         <option value="$PROJECT_DIR$/services/api.php" />
         <option value="$PROJECT_DIR$/partials/administracion/listado_usuarios.html" />
         <option value="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" />
         <option value="$PROJECT_DIR$/.htaccess" />
+        <option value="$PROJECT_DIR$/app/app.js" />
       </list>
     </option>
   </component>
@@ -232,11 +244,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="partials" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="asignaciones" />
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -691,14 +699,7 @@
       <workItem from="1485862026442" duration="23071000" />
       <workItem from="1485948865677" duration="310000" />
       <workItem from="1485949326639" duration="5816000" />
-      <workItem from="1485960907417" duration="401000" />
-    </task>
-    <task id="LOCAL-00247" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485875775184</created>
-      <option name="number" value="00247" />
-      <option name="presentableId" value="LOCAL-00247" />
-      <option name="project" value="LOCAL" />
-      <updated>1485875775184</updated>
+      <workItem from="1485960907417" duration="498000" />
     </task>
     <task id="LOCAL-00248" summary="Prioridad en Los pedidos. Funciona Bien">
       <created>1485875812282</created>
@@ -1036,11 +1037,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485961129603</updated>
     </task>
-    <option name="localTasksCounter" value="296" />
+    <task id="LOCAL-00296" summary="Historico">
+      <created>1485961314614</created>
+      <option name="number" value="00296" />
+      <option name="presentableId" value="LOCAL-00296" />
+      <option name="project" value="LOCAL" />
+      <updated>1485961314614</updated>
+    </task>
+    <option name="localTasksCounter" value="297" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109612000" />
+    <option name="totallyTimeSpent" value="109709000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1118,7 +1126,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1485961309299" expanded="true" signature="6:170" ph="&lt;ifmodule mod_deflate.c&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1530,13 +1540,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="727">
-          <caret line="5367" column="6" lean-forward="false" selection-start-line="5367" selection-start-column="6" selection-end-line="5367" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/partials/asignaciones/indicadores_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="394">
@@ -1795,6 +1798,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="9" lean-forward="false" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+          <folding>
+            <marker date="1485961309299" expanded="true" signature="6:170" ph="&lt;ifmodule mod_deflate.c&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="5126" column="31" lean-forward="false" selection-start-line="5126" selection-start-column="31" selection-end-line="5126" selection-end-column="31" />
           <folding />
         </state>
       </provider>

@@ -5124,6 +5124,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     divi.style.position = "relative";
     //$rootScope.iconcepto="TODO";
     $scope.checho = "-1";
+    $rootScope.errorDatos=null;
 
     //alert($routeParams.conceptoid);
 
