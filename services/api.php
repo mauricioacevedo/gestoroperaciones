@@ -9976,10 +9976,12 @@ class API extends REST {
             " u.FUNCION, ".
             " u.TURNO, ".
             " u.CARGO_ID, ".
+            " c.NOMBRE_CARGO, ".
             " u.SUPERVISOR, ".
             " u.INTERVENTOR, ".
             " u.ESTADO ".
-            " FROM portalbd.tbl_usuarios u ";
+            " FROM portalbd.tbl_usuarios u ".
+            " left join portalbd.tbl_cargos c on u.CARGO_ID=c.ID_CARGO ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
