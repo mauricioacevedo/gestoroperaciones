@@ -5125,6 +5125,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     //$rootScope.iconcepto="TODO";
     $scope.checho = "-1";
     $rootScope.errorDatos=null;
+    $rootScope.getConceptosGestor();
 
     //alert($routeParams.conceptoid);
 
