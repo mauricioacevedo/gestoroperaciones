@@ -4,7 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/services/api.php" line="6454" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="Historico">
+    <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" afterPath="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" />
     </list>
@@ -39,8 +39,8 @@
       <file leaf-file-name="pendientes_asignaciones.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="69" column="24" lean-forward="false" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="24" />
+            <state relative-caret-position="119">
+              <caret line="66" column="53" lean-forward="false" selection-start-line="66" selection-start-column="53" selection-end-line="66" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -784,14 +784,7 @@
       <workItem from="1485776806295" duration="20697000" />
       <workItem from="1485862026442" duration="23071000" />
       <workItem from="1485948865677" duration="310000" />
-      <workItem from="1485949326639" duration="4352000" />
-    </task>
-    <task id="LOCAL-00243" summary="Prioridad en Los pedidos. Funciona Bien">
-      <created>1485872497718</created>
-      <option name="number" value="00243" />
-      <option name="presentableId" value="LOCAL-00243" />
-      <option name="project" value="LOCAL" />
-      <updated>1485872497718</updated>
+      <workItem from="1485949326639" duration="4980000" />
     </task>
     <task id="LOCAL-00244" summary="Prioridad en Los pedidos. Funciona Bien">
       <created>1485872573491</created>
@@ -1129,11 +1122,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485955401194</updated>
     </task>
-    <option name="localTasksCounter" value="292" />
+    <task id="LOCAL-00292" summary="Historico">
+      <created>1485955632740</created>
+      <option name="number" value="00292" />
+      <option name="presentableId" value="LOCAL-00292" />
+      <option name="project" value="LOCAL" />
+      <updated>1485955632740</updated>
+    </task>
+    <option name="localTasksCounter" value="293" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107747000" />
+    <option name="totallyTimeSpent" value="108375000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1871,8 +1871,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="69" column="24" lean-forward="false" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="24" />
+        <state relative-caret-position="119">
+          <caret line="66" column="53" lean-forward="false" selection-start-line="66" selection-start-column="53" selection-end-line="66" selection-end-column="53" />
           <folding />
         </state>
       </provider>
