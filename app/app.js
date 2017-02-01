@@ -13852,7 +13852,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		} else if (varDondeGuardar=='EDATEL') {
 			$scope.InfoGestion = {
 			pedido: gestion.PEDIDO_ID,
-			fuente: $scope.iconcepto.FUENTE,
+			fuente: varDondeGuardar,
 			actividad: $scope.actividadGo,
 			fecha_fin: $scope.fecha_fin,
 			user: $rootScope.logedUser.login,
@@ -13963,8 +13963,6 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 });
 // -----------------------------------------------Controlador para Gestion de Reconfiguracion Asignaciones
-
-
 
 
 
