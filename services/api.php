@@ -2158,7 +2158,7 @@ class API extends REST {
             " and ASESOR ='' ".
             $PROCESO.
             " and (FECHA_CITA_FENIX <=CURDATE() OR FECHA_CITA_FENIX='9999-00-00') ".
-            " and (MIGRACION='NO' or MIGRACION='' or MIGRACION is null ) ".
+            //" and (MIGRACION='NO' or MIGRACION='' or MIGRACION is null ) ".
             " ORDER BY 1 ASC ";
 
         //echo $query;
@@ -2962,7 +2962,7 @@ class API extends REST {
         $page=$page*100;
         //counter
         $query="SELECT count(*) as counter from pedidos where fecha_fin between '$fechaini 00:00:00' and '$fechafin 23:59:59' $filtro";
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $rr = $this->mysqli->query($query);
         $counter=0;
         if($rr->num_rows > 0){
             $result = array();
@@ -2971,9 +2971,17 @@ class API extends REST {
             }
         }
 
-        $query="SELECT id, pedido_id, fuente, actividad, fecha_fin, estado,duracion,accion,concepto_final,user,motivo_malo from pedidos where fecha_fin between '$fechaini 00:00:00' and '$fechafin 23:59:59' $filtro order by fecha_fin desc limit 100 offset $page";
+        $query="SELECT id, pedido_id, fuente, actividad ".
+                ", fecha_fin, estado ".
+                ", my_sec_to_time(timestampdiff(second, fecha_inicio, fecha_fin)) as duracion ".
+                ", accion ".
+                ", SUBSTRING_INDEX(SUBSTRING_INDEX(concepto_final, ',', 3), ' ', -1) as concepto_final ".
+                ",user,motivo_malo ".
+                " from pedidos ".
+                " where fecha_fin between '$fechaini 00:00:00' ".
+                " and '$fechafin 23:59:59' $filtro order by fecha_fin desc limit 100 offset $page";
 
-        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $r = $this->mysqli->query($query);
 
         if($r->num_rows > 0){
             $result = array();
@@ -5254,7 +5262,7 @@ class API extends REST {
                 ", a.ESTRATO, a.MUNICIPIO_ID, a.DIRECCION_SERVICIO, a.PAGINA_SERVICIO ".
                 ", cast(my_sec_to_time(timestampdiff(second,FECHA_ESTADO,current_timestamp()))AS CHAR(255)) as TIEMPO_COLA ".
                 ", a.FUENTE, a.CONCEPTO_ID, a.FECHA_ESTADO, a.FECHA_CITA, a.STATUS, a.PROGRAMACION ".
-                ", a.RADICADO_TEMPORAL ".
+                ", case when a.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ARBOL' else a.RADICADO_TEMPORAL end as RADICADO_TEMPORAL ".
                 ", if(a.RADICADO_TEMPORAL='ARBOL','true','false') as PRIORIDAD ".
                 " from informe_petec_pendientesm a ".
                 " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
@@ -6443,7 +6451,7 @@ class API extends REST {
 
 
     //este demepedido valida contra fenix antes de suministrar el pedido...
-    //DemePedidoPetec Principal, Asignaciones - Reconfiguracion.
+    //DemePedidoPetec Principal, Asignaciones - Reconfiguracion - Edatel - Siebel.
     private function demePedido(){
 
 
@@ -7078,7 +7086,7 @@ class API extends REST {
             $zona.
             $microzona.
             " and (select count(*) from gestor_historicos_reagendamiento a where a.PEDIDO_ID=b.PEDIDO_ID and a.FECHA_FIN between '$today 00:00:00' and '$today 23:59:59') <1 ".
-            " and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
+            //" and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
             " ORDER BY PROGRAMACION ASC ";
         //PENDIENTE: COLOCAR CODIGO PARA TENER EN CUENTA LA PROGRAMACION....................
         $PROGRAMADO="NOT";
@@ -7121,7 +7129,7 @@ class API extends REST {
             " and b.ASESOR ='' ".
             " and (b.FECHA_CITA_FENIX < CURDATE() OR b.FECHA_CITA_FENIX='9999-00-00') ".
             " and (b.FECHA_CITA_REAGENDA < CURDATE() OR b.FECHA_CITA_REAGENDA='9999-00-00' OR b.FECHA_CITA_REAGENDA='') ".
-            " and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
+            //" and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
             " and b.CONCEPTOS NOT LIKE '%REAGE%' ".
             " AND (b.PROGRAMACION='' or b.PROGRAMACION is null ) ".
             " and (select count(*) from gestor_historicos_reagendamiento a where a.PEDIDO_ID=b.PEDIDO_ID and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59') <1 ".
@@ -7183,7 +7191,7 @@ class API extends REST {
                     "  $departamento ".
                     $zona.
                     $microzona.
-                    " and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
+                   // " and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
                     " and (select NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID=b.PEDIDO_ID and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' order by id desc limit 1) not like '%AGENDADO%' ".
                     //$plaza.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
@@ -9969,10 +9977,12 @@ class API extends REST {
             " u.FUNCION, ".
             " u.TURNO, ".
             " u.CARGO_ID, ".
+            " c.NOMBRE_CARGO, ".
             " u.SUPERVISOR, ".
             " u.INTERVENTOR, ".
             " u.ESTADO ".
-            " FROM portalbd.tbl_usuarios u ";
+            " FROM portalbd.tbl_usuarios u ".
+            " left join portalbd.tbl_cargos c on u.CARGO_ID=c.ID_CARGO ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -11737,18 +11747,21 @@ class API extends REST {
             "		and r.usuario=ul.USUARIO_ID ".
             "		limit 1 ),'00:00') as HORAINICIO ".
             " , ul.PEDIDOS ".
+            " , ul.BUSCADOS  ".
             " , ul.DIVISOR ".
             " from( ".
             "		select ".
             "		@rank:=@rank+1 AS RANK ".
             "		,z1.USUARIO_ID ".
             "		, z1.PEDIDOS ".
+            "       , z1.BUSCADOS ".
             "		, z1.DIVISOR ".
             "		from(SELECT ".
             "			c1.USUARIO_ID ".
             "			, c1.GRUPO ".
             "			, group_concat(distinct c1.ACTIVIDAD) as ACTIVIDADES ".
             "			, count(distinct c1.PEDIDO_ID) as PEDIDOS ".
+            "			, (count(distinct case when c1.source='BUSCADO' then c1.PEDIDO_ID else 0 end)) as BUSCADOS ".
             "			, a2.DIVISOR ".
             "			FROM (SELECT  ".
             "				p.USER AS USUARIO_ID ".
@@ -11756,10 +11769,12 @@ class API extends REST {
             "				, p.PEDIDO_ID ".
             "				, p.ACTIVIDAD ".
             "				, p.FUENTE ".
+            "				, p.source ".
             "				FROM portalbd.pedidos p ".
             "				left join portalbd.tbl_usuarios u ".
             "				on p.USER=u.USUARIO_ID ".
             "				where p.fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
+            "               and p.pedido_id!='' ".
             "				UNION ALL ".
             "				SELECT  ".
             "				p.USUARIO AS USUARIO_ID ".
@@ -11767,6 +11782,7 @@ class API extends REST {
             "				, p.OFERTA AS PEDIDO_ID ".
             "				, 'NCA' AS ACTIVIDAD ".
             "				, 'SIEBEL' AS FUENTE ".
+            "				, 'AUTO' as source ".
             "				FROM portalbd.transacciones_nca p ".
             "				left join portalbd.tbl_usuarios u ".
             "				on p.USUARIO=u.USUARIO_ID ".
@@ -11783,10 +11799,12 @@ class API extends REST {
             "					, p.PEDIDO_ID ".
             "					, p.ACTIVIDAD ".
             "					, p.FUENTE ".
+            "					, p.source ".
             "					FROM portalbd.pedidos p ".
             "					left join portalbd.tbl_usuarios u ".
             "					on p.USER=u.USUARIO_ID ".
             "					where p.fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
+            "                   and p.pedido_id!='' ".
             "					UNION ALL ".
             "					SELECT  ".
             "					p.USUARIO AS USUARIO_ID ".
@@ -11794,6 +11812,7 @@ class API extends REST {
             "					, p.OFERTA AS PEDIDO_ID ".
             "					, 'NCA' AS ACTIVIDAD ".
             "					, 'SIEBEL' AS FUENTE ".
+            "					, 'AUTO' as source ".
             "					FROM portalbd.transacciones_nca p ".
             "					left join portalbd.tbl_usuarios u ".
             "					on p.USUARIO=u.USUARIO_ID ".
@@ -12378,20 +12397,22 @@ class API extends REST {
         $filename="Usuarios_$today.csv";
 
 
-        $query="SELECT u.ID, ".
-            " u.USUARIO_ID, ".
-            "  u.USUARIO_NOMBRE, ".
-            "  SUBSTRING_INDEX(u.USUARIO_NOMBRE, ' ', 1) as NOMBRE, ".
-            "  u.CEDULA_ID, ".
-            "  u.GRUPO, ".
-            "  u.CORREO_USUARIO, ".
-            "  u.CARGO_ID, ".
-            "  u.SUPERVISOR, ".
-            "  u.INTERVENTOR, ".
-            "  u.ESTADO ".
-            " FROM portalbd.tbl_usuarios u ".
-            "	where 1=1 ".
-            " order by u.USUARIO_ID ASC";
+        $query="SELECT ".
+               " u.ID, ".
+               " u.USUARIO_ID, ".
+               " u.USUARIO_NOMBRE, ".
+               " SUBSTRING_INDEX(u.USUARIO_NOMBRE, ' ', 1) as NOMBRE, ".
+               " u.CEDULA_ID, ".
+               " u.GRUPO, ".
+               " u.CORREO_USUARIO, ".
+               " concat(u.CARGO_ID,'-',c.NOMBRE_CARGO) as CARGO_ID, ".
+               " u.SUPERVISOR, ".
+               " u.INTERVENTOR, ".
+               " u.ESTADO ".
+               " FROM portalbd.tbl_usuarios u ".
+               " left join portalbd.tbl_cargos c on u.CARGO_ID=c.ID_CARGO ".
+               " where 1=1  ".
+               " order by 5, 3 asc ";
 
         //echo $query;
 

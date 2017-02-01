@@ -5116,262 +5116,256 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 ///---------------inicio resgistros----------------------
 app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services, notify) {
 
-	var userID = $cookieStore.get('logedUser').login;
-	$rootScope.logedUser = $cookieStore.get('logedUser');
-	document.getElementById('logout').className = "btn btn-md btn-danger";
-	var divi = document.getElementById("logoutdiv");
-	divi.style.visibility = "visible";
-	divi.style.position = "relative";
-	//$rootScope.iconcepto="TODO";
-	$scope.checho = "-1";
-    $scope.idPermisos=[];
-	//alert($routeParams.conceptoid);
+    var userID = $cookieStore.get('logedUser').login;
+    $rootScope.logedUser = $cookieStore.get('logedUser');
+    document.getElementById('logout').className = "btn btn-md btn-danger";
+    var divi = document.getElementById("logoutdiv");
+    divi.style.visibility = "visible";
+    divi.style.position = "relative";
+    //$rootScope.iconcepto="TODO";
+    $scope.checho = "-1";
 
-	$scope.doubleDigit = function (num) {
+    //alert($routeParams.conceptoid);
 
-		if (num < 0) {
-			num = 0;
-		}
+    $scope.doubleDigit = function (num) {
 
-		if (num <= 9) {
-			return "0" + num;
-		}
-		return num;
-	};
+        if (num < 0) {
+            num = 0;
+        }
 
-
-	//variables de paginacion
-	//$scope.currentPage = 1;
-	$scope.data = {
-			maxSize: 5,
-			currentPage: 1,
-			numPerPage: 100,
-			totalItems: 0,
-			fechaIni: "",
-			fechaFin: "",
-			campo: "TODO",
-			valorCampo: ""
-		};
-		//$scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "",concepto: "TODO" }
-
-	if ($routeParams.conceptoid == undefined) {
-		$scope.data1 = {
-			maxSize: 5,
-			currentPage: 1,
-			numPerPage: 100,
-			totalItems: 0,
-			fechaIni: "",
-			fechaFin: "",
-			concepto: "TODO"
-		}
-	} else {
-		$scope.data1 = {
-			maxSize: 5,
-			currentPage: 1,
-			numPerPage: 100,
-			totalItems: 0,
-			fechaIni: "",
-			fechaFin: ""
-		}
-	}
-
-	if (!angular.isDefined($scope.currentPage)) {
-		$scope.currentPage = 1;
-	}
-
-	$scope.setPage = function (pageNo) {
-		$scope.data.currentPage = pageNo;
-	};
-
-	$rootScope.logout = function () {
-		services.logout($rootScope.logedUser.login);
-		$cookieStore.remove('logedUser');
-		$rootScope.logedUser = undefined;
-		$scope.pedidos = {};
-		document.getElementById('logout').className = "btn btn-md btn-danger hide";
-		var divi = document.getElementById("logoutdiv");
-		divi.style.position = "absolute";
-		divi.style.visibility = "hidden";
-		$location.path('/');
-	};
+        if (num <= 9) {
+            return "0" + num;
+        }
+        return num;
+    };
 
 
-	$scope.listado_pedidos = [];
+    //variables de paginacion
+    //$scope.currentPage = 1;
+    $scope.data = {
+        maxSize: 5,
+        currentPage: 1,
+        numPerPage: 100,
+        totalItems: 0,
+        fechaIni: "",
+        fechaFin: "",
+        campo: "TODO",
+        valorCampo: ""
+    }
+    //$scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "",concepto: "TODO" }
 
-	var date1 = new Date();
-	var year = date1.getFullYear();
-	var month = $scope.doubleDigit(date1.getMonth() + 1);
-	var day = $scope.doubleDigit(date1.getDate());
+    if ($routeParams.conceptoid == undefined) {
+        $scope.data1 = {
+            maxSize: 5,
+            currentPage: 1,
+            numPerPage: 100,
+            totalItems: 0,
+            fechaIni: "",
+            fechaFin: "",
+            concepto: "TODO"
+        }
+    } else {
+        $scope.data1 = {
+            maxSize: 5,
+            currentPage: 1,
+            numPerPage: 100,
+            totalItems: 0,
+            fechaIni: "",
+            fechaFin: ""
+        }
+    }
 
-	var fecha_inicio = year + "-" + month + "-" + day;
-	var fecha_fin = year + "-" + month + "-" + day;
+    if (!angular.isDefined($scope.currentPage)) {
+        $scope.currentPage = 1;
+    }
 
-	$scope.data.fechaIni = fecha_inicio;
-	$scope.data1.fechaIni = fecha_inicio;
+    $scope.setPage = function (pageNo) {
+        $scope.data.currentPage = pageNo;
+    };
 
-	$scope.data.fechaFin = fecha_fin;
-	$scope.data1.fechaFin = fecha_fin;
+    $rootScope.logout = function () {
+        services.logout($rootScope.logedUser.login);
+        $cookieStore.remove('logedUser');
+        $rootScope.logedUser = undefined;
+        $scope.pedidos = {};
+        document.getElementById('logout').className = "btn btn-md btn-danger hide";
+        var divi = document.getElementById("logoutdiv");
+        divi.style.position = "absolute";
+        divi.style.visibility = "hidden";
+        $location.path('/');
+    };
 
-	$rootScope.actualView = "registros";
 
-	services.getListadoPedidos(fecha_inicio, fecha_fin, $scope.data.currentPage).then(function (data) {
-		$scope.listado_pedidos = data.data[0];
-		$scope.data.totalItems = data.data[1];
+    $scope.listado_pedidos = [];
+    var date1 = new Date();
+    var year = date1.getFullYear();
+    var month = $scope.doubleDigit(date1.getMonth() + 1);
+    var day = $scope.doubleDigit(date1.getDate());
 
-		return data.data;
-	});
+    var fecha_inicio = year + "-" + month + "-" + day;
+    var fecha_fin = year + "-" + month + "-" + day;
+
+    $scope.data.fechaIni = fecha_inicio;
+    $scope.data1.fechaIni = fecha_inicio;
+
+    $scope.data.fechaFin = fecha_fin;
+    $scope.data1.fechaFin = fecha_fin;
+
+    $rootScope.actualView = "registros";
+
+    services.getListadoPedidos(fecha_inicio, fecha_fin, $scope.data.currentPage).then(function (data) {
+        $scope.listado_pedidos = data.data[0];
+        $scope.data.totalItems = data.data[1];
+
+        return data.data;
+    });
 
 
 	/*services.getListadoPendientes2(fecha_inicio,fecha_fin,$scope.iconcepto).then(function(data){
-                $scope.listado_pendientes=data.data;
-                return data.data;
-        });
-	*/
+	 $scope.listado_pendientes=data.data;
+	 return data.data;
+	 });
+	 */
 
-	$scope.calcularPendientes = function (sconcept) {
-		$scope.listado_pendientes = [];
-        $scope.data = {};
-		var date1 = new Date();
-		var year = date1.getFullYear();
-		var month = date1.getMonth() + 1;
-		var day = date1.getDate();
-		var fecha_inicio = year + "-" + month + "-" + day;
-		var fecha_fin = year + "-" + month + "-" + day;
+    $scope.calcularPendientes = function (sconcept) {
+        $scope.listado_pendientes = [];
+        var date1 = new Date();
+        var year = date1.getFullYear();
+        var month = date1.getMonth() + 1;
+        var day = date1.getDate();
+        var fecha_inicio = year + "-" + month + "-" + day;
+        var fecha_fin = year + "-" + month + "-" + day;
 
-		services.getListadoPendientes2(fecha_inicio, fecha_fin, sconcept, $scope.data1.currentPage).then(function (data) {
-
-			$scope.data1.totalItems = data.data[1];
-			$scope.data1.concepto = sconcept;
+        services.getListadoPendientes2(fecha_inicio, fecha_fin, sconcept, $scope.data1.currentPage).then(function (data) {
             $scope.listado_pendientes = data.data[0];
-			return data.data;
-		});
-	};
+            $scope.data1.totalItems = data.data[1];
+            $scope.data1.concepto = sconcept;
+            return data.data;
+        });
+    };
 
-	$scope.calcularPendientes($scope.data1.concepto);
+    $scope.calcularPendientes($scope.data1.concepto);
 
-	$scope.calcularListado = function () {
-		$scope.listado_pedidos = [];
-		//$scope.data.campo="";
-		//$scope.data.valorCampo="";
-		//var date1 = new Date();
-		//var year  = date1.getFullYear();
-		//var month = date1.getMonth()+1;
-		//var day   = date1.getDate();
-		//var fecha_inicio=year+"-"+month+"-"+day;
-		//var fecha_fin=year+"-"+month+"-"+day;
+    $scope.calcularListado = function () {
+        $scope.listado_pedidos = [];
+        //$scope.data.campo="";
+        //$scope.data.valorCampo="";
+        //var date1 = new Date();
+        //var year  = date1.getFullYear();
+        //var month = date1.getMonth()+1;
+        //var day   = date1.getDate();
+        //var fecha_inicio=year+"-"+month+"-"+day;
+        //var fecha_fin=year+"-"+month+"-"+day;
 
-		services.getListadoPedidos($scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage, $scope.data.campo, $scope.data.valorCampo).then(function (data) {
-			$scope.listado_pedidos = data.data[0];
-			$scope.data.totalItems = data.data[1];
-			return data.data;
-		});
-
-
-	};
-
-
-	$scope.cutString = function (str, howMuch) {
-		if (str.length > howMuch) {
-			return (str.slice(0, howMuch) + ".. ");
-		} else {
-			return str;
-		}
-	};
-
-	//get another portions of data on page changed
-	$scope.pageChanged = function (forma) {
-		if (forma == "listadoPedidos") {
-			$scope.calcularListado();
-		}
-		if (forma == "listadoPendientes") {
-			$scope.calcularPendientes($scope.data1.concepto);
-		}
-	};
-
-	$scope.buscarPedidoRegistro = function (bpedido) {
-
-		if (bpedido.length == 0 || bpedido == '') {
-			$scope.calcularPendientes($scope.data1.concepto);
-
-		}
-		if (bpedido.length >= 7) {
-			services.getBuscarPedidoRegistro(bpedido, $scope.data1.concepto).then(function (data) {
-				//console.log(data.data[0]);
-				$scope.listado_pendientes = data.data[0];
-
-				return data.data;
-			});
-		}
-	};
-
-	$scope.csvPendientes = function (concep) {
-		var login = $rootScope.logedUser.login;
-		services.getCsvPendientes(login, concep).then(function (data) {
-			console.log(data.data[0]);
-			window.location.href = "tmp/" + data.data[0];
-			return data.data;
-		});
-	};
-	$scope.csvPreInstalaciones = function () {
-		var login = $rootScope.logedUser.login;
-		services.getCsvPreInstalaciones(login).then(function (data) {
-			console.log(data.data[0]);
-			window.location.href = "tmp/" + data.data[0];
-			return data.data;
-		});
-	};
-
-	$scope.csvMalos = function (concep) {
-		var login = $rootScope.logedUser.login;
-		services.getCsvMalos(login, concep).then(function (data) {
-			console.log(data.data[0]);
-			window.location.href = "tmp/" + data.data[0];
-			return data.data;
-		});
-
-	};
+        services.getListadoPedidos($scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage, $scope.data.campo, $scope.data.valorCampo).then(function (data) {
+            $scope.listado_pedidos = data.data[0];
+            $scope.data.totalItems = data.data[1];
+            return data.data;
+        });
 
 
-
-	$scope.csvHistoricos = function () {
-		var login = $rootScope.logedUser.login;
-		services.getCsvHistoricos(login, $scope.data.fechaIni, $scope.data.fechaFin, $scope.data.campo, $scope.data.valorCampo).then(function (data) {
-			console.log(data.data[0]);
-			window.location.href = "tmp/" + data.data[0];
-			return data.data;
-		});
-
-	};
+    };
 
 
-	$scope.datepickerOptions = {
-		format: 'yyyy-mm-dd',
-		language: 'es',
-		autoclose: true,
-		weekStart: 0
-	};
+    $scope.cutString = function (str, howMuch) {
+        if (str.length > howMuch) {
+            return (str.slice(0, howMuch) + ".. ");
+        } else {
+            return str;
+        }
+    };
 
-	if ($routeParams.conceptoid != undefined) {
-		//alert("hola");
-		$scope.calcularPendientes($routeParams.conceptoid);
-	}
+    //get another portions of data on page changed
+    $scope.pageChanged = function (forma) {
+        if (forma == "listadoPedidos") {
+            $scope.calcularListado();
+        }
+        if (forma == "listadoPendientes") {
+            $scope.calcularPendientes($scope.data1.concepto);
+        }
+    };
 
-	$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'MHUERTAS', 'DEMO'];
-	$scope.habilitarPrioridad = function (pedinfo){
-		console.log(pedinfo);
-		services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.RADICADO_TEMPORAL,userID).then(
-			function(data) {
+    $scope.buscarPedidoRegistro = function (bpedido) {
+
+        if (bpedido.length == 0 || bpedido == '') {
+            $scope.calcularPendientes($scope.data1.concepto);
+
+        }
+        if (bpedido.length >= 7) {
+            services.getBuscarPedidoRegistro(bpedido, $scope.data1.concepto).then(function (data) {
+                console.log(data.data[0]);
+                $scope.listado_pendientes = data.data[0];
+                return data.data;
+            });
+        }
+    };
+
+    $scope.csvPendientes = function (concep) {
+        var login = $rootScope.logedUser.login;
+        services.getCsvPendientes(login, concep).then(function (data) {
+            console.log(data.data[0]);
+            window.location.href = "tmp/" + data.data[0];
+            return data.data;
+        });
+    };
+    $scope.csvPreInstalaciones = function () {
+        var login = $rootScope.logedUser.login;
+        services.getCsvPreInstalaciones(login).then(function (data) {
+            console.log(data.data[0]);
+            window.location.href = "tmp/" + data.data[0];
+            return data.data;
+        });
+    };
+
+    $scope.csvMalos = function (concep) {
+        var login = $rootScope.logedUser.login;
+        services.getCsvMalos(login, concep).then(function (data) {
+            console.log(data.data[0]);
+            window.location.href = "tmp/" + data.data[0];
+            return data.data;
+        });
+
+    };
+
+
+
+    $scope.csvHistoricos = function () {
+        var login = $rootScope.logedUser.login;
+        services.getCsvHistoricos(login, $scope.data.fechaIni, $scope.data.fechaFin, $scope.data.campo, $scope.data.valorCampo).then(function (data) {
+            console.log(data.data[0]);
+            window.location.href = "tmp/" + data.data[0];
+            return data.data;
+        });
+
+    };
+
+
+    $scope.datepickerOptions = {
+        format: 'yyyy-mm-dd',
+        language: 'es',
+        autoclose: true,
+        weekStart: 0
+    };
+
+    if ($routeParams.conceptoid != undefined) {
+        //alert("hola");
+        $scope.calcularPendientes($routeParams.conceptoid);
+    }
+    $scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'MHUERTAS', 'DEMO'];
+    $scope.habilitarPrioridad = function (pedinfo){
+        console.log(pedinfo);
+        services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.RADICADO_TEMPORAL,userID).then(
+            function(data) {
                 $scope.data.RADICADO_TEMPORAL=pedinfo.PRIORIDAD;
-				notify({
+                notify({
                     message: data.data[0],
                     duration: '1000',
                     position: 'right'
                 });
-				//console.log(data);
+                //console.log(data);
             }
-		);
-	};
-
+        );
+    };
 
 });
 
@@ -13709,24 +13703,24 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		if($scope.ifuente.FUENTE=='SIEBEL'){
 			$scope.habilitaCr			= true;
 			var opciones= {
-			fuente: 'SIEBEL',
-			grupo: 'ASIGNACIONES'
-			};
+				fuente: 'SIEBEL',
+				grupo: 'ASIGNACIONES'
+				};
 			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
 		}else if ($scope.ifuente.FUENTE=='EDATEL'){
 			$scope.habilitaCr			= true;
 			var opciones= {
-			fuente: 'EDATEL',
-			grupo: 'EDATEL'
-			};
+				fuente: 'EDATEL',
+				grupo: 'EDATEL'
+				};
 			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
 
 		}else{
 			$scope.habilitaCr			= false;
 			var opciones= {
-			fuente: 'FENIX_NAL',
-			grupo: 'RECONFIGURACION'
-			};
+				fuente: 'FENIX_NAL',
+				grupo: 'RECONFIGURACION'
+				};
 			var kami = services.buscarPedidoReconfiguracion(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login);
 		}
 
@@ -13781,7 +13775,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		$scope.actividadGo = actividad[0].ACTIVIDAD;
 		$scope.guardando=true;
 
-		console.log(InfoPedido); //Seguimiento
+		//console.log(InfoPedido); //Seguimiento
 		//console.log(gestion);//GEstion
 		//console.log($scope.stautsGo); //Cerrado, Pendiente o Malo
 		//console.log($scope.actividadGo);
