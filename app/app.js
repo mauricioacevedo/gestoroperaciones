@@ -13453,7 +13453,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		});
         };
 
-		$scope.PedidosPorUser();
+		//$scope.PedidosPorUser();
 
 	// ---------------------------------Inicio de Variables
 	// Disque Light KPI --------------------------------------------------------------
