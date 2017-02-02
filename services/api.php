@@ -13005,6 +13005,19 @@ class API extends REST {
         
         $rSZA = $conna->query($sqlZonasAgendamiento);
 
+        if($rSZA->num_rows > 0){
+            //$result = array();
+            while($row = $rSZA->fetch_assoc()){
+
+                $sqlinsert=" INSERT INTO portalbd.go_agen_microzonas ".
+                    " ( IDZONA, DEPARTAMENTO, CIUDAD, ZONA, MICROZONA, FUENTE) ".
+                    " VALUES ".
+                    " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
+                $rInsertSZA = $this->mysqli->query($sqlinsert);
+            }
+
+        }
+
         $sqlZonasAgenOcu = 	"select CONCAT(SUBSTR(C1.DEPARTAMENTO,1,2),SUBSTR(C1.CIUDAD,1,2),SUBSTR(C1.ZONA,1,2),C1.MICROZONA) AS IDZONA ".
             " C1.DEPARTAMENTO ".
             " , C1.CIUDAD ".
@@ -13070,19 +13083,6 @@ class API extends REST {
             " , C1.MICROZONA ";
 
         $rSZAOcu = $conna->query($sqlZonasAgenOcu);
-
-        if($rSZA->num_rows > 0){
-            //$result = array();
-            while($row = $rSZA->fetch_assoc()){
-
-                $sqlinsert=" INSERT INTO portalbd.go_agen_microzonas ".
-                    " ( IDZONA, DEPARTAMENTO, CIUDAD, ZONA, MICROZONA, FUENTE) ".
-                    " VALUES ".
-                    " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
-                $rInsertSZA = $this->mysqli->query($sqlinsert);
-            }
-
-        }
 
         if($rSZAOcu->num_rows > 0){
             //$result = array();
