@@ -12863,6 +12863,8 @@ class API extends REST {
         $this->dbConnect03();
         $today = date("Y-m-d");
 
+        $time_start = microtime(true);
+
         // 1.
         $trucanteTable = "truncate table portalbd.go_agen_microzonas";
         $rTrunc = $this->mysqli->query($trucanteTable);
@@ -13045,7 +13047,9 @@ class API extends REST {
                 }
             }
             $smg1=$iZa." Microzonas Insertadas";
-            $this->response($this->json(array($smg1)), 200); // send user details
+            $time_end = microtime(true);
+            $time = $time_end - $time_start;
+            $this->response($this->json(array($smg1,$time)), 200); // send user details
         }
 
         $this->response('',403);        // If no records "No Content" status
