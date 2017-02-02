@@ -12923,7 +12923,7 @@ class API extends REST {
                     " VALUES ".
                     " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
                 $rInsertSZA = $this->mysqli->query($sqlinsert);
-                echo "Modulo: ".$row['IDZONA']."\n";
+                //echo "Modulo: ".$row['IDZONA']."\n";
             }
 
         }
@@ -13003,7 +13003,7 @@ class API extends REST {
                     " VALUES ".
                     " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
                 $rInsertSZAOcu = $this->mysqli->query($sqlinsert);
-                echo "\n Modulo: ".$row['IDZONA']."\n";
+                //echo "\n Modulo: ".$row['IDZONA']."\n";
             }
         }
 
@@ -13031,7 +13031,7 @@ class API extends REST {
                     " VALUES ".
                     " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
                 $rInsertSZS = $this->mysqli->query($sqlinsert);
-                echo "\n Siebel: ".$row['IDZONA']."\n";
+               var_dump($rInsertSZS);
             }
             $this->response($this->json(array('Exito')), 200); // send user details
         }
