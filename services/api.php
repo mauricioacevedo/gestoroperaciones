@@ -12965,6 +12965,7 @@ class API extends REST {
                 " , C1.CIUDAD ".
                 " , C1.ZONA ".
                 " , C1.MICROZONA ".
+                " , 'MAGENDA' as FUENTE ".
                 " FROM(SELECT ".
                 " 	upper(d.dep_departamento) as DEPARTAMENTO ".
                 " ,	IFNULL(UPPER(c.cda_ciudad),'SIN_CIUDAD') AS CIUDAD ".
@@ -13009,7 +13010,7 @@ class API extends REST {
             " , C1.CIUDAD ".
             " , C1.ZONA ".
             " , C1.MICROZONA ".
-            " , MAX(C1.FUENTE) AS FUENTE ".
+            " , 'MAGENDA' as FUENTE ".
             " from(SELECT ".
             " a.agm_id as IDGENDAMIENTO ".
             " , a.agm_pedido as PEDIDO_ID ".
@@ -13053,7 +13054,6 @@ class API extends REST {
             " 	 WHEN (sbag.sag_prioridad='' or sbag.sag_prioridad is null )then 'SIN_PRIORIDAD'  ".
             " 	else upper(sbag.sag_prioridad) ".
             " end as PRIORIDAD ".
-            " , 'MAGENDA' as FUENTE ".
             " FROM dbAgendamiento.agn_agendamientos a ".
             " left join agn_subagendas sbag on a.agm_agenda = sbag.sag_id ".
             " left join agn_agendas ag on sbag.sag_agenda = ag.ads_id ".
