@@ -128,23 +128,22 @@
 
                                 </tr>
                                 <tr>
-                                    <td>Pendientes_Activador_Suspecore</td>
+                                    <td>Pendientes Activador Suspecore</td>
                                     <td>
 								<button class="btn btn-success btn-xs" ng-click="csvActivacionSiebel();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Activador Suspecore</button>
 							</td>
                                 </tr>
                                 <tr>
-                                    <td>Reconfiguracion</td>
-
+                                    <td>Pendientes GTC Suspecore</td>
                                     <td>
-                                        <select class="btn btn-default btn-xs grupo-select" id="demerec"
-                                                ng-model="ordenamientoDemepedidoReconfiguracion" style="width:auto;">
-                                            <option value="FECHA_CITA">FECHA CITA</option>
-                                            <option value="FECHA_ESTADO">FECHA ESTADO</option>
-                                            <option value="FECHA_INGRESO">FECHA INGRESO</option>
-                                        </select>
-
-                                    </td>
+								<button class="btn btn-success btn-xs" ng-click="csvActivacionSiebelinvdom();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>GTC Suspecore</button>
+							</td>
+                                </tr>
+                                 <tr>
+                                    <td>Tbl Pendientes GTC</td>
+                                    <td>
+								<button class="btn btn-success btn-xs" ng-click="csvActivacionGTC();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Pendientes GTC</button>
+							</td>
                                 </tr>
                             </table>
                         </div>
