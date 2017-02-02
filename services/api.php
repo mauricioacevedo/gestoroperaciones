@@ -5791,10 +5791,14 @@ class API extends REST {
         $username = $this->_request['username'];
         //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
         $pedido_actual = $this->_request['pedido_actual'];
-        if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
+
+        /* if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
             $sqlupdate="update informe_petec_pendientesm set ASESOR='' where ASESOR='$user' ";
             $xxx = $this->mysqli->query($sqlupdate);
-        }
+        } // Nose por que esta asi*/
+
+        $sqlupdate="update informe_petec_pendientesm set ASESOR='' where ASESOR='$user' ";
+        $xxx = $this->mysqli->query($sqlupdate);
 
         $user=strtoupper($user);
         $today = date("Y-m-d");
@@ -8884,8 +8888,8 @@ class API extends REST {
         // }
 
 
-        $query="SELECT *".
-            " FROM portalbd.gestor_interacciones_agendamiento".
+        $query= "SELECT * ".
+                " FROM portalbd.gestor_interacciones_agendamiento ";
             //echo $query;
             $r = $conna->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -8930,6 +8934,7 @@ class API extends REST {
         $ACCESO='';
         $ESTADO='';
         $FECHA_INGRESO='';
+        $today = date("Y-m-d");
 
 
 
@@ -9280,6 +9285,7 @@ class API extends REST {
         $zona='';
         $am='';
         $pm='';
+        $today = date("Y-m-d");
 
 
         //$target_file = basename($_FILES["fileUpload"]["name"]);
@@ -9591,6 +9597,7 @@ class API extends REST {
                 $row['USUARIO_NOMBRE']=utf8_encode($row['USUARIO_NOMBRE']);
                 $result[] = $row;
             }
+            $counter=0;
             $this->response($this->json(array($result,$counter)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
@@ -9683,6 +9690,7 @@ class API extends REST {
                 $row['TAGS']=utf8_encode($row['TAGS']);
                 $result[] = $row;
             }
+            $counter=0;
             $this->response($this->json(array($result,$counter)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
@@ -9754,6 +9762,7 @@ class API extends REST {
                 $row['TAGS']=utf8_encode($row['TAGS']);
                 $result[] = $row;
             }
+            $counter=0;
             $this->response($this->json(array($result,$counter)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
