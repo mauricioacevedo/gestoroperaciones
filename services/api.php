@@ -13126,14 +13126,14 @@ class API extends REST {
                 $data[]=$row;
             }
 
-            $array = $data;
+            //$array = $data;
             //var_dump($array);
             $query = "INSERT INTO portalbd.go_agen_ocupacionmicrozonas VALUES (?)";
             $stmt = $this->mysqli->prepare($query);
             $stmt ->bind_param("s", $one);
 
             $this->mysqli->query("START TRANSACTION");
-            foreach ($array as $one) {
+            foreach ($data as $one) {
                 $stmt->execute();
             }
             $stmt->close();
