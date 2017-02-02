@@ -406,6 +406,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	obj.getCsvActivacionSiebelinvdom = function (login) { //exportar activacion invdom
 		return $http.get(serviceBase + 'csvActivacionSiebelinvdom?login=' + login);
 	};
+    obj.getCsvActivacionGTC = function (login) { //exportar activacion invdom
+		return $http.get(serviceBase + 'csvActivacionGTC?login=' + login);
+	};
 
 	obj.pendientesPorConceptoColaActivacion = function () { //perdientes por conceptos activacion
 		return $http.get(serviceBase + 'pendientesPorColaConceptoActivacion');
@@ -10524,6 +10527,15 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                         return data.data;
                 });
         };
+
+    $scope.csvActivacionGTC  = function (){
+                var login=$rootScope.logedUser.login;
+                services.getCsvActivacionGTC(login).then(function(data){
+                        window.location.href="tmp/"+data.data[0];
+                        return data.data;
+                });
+        };
+
 
         $scope.csvListadoActivacion  = function (fechaini,fechafin){
                 var login=$rootScope.logedUser.login;
