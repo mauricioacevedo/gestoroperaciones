@@ -139,27 +139,7 @@
 								<button class="btn btn-success btn-xs" ng-click="csvListadoActivacion();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Seguimiento</button>
 							</td>
 						</tr>
-                        <tr>
-                                    <td>Asignaciones</td>
-                                    <td><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
-                                    <td>{{UsuarioParametro}}</td>
-                                    <td>
-                                        <select class="btn btn-default btn-xs grupo-select" id="sel1"
-                                                ng-model="ordenamientoDemepedidoNuevo" style="width:auto;">
-                                            <option value="FECHA_CITA">FECHA CITA</option>
-                                            <option value="FECHA_ESTADO">FECHA ESTADO</option>
-                                            <option value="FECHA_INGRESO">FECHA INGRESO</option>
-                                        </select>
-                                        <button class="btn btn-success btn-xs"
-                                                ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO',ordenamientoDemepedidoNuevo);">
-                                            <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-                                        <button type="button" class="btn btn-default btn-circle-xs"
-                                                ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO')" title="Actualizar"
-                                                data-toggle="tooltip" data-placement="left" ng-disabled="loading">
-                                            <i class="fa fa-refresh" aria-hidden="true"></i>
-                                        </button>
-                                    </td>
-                                </tr>
+
 					</table>
 					<div ng-hide="true"><!-- Borrar este div para habilitar tabla -->
 					 <table class="table small table-bordered table-condensed">
