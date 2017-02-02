@@ -5124,6 +5124,8 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     divi.style.position = "relative";
     //$rootScope.iconcepto="TODO";
     $scope.checho = "-1";
+    $rootScope.errorDatos=null;
+    $rootScope.getConceptosGestor();
 
     //alert($routeParams.conceptoid);
 
@@ -5351,7 +5353,8 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         //alert("hola");
         $scope.calcularPendientes($routeParams.conceptoid);
     }
-    $scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'MHUERTAS', 'DEMO'];
+
+    $scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG','MHUERTAS', 'CGONZGO','DEMO'];
     $scope.habilitarPrioridad = function (pedinfo){
         console.log(pedinfo);
         services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.RADICADO_TEMPORAL,userID).then(
@@ -13363,6 +13366,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	var varObsesGuardar			= '';
 	var estadoFinal				= '';
 
+    $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
+
 	// Opciones para cargar las listas de Gestion, segun el grupo, fuente, actividad--------------------------
 	$scope.GenerarOpcionesGestion = function () {
 		var opciones= {
@@ -13449,7 +13454,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		});
         };
 
-		$scope.PedidosPorUser();
+		//$scope.PedidosPorUser();
 
 	// ---------------------------------Inicio de Variables
 	// Disque Light KPI --------------------------------------------------------------
@@ -13848,7 +13853,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		} else if (varDondeGuardar=='EDATEL') {
 			$scope.InfoGestion = {
 			pedido: gestion.PEDIDO_ID,
-			fuente: $scope.iconcepto.FUENTE,
+			fuente: varDondeGuardar,
 			actividad: $scope.actividadGo,
 			fecha_fin: $scope.fecha_fin,
 			user: $rootScope.logedUser.login,
@@ -13959,8 +13964,6 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 });
 // -----------------------------------------------Controlador para Gestion de Reconfiguracion Asignaciones
-
-
 
 
 
@@ -15022,8 +15025,6 @@ app.run(['$rootScope', 'firebase', 'services', function ($rootScope, $firebase, 
 
 	};
 
-	$rootScope.getConceptosGestor();
-
 
 	$rootScope.cargos = [
 		{
@@ -15075,8 +15076,8 @@ app.run(['$rootScope', 'firebase', 'services', function ($rootScope, $firebase, 
 	$rootScope.grupos = {
 		"type": "select",
 		"name": "grupos",
-		"value": ["SUPER", "ACTIVACION", "ASIGNACIONES", "AGENDAMIENTO", "RECONFIGURACION", "INCONSISTENCIAS", "EDATEL"],
-		"values": ["SUPER", "ACTIVACION", "ASIGNACIONES", "AGENDAMIENTO", "RECONFIGURACION", "INCONSISTENCIAS", "EDATEL"]
+		"value": ["SUPER", "ACTIVACION", "ASIGNACIONES", "AGENDAMIENTO", "RECONFIGURACION", "INCONSISTENCIAS", "EDATEL", "GESTION PQR", "CONCILIACION EQUIPOS"],
+		"values": ["SUPER", "ACTIVACION", "ASIGNACIONES", "AGENDAMIENTO", "RECONFIGURACION", "INCONSISTENCIAS", "EDATEL", "GESTION PQR", "CONCILIACION EQUIPOS"]
 	};
 
 	$rootScope.funciones = {
@@ -15089,8 +15090,8 @@ app.run(['$rootScope', 'firebase', 'services', function ($rootScope, $firebase, 
 	$rootScope.interventores = {
 		"type": "select",
 		"name": "interventores",
-		"value": ["GIOVANI DE JESUS RODRIGUEZ PEREZ", "JUAN FERNANDO MUÑOZ ZAPATA", "MONICA TATIANA HUERTAS GIRALDO", "NORBEY ANDRES MIRA DUQUE", "OTRO"],
-		"values": ["GIOVANI DE JESUS RODRIGUEZ PEREZ", "JUAN FERNANDO MUÑOZ ZAPATA", "MONICA TATIANA HUERTAS GIRALDO", "NORBEY ANDRES MIRA DUQUE", "OTRO"]
+		"value": ["GIOVANI DE JESUS RODRIGUEZ PEREZ", "JUAN FERNANDO MUÑOZ ZAPATA", "MONICA TATIANA HUERTAS GIRALDO", "NORBEY ANDRES MIRA DUQUE", "JULIAN ANDRES LONDOÑO", "OTRO"],
+		"values": ["GIOVANI DE JESUS RODRIGUEZ PEREZ", "JUAN FERNANDO MUÑOZ ZAPATA", "MONICA TATIANA HUERTAS GIRALDO", "NORBEY ANDRES MIRA DUQUE", "JULIAN ANDRES LONDOÑO", "OTRO"]
 	};
 
 
@@ -15314,8 +15315,8 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 
 	$rootScope.$on("$routeChangeStart", function (evt, to, from) {
         //console.log(to);
-		console.log(to.grupos);
-        console.log(to.cargos);
+		//console.log(to.grupos);
+        //console.log(to.cargos);
         //console.log(to.$$route.controller);
 
 		if ($cookieStore.get('logedUser') == undefined) {
@@ -15324,15 +15325,15 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 		} else {
 			var galleta = $cookieStore.get('logedUser');
 			var userID = $cookieStore.get('logedUser').login;
-			var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
-			var messageRef = $firebaseArray(root.child('messages'));
-			var mensajes = root.child('messages');
-			var listRef = firebase.database().ref('presence');
-			var amOnline = firebase.database().ref('.info/connected');
-			var userRef = firebase.database().ref('presence/' + userID);
+			//var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
+			//var messageRef = $firebaseArray(root.child('messages'));
+			//var mensajes = root.child('messages');
+			//var listRef = firebase.database().ref('presence');
+			//var amOnline = firebase.database().ref('.info/connected');
+			//var userRef = firebase.database().ref('presence/' + userID);
 
 			var controlador = to.$$route.controller;
-
+ /*
 			if (controlador != 'IndicadoresCtrl' || controlador != 'chatioCtrl') {
 				amOnline.on('value', function (snapshot) {
 					if (snapshot.val()) {
@@ -15340,7 +15341,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 						userRef.onDisconnect().remove();
 					}
 				})
-			}
+			} */
 
 		}
 
