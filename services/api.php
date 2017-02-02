@@ -13002,7 +13002,7 @@ class API extends REST {
                     " VALUES ".
                     " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
                 $rInsertSZAOcu = $this->mysqli->query($sqlinsert);
-                echo "Zona: ".$row['IDZONA'];
+                echo "Zona: ".$row['IDZONA']."\n";
             }
         }
 
