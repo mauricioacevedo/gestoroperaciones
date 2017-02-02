@@ -13016,7 +13016,7 @@ class API extends REST {
         }
 
         $sqlZonasAgenOcu = 	"select CONCAT(SUBSTR(C1.DEPARTAMENTO,1,2),SUBSTR(C1.CIUDAD,1,2),SUBSTR(C1.ZONA,1,2),C1.MICROZONA) AS IDZONA ".
-            " C1.DEPARTAMENTO ".
+            " , C1.DEPARTAMENTO ".
             " , C1.CIUDAD ".
             " , C1.ZONA ".
             " , C1.MICROZONA ".
