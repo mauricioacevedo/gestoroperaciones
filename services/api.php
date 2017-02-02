@@ -12876,7 +12876,7 @@ class API extends REST {
                 " , C1.CIUDAD ".
                 " , C1.ZONA ".
                 " , C1.MICROZONA ".
-                " , 'MAGENDA' as FUENTE ".
+                " , 'MODULO' as FUENTE ".
                 " FROM(SELECT ".
                 " 	upper(d.dep_departamento) as DEPARTAMENTO ".
                 " ,	IFNULL(UPPER(c.cda_ciudad),'SIN_CIUDAD') AS CIUDAD ".
@@ -12939,7 +12939,7 @@ class API extends REST {
             " , C1.CIUDAD ".
             " , C1.ZONA ".
             " , C1.MICROZONA ".
-            " , 'MAGENDA' as FUENTE ".
+            " , 'MODULO' as FUENTE ".
             " from(SELECT ".
             " a.agm_id as IDGENDAMIENTO ".
             " , a.agm_pedido as PEDIDO_ID ".
