@@ -13031,7 +13031,7 @@ class API extends REST {
                     " VALUES ".
                     " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
                 $rInsertSZS = $this->mysqli->query($sqlinsert);
-               var_dump($rInsertSZS);
+                printf("Affected rows (INSERT): %d\n", $mysqli->affected_rows);
             }
             $this->response($this->json(array('Exito')), 200); // send user details
         }
