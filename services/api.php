@@ -12962,6 +12962,7 @@ class API extends REST {
                 " , C1.CIUDAD ".
                 " , C1.ZONA ".
                 " , C1.MICROZONA ".
+                " , 'MAGENDA' as FUENTE ".
                 " FROM(SELECT ".
                 " 	upper(d.dep_departamento) as DEPARTAMENTO ".
                 " ,	IFNULL(UPPER(c.cda_ciudad),'SIN_CIUDAD') AS CIUDAD ".
@@ -13001,12 +13002,25 @@ class API extends REST {
         
         $rSZA = $conna->query($sqlZonasAgendamiento);
 
+        if($rSZA->num_rows > 0){
+            //$result = array();
+            while($row = $rSZA->fetch_assoc()){
+
+                $sqlinsert=" INSERT INTO portalbd.go_agen_microzonas ".
+                    " ( IDZONA, DEPARTAMENTO, CIUDAD, ZONA, MICROZONA, FUENTE) ".
+                    " VALUES ".
+                    " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
+                $rInsertSZA = $this->mysqli->query($sqlinsert);
+            }
+
+        }
+
         $sqlZonasAgenOcu = 	"select CONCAT(SUBSTR(C1.DEPARTAMENTO,1,2),SUBSTR(C1.CIUDAD,1,2),SUBSTR(C1.ZONA,1,2),C1.MICROZONA) AS IDZONA ".
             " C1.DEPARTAMENTO ".
             " , C1.CIUDAD ".
             " , C1.ZONA ".
             " , C1.MICROZONA ".
-            " , MAX(C1.FUENTE) AS FUENTE ".
+            " , 'MAGENDA' as FUENTE ".
             " from(SELECT ".
             " a.agm_id as IDGENDAMIENTO ".
             " , a.agm_pedido as PEDIDO_ID ".
@@ -13050,7 +13064,6 @@ class API extends REST {
             " 	 WHEN (sbag.sag_prioridad='' or sbag.sag_prioridad is null )then 'SIN_PRIORIDAD'  ".
             " 	else upper(sbag.sag_prioridad) ".
             " end as PRIORIDAD ".
-            " , 'MAGENDA' as FUENTE ".
             " FROM dbAgendamiento.agn_agendamientos a ".
             " left join agn_subagendas sbag on a.agm_agenda = sbag.sag_id ".
             " left join agn_agendas ag on sbag.sag_agenda = ag.ads_id ".
@@ -13066,30 +13079,19 @@ class API extends REST {
             " , C1.ZONA ".
             " , C1.MICROZONA ";
 
+        echo $sqlZonasAgenOcu;
+
         $rSZAOcu = $conna->query($sqlZonasAgenOcu);
-
-        if($rSZA->num_rows > 0){
-            //$result = array();
-            while($row = $rSZA->fetch_assoc()){
-
-                $sqlinsert=" INSERT INTO portalbd.go_agen_microzonas ".
-                    " ( IDZONA, DEPARTAMENTO, CIUDAD, ZONA, MICROZONA, FUENTE) ".
-                    " VALUES ".
-                    " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
-                $rInsertSZA = $this->mysqli->query($sqlinsert);
-            }
-
-        }
 
         if($rSZAOcu->num_rows > 0){
             //$result = array();
-            while($row = $rSZA->fetch_assoc()){
+            while($row = $rSZAOcu->fetch_assoc()){
 
                 $sqlinsert=" INSERT INTO portalbd.go_agen_microzonas ".
                     " ( IDZONA, DEPARTAMENTO, CIUDAD, ZONA, MICROZONA, FUENTE) ".
                     " VALUES ".
                     " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
-                $rInsertSZA = $this->mysqli->query($sqlinsert);
+                $rInsertSZAOcu = $this->mysqli->query($sqlinsert);
             }
             $this->response($this->json(array('Exito')), 200); // send user details
         }
