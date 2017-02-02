@@ -13121,37 +13121,23 @@ class API extends REST {
 
         if($rOcuModulo->num_rows > 0){
             $iOcM=0;
+            $data=[];
             while($row = $rOcuModulo->fetch_assoc()){
-
-                $sqlinsert=" INSERT INTO portalbd.go_agen_ocupacionmicrozonas ".
-                    " ( PEDIDO_ID, ".
-                    " FECHA_CITA, ".
-                    " JORNADA, ".
-                    " UEN, ".
-                    " PRIORIDAD, ".
-                    " DEPARTAMENTO, ".
-                    " CIUDAD, ".
-                    " ZONA, ".
-                    " MICROZONA, ".
-                    " FUENTE ".
-                    " ) VALUES ".
-                    " ('".$row['PEDIDO_ID']."', ".
-                    "'".$row['FECHA_CITA']."', ".
-                    "'".$row['JORNADA']."', ".
-                    "'".$row['UEN']."', ".
-                    "'".$row['PRIORIDAD']."', ".
-                    "'".$row['DEPARTAMENTO']."', ".
-                    "'".$row['CIUDAD']."', ".
-                    "'".$row['ZONA']."', ".
-                    "'".$row['MICROZONA']."', ".
-                    "'".$row['FUENTE']."' ".
-                    ") ";
-                $rInsertSZS = $this->mysqli->query($sqlinsert);
-                $rowsD=$this->mysqli->affected_rows;
-                if($rowsD==1){
-                    ++$iOcM;
-                }
+                $data[]=$row;
             }
+
+            $array = $data;
+            $query = "INSERT INTO table (portalbd.go_agen_ocupacionmicrozonas) VALUES (?)";
+            $stmt = $this->mysqli->prepare($query);
+            $stmt ->bind_param("s", $one);
+
+            $this->mysqli->query("START TRANSACTION");
+            foreach ($array as $one) {
+                $stmt->execute();
+            }
+            $stmt->close();
+            $this->mysqli->query("COMMIT");
+
             $smg2=$iOcM." Pedidos Insertados";
             $time_end = microtime (true);
             $time = $time_end - $time_start;
