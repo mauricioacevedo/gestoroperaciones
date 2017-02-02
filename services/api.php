@@ -13121,13 +13121,13 @@ class API extends REST {
 
         if($rOcuModulo->num_rows > 0){
             $iOcM=0;
-            $data=[];
+            $data=array();
             while($row = $rOcuModulo->fetch_assoc()){
                 $data[]=$row;
             }
 
             $array = $data;
-            var_dump($array);
+            //var_dump($array);
             $query = "INSERT INTO portalbd.go_agen_ocupacionmicrozonas VALUES (?)";
             $stmt = $this->mysqli->prepare($query);
             $stmt ->bind_param("s", $one);
