@@ -13127,8 +13127,10 @@ class API extends REST {
                 ++$iOcM;
                 $data[]=$row;
                 $sep="";
+                $subinsert=$sqlinsert;
                 $tmpinsert="$tmpinsert (";
                 foreach ($row as $item) {
+                    $subinsert="$subinsert $sep '$item'";
                     $tmpinsert="$tmpinsert  $sep '$item' ";
                     $sep=",";
                 }
