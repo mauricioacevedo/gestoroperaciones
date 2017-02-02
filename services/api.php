@@ -12916,6 +12916,7 @@ class API extends REST {
 
         if($rSZA->num_rows > 0){
             //$result = array();
+            $iZa1=0;
             while($row = $rSZA->fetch_assoc()){
 
                 $sqlinsert=" INSERT INTO portalbd.go_agen_microzonas ".
@@ -12923,7 +12924,10 @@ class API extends REST {
                     " VALUES ".
                     " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
                 $rInsertSZA = $this->mysqli->query($sqlinsert);
-                //echo "Modulo: ".$row['IDZONA']."\n";
+                $rowsA=$this->mysqli->affected_rows;
+                if($rowsA==1){
+                    ++$iZa1;
+                }
             }
 
         }
@@ -13033,7 +13037,7 @@ class API extends REST {
                 $rInsertSZS = $this->mysqli->query($sqlinsert);
 
             }
-            $this->response($this->json(array('Exito')), 200); // send user details
+            $this->response($this->json(array($iZa1)), 200); // send user details
         }
 
         $this->response('',403);        // If no records "No Content" status
