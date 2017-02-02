@@ -736,12 +736,9 @@ class API extends REST {
         $today = date("Y-m-d h:i:s");
         $filename="Activacion-Fenix_NAL-$login-$today.csv";
 
-        $query=" SELECT PEDIDO_ID, SUBPEDIDO_ID, SOLICITUD_ID,TIPO_TRABAJO, FECHA_ENTRADA_GESTOR, FECHA_ULTIMA_GESTOR".
-            " from gestor_seguimiento_activacion".
-            " where FECHA_ULTIMA_GESTOR between '$fechaini 00:00:00' and '$fechafin 23:59:59' ".
-            "and TIPO_TRABAJO='NUEVO'".
-            " order by FECHA_ULTIMA_GESTOR  ";
-
+        $query=" SELECT * ".
+                " from gestor_seguimiento_activacion ".
+                " where TIPO_TRABAJO='NUEVO' ";
 
 
 
