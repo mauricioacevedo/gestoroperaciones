@@ -13136,6 +13136,7 @@ class API extends REST {
                 $stmt->execute();
             }
             $stmt->close();
+            echo $query;
             $this->mysqli->query("COMMIT");
 
             $smg2=$iOcM." Pedidos Insertados";
