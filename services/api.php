@@ -13127,7 +13127,7 @@ class API extends REST {
             }
 
             $array = $data;
-            $query = "INSERT INTO table (portalbd.go_agen_ocupacionmicrozonas) VALUES (?)";
+            $query = "INSERT INTO portalbd.go_agen_ocupacionmicrozonas VALUES (?)";
             $stmt = $this->mysqli->prepare($query);
             $stmt ->bind_param("s", $one);
 
