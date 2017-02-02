@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/api.php" afterPath="$PROJECT_DIR$/services/api.php" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
     <ignored path="node_modules/angular-notify/package.json" />
@@ -1020,14 +1019,7 @@
       <workItem from="1485948865677" duration="310000" />
       <workItem from="1485949326639" duration="5816000" />
       <workItem from="1485960907417" duration="8812000" />
-      <workItem from="1486039781128" duration="10436000" />
-    </task>
-    <task id="LOCAL-00275" summary="Historico">
-      <created>1485894297206</created>
-      <option name="number" value="00275" />
-      <option name="presentableId" value="LOCAL-00275" />
-      <option name="project" value="LOCAL" />
-      <updated>1485894297207</updated>
+      <workItem from="1486039781128" duration="10895000" />
     </task>
     <task id="LOCAL-00276" summary="Historico">
       <created>1485894643884</created>
@@ -1365,11 +1357,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486055964628</updated>
     </task>
-    <option name="localTasksCounter" value="324" />
+    <task id="LOCAL-00324" summary="Metodo nuevo para calcular ocupacion de Agendamiento">
+      <created>1486056047201</created>
+      <option name="number" value="00324" />
+      <option name="presentableId" value="LOCAL-00324" />
+      <option name="project" value="LOCAL" />
+      <updated>1486056047201</updated>
+    </task>
+    <option name="localTasksCounter" value="325" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128459000" />
+    <option name="totallyTimeSpent" value="128918000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
