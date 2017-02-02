@@ -12955,7 +12955,7 @@ class API extends REST {
         $trucanteTable = "truncate table portalbd.go_agen_microzonas";
         $rTrunc = $this->mysqli->query($trucanteTable);
 
-        //2.
+        //2. desde Subzonas
         $sqlZonasAgendamiento = " 	SELECT ".
                 " CONCAT(SUBSTR(C1.DEPARTAMENTO,1,2),SUBSTR(C1.CIUDAD,1,2),SUBSTR(C1.ZONA,1,2),C1.MICROZONA) AS IDZONA ".
                 " , C1.DEPARTAMENTO ".
@@ -13014,9 +13014,9 @@ class API extends REST {
             }
 
         }
-
+        // Desde Ocupados con fecha cita
         $sqlZonasAgenOcu = 	"select CONCAT(SUBSTR(C1.DEPARTAMENTO,1,2),SUBSTR(C1.CIUDAD,1,2),SUBSTR(C1.ZONA,1,2),C1.MICROZONA) AS IDZONA ".
-            " C1.DEPARTAMENTO ".
+            " , C1.DEPARTAMENTO ".
             " , C1.CIUDAD ".
             " , C1.ZONA ".
             " , C1.MICROZONA ".
@@ -13078,8 +13078,6 @@ class API extends REST {
             " , C1.CIUDAD ".
             " , C1.ZONA ".
             " , C1.MICROZONA ";
-
-        echo $sqlZonasAgenOcu;
 
         $rSZAOcu = $conna->query($sqlZonasAgenOcu);
 
