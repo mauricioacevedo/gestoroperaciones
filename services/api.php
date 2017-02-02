@@ -12854,6 +12854,7 @@ class API extends REST {
          * 1. Truncamos la tabla donde se almacenara la info
          * 2. Traemos e insertamos las microzonas del modulo de agendamiento - Fuente MAGENDA
          * 3. Traemos e insertamos las microzonas del modulo de Siebel - Fuente SIEBEL
+         * 4. Traemos e insertamos los pedidos con fecha cita de hoy en adelante de Modulo.
          */
 
         if($this->get_request_method() != "GET"){
@@ -12862,12 +12863,14 @@ class API extends REST {
         $conna = getConnAgendamiento();
         $this->dbConnect03();
         $today = date("Y-m-d");
-
+        $iZa=0;
         $time_start = microtime(true);
 
         // 1.
         $trucanteTable = "truncate table portalbd.go_agen_microzonas";
-        $rTrunc = $this->mysqli->query($trucanteTable);
+        $trucanteTableo = "truncate table portalbd.go_agen_ocupacionmicrozonas";
+        $rTruncm = $this->mysqli->query($trucanteTable);
+        $rTrunco = $this->mysqli->query($trucanteTableo);
 
         //2. desde Subzonas
         $sqlZonasAgendamiento = " 	SELECT ".
@@ -12918,7 +12921,7 @@ class API extends REST {
 
         if($rSZA->num_rows > 0){
             //$result = array();
-            $iZa=0;
+
             while($row = $rSZA->fetch_assoc()){
 
                 $sqlinsert=" INSERT INTO portalbd.go_agen_microzonas ".
@@ -13047,9 +13050,113 @@ class API extends REST {
                 }
             }
             $smg1=$iZa." Microzonas Insertadas";
-            $time_end = microtime(true);
+
+        }
+
+        //4.
+        $sqlOcuModulo = " 	SELECT ".
+            " C1.PEDIDO_ID ".
+            " , C1.FECHA_CITA ".
+            " , C1.JORNADA ".
+            " , C1.UEN ".
+            " , C1.PRIORIDAD ".
+            " , C1.DEPARTAMENTO ".
+            " , C1.CIUDAD ".
+            " , C1.ZONA ".
+            " , C1.MICROZONA ".
+            " , C1.FUENTE ".
+            " FROM (SELECT ".
+            "  a.agm_pedido as PEDIDO_ID ".
+            "  , a.agm_fechacita as FECHA_CITA ".
+            " , case ".
+            " 	when a.agm_jornadacita='Hora Fija' then 'HF'  ".
+            "     else a.agm_jornadacita ".
+            " 	end as JORNADA ".
+            " , a.agm_segmento as UEN ".
+            " , case ".
+            " 	 WHEN (sbag.sag_prioridad='' or sbag.sag_prioridad is null )then 'SIN_PRIORIDAD'  ".
+            " 	else upper(sbag.sag_prioridad) ".
+            " end as PRIORIDAD ".
+            " , upper(d.dep_departamento) as DEPARTAMENTO ".
+            " , ifnull(upper(c.cda_ciudad),'SIN_CIUDAD') as CIUDAD ".
+            " ,	CASE   ".
+            " 		WHEN (d.dep_departamento = 'Antioquia'   ".
+            " 			AND a.agm_microzona IN ('AMERICA','BUENOS_AIR','CEN','CENTRO','COLON','MIRAFLORES','NUTIBARA','OTRABANDA','SAN_BERN_1','SAN_BERN_2','SAN_JAVIER','VILLAHERMO'))  ".
+            " 		THEN 'CENTRO'  ".
+            " 		WHEN d.dep_departamento = 'Antioquia'     ".
+            " 			AND a.agm_microzona IN ('BARCOPGIR','BELLO_1','BELLO_2','BELLO_3','BERLIN','BOSQUE_1','BOSQUE_2','CARIBE','CASTILLA','FLORENCIA','GIR','IGUANA','IGUSANCRI','NIQUIA','NOR')   ".
+            " 		THEN 'NORTE'  ".
+            " 		WHEN d.dep_departamento = 'Antioquia'     ".
+            " 			AND a.agm_microzona IN ('CALDAS','ENVIGADO_1','ENVIGADO_2','ENVIGADO_3','ESTRELLA','GUAYABAL','ITAGUI_1','ITAGUI_2','ITAGUI_3','POBLADO_1','POBLADO_2','SABANETA','SANANTPRA','SUR-ENV','SUR','SUR-SAB')   ".
+            " 		THEN 'SUR'     ".
+            " 		WHEN d.dep_departamento = 'Antioquia'     ".
+            " 			AND a.agm_microzona IN ('M1_ORIENTE', 'M2_ORIENTE', 'M3_ORIENTE', 'M4_ORIENTE' , 'M5_ORIENTE' ,'M6_ORIENTE','M7_ORIENTE','M8_ORIENTE','RIO', 'PALMAS', 'SANTAELENA')   ".
+            " 		THEN 'ORIENTE'      ".
+            " 		WHEN a.agm_microzona IN ('CAR','M1_CARTAGE','M2_CARTAGE','M3_CARTAGE','M4_CARTAGE','M5_CARTAGE') THEN 'CARTAGENA'  ".
+            " 		WHEN a.agm_microzona IN ('TUR', 'M6_CARTAGE')  THEN 'TURBACO'   ".
+            " 		WHEN a.agm_microzona IN ('CAN','DEFAULT','ENG','QCA','SUB','NORTE') THEN 'BOGOTA NORTE'    ".
+            " 		WHEN a.agm_microzona IN ('BOSA','ECA','FRG','TIMIZA','SUR') THEN 'BOGOTA SUR'   ".
+            " 		WHEN a.agm_microzona IN ('VAL','Valle del Cauca') THEN 'CALI'     ".
+            " 		WHEN a.agm_microzona = 'PAL' THEN 'PALMIRA'   ".
+            " 		WHEN a.agm_microzona = 'JAM' THEN 'JAMUNDI'   ".
+            " 		WHEN d.dep_departamento IN ('Bolivar','Atlantico','Cundinamarca','Valle del Cauca') THEN UPPER(d.dep_departamento)  ".
+            "         else 'SIN_ZONA' ".
+            " END AS ZONA ".
+            " , case ".
+            " 	 WHEN (a.agm_microzona='' or a.agm_microzona is null )then 'MICRODEFAULT'  ".
+            " 	else upper(a.agm_microzona) ".
+            " end as MICROZONA ".
+            " , 'FENIX_NAL' as FUENTE ".
+            " FROM dbAgendamiento.agn_agendamientos a ".
+            " left join agn_subagendas sbag on a.agm_agenda = sbag.sag_id ".
+            " left join agn_agendas ag on sbag.sag_agenda = ag.ads_id ".
+            " left join agn_departamentos d on a.agm_departamento=d.dep_id ".
+            " left join agn_ciudades c on a.agm_ciudad=c.cda_id ".
+            " where 1=1 ".
+            " and (a.agm_estadototal not in ('Anulado','Cumplido') ".
+            " or a.agm_estadototal='') ".
+            " and a.agm_fechacita >= CURDATE() ) C1 ";
+
+        $rOcuModulo = $conna->query($sqlOcuModulo);
+
+        if($rOcuModulo->num_rows > 0){
+
+            while($row = $rOcuModulo->fetch_assoc()){
+                $iOcM=0;
+                $sqlinsert=" INSERT INTO portalbd.go_agen_ocupacionmicrozonas ".
+                    " ( PEDIDO_ID, ".
+                    " FECHA_CITA, ".
+                    " JORNADA, ".
+                    " UEN, ".
+                    " PRIORIDAD, ".
+                    " DEPARTAMENTO, ".
+                    " CIUDAD, ".
+                    " ZONA, ".
+                    " MICROZONA, ".
+                    " FUENTE ".
+                    " ) VALUES ".
+                    " ('".$row['PEDIDO_ID']."', ".
+                    "'".$row['FECHA_CITA']."', ".
+                    "'".$row['JORNADA']."', ".
+                    "'".$row['UEN']."', ".
+                    "'".$row['PRIORIDAD']."', ".
+                    "'".$row['DEPARTAMENTO']."', ".
+                    "'".$row['CIUDAD']."', ".
+                    "'".$row['ZONA']."', ".
+                    "'".$row['MICROZONA']."', ".
+                    "'".$row['FUENTE']."' ".
+                    ") ";
+                $rInsertSZS = $this->mysqli->query($sqlinsert);
+                $rowsD=$this->mysqli->affected_rows;
+                if($rowsD==1){
+                    ++$iOcM;
+                }
+            }
+            $smg2=$iOcM." Pedidos Insertados";
+            $time_end = microtime (true);
             $time = $time_end - $time_start;
-            $this->response($this->json([$smg1,$time]), 200); // send user details
+            $this->response ($this->json ([$smg1, $smg2, $time]), 200); // send user details
+
         }
 
         $this->response('',403);        // If no records "No Content" status
