@@ -537,7 +537,7 @@ class API extends REST {
         $today = date("Y-m-d h:i:s");
         $filename="Fenix_Activacion-$login-$today.csv";
         $query=  " SELECT * ".
-            "	 FROM portalbd.gestor_activacion_pendientes_activador_suspecore ".
+            "	 FROM gestor_activacion_pendientes_activador_suspecore ".
             "	 WHERE  ESTADO ='in_progress' ";
 
 
@@ -571,12 +571,8 @@ class API extends REST {
 
         $today = date("Y-m-d h:i:s");
         $filename="Fenix_Activacion-$login-$today.csv";
-        $query=  " SELECT  PEDIDO,ORDEN,TAREANEMOTECNICO,CODIGO_CIUDAD,NOMBRE_CIUDAD ".
-            " ,DEPARTAMENTO,FECHACREACION,ESTADOOSM,ESTADOOSMFUTURO,FECHA_EXCEPCION ".
-            " ,PROCESO,IdRaizItem_VALOR,IdRaizItem_CUENTA,NombreItemOrden_VALOR ".
-            " ,NombreItemOrden_CUENTA,CodigoUnicoDireccion_VALOR,CodigoUnicoDireccion_CUENTA ".
-            " ,DireccionNormalizada_VALOR,DireccionNormalizada_CUENTA,TipoTransaccion_VALOR,TipoTransaccion_CUENTA ".
-            " FROM gestor_pendientes_activacion_siebel_invdom ";
+        $query=  " SELECT * ".
+            " FROM gestor_activacion_pendientes_gtc_suspecore ";
 
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -584,7 +580,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO','ORDEN','TAREANEMOTECNICO','CODIGO_CIUDAD','NOMBRE_CIUDAD','DEPARTAMENTO','FECHACREACION','ESTADOOSM','ESTADOOSMFUTURO','FECHA_EXCEPCION','PROCESO','IdRaizItem_VALOR','IdRaizItem_CUENTA','NombreItemOrden_VALOR','NombreItemOrden_CUENTA','CodigoUnicoDireccion_VALOR','CodigoUnicoDireccion_CUENTA','DireccionNormalizada_VALOR','DireccionNormalizada_CUENTA','TipoTransaccion_VALOR','TipoTransaccion_CUENTA'));
+            fputcsv($fp, array('ID','ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','NOMBRE_CUIDAD','CODIGO_UNICO_DIRECCION','NOMBRE_DEPARTAMENTO','TAREA_EXCEPCION','CODIGOEXCEPCIONGTC','DESCRIPCIONEXCEPCIONGTC','MOTIVOEXCEPCIONGTC','FECHA_CARGA'));
             while($row = $r->fetch_assoc()){
                 $result[] = $row;
                 fputcsv($fp, $row);
