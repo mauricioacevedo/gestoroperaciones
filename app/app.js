@@ -391,10 +391,6 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'csvListadoActivacion?fechaini=' + fechaini + '&fechafin=' + fechafin);
 	};
 
-	obj.getCsvListadoActivacionnuevo = function (fechaini, fechafin) { //exportar listado activacion nuevos
-		return $http.get(serviceBase + 'csvListadoActivacionnuevos?fechaini=' + fechaini + '&fechafin=' + fechafin);
-	};
-
 	obj.getCsvActivacion = function (login) { //exportar activacion
 		return $http.get(serviceBase + 'csvActivacion?login=' + login);
 	};
@@ -10545,13 +10541,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                 });
         };
 
-        $scope.csvListadoActivacionnuevos  = function (fechaini,fechafin){
-                var login=$rootScope.logedUser.login;
-                services.getCsvListadoActivacionnuevo($scope.data.fechaini,$scope.data.fechafin,login).then(function(data){
-                        window.location.href="tmp/"+data.data[0];
-                        return data.data;
-                });
-        };
+
 
 
        $scope.actualizarGraficaAD   = function (){
