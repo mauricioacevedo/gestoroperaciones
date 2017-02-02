@@ -6494,7 +6494,7 @@ class API extends REST {
                     }
                 }
 
-                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA')  ";
+                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA','INSTIP')  ";
 
             }
         }
