@@ -13120,9 +13120,9 @@ class API extends REST {
         $rOcuModulo = $conna->query($sqlOcuModulo);
 
         if($rOcuModulo->num_rows > 0){
-
+            $iOcM=0;
             while($row = $rOcuModulo->fetch_assoc()){
-                $iOcM=0;
+
                 $sqlinsert=" INSERT INTO portalbd.go_agen_ocupacionmicrozonas ".
                     " ( PEDIDO_ID, ".
                     " FECHA_CITA, ".
