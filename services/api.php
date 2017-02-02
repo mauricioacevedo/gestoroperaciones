@@ -13044,7 +13044,8 @@ class API extends REST {
                     ++$iZa;
                 }
             }
-            $this->response($this->json(array($iZa)), 200); // send user details
+            $smg1=$iZa." Microzonas Insertadas";
+            $this->response($this->json(array($smg1)), 200); // send user details
         }
 
         $this->response('',403);        // If no records "No Content" status
