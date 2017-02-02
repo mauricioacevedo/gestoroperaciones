@@ -128,23 +128,10 @@
 
                                 </tr>
                                 <tr>
-                                    <td>Asignaciones</td>
+                                    <td>Pendientes_Activador_Suspecore</td>
                                     <td>
-                                        <select class="btn btn-default btn-xs grupo-select" id="sel1"
-                                                ng-model="ordenamientoDemepedidoNuevo" style="width:auto;">
-                                            <option value="FECHA_CITA">FECHA CITA</option>
-                                            <option value="FECHA_ESTADO">FECHA ESTADO</option>
-                                            <option value="FECHA_INGRESO">FECHA INGRESO</option>
-                                        </select>
-                                        <button class="btn btn-success btn-xs"
-                                                ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO',ordenamientoDemepedidoNuevo);">
-                                            <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-                                        <button type="button" class="btn btn-default btn-circle-xs"
-                                                ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO')" title="Actualizar"
-                                                data-toggle="tooltip" data-placement="left" ng-disabled="loading">
-                                            <i class="fa fa-refresh" aria-hidden="true"></i>
-                                        </button>
-                                    </td>
+								<button class="btn btn-success btn-xs" ng-click="csvActivacionSiebel();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Activador Suspecore</button>
+							</td>
                                 </tr>
                                 <tr>
                                     <td>Reconfiguracion</td>
