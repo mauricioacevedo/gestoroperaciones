@@ -12906,6 +12906,79 @@ class API extends REST {
 
     }//-----------------------------------------------Fin funcion
 
+/**
+ * Descripcion: Funcion para recrear la tabla de Ocupacion de Agendas
+ * Grupo: Agendamiento
+ */
+    private function GenerarOcupacionAgendas(){
+        /**
+         * Pasos:
+         * 1. Truncamos la tabla donde se almacenara la info
+         * 2. Traemos e insertamos las microzonas del modulo de agendamiento - Fuente FENIX_NAL
+         * 3. Traemos e insertamos las microzonas del modulo de Siebel - Fuente SIEBEL
+         */
+
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $conna = getConnAgendamiento();
+        $today = date("Y-m-d");
+
+        // 1.
+        $trucanteTable = "truncate table portalbd.go_agen_microzonas";
+        $rTrunc = $this->mysqli->query($trucanteTable);
+
+        //2.
+        $sqlZonasAgendamiento = "SELECT ".
+           "     upper(d.dep_departamento) as DEPARTAMENTO ".
+           " ,	IFNULL(UPPER(c.cda_ciudad),'SIN_CIUDAD') AS CIUDAD ".
+           " ,	CASE  ".
+           "         WHEN (d.dep_departamento = 'Antioquia' ".
+           "             AND sz.sbz_subzona IN ('AMERICA','BUENOS_AIR','CEN','CENTRO','COLON','MIRAFLORES','NUTIBARA','OTRABANDA','SAN_BERN_1','SAN_BERN_2','SAN_JAVIER','VILLAHERMO')) ".
+           "         THEN 'CENTRO' ".
+           "         WHEN d.dep_departamento = 'Antioquia' ".
+           "             AND sz.sbz_subzona IN ('BARCOPGIR','BELLO_1','BELLO_2','BELLO_3','BERLIN','BOSQUE_1','BOSQUE_2','CARIBE','CASTILLA','FLORENCIA','GIR','IGUANA','IGUSANCRI','NIQUIA','NOR') ".
+           "         THEN 'NORTE'  ".
+           "         WHEN d.dep_departamento = 'Antioquia' ".
+           "             AND sz.sbz_subzona IN ('CALDAS','ENVIGADO_1','ENVIGADO_2','ENVIGADO_3','ESTRELLA','GUAYABAL','ITAGUI_1','ITAGUI_2','ITAGUI_3','POBLADO_1','POBLADO_2','SABANETA','SANANTPRA','SUR-ENV','SUR','SUR-SAB') ".
+           "         THEN 'SUR' ".
+           "         WHEN d.dep_departamento = 'Antioquia' ".
+           "             AND sz.sbz_subzona IN ('M1_ORIENTE', 'M2_ORIENTE', 'M3_ORIENTE', 'M4_ORIENTE' , 'M5_ORIENTE' ,'M6_ORIENTE','M7_ORIENTE','M8_ORIENTE','RIO', 'PALMAS', 'SANTAELENA') ".
+           "         THEN 'ORIENTE'     ".
+           "         WHEN sz.sbz_subzona IN ('CAR','M1_CARTAGE','M2_CARTAGE','M3_CARTAGE','M4_CARTAGE','M5_CARTAGE') THEN 'CARTAGENA' ".
+           "         WHEN sz.sbz_subzona IN ('TUR', 'M6_CARTAGE')  THEN 'TURBACO'   ".
+           "         WHEN sz.sbz_subzona IN ('CAN','DEFAULT','ENG','QCA','SUB','NORTE') THEN 'BOGOTA NORTE' ".
+           "         WHEN sz.sbz_subzona IN ('BOSA','ECA','FRG','TIMIZA','SUR') THEN 'BOGOTA SUR'   ".
+           "         WHEN sz.sbz_subzona IN ('VAL','Valle del Cauca') THEN 'CALI' ".
+           "         WHEN sz.sbz_subzona = 'PAL' THEN 'PALMIRA'   ".
+           "         WHEN sz.sbz_subzona = 'JAM' THEN 'JAMUNDI' ".
+           "         WHEN d.dep_departamento IN ('Bolivar','Atlantico','Cundinamarca','Valle del Cauca') THEN UPPER(d.dep_departamento) ".
+           "         else 'SIN_ZONA' ".
+           " END AS ZONA ".
+           " , 	upper(sz.sbz_subzona) as MICROZONA ".
+           " , 'FENIX_NAL' as FUENTE ".
+           " FROM dbAgendamiento.agn_subzonas sz ".
+           " left join dbAgendamiento.agn_departamentos d on sz.sbz_departamento=d.dep_id ".
+           " left join dbAgendamiento.agn_ciudades c on sz.sbz_ciudad=c.cda_id ".
+           " order by 1, 2,3,4 asc";
+        
+        $rSZA = $conna->query($sqlZonasAgendamiento);
+
+        if($rSZA->num_rows > 0){
+            $result = array();
+            while($row = $rSZA->fetch_assoc()){
+
+                $sqlinsert=" INSERT INTO portalbd.go_agen_microzonas ".
+                    " ( DEPARTAMENTO, CIUDAD, ZONA, MICROZONA, FUENTE) ".
+                    " VALUES ".
+                    " ('".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
+                $rInsertSZA = $this->mysqli->query($sqlinsert);
+            }
+            $this->response($this->json(array('Exito')), 200); // send user details
+        }
+        $this->response('',403);        // If no records "No Content" status
+
+    }
 
 }//cierre de la clase
 
