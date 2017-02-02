@@ -13003,7 +13003,7 @@ class API extends REST {
                     " VALUES ".
                     " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
                 $rInsertSZAOcu = $this->mysqli->query($sqlinsert);
-                //echo "\n Modulo: ".$row['IDZONA']."\n";
+                printf("Affected rows (INSERT): %d\n", $this->mysqli->affected_rows);
             }
         }
 
@@ -13031,7 +13031,7 @@ class API extends REST {
                     " VALUES ".
                     " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
                 $rInsertSZS = $this->mysqli->query($sqlinsert);
-                printf("Affected rows (INSERT): %d\n", $this->mysqli->affected_rows);
+
             }
             $this->response($this->json(array('Exito')), 200); // send user details
         }
