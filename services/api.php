@@ -12858,6 +12858,7 @@ class API extends REST {
             $this->response('',406);
         }
         $conna = getConnAgendamiento();
+        $this->dbConnect03();
         $today = date("Y-m-d");
 
         // 1.
@@ -12999,6 +13000,33 @@ class API extends REST {
                     " VALUES ".
                     " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
                 $rInsertSZAOcu = $this->mysqli->query($sqlinsert);
+            }
+        }
+
+        //3.
+        $sqlZonasSiebel = " SELECT ".
+            " CONCAT(SUBSTR(DEPARTAMENTO,1,2),SUBSTR(ZONA,1,2),SUBSTR(ZONA,1,2),'MICRODEFAULT') AS IDZONA ".
+            " , DEPARTAMENTO ".
+            " , ZONA as CIUDAD ".
+            " , ZONA ".
+            " , 'MICRODEFAULT' as MICROZONA ".
+            " , 'SIEBEL' as FUENTE ".
+            " FROM alistamiento.parametrizacion_siebel ".
+            " group by  ".
+            " DEPARTAMENTO,  ".
+            " ZONA ";
+
+        $rSZS = $this->mysqli03->query($sqlZonasSiebel);
+
+        if($rSZS->num_rows > 0){
+            //$result = array();
+            while($row = $rSZS->fetch_assoc()){
+
+                $sqlinsert=" INSERT INTO portalbd.go_agen_microzonas ".
+                    " ( IDZONA, DEPARTAMENTO, CIUDAD, ZONA, MICROZONA, FUENTE) ".
+                    " VALUES ".
+                    " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
+                $rInsertSZS = $this->mysqli->query($sqlinsert);
             }
             $this->response($this->json(array('Exito')), 200); // send user details
         }
