@@ -12944,7 +12944,7 @@ class API extends REST {
         /**
          * Pasos:
          * 1. Truncamos la tabla donde se almacenara la info
-         * 2. Traemos e insertamos las microzonas del modulo de agendamiento - Fuente FENIX_NAL
+         * 2. Traemos e insertamos las microzonas del modulo de agendamiento - Fuente MAGENDA
          * 3. Traemos e insertamos las microzonas del modulo de Siebel - Fuente SIEBEL
          */
 
@@ -12959,53 +12959,144 @@ class API extends REST {
         $rTrunc = $this->mysqli->query($trucanteTable);
 
         //2.
-        $sqlZonasAgendamiento = "SELECT ".
-           "     upper(d.dep_departamento) as DEPARTAMENTO ".
-           " ,	IFNULL(UPPER(c.cda_ciudad),'SIN_CIUDAD') AS CIUDAD ".
-           " ,	CASE  ".
-           "         WHEN (d.dep_departamento = 'Antioquia' ".
-           "             AND sz.sbz_subzona IN ('AMERICA','BUENOS_AIR','CEN','CENTRO','COLON','MIRAFLORES','NUTIBARA','OTRABANDA','SAN_BERN_1','SAN_BERN_2','SAN_JAVIER','VILLAHERMO')) ".
-           "         THEN 'CENTRO' ".
-           "         WHEN d.dep_departamento = 'Antioquia' ".
-           "             AND sz.sbz_subzona IN ('BARCOPGIR','BELLO_1','BELLO_2','BELLO_3','BERLIN','BOSQUE_1','BOSQUE_2','CARIBE','CASTILLA','FLORENCIA','GIR','IGUANA','IGUSANCRI','NIQUIA','NOR') ".
-           "         THEN 'NORTE'  ".
-           "         WHEN d.dep_departamento = 'Antioquia' ".
-           "             AND sz.sbz_subzona IN ('CALDAS','ENVIGADO_1','ENVIGADO_2','ENVIGADO_3','ESTRELLA','GUAYABAL','ITAGUI_1','ITAGUI_2','ITAGUI_3','POBLADO_1','POBLADO_2','SABANETA','SANANTPRA','SUR-ENV','SUR','SUR-SAB') ".
-           "         THEN 'SUR' ".
-           "         WHEN d.dep_departamento = 'Antioquia' ".
-           "             AND sz.sbz_subzona IN ('M1_ORIENTE', 'M2_ORIENTE', 'M3_ORIENTE', 'M4_ORIENTE' , 'M5_ORIENTE' ,'M6_ORIENTE','M7_ORIENTE','M8_ORIENTE','RIO', 'PALMAS', 'SANTAELENA') ".
-           "         THEN 'ORIENTE'     ".
-           "         WHEN sz.sbz_subzona IN ('CAR','M1_CARTAGE','M2_CARTAGE','M3_CARTAGE','M4_CARTAGE','M5_CARTAGE') THEN 'CARTAGENA' ".
-           "         WHEN sz.sbz_subzona IN ('TUR', 'M6_CARTAGE')  THEN 'TURBACO'   ".
-           "         WHEN sz.sbz_subzona IN ('CAN','DEFAULT','ENG','QCA','SUB','NORTE') THEN 'BOGOTA NORTE' ".
-           "         WHEN sz.sbz_subzona IN ('BOSA','ECA','FRG','TIMIZA','SUR') THEN 'BOGOTA SUR'   ".
-           "         WHEN sz.sbz_subzona IN ('VAL','Valle del Cauca') THEN 'CALI' ".
-           "         WHEN sz.sbz_subzona = 'PAL' THEN 'PALMIRA'   ".
-           "         WHEN sz.sbz_subzona = 'JAM' THEN 'JAMUNDI' ".
-           "         WHEN d.dep_departamento IN ('Bolivar','Atlantico','Cundinamarca','Valle del Cauca') THEN UPPER(d.dep_departamento) ".
-           "         else 'SIN_ZONA' ".
-           " END AS ZONA ".
-           " , 	upper(sz.sbz_subzona) as MICROZONA ".
-           " , 'FENIX_NAL' as FUENTE ".
-           " FROM dbAgendamiento.agn_subzonas sz ".
-           " left join dbAgendamiento.agn_departamentos d on sz.sbz_departamento=d.dep_id ".
-           " left join dbAgendamiento.agn_ciudades c on sz.sbz_ciudad=c.cda_id ".
-           " order by 1, 2,3,4 asc";
+        $sqlZonasAgendamiento = " 	SELECT ".
+                " CONCAT(SUBSTR(C1.DEPARTAMENTO,1,2),SUBSTR(C1.CIUDAD,1,2),SUBSTR(C1.ZONA,1,2),C1.MICROZONA) AS IDZONA ".
+                " , C1.DEPARTAMENTO ".
+                " , C1.CIUDAD ".
+                " , C1.ZONA ".
+                " , C1.MICROZONA ".
+                " FROM(SELECT ".
+                " 	upper(d.dep_departamento) as DEPARTAMENTO ".
+                " ,	IFNULL(UPPER(c.cda_ciudad),'SIN_CIUDAD') AS CIUDAD ".
+                " ,	CASE   ".
+                " 		WHEN (d.dep_departamento = 'Antioquia'   ".
+                " 			AND sz.sbz_subzona IN ('AMERICA','BUENOS_AIR','CEN','CENTRO','COLON','MIRAFLORES','NUTIBARA','OTRABANDA','SAN_BERN_1','SAN_BERN_2','SAN_JAVIER','VILLAHERMO'))  ".
+                " 		THEN 'CENTRO'  ".
+                " 		WHEN d.dep_departamento = 'Antioquia'     ".
+                " 			AND sz.sbz_subzona IN ('BARCOPGIR','BELLO_1','BELLO_2','BELLO_3','BERLIN','BOSQUE_1','BOSQUE_2','CARIBE','CASTILLA','FLORENCIA','GIR','IGUANA','IGUSANCRI','NIQUIA','NOR')   ".
+                " 		THEN 'NORTE'  ". 
+                " 		WHEN d.dep_departamento = 'Antioquia'     ". 
+                " 			AND sz.sbz_subzona IN ('CALDAS','ENVIGADO_1','ENVIGADO_2','ENVIGADO_3','ESTRELLA','GUAYABAL','ITAGUI_1','ITAGUI_2','ITAGUI_3','POBLADO_1','POBLADO_2','SABANETA','SANANTPRA','SUR-ENV','SUR','SUR-SAB')   ". 
+                " 		THEN 'SUR'     ". 
+                " 		WHEN d.dep_departamento = 'Antioquia'     ". 
+                " 			AND sz.sbz_subzona IN ('M1_ORIENTE', 'M2_ORIENTE', 'M3_ORIENTE', 'M4_ORIENTE' , 'M5_ORIENTE' ,'M6_ORIENTE','M7_ORIENTE','M8_ORIENTE','RIO', 'PALMAS', 'SANTAELENA')   ". 
+                " 		THEN 'ORIENTE'      ". 
+                " 		WHEN sz.sbz_subzona IN ('CAR','M1_CARTAGE','M2_CARTAGE','M3_CARTAGE','M4_CARTAGE','M5_CARTAGE') THEN 'CARTAGENA'  ". 
+                " 		WHEN sz.sbz_subzona IN ('TUR', 'M6_CARTAGE')  THEN 'TURBACO'   ". 
+                " 		WHEN sz.sbz_subzona IN ('CAN','DEFAULT','ENG','QCA','SUB','NORTE') THEN 'BOGOTA NORTE'    ". 
+                " 		WHEN sz.sbz_subzona IN ('BOSA','ECA','FRG','TIMIZA','SUR') THEN 'BOGOTA SUR'   ". 
+                " 		WHEN sz.sbz_subzona IN ('VAL','Valle del Cauca') THEN 'CALI'     ". 
+                " 		WHEN sz.sbz_subzona = 'PAL' THEN 'PALMIRA'   ". 
+                " 		WHEN sz.sbz_subzona = 'JAM' THEN 'JAMUNDI'   ". 
+                " 		WHEN d.dep_departamento IN ('Bolivar','Atlantico','Cundinamarca','Valle del Cauca') THEN UPPER(d.dep_departamento)  ". 
+                "         else 'SIN_ZONA' ". 
+                " END AS ZONA ". 
+                " , 	upper(sz.sbz_subzona) as MICROZONA ". 
+                " FROM dbAgendamiento.agn_subzonas sz ". 
+                " INNER join dbAgendamiento.agn_departamentos d on sz.sbz_departamento=d.dep_id ". 
+                " INNER join dbAgendamiento.agn_ciudades c on sz.sbz_ciudad=c.cda_id ". 
+                " order by 1, 2,3,4 asc ) C1 ". 
+                " GROUP BY  ". 
+                " C1.DEPARTAMENTO ". 
+                " , C1.CIUDAD ". 
+                " , C1.ZONA ". 
+                " , C1.MICROZONA ";
         
         $rSZA = $conna->query($sqlZonasAgendamiento);
 
+        $sqlZonasAgenOcu = 	"select CONCAT(SUBSTR(C1.DEPARTAMENTO,1,2),SUBSTR(C1.CIUDAD,1,2),SUBSTR(C1.ZONA,1,2),C1.MICROZONA) AS IDZONA ".
+            " C1.DEPARTAMENTO ".
+            " , C1.CIUDAD ".
+            " , C1.ZONA ".
+            " , C1.MICROZONA ".
+            " , MAX(C1.FUENTE) AS FUENTE ".
+            " from(SELECT ".
+            " a.agm_id as IDGENDAMIENTO ".
+            " , a.agm_pedido as PEDIDO_ID ".
+            " , upper(d.dep_departamento) as DEPARTAMENTO ".
+            " , ifnull(upper(c.cda_ciudad),'SIN_CIUDAD') as CIUDAD ".
+            " , a.agm_fechacita as FECHA_CITA ".
+            " , case ".
+            " 	when a.agm_jornadacita='Hora Fija' then 'HF'  ".
+            "     else a.agm_jornadacita ".
+            " 	end as JORNADA ".
+            " , a.agm_agenda as AGENDAID ".
+            " , a.agm_segmento as UEN ".
+            " ,	CASE   ".
+            " 		WHEN (d.dep_departamento = 'Antioquia'   ".
+            " 			AND a.agm_microzona IN ('AMERICA','BUENOS_AIR','CEN','CENTRO','COLON','MIRAFLORES','NUTIBARA','OTRABANDA','SAN_BERN_1','SAN_BERN_2','SAN_JAVIER','VILLAHERMO'))  ".
+            " 		THEN 'CENTRO'  ".
+            " 		WHEN d.dep_departamento = 'Antioquia'     ".
+            " 			AND a.agm_microzona IN ('BARCOPGIR','BELLO_1','BELLO_2','BELLO_3','BERLIN','BOSQUE_1','BOSQUE_2','CARIBE','CASTILLA','FLORENCIA','GIR','IGUANA','IGUSANCRI','NIQUIA','NOR')   ".
+            " 		THEN 'NORTE'  ".
+            " 		WHEN d.dep_departamento = 'Antioquia'     ".
+            " 			AND a.agm_microzona IN ('CALDAS','ENVIGADO_1','ENVIGADO_2','ENVIGADO_3','ESTRELLA','GUAYABAL','ITAGUI_1','ITAGUI_2','ITAGUI_3','POBLADO_1','POBLADO_2','SABANETA','SANANTPRA','SUR-ENV','SUR','SUR-SAB')   ".
+            " 		THEN 'SUR'     ".
+            " 		WHEN d.dep_departamento = 'Antioquia'     ".
+            " 			AND a.agm_microzona IN ('M1_ORIENTE', 'M2_ORIENTE', 'M3_ORIENTE', 'M4_ORIENTE' , 'M5_ORIENTE' ,'M6_ORIENTE','M7_ORIENTE','M8_ORIENTE','RIO', 'PALMAS', 'SANTAELENA')   ".
+            " 		THEN 'ORIENTE'      ".
+            " 		WHEN a.agm_microzona IN ('CAR','M1_CARTAGE','M2_CARTAGE','M3_CARTAGE','M4_CARTAGE','M5_CARTAGE') THEN 'CARTAGENA'  ".
+            " 		WHEN a.agm_microzona IN ('TUR', 'M6_CARTAGE')  THEN 'TURBACO'   ".
+            " 		WHEN a.agm_microzona IN ('CAN','DEFAULT','ENG','QCA','SUB','NORTE') THEN 'BOGOTA NORTE'    ".
+            " 		WHEN a.agm_microzona IN ('BOSA','ECA','FRG','TIMIZA','SUR') THEN 'BOGOTA SUR'   ".
+            " 		WHEN a.agm_microzona IN ('VAL','Valle del Cauca') THEN 'CALI'     ".
+            " 		WHEN a.agm_microzona = 'PAL' THEN 'PALMIRA'   ".
+            " 		WHEN a.agm_microzona = 'JAM' THEN 'JAMUNDI'   ".
+            " 		WHEN d.dep_departamento IN ('Bolivar','Atlantico','Cundinamarca','Valle del Cauca') THEN UPPER(d.dep_departamento)  ".
+            "         else 'SIN_ZONA' ".
+            " END AS ZONA ".
+            " , case ".
+            " 	 WHEN (a.agm_microzona='' or a.agm_microzona is null )then 'MICRODEFAULT'  ".
+            " 	else upper(a.agm_microzona) ".
+            " end as MICROZONA ".
+            " , case ".
+            " 	 WHEN (sbag.sag_prioridad='' or sbag.sag_prioridad is null )then 'SIN_PRIORIDAD'  ".
+            " 	else upper(sbag.sag_prioridad) ".
+            " end as PRIORIDAD ".
+            " , 'MAGENDA' as FUENTE ".
+            " FROM dbAgendamiento.agn_agendamientos a ".
+            " left join agn_subagendas sbag on a.agm_agenda = sbag.sag_id ".
+            " left join agn_agendas ag on sbag.sag_agenda = ag.ads_id ".
+            " left join agn_departamentos d on a.agm_departamento=d.dep_id ".
+            " left join agn_ciudades c on a.agm_ciudad=c.cda_id ".
+            " where 1=1 ".
+            " and (a.agm_estadototal not in ('Anulado','Cumplido') ".
+            " or a.agm_estadototal='') ".
+            " and a.agm_fechacita >= CURDATE() ) C1 ".
+            " GROUP BY  ".
+            "  C1.DEPARTAMENTO ".
+            " , C1.CIUDAD ".
+            " , C1.ZONA ".
+            " , C1.MICROZONA ";
+
+        $rSZAOcu = $conna->query($sqlZonasAgenOcu);
+
         if($rSZA->num_rows > 0){
-            $result = array();
+            //$result = array();
             while($row = $rSZA->fetch_assoc()){
 
                 $sqlinsert=" INSERT INTO portalbd.go_agen_microzonas ".
-                    " ( DEPARTAMENTO, CIUDAD, ZONA, MICROZONA, FUENTE) ".
+                    " ( IDZONA, DEPARTAMENTO, CIUDAD, ZONA, MICROZONA, FUENTE) ".
                     " VALUES ".
-                    " ('".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
+                    " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
+                $rInsertSZA = $this->mysqli->query($sqlinsert);
+            }
+
+        }
+
+        if($rSZAOcu->num_rows > 0){
+            //$result = array();
+            while($row = $rSZA->fetch_assoc()){
+
+                $sqlinsert=" INSERT INTO portalbd.go_agen_microzonas ".
+                    " ( IDZONA, DEPARTAMENTO, CIUDAD, ZONA, MICROZONA, FUENTE) ".
+                    " VALUES ".
+                    " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
                 $rInsertSZA = $this->mysqli->query($sqlinsert);
             }
             $this->response($this->json(array('Exito')), 200); // send user details
         }
+
         $this->response('',403);        // If no records "No Content" status
 
     }
