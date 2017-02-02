@@ -13049,7 +13049,7 @@ class API extends REST {
             $smg1=$iZa." Microzonas Insertadas";
             $time_end = microtime(true);
             $time = $time_end - $time_start;
-            $this->response($this->json(array($smg1,$time)), 200); // send user details
+            $this->response($this->json([$smg1,$time]), 200); // send user details
         }
 
         $this->response('',403);        // If no records "No Content" status
