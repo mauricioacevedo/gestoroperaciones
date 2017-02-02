@@ -13009,7 +13009,7 @@ class API extends REST {
 
         //3.
         $sqlZonasSiebel = " SELECT ".
-            " CONCAT(SUBSTR(DEPARTAMENTO,1,2),SUBSTR(ZONA,1,2),SUBSTR(ZONA,1,2),'MICRO_SIEBEL') AS IDZONA ".
+            " CONCAT(SUBSTR(DEPARTAMENTO,1,2),ZONA,'MICRO_SIEBEL') AS IDZONA ".
             " , DEPARTAMENTO ".
             " , ZONA as CIUDAD ".
             " , ZONA ".
