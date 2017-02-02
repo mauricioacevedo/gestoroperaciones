@@ -13126,8 +13126,9 @@ class API extends REST {
             while($row = $rOcuModulo->fetch_assoc()){
                 ++$iOcM;
                 $data[]=$row;
-                $sep="";
+
                 $subinsert=$sqlinsert;
+                $sep="";
                 $tmpinsert="$tmpinsert (";
                 foreach ($row as $item) {
                     $subinsert="$subinsert $sep '$item'";
