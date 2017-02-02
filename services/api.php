@@ -13086,13 +13086,13 @@ class API extends REST {
 
         if($rSZAOcu->num_rows > 0){
             //$result = array();
-            while($row = $rSZA->fetch_assoc()){
+            while($row = $rSZAOcu->fetch_assoc()){
 
                 $sqlinsert=" INSERT INTO portalbd.go_agen_microzonas ".
                     " ( IDZONA, DEPARTAMENTO, CIUDAD, ZONA, MICROZONA, FUENTE) ".
                     " VALUES ".
                     " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
-                $rInsertSZA = $this->mysqli->query($sqlinsert);
+                $rInsertSZAOcu = $this->mysqli->query($sqlinsert);
             }
             $this->response($this->json(array('Exito')), 200); // send user details
         }
