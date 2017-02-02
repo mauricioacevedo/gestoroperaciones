@@ -12916,7 +12916,7 @@ class API extends REST {
 
         if($rSZA->num_rows > 0){
             //$result = array();
-            $iZa1=0;
+            $iZa=0;
             while($row = $rSZA->fetch_assoc()){
 
                 $sqlinsert=" INSERT INTO portalbd.go_agen_microzonas ".
@@ -12926,7 +12926,7 @@ class API extends REST {
                 $rInsertSZA = $this->mysqli->query($sqlinsert);
                 $rowsA=$this->mysqli->affected_rows;
                 if($rowsA==1){
-                    ++$iZa1;
+                    ++$iZa;
                 }
             }
 
@@ -13000,7 +13000,7 @@ class API extends REST {
 
         if($rSZAOcu->num_rows > 0){
             //$result = array();
-            $iZa2=0;
+
             while($row = $rSZAOcu->fetch_assoc()){
 
                 $sqlinsert=" INSERT INTO portalbd.go_agen_microzonas ".
@@ -13010,7 +13010,7 @@ class API extends REST {
                 $rInsertSZAOcu = $this->mysqli->query($sqlinsert);
                 $rowsB=$this->mysqli->affected_rows;
                 if($rowsB==1){
-                    ++$iZa2;
+                    ++$iZa;
                 }
             }
         }
@@ -13031,7 +13031,7 @@ class API extends REST {
         $rSZS = $this->mysqli03->query($sqlZonasSiebel);
 
         if($rSZS->num_rows > 0){
-            $iZa3=0;
+
             while($row = $rSZS->fetch_assoc()){
 
                 $sqlinsert=" INSERT INTO portalbd.go_agen_microzonas ".
@@ -13041,10 +13041,10 @@ class API extends REST {
                 $rInsertSZS = $this->mysqli->query($sqlinsert);
                 $rowsC=$this->mysqli->affected_rows;
                 if($rowsC==1){
-                    ++$iZa3;
+                    ++$iZa;
                 }
             }
-            $this->response($this->json(array($iZa1,$iZa2,$iZa3)), 200); // send user details
+            $this->response($this->json(array($iZa)), 200); // send user details
         }
 
         $this->response('',403);        // If no records "No Content" status
