@@ -145,29 +145,21 @@
 								<button class="btn btn-success btn-xs" ng-click="csvActivacionGTC();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Pendientes GTC</button>
 							</td>
                                 </tr>
+                                <tr>
+                                    <td>Seguimiento Activacion Nuevos</td>
+                                   	<td>
+								<button class="btn btn-success btn-xs" ng-click="csvListadoActivacionnuevos();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Nuevos</button>
+							</td>
+                                </tr>
+                                  <tr>
+                                    <td>Seguimiento Activacion</td>
+                                   <td>
+								<button class="btn btn-success btn-xs" ng-click="csvListadoActivacion();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Seguimiento</button>
+							</td>
+                                </tr>
                             </table>
                         </div>
 				<div class="panel-body" >
-					<table>
-						<tr>
-							<td>
-								<button class="btn btn-success btn-xs" ng-click="csvActivacionSiebel();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Activador Suspecore</button>
-							</td>
-							<td>
-								<button class="btn btn-success btn-xs" ng-click="csvActivacionSiebelinvdom();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>GTC Suspecore</button>
-							</td>
-                            <td>
-								<button class="btn btn-success btn-xs" ng-click="csvActivacionGTC();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Pendientes GTC</button>
-							</td>
-							<td>
-								<button class="btn btn-success btn-xs" ng-click="csvListadoActivacionnuevos();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Nuevos</button>
-							</td>
-							<td>
-								<button class="btn btn-success btn-xs" ng-click="csvListadoActivacion();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Seguimiento</button>
-							</td>
-						</tr>
-
-					</table>
 					<div ng-hide="true"><!-- Borrar este div para habilitar tabla -->
 					 <table class="table small table-bordered table-condensed">
 							  <tr>

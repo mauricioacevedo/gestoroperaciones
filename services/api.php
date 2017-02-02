@@ -748,7 +748,7 @@ class API extends REST {
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
 
-            fputcsv($fp, array( 'PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','TIPO_TRABAJO','FECHA_ENTRADA_GESTOR','FECHA_ULTIMA_GESTOR'));
+            fputcsv($fp, array( 'PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','CONCEPTO_ID','COLA_ID','ACTIVIDAD_ID','TIPO_TRABAJO','USUARIO_ID','FECHA_ENTRADA_GESTOR','FECHA_ULTIMA_GESTOR'));
 
             fclose($fp);
 
