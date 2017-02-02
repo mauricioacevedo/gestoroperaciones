@@ -13121,24 +13121,24 @@ class API extends REST {
 
         if($rOcuModulo->num_rows > 0){
             $iOcM=0;
+            $ii=0;
             $data=array();
             while($row = $rOcuModulo->fetch_assoc()){
+                ++$iOcM;
                 $data[]=$row;
+                $sep="";
+                $tmpinsert="$tmpinsert (";
+                foreach ($row as $item) {
+                    $tmpinsert="$tmpinsert  $sep '$item' ";
+                    $sep=",";
+                }
+                $tmpinsert="$tmpinsert) ";
+                $ii++;
+                if($ii % 100 == 0){
+                    echo $tmpinsert;
+                }
             }
 
-            //$array = $data;
-            //var_dump($array);
-            $query = "INSERT INTO portalbd.go_agen_ocupacionmicrozonas VALUES (?)";
-            $stmt = $this->mysqli->prepare($query);
-            $stmt->bind_param("s", $one);
-
-            $this->mysqli->query("START TRANSACTION");
-            foreach ($data as $one) {
-                $stmt->execute();
-            }
-            $stmt->close();
-            echo $query;
-            $this->mysqli->query("COMMIT");
 
             $smg2=$iOcM." Pedidos Insertados";
             $time_end = microtime (true);
