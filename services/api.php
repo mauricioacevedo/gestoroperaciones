@@ -12869,7 +12869,7 @@ class API extends REST {
 
         //2. desde Subzonas
         $sqlZonasAgendamiento = " 	SELECT ".
-                " CONCAT(SUBSTR(C1.DEPARTAMENTO,1,2),SUBSTR(C1.CIUDAD,1,2),SUBSTR(C1.ZONA,1,2),C1.MICROZONA,'MAGENDA') AS IDZONA ".
+                " CONCAT(SUBSTR(C1.DEPARTAMENTO,1,2),SUBSTR(C1.CIUDAD,1,2),SUBSTR(C1.ZONA,1,2),C1.MICROZONA,'_MODULO') AS IDZONA ".
                 " , C1.DEPARTAMENTO ".
                 " , C1.CIUDAD ".
                 " , C1.ZONA ".
@@ -12927,7 +12927,7 @@ class API extends REST {
 
         }
         // Desde Ocupados con fecha cita
-        $sqlZonasAgenOcu = 	"select CONCAT(SUBSTR(C1.DEPARTAMENTO,1,2),SUBSTR(C1.CIUDAD,1,2),SUBSTR(C1.ZONA,1,2),C1.MICROZONA,'MAGENDA') AS IDZONA ".
+        $sqlZonasAgenOcu = 	"select CONCAT(SUBSTR(C1.DEPARTAMENTO,1,2),SUBSTR(C1.CIUDAD,1,2),SUBSTR(C1.ZONA,1,2),C1.MICROZONA,'_MODULO') AS IDZONA ".
             " , C1.DEPARTAMENTO ".
             " , C1.CIUDAD ".
             " , C1.ZONA ".
