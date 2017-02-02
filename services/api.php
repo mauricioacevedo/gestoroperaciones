@@ -13079,7 +13079,7 @@ class API extends REST {
             " , C1.ZONA ".
             " , C1.MICROZONA ";
 
-        echo $sqlZonasAgenOcu;
+        //echo $sqlZonasAgenOcu;
 
         $rSZAOcu = $conna->query($sqlZonasAgenOcu);
 
