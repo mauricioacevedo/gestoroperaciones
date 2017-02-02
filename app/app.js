@@ -5353,7 +5353,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         //alert("hola");
         $scope.calcularPendientes($routeParams.conceptoid);
     }
-    $scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'MHUERTAS', 'DEMO'];
+    $scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG','MHUERTAS', 'DEMO'];
     $scope.habilitarPrioridad = function (pedinfo){
         console.log(pedinfo);
         services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.RADICADO_TEMPORAL,userID).then(
