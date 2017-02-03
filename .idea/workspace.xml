@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html" afterPath="$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
     <ignored path="node_modules/angular-notify/package.json" />
@@ -36,7 +36,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-924">
@@ -104,6 +104,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="gestion_asignaciones.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="346">
+              <caret line="224" column="141" lean-forward="false" selection-start-line="224" selection-start-column="141" selection-end-line="224" selection-end-column="141" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -136,8 +146,8 @@
       <find>gestor_inform</find>
       <find>DemePedido</find>
       <find>kpi</find>
-      <find>gestionAsignacionesCtrl</find>
       <find>demePedido</find>
+      <find>gestionAsignacionesCtrl</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -155,7 +165,6 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/d49cbaab-e1e7-436c-b048-971965fe5889/console.sql" />
         <option value="$PROJECT_DIR$/partials/chat/chatio.html" />
         <option value="$PROJECT_DIR$/node_modules/angular-switcher/dist/angular-switcher.css" />
-        <option value="$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html" />
         <option value="$PROJECT_DIR$/node_modules/angular-switcher/dist/angular-switcher.js" />
         <option value="$PROJECT_DIR$/node_modules/angular-toggle-switch/angular-toggle-switch.css" />
         <option value="$PROJECT_DIR$/css/gestor.css" />
@@ -166,6 +175,7 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/services/api.php" />
         <option value="$PROJECT_DIR$/app/app.js" />
+        <option value="$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html" />
       </list>
     </option>
   </component>
@@ -268,6 +278,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gestoroperaciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gestoroperaciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="partials" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gestoroperaciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gestoroperaciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="partials" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="transacciones" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -834,14 +876,7 @@
       <workItem from="1485949326639" duration="5816000" />
       <workItem from="1485960907417" duration="8812000" />
       <workItem from="1486039781128" duration="23154000" />
-      <workItem from="1486120948971" duration="6738000" />
-    </task>
-    <task id="LOCAL-00321" summary="Metodo nuevo para calcular ocupacion de Agendamiento">
-      <created>1486054241494</created>
-      <option name="number" value="00321" />
-      <option name="presentableId" value="LOCAL-00321" />
-      <option name="project" value="LOCAL" />
-      <updated>1486054241494</updated>
+      <workItem from="1486120948971" duration="6817000" />
     </task>
     <task id="LOCAL-00322" summary="Metodo nuevo para calcular ocupacion de Agendamiento">
       <created>1486055906525</created>
@@ -1179,11 +1214,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486131130952</updated>
     </task>
-    <option name="localTasksCounter" value="370" />
+    <task id="LOCAL-00370" summary="Pendientes Grafica ahora muestra pedidos unicos y malos">
+      <created>1486132365875</created>
+      <option name="number" value="00370" />
+      <option name="presentableId" value="LOCAL-00370" />
+      <option name="project" value="LOCAL" />
+      <updated>1486132365875</updated>
+    </task>
+    <option name="localTasksCounter" value="371" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147915000" />
+    <option name="totallyTimeSpent" value="147994000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1864,13 +1906,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="493" column="40" lean-forward="true" selection-start-line="493" selection-start-column="40" selection-end-line="493" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/services/consultas.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2252,6 +2287,14 @@
             <marker date="1486132337575" expanded="true" signature="422231:422237" ph="&amp;nbsp;" />
             <marker date="1486132337575" expanded="true" signature="445359:445392" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="224" column="141" lean-forward="false" selection-start-line="224" selection-start-column="141" selection-end-line="224" selection-end-column="141" />
+          <folding />
         </state>
       </provider>
     </entry>
