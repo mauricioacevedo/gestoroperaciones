@@ -4054,7 +4054,9 @@ class API extends REST {
                 "    DISTINCT ".
                 "    PEDIDO_ID ".
                 "    , CASE  ".
-                "        WHEN STATUS='MALO'  THEN 'MALO' ".
+                "        WHEN FUENTE='FENIX_NAL' and CONCEPTO_ID='PETEC' AND STATUS!='MALO' then 'PETEC-NAL' ".
+                "        WHEN FUENTE='FENIX_BOG' and CONCEPTO_ID='PETEC' AND STATUS!='MALO' then 'PETEC-BOG' ".
+                "        WHEN STATUS='MALO' THEN 'MALO'   ".
                 "        ELSE CONCEPTO_ID END AS CONCEPTO_ID ".
                 "    , STATUS ".
                 "    , FUENTE ".
