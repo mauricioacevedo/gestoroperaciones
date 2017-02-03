@@ -6767,7 +6767,6 @@ class API extends REST {
             " b.IDENTIFICADOR_ID, ".
             " b.CELULAR_AVISAR, ".
             " b.TELEFONO_AVISAR,	".
-            " cast(ifnull(c.Total_Contactos,'SIN LLAMADAS') AS CHAR(255)) as LLAMADAS, ".
             " b.PROGRAMACION, ".
             " case when b.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ALTA' else 'NORMAL' end as PRIORIDAD 	".
             " from informe_petec_pendientesm b 	".
