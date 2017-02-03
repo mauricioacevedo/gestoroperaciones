@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/api.php" afterPath="$PROJECT_DIR$/services/api.php" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
     <ignored path="node_modules/angular-notify/package.json" />
@@ -39,8 +38,8 @@
       <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="689">
-              <caret line="3283" column="14" lean-forward="false" selection-start-line="3283" selection-start-column="14" selection-end-line="3283" selection-end-column="14" />
+            <state relative-caret-position="332">
+              <caret line="3205" column="51" lean-forward="false" selection-start-line="3205" selection-start-column="51" selection-end-line="3205" selection-end-column="51" />
               <folding>
                 <marker date="1486147538208" expanded="true" signature="34892:34981" ph="INSERT INTO pedidos... " />
                 <marker date="1486147538208" expanded="true" signature="37333:37435" ph="INSERT INTO pedidos... " />
@@ -1022,14 +1021,7 @@
       <workItem from="1485949326639" duration="5816000" />
       <workItem from="1485960907417" duration="8812000" />
       <workItem from="1486039781128" duration="23154000" />
-      <workItem from="1486120948971" duration="11047000" />
-    </task>
-    <task id="LOCAL-00325" summary="Metodo nuevo para calcular ocupacion de Agendamiento">
-      <created>1486056506203</created>
-      <option name="number" value="00325" />
-      <option name="presentableId" value="LOCAL-00325" />
-      <option name="project" value="LOCAL" />
-      <updated>1486056506203</updated>
+      <workItem from="1486120948971" duration="11142000" />
     </task>
     <task id="LOCAL-00326" summary="Metodo nuevo para calcular ocupacion de Agendamiento">
       <created>1486056572923</created>
@@ -1367,11 +1359,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486133309700</updated>
     </task>
-    <option name="localTasksCounter" value="374" />
+    <task id="LOCAL-00374" summary="Pendientes Grafica ahora muestra pedidos unicos y malos">
+      <created>1486147650034</created>
+      <option name="number" value="00374" />
+      <option name="presentableId" value="LOCAL-00374" />
+      <option name="project" value="LOCAL" />
+      <updated>1486147650034</updated>
+    </task>
+    <option name="localTasksCounter" value="375" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152224000" />
+    <option name="totallyTimeSpent" value="152319000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2209,8 +2208,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="689">
-          <caret line="3283" column="14" lean-forward="false" selection-start-line="3283" selection-start-column="14" selection-end-line="3283" selection-end-column="14" />
+        <state relative-caret-position="332">
+          <caret line="3205" column="51" lean-forward="false" selection-start-line="3205" selection-start-column="51" selection-end-line="3205" selection-end-column="51" />
           <folding>
             <marker date="1486147538208" expanded="true" signature="34892:34981" ph="INSERT INTO pedidos... " />
             <marker date="1486147538208" expanded="true" signature="37333:37435" ph="INSERT INTO pedidos... " />
