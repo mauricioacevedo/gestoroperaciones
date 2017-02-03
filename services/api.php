@@ -13194,7 +13194,7 @@ class API extends REST {
                 }
                 $tmpinsert="$sep $tmpinsert) ";
                 $ii++;
-                $sep=",";
+                $sepp=",";
                 if($ii % 100 == 0){
                     echo $tmpinsert;
                 }
