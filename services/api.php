@@ -13206,7 +13206,7 @@ class API extends REST {
 
                 $ii++;
                 $sepp=",";
-                if($ii % 500 == 0){
+                if($ii % 1000 == 0){
                     echo "Carga: $ii<br>";
                     $subinsert="insert into go_agen_ocupacionmicrozonas ($fields) values $subinsert";
                     $this->mysqli->query($subinsert);
