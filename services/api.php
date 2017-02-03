@@ -13179,6 +13179,7 @@ class API extends REST {
             $iOcM=0;
             $ii=0;
             $data=array();
+            $sepp="";
             while($row = $rOcuModulo->fetch_assoc()){
                 ++$iOcM;
                 $data[]=$row;
@@ -13191,8 +13192,9 @@ class API extends REST {
                     $tmpinsert="$tmpinsert  $sep '$item' ";
                     $sep=",";
                 }
-                $tmpinsert="$tmpinsert) ";
+                $tmpinsert="$sep $tmpinsert) ";
                 $ii++;
+                $sep=",";
                 if($ii % 100 == 0){
                     echo $tmpinsert;
                 }
