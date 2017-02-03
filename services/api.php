@@ -2987,21 +2987,20 @@ class API extends REST {
             $this->response('',406);
         }
 
-        $query=" select count(*) AS COUNTER, ".
-            "   case ".
-            "     when FUENTE='FENIX_BOG' and CONCEPTO_ID='PETEC' then 'PETEC-BOG' ".
-            "     when CONCEPTO_ID='14' AND STATUS='PENDI_RENUMS' then '14-RENUMS' ".
-            "     when CONCEPTO_ID='PETEC' and RADICADO_TEMPORAL='EQURED' then 'EQURED' ".
-            "    else CONCEPTO_ID ".
-            "  end as CONCEPTO_ID ".
-            "   FROM informe_petec_pendientesm  ".
-            "  where status in ('PENDI_PETEC','MALO','PENDI_RENUMS') ".
-            "   GROUP BY (case ".
-            "     when FUENTE='FENIX_BOG' and CONCEPTO_ID='PETEC' then 'PETEC-BOG' ".
-            "     when CONCEPTO_ID='14' AND STATUS='PENDI_RENUMS' then '14-RENUMS' ".
-            "     when CONCEPTO_ID='PETEC' and RADICADO_TEMPORAL='EQURED' then 'EQURED' ".
-            "     else CONCEPTO_ID ".
-            " end)";
+        $query=" select ".
+               "     count(*) AS COUNTER, c1.CONCEPTO_ID ".
+               "     from( ".
+               "     select distinct pedido_id ".
+               "     , case  ".
+               "          when FUENTE='FENIX_BOG' and CONCEPTO_ID='PETEC' then 'PETEC-BOG'  ".
+               "          when CONCEPTO_ID='14' AND STATUS='PENDI_RENUMS' then '14-RENUMS'  ".
+               "          when CONCEPTO_ID='PETEC' and RADICADO_TEMPORAL='EQURED' then 'EQURED' ".
+               "          when STATUS='MALO' then 'MALO' ".
+               "         else CONCEPTO_ID  ".
+               "     end as CONCEPTO_ID  ".
+               "     from informe_petec_pendientesm ".
+               "     where status in ('PENDI_PETEC','MALO','PENDI_RENUMS') ) c1 ".
+               "     group by c1.CONCEPTO_ID ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -3983,10 +3982,18 @@ class API extends REST {
         }
 
         $query= " SELECT concepto_id as label, COUNT(*) as value ".
-            " FROM  informe_petec_pendientesm ".
-            " WHERE (STATUS='PENDI_PETEC' or STATUS='MALO') ".
-            " GROUP BY concepto_id ".
-            " ORDER BY COUNT(*) DESC";
+                "   FROM(SELECT ".
+                "    DISTINCT ".
+                "    PEDIDO_ID ".
+                "    , CASE  ".
+                "        WHEN STATUS='MALO'  THEN 'MALO' ".
+                "        ELSE CONCEPTO_ID END AS CONCEPTO_ID ".
+                "    , STATUS ".
+                "    , FUENTE ".
+                "    FROM informe_petec_pendientesm ".
+                "    WHERE (STATUS='PENDI_PETEC' or STATUS='MALO') ) C1 ".
+                "    GROUP BY concepto_id ".
+                "    ORDER BY COUNT(*) DESC ";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -6391,9 +6398,10 @@ class API extends REST {
 
     }
 
-
-    //este demepedido valida contra fenix antes de suministrar el pedido...
-    //DemePedidoPetec Principal, Asignaciones - Reconfiguracion - Edatel - Siebel.
+    /**
+     *Funcion principal para la entrega de peidos en el sistema.
+     * Aplica para los grupos: Asignaciones, Reconfiguracion, Edatel, Siebel.
+     */
     private function demePedido(){
 
 
@@ -6494,7 +6502,7 @@ class API extends REST {
                     }
                 }
 
-                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA')  ";
+                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA','INSTIP')  ";
 
             }
         }
@@ -6536,6 +6544,30 @@ class API extends REST {
                     break;
                 }
             }
+
+            //2017-02-03 Mauricio: se agrega funcionalidad para buscar por arbol en concepto 14
+                //HAGO LA CONSULTA DE PRIORIDAD POR ARBOL
+                $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA ".
+                    " FROM  informe_petec_pendientesm ".
+                    " WHERE ".
+                    " RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM') ".
+                    " AND ASESOR='' ".
+                    " AND CONCEPTO_ID = '$concepto' ".
+                    " AND STATUS='PENDI_PETEC' ".
+                    $plaza2.
+                    " ORDER BY FECHA_ESTADO ASC ";
+
+                $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
+
+                if($rr->num_rows > 0){//recorro los registros de la consulta para
+                    while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
+                        $result[] = $row;
+                        $mypedido=$row['PEDIDO_ID'];
+                        $mypedidoresult=$rta;
+                        $ATENCION_INMEDIATA="1";
+                        break;
+                    }
+                }
 
 
             //$concepto=" and b.CONCEPTO_ID='$concepto' and b.TIPO_ELEMENTO_ID IN('ACCESP','INSIP','INSHFC','TO','TOIP','STBOX') and b.UEN_CALCULADA ='HG' AND b.PROGRAMACION='' ";
@@ -6700,21 +6732,45 @@ class API extends REST {
         $sqlupdate="update informe_petec_pendientesm set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO_ID = '$mypedido' and (STATUS='PENDI_PETEC'||STATUS='BUSCADO_PETEC' || STATUS='PENDI_RENUMS')";
         $x = $this->mysqli->query($sqlupdate);
 
-        $query1="	SELECT b.ID,b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.TIPO_ELEMENTO_ID,b.PRODUCTO, b.PRODUCTO_ID,	".
-            "	b.UEN_CALCULADA,b.ESTRATO,b.MUNICIPIO_ID,b.DIRECCION_SERVICIO,b.PAGINA_SERVICIO, b.TECNOLOGIA_ID,	".
-            "	CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(b.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,	".
-            "	b.FUENTE,b.CONCEPTO_ID,b.FECHA_ESTADO,b.USUARIO_BLOQUEO_FENIX,b.TIPO_TRABAJO, b.DESC_TIPO_TRABAJO,	".
-            "	b.CONCEPTO_ANTERIOR,b.FECHA_CITA,b.CANTIDAD_EQU,b.EQUIPOS,b.CONCEPTOS_EQU,b.TIPO_EQUIPOS,	".
-            "	b.EXTENSIONES, b.OBSERVACIONES,  b.EJECUTIVO_ID, b.CANAL_ID, b.VEL_IDEN, b.VEL_SOLI, b.IDENTIFICADOR_ID, b.CELULAR_AVISAR, b.TELEFONO_AVISAR,	".
-            "	cast(ifnull(c.Total_Contactos,'SIN LLAMADAS') AS CHAR(255)) as LLAMADAS, b.PROGRAMACION, c.ULTIMO_CONTACTO 	".
-            "	from informe_petec_pendientesm b 	".
-            "	left join (SELECT e.pedido_id, count(e.pedido_id) as Total_Contactos, 	".
-            "			max(e.fecha_fin) as Ultimo_Contacto		".
-            "			FROM portalbd.pedidos e		".
-            "			WHERE e.ESTADO = 'VOLVER A LLAMAR' 	".
-            "			group by e.PEDIDO_ID) c	 	".
-            "	        on c.PEDIDO_id = b.pedido_id 	".
-            "	where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto ";
+        $query1="SELECT b.ID, ".
+            " b.PEDIDO_ID, ".
+            " b.SUBPEDIDO_ID, ".
+            " b.SOLICITUD_ID, ".
+            " b.TIPO_ELEMENTO_ID, ".
+            " b.PRODUCTO, ".
+            " b.PRODUCTO_ID,	".
+            " b.UEN_CALCULADA, ".
+            " b.ESTRATO, ".
+            " b.MUNICIPIO_ID, ".
+            " b.DIRECCION_SERVICIO, ".
+            " b.PAGINA_SERVICIO, ".
+            " b.TECNOLOGIA_ID,	".
+            " CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(b.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,	".
+            " b.FUENTE, ".
+            " b.CONCEPTO_ID, ".
+            " b.FECHA_ESTADO, ".
+            " b.USUARIO_BLOQUEO_FENIX, ".
+            " b.TIPO_TRABAJO, ".
+            " b.DESC_TIPO_TRABAJO,	".
+            " b.CONCEPTO_ANTERIOR, ".
+            " b.FECHA_CITA, ".
+            " b.CANTIDAD_EQU, ".
+            " b.EQUIPOS, ".
+            " b.CONCEPTOS_EQU, ".
+            " b.TIPO_EQUIPOS,	".
+            " b.EXTENSIONES,  ".
+            " b.OBSERVACIONES,  ".
+            " b.EJECUTIVO_ID, ".
+            " b.CANAL_ID, ".
+            " b.VEL_IDEN, ".
+            " b.VEL_SOLI, ".
+            " b.IDENTIFICADOR_ID, ".
+            " b.CELULAR_AVISAR, ".
+            " b.TELEFONO_AVISAR,	".
+            " b.PROGRAMACION, ".
+            " case when b.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ALTA' else 'NORMAL' end as PRIORIDAD 	".
+            " from informe_petec_pendientesm b 	".
+            " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto ";
 
         //"SELECT b.ID,b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.TIPO_ELEMENTO_ID,b.PRODUCTO,b.UEN_CALCULADA,b.ESTRATO,b.MUNICIPIO_ID,b.DIRECCION_SERVICIO,b.PAGINA_SERVICIO,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(b.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,b.FUENTE,b.CONCEPTO_ID,b.FECHA_ESTADO,b.USUARIO_BLOQUEO_FENIX,b.TIPO_TRABAJO,b.CONCEPTO_ANTERIOR,b.FECHA_CITA,b.CANTIDAD_EQU,b.EQUIPOS,b.CONCEPTOS_EQU,b.TIPO_EQUIPOS,b.EXTENSIONES, b.OBSERVACIONES,  b.EJECUTIVO_ID, b.CANAL_ID from informe_petec_pendientesm b where b.PEDIDO_ID = '$mypedido' and b.STATUS='PENDI_PETEC' $concepto ";
 
@@ -12854,26 +12910,32 @@ class API extends REST {
          * 1. Truncamos la tabla donde se almacenara la info
          * 2. Traemos e insertamos las microzonas del modulo de agendamiento - Fuente MAGENDA
          * 3. Traemos e insertamos las microzonas del modulo de Siebel - Fuente SIEBEL
+         * 4. Traemos e insertamos los pedidos con fecha cita de hoy en adelante de Modulo.
          */
 
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
         $conna = getConnAgendamiento();
+        $this->dbConnect03();
         $today = date("Y-m-d");
+        $iZa=0;
+        $time_start = microtime(true);
 
         // 1.
         $trucanteTable = "truncate table portalbd.go_agen_microzonas";
-        $rTrunc = $this->mysqli->query($trucanteTable);
+        $trucanteTableo = "truncate table portalbd.go_agen_ocupacionmicrozonas";
+        $rTruncm = $this->mysqli->query($trucanteTable);
+        $rTrunco = $this->mysqli->query($trucanteTableo);
 
         //2. desde Subzonas
         $sqlZonasAgendamiento = " 	SELECT ".
-                " CONCAT(SUBSTR(C1.DEPARTAMENTO,1,2),SUBSTR(C1.CIUDAD,1,2),SUBSTR(C1.ZONA,1,2),C1.MICROZONA) AS IDZONA ".
+                " CONCAT(SUBSTR(C1.DEPARTAMENTO,1,2),SUBSTR(C1.CIUDAD,1,2),SUBSTR(C1.ZONA,1,2),C1.MICROZONA,'_MODULO') AS IDZONA ".
                 " , C1.DEPARTAMENTO ".
                 " , C1.CIUDAD ".
                 " , C1.ZONA ".
                 " , C1.MICROZONA ".
-                " , 'MAGENDA' as FUENTE ".
+                " , 'MODULO' as FUENTE ".
                 " FROM(SELECT ".
                 " 	upper(d.dep_departamento) as DEPARTAMENTO ".
                 " ,	IFNULL(UPPER(c.cda_ciudad),'SIN_CIUDAD') AS CIUDAD ".
@@ -12915,6 +12977,7 @@ class API extends REST {
 
         if($rSZA->num_rows > 0){
             //$result = array();
+
             while($row = $rSZA->fetch_assoc()){
 
                 $sqlinsert=" INSERT INTO portalbd.go_agen_microzonas ".
@@ -12922,16 +12985,20 @@ class API extends REST {
                     " VALUES ".
                     " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
                 $rInsertSZA = $this->mysqli->query($sqlinsert);
+                $rowsA=$this->mysqli->affected_rows;
+                if($rowsA==1){
+                    ++$iZa;
+                }
             }
 
         }
         // Desde Ocupados con fecha cita
-        $sqlZonasAgenOcu = 	"select CONCAT(SUBSTR(C1.DEPARTAMENTO,1,2),SUBSTR(C1.CIUDAD,1,2),SUBSTR(C1.ZONA,1,2),C1.MICROZONA) AS IDZONA ".
+        $sqlZonasAgenOcu = 	"select CONCAT(SUBSTR(C1.DEPARTAMENTO,1,2),SUBSTR(C1.CIUDAD,1,2),SUBSTR(C1.ZONA,1,2),C1.MICROZONA,'_MODULO') AS IDZONA ".
             " , C1.DEPARTAMENTO ".
             " , C1.CIUDAD ".
             " , C1.ZONA ".
             " , C1.MICROZONA ".
-            " , 'MAGENDA' as FUENTE ".
+            " , 'MODULO' as FUENTE ".
             " from(SELECT ".
             " a.agm_id as IDGENDAMIENTO ".
             " , a.agm_pedido as PEDIDO_ID ".
@@ -12994,6 +13061,7 @@ class API extends REST {
 
         if($rSZAOcu->num_rows > 0){
             //$result = array();
+
             while($row = $rSZAOcu->fetch_assoc()){
 
                 $sqlinsert=" INSERT INTO portalbd.go_agen_microzonas ".
@@ -13001,8 +13069,160 @@ class API extends REST {
                     " VALUES ".
                     " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
                 $rInsertSZAOcu = $this->mysqli->query($sqlinsert);
+                $rowsB=$this->mysqli->affected_rows;
+                if($rowsB==1){
+                    ++$iZa;
+                }
             }
-            $this->response($this->json(array('Exito')), 200); // send user details
+        }
+
+        //3.
+        $sqlZonasSiebel = " SELECT ".
+            " CONCAT(SUBSTR(DEPARTAMENTO,1,2),ZONA,'MICRO_SIEBEL') AS IDZONA ".
+            " , DEPARTAMENTO ".
+            " , ZONA as CIUDAD ".
+            " , ZONA ".
+            " , 'MICRODEFAULT' as MICROZONA ".
+            " , 'SIEBEL' as FUENTE ".
+            " FROM alistamiento.parametrizacion_siebel ".
+            " group by  ".
+            " DEPARTAMENTO,  ".
+            " ZONA ";
+
+        $rSZS = $this->mysqli03->query($sqlZonasSiebel);
+
+        if($rSZS->num_rows > 0){
+
+            while($row = $rSZS->fetch_assoc()){
+
+                $sqlinsert=" INSERT INTO portalbd.go_agen_microzonas ".
+                    " ( IDZONA, DEPARTAMENTO, CIUDAD, ZONA, MICROZONA, FUENTE) ".
+                    " VALUES ".
+                    " ('".$row['IDZONA']."','".$row['DEPARTAMENTO']."','".$row['CIUDAD']."','".$row['ZONA']."','".$row['MICROZONA']."','".$row['FUENTE']."') ";
+                $rInsertSZS = $this->mysqli->query($sqlinsert);
+                $rowsC=$this->mysqli->affected_rows;
+                if($rowsC==1){
+                    ++$iZa;
+                }
+            }
+            $smg1=$iZa." Microzonas Insertadas";
+
+        }
+
+        //4.
+        $sqlOcuModulo = " 	SELECT ".
+            " C1.PEDIDO_ID ".
+            " , C1.FECHA_CITA ".
+            " , C1.JORNADA ".
+            " , C1.UEN ".
+            " , C1.PRIORIDAD ".
+            " , C1.DEPARTAMENTO ".
+            " , C1.CIUDAD ".
+            " , C1.ZONA ".
+            " , C1.MICROZONA ".
+            " , C1.FUENTE ".
+            " FROM (SELECT ".
+            "  a.agm_pedido as PEDIDO_ID ".
+            "  , a.agm_fechacita as FECHA_CITA ".
+            " , case ".
+            " 	when a.agm_jornadacita='Hora Fija' then 'HF'  ".
+            "     else a.agm_jornadacita ".
+            " 	end as JORNADA ".
+            " , a.agm_segmento as UEN ".
+            " , case ".
+            " 	 WHEN (sbag.sag_prioridad='' or sbag.sag_prioridad is null )then 'SIN_PRIORIDAD'  ".
+            " 	else upper(sbag.sag_prioridad) ".
+            " end as PRIORIDAD ".
+            " , upper(d.dep_departamento) as DEPARTAMENTO ".
+            " , ifnull(upper(c.cda_ciudad),'SIN_CIUDAD') as CIUDAD ".
+            " ,	CASE   ".
+            " 		WHEN (d.dep_departamento = 'Antioquia'   ".
+            " 			AND a.agm_microzona IN ('AMERICA','BUENOS_AIR','CEN','CENTRO','COLON','MIRAFLORES','NUTIBARA','OTRABANDA','SAN_BERN_1','SAN_BERN_2','SAN_JAVIER','VILLAHERMO'))  ".
+            " 		THEN 'CENTRO'  ".
+            " 		WHEN d.dep_departamento = 'Antioquia'     ".
+            " 			AND a.agm_microzona IN ('BARCOPGIR','BELLO_1','BELLO_2','BELLO_3','BERLIN','BOSQUE_1','BOSQUE_2','CARIBE','CASTILLA','FLORENCIA','GIR','IGUANA','IGUSANCRI','NIQUIA','NOR')   ".
+            " 		THEN 'NORTE'  ".
+            " 		WHEN d.dep_departamento = 'Antioquia'     ".
+            " 			AND a.agm_microzona IN ('CALDAS','ENVIGADO_1','ENVIGADO_2','ENVIGADO_3','ESTRELLA','GUAYABAL','ITAGUI_1','ITAGUI_2','ITAGUI_3','POBLADO_1','POBLADO_2','SABANETA','SANANTPRA','SUR-ENV','SUR','SUR-SAB')   ".
+            " 		THEN 'SUR'     ".
+            " 		WHEN d.dep_departamento = 'Antioquia'     ".
+            " 			AND a.agm_microzona IN ('M1_ORIENTE', 'M2_ORIENTE', 'M3_ORIENTE', 'M4_ORIENTE' , 'M5_ORIENTE' ,'M6_ORIENTE','M7_ORIENTE','M8_ORIENTE','RIO', 'PALMAS', 'SANTAELENA')   ".
+            " 		THEN 'ORIENTE'      ".
+            " 		WHEN a.agm_microzona IN ('CAR','M1_CARTAGE','M2_CARTAGE','M3_CARTAGE','M4_CARTAGE','M5_CARTAGE') THEN 'CARTAGENA'  ".
+            " 		WHEN a.agm_microzona IN ('TUR', 'M6_CARTAGE')  THEN 'TURBACO'   ".
+            " 		WHEN a.agm_microzona IN ('CAN','DEFAULT','ENG','QCA','SUB','NORTE') THEN 'BOGOTA NORTE'    ".
+            " 		WHEN a.agm_microzona IN ('BOSA','ECA','FRG','TIMIZA','SUR') THEN 'BOGOTA SUR'   ".
+            " 		WHEN a.agm_microzona IN ('VAL','Valle del Cauca') THEN 'CALI'     ".
+            " 		WHEN a.agm_microzona = 'PAL' THEN 'PALMIRA'   ".
+            " 		WHEN a.agm_microzona = 'JAM' THEN 'JAMUNDI'   ".
+            " 		WHEN d.dep_departamento IN ('Bolivar','Atlantico','Cundinamarca','Valle del Cauca') THEN UPPER(d.dep_departamento)  ".
+            "         else 'SIN_ZONA' ".
+            " END AS ZONA ".
+            " , case ".
+            " 	 WHEN (a.agm_microzona='' or a.agm_microzona is null )then 'MICRODEFAULT'  ".
+            " 	else upper(a.agm_microzona) ".
+            " end as MICROZONA ".
+            " , 'FENIX_NAL' as FUENTE ".
+            " FROM dbAgendamiento.agn_agendamientos a ".
+            " left join agn_subagendas sbag on a.agm_agenda = sbag.sag_id ".
+            " left join agn_agendas ag on sbag.sag_agenda = ag.ads_id ".
+            " left join agn_departamentos d on a.agm_departamento=d.dep_id ".
+            " left join agn_ciudades c on a.agm_ciudad=c.cda_id ".
+            " where 1=1 ".
+            " and (a.agm_estadototal not in ('Anulado','Cumplido') ".
+            " or a.agm_estadototal='') ".
+            " and a.agm_fechacita >= CURDATE() ) C1 ";
+
+        $rOcuModulo = $conna->query($sqlOcuModulo);
+
+        if($rOcuModulo->num_rows > 0){
+            $iOcM=0;
+            $ii=0;
+            $data=array();
+            $sepp="";
+            $fields="";
+            //2017-02-03 Mauricio: tener los nombres de los campos en una variable
+            $sep="";
+            while ($property = mysqli_fetch_field($rOcuModulo)) {
+                $fields .=$sep.$property->name;
+                $sep=",";
+            }
+            //$fields .="";
+
+            $subinsert="";
+            while($row = $rOcuModulo->fetch_assoc()){
+                ++$iOcM;
+                $data[]=$row;
+
+                //$subinsert=$sqlinsert;
+                $sep="";
+                $tmpinsert=" (";
+                foreach ($row as $item) {
+                    //$subinsert="$subinsert $sep '$item'";
+                    $tmpinsert="$tmpinsert  $sep '$item' ";
+                    $sep=",";
+                }
+                $subinsert.="$sepp $tmpinsert) ";
+
+                $ii++;
+                $sepp=",";
+                if($ii % 1000 == 0){
+                    echo "Carga: $ii<br>";
+                    $subinsert="insert into go_agen_ocupacionmicrozonas ($fields) values $subinsert";
+                    $this->mysqli->query($subinsert);
+                    $subinsert="";
+                    $sepp="";
+                    //echo $subinsert."<br>";
+
+                }
+            }
+
+
+            $smg2=$iOcM." Pedidos Insertados";
+            $time_end = microtime (true);
+            $time = $time_end - $time_start;
+            $this->response ($this->json ([$smg1, $smg2, $time]), 200); // send user details
+
         }
 
         $this->response('',403);        // If no records "No Content" status
