@@ -13185,7 +13185,7 @@ class API extends REST {
             while ($property = mysqli_fetch_field($result)) {
                 $fields .=$property->name;
             }
-            $fields .="";
+            //$fields .="";
 
             $subinsert="";
             while($row = $rOcuModulo->fetch_assoc()){
