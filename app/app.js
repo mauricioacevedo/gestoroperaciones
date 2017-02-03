@@ -13657,6 +13657,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 $scope.pedido1 = $scope.peds[0].PEDIDO_ID;
                 $scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
                 $scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
+                $scope.prioridadPedido=$scope.peds[0].PRIORIDAD;
                 $scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
                 $scope.pedidoIsActive = true;
                 $rootScope.errorDatos = null;
