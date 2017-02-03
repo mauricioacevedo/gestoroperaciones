@@ -6398,9 +6398,10 @@ class API extends REST {
 
     }
 
-
-    //este demepedido valida contra fenix antes de suministrar el pedido...
-    //DemePedidoPetec Principal, Asignaciones - Reconfiguracion - Edatel - Siebel.
+    /**
+     *Funcion principal para la entrega de peidos en el sistema.
+     * Aplica para los grupos: Asignaciones, Reconfiguracion, Edatel, Siebel.
+     */
     private function demePedido(){
 
 
@@ -6731,21 +6732,46 @@ class API extends REST {
         $sqlupdate="update informe_petec_pendientesm set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO_ID = '$mypedido' and (STATUS='PENDI_PETEC'||STATUS='BUSCADO_PETEC' || STATUS='PENDI_RENUMS')";
         $x = $this->mysqli->query($sqlupdate);
 
-        $query1="	SELECT b.ID,b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.TIPO_ELEMENTO_ID,b.PRODUCTO, b.PRODUCTO_ID,	".
-            "	b.UEN_CALCULADA,b.ESTRATO,b.MUNICIPIO_ID,b.DIRECCION_SERVICIO,b.PAGINA_SERVICIO, b.TECNOLOGIA_ID,	".
-            "	CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(b.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,	".
-            "	b.FUENTE,b.CONCEPTO_ID,b.FECHA_ESTADO,b.USUARIO_BLOQUEO_FENIX,b.TIPO_TRABAJO, b.DESC_TIPO_TRABAJO,	".
-            "	b.CONCEPTO_ANTERIOR,b.FECHA_CITA,b.CANTIDAD_EQU,b.EQUIPOS,b.CONCEPTOS_EQU,b.TIPO_EQUIPOS,	".
-            "	b.EXTENSIONES, b.OBSERVACIONES,  b.EJECUTIVO_ID, b.CANAL_ID, b.VEL_IDEN, b.VEL_SOLI, b.IDENTIFICADOR_ID, b.CELULAR_AVISAR, b.TELEFONO_AVISAR,	".
-            "	cast(ifnull(c.Total_Contactos,'SIN LLAMADAS') AS CHAR(255)) as LLAMADAS, b.PROGRAMACION, c.ULTIMO_CONTACTO 	".
-            "	from informe_petec_pendientesm b 	".
-            "	left join (SELECT e.pedido_id, count(e.pedido_id) as Total_Contactos, 	".
-            "			max(e.fecha_fin) as Ultimo_Contacto		".
-            "			FROM portalbd.pedidos e		".
-            "			WHERE e.ESTADO = 'VOLVER A LLAMAR' 	".
-            "			group by e.PEDIDO_ID) c	 	".
-            "	        on c.PEDIDO_id = b.pedido_id 	".
-            "	where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto ";
+        $query1="SELECT b.ID, ".
+            " b.PEDIDO_ID, ".
+            " b.SUBPEDIDO_ID, ".
+            " b.SOLICITUD_ID, ".
+            " b.TIPO_ELEMENTO_ID, ".
+            " b.PRODUCTO, ".
+            " b.PRODUCTO_ID,	".
+            " b.UEN_CALCULADA, ".
+            " b.ESTRATO, ".
+            " b.MUNICIPIO_ID, ".
+            " b.DIRECCION_SERVICIO, ".
+            " b.PAGINA_SERVICIO, ".
+            " b.TECNOLOGIA_ID,	".
+            " CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(b.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,	".
+            " b.FUENTE, ".
+            " b.CONCEPTO_ID, ".
+            " b.FECHA_ESTADO, ".
+            " b.USUARIO_BLOQUEO_FENIX, ".
+            " b.TIPO_TRABAJO, ".
+            " b.DESC_TIPO_TRABAJO,	".
+            " b.CONCEPTO_ANTERIOR, ".
+            " b.FECHA_CITA, ".
+            " b.CANTIDAD_EQU, ".
+            " b.EQUIPOS, ".
+            " b.CONCEPTOS_EQU, ".
+            " b.TIPO_EQUIPOS,	".
+            " b.EXTENSIONES,  ".
+            " b.OBSERVACIONES,  ".
+            " b.EJECUTIVO_ID, ".
+            " b.CANAL_ID, ".
+            " b.VEL_IDEN, ".
+            " b.VEL_SOLI, ".
+            " b.IDENTIFICADOR_ID, ".
+            " b.CELULAR_AVISAR, ".
+            " b.TELEFONO_AVISAR,	".
+            " cast(ifnull(c.Total_Contactos,'SIN LLAMADAS') AS CHAR(255)) as LLAMADAS, ".
+            " b.PROGRAMACION, ".
+            " case when b.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ALTA' else 'NORMAL' end as PRIORIDAD 	".
+            " from informe_petec_pendientesm b 	".
+            " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto ";
 
         //"SELECT b.ID,b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.TIPO_ELEMENTO_ID,b.PRODUCTO,b.UEN_CALCULADA,b.ESTRATO,b.MUNICIPIO_ID,b.DIRECCION_SERVICIO,b.PAGINA_SERVICIO,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(b.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,b.FUENTE,b.CONCEPTO_ID,b.FECHA_ESTADO,b.USUARIO_BLOQUEO_FENIX,b.TIPO_TRABAJO,b.CONCEPTO_ANTERIOR,b.FECHA_CITA,b.CANTIDAD_EQU,b.EQUIPOS,b.CONCEPTOS_EQU,b.TIPO_EQUIPOS,b.EXTENSIONES, b.OBSERVACIONES,  b.EJECUTIVO_ID, b.CANAL_ID from informe_petec_pendientesm b where b.PEDIDO_ID = '$mypedido' and b.STATUS='PENDI_PETEC' $concepto ";
 
