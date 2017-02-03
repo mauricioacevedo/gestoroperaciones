@@ -3196,6 +3196,8 @@ class API extends REST {
             $this->response('',406);
         }
 
+        /*
+         * Query viejo, cuenta por servicios.*
 
         $queryConceptos=" select".
             " C1.CONCEPTO_ID".
@@ -3250,6 +3252,36 @@ class API extends REST {
             " FROM `portalbd`.`informe_petec_pendientesm` PP ".
             " where (PP.STATUS= 'PENDI_PETEC' or PP.STATUS= 'MALO' ) and PP.FUENTE in ('FENIX_NAL','FENIX_BOG','EDATEL','SIEBEL')) C1".
             " group by C1.CONCEPTO_ID order by count(*) DESC";
+        */
+
+        $queryConceptos="SELECT ".
+            " C2.CONCEPTO_ID ".
+            " , COUNT(*) AS CANTIDAD ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 0 AND (C2.RANGO_PENDIENTE) <= 2 THEN 1 ELSE 0 END) as 'Entre02' ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 3 AND (C2.RANGO_PENDIENTE) <= 4 THEN 1 ELSE 0 END) as 'Entre34' ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 5 AND (C2.RANGO_PENDIENTE) <= 6 THEN 1 ELSE 0 END) as 'Entre56' ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 7 AND (C2.RANGO_PENDIENTE) <= 12 THEN 1 ELSE 0 END) as 'Entre712' ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 13 AND (C2.RANGO_PENDIENTE) <= 24 THEN 1 ELSE 0 END) as 'Entre1324' ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 25 AND (C2.RANGO_PENDIENTE) <= 48 THEN 1 ELSE 0 END) as 'Entre2548' ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) > 48 THEN 1 ELSE 0 END) as 'Masde48' ".
+            " FROM(SELECT ".
+            " C1.PEDIDO_ID ".
+            " , MAX(C1.CONCEPTO_ID) AS CONCEPTO_ID ".
+            " , MAX(C1.RANGO_PENDIENTE) AS RANGO_PENDIENTE ".
+            " FROM(select ".
+            " PP.PEDIDO_ID ".
+            " , case   ".
+            "        when PP.FUENTE='FENIX_NAL' and PP.CONCEPTO_ID='PETEC' AND PP.STATUS!='MALO' then 'PETEC-NAL'  ".
+            "        when PP.FUENTE='FENIX_BOG' and PP.CONCEPTO_ID='PETEC' AND PP.STATUS!='MALO' then 'PETEC-BOG'  ".
+            "        WHEN PP.STATUS='MALO' THEN 'MALO' ".
+            "        else PP.CONCEPTO_ID  ".
+            "      end as CONCEPTO_ID ".
+            " , HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) AS RANGO_PENDIENTE ".
+            " FROM portalbd.informe_petec_pendientesm PP ".
+            " WHERE PP.STATUS IN ('PENDI_PETEC','MALO') ) C1  ".
+            " GROUP BY C1.PEDIDO_ID ) C2 ".
+            " GROUP BY C2.CONCEPTO_ID ".
+            " order by count(*) DESC ";
         $rr = $this->mysqli->query($queryConceptos) or die($this->mysqli->error.__LINE__);
 
         $queryConceptos = array();
