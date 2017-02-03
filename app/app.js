@@ -9439,7 +9439,23 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 		}
 	};
 
+$scope.set_color = function (service) {
 
+
+		if (service.PROCESO == 'REPARACION' && service.TIEMPO_TOTAL>= 10) {
+			$scope.error = 'CHICHARRON SERGIO';
+			//alert('pedido especial');
+
+			$scope.estilo = {
+				"color": "white",
+				"background-color": "red",
+				"font-size": "10px",
+				"padding": "2px"
+			};
+
+			return $scope.estilo;
+		}
+	};
 
 	$scope.set_color_Cuartil = function (value) {
 
