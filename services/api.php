@@ -13192,7 +13192,7 @@ class API extends REST {
                     $tmpinsert="$tmpinsert  $sep '$item' ";
                     $sep=",";
                 }
-                $tmpinsert="$sep $tmpinsert) ";
+                $tmpinsert="$sepp $tmpinsert) ";
                 $ii++;
                 $sepp=",";
                 if($ii % 100 == 0){
