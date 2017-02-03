@@ -13182,7 +13182,7 @@ class API extends REST {
             $sepp="";
             $fields="";
             //2017-02-03 Mauricio: tener los nombres de los campos en una variable
-            $sep=",";
+            $sep="";
             while ($property = mysqli_fetch_field($rOcuModulo)) {
                 $fields .=$sep.$property->name;
                 $sep=",";
@@ -13207,7 +13207,7 @@ class API extends REST {
                 $ii++;
                 $sepp=",";
                 if($ii % 100 == 0){
-                    $subinsert="insert into ($fields) values $subinsert";
+                    $subinsert="insert into go_agen_ocupacionmicrozonas ($fields) values $subinsert";
                     echo $subinsert."<br>";
 
                 }
