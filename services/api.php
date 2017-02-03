@@ -3983,10 +3983,18 @@ class API extends REST {
         }
 
         $query= " SELECT concepto_id as label, COUNT(*) as value ".
-            " FROM  informe_petec_pendientesm ".
-            " WHERE (STATUS='PENDI_PETEC' or STATUS='MALO') ".
-            " GROUP BY concepto_id ".
-            " ORDER BY COUNT(*) DESC";
+                "   FROM(SELECT ".
+                "    DISTINCT ".
+                "    PEDIDO_ID ".
+                "    , CASE  ".
+                "        WHEN STATUS='MALO'  THEN 'MALO' ".
+                "        ELSE CONCEPTO_ID END AS CONCEPTO_ID ".
+                "    , STATUS ".
+                "    , FUENTE ".
+                "    FROM informe_petec_pendientesm ".
+                "    WHERE (STATUS='PENDI_PETEC' or STATUS='MALO') ) C1 ".
+                "    GROUP BY concepto_id ".
+                "    ORDER BY COUNT(*) DESC ";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
