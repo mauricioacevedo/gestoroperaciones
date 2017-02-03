@@ -13210,6 +13210,7 @@ class API extends REST {
                     $subinsert="insert into go_agen_ocupacionmicrozonas ($fields) values $subinsert";
                     $this->mysqli->query($subinsert);
                     $subinsert="";
+                    $sepp="";
                     //echo $subinsert."<br>";
 
                 }
