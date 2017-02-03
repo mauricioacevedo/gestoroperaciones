@@ -13182,8 +13182,10 @@ class API extends REST {
             $sepp="";
             $fields="";
             //2017-02-03 Mauricio: tener los nombres de los campos en una variable
+            $sep=",";
             while ($property = mysqli_fetch_field($rOcuModulo)) {
-                $fields .=$property->name;
+                $fields .=$sep.$property->name;
+                $sep=",";
             }
             //$fields .="";
 
