@@ -3293,9 +3293,8 @@ class API extends REST {
             }
         }
 
-
-
-
+        /*
+         * *Query viejo para sacar los pendientes segun su fecha cita por servicios
         $query=    " select  ".
             "       C1.CONCEPTO_ID  ".
             "     , count(*) as CANTIDAD  ".
@@ -3334,7 +3333,44 @@ class API extends REST {
             "            FROM portalbd.informe_petec_pendientesm PP   ".
             "    where (PP.STATUS= 'PENDI_PETEC' or PP.STATUS= 'MALO' ) and PP.FUENTE in ('FENIX_NAL','FENIX_BOG','EDATEL','SIEBEL')) C1  ".
             "    group by C1.CONCEPTO_ID order by count(*) DESC ";
+        */
         //echo $query;
+        $query="SELECT ".
+               " C2.CONCEPTO_ID ".
+               " , COUNT(*) AS CANTIDAD ".
+               " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Ayer' THEN 1 ELSE 0 END) as 'Ayer' ".
+               " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Hoy' THEN 1 ELSE 0 END) as 'Hoy' ".
+               " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Manana' THEN 1 ELSE 0 END) as 'Manana' ".
+               " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Pasado_Manana' THEN 1 ELSE 0 END) as 'Pasado_Manana' ".
+               " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Mas_3dias' THEN 1 ELSE 0 END) as 'Mas_de_3_dias' ".
+               " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Sin_Agenda' THEN 1 ELSE 0 END) as 'Sin_Fecha_Cita' ".
+               " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Viejos' THEN 1 ELSE 0 END) as 'Viejos' ".
+               " FROM(SELECT ".
+               " C1.PEDIDO_ID ".
+               " , MAX(C1.CONCEPTO_ID) AS CONCEPTO_ID ".
+               " , MAX(C1.RANGO_PENDIENTE) AS RANGO_PENDIENTE ".
+               " FROM(select ".
+               " PP.PEDIDO_ID ".
+               " , case    ".
+               "     when PP.FUENTE='FENIX_NAL' and PP.CONCEPTO_ID='PETEC' AND PP.STATUS!='MALO' then 'PETEC-NAL' ".
+               "     when PP.FUENTE='FENIX_BOG' and PP.CONCEPTO_ID='PETEC' AND PP.STATUS!='MALO' then 'PETEC-BOG'   ".
+               "     WHEN PP.STATUS='MALO' THEN 'MALO' ".
+               "  else PP.CONCEPTO_ID  end as CONCEPTO_ID ".
+               " , cast((CASE ".
+               "        WHEN  PP.FECHA_CITA='9999-00-00' OR PP.FECHA_CITA='0000-00-00' THEN 'Sin_Agenda'   ".
+               "        WHEN  PP.FECHA_CITA= DATE_SUB(CURDATE() , INTERVAL 1 DAY) THEN 'Ayer'   ".
+               "        WHEN  PP.FECHA_CITA=current_date() THEN 'Hoy'    ".
+               "        WHEN  PP.FECHA_CITA=DATE_ADD(CURDATE(), INTERVAL 1 DAY) THEN 'Manana'     ".
+               "        WHEN  PP.FECHA_CITA=DATE_ADD(CURDATE(), INTERVAL 2 DAY) THEN 'Pasado_Manana'    ".
+               "        WHEN  PP.FECHA_CITA>=DATE_ADD(CURDATE(), INTERVAL 3 DAY) THEN 'Mas_3dias'   ".
+               "        WHEN  PP.FECHA_CITA<= DATE_SUB(CURDATE() , INTERVAL 1 DAY) THEN 'Viejos'   ".
+               "        else PP.FECHA_CITA  ".
+               "     END ) as char )AS RANGO_PENDIENTE ".
+               " FROM portalbd.informe_petec_pendientesm PP ".
+               " WHERE PP.STATUS IN ('PENDI_PETEC','MALO') ) C1  ".
+               " GROUP BY C1.PEDIDO_ID ) C2 ".
+               " GROUP BY C2.CONCEPTO_ID ".
+               " order by count(*) DESC ";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
