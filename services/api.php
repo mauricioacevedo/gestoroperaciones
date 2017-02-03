@@ -13194,10 +13194,10 @@ class API extends REST {
                 $tmpinsert="$tmpinsert) ";
                 $ii++;
                 if($ii % 100 == 0){
-
+                    echo $tmpinsert;
                 }
             }
-            echo $tmpinsert;
+
 
             $smg2=$iOcM." Pedidos Insertados";
             $time_end = microtime (true);
