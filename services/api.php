@@ -13180,24 +13180,34 @@ class API extends REST {
             $ii=0;
             $data=array();
             $sepp="";
+            $fields="";
+            //2017-02-03 Mauricio: tener los nombres de los campos en una variable
+            while ($property = mysqli_fetch_field($result)) {
+                $fields .=$property->name;
+            }
+            $fields .="";
+
+            $subinsert="";
             while($row = $rOcuModulo->fetch_assoc()){
                 ++$iOcM;
                 $data[]=$row;
 
-                $subinsert=$sqlinsert;
+                //$subinsert=$sqlinsert;
                 $sep="";
-                $tmpinsert="$tmpinsert (";
+                $tmpinsert=" (";
                 foreach ($row as $item) {
-                    $subinsert="$subinsert $sep '$item'";
+                    //$subinsert="$subinsert $sep '$item'";
                     $tmpinsert="$tmpinsert  $sep '$item' ";
                     $sep=",";
                 }
-                $tmpinsert="$sepp $tmpinsert) ";
+                $subinsert.="$sepp $tmpinsert) ";
+
                 $ii++;
                 $sepp=",";
                 if($ii % 100 == 0){
-                    echo $tmpinsert;
-                    $tmpinsert="";
+                    $subinsert="insert into ($fields) values $subinsert";
+                    echo $subinsert."<br>";
+
                 }
             }
 
