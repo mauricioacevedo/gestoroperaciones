@@ -9439,31 +9439,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 		}
 	};
 
-    $scope.set_color = function (service) {
 
-
-			if (service.PROCESO == 'REPARACION' && service.TIEMPO_TOTAL >= 10) {
-				$scope.error = 'chocharron';
-
-				$scope.estilo = {
-					"color": "white",
-					"background-color": "red",
-					"font-size": "10px",
-					"padding": "2px"
-				};
-
-			} else {
-
-				$scope.estilo = {
-					"list-style-position": "inside",
-					"border-left": "5px solid " + colorNormal
-				};
-			}
-
-			return $scope.estilo;
-
-		}
-	};
 
 	$scope.set_color_Cuartil = function (value) {
 
