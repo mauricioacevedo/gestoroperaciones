@@ -6544,6 +6544,30 @@ class API extends REST {
                 }
             }
 
+            //2017-02-03 Mauricio: se agrega funcionalidad para buscar por arbol en concepto 14
+                //HAGO LA CONSULTA DE PRIORIDAD POR ARBOL
+                $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA ".
+                    " FROM  informe_petec_pendientesm ".
+                    " WHERE ".
+                    " RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM') ".
+                    " AND ASESOR='' ".
+                    " AND CONCEPTO_ID = '$concepto' ".
+                    " AND STATUS='PENDI_PETEC' ".
+                    $plaza2.
+                    " ORDER BY FECHA_ESTADO ASC ";
+
+                $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
+
+                if($rr->num_rows > 0){//recorro los registros de la consulta para
+                    while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
+                        $result[] = $row;
+                        $mypedido=$row['PEDIDO_ID'];
+                        $mypedidoresult=$rta;
+                        $ATENCION_INMEDIATA="1";
+                        break;
+                    }
+                }
+
 
             //$concepto=" and b.CONCEPTO_ID='$concepto' and b.TIPO_ELEMENTO_ID IN('ACCESP','INSIP','INSHFC','TO','TOIP','STBOX') and b.UEN_CALCULADA ='HG' AND b.PROGRAMACION='' ";
             $concepto=" and b.CONCEPTO_ID='$concepto' AND b.PROGRAMACION='' ";
