@@ -993,7 +993,7 @@ class API extends REST {
                 $columns = '';
                 $values = '';
 
-                $sqlupdate="update informe_petec_pendientesm set PROGRAMACION='$programacion' WHERE STATUS='PENDI_PETEC' and PEDIDO_ID='".$PEDIDO_ID."' ";
+                $sqlupdate="update informe_petec_pendientesm set PROGRAMACION='$programacion', RADICADO_TEMPORAL='NO' WHERE STATUS='PENDI_PETEC' and PEDIDO_ID='".$PEDIDO_ID."' ";
 
                 $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
 
