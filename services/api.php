@@ -1013,7 +1013,7 @@ class API extends REST {
                 $query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado,concepto_final,source) VALUES(".trim($values,',').",'$fecha_estado','$concepto_final','$sourcee')";
                 //echo $query;
                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-                $sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$today',STATUS='PENDI_PETEC',PROGRAMACION='$programacion',ASESOR='' WHERE ID=$iddd ";
+                $sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$today',STATUS='PENDI_PETEC',PROGRAMACION='$programacion',ASESOR='' , RADICADO_TEMPORAL='NO' WHERE ID=$iddd ";
 
                 $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
 
