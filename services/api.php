@@ -6572,7 +6572,7 @@ class API extends REST {
                     }
                 }
 
-                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA','INSTIP')  ";
+                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA','INSTIP','STBOX','EQURED')  ";
 
             }
         }
@@ -6648,7 +6648,7 @@ class API extends REST {
         }else if($concepto=="14B2B"){
             $concepto=" and b.CONCEPTO_ID='$concepto' and ( b.UEN_CALCULADA !='HG' ) ";
         }else{
-            $concepto=" and b.CONCEPTO_ID='$concepto' and b.TIPO_ELEMENTO_ID IN('ACCESP','INSIP','INSHFC','TO','TOIP')";
+            $concepto=" and b.CONCEPTO_ID='$concepto' and b.TIPO_ELEMENTO_ID IN('ACCESP','INSIP','INSHFC','TO','TOIP','STBOX','EQURED')";
             //$concepto=" and b.CONCEPTO_ID='$concepto' ";
         }
 
