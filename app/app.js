@@ -2743,6 +2743,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.ordenamientoDemepedido = '';
 	$scope.ordenamientoDemepedidoReconfiguracion = '';
 	$scope.ordenamientoDemepedidoUpdate = '';
+    $rootScope.errorDatos = "";
 
 
 	$scope.intervalFeed = 0;
