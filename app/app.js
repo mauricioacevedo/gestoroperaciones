@@ -12829,7 +12829,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		$scope.programar=false;
 	};
 
-	$scope.listarOpcionesAsginacion();//  --------------------------------Cargar Opciones para la gestion
+	//$scope.listarOpcionesAsginacion();//  --------------------------------Cargar Opciones para la gestion
 
 	var pedidos = services.getPedidosUser(userID).then(function (data) {
 		$scope.pedidos = data.data[0];
