@@ -12058,6 +12058,11 @@ class API extends REST {
         if($localidad==""||$localidad=="undefined"){
             $localidad="MEDELLIN";
         }
+        if($direccion==""||$direccion=="undefined"){
+            $paramdir="";
+        }else{
+            $paramdir=" and upper(e.DIREC_INSTALACION) like '%$direccion%' ";
+        }
 
         $query=	" SELECT ".
             "	e.LOCALIDAD ".
@@ -12080,7 +12085,7 @@ class API extends REST {
             "	, e.DESCP_ESTRA ".
             "	FROM gestor_informes.eda_clientes e ".
             "	where e.LOCALIDAD='$localidad' ".
-            "	and upper(e.DIREC_INSTALACION) like '%$direccion%' ".
+            "	$paramdir ".
             "	ORDER BY 1 ASC ";
 
         //echo $query;
