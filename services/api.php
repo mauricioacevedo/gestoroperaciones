@@ -12085,7 +12085,7 @@ class API extends REST {
             "	, e.DESCP_ESTRA ".
             "	FROM gestor_informes.eda_clientes e ".
             "	where e.LOCALIDAD='$localidad' ".
-            "	$paramdir ;
+            "	$paramdir ";
 
         //echo $query;
         $r = $this->mysqli03->query($query) or die($this->mysqli03->error.__LINE__);
