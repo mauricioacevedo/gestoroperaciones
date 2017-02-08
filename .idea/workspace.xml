@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/gestor.css" afterPath="$PROJECT_DIR$/css/gestor.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" afterPath="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
     <ignored path="node_modules/angular-notify/package.json" />
@@ -89,21 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gestor.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/css/gestor.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="820">
-              <caret line="446" column="1" lean-forward="false" selection-start-line="446" selection-start-column="1" selection-end-line="446" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pendientes_asignaciones.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pendientes_asignaciones.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="833">
-              <caret line="134" column="47" lean-forward="true" selection-start-line="134" selection-start-column="47" selection-end-line="134" selection-end-column="47" />
+            <state relative-caret-position="527">
+              <caret line="116" column="28" lean-forward="false" selection-start-line="116" selection-start-column="28" selection-end-line="116" selection-end-column="28" />
               <folding>
                 <element signature="n#style#0;n#label#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -171,9 +160,9 @@
         <option value="$PROJECT_DIR$/partials/asignaciones/indicadores_asignaciones.html" />
         <option value="$PROJECT_DIR$/services/api.php" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" />
         <option value="$PROJECT_DIR$/app/app.js" />
         <option value="$PROJECT_DIR$/css/gestor.css" />
+        <option value="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" />
       </list>
     </option>
   </component>
@@ -939,14 +928,7 @@
       <workItem from="1486414759336" duration="590000" />
       <workItem from="1486472370149" duration="1633000" />
       <workItem from="1486490400498" duration="5357000" />
-      <workItem from="1486554402928" duration="5619000" />
-    </task>
-    <task id="LOCAL-00364" summary="Pendientes Grafica ahora muestra pedidos unicos y malos">
-      <created>1486130329029</created>
-      <option name="number" value="00364" />
-      <option name="presentableId" value="LOCAL-00364" />
-      <option name="project" value="LOCAL" />
-      <updated>1486130329029</updated>
+      <workItem from="1486554402928" duration="5938000" />
     </task>
     <task id="LOCAL-00365" summary="Pendientes Grafica ahora muestra pedidos unicos y malos">
       <created>1486130471172</created>
@@ -1284,11 +1266,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486560506480</updated>
     </task>
-    <option name="localTasksCounter" value="413" />
+    <task id="LOCAL-00413" summary="Se agrega estado a pendientes">
+      <created>1486560592186</created>
+      <option name="number" value="00413" />
+      <option name="presentableId" value="LOCAL-00413" />
+      <option name="project" value="LOCAL" />
+      <updated>1486560592186</updated>
+    </task>
+    <option name="localTasksCounter" value="414" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="176319000" />
+    <option name="totallyTimeSpent" value="176638000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -3073,13 +3062,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
+    <entry file="file://$PROJECT_DIR$/css/gestor.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="134" column="47" lean-forward="true" selection-start-line="134" selection-start-column="47" selection-end-line="134" selection-end-column="47" />
-          <folding>
-            <element signature="n#style#0;n#label#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="820">
+          <caret line="446" column="1" lean-forward="false" selection-start-line="446" selection-start-column="1" selection-end-line="446" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3133,11 +3120,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/gestor.css">
+    <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="820">
-          <caret line="446" column="1" lean-forward="false" selection-start-line="446" selection-start-column="1" selection-end-line="446" selection-end-column="1" />
-          <folding />
+        <state relative-caret-position="527">
+          <caret line="116" column="28" lean-forward="false" selection-start-line="116" selection-start-column="28" selection-end-line="116" selection-end-column="28" />
+          <folding>
+            <element signature="n#style#0;n#label#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
