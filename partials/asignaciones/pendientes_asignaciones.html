@@ -88,7 +88,7 @@
 								<td><label style="color:red" >{{data.TIEMPO_COLA}}</label></td>
 								<td><span class="small">{{data.PROGRAMACION}}</span></td>
 								<td><span class="small">{{data.CONCEPTO_ID}}</span></td>
-								<td><span class="small"><label style="color:red" >{{data.STATUS}}</label></span></td>
+								<td><span class="small"><label ng-style="{'color':data.STATUS=='MALO' && 'red' || 'blue' }">{{data.STATUS}}</label></span></td>
 								<td><span class="small">{{data.UEN_CALCULADA}}</span></td>
 								<td><span class="small">{{data.MUNICIPIO_ID}}</span></td>
 								<td><span class="small">{{data.FECHA_ESTADO}}</span></td>
