@@ -138,7 +138,9 @@
 							</td>
                                 </tr>
                                 <tr>
-                                    <td>Pendientes GTC Suspecore Siebel</td>
+                                    <div class="panel-footer clearfix">
+						Total: <span class="label label-success">{{PendiSiebel|sumarNum:'value'}}</span>
+					</div>
                                     <td>
 								<button class="btn btn-success btn-xs" ng-click="csvActivacionSiebelinvdom();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
 							</td>
