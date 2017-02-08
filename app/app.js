@@ -15333,7 +15333,11 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 	// --------------------------------------------------------------------------------------Modal Historico Pedido
 
 });
-
+app.run(function(editableOptions, editableThemes) {
+    editableThemes.bs3.inputClass = 'input-sm';
+    editableThemes.bs3.buttonsClass = 'btn-sm';
+    editableOptions.theme = 'bs3';
+});
 app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$firebaseObject', '$firebaseArray', function ($location, $rootScope, $cookies, $cookieStore, $firebase, $firebaseObject, $firebaseArray) {
 
 
