@@ -108,7 +108,7 @@
                         <td>
                             <span class="small">
                                 <label ng-style="{'color':data.STATUS=='MALO' && 'red' || 'blue' }">
-                                    <a href="#" ng-disabled=""idPermisos.indexOf(logedUser.login)!=-1"" editable-select="data.STATUS" e-ng-options="s.value as s.text for s in statuses">
+                                    <a href="#" ng-disabled="idPermisos.indexOf(logedUser.login)!=-1" editable-select="data.STATUS" e-ng-options="s.value as s.text for s in statuses">
                                         {{ data.STATUS }}
                                     </a>
                                 </label>
