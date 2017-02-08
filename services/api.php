@@ -1160,6 +1160,16 @@ class API extends REST {
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
         $pedido = json_decode(file_get_contents("php://input"),true);
         //var_dump($pedido);
         $column_names = array('PEDIDO_ID','CONCEPTOS','ACTIVIDADES','IDLLAMADA','NOVEDAD','FECHA_CITA_FENIX','FECHA_CITA_REAGENDA','FECHA_INGRESO','ASESOR','FECHA_INICIO','FECHA_FIN','DURACION','OBSERVACION_FENIX','OBSERVACION_GESTOR','FUENTE','ACTIVIDAD_GESTOR','ASESORNAME','CELULAR_AVISAR','CLIENTE_ID','CORREO_UNE','DIRECCION_ENVIO','E_MAIL_AVISAR','MICROZONA','NOMBRE_USUARIO','PARENT_ID','TELEFONO_AVISAR','TIEMPO_TOTAL','JORNADA_CITA','FECHA_ESTADO','DEPARTAMENTO','SUBZONA_ID','PROCESO');
@@ -1234,8 +1244,32 @@ class API extends REST {
 
         $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
 
-        $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','AGENDAMIENTO','CERRADO_AGEN','PEDIDO: $PEDIDO_ID','REAGENDAMIENTO','CERRADO_AGEN') ";                        //echo $sqlfeed;
-        $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+        // SQL Feed----------------------------------
+        $sql_log=   "insert into portalbd.activity_feed ( ".
+            " USER ".
+            ", USER_NAME ".
+            ", GRUPO ".
+            ", STATUS ".
+            ", PEDIDO_OFERTA ".
+            ", ACCION ".
+            ", CONCEPTO_ID ".
+            ", IP_HOST ".
+            ", CP_HOST ".
+            ") values( ".
+            " UPPER('$usuarioGalleta')".
+            ", UPPER('$nombreGalleta')".
+            ", UPPER('$grupoGalleta')".
+            ",'$novedad' ".
+            ",'$PEDIDO_ID' ".
+            ",'REAGENDO PEDIDO' ".
+            ",'$CODIGO_ESTADO' ".
+            ",'$usuarioIp' ".
+            ",'$usuarioPc')";
+
+        $rlog = $this->mysqli->query($sql_log);
+        // ---------------------------------- SQL Feed
+        //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','AGENDAMIENTO','CERRADO_AGEN','PEDIDO: $PEDIDO_ID','REAGENDAMIENTO','CERRADO_AGEN') ";                        //echo $sqlfeed;
+        //$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
         $sqlinteraccion="insert into gestor_interacciones_agendamiento (PEDIDO,CEDULA,NOMBRE,CANAL,NOVEDAD,CODIGO_ESTADO) values ('$PEDIDO_ID','$cliente_id','$nombre_usuario','CALL CENTER','$novedad','$CODIGO_ESTADO') ";
 
@@ -1253,6 +1287,16 @@ class API extends REST {
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
         $pedido = json_decode(file_get_contents("php://input"),true);
         //var_dump($pedido);
         $column_names = array('PEDIDO_ID','CONCEPTOS','ACTIVIDADES','IDLLAMADA','NOVEDAD','FECHA_CITA_FENIX','FECHA_CITA_REAGENDA','FECHA_INGRESO','ASESOR','FECHA_INICIO','FECHA_FIN','DURACION','OBSERVACION_FENIX','OBSERVACION_GESTOR','FUENTE','ACTIVIDAD_GESTOR','ASESORNAME','CELULAR_AVISAR','CLIENTE_ID','CORREO_UNE','DIRECCION_ENVIO','E_MAIL_AVISAR','MICROZONA','NOMBRE_USUARIO','PARENT_ID','TELEFONO_AVISAR','TIEMPO_TOTAL','JORNADA_CITA','FECHA_ESTADO','DEPARTAMENTO','NUMERO_CR');
@@ -1333,10 +1377,32 @@ class API extends REST {
 
         $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
 
+        // SQL Feed----------------------------------
+        $sql_log=   "insert into portalbd.activity_feed ( ".
+            " USER ".
+            ", USER_NAME ".
+            ", GRUPO ".
+            ", STATUS ".
+            ", PEDIDO_OFERTA ".
+            ", ACCION ".
+            ", CONCEPTO_ID ".
+            ", IP_HOST ".
+            ", CP_HOST ".
+            ") values( ".
+            " UPPER('$usuarioGalleta')".
+            ", UPPER('$nombreGalleta')".
+            ", UPPER('$grupoGalleta')".
+            ",'$novedad' ".
+            ",'$PEDIDO_ID' ".
+            ",'AUDITO REAGENDAMIENTO' ".
+            ",'CERRADO_AGEN' ".
+            ",'$usuarioIp' ".
+            ",'$usuarioPc')";
 
-        //   echo "(2)";
-        $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','AGENDAMIENTO','CERRADO_AGEN','PEDIDO: $PEDIDO_ID','REAGENDAMIENTO','CERRADO_AGEN') ";                        //echo $sqlfeed;
-        $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+        $rlog = $this->mysqli->query($sql_log);
+        // ---------------------------------- SQL Feed
+        //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','AGENDAMIENTO','CERRADO_AGEN','PEDIDO: $PEDIDO_ID','REAGENDAMIENTO','CERRADO_AGEN') ";                        //echo $sqlfeed;
+        //$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
         $sqlinteraccion="insert into gestor_interacciones_agendamiento (PEDIDO,CEDULA,NOMBRE,CANAL,NOVEDAD,CODIGO_ESTADO) values ('$PEDIDO_ID','$cliente_id','$nombre_usuario','CALL CENTER','$novedad','$CODIGO_ESTADO') ";
 
