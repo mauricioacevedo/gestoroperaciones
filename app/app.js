@@ -15334,7 +15334,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 });
 app.run(function(editableOptions, editableThemes) {
-    editableThemes.bs3.inputClass = 'input-xs';
+    editableThemes.bs3.inputClass = 'btn-xs';
     editableThemes.bs3.buttonsClass = 'btn-xs';
     editableOptions.theme = 'bs3';
 });
