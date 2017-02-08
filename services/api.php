@@ -13019,7 +13019,7 @@ class API extends REST {
                 " UPPER('$usuario_id')".
                 ", UPPER('$nombreGalleta')".
                 ", UPPER('$grupoGalleta')".
-                ",'PRIORIZO PEDIDO' ".
+                ",'ACTUALIZAR ESTADO' ".
                 ",'$pedido' ".
                 ",'CAMBIAR STATUS' ".
                 ",'$status' ".
