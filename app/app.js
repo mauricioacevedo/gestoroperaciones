@@ -10509,7 +10509,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                        $scope.listadoactivacion=data.data[0];
                        $scope.data.totalItems=data.data[1];
                         $scope.data.totalItems2=data.data[2];
-
+                        console.log($scope.data.totalItems);
                     return data.data;
                });
 
