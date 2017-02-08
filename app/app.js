@@ -9412,6 +9412,12 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 	$scope.set_color = function (service) {
 
+        if (service.PROCESO == 'REPARACION' && service.TIEMPO_TOTAL>= 10) {
+			$scope.error = 'Darle Prioridad a este pedido lleva mas de 10 dias en el sistema';
+			alert('pedido especial');
+
+
+		}
 
 		if (service.PROCESO == 'INSTALACION' && service.TODAY_TRIES >= 5) {
 			$scope.error = 'Recuerde agendar o en su defecto anular el pedido';
@@ -9450,23 +9456,6 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 		}
 	};
 
-$scope.set_color = function (service) {
-
-
-		if (service.PROCESO == 'REPARACION' && service.TIEMPO_TOTAL>= 10) {
-			$scope.error = 'Darle Prioridad a este pedido lleva mas de 10 dias en el sistema';
-			alert('pedido especial');
-
-			$scope.estilo = {
-				"color": "white",
-				"background-color": "red",
-				"font-size": "10px",
-				"padding": "2px"
-			};
-
-			return $scope.estilo;
-		}
-	};
 
 	$scope.set_color_Cuartil = function (value) {
 
