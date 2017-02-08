@@ -5114,7 +5114,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 });
 
 ///---------------inicio resgistros----------------------
-app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services, notify) {
+app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services, notify) {
 
     var userID = $cookieStore.get('logedUser').login;
     $rootScope.logedUser = $cookieStore.get('logedUser');
@@ -5376,8 +5376,8 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     ];
 
     $scope.updateStatus = function(data) {
-    	console.log(data);
-        //return $http.post('/updateUser', $scope.user);
+    	//console.log(data);
+        return $http.post('services/actualizarSatusPedidosAsignacion', {id: data.ID, pedido: data.PEDIDO_ID, status:data.STATUS, usuario:userID});
     };
 
 });
