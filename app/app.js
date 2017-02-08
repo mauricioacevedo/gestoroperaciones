@@ -10510,6 +10510,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                        $scope.data.totalItems=data.data[1];
                         $scope.data.totalItems2=data.data[2];
                         console.log($scope.data.totalItems);
+                    console.log($scope.data.totalItems2);
                     return data.data;
                });
 
