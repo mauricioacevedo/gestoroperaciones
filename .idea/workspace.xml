@@ -40,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
-              <caret line="107" column="109" lean-forward="false" selection-start-line="107" selection-start-column="109" selection-end-line="107" selection-end-column="109" />
+              <caret line="107" column="143" lean-forward="false" selection-start-line="107" selection-start-column="143" selection-end-line="107" selection-end-column="143" />
               <folding>
                 <element signature="n#style#0;n#label#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -830,14 +830,7 @@
       <workItem from="1486414759336" duration="590000" />
       <workItem from="1486472370149" duration="1633000" />
       <workItem from="1486490400498" duration="5357000" />
-      <workItem from="1486554402928" duration="12868000" />
-    </task>
-    <task id="LOCAL-00389" summary="Buscador de Edatel mejorado">
-      <created>1486491793796</created>
-      <option name="number" value="00389" />
-      <option name="presentableId" value="LOCAL-00389" />
-      <option name="project" value="LOCAL" />
-      <updated>1486491793796</updated>
+      <workItem from="1486554402928" duration="12991000" />
     </task>
     <task id="LOCAL-00390" summary="Buscador de Edatel mejorado">
       <created>1486491901043</created>
@@ -1175,11 +1168,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486569906772</updated>
     </task>
-    <option name="localTasksCounter" value="438" />
+    <task id="LOCAL-00438" summary="Editar en linea el STATUS de los pendidos">
+      <created>1486570406781</created>
+      <option name="number" value="00438" />
+      <option name="presentableId" value="LOCAL-00438" />
+      <option name="project" value="LOCAL" />
+      <updated>1486570406781</updated>
+    </task>
+    <option name="localTasksCounter" value="439" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="183568000" />
+    <option name="totallyTimeSpent" value="183691000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -3685,7 +3685,7 @@
     <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
-          <caret line="107" column="109" lean-forward="false" selection-start-line="107" selection-start-column="109" selection-end-line="107" selection-end-column="109" />
+          <caret line="107" column="143" lean-forward="false" selection-start-line="107" selection-start-column="143" selection-end-line="107" selection-end-column="143" />
           <folding>
             <element signature="n#style#0;n#label#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>

@@ -105,7 +105,7 @@
                         <td><label style="color:red">{{data.TIEMPO_COLA}}</label></td>
                         <td><span class="small">{{data.PROGRAMACION}}</span></td>
                         <td><span class="small">{{data.CONCEPTO_ID}}</span></td>
-                        <td ng-show="idPermisos.indexOf(logedUser.login)!=-1" ng-mouseover="hoverEdit = true">
+                        <td ng-show="idPermisos.indexOf(logedUser.login)!=-1" ng-mouseover="hoverEdit = true" ng-mouseleave="hoverEdit = false">
                             <span class="small">
                                 <a href="#"
                                    ng-style="{'color':data.STATUS=='MALO' && 'red' || 'blue', 'font-weight': 'bold' }"
