@@ -112,7 +112,7 @@
                                    editable-select="data.STATUS"
                                    e-ng-options="s.value as s.text for s in statuses"
                                    onaftersave="updateStatus(data)"
-                                   title="Editar" ng-init="hoverEdit = false">
+                                   title="Editar">
                                     {{ data.STATUS }}
                                 </a>
                                  <span ng-show="hoverEdit"><i class="fa fa-pencil" aria-hidden="true"></i></span>
