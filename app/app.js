@@ -5153,7 +5153,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         fechaFin: "",
         campo: "TODO",
         valorCampo: ""
-    }
+    };
     //$scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "",concepto: "TODO" }
 
     if ($routeParams.conceptoid == undefined) {
@@ -5369,6 +5369,11 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
             }
         );
     };
+
+    $scope.statuses = [
+        {value: 'PENDI_PETEC', text: 'PENDI_PETEC'},
+        {value: 'MALO', text: 'MALO'}
+    ];
 
 });
 
