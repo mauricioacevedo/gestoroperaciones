@@ -5406,11 +5406,22 @@ class API extends REST {
             " FROM portalbd.gestor_activacion_pendientes_gtc_suspecore ";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter1=0;
+        $counter2=0;
         if($rr->num_rows > 0){
             $result = array();
             if($row = $rr->fetch_assoc()){
                 $counter2 = $row['counter'];
+            }
+        }
+        $query=" SELECT count(*) as counter ".
+            " FROM portalbd.gestor_activacion_tbl_pendi_gtc ";
+
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter3=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter3 = $row['counter'];
             }
         }
 
@@ -5435,7 +5446,7 @@ class API extends REST {
                 // var_dump($result);
             }
 
-            $this->response($this->json(array($result,$counter,$counter1,$counter2)), 200); // send user details
+            $this->response($this->json(array($result,$counter,$counter1,$counter2,$counter3)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
