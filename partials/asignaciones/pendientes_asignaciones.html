@@ -88,7 +88,7 @@
                     <th>Tiempo</th>
                     <th>Programación</th>
                     <th>Concepto</th>
-                    <th>Estado</th>
+                    <th ng-show="idPermisos.indexOf(logedUser.login)!=-1">Estado</th>
                     <th>Uen</th>
                     <th>Municipio</th>
                     <th>Fecha Estado</th>
@@ -105,10 +105,10 @@
                         <td><label style="color:red">{{data.TIEMPO_COLA}}</label></td>
                         <td><span class="small">{{data.PROGRAMACION}}</span></td>
                         <td><span class="small">{{data.CONCEPTO_ID}}</span></td>
-                        <td>
+                        <td ng-show="idPermisos.indexOf(logedUser.login)!=-1">
                             <span class="small">
                                 <label ng-style="{'color':data.STATUS=='MALO' && 'red' || 'blue' }">
-                                    <a href="#" ng-disabled="idPermisos.indexOf(logedUser.login)!=-1" editable-select="data.STATUS" e-ng-options="s.value as s.text for s in statuses">
+                                    <a href="#"  editable-select="data.STATUS" e-ng-options="s.value as s.text for s in statuses">
                                         {{ data.STATUS }}
                                     </a>
                                 </label>
