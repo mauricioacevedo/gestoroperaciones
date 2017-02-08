@@ -2743,6 +2743,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.ordenamientoDemepedido = '';
 	$scope.ordenamientoDemepedidoReconfiguracion = '';
 	$scope.ordenamientoDemepedidoUpdate = '';
+    $rootScope.errorDatos = "";
 
 
 	$scope.intervalFeed = 0;
@@ -12828,7 +12829,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		$scope.programar=false;
 	};
 
-	$scope.listarOpcionesAsginacion();//  --------------------------------Cargar Opciones para la gestion
+	//$scope.listarOpcionesAsginacion();//  --------------------------------Cargar Opciones para la gestion
 
 	var pedidos = services.getPedidosUser(userID).then(function (data) {
 		$scope.pedidos = data.data[0];
@@ -13297,7 +13298,9 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 			function (data) {
 
 				$scope.listadoClientes = data.data[0];
-				$scope.eda.localidad = data.data[1];
+				//$scope.eda.localidad = data.data[1];
+                $scope.eda.localidad = $scope.listadoClientes[0];
+                //console.log( $scope.eda.localidad);
 				//$scope.eda.localidad.LOCALIDAD=$scope.eda.localidad.LOCALIDAD;
 
 				return data.data;
