@@ -5402,6 +5402,17 @@ class API extends REST {
                 $counter1 = $row['counter'];
             }
         }
+         $query=" SELECT count(*) as counter ".
+            " FROM portalbd.gestor_activacion_pendientes_gtc_suspecore ";
+
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter1=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter2 = $row['counter'];
+            }
+        }
 
         $query= " SELECT COLA_ID,PEDIDO_ID, SUBPEDIDO_ID, SOLICITUD_ID, FECHA_ENTRADA_GESTOR, FECHA_ULTIMA_GESTOR".
             " from gestor_seguimiento_activacion".
@@ -5424,7 +5435,7 @@ class API extends REST {
                 // var_dump($result);
             }
 
-            $this->response($this->json(array($result,$counter,$counter1)), 200); // send user details
+            $this->response($this->json(array($result,$counter,$counter1,$counter2)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
