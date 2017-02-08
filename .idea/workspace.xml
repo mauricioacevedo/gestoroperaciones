@@ -859,14 +859,7 @@
       <workItem from="1486414759336" duration="590000" />
       <workItem from="1486472370149" duration="1633000" />
       <workItem from="1486490400498" duration="5357000" />
-      <workItem from="1486554402928" duration="2610000" />
-    </task>
-    <task id="LOCAL-00349" summary="Metodo nuevo para calcular ocupacion de Agendamiento">
-      <created>1486068104371</created>
-      <option name="number" value="00349" />
-      <option name="presentableId" value="LOCAL-00349" />
-      <option name="project" value="LOCAL" />
-      <updated>1486068104371</updated>
+      <workItem from="1486554402928" duration="2662000" />
     </task>
     <task id="LOCAL-00350" summary="Metodo nuevo para calcular ocupacion de Agendamiento">
       <created>1486068328778</created>
@@ -1204,11 +1197,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486557163335</updated>
     </task>
-    <option name="localTasksCounter" value="398" />
+    <task id="LOCAL-00398" summary="Se agrega estado a pendientes">
+      <created>1486557193943</created>
+      <option name="number" value="00398" />
+      <option name="presentableId" value="LOCAL-00398" />
+      <option name="project" value="LOCAL" />
+      <updated>1486557193943</updated>
+    </task>
+    <option name="localTasksCounter" value="399" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="173310000" />
+    <option name="totallyTimeSpent" value="173362000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
