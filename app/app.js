@@ -5377,7 +5377,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
     $scope.updateStatus = function(data) {
     	//console.log(data);
-        return $http.post('/actualizarSatusPedidosAsignacion', {id: data.ID, pedido: data.PEDIDO_ID, status:data.STATUS});
+        return $http.post('/actualizarSatusPedidosAsignacion', {id: data.ID, pedido: data.PEDIDO_ID, status:data.STATUS, usuario:userID});
     };
 
 });
