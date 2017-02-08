@@ -894,7 +894,17 @@ class API extends REST {
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
-        //sleep(10);
+
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
         $pedido = json_decode(file_get_contents("php://input"),true);
         $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo');
         $keys = array_keys($pedido);
@@ -949,8 +959,34 @@ class API extends REST {
                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
                 $sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$today',STATUS='$estadum',ASESOR='' WHERE ID=$iddd ";
                 $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
-                $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','RECONFIGURACION','$estadum','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi','ESTUDIO','$concepto_final') ";
-                $rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+
+
+                // SQL Feed----------------------------------
+                $sql_log=   "insert into portalbd.activity_feed ( ".
+                    " USER ".
+                    ", USER_NAME ".
+                    ", GRUPO ".
+                    ", STATUS ".
+                    ", PEDIDO_OFERTA ".
+                    ", ACCION ".
+                    ", CONCEPTO_ID ".
+                    ", IP_HOST ".
+                    ", CP_HOST ".
+                    ") values( ".
+                    " UPPER('$usuarioGalleta')".
+                    ", UPPER('$nombreGalleta')".
+                    ", UPPER('$grupoGalleta')".
+                    ",'$estadum' ".
+                    ",'$PEDIDO_IDi' ".
+                    ",'MARCO PEDIDO MALO' ".
+                    ",'$concepto_final' ".
+                    ",'$usuarioIp' ".
+                    ",'$usuarioPc')";
+
+                $rlog = $this->mysqli->query($sql_log);
+                // ---------------------------------- SQL Feed
+                //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','RECONFIGURACION','$estadum','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi','ESTUDIO','$concepto_final') ";
+                //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
                 //hago la actualizacion en fenix
                 $this->response(json_encode(array("msg"=>"$concepto_final","data" => $today)),200);
 
@@ -1016,10 +1052,33 @@ class API extends REST {
                 $sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$today',STATUS='PENDI_PETEC',PROGRAMACION='$programacion',ASESOR='' , RADICADO_TEMPORAL='NO' WHERE ID=$iddd ";
 
                 $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
+                // SQL Feed----------------------------------
+                $sql_log=   "insert into portalbd.activity_feed ( ".
+                    " USER ".
+                    ", USER_NAME ".
+                    ", GRUPO ".
+                    ", STATUS ".
+                    ", PEDIDO_OFERTA ".
+                    ", ACCION ".
+                    ", CONCEPTO_ID ".
+                    ", IP_HOST ".
+                    ", CP_HOST ".
+                    ") values( ".
+                    " UPPER('$usuarioGalleta')".
+                    ", UPPER('$nombreGalleta')".
+                    ", UPPER('$grupoGalleta')".
+                    ",'$estadum' ".
+                    ",'$PEDIDO_IDi' ".
+                    ",'PROGRAMO PEDIDO' ".
+                    ",'$concepto_final' ".
+                    ",'$usuarioIp' ".
+                    ",'$usuarioPc')";
 
+                $rlog = $this->mysqli->query($sql_log);
+                // ---------------------------------- SQL Feed
                 //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta) values ('$useri','$username','RECONFIGURACION','$concepto_final','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi') ";
-                $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','RECONFIGURACION','$estadum','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi','ESTUDIO','$concepto_final') ";
-                $rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+                //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','RECONFIGURACION','$estadum','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi','ESTUDIO','$concepto_final') ";
+                //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
                 //hago la actualizacion en fenix
                 $this->response(json_encode(array("msg"=>"$concepto_final","data" => $today)),200);
@@ -1052,9 +1111,33 @@ class API extends REST {
                 //cierro el registro en la tabla de automatizacion asignaciones
                 $sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$today',CONCEPTO_ID='$concepto_final',STATUS='CERRADO_PETEC',ASESOR='' WHERE ID=$iddd ";
                 $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
+                // SQL Feed----------------------------------
+                $sql_log=   "insert into portalbd.activity_feed ( ".
+                    " USER ".
+                    ", USER_NAME ".
+                    ", GRUPO ".
+                    ", STATUS ".
+                    ", PEDIDO_OFERTA ".
+                    ", ACCION ".
+                    ", CONCEPTO_ID ".
+                    ", IP_HOST ".
+                    ", CP_HOST ".
+                    ") values( ".
+                    " UPPER('$usuarioGalleta')".
+                    ", UPPER('$nombreGalleta')".
+                    ", UPPER('$grupoGalleta')".
+                    ",'$estadum' ".
+                    ",'$PEDIDO_IDi' ".
+                    ",'RECONFIGURO PEDIDO' ".
+                    ",'$concepto_final' ".
+                    ",'$usuarioIp' ".
+                    ",'$usuarioPc')";
+
+                $rlog = $this->mysqli->query($sql_log);
+                // ---------------------------------- SQL Feed
                 //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta) values ('$useri','$username','RECONFIGURACION','$concepto_final','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi')";
-                $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','RECONFIGURACION','$estadum','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi','ESTUDIO','$concepto_final') ";
-                $rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+                //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','RECONFIGURACION','$estadum','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi','ESTUDIO','$concepto_final') ";
+                //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
                 //hago la actualizacion en fenix
                 $this->response(json_encode(array("msg"=>"$concepto_final","data" => $today)),200);
