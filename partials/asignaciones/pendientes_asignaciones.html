@@ -108,7 +108,7 @@
                         <td>
                             <span class="small">
                                 <label ng-style="{'color':data.STATUS=='MALO' && 'red' || 'blue' }">
-                                    <a href="#" editable-select="data.STATUS" e-ng-options="s.value as s.text for s in statuses">
+                                    <a href="#" ng-disabled=""idPermisos.indexOf(logedUser.login)!=-1"" editable-select="data.STATUS" e-ng-options="s.value as s.text for s in statuses">
                                         {{ data.STATUS }}
                                     </a>
                                 </label>
@@ -121,14 +121,14 @@
                         <td><span class="small">{{data.FUENTE}}</span></td>
                         <td><span class="small">{{data.RADICADO_TEMPORAL || 'NO'}}</span></td>
                         <td ng-show="idPermisos.indexOf(logedUser.login)!=-1">
-									<span class="small">
-										<input type="checkbox" class="flipswitch"
-                                               ng-model="data.RADICADO_TEMPORAL"
-                                               name="prioridad"
-                                               id="prioridad"
-                                               ng-true-value="'ARBOL'"
-                                               ng-change="habilitarPrioridad(data)">
-									</span>
+                            <span class="small">
+                                <input type="checkbox" class="flipswitch"
+                                       ng-model="data.RADICADO_TEMPORAL"
+                                       name="prioridad"
+                                       id="prioridad"
+                                       ng-true-value="'ARBOL'"
+                                       ng-change="habilitarPrioridad(data)">
+                            </span>
 
                         </td>
                     </tr>
