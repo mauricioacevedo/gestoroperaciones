@@ -6948,7 +6948,7 @@ class API extends REST {
         $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
             " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
-            " from gestor_pendientes_activacion_siebel b ".
+            " from gestor_activacion_pendientes_activador_suspecore b ".
             "  where b.STATUS='PENDI_ACTI'  ".
             " and b.ASESOR ='' ".
             " and (b.FECHA_CREACION < CURDATE() OR b.FECHA_CREACION='9999-00-00') ".
@@ -6981,7 +6981,7 @@ class API extends REST {
                 //2.traigo solo los pedidos mas viejos en la base de datos...
             } else {
                 $query1=" select distinct b.PEDIDO, b.FECHA_CREACION ,b.ID ".
-                    " from gestor_pendientes_activacion_siebel b ".
+                    " from gestor_activacion_pendientes_activador_suspecore b ".
                     " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
                     " and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id ";
 
@@ -7042,7 +7042,7 @@ class API extends REST {
             " ,b.FECHA_EXCEPCION $FECHA_CREACION,'AUTO' as source ".
             " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
             " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
-            " from gestor_pendientes_activacion_siebel b where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ";
+            " from gestor_activacion_pendientes_activador_suspecore b where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ";
 
         //echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
