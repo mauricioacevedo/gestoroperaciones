@@ -3054,10 +3054,6 @@ class API extends REST {
         $queryConcepto="  select  ".
             "  C1.CONCEPTO_ID  ".
             "  , count(*) as CANTIDAD  ".
-            //"  , sum(if(C1.RANGO_PENDIENTE='Entre 0-2', 1,0)) as 'Entre02',  ".
-            //"  sum(if(C1.RANGO_PENDIENTE='Entre 3-4', 1,0)) as 'Entre34',  ".
-            //"  sum(if(C1.RANGO_PENDIENTE='Entre 5-6', 1,0)) as 'Entre56',  ".
-            //"  sum(if(C1.RANGO_PENDIENTE='Mas de 6', 1,0)) as 'Masde6'  ".
             " , sum(if(C1.RANGO_PENDIENTE='Entre 0-2', 1,0)) as 'Entre02',".
             "   sum(if(C1.RANGO_PENDIENTE='Entre 3-4', 1,0)) as 'Entre34', ".
             "   sum(if(C1.RANGO_PENDIENTE='Entre 5-6', 1,0)) as 'Entre56', ".

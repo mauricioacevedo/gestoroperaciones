@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['base64', 'ngRoute', 'ngCookies', 'ng-fusioncharts', 'ngAnimate', 'ui.bootstrap', 'ui.tinymce', 'ui.select', 'ngSanitize', 'ui.calendar', 'angularFileUpload', 'cgNotify', 'firebase', 'angular-smilies', 'angularjs-datetime-picker']);
+var app = angular.module('myApp', ['base64', 'ngRoute', 'ngCookies', 'ng-fusioncharts', 'ngAnimate', 'ui.bootstrap', 'ui.tinymce', 'ui.select', 'ngSanitize', 'ui.calendar', 'angularFileUpload', 'cgNotify', 'firebase', 'angular-smilies', 'angularjs-datetime-picker','xeditable']);
 //Los " Myapp " solapas de parámetros a un elemento HTML en el que se ejecutará la aplicación .
 //Ahora puede agregar controladores , directivas , filtros y más, para su aplicación AngularJS .
 //El módulo ngRoute proporciona enrutamiento y deeplinking Servicios y directivas para aplicaciones angulares .
@@ -5153,7 +5153,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         fechaFin: "",
         campo: "TODO",
         valorCampo: ""
-    }
+    };
     //$scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "",concepto: "TODO" }
 
     if ($routeParams.conceptoid == undefined) {
@@ -5369,6 +5369,11 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
             }
         );
     };
+
+    $scope.statuses = [
+        {value: 'PENDI_PETEC', text: 'PENDI_PETEC'},
+        {value: 'MALO', text: 'MALO'}
+    ];
 
 });
 
@@ -15333,7 +15338,11 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 	// --------------------------------------------------------------------------------------Modal Historico Pedido
 
 });
-
+app.run(function(editableOptions, editableThemes) {
+    editableThemes.bs3.inputClass = 'input-xs';
+    editableThemes.bs3.buttonsClass = 'btn-xs';
+    editableOptions.theme = 'bs3';
+});
 app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$firebaseObject', '$firebaseArray', function ($location, $rootScope, $cookies, $cookieStore, $firebase, $firebaseObject, $firebaseArray) {
 
 
