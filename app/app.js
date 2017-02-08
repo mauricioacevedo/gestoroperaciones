@@ -9455,7 +9455,7 @@ $scope.set_color = function (service) {
 
 		if (service.PROCESO == 'REPARACION' && service.TIEMPO_TOTAL>= 10) {
 			$scope.error = 'Darle Prioridad a este pedido lleva mas de 10 dias en el sistema';
-			//alert('pedido especial');
+			alert('pedido especial');
 
 			$scope.estilo = {
 				"color": "white",
