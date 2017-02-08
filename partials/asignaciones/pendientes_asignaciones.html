@@ -108,11 +108,9 @@
                         <td>
                             <span class="small">
                                 <label ng-style="{'color':data.STATUS=='MALO' && 'red' || 'blue' }">
-                                    <span editable-text="data.STATUS" e-form="textBtnForm">{{data.STATUS}}
-                                    </span>
-                                    <button class="btn btn-sucess btn-xs" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible">
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                    </button>
+                                    <a href="#" editable-select="data.STATUS" e-ng-options="s.value as s.text for s in statuses">
+                                        {{ data.STATUS }}
+                                    </a>
                                 </label>
                             </span>
                         </td>
