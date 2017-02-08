@@ -40,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
-              <caret line="109" column="71" lean-forward="false" selection-start-line="109" selection-start-column="71" selection-end-line="109" selection-end-column="71" />
+              <caret line="109" column="123" lean-forward="false" selection-start-line="109" selection-start-column="123" selection-end-line="109" selection-end-column="123" />
               <folding>
                 <element signature="n#style#0;n#label#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -832,14 +832,7 @@
       <workItem from="1486414759336" duration="590000" />
       <workItem from="1486472370149" duration="1633000" />
       <workItem from="1486490400498" duration="5357000" />
-      <workItem from="1486554402928" duration="11072000" />
-    </task>
-    <task id="LOCAL-00386" summary="Buscador de Edatel mejorado">
-      <created>1486491310889</created>
-      <option name="number" value="00386" />
-      <option name="presentableId" value="LOCAL-00386" />
-      <option name="project" value="LOCAL" />
-      <updated>1486491310889</updated>
+      <workItem from="1486554402928" duration="11662000" />
     </task>
     <task id="LOCAL-00387" summary="Buscador de Edatel mejorado">
       <created>1486491578606</created>
@@ -1177,11 +1170,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486565585052</updated>
     </task>
-    <option name="localTasksCounter" value="435" />
+    <task id="LOCAL-00435" summary="Editar en linea el STATUS de los pendidos">
+      <created>1486566328370</created>
+      <option name="number" value="00435" />
+      <option name="presentableId" value="LOCAL-00435" />
+      <option name="project" value="LOCAL" />
+      <updated>1486566328370</updated>
+    </task>
+    <option name="localTasksCounter" value="436" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="181772000" />
+    <option name="totallyTimeSpent" value="182362000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1195,7 +1195,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1296" height="1040" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39379084" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1206,7 +1206,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6696035" sideWeight="0.50323623" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32929516" sideWeight="0.49676377" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32929516" sideWeight="0.49676377" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18942732" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3687,7 +3687,7 @@
     <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
-          <caret line="109" column="71" lean-forward="false" selection-start-line="109" selection-start-column="71" selection-end-line="109" selection-end-column="71" />
+          <caret line="109" column="123" lean-forward="false" selection-start-line="109" selection-start-column="123" selection-end-line="109" selection-end-column="123" />
           <folding>
             <element signature="n#style#0;n#label#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
