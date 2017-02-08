@@ -105,11 +105,18 @@
                         <td><label style="color:red">{{data.TIEMPO_COLA}}</label></td>
                         <td><span class="small">{{data.PROGRAMACION}}</span></td>
                         <td><span class="small">{{data.CONCEPTO_ID}}</span></td>
-                        <td ng-show="idPermisos.indexOf(logedUser.login)!=-1">
+                        <td ng-show="idPermisos.indexOf(logedUser.login)!=-1" ng-mouseover="hoverEdit = true" ng-mouseleave="hoverEdit = false">
                             <span class="small">
-                                <a href="#" ng-style="{'color':data.STATUS=='MALO' && 'red' || 'blue', 'font-weight': 'bold' }" editable-select="data.STATUS" e-ng-options="s.value as s.text for s in statuses" onaftersave="updateStatus(data)" title="Editar">
+                                <a href="#"
+                                   ng-style="{'color':data.STATUS=='MALO' && 'red' || 'blue', 'font-weight': 'bold' }"
+                                   editable-select="data.STATUS"
+                                   e-ng-options="s.value as s.text for s in statuses"
+                                   onaftersave="updateStatus(data)"
+                                   title="Editar">
                                     {{ data.STATUS }}
                                 </a>
+                                 <span ng-show="hoverEdit" class="animated fadeIn"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+
                             </span>
                         </td>
                         <td><span class="small">{{data.UEN_CALCULADA}}</span></td>
