@@ -107,7 +107,7 @@
                         <td><span class="small">{{data.CONCEPTO_ID}}</span></td>
                         <td ng-show="idPermisos.indexOf(logedUser.login)!=-1">
                             <span class="small">
-                                <label ng-style="{'color':data.STATUS=='MALO' && 'red' || 'blue' }">
+                                <label ng-style="{'color':data.STATUS=='MALO' && 'red !important' || 'blue' }">
                                     <a href="#"  editable-select="data.STATUS" e-ng-options="s.value as s.text for s in statuses" onaftersave="updateStatus(data)" title="Editar">
                                         {{ data.STATUS }}
                                     </a>
