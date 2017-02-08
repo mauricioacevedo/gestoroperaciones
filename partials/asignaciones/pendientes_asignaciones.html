@@ -110,9 +110,9 @@
                                 <label ng-style="{'color':data.STATUS=='MALO' && 'red' || 'blue' }">
                                     <span editable-text="data.STATUS" e-form="textBtnForm">{{data.STATUS}}
                                     </span>
-
-                                    <i class="fa fa-pencil-square" aria-hidden="true" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible"></i>
-
+                                    <button class="btn btn-sucess btn-xs" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </button>
                                 </label>
                             </span>
                         </td>
