@@ -5376,8 +5376,8 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     ];
 
     $scope.updateStatus = function(data) {
-    	console.log(data);
-        //return $http.post('/updateUser', $scope.user);
+    	//console.log(data);
+        return $http.post('/actualizarSatusPedidosAsignacion', {id: data.ID, pedido: data.PEDIDO_ID, status:data.STATUS});
     };
 
 });
