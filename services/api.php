@@ -93,6 +93,16 @@ class API extends REST {
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
         $login = $this->_request['login'];
         $fechaIni = $this->_request['fechaIni'];
         $fechaFin = $this->_request['fechaFin'];
@@ -124,6 +134,30 @@ class API extends REST {
             }
             fclose($fp);
 
+            // SQL Feed----------------------------------
+            $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'SIN PEDIDO' ".
+                ",'EXPORTO HISTORICO' ".
+                ",'ARCHIVO EXPORTADO' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
+            // ---------------------------------- SQL Feed
             $this->response($this->json(array($filename,$login)), 200); // send user details
         }
 
