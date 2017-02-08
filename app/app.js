@@ -5375,6 +5375,11 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         {value: 'MALO', text: 'MALO'}
     ];
 
+    $scope.updateStatus = function(data) {
+    	console.log(data);
+        //return $http.post('/updateUser', $scope.user);
+    };
+
 });
 
 
