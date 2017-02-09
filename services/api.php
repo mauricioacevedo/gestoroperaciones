@@ -9062,8 +9062,8 @@ class API extends REST {
         $today = date("Y-m-d");
 
 
-        //$sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$login','$login','LOGIN','logged off','','LOGIN') ";
-        //$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+        $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$login','$login','LOGIN','logged off','','LOGIN') ";
+        $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
 
         //le quito al asesor lo que sea que este ocupando en la tabla de operaciones!!!!
