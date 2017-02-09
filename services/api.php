@@ -9082,7 +9082,7 @@ class API extends REST {
             ",'LOGGED OFF' ".
             ",'$usuarioIp' ".
             ",'$usuarioPc')";
-        echo $sql_log;
+        //echo $sql_log;
         $rlog = $this->mysqli->query($sql_log);
         // ---------------------------------- SQL Feed
         //$sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$login','$login','LOGIN','logged off','','LOGIN') ";
