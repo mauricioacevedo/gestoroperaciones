@@ -9073,8 +9073,8 @@ class API extends REST {
             ", IP_HOST ".
             ", CP_HOST ".
             ") values( ".
-            " UPPER('$usuarioGalleta')".
-            ", UPPER('$nombreGalleta')".
+            " UPPER('$login')".
+            ", UPPER('$login')".
             ", UPPER('$grupoGalleta')".
             ",'OK' ".
             ",'SIN PEDIDO' ".
