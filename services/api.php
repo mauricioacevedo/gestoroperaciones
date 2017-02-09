@@ -9075,7 +9075,7 @@ class API extends REST {
             ") values( ".
             " UPPER('$login')".
             ", UPPER('$login')".
-            ", UPPER('$grupoGalleta')".
+            ", UPPER('LOGIN')".
             ",'OK' ".
             ",'SIN PEDIDO' ".
             ",'SE DESLOGUEO' ".
@@ -9313,9 +9313,9 @@ class API extends REST {
                     ", IP_HOST ".
                     ", CP_HOST ".
                     ") values( ".
-                    " UPPER('$usuarioGalleta')".
-                    ", UPPER('$nombreGalleta')".
-                    ", UPPER('$grupoGalleta')".
+                    " UPPER('$login')".
+                    ", UPPER('$name')".
+                    ", UPPER('LOGIN')".
                     ",'OK' ".
                     ",'SIN PEDIDO' ".
                     ",'SE LOGUEO' ".
