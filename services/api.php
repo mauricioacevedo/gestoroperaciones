@@ -8278,16 +8278,6 @@ class API extends REST {
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
-        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
-        $usuarioPc      =   gethostbyaddr($usuarioIp);
-        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
-        $galleta        =   stripslashes($_COOKIE['logedUser']);
-        $galleta        =   json_decode($galleta);
-        $galleta        =   json_decode(json_encode($galleta), True);
-        $usuarioGalleta =   $galleta['login'];
-        $nombreGalleta  =   $galleta['name'];
-        $grupoGalleta   =   $galleta['GRUPO'];
-
         $user = $this->_request['userID'];
         $departamento = $this->_request['departamento'];
         //$plaza = $this->_request['plaza'];
@@ -8478,7 +8468,7 @@ class API extends REST {
                     "  $departamento ".
                     $zona.
                     $microzona.
-                   // " and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
+                    // " and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
                     " and (select NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID=b.PEDIDO_ID and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' order by id desc limit 1) not like '%AGENDADO%' ".
                     //$plaza.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
@@ -8549,36 +8539,12 @@ class API extends REST {
             $x = $this->mysqli->query($sqlupdate);
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
             $x = $this->mysqli->query($INSERTLOG);
-            // SQL Feed----------------------------------
-            $sql_log=   "insert into portalbd.activity_feed ( ".
-                " USER ".
-                ", USER_NAME ".
-                ", GRUPO ".
-                ", STATUS ".
-                ", PEDIDO_OFERTA ".
-                ", ACCION ".
-                ", CONCEPTO_ID ".
-                ", IP_HOST ".
-                ", CP_HOST ".
-                ") values( ".
-                " UPPER('$usuarioGalleta')".
-                ", UPPER('$nombreGalleta')".
-                ", UPPER('$grupoGalleta')".
-                ",'OK' ".
-                ",'$mypedido' ".
-                ",'USO DEMEPEDIDO' ".
-                ",'PEDIDO GENERADO' ".
-                ",'$usuarioIp' ".
-                ",'$usuarioPc')";
-
-            $rlog = $this->mysqli->query($sql_log);
-            // ---------------------------------- SQL Feed
-            //$sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$user','$username','','','PEDIDO: $mypedido','DEMEPEDIDO')";
-            //$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+            $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$user','$username','','','PEDIDO: $mypedido','DEMEPEDIDO')";
+            $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
             //sleep(20);
             unlink($filename);
-            //echo json_encode($result);
+            echo json_encode($result);
             $this->response('', 200); // send user details
         }else{//i have pretty heavy problems over here...
             //$this->response('SYSTEM PANIC!',200);
