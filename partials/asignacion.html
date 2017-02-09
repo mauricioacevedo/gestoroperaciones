@@ -59,7 +59,7 @@
   
         <div class="col-lg-5 col-xs-5 form-inline">
          <label  for="conceptos" >Concepto:</label>
-          <select ng-model="iconcepto" class="form-control" style="width: 100px" ng-change="GenerarOpcionesGestion()" >
+          <select id="conceptos" ng-model="iconcepto" class="form-control" style="width: 100px" ng-change="GenerarOpcionesGestion()" >
             <option value='PETEC'>PETEC</option>
             <option value='15'>15</option>
             <option value='19'>19</option>
@@ -73,7 +73,7 @@
             
           </select>
            <label  for="Plaza">Plaza:</label>
-                  <select ng-model="iplaza" class="form-control" style="width: 120px">
+                  <select id="Plaza" ng-model="iplaza" class="form-control" style="width: 120px">
                     <option value="TODOS">TODOS</option>
                     <option value="MEDELLIN">MEDELLIN</option>
                     <option value="BARRANQUILLA">BARRANQUILLA</option>
@@ -110,7 +110,7 @@
                 <input type="text" size="13px" class="form-control btn-group btn btn-sm btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Buscador de Pedido" ng-model="bpedido">
                 <button type="button" class="form-control btn btn-sm btn-primary"  title="Buscar Pedido" data-toggle="tooltip" data-placement="top" ng-click="buscarPedido(bpedido,iplaza);"><i class="fa fa-search" aria-hidden="true"></i></button>
                 <button id="manual" type="button" class="form-control btn btn-sm btn-warning" title="Ingrese Pedido Manual" data-toggle="tooltip" data-placement="top" ng-click="manual();"><i class="fa fa-user-times" aria-hidden="true"></i></button>
-				<button id="manual" type="button" class="form-control btn btn-sm btn-warning"   data-toggle="modal" data-target="#PedidosProgramados" data-backdrop="static" ng-click="ProgramadosModal()"><i class="fa fa-calendar-check-o" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Programados/Malos"></i></button>
+				<button id="programados" type="button" class="form-control btn btn-sm btn-warning"   data-toggle="modal" data-target="#PedidosProgramados" data-backdrop="static" ng-click="ProgramadosModal()"><i class="fa fa-calendar-check-o" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Programados/Malos"></i></button>
               </div>
 
 
@@ -212,7 +212,7 @@
                                {{service.PRODUCTO}}<br>
                               <b>Elemento ID:</b> {{service.TIPO_ELEMENTO_ID}}<br>
                               <div ng-show="service.TIPO_TRABAJO=='CAMBI'">
-                                <b>Identificador:</b> <button type="button" title="ClickToCopy" class="btn btn-xs btn-default" ng-click="executeCopy([service.IDENTIFICADOR_ID]);">{{service.IDENTIFICADOR_ID}}</button> 
+                                <b>Identificador:</b> <button type="button" title="ClickToCopy" class="btn btn-xs btn-default" ng-click="executeCopy([service.IDENTIFICADOR_ID]);">{{service.IDENTIFICADOR_ID || 'NUEVO'}}</button>
                               </div>
                               </div>
                             </div>
