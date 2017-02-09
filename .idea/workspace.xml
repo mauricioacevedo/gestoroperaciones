@@ -5,7 +5,7 @@
     <bookmark url="file://$PROJECT_DIR$/services/api.php" line="328" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
+    <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="Activity feed mejorado">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/asignacion.html" afterPath="$PROJECT_DIR$/partials/asignacion.html" />
     </list>
@@ -386,8 +386,8 @@
       <file leaf-file-name="asignacion.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/asignacion.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1258">
-              <caret line="214" column="215" lean-forward="false" selection-start-line="214" selection-start-column="215" selection-end-line="214" selection-end-column="215" />
+            <state relative-caret-position="323">
+              <caret line="214" column="216" lean-forward="false" selection-start-line="214" selection-start-column="216" selection-end-line="214" selection-end-column="216" />
               <folding>
                 <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
               </folding>
@@ -1194,14 +1194,7 @@
       <workItem from="1486490400498" duration="5357000" />
       <workItem from="1486554402928" duration="17266000" />
       <workItem from="1486585853069" duration="3138000" />
-      <workItem from="1486639125751" duration="12641000" />
-    </task>
-    <task id="LOCAL-00429" summary="Editar en linea el STATUS de los pendidos">
-      <created>1486565015124</created>
-      <option name="number" value="00429" />
-      <option name="presentableId" value="LOCAL-00429" />
-      <option name="project" value="LOCAL" />
-      <updated>1486565015124</updated>
+      <workItem from="1486639125751" duration="13320000" />
     </task>
     <task id="LOCAL-00430" summary="Editar en linea el STATUS de los pendidos">
       <created>1486565136095</created>
@@ -1539,11 +1532,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486658832763</updated>
     </task>
-    <option name="localTasksCounter" value="478" />
+    <task id="LOCAL-00478" summary="Activity feed mejorado">
+      <created>1486659263906</created>
+      <option name="number" value="00478" />
+      <option name="presentableId" value="LOCAL-00478" />
+      <option name="project" value="LOCAL" />
+      <updated>1486659263906</updated>
+    </task>
+    <option name="localTasksCounter" value="479" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="203745000" />
+    <option name="totallyTimeSpent" value="204424000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -3990,8 +3990,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/asignacion.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1258">
-          <caret line="214" column="215" lean-forward="false" selection-start-line="214" selection-start-column="215" selection-end-line="214" selection-end-column="215" />
+        <state relative-caret-position="323">
+          <caret line="214" column="216" lean-forward="false" selection-start-line="214" selection-start-column="216" selection-end-line="214" selection-end-column="216" />
           <folding>
             <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
           </folding>
