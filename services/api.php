@@ -14556,9 +14556,9 @@ class API extends REST {
                 " UPPER('$usuario_id')".
                 ", UPPER('$nombreGalleta')".
                 ", UPPER('$grupoGalleta')".
-                ",'PRIORIZO PEDIDO' ".
+                ",'OK' ".
                 ",'$pedido' ".
-                ",'PRIORIZAR' ".
+                ",'PRIORIZO PEDIDO' ".
                 ",'$prioridad' ".
                 ",'$usuarioIp' ".
                 ",'$usuarioPc')";
