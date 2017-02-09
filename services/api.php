@@ -2258,7 +2258,7 @@ class API extends REST {
                     ",'$estadum' ".
                     ",'$PEDIDO_IDi' ".
                     ",'ASIGNO PEDIDO' ".
-                    ",'$concepto_final' ".
+                    ",'$CONCEPT' ".
                     ",'$usuarioIp' ".
                     ",'$usuarioPc')";
 
