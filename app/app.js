@@ -5295,7 +5295,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         }
         if (bpedido.length >= 7) {
             services.getBuscarPedidoRegistro(bpedido, $scope.data1.concepto).then(function (data) {
-                console.log(data.data[0]);
+                //console.log(data.data[0]);
                 $scope.listado_pendientes = data.data[0];
                 return data.data;
             });
@@ -5305,7 +5305,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     $scope.csvPendientes = function (concep) {
         var login = $rootScope.logedUser.login;
         services.getCsvPendientes(login, concep).then(function (data) {
-            console.log(data.data[0]);
+            //console.log(data.data[0]);
             window.location.href = "tmp/" + data.data[0];
             return data.data;
         });
@@ -5313,7 +5313,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     $scope.csvPreInstalaciones = function () {
         var login = $rootScope.logedUser.login;
         services.getCsvPreInstalaciones(login).then(function (data) {
-            console.log(data.data[0]);
+            //console.log(data.data[0]);
             window.location.href = "tmp/" + data.data[0];
             return data.data;
         });
@@ -5322,7 +5322,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     $scope.csvMalos = function (concep) {
         var login = $rootScope.logedUser.login;
         services.getCsvMalos(login, concep).then(function (data) {
-            console.log(data.data[0]);
+            //console.log(data.data[0]);
             window.location.href = "tmp/" + data.data[0];
             return data.data;
         });
@@ -5356,7 +5356,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
     $scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG','MHUERTAS', 'CGONZGO','DEMO'];
     $scope.habilitarPrioridad = function (pedinfo){
-        console.log(pedinfo);
+//        console.log(pedinfo);
         services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.RADICADO_TEMPORAL,userID).then(
             function(data) {
                 $scope.data.RADICADO_TEMPORAL=pedinfo.PRIORIDAD;
