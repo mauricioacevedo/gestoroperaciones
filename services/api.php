@@ -9061,30 +9061,7 @@ class API extends REST {
         $fecha = $params['fecha'];
         $today = date("Y-m-d");
 
-        // SQL Feed----------------------------------
-        $sql_log=   "insert into portalbd.activity_feed ( ".
-            " USER ".
-            ", USER_NAME ".
-            ", GRUPO ".
-            ", STATUS ".
-            ", PEDIDO_OFERTA ".
-            ", ACCION ".
-            ", CONCEPTO_ID ".
-            ", IP_HOST ".
-            ", CP_HOST ".
-            ") values( ".
-            " UPPER('$usuarioGalleta')".
-            ", UPPER('$nombreGalleta')".
-            ", UPPER('$grupoGalleta')".
-            ",'OK' ".
-            ",'SIN PEDIDO' ".
-            ",'SE DESLOGUEO' ".
-            ",'LOGGED OFF' ".
-            ",'$usuarioIp' ".
-            ",'$usuarioPc')";
 
-        $rlog = $this->mysqli->query($sql_log);
-        // ---------------------------------- SQL Feed
         //$sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$login','$login','LOGIN','logged off','','LOGIN') ";
         //$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
@@ -9105,6 +9082,30 @@ class API extends REST {
                 $sqllogin="update registro_ingreso_usuarios set status='logged off',fecha_salida='$fecha',salidas=salidas+1 where id=$idd";
                 unset($_SESSION["loginsession"]);
                 $rr = $this->mysqli->query($sqllogin);
+                // SQL Feed----------------------------------
+                $sql_log=   "insert into portalbd.activity_feed ( ".
+                    " USER ".
+                    ", USER_NAME ".
+                    ", GRUPO ".
+                    ", STATUS ".
+                    ", PEDIDO_OFERTA ".
+                    ", ACCION ".
+                    ", CONCEPTO_ID ".
+                    ", IP_HOST ".
+                    ", CP_HOST ".
+                    ") values( ".
+                    " UPPER('$usuarioGalleta')".
+                    ", UPPER('$nombreGalleta')".
+                    ", UPPER('$grupoGalleta')".
+                    ",'OK' ".
+                    ",'SIN PEDIDO' ".
+                    ",'SE DESLOGUEO' ".
+                    ",'LOGGED OFF' ".
+                    ",'$usuarioIp' ".
+                    ",'$usuarioPc')";
+
+                $rlog = $this->mysqli->query($sql_log);
+                // ---------------------------------- SQL Feed
                 $this->response($this->json('logged out'), 201);
 
             }//doesnt have sense, do nothing
@@ -9238,30 +9239,7 @@ class API extends REST {
                 $fechaunica=date("Ymd");
                 $uniqueid=$login."_".$fechaunica;
 
-                // SQL Feed----------------------------------
-                $sql_log=   "insert into portalbd.activity_feed ( ".
-                    " USER ".
-                    ", USER_NAME ".
-                    ", GRUPO ".
-                    ", STATUS ".
-                    ", PEDIDO_OFERTA ".
-                    ", ACCION ".
-                    ", CONCEPTO_ID ".
-                    ", IP_HOST ".
-                    ", CP_HOST ".
-                    ") values( ".
-                    " UPPER('$usuarioGalleta')".
-                    ", UPPER('$nombreGalleta')".
-                    ", UPPER('$grupoGalleta')".
-                    ",'OK' ".
-                    ",'SIN PEDIDO' ".
-                    ",'SE LOGUEO' ".
-                    ",'LOGGED IN' ".
-                    ",'$usuarioIp' ".
-                    ",'$usuarioPc')";
 
-                $rlog = $this->mysqli->query($sql_log);
-                // ---------------------------------- SQL Feed
 
                 //$sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$login','$name','LOGIN','logged in','','LOGIN') ";
                 //$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
@@ -9323,6 +9301,30 @@ class API extends REST {
                 }
 
                 $result['name']=utf8_encode($result['name']);
+                // SQL Feed----------------------------------
+                $sql_log=   "insert into portalbd.activity_feed ( ".
+                    " USER ".
+                    ", USER_NAME ".
+                    ", GRUPO ".
+                    ", STATUS ".
+                    ", PEDIDO_OFERTA ".
+                    ", ACCION ".
+                    ", CONCEPTO_ID ".
+                    ", IP_HOST ".
+                    ", CP_HOST ".
+                    ") values( ".
+                    " UPPER('$usuarioGalleta')".
+                    ", UPPER('$nombreGalleta')".
+                    ", UPPER('$grupoGalleta')".
+                    ",'OK' ".
+                    ",'SIN PEDIDO' ".
+                    ",'SE LOGUEO' ".
+                    ",'LOGGED IN' ".
+                    ",'$usuarioIp' ".
+                    ",'$usuarioPc')";
+
+                $rlog = $this->mysqli->query($sql_log);
+                // ---------------------------------- SQL Feed
                 $this->response($this->json($result), 201);
             }
             $this->response($this->json('User do not exist!!!'), 400);	// If no records "No Content" status
