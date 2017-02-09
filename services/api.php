@@ -8270,7 +8270,7 @@ class API extends REST {
 
 //--------------------fin demepedido activacion------------------------------
 
-//----------------------------------deme  pedido agendamiento----------------------------
+//----------------------------------demepedido agendamiento----------------------------
 
 
     private function demePedidoAgendamiento(){
