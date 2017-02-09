@@ -7,7 +7,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/api.php" afterPath="$PROJECT_DIR$/services/api.php" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
     <ignored path="node_modules/angular-notify/package.json" />
@@ -1127,14 +1126,7 @@
       <workItem from="1486490400498" duration="5357000" />
       <workItem from="1486554402928" duration="17266000" />
       <workItem from="1486585853069" duration="3138000" />
-      <workItem from="1486639125751" duration="8999000" />
-    </task>
-    <task id="LOCAL-00422" summary="Se agrega estado a pendientes">
-      <created>1486562920935</created>
-      <option name="number" value="00422" />
-      <option name="presentableId" value="LOCAL-00422" />
-      <option name="project" value="LOCAL" />
-      <updated>1486562920936</updated>
+      <workItem from="1486639125751" duration="9005000" />
     </task>
     <task id="LOCAL-00423" summary="Editar en linea el STATUS de los pendidos">
       <created>1486563226437</created>
@@ -1472,11 +1464,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486651288614</updated>
     </task>
-    <option name="localTasksCounter" value="471" />
+    <task id="LOCAL-00471" summary="Activity feed mejorado">
+      <created>1486651577374</created>
+      <option name="number" value="00471" />
+      <option name="presentableId" value="LOCAL-00471" />
+      <option name="project" value="LOCAL" />
+      <updated>1486651577374</updated>
+    </task>
+    <option name="localTasksCounter" value="472" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="200103000" />
+    <option name="totallyTimeSpent" value="200109000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
