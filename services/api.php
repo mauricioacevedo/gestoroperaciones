@@ -10756,6 +10756,16 @@ class API extends REST {
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
         require_once '../librerias/importar_excel/reader/Classes/PHPExcel/IOFactory.php';
         $pedido=json_decode(file_get_contents("php://input"),true);
         //ini_set('display_errors', '1');
@@ -10784,8 +10794,32 @@ class API extends REST {
         //echo  $user;
         $r = $this->mysqli->query($sqlupload) or die($this->mysqli->error.__LINE__);
 
-        $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$usas','','','','','PENDIENTES')";
-        $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+        // SQL Feed----------------------------------
+        $sql_log=   "insert into portalbd.activity_feed ( ".
+            " USER ".
+            ", USER_NAME ".
+            ", GRUPO ".
+            ", STATUS ".
+            ", PEDIDO_OFERTA ".
+            ", ACCION ".
+            ", CONCEPTO_ID ".
+            ", IP_HOST ".
+            ", CP_HOST ".
+            ") values( ".
+            " UPPER('$usuarioGalleta')".
+            ", UPPER('$nombreGalleta')".
+            ", UPPER('$grupoGalleta')".
+            ",'OK' ".
+            ",'SIN PEDIDO' ".
+            ",'SUBIO ARCHIVO' ".
+            ",'ARCHIVO SUBIDO' ".
+            ",'$usuarioIp' ".
+            ",'$usuarioPc')";
+
+        $rlog = $this->mysqli->query($sql_log);
+        // ---------------------------------- SQL Feed
+        //$sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$usas','','','','','PENDIENTES')";
+        //$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
 
     }
