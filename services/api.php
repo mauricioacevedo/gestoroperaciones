@@ -9189,6 +9189,15 @@ class API extends REST {
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
         $params = json_decode(file_get_contents('php://input'),true);
 
 
@@ -9229,8 +9238,33 @@ class API extends REST {
                 $fechaunica=date("Ymd");
                 $uniqueid=$login."_".$fechaunica;
 
-                $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$login','$name','LOGIN','logged in','','LOGIN') ";
-                $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+                // SQL Feed----------------------------------
+                $sql_log=   "insert into portalbd.activity_feed ( ".
+                    " USER ".
+                    ", USER_NAME ".
+                    ", GRUPO ".
+                    ", STATUS ".
+                    ", PEDIDO_OFERTA ".
+                    ", ACCION ".
+                    ", CONCEPTO_ID ".
+                    ", IP_HOST ".
+                    ", CP_HOST ".
+                    ") values( ".
+                    " UPPER('$usuarioGalleta')".
+                    ", UPPER('$nombreGalleta')".
+                    ", UPPER('$grupoGalleta')".
+                    ",'OK' ".
+                    ",'SIN PEDIDO' ".
+                    ",'SE LOGUEO' ".
+                    ",'LOGGED IN' ".
+                    ",'$usuarioIp' ".
+                    ",'$usuarioPc')";
+
+                $rlog = $this->mysqli->query($sql_log);
+                // ---------------------------------- SQL Feed
+
+                //$sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$login','$name','LOGIN','logged in','','LOGIN') ";
+                //$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
                 //echo "nombre: $name";
                 //echo $uniqueid;
@@ -9304,6 +9338,16 @@ class API extends REST {
             $this->response('',406);
         }
 
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
         $transaccion = json_decode(file_get_contents("php://input"),true);
 
         $transaccion = $transaccion['transaccion'];
@@ -9342,8 +9386,32 @@ class API extends REST {
             $sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$today', STATUS='$STATUS', ASESOR='' WHERE ID=$ID ";
             $rUpdate = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
 
-            $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$useri','$username','NCA','$estado_final','OFERTA: $oferta','NCA') ";
-            $rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+            // SQL Feed----------------------------------
+            $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'$oferta' ".
+                ",'GUARDO PEDIDO NCA' ".
+                ",'$estado_final' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
+            // ---------------------------------- SQL Feed
+            //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$useri','$username','NCA','$estado_final','OFERTA: $oferta','NCA') ";
+            //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
             $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
 
         }else{
@@ -9443,7 +9511,7 @@ class API extends REST {
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
             // $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$useri','$username','NCA','$estado_final','OFERTA: $oferta','NCA') ";
-            $rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+            //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
             $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
 
         }else{
@@ -9458,7 +9526,15 @@ class API extends REST {
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
-
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
         $usuario = json_decode(file_get_contents("php://input"),true);
         //echo var_dump($usuario);
 
@@ -9482,7 +9558,31 @@ class API extends REST {
         //echo $query;
         if(!empty($usuario)){
             //echo $query;
-            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+            $r = $this->mysqli->query($query);
+            // SQL Feed----------------------------------
+            $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'SIN PEDIDO' ".
+                ",'CREO USUARIO' ".
+                ",'USUARIO CREADO' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
+            // ---------------------------------- SQL Feed
             $this->response(json_encode(array("msg"=>"OK","transaccion" => $usuario)),200);
         }else{
             $this->response('',200);        //"No Content" status
@@ -9495,7 +9595,15 @@ class API extends REST {
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
-
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
         $transa = json_decode(file_get_contents("php://input"),true);
         //echo var_dump($usuario);
 
@@ -9530,6 +9638,30 @@ class API extends REST {
         if(!empty($transa)){
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+            // SQL Feed----------------------------------
+            $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'SIN PEDIDO' ".
+                ",'EDITO PEDIDO SIEBEL' ".
+                ",'PEDIDO EDITADO' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
+            // ---------------------------------- SQL Feed
             $this->response(json_encode(array("msg"=>"OK","transaccion" => $transa)),200);
         }else{
             $this->response('',200);        //"No Content" status
@@ -9727,6 +9859,15 @@ class API extends REST {
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
         $login = $this->_request['login'];
         $fechaIni = $this->_request['fechaIni'];
         $fechaFin = $this->_request['fechaFin'];
@@ -9749,7 +9890,30 @@ class API extends REST {
                 fputcsv($fp, $row);
             }
             fclose($fp);
+            // SQL Feed----------------------------------
+            $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'SIN PEDIDO' ".
+                ",'EXPORTO HISTORICO SIEBEL' ".
+                ",'ARCHIVO EXPORTADO' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
 
+            $rlog = $this->mysqli->query($sql_log);
+            // ---------------------------------- SQL Feed
             $this->response($this->json(array($filename,$login)), 200); // send user details
         }
 
@@ -9798,10 +9962,6 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-
-
-
-
 
 
     private function listadoTransaccionesNCA(){
