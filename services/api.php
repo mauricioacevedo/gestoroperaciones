@@ -7776,6 +7776,7 @@ class API extends REST {
                     " AND ASESOR='' ".
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
+                    " AND TIPO_TRABAJO = 'NUEVO'".
                     $plaza2.
                     " ORDER BY FECHA_ESTADO ASC ";
 
