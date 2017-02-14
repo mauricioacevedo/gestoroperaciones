@@ -14155,13 +14155,15 @@ class API extends REST {
 
 
         $params = json_decode(file_get_contents('php://input'),true);
-        $usuarioIp=$_SERVER['REMOTE_ADDR'];
-        $usuarioPc=gethostbyaddr($usuarioIp);
-        $galleta=json_decode(stripslashes($_COOKIE['logedUser']),true);
-        $galleta=stripslashes($_COOKIE['logedUser']);
-        $galleta= json_decode($galleta);
-        $galleta = json_decode(json_encode($galleta), True);
-        $usuarioid=$galleta['USUARIO_ID'];
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
 
 
         //$id=$params['editaInfo']['ID'];
@@ -14210,19 +14212,34 @@ class API extends REST {
             " '$estadoEdita', ".
             " '$funcionEdita') ";
 
-        //echo $sql;
-        //$rst = $this->connemtel->query($sql) or die($this->connemtel->error.__LINE__);
-
         $rst = $this->mysqli->query($sql);
 
-        //echo $rst;
+        // SQL Feed----------------------------------
+        $sql_log=   "insert into portalbd.activity_feed ( ".
+            " USER ".
+            ", USER_NAME ".
+            ", GRUPO ".
+            ", STATUS ".
+            ", PEDIDO_OFERTA ".
+            ", ACCION ".
+            ", CONCEPTO_ID ".
+            ", IP_HOST ".
+            ", CP_HOST ".
+            ") values( ".
+            " UPPER('$usuarioGalleta')".
+            ", UPPER('$nombreGalleta')".
+            ", UPPER('$grupoGalleta')".
+            ",'OK' ".
+            ",'SIN PEDIDO' ".
+            ",'CREO USUARIO' ".
+            ",'$usuarioEdita CREADO' ".
+            ",'$usuarioIp' ".
+            ",'$usuarioPc')";
 
-        /*//Insert en log
-			$sql_log="insert into emtelco.re_logoperaciones (USUARIO_ID, TIPO_ACTIVIDAD, DESCRIPCION, IDENTIFICADOR, IP, PC) values(UPPER('$usuarioid'),'CREAR','CREO EL USUARIO','ID: $usuarioEdita','$usuarioIp','$usuarioPc')";
+        $rlog = $this->mysqli->query($sql_log);
+        // ---------------------------------- SQL Feed
 
-			$rlog = $this->connemtel->query($sql_log) or die($this->connemtel->error.__LINE__); */
-
-        $error="No se pudo editar.";
+        $error="Usuario Creado.";
         $this->response($this->json($error), 200);
 
 
@@ -14234,35 +14251,49 @@ class API extends REST {
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
-
-
-
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
         $params = json_decode(file_get_contents('php://input'),true);
-        $usuarioIp=$_SERVER['REMOTE_ADDR'];
-        $usuarioPc=gethostbyaddr($usuarioIp);
-        $galleta=json_decode(stripslashes($_COOKIE['logedUser']),true);
-        $galleta=stripslashes($_COOKIE['logedUser']);
-        $galleta= json_decode($galleta);
-        $galleta = json_decode(json_encode($galleta), True);
-        $usuarioid=$galleta['USUARIO_ID'];
         $id=$params['id'];
 
 
 
         $sql = "delete from portalbd.tbl_usuarios where ID=$id ";
 
-
-
         $rst = $this->mysqli->query($sql);
 
-        //echo $rst;
+        // SQL Feed----------------------------------
+        $sql_log=   "insert into portalbd.activity_feed ( ".
+            " USER ".
+            ", USER_NAME ".
+            ", GRUPO ".
+            ", STATUS ".
+            ", PEDIDO_OFERTA ".
+            ", ACCION ".
+            ", CONCEPTO_ID ".
+            ", IP_HOST ".
+            ", CP_HOST ".
+            ") values( ".
+            " UPPER('$usuarioGalleta')".
+            ", UPPER('$nombreGalleta')".
+            ", UPPER('$grupoGalleta')".
+            ",'OK' ".
+            ",'SIN PEDIDO' ".
+            ",'BORRO USUARIO' ".
+            ",'USUARIO BORRADO' ".
+            ",'$usuarioIp' ".
+            ",'$usuarioPc')";
 
-        /*//Insert en log
-			$sql_log="insert into emtelco.gopd_logoperaciones (USUARIO_ID, TIPO_ACTIVIDAD, DESCRIPCION, IDENTIFICADOR, IP, PC) values(UPPER('$usuarioid'),'ELIMIAR','ELIMINO EL USUARIO','ID: $id','$usuarioIp','$usuarioPc')";
-
-			$rlog = $this->connemtel->query($sql_log) or die($this->connemtel->error.__LINE__);
-			//Insert en log */
-        $error="No se pudo borrar";
+        $rlog = $this->mysqli->query($sql_log);
+        // ---------------------------------- SQL Feed
+        $error="Usuario borrado";
         $this->response($this->json($error), 200);
 
 
@@ -14279,14 +14310,15 @@ class API extends REST {
 
         $params = json_decode(file_get_contents('php://input'),true);
 
-        //$usuario = $usuario['usuario'];
-        $usuarioIp=$_SERVER['REMOTE_ADDR'];
-        $usuarioPc=gethostbyaddr($usuarioIp);
-        $galleta=json_decode(stripslashes($_COOKIE['logedUser']),true);
-        $galleta=stripslashes($_COOKIE['logedUser']);
-        $galleta= json_decode($galleta);
-        $galleta = json_decode(json_encode($galleta), True);
-        $usuarioid=$galleta['USUARIO_ID'];
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
 
 
         $id=$params['editaInfo']['ID'];
@@ -14333,13 +14365,32 @@ class API extends REST {
 
         $rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
 
-        /* //Insert en log
-					$sql_log="insert into emtelco.re_logoperaciones (USUARIO_ID, TIPO_ACTIVIDAD, DESCRIPCION, IDENTIFICADOR, IP, PC) values(UPPER('$usuarioid'),'EDITAR','EDITO EL USUARIO','ID: $id','$usuarioIp','$usuarioPc')";
+        // SQL Feed----------------------------------
+        $sql_log=   "insert into portalbd.activity_feed ( ".
+            " USER ".
+            ", USER_NAME ".
+            ", GRUPO ".
+            ", STATUS ".
+            ", PEDIDO_OFERTA ".
+            ", ACCION ".
+            ", CONCEPTO_ID ".
+            ", IP_HOST ".
+            ", CP_HOST ".
+            ") values( ".
+            " UPPER('$usuarioGalleta')".
+            ", UPPER('$nombreGalleta')".
+            ", UPPER('$grupoGalleta')".
+            ",'OK' ".
+            ",'SIN PEDIDO' ".
+            ",'EDITO USUARIO' ".
+            ",'$usuarioEdita EDITADO' ".
+            ",'$usuarioIp' ".
+            ",'$usuarioPc')";
 
-					$rlog = $this->connemtel->query($sql_log) or die($this->connemtel->error.__LINE__);
-					//Insert en log */
+        $rlog = $this->mysqli->query($sql_log);
+        // ---------------------------------- SQL Feed
 
-        $error="No se pudo Editar Usuario.";
+        $error="Usuario Editado.";
         $this->response($this->json($error), 200);
 
 
