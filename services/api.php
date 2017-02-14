@@ -7752,7 +7752,7 @@ class API extends REST {
                 " TIMEDIFF( NOW() , PROGRAMACION ) /3600 >0 ".
                 " AND ASESOR='' ".
                 " AND CONCEPTO_ID = '$concepto' ".
-                " AND TIPO_TRABAJO = 'NUEVO'".
+                " AND TIPO_TRABAJO = 'NUEVO'".////cambio par4a entregar solo nuevos, 2017-02-17
                 " AND STATUS='PENDI_PETEC' ".
                 " ORDER BY  TIMEDIFF( NOW() , PROGRAMACION ) /3600 ASC ";
 
@@ -7776,7 +7776,7 @@ class API extends REST {
                     " AND ASESOR='' ".
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
-                    " AND TIPO_TRABAJO = 'NUEVO'".
+                    " AND TIPO_TRABAJO = 'NUEVO'".////cambio par4a entregar solo nuevos, 2017-02-17
                     $plaza2.
                     " ORDER BY FECHA_ESTADO ASC ";
 
