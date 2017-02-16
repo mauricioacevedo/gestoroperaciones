@@ -7706,7 +7706,6 @@ class API extends REST {
                     " RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM') ".
                     " AND ASESOR='' ".
                     " AND CONCEPTO_ID = '$concepto' ".
-                    " AND TIPO_TRABAJO='NUEVO' ".//cambio para que entregue los nuevos
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
                     " ORDER BY FECHA_ESTADO ASC ";
