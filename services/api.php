@@ -7706,7 +7706,6 @@ class API extends REST {
                     " RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM') ".
                     " AND ASESOR='' ".
                     " AND CONCEPTO_ID = '$concepto' ".
-                    " AND TIPO_TRABAJO = 'NUEVO'".////cambio par4a entregar solo nuevos, 2017-02-17
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
                     " ORDER BY FECHA_ESTADO ASC ";
@@ -7994,7 +7993,8 @@ class API extends REST {
             " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto ";
 
         //"SELECT b.ID,b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.TIPO_ELEMENTO_ID,b.PRODUCTO,b.UEN_CALCULADA,b.ESTRATO,b.MUNICIPIO_ID,b.DIRECCION_SERVICIO,b.PAGINA_SERVICIO,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(b.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,b.FUENTE,b.CONCEPTO_ID,b.FECHA_ESTADO,b.USUARIO_BLOQUEO_FENIX,b.TIPO_TRABAJO,b.CONCEPTO_ANTERIOR,b.FECHA_CITA,b.CANTIDAD_EQU,b.EQUIPOS,b.CONCEPTOS_EQU,b.TIPO_EQUIPOS,b.EXTENSIONES, b.OBSERVACIONES,  b.EJECUTIVO_ID, b.CANAL_ID from informe_petec_pendientesm b where b.PEDIDO_ID = '$mypedido' and b.STATUS='PENDI_PETEC' $concepto ";
-
+echo "estes es el llamada".$sqlllamadas;
+echo "estes es el query1".$query1;
         //echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
