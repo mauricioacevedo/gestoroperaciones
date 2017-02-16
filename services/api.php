@@ -7704,7 +7704,7 @@ class API extends REST {
                     " FROM  informe_petec_pendientesm ".
                     " WHERE ".
                     " TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
-                     " UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
+                     "AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
                     //" RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM') ".
                     " AND ASESOR='' ".
                     " AND CONCEPTO_ID = '$concepto' ".
