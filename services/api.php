@@ -11715,12 +11715,12 @@ class API extends REST {
                 "    when a.USER='GESTOR' then 'AUTOMATICO' ".
                 "    else a.GRUPO ".
                 "    end as GRUPO ".
-                " , case ".
+                " , trim(case ".
                 "    when a.USER='GESTOR' then 'DEMONIO' ".
                 "    when a.ACCION='' then 'SIN' ".
                 "    when a.ACCION='SE LOGUEO' then 'LOGIN' ".
                 "    else substr(a.ACCION,1, INSTR(a.ACCION, ' ' )) ".
-                "    end as ACCION ".
+                "    end )as ACCION ".
                 " , a.ACCION AS DETALLE ".
                 " FROM activity_feed a ".
                 " WHERE a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' ".
