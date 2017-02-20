@@ -1709,9 +1709,9 @@ class API extends REST {
             ", IP_HOST ".
             ", CP_HOST ".
             ") values( ".
-            " UPPER('$usuarioGalleta')".
+            " UPPER('$useri')".
             ", UPPER('$nombreGalleta')".
-            ", UPPER('$grupoGalleta')".
+            ", UPPER('AGENDAMIENTO')".
             ",'$novedad' ".
             ",'$PEDIDO_ID' ".
             ",'REAGENDO PEDIDO' ".
@@ -2201,7 +2201,7 @@ class API extends REST {
                     ", IP_HOST ".
                     ", CP_HOST ".
                     ") values( ".
-                    " UPPER('$usuarioGalleta')".
+                    " UPPER('$useri')".
                     ", UPPER('$nombreGalleta')".
                     ", UPPER('$grupoGalleta')".
                     ",'$estadum' ".
@@ -2252,7 +2252,7 @@ class API extends REST {
                     ", IP_HOST ".
                     ", CP_HOST ".
                     ") values( ".
-                    " UPPER('$usuarioGalleta')".
+                    " UPPER('$useri')".
                     ", UPPER('$nombreGalleta')".
                     ", UPPER('$grupoGalleta')".
                     ",'$estadum' ".
