@@ -477,7 +477,23 @@
 					<div class = "panel-body">
 
 						<ul class="list-group small">
-							<a href="" ng-repeat="data in listado_feed" class="list-group-item animated slideInRight"><span class="small">{{data.USER}}</span> | <span ng-class= "{'Busco':'label label-info','Auto':'label label-danger','Guardo':'label label-success','Siebel':'label label-success','Se logueo':'label label-default' }[data.ACCION]"> {{data.ACCION}}</span> | {{data.FECHA | timeago}}</a>
+							<a href="" ng-repeat="data in listado_feed" class="list-group-item animated slideInRight"><span class="small">{{data.USER}}</span> | <span
+									ng-class="{
+                                        'USO':'label label-info',
+                                        'REAGENDO':'label label-success',
+                                        'ASIGNO':'label label-success',
+                                        'BUSCO':'label label-info',
+                                        'DEMONIO':'label label-primary',
+                                        'GUARDO':'label label-success',
+                                        'LOGIN':'label label-warning',
+                                        'RECONFIGURO':'label label-success',
+                                        'PRIORIZO':'label label-success',
+                                        'ACTUALIZO':'label label-success',
+                                        'EXPORTO':'label label-success',
+                                        'PROGRAMO':'label label-danger',
+                                        'AUDITO':'label label-danger',
+                                        'BODEGA':'label label-danger',
+                                         }[data.ACCION]"> {{data.ACCION}}</span> | {{data.FECHA | timeago}}</a>
 						</ul>
 					</div>
 					<div class = "panel-footer">
