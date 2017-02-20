@@ -5984,30 +5984,31 @@ class API extends REST {
 
         $filename="Malos-$login-$today.csv";
 
-        $query="Select ".
-            " pm.PEDIDO_ID ".
-            " , min(pm.FECHA_INGRESO) as FECHA_INGRESO ".
-            " , max(pm.FECHA_ESTADO) as FECHA_ESTADO ".
-            ", pm.FUENTE ".
-            ", pm.STATUS ".
-            ", (Select  ".
-            "    group_concat(distinct p.motivo_malo ) as motivo ".
-            "    from portalbd.pedidos p  ".
-            "    where p.estado='MALO' ".
-            " and p.pedido_id=pm.PEDIDO_ID ".
-            "    group by p.pedido_id ) as MOTIVO_MALO ".
-            " from portalbd.informe_petec_pendientesm pm  ".
-            " where   ".
-            " pm.status='MALO' ".
-            " group by pm.PEDIDO_ID ";
-        $concepto;
+        $query= " Select ".
+                "     pm.PEDIDO_ID  ".
+                "    , min(pm.FECHA_INGRESO) as FECHA_INGRESO ".
+                "    , max(pm.FECHA_ESTADO) as FECHA_ESTADO ".
+                "    , group_concat(distinct pm.CONCEPTO_ID) as CONCEPTO_ID ".
+                "    , pm.FUENTE ".
+                "    , pm.STATUS ".
+                "    , (Select  p.motivo_malo as motivo  ".
+                "    from portalbd.pedidos p   ".
+                "    where p.id = (select max(d.id) from portalbd.pedidos d where d.estado='MALO'  and d.pedido_id=pm.pedido_id group by d.pedido_id)) as MOTIVO_MALO ".
+                "    , (Select  p.user as motivo  ".
+                "    from portalbd.pedidos p  ".
+                "    where p.id = (select max(d.id) from portalbd.pedidos d where d.estado='MALO'  and d.pedido_id=pm.pedido_id group by d.pedido_id)) as USUARIO ".
+                "    from portalbd.informe_petec_pendientesm pm   ".
+                "    where   ".
+                "    pm.status='MALO'  ".
+                "    group by pm.PEDIDO_ID  ";
+       // $concepto;
         //" and CONCEPTO_ID = '' ";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','FUENTE','STATUS','MOTIVO_MALO'));
+            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','CONCEPTO_ID', 'FUENTE','STATUS','MOTIVO_MALO','USUARIO'));
             while($row = $r->fetch_assoc()){
                 $result[] = $row;
                 fputcsv($fp, $row);
