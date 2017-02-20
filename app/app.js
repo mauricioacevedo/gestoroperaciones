@@ -5372,7 +5372,8 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
     $scope.statuses = [
         {value: 'PENDI_PETEC', text: 'PENDI_PETEC'},
-        {value: 'MALO', text: 'MALO'}
+        {value: 'MALO', text: 'MALO'},
+        {value: 'CERRADO_PETEC', text: 'CERRADO_PETEC'}
     ];
 
     $scope.updateStatus = function(data) {
