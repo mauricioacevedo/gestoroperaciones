@@ -5997,6 +5997,9 @@ class API extends REST {
                 "    , (Select  p.user as motivo  ".
                 "    from portalbd.pedidos p  ".
                 "    where p.id = (select max(d.id) from portalbd.pedidos d where d.estado='MALO'  and d.pedido_id=pm.pedido_id group by d.pedido_id)) as USUARIO ".
+                "    , (Select  p.fecha_fin as fecha  ".
+                "    from portalbd.pedidos p  ".
+                "    where p.id = (select max(d.id) from portalbd.pedidos d where d.estado='MALO'  and d.pedido_id=pm.pedido_id group by d.pedido_id)) as FECHAMALO ".
                 "    from portalbd.informe_petec_pendientesm pm   ".
                 "    where   ".
                 "    pm.status='MALO'  ".
@@ -6008,7 +6011,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','CONCEPTO_ID', 'FUENTE','STATUS','MOTIVO_MALO','USUARIO'));
+            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','CONCEPTO_ID', 'FUENTE','STATUS','MOTIVO_MALO','USUARIO','FECHAMALO'));
             while($row = $r->fetch_assoc()){
                 $result[] = $row;
                 fputcsv($fp, $row);
