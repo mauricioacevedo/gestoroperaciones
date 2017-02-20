@@ -7699,18 +7699,37 @@ class API extends REST {
                     $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
                 }
 
+                /*
+                 * Prioridad vieja, Deshabilitada para que priorice, nuevos, hogares y/o Arbol
+                 *
                 //HAGO LA CONSULTA DE PRIORIDAD POR ARBOL
                 $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA ".
                     " FROM  informe_petec_pendientesm ".
                     " WHERE ".
                     " TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
-                     "AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
-                    //" RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM') ".
+                    " AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
+                    " RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM') ".
                     " AND ASESOR='' ".
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
-                    " ORDER BY FECHA_ESTADO ASC ";
+                    " ORDER BY FECHA_ESTADO ASC "; */
+
+                $sqlllamadas=   "SELECT PEDIDO_ID, ".
+                                " SUBPEDIDO_ID, ".
+                                " SOLICITUD_ID, ".
+                                " FECHA_ESTADO, ".
+                                " FECHA_CITA ".
+                                " FROM  informe_petec_pendientesm ".
+                                " WHERE 1=1 ".
+                                " and (TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
+                                " AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
+                                " or RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM') ) ".
+                                " AND ASESOR='' ".
+                                " AND CONCEPTO_ID = '$concepto' ".
+                                " AND STATUS='PENDI_PETEC' ".
+                                $plaza2.
+                                " ORDER BY FECHA_ESTADO ASC ";
 
                 $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
