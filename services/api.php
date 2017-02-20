@@ -11683,7 +11683,8 @@ class API extends REST {
             }
         }
 
-
+        /*
+         * Query viejo
 
         $query=	" SELECT ".
             " a.FECHA ".
@@ -11705,7 +11706,26 @@ class API extends REST {
             " WHERE a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' ".
             " ORDER BY a.id DESC  ".
             " LIMIT 10 ";
-        //echo $query;
+        //echo $query; */
+
+        $query=	" SELECT  ".
+                " a.FECHA ".
+                " , a.USER ".
+                " , case ".
+                "    when a.USER='GESTOR' then 'AUTOMATICO' ".
+                "    else a.GRUPO ".
+                "    end as GRUPO ".
+                " , case ".
+                "    when a.USER='GESTOR' then 'DEMONIO' ".
+                "    when a.ACCION='' then 'SIN' ".
+                "    when a.ACCION='SE LOGUEO' then 'LOGIN' ".
+                "    else substr(a.ACCION,1, INSTR(a.ACCION, ' ' )) ".
+                "    end as ACCION ".
+                " , a.ACCION AS DETALLE ".
+                " FROM activity_feed a ".
+                " WHERE a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' ".
+                " ORDER BY a.id DESC ".
+                " LIMIT 15 ";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
