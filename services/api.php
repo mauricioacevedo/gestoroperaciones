@@ -6107,7 +6107,7 @@ class API extends REST {
                 ", UPPER('$grupoGalleta')".
                 ",'OK' ".
                 ",'$bpedido' ".
-                ",'BUSCO PEDIDO' ".
+                ",'BUSCO PEDIDO REGISTRADO' ".
                 ",'PEDIDO BUSCADO' ".
                 ",'$usuarioIp' ".
                 ",'$usuarioPc')";
@@ -13143,6 +13143,15 @@ class API extends REST {
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
 
         $pedido = $this->_request['pedidoID'];
         $pedido=trim($pedido," ");
@@ -13260,9 +13269,33 @@ class API extends REST {
 
             $x = $this->mysqli->query($sqlupdate);
 
+            // SQL Feed----------------------------------
+            $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'$pedido' ".
+                ",'BUSCO PEDIDO SIEBEL' ".
+                ",'PEDIDO BUSCADO' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
+            // ---------------------------------- SQL Feed
             // Feed ----------------------
-            $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','') ";
-            $xx = $this->mysqli->query($sqlfeed);
+            //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','') ";
+            //$xx = $this->mysqli->query($sqlfeed);
             //  ---------------------- Feed
 
             $this->response(json_encode($result), 200); //Resultado final si encontro registros
@@ -13293,9 +13326,32 @@ class API extends REST {
 
                 $xCerrado = $this->mysqli->query($sqlupdate);
 
+                // SQL Feed----------------------------------
+                $sql_log=   "insert into portalbd.activity_feed ( ".
+                    " USER ".
+                    ", USER_NAME ".
+                    ", GRUPO ".
+                    ", STATUS ".
+                    ", PEDIDO_OFERTA ".
+                    ", ACCION ".
+                    ", CONCEPTO_ID ".
+                    ", IP_HOST ".
+                    ", CP_HOST ".
+                    ") values( ".
+                    " UPPER('$usuarioGalleta')".
+                    ", UPPER('$nombreGalleta')".
+                    ", UPPER('$grupoGalleta')".
+                    ",'OK' ".
+                    ",'$pedido' ".
+                    ",'BUSCO PEDIDO SIEBEL' ".
+                    ",'PEDIDO BUSCADO' ".
+                    ",'$usuarioIp' ".
+                    ",'$usuarioPc')";
+
+                $rlog = $this->mysqli->query($sql_log);
                 // Feed ----------------------
-                $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','Reabrio pedido') ";
-                $xxCerrado = $this->mysqli->query($sqlfeed);
+                //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','Reabrio pedido') ";
+                //$xxCerrado = $this->mysqli->query($sqlfeed);
                 //  ---------------------- Feed
 
 
