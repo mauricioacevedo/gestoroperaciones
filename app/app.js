@@ -9343,7 +9343,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			return data.data;
 		});
 
-	}
+	};
 	$scope.getFeed();
 
 	$scope.grupo = {};
