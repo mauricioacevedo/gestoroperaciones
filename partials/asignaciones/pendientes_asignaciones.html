@@ -113,11 +113,10 @@
                                    e-ng-options="s.value as s.text for s in statuses"
                                    onaftersave="updateStatus(data)"
                                    title="Editar"
-                                   popover popover-placement="left" uib-popover="{{data.OBS}}"  popover-trigger="'mouseenter'"
                                 >
                                     {{ data.STATUS }}
                                 </a>
-                                 <span ng-show="hoverEdit" class="animated bounceIn" ><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                                 <span ng-show="hoverEdit" class="animated bounceIn" popover popover-placement="left" uib-popover="{{data.OBS}}"  popover-trigger="'mouseenter'"><i class="fa fa-pencil" aria-hidden="true"></i></span>
 
                             </span>
                         </td>
