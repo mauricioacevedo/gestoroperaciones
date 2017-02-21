@@ -10,12 +10,20 @@
 								<img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif" />
 							</div>
 						</div>
-					</u>
+					</ul>
 				</div>
 				<div class = "panel-heading nav navbar-default">
 					<div class="col-md-12">
 						<div class="row">
 							<div class="col-md-12">
+								<ul class="nav navbar-nav navbar-left">
+									<li>Registros: <span class="badge badge-default">{{totalScheduling}}</span></li>
+									<li>&nbsp;</li>
+									<li>Pre-formularios: <span class="badge badge-default">{{totalSchedulingPre}}</span></li>
+									<li>&nbsp;</li>
+									<li>Pedidos: <span class="badge badge-default">{{totalSchedulingPedidos}}</span></li>
+
+								</ul>
 								<ul class="nav navbar-nav navbar-left">
 									<li>&nbsp;</li>
 									<li>
@@ -78,14 +86,6 @@
 				</div>
 				<div class="panel-footer clearfix" >
 					<div class="col-md-12">
-						<ul class="nav navbar-nav navbar-left">
-							<li>Registros: <span class="badge badge-default">{{totalScheduling}}</span></li>
-							<li>&nbsp;</li>
-							<li>Pre-formularios: <span class="badge badge-default">{{totalSchedulingPre}}</span></li>
-							<li>&nbsp;</li>
-							<li>Pedidos: <span class="badge badge-default">{{totalSchedulingPedidos}}</span></li>
-
-						</ul>
 
 						<ul class="nav navbar-nav navbar-right">
 
