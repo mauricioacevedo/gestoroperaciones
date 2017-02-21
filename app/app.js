@@ -6819,6 +6819,7 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
 
 app.controller('SchedulingCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
 
+	$rootScope.errorDatos=null;
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
 	document.getElementById('logout').className = "btn btn-md btn-danger";
