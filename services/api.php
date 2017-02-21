@@ -12813,6 +12813,18 @@ class API extends REST {
             }
         }
 
+        $query=" SELECT ULTIMA_ACTUALIZACION as FECHA FROM scheduling.agendamientoxfenix order by ULTIMA_ACTUALIZACION desc limit 1; ";
+        $fechA = $this->mysqliScheduling->query($query);
+        //$fechaUpdate='';
+
+        //$this->response($this->json('malo'), 200);
+        if($fechA->num_rows > 0){
+            $result = array();
+            if($row = $ped->fetch_assoc()){
+                $fechaUpdate = $row['FECHA'];
+            }
+        }
+
 
         $query=" select pedido_id, subpedido_id, solicitud_id, ".
             " concepto_id, DATE_FORMAT(FECHA_ESTADO,'%d-%m-%Y %T') as FECHA_ESTADO, FECHA_CITA, DATE_FORMAT(FECHA_INGRESO,'%d-%m-%Y %T') as FECHA_INGRESO, TIPO_SOLICITUD,".
@@ -12828,7 +12840,7 @@ class API extends REST {
                 //echo "name: ".utf8_encode($row['USUARIO_NOMBRE'])."\n ";
                 $result[] = $row;
             }
-            $this->response($this->json(array($result,$counter,$preformularios,$pedidos)), 200); // send user details
+            $this->response($this->json(array($result,$counter,$preformularios,$pedidos,$fechaUpdate)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
