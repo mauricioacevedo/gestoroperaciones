@@ -6299,7 +6299,7 @@ class API extends REST {
                 ", a.FUENTE, a.CONCEPTO_ID, a.FECHA_ESTADO, a.FECHA_CITA, a.STATUS, a.PROGRAMACION ".
                 ", case when a.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ARBOL' else a.RADICADO_TEMPORAL end as RADICADO_TEMPORAL ".
                 ", if(a.RADICADO_TEMPORAL='ARBOL','true','false') as PRIORIDAD ".
-                ", ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin Observaciones') as OBS".
+                ", ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin') as OBS".
                 " from informe_petec_pendientesm a ".
                 " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
                 " order by a.FECHA_ESTADO ASC limit 100 offset $page";
