@@ -6858,6 +6858,7 @@ app.controller('SchedulingCtrl', function ($scope, $rootScope, $location, $route
 		$scope.totalScheduling = data.data[1];
 		$scope.totalSchedulingPre = data.data[2];
 		$scope.totalSchedulingPedidos = data.data[3];
+        $scope.fechaActualizacion = data.data[4];
 		$scope.data.totalItems = data.data[1];
 		return data.data;
 	});
