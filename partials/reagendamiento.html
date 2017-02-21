@@ -28,7 +28,7 @@
             </select>
             <label  for="Microzona">Microzona:</label>
             <select ng-model="microzona" class="form-control" style="width: auto;">
-                <option ng-repeat="microz in microzonas" value="{{microz.MICROZONA}}">{{microz.MICROZONA}} <span ng-class='label label-danger' class="ng-binding label label-danger">  ({{microz.COUNTER}}) </span>  </option>
+                <option ng-repeat="microz in microzonas" value="{{microz.MICROZONA}}">{{microz.MICROZONA}} <span  class="label label-danger">  ({{microz.COUNTER}}) </span>  </option>
             </select>
 
         </div>
@@ -69,14 +69,6 @@
 
           <div class="col-lg-12 col-xs-12">
 
-              <div class="row">
-                <div  class="container" ng-hide="departamento!='' || bpedido!=''">
-                  <div class="jumbotron">
-                    <center><h3> Presione <strong>DemePedido</strong> para obtener un pedido de la Microzona seleccionada.</h3></center>
-                  </div>
-                </div>
-              </div>
-              
                 <div class="row">
                       <form name="pedidoForm" ng-submit="savePedido(pedido,userID)" novalidate>
 
