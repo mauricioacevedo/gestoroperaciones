@@ -12820,7 +12820,7 @@ class API extends REST {
         //$this->response($this->json('malo'), 200);
         if($fechA->num_rows > 0){
             $result = array();
-            if($row = $ped->fetch_assoc()){
+            if($row = $fechA->fetch_assoc()){
                 $fechaUpdate = $row['FECHA'];
             }
         }
