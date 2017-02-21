@@ -8797,6 +8797,8 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 				document.getElementById("warning").innerHTML = "No hay Registros";
 				$scope.error = "No hay Registros";
 				$scope.historico_pedido = {};
+                $scope.peds = {};
+                $scope.mpedido = {};
 			} else {
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
