@@ -104,8 +104,8 @@
                         <td><span class="small">{{cutString(data.TIPO_ELEMENTO_ID,20)}}</span></td>
                         <td><label style="color:red">{{data.TIEMPO_COLA}}</label></td>
                         <td><span class="small">{{data.PROGRAMACION}}</span></td>
-                        <td><span class="small" >{{data.CONCEPTO_ID}}</span></td>
-                        <td ng-show="idPermisos.indexOf(logedUser.login)!=-1" ng-mouseover="hoverEdit = true" ng-mouseleave="hoverEdit = false" popover popover-placement="left" uib-popover="{{data.OBS}}"  popover-trigger="'mouseenter'">
+                        <td><span class="small" popover popover-placement="left" uib-popover="{{data.OBS}}"  popover-trigger="'mouseenter'">{{data.CONCEPTO_ID}}</span></td>
+                        <td ng-show="idPermisos.indexOf(logedUser.login)!=-1" ng-mouseover="hoverEdit = true" ng-mouseleave="hoverEdit = false">
                             <span class="small">
                                 <a href="#"
                                    ng-style="{'color':data.STATUS=='MALO' && 'red' || 'blue', 'font-weight': 'bold' }"
