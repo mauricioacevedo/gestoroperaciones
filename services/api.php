@@ -15194,7 +15194,7 @@ class API extends REST {
         //var_dump($data);
         if(empty($data)){
             $smg1 = "Sin registros";
-            $this->response ($this->json ([$smg1]), 403); // send user details
+            $this->response ($this->json ([$smg1,]), 403); // send user details
         }else{
             $this->response ($this->json ($data), 200); // send user details
         }
