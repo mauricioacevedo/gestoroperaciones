@@ -14517,13 +14517,14 @@ class API extends REST {
 
         $params 	= json_decode(file_get_contents('php://input'),true);
         $fuente 	= $params['fuente'];
-        $grupo 	        = $params['grupo'];
+        $grupo 	    = $params['grupo'];
+        $actividad  = $params['actividad'];
         $today		= date("Y-m-d");
 
         if($grupo=='ADMINISTRACION'){
             $filtros= "";
         }else{
-            $filtros= " and o.ESTADO=1 and o.FUENTE='$fuente' and o.GRUPO='$grupo' ";
+            $filtros= " and o.ESTADO=1 and o.FUENTE='$fuente' and o.GRUPO='$grupo' and o.ACTIVIDAD='$actividad' ";
         };
 
 

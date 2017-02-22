@@ -13391,6 +13391,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.habilitaCr			= false;					// Habilita el campo CR.
 	$scope.programar			= false;					// Habilitar el campo programación.
 	$scope.accRdy				= false; 					// Habilitar el boton de Guardar.
+    $scope.pedidoIsActive 		= false;
 	var varDondeGuardar 		= '';
 	var varEstadoGuardar		= '';
 	var varObsesGuardar			= '';
@@ -13402,7 +13403,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.GenerarOpcionesGestion = function () {
 		var opciones= {
 			fuente: $scope.iconcepto.FUENTE,
-			grupo: $scope.iconcepto.GRUPO
+			grupo: $scope.iconcepto.GRUPO,
+			actividad: $scope.iconcepto.ACTIVIDAD
 		};
 
 		$scope.listarOpcionesAsginacion(opciones);
@@ -13445,12 +13447,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			$scope.programar=true;
 		}
 
-
-
 	};
 
 	//$scope.listarOpcionesAsginacion();//  --------------------------------Cargar Opciones para la gestion
-
 
 
 	$scope.PedidosPorUser= function () {
@@ -13471,8 +13470,6 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.peds = {};
 	$scope.timeInit = 0;
 	$scope.pedidos = angular.copy(original);
-
-	$scope.pedidoIsActive = false;
 
 
 	$scope.calcularListadoReconfiguracion  = function (){

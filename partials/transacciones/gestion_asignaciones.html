@@ -25,7 +25,7 @@
                                 <select class="btn btn-default btn-xs grupo-select"
                                         style="width: 200px"
                                         ng-model="iconcepto"
-                                        ng-options="d.CONCEPTO_ID+' | '+d.FUENTE group by d.GRUPO for d in listadoConceptos | filter:{ESTADO: '1'} track by d.ID "
+                                        ng-options="d.CONCEPTO_ID+' | '+d.FUENTE group by d.GRUPO for d in listadoConceptos | filter:{ESTADO: '1',} track by d.ID "
                                         ng-change="GenerarOpcionesGestion()">
                                     <option value="" disabled>--Seleccione Concepto--</option>
                                 </select>
@@ -210,6 +210,14 @@
                                         </form>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group  has-feedback" >
+                                <label for="auditar" class="control-label">CR Incidente:</label>
+                                <button type="button" id="auditar" class="btn btn-primary btn-xs" >
+                                    Auditar
+                                </button>
                             </div>
                         </div>
                     </div>
