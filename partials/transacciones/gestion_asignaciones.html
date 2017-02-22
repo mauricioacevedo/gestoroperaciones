@@ -209,7 +209,13 @@
                                             <div class="form-group  has-feedback" ng-show="idPermisos.indexOf(logedUser.login)!=-1">
                                                 <div class="btn-group btn-group-justified" role="group" aria-label="...">
                                                     <div class="btn-group" role="group">
-                                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalAuditoria" data-backdrop="static">Auditar</button>
+                                                        <button
+                                                                type="button"
+                                                                class="btn btn-default"
+                                                                data-toggle="modal"
+                                                                data-target="#ModalAuditoria"
+                                                                data-backdrop="static"
+                                                                ng-disabled="idConceptos.indexOf(InfoPedido.CONCEPTO_ID)!=-1">Auditar</button>
                                                     </div>
                                                 </div>
                                             </div>
