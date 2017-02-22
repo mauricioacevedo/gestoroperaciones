@@ -15177,7 +15177,7 @@ class API extends REST {
                    " OR CONCEPTO_ID_ANTERIOR='OKRED' ".
                    " OR CONCEPTO_ID_ANTERIOR='PEXPQ' ".
                    " OR CONCEPTO_ID_ANTERIOR='APPRV') ".
-                   " AND CONCEPTO_ID_ACTUAL IN ('PORDE', 'PSERV') ".
+                   " AND CONCEPTO_ID_ACTUAL IN ('PORDE') ".
                    " AND USUARIO_ID NOT IN ('USRFRABTS','ATCFENIX') ) C1 ".
                    " GROUP BY C1.PEDIDO_ID ";
 
