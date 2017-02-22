@@ -13986,6 +13986,12 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.abrirModalAuditoria=function (pedido, usuario) {
 		console.log(pedido);
         console.log(usuario);
+        var opcionesAuditoria= {
+            fuente: 'FENIX_NAL',
+            grupo: 'ASIGNACIONES',
+            actividad: 'AUDITORIA'
+        };
+        $scope.listarOpcionesAsginacion(opcionesAuditoria);
 
     };
 
