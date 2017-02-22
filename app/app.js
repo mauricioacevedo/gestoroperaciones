@@ -13740,14 +13740,16 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			$scope.habilitaCr			= true;
 			var opciones= {
 				fuente: 'SIEBEL',
-				grupo: 'ASIGNACIONES'
+				grupo: 'ASIGNACIONES',
+				actividad: 'ESTUDIO'
 				};
 			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
 		}else if ($scope.ifuente.FUENTE=='EDATEL'){
 			$scope.habilitaCr			= true;
 			var opciones= {
 				fuente: 'EDATEL',
-				grupo: 'EDATEL'
+				grupo: 'EDATEL',
+                actividad: 'ESTUDIO'
 				};
 			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
 
@@ -13755,7 +13757,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			$scope.habilitaCr			= false;
 			var opciones= {
 				fuente: 'FENIX_NAL',
-				grupo: 'RECONFIGURACION'
+				grupo: 'RECONFIGURACION',
+                actividad: 'RECONFIGURACION'
 				};
 			var kami = services.buscarPedidoReconfiguracion(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login);
 		}
@@ -13979,6 +13982,14 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 });
         };
 
+	// Modal para la Auditoria de Pedidos ---------------------------------------------
+	$scope.abrirModalAuditoria=function (pedido, usuario) {
+		console.log(pedido);
+        console.log(usuario);
+
+    };
+
+    // --------------------------------------------- Modal para la Auditoria de Pedidos
 
 	$scope.doubleDigit = function (num) {
 
@@ -13995,9 +14006,6 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 });
 // -----------------------------------------------Controlador para Gestion de Reconfiguracion Asignaciones
-
-
-
 
 app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
 	$scope.header = 'Buscador Nodos CMTS';
