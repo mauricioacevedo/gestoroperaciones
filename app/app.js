@@ -13997,10 +13997,13 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         $scope.listarOpcionesAsginacion(opcionesAuditoria);
         services.buscarPedidoAuditoriafenix(pedido).then(
         	function (data) {
-				console.log(data)
-
+				$scope.infoFenix=data.data[0];
+				$scope.regToPush=parseInt($scope.infoFenix.CANTIDADUSERS);
+                console.log($scope.infoFenix);
+                console.log($scope.regToPush);
             }, function errorCallback(response) {
         		console.log(response);
+        		$scope.msgAuditoria=response.data;
 
             }
 
