@@ -960,6 +960,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
             usuario_id: usuario_id
         });
     };
+    obj.buscarPedidoAuditoriafenix = function (pedido){
+        return $http.get(serviceBase + 'buscarPedidoAuditarFenix?pedido='+ pedido);
+	};
 
 
 	return obj;
@@ -13992,6 +13995,16 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
             actividad: 'AUDITORIA'
         };
         $scope.listarOpcionesAsginacion(opcionesAuditoria);
+        services.buscarPedidoAuditoriafenix(pedido).then(
+        	function (data) {
+				console.log(data)
+
+            }, function errorCallback(response) {
+        		console.log(response);
+
+            }
+
+		);
 
     };
 

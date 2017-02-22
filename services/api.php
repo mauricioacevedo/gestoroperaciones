@@ -15142,6 +15142,65 @@ class API extends REST {
 
     }
 
+/**
+ * Funcion para traer el usuario y la fecha de la auditoria de pedidos en O-XXX
+ */
+    private function buscarPedidoAuditarFenix(){
+        if($this->get_request_method() != "GET"){
+            $this->response('Metodo no soportado',406);
+        }
+
+        $pedido = $this->_request['pedido'];
+
+        $this->dbFenixSTBYConnect();
+        $connfstby=$this->connfstby;
+
+        $sqlfenix= " SELECT ".
+                   " C1.PEDIDO_ID ".
+                   " , RTRIM(REGEXP_REPLACE((LISTAGG(C1.USUARIO_ID,'-') WITHIN GROUP (ORDER BY C1.USUARIO_ID asc)) ,   ".
+                   "     '([^-]*)(-\\1)+($|-)', '\\1\\3'),'-') AS USUARIOS ".
+                   " , RTRIM(REGEXP_REPLACE((LISTAGG(C1.FECHA,',') WITHIN GROUP (ORDER BY C1.USUARIO_ID asc)) ,   ".
+                   "     '([^,]*)(,\\1)+($|,)', '\\1\\3'),',') AS FECHAS ".
+                   " , REGEXP_COUNT((RTRIM(REGEXP_REPLACE((LISTAGG(C1.USUARIO_ID,'-') WITHIN GROUP (ORDER BY C1.USUARIO_ID asc)) ,  ".
+                   "     '([^-]*)(-\\1)+($|-)', '\\1\\3'),'-')),'-')+1 AS CANTIDADUSERS ".
+                   " FROM ( ".
+                   " SELECT ".
+                   " PEDIDO_ID ".
+                   " , CASE ".
+                   "   WHEN USUARIO_ID IN ('SYS', 'FENIX') THEN 'AUTOMATICO' ".
+                   "   ELSE USUARIO_ID ".
+                   " END AS USUARIO_ID ".
+                   " , TO_CHAR(FECHA,'RRRR-MM-DD') AS FECHA ".
+                   " FROM FNX_NOVEDADES_SOLICITUDES ".
+                   " WHERE PEDIDO_ID='$pedido' ".
+                   " AND (CONCEPTO_ID_ANTERIOR='PETEC' ".
+                   " OR CONCEPTO_ID_ANTERIOR='OKRED' ".
+                   " OR CONCEPTO_ID_ANTERIOR='PEXPQ' ".
+                   " OR CONCEPTO_ID_ANTERIOR='APPRV') ".
+                   " AND CONCEPTO_ID_ACTUAL IN ('PORDE', 'PSERV') ".
+                   " AND USUARIO_ID NOT IN ('USRFRABTS','ATCFENIX') ) C1 ".
+                   " GROUP BY C1.PEDIDO_ID ";
+
+        $stid = oci_parse($connfstby, $sqlfenix);
+
+        oci_execute($stid);
+        $data=[];
+
+        while($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)){
+            $data[]=$row;
+
+        }
+
+        var_dump($data);
+        if(empty($data)){
+            $smg1 = "Sin registros";
+            $this->response ($this->json ([$smg1]), 403); // send user details
+        }else{
+            $this->response ($this->json ($data), 200); // send user details
+        }
+
+    }
+
 }//cierre de la clase
 
 // Initiiate Library
