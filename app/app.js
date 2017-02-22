@@ -13987,9 +13987,11 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 	// Modal para la Auditoria de Pedidos ---------------------------------------------
 	$scope.abrirModalAuditoria=function (pedido, usuario) {
-
+        $scope.infoFenix 		= 	[];
+        $scope.msgAuditoria		= 	null;
+        var opcionesAuditoria;
         $scope.tituloModal="Auditar Pedido:";
-        var opcionesAuditoria= {
+        opcionesAuditoria = {
             fuente: 'FENIX_NAL',
             grupo: 'ASIGNACIONES',
             actividad: 'AUDITORIA'
