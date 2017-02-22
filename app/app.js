@@ -14950,7 +14950,7 @@ app.config(['$routeProvider',
 		})
 		.when('/', {
 				title: 'Login',
-				templa  teUrl: 'partials/login.html',
+				templateUrl: 'partials/login.html',
 				controller: 'login'
 		})
 		.when('/chat/', {
