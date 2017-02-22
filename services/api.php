@@ -5618,6 +5618,9 @@ class API extends REST {
             "  , (SELECT hr.NOVEDAD FROM gestor_historicos_reagendamiento hr WHERE hr.ID = (SELECT MAX( a.id )  ".
             "       FROM gestor_historicos_reagendamiento a ".
             "        WHERE a.PEDIDO_ID =  pm.PEDIDO_ID) )AS ULTIMA_NOVEDAD ".
+            "    , (SELECT hr.TIEMPO_TOTAL FROM gestor_historicos_reagendamiento hr WHERE hr.ID = (SELECT MAX( a.id ) ".
+            "       FROM gestor_historicos_reagendamiento a ".
+            "        WHERE a.PEDIDO_ID =  pm.PEDIDO_ID) )AS TIEMPO_TOTAL ".
             " ,pm.CONCEPTOS ".
             " ,pm.ACTIVIDADES ".
             " ,pm.FECHA_CITA_FENIX ".
@@ -5647,7 +5650,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','FUENTE','STATUS','NUMERO_CR','ULTIMA_NOVEDAD','CONCEPTOS','ACTIVIDADES','FECHA_CITA_FENIX','MIGRACION','MICROZONA','SUBZONA_ID','CLIENTE_ID','CELULAR_AVISAR','CORREO_UNE','DIRECCION_ENVIO','E_MAIL_AVISAR','NOMBRE_USUARIO','TELEFONO_AVISAR','RADICADO','MUNICIPIO','DEPARTAMENTO','OBSERVACION_FENIX','PROGRAMACION','PROCESO','INTENTOS DE CONTACTO','TIEMPO_SISTEMA'));
+            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','FUENTE','STATUS','NUMERO_CR','ULTIMA_NOVEDAD','TIEMPO_SISTEMA','CONCEPTOS','ACTIVIDADES','FECHA_CITA_FENIX','MIGRACION','MICROZONA','SUBZONA_ID','CLIENTE_ID','CELULAR_AVISAR','CORREO_UNE','DIRECCION_ENVIO','E_MAIL_AVISAR','NOMBRE_USUARIO','TELEFONO_AVISAR','RADICADO','MUNICIPIO','DEPARTAMENTO','OBSERVACION_FENIX','PROGRAMACION','PROCESO','INTENTOS DE CONTACTO'));
             while($row = $r->fetch_assoc()){
 
                 $row['ULTIMA_NOVEDAD']=utf8_decode($row['ULTIMA_NOVEDAD']);
