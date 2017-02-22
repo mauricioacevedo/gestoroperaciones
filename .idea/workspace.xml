@@ -342,8 +342,8 @@
       <file leaf-file-name="gestion_asignaciones.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="538" column="141" lean-forward="false" selection-start-line="538" selection-start-column="141" selection-end-line="538" selection-end-column="141" />
+            <state relative-caret-position="633">
+              <caret line="542" column="26" lean-forward="false" selection-start-line="542" selection-start-column="26" selection-end-line="542" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -352,8 +352,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="499">
-              <caret line="14002" column="81" lean-forward="false" selection-start-line="14002" selection-start-column="81" selection-end-line="14002" selection-end-column="81" />
+            <state relative-caret-position="419">
+              <caret line="6102" column="43" lean-forward="false" selection-start-line="6102" selection-start-column="23" selection-end-line="6102" selection-end-column="43" />
               <folding>
                 <marker date="1487794346346" expanded="true" signature="182697:182703" ph="&amp;nbsp;" />
                 <marker date="1487794346346" expanded="true" signature="182703:182709" ph="&amp;nbsp;" />
@@ -405,7 +405,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>top</find>
       <find>topProductivos</find>
       <find>getPedidosGestorUser</find>
       <find>getPedidosGestorUserReagendamiento</find>
@@ -435,6 +434,7 @@
       <find>demePedido</find>
       <find>&quot;GET&quot;</find>
       <find>gestionAsignacionesCtr</find>
+      <find>listarOpcionesAsginacion</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -1207,14 +1207,7 @@
       <workItem from="1487593833340" duration="8821000" />
       <workItem from="1487612618032" duration="5367000" />
       <workItem from="1487676545502" duration="11953000" />
-      <workItem from="1487764979433" duration="16121000" />
-    </task>
-    <task id="LOCAL-00496" summary="Alarmados proactivos">
-      <created>1487677418013</created>
-      <option name="number" value="00496" />
-      <option name="presentableId" value="LOCAL-00496" />
-      <option name="project" value="LOCAL" />
-      <updated>1487677418013</updated>
+      <workItem from="1487764979433" duration="16775000" />
     </task>
     <task id="LOCAL-00497" summary="Alarmados proactivos">
       <created>1487677527971</created>
@@ -1552,11 +1545,18 @@
       <option name="project" value="LOCAL" />
       <updated>1487794932820</updated>
     </task>
-    <option name="localTasksCounter" value="545" />
+    <task id="LOCAL-00545" summary="Cambio Auditoria Grande">
+      <created>1487794984052</created>
+      <option name="number" value="00545" />
+      <option name="presentableId" value="LOCAL-00545" />
+      <option name="project" value="LOCAL" />
+      <updated>1487794984053</updated>
+    </task>
+    <option name="localTasksCounter" value="546" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="251117000" />
+    <option name="totallyTimeSpent" value="251771000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -4048,8 +4048,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="14002" column="81" lean-forward="false" selection-start-line="14002" selection-start-column="81" selection-end-line="14002" selection-end-column="81" />
+        <state relative-caret-position="419">
+          <caret line="6102" column="43" lean-forward="false" selection-start-line="6102" selection-start-column="23" selection-end-line="6102" selection-end-column="43" />
           <folding>
             <marker date="1487794346346" expanded="true" signature="182697:182703" ph="&amp;nbsp;" />
             <marker date="1487794346346" expanded="true" signature="182703:182709" ph="&amp;nbsp;" />
@@ -4098,8 +4098,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="538" column="141" lean-forward="false" selection-start-line="538" selection-start-column="141" selection-end-line="538" selection-end-column="141" />
+        <state relative-caret-position="633">
+          <caret line="542" column="26" lean-forward="false" selection-start-line="542" selection-start-column="26" selection-end-line="542" selection-end-column="26" />
           <folding />
         </state>
       </provider>
