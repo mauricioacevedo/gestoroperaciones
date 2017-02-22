@@ -9425,6 +9425,14 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 		}
 
+        $scope.set_color = function (service) {
+
+        if (service.PROCESO == 'REPARACION' && service.FECHA_CITA_REAGENDA < '2017-02-22') {
+			$scope.error = 'Darle Prioridad a este pedido lleva mas de 10 dias en el sistema';
+			//alert('pedido especial');
+
+
+		}
 		if (service.PROCESO == 'INSTALACION' && service.TODAY_TRIES >= 5) {
 			$scope.error = 'Recuerde agendar o en su defecto anular el pedido';
 			//alert('pedido especial');
@@ -14916,7 +14924,7 @@ app.config(['$routeProvider',
 		})
 		.when('/', {
 				title: 'Login',
-				templateUrl: 'partials/login.html',
+				templa  teUrl: 'partials/login.html',
 				controller: 'login'
 		})
 		.when('/chat/', {
