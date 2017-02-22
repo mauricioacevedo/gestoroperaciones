@@ -6085,7 +6085,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 	$scope.GenerarOpcionesGestion = function () {
 		var opciones= {
 			fuente: 'FENIX_NAL',
-			grupo: 'ASIGNACIONES'
+			grupo: 'ASIGNACIONES',
+            actividad: 'ESTUDIO'
 		};
 
 		$scope.listarOpcionesAsginacion(opciones);
