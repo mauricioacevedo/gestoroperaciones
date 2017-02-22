@@ -89,6 +89,7 @@
                     <th>Programación</th>
                     <th>Concepto</th>
                     <th ng-show="idPermisos.indexOf(logedUser.login)!=-1">Estado</th>
+                    <th>Obs</th>
                     <th>Uen</th>
                     <th>Municipio</th>
                     <th>Fecha Estado</th>
@@ -112,13 +113,15 @@
                                    editable-select="data.STATUS"
                                    e-ng-options="s.value as s.text for s in statuses"
                                    onaftersave="updateStatus(data)"
-                                   title="Editar">
+                                   title="Editar"
+                                >
                                     {{ data.STATUS }}
                                 </a>
-                                 <span ng-show="hoverEdit" class="animated bounceIn"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                                 <span ng-show="hoverEdit" class="animated bounceIn" ><i class="fa fa-pencil" aria-hidden="true"></i></span>
 
                             </span>
                         </td>
+                        <td><span class="small">{{data.OBS}}</span></td>
                         <td><span class="small">{{data.UEN_CALCULADA}}</span></td>
                         <td><span class="small">{{data.MUNICIPIO_ID}}</span></td>
                         <td><span class="small">{{data.FECHA_ESTADO}}</span></td>

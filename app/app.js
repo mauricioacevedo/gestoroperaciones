@@ -5372,7 +5372,8 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
     $scope.statuses = [
         {value: 'PENDI_PETEC', text: 'PENDI_PETEC'},
-        {value: 'MALO', text: 'MALO'}
+        {value: 'MALO', text: 'MALO'},
+        {value: 'CERRADO_PETEC', text: 'CERRADO_PETEC'}
     ];
 
     $scope.updateStatus = function(data) {
@@ -6818,6 +6819,7 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
 
 app.controller('SchedulingCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
 
+	$rootScope.errorDatos=null;
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
 	document.getElementById('logout').className = "btn btn-md btn-danger";
@@ -6857,6 +6859,7 @@ app.controller('SchedulingCtrl', function ($scope, $rootScope, $location, $route
 		$scope.totalScheduling = data.data[1];
 		$scope.totalSchedulingPre = data.data[2];
 		$scope.totalSchedulingPedidos = data.data[3];
+        $scope.fechaActualizacion = data.data[4];
 		$scope.data.totalItems = data.data[1];
 		return data.data;
 	});
@@ -8795,6 +8798,8 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 				document.getElementById("warning").innerHTML = "No hay Registros";
 				$scope.error = "No hay Registros";
 				$scope.historico_pedido = {};
+                $scope.peds = {};
+                $scope.mpedido = {};
 			} else {
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
@@ -9343,7 +9348,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			return data.data;
 		});
 
-	}
+	};
 	$scope.getFeed();
 
 	$scope.grupo = {};
@@ -13386,6 +13391,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.habilitaCr			= false;					// Habilita el campo CR.
 	$scope.programar			= false;					// Habilitar el campo programación.
 	$scope.accRdy				= false; 					// Habilitar el boton de Guardar.
+    $scope.pedidoIsActive 		= false;
 	var varDondeGuardar 		= '';
 	var varEstadoGuardar		= '';
 	var varObsesGuardar			= '';
@@ -13397,7 +13403,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.GenerarOpcionesGestion = function () {
 		var opciones= {
 			fuente: $scope.iconcepto.FUENTE,
-			grupo: $scope.iconcepto.GRUPO
+			grupo: $scope.iconcepto.GRUPO,
+			actividad: $scope.iconcepto.ACTIVIDAD
 		};
 
 		$scope.listarOpcionesAsginacion(opciones);
@@ -13440,12 +13447,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			$scope.programar=true;
 		}
 
-
-
 	};
 
 	//$scope.listarOpcionesAsginacion();//  --------------------------------Cargar Opciones para la gestion
-
 
 
 	$scope.PedidosPorUser= function () {
@@ -13466,8 +13470,6 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.peds = {};
 	$scope.timeInit = 0;
 	$scope.pedidos = angular.copy(original);
-
-	$scope.pedidoIsActive = false;
 
 
 	$scope.calcularListadoReconfiguracion  = function (){

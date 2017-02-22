@@ -1709,9 +1709,9 @@ class API extends REST {
             ", IP_HOST ".
             ", CP_HOST ".
             ") values( ".
-            " UPPER('$usuarioGalleta')".
+            " UPPER('$useri')".
             ", UPPER('$nombreGalleta')".
-            ", UPPER('$grupoGalleta')".
+            ", UPPER('AGENDAMIENTO')".
             ",'$novedad' ".
             ",'$PEDIDO_ID' ".
             ",'REAGENDO PEDIDO' ".
@@ -2201,7 +2201,7 @@ class API extends REST {
                     ", IP_HOST ".
                     ", CP_HOST ".
                     ") values( ".
-                    " UPPER('$usuarioGalleta')".
+                    " UPPER('$useri')".
                     ", UPPER('$nombreGalleta')".
                     ", UPPER('$grupoGalleta')".
                     ",'$estadum' ".
@@ -2252,7 +2252,7 @@ class API extends REST {
                     ", IP_HOST ".
                     ", CP_HOST ".
                     ") values( ".
-                    " UPPER('$usuarioGalleta')".
+                    " UPPER('$useri')".
                     ", UPPER('$nombreGalleta')".
                     ", UPPER('$grupoGalleta')".
                     ",'$estadum' ".
@@ -5552,14 +5552,14 @@ class API extends REST {
         }
 
         $filename="Pendientes-$login-$today.csv";
-        $query="SELECT a.PEDIDO_ID,a.PEDIDO,a.SUBPEDIDO_ID,a.SOLICITUD_ID,a.TIPO_ELEMENTO_ID,a.PRODUCTO,a.UEN_CALCULADA,a.ESTRATO,MUNICIPIO_ID,a.PAGINA_SERVICIO, a.DIRECCION_SERVICIO, CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA, hour(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO))) as TIEMPO_HORAS,a.FUENTE,a.CONCEPTO_ID,a.FECHA_ESTADO,a.FECHA_INGRESO, a.FECHA_CITA,a.STATUS,a.RADICADO_TEMPORAL from informe_petec_pendientesm a where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ";
+        $query="SELECT a.PEDIDO_ID,a.PEDIDO,a.SUBPEDIDO_ID,a.SOLICITUD_ID,a.TIPO_TRABAJO, a.TIPO_ELEMENTO_ID,a.PRODUCTO,a.UEN_CALCULADA,a.ESTRATO,MUNICIPIO_ID,a.PAGINA_SERVICIO, a.DIRECCION_SERVICIO, CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA, hour(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO))) as TIEMPO_HORAS,a.FUENTE,a.CONCEPTO_ID,a.FECHA_ESTADO,a.FECHA_INGRESO, a.FECHA_CITA,a.STATUS,a.RADICADO_TEMPORAL from informe_petec_pendientesm a where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','PEDIDO','SUBPEDIDO_ID','SOLICITUD_ID','TIPO_ELEMENTO_ID','PRODUCTO','UEN_CALCULADA','ESTRATO','MUNICIPIO_ID','PAGINA_SERVICIO','DIRECCION_SERVICIO','TIEMPO_COLA','TIEMPO_HORAS','FUENTE','CONCEPTO_ID','FECHA_ESTADO','FECHA_INGRESO','FECHA_CITA','STATUS','RADICADO_TEMPORAL'));
+            fputcsv($fp, array('PEDIDO_ID','PEDIDO','SUBPEDIDO_ID','SOLICITUD_ID','TIPO_TRABAJO','TIPO_ELEMENTO_ID','PRODUCTO','UEN_CALCULADA','ESTRATO','MUNICIPIO_ID','PAGINA_SERVICIO','DIRECCION_SERVICIO','TIEMPO_COLA','TIEMPO_HORAS','FUENTE','CONCEPTO_ID','FECHA_ESTADO','FECHA_INGRESO','FECHA_CITA','STATUS','RADICADO_TEMPORAL'));
             while($row = $r->fetch_assoc()){
                 $result[] = $row;
                 fputcsv($fp, $row);
@@ -5985,30 +5985,34 @@ class API extends REST {
 
         $filename="Malos-$login-$today.csv";
 
-        $query="Select ".
-            " pm.PEDIDO_ID ".
-            " , min(pm.FECHA_INGRESO) as FECHA_INGRESO ".
-            " , max(pm.FECHA_ESTADO) as FECHA_ESTADO ".
-            ", pm.FUENTE ".
-            ", pm.STATUS ".
-            ", (Select  ".
-            "    group_concat(distinct p.motivo_malo ) as motivo ".
-            "    from portalbd.pedidos p  ".
-            "    where p.estado='MALO' ".
-            " and p.pedido_id=pm.PEDIDO_ID ".
-            "    group by p.pedido_id ) as MOTIVO_MALO ".
-            " from portalbd.informe_petec_pendientesm pm  ".
-            " where   ".
-            " pm.status='MALO' ".
-            " group by pm.PEDIDO_ID ";
-        $concepto;
+        $query= " Select ".
+                "     pm.PEDIDO_ID  ".
+                "    , min(pm.FECHA_INGRESO) as FECHA_INGRESO ".
+                "    , max(pm.FECHA_ESTADO) as FECHA_ESTADO ".
+                "    , group_concat(distinct pm.CONCEPTO_ID) as CONCEPTO_ID ".
+                "    , pm.FUENTE ".
+                "    , pm.STATUS ".
+                "    , (Select  p.motivo_malo as motivo  ".
+                "    from portalbd.pedidos p   ".
+                "    where p.id = (select max(d.id) from portalbd.pedidos d where d.estado='MALO'  and d.pedido_id=pm.pedido_id group by d.pedido_id)) as MOTIVO_MALO ".
+                "    , (Select  p.user as motivo  ".
+                "    from portalbd.pedidos p  ".
+                "    where p.id = (select max(d.id) from portalbd.pedidos d where d.estado='MALO'  and d.pedido_id=pm.pedido_id group by d.pedido_id)) as USUARIO ".
+                "    , (Select  p.fecha_fin as fecha  ".
+                "    from portalbd.pedidos p  ".
+                "    where p.id = (select max(d.id) from portalbd.pedidos d where d.estado='MALO'  and d.pedido_id=pm.pedido_id group by d.pedido_id)) as FECHAMALO ".
+                "    from portalbd.informe_petec_pendientesm pm   ".
+                "    where   ".
+                "    pm.status='MALO'  ".
+                "    group by pm.PEDIDO_ID  ";
+       // $concepto;
         //" and CONCEPTO_ID = '' ";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','FUENTE','STATUS','MOTIVO_MALO'));
+            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','CONCEPTO_ID', 'FUENTE','STATUS','MOTIVO_MALO','USUARIO','FECHAMALO'));
             while($row = $r->fetch_assoc()){
                 $result[] = $row;
                 fputcsv($fp, $row);
@@ -6076,6 +6080,7 @@ class API extends REST {
                 ", CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA ".
                 ", a.FUENTE, a.CONCEPTO_ID, a.FECHA_ESTADO, a.FECHA_CITA, a.STATUS, a.PROGRAMACION ".
                 ", RADICADO_TEMPORAL ".
+                ", ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin Observaciones') as OBS ".
                 " from informe_petec_pendientesm a ".
                 " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
                 " AND a.PEDIDO_ID LIKE '$bpedido%' order by a.FECHA_ESTADO ";
@@ -6104,7 +6109,7 @@ class API extends REST {
                 ", UPPER('$grupoGalleta')".
                 ",'OK' ".
                 ",'$bpedido' ".
-                ",'BUSCO PEDIDO' ".
+                ",'BUSCO PEDIDO REGISTRADO' ".
                 ",'PEDIDO BUSCADO' ".
                 ",'$usuarioIp' ".
                 ",'$usuarioPc')";
@@ -6295,6 +6300,7 @@ class API extends REST {
                 ", a.FUENTE, a.CONCEPTO_ID, a.FECHA_ESTADO, a.FECHA_CITA, a.STATUS, a.PROGRAMACION ".
                 ", case when a.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ARBOL' else a.RADICADO_TEMPORAL end as RADICADO_TEMPORAL ".
                 ", if(a.RADICADO_TEMPORAL='ARBOL','true','false') as PRIORIDAD ".
+                ", ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin') as OBS".
                 " from informe_petec_pendientesm a ".
                 " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
                 " order by a.FECHA_ESTADO ASC limit 100 offset $page";
@@ -7251,7 +7257,7 @@ class API extends REST {
             " GROUP BY C1.PEDIDO_ID ) IDTV ".
             " WHERE ".
             "       SOL.PEDIDO_ID='$pedido_id' ".
-            "       and SOL.TIPO_ELEMENTO_ID IN ('BDID', 'TDID','BDIDE1', 'TDIDE1', 'BDODE1', 'TDODE1', 'TO', 'TOIP','INSHFC', 'INSIP', 'INSTIP', 'SEDEIP', 'P2MB', '3PLAY', 'CNTXIP', 'ACCESP', 'PLANT', 'PLP', 'PTLAN', 'PMULT', 'PPCM', 'PBRI', 'PPRI', 'INSTA', 'TP', 'PBRI','SLL', 'TC', 'SLLBRI', 'TCBRI', 'SLLPRI', 'TCPRI','SEDEIP','SEDECX','EQURED','STBOX','EQACCP','ACCESO','DECO','INTCON','TELEV') ".
+            "       and SOL.TIPO_ELEMENTO_ID IN ('BDID', 'TDID','BDIDE1', 'TDIDE1', 'BDODE1', 'TDODE1', 'TO', 'TOIP','INSHFC', 'INSIP', 'INSTIP', 'SEDEIP', 'P2MB', '3PLAY', 'CNTXIP', 'ACCESP', 'PLANT', 'PLP', 'PTLAN', 'PMULT', 'PPCM', 'PBRI', 'PPRI', 'INSTA', 'TP', 'PBRI','SLL', 'TC', 'SLLBRI', 'TCBRI', 'SLLPRI', 'TCPRI','SEDEIP','SEDECX','EQURED','STBOX','EQACCP','ACCESO','DECO','INTCON','TELEV','SERHFC') ".
             "       	AND SOL.CONCEPTO_ID NOT IN ('14','99') ".
             "       AND SOL.SUBPEDIDO_ID=FNX_SUBPEDIDOS.SUBPEDIDO_ID  ".
             "       AND SOL.PEDIDO_ID=FNX_SUBPEDIDOS.PEDIDO_ID  ".
@@ -7700,18 +7706,37 @@ class API extends REST {
                     $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
                 }
 
+                /*
+                 * Prioridad vieja, Deshabilitada para que priorice, nuevos, hogares y/o Arbol
+                 *
                 //HAGO LA CONSULTA DE PRIORIDAD POR ARBOL
                 $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA ".
                     " FROM  informe_petec_pendientesm ".
                     " WHERE ".
                     " TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
-                     "AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
-                    //" RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM') ".
+                    " AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
+                    " RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM') ".
                     " AND ASESOR='' ".
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
-                    " ORDER BY FECHA_ESTADO ASC ";
+                    " ORDER BY FECHA_ESTADO ASC "; */
+
+                $sqlllamadas=   "SELECT PEDIDO_ID, ".
+                                " SUBPEDIDO_ID, ".
+                                " SOLICITUD_ID, ".
+                                " FECHA_ESTADO, ".
+                                " FECHA_CITA ".
+                                " FROM  informe_petec_pendientesm ".
+                                " WHERE 1=1 ".
+                                " and (TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
+                                " AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
+                                " or RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM') ) ".
+                                " AND ASESOR='' ".
+                                " AND CONCEPTO_ID = '$concepto' ".
+                                " AND STATUS='PENDI_PETEC' ".
+                                $plaza2.
+                                " ORDER BY FECHA_ESTADO ASC ";
 
                 $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
@@ -7801,8 +7826,8 @@ class API extends REST {
         }else if($concepto=="14B2B"){
             $concepto=" and b.CONCEPTO_ID='$concepto' and ( b.UEN_CALCULADA !='HG' ) ";
         }else{
-            $concepto=" and b.CONCEPTO_ID='$concepto' and b.TIPO_ELEMENTO_ID IN('ACCESP','INSIP','INSHFC','TO','TOIP','STBOX','EQURED')";
-            //$concepto=" and b.CONCEPTO_ID='$concepto' ";
+            //$concepto=" and b.CONCEPTO_ID='$concepto' and b.TIPO_ELEMENTO_ID IN('ACCESP','INSIP','INSHFC','TO','TOIP','STBOX','EQURED')";
+            $concepto=" and b.CONCEPTO_ID='$concepto' ";
         }
 
         if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
@@ -11661,7 +11686,8 @@ class API extends REST {
             }
         }
 
-
+        /*
+         * Query viejo
 
         $query=	" SELECT ".
             " a.FECHA ".
@@ -11683,7 +11709,26 @@ class API extends REST {
             " WHERE a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' ".
             " ORDER BY a.id DESC  ".
             " LIMIT 10 ";
-        //echo $query;
+        //echo $query; */
+
+        $query=	" SELECT  ".
+                " a.FECHA ".
+                " , a.USER ".
+                " , case ".
+                "    when a.USER='GESTOR' then 'AUTOMATICO' ".
+                "    else a.GRUPO ".
+                "    end as GRUPO ".
+                " , trim(case ".
+                "    when a.USER='GESTOR' then 'DEMONIO' ".
+                "    when a.ACCION='' then 'SIN' ".
+                "    when a.ACCION='SE LOGUEO' then 'LOGIN' ".
+                "    else substr(a.ACCION,1, INSTR(a.ACCION, ' ' )) ".
+                "    end )as ACCION ".
+                " , a.ACCION AS DETALLE ".
+                " FROM activity_feed a ".
+                " WHERE a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' ".
+                " ORDER BY a.id DESC ".
+                " LIMIT 15 ";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -12771,6 +12816,18 @@ class API extends REST {
             }
         }
 
+        $query=" SELECT ULTIMA_ACTUALIZACION as FECHA FROM scheduling.agendamientoxfenix order by ULTIMA_ACTUALIZACION desc limit 1; ";
+        $fechA = $this->mysqliScheduling->query($query);
+        //$fechaUpdate='';
+
+        //$this->response($this->json('malo'), 200);
+        if($fechA->num_rows > 0){
+            $result = array();
+            if($row = $fechA->fetch_assoc()){
+                $fechaUpdate = $row['FECHA'];
+            }
+        }
+
 
         $query=" select pedido_id, subpedido_id, solicitud_id, ".
             " concepto_id, DATE_FORMAT(FECHA_ESTADO,'%d-%m-%Y %T') as FECHA_ESTADO, FECHA_CITA, DATE_FORMAT(FECHA_INGRESO,'%d-%m-%Y %T') as FECHA_INGRESO, TIPO_SOLICITUD,".
@@ -12786,7 +12843,7 @@ class API extends REST {
                 //echo "name: ".utf8_encode($row['USUARIO_NOMBRE'])."\n ";
                 $result[] = $row;
             }
-            $this->response($this->json(array($result,$counter,$preformularios,$pedidos)), 200); // send user details
+            $this->response($this->json(array($result,$counter,$preformularios,$pedidos,$fechaUpdate)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
@@ -13121,6 +13178,15 @@ class API extends REST {
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
 
         $pedido = $this->_request['pedidoID'];
         $pedido=trim($pedido," ");
@@ -13238,9 +13304,33 @@ class API extends REST {
 
             $x = $this->mysqli->query($sqlupdate);
 
+            // SQL Feed----------------------------------
+            $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'$pedido' ".
+                ",'BUSCO PEDIDO SIEBEL' ".
+                ",'PEDIDO BUSCADO' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
+            // ---------------------------------- SQL Feed
             // Feed ----------------------
-            $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','') ";
-            $xx = $this->mysqli->query($sqlfeed);
+            //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','') ";
+            //$xx = $this->mysqli->query($sqlfeed);
             //  ---------------------- Feed
 
             $this->response(json_encode($result), 200); //Resultado final si encontro registros
@@ -13271,9 +13361,32 @@ class API extends REST {
 
                 $xCerrado = $this->mysqli->query($sqlupdate);
 
+                // SQL Feed----------------------------------
+                $sql_log=   "insert into portalbd.activity_feed ( ".
+                    " USER ".
+                    ", USER_NAME ".
+                    ", GRUPO ".
+                    ", STATUS ".
+                    ", PEDIDO_OFERTA ".
+                    ", ACCION ".
+                    ", CONCEPTO_ID ".
+                    ", IP_HOST ".
+                    ", CP_HOST ".
+                    ") values( ".
+                    " UPPER('$usuarioGalleta')".
+                    ", UPPER('$nombreGalleta')".
+                    ", UPPER('$grupoGalleta')".
+                    ",'OK' ".
+                    ",'$pedido' ".
+                    ",'BUSCO PEDIDO SIEBEL' ".
+                    ",'PEDIDO BUSCADO' ".
+                    ",'$usuarioIp' ".
+                    ",'$usuarioPc')";
+
+                $rlog = $this->mysqli->query($sql_log);
                 // Feed ----------------------
-                $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','Reabrio pedido') ";
-                $xxCerrado = $this->mysqli->query($sqlfeed);
+                //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','Reabrio pedido') ";
+                //$xxCerrado = $this->mysqli->query($sqlfeed);
                 //  ---------------------- Feed
 
 
@@ -14405,13 +14518,14 @@ class API extends REST {
 
         $params 	= json_decode(file_get_contents('php://input'),true);
         $fuente 	= $params['fuente'];
-        $grupo 	        = $params['grupo'];
+        $grupo 	    = $params['grupo'];
+        $actividad  = $params['actividad'];
         $today		= date("Y-m-d");
 
         if($grupo=='ADMINISTRACION'){
             $filtros= "";
         }else{
-            $filtros= " and o.ESTADO=1 and o.FUENTE='$fuente' and o.GRUPO='$grupo' ";
+            $filtros= " and o.ESTADO=1 and o.FUENTE='$fuente' and o.GRUPO='$grupo' and o.ACTIVIDAD='$actividad' ";
         };
 
 
