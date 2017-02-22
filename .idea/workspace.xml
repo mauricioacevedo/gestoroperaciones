@@ -7,7 +7,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html" afterPath="$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
@@ -343,8 +342,8 @@
       <file leaf-file-name="gestion_asignaciones.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="538" column="115" lean-forward="false" selection-start-line="538" selection-start-column="115" selection-end-line="538" selection-end-column="115" />
+            <state relative-caret-position="514">
+              <caret line="535" column="43" lean-forward="false" selection-start-line="535" selection-start-column="43" selection-end-line="535" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -1208,14 +1207,7 @@
       <workItem from="1487593833340" duration="8821000" />
       <workItem from="1487612618032" duration="5367000" />
       <workItem from="1487676545502" duration="11953000" />
-      <workItem from="1487764979433" duration="15775000" />
-    </task>
-    <task id="LOCAL-00493" summary="Feed mejorado">
-      <created>1487616030471</created>
-      <option name="number" value="00493" />
-      <option name="presentableId" value="LOCAL-00493" />
-      <option name="project" value="LOCAL" />
-      <updated>1487616030471</updated>
+      <workItem from="1487764979433" duration="15836000" />
     </task>
     <task id="LOCAL-00494" summary="Feed mejorado">
       <created>1487676776662</created>
@@ -1553,11 +1545,18 @@
       <option name="project" value="LOCAL" />
       <updated>1487794302228</updated>
     </task>
-    <option name="localTasksCounter" value="542" />
+    <task id="LOCAL-00542" summary="Cambio Auditoria Grande">
+      <created>1487794637764</created>
+      <option name="number" value="00542" />
+      <option name="presentableId" value="LOCAL-00542" />
+      <option name="project" value="LOCAL" />
+      <updated>1487794637764</updated>
+    </task>
+    <option name="localTasksCounter" value="543" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="250771000" />
+    <option name="totallyTimeSpent" value="250832000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -4099,8 +4098,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="538" column="115" lean-forward="false" selection-start-line="538" selection-start-column="115" selection-end-line="538" selection-end-column="115" />
+        <state relative-caret-position="514">
+          <caret line="535" column="43" lean-forward="false" selection-start-line="535" selection-start-column="43" selection-end-line="535" selection-end-column="43" />
           <folding />
         </state>
       </provider>
