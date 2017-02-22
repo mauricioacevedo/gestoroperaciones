@@ -5638,6 +5638,7 @@ class API extends REST {
             "  , pm.PROGRAMACION ".
             "  , pm.PROCESO ".
             "  , pm.TODAY_TRIES ".
+            "  , pm.TIEMPO_SISTEMA ".
             " FROM portalbd.gestor_pendientes_reagendamiento pm ".
             " WHERE pm.STATUS IN ('PENDI_AGEN',  'MALO') ";
 
@@ -5646,7 +5647,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','FUENTE','STATUS','NUMERO_CR','ULTIMA_NOVEDAD','CONCEPTOS','ACTIVIDADES','FECHA_CITA_FENIX','MIGRACION','MICROZONA','SUBZONA_ID','CLIENTE_ID','CELULAR_AVISAR','CORREO_UNE','DIRECCION_ENVIO','E_MAIL_AVISAR','NOMBRE_USUARIO','TELEFONO_AVISAR','RADICADO','MUNICIPIO','DEPARTAMENTO','OBSERVACION_FENIX','PROGRAMACION','PROCESO','INTENTOS DE CONTACTO'));
+            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','FUENTE','STATUS','NUMERO_CR','ULTIMA_NOVEDAD','CONCEPTOS','ACTIVIDADES','FECHA_CITA_FENIX','MIGRACION','MICROZONA','SUBZONA_ID','CLIENTE_ID','CELULAR_AVISAR','CORREO_UNE','DIRECCION_ENVIO','E_MAIL_AVISAR','NOMBRE_USUARIO','TELEFONO_AVISAR','RADICADO','MUNICIPIO','DEPARTAMENTO','OBSERVACION_FENIX','PROGRAMACION','PROCESO','INTENTOS DE CONTACTO','TIEMPO_SISTEMA'));
             while($row = $r->fetch_assoc()){
 
                 $row['ULTIMA_NOVEDAD']=utf8_decode($row['ULTIMA_NOVEDAD']);
