@@ -960,6 +960,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
             usuario_id: usuario_id
         });
     };
+    obj.buscarPedidoAuditoriafenix = function (pedido){
+        return $http.get(serviceBase + 'buscarPedidoAuditarFenix?pedido='+ pedido);
+	};
 
 
 	return obj;
@@ -6085,7 +6088,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 	$scope.GenerarOpcionesGestion = function () {
 		var opciones= {
 			fuente: 'FENIX_NAL',
-			grupo: 'ASIGNACIONES'
+			grupo: 'ASIGNACIONES',
+            actividad: 'ESTUDIO'
 		};
 
 		$scope.listarOpcionesAsginacion(opciones);
@@ -13407,6 +13411,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
     $scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG','JCASTAMU','MHUERTAS', 'CGONZGO','DEMO'];
+    $scope.idConceptos=['O-13', 'O-15', 'O-106'];
 
 	// Opciones para cargar las listas de Gestion, segun el grupo, fuente, actividad--------------------------
 	$scope.GenerarOpcionesGestion = function () {
@@ -13746,14 +13751,16 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			$scope.habilitaCr			= true;
 			var opciones= {
 				fuente: 'SIEBEL',
-				grupo: 'ASIGNACIONES'
+				grupo: 'ASIGNACIONES',
+				actividad: 'ESTUDIO'
 				};
 			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
 		}else if ($scope.ifuente.FUENTE=='EDATEL'){
 			$scope.habilitaCr			= true;
 			var opciones= {
 				fuente: 'EDATEL',
-				grupo: 'EDATEL'
+				grupo: 'EDATEL',
+                actividad: 'ESTUDIO'
 				};
 			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
 
@@ -13761,7 +13768,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			$scope.habilitaCr			= false;
 			var opciones= {
 				fuente: 'FENIX_NAL',
-				grupo: 'RECONFIGURACION'
+				grupo: 'RECONFIGURACION',
+                actividad: 'RECONFIGURACION'
 				};
 			var kami = services.buscarPedidoReconfiguracion(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login);
 		}
@@ -13985,6 +13993,34 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 });
         };
 
+	// Modal para la Auditoria de Pedidos ---------------------------------------------
+	$scope.abrirModalAuditoria=function (pedido, usuario) {
+        $scope.infoFenix 		= 	[];
+        $scope.msgAuditoria		= 	null;
+        var opcionesAuditoria;
+        $scope.tituloModal="Auditar Pedido:";
+        opcionesAuditoria = {
+            fuente: 'FENIX_NAL',
+            grupo: 'ASIGNACIONES',
+            actividad: 'AUDITORIA'
+        };
+        $scope.listarOpcionesAsginacion(opcionesAuditoria);
+        services.buscarPedidoAuditoriafenix(pedido).then(
+        	function (data) {
+				$scope.infoFenix	=	data.data[0];
+				$scope.regToPush	=	parseInt($scope.infoFenix.CANTIDADUSERS);
+
+            }, function errorCallback(response) {
+        		console.log(response);
+        		$scope.msgAuditoria=response.data;
+
+            }
+
+		);
+
+    };
+
+    // --------------------------------------------- Modal para la Auditoria de Pedidos
 
 	$scope.doubleDigit = function (num) {
 
@@ -14001,9 +14037,6 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 });
 // -----------------------------------------------Controlador para Gestion de Reconfiguracion Asignaciones
-
-
-
 
 app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
 	$scope.header = 'Buscador Nodos CMTS';

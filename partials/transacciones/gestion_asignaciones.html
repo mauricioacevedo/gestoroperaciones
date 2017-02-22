@@ -209,7 +209,14 @@
                                             <div class="form-group  has-feedback" ng-show="idPermisos.indexOf(logedUser.login)!=-1">
                                                 <div class="btn-group btn-group-justified" role="group" aria-label="...">
                                                     <div class="btn-group" role="group">
-                                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalAuditoria" data-backdrop="static">Auditar</button>
+                                                        <button
+                                                                type="button"
+                                                                class="btn btn-default"
+                                                                data-toggle="modal"
+                                                                data-target="#ModalAuditoria"
+                                                                data-backdrop="static"
+                                                                ng-disabled="idConceptos.indexOf(info.CONCEPTO_ID)==-1"
+                                                                ng-click="abrirModalAuditoria(gestion[0].PEDIDO_ID,logedUser.login)">Auditar</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -522,10 +529,20 @@
         <div class="modal-content" >
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">{{TituloModal}} <span class="label label-info">{{pedidoHistorico}} </span> </h4>
+                <h4 class="modal-title">{{tituloModal}} <span class="label label-info">{{infoFenix.PEDIDO_ID}} </span> </h4>
                 <span style="color:red" ><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
             </div>
             <div class="modal-body" >
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-10">
+                            <div class="well well-sm">Usuarios: {{infoFenix.USUARIOS}} | Fechas: {{infoFenix.FECHAS}} <span class="pull-right badge">{{infoFenix.CANTIDADUSERS}}</span></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {{listaOpcionesGestion}}
+                    </div>
+                </div>
 
             </div>
             <div class="modal-footer">
