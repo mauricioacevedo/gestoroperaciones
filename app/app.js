@@ -14000,7 +14000,6 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         services.buscarPedidoAuditoriafenix(pedido).then(
         	function (data) {
 				$scope.infoFenix	=	data.data[0];
-				$scope.pedidoTitulo	= 	$scope.infoFenix.PEDIDO_ID;
 				$scope.regToPush	=	parseInt($scope.infoFenix.CANTIDADUSERS);
 
             }, function errorCallback(response) {
