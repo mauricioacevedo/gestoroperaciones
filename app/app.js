@@ -13800,10 +13800,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 									
 									$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 									$scope.InfoPedido.FUENTE=$scope.peds[0].FUENTE;
-									//console.log($scope.InfoPedido.FUENTE);
 									$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
 									$scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
 
+									console.log($scope.peds);
 								
 
 									//$scope.baby($scope.pedido1);
