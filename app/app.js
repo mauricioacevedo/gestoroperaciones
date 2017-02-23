@@ -14054,15 +14054,21 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		//console.log(audit);
         //console.log(infoped);
         $scope.fechaFinAuditoria 	= 	$rootScope.fechaProceso();
-        $scope.datosFnx={
-        	PEDIDO_ID: infofnx.PEDIDO_ID,
-			TIPO_ELEMENTO_ID: infoped[0].TIPO_ELEMENTO_ID,
-			CONCEPTO_ACTUAL: infoped[0].CONCEPTO_ID,
-			USUARIO_ID: userID,
-			FECHA_INICIO: $scope.fecha_inicio,
-			FECHA_FIN:$scope.fechaFinAuditoria
-		};
+
         for (var i=0; i<audit.length; i++) {
+
+        	var usergestion=audit.USUARIO__ID_GESTION.USUARIO_ID;
+        	var usernombre=audit.USUARIO__ID_GESTION.USUARIO_ID;
+            $scope.datosFnx={
+                PEDIDO_ID: infofnx.PEDIDO_ID,
+				USUARIO_ID_GESTION:usergestion,
+                USUARIO_NOMBRE:usernombre,
+                TIPO_ELEMENTO_ID: infoped[0].TIPO_ELEMENTO_ID,
+                CONCEPTO_ACTUAL: infoped[0].CONCEPTO_ID,
+                USUARIO_ID: userID,
+                FECHA_INICIO: $scope.fecha_inicio,
+                FECHA_FIN:$scope.fechaFinAuditoria
+            };
             angular.extend(audit[i], $scope.datosFnx);
             //console.log(keys[i], yourobject[keys[i]]);
         }
