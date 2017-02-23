@@ -342,8 +342,8 @@
       <file leaf-file-name="gestion_asignaciones.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="536">
-              <caret line="569" column="52" lean-forward="false" selection-start-line="569" selection-start-column="52" selection-end-line="569" selection-end-column="52" />
+            <state relative-caret-position="550">
+              <caret line="578" column="52" lean-forward="false" selection-start-line="578" selection-start-column="52" selection-end-line="578" selection-end-column="52" />
               <folding>
                 <element signature="n#style#0;n#select#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
@@ -1104,14 +1104,7 @@
       <workItem from="1487612618032" duration="5367000" />
       <workItem from="1487676545502" duration="11953000" />
       <workItem from="1487764979433" duration="17564000" />
-      <workItem from="1487849982860" duration="7649000" />
-    </task>
-    <task id="LOCAL-00517" summary="Alarmados proactivos">
-      <created>1487712380024</created>
-      <option name="number" value="00517" />
-      <option name="presentableId" value="LOCAL-00517" />
-      <option name="project" value="LOCAL" />
-      <updated>1487712380024</updated>
+      <workItem from="1487849982860" duration="7857000" />
     </task>
     <task id="LOCAL-00518" summary="Cambio Auditoria Grande">
       <created>1487773820622</created>
@@ -1449,11 +1442,18 @@
       <option name="project" value="LOCAL" />
       <updated>1487856958330</updated>
     </task>
-    <option name="localTasksCounter" value="566" />
+    <task id="LOCAL-00566" summary="Cambio Auditoria Grande">
+      <created>1487858273402</created>
+      <option name="number" value="00566" />
+      <option name="presentableId" value="LOCAL-00566" />
+      <option name="project" value="LOCAL" />
+      <updated>1487858273402</updated>
+    </task>
+    <option name="localTasksCounter" value="567" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="260209000" />
+    <option name="totallyTimeSpent" value="260417000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -3994,8 +3994,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="536">
-          <caret line="569" column="52" lean-forward="false" selection-start-line="569" selection-start-column="52" selection-end-line="569" selection-end-column="52" />
+        <state relative-caret-position="550">
+          <caret line="578" column="52" lean-forward="false" selection-start-line="578" selection-start-column="52" selection-end-line="578" selection-end-column="52" />
           <folding>
             <element signature="n#style#0;n#select#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />

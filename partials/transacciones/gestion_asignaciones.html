@@ -558,13 +558,9 @@
                                     <div class="form-group">
                                         <label class="sr-only" for="estadoAuditoria">Estado:</label>
                                         <i class="fa fa-cog" aria-hidden="true"></i>
-                                        <select   class="grupo-select" style="width: 150px;">
-                                            <option value="">Seleccione Usuario</option>
-                                        </select>
                                         <select id="estadoAuditoria" name="estadoAuditoria"
-                                                class= "form-control btn-xs"
+                                                class="grupo-select" style="width: 150px;"
                                                 ng-model="infoFenix.ESTADO_PROCESO"
-                                                ng-click="onChangeEstado()"
                                                 required>
                                             <option value="" disabled>--Seleccione--</option>
                                             <option ng-repeat="e in listaOpcionesAuditoria | unique:'ESTADO_ID'"
@@ -576,8 +572,13 @@
                                     <div class="form-group">
                                         <label class="sr-only" for="obidAuditoria">Resultado:</label>
                                         <i class="fa fa-cog" aria-hidden="true"></i>
-                                        <select  id="obidAuditoria" name="obidAuditoria" class="grupo-select" style="width: 150px;">
-                                            <option value="">Seleccione Usuario</option>
+                                        <select id="obidAuditoria" name="obidAuditoria" class="grupo-select" style="width: 150px;"
+                                                ng-model="infoFenix.OBSERVACIONES_PROCESO">
+                                            <option value="" disabled>--Seleccione--</option>
+                                            <option ng-repeat="e in listaOpcionesAuditoria | filter:{ESTADO_ID: infoFenix.ESTADO_PROCESO}:true | unique:'OBSERVACION_ID'"
+                                                    value="{{e.OBSERVACION_ID}}">
+                                                {{e.OBSERVACION_ID}}
+                                            </option>
                                         </select>
                                     </div>
                                     <div class="form-group">
