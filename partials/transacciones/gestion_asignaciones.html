@@ -541,25 +541,31 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-10">
-                            <form class="form-inline">
-                                <label class="sr-only" for="inlineFormInput">Usuario</label>
-                                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Jane Doe">
-
-                                <label class="sr-only" for="inlineFormInputGroup">Fecha</label>
-                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                    <div class="input-group-addon">@</div>
-                                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <label for="usuario">Usuario:</label>
+                                    <input type="text" class="form-control" id="usuario">
                                 </div>
-
-                                <div class="form-check mb-2 mr-sm-2 mb-sm-0">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox"> Remember me
-                                    </label>
+                                <div class="form-group has-feedback">
+                                    <label for="fechaestudio" class="control-label">Programación:</label>
+                                    <input type="text" name="programacion" id="fechaestudio" class="form-control"  datetime-picker date-format="yyyy-MM-dd"/>
+                                    <i class="fa fa-calendar-check-o form-control-feedback"></i>
                                 </div>
-
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="form-group">
+                                    <label for="estadoauditoria" class="control-label">Estado:</label>
+                                    <select id="estadoauditoria"
+                                            class= "form-control btn-xs"
+                                            name="estadoauditoria"
+                                            required>
+                                        <option value="" disabled>--Seleccione--</option>
+                                        <option
+                                                ng-repeat="e in listaOpcionesAuditoria | unique:'ESTADO_ID'"
+                                                value="{{e.ESTADO_ID}}">
+                                            {{e.ESTADO_ID}}
+                                        </option>
+                                    </select>
+                                </div>
                             </form>
-                            {{listaOpcionesAuditoria}}
                         </div>
                     </div>
                 </div>

@@ -342,8 +342,8 @@
       <file leaf-file-name="gestion_asignaciones.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="553" column="35" lean-forward="false" selection-start-line="553" selection-start-column="35" selection-end-line="553" selection-end-column="35" />
+            <state relative-caret-position="670">
+              <caret line="564" column="49" lean-forward="true" selection-start-line="564" selection-start-column="49" selection-end-line="564" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -352,8 +352,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="14003" column="0" lean-forward="false" selection-start-line="14003" selection-start-column="0" selection-end-line="14003" selection-end-column="0" />
+            <state relative-caret-position="310">
+              <caret line="13434" column="49" lean-forward="false" selection-start-line="13434" selection-start-column="27" selection-end-line="13434" selection-end-column="49" />
               <folding>
                 <marker date="1487851707512" expanded="true" signature="182697:182703" ph="&amp;nbsp;" />
                 <marker date="1487851707512" expanded="true" signature="182703:182709" ph="&amp;nbsp;" />
@@ -556,7 +556,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="partials" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1098,14 +1098,7 @@
       <workItem from="1487612618032" duration="5367000" />
       <workItem from="1487676545502" duration="11953000" />
       <workItem from="1487764979433" duration="17564000" />
-      <workItem from="1487849982860" duration="3045000" />
-    </task>
-    <task id="LOCAL-00504" summary="Alarmados proactivos">
-      <created>1487679034638</created>
-      <option name="number" value="00504" />
-      <option name="presentableId" value="LOCAL-00504" />
-      <option name="project" value="LOCAL" />
-      <updated>1487679034639</updated>
+      <workItem from="1487849982860" duration="3591000" />
     </task>
     <task id="LOCAL-00505" summary="Alarmados proactivos">
       <created>1487685457431</created>
@@ -1443,11 +1436,18 @@
       <option name="project" value="LOCAL" />
       <updated>1487852428805</updated>
     </task>
-    <option name="localTasksCounter" value="553" />
+    <task id="LOCAL-00553" summary="Cambio Auditoria Grande">
+      <created>1487853049292</created>
+      <option name="number" value="00553" />
+      <option name="presentableId" value="LOCAL-00553" />
+      <option name="project" value="LOCAL" />
+      <updated>1487853049292</updated>
+    </task>
+    <option name="localTasksCounter" value="554" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="255605000" />
+    <option name="totallyTimeSpent" value="256151000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -3938,8 +3938,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="14003" column="0" lean-forward="false" selection-start-line="14003" selection-start-column="0" selection-end-line="14003" selection-end-column="0" />
+        <state relative-caret-position="310">
+          <caret line="13434" column="49" lean-forward="false" selection-start-line="13434" selection-start-column="27" selection-end-line="13434" selection-end-column="49" />
           <folding>
             <marker date="1487851707512" expanded="true" signature="182697:182703" ph="&amp;nbsp;" />
             <marker date="1487851707512" expanded="true" signature="182703:182709" ph="&amp;nbsp;" />
@@ -3988,8 +3988,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="553" column="35" lean-forward="false" selection-start-line="553" selection-start-column="35" selection-end-line="553" selection-end-column="35" />
+        <state relative-caret-position="670">
+          <caret line="564" column="49" lean-forward="true" selection-start-line="564" selection-start-column="49" selection-end-line="564" selection-end-column="49" />
           <folding />
         </state>
       </provider>
