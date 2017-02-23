@@ -13998,6 +13998,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
             actividad: 'AUDITORIA'
         };
         $scope.opcionesAuditoria=$scope.listarOpcionesAsginacion(opcionesAuditoria);
+        console.log($scope.opcionesAuditoria);
         services.buscarPedidoAuditoriafenix(pedido).then(
         	function (data) {
 				$scope.infoFenix	=	data.data[0];
