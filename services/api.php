@@ -6957,7 +6957,7 @@ class API extends REST {
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
         $busy="";
         $cReconfiguracion=['14', '99', 'O-101'];
-        $cEdatel=['12'];
+        $cEdatel=['12-EDATEL'];
         $cAsignaciones=['PETEC','OKRED','PUMED','O-106','O-13','O-15','PEOPP','19'];
 
         if($r->num_rows > 0){
