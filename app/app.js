@@ -14054,8 +14054,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     };
 
-	$scope.guardarAuditoria = function (datos) {
-		console.log(datos);
+	$scope.guardarAuditoria = function (audit, infofnx) {
+		console.log(audit);
+        console.log(infofnx);
     };
 
     // --------------------------------------------- Modal para la Auditoria de Pedidos
