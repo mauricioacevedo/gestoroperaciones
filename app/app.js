@@ -14055,7 +14055,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		var usergestion, usernombre;
         for (var i=0; i<audit.length; i++) {
 
-        	if(audit[i].USUARIO_ID_GESTION.USUARIO_ID=='' || audit[i].USUARIO_ID_GESTION.USUARIO_ID==undefined){
+        	if(audit[i].USUARIO_ID_GESTION.USUARIO_ID==undefined || audit[i].USUARIO_ID_GESTION.USUARIO_ID==''){
                 usergestion='EXTERNO';
                 usernombre='EXTERNO'
 			}else{
