@@ -9052,7 +9052,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 				}
 				$scope.baby($scope.pedido1);
-                console.log($scope.FECHA_CITA_REAGENDA);
+
 			}
 
 			var demePedidoButton = document.getElementById("iniciar");
@@ -9422,6 +9422,14 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 		}
 	};
 
+$scope.set_color = function (service) {
+
+        if (service.PROCESO == 'REPARACION' && service.FECHA_CITA_REAGENDA <> service.FECHA_ACTUALIZACION) {
+			$scope.error = 'Darle Prioridad a este pedido lleva mas de 10 dias en el sistema';
+			//alert('pedido especial');
+
+
+		}
 
 
 	$scope.set_color = function (service) {
