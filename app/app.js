@@ -9061,7 +9061,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			return data.data;
 		});
 
-         if (service.PROCESO == 'REPARACION' && service.FECHA_CITA_FENIX != '9999-00-00') {
+         if ($scope.PROCESO == 'REPARACION' && $scope.FECHA_CITA_FENIX != '9999-00-00') {
 			//$scope.error = 'cccccccchhhhhhhiiiiiiccccchhhhaaarrroooon';
              $scope.error ="El pedido " + $scope.pedido1 + " estuvo agendado " + $scope.peds[0].FECHA_CITA_FENIX;
 			//alert('pedido especial');
