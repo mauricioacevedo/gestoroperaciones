@@ -13756,28 +13756,13 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 		if($scope.ifuente.FUENTE=='SIEBEL'){
 			$scope.habilitaCr			= true;
-			var opciones= {
-				fuente: 'SIEBEL',
-				grupo: 'ASIGNACIONES',
-				actividad: 'ESTUDIO'
-				};
 			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
 		}else if ($scope.ifuente.FUENTE=='EDATEL'){
 			$scope.habilitaCr			= true;
-			var opciones= {
-				fuente: 'EDATEL',
-				grupo: 'EDATEL',
-                actividad: 'ESTUDIO'
-				};
 			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
 
 		}else{
 			$scope.habilitaCr			= false;
-			var opciones= {
-				fuente: 'FENIX_NAL',
-				grupo: 'RECONFIGURACION',
-                actividad: 'RECONFIGURACION'
-				};
 			var kami = services.buscarPedidoReconfiguracion(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login);
 		}
 
@@ -13806,8 +13791,12 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 									$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
 									$scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
 
-									console.log($scope.peds);
-								
+									//console.log($scope.peds);
+									var opciones= {
+										fuente: $scope.peds[0].FUENTE,
+										grupo: $scope.peds[0].GRUPO,
+										actividad: $scope.peds[0].ACTIVIDAD
+									};
 
 									//$scope.baby($scope.pedido1);
 									$rootScope.errorDatos = null;
