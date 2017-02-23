@@ -14060,8 +14060,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     };
 
-	$scope.guardarAuditoria = function (infoFenix) {
-		console.log(infoFenix);
+	$scope.guardarAuditoria = function (audit, infofnx) {
+		console.log(audit);
+        console.log(infofnx);
     };
 
     // --------------------------------------------- Modal para la Auditoria de Pedidos

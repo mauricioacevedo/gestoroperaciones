@@ -541,13 +541,13 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-10">
-                            <div class = "well well-sm" ng-repeat="infoFenix in auditorias track by $index">
+                            <div class = "well well-sm" ng-repeat="auditoria in auditorias as auditarObj track by $index  ">
                                 <form class="form-inline">
                                     <div class="form-group" ng-controller="UsersCtrl">
                                         <label class="sr-only" for="usrEstudio">Usuario:</label>
-                                        <ui-select id="usrEstudio" name="usrEstudio" ng-model="infoFenix.USUARIO_ID" theme="bootstrap">
+                                        <ui-select id="usrEstudio" name="usrEstudio" ng-model="auditoria.USUARIO_ID" theme="bootstrap">
                                             <ui-select-match placeholder="Usuario">
-                                                {{infoFenix.USUARIO_ID.USUARIO_ID}}
+                                                {{auditoria.USUARIO_ID.USUARIO_ID}}
                                             </ui-select-match>
                                             <ui-select-choices repeat="g  in  listaUsuarios | filter: $select.search track by $index">
                                                 <div ng-bind-html="g.USUARIO_ID | highlight: $select.search"></div>
@@ -556,14 +556,14 @@
                                     </div>
                                     <div class="form-group has-feedback">
                                         <label class="sr-only" for="fechaEstudio">Fecha:</label>
-                                        <input id="fechaEstudio" name="fechaEstudio" style="width:120px" class="form-control btn-xs" type="text" ng-model="infoFenix.FECHAESTUDIO" datetime-picker date-only date-format="yyyy-MM-dd"/>
+                                        <input id="fechaEstudio" name="fechaEstudio" style="width:120px" class="form-control btn-xs" type="text" ng-model="auditoria.FECHAESTUDIO" datetime-picker date-only date-format="yyyy-MM-dd"/>
                                         <i class="fa fa-calendar fa-fw form-control-feedback"></i>
                                     </div>
                                     <div class="form-group has-feedback">
                                         <label class="sr-only" for="estadoAuditoria">Estado:</label>
                                         <select id="estadoAuditoria" name="estadoAuditoria"
                                                 class="form-control btn-xs" style="width: 150px;"
-                                                ng-model="infoFenix.ESTADO_PROCESO"
+                                                ng-model="auditoria.ESTADO_PROCESO"
                                                 required>
                                             <option value="" disabled>Estado</option>
                                             <option ng-repeat="e in listaOpcionesAuditoria | unique:'ESTADO_ID'"
@@ -576,7 +576,7 @@
                                     <div class="form-group has-feedback">
                                         <label class="sr-only" for="obidAuditoria">Resultado:</label>
                                         <select id="obidAuditoria" name="obidAuditoria" class="form-control btn-xs" style="width: 150px;"
-                                                ng-model="infoFenix.OBSERVACIONES_PROCESO">
+                                                ng-model="auditoria.OBSERVACIONES_PROCESO">
                                             <option value="" disabled>--Seleccione--</option>
                                             <option ng-repeat="e in listaOpcionesAuditoria | filter:{ESTADO_ID: infoFenix.ESTADO_PROCESO}:true | unique:'OBSERVACION_ID'"
                                                     value="{{e.OBSERVACION_ID}}">
@@ -588,7 +588,7 @@
                                     <div class="form-group has-feedback">
                                         <label class="sr-only" for="obsAuditoria">Observaciones:</label>
                                         <textarea id="obsAuditoria" name="obsAuditoria" class="form-control btn-xs" style="width:150px" rows="2" cols="50"
-                                                  ng-model="infoFenix.OBSERVACIONES"></textarea>
+                                                  ng-model="auditoria.OBSERVACIONES"></textarea>
                                         <i class="fa fa-comment form-control-feedback" aria-hidden="true"></i>
                                     </div>
                                     <span class="pull-right " align="center">
@@ -607,7 +607,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="guardarAuditoria(auditorias)" data-dismiss="modal">Guardar</button>
+                <button type="button" class="btn btn-default" ng-click="guardarAuditoria(auditarObj,infoFenix)" data-dismiss="modal">Guardar</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
