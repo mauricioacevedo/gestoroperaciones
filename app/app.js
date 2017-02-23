@@ -14044,7 +14044,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		);
 
         //Generar Auditorias Multiples
-        $scope.auditorias=[{id:'1',
+        $scope.auditorias=[{id:1,
 			USUARIO_ID:$scope.infoFenix.USUARIOS,
             FECHAESTUDIO:$scope.infoFenix.FECHAS,
             ESTADO_PROCESO:'',
