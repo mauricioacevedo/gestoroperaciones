@@ -542,44 +542,36 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-10">
                             <div class = "well well-sm" ng-repeat="infoFenix in auditorias track by $index">
-                                <ul class="nav navbar-nav navbar-left">
-                                    <li>
+                                <form class="form-inline">
+                                    <div class="form-group">
                                         <i class="fa fa-user fa-fw"></i>
-                                        <select   class="grupo-select" style="width: 150px;">
+                                        <select  id="usrEstudio" name="usrEstudio" class="grupo-select" style="width: 150px;">
                                             <option value="">Seleccione Usuario</option>
                                         </select>
-                                    </li>
-                                    <li>
+                                    </div>
+                                    <div class="form-group">
                                         <i class="fa fa-calendar fa-fw"></i>
-                                        <input style="width:80px" class="btn btn-default btn-xs" type="text" ng-model="infoFenix.FECHAESTUDIO" datetime-picker date-only date-format="yyyy-MM-dd"/>
-                                    </li>
-                                    <li>
-                                        <select   class="grupo-select" style="width: 150px;"  required>
-                                            <option value="">Seleccione Tipo</option>
+                                        <input id="fechaEstudio" name="fechaEstudio" style="width:80px" class="btn btn-default btn-xs" type="text" ng-model="infoFenix.FECHAESTUDIO" datetime-picker date-only date-format="yyyy-MM-dd"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <i class="fa fa-user fa-fw"></i>
+                                        <select  id="estadoAuditoria" name="estadoAuditoria" class="grupo-select" style="width: 150px;">
+                                            <option value="">Seleccione Usuario</option>
                                         </select>
-                                        &nbsp;
-                                    </li>
-                                    <li>
+                                    </div>
+                                    <div class="form-group">
                                         <i class="fa fa-comment" aria-hidden="true"></i>
-                                        <input style="width:120px" class="btn btn-default btn-xs" type="text"  />
-                                        &nbsp;
-                                    </li>
-                                </ul>
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li>
+                                        <input id="obsAuditoria" name="obsAuditoria" style="width:120px" class="btn btn-default btn-xs" type="text" />
+                                    </div>
+                                    <div class="form-group">
                                         <button type="button" class="btn btn-warning btn-circle-xs pull-left" ng-click="removeNuevaNovedad()" ng-show="$last">
                                             <i class="fa fa-minus"  aria-hidden="true"></i>
-                                        </button>&nbsp;
-                                    </li>
-                                    <li>
+                                        </button>
                                         <button type="button" class="btn btn-warning btn-circle-xs pull-right" ng-show="$last" ng-click="addNuevaNovedad()">
                                             <i class="fa fa-plus"  aria-hidden="true"></i>
                                         </button>
-
-                                    </li>
-                                </ul>
-
-
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
