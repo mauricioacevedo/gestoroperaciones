@@ -578,7 +578,7 @@
                                         <select id="obidAuditoria" name="obidAuditoria" class="form-control btn-xs" style="width: 150px;"
                                                 ng-model="auditoria.OBSERVACIONES_PROCESO">
                                             <option value="" disabled>--Seleccione--</option>
-                                            <option ng-repeat="e in listaOpcionesAuditoria | filter:{ESTADO_ID: infoFenix.ESTADO_PROCESO}:true | unique:'OBSERVACION_ID'"
+                                            <option ng-repeat="e in listaOpcionesAuditoria | filter:{ESTADO_ID: auditoria.ESTADO_PROCESO}:true | unique:'OBSERVACION_ID'"
                                                     value="{{e.OBSERVACION_ID}}">
                                                 {{e.OBSERVACION_ID}}
                                             </option>
