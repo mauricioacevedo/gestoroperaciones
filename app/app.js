@@ -14052,7 +14052,18 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 	$scope.guardarAuditoria = function (audit, infofnx, infoped) {
 		//console.log(audit);
-        console.log(infoped);
+        //console.log(infoped);
+        $scope.fechaFinAuditoria 	= 	$rootScope.fechaProceso();
+        $scope.datosFnx={
+        	PEDIDO_ID: infofnx.PEDIDO_ID,
+			TIPO_ELEMENTO_ID: infoped.TIPO_ELEMENTO_ID,
+			CONCEPTO_ACTUAL: infoped.CONCEPTO_ID,
+			USUARIO_ID: userID,
+			FECHA_INICIO: $scope.fecha_inicio,
+			FECHA_FIN:$scope.fechaFinAuditoria
+		};
+
+		console.log($scope.datosFnx);
     };
 
     // --------------------------------------------- Modal para la Auditoria de Pedidos
