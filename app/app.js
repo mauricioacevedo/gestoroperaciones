@@ -14055,6 +14055,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     };
 
+	$scope.guardarAuditoria = function () {
+		console.log(infoFenix);
+    };
+
     // --------------------------------------------- Modal para la Auditoria de Pedidos
 
 	$scope.doubleDigit = function (num) {

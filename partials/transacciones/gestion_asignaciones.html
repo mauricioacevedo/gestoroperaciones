@@ -545,7 +545,7 @@
                                 <form class="form-inline">
                                     <div class="form-group" ng-controller="UsersCtrl">
                                         <label class="sr-only" for="usrEstudio">Usuario:</label>
-                                        <ui-select id="usrEstudio" name="usrEstudio" ng-model="infoFenix.USUARIO_ID" theme="bootstrap" style="width:170px">
+                                        <ui-select id="usrEstudio" name="usrEstudio" ng-model="infoFenix.USUARIO_ID" theme="bootstrap">
                                             <ui-select-match placeholder="Usuario">
                                                 {{infoFenix.USUARIO_ID.USUARIO_ID}}
                                             </ui-select-match>
@@ -607,6 +607,7 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="guardarAuditoria(infoFenix)" data-dismiss="modal">Guardar</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
