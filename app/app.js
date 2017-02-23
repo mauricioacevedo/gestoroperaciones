@@ -14051,18 +14051,16 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
     };
 
 	$scope.guardarAuditoria = function (audit, infofnx, infoped) {
-		//console.log(audit);
-        //console.log(infoped);
         $scope.fechaFinAuditoria 	= 	$rootScope.fechaProceso();
-
+		var usergestion, usernombre;
         for (var i=0; i<audit.length; i++) {
 
-        	var usergestion=audit[i].USUARIO_ID_GESTION.USUARIO_ID;
-        	var usernombre=audit[i].USUARIO_ID_GESTION.USUARIO_NOMBRE;
-
-        	if(usergestion=='' || usergestion==undefined){
+        	if(audit[i].USUARIO_ID_GESTION.USUARIO_ID=='' || audit[i].USUARIO_ID_GESTION.USUARIO_ID==undefined){
                 usergestion='EXTERNO';
                 usernombre='EXTERNO'
+			}else{
+                 usergestion=audit[i].USUARIO_ID_GESTION.USUARIO_ID;
+                 usernombre=audit[i].USUARIO_ID_GESTION.USUARIO_NOMBRE;
 			}
             $scope.datosFnx={
                 PEDIDO_ID: infofnx.PEDIDO_ID,
