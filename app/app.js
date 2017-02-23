@@ -9422,7 +9422,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
     $scope.set_color = function (service) {
 
-        if (service.PROCESO == 'REPARACION' && service.FECHA_CITA_REAGENDA < '2017-02-23') {
+        if (service.PROCESO == 'REPARACION' && service.FECHA_CITA_REAGENDA < 2017-02-23) {
 			$scope.error = 'Darle Prioridad a este pedido lleva mas de 10 dias en el sistema';
 			//alert('pedido especial');
 
