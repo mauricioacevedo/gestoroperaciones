@@ -544,22 +544,33 @@
                             <div class = "well well-sm" ng-repeat="infoFenix in auditorias track by $index">
                                 <form class="form-inline">
                                     <div class="form-group">
+                                        <label class="sr-only" for="usrEstudio">Usuario:</label>
                                         <i class="fa fa-user fa-fw"></i>
                                         <select  id="usrEstudio" name="usrEstudio" class="grupo-select" style="width: 150px;">
                                             <option value="">Seleccione Usuario</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
+                                        <label class="sr-only" for="fechaEstudio">Fecha:</label>
                                         <i class="fa fa-calendar fa-fw"></i>
                                         <input id="fechaEstudio" name="fechaEstudio" style="width:80px" class="btn btn-default btn-xs" type="text" ng-model="infoFenix.FECHAESTUDIO" datetime-picker date-only date-format="yyyy-MM-dd"/>
                                     </div>
                                     <div class="form-group">
-                                        <i class="fa fa-user fa-fw"></i>
+                                        <label class="sr-only" for="estadoAuditoria">Estado:</label>
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
                                         <select  id="estadoAuditoria" name="estadoAuditoria" class="grupo-select" style="width: 150px;">
                                             <option value="">Seleccione Usuario</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
+                                        <label class="sr-only" for="obidAuditoria">Resultado:</label>
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                        <select  id="obidAuditoria" name="obidAuditoria" class="grupo-select" style="width: 150px;">
+                                            <option value="">Seleccione Usuario</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="obsAuditoria">Observaciones:</label>
                                         <i class="fa fa-comment" aria-hidden="true"></i>
                                         <input id="obsAuditoria" name="obsAuditoria" style="width:120px" class="btn btn-default btn-xs" type="text" />
                                     </div>
