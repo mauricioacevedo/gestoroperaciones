@@ -14062,9 +14062,11 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			FECHA_INICIO: $scope.fecha_inicio,
 			FECHA_FIN:$scope.fechaFinAuditoria
 		};
-        angular.forEach(audit, function(){
-            angular.extend(audit, $scope.datosFnx);
-        });
+        for (var i=0; i<audit.length; i++) {
+            angular.extend(audit[i], $scope.datosFnx);
+            //console.log(keys[i], yourobject[keys[i]]);
+        }
+
         //angular.extend(audit, $scope.datosFnx);
 		console.log(audit);
     };
