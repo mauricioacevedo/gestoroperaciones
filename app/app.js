@@ -14063,7 +14063,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     };
 
-	$scope.guardarAuditoria = function () {
+	$scope.guardarAuditoria = function (infoFenix) {
 		console.log(infoFenix);
     };
 
