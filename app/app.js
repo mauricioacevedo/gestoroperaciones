@@ -9031,7 +9031,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 
 
-		var kami = services.demePedidoAgendamiento($rootScope.logedUser.login, $scope.departamento.DEPARTAMENT, $scope.zona.SUBZONA_ID, $scope.microzona, $scope.proceso, $scope.TODAY_TRIES, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name).then(function (data) {
+		var kami = services.demePedidoAgendamiento($rootScope.logedUser.login, $scope.departamento.DEPARTAMENT, $scope.zona.SUBZONA_ID, $scope.microzona, $scope.proceso,$scope.FECHA_CITA_REAGENDA, $scope.TODAY_TRIES, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name).then(function (data) {
 
 
 			if (data.data == '' || data.data == 'No hay registros!') {
@@ -9071,7 +9071,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
-         if (service.PROCESO == 'REPARACION' && service.$scope.peds[0].FECHA_CITA_REAGENDA != $scope.fecha_inicio) {
+         if (service.PROCESO == 'REPARACION' && service.$scope.FECHA_CITA_REAGENDA != $scope.fecha_inicio) {
 			$scope.error = 'cccccccchhhhhhhiiiiiiccccchhhhaaarrroooon';
 			//alert('pedido especial');
 
