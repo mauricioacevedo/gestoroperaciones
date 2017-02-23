@@ -14063,10 +14063,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			FECHA_FIN:$scope.fechaFinAuditoria
 		};
 
-		//console.log($scope.datosFnx);
-		var aad=audit;
-		aad.concat($scope.datosFnx);
-		console.log(aad);
+        angular.extend(audit, $scope.datosFnx);
+		console.log(audit);
     };
 
     // --------------------------------------------- Modal para la Auditoria de Pedidos
