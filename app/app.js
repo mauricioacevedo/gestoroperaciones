@@ -9420,7 +9420,14 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 		}
 	};
 
+    $scope.set_color = function (service) {
 
+        if (service.PROCESO == 'REPARACION' && service.TIEMPO_TOTAL < "2017-02-23") {
+			$scope.error = 'Darle Prioridad a este pedido fecha anterior al dia actual';
+			//alert('pedido especial');
+
+
+		}
 
 	$scope.set_color = function (service) {
 
