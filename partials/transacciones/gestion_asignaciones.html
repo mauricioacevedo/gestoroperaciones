@@ -547,9 +547,9 @@
                                         <label class="sr-only" for="usrEstudio">Usuario:</label>
                                         <ui-select id="usrEstudio" name="usrEstudio" ng-model="auditoria.USUARIO_ID_GESTION" theme="bootstrap">
                                             <ui-select-match placeholder="Usuario">
-                                                {{auditoria.USUARIO_ID_GESTION.USUARIO_ID_GESTION}}
+                                                {{auditoria.USUARIO_ID_GESTION}}
                                             </ui-select-match>
-                                            <ui-select-choices repeat="g.value as (key, g)  in  listaUsuarios | filter: $select.search track by $index">
+                                            <ui-select-choices repeat="g  in  listaUsuarios | filter: $select.search track by $index">
                                                 <div ng-bind-html="g.USUARIO_ID | highlight: $select.search"></div>
                                             </ui-select-choices>
                                         </ui-select>
