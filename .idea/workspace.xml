@@ -342,9 +342,14 @@
       <file leaf-file-name="gestion_asignaciones.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="619">
-              <caret line="567" column="28" lean-forward="false" selection-start-line="567" selection-start-column="28" selection-end-line="567" selection-end-column="28" />
-              <folding />
+            <state relative-caret-position="570">
+              <caret line="572" column="41" lean-forward="false" selection-start-line="572" selection-start-column="41" selection-end-line="572" selection-end-column="41" />
+              <folding>
+                <element signature="n#style#0;n#select#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#select#0;n#li#2;n#ul#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#li#3;n#ul#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1098,14 +1103,7 @@
       <workItem from="1487612618032" duration="5367000" />
       <workItem from="1487676545502" duration="11953000" />
       <workItem from="1487764979433" duration="17564000" />
-      <workItem from="1487849982860" duration="3862000" />
-    </task>
-    <task id="LOCAL-00507" summary="Alarmados proactivos">
-      <created>1487686033343</created>
-      <option name="number" value="00507" />
-      <option name="presentableId" value="LOCAL-00507" />
-      <option name="project" value="LOCAL" />
-      <updated>1487686033343</updated>
+      <workItem from="1487849982860" duration="4450000" />
     </task>
     <task id="LOCAL-00508" summary="Alarmados proactivos">
       <created>1487686087242</created>
@@ -1443,11 +1441,18 @@
       <option name="project" value="LOCAL" />
       <updated>1487853717886</updated>
     </task>
-    <option name="localTasksCounter" value="556" />
+    <task id="LOCAL-00556" summary="Cambio Auditoria Grande">
+      <created>1487853869090</created>
+      <option name="number" value="00556" />
+      <option name="presentableId" value="LOCAL-00556" />
+      <option name="project" value="LOCAL" />
+      <updated>1487853869090</updated>
+    </task>
+    <option name="localTasksCounter" value="557" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256422000" />
+    <option name="totallyTimeSpent" value="257010000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -3988,9 +3993,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="619">
-          <caret line="567" column="28" lean-forward="false" selection-start-line="567" selection-start-column="28" selection-end-line="567" selection-end-column="28" />
-          <folding />
+        <state relative-caret-position="570">
+          <caret line="572" column="41" lean-forward="false" selection-start-line="572" selection-start-column="41" selection-end-line="572" selection-end-column="41" />
+          <folding>
+            <element signature="n#style#0;n#select#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#li#2;n#ul#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#li#3;n#ul#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

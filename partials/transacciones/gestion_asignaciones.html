@@ -533,7 +533,7 @@
                 <span style="color:red" ><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
             </div>
             <div class="modal-body" >
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12 col-md-10">
                             <div class="well well-sm"><b>Usuarios:</b> {{infoFenix.USUARIOS}} | <b>Fechas:</b> {{infoFenix.FECHAS}} <span class="pull-right badge">{{infoFenix.CANTIDADUSERS}}</span></div>
@@ -541,31 +541,47 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-10">
-                            <div class="form-inline">
-                                <div class="form-group">
-                                    <label for="usuario">Usuario:</label>
-                                    <input type="text" class="form-control" id="usuario">
-                                </div>
-                                <div class="form-group has-feedback">
-                                    <label for="fechaestudio" class="control-label">Programación:</label>
-                                    <input type="text" name="programacion" id="fechaestudio" class="form-control"  ng-model="infoFenix.FECHAESTUDIO" datetime-picker date-format="yyyy-MM-dd"/>
-                                    <i class="fa fa-calendar-check-o form-control-feedback"></i>
-                                </div>
-                                <div class="form-group">
-                                    <label for="estadoauditoria" class="control-label">Estado:</label>
-                                    <select id="estadoauditoria"
-                                            class= "form-control btn-xs"
-                                            name="estadoauditoria"
-                                            required>
-                                        <option value="" disabled>--Seleccione--</option>
-                                        <option
-                                                ng-repeat="e in listaOpcionesAuditoria | unique:'ESTADO_ID'"
-                                                value="{{e.ESTADO_ID}}">
-                                            {{e.ESTADO_ID}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
+                            <div class = "panel-heading nav navbar-default" ng-repeat="auditar in auditorias track by $index">
+                                <ul class="nav navbar-nav navbar-left">
+                                    <li>
+                                        <i class="fa fa-user fa-fw"></i>
+                                        <select   class="grupo-select" style="width: 150px;">
+                                            <option value="">Seleccione Usuario</option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-calendar fa-fw"></i>
+                                        <input style="width:80px" class="btn btn-default btn-xs" type="text" ng-model="infoFenix.FECHAESTUDIO" datetime-picker date-only date-format="yyyy-MM-dd HH:mm:ss"/>
+                                    </li>
+                                    <li>
+                                        <select   class="grupo-select" style="width: 150px;"  required>
+                                            <option value="">Seleccione Tipo</option>
+                                        </select>
+                                        &nbsp;
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-comment" aria-hidden="true"></i>
+                                        <input style="width:120px" class="btn btn-default btn-xs" type="text"  capitalize />
+                                        &nbsp;
+                                    </li>
+                                </ul>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li>
+                                        <button type="button" class="btn btn-warning btn-circle-xs pull-left" ng-click="removeNuevaNovedad()" ng-show="$last">
+                                            <i class="fa fa-minus"  aria-hidden="true"></i>
+                                        </button>&nbsp;
+                                    </li>
+                                    <li>
+                                        <button type="button" class="btn btn-warning btn-circle-xs pull-right" ng-show="$last" ng-click="addNuevaNovedad(novedad.usuarioNovedad)">
+                                            <i class="fa fa-plus"  aria-hidden="true"></i>
+                                        </button>
+
+                                    </li>
+                                </ul>
+
+                            </div><!-- Panel heading NG-REPEAT -->
+                            {{listaOpcionesAuditoria}}
+                        </div>
                     </div>
                 </div>
 
