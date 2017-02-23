@@ -13990,6 +13990,30 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         };
 
 	// Modal para la Auditoria de Pedidos ---------------------------------------------
+    $scope.addNuevaNovedad=function(usuario)
+    {
+        var newItemNo=$scope.auditorias.length+1;
+
+
+        $scope.auditorias.push({'id':+newItemNo,
+			usuarioNovedad:usuario,
+			tipoReporte:'NORMAL',
+			usuariocrea:'CGONZGO'});
+
+
+        console.log($scope.auditorias);
+        //console.log(usuario);
+        //$scope.crearnovedad();
+    };
+
+    $scope.removeNuevaNovedad = function() {
+        var lastItem = $scope.auditorias.length-1;
+        if(lastItem!=0){
+            $scope.auditorias.splice(lastItem);
+            //console.log($scope.novedades);
+        }
+
+    };
 	$scope.abrirModalAuditoria=function (pedido, usuario) {
         $scope.infoFenix 		= 	[];
         $scope.msgAuditoria		= 	null;
@@ -14016,6 +14040,17 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
             }
 
 		);
+
+        //Generar Auditorias Multiples
+        $scope.auditorias=[{id:'1',
+			usuarioNovedad:usuario,
+			cedulaNovedad:usuario,
+			fechaNovedad:fechaNovedad,
+			cantidadNovedad:'',
+			tipoNovedad:'',
+			observaciones:'',
+			tipoReporte:'NORMAL',
+			usuariocrea:$scope.usuarioCrea}];
 
     };
 
