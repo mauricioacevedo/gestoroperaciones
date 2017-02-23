@@ -9060,6 +9060,15 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			demePedidoButton.className = "btn btn-sm btn-success";
 			return data.data;
 		});
+
+         if (service.PROCESO == 'REPARACION' && service.FECHA_CITA_FENIX != '9999-00-00') {
+			//$scope.error = 'cccccccchhhhhhhiiiiiiccccchhhhaaarrroooon';
+             $scope.error ="El pedido " + $scope.pedido1 + " estuvo agendado " + $scope.peds[0].FECHA_CITA_FENIX;
+			//alert('pedido especial');
+
+
+		}
+
 		$scope.timeInit = new Date().getTime();
 		var date1 = new Date();
 		var year = date1.getFullYear();
@@ -9431,13 +9440,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			//alert('pedido especial');
 		}
 
-          if (service.PROCESO == 'REPARACION' && service.FECHA_CITA_FENIX != '9999-00-00') {
-			//$scope.error = 'cccccccchhhhhhhiiiiiiccccchhhhaaarrroooon';
-             $scope.error ="El pedido " + $scope.pedido1 + " estuvo agendado " + $scope.peds[0].FECHA_CITA_FENIX;
-			//alert('pedido especial');
 
-
-		}
 
 		if (service.PROCESO == 'INSTALACION' && service.TODAY_TRIES >= 5) {
 			$scope.error = 'Recuerde agendar o en su defecto anular el pedido';
