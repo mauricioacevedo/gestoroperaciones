@@ -13993,15 +13993,17 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.abrirModalAuditoria=function (pedido, usuario) {
         $scope.infoFenix 		= 	[];
         $scope.msgAuditoria		= 	null;
+        $scope.tituloModal		=	"Auditar Pedido:";
         var opcionesAuditoria;
-        $scope.tituloModal="Auditar Pedido:";
+
         opcionesAuditoria = {
             fuente: 'FENIX_NAL',
             grupo: 'ASIGNACIONES',
             actividad: 'AUDITORIA'
         };
+
         $scope.listarOpcionesAsginacion(opcionesAuditoria);
-        console.log($scope.opcionesAuditoria);
+
         services.buscarPedidoAuditoriafenix(pedido).then(
         	function (data) {
 				$scope.infoFenix	=	data.data[0];
