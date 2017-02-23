@@ -9061,13 +9061,6 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			return data.data;
 		});
 
-         if ($scope.PROCESO == 'REPARACION' && $scope.FECHA_CITA_FENIX != '9999-00-00') {
-			//$scope.error = 'cccccccchhhhhhhiiiiiiccccchhhhaaarrroooon';
-             $scope.error ="El pedido " + $scope.pedido1 + " estuvo agendado " + $scope.peds[0].FECHA_CITA_FENIX;
-			//alert('pedido especial');
-
-
-		}
 
 		$scope.timeInit = new Date().getTime();
 		var date1 = new Date();
@@ -9433,7 +9426,13 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 
 	$scope.set_color = function (service) {
+         if (service.PROCESO == 'REPARACION' && service.FECHA_CITA_FENIX != '9999-00-00') {
+			//$scope.error = 'cccccccchhhhhhhiiiiiiccccchhhhaaarrroooon';
+             $scope.error ="El pedido " + $scope.pedido1 + " estuvo agendado " + $scope.peds[0].FECHA_CITA_FENIX;
+			//alert('pedido especial');
 
+
+		}
 
          if (service.PROCESO == 'REPARACION' && service.TIEMPO_TOTAL>= 10) {
 			$scope.error = 'Darle Prioridad a este pedido lleva mas de 10 dias en el sistema';
