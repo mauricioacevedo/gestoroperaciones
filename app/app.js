@@ -14056,8 +14056,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         $scope.fechaFinAuditoria 	= 	$rootScope.fechaProceso();
         $scope.datosFnx={
         	PEDIDO_ID: infofnx.PEDIDO_ID,
-			TIPO_ELEMENTO_ID: infoped.TIPO_ELEMENTO_ID,
-			CONCEPTO_ACTUAL: infoped.CONCEPTO_ID,
+			TIPO_ELEMENTO_ID: infoped[0].TIPO_ELEMENTO_ID,
+			CONCEPTO_ACTUAL: infoped[0].CONCEPTO_ID,
 			USUARIO_ID: userID,
 			FECHA_INICIO: $scope.fecha_inicio,
 			FECHA_FIN:$scope.fechaFinAuditoria
