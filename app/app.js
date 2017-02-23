@@ -14043,14 +14043,14 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
         //Generar Auditorias Multiples
         $scope.auditorias=[{id:'1',
-			usuarioNovedad:usuario,
-			cedulaNovedad:usuario,
-			fechaNovedad:fechaNovedad,
+			usuarioNovedad:'',
+			cedulaNovedad:'',
+			fechaNovedad:'',
 			cantidadNovedad:'',
 			tipoNovedad:'',
 			observaciones:'',
 			tipoReporte:'NORMAL',
-			usuariocrea:$scope.usuarioCrea}];
+			usuariocrea:''}];
 
     };
 
