@@ -14057,8 +14057,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
         for (var i=0; i<audit.length; i++) {
 
-        	var usergestion=audit.USUARIO_ID_GESTION.USUARIO_ID;
-        	var usernombre=audit.USUARIO_ID_GESTION.USUARIO_ID;
+        	var usergestion=audit[i].USUARIO_ID_GESTION.USUARIO_ID;
+        	var usernombre=audit[i].USUARIO_ID_GESTION.USUARIO_ID;
             $scope.datosFnx={
                 PEDIDO_ID: infofnx.PEDIDO_ID,
 				USUARIO_ID_GESTION:usergestion,
