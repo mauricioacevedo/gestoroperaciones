@@ -118,7 +118,7 @@ class API extends REST {
         $today = date("Y-m-d h:i:s");
         $filename="Fenix_NAL-$login-$today.csv";
         $query=" SELECT ".
-            " pedido_id,subpedido_id,solicitud_id,municipio_id, fuente, actividad, fecha_fin, estado,duracion,accion,concepto_final,concepto_anterior,user,idllamada,motivo,nuevopedido,caracteristica ".
+            " pedido_id,subpedido_id,solicitud_id,municipio_id, fuente, actividad, fecha_fin, estado,duracion,accion,concepto_final,concepto_anterior,user,idllamada,motivo,nuevopedido,caracteristica,motivo_malo ".
             " from pedidos where ".
             " fecha_fin between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' $filtro ";
 
@@ -127,7 +127,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('pedido_id','subpedido_id','solicitud_id','municipio_id',' fuente',' actividad',' fecha_fin',' est0ado', 'duracion','accion','concepto_final','concepto_anterior','user','idllamada','motivo','nuevopedido','caracteristica'));
+            fputcsv($fp, array('PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID',' FUENTE',' ACTIVIDAD',' FECHA_FIN',' ESTADO', 'DURACION','ACCION','CONCEPTO_FINAL','CONCEPTO_ANTERIOR','USER','IDLLAMADA','MOTIVO','NUEVOPEDIDO','CARACTERISTICA','MOTIVO MALO'));
             while($row = $r->fetch_assoc()){
                 //$result[] = $row;
                 fputcsv($fp, $row);
