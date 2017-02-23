@@ -13429,15 +13429,18 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 		services.getOpcionesGestionAsignaciones(opciones).then(
 			function (data) {
+				if(opciones.actividad!='AUDITORIA'){
+                    $scope.listaOpcionesGestion=data.data;
+				}else{
+					$scope.listaOpcionesAuditoria=data.data;
+				}
 
-				$scope.listaOpcionesGestion=data.data;
-				//console.log($scope.listaOpcionesGestion);
 				return data.data;
 
 			},
 			function errorCallback(response, status) {
 				//console.log(status);
-				$rootScope.errorDatos = "Error, revisar opciones";
+				$rootScope.errorDatos = 'Error, revisar opciones '+status;
 
 			}
 		);
@@ -13997,7 +14000,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
             grupo: 'ASIGNACIONES',
             actividad: 'AUDITORIA'
         };
-        $scope.opcionesAuditoria=$scope.listarOpcionesAsginacion(opcionesAuditoria);
+        $scope.listarOpcionesAsginacion(opcionesAuditoria);
         console.log($scope.opcionesAuditoria);
         services.buscarPedidoAuditoriafenix(pedido).then(
         	function (data) {
