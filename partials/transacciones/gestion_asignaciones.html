@@ -541,7 +541,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-10">
-                            <div class = "well well-sm" ng-repeat="auditoria in auditorias track by $index as auditarObj ">
+                            <div class = "well well-sm" ng-repeat="auditoria in auditorias as auditarObj track by $index  ">
                                 <form class="form-inline">
                                     <div class="form-group" ng-controller="UsersCtrl">
                                         <label class="sr-only" for="usrEstudio">Usuario:</label>
