@@ -546,7 +546,7 @@
                                     <div class="form-group has-feedback">
                                         <label class="sr-only" for="usrEstudio">Usuario:</label>
                                         <select  id="usrEstudio" name="usrEstudio" class="form-control btn-xs" style="width: 150px;">
-                                            <option value="">Seleccione Usuario</option>
+                                            <option value="" disabled>Usuario</option>
                                         </select>
                                         <i class="fa fa-user fa-fw form-control-feedback"></i>
                                     </div>
@@ -555,23 +555,22 @@
                                         <input id="fechaEstudio" name="fechaEstudio" style="width:100px" class="form-control btn-xs" type="text" ng-model="infoFenix.FECHAESTUDIO" datetime-picker date-only date-format="yyyy-MM-dd"/>
                                         <i class="fa fa-calendar fa-fw form-control-feedback"></i>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group has-feedback">
                                         <label class="sr-only" for="estadoAuditoria">Estado:</label>
-                                        <i class="fa fa-cog" aria-hidden="true"></i>
                                         <select id="estadoAuditoria" name="estadoAuditoria"
                                                 class="form-control btn-xs" style="width: 150px;"
                                                 ng-model="infoFenix.ESTADO_PROCESO"
                                                 required>
-                                            <option value="" disabled>--Seleccione--</option>
+                                            <option value="" disabled>Estado</option>
                                             <option ng-repeat="e in listaOpcionesAuditoria | unique:'ESTADO_ID'"
                                                     value="{{e.ESTADO_ID}}">
                                                 {{e.ESTADO_ID}}
                                             </option>
                                         </select>
+                                        <i class="fa fa-cog form-control-feedback" aria-hidden="true"></i>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group has-feedback">
                                         <label class="sr-only" for="obidAuditoria">Resultado:</label>
-                                        <i class="fa fa-cog" aria-hidden="true"></i>
                                         <select id="obidAuditoria" name="obidAuditoria" class="form-control btn-xs" style="width: 150px;"
                                                 ng-model="infoFenix.OBSERVACIONES_PROCESO">
                                             <option value="" disabled>--Seleccione--</option>
@@ -580,6 +579,7 @@
                                                 {{e.OBSERVACION_ID}}
                                             </option>
                                         </select>
+                                        <i class="fa fa-cog form-control-feedback" aria-hidden="true"></i>
                                     </div>
                                     <div class="form-group has-feedback">
                                         <label class="sr-only" for="obsAuditoria">Observaciones:</label>
