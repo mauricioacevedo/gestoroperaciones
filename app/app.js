@@ -9071,12 +9071,6 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
-         if (service.PROCESO == 'REPARACION' && service.FECHA_CITA_REAGENDA != "2017-02-23") {
-			$scope.error = 'cccccccchhhhhhhiiiiiiccccchhhhaaarrroooon';
-			//alert('pedido especial');
-
-
-		}
 	};
 
 
@@ -9434,6 +9428,11 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
          if (service.PROCESO == 'REPARACION' && service.TIEMPO_TOTAL>= 10) {
 			$scope.error = 'Darle Prioridad a este pedido lleva mas de 10 dias en el sistema';
+			//alert('pedido especial');
+		}
+
+          if (service.PROCESO == 'REPARACION' && service.FECHA_CITA_REAGENDA != "2017-02-23") {
+			$scope.error = 'cccccccchhhhhhhiiiiiiccccchhhhaaarrroooon';
 			//alert('pedido especial');
 
 
