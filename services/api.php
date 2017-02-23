@@ -7747,9 +7747,9 @@ class API extends REST {
                                 " FECHA_CITA ".
                                 " FROM  informe_petec_pendientesm ".
                                 " WHERE 1=1 ".
-                                " and (TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
-                                " AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
-                                " or RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM') ) ".
+                                //" and (TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
+                                //" AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
+                                " and RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM') ) ".
                                 " AND ASESOR='' ".
                                 " AND CONCEPTO_ID = '$concepto' ".
                                 " AND STATUS='PENDI_PETEC' ".
@@ -7768,7 +7768,8 @@ class API extends REST {
                     }
                 }
 
-                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA','INSTIP','STBOX','EQURED')  ";
+
+                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA','INSTIP','STBOX','EQURED') ";
 
             }
         }
@@ -7862,6 +7863,10 @@ class API extends REST {
 
 
         //echo "Mi parametro: $parametroBusqueda";
+
+        if($parametroBusqueda=="NUEVOS_PRIMERO"){
+            $parametroBusqueda="RADICADO_TEMPORAL";
+        }
 
         $query1="select b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_CITA ".
             ",(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO_ID=a.pedido_id ".
