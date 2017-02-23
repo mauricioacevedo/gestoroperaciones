@@ -9071,6 +9071,12 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
+         if (service.PROCESO == 'REPARACION' && service.$scope.peds[0].FECHA_CITA_REAGENDA != $scope.fecha_inicio) {
+			$scope.error = 'cccccccchhhhhhhiiiiiiccccchhhhaaarrroooon';
+			//alert('pedido especial');
+
+
+		}
 	};
 
 
