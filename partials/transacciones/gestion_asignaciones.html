@@ -541,7 +541,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-10">
-                            <div class = "panel-heading nav navbar-default" ng-repeat="auditar in auditorias track by $index">
+                            <div class = "well well-sm" ng-repeat="infoFenix in auditorias track by $index">
                                 <ul class="nav navbar-nav navbar-left">
                                     <li>
                                         <i class="fa fa-user fa-fw"></i>
@@ -551,7 +551,7 @@
                                     </li>
                                     <li>
                                         <i class="fa fa-calendar fa-fw"></i>
-                                        <input style="width:80px" class="btn btn-default btn-xs" type="text" ng-model="infoFenix.FECHAESTUDIO" datetime-picker date-only date-format="yyyy-MM-dd HH:mm:ss"/>
+                                        <input style="width:80px" class="btn btn-default btn-xs" type="text" ng-model="infoFenix.FECHAESTUDIO" datetime-picker date-only date-format="yyyy-MM-dd"/>
                                     </li>
                                     <li>
                                         <select   class="grupo-select" style="width: 150px;"  required>
@@ -561,7 +561,7 @@
                                     </li>
                                     <li>
                                         <i class="fa fa-comment" aria-hidden="true"></i>
-                                        <input style="width:120px" class="btn btn-default btn-xs" type="text"  capitalize />
+                                        <input style="width:120px" class="btn btn-default btn-xs" type="text"  />
                                         &nbsp;
                                     </li>
                                 </ul>
@@ -572,7 +572,7 @@
                                         </button>&nbsp;
                                     </li>
                                     <li>
-                                        <button type="button" class="btn btn-warning btn-circle-xs pull-right" ng-show="$last" ng-click="addNuevaNovedad(novedad.usuarioNovedad)">
+                                        <button type="button" class="btn btn-warning btn-circle-xs pull-right" ng-show="$last" ng-click="addNuevaNovedad()">
                                             <i class="fa fa-plus"  aria-hidden="true"></i>
                                         </button>
 
