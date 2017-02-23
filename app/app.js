@@ -14058,7 +14058,12 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         for (var i=0; i<audit.length; i++) {
 
         	var usergestion=audit[i].USUARIO_ID_GESTION.USUARIO_ID;
-        	var usernombre=audit[i].USUARIO_ID_GESTION.USUARIO_ID;
+        	var usernombre=audit[i].USUARIO_ID_GESTION.USUARIO_NOMBRE;
+
+        	if(usergestion=='' || usergestion==undefined){
+                usergestion='EXTERNO';
+                usernombre='EXTERNO'
+			}
             $scope.datosFnx={
                 PEDIDO_ID: infofnx.PEDIDO_ID,
 				USUARIO_ID_GESTION:usergestion,
