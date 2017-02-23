@@ -546,7 +546,7 @@
                                     <div class="form-group">
                                         <label class="sr-only" for="usrEstudio">Usuario:</label>
                                         <i class="fa fa-user fa-fw"></i>
-                                        <select  id="usrEstudio" name="usrEstudio" class="grupo-select" style="width: 150px;">
+                                        <select  id="usrEstudio" name="usrEstudio" class="form-control btn-xs" style="width: 150px;">
                                             <option value="">Seleccione Usuario</option>
                                         </select>
                                     </div>
@@ -559,7 +559,7 @@
                                         <label class="sr-only" for="estadoAuditoria">Estado:</label>
                                         <i class="fa fa-cog" aria-hidden="true"></i>
                                         <select id="estadoAuditoria" name="estadoAuditoria"
-                                                class="grupo-select" style="width: 150px;"
+                                                class="form-control btn-xs" style="width: 150px;"
                                                 ng-model="infoFenix.ESTADO_PROCESO"
                                                 required>
                                             <option value="" disabled>--Seleccione--</option>
@@ -572,7 +572,7 @@
                                     <div class="form-group">
                                         <label class="sr-only" for="obidAuditoria">Resultado:</label>
                                         <i class="fa fa-cog" aria-hidden="true"></i>
-                                        <select id="obidAuditoria" name="obidAuditoria" class="grupo-select" style="width: 150px;"
+                                        <select id="obidAuditoria" name="obidAuditoria" class="form-control btn-xs" style="width: 150px;"
                                                 ng-model="infoFenix.OBSERVACIONES_PROCESO">
                                             <option value="" disabled>--Seleccione--</option>
                                             <option ng-repeat="e in listaOpcionesAuditoria | filter:{ESTADO_ID: infoFenix.ESTADO_PROCESO}:true | unique:'OBSERVACION_ID'"
@@ -583,7 +583,7 @@
                                     </div>
                                     <div class="form-group has-feedback">
                                         <label class="sr-only" for="obsAuditoria">Observaciones:</label>
-                                        <textarea id="obsAuditoria" name="obsAuditoria" style="width:140px" rows="1" cols="50"></textarea>
+                                        <textarea id="obsAuditoria" name="obsAuditoria" class="form-control btn-xs" style="width:130px" rows="1" cols="50"></textarea>
                                         <i class="fa fa-comment form-control-feedback" aria-hidden="true"></i>
                                     </div>
                                     <div class="form-group pull-right">
