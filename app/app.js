@@ -9431,7 +9431,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			//alert('pedido especial');
 		}
 
-          if (service.PROCESO == 'REPARACION' && service.FECHA_CITA_FENIX != 9999-00-00) {
+          if (service.PROCESO == 'REPARACION' && service.FECHA_CITA_FENIX != '9999-00-00') {
 			$scope.error = 'cccccccchhhhhhhiiiiiiccccchhhhaaarrroooon';
 			//alert('pedido especial');
 
