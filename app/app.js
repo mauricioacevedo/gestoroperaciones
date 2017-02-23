@@ -13438,15 +13438,18 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 		services.getOpcionesGestionAsignaciones(opciones).then(
 			function (data) {
+				if(opciones.actividad!='AUDITORIA'){
+                    $scope.listaOpcionesGestion=data.data;
+				}else{
+					$scope.listaOpcionesAuditoria=data.data;
+				}
 
-				$scope.listaOpcionesGestion=data.data;
-				//console.log($scope.listaOpcionesGestion);
 				return data.data;
 
 			},
 			function errorCallback(response, status) {
 				//console.log(status);
-				$rootScope.errorDatos = "Error, revisar opciones";
+				$rootScope.errorDatos = 'Error, revisar opciones '+status;
 
 			}
 		);
@@ -13996,17 +13999,44 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         };
 
 	// Modal para la Auditoria de Pedidos ---------------------------------------------
+    $scope.addNuevaNovedad=function(usuario)
+    {
+        var newItemNo=$scope.auditorias.length+1;
+
+
+        $scope.auditorias.push({'id':+newItemNo,
+			usuarioNovedad:usuario,
+			tipoReporte:'NORMAL',
+			usuariocrea:'CGONZGO'});
+
+
+        console.log($scope.auditorias);
+        //console.log(usuario);
+        //$scope.crearnovedad();
+    };
+
+    $scope.removeNuevaNovedad = function() {
+        var lastItem = $scope.auditorias.length-1;
+        if(lastItem!=0){
+            $scope.auditorias.splice(lastItem);
+            //console.log($scope.novedades);
+        }
+
+    };
 	$scope.abrirModalAuditoria=function (pedido, usuario) {
         $scope.infoFenix 		= 	[];
         $scope.msgAuditoria		= 	null;
+        $scope.tituloModal		=	"Auditar Pedido:";
         var opcionesAuditoria;
-        $scope.tituloModal="Auditar Pedido:";
+
         opcionesAuditoria = {
             fuente: 'FENIX_NAL',
             grupo: 'ASIGNACIONES',
             actividad: 'AUDITORIA'
         };
-        $scope.opcionesAuditoria=$scope.listarOpcionesAsginacion(opcionesAuditoria);
+
+        $scope.listarOpcionesAsginacion(opcionesAuditoria);
+
         services.buscarPedidoAuditoriafenix(pedido).then(
         	function (data) {
 				$scope.infoFenix	=	data.data[0];
@@ -14019,6 +14049,17 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
             }
 
 		);
+
+        //Generar Auditorias Multiples
+        $scope.auditorias=[{id:'1',
+			usuarioNovedad:'',
+			cedulaNovedad:'',
+			fechaNovedad:'',
+			cantidadNovedad:'',
+			tipoNovedad:'',
+			observaciones:'',
+			tipoReporte:'NORMAL',
+			usuariocrea:''}];
 
     };
 
@@ -14959,7 +15000,7 @@ app.config(['$routeProvider',
 		})
 		.when('/', {
 				title: 'Login',
-				templa  teUrl: 'partials/login.html',
+				templateUrl: 'partials/login.html',
 				controller: 'login'
 		})
 		.when('/chat/', {

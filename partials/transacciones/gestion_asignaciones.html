@@ -536,14 +536,69 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12 col-md-10">
-                            <div class="well well-sm">Usuarios: {{infoFenix.USUARIOS}} | Fechas: {{infoFenix.FECHAS}} <span class="pull-right badge">{{infoFenix.CANTIDADUSERS}}</span></div>
+                            <div class="well well-sm"><b>Usuarios:</b> {{infoFenix.USUARIOS}} | <b>Fechas:</b> {{infoFenix.FECHAS}} <span class="pull-right badge">{{infoFenix.CANTIDADUSERS}}</span></div>
                         </div>
                     </div>
                     <div class="row">
-                        {{opcionesAuditoria}}
+                        <div class="col-lg-12 col-md-10">
+                            <div class = "well well-sm" ng-repeat="infoFenix in auditorias track by $index">
+                                <form class="form-inline">
+                                    <div class="form-group has-feedback">
+                                        <label class="sr-only" for="usrEstudio">Usuario:</label>
+                                        <select  id="usrEstudio" name="usrEstudio" class="form-control btn-xs" style="width: 150px;">
+                                            <option value="" disabled>Usuario</option>
+                                        </select>
+                                        <i class="fa fa-user fa-fw form-control-feedback"></i>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label class="sr-only" for="fechaEstudio">Fecha:</label>
+                                        <input id="fechaEstudio" name="fechaEstudio" style="width:120px" class="form-control btn-xs" type="text" ng-model="infoFenix.FECHAESTUDIO" datetime-picker date-only date-format="yyyy-MM-dd"/>
+                                        <i class="fa fa-calendar fa-fw form-control-feedback"></i>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label class="sr-only" for="estadoAuditoria">Estado:</label>
+                                        <select id="estadoAuditoria" name="estadoAuditoria"
+                                                class="form-control btn-xs" style="width: 150px;"
+                                                ng-model="infoFenix.ESTADO_PROCESO"
+                                                required>
+                                            <option value="" disabled>Estado</option>
+                                            <option ng-repeat="e in listaOpcionesAuditoria | unique:'ESTADO_ID'"
+                                                    value="{{e.ESTADO_ID}}">
+                                                {{e.ESTADO_ID}}
+                                            </option>
+                                        </select>
+                                        <i class="fa fa-cog form-control-feedback" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label class="sr-only" for="obidAuditoria">Resultado:</label>
+                                        <select id="obidAuditoria" name="obidAuditoria" class="form-control btn-xs" style="width: 150px;"
+                                                ng-model="infoFenix.OBSERVACIONES_PROCESO">
+                                            <option value="" disabled>--Seleccione--</option>
+                                            <option ng-repeat="e in listaOpcionesAuditoria | filter:{ESTADO_ID: infoFenix.ESTADO_PROCESO}:true | unique:'OBSERVACION_ID'"
+                                                    value="{{e.OBSERVACION_ID}}">
+                                                {{e.OBSERVACION_ID}}
+                                            </option>
+                                        </select>
+                                        <i class="fa fa-cog form-control-feedback" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label class="sr-only" for="obsAuditoria">Observaciones:</label>
+                                        <textarea id="obsAuditoria" name="obsAuditoria" class="form-control btn-xs" style="width:130px" rows="2" cols="50"></textarea>
+                                        <i class="fa fa-comment form-control-feedback" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="form-group pull-right">
+                                        <button type="button" class="btn btn-warning btn-circle-xs pull-left" ng-click="removeNuevaNovedad()" ng-show="$last">
+                                            <i class="fa fa-minus"  aria-hidden="true"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-warning btn-circle-xs pull-right" ng-show="$last" ng-click="addNuevaNovedad()">
+                                            <i class="fa fa-plus"  aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

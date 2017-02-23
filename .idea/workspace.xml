@@ -7,6 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html" afterPath="$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
     <ignored path="node_modules/angular-notify/package.json" />
@@ -39,7 +40,7 @@
       <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="670">
+            <state relative-caret-position="258332">
               <caret line="15196" column="49" lean-forward="false" selection-start-line="15196" selection-start-column="49" selection-end-line="15196" selection-end-column="49" />
               <folding>
                 <marker date="1487793821538" expanded="true" signature="5016:5701" ph="insert into portalbd.activity_feed... " />
@@ -341,9 +342,14 @@
       <file leaf-file-name="gestion_asignaciones.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="633">
-              <caret line="542" column="43" lean-forward="false" selection-start-line="542" selection-start-column="43" selection-end-line="542" selection-end-column="43" />
-              <folding />
+            <state relative-caret-position="377">
+              <caret line="554" column="100" lean-forward="false" selection-start-line="554" selection-start-column="100" selection-end-line="554" selection-end-column="100" />
+              <folding>
+                <element signature="n#style#0;n#select#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#select#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#select#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#textarea#0;n#div#4;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -351,28 +357,50 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="14006" column="32" lean-forward="false" selection-start-line="14006" selection-start-column="32" selection-end-line="14006" selection-end-column="32" />
+            <state relative-caret-position="378">
+              <caret line="14032" column="32" lean-forward="false" selection-start-line="14032" selection-start-column="23" selection-end-line="14032" selection-end-column="32" />
               <folding>
-                <marker date="1487798645580" expanded="true" signature="182697:182703" ph="&amp;nbsp;" />
-                <marker date="1487798645580" expanded="true" signature="182703:182709" ph="&amp;nbsp;" />
-                <marker date="1487798645580" expanded="true" signature="183126:183132" ph="&amp;nbsp;" />
-                <marker date="1487798645580" expanded="true" signature="183132:183138" ph="&amp;nbsp;" />
-                <marker date="1487798645580" expanded="true" signature="183552:183558" ph="&amp;nbsp;" />
-                <marker date="1487798645580" expanded="true" signature="183558:183564" ph="&amp;nbsp;" />
-                <marker date="1487798645580" expanded="true" signature="183968:183974" ph="&amp;nbsp;" />
-                <marker date="1487798645580" expanded="true" signature="183974:183980" ph="&amp;nbsp;" />
-                <marker date="1487798645580" expanded="true" signature="195592:195598" ph="&amp;nbsp;" />
-                <marker date="1487798645580" expanded="true" signature="195598:195604" ph="&amp;nbsp;" />
-                <marker date="1487798645580" expanded="true" signature="196004:196010" ph="&amp;nbsp;" />
-                <marker date="1487798645580" expanded="true" signature="196010:196016" ph="&amp;nbsp;" />
-                <marker date="1487798645580" expanded="true" signature="196379:196385" ph="&amp;nbsp;" />
-                <marker date="1487798645580" expanded="true" signature="196385:196391" ph="&amp;nbsp;" />
-                <marker date="1487798645580" expanded="true" signature="196716:196722" ph="&amp;nbsp;" />
-                <marker date="1487798645580" expanded="true" signature="196722:196728" ph="&amp;nbsp;" />
-                <marker date="1487798645580" expanded="true" signature="264613:293458" ph="{...}" />
-                <marker date="1487798645580" expanded="true" signature="293255:293458" ph="{...}" />
-                <marker date="1487798645580" expanded="true" signature="466215:466272" ph="{&quot;title&quot;: 'Login'...}" />
+                <marker date="1487855109329" expanded="true" signature="182697:182703" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="182703:182709" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="183126:183132" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="183132:183138" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="183552:183558" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="183558:183564" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="183968:183974" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="183974:183980" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="195592:195598" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="195598:195604" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="196004:196010" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="196010:196016" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="196379:196385" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="196385:196391" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="196716:196722" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="196722:196728" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="386174:386180" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="386180:386186" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="386588:386594" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="386594:386600" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="386963:386969" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="386969:386975" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="387302:387308" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="387308:387314" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="401661:401667" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="401667:401673" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="402075:402081" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="402081:402087" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="402450:402456" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="402456:402462" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="402789:402795" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="402795:402801" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="422710:422716" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="422716:422722" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="423122:423128" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="423128:423134" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="423497:423503" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="423503:423509" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="423834:423840" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="423840:423846" ph="&amp;nbsp;" />
+                <marker date="1487855109329" expanded="true" signature="448835:448868" ph="..." />
               </folding>
             </state>
           </provider>
@@ -533,7 +561,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="partials" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -631,116 +659,6 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\CGONZGO\GIT\gestoroperaciones" />
     </key>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/app.js</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -1184,196 +1102,8 @@
       <workItem from="1487593833340" duration="8821000" />
       <workItem from="1487612618032" duration="5367000" />
       <workItem from="1487676545502" duration="11953000" />
-      <workItem from="1487764979433" duration="17173000" />
-    </task>
-    <task id="LOCAL-00499" summary="Alarmados proactivos">
-      <created>1487677778432</created>
-      <option name="number" value="00499" />
-      <option name="presentableId" value="LOCAL-00499" />
-      <option name="project" value="LOCAL" />
-      <updated>1487677778432</updated>
-    </task>
-    <task id="LOCAL-00500" summary="Alarmados proactivos">
-      <created>1487677838918</created>
-      <option name="number" value="00500" />
-      <option name="presentableId" value="LOCAL-00500" />
-      <option name="project" value="LOCAL" />
-      <updated>1487677838918</updated>
-    </task>
-    <task id="LOCAL-00501" summary="Alarmados proactivos">
-      <created>1487678133584</created>
-      <option name="number" value="00501" />
-      <option name="presentableId" value="LOCAL-00501" />
-      <option name="project" value="LOCAL" />
-      <updated>1487678133584</updated>
-    </task>
-    <task id="LOCAL-00502" summary="Alarmados proactivos">
-      <created>1487678400197</created>
-      <option name="number" value="00502" />
-      <option name="presentableId" value="LOCAL-00502" />
-      <option name="project" value="LOCAL" />
-      <updated>1487678400197</updated>
-    </task>
-    <task id="LOCAL-00503" summary="Alarmados proactivos">
-      <created>1487678572322</created>
-      <option name="number" value="00503" />
-      <option name="presentableId" value="LOCAL-00503" />
-      <option name="project" value="LOCAL" />
-      <updated>1487678572322</updated>
-    </task>
-    <task id="LOCAL-00504" summary="Alarmados proactivos">
-      <created>1487679034638</created>
-      <option name="number" value="00504" />
-      <option name="presentableId" value="LOCAL-00504" />
-      <option name="project" value="LOCAL" />
-      <updated>1487679034639</updated>
-    </task>
-    <task id="LOCAL-00505" summary="Alarmados proactivos">
-      <created>1487685457431</created>
-      <option name="number" value="00505" />
-      <option name="presentableId" value="LOCAL-00505" />
-      <option name="project" value="LOCAL" />
-      <updated>1487685457433</updated>
-    </task>
-    <task id="LOCAL-00506" summary="Alarmados proactivos">
-      <created>1487685955141</created>
-      <option name="number" value="00506" />
-      <option name="presentableId" value="LOCAL-00506" />
-      <option name="project" value="LOCAL" />
-      <updated>1487685955141</updated>
-    </task>
-    <task id="LOCAL-00507" summary="Alarmados proactivos">
-      <created>1487686033343</created>
-      <option name="number" value="00507" />
-      <option name="presentableId" value="LOCAL-00507" />
-      <option name="project" value="LOCAL" />
-      <updated>1487686033343</updated>
-    </task>
-    <task id="LOCAL-00508" summary="Alarmados proactivos">
-      <created>1487686087242</created>
-      <option name="number" value="00508" />
-      <option name="presentableId" value="LOCAL-00508" />
-      <option name="project" value="LOCAL" />
-      <updated>1487686087242</updated>
-    </task>
-    <task id="LOCAL-00509" summary="Alarmados proactivos">
-      <created>1487686127846</created>
-      <option name="number" value="00509" />
-      <option name="presentableId" value="LOCAL-00509" />
-      <option name="project" value="LOCAL" />
-      <updated>1487686127847</updated>
-    </task>
-    <task id="LOCAL-00510" summary="Alarmados proactivos">
-      <created>1487686161314</created>
-      <option name="number" value="00510" />
-      <option name="presentableId" value="LOCAL-00510" />
-      <option name="project" value="LOCAL" />
-      <updated>1487686161315</updated>
-    </task>
-    <task id="LOCAL-00511" summary="Alarmados proactivos">
-      <created>1487686199977</created>
-      <option name="number" value="00511" />
-      <option name="presentableId" value="LOCAL-00511" />
-      <option name="project" value="LOCAL" />
-      <updated>1487686199977</updated>
-    </task>
-    <task id="LOCAL-00512" summary="Alarmados proactivos">
-      <created>1487686389859</created>
-      <option name="number" value="00512" />
-      <option name="presentableId" value="LOCAL-00512" />
-      <option name="project" value="LOCAL" />
-      <updated>1487686389859</updated>
-    </task>
-    <task id="LOCAL-00513" summary="Alarmados proactivos">
-      <created>1487687266846</created>
-      <option name="number" value="00513" />
-      <option name="presentableId" value="LOCAL-00513" />
-      <option name="project" value="LOCAL" />
-      <updated>1487687266846</updated>
-    </task>
-    <task id="LOCAL-00514" summary="Alarmados proactivos">
-      <created>1487687838858</created>
-      <option name="number" value="00514" />
-      <option name="presentableId" value="LOCAL-00514" />
-      <option name="project" value="LOCAL" />
-      <updated>1487687838858</updated>
-    </task>
-    <task id="LOCAL-00515" summary="Alarmados proactivos">
-      <created>1487704363917</created>
-      <option name="number" value="00515" />
-      <option name="presentableId" value="LOCAL-00515" />
-      <option name="project" value="LOCAL" />
-      <updated>1487704363917</updated>
-    </task>
-    <task id="LOCAL-00516" summary="Alarmados proactivos">
-      <created>1487704891452</created>
-      <option name="number" value="00516" />
-      <option name="presentableId" value="LOCAL-00516" />
-      <option name="project" value="LOCAL" />
-      <updated>1487704891452</updated>
-    </task>
-    <task id="LOCAL-00517" summary="Alarmados proactivos">
-      <created>1487712380024</created>
-      <option name="number" value="00517" />
-      <option name="presentableId" value="LOCAL-00517" />
-      <option name="project" value="LOCAL" />
-      <updated>1487712380024</updated>
-    </task>
-    <task id="LOCAL-00518" summary="Cambio Auditoria Grande">
-      <created>1487773820622</created>
-      <option name="number" value="00518" />
-      <option name="presentableId" value="LOCAL-00518" />
-      <option name="project" value="LOCAL" />
-      <updated>1487773820622</updated>
-    </task>
-    <task id="LOCAL-00519" summary="Cambio Auditoria Grande">
-      <created>1487774564317</created>
-      <option name="number" value="00519" />
-      <option name="presentableId" value="LOCAL-00519" />
-      <option name="project" value="LOCAL" />
-      <updated>1487774564317</updated>
-    </task>
-    <task id="LOCAL-00520" summary="Cambio Auditoria Grande">
-      <created>1487774877799</created>
-      <option name="number" value="00520" />
-      <option name="presentableId" value="LOCAL-00520" />
-      <option name="project" value="LOCAL" />
-      <updated>1487774877799</updated>
-    </task>
-    <task id="LOCAL-00521" summary="Cambio Auditoria Grande">
-      <created>1487775141599</created>
-      <option name="number" value="00521" />
-      <option name="presentableId" value="LOCAL-00521" />
-      <option name="project" value="LOCAL" />
-      <updated>1487775141599</updated>
-    </task>
-    <task id="LOCAL-00522" summary="Cambio Auditoria Grande">
-      <created>1487775716515</created>
-      <option name="number" value="00522" />
-      <option name="presentableId" value="LOCAL-00522" />
-      <option name="project" value="LOCAL" />
-      <updated>1487775716516</updated>
-    </task>
-    <task id="LOCAL-00523" summary="Cambio Auditoria Grande">
-      <created>1487776642925</created>
-      <option name="number" value="00523" />
-      <option name="presentableId" value="LOCAL-00523" />
-      <option name="project" value="LOCAL" />
-      <updated>1487776642925</updated>
-    </task>
-    <task id="LOCAL-00524" summary="Cambio Auditoria Grande">
-      <created>1487777135056</created>
-      <option name="number" value="00524" />
-      <option name="presentableId" value="LOCAL-00524" />
-      <option name="project" value="LOCAL" />
-      <updated>1487777135056</updated>
-    </task>
-    <task id="LOCAL-00525" summary="Cambio Auditoria Grande">
-      <created>1487777881582</created>
-      <option name="number" value="00525" />
-      <option name="presentableId" value="LOCAL-00525" />
-      <option name="project" value="LOCAL" />
-      <updated>1487777881582</updated>
+      <workItem from="1487764979433" duration="17564000" />
+      <workItem from="1487849982860" duration="9456000" />
     </task>
     <task id="LOCAL-00526" summary="Cambio Auditoria Grande">
       <created>1487778312758</created>
@@ -1529,11 +1259,200 @@
       <option name="project" value="LOCAL" />
       <updated>1487798616014</updated>
     </task>
-    <option name="localTasksCounter" value="548" />
+    <task id="LOCAL-00548" summary="Cambio Auditoria Grande">
+      <created>1487798666909</created>
+      <option name="number" value="00548" />
+      <option name="presentableId" value="LOCAL-00548" />
+      <option name="project" value="LOCAL" />
+      <updated>1487798666909</updated>
+    </task>
+    <task id="LOCAL-00549" summary="Cambio Auditoria Grande">
+      <created>1487798998720</created>
+      <option name="number" value="00549" />
+      <option name="presentableId" value="LOCAL-00549" />
+      <option name="project" value="LOCAL" />
+      <updated>1487798998720</updated>
+    </task>
+    <task id="LOCAL-00550" summary="Cambio Auditoria Grande">
+      <created>1487850582454</created>
+      <option name="number" value="00550" />
+      <option name="presentableId" value="LOCAL-00550" />
+      <option name="project" value="LOCAL" />
+      <updated>1487850582454</updated>
+    </task>
+    <task id="LOCAL-00551" summary="Cambio Auditoria Grande">
+      <created>1487851113682</created>
+      <option name="number" value="00551" />
+      <option name="presentableId" value="LOCAL-00551" />
+      <option name="project" value="LOCAL" />
+      <updated>1487851113682</updated>
+    </task>
+    <task id="LOCAL-00552" summary="Cambio Auditoria Grande">
+      <created>1487852428805</created>
+      <option name="number" value="00552" />
+      <option name="presentableId" value="LOCAL-00552" />
+      <option name="project" value="LOCAL" />
+      <updated>1487852428805</updated>
+    </task>
+    <task id="LOCAL-00553" summary="Cambio Auditoria Grande">
+      <created>1487853049292</created>
+      <option name="number" value="00553" />
+      <option name="presentableId" value="LOCAL-00553" />
+      <option name="project" value="LOCAL" />
+      <updated>1487853049292</updated>
+    </task>
+    <task id="LOCAL-00554" summary="Cambio Auditoria Grande">
+      <created>1487853596816</created>
+      <option name="number" value="00554" />
+      <option name="presentableId" value="LOCAL-00554" />
+      <option name="project" value="LOCAL" />
+      <updated>1487853596816</updated>
+    </task>
+    <task id="LOCAL-00555" summary="Cambio Auditoria Grande">
+      <created>1487853717886</created>
+      <option name="number" value="00555" />
+      <option name="presentableId" value="LOCAL-00555" />
+      <option name="project" value="LOCAL" />
+      <updated>1487853717886</updated>
+    </task>
+    <task id="LOCAL-00556" summary="Cambio Auditoria Grande">
+      <created>1487853869090</created>
+      <option name="number" value="00556" />
+      <option name="presentableId" value="LOCAL-00556" />
+      <option name="project" value="LOCAL" />
+      <updated>1487853869090</updated>
+    </task>
+    <task id="LOCAL-00557" summary="Cambio Auditoria Grande">
+      <created>1487854458810</created>
+      <option name="number" value="00557" />
+      <option name="presentableId" value="LOCAL-00557" />
+      <option name="project" value="LOCAL" />
+      <updated>1487854458810</updated>
+    </task>
+    <task id="LOCAL-00558" summary="Cambio Auditoria Grande">
+      <created>1487854748183</created>
+      <option name="number" value="00558" />
+      <option name="presentableId" value="LOCAL-00558" />
+      <option name="project" value="LOCAL" />
+      <updated>1487854748183</updated>
+    </task>
+    <task id="LOCAL-00559" summary="Cambio Auditoria Grande">
+      <created>1487855124392</created>
+      <option name="number" value="00559" />
+      <option name="presentableId" value="LOCAL-00559" />
+      <option name="project" value="LOCAL" />
+      <updated>1487855124393</updated>
+    </task>
+    <task id="LOCAL-00560" summary="Cambio Auditoria Grande">
+      <created>1487855355053</created>
+      <option name="number" value="00560" />
+      <option name="presentableId" value="LOCAL-00560" />
+      <option name="project" value="LOCAL" />
+      <updated>1487855355054</updated>
+    </task>
+    <task id="LOCAL-00561" summary="Cambio Auditoria Grande">
+      <created>1487855380916</created>
+      <option name="number" value="00561" />
+      <option name="presentableId" value="LOCAL-00561" />
+      <option name="project" value="LOCAL" />
+      <updated>1487855380917</updated>
+    </task>
+    <task id="LOCAL-00562" summary="Cambio Auditoria Grande">
+      <created>1487855548633</created>
+      <option name="number" value="00562" />
+      <option name="presentableId" value="LOCAL-00562" />
+      <option name="project" value="LOCAL" />
+      <updated>1487855548633</updated>
+    </task>
+    <task id="LOCAL-00563" summary="Cambio Auditoria Grande">
+      <created>1487856008464</created>
+      <option name="number" value="00563" />
+      <option name="presentableId" value="LOCAL-00563" />
+      <option name="project" value="LOCAL" />
+      <updated>1487856008464</updated>
+    </task>
+    <task id="LOCAL-00564" summary="Cambio Auditoria Grande">
+      <created>1487856107312</created>
+      <option name="number" value="00564" />
+      <option name="presentableId" value="LOCAL-00564" />
+      <option name="project" value="LOCAL" />
+      <updated>1487856107312</updated>
+    </task>
+    <task id="LOCAL-00565" summary="Cambio Auditoria Grande">
+      <created>1487856958330</created>
+      <option name="number" value="00565" />
+      <option name="presentableId" value="LOCAL-00565" />
+      <option name="project" value="LOCAL" />
+      <updated>1487856958330</updated>
+    </task>
+    <task id="LOCAL-00566" summary="Cambio Auditoria Grande">
+      <created>1487858273402</created>
+      <option name="number" value="00566" />
+      <option name="presentableId" value="LOCAL-00566" />
+      <option name="project" value="LOCAL" />
+      <updated>1487858273402</updated>
+    </task>
+    <task id="LOCAL-00567" summary="Cambio Auditoria Grande">
+      <created>1487858481759</created>
+      <option name="number" value="00567" />
+      <option name="presentableId" value="LOCAL-00567" />
+      <option name="project" value="LOCAL" />
+      <updated>1487858481759</updated>
+    </task>
+    <task id="LOCAL-00568" summary="Cambio Auditoria Grande">
+      <created>1487859361185</created>
+      <option name="number" value="00568" />
+      <option name="presentableId" value="LOCAL-00568" />
+      <option name="project" value="LOCAL" />
+      <updated>1487859361185</updated>
+    </task>
+    <task id="LOCAL-00569" summary="Cambio Auditoria Grande">
+      <created>1487859552340</created>
+      <option name="number" value="00569" />
+      <option name="presentableId" value="LOCAL-00569" />
+      <option name="project" value="LOCAL" />
+      <updated>1487859552340</updated>
+    </task>
+    <task id="LOCAL-00570" summary="Cambio Auditoria Grande">
+      <created>1487859688924</created>
+      <option name="number" value="00570" />
+      <option name="presentableId" value="LOCAL-00570" />
+      <option name="project" value="LOCAL" />
+      <updated>1487859688924</updated>
+    </task>
+    <task id="LOCAL-00571" summary="Cambio Auditoria Grande">
+      <created>1487859780308</created>
+      <option name="number" value="00571" />
+      <option name="presentableId" value="LOCAL-00571" />
+      <option name="project" value="LOCAL" />
+      <updated>1487859780308</updated>
+    </task>
+    <task id="LOCAL-00572" summary="Cambio Auditoria Grande">
+      <created>1487859880931</created>
+      <option name="number" value="00572" />
+      <option name="presentableId" value="LOCAL-00572" />
+      <option name="project" value="LOCAL" />
+      <updated>1487859880931</updated>
+    </task>
+    <task id="LOCAL-00573" summary="Cambio Auditoria Grande">
+      <created>1487859995000</created>
+      <option name="number" value="00573" />
+      <option name="presentableId" value="LOCAL-00573" />
+      <option name="project" value="LOCAL" />
+      <updated>1487859995000</updated>
+    </task>
+    <task id="LOCAL-00574" summary="Cambio Auditoria Grande">
+      <created>1487860129275</created>
+      <option name="number" value="00574" />
+      <option name="presentableId" value="LOCAL-00574" />
+      <option name="project" value="LOCAL" />
+      <updated>1487860129275</updated>
+    </task>
+    <option name="localTasksCounter" value="575" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="252169000" />
+    <option name="totallyTimeSpent" value="262016000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1547,7 +1466,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1296" height="1040" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39379084" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1558,12 +1477,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6696035" sideWeight="0.50323623" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32929516" sideWeight="0.49676377" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32929516" sideWeight="0.49676377" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18942732" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13996764" sideWeight="0.4955947" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14239483" sideWeight="0.4955947" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928804" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -3652,7 +3571,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-438">
           <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3725,7 +3643,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="670">
+        <state relative-caret-position="258332">
           <caret line="15196" column="49" lean-forward="false" selection-start-line="15196" selection-start-column="49" selection-end-line="15196" selection-end-column="49" />
           <folding>
             <marker date="1487793821538" expanded="true" signature="5016:5701" ph="insert into portalbd.activity_feed... " />
@@ -4025,37 +3943,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="14006" column="32" lean-forward="false" selection-start-line="14006" selection-start-column="32" selection-end-line="14006" selection-end-column="32" />
+        <state relative-caret-position="378">
+          <caret line="14032" column="32" lean-forward="false" selection-start-line="14032" selection-start-column="23" selection-end-line="14032" selection-end-column="32" />
           <folding>
-            <marker date="1487798645580" expanded="true" signature="182697:182703" ph="&amp;nbsp;" />
-            <marker date="1487798645580" expanded="true" signature="182703:182709" ph="&amp;nbsp;" />
-            <marker date="1487798645580" expanded="true" signature="183126:183132" ph="&amp;nbsp;" />
-            <marker date="1487798645580" expanded="true" signature="183132:183138" ph="&amp;nbsp;" />
-            <marker date="1487798645580" expanded="true" signature="183552:183558" ph="&amp;nbsp;" />
-            <marker date="1487798645580" expanded="true" signature="183558:183564" ph="&amp;nbsp;" />
-            <marker date="1487798645580" expanded="true" signature="183968:183974" ph="&amp;nbsp;" />
-            <marker date="1487798645580" expanded="true" signature="183974:183980" ph="&amp;nbsp;" />
-            <marker date="1487798645580" expanded="true" signature="195592:195598" ph="&amp;nbsp;" />
-            <marker date="1487798645580" expanded="true" signature="195598:195604" ph="&amp;nbsp;" />
-            <marker date="1487798645580" expanded="true" signature="196004:196010" ph="&amp;nbsp;" />
-            <marker date="1487798645580" expanded="true" signature="196010:196016" ph="&amp;nbsp;" />
-            <marker date="1487798645580" expanded="true" signature="196379:196385" ph="&amp;nbsp;" />
-            <marker date="1487798645580" expanded="true" signature="196385:196391" ph="&amp;nbsp;" />
-            <marker date="1487798645580" expanded="true" signature="196716:196722" ph="&amp;nbsp;" />
-            <marker date="1487798645580" expanded="true" signature="196722:196728" ph="&amp;nbsp;" />
-            <marker date="1487798645580" expanded="true" signature="264613:293458" ph="{...}" />
-            <marker date="1487798645580" expanded="true" signature="293255:293458" ph="{...}" />
-            <marker date="1487798645580" expanded="true" signature="466215:466272" ph="{&quot;title&quot;: 'Login'...}" />
+            <marker date="1487855109329" expanded="true" signature="182697:182703" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="182703:182709" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="183126:183132" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="183132:183138" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="183552:183558" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="183558:183564" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="183968:183974" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="183974:183980" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="195592:195598" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="195598:195604" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="196004:196010" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="196010:196016" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="196379:196385" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="196385:196391" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="196716:196722" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="196722:196728" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="386174:386180" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="386180:386186" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="386588:386594" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="386594:386600" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="386963:386969" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="386969:386975" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="387302:387308" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="387308:387314" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="401661:401667" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="401667:401673" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="402075:402081" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="402081:402087" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="402450:402456" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="402456:402462" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="402789:402795" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="402795:402801" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="422710:422716" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="422716:422722" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="423122:423128" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="423128:423134" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="423497:423503" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="423503:423509" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="423834:423840" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="423840:423846" ph="&amp;nbsp;" />
+            <marker date="1487855109329" expanded="true" signature="448835:448868" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="633">
-          <caret line="542" column="43" lean-forward="false" selection-start-line="542" selection-start-column="43" selection-end-line="542" selection-end-column="43" />
-          <folding />
+        <state relative-caret-position="377">
+          <caret line="554" column="100" lean-forward="false" selection-start-line="554" selection-start-column="100" selection-end-line="554" selection-end-column="100" />
+          <folding>
+            <element signature="n#style#0;n#select#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#textarea#0;n#div#4;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
