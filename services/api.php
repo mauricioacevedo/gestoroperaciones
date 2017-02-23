@@ -6956,6 +6956,10 @@ class API extends REST {
         //$this->response($query1,200);
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
         $busy="";
+        $cReconfiguracion=['14', '99', 'O-101'];
+        $cEdatel=['12'];
+        $cAsignaciones=['PETEC','OKRED','PUMED','O-106','O-13','O-15','PEOPP','19'];
+
         if($r->num_rows > 0){
             $result = array();
             $ids="";
@@ -6964,6 +6968,16 @@ class API extends REST {
                 $row['source']='BUSCADO';
                 $observaciones = $this->quitar_tildes(utf8_encode($row['OBSERVACIONES']));
                 $row['OBSERVACIONES'] = $observaciones;
+                if (in_array($row['CONCEPTO_ID'], $cReconfiguracion, true)) {
+                    $row['ACTIVIDAD']   = 'RECONFIGURACION';
+                    $row['GRUPO']       = 'RECONFIGURACION';
+                }
+                if (in_array($row['CONCEPTO_ID'], $cAsignaciones, true)) {
+                    $row['ACTIVIDAD']   = 'ESTUDIO';
+                    $row['GRUPO']       = 'ASIGNACIONES';
+                }
+
+
                 $result[] = $row;
                 $ids=$ids.$sep.$row['ID'];
                 $asess=$row['ASESOR'];
