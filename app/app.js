@@ -13999,15 +13999,15 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         };
 
 	// Modal para la Auditoria de Pedidos ---------------------------------------------
-    $scope.addNuevaNovedad=function(usuario)
-    {
+    $scope.addNuevaNovedad = function (usuario) {
         var newItemNo=$scope.auditorias.length+1;
-
-
         $scope.auditorias.push({'id':+newItemNo,
-			usuarioNovedad:usuario,
-			tipoReporte:'NORMAL',
-			usuariocrea:'CGONZGO'});
+            USUARIO_ID:usuario,
+            FECHAESTUDIO:'',
+            ESTADO_PROCESO:'',
+            OBSERVACIONES_PROCESO:'',
+            OBSERVACIONES:''
+		});
 
 
         console.log($scope.auditorias);
@@ -14051,15 +14051,12 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		);
 
         //Generar Auditorias Multiples
-        $scope.auditorias=[{id:'1',
-			usuarioNovedad:'',
-			cedulaNovedad:'',
-			fechaNovedad:'',
-			cantidadNovedad:'',
-			tipoNovedad:'',
-			observaciones:'',
-			tipoReporte:'NORMAL',
-			usuariocrea:''}];
+        $scope.auditorias=[{id:1,
+			USUARIO_ID:$scope.infoFenix.USUARIOS,
+            FECHAESTUDIO:$scope.infoFenix.FECHAS,
+            ESTADO_PROCESO:'',
+            OBSERVACIONES_PROCESO:'',
+            OBSERVACIONES:''}];
 
     };
 
