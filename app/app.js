@@ -14078,10 +14078,15 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         }
 
         //angular.extend(audit, $scope.datosFnx);
-		console.log(audit);
+		//console.log(audit);
         services.insertTransaccionORD(audit).then(
         	function (status) {
-        		console.log(status);
+        		//console.log(status);
+                notify({
+                    message: 'Pedido Auditado!',
+                    duration: '1000',
+                    position: 'right'
+                });
 
         });
     };
