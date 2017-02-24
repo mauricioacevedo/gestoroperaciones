@@ -556,7 +556,7 @@
                                     </div>
                                     <div class="form-group has-feedback">
                                         <label class="sr-only" for="fechaEstudio">Fecha:</label>
-                                        <input id="fechaEstudio" name="fechaEstudio" style="width:120px" class="form-control btn-xs" type="text" ng-model="auditoria.FECHAESTUDIO" datetime-picker date-only date-format="yyyy-MM-dd"/>
+                                        <input id="fechaEstudio" name="fechaEstudio" style="width:120px" class="form-control btn-xs" type="text" ng-model="auditoria.FECHA_GESTION" datetime-picker date-only date-format="yyyy-MM-dd"/>
                                         <i class="fa fa-calendar fa-fw form-control-feedback"></i>
                                     </div>
                                     <div class="form-group has-feedback">
@@ -576,7 +576,7 @@
                                     <div class="form-group has-feedback">
                                         <label class="sr-only" for="obidAuditoria">Resultado:</label>
                                         <select id="obidAuditoria" name="obidAuditoria" class="form-control btn-xs" style="width: 150px;"
-                                                ng-model="auditoria.OBSERVACIONES_PROCESO">
+                                                ng-model="auditoria.ANALISIS">
                                             <option value="" disabled>--Seleccione--</option>
                                             <option ng-repeat="e in listaOpcionesAuditoria | filter:{ESTADO_ID: auditoria.ESTADO_PROCESO}:true | unique:'OBSERVACION_ID'"
                                                     value="{{e.OBSERVACION_ID}}">

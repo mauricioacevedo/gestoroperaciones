@@ -14068,6 +14068,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 USUARIO_NOMBRE:usernombre,
                 TIPO_ELEMENTO_ID: infoped[0].TIPO_ELEMENTO_ID,
                 CONCEPTO_ACTUAL: infoped[0].CONCEPTO_ID,
+				CONCEPTO_FINAL: 'AUDITADO',
                 USUARIO_ID: userID,
                 FECHA_INICIO: $scope.fecha_inicio,
                 FECHA_FIN:$scope.fechaFinAuditoria
