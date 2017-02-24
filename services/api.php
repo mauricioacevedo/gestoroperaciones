@@ -772,7 +772,7 @@ class API extends REST {
 
         $today = date("Y-m-d h:i:s");
         $filename="Fenix_Activacion-$login-$today.csv";
-        $query=  " SELECT ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER ".
+        $query=  " SELECT ID,ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER ".
                     " ,ESTADO,FECHA_CREACION,FECHA_EXCEPCION ".
                     " ,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD ".
                     " ,CODIGO_UNICO_DIRECCION,NOMBRE_CUIDAD,NOMBRE_DEPARTAMENTO ".
