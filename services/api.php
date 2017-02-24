@@ -13008,7 +13008,7 @@ class API extends REST {
 
         $transaccion = json_decode(file_get_contents("php://input"),true);
 
-        $transaccion = $transaccion['transaccion'][0];
+        $transaccion = $transaccion['transaccion'];
         //var_dump($transaccion);
         $column_names = array('FECHA_GESTION','PEDIDO_ID','TIPO_ELEMENTO_ID','USUARIO_ID_GESTION','USUARIO_NOMBRE','ANALISIS','CONCEPTO_ACTUAL','CONCEPTO_FINAL','OBSERVACIONES','USUARIO_ID','FECHA_INICIO','FECHA_FIN','PUNTAJE');
         $keys = array_keys($transaccion);
@@ -13022,54 +13022,61 @@ class API extends REST {
         $estado_final=$transaccion['CONCEPTO_FINAL'];
         //echo var_dump($transaccion);
         //echo var_dump($keys);
-        foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
-            if(!in_array($desired_key, $keys)) {
-                $$desired_key = '';
-            }else{
-                $$desired_key = $transaccion[$desired_key];
+        for ($x = 0; $x <= count($transaccion); $x++) {
+
+            foreach ($column_names as $desired_key) { // Check the customer received. If blank insert blank into the array.
+                if (!in_array ($desired_key, $keys)) {
+                    $$desired_key = '';
+                } else {
+                    $$desired_key = $transaccion[$desired_key];
+                }
+                $columns = $columns . $desired_key . ',';
+                $values = $values . "'" . $transaccion[$desired_key] . "',";
             }
-            $columns = $columns.$desired_key.',';
-            $values = $values."'".$transaccion[$desired_key]."',";
-        }
-        $today = date("Y-m-d H:i:s");
-        $query = "INSERT INTO  gestor_transacciones_oxxx (".trim($columns,',').") VALUES(".trim($values,',').")";
-        //echo $query;
-        if(!empty($transaccion)){
+            $today = date ("Y-m-d H:i:s");
+            $query = "INSERT INTO  gestor_transacciones_oxxx (" . trim ($columns, ',') . ") VALUES(" . trim ($values, ',') . ")";
             //echo $query;
-            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+            if (!empty($transaccion)) {
+                //echo $query;
+                $r = $this->mysqli->query ($query) or die($this->mysqli->error . __LINE__);
+                $exito = true;
 
-            // SQL Feed----------------------------------
-            $sql_log=   "insert into portalbd.activity_feed ( ".
-                " USER ".
-                ", USER_NAME ".
-                ", GRUPO ".
-                ", STATUS ".
-                ", PEDIDO_OFERTA ".
-                ", ACCION ".
-                ", CONCEPTO_ID ".
-                ", IP_HOST ".
-                ", CP_HOST ".
-                ") values( ".
-                " UPPER('$usuarioGalleta')".
-                ", UPPER('$nombreGalleta')".
-                ", UPPER('$grupoGalleta')".
-                ",'OK' ".
-                ",'$oferta' ".
-                ",'AUDITO PEDIDO' ".
-                ",'$estado_final' ".
-                ",'$usuarioIp' ".
-                ",'$usuarioPc')";
-
-            $rlog = $this->mysqli->query($sql_log);
-            // ---------------------------------- SQL Feed
-            //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$useri','$username','ORD','$estado_final','PEDIDO: $oferta','ORD') ";
-            //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
-            $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
-
-        }else{
-            $this->response('',200);        //"No Content" status
-            //$this->response("$query",200);        //"No Content" status
+            }
         }
+            if ($exito) {
+
+                // SQL Feed----------------------------------
+                $sql_log = "insert into portalbd.activity_feed ( " .
+                    " USER " .
+                    ", USER_NAME " .
+                    ", GRUPO " .
+                    ", STATUS " .
+                    ", PEDIDO_OFERTA " .
+                    ", ACCION " .
+                    ", CONCEPTO_ID " .
+                    ", IP_HOST " .
+                    ", CP_HOST " .
+                    ") values( " .
+                    " UPPER('$usuarioGalleta')" .
+                    ", UPPER('$nombreGalleta')" .
+                    ", UPPER('$grupoGalleta')" .
+                    ",'OK' " .
+                    ",'$oferta' " .
+                    ",'AUDITO PEDIDO' " .
+                    ",'$estado_final' " .
+                    ",'$usuarioIp' " .
+                    ",'$usuarioPc')";
+
+                $rlog = $this->mysqli->query ($sql_log);
+                // ---------------------------------- SQL Feed
+                //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$useri','$username','ORD','$estado_final','PEDIDO: $oferta','ORD') ";
+                //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+                $this->response (json_encode (array("msg" => "OK", "transaccion" => $transaccion)), 200);
+
+            } else {
+                $this->response ('', 200);        //"No Content" status
+                //$this->response("$query",200);        //"No Content" status
+            }
 
     }
 
