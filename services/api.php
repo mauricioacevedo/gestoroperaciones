@@ -13075,7 +13075,7 @@ class API extends REST {
                 $this->response (json_encode (array("msg" => "OK", "transaccion" => $transaccion)), 200);
 
             } else {
-                $this->response ('', 200);        //"No Content" status
+                $this->response (json_encode('Error'), 403);        //"No Content" status
                 //$this->response("$query",200);        //"No Content" status
             }
 
