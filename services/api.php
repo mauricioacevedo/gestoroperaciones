@@ -13036,7 +13036,7 @@ class API extends REST {
             }
             $today = date ("Y-m-d H:i:s");
             $query = "INSERT INTO  gestor_transacciones_oxxx (" . trim ($columns, ',') . ") VALUES(" . trim ($values, ',') . ")";
-            echo $query;
+            //echo $query;
             if (!empty($transaccion[$x])) {
                 //echo $query;
                 $r = $this->mysqli->query ($query) or die($this->mysqli->error . __LINE__);
