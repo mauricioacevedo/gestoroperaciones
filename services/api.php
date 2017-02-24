@@ -13011,7 +13011,7 @@ class API extends REST {
         $transaccion = $transaccion['transaccion'];
         //var_dump($transaccion);
         $column_names = array('FECHA_GESTION','PEDIDO_ID','TIPO_ELEMENTO_ID','USUARIO_ID_GESTION','USUARIO_NOMBRE','ANALISIS','CONCEPTO_ACTUAL','CONCEPTO_FINAL','OBSERVACIONES','USUARIO_ID','FECHA_INICIO','FECHA_FIN');
-        $keys = array_keys($transaccion);
+
         $columns = '';
         $values = '';
 
@@ -13023,7 +13023,7 @@ class API extends REST {
         //echo var_dump($transaccion);
         //echo var_dump($keys);
         for ($x = 0; $x <= count($transaccion); $x++) {
-
+            $keys = array_keys($transaccion[$x]);
             foreach ($column_names as $desired_key) { // Check the customer received. If blank insert blank into the array.
                 if (!in_array ($desired_key, $keys)) {
                     $$desired_key = '';
@@ -13035,7 +13035,7 @@ class API extends REST {
             }
             $today = date ("Y-m-d H:i:s");
             $query = "INSERT INTO  gestor_transacciones_oxxx (" . trim ($columns, ',') . ") VALUES(" . trim ($values, ',') . ")";
-            //echo $query;
+            echo $query;
             if (!empty($transaccion[$x])) {
                 //echo $query;
                 $r = $this->mysqli->query ($query) or die($this->mysqli->error . __LINE__);
