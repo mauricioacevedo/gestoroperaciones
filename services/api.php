@@ -118,7 +118,7 @@ class API extends REST {
         $today = date("Y-m-d h:i:s");
         $filename="Fenix_NAL-$login-$today.csv";
         $query=" SELECT ".
-            " pedido_id,subpedido_id,solicitud_id,municipio_id, fuente, actividad, fecha_fin, estado,duracion,accion,concepto_final,concepto_anterior,user,idllamada,motivo,nuevopedido,caracteristica ".
+            " pedido_id,subpedido_id,solicitud_id,municipio_id, fuente, actividad, fecha_fin, estado,duracion,accion,concepto_final,concepto_anterior,user,idllamada,motivo,nuevopedido,caracteristica,motivo_malo ".
             " from pedidos where ".
             " fecha_fin between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' $filtro ";
 
@@ -127,7 +127,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('pedido_id','subpedido_id','solicitud_id','municipio_id',' fuente',' actividad',' fecha_fin',' est0ado', 'duracion','accion','concepto_final','concepto_anterior','user','idllamada','motivo','nuevopedido','caracteristica'));
+            fputcsv($fp, array('PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID',' FUENTE',' ACTIVIDAD',' FECHA_FIN',' ESTADO', 'DURACION','ACCION','CONCEPTO_FINAL','CONCEPTO_ANTERIOR','USER','IDLLAMADA','MOTIVO','NUEVOPEDIDO','CARACTERISTICA','MOTIVO MALO'));
             while($row = $r->fetch_assoc()){
                 //$result[] = $row;
                 fputcsv($fp, $row);
@@ -7751,9 +7751,9 @@ class API extends REST {
                                 " FECHA_CITA ".
                                 " FROM  informe_petec_pendientesm ".
                                 " WHERE 1=1 ".
-                                " and (TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
-                                " AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
-                                " or RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM') ) ".
+                                //" and (TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
+                                //" AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
+                                " and RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM') ) ".
                                 " AND ASESOR='' ".
                                 " AND CONCEPTO_ID = '$concepto' ".
                                 " AND STATUS='PENDI_PETEC' ".
@@ -7772,7 +7772,8 @@ class API extends REST {
                     }
                 }
 
-                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA','INSTIP','STBOX','EQURED')  ";
+
+                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA','INSTIP','STBOX','EQURED') ";
 
             }
         }
@@ -7866,6 +7867,10 @@ class API extends REST {
 
 
         //echo "Mi parametro: $parametroBusqueda";
+
+        if($parametroBusqueda=="NUEVOS_PRIMERO"){
+            $parametroBusqueda="RADICADO_TEMPORAL";
+        }
 
         $query1="select b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_CITA ".
             ",(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO_ID=a.pedido_id ".
@@ -13008,10 +13013,10 @@ class API extends REST {
         $transaccion = json_decode(file_get_contents("php://input"),true);
 
         $transaccion = $transaccion['transaccion'];
+        //var_dump($transaccion);
         $column_names = array('FECHA_GESTION','PEDIDO_ID','TIPO_ELEMENTO_ID','USUARIO_ID_GESTION','USUARIO_NOMBRE','ANALISIS','CONCEPTO_ACTUAL','CONCEPTO_FINAL','OBSERVACIONES','USUARIO_ID','FECHA_INICIO','FECHA_FIN','PUNTAJE');
-        $keys = array_keys($transaccion);
-        $columns = '';
-        $values = '';
+
+
 
         $useri=$transaccion['USUARIO_ID'];
         $username=$transaccion['USERNAME'];
@@ -13020,54 +13025,63 @@ class API extends REST {
         $estado_final=$transaccion['CONCEPTO_FINAL'];
         //echo var_dump($transaccion);
         //echo var_dump($keys);
-        foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
-            if(!in_array($desired_key, $keys)) {
-                $$desired_key = '';
-            }else{
-                $$desired_key = $transaccion[$desired_key];
+        for ($x = 0; $x <= count($transaccion); $x++) {
+            $keys = array_keys($transaccion[$x]);
+            $columns = '';
+            $values = '';
+            foreach ($column_names as $desired_key) { // Check the customer received. If blank insert blank into the array.
+                if (!in_array ($desired_key, $keys)) {
+                    $$desired_key = '';
+                } else {
+                    $$desired_key = $transaccion[$x][$desired_key];
+                }
+                $columns = $columns . $desired_key . ',';
+                $values = $values . "'" . $transaccion[$x][$desired_key] . "',";
             }
-            $columns = $columns.$desired_key.',';
-            $values = $values."'".$transaccion[$desired_key]."',";
-        }
-        $today = date("Y-m-d H:i:s");
-        $query = "INSERT INTO  gestor_transacciones_oxxx (".trim($columns,',').") VALUES(".trim($values,',').")";
-        //echo $query;
-        if(!empty($transaccion)){
+            $today = date ("Y-m-d H:i:s");
+            $query = "INSERT INTO  gestor_transacciones_oxxx (" . trim ($columns, ',') . ") VALUES(" . trim ($values, ',') . ")";
             //echo $query;
-            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+            if (!empty($transaccion[$x])) {
+                //echo $query;
+                $r = $this->mysqli->query ($query) or die($this->mysqli->error . __LINE__);
+                $exito = true;
 
-            // SQL Feed----------------------------------
-            $sql_log=   "insert into portalbd.activity_feed ( ".
-                " USER ".
-                ", USER_NAME ".
-                ", GRUPO ".
-                ", STATUS ".
-                ", PEDIDO_OFERTA ".
-                ", ACCION ".
-                ", CONCEPTO_ID ".
-                ", IP_HOST ".
-                ", CP_HOST ".
-                ") values( ".
-                " UPPER('$usuarioGalleta')".
-                ", UPPER('$nombreGalleta')".
-                ", UPPER('$grupoGalleta')".
-                ",'OK' ".
-                ",'$oferta' ".
-                ",'GUARDO PEDIDO' ".
-                ",'$estado_final' ".
-                ",'$usuarioIp' ".
-                ",'$usuarioPc')";
-
-            $rlog = $this->mysqli->query($sql_log);
-            // ---------------------------------- SQL Feed
-            //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$useri','$username','ORD','$estado_final','PEDIDO: $oferta','ORD') ";
-            //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
-            $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
-
-        }else{
-            $this->response('',200);        //"No Content" status
-            //$this->response("$query",200);        //"No Content" status
+            }
         }
+            if ($exito) {
+
+                // SQL Feed----------------------------------
+                $sql_log = "insert into portalbd.activity_feed ( " .
+                    " USER " .
+                    ", USER_NAME " .
+                    ", GRUPO " .
+                    ", STATUS " .
+                    ", PEDIDO_OFERTA " .
+                    ", ACCION " .
+                    ", CONCEPTO_ID " .
+                    ", IP_HOST " .
+                    ", CP_HOST " .
+                    ") values( " .
+                    " UPPER('$usuarioGalleta')" .
+                    ", UPPER('$nombreGalleta')" .
+                    ", UPPER('$grupoGalleta')" .
+                    ",'OK' " .
+                    ",'$oferta' " .
+                    ",'AUDITO PEDIDO' " .
+                    ",'$estado_final' " .
+                    ",'$usuarioIp' " .
+                    ",'$usuarioPc')";
+
+                $rlog = $this->mysqli->query ($sql_log);
+                // ---------------------------------- SQL Feed
+                //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$useri','$username','ORD','$estado_final','PEDIDO: $oferta','ORD') ";
+                //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+                $this->response (json_encode (array("msg" => "OK", "transaccion" => $transaccion)), 200);
+
+            } else {
+                $this->response (json_encode('Error'), 403);        //"No Content" status
+                //$this->response("$query",200);        //"No Content" status
+            }
 
     }
 

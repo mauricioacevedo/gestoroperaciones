@@ -14051,22 +14051,44 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
     };
 
 	$scope.guardarAuditoria = function (audit, infofnx, infoped) {
-		//console.log(audit);
-        //console.log(infoped);
         $scope.fechaFinAuditoria 	= 	$rootScope.fechaProceso();
-        $scope.datosFnx={
-        	PEDIDO_ID: infofnx.PEDIDO_ID,
-			TIPO_ELEMENTO_ID: infoped[0].TIPO_ELEMENTO_ID,
-			CONCEPTO_ACTUAL: infoped[0].CONCEPTO_ID,
-			USUARIO_ID: userID,
-			FECHA_INICIO: $scope.fecha_inicio,
-			FECHA_FIN:$scope.fechaFinAuditoria
-		};
-        angular.forEach(audit, function(){
-            angular.extend(audit, $scope.datosFnx);
-        });
+		var usergestion, usernombre;
+        for (var i=0; i<audit.length; i++) {
+
+        	if(audit[i].USUARIO_ID_GESTION===undefined || audit[i].USUARIO_ID_GESTION===''){
+                usergestion='EXTERNO';
+                usernombre='EXTERNO'
+			}else{
+                 usergestion=audit[i].USUARIO_ID_GESTION.USUARIO_ID;
+                 usernombre=audit[i].USUARIO_ID_GESTION.USUARIO_NOMBRE;
+			}
+            $scope.datosFnx={
+                PEDIDO_ID: infofnx.PEDIDO_ID,
+				USUARIO_ID_GESTION:usergestion,
+                USUARIO_NOMBRE:usernombre,
+                TIPO_ELEMENTO_ID: infoped[0].TIPO_ELEMENTO_ID,
+                CONCEPTO_ACTUAL: infoped[0].CONCEPTO_ID,
+				CONCEPTO_FINAL: 'AUDITADO',
+                USUARIO_ID: userID,
+                FECHA_INICIO: $scope.fecha_inicio,
+                FECHA_FIN:$scope.fechaFinAuditoria
+            };
+            angular.extend(audit[i], $scope.datosFnx);
+            //console.log(keys[i], yourobject[keys[i]]);
+        }
+
         //angular.extend(audit, $scope.datosFnx);
-		console.log(audit);
+		//console.log(audit);
+        services.insertTransaccionORD(audit).then(
+        	function (status) {
+        		//console.log(status);
+                notify({
+                    message: 'Pedido Auditado!',
+                    duration: '1000',
+                    position: 'right'
+                });
+
+        });
     };
 
     // --------------------------------------------- Modal para la Auditoria de Pedidos
