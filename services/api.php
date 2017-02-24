@@ -13012,8 +13012,7 @@ class API extends REST {
         //var_dump($transaccion);
         $column_names = array('FECHA_GESTION','PEDIDO_ID','TIPO_ELEMENTO_ID','USUARIO_ID_GESTION','USUARIO_NOMBRE','ANALISIS','CONCEPTO_ACTUAL','CONCEPTO_FINAL','OBSERVACIONES','USUARIO_ID','FECHA_INICIO','FECHA_FIN');
 
-        $columns = '';
-        $values = '';
+
 
         $useri=$transaccion['USUARIO_ID'];
         $username=$transaccion['USERNAME'];
@@ -13024,6 +13023,8 @@ class API extends REST {
         //echo var_dump($keys);
         for ($x = 0; $x <= count($transaccion); $x++) {
             $keys = array_keys($transaccion[$x]);
+            $columns = '';
+            $values = '';
             foreach ($column_names as $desired_key) { // Check the customer received. If blank insert blank into the array.
                 if (!in_array ($desired_key, $keys)) {
                     $$desired_key = '';
