@@ -13028,10 +13028,10 @@ class API extends REST {
                 if (!in_array ($desired_key, $keys)) {
                     $$desired_key = '';
                 } else {
-                    $$desired_key = $transaccion[$desired_key];
+                    $$desired_key = $transaccion[$desired_key][$x];
                 }
                 $columns = $columns . $desired_key . ',';
-                $values = $values . "'" . $transaccion[$desired_key] . "',";
+                $values = $values . "'" . $transaccion[$desired_key][$x] . "',";
             }
             $today = date ("Y-m-d H:i:s");
             $query = "INSERT INTO  gestor_transacciones_oxxx (" . trim ($columns, ',') . ") VALUES(" . trim ($values, ',') . ")";
