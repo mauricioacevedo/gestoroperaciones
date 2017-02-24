@@ -13028,15 +13028,15 @@ class API extends REST {
                 if (!in_array ($desired_key, $keys)) {
                     $$desired_key = '';
                 } else {
-                    $$desired_key = $transaccion[$desired_key][$x];
+                    $$desired_key = $transaccion[$x][$desired_key];
                 }
                 $columns = $columns . $desired_key . ',';
-                $values = $values . "'" . $transaccion[$desired_key][$x] . "',";
+                $values = $values . "'" . $transaccion[$x][$desired_key] . "',";
             }
             $today = date ("Y-m-d H:i:s");
             $query = "INSERT INTO  gestor_transacciones_oxxx (" . trim ($columns, ',') . ") VALUES(" . trim ($values, ',') . ")";
             //echo $query;
-            if (!empty($transaccion)) {
+            if (!empty($transaccion[$x])) {
                 //echo $query;
                 $r = $this->mysqli->query ($query) or die($this->mysqli->error . __LINE__);
                 $exito = true;
