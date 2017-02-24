@@ -13054,7 +13054,7 @@ class API extends REST {
                 ", UPPER('$grupoGalleta')".
                 ",'OK' ".
                 ",'$oferta' ".
-                ",'GUARDO PEDIDO' ".
+                ",'AUDITO PEDIDO' ".
                 ",'$estado_final' ".
                 ",'$usuarioIp' ".
                 ",'$usuarioPc')";

@@ -14078,6 +14078,11 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
         //angular.extend(audit, $scope.datosFnx);
 		console.log(audit);
+        services.insertTransaccionORD(audit).then(
+        	function (status) {
+        		console.log(status);
+
+        });
     };
 
     // --------------------------------------------- Modal para la Auditoria de Pedidos
