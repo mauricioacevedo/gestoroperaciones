@@ -13008,8 +13008,8 @@ class API extends REST {
 
         $transaccion = json_decode(file_get_contents("php://input"),true);
 
-        $transaccion = $transaccion['transaccion'];
-        var_dump($transaccion);
+        $transaccion = $transaccion['transaccion'][0];
+        //var_dump($transaccion);
         $column_names = array('FECHA_GESTION','PEDIDO_ID','TIPO_ELEMENTO_ID','USUARIO_ID_GESTION','USUARIO_NOMBRE','ANALISIS','CONCEPTO_ACTUAL','CONCEPTO_FINAL','OBSERVACIONES','USUARIO_ID','FECHA_INICIO','FECHA_FIN','PUNTAJE');
         $keys = array_keys($transaccion);
         $columns = '';
