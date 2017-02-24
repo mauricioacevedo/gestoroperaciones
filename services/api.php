@@ -772,9 +772,13 @@ class API extends REST {
 
         $today = date("Y-m-d h:i:s");
         $filename="Fenix_Activacion-$login-$today.csv";
-        $query=  " SELECT * ".
-            "	 FROM gestor_activacion_pendientes_activador_suspecore ".
-            "	 WHERE  ESTADO ='in_progress' ";
+        $query=  " SELECT ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER ".
+                    " ,ESTADO,FECHA_CREACION,FECHA_EXCEPCION ".
+                    " ,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD ".
+                    " ,CODIGO_UNICO_DIRECCION,NOMBRE_CUIDAD,NOMBRE_DEPARTAMENTO ".
+                    " ,TAREA_EXCEPCION,CODIGOEXCEPCIONACT,FECHA_CARGA,STATUS ".
+                     " FROM gestor_activacion_pendientes_activador_suspecore ".
+                     " WHERE  ESTADO ='in_progress' ";
 
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -782,7 +786,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('ID','ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','CODIGO_UNICO_DIRECCION','NOMBRE_CUIDAD','NOMBRE_DEPARTAMENTO','TAREA_EXCEPCION','CODIGOEXCEPCIONACT','DESCRIPCIONEXCEPCIONACT','MOTIVOEXCEPCIONACT','FECHA_CARGA'));
+            fputcsv($fp, array('ID','ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','CODIGO_UNICO_DIRECCION','NOMBRE_CUIDAD','NOMBRE_DEPARTAMENTO','TAREA_EXCEPCION','CODIGOEXCEPCIONACT','FECHA_CARGA','STATUS'));
             while($row = $r->fetch_assoc()){
                 $result[] = $row;
                 fputcsv($fp, $row);
