@@ -14560,7 +14560,9 @@ class API extends REST {
 
         //var_dump($fuente);
         if($fuente=='SIEBEL'){
-            $filtros=" and o.ESTADO=1 and o.FUENTE='$fuente' and o.ACTIVIDAD='ESTUDIO'";
+            $grupo      =   "ASIGNACIONES";
+            $actividad  =   "ESTUDIO";
+            $filtros="and o.ESTADO=1 and o.FUENTE='$fuente' and o.GRUPO='$grupo' and o.ACTIVIDAD='$actividad'";
         }else{
             if($grupo=='ADMINISTRACION'){
                 $filtros= "";
