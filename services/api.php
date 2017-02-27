@@ -14561,13 +14561,15 @@ class API extends REST {
         //var_dump($fuente);
         if($fuente=='SIEBEL'){
             $filtros=" and o.ESTADO=1 and o.FUENTE='$fuente'";
+        }else{
+            if($grupo=='ADMINISTRACION'){
+                $filtros= "";
+            }else{
+                $filtros= " and o.ESTADO=1 and o.FUENTE='$fuente' and o.GRUPO='$grupo' and o.ACTIVIDAD='$actividad' ";
+            };
         }
 
-        if($grupo=='ADMINISTRACION'){
-            $filtros= "";
-        }else{
-            $filtros= " and o.ESTADO=1 and o.FUENTE='$fuente' and o.GRUPO='$grupo' and o.ACTIVIDAD='$actividad' ";
-        };
+
 
 
         $query=	" SELECT ".
