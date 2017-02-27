@@ -14558,6 +14558,7 @@ class API extends REST {
         $actividad  = $params['actividad'];
         $today		= date("Y-m-d");
 
+        var_dump($fuente);
         if($fuente=='SIEBEL'){
             $filtros=" and o.ESTADO=1 and o.FUENTE='$fuente'";
         }
