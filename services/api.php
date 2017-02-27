@@ -14570,8 +14570,6 @@ class API extends REST {
         }
 
 
-
-
         $query=	" SELECT ".
             "	o.ID ".
             "	,	o.FUENTE ".
