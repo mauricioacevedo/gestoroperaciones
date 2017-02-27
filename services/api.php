@@ -14558,6 +14558,10 @@ class API extends REST {
         $actividad  = $params['actividad'];
         $today		= date("Y-m-d");
 
+        if($fuente=='SIEBEL'){
+            $filtros=" and o.ESTADO=1 and o.FUENTE='$fuente'";
+        }
+
         if($grupo=='ADMINISTRACION'){
             $filtros= "";
         }else{
