@@ -14558,7 +14558,7 @@ class API extends REST {
         $actividad  = $params['actividad'];
         $today		= date("Y-m-d");
 
-        var_dump($fuente);
+        //var_dump($fuente);
         if($fuente=='SIEBEL'){
             $filtros=" and o.ESTADO=1 and o.FUENTE='$fuente'";
         }
@@ -14583,6 +14583,8 @@ class API extends REST {
             "	FROM portalbd.gestor_opciones_gestion o ".
             "	where 1=1 ".
             " 	$filtros ";
+
+        echo $query;
 
         $rst = $this->mysqli->query($query);
 
