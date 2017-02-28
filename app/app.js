@@ -15474,7 +15474,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 				$rootScope.ListadoHistoricoPedido = data.data;
 
-				//console.log(data);
+				console.log(data);
 
 				return data.data;
 			},
