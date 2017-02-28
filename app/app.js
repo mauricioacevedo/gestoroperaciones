@@ -15466,7 +15466,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 	};
 
 	//Obtener listado de Historico del pedido tal
-	$rootScope.listaHistoricoPedido1 = function (pedido) {
+	$rootScope.listaHistoricoPedido = function (pedido) {
 
 		$rootScope.ListadoHistoricoPedido1 = [];
 
