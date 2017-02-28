@@ -14714,7 +14714,7 @@ class API extends REST {
             "             p.fecha_estado AS FECHAESTADO  ".
             "        FROM portalbd.pedidos p  ".
             "        where 1=1 ".
-            "            and p.fecha_fin between '2017-02-28 00:00:00' and '2017-02-28 23:59:59' ".
+            "            and p.fecha_fin between '$fecha 00:00:00' and '$fecha 23:59:59' ".
             "            AND p.PEDIDO_ID!='' ) c1 ".
             "    group by c1.HORA ) C2 ".
             "    WHERE C2.HORA=h.HORA ) AS USUARIOS ".
