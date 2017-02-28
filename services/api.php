@@ -1403,6 +1403,7 @@ class API extends REST {
         $query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
         if(!empty($pedido)){
             $concepto_final=$this-> updateFenixReconfiguracion($pedido);
+            var_dump($concepto_final);
             $estado=$pedido['pedido']['estado'];
             //echo "estado: '$estadum'";
             if($concepto_final=="NO CAMBIO CONCEPTO" && $estadum!="MALO"){
@@ -2432,6 +2433,7 @@ class API extends REST {
         $id=$obj['ID'];
         $pedido_id=$obj['PEDIDO_ID'];
         $user=$obj['user'];
+        $concepto_id=$obj['CONCEPTO_ID'];
 
         $this->dbFenixConnect();
         $connf=$this->connf;
@@ -2460,6 +2462,7 @@ class API extends REST {
                 }
                 return $row;
             }else{//no cambio de concepto, controlar...
+
                 return "NO CAMBIO CONCEPTO";
             }
         }
