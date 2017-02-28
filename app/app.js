@@ -15461,7 +15461,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 		$rootScope.TituloModal = "Historico del pedido: ";
 		$rootScope.listaHistoricoPedido(pedido);
 		$rootScope.errorDatos = null;
-		$rootScope.pedidoHistorico=pedido;
+		$rootScope.pedidoHistorico1=pedido;
 		//$scope.UserProgramados=$scope.usuario_id;
 	};
 
