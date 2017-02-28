@@ -15464,7 +15464,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 	};
 
 	//Obtener listado de Historico del pedido tal
-	$rootScope.listaHistoricoPedido = function (pedido) {
+	$rootScope.listaHistoricoPedido1 = function (pedido) {
 
 		$rootScope.ListadoHistoricoPedido1 = [];
 
@@ -15482,7 +15482,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 				$rootScope.errorMalos = "Sin pedidos";
 
-				console.log($rootScope.ListadoHistoricoPedido1);
+				console.log($rootScope.listaHistoricoPedido1);
 
 			});
 
