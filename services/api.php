@@ -1403,6 +1403,7 @@ class API extends REST {
         $query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
         if(!empty($pedido)){
             $concepto_final=$this-> updateFenixReconfiguracion($pedido);
+            var_dump($concepto_final);
             $estado=$pedido['pedido']['estado'];
             //echo "estado: '$estadum'";
             if($concepto_final=="NO CAMBIO CONCEPTO" && $estadum!="MALO"){
@@ -2432,6 +2433,7 @@ class API extends REST {
         $id=$obj['ID'];
         $pedido_id=$obj['PEDIDO_ID'];
         $user=$obj['user'];
+        $concepto_id=$obj['CONCEPTO_ID'];
 
         $this->dbFenixConnect();
         $connf=$this->connf;
@@ -2460,6 +2462,7 @@ class API extends REST {
                 }
                 return $row;
             }else{//no cambio de concepto, controlar...
+
                 return "NO CAMBIO CONCEPTO";
             }
         }
@@ -7753,7 +7756,7 @@ class API extends REST {
                                 " WHERE 1=1 ".
                                 //" and (TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
                                 //" AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
-                                " and RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM') ) ".
+                                " and RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM')  ".
                                 " AND ASESOR='' ".
                                 " AND CONCEPTO_ID = '$concepto' ".
                                 " AND STATUS='PENDI_PETEC' ".
@@ -14558,11 +14561,18 @@ class API extends REST {
         $actividad  = $params['actividad'];
         $today		= date("Y-m-d");
 
-        if($grupo=='ADMINISTRACION'){
-            $filtros= "";
+        //var_dump($fuente);
+        if($fuente=='SIEBEL'){
+            $grupo      =   "ASIGNACIONES";
+            $actividad  =   "ESTUDIO";
+            $filtros="and o.ESTADO=1 and o.FUENTE='$fuente' and o.GRUPO='$grupo' and o.ACTIVIDAD='$actividad'";
         }else{
-            $filtros= " and o.ESTADO=1 and o.FUENTE='$fuente' and o.GRUPO='$grupo' and o.ACTIVIDAD='$actividad' ";
-        };
+            if($grupo=='ADMINISTRACION'){
+                $filtros= "";
+            }else{
+                $filtros= " and o.ESTADO=1 and o.FUENTE='$fuente' and o.GRUPO='$grupo' and o.ACTIVIDAD='$actividad' ";
+            };
+        }
 
 
         $query=	" SELECT ".
@@ -14578,6 +14588,8 @@ class API extends REST {
             "	FROM portalbd.gestor_opciones_gestion o ".
             "	where 1=1 ".
             " 	$filtros ";
+
+        //echo $query;
 
         $rst = $this->mysqli->query($query);
 
