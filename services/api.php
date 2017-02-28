@@ -14020,37 +14020,6 @@ class API extends REST {
 
     //------------------------Listado de Gestor Conceptos
 
-    //------------------------Listado concepts sistema
-
-
-    private function gestorTransacciones(){
-
-        if($this->get_request_method() != "GET"){
-            $this->response('',406);
-        }
-
-
-        $query=	" SELECT distinct transaccion ".
-                "FROM portalbd.gestor_activacion_pendientes_activador_suspecore ";
-
-        //echo $query;
-        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-
-        if($r->num_rows > 0){
-            $result = array();
-
-            while($row = $r->fetch_assoc()){
-
-                $result[] = $row;
-            }
-
-            $this->response($this->json($result), 201); // send user details
-        }
-        $this->response('',406);        // If no records "No Content" status
-
-    }
-
-    //------------------------Listado de Gestor Conceptos
 
 
 //PEDIDOS PROGRAMADOS POR USER -----------------------------------------------

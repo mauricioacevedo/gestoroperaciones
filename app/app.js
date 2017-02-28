@@ -15266,16 +15266,7 @@ app.run(['$rootScope', 'firebase', 'services', function ($rootScope, $firebase, 
 
 	// ------------------------------------------- Listados Siebel
 
-    $rootScope.getTransaccionessGestor = function () {
-		services.getGestorTransacciones().then(
-			function (data) {
-				$rootScope.listadoTransacciones = data.data;
-				return data.data;
-			}
 
-		)
-
-	};
 	$rootScope.transaccionActivacion = [
 		{
 			TRANSACCION: 'SUSPENDER',
