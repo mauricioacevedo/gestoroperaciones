@@ -11070,16 +11070,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 	// ---------------------------------fin Variables----------------------------
-// Opciones para cargar las listas de Gestion, segun el grupo, fuente, actividad--------------------------
-	$scope.GenerarOpcionesGestion = function () {
-		var opciones= {
-			fuente: $scope.iconcepto.TRANSACCION,
-			grupo: $scope.iconcepto.GRUPO,
-			actividad: $scope.iconcepto.ACTIVIDAD
-		};
-
-		$scope.listarOpcionesActivacion(opciones);
-	};//-------------------------------------------------------------------------------------------------------
 
 
 	// ------------------------DemePedido activacion --------------------------------------------------------------
