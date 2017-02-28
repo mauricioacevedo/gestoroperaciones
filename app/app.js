@@ -329,11 +329,6 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoactivacion?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin + '&page=' + page);
 	};
 
-    obj.getListadoActivacion3 = function (fecha_inicio, fecha_fin, page) { //Listado activacion
-		return $http.get(serviceBase + 'listadoactivacion3?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin + '&page=' + page);
-	};
-
-
 	obj.getListadoActivacionTabla = function (fecha_inicio, fecha_fin) { //listado tabla activacion
 		return $http.get(serviceBase + 'listadoactivaciontabla?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin);
 	};
@@ -11296,21 +11291,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	};
 
 	//------------declaracion doubleDigit
-
-  $scope.listadoactivacion5  = function (){
-
-                services.getListadoActivacion3($scope.data.fechaini,$scope.data.fechafin,$scope.data.currentPage).then(function(data){
-
-                   // console.log(data);
-                       $scope.listadoactivacion=data.data[0];
-                       $scope.data.totalItems=data.data[1];
-
-                    //console.log($scope.data.totalItems2);
-                    return data.data;
-               });
-
-
-        };
 
 });
 
