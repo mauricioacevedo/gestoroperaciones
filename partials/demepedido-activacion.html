@@ -171,112 +171,45 @@
 		</div>
 		</div><!--Row 1 Novedades -->
 		</div><!--Container ppal -->
-<br>
+<div class="panel-footer clearfix" >
+                    <div class="col-md-6" >
+                        <!--Campos futuros en footer izquierda -->
+                        <ul class="nav navbar-nav navbar-left animated bounceInRight" ng-show="pedidoIsActive" >
+                            <li><span class="label label-primary" tooltip data-placement="top" title="Programación">{{fechaprogramacion || 'Sin Programación'}}</span>
+                            </li>
+                            <li><span class="label label-primary" tooltip data-placement="top" title="Prioridad">{{prioridadPedido || 'Normal'}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="nav navbar-nav" ng-class="pedidoIsGuardado==false?'animated bounceOutRight':'animated bounceInRight'" ng-show="pedidoIsGuardado==true">
+                                <span class="label label-primary">Pedido Guardado</span>&nbsp;
 
-<div class="row"><!--Divisor -->
-  <hr>
-</div><!--Divisor -->
-
-<div class="row" ng-controller="TabController">
-    <!--div class="col-md-2"-->
-        <ul class="nav nav-pills">
-        <li ng-class="{ active: isSet(2) }">
-            <a href ng-click="setTab(2)">Historico</a>
-        </li>
-        <li ng-class="{ active: isSet(1) }">
-            <a href ng-click="setTab(1)">Personal</a>
-        </li>
-        </ul>
-
-
-    <div class="jumbotron">
-            <div ng-show="isSet(2)">
-
-             <div class="row">
-                    <div class="col-lg-12">
-                        <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i> Historico  <small>Pedido</small></h2>
-                        <hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
-                        <br>
-                     </div>
-            </div>
-            <div class="row">
-                <table class="table small table-striped table-hover table-bordered table-condensed ">
-                        <thead>
-                        <th>Usuario</th>
-                        <th>Fuente</th>
-                        <th>Novedad</th>
-                        <th>Fecha</th>
-                        <th>Duracion</th>
-                         <th>acceso</th>
-                        <th>Observacion</th>
-                        <!--th>Opciones</th-->
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="data in historico_pedido track by $index| orderBy:'fecha_fin':true ">
-                                <td>{{data.ASESOR}}</td>
-                                <td>{{data.FUENTE}}</td>
-                                <td>{{data.NOVEDAD}}</td>
-                                <td>{{data.FECHA_FIN}}</td>
-                                <td>{{data.DURACION}}</td>
-                                <td>{{data.ACCESO}}</td>
-<td><button type="button" class="btn btn-link btn-md" ng-show="data.OBSERVACION_GESTOR">
-<b><i class="fa fa-info-circle" aria-hidden="true" > <span id="cerrar" custom-popover popover-html={{data.OBSERVACION_GESTOR}} data-trigger="focus" popover-placement="right" popover-label="Observaciones"></span></i></b>
-</button></td>
-                                <!--td>Opciones</td-->
-                            </tr>
-                        </tbody>
-                        </table>
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-success btn-xs" ng-click="guardarPedido(InfoPedido,gestion[0],status,actividad)"  ng-disabled="!accRdy || guardando || loading">
+                                    Guardar <span ng-show="guardando"><i class="fa fa-spinner fa-spin"></i></span>
+                                </button>
+                            </li>
+                            <li>&nbsp; | &nbsp;</li>
+                            <li>
+                                <button type="button" class="btn btn-info btn-circle-xss" ng-click="historicoModal(gestion[0].PEDIDO_ID)" data-toggle="modal" data-target="#HistoricoPedido" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>Historico</code>"   ng-disabled="!pedidoIsActive">
+                                    <i class="fa fa-rss"  aria-hidden="true"> </i>
+                                </button>
+                            </li>
+                            <li>&nbsp; | &nbsp;</li>
+                            <li>
+                                <button type="button" class="btn btn-info btn-circle-xss" ng-click="PedidosPorUser()" data-toggle="modal" data-target="#HistoricoPedidoUser" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>Historico por {{logedUser.login}}</code>" >
+                                    <i class="fa fa-user-circle"  aria-hidden="true"> </i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div><!--Panel Footer -->
             </div>
 
-             </div>
-        <div ng-show="isSet(1)">
-            <div class="row">
-                    <div class="col-lg-12">
-                        <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i> Registros  <small>Historicos de hoy <span class="badge">{{pedidos.length}}</span></small></h2>
-                        <hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
-                        <br>
-                     </div>
-            </div>
-
-            <div class="row">
-            <table class="table small table-striped table-hover table-bordered table-condensed ">
-                <thead>
-                <th>Pedido</th>
-                <th>Fuente</th>
-                <th>Estado</th>
-                <th>Fecha</th>
-                <th>Duracion</th>
-                <!--th>Opciones</th-->
-                </thead>
-                <tbody>
-                    <tr ng-repeat="data in pedidos| orderBy:'FECHA_FIN':true ">
-                        <td>{{data.PEDIDO}}</td>
-                        <td>{{data.FUENTE}}</td>
-                        <td>{{data.NOVEDAD}}</td>
-                        <td>{{data.FECHA_FIN}}</td>
-                        <td>{{data.DURACION}}</td>
-                        <!--td>Opciones</td-->
-                    </tr>
-                </tbody>
-                </table>
-              </div>
         </div>
-    </div>
-
-
-
-</div>
-<div class="container">
-  <br>
-  <br>
-  <br>
-  <br>
-</div>
-<script language='javascript'>
-$(function () {
-  $('[data-toggle="popover"]').popover()
-  $('[data-toggle="tooltip"]').tooltip();
-  $('.myTip').tooltip();
-})
-</script>
-
+    </div><!--Row 1 Novedades -->
+</div><!--Container ppal -->
+<!-- Modal Historico Pedidos-->
