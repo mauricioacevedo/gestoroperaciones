@@ -6490,6 +6490,7 @@ class API extends REST {
     }
 
 
+
     private function listadoactivaciontabla(){
 
         if($this->get_request_method() != "GET"){
