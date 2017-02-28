@@ -25,9 +25,9 @@
                                 <select class="btn btn-default btn-xs grupo-select"
                                         style="width: 200px"
                                         ng-model="iconcepto"
-                                        ng-options="d.TRANSACCION+' | '+d.FUENTE group by d.GRUPO for d in listadolistadoTransacciones | filter:{ESTADO: '1',} track by d.ID "
+                                        ng-options="d.TRANSACCION+' | '+d.FUENTE group by d.GRUPO for d in listadoTransacciones | filter:{ESTADO: '1',} track by d.ID "
                                         ng-change="GenerarOpcionesGestion()">
-                                    <option value="" disabled>--Seleccione Concepto--</option>
+                                    <option value="" disabled>--Seleccione Transacciones--</option>
                                 </select>
                                       <select
                                     class= "btn btn-default btn-xs grupo-select"
