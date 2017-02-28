@@ -321,6 +321,11 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	//-----------------------------------------------------------------------------------------fin_Agendamiento
 
 	//Activacion-----------------------------------------------------------------------------------
+
+
+    obj.getGestorTansacciones = function () {
+		return $http.get(serviceBase + 'gestorTransacciones');
+	};
 	obj.getactividadesUser = function (userID) {
 		return $http.get(serviceBase + 'actividadesUser?userID=' + userID); //pedido por user
 	};
@@ -15270,6 +15275,17 @@ app.run(['$rootScope', 'firebase', 'services', function ($rootScope, $firebase, 
     	];
 
 	// ------------------------------------------- Listados Siebel
+
+    $rootScope.getTransaccionessGestor = function () {
+		services.getGestorTransacciones().then(
+			function (data) {
+				$rootScope.listadoTransacciones = data.data;
+				return data.data;
+			}
+
+		)
+
+	};
 	$rootScope.transaccionActivacion = [
 		{
 			TRANSACCION: 'SUSPENDER',

@@ -22,7 +22,13 @@
 
 							<li>
 								<i class="fa fa-server  " aria-hidden="true"> </i>&nbsp;
-
+                                <select class="btn btn-default btn-xs grupo-select"
+                                        style="width: 200px"
+                                        ng-model="iconcepto"
+                                        ng-options="d.TRANSACCION+' | '+d.FUENTE group by d.GRUPO for d in listadolistadoTransacciones | filter:{ESTADO: '1',} track by d.ID "
+                                        ng-change="GenerarOpcionesGestion()">
+                                    <option value="" disabled>--Seleccione Concepto--</option>
+                                </select>
                                       <select
                                     class= "btn btn-default btn-xs grupo-select"
                                     style="width: 200px"
