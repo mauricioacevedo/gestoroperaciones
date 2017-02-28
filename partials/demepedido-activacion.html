@@ -362,7 +362,7 @@
                                         <option value='fuente'>Fuente</option>
                                         <option value='concepto_final'>Concepto</option>
                                         <option value='estado'>Estado</option>
-                                        <option value='pedido_id'>Pedido</option>
+                                        <option value='pedido'>Pedido</option>
                                     </select>
 
                                 </li>
@@ -403,24 +403,24 @@
                                 <thead>
                                 <tr >
                                     <th><span class="small">PEDIDO</span></th>
-                                    <th><span class="small">ACTIVIDAD</span></th>
-                                    <th><span class="small">FECHA_GESTION</span></th>
-                                    <th><span class="small">DURACION</span></th>
+                                    <th><span class="small">ORDER_SEQ_ID</span></th>
+                                    <th><span class="small">FECHA_CREACION</span></th>
                                     <th><span class="small">ESTADO</span></th>
-                                    <th><span class="small">CONCEPTO FINAL</span></th>
-                                    <th><span class="small">FUENTE</span></th>
+                                    <th><span class="small">ASESOR</span></th>
+                                    <th><span class="small">TRANSACCION</span></th>
+                                    <th><span class="small">PRODUCTO</span></th>
                                     <th><span class="small">ID</span></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr ng-repeat="pediUser in listado_pedidos as pedis" class="animated bounceInRight">
                                     <td><span class="small">{{pediUser.pedido}}</span></td>
-                                    <td><span class="small">{{pediUser.actividad}}</span></td>
-                                    <td><span class="small">{{pediUser.fecha_fin}}</span></td>
-                                    <td><span class="small">{{pediUser.duracion}}</span></td>
+                                    <td><span class="small">{{pediUser.order_seq_id}}</span></td>
+                                    <td><span class="small">{{pediUser.fecha_creacion}}</span></td>
                                     <td><span class="small">{{pediUser.estado}}</span></td>
-                                    <td><span class="small">{{pediUser.concepto_final}}</span></td>
-                                    <td><span class="small">{{pediUser.fuente}}</span></td>
+                                    <td><span class="small">{{pediUser.asesor}}</span></td>
+                                    <td><span class="small">{{pediUser.transaccion}}</span></td>
+                                    <td><span class="small">{{pediUser.producto}}</span></td>
                                     <td><span class="small">{{pediUser.id}}</span></td>
 
                                 </tr>
