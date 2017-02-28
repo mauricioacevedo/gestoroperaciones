@@ -1403,7 +1403,7 @@ class API extends REST {
         $query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
         if(!empty($pedido)){
             $concepto_final=$this-> updateFenixReconfiguracion($pedido);
-            var_dump($concepto_final);
+            //var_dump($concepto_final);
             $estado=$pedido['pedido']['estado'];
             //echo "estado: '$estadum'";
             if($concepto_final=="NO CAMBIO CONCEPTO" && $estadum!="MALO"){
@@ -14703,6 +14703,21 @@ class API extends REST {
             " , (ifnull(G.ASIGNADOS,0)+ifnull(G.SIEBEL,0)+ifnull(G.RECONFIGURADOS,0) ) AS GESTIONADOS ".
             " FROM(SELECT  ".
             " h.HORA ".
+            " , (select C2.CANTUSER ".
+            "    from ".
+            "    (select c1.HORA, count(distinct c1.USUARIO) as CANTUSER ".
+            "    from ( select  ".
+            "            p.user as USUARIO,  ".
+            "             p.fecha_fin AS FECHAFIN,  ".
+            "             DATE_FORMAT(p.fecha_fin,'%H') AS HORA,  ".
+            "             DATE_FORMAT(p.fecha_fin,'%H:00') AS HORA_FULL,  ".
+            "             p.fecha_estado AS FECHAESTADO  ".
+            "        FROM portalbd.pedidos p  ".
+            "        where 1=1 ".
+            "            and p.fecha_fin between '2017-02-28 00:00:00' and '2017-02-28 23:59:59' ".
+            "            AND p.PEDIDO_ID!='' ) c1 ".
+            "    group by c1.HORA ) C2 ".
+            "    WHERE C2.HORA=h.HORA ) AS USUARIOS ".
             " , (SELECT  ".
             " 	COUNT(*) AS INGRESOS ".
             " 	FROM( SELECT ".
