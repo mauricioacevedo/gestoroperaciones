@@ -15456,7 +15456,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 	// --------------------------------------------------------------------------------------Modal Historico Pedido
 // Modal Historico Pedido activacion--------------------------------------------------------------------------------------
 
-	$rootScope.historicoModal = function (pedido) {
+	$rootScope.historicoModal1 = function (pedido) {
 		$rootScope.TituloModal='';
 		$rootScope.TituloModal = "Historico del pedido: ";
 		$rootScope.listaHistoricoPedido(pedido);
