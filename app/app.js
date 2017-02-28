@@ -15474,7 +15474,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 				$rootScope.ListadoHistoricoPedido = data.data;
 
-				console.log(data);
+				//console.log(data);
 
 				return data.data;
 			},
@@ -15482,7 +15482,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 				$rootScope.errorMalos = "Sin pedidos";
 
-				//console.log($rootScope.errorDatos);
+				console.log($rootScope.ListadoHistoricoPedido1);
 
 			});
 
