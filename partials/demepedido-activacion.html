@@ -117,63 +117,6 @@
 								</div>
 							</div>
 						</div>
-                         <div class="col-md-4">
-                            <div class = "panel panel-default">
-                                <div class = "panel-heading">
-                                    <b><i class="fa fa-cogs" aria-hidden="true"> </i> SEGUIMIENTO</b>
-                                </div>
-                                <div class = "panel-heading">
-                                    <div class="container-fluid">
-
-                                        <form name="seguimiento_form" id="seguimiento_form">
-                                            <div class="form-group " ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
-                                                <label for="estado" class="control-label">Estado Gestión:</label>
-                                                <select id="estado"
-                                                        class= "form-control btn-xs"
-                                                        name="estado"
-                                                        ng-model="InfoPedido.ESTADO_PROCESO"
-                                                        ng-disabled="ocupado"
-                                                        ng-click="onChangeEstado()"
-                                                        required>
-                                                    <option value="" disabled>--Seleccione--</option>
-                                                    <option
-                                                            ng-repeat="d in listaOpcionesGestion | unique:'ESTADO_ID'"
-
-                                                            value="{{d.ESTADO_ID}}">
-                                                        {{d.ESTADO_ID}}
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group " ng-show="InfoPedido.ESTADO_PROCESO" ng-class="{ 'has-error' : seguimiento_form.obs.$pristine && seguimiento_form.obs.$invalid}">
-                                                <label for="obs" class="control-label">Observación Gestión:</label>
-                                                <select id="obs"
-                                                        class= "form-control btn-xs"
-                                                        name="obs"
-                                                        ng-model="InfoPedido.OBSERVACIONES_PROCESO"
-                                                        ng-change="onChangeAccion(InfoPedido.OBSERVACIONES_PROCESO)" required>
-                                                    <option value="" disabled>--Seleccione--</option>
-                                                    <option
-                                                            ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO}:true | unique:'OBSERVACION_ID'"
-
-                                                            value="{{d.OBSERVACION_ID}}">
-                                                        {{d.OBSERVACION_ID}}
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group has-feedback" ng-show="programar">
-                                                <label for="programacion" class="control-label">Programación:</label>
-                                                <input type="text" name="programacion" id="programacion" class="form-control" placeholder="id llamada" ng-model="InfoPedido.PROGRAMACION" datetime-picker date-format="yyyy-MM-dd HH:mm:ss"/>
-                                                <i class="fa fa-calendar-check-o form-control-feedback"></i>
-                                            </div>
-
-
-
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 						<div class="col-md-4">
 							<div class = "panel panel-default">
 								<div class = "panel-heading">
