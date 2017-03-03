@@ -14132,6 +14132,755 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 });
 // -----------------------------------------------Controlador para Gestion de Reconfiguracion Asignaciones
 
+
+// Controlador para Gestion General de los procesos de Asignaciones -----------------------------------------------
+app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $location, $route, $routeParams, $cookies, $cookieStore, $timeout, notify, services) {
+
+	// Basura del logueo ---------------------------------
+		$rootScope.logedUser = $cookieStore.get('logedUser');
+        var userID = $cookieStore.get('logedUser').login;
+        document.getElementById('logout').className = "btn btn-md btn-danger";
+        var divi = document.getElementById("logoutdiv");
+        divi.style.visibility = "visible";
+        divi.style.position = "relative";
+
+
+        $rootScope.logout = function() {
+            services.logout(userID);
+            $cookieStore.remove('logedUser');
+            $rootScope.logedUser = undefined;
+            $scope.pedidos = {};
+            clearInterval($scope.intervalLightKPIS);
+            document.getElementById('logout').className = "btn btn-md btn-danger hide";
+            var divi = document.getElementById("logoutdiv");
+            divi.style.position = "absolute";
+            divi.style.visibility = "hidden";
+            $location.path('/');
+        }; //  ---------------------------------Basura del logueo
+
+	// Inicio de Variables ---------------------------------------------------------------------------------
+	$scope.tools				= true;						// Herramientas de gestion habilitadas.
+	$scope.pedidosUnicos		= '';						// Pedidos Unicos, cantidad.
+	$rootScope.actualView		= 'Gestion Asignaciones';	// Vista Actual, sirve para los KPIS.
+	$scope.intervalLightKPIS	= '';
+	$scope.pedidoinfo			= '';
+	$rootScope.errorDatos		= null; 					// Mensajes de Error.
+	$scope.fecha_inicio 		= null; 					// Fecha Inicial de la gestion.
+	$scope.fecha_fin 			= null; 					// Fecha Final de la gestion.
+	$scope.pedidos				= [];						// Arreglo de pedidos.
+	$scope.data					= {};						// Objeto de datos.
+	$scope.iconcepto			= {};						// Objeto de datos que contiene Grupo, Concepto y Fuente.
+	$scope.ifuente				= {};						// Objeto con la fuente para hacer las busquedas.
+	$scope.listaOpcionesGestion = [];						// Arreglo con listado de Opciones para la Gestion.
+	$scope.info					= {};						// Objeto con Info del pedido en gestion.
+	//$scope.estadoGuardo			= false;					// Habilita el guardado en la tabla de siebel.
+	$scope.habilitaCr			= false;					// Habilita el campo CR.
+	$scope.programar			= false;					// Habilitar el campo programación.
+	$scope.accRdy				= false; 					// Habilitar el boton de Guardar.
+    $scope.pedidoIsActive 		= false;
+	var varDondeGuardar 		= '';
+	var varEstadoGuardar		= '';
+	var varObsesGuardar			= '';
+	var estadoFinal				= '';
+
+    $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
+    $scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG','JCASTAMU', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
+    $scope.idConceptos=['O-13', 'O-15', 'O-106'];
+
+	// Opciones para cargar las listas de Gestion, segun el grupo, fuente, actividad--------------------------
+	$scope.GenerarOpcionesGestion = function () {
+		var opciones= {
+			fuente: $scope.iconcepto.FUENTE,
+			grupo: $scope.iconcepto.GRUPO,
+			actividad: $scope.iconcepto.ACTIVIDAD
+		};
+
+		$scope.listarOpcionesAsginacion(opciones);
+	};//-------------------------------------------------------------------------------------------------------
+
+	/* Habilitar esta linea si se quiere inicializar el iconcepto con algun dato por defecto
+	$scope.iconcepto = { ID: '5', CONCEPTO_ID: '14', GRUPO: $scope.actividadGestion, ACTIVIDAD: 'ESTUDIO' ,FUENTE: 'FENIX_NAL'};
+	*/
+	$scope.mirarifuente = function (){
+		console.log($scope.ifuente);
+	};
+
+	// Cargar Opciones para la gestion --------------------------------
+	$scope.listarOpcionesAsginacion = function (opciones) {
+
+		services.getOpcionesGestionAsignaciones(opciones).then(
+			function (data) {
+				if(opciones.actividad!='AUDITORIA'){
+                    $scope.listaOpcionesGestion=data.data;
+				}else{
+					$scope.listaOpcionesAuditoria=data.data;
+				}
+
+				return data.data;
+
+			},
+			function errorCallback(response, status) {
+				//console.log(status);
+				$rootScope.errorDatos = 'Error, revisar opciones '+status;
+
+			}
+		);
+	};
+
+	$scope.onChangeEstado = function () {
+		$scope.programar=false;
+		$scope.accRdy = false;
+		$scope.InfoPedido.OBSERVACIONES_PROCESO=undefined;
+	};
+	$scope.onChangeAccion = function (valor) {
+		$scope.accRdy = true;
+		if(valor=='VOLVER A LLAMAR'||valor=='GESTIONAR MAS TARDE'){
+			$scope.programar=true;
+		}
+
+	};
+
+	//$scope.listarOpcionesAsginacion();//  --------------------------------Cargar Opciones para la gestion
+
+
+	$scope.PedidosPorUser= function () {
+		$rootScope.TituloModal='';
+		$rootScope.TituloModal="Pedigos Gestionados por: "+userID;
+		$rootScope.errorDatos = null;
+		$scope.data = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin:"", campo:"User", valorCampo: userID };
+		var pedidos = services.getPedidosUser(userID).then(function (data) {
+		$scope.listado_pedidos = data.data[0];
+		$scope.pedidosUnicos = data.data[1];
+		return data.data;
+		});
+	};
+
+	var original = $scope.pedidos;
+	var originalUnico = $scope.pedidosUnicos;
+
+	$scope.peds = {};
+	$scope.timeInit = 0;
+	$scope.pedidos = angular.copy(original);
+
+
+	$scope.calcularListadoReconfiguracion  = function (){
+		$scope.listado_pedidos=[];
+		services.getListadoPedidosReconfiguracion($scope.data.fechaIni,$scope.data.fechaFin,$scope.data.currentPage,$scope.data.campo,$scope.data.valorCampo,userID).then(function(data){
+				$scope.listado_pedidos=data.data[0];
+				$scope.data.totalItems=data.data[1];
+				return data.data;
+		});
+        };
+
+		//$scope.PedidosPorUser();
+
+	// ---------------------------------Inicio de Variables
+	// Disque Light KPI --------------------------------------------------------------
+
+	$scope.intervalLightKPIS = setInterval(function () {
+		$scope.actualizarLightKPIS();
+	}, 60000);
+
+	$scope.actualizarLightKPIS = function () {
+		services.getLightKPIS().then(function (data) {
+			$rootScope.oldlightkpi = $rootScope.lightkpi;
+			$rootScope.lightkpi = data.data[0];
+
+
+			if ($rootScope.oldlightkpi == "" || $rootScope.oldlightkpi == undefined) {
+				$rootScope.oldlightkpi = $rootScope.lightkpi;
+			}
+
+			//console.log($rootScope.lightkpi);
+			//
+			var arrayLength = $rootScope.lightkpi.length;
+			var arrayLength2 = $rootScope.oldlightkpi.length;
+
+
+			var negocioAsingaciones = "<table class='table small table-striped table-hover table-bordered table-condensed'>" +
+				"<thead>" +
+				"<th>Concepto</th>" +
+				"<th>Cantidad</th>" +
+				"</thead>" +
+				"<tbody>";
+			var negocioReconfiguracion = "<table class='table small table-striped table-hover table-bordered table-condensed'>" +
+				"<thead>" +
+				"<th>Concepto</th>" +
+				"<th>Cantidad</th>" +
+				"</thead>" +
+				"<tbody>";
+
+			var negocioOtros = "<table class='table small table-striped table-hover table-bordered table-condensed'>" +
+				"<thead>" +
+				"<th>Concepto</th>" +
+				"<th>Cantidad</th>" +
+				"</thead>" +
+				"<tbody>";
+
+
+			$rootScope.totalNegocioAsignacionesOld = $rootScope.totalNegocioAsignaciones;
+			$rootScope.totalNegocioReconfiguracionOld = $rootScope.totalNegocioReconfiguracion;
+			$rootScope.totalNegocioOtrosOld = $rootScope.totalNegocioOtros;
+
+
+			$rootScope.totalNegocioAsignaciones = 0;
+			$rootScope.totalNegocioReconfiguracion = 0;
+			$rootScope.totalNegocioOtros = 0;
+
+
+			for (var i = 0; i < arrayLength; i++) {
+				var counter = $rootScope.lightkpi[i].COUNTER;
+				var concepto_id = $rootScope.lightkpi[i].CONCEPTO_ID;
+
+				if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'PUMED' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD') {
+					negocioAsingaciones += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
+					$rootScope.totalNegocioAsignaciones = parseInt($rootScope.totalNegocioAsignaciones) + parseInt(counter);
+				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == '92') {
+					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
+					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
+				} else if (concepto_id == 'O-101') {
+					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
+					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
+				} else {
+					negocioOtros += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
+					$rootScope.totalNegocioOtros = parseInt($rootScope.totalNegocioOtros) + parseInt(counter);
+				}
+			}
+
+			$rootScope.nasignacionesstyle = {};
+			$rootScope.nreconfiguracionstyle = {};
+			$rootScope.notrosstyle = {};
+
+
+			if ($rootScope.totalNegocioAsignaciones > $rootScope.totalNegocioAsignacionesOld) {
+				$rootScope.nasignacionesstyle.ICON = "fa fa-arrow-circle-up fa-2x";
+				$rootScope.nasignacionesstyle.STYLE = "red";
+			} else if ($rootScope.totalNegocioAsignaciones < $rootScope.totalNegocioAsignacionesOld) {
+				$rootScope.nasignacionesstyle.ICON = "fa fa-arrow-circle-down fa-2x";
+				$rootScope.nasignacionesstyle.STYLE = "green";
+			} else {
+				$rootScope.nasignacionesstyle.ICON = "fa fa-minus-circle fa-2x";
+				$rootScope.nasignacionesstyle.STYLE = "gray";
+			}
+
+			if ($rootScope.totalNegocioReconfiguracion > $rootScope.totalNegocioReconfiguracionOld) {
+				$rootScope.nreconfiguracionstyle.ICON = "fa fa-arrow-circle-up fa-2x";
+				$rootScope.nreconfiguracionstyle.STYLE = "red";
+			} else if ($rootScope.totalNegocioReconfiguracion < $rootScope.totalNegocioReconfiguracionOld) {
+				$rootScope.nreconfiguracionstyle.ICON = "fa fa-arrow-circle-down fa-2x";
+				$rootScope.nreconfiguracionstyle.STYLE = "green";
+			} else {
+				$rootScope.nreconfiguracionstyle.ICON = "fa fa-minus-circle fa-2x";
+				$rootScope.nreconfiguracionstyle.STYLE = "gray";
+			}
+
+
+			if ($rootScope.totalNegocioOtros > $rootScope.totalNegocioOtrosOld) {
+				$rootScope.notrosstyle.ICON = "fa fa-arrow-circle-up fa-2x";
+				$rootScope.notrosstyle.STYLE = "red";
+			} else if ($rootScope.totalNegocioOtros < $rootScope.totalNegocioOtrosOld) {
+				$rootScope.notrosstyle.ICON = "fa fa-arrow-circle-down fa-2x";
+				$rootScope.notrosstyle.STYLE = "green";
+			} else {
+				$rootScope.notrosstyle.ICON = "fa fa-minus-circle fa-2x";
+				$rootScope.notrosstyle.STYLE = "gray";
+			}
+
+
+			document.getElementById("nasignaciones").innerHTML = negocioAsingaciones + "</tbody></table>";
+			document.getElementById("nreconfiguracion").innerHTML = negocioReconfiguracion + "</tbody></table>";
+			document.getElementById("notros").innerHTML = negocioOtros + "</tbody></table>";
+
+			return data.data;
+		});
+	};
+
+	$scope.$on(
+		"$destroy",
+		function (event) {
+			$timeout.cancel($scope.intervalLightKPIS);
+			clearInterval($scope.intervalLightKPIS);
+		});
+
+	// --------------------------------------------------------------Disque Light KPI
+	// DemePedido --------------------------------------------------------------
+	$scope.baby = function (pedido) {
+		//console.log(pedido);
+		services.getPedidosPorPedido(pedido).then(function (data) {
+			// console.log(data.data);
+			$scope.historico_pedido = data.data;
+			return data.data;
+		});
+	};
+
+	$scope.start = function (pedido) {
+
+        var pedido1 				= '';
+        $scope.popup 				= '';
+        $rootScope.errorDatos 		= null;
+        $scope.InfoPedido 			= [];
+        $scope.fecha_inicio 		= null;
+        $scope.accRdy 				= false;
+        $scope.InfoGestion 			= {};
+        $scope.InfoPedido.INCIDENTE = 'NO';
+        $scope.pedidoIsGuardado 	= false;
+        $scope.programar			= false;
+        $scope.pedidoIsActive		= false;
+        $scope.habilitaCr			= false;
+        $scope.buscar				= '';
+        //$scope.estadoGuardo			= false;
+
+        if($scope.iconcepto.FUENTE=='SIEBEL'){
+            $scope.habilitaCr			= true;
+        }
+
+
+        if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
+            //alert($scope.peds[0].PEDIDO_ID);
+            pedido1 = $scope.peds[0].PEDIDO_ID;
+
+        }
+        $scope.peds = {};
+        $scope.mpedido = {};
+        $scope.bpedido = '';
+        $scope.busy = "";
+        $scope.pedido1 = pedido1;
+        $rootScope.error = "";
+        $scope.iplaza = 'TODOS';
+        $scope.fuente = $scope.iconcepto.FUENTE;
+        $scope.InfoPedido.SOURCE = 'AUTO';
+        $scope.InfoPedido.FUENTE = $scope.fuente;
+
+        //console.log($scope.iconcepto);
+
+        var demePedidoButton = document.getElementById("iniciar");
+        demePedidoButton.setAttribute("disabled", "disabled");
+        demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
+
+        var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE).then(function (data) {
+
+            $scope.peds = data.data;
+
+            //console.log($scope.peds);
+
+            if (data.data == '') {
+
+                document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Concepto.";
+                $rootScope.errorDatos = "No hay Registros. Intente Cambiando de Concepto.";
+            } else {
+
+                document.getElementById("warning").innerHTML = "";
+                $scope.pedido1 = $scope.peds[0].PEDIDO_ID;
+                $scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
+                $scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
+                $scope.prioridadPedido=$scope.peds[0].PRIORIDAD;
+                $scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
+                $scope.pedidoIsActive = true;
+                $rootScope.errorDatos = null;
+                $scope.fecha_inicio = $rootScope.fechaProceso();
+
+                if ($scope.peds[0].STATUS == "PENDI_PETEC" && $scope.peds[0].ASESOR != "") {
+                    $scope.busy = $scope.peds[0].ASESOR;
+                    $rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
+
+                }
+
+                $scope.baby($scope.pedido1);
+
+            }
+            var demePedidoButton = document.getElementById("iniciar");
+            demePedidoButton.removeAttribute("disabled");
+            demePedidoButton.className = "btn btn-success btn-DemePedido-xs";
+            return data.data;
+        });
+
+    };
+
+	// -------------------------------------------------------------- DemePedido
+	// BuscarPedido ---------------------------------------------------------------
+
+	$scope.buscarPedido = function (buscar, pedidoinfo) {
+
+		$scope.pedido1 = '';
+		$scope.popup = '';
+		$rootScope.errorDatos = null;
+		$scope.InfoPedido = [];
+		$scope.fecha_inicio = null;
+		$scope.accRdy = false;
+		$scope.InfoGestion = {};
+		$scope.peds={};
+		$scope.InfoPedido.INCIDENTE = 'NO';
+		$scope.InfoPedido.SOURCE = 'BUSCADO';
+		var iplaza="TODOS";
+		$scope.pedidoIsGuardado = false;
+		$scope.programar=false;
+		$scope.pedidoActual = pedidoinfo;
+		$scope.buscar = buscar;
+		$scope.pedidoIsActive=false;
+		$scope.habilitaCr = false;
+		//$scope.estadoGuardo=false;
+
+
+
+
+
+		if($scope.ifuente.FUENTE=='SIEBEL'){
+			$scope.habilitaCr			= true;
+			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
+		}else if ($scope.ifuente.FUENTE=='EDATEL'){
+			$scope.habilitaCr			= true;
+			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
+
+		}else{
+			$scope.habilitaCr			= false;
+			var kami = services.buscarPedidoReconfiguracion(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login);
+		}
+
+
+			kami.then(
+
+			function (data) {
+
+				$scope.peds = data.data;
+                   // console.log($scope.peds);
+                        var dat=data.status;
+                        if(dat==204){
+                                //document.getElementById("warning").innerHTML="No hay Registros";
+                                $rootScope.errorDatos="Sin Registros. Intente con otro concepto.";
+								$scope.pedidoIsActive = false;
+
+                        }else{
+							$scope.pedido1=$scope.peds[0].PEDIDO_ID;
+							if(($scope.peds[0].STATUS=="PENDI_PETEC" || $scope.peds[0].STATUS=="PENDI_RENUMS")&&$scope.peds[0].ASESOR!=""){
+                                        $scope.busy=$scope.peds[0].ASESOR;
+                                        $rootScope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
+                                }else{
+
+									$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+									$scope.InfoPedido.FUENTE=$scope.peds[0].FUENTE;
+									$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
+									$scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
+
+									//console.log($scope.peds);
+									var opciones= {
+										fuente: $scope.peds[0].FUENTE,
+										grupo: $scope.peds[0].GRUPO,
+										actividad: $scope.peds[0].ACTIVIDAD
+									};
+
+									//$scope.baby($scope.pedido1);
+									$rootScope.errorDatos = null;
+									$scope.pedidoIsActive = true;
+									$scope.fecha_inicio = $rootScope.fechaProceso();
+									$scope.listarOpcionesAsginacion(opciones);
+								}
+                        }
+                        return data.data;
+			});
+
+
+	};
+
+	// --------------------------------------------------------------- BuscarPedido
+	// GuardarPedido --------------------------------------------------------------
+
+	$scope.guardarPedido = function (InfoPedido, gestion, status,actividad) {
+
+		$scope.fecha_fin = $rootScope.fechaProceso();
+		$scope.stautsGo = status[0].STATUS;
+		$scope.actividadGo = actividad[0].ACTIVIDAD;
+		$scope.guardando=true;
+
+		//console.log(InfoPedido); //Seguimiento
+		//console.log(gestion);//GEstion
+		//console.log($scope.stautsGo); //Cerrado, Pendiente o Malo
+		//console.log($scope.actividadGo);
+
+		var fromDate = parseInt(new Date($scope.fecha_inicio).getTime() / 1000);
+		var toDate = parseInt(new Date($scope.fecha_fin).getTime() / 1000);
+		var timeDiff = (toDate - fromDate) / 3600; // will give difference in hrs
+
+		if(InfoPedido.SOURCE!='BUSCADO'){
+            var varDondeGuardar 	= $scope.iconcepto.FUENTE;
+		}else{
+            var varDondeGuardar 	= InfoPedido.FUENTE;
+		}
+
+        var varEstadoGuardar	= InfoPedido.ESTADO_PROCESO;
+        var varObsesGuardar		= InfoPedido.OBSERVACIONES_PROCESO;
+
+
+		if (varDondeGuardar=='FENIX_NAL' || varDondeGuardar=='FENIX_BOG') {
+			if (varEstadoGuardar=='MALO') {
+				var estadoFinal='MALO';
+			} else {
+				var estadoFinal=varObsesGuardar;
+			}
+
+
+			$scope.InfoGestion = {
+			pedido: gestion.PEDIDO_ID,
+			fuente: varDondeGuardar,
+			actividad: $scope.actividadGo,
+			fecha_fin: $scope.fecha_fin,
+			user: $rootScope.logedUser.login,
+			ESTADO_ID: InfoPedido.ESTADO_PROCESO,
+			OBSERVACIONES_PROCESO: InfoPedido.OBSERVACIONES_PROCESO,
+			estado: estadoFinal,
+			duracion: timeDiff,
+			FECHA_ESTADO: gestion.FECHA_ESTADO,
+			fecha_inicio: $scope.fecha_inicio,
+			concepto_final: gestion.CONCEPTO_ID,
+			CONCEPTO_ID: gestion.CONCEPTO_ID,
+			CONCEPTO_ANTERIOR: gestion.CONCEPTO_ID,
+			source: InfoPedido.SOURCE,
+			PEDIDO_ID: gestion.PEDIDO_ID,
+			SUBPEDIDO_ID: gestion.SUBPEDIDO_ID,
+			MUNICIPIO_ID: gestion.MUNICIPIO_ID,
+			motivo_malo: InfoPedido.OBSERVACIONES_PROCESO,
+			idllamada: InfoPedido.IDLLAMADA,
+			nuevopedido: InfoPedido.NUEVOPEDIDO,
+			horaLlamar: InfoPedido.PROGRAMACION,
+			INCIDENTE: InfoPedido.INCIDENTE,
+			ID: gestion.ID
+		};
+		} else if (varDondeGuardar=='SIEBEL') {
+			$scope.InfoGestion = {
+			ID: gestion.ID,
+			OFERTA: gestion.PEDIDO_ID,
+			MUNICIPIO_ID: gestion.MUNICIPIO_ID,
+			TRANSACCION: gestion.DESC_TIPO_TRABAJO,
+			ESTADO: gestion.CONCEPTO_ID,
+			FECHA: gestion.FECHA_ESTADO,
+			DURACION: timeDiff,
+			INCIDENTE: InfoPedido.INCIDENTE,
+			FECHA_INICIO: $scope.fecha_inicio,
+			FECHA_FIN: $scope.fecha_fin,
+			ESTADO_FINAL: InfoPedido.ESTADO_PROCESO,
+			OBSERVACION: InfoPedido.OBSERVACIONES_PROCESO,
+			USUARIO: $rootScope.logedUser.login,
+			STATUS: $scope.stautsGo
+		};
+		} else if (varDondeGuardar=='EDATEL') {
+			$scope.InfoGestion = {
+			pedido: gestion.PEDIDO_ID,
+			fuente: varDondeGuardar,
+			actividad: $scope.actividadGo,
+			fecha_fin: $scope.fecha_fin,
+			user: $rootScope.logedUser.login,
+			ESTADO_ID:InfoPedido.ESTADO_PROCESO,
+			estado: InfoPedido.OBSERVACIONES_PROCESO,
+			OBSERVACIONES_PROCESO: InfoPedido.OBSERVACIONES_PROCESO,
+			duracion: timeDiff,
+			FECHA_ESTADO: gestion.FECHA_ESTADO,
+			fecha_inicio: $scope.fecha_inicio,
+			concepto_final: gestion.CONCEPTO_ID,
+			CONCEPTO_ID: gestion.CONCEPTO_ID,
+			CONCEPTO_ANTERIOR: gestion.CONCEPTO_ID,
+			source: InfoPedido.SOURCE,
+			PEDIDO_ID: gestion.PEDIDO_ID,
+			SUBPEDIDO_ID: gestion.SUBPEDIDO_ID,
+			MUNICIPIO_ID: gestion.MUNICIPIO_ID,
+			motivo_malo: InfoPedido.OBSERVACIONES_PROCESO,
+			idllamada: InfoPedido.IDLLAMADA,
+			nuevopedido: InfoPedido.NUEVOPEDIDO,
+			horaLlamar: InfoPedido.PROGRAMACION,
+			INCIDENTE: InfoPedido.INCIDENTE,
+			ID: gestion.ID
+		};
+		}
+		 //console.log($scope.InfoGestion);
+		$scope.dondeGuardar(varDondeGuardar);
+
+		//console.log($scope.estadoGuardo);
+
+		if($scope.estadoGuardo){
+			$scope.pedidoIsGuardado			= true;
+			$rootScope.errorDatos 			= null;
+			$scope.InfoPedido 				= [];
+			$scope.fecha_inicio 			= null;
+			$scope.fecha_fin 				= null;
+			$scope.InfoGestion 				= {};
+			$scope.guardando 				= false;
+			$scope.pedidoIsActive 			= false;
+			$scope.peds 					= {};
+			$scope.mpedido 					= {};
+			$scope.bpedido 					= '';
+			$scope.busy 					= "";
+			$scope.error 					= "";
+			$scope.iplaza 					= 'TODOS';
+			$scope.buscar 					= null;
+			$scope.info						= {};
+			$scope.habilitaSiebel			= false;
+			$scope.habilitaCr				= false;
+			$scope.programar				= false;
+			$scope.accRdy					= false;
+		}else{
+			$rootScope.errorDatos 			= "No se pudo guardar";
+			$scope.guardando 				= false;
+		}
+
+
+	}; //  -------------------------------------------------------------- GuardarPedido
+
+
+	//Case para saber donde guardar ----------------------------------------------
+	$scope.dondeGuardar=function (str) {
+		console.log(str);
+			switch (str) {
+				case 'FENIX_NAL':
+					services.insertPedidoReconfiguracion($scope.InfoGestion);
+					$scope.estadoGuardo=true;
+					break;
+				case 'FENIX_BOG':
+					$scope.estadoGuardo=true;
+					break;
+				case 'SIEBEL':
+					services.insertTransaccionNCA($scope.InfoGestion);
+					$scope.estadoGuardo=true;
+					break;
+				case 'EDATEL':
+					services.insertPedido($scope.InfoGestion);
+					$scope.estadoGuardo=true;
+					break;
+				default:
+					$scope.estadoGuardo=false;
+
+		}
+		return ($scope.estadoGuardo);
+	};// ----------------------------------------------Case para saber donde guardar
+
+	$scope.csvHistoricosReconfiguracion = function (){
+                //var login=$rootScope.logedUser.login;
+                services.getCsvHistoricosReconfiguracion(userID,$scope.data.fechaIni,$scope.data.fechaFin,$scope.data.campo, $scope.data.valorCampo).then(function(data){
+			//console.log(data.data[0]);
+                        window.location.href="tmp/"+data.data[0];
+                        return data.data;
+                });
+        };
+
+	// Modal para la Auditoria de Pedidos ---------------------------------------------
+    $scope.addNuevaNovedad = function (usuario) {
+        var newItemNo=$scope.auditorias.length+1;
+        $scope.auditorias.push({'id':+newItemNo,
+            USUARIO_ID:usuario,
+            FECHAESTUDIO:'',
+            ESTADO_PROCESO:'',
+            OBSERVACIONES_PROCESO:'',
+            OBSERVACIONES:''
+		});
+
+
+        console.log($scope.auditorias);
+        //console.log(usuario);
+        //$scope.crearnovedad();
+    };
+
+    $scope.removeNuevaNovedad = function() {
+        var lastItem = $scope.auditorias.length-1;
+        if(lastItem!=0){
+            $scope.auditorias.splice(lastItem);
+            //console.log($scope.novedades);
+        }
+
+    };
+	$scope.abrirModalAuditoria=function (pedido, usuario) {
+        $scope.infoFenix 		= 	[];
+        $scope.msgAuditoria		= 	null;
+        $scope.tituloModal		=	"Auditar Pedido:";
+        var opcionesAuditoria;
+
+        opcionesAuditoria = {
+            fuente: 'FENIX_NAL',
+            grupo: 'ASIGNACIONES',
+            actividad: 'AUDITORIA'
+        };
+
+        $scope.listarOpcionesAsginacion(opcionesAuditoria);
+
+        services.buscarPedidoAuditoriafenix(pedido).then(
+        	function (data) {
+				$scope.infoFenix	=	data.data[0];
+				$scope.regToPush	=	parseInt($scope.infoFenix.CANTIDADUSERS);
+
+            }, function errorCallback(response) {
+        		console.log(response);
+        		$scope.msgAuditoria=response.data;
+
+            }
+
+		);
+
+        //Generar Auditorias Multiples
+        $scope.auditorias=[{id:1,
+			USUARIO_ID:$scope.infoFenix.USUARIOS,
+            FECHAESTUDIO:$scope.infoFenix.FECHAS,
+            ESTADO_PROCESO:'',
+            OBSERVACIONES_PROCESO:'',
+            OBSERVACIONES:''}];
+
+    };
+
+	$scope.guardarAuditoria = function (audit, infofnx, infoped) {
+        $scope.fechaFinAuditoria 	= 	$rootScope.fechaProceso();
+		var usergestion, usernombre;
+        for (var i=0; i<audit.length; i++) {
+
+        	if(audit[i].USUARIO_ID_GESTION===undefined || audit[i].USUARIO_ID_GESTION===''){
+                usergestion='EXTERNO';
+                usernombre='EXTERNO'
+			}else{
+                 usergestion=audit[i].USUARIO_ID_GESTION.USUARIO_ID;
+                 usernombre=audit[i].USUARIO_ID_GESTION.USUARIO_NOMBRE;
+			}
+            $scope.datosFnx={
+                PEDIDO_ID: infofnx.PEDIDO_ID,
+				USUARIO_ID_GESTION:usergestion,
+                USUARIO_NOMBRE:usernombre,
+                TIPO_ELEMENTO_ID: infoped[0].TIPO_ELEMENTO_ID,
+                CONCEPTO_ACTUAL: infoped[0].CONCEPTO_ID,
+				CONCEPTO_FINAL: 'AUDITADO',
+                USUARIO_ID: userID,
+                FECHA_INICIO: $scope.fecha_inicio,
+                FECHA_FIN:$scope.fechaFinAuditoria
+            };
+            angular.extend(audit[i], $scope.datosFnx);
+            //console.log(keys[i], yourobject[keys[i]]);
+        }
+
+        //angular.extend(audit, $scope.datosFnx);
+		//console.log(audit);
+        services.insertTransaccionORD(audit).then(
+        	function (status) {
+        		//console.log(status);
+                notify({
+                    message: 'Pedido Auditado!',
+                    duration: '1000',
+                    position: 'right'
+                });
+
+        });
+    };
+
+    // --------------------------------------------- Modal para la Auditoria de Pedidos
+
+	$scope.doubleDigit = function (num) {
+
+		if (num < 0) {
+			num = 0;
+		}
+
+		if (num <= 9) {
+			return "0" + num;
+		}
+		return num;
+	};
+
+
+});
+// -----------------------------------------------Controlador para Gestion de Reconfiguracion Asignaciones
+
+
 app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
 	$scope.header = 'Buscador Nodos CMTS';
 	$scope.footer = 'Gerencia Alistamiento';
@@ -14814,6 +15563,8 @@ app.config(['$routeProvider',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
+
+
 		.when('/nca/', {
 			title: 'NCA',
 			templateUrl: 'partials/nca.html',
@@ -14968,6 +15719,14 @@ app.config(['$routeProvider',
 		})
 		//-------- ASIGNACIONES ------------------------------------------
 		//---------------------------------------------INICIO ACTIVACION------
+        .when('/actividades/', {
+			title: "Gestion Actividades",
+			templateUrl: 'partials/gestion_activacion.html',
+			controller: 'gestionActivacionCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
+		})
+
 		.when('/actividades/', {
 			title: 'Actividades',
 			templateUrl: 'partials/actividades.html',
