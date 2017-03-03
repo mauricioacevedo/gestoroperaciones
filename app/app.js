@@ -403,6 +403,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'csvActivacionSiebel?login=' + login);
 	};
 
+    obj.getCsvActivacionSiebeldom = function (login) { //exportar activacion siebel dom
+		return $http.get(serviceBase + 'csvActivacionSiebeldom?login=' + login);
+	};
+
 	obj.getCsvActivacionSiebelinvdom = function (login) { //exportar activacion invdom
 		return $http.get(serviceBase + 'csvActivacionSiebelinvdom?login=' + login);
 	};
@@ -10566,6 +10570,15 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                         return data.data;
                 });
         };
+
+     $scope.csvActivacionSiebeldom  = function (){
+                var login=$rootScope.logedUser.login;
+                services.getCsvActivacionSiebeldom(login).then(function(data){
+                        window.location.href="tmp/"+data.data[0];
+                        return data.data;
+                });
+        };
+
 
       $scope.csvActivacionSiebelinvdom  = function (){
                 var login=$rootScope.logedUser.login;
