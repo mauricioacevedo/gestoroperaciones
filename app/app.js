@@ -10535,6 +10535,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                         $scope.data.totalItems2=data.data[2];
                         $scope.data.totalItems3=data.data[3];
                         $scope.data.totalItems4=data.data[4];
+                        $scope.data.totalItems5=data.data[5];
                     //console.log($scope.data.totalItems2);
                     return data.data;
                });
