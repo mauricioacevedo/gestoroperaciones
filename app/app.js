@@ -14134,7 +14134,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 
 // Controlador para Gestion General de los procesos de Asignaciones -----------------------------------------------
-app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $location, $route, $routeParams, $cookies, $cookieStore, $timeout, notify, services) {
+app.controller('gestionActivacionCtrl', function ($scope, $rootScope, $location, $route, $routeParams, $cookies, $cookieStore, $timeout, notify, services) {
 
 	// Basura del logueo ---------------------------------
 		$rootScope.logedUser = $cookieStore.get('logedUser');
