@@ -14191,7 +14191,7 @@ app.controller('gestionActivacionCtrl', function ($scope, $rootScope, $location,
 	$scope.GenerarOpcionesGestion = function () {
 		var opciones= {
 			fuente: $scope.iconcepto.FUENTE,
-			grupo: $scope.iconcepto.GRUPO,
+			grupo: $scope.iconcepto.GRUPO1,
 			actividad: $scope.iconcepto.ACTIVIDAD
 		};
 
