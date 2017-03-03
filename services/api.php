@@ -849,7 +849,7 @@ class API extends REST {
                     " ,CODIGO_UNICO_DIRECCION,TAREA_EXCEPCION,FECHA_EXCEPCION ".
                     " ,TIPO_COMUNICACION,PRODUCTO,IDSERVICIORAIZ ".
                     " ,TRANSACCION,CODIGO_CIUDAD,NOMBRE_CIUDAD ".
-                    " ,DEPARTAMENTO,FECHA_CARGA ".
+                    " ,DEPARTAMENTO,FECHA_CARGA,STATUS ".
                     " from gestor_activacion_pendientes_activador_dom ";
 
 
