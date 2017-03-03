@@ -15723,7 +15723,7 @@ app.config(['$routeProvider',
 			title: "Gestion Actividades",
 			templateUrl: 'partials/gestion_activacion.html',
 			controller: 'gestionActivacionCtrl',
-            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+         grupos: ['ACTIVACION','SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
 
