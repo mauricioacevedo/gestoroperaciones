@@ -843,7 +843,7 @@ class API extends REST {
         $login = $this->_request['login'];
 
         $today = date("Y-m-d h:i:s");
-        $filename="Fenix_Activacion-$login-$today.csv";
+        $filename="Fenix_Activacion_dom-$login-$today.csv";
         $query=  " select ID,ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO ".
                     " ,FECHA_CREACION,CODIGO_ERROR,VALOR_ERROR,MOTIVO_ERROR ".
                     " ,CODIGO_UNICO_DIRECCION,TAREA_EXCEPCION,FECHA_EXCEPCION ".
