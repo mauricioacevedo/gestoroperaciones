@@ -827,7 +827,7 @@ class API extends REST {
 
 
 //-------------------------exportar pendientes activacion siebel dom--------------------------------activacion
-    private function csvActivacionSiebel(){
+    private function csvActivacionSiebeldom(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
