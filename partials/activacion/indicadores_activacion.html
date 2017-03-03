@@ -140,8 +140,19 @@
 
 							</td>
                                 </tr>
+                                  <tr>
+                                    <td>Pendientes Activador Suspecore Siebel</td>
+                                    <td>
+								<button class="btn btn-success btn-xs" ng-click="csvActivacionSiebel();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
+							</td>
+                                     <td>
+								 <span class="label label-success">{{data.totalItems2}}</span>
+
+
+							</td>
+                                </tr>
                                 <tr>
-                                    <td>Pendientes GTC Suspecore Siebel</td>
+                                    <td>Activacion Pendientes Activador Dom</td>
                                     <td>
 								<button class="btn btn-success btn-xs" ng-click="csvActivacionSiebelinvdom();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
 							</td>
