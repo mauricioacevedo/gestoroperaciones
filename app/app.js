@@ -14188,7 +14188,7 @@ app.controller('gestionActivacionCtrl', function ($scope, $rootScope, $location,
     $scope.idConceptos=['O-13', 'O-15', 'O-106'];
 
 	// Opciones para cargar las listas de Gestion, segun el grupo, fuente, actividad--------------------------
-	$scope.GenerarOpcionesGestion = function () {
+	$scope.GenerarOpcionesGestion1 = function () {
 		var opciones= {
 			fuente: $scope.iconcepto.FUENTE,
 			grupo: $scope.iconcepto.GRUPO1,
