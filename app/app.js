@@ -15719,7 +15719,7 @@ app.config(['$routeProvider',
 		})
 		//-------- ASIGNACIONES ------------------------------------------
 		//---------------------------------------------INICIO ACTIVACION------
-        .when('/gestionactividades', {
+        .when('/gestionactividades/', {
 			title: "Gestion Actividades",
 			templateUrl: 'partials/gestion_activacion.html',
 			controller: 'gestionActivacionCtrl',
