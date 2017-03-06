@@ -20,19 +20,6 @@
 					<div class="col-lg-12 col-xs-10">
 						<ul class="nav navbar-nav navbar-left">
 
-							<li>
-								<i class="fa fa-server  " aria-hidden="true"> </i>&nbsp;
-
-                                      <select
-                                    class= "btn btn-default btn-xs grupo-select"
-                                    style="width: 200px"
-                                    >
-                                    <option value="" disabled>ingrese transaccion</option>
-                                    <option ng-repeat="d in transaccionActivacion " value="{{d.TRANSACCION}}">{{d.TRANSACCION}}</option>
-                                </select>
-
-							</li>
-
 							<li> &nbsp; </li>
 							<li>
                                  <button id="ped" type="button" class="btn btn-xs btn-default"  ng-show="pedidoIsActive" ng-class="pedidoIsActive==false?'animated bounceOutRight':'animated fadeInUp'" ng-click="executeCopy(pedidoinfo)" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="<i class='fa fa-clipboard'></i> Copiar">{{pedidoinfo}}
@@ -133,7 +120,13 @@
                                                     style="width: 200px"
                                                     ng-model="tipificacion">
                                                     <option value="" disabled> ingrese tipificacion </option>
-                                                    <option ng-repeat="d in transaccionActivacion1 " value="{{d.TIPIFICACION}}">{{d.TIPIFICACION}}</option>
+                                                    class= "form-control" ng-model="service.TIPIFICACION" >
+                                                    <option value="CAMBIAR">CAMBIAR</option>
+                                                    <option value="DATOS">DATOS</option>
+                                                    <option value="SOLICITUD">SOLICITUD</option>
+                                                    <option value="NUEVO">NUEVO</option>
+
+
                                                 </select>
 
 											</div>
