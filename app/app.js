@@ -11190,15 +11190,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 
-		if($scope.ifuente.FUENTE=='SIEBEL'){
-			$scope.habilitaCr			= true;
-			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
-		}else if ($scope.ifuente.FUENTE=='EDATEL'){
-			$scope.habilitaCr			= true;
-			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
 
-		}else{
-			$scope.habilitaCr			= false;
 			var kami = services.// BuscarPedido ---------------------------------------------------------------
 
 	$scope.buscarPedido = function (buscar, pedidoinfo) {
