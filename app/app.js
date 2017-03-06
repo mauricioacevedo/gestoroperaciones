@@ -11164,137 +11164,76 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	// -------------------------------------------------------------- fin DemePedido activacion
 
-// BuscarPedido ---------------------------------------------------------------
-
-
-
-
-			var kami = services.// BuscarPedido ---------------------------------------------------------------
+// ------------------------------BuscarPedido ----------------------------------------
 
 	$scope.buscarPedido = function (buscar, pedidoinfo) {
 
-		$scope.pedido1 = '';
+		var pedido1 = '';
 		$scope.popup = '';
 		$rootScope.errorDatos = null;
 		$scope.InfoPedido = [];
-		$scope.fecha_inicio = null;
+		$scope.FECHA_CREACION = null;
 		$scope.accRdy = false;
 		$scope.InfoGestion = {};
-		$scope.peds={};
-		$scope.InfoPedido.INCIDENTE = 'NO';
-		$scope.InfoPedido.SOURCE = 'BUSCADO';
-		var iplaza="TODOS";
 		$scope.pedidoIsGuardado = false;
-		$scope.programar=false;
 		$scope.pedidoActual = pedidoinfo;
 		$scope.buscar = buscar;
-		$scope.pedidoIsActive=false;
-		$scope.habilitaCr = false;
-		//$scope.estadoGuardo=false;
+        $scope.peds={};
+        $scope.pedidoIsGuardado = false;
+        $scope.pedidoIsActive=false;
 
 
 
-
-
-
-
-			var kami = services.getBuscarpedidoactivacion(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login);
-
-
-
-			kami.then(
+		var kami = services.getBuscarpedidoactivacion(buscar, $scope.pedidoActual, $rootScope.logedUser.login).then(
 
 			function (data) {
 
-				$scope.peds = data.data;
-                   // console.log($scope.peds);
-                        var dat=data.status;
-                        if(dat==204){
-                                //document.getElementById("warning").innerHTML="No hay Registros";
-                                $rootScope.errorDatos="Sin Registros. Intente con otro concepto.";
-								$scope.pedidoIsActive = false;
 
-                        }else{
-							$scope.pedido1=$scope.peds[0].PEDIDO_ID;
-							if(($scope.peds[0].STATUS=="PENDI_PETEC" || $scope.peds[0].STATUS=="PENDI_RENUMS")&&$scope.peds[0].ASESOR!=""){
-                                        $scope.busy=$scope.peds[0].ASESOR;
-                                        $rootScope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
-                                }else{
+				if (data.data == '') {
 
-									$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
-									$scope.InfoPedido.FUENTE=$scope.peds[0].FUENTE;
-									$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
-									$scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
+					$rootScope.errorDatos = "No hay Registros de activacion.";
+					$scope.peds = {};
+					$scope.mpedido = {};
+					$scope.busy = "";
+					$scope.pedidoIsActive = false;
 
-									//console.log($scope.peds);
-									var opciones= {
-										fuente: $scope.peds[0].FUENTE,
-										grupo: $scope.peds[0].GRUPO,
-										actividad: $scope.peds[0].ACTIVIDAD
-									};
+				} else {
 
-									//$scope.baby($scope.pedido1);
-									$rootScope.errorDatos = null;
-									$scope.pedidoIsActive = true;
-									$scope.fecha_inicio = $rootScope.fechaProceso();
-									$scope.listarOpcionesAsginacion(opciones);
-								}
-                        }
-                        return data.data;
+					$scope.peds = data.data[1];
+					$scope.ocupado = data.data[0];
+					$scope.pedido1 = $scope.peds[0].PEDIDO;
+					$scope.pedidoinfo = $scope.peds[0].PEDIDO;
+
+					var dat = data.status;
+					//alert("'"+data.status+"'");
+					if (dat == 204) {
+						//document.getElementById("warning").innerHTML = "No hay Registros.";
+						$rootScope.errorDatos = "No hay Registros.";
+						$scope.peds = {};
+						$scope.mpedido = {};
+						$scope.busy = "";
+						$scope.pedidoIsActive = false;
+
+					} else {
+
+						if ($scope.ocupado == true) {
+							$scope.busy = $scope.peds[0].ASESOR;
+							$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.busy;
+							return;
+
+						}
+						$rootScope.errorDatos = null;
+						$scope.pedidoIsActive = true;
+
+
+						return data.data;
+					}
+				}
 			});
 
 
 	};
-
-	// --------------------------------------------------------------- BuscarPedido(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login);
-		}
-
-
-			kami.then(
-
-			function (data) {
-
-				$scope.peds = data.data;
-                   // console.log($scope.peds);
-                        var dat=data.status;
-                        if(dat==204){
-                                //document.getElementById("warning").innerHTML="No hay Registros";
-                                $rootScope.errorDatos="Sin Registros. Intente con otro concepto.";
-								$scope.pedidoIsActive = false;
-
-                        }else{
-							$scope.pedido1=$scope.peds[0].PEDIDO_ID;
-							if(($scope.peds[0].STATUS=="PENDI_PETEC" || $scope.peds[0].STATUS=="PENDI_RENUMS")&&$scope.peds[0].ASESOR!=""){
-                                        $scope.busy=$scope.peds[0].ASESOR;
-                                        $rootScope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
-                                }else{
-
-									$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
-									$scope.InfoPedido.FUENTE=$scope.peds[0].FUENTE;
-									$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
-									$scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
-
-									//console.log($scope.peds);
-									var opciones= {
-										fuente: $scope.peds[0].FUENTE,
-										grupo: $scope.peds[0].GRUPO,
-										actividad: $scope.peds[0].ACTIVIDAD
-									};
-
-									//$scope.baby($scope.pedido1);
-									$rootScope.errorDatos = null;
-									$scope.pedidoIsActive = true;
-									$scope.fecha_inicio = $rootScope.fechaProceso();
-									$scope.listarOpcionesAsginacion(opciones);
-								}
-                        }
-                        return data.data;
-			});
-
-
-	};
-
-	// --------------------------------------------------------------- BuscarPedido
+	// -----------------------------BuscarPedido--------------------------------------
 
 	//------------------------------ GuardarPedido ------------------------------
 
