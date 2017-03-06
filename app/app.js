@@ -11063,7 +11063,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.FECHA_GESTION = null;
 	$scope.FECHA_CREACION = null;
 	$scope.transaccion = 'TODO';
-	$scope.TIPIFICACION = 'CAMBIAR';
+	$scope.TIPIFICACION = '';
 
 
 
@@ -11256,7 +11256,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			ASESOR: $rootScope.logedUser.login,
 			FECHA_GESTION: $scope.peds[0].FECHA_GESTION,
 			STATUS: $scope.peds[0].STATUS,
-			TIPIFICACION: $scope.peds[0].TIPIFICACION
+			TIPIFICACION: $scope.peds[0].TIPIFICACION,
 		};
 
 		console.log($scope.InfoGestion);
