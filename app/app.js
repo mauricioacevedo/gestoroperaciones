@@ -11164,76 +11164,92 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	// -------------------------------------------------------------- fin DemePedido activacion
 
-// ------------------------------BuscarPedido ----------------------------------------
+// BuscarPedido ---------------------------------------------------------------
 
 	$scope.buscarPedido = function (buscar, pedidoinfo) {
 
-		var pedido1 = '';
+		$scope.pedido1 = '';
 		$scope.popup = '';
 		$rootScope.errorDatos = null;
 		$scope.InfoPedido = [];
-		$scope.FECHA_CREACION = null;
+		$scope.fecha_inicio = null;
 		$scope.accRdy = false;
 		$scope.InfoGestion = {};
+		$scope.peds={};
+		$scope.InfoPedido.INCIDENTE = 'NO';
+		$scope.InfoPedido.SOURCE = 'BUSCADO';
+		var iplaza="TODOS";
 		$scope.pedidoIsGuardado = false;
+		$scope.programar=false;
 		$scope.pedidoActual = pedidoinfo;
 		$scope.buscar = buscar;
-        $scope.peds={};
-        $scope.pedidoIsGuardado = false;
-        $scope.pedidoIsActive=false;
+		$scope.pedidoIsActive=false;
+		$scope.habilitaCr = false;
+		//$scope.estadoGuardo=false;
 
 
 
-		var kami = services.getBuscarpedidoactivacion(buscar, $scope.pedidoActual, $rootScope.logedUser.login).then(
+
+
+		if($scope.ifuente.FUENTE=='SIEBEL'){
+			$scope.habilitaCr			= true;
+			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
+		}else if ($scope.ifuente.FUENTE=='EDATEL'){
+			$scope.habilitaCr			= true;
+			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
+
+		}else{
+			$scope.habilitaCr			= false;
+			var kami = services.getBuscarpedidoactivacion(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login);
+		}
+
+
+			kami.then(
 
 			function (data) {
 
+				$scope.peds = data.data;
+                   // console.log($scope.peds);
+                        var dat=data.status;
+                        if(dat==204){
+                                //document.getElementById("warning").innerHTML="No hay Registros";
+                                $rootScope.errorDatos="Sin Registros. Intente con otro concepto.";
+								$scope.pedidoIsActive = false;
 
-				if (data.data == '') {
+                        }else{
+							$scope.pedido1=$scope.peds[0].PEDIDO_ID;
+							if(($scope.peds[0].STATUS=="PENDI_PETEC" || $scope.peds[0].STATUS=="PENDI_RENUMS")&&$scope.peds[0].ASESOR!=""){
+                                        $scope.busy=$scope.peds[0].ASESOR;
+                                        $rootScope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
+                                }else{
 
-					$rootScope.errorDatos = "No hay Registros de activacion.";
-					$scope.peds = {};
-					$scope.mpedido = {};
-					$scope.busy = "";
-					$scope.pedidoIsActive = false;
+									$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+									$scope.InfoPedido.FUENTE=$scope.peds[0].FUENTE;
+									$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
+									$scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
 
-				} else {
+									//console.log($scope.peds);
+									var opciones= {
+										fuente: $scope.peds[0].FUENTE,
+										grupo: $scope.peds[0].GRUPO,
+										actividad: $scope.peds[0].ACTIVIDAD
+									};
 
-					$scope.peds = data.data[1];
-					$scope.ocupado = data.data[0];
-					$scope.pedido1 = $scope.peds[0].PEDIDO;
-					$scope.pedidoinfo = $scope.peds[0].PEDIDO;
-
-					var dat = data.status;
-					//alert("'"+data.status+"'");
-					if (dat == 204) {
-						//document.getElementById("warning").innerHTML = "No hay Registros.";
-						$rootScope.errorDatos = "No hay Registros.";
-						$scope.peds = {};
-						$scope.mpedido = {};
-						$scope.busy = "";
-						$scope.pedidoIsActive = false;
-
-					} else {
-
-						if ($scope.ocupado == true) {
-							$scope.busy = $scope.peds[0].ASESOR;
-							$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.busy;
-							return;
-
-						}
-						$rootScope.errorDatos = null;
-						$scope.pedidoIsActive = true;
-
-
-						return data.data;
-					}
-				}
+									//$scope.baby($scope.pedido1);
+									$rootScope.errorDatos = null;
+									$scope.pedidoIsActive = true;
+									$scope.fecha_inicio = $rootScope.fechaProceso();
+									$scope.listarOpcionesAsginacion(opciones);
+								}
+                        }
+                        return data.data;
 			});
 
 
 	};
-	// -----------------------------BuscarPedido--------------------------------------
+
+	// --------------------------------------------------------------- BuscarPedido
+
 
 	//------------------------------ GuardarPedido ------------------------------
 
