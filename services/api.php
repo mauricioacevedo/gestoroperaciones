@@ -8288,7 +8288,7 @@ class API extends REST {
                 }
                 //2.traigo solo los pedidos mas viejos en la base de datos...
             } else {
-                $query1=" select distinct b.PEDIDO, b.FECHA_CREACION ,b.ID ".
+                $query1=" select  b.PEDIDO, b.FECHA_CREACION ,b.ID ".
                     " from gestor_activacion_pendientes_activador_suspecore b ".
                     " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
                     " and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id ";
