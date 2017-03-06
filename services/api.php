@@ -8253,7 +8253,7 @@ class API extends REST {
         }
         if($parametroBusqueda=='') $parametroBusqueda ='FECHA_CREACION';
 
-        $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
+        $query1=" select  b.PEDIDO,b.FECHA_EXCEPCION ".
             " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
             " from gestor_activacion_pendientes_activador_suspecore b ".
@@ -8288,7 +8288,7 @@ class API extends REST {
                 }
                 //2.traigo solo los pedidos mas viejos en la base de datos...
             } else {
-                $query1=" select  b.PEDIDO, b.FECHA_CREACION ,b.ID ".
+                $query1=" select distinct b.PEDIDO, b.FECHA_CREACION ,b.ID ".
                     " from gestor_activacion_pendientes_activador_suspecore b ".
                     " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
                     " and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id ";
