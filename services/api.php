@@ -8344,7 +8344,7 @@ class API extends REST {
             " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
             " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
             " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR ".
-
+            " ,group_concat(distinct b.PRODUCTO ) as PRODUCTOS ".
             " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
             " ,b.FECHA_EXCEPCION $FECHA_CREACION,'AUTO' as source ".
             " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
