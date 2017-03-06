@@ -14457,7 +14457,7 @@ app.controller('gestionActivacionCtrl', function ($scope, $rootScope, $location,
         demePedidoButton.setAttribute("disabled", "disabled");
         demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-        var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE).then(function (data) {
+        var kami = services.demePedidoActivacion($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE).then(function (data) {
 
             $scope.peds = data.data;
 
