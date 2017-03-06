@@ -11178,12 +11178,9 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.pedidoIsGuardado = false;
 		$scope.pedidoActual = pedidoinfo;
 		$scope.buscar = buscar;
-        $scope.error = "";
-		$scope.peds = {};
-		$scope.mpedido = {};
-		$scope.busy = "";
-		$scope.error = "";
-		$scope.pedidoinfo = 'Pedido';
+        $scope.peds={};
+        $scope.pedidoIsGuardado = false;
+        $scope.pedidoIsActive=false;
 
 
 
@@ -11210,7 +11207,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 					var dat = data.status;
 					//alert("'"+data.status+"'");
 					if (dat == 204) {
-						document.getElementById("warning").innerHTML = "No hay Registros.";
+						//document.getElementById("warning").innerHTML = "No hay Registros.";
 						$rootScope.errorDatos = "No hay Registros.";
 						$scope.peds = {};
 						$scope.mpedido = {};
