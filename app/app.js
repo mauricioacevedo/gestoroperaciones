@@ -11210,7 +11210,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
                         }else{
 							$scope.pedido1=$scope.peds[0].PEDIDO_ID;
-							if(($scope.peds[0].STATUS=="PENDI_PETEC" || $scope.peds[0].STATUS=="PENDI_RENUMS")&&$scope.peds[0].ASESOR!=""){
+							if(($scope.peds[0].STATUS=="PENDI_ACTI" || $scope.peds[0].STATUS=="PENDI_RENUMS")&&$scope.peds[0].ASESOR!=""){
                                         $scope.busy=$scope.peds[0].ASESOR;
                                         $rootScope.errorDatos="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
                                 }else{
@@ -11218,7 +11218,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 									$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 									$scope.InfoPedido.FUENTE=$scope.peds[0].FUENTE;
 									$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
-									$scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
 
 									//console.log($scope.peds);
 									var opciones= {
