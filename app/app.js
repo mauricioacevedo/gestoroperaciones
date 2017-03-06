@@ -11177,8 +11177,13 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.InfoGestion = {};
 		$scope.pedidoIsGuardado = false;
 		$scope.pedidoActual = pedidoinfo;
-
 		$scope.buscar = buscar;
+        $scope.error = "";
+		$scope.peds = {};
+		$scope.mpedido = {};
+		$scope.busy = "";
+		$scope.error = "";
+		$scope.pedidoinfo = 'Pedido';
 
 
 
