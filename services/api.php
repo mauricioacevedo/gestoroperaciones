@@ -8253,7 +8253,7 @@ class API extends REST {
         }
         if($parametroBusqueda=='') $parametroBusqueda ='FECHA_CREACION';
 
-        $query1=" select  b.PEDIDO,b.FECHA_EXCEPCION ".
+        $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
             " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
             " from gestor_activacion_pendientes_activador_suspecore b ".
@@ -8344,7 +8344,7 @@ class API extends REST {
             " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
             " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
             " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR ".
-            " ,group_concat(distinct b.PRODUCTO ) as PRODUCTOS ".
+
             " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
             " ,b.FECHA_EXCEPCION $FECHA_CREACION,'AUTO' as source ".
             " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
