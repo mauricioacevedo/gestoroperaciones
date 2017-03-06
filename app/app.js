@@ -11166,28 +11166,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 // BuscarPedido ---------------------------------------------------------------
 
-	$scope.buscarPedido = function (buscar, pedidoinfo) {
-
-		$scope.pedido1 = '';
-		$scope.popup = '';
-		$rootScope.errorDatos = null;
-		$scope.InfoPedido = [];
-		$scope.fecha_inicio = null;
-		$scope.accRdy = false;
-		$scope.InfoGestion = {};
-		$scope.peds={};
-		$scope.InfoPedido.INCIDENTE = 'NO';
-		$scope.InfoPedido.SOURCE = 'BUSCADO';
-		var iplaza="TODOS";
-		$scope.pedidoIsGuardado = false;
-		$scope.programar=false;
-		$scope.pedidoActual = pedidoinfo;
-		$scope.buscar = buscar;
-		$scope.pedidoIsActive=false;
-		//$scope.estadoGuardo=false;
-
-
-
 
 
 
