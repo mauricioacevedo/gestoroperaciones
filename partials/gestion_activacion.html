@@ -85,34 +85,26 @@
                                     <ul class="list-group" ng-repeat="service in peds  as gestion" >
                                         <div class="col-md-6">
 
-                                            <li class="list-group-item small" ><b>PEDIDO: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.PEDIDO_ID)">
-                                                {{service.PEDIDO_ID}}
-                                            </button> </li>
-                                            <li class="list-group-item small" ><b>SUBPEDIDO:</b> <span class="small">{{service.SUBPEDIDO_ID}}</span>  </li>
-                                            <li class="list-group-item small" ><b>AGENDA: </b><span ng-show="service.FECHA_CITA"  class="ng-binding label label-danger">{{service.FECHA_CITA}}</span></li>
-                                            <li class="list-group-item small" ><b>MUNICIPIO:</b> {{service.MUNICIPIO_ID}} </li>
-                                            <li class="list-group-item small" ><b>UEN:</b> {{service.UEN_CALCULADA}} </li>
-                                            <li class="list-group-item small" >
-                                                <b>DIRECCIÓN:</b> <span class="small">{{service.DIRECCION_SERVICIO}}</span>
-                                                <button type="button" class="btn btn-xs btn-default" title="Copiar"
-                                                        ng-click="executeCopy(service.DIRECCION_SERVICIO)" ><i class='fa fa-clipboard'></i> </button>
-                                            </li>
-                                            <li class="list-group-item small" ><b>PÁGINA:</b> <span class="small">{{service.PAGINA_SERVICIO}}</span>  </li>
-                                            <li class="list-group-item small" >
-                                                <button class="btn btn-info btn-sm" uib-popover="{{service.OBSERVACIONES || 'Sin Observaciones'}}" popover-title="Observaciones" popover-append-to-body="true" type="button" class="btn btn-default">OBSERVACIONES</button>
-                                            </li>
-                                        </div>
+                                          <li class="list-group-item small" ><b>PEDIDO: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.PEDIDO)">
+												{{service.PEDIDO}}
+											</button> </li>
+                                            <li class="list-group-item small" ><b>ORDER_SEQ_ID:</b> {{service.ORDER_SEQ_ID}}  </li>
+                                            <li class="list-group-item small" ><b>ESTADO:</b> {{service.ESTADO}}  </li>
+                                            <li class="list-group-item small" ><b>FECHA_CREACION:</b> {{service.FECHA_CREACION}}
+                                            <li class="list-group-item small" ><b>TAREA_EXCEPCION:</b> {{service.TAREA_EXCEPCION}}</li>
+                                             <li class="list-group-item small" ><b>EXCEPCIONES:</b> {{service.EXCEPCIONES}}</li>
 
-                                        <div class="col-md-6">
-                                            <li class="list-group-item small" ><b>TIPO TX:</b> {{service.DESC_TIPO_TRABAJO}} </li>
-                                            <li class="list-group-item small" ><b>PRODUCTO:</b> {{service.PRODUCTO}} </li>
-                                            <li class="list-group-item small" ><b>TECNOLOGIA:</b> {{service.TECNOLOGIA_ID}} </li>
-                                            <li class="list-group-item small" ><b>EJECUTIVO:</b> {{service.EJECUTIVO_ID}} </li>
-                                            <li class="list-group-item small" ><b>CELULAR:</b> <a ng-href="SIP:003{{service.CELULAR_AVISAR || service.TELEFONO_AVISAR}}" >{{service.CELULAR_AVISAR || service.TELEFONO_AVISAR}} <i class="fa fa-phone-square" aria-hidden="true"></i></a> </li>
-                                            <li class="list-group-item small" ><b>TELEFONO:</b> <a ng-href="SIP:0{{service.TELEFONO_AVISAR || service.CELULAR_AVISAR}}" >{{service.TELEFONO_AVISAR || service.CELULAR_AVISAR}} <i class="fa fa-phone-square" aria-hidden="true"></i></a> </li>
-                                            <li class="list-group-item small" ><b>FECHA ESTADO:</b> {{service.FECHA_ESTADO}} </li>
-                                            <li class="list-group-item small" ><b>TIEMPO EN COLA:</b> {{service.TIEMPO_COLA}} </li>
 
+										</div>
+
+										<div class="col-md-6">
+											<li class="list-group-item small" ><b>FECHA_EXCEPCION:</b> {{service.FECHA_EXCEPCION}} </li>
+                                            <li class="list-group-item small" ><b>PRODUCTOS:</b> {{service.PRODUCTOS}} </li>
+                                            <li class="list-group-item small" ><b>IDSERVICIORAIZ:</b> {{service.IDSERVICIORAIZ}} </li>
+                                            <li class="list-group-item small" ><b>TRANSACCION:</b> {{service.TRANSACCION}} </li>
+                                            <li class="list-group-item small" ><b>CODIGO_CIUDAD:</b> {{service.CODIGO_CIUDAD}}
+                                            </li>
+                                             <br><span ng-show="service.HISTORICO_TIPIFICACION" class="ng-binding label label-warning">[HISTORICO_TIPIFICACION]{{service.HISTORICO_TIPIFICACION}}</span>
 
 
                                         </div>
