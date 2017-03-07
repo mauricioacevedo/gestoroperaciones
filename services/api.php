@@ -4556,6 +4556,7 @@ class API extends REST {
             "SUM( CASE WHEN  TIPO_USUARIO='MANUAL' THEN NUEVO_HFC ELSE 0 END) AS MANUAL_NUEVO,  ".
             "SUM( CASE WHEN  TIPO_USUARIO='MANUAL' THEN CAMBIO_HFC ELSE 0 END) AS MANUAL_CAMBIO ".
             "FROM gestor_informes.kpi_seguimiento_automatico ".
+            " where year(FECHA)= YEAR(NOW()) ".
             "group by DATE_FORMAT(FECHA,'%M') order by DATE_FORMAT(FECHA,'%m') asc limit 12) B";
 
         $r = $this->mysqli03->query($query) or die($this->mysqli->error.__LINE__);
@@ -4621,6 +4622,7 @@ class API extends REST {
             "SUM( CASE WHEN  TIPO_USUARIO='MANUAL' THEN NUEVO_REDCO ELSE 0 END) AS MANUAL_NUEVO,  ".
             "SUM( CASE WHEN  TIPO_USUARIO='MANUAL' THEN CAMBIO_REDCO ELSE 0 END) AS MANUAL_CAMBIO ".
             "FROM gestor_informes.kpi_seguimiento_automatico ".
+            " where year(FECHA)= YEAR(NOW()) ".
             "group by DATE_FORMAT(FECHA,'%M') order by DATE_FORMAT(FECHA,'%m') asc limit 12) B";
 
         $r = $this->mysqli03->query($query) or die($this->mysqli->error.__LINE__);
