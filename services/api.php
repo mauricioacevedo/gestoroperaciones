@@ -4732,6 +4732,7 @@ class API extends REST {
             ",SUM(TOTAL_TIPO_USUARIO-HFC-GPON-OTRA-SIN) AS TOTAL ".
             ",SUM( CASE WHEN  TIPO_USUARIO='MANUAL' THEN REDCO ELSE 0 END) AS MANUAL ".
             " FROM gestor_informes.kpi_seguimiento_automatico ".
+            " where year(FECHA)= YEAR(NOW()) ".
             " group by DATE_FORMAT(FECHA,'%M') order by DATE_FORMAT(FECHA,'%m') asc limit 12) B ";
 
         $r = $this->mysqli03->query($query) or die($this->mysqli->error.__LINE__);
