@@ -4297,6 +4297,7 @@ class API extends REST {
             ",SUM( CASE WHEN  TIPO_USUARIO='AUTOMATICO' THEN HFC ELSE 0 END) AS AUTOMATICO ".
             ",SUM(TOTAL_TIPO_USUARIO-REDCO-GPON-OTRA-SIN) AS TOTAL ".
             " FROM gestor_informes.kpi_seguimiento_automatico ".
+            " where year(FECHA)= YEAR(NOW()) ".
             " group by FECHA order by fecha desc limit 10) B order by B.FECHA asc";
 
         //$query= " SELECT B.FECHA as label, B.TOTAL as value, B.AUTOMATICO FROM (SELECT FECHA ".
@@ -4680,6 +4681,7 @@ class API extends REST {
             ",SUM(TOTAL_TIPO_USUARIO-REDCO-GPON-OTRA-SIN) AS TOTAL ".
             ",SUM( CASE WHEN  TIPO_USUARIO='MANUAL' THEN HFC ELSE 0 END) AS MANUAL ".
             " FROM gestor_informes.kpi_seguimiento_automatico ".
+            " where year(FECHA)= YEAR(NOW()) ".
             " group by DATE_FORMAT(FECHA,'%M') order by DATE_FORMAT(FECHA,'%m') asc limit 12) B ";
 
         $r = $this->mysqli03->query($query) or die($this->mysqli->error.__LINE__);
@@ -4780,6 +4782,7 @@ class API extends REST {
             ",SUM(OTRA) AS OTRA ".
             ",SUM(SIN) AS SIN ".
             " FROM gestor_informes.kpi_seguimiento_automatico ".
+            " where year(FECHA)= YEAR(NOW()) ".
             " group by DATE_FORMAT(FECHA,'%M') order by DATE_FORMAT(FECHA,'%m') asc limit 12) B ";
         $r = $this->mysqli03->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -4856,6 +4859,7 @@ class API extends REST {
             ",avg(PROM_HORAS14) AS TIEMPO_PROMEDIO14 ".
             ",avg(PROM_HORAS99) AS TIEMPO_PROMEDIO99 ".
             " FROM gestor_informes.kpi_seguimiento_reconfigura ".
+            " where year(FECHA)= YEAR(NOW()) ".
             " group by DATE_FORMAT(FECHA,'%M') order by DATE_FORMAT(FECHA,'%m') asc limit 12) B ";
 
         $r = $this->mysqli03->query($query) or die($this->mysqli->error.__LINE__);
