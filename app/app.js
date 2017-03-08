@@ -9071,7 +9071,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 
         if ($scope.proceso == 'REPARACION' && $scope.peds[0].TIEMPO_TOTAL>= 10 && $scope.peds[0].TODAY_TRIES>=3 ) {
-			alert("el PEDIDO tiene dias en el sistema" + $scope.peds[0].TIEMPO_TOTAL + "0 intentos de contacto " + $scope.peds[0].TODAY_TRIES + "para continuar debe colocar la  novedad CIERRE POR ILOCALIZADO o AGENDAR.");
+			alert("el PEDIDO tiene en el sistema " + $scope.peds[0].TIEMPO_TOTAL + " dias 0 intentos de contacto " + $scope.peds[0].TODAY_TRIES + "para continuar debe colocar la  noveda CIERRE POR ILOCALIZADO o AGENDAR.");
 			//return;
 		}
 
