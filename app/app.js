@@ -9069,7 +9069,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 			}
 
-            if ($scope.proceso == 'REPARACION' && $scope.peds[0].TIEMPO_TOTAL>= 10 ) {
+            if ($scope.proceso == 'REPARACION' && $scope.peds[0].TIEMPO_TOTAL>= 10 && $scope.peds[0].TODAY_TRIES>=3 ) {
 			alert('debe cerrar el PEDIDO para continuar.');
 			//return;
 		}
@@ -9285,7 +9285,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			}
 		}
 
-        if ($scope.pedido.NOVEDAD != 'CIERRE POR ILOCALIZADO' ) {
+        if ($scope.pedido.NOVEDAD != 'CIERRE POR ILOCALIZADO' || $scope.pedido.NOVEDAD != 'AGENDADO' || $scope.pedido.NOVEDAD != 'AGENDADO_FUTURO' || | $scope.pedido.NOVEDAD != 'CONFIRMA SOLUCION' || || | $scope.pedido.NOVEDAD != 'YA ESTA AGENDADO' ) {
 			alert('debe colocar el pedido en la NOVEDAD CIERRE POR ILOCALIZADO para continuar.');
 			return;
 		}
