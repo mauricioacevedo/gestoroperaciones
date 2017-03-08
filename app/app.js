@@ -9070,7 +9070,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			}
 
             if ($scope.proceso == 'REPARACION' && $scope.peds[0].TIEMPO_TOTAL>= 10 && $scope.peds[0].TODAY_TRIES>=3 ) {
-			alert('debe cerrar el PEDIDO para continuar  con la novedad CIERRE POR ILOCALIZADO.');
+			alert("el PEDIDO tiene" +$scope.peds[0].TIEMPO_TOTAL+ "y" +$scope.peds[0].TODAY_TRIES+ "para continuar debe colocar la  novedad CIERRE POR ILOCALIZADO o AGENDAR.");
 			//return;
 		}
 			var demePedidoButton = document.getElementById("iniciar");
@@ -9285,8 +9285,8 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			}
 		}
 
-        if ($scope.proceso == 'REPARACION' &&  $scope.pedido.TIEMPO_TOTAL >= 10 && $scope.pedido.TIEMPO_TOTAL >= 3 && $scope.pedido.NOVEDAD != 'CIERRE POR ILOCALIZADO' ) {
-			alert('debe colocar el pedido en la NOVEDAD CIERRE POR ILOCALIZADO o AGENDAR para continuar.');
+        if ($scope.proceso == 'REPARACION' ||  $scope.pedido.TIEMPO_TOTAL >= 10 || $scope.pedido.TIEMPO_TOTAL >= 3 || $scope.pedido.NOVEDAD != 'CIERRE POR ILOCALIZADO') {
+			alert('debe colocar el pedido en la novedad CIERRE POR ILOCALIZADO o AGENDAR para continuar.');
 			return;
 		}
 
