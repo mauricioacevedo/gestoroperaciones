@@ -9278,12 +9278,12 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			}
 		}
 
-        if ($scope.proceso == 'REPARACION' || $scope.pedido.TIEMPO_TOTAL>= 10 || $scope.pedido.NOVEDAD != 'CIERRE POR ILOCALIZADO' ) {
+        if ($scope.proceso == 'REPARACION' || $scope.pedido.TIEMPO_TOTAL>= 10 || $scope.pedido.NOVEDAD == 'CIERRE POR ILOCALIZADO' ) {
 				console.log($scope.proceso)
                 console.log($scope.pedido.TIEMPO_TOTAL)
 
 
-            var regexp = /^([0-9]{2,20})$/;
+            var regexp = /^([a-z][a-z])$/;
             if (regexp.test($scope.pedido.NOVEDAD) == false || $scope.pedido.NOVEDAD == undefined) {
 				alert('debe cerrar el pedido para continuar');
 
