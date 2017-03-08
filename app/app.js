@@ -9280,6 +9280,8 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
         if ($scope.proceso == 'REPARACION' || $scope.pedido.TIEMPO_TOTAL>= 10) {
 				console.log($scope.proceso)
+                console.log($scope.pedido.TIEMPO_TOTAL)
+
             var regexp = /^([0-9]{2,20})$/;
             if (regexp.test($scope.pedido.NOVEDAD) == false || $scope.pedido.NOVEDAD == undefined) {
 				alert('debe cerrar el pedido para continuar');
