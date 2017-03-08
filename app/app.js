@@ -9278,6 +9278,16 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			}
 		}
 
+        if ($scope.proceso == 'REPARACION' && $scope.proceso.TIEMPO_TOTAL>= 10) {
+			$scope.error = 'Darle Prioridad a este pedido lleva mas de 10 dias en el sistema';
+			//alert('pedido especial');
+            if (regexp.test($scope.pedido.NOVEDAD) == false || $scope.pedido.NOVEDAD == undefined) {
+				alert('debe cerrar el pedido para continuar');
+
+				return;
+
+			}
+		}
 
 
 		$scope.timeInit = new Date().getTime();
