@@ -9278,7 +9278,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			}
 		}
 
-        if ($scope.pedido.proceso == 'REPARACION' || $scope.pedido.proceso.TIEMPO_TOTAL>= 10) {
+        if ($scope.pedido.proceso == 'REPARACION' || $scope.pedido.TIEMPO_TOTAL>= 10) {
 				console.log($scope.pedido.proceso)
             var regexp = /^([0-9]{2,20})$/;
             if (regexp.test($scope.pedido.NOVEDAD) == false || $scope.pedido.NOVEDAD == undefined) {
