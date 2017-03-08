@@ -9069,8 +9069,8 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 			}
 
-            if ($scope..proceso == 'REPARACION' && $scope.peds[0].TIEMPO_TOTAL>= 10 ) {
-                console.log ($scope.peds[0].proceso);
+            if ($scope.proceso == 'REPARACION' && $scope.peds[0].TIEMPO_TOTAL>= 10 ) {
+                console.log ($scope.proceso);
                 console.log ($scope.peds[0].TIEMPO_TOTAL);
 			alert('debe cerrar el PEDIDO para continuar.');
 			//return;
