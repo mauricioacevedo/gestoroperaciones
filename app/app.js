@@ -9278,7 +9278,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			}
 		}
 
-        if ($scope.proceso == 'REPARACION' || $scope.pedido.TIEMPO_TOTAL>= 10  ) {
+        if ($scope.pedido.proceso == 'REPARACION' || $scope.pedido.TIEMPO_TOTAL>= 10  ) {
 				console.log($scope.pedido.proceso)
                 console.log($scope.pedido.TIEMPO_TOTAL)
 
