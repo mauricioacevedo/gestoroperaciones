@@ -9278,7 +9278,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			}
 		}
 
-        if ($scope.proceso == 'REPARACION' || $scope.pedido.TIEMPO_TOTAL>= 10 || $scope.pedido.NOVEDAD == 'CIERRE POR ILOCALIZADO' ) {
+        if ($scope.proceso == 'REPARACION' || $scope.pedido.TIEMPO_TOTAL>= 10 || $scope.pedido.NOVEDAD != 'CIERRE POR ILOCALIZADO' ) {
 				console.log($scope.proceso)
                 console.log($scope.pedido.TIEMPO_TOTAL)
 
