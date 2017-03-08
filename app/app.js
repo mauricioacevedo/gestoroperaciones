@@ -9059,7 +9059,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.TODAY_TRIES = $scope.peds[0].TODAY_TRIES;
                 $scope.FECHA_CITA_REAGENDA = $scope.peds[0].FECHA_CITA_REAGENDA;
-                console.log ($scope.peds[0].proceso);
+                console.log ($scope.proceso);
                 console.log ($scope.peds[0].TIEMPO_TOTAL);
 
 				if ($scope.peds[0].STATUS == "PENDI_AGEN" && $scope.peds[0].ASESOR != "") {
