@@ -9070,6 +9070,11 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			}
 
 
+        if ($scope.proceso == 'REPARACION' && $scope.peds[0].TIEMPO_TOTAL>= 10 && $scope.peds[0].TODAY_TRIES>=3 ) {
+			alert("el PEDIDO tiene dias en el sistema" + $scope.peds[0].TIEMPO_TOTAL + "0 intentos de contacto " + $scope.peds[0].TODAY_TRIES + "para continuar debe colocar la  novedad CIERRE POR ILOCALIZADO o AGENDAR.");
+			//return;
+		}
+
 			var demePedidoButton = document.getElementById("iniciar");
 			demePedidoButton.removeAttribute("disabled");
 			demePedidoButton.className = "btn btn-sm btn-success";
@@ -9079,10 +9084,6 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 		});
 
-        if ($scope.proceso == 'REPARACION' && $scope.peds[0].TIEMPO_TOTAL>= 10 && $scope.peds[0].TODAY_TRIES>=3 ) {
-			alert("el PEDIDO tiene dias en el sistema" + $scope.peds[0].TIEMPO_TOTAL + "0 intentos de contacto " + $scope.peds[0].TODAY_TRIES + "para continuar debe colocar la  novedad CIERRE POR ILOCALIZADO o AGENDAR.");
-			//return;
-		}
 
 
 		$scope.timeInit = new Date().getTime();
