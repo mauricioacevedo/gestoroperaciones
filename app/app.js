@@ -9278,9 +9278,9 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			}
 		}
 
-        if ($scope.proceso == 'REPARACION' && $scope.proceso.TIEMPO_TOTAL>= 10) {
-			$scope.error = 'Darle Prioridad a este pedido lleva mas de 10 dias en el sistema';
-			//alert('pedido especial');
+        if ($scope.pedido.proceso == 'REPARACION' || $scope.pedido.proceso.TIEMPO_TOTAL>= 10) {
+				console.log($scope.pedido.proceso)
+            var regexp = /^([0-9]{2,20})$/;
             if (regexp.test($scope.pedido.NOVEDAD) == false || $scope.pedido.NOVEDAD == undefined) {
 				alert('debe cerrar el pedido para continuar');
 
