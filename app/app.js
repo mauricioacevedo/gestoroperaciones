@@ -9071,7 +9071,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 
         if ($scope.proceso == 'REPARACION' && $scope.peds[0].TIEMPO_TOTAL>= 10 && $scope.peds[0].TODAY_TRIES>=3 ) {
-			alert("el PEDIDO tiene en el sistema " + $scope.peds[0].TIEMPO_TOTAL + " dias o intentos de contacto " + $scope.peds[0].TODAY_TRIES + " para continuar debe colocar la  noveda CIERRE POR ILOCALIZADO o AGENDAR.");
+			alert("el PEDIDO tiene en el sistema " + $scope.peds[0].TIEMPO_TOTAL + " dias o intentos de contacto " + $scope.peds[0].TODAY_TRIES + " para continuar debe colocar la  noveda CIERRE POR ILOCALIZADO con SS o AGENDAR.");
 			//return;
 		}
 
@@ -9292,7 +9292,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
             if ($scope.pedido.NOVEDAD != 'CIERRE POR ILOCALIZADO' || $scope.pedido.NOVEDAD != 'CIERRE POR ILOCALIZADO'){
 
-            alert('debe colocar el pedido en la novedad CIERRE POR ILOCALIZADO o AGENDAR para continuar.');
+            alert('debe colocar el pedido en la novedad CIERRE POR ILOCALIZADO con SS o AGENDAR para continuar.');
 			return;
 		}
     }
