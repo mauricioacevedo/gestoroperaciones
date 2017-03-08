@@ -9289,6 +9289,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
             console.log($scope.pedido.TIEMPO_TOTAL)
             console.log($scope.pedido.TODAY_TRIES)
             console.log($scope.pedido.NOVEDAD)
+            console.log($scope.proceso)
 
 
 			alert('debe colocar el pedido en la novedad CIERRE POR ILOCALIZADO o AGENDAR para continuar.');
