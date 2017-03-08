@@ -9285,7 +9285,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			}
 		}
 
-        if ($scope.proceso == 'REPARACION' ||  $scope.pedido.TIEMPO_TOTAL >= 10 || $scope.pedido.TIEMPO_TOTAL >= 3 || $scope.pedido.NOVEDAD != 'CIERRE POR ILOCALIZADO' ) {
+        if ($scope.proceso == 'REPARACION' &&  $scope.pedido.TIEMPO_TOTAL >= 10 && $scope.pedido.TIEMPO_TOTAL >= 3 && $scope.pedido.NOVEDAD != 'CIERRE POR ILOCALIZADO' ) {
 			alert('debe colocar el pedido en la NOVEDAD CIERRE POR ILOCALIZADO o AGENDAR para continuar.');
 			return;
 		}
