@@ -9283,7 +9283,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
                 console.log($scope.pedido.TIEMPO_TOTAL)
 
 
-            var regexp = /^([a-z][a-z])$/;
+            var regexp = /^([A-Z]{A,Z})$/;
             if (regexp.test($scope.pedido.NOVEDAD) == false || $scope.pedido.NOVEDAD == undefined) {
 				alert('debe cerrar el pedido para continuar');
 
