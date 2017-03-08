@@ -9069,15 +9069,17 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 			}
 
+            if ($scope.proceso == 'REPARACION' && $scope.pedido.TIEMPO_TOTAL>= 10 ) {
+                console.log ($scope.proceso);
+			alert('debe cerrar el PEDIDO para continuar.');
+			return;
+		}
 			var demePedidoButton = document.getElementById("iniciar");
 			demePedidoButton.removeAttribute("disabled");
 			demePedidoButton.className = "btn btn-sm btn-success";
 			return data.data;
 
-             if ($scope.proceso == 'REPARACION' && $scope.pedido.TIEMPO_TOTAL>= 10 ) {
-			alert('debe cerrar el PEDIDO para continuar.');
-			return;
-		}
+
 		});
 
 
