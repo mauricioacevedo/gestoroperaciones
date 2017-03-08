@@ -9285,7 +9285,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			}
 		}
 
-        if ($scope.pedido.NOVEDAD != 'CIERRE POR ILOCALIZADO' || $scope.pedido.NOVEDAD != 'AGENDADO' || $scope.pedido.NOVEDAD != 'AGENDADO_FUTURO' || | $scope.pedido.NOVEDAD != 'CONFIRMA SOLUCION' || $scope.pedido.NOVEDAD != 'YA ESTA AGENDADO' ) {
+        if ($scope.pedido.NOVEDAD != 'CIERRE POR ILOCALIZADO' || $scope.pedido.NOVEDAD != 'AGENDADO' || $scope.pedido.NOVEDAD != 'AGENDADO_FUTURO' ||  $scope.pedido.NOVEDAD != 'CONFIRMA SOLUCION' || $scope.pedido.NOVEDAD != 'YA ESTA AGENDADO' ) {
 			alert('debe colocar el pedido en la NOVEDAD CIERRE POR ILOCALIZADO para continuar.');
 			return;
 		}
