@@ -9075,6 +9075,10 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			return data.data;
 		});
 
+         if ($scope.proceso == 'REPARACION' && $scope.pedido.TIEMPO_TOTAL>= 10 ) {
+			alert('debe cerrar el PEDIDO para continuar.');
+			return;
+		}
 
 		$scope.timeInit = new Date().getTime();
 		var date1 = new Date();
