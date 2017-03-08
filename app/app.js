@@ -9059,8 +9059,6 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.TODAY_TRIES = $scope.peds[0].TODAY_TRIES;
                 $scope.FECHA_CITA_REAGENDA = $scope.peds[0].FECHA_CITA_REAGENDA;
-                console.log ($scope.proceso);
-                console.log ($scope.peds[0].TIEMPO_TOTAL);
 
 				if ($scope.peds[0].STATUS == "PENDI_AGEN" && $scope.peds[0].ASESOR != "") {
 					$scope.busy = $scope.peds[0].ASESOR;
@@ -9071,11 +9069,11 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 			}
 
-            if ($scope.peds[0].proceso == 'REPARACION' && $scope.peds[0].TIEMPO_TOTAL>= 10 ) {
+            if ($scope..proceso == 'REPARACION' && $scope.peds[0].TIEMPO_TOTAL>= 10 ) {
                 console.log ($scope.peds[0].proceso);
                 console.log ($scope.peds[0].TIEMPO_TOTAL);
 			alert('debe cerrar el PEDIDO para continuar.');
-			return;
+			//return;
 		}
 			var demePedidoButton = document.getElementById("iniciar");
 			demePedidoButton.removeAttribute("disabled");
