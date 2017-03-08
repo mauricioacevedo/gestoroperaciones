@@ -9285,9 +9285,9 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			}
 		}
 
-        if ($scope.proceso == 'REPARACION' ||  $scope.pedido.TIEMPO_TOTAL >= 10 || $scope.pedido.TIEMPO_TOTAL >= 3 || $scope.pedido.NOVEDAD == 'CLIENTE NO AUTORIZA' || $scope.pedido.NOVEDAD == 'ERROR SIEBEL 8.1') {
+        if ($scope.proceso == 'REPARACION' ||  $scope.pedido.TIEMPO_TOTAL >= 10 || $scope.pedido.TIEMPO_TOTAL >= 3) {
 			alert('debe colocar el pedido en la novedad CIERRE POR ILOCALIZADO o AGENDAR para continuar.');
-			return;
+			//return;
 		}
 
 
