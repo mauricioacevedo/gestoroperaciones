@@ -13109,7 +13109,7 @@ class API extends REST {
         $transaccion = json_decode(file_get_contents("php://input"),true);
 
         $transaccion = $transaccion['transaccion'];
-        var_dump($transaccion);
+        //var_dump($transaccion);
         $column_names = array('FECHA_GESTION','PEDIDO_ID','TIPO_ELEMENTO_ID','USUARIO_ID_GESTION','USUARIO_NOMBRE','ANALISIS','CONCEPTO_ACTUAL','CONCEPTO_FINAL','OBSERVACIONES','USUARIO_ID','FECHA_INICIO','FECHA_FIN','PUNTAJE');
 
 
@@ -13136,7 +13136,7 @@ class API extends REST {
             }
             $today = date ("Y-m-d H:i:s");
             $query = "INSERT INTO  gestor_transacciones_oxxx (" . trim ($columns, ',') . ") VALUES(" . trim ($values, ',') . ")";
-            //echo $query;
+            echo $query;
             if (!empty($transaccion[$x])) {
                 //echo $query;
                 $r = $this->mysqli->query ($query) or die($this->mysqli->error . __LINE__);
