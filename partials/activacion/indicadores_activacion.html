@@ -132,13 +132,13 @@
 								<th >Editar</th>
 							  </tr>
 							  <tr>
-								<td >Instalaciones</td>
+								<td >Activacion</td>
 								<td ><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
 								<td >
 									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevo">
 										<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
-										<option value="FECHA_ESTADO">FECHA ESTADO</option>
-										<option value="FECHA_INGRESO">FECHA INGRESO</option>
+										<option value="FECHA_EXCEPCION">FECHA_EXCEPCION</option>
+										<option value="FECHA_CREACION">FECHA CREACION</option>
 									</select>
 									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="prioridadDemepedidoNuevo" style="width:100px;">
 									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
@@ -149,37 +149,33 @@
 								  </td>
 							  </tr>
 							  <tr>
-								<td >Reparaciones</td>
+								<td >transaccion</td>
 								<td ><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
 								<td >
-									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevoR">
-									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
-									<option value="FECHA_ESTADO">FECHA ESTADO</option>
-									<option value="FECHA_INGRESO">FECHA INGRESO</option>
-								</select>
 
 									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="prioridadDemepedidoNuevoR" style="width:100px;">
 									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
-											<option value="DESC">DESC</option>
-											<option value="ASC">ASC</option>
+											<option value="Eliminar">Eliminar</option>
+											<option value="Actualizar">Actualizar</option>
+                                            <option value="Nuevo">Nuevo</option>
+                                            <option value="TrasladoRetiro">TrasladoRetiro</option>
+                                            <option value="Suspender">Suspender</option>
+                                            <option value="Traslado">Traslado</option>
+                                            <option value="Reanudar">Reanudar</option>
+
 								</select>
                                 <button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_REPA',ordenamientoDemepedidoNuevoR);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
 								  </td>
 							  </tr>
 							 <tr>
-								<td >Edatel</td>
+								<td >Tablas</td>
 								<td ><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
 								<td >
-									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevoED">
-									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
-									<option value="FECHA_ESTADO">FECHA ESTADO</option>
-									<option value="FECHA_INGRESO">FECHA INGRESO</option>
-								</select>
 
 									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="prioridadDemepedidoNuevoED" style="width:100px;">
 									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
-											<option value="DESC">DESC</option>
-											<option value="ASC">ASC</option>
+											<option value="Suspecore Siebel">Suspecore Siebel</option>
+											<option value="Activador Dom">Activador Dom</option>
 								</select>
 								<button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_EDATEL',ordenamientoDemepedidoNuevoED);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
 								  </td>
