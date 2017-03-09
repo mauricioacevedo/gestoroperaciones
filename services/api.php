@@ -467,7 +467,7 @@ class API extends REST {
             while($row = $r->fetch_assoc()){
 
                 $row['OBSERVACION_FENIX']= trim(preg_replace('/\s+|', ' ',$row['OBSERVACION_FENIX']));
-               // $row['OBSERVACION_GESTOR'] = trim(preg_replace('/\s+|', ' ', $row['OBSERVACION_GESTOR']));
+                $row['OBSERVACION_GESTOR'] = trim(preg_replace('/\s+|', ' ', $row['OBSERVACION_GESTOR']));
                 //$row['NOVEDAD'] = trim(preg_replace('/\s+|,', ' ', $row['NOVEDAD']));
                 $row['CONCEPTOS'] =  str_replace(',', ' ', $row['CONCEPTOS']);
                 $row['ACTIVIDADES'] =  str_replace(',', ' ', $row['ACTIVIDADES']);
