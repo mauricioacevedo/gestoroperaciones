@@ -11334,10 +11334,11 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	//------------declaracion doubleDigit
 
     /* --------------------FUNCION PARA ACTUALIZAR LOS PARAMETROS DEL SISTEMA */
+	/* FUNCION PARA ACTUALIZAR LOS PARAMETROS DEL SISTEMA */
 	$scope.updateParametro = function (parametro, valor) {
 
 		services.updateParametro(parametro, valor, $rootScope.logedUser.login).then(function (data) {
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION" ) {
+			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO" || parametro == "FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_REPA" || parametro == "FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_EDATEL") {
 				$scope.ordenamientoDemepedido = valor;
 				var date1 = new Date();
 				var year = date1.getFullYear();
@@ -11353,9 +11354,9 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			return data.data;
 		});
 
-        if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION") {
+		if (parametro == "FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO") {
 			valor = $scope.prioridadDemepedidoNuevo;
-			parametro = 'PRIORIDAD_DEMEPEDIDO_ACTIVACION';
+			parametro = 'PRIORIDAD_DEMEPEDIDO_AGENDAMIENTO';
 			services.updateParametro(parametro, valor, $rootScope.logedUser.login).then(function (data) {
 				var date1 = new Date();
 				var year = date1.getFullYear();
@@ -11367,6 +11368,41 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 				$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
+			});
+		}
+
+		if (parametro == "FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_REPA") {
+			valor = $scope.prioridadDemepedidoNuevoR;
+			parametro = 'PRIORIDAD_DEMEPEDIDO_AGENDAMIENTO_REPA';
+			services.updateParametro(parametro, valor, $rootScope.logedUser.login).then(function (data) {
+				var date1 = new Date();
+				var year = date1.getFullYear();
+				var month = $scope.doubleDigit(date1.getMonth() + 1);
+				var day = $scope.doubleDigit(date1.getDate());
+				var hour = $scope.doubleDigit(date1.getHours());
+				var minute = $scope.doubleDigit(date1.getMinutes());
+				var seconds = $scope.doubleDigit(date1.getSeconds());
+
+				$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+				//console.log($scope.prioridadDemepedidoNuevoR);
+
+			});
+		}
+
+		if (parametro == "FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_EDATEL") {
+			valor = $scope.prioridadDemepedidoNuevoED;
+			parametro = 'PRIORIDAD_DEMEPEDIDO_AGENDAMIENTO_EDATEL';
+			services.updateParametro(parametro, valor, $rootScope.logedUser.login).then(function (data) {
+				var date1 = new Date();
+				var year = date1.getFullYear();
+				var month = $scope.doubleDigit(date1.getMonth() + 1);
+				var day = $scope.doubleDigit(date1.getDate());
+				var hour = $scope.doubleDigit(date1.getHours());
+				var minute = $scope.doubleDigit(date1.getMinutes());
+				var seconds = $scope.doubleDigit(date1.getSeconds());
+
+				$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+				//console.log($scope.prioridadDemepedidoNuevoED);
 			});
 		}
 
@@ -11384,22 +11420,58 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	};
 
 
-	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION').then(function (data) {
+	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO').then(function (data) {
 
-		$scope.ordenamientoDemepedidoA = data.data['VALOR'];
-		$scope.ordenamientoDemepedidoNuevoA = data.data['VALOR'];
-		$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
-		return data.data;
-	});
-    services.buscarParametro('PRIORIDAD_DEMEPEDIDO_ACTIVACION').then(function (data) {
-
-		$scope.prioridadDemepedidoNuevoA = data.data['VALOR'];
+		$scope.ordenamientoDemepedido = data.data['VALOR'];
+		$scope.ordenamientoDemepedidoNuevo = data.data['VALOR'];
 		$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
 		return data.data;
 	});
 
-/*---------------------- FUNCION PARA ACTUALIZAR LOS PARAMETROS DEL SISTEMA */
 
+	services.buscarParametro('PRIORIDAD_DEMEPEDIDO_AGENDAMIENTO').then(function (data) {
+
+		$scope.prioridadDemepedidoNuevo = data.data['VALOR'];
+		$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
+		return data.data;
+	});
+
+
+	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_REPA').then(function (data) {
+
+		$scope.ordenamientoDemepedidoR = data.data['VALOR'];
+		$scope.ordenamientoDemepedidoNuevoR = data.data['VALOR'];
+		$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
+		//console.log($scope.ordenamientoDemepedidoUpdate);
+		return data.data;
+	});
+
+
+	services.buscarParametro('PRIORIDAD_DEMEPEDIDO_AGENDAMIENTO_REPA').then(function (data) {
+
+		$scope.prioridadDemepedidoNuevoR = data.data['VALOR'];
+		$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
+		return data.data;
+	});
+
+	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_EDATEL').then(function (data) {
+
+		$scope.ordenamientoDemepedidoED = data.data['VALOR'];
+		$scope.ordenamientoDemepedidoNuevoED = data.data['VALOR'];
+		$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
+		//console.log($scope.ordenamientoDemepedidoUpdate);
+
+		return data.data;
+	});
+
+
+	services.buscarParametro('PRIORIDAD_DEMEPEDIDO_AGENDAMIENTO_EDATEL').then(function (data) {
+
+		$scope.prioridadDemepedidoNuevoED = data.data['VALOR'];
+		$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
+		//console.log($scope.prioridadDemepedidoNuevoED);
+		return data.data;
+	});
 
 });
 
