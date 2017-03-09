@@ -6077,6 +6077,7 @@ class API extends REST {
 
         $query= " Select ".
                 "     pm.PEDIDO_ID  ".
+                "    , pm.FECHA_CITA ".
                 "    , min(pm.FECHA_INGRESO) as FECHA_INGRESO ".
                 "    , max(pm.FECHA_ESTADO) as FECHA_ESTADO ".
                 "    , group_concat(distinct pm.CONCEPTO_ID) as CONCEPTO_ID ".
@@ -6102,7 +6103,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','CONCEPTO_ID', 'FUENTE','STATUS','MOTIVO_MALO','USUARIO','FECHAMALO'));
+            fputcsv($fp, array('PEDIDO_ID','FECHA_CITA','FECHA_INGRESO','FECHA_ESTADO','CONCEPTO_ID', 'FUENTE','STATUS','MOTIVO_MALO','USUARIO','FECHAMALO'));
             while($row = $r->fetch_assoc()){
                 $result[] = $row;
                 fputcsv($fp, $row);
