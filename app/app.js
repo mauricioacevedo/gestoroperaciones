@@ -14509,7 +14509,7 @@ app.directive('toggle', function () {
 			}
 		}
 	};
-})
+});
 
 app.directive("infobox", function () {
 	return {
