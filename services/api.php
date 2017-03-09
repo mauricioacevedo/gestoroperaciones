@@ -13089,9 +13089,55 @@ class API extends REST {
         $this->response('',204);        // If no records "No Content" status
 
     }
-
 //Funcion para insertar Transacciones de OXXX
     private function insertTransaccionORD(){
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+
+        $transaccion = json_decode(file_get_contents("php://input"),true);
+
+        $transaccion = $transaccion['transaccion'];
+        $column_names = array('FECHA_GESTION','PEDIDO_ID','TIPO_ELEMENTO_ID','USUARIO_ID_GESTION','USUARIO_NOMBRE','ANALISIS','CONCEPTO_ACTUAL','CONCEPTO_FINAL','OBSERVACIONES','USUARIO_ID','FECHA_INICIO','FECHA_FIN','PUNTAJE');
+        $keys = array_keys($transaccion);
+        $columns = '';
+        $values = '';
+
+        $useri=$transaccion['USUARIO_ID'];
+        $username=$transaccion['USERNAME'];
+
+        $oferta=$transaccion['PEDIDO_ID'];
+        $estado_final=$transaccion['CONCEPTO_FINAL'];
+        //echo var_dump($transaccion);
+        //echo var_dump($keys);
+        foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
+            if(!in_array($desired_key, $keys)) {
+                $$desired_key = '';
+            }else{
+                $$desired_key = $transaccion[$desired_key];
+            }
+            $columns = $columns.$desired_key.',';
+            $values = $values."'".$transaccion[$desired_key]."',";
+        }
+        $today = date("Y-m-d H:i:s");
+        $query = "INSERT INTO  gestor_transacciones_oxxx (".trim($columns,',').") VALUES(".trim($values,',').")";
+        //echo $query;
+        if(!empty($transaccion)){
+            //echo $query;
+            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+            $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$useri','$username','AUDITO PEDIDO','$estado_final','$oferta','ORD') ";
+            $rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+            $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
+
+        }else{
+            $this->response('',200);        //"No Content" status
+            //$this->response("$query",200);        //"No Content" status
+        }
+
+    }
+//Funcion para insertar Transacciones de OXXX
+    private function insertTransaccionORDNuevo(){
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
@@ -13109,7 +13155,7 @@ class API extends REST {
         $transaccion = json_decode(file_get_contents("php://input"),true);
 
         $transaccion = $transaccion['transaccion'];
-        //var_dump($transaccion);
+        var_dump($transaccion);
         $column_names = array('FECHA_GESTION','PEDIDO_ID','TIPO_ELEMENTO_ID','USUARIO_ID_GESTION','USUARIO_NOMBRE','ANALISIS','CONCEPTO_ACTUAL','CONCEPTO_FINAL','OBSERVACIONES','USUARIO_ID','FECHA_INICIO','FECHA_FIN','PUNTAJE');
 
 
