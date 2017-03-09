@@ -11094,7 +11094,7 @@ $scope.set_color_Cuartil = function (value) {
 		//$scope.ordenamientoDemepedidoNuevo=data.data['VALOR'];
 		$scope.ordenamientoDemepedidoUpdateactivacion = data.data['ULTIMA_ACTUALIZACION'];
 		$scope.UsuarioParametroactivacion = data.data['USUARIO_ID'];
-        console.log($scope.ordenamientoDemepedidoactivacion);
+
 		return data.data;
 	});
 
