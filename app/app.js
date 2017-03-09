@@ -11333,6 +11333,60 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	//------------declaracion doubleDigit
 
+    /* --------------------FUNCION PARA ACTUALIZAR LOS PARAMETROS DEL SISTEMA */
+	$scope.updateParametro = function (parametro, valor) {
+
+		services.updateParametro(parametro, valor, $rootScope.logedUser.login).then(function (data) {
+			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION" ) {
+				$scope.ordenamientoDemepedido = valor;
+				var date1 = new Date();
+				var year = date1.getFullYear();
+				var month = $scope.doubleDigit(date1.getMonth() + 1);
+				var day = $scope.doubleDigit(date1.getDate());
+				var hour = $scope.doubleDigit(date1.getHours());
+				var minute = $scope.doubleDigit(date1.getMinutes());
+				var seconds = $scope.doubleDigit(date1.getSeconds());
+
+				$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+				console.log($scope.ordenamientoDemepedido);
+			}
+			return data.data;
+		});
+
+
+
+
+	};
+
+
+	$scope.buscarParametro = function (parametro) {
+
+		services.buscarParametro(parametro).then(function (data) {
+			return data.data;
+		});
+
+	};
+
+
+	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION').then(function (data) {
+
+		$scope.ordenamientoDemepedido = data.data['VALOR'];
+		$scope.ordenamientoDemepedidoNuevo = data.data['VALOR'];
+		$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
+		return data.data;
+	});
+
+
+	services.buscarParametro('PRIORIDAD_DEMEPEDIDO_ACTIVACION').then(function (data) {
+
+		$scope.prioridadDemepedidoNuevo = data.data['VALOR'];
+		$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
+		return data.data;
+	});
+
+/*---------------------- FUNCION PARA ACTUALIZAR LOS PARAMETROS DEL SISTEMA */
+
+
 });
 
 
