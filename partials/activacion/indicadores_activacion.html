@@ -100,110 +100,90 @@
 		<div class="row">
 
             <!--filtro -->
-        		<div class="col-md-12">
-			<div class = "panel panel-default">
-				<div class = "panel-heading nav navbar-default">
+        		        <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading nav navbar-default">
+                            <ul class="nav navbar-nav navbar-left">
+                                <b>Parámetro de Entrega DemePedido</b>
+                                <span style="color:red" class="pull-right" ng-hide="errorDatos==null">
+                                    <i class="fa fa-exclamation-triangle warning" aria-hidden="true" ></i> {{errorDatos}}</span>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <div class="col-md-1 col-xs-1 ">
+                                        <div data-ng-if="loading">
+                                            <img title="Esperando respuesta" data-toggle="tooltip" data-placement="top"
+                                                 src="img/loader.gif"/>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table small table-bordered table-condensed">
+                                <tr>
+                                    <th>Grupo</th>
+                                    <th>Última Edición</th>
+                                    <th>Usuario</th>
+                                    <th>Editar</th>
+                                </tr>
+                                <tr>
+                                    <td>Asignaciones</td>
+                                    <td><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
+                                    <td>{{UsuarioParametro}}</td>
+                                    <td>
+                                        <select class="btn btn-default btn-xs grupo-select" id="sel1"
+                                                ng-model="ordenamientoDemepedidoNuevo" style="width:auto;">
+                                            <option value="FECHA_CITA">FECHA CITA</option>
+                                            <option value="FECHA_ESTADO">FECHA ESTADO</option>
+                                            <option value="FECHA_INGRESO">FECHA INGRESO</option>
+                                            <option value="NUEVOS_PRIMERO">NUEVOS PRIMERO</option>
 
-					<ul class="nav navbar-nav navbar-left">
-						<b>Parámetro de Entrega DemePedido</b>
-						<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
-
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<div class="col-md-1 col-xs-1 ">
-						            <div data-ng-if="loading">
-										<img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="img/loader.gif" />
-						            </div>
-						    </div>
-						</li>
-						<li>
-
-						</li>
-					</ul>
-
-				</div>
-				<div class="panel-body" >
-
-					 <table class="table small table-bordered table-condensed">
-							  <tr>
-								<th >Grupo</th>
-								<th >Ultima Edicion</th>
-								<th >Editar</th>
-							  </tr>
-							  <tr>
-								<td >Instalaciones</td>
-								<td ><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
-								<td >
-									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevo">
-										<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
-										<option value="FECHA_ESTADO">FECHA ESTADO</option>
-										<option value="FECHA_INGRESO">FECHA INGRESO</option>
-									</select>
-									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="prioridadDemepedidoNuevo" style="width:100px;">
-									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
-											<option value="DESC">DESC</option>
-											<option value="ASC">ASC</option>
-									</select>
-									<button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO',ordenamientoDemepedidoNuevo);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-								  </td>
-							  </tr>
-							  <tr>
-								<td >Reparaciones</td>
-								<td ><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
-								<td >
-									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevoR">
-									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
-									<option value="FECHA_ESTADO">FECHA ESTADO</option>
-									<option value="FECHA_INGRESO">FECHA INGRESO</option>
-								</select>
-
-									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="prioridadDemepedidoNuevoR" style="width:100px;">
-									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
-											<option value="DESC">DESC</option>
-											<option value="ASC">ASC</option>
-								</select>
-                                <button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_REPA',ordenamientoDemepedidoNuevoR);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-								  </td>
-							  </tr>
-							 <tr>
-								<td >Edatel</td>
-								<td ><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
-								<td >
-									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevoED">
-									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
-									<option value="FECHA_ESTADO">FECHA ESTADO</option>
-									<option value="FECHA_INGRESO">FECHA INGRESO</option>
-								</select>
-
-									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="prioridadDemepedidoNuevoED" style="width:100px;">
-									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
-											<option value="DESC">DESC</option>
-											<option value="ASC">ASC</option>
-								</select>
-								<button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_EDATEL',ordenamientoDemepedidoNuevoED);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-								  </td>
-							  </tr>
-						</table>
-
-				</div>
-				<div class="panel-footer clearfix" >
-
-					<div class="col-md-8">
-
-						<ul class="nav navbar-nav navbar-left">
-
-
-						</ul>
-
-					</div>
-
-
-				</div>
-
-
-			</div>
-		</div>
+                                        </select>
+                                        <button class="btn btn-success btn-xs"
+                                                ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO',ordenamientoDemepedidoNuevo);">
+                                            <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                                        <button type="button" class="btn btn-default btn-circle-xs"
+                                                ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO')" title="Actualizar"
+                                                data-toggle="tooltip" data-placement="left" ng-disabled="loading">
+                                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Reconfiguración</td>
+                                    <td><font color='blue'>{{ordenamientoDemepedidoUpdateReconfiguracion}}</font></td>
+                                    <td>{{UsuarioParametroReconfiguracion}}</td>
+                                    <td>
+                                        <select class="btn btn-default btn-xs grupo-select" id="demerec"
+                                                ng-model="ordenamientoDemepedidoReconfiguracion" style="width:auto;">
+                                            <option value="FECHA_CITA">FECHA CITA</option>
+                                            <option value="FECHA_ESTADO">FECHA ESTADO</option>
+                                            <option value="FECHA_INGRESO">FECHA INGRESO</option>
+                                        </select>
+                                        <button class="btn btn-success btn-xs"
+                                                ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION',ordenamientoDemepedidoReconfiguracion);">
+                                            <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                                        <button type="button" class="btn btn-default btn-circle-xs"
+                                                ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION')"
+                                                title="Actualizar" data-toggle="tooltip" data-placement="left"
+                                                ng-disabled="loading">
+                                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="panel-footer clearfix">
+                            <div class="col-md-8">
+                                <ul class="nav navbar-nav navbar-left">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
         <!--filtro -->
 		<div class="col-md-12">
