@@ -93,8 +93,37 @@
 			</div>
 
 			</div>
-            <!--filtros -->
-            <div class="panel-body" >
+
+	</div><!--Colmd3 -->
+
+		<div class="col-md-6"><!--Colmd6 -->
+		<div class="row">
+
+            <!--filtro -->
+        <div class="col-md-12">
+			<div class = "panel panel-default">
+				<div class = "panel-heading nav navbar-default">
+
+					<ul class="nav navbar-nav navbar-left">
+						<b>Parámetro de Entrega DemePedido</b>
+						<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<div class="col-md-1 col-xs-1 ">
+						            <div data-ng-if="loading">
+										<img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="img/loader.gif" />
+						            </div>
+						    </div>
+						</li>
+						<li>
+
+						</li>
+					</ul>
+
+				</div>
+				<div class="panel-body" >
 
 					 <table class="table small table-bordered table-condensed">
 							  <tr>
@@ -158,12 +187,25 @@
 						</table>
 
 				</div>
+				<div class="panel-footer clearfix" >
 
-        <!--filtros -->
-	</div><!--Colmd3 -->
+					<div class="col-md-8">
 
-		<div class="col-md-6"><!--Colmd6 -->
-		<div class="row">
+						<ul class="nav navbar-nav navbar-left">
+
+
+						</ul>
+
+					</div>
+
+
+				</div>
+
+
+			</div>
+		</div>
+
+        <!--filtro -->
 		<div class="col-md-12">
 			<div class = "panel panel-default">
 				<div class = "panel-heading nav navbar-default">
