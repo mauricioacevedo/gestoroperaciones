@@ -11049,8 +11049,8 @@ $scope.set_color_Cuartil = function (value) {
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
 				$scope.ordenamientoDemepedido = valor;
 			}
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION") {
-				$scope.ordenamientoDemepedidoReconfiguracion = valor;
+			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION") {
+				$scope.ordenamientoDemepedidoActivacion = valor;
 			}
 			$scope.buscarParametro(parametro);
 			return data.data;
@@ -11067,10 +11067,10 @@ $scope.set_color_Cuartil = function (value) {
 				$scope.ordenamientoDemepedido = data.data['VALOR'];
 				$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
 			}
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION") {
-				$scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
-				$scope.ordenamientoDemepedidoReconfiguracion = data.data['VALOR'];
-				$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
+			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION") {
+				$scope.UsuarioParametroactivacion = data.data['USUARIO_ID'];
+				$scope.ordenamientoDemepedidoactivacion = data.data['VALOR'];
+				$scope.ordenamientoDemepedidoUpdateactivacion = data.data['ULTIMA_ACTUALIZACION'];
 			}
 			return data.data;
 		});
@@ -11088,12 +11088,12 @@ $scope.set_color_Cuartil = function (value) {
 	});
 
 
-	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION').then(function (data) {
+	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION').then(function (data) {
 
-		$scope.ordenamientoDemepedidoReconfiguracion = data.data['VALOR'];
+		$scope.ordenamientoDemepedidoactivacion = data.data['VALOR'];
 		//$scope.ordenamientoDemepedidoNuevo=data.data['VALOR'];
-		$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
-		$scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
+		$scope.ordenamientoDemepedidoUpdateactivacion = data.data['ULTIMA_ACTUALIZACION'];
+		$scope.UsuarioParametroactivacion = data.data['USUARIO_ID'];
 		return data.data;
 	});
 

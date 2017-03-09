@@ -154,20 +154,20 @@
                                 </tr>
                                 <tr>
                                     <td>Reconfiguración</td>
-                                    <td><font color='blue'>{{ordenamientoDemepedidoUpdateReconfiguracion}}</font></td>
-                                    <td>{{UsuarioParametroReconfiguracion}}</td>
+                                    <td><font color='blue'>{{ordenamientoDemepedidoUpdateactivacion}}</font></td>
+                                    <td>{{UsuarioParametroactivacion}}</td>
                                     <td>
                                         <select class="btn btn-default btn-xs grupo-select" id="demerec"
-                                                ng-model="ordenamientoDemepedidoReconfiguracion" style="width:auto;">
-                                            <option value="FECHA_CITA">FECHA CITA</option>
-                                            <option value="FECHA_ESTADO">FECHA ESTADO</option>
-                                            <option value="FECHA_INGRESO">FECHA INGRESO</option>
+                                                ng-model="ordenamientoDemepedidoactivacion" style="width:auto;">
+                                            <option value="FECHA_EXCEPCION">FECHA EXCEPCION</option>
+                                            <option value="FECHA_CREACION">FECHA CREACION</option>
+                                            <option value="FECHA_CARGA">FECHA CARGA</option>
                                         </select>
                                         <button class="btn btn-success btn-xs"
-                                                ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION',ordenamientoDemepedidoReconfiguracion);">
+                                                ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION',ordenamientoDemepedidoReconfiguracion);">
                                             <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                                         <button type="button" class="btn btn-default btn-circle-xs"
-                                                ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION')"
+                                                ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION')"
                                                 title="Actualizar" data-toggle="tooltip" data-placement="left"
                                                 ng-disabled="loading">
                                             <i class="fa fa-refresh" aria-hidden="true"></i>
