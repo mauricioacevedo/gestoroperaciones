@@ -11370,8 +11370,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION').then(function (data) {
 
-		$scope.ordenamientoDemepedido = data.data['VALOR'];
-		$scope.ordenamientoDemepedidoNuevo = data.data['VALOR'];
+		$scope.ordenamientoDemepedidoA = data.data['VALOR'];
+		$scope.ordenamientoDemepedidoNuevoA = data.data['VALOR'];
 		$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
 		return data.data;
 	});
