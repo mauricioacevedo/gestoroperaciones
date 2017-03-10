@@ -11378,6 +11378,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             DURACION: $scope.duracion,
 			STATUS: $scope.peds[0].STATUS,
 			TIPIFICACION: $scope.tipificacion,
+            TIPIFICACION: $scope.observacion,
 		};
 
         console.log($scope.InfoGestion);

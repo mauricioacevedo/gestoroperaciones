@@ -125,9 +125,19 @@
                                                     <option value="CONTINUAR">CONTINUAR</option>
                                                     <option value="FINALIZADA">FINALIZADA</option>
                                                     <option value="NUMERO CR">NUMERO CR</option>
-
-
                                                 </select>
+
+                                                <div class="form-group small" ng-show="InfoPedido.ESTADO_PROCESO" ng-class="{ 'has-error' : seguimiento_form.accion.$pristine && seguimiento_form.accion.$invalid}">
+												<label for="obs">Observación Gestión:</label>
+												<select
+													class= "form-control btn-xs"
+													name="obs"
+													ng-model="service.OBSERVACION"
+													ng-change="onChangeAccion()" required>
+
+													</option>
+												</select>
+											</div>
 
 											</div>
 
