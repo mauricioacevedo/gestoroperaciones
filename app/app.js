@@ -11356,6 +11356,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			ASESOR: $rootScope.logedUser.login,
 			FECHA_GESTION: $scope.peds[0].FECHA_GESTION,
             FECHA_INICIO: $scope.fecha_inicio,
+            FECHA_FIN: $scope.fecha_fin,
 			STATUS: $scope.peds[0].STATUS,
 			TIPIFICACION: $scope.tipificacion,
 		};
