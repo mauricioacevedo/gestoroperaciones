@@ -11339,6 +11339,18 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	$scope.guardar = function (InfoPedido, gestion, status) {
 
+          $scope.timeInit = new Date().getTime();
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+		$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+        console.log($scope.fecha_fin);
+
 		$scope.InfoGestion = {
 			//ID:gestion.ID,
 			ORDER_SEQ_ID: $scope.peds[0].ORDER_SEQ_ID,
@@ -11369,17 +11381,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			return;
 		}
 
-         $scope.timeInit = new Date().getTime();
-		var date1 = new Date();
-		var year = date1.getFullYear();
-		var month = $scope.doubleDigit(date1.getMonth() + 1);
-		var day = $scope.doubleDigit(date1.getDate());
-		var hour = $scope.doubleDigit(date1.getHours());
-		var minute = $scope.doubleDigit(date1.getMinutes());
-		var seconds = $scope.doubleDigit(date1.getSeconds());
 
-		$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-        console.log($scope.fecha_fin);
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
 
