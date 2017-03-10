@@ -11360,7 +11360,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		}
 
         $scope.duracion = new Date().getTime() - $scope.timeInit;
-        $scope.peds[0].fecha_inicio = $scope.fecha_inicio;
+        $scope.peds[0].FECHA_INICIO = $scope.FECHA_INICIO;
 
 
         $scope.timeInit = new Date().getTime();
@@ -11375,8 +11375,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			var minute = $scope.doubleDigit(date1.getMinutes());
 			var seconds = $scope.doubleDigit(date1.getSeconds());
 
-            $scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-			$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+            $scope.FECHA_INICIO = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+			$scope.FECHA_FIN = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
 
 
