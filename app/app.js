@@ -11357,17 +11357,24 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			FECHA_GESTION: $scope.peds[0].FECHA_GESTION,
             FECHA_INICIO: $scope.fecha_inicio,
 			STATUS: $scope.peds[0].STATUS,
-            DURACION: null,
+            duracion: timeDiff,
 			TIPIFICACION: $scope.tipificacion,
 		};
 
         console.log($scope.InfoGestion);
+
+        $scope.duracion = new Date().getTime() - $scope.timeInit;
+
+			$scope.timeInit = new Date().getTime();
+			var df = new Date($scope.duracion);
+			$scope.duracion = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
 
 
         if ($scope.tipificacion === undefined) {
 			alert('Por favor diligenciar la ACCION.');
 			return;
 		}
+
 
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
