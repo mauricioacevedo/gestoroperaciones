@@ -2640,6 +2640,7 @@ class API extends REST {
         $id = $this->_request['userID'];
         $today = date("Y-m-d");
         $query=" SELECT ID,PEDIDO,ESTADO,TIPIFICACION,FECHA_GESTION,TRANSACCION,ASESOR ".
+            ", my_sec_to_time(timestampdiff(second, fecha_inicio, fecha_fin)) as duracion ".
             " from gestor_historico_activacion ".
             " where ASESOR='$id' ".
             " and FECHA_GESTION between '$today 00:00:00' and '$today 23:59:59' ";
