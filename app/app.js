@@ -11357,19 +11357,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			return;
 		}
 
-        var date1 = new Date();
-		var year = date1.getFullYear();
-		var month = $scope.doubleDigit(date1.getMonth() + 1);
-		var day = $scope.doubleDigit(date1.getDate());
-		var hour = $scope.doubleDigit(date1.getHours());
-		var minute = $scope.doubleDigit(date1.getMinutes());
-		var seconds = $scope.doubleDigit(date1.getSeconds());
-
-		//$scope.transaccion.FECHA_FIN = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-		$scope.peds[0].FECHA_INICIO = $scope.FECHA_INICIO;
-
-
-
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
 
