@@ -11354,7 +11354,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 			$scope.timeInit = new Date().getTime();
 			var df = new Date($scope.duracion);
-			$scope.pedido.duracion = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
+			$scope.duracion = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
 
 		$scope.InfoGestion = {
 			//ID:gestion.ID,
