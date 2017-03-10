@@ -11366,7 +11366,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		var minute = $scope.doubleDigit(date1.getMinutes());
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
-		$scope.transaccion.FECHA_FIN = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+		//$scope.transaccion.FECHA_FIN = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 		$scope.peds[0].FECHA_INICIO = $scope.FECHA_INICIO;
 
 
