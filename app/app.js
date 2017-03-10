@@ -11363,12 +11363,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
         console.log($scope.InfoGestion);
 
-        $scope.duracion = new Date().getTime() - $scope.timeInit;
-
-			$scope.timeInit = new Date().getTime();
-			var df = new Date($scope.duracion);
-			$scope.duracion = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
-
 
         if ($scope.tipificacion === undefined) {
 			alert('Por favor diligenciar la ACCION.');
