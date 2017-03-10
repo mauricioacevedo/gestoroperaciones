@@ -11354,6 +11354,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         console.log($scope.InfoGestion);
         console.log($scope.peds[0].fecha_inicio);
         console.log($scope.peds[0].fecha_fin);
+
         if ($scope.tipificacion === undefined) {
 			alert('Por favor diligenciar todos los tipificacion.');
 			return;
