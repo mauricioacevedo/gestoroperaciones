@@ -127,20 +127,22 @@
                                                     <option value="NUMERO CR">NUMERO CR</option>
                                                 </select>
 
-                                                <div class="form-group small" ng-show="InfoPedido.ESTADO_PROCESO" ng-class="{ 'has-error' : seguimiento_form.accion.$pristine && seguimiento_form.accion.$invalid}">
-												<label for="obs">Observación Gestión:</label>
+											</div>
+                                            <div class="form-group small" ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
+												<label for="accion">Accion:</label>
 												<select
-													class= "form-control btn-xs"
-													name="obs"
-													ng-model="service.OBSERVACION"
-													ng-change="onChangeAccion()" required>
+                                                    class= "btn btn-default btn-xs grupo-select"
+                                                    style="width: 200px"
+                                                    ng-model="tipificacion">
+                                                    <option value="" disabled> ingrese tipificacion </option>
+                                                    class= "form-control" ng-model="service.TIPIFICACION" >
+                                                    <option value="REANUDAR">REANUDAR</option>
+                                                    <option value="CONTINUAR">CONTINUAR</option>
+                                                    <option value="FINALIZADA">FINALIZADA</option>
+                                                    <option value="NUMERO CR">NUMERO CR</option>
+                                                </select>
 
-													</option>
-												</select>
 											</div>
-
-											</div>
-
 
 											</div>
 
