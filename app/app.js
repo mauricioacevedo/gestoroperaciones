@@ -11352,13 +11352,33 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		};
 
         console.log($scope.InfoGestion);
-        console.log($scope.peds[0].fecha_inicio);
-        console.log($scope.peds[0].fecha_fin);
+
 
         if ($scope.tipificacion === undefined) {
 			alert('Por favor diligenciar la ACCION.');
 			return;
 		}
+
+        $scope.pedido.duracion = new Date().getTime() - $scope.timeInit;
+        $scope.pedido.fecha_inicio = $scope.fecha_inicio;
+
+
+        $scope.timeInit = new Date().getTime();
+			var df = new Date($scope.pedido.duracion);
+			$scope.pedido.duracion = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
+
+        var date1 = new Date();
+			var year = date1.getFullYear();
+			var month = $scope.doubleDigit(date1.getMonth() + 1);
+			var day = $scope.doubleDigit(date1.getDate());
+			var hour = $scope.doubleDigit(date1.getHours());
+			var minute = $scope.doubleDigit(date1.getMinutes());
+			var seconds = $scope.doubleDigit(date1.getSeconds());
+
+            $scope.pedido.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+			$scope.pedido.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
 
