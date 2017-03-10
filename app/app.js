@@ -11146,8 +11146,11 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.accRdy = false;
 	$scope.FECHA_GESTION = null;
 	$scope.FECHA_CREACION = null;
+    $scope.fecha_inicio = null;
+	$scope.fecha_fin = null;
 	$scope.transaccion = 'TODO';
 	$scope.TIPIFICACION = '';
+
 
 
 
@@ -11342,6 +11345,9 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			ASESOR: $rootScope.logedUser.login,
 			FECHA_GESTION: $scope.peds[0].FECHA_GESTION,
 			STATUS: $scope.peds[0].STATUS,
+            FECHA_INICIO: $scope.fecha_inicio,
+			FECHA_FIN: $scope.fecha_fin,
+            DURACION: null,
 			TIPIFICACION: $scope.tipificacion,
 		};
 
