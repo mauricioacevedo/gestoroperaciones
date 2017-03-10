@@ -11345,15 +11345,15 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			ASESOR: $rootScope.logedUser.login,
 			FECHA_GESTION: $scope.peds[0].FECHA_GESTION,
 			STATUS: $scope.peds[0].STATUS,
-            FECHA_INICIO: $scope.fecha_inicio,
-			FECHA_FIN: $scope.fecha_fin,
+            FECHA_INICIO:$scope.peds[0].fecha_inicio,
+			FECHA_FIN:$scope.peds[0].fecha_fin,
             DURACION: null,
 			TIPIFICACION: $scope.tipificacion,
 		};
 
         console.log($scope.InfoGestion);
-        console.log($scope.fecha_inicio);
-        console.log($scope.fecha_fin);
+        console.log($scope.peds[0].fecha_inicio);
+        console.log($scope.peds[0].fecha_fin);
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
 
