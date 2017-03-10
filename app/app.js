@@ -11379,11 +11379,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 			},
 
-            if ($scope.tipificacion == "" ) {
-					$rootScope.errorDatos = "No se pudo guardar sin la tipificacion";
-
-				}
-
 
 			function errorCallback(response, status) {
 				//console.log(status);
