@@ -128,21 +128,8 @@
                                                 </select>
 
 											</div>
-                                            <div class="form-group small" ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
-												<label for="accion">Accion:</label>
-												<select
-                                                    class= "btn btn-default btn-xs grupo-select"
-                                                    style="width: 200px"
-                                                    ng-model="tipificacion">
-                                                    <option value="" disabled> ingrese tipificacion </option>
-                                                    class= "form-control" ng-model="service.TIPIFICACION" >
-                                                    <option value="REANUDAR">REANUDAR</option>
-                                                    <option value="CONTINUAR">CONTINUAR</option>
-                                                    <option value="FINALIZADA">FINALIZADA</option>
-                                                    <option value="NUMERO CR">NUMERO CR</option>
-                                                </select>
-
-											</div>
+                                             Observación:
+                                                  <textarea class="form-control" id="txtObservacion" ng-model="service.OBSERVACION"name="OBSERVACION"></textarea>
 
 											</div>
 
