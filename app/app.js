@@ -11345,8 +11345,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			ASESOR: $rootScope.logedUser.login,
 			FECHA_GESTION: $scope.peds[0].FECHA_GESTION,
 			STATUS: $scope.peds[0].STATUS,
-            FECHA_INICIO:$scope.peds[0].FECHA_INICIO,
-			FECHA_FIN:$scope.peds[0].FECHA_FIN,
             DURACION: null,
 			TIPIFICACION: $scope.tipificacion,
 		};
@@ -11358,25 +11356,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			alert('Por favor diligenciar la ACCION.');
 			return;
 		}
-
-        $scope.duracion = new Date().getTime() - $scope.timeInit;
-        $scope.peds[0].FECHA_INICIO = $scope.FECHA_INICIO;
-
-
-        $scope.timeInit = new Date().getTime();
-			var df = new Date($scope.duracion);
-			$scope.duracion = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
-
-        var date1 = new Date();
-			var year = date1.getFullYear();
-			var month = $scope.doubleDigit(date1.getMonth() + 1);
-			var day = $scope.doubleDigit(date1.getDate());
-			var hour = $scope.doubleDigit(date1.getHours());
-			var minute = $scope.doubleDigit(date1.getMinutes());
-			var seconds = $scope.doubleDigit(date1.getSeconds());
-
-            $scope.FECHA_INICIO = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-			$scope.FECHA_FIN = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
 
 
