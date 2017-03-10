@@ -11378,10 +11378,11 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             DURACION: $scope.duracion,
 			STATUS: $scope.peds[0].STATUS,
 			TIPIFICACION: $scope.tipificacion,
-            TIPIFICACION: $scope.observacion,
+            OBSERVACION: $scope.observacion,
 		};
 
         console.log($scope.InfoGestion);
+        console.log($scope.observacion);
 
 
         if ($scope.tipificacion === undefined) {
@@ -11409,6 +11410,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				$scope.bpedido = '';
 				$scope.busy = "";
 				$scope.error = "";
+                $scope.tipificacion = "";
+                $scope.observacion = "";
 				$scope.buscar = null;
 				return data.data;
 
