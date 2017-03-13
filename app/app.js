@@ -11372,11 +11372,13 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             DURACION: $scope.duracion,
 			STATUS: $scope.peds[0].STATUS,
 			TIPIFICACION: $scope.tipificacion,
+            NUMERO_CR: $scope.NUMERO_CR,
             OBSERVACION: InfoPedido.OBSERVACIONES,
 
 		};
 
         console.log($scope.InfoGestion);
+        console.log( $scope.NUMERO_CR);
 
 
         if ($scope.tipificacion === undefined) {
@@ -11384,6 +11386,17 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			return;
 		}
 
+        if ($scope.tipificacion == 'NUMERO_CR') {
+			//console.log($scope.pedido.NOVEDAD)
+			var regexp = /^([0-9]{2,20})$/;
+
+			if (regexp.test($scope.NUMERO_CR) == false || $scope.NUMERO_CR == undefined) {
+				alert('el NUMERO CR esta mal gestionado y/o esta vacio');
+
+				return;
+
+			}
+		}
 
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
