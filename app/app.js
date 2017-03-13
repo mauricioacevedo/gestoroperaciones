@@ -11353,7 +11353,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
         $scope.duracion = new Date().getTime() - $scope.timeInit;
-        $scope.NUMERO_CR = $scope.InfoGestion.NUMERO_CR;
 
 		$scope.InfoGestion = {
 			//ID:gestion.ID,
@@ -11376,13 +11375,13 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             DURACION: $scope.duracion,
 			STATUS: $scope.peds[0].STATUS,
 			TIPIFICACION: $scope.tipificacion,
-            NUMERO_CR: $scope.numero_cr,
+            NUMERO_CR: InfoPedido.numero_cr,
             OBSERVACION: InfoPedido.OBSERVACIONES,
 
 		};
 
         console.log($scope.InfoGestion);
-        console.log($scope.numero_cr);
+        console.log($scope.InfoPedido);
 
 
 
