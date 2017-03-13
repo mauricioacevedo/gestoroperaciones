@@ -11364,7 +11364,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			IDSERVICIORAIZ: $scope.peds[0].IDSERVICIORAIZ,
 			TRANSACCION: $scope.peds[0].TRANSACCION,
 			CODIGO_CIUDAD: $scope.peds[0].CODIGO_CIUDAD,
-			CAMPO_ERROR: $scope.peds[0].CAMPO_ERROR,
 			ASESOR: $rootScope.logedUser.login,
 			FECHA_GESTION: $scope.peds[0].FECHA_GESTION,
             FECHA_INICIO: $scope.fecha_inicio,
@@ -11372,13 +11371,14 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             DURACION: $scope.duracion,
 			STATUS: $scope.peds[0].STATUS,
 			TIPIFICACION: $scope.tipificacion,
-            NUMERO_CR: $scope.peds[0].numero_cr,
+            NUMERO_CR: $scope.numero_cr,
             OBSERVACION: $scope.observacion,
 
 		};
 
         console.log($scope.InfoGestion);
-        console.log($scope.InfoPedido);
+        console.log($scope.numero_cr);
+        console.log($scope.observacion);
 
 
 
