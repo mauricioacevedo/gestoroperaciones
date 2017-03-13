@@ -15469,6 +15469,27 @@ class API extends REST {
 
     }
 
+private function guardarGestionAsignaciones()
+{
+    if ($this->get_request_method () != "POST") {
+        $this->response ('', 406);
+    }
+
+    $usuarioIp = $_SERVER['REMOTE_ADDR'];
+    $usuarioPc = gethostbyaddr ($usuarioIp);
+    $galleta = json_decode (stripslashes ($_COOKIE['logedUser']), true);
+    $galleta = stripslashes ($_COOKIE['logedUser']);
+    $galleta = json_decode ($galleta);
+    $galleta = json_decode (json_encode ($galleta), True);
+    $usuarioGalleta = $galleta['login'];
+    $nombreGalleta = $galleta['name'];
+    $grupoGalleta = $galleta['GRUPO'];
+
+    $gestion = json_decode (file_get_contents ("php://input"), true);
+
+    var_dump($gestion);
+}
+
 }//cierre de la clase
 
 // Initiiate Library
