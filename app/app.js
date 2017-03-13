@@ -11372,13 +11372,13 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             DURACION: $scope.duracion,
 			STATUS: $scope.peds[0].STATUS,
 			TIPIFICACION: $scope.tipificacion,
-            NUMERO_CR: $scope.peds[0].NUMERO_CR,
+            NUMERO_CR: $scope.InfoGestion.NUMERO_CR,
             OBSERVACION: InfoPedido.OBSERVACIONES,
 
 		};
 
         console.log($scope.InfoGestion);
-        console.log( $scope.peds[0].NUMERO_CR);
+        console.log( $scope.InfoGestion.NUMERO_CR);
 
 
         if ($scope.tipificacion === undefined) {
