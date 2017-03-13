@@ -8118,6 +8118,7 @@ class API extends REST {
             " b.TECNOLOGIA_ID,	".
             " CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(b.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,	".
             " b.FUENTE, ".
+            " b.ACTIVIDAD, ".
             " b.CONCEPTO_ID, ".
             " b.FECHA_ESTADO, ".
             " b.USUARIO_BLOQUEO_FENIX, ".
