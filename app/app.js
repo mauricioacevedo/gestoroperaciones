@@ -11350,8 +11350,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
         $scope.duracion = new Date().getTime() - $scope.timeInit;
-        $scope.numero_cr = '';
-        $scope.observacion = '';
+        $scope.numero_cr = $scope.peds[0].NUMERO_CR;
+        $scope.observacion = $scope.peds[0].observacion;
 
 		$scope.InfoGestion = {
 			//ID:gestion.ID,
