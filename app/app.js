@@ -11406,9 +11406,9 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				$scope.buscar = null;
 				return data.data;
 
-
+console.log($scope.InfoPedido);
 			},
-            console.log($scope.InfoPedido);
+
 
 			function errorCallback(response, status) {
 				//console.log(status);
