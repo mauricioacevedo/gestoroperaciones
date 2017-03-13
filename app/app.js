@@ -11220,7 +11220,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 			$scope.peds = data.data;
 			console.log($scope.peds);
-            console.log($scope.numero_cr);
+            console.log($scope.pedido);
 
 			if (data.data == '') {
 
