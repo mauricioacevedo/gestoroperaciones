@@ -11372,13 +11372,13 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             DURACION: $scope.duracion,
 			STATUS: $scope.peds[0].STATUS,
 			TIPIFICACION: $scope.tipificacion,
-            NUMERO_CR: $scope.numero_cr,
+            NUMERO_CR: $scope.peds[0].numero_cr,
             OBSERVACION: $scope.observacion,
 
 		};
 
         console.log($scope.InfoGestion);
-        console.log($scope.numero_cr);
+        console.log($scope.InfoPedido);
 
 
 
@@ -11408,7 +11408,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 			},
-
+            console.log($scope.InfoPedido);
 
 			function errorCallback(response, status) {
 				//console.log(status);
