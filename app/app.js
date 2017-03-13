@@ -11220,7 +11220,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 			$scope.peds = data.data;
 			console.log($scope.peds);
-            console.log($scope.pedido);
 
 			if (data.data == '') {
 
@@ -11375,13 +11374,13 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             DURACION: $scope.duracion,
 			STATUS: $scope.peds[0].STATUS,
 			TIPIFICACION: $scope.tipificacion,
-            NUMERO_CR: InfoPedido.numero_cr,
-            OBSERVACION: InfoPedido.OBSERVACIONES,
+            NUMERO_CR: $scope.NUMERO_CR,
+            OBSERVACION: $scope.OBSERVACIONES,
 
 		};
 
         console.log($scope.InfoGestion);
-        console.log($scope.InfoPedido);
+        console.log($scope.NUMERO_CR);
 
 
 
