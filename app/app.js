@@ -11149,7 +11149,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
     $scope.FECHA_INICIO = null;
 	$scope.FECHA_FIN = null;
 	$scope.transaccion = 'TODO';
-	$scope.TIPIFICACION = '';
 
 
 
@@ -11206,8 +11205,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.busy = "";
 		$scope.pedido1 = pedido1;
 		$scope.error = "";
-        $scope.duracion = "";
-        $scope.numero_cr = "";
+
 
 
 
