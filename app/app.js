@@ -11206,6 +11206,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.busy = "";
 		$scope.pedido1 = pedido1;
 		$scope.error = "";
+        $scope.duracion = "";
+        $scope.numero_cr = "";
 
 
 
@@ -11218,6 +11220,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 			$scope.peds = data.data;
 			console.log($scope.peds);
+            console.log($scope.peds.numero_cr);
 
 			if (data.data == '') {
 
