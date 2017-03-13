@@ -9605,7 +9605,7 @@ class API extends REST {
         $CODIGO_CIUDAD=$pedido['CODIGO_CIUDAD'];
         $STATUS=$pedido['STATUS'];
         $TIPIFICACION=$pedido['TIPIFICACION'];
-        //$OBSERVACION=$pedido['OBSERVACION'];
+        $OBSERVACION=$pedido['OBSERVACION'];
         $FECHA_INICIO=$pedido['FECHA_INICIO'];
         $FECHA_FIN=$pedido['FECHA_FIN'];
         $DURACION=$pedido['DURACION'];
