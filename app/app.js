@@ -11350,6 +11350,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
         $scope.duracion = new Date().getTime() - $scope.timeInit;
+        $scope.NUMERO_CR = $scope.InfoGestion.NUMERO_CR;
 
 		$scope.InfoGestion = {
 			//ID:gestion.ID,
@@ -11372,31 +11373,15 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             DURACION: $scope.duracion,
 			STATUS: $scope.peds[0].STATUS,
 			TIPIFICACION: $scope.tipificacion,
-            NUMERO_CR: $scope.InfoGestion.NUMERO_CR,
+            NUMERO_CR: $scope.NUMERO_CR,
             OBSERVACION: InfoPedido.OBSERVACIONES,
 
 		};
 
         console.log($scope.InfoGestion);
-        console.log( $scope.InfoGestion.NUMERO_CR);
+        console.log($scope.NUMERO_CR);
 
 
-        if ($scope.tipificacion === undefined) {
-			alert('Por favor diligenciar la ACCION.');
-			return;
-		}
-
-        if ($scope.tipificacion == 'NUMERO_CR') {
-			//console.log($scope.pedido.NOVEDAD)
-			var regexp = /^([0-9]{2,20})$/;
-
-			if (regexp.test($scope.NUMERO_CR) == false || $scope.NUMERO_CR == undefined) {
-				alert('el NUMERO CR esta mal gestionado y/o esta vacio');
-
-				return;
-
-			}
-		}
 
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
