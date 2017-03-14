@@ -8250,7 +8250,7 @@ class API extends REST {
 //--------------------demepedidoactivacion------------------------------------
 
    private function demePedidoActivacion(){
-        if($this->get_request_method() != "GET"){
+ if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
         $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
@@ -8297,23 +8297,33 @@ class API extends REST {
             $uphold="2";
         }
 
+
         $mypedido="";
 
-
+        if($tabla=="ACTIVADOR_SUSPECORE"){
+            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TABLAS');
+            $ordenamiento = $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
+        }
 
         if($prioridad!=''){
             $parametroBusqueda=$prioridad;
         }
-        if($parametroBusqueda=='') $parametroBusqueda ='FECHA_ORDEN_DEMEPEDIDO_ACTIVACION';
+        if($parametroBusqueda=='') $parametroBusqueda ='FECHA_EXCEPCION';
 
-         $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
-            " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
-            " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
-            " from gestor_activacion_pendientes_activador_suspecore b ".
-            "  where b.STATUS='PENDI_ACTI'  ".
-            " and b.ASESOR ='' ".
-            " and (b.FECHA_CREACION < CURDATE() OR b.FECHA_CREACION='9999-00-00') ".
-            " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ";
+        $query1=$query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
+            " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
+            " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
+            " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR ".
+            " ,group_concat(distinct b.PRODUCTO ) as PRODUCTOS ".
+            " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
+            " ,b.FECHA_EXCEPCION,'AUTO' as source ".
+            " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
+            " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
+            " from gestor_activacion_pendientes_activador_suspecore b where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
+            " order by b.$parametroBusqueda $ordenamiento ";
+
+
+
 
         if($mypedido==""){
 
@@ -8337,11 +8347,27 @@ class API extends REST {
                     $mypedido=$row['PEDIDO'];
                     $mypedidoresult=$rta;
                     break;
+                    //} //2016-04-12: SE QUITO VALIDACION CONTRA FENIX
 
+                    /*
+                                        if($rta['ESTADO_BLOQUEO']=='N'){//me sirve, salgo del ciclo y busco este pedido...
+                                                //echo "el pedido es: ".$row['PEDIDO_ID'];
+
+                                                if($row['BEENHERE']==$user){
+                                                        $pedidos_ignorados=$pedidos_ignorados.$row['PEDIDO_ID'].',';
+                                                        //este pedido ya lo vio el dia de hoy
+                                                        //busco otro pedido----
+                                                        continue;
+                                                }
+
+                                                $mypedido=$row['PEDIDO_ID'];
+                                                $mypedidoresult=$rta;
+                                                break;
+                                        }*/
                 }
                 //2.traigo solo los pedidos mas viejos en la base de datos...
             } else {
-                $query1=" select distinct b.PEDIDO, b.FECHA_CREACION ,b.ID ".
+                 $query1=" select distinct b.PEDIDO, b.FECHA_CREACION ,b.ID ".
                     " from gestor_activacion_pendientes_activador_suspecore b ".
                     " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
                     " and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id ";
@@ -8383,10 +8409,10 @@ class API extends REST {
         }
         $fecha_visto= date("Y-m-d H:i:s");
         //de una lo ocupo cucho cucho!!!!
-        $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO = '$mypedido' and STATUS='PENDI_ACTI'";
         $x = $this->mysqli->query($sqlupdate);
 
-       if($PROGRAMADO!="NOT"){
+
+          if($PROGRAMADO!="NOT"){
             $PROGRAMADO=", '$PROGRAMADO' as PROGRAMADO ";
         }else{
             $PROGRAMADO="";
@@ -8403,6 +8429,8 @@ class API extends REST {
             " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
             " from gestor_activacion_pendientes_activador_suspecore b where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ";
         //echo $query1;
+
+        //echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -8415,6 +8443,7 @@ class API extends REST {
                 $sep=",";
             }
             $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+            $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
             $x = $this->mysqli->query($sqlupdate);
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
             $x = $this->mysqli->query($INSERTLOG);
@@ -8452,7 +8481,7 @@ class API extends REST {
             $this->response('', 200); // send user details
         }else{//i have pretty heavy problems over here...
             //$this->response('SYSTEM PANIC!',200);
-            $this->response(json_encode('No hay registros!'),204);
+            $this->response(json_encode('No hay registros!'),200);
         }
         unlink($filename);
 
