@@ -8355,7 +8355,7 @@ class API extends REST {
             " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR ".
             " ,group_concat(distinct b.PRODUCTO ) as PRODUCTOS ".
             " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
-            " ,b.FECHA_EXCEPCION $FECHA_CREACION,'AUTO' as source ".
+            " ,b.FECHA_EXCEPCION,'AUTO' as source ".
             " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
             " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
             " from gestor_activacion_pendientes_activador_dom b where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ";
