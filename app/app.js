@@ -11293,7 +11293,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.InfoGestion = {};
 		$scope.pedidoIsGuardado = false;
 		$scope.pedidoActual = pedidoinfo;
-		$scope.buscar = buscar;
+		$scope.buscar = '';
         $scope.peds={};
         $scope.pedidoIsGuardado = false;
         $scope.pedidoIsActive=false;
