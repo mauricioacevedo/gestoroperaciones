@@ -73,6 +73,7 @@
                             <th>ASESOR</th>
                             <th>FECHA_GESTION</th>
                             <th>DURACION</th>
+                            <th>TIPIFICACION</th>
 						</thead>
 						<tbody>
 							<tr ng-repeat="data in listadoactivacion | filter:filtroInput as results">
@@ -85,6 +86,7 @@
                             <td><span class="small">{{data.ASESOR}}</span></td>
                                 <td><span class="small">{{data.FECHA_GESTION}}</span></td>
                                 <td><span class="small">{{data.DURACION}}</span></td>
+                                <td><span class="small">{{data.TIPIFICACION}}</span></td>
                             </tr>
                         </tbody>
                     </table>
