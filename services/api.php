@@ -1128,11 +1128,12 @@ class API extends REST {
         $today = date("Y-m-d h:i:s");
         $filename="Activacion-Fenix_NAL-$login-$today.csv";
 
-        $query=" SELECT PEDIDO_ID, SUBPEDIDO_ID, SOLICITUD_ID,CONCEPTO_ID,COLA_ID,ACTIVIDAD_ID,USUARIO_ID,TIPO_TRABAJO, FECHA_ENTRADA_GESTOR, FECHA_ULTIMA_GESTOR".
-            " from gestor_seguimiento_activacion".
-            " where FECHA_ULTIMA_GESTOR between '$fechaini 00:00:00' and '$fechafin 23:59:59' ".
-            " order by FECHA_ULTIMA_GESTOR  ";
-
+        $query="SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION ".
+            " , PRODUCTO,ASESOR,FECHA_GESTION ".
+         " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
+            " from gestor_historico_activacion ".
+            " where FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59' ".
+            " order by FECHA_FIN ASC ";
 
 
 
