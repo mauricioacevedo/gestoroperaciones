@@ -8314,7 +8314,8 @@ class API extends REST {
             "  where b.STATUS='PENDI_ACTI'  ".
             " and b.ASESOR ='' ".
             " and (b.FECHA_CREACION < CURDATE() OR b.FECHA_CREACION='9999-00-00') ".
-            " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ";
+            " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ".
+            " order by b.$parametroBusqueda ";
 
         if($mypedido==""){
 
