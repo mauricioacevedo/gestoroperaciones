@@ -8238,7 +8238,7 @@ class API extends REST {
         //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
         $user=strtoupper($user);
         //NO SE PUEDE CONDICIONAR AL PEDIDO ACTUAL, SI LE DA F5 A LA PAGINA NO HAY PEDIDO ACTUAL.. ES MEJOR ASI!!!
-        $sqlupdate="update gestor_pendientes_reagendamiento set ASESOR='' where ASESOR='$user'";
+        $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='' where ASESOR='$user'";
         //echo $sqlupdate;
         $xxx = $this->mysqli->query($sqlupdate);
         //}
@@ -8266,7 +8266,7 @@ class API extends REST {
          $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
             " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
-            " from gestor_activacion_pendientes_activador_suspecore b ".
+            " from gestor_activacion_pendientes_activador_dom b ".
             "  where b.STATUS='PENDI_ACTI'  ".
             " and b.ASESOR ='' ".
             " and (b.FECHA_CREACION < CURDATE() OR b.FECHA_CREACION='9999-00-00') ".
@@ -8299,7 +8299,7 @@ class API extends REST {
                 //2.traigo solo los pedidos mas viejos en la base de datos...
             } else {
                 $query1=" select distinct b.PEDIDO, b.FECHA_CREACION ,b.ID ".
-                    " from gestor_activacion_pendientes_activador_suspecore b ".
+                    " from gestor_activacion_pendientes_activador_dom b ".
                     " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
                     " and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id ";
 
@@ -8340,7 +8340,7 @@ class API extends REST {
         }
         $fecha_visto= date("Y-m-d H:i:s");
         //de una lo ocupo cucho cucho!!!!
-        $sqlupdate="update gestor_pendientes_activacion_siebel set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO = '$mypedido' and STATUS='PENDI_ACTI'";
+        $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO = '$mypedido' and STATUS='PENDI_ACTI'";
         $x = $this->mysqli->query($sqlupdate);
 
        if($PROGRAMADO!="NOT"){
@@ -8371,7 +8371,7 @@ class API extends REST {
                 $ids=$ids.$sep.$row['ID'];
                 $sep=",";
             }
-            $sqlupdate="update gestor_pendientes_activacion_siebel set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+            $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
             $x = $this->mysqli->query($sqlupdate);
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
             $x = $this->mysqli->query($INSERTLOG);
