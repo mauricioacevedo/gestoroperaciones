@@ -6809,7 +6809,49 @@ class API extends REST {
             if($success=="OK"){//logro encontrar el pedido en fenix he hizo el insert local...
                 //recursion?????
                 //$this->buscarPedido();
-                $query1="SELECT a.ID,a.PEDIDO_ID,a.SUBPEDIDO_ID,a.SOLICITUD_ID, a.TIPO_TRABAJO, a.DESC_TIPO_TRABAJO, a.VEL_IDEN, a.VEL_SOLI, a.IDENTIFICADOR_ID, a.TIPO_ELEMENTO_ID,a.PRODUCTO ,a.PRODUCTO_ID,a.UEN_CALCULADA,a.ESTRATO,MUNICIPIO_ID,a.DIRECCION_SERVICIO,a.PAGINA_SERVICIO,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,a.FUENTE,a.CONCEPTO_ID,a.FECHA_ESTADO,a.ASESOR,a.STATUS,a.CONCEPTO_ANTERIOR,a.FECHA_CITA,a.CANTIDAD_EQU,a.EQUIPOS,a.CONCEPTOS_EQU,a.TIPO_EQUIPOS,a.EXTENSIONES,a.OBSERVACIONES, a.EJECUTIVO_ID, a.CANAL_ID, a.CELULAR_AVISAR, a.TELEFONO_AVISAR from informe_petec_pendientesm a JOIN (SELECT distinct(a.pedido) as pedido2,(select b.id from informe_petec_pendientesm b where b.pedido=a.pedido order by id desc limit 1 ) as id2 FROM `informe_petec_pendientesm` a WHERE a.PEDIDO_ID='$pedido' and a.CONCEPTO_ID NOT IN ('14','99') and (a.STATUS='PENDI_PETEC' or a.STATUS='BUSCADO_PETEC' or a.STATUS='MALO')) kai on a.id=kai.id2";
+                $query1="SELECT ".
+                    " a.ID, ".
+                    " a.PEDIDO_ID, ".
+                    " a.SUBPEDIDO_ID, ".
+                    " a.SOLICITUD_ID, ".
+                    " a.TIPO_TRABAJO, ".
+                    " a.DESC_TIPO_TRABAJO, ".
+                    " a.VEL_IDEN,  ".
+                    " a.VEL_SOLI, ". 
+                    " a.IDENTIFICADOR_ID, ".
+                    " a.TIPO_ELEMENTO_ID, ".
+                    " a.PRODUCTO , ".
+                    " a.PRODUCTO_ID, ".
+                    " a.UEN_CALCULADA, ".
+                    " a.ESTRATO, ".
+                    " a.MUNICIPIO_ID, ".
+                    " a.DIRECCION_SERVICIO, ".
+                    " a.PAGINA_SERVICIO, ".
+                    " CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA, ".
+                    " a.FUENTE, ".
+                    " a.GRUPO, ".
+                    " a.ACTIVIDAD, ".
+                    " a.CONCEPTO_ID, ".
+                    " a.FECHA_ESTADO, ".
+                    " a.ASESOR, ".
+                    " a.STATUS, ".
+                    " a.CONCEPTO_ANTERIOR, ".
+                    " a.FECHA_CITA, ".
+                    " a.CANTIDAD_EQU, ".
+                    " a.EQUIPOS, ".
+                    " a.CONCEPTOS_EQU, ".
+                    " a.TIPO_EQUIPOS, ".
+                    " a.EXTENSIONES, ".
+                    " a.OBSERVACIONES, ".
+                    " a.EJECUTIVO_ID, ".
+                    " a.CANAL_ID, ".
+                    " a.CELULAR_AVISAR, ".
+                    " a.TELEFONO_AVISAR from informe_petec_pendientesm a ".
+                    " JOIN (SELECT distinct(a.pedido) as pedido2,(select b.id from informe_petec_pendientesm b ".
+                    " where b.pedido=a.pedido order by id desc limit 1 ) as id2 ".
+                    " FROM `informe_petec_pendientesm` a ".
+                    " WHERE a.PEDIDO_ID='$pedido' and a.CONCEPTO_ID NOT IN ('14','99') ".
+                    " and (a.STATUS='PENDI_PETEC' or a.STATUS='BUSCADO_PETEC' or a.STATUS='MALO')) kai on a.id=kai.id2 ";
 
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $busy="";
@@ -8118,6 +8160,7 @@ class API extends REST {
             " b.TECNOLOGIA_ID,	".
             " CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(b.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,	".
             " b.FUENTE, ".
+            " b.GRUPO, ".
             " b.ACTIVIDAD, ".
             " b.CONCEPTO_ID, ".
             " b.FECHA_ESTADO, ".
