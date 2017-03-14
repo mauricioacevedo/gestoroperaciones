@@ -8361,7 +8361,7 @@ class API extends REST {
             " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
             " from gestor_activacion_pendientes_activador_suspecore b where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ";
 
-        //echo $query1;
+        echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
