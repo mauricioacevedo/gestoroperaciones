@@ -11,8 +11,8 @@
                                          <option value="REPARACION">REPARACIONES</option>
                                          <option value="INSTALACION">INSTALACIONES</option>
                                 </select>
-                        <label  for="Departamento">Tipo de Pedido:</label>
-                                <select ng-model="tipo_trabajo" class="form-control">
+                        <label  for="Tipo trabajo">Tipo de Pedido:</label>
+                                <select ng-model="tipo_trabajo" class="form-control" ng-change="setTipoTrabajo(tipo_trabajo)">
                                         <option value="NO APLICA">NO APLICA</option>
                                          <option value="NUEVO">NUEVO</option>
                                          <option value="CAMBI">CAMBI</option>
