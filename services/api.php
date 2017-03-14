@@ -6501,7 +6501,17 @@ class API extends REST {
         $page=$page*100;
         //counter
 
+         $query=" SELECT count(*) as counter "
+                " FROM gestor_historico_activacion ";
 
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter = $row['counter'];
+            }
+        }
 
         $query=" SELECT count(*) as counter ".
             " FROM portalbd.gestor_activacion_pendientes_activador_suspecore ";
@@ -6514,7 +6524,7 @@ class API extends REST {
                 $counter1 = $row['counter'];
             }
         }
-         $query=" SELECT count(*) as counter ".
+        $query=" SELECT count(*) as counter ".
             " FROM portalbd.gestor_activacion_pendientes_gtc_suspecore ";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -6523,18 +6533,6 @@ class API extends REST {
             $result = array();
             if($row = $rr->fetch_assoc()){
                 $counter2 = $row['counter'];
-            }
-        }
-
-        $query=" SELECT count(*) as counter ".
-            " FROM portalbd.gestor_activacion_tbl_pendi_gtc ";
-
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter3=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter3 = $row['counter'];
             }
         }
 
@@ -6547,6 +6545,19 @@ class API extends REST {
             $result = array();
             if($row = $rr->fetch_assoc()){
                 $counter4 = $row['counter'];
+            }
+        }
+
+
+         $query=" SELECT count(*) as counter ".
+            " FROM portalbd.gestor_activacion_tbl_pendi_gtc ";
+
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter3=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter3 = $row['counter'];
             }
         }
 
