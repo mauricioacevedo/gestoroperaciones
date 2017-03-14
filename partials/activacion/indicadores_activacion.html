@@ -154,21 +154,21 @@
                                 </tr>
                                  <tr>
                                     <td>Tablas</td>
-                                    <td><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
-                                    <td>{{UsuarioParametroactivacion}}</td>
+                                    <td><font color='blue'>{{ordenamientoDemepedidotablas}}</font></td>
+                                    <td>{{UsuarioParametrotablas}}</td>
                                     <td>
                                         <select class="btn btn-default btn-xs grupo-select" id="sel1"
-                                                ng-model="ordenamientoDemepedidoNuevo" style="width:auto;">
+                                                ng-model="ordenamientoDemepedidotablas" style="width:auto;">
                                             <option value="ACTIVADO_DOM">ACTIVADO_DOM</option>
                                             <option value="ACTIVADOR_SUSPECORE">ACTIVADOR_SUSPECORE</option>
 
 
                                         </select>
                                         <button class="btn btn-success btn-xs"
-                                                ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO',ordenamientoDemepedidoNuevo);">
+                                                ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION',ordenamientoDemepedidotablas);">
                                             <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                                         <button type="button" class="btn btn-default btn-circle-xs"
-                                                ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO')" title="Actualizar"
+                                                ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION')" title="Actualizar"
                                                 data-toggle="tooltip" data-placement="left" ng-disabled="loading">
                                             <i class="fa fa-refresh" aria-hidden="true"></i>
                                         </button>
