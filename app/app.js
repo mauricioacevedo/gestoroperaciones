@@ -8500,7 +8500,6 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 	$scope.TODAY_TRIES = "";
     $scope.tipo_trabajo = "NUEVO";
 
-
 	$scope.ordenamientoDemepedido = '';
 	$scope.ordenamientoDemepedidoUpdate = '';
 	$scope.ordenamientoDemepedidoNuevo = '';
@@ -9015,6 +9014,10 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 	////////////////////////////////////////////////////////////////
 
+
+    $scope.setTipoTrabajo(tipo_trabajo){
+        $scope.tipo_trabajo=tipo_trabajo;
+    }
 
 	$scope.start = function (pedido) {
 		var pedido1 = '';
