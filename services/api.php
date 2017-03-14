@@ -8343,9 +8343,11 @@ class API extends REST {
         $sqlupdate="update gestor_pendientes_activacion_siebel set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO = '$mypedido' and STATUS='PENDI_ACTI'";
         $x = $this->mysqli->query($sqlupdate);
 
-
-        if($TABLA == "ACTIVADOR_SUSPECORE"){
-
+       if($PROGRAMADO!="NOT"){
+            $PROGRAMADO=", '$PROGRAMADO' as PROGRAMADO ";
+        }else{
+            $PROGRAMADO="";
+        }
 
         $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
             " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
@@ -8356,24 +8358,7 @@ class API extends REST {
             " ,b.FECHA_EXCEPCION $FECHA_CREACION,'AUTO' as source ".
             " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
             " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
-            " from gestor_activacion_pendientes_activador_suspecore b where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ";
-
-        }else{
-            ($TABLA == "ACTIVADO_DOM");
-        }
-
-       $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
-            " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
-            " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
-            " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR,b.TABLA ".
-            " ,group_concat(distinct b.PRODUCTO ) as PRODUCTOS ".
-            " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
-            " ,b.FECHA_EXCEPCION $FECHA_CREACION,'AUTO' as source ".
-            " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
-            " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
             " from gestor_activacion_pendientes_activador_dom b where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ";
-
-
         //echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
