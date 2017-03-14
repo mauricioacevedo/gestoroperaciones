@@ -6502,17 +6502,7 @@ class API extends REST {
         //counter
 
 
-        $query=" SELECT count(*) as counter "
-                " FROM gestor_historico_activacion ";
 
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter = $row['counter'];
-            }
-        }
         $query=" SELECT count(*) as counter ".
             " FROM portalbd.gestor_activacion_pendientes_activador_suspecore ";
 
