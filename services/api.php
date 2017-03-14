@@ -8263,50 +8263,39 @@ class API extends REST {
         }
         if($parametroBusqueda=='') $parametroBusqueda ='FECHA_ORDEN_DEMEPEDIDO_ACTIVACION';
 
-        if($TABLA == "ACTIVADOR_SUSPECORE"){
-            if($TRANSACCION == "Suspender" || $TRANSACCION == "Reanudar"){
+         $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
+            " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
+            " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
+            " from gestor_activacion_pendientes_activador_suspecore b ".
+            "  where b.STATUS='PENDI_ACTI'  ".
+            " and b.ASESOR ='' ".
+            " and (b.FECHA_CREACION < CURDATE() OR b.FECHA_CREACION='9999-00-00') ".
+            " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ";
 
-                $sql1=   " SELECT PEDIDO, ".
-                         " FECHA_EXCEPCION, ".
-                         " FECHA_CREACION, ".
-                         " FECHA_CARGA, ".
-                         " TABLA ".
-                         " FROM  gestor_activacion_pendientes_activador_suspecore ".
-                         " WHERE  ASESOR='' ".
-                         " AND STATUS='PENDI_ACTI' ".
-                         " ORDER BY FECHA_EXCEPCION ASC ";
+        if($mypedido==""){
 
-        } else if($TABLA == "ACTIVADO_DOM"){
+            $rr = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
+            $mypedidoresult=array();
+            $pedidos_ignorados="";
+            if($rr->num_rows > 0){//recorro los registros de la consulta para
+                while($row = $rr->fetch_assoc()){
+                    $result[] = $row;
 
-             $sql1=   " SELECT PEDIDO, ".
-                         " FECHA_EXCEPCION, ".
-                         " FECHA_CREACION, ".
-                         " FECHA_CARGA, ".
-                         " TABLA ".
-                         " FROM  gestor_activacion_pendientes_activador_suspecore ".
-                         " WHERE  ASESOR='' ".
-                         " AND STATUS='PENDI_ACTI' ".
-                         " ORDER BY FECHA_EXCEPCION ASC ";
-
-
-
-
-                $rr = $this->mysqli->query($sql1) or die($this->mysqli->error.__LINE__);
-
-
-                if($rr->num_rows > 0){//recorro los registros de la consulta para
-                    while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
-                        $result[] = $row;
-                        $mypedido=$row['PEDIDO'];
-                        $mypedidoresult=$rta;
-                        $ATENCION_INMEDIATA="1";
-                        break;
+                    //$rta=$this->pedidoOcupadoFenix($row);
+                    //if($rta=="No rows!!!!"){//me sirve, salgo del ciclo y busco este pedido...
+                    //echo "el pedido es: ".$row['PEDIDO_ID'];
+                    if($row['BEENHERE']==$user){
+                        $pedidos_ignorados=$pedidos_ignorados.$row['PEDIDO'].',';
+                        //este pedido ya lo vio el dia de hoy
+                        //busco otro pedido----
+                        continue;
                     }
+
+                    $mypedido=$row['PEDIDO'];
+                    $mypedidoresult=$rta;
+                    break;
+
                 }
-
-
-            }
-
                 //2.traigo solo los pedidos mas viejos en la base de datos...
             } else {
                 $query1=" select distinct b.PEDIDO, b.FECHA_CREACION ,b.ID ".
