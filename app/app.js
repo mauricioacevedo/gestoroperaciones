@@ -9020,7 +9020,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
         $scope.tipo_trabajo=tipo_trabajo;
     }
 
-	$scope.start = function (pedido) {
+	$scope.start = function (pedido,tipo_trabajo) {
 		var pedido1 = '';
 		$scope.popup = '';
 		$scope.error = "";
@@ -9031,7 +9031,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.bpedido = '';
 		$scope.busy = "";
 		$scope.pedido1 = pedido1;
-
+        $scope.tipo_trabajo=tipo_trabajo;
 		$scope.error = "";
 
 
