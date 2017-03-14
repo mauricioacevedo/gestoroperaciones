@@ -11204,6 +11204,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		var pedido1 = '';
 		$scope.popup = '';
+        $scope.buscar = '';
 		$rootScope.errorDatos = null;
 		$scope.InfoPedido = [];
 		$scope.FECHA_CREACION = null;
@@ -11417,7 +11418,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				$scope.busy = "";
 				$scope.error = "";
                 $scope.tipificacion = "";
-				$scope.buscar = null;
+				$scope.buscar = "";
 				return data.data;
 
 console.log($scope.InfoPedido);
