@@ -8302,7 +8302,7 @@ class API extends REST {
                     " from gestor_activacion_pendientes_activador_suspecore b ".
                     " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
                     " and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id ";
-
+                echo $query1;
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
                 $mypedidoresult=array();
