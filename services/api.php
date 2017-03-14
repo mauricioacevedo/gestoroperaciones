@@ -6502,7 +6502,7 @@ class API extends REST {
         //counter
 
 
-        $query="SELECT count(*) as counter from gestor_seguimiento_activacion  where FECHA_ULTIMA_GESTOR between '$fechaini 00:00:00' and '$fechafin 23:59:59' ";
+        $query=" SELECT count(*) as counter  FROM gestor_historico_activacion ";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter=0;
