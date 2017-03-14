@@ -6481,7 +6481,7 @@ class API extends REST {
     }
 
 
-    private function listadoactivacion(){
+   private function listadoactivacion(){
 
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -6501,8 +6501,8 @@ class API extends REST {
         $page=$page*100;
         //counter
 
-         $query=" SELECT count(*) as counter "
-                " FROM gestor_historico_activacion ";
+
+        $query="SELECT count(*) as counter from gestor_seguimiento_activacion  where FECHA_ULTIMA_GESTOR between '$fechaini 00:00:00' and '$fechafin 23:59:59' ";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter=0;
@@ -6512,7 +6512,6 @@ class API extends REST {
                 $counter = $row['counter'];
             }
         }
-
         $query=" SELECT count(*) as counter ".
             " FROM portalbd.gestor_activacion_pendientes_activador_suspecore ";
 
@@ -6524,7 +6523,7 @@ class API extends REST {
                 $counter1 = $row['counter'];
             }
         }
-        $query=" SELECT count(*) as counter ".
+         $query=" SELECT count(*) as counter ".
             " FROM portalbd.gestor_activacion_pendientes_gtc_suspecore ";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -6535,7 +6534,6 @@ class API extends REST {
                 $counter2 = $row['counter'];
             }
         }
-
          $query=" SELECT count(*) as counter ".
             " FROM portalbd.gestor_activacion_pendientes_activador_dom ";
 
@@ -6547,9 +6545,7 @@ class API extends REST {
                 $counter4 = $row['counter'];
             }
         }
-
-
-         $query=" SELECT count(*) as counter ".
+        $query=" SELECT count(*) as counter ".
             " FROM portalbd.gestor_activacion_tbl_pendi_gtc ";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
