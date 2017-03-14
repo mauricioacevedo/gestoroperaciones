@@ -13879,7 +13879,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 $scope.pedidoIsActive = true;
                 $rootScope.errorDatos = null;
                 $scope.fecha_inicio = $rootScope.fechaProceso();
-                console.log($scope.peds[0]);
+                //console.log($scope.peds[0]);
 
                 if ($scope.peds[0].STATUS == "PENDI_PETEC" && $scope.peds[0].ASESOR != "") {
                     $scope.busy = $scope.peds[0].ASESOR;
@@ -13945,7 +13945,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			function (data) {
 
 				$scope.peds = data.data;
-                    console.log($scope.peds);
+                    //console.log($scope.peds);
                         var dat=data.status;
                         if(dat==204){
                                 //document.getElementById("warning").innerHTML="No hay Registros";
@@ -13964,7 +13964,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 									$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
 									$scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
 
-									console.log($scope.peds);
+									//console.log($scope.peds);
 									var opciones= {
 										fuente: $scope.peds[0].FUENTE,
 										grupo: $scope.peds[0].GRUPO,
@@ -13975,7 +13975,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 									$rootScope.errorDatos = null;
 									$scope.pedidoIsActive = true;
 									$scope.fecha_inicio = $rootScope.fechaProceso();
-									console.log(opciones);
+									//console.log(opciones);
 									$scope.listarOpcionesAsginacion(opciones);
 								}
                         }
