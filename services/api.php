@@ -769,13 +769,15 @@ class API extends REST {
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
         $login = $this->_request['login'];
+        $fechaini = $this->_request['fechaini'];
+        $fechafin = $this->_request['fechafin'];
 
         $today = date("Y-m-d h:i:s");
         $filename="Fenix_Activacion-$login-$today.csv";
 
         $query="SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION ".
             " , PRODUCTO,ASESOR,FECHA_GESTION ".
-            // " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
+         " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
             " from gestor_historico_activacion ".
             " where FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59' ".
             " order by FECHA_FIN ASC ";
@@ -843,6 +845,7 @@ class API extends REST {
 
         $today = date("Y-m-d h:i:s");
         $filename="Fenix_Activacion-$login-$today.csv";
+
         $query=  " SELECT ID,ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER ".
                     " ,ESTADO,FECHA_CREACION,FECHA_EXCEPCION ".
                     " ,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD ".
