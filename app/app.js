@@ -13886,7 +13886,12 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                     $rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
 
                 }
-
+                var opciones= {
+                    fuente: $scope.peds[0].FUENTE,
+                    grupo: $scope.peds[0].GRUPO,
+                    actividad: $scope.peds[0].ACTIVIDAD
+                };
+                $scope.listarOpcionesAsginacion(opciones);
                 $scope.baby($scope.pedido1);
 
             }
@@ -13963,7 +13968,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 									$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
 									$scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
 
-									console.log($scope.peds);
+									//console.log($scope.peds);
 									var opciones= {
 										fuente: $scope.peds[0].FUENTE,
 										grupo: $scope.peds[0].GRUPO,
