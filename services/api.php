@@ -13686,7 +13686,7 @@ class API extends REST {
         $pedido_actual = $this->_request['pedido_actual'];
 
         if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
-            $sqlupdate="update gestor_pendientes_activacion_siebel set ASESOR='' where ASESOR='$user' ";
+            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user' ";
             $xxx = $this->mysqli->query($sqlupdate);
         }
 
@@ -13727,12 +13727,12 @@ class API extends REST {
             $sqlupdate="";
 
             if($busy==true){
-                $sqlupdate="update gestor_pendientes_activacion_siebel set VIEWS=VIEWS+1 where ID in ($ids)";
+                $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set VIEWS=VIEWS+1 where ID in ($ids)";
 
 
             }else{
                 $FECHA_CREACION=date("Y-m-d H:i:s");
-                $sqlupdate="update gestor_pendientes_activacion_siebel set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$FECHA_CREACION' where ID in ($ids)";
+                $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$FECHA_CREACION' where ID in ($ids)";
 
             }
 
