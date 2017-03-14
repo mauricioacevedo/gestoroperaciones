@@ -8306,7 +8306,6 @@ class API extends REST {
             $parametroBusqueda=$prioridad;
         }
          $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TABLAS');
-            $ordenamiento = $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
 
          $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
             " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
@@ -8316,7 +8315,7 @@ class API extends REST {
             " and b.ASESOR ='' ".
             " and (b.FECHA_CREACION < CURDATE() OR b.FECHA_CREACION='9999-00-00') ".
             " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ".
-            " order by b.$parametroBusqueda $ordenamiento ";
+            " order by b.$parametroBusqueda ";
 
         if($mypedido==""){
 
