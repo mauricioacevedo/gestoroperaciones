@@ -13975,6 +13975,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 									$rootScope.errorDatos = null;
 									$scope.pedidoIsActive = true;
 									$scope.fecha_inicio = $rootScope.fechaProceso();
+									console.log(opciones);
 									$scope.listarOpcionesAsginacion(opciones);
 								}
                         }
