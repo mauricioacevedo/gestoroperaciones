@@ -438,9 +438,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'pedidosPorPedidoActivacion?pedido=' + pedido);
 	};
 
-	obj.demePedidoActivacion = function (user, pedido, transaccion, username, pedido_actual) { //deme pedido activacion
+	obj.demePedidoActivacion = function (user, pedido, transaccion, username) { //deme pedido activacion
 		console.log("transaccion=" + transaccion);
-		return $http.get(serviceBase + 'demePedidoActivacion?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion + '&username=' + username + '&pedido_actual=' + pedido_actual);
+		return $http.get(serviceBase + 'demePedidoActivacion?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion + '&username=' + username );
 	};
 
 	obj.getBuscarpedidoactivacion = function (pedido, pedido_actual, user) { //buscar pedido activacion
@@ -11234,7 +11234,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		var demePedidoButton = document.getElementById("iniciar");
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
-		var kami = services.demePedidoActivacion($rootScope.logedUser.login, $scope.pedido1, $scope.transaccion, $rootScope.logedUser.name, '').then(function (data) {
+		var kami = services.demePedidoActivacion($rootScope.logedUser.login, $scope.pedido1, $scope.transaccion, $rootScope.logedUser.name).then(function (data) {
 
 
 			$scope.peds = data.data;
