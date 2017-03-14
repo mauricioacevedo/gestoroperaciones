@@ -11104,8 +11104,8 @@ $scope.set_color_Cuartil = function (value) {
 	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TABLAS').then(function (data) {
 
 		$scope.ordenamientoDemepedidotablas = data.data['VALOR'];
-		//$scope.ordenamientoDemepedidoNuevotablas = data.data['VALOR'];
-		$scope.ordenamientoDemepedidoUpdatetabla = data.data['ULTIMA_ACTUALIZACION'];
+		$scope.ordenamientoDemepedidoNuevotablas = data.data['VALOR'];
+		$scope.ordenamientoDemepedidoUpdatetablas = data.data['ULTIMA_ACTUALIZACION'];
 		$scope.UsuarioParametrotablas = data.data['USUARIO_ID'];
 		return data.data;
 	});
