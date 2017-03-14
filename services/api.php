@@ -6546,29 +6546,6 @@ class API extends REST {
             }
         }
 
-            $query=" SELECT count(*) as counter "
-                " FROM gestor_historico_activacion ";
-
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter5=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter5 = $row['counter'];
-            }
-        }
-
-        $query=" SELECT count(*) as counter "
-                " FROM gestor_historico_activacion ";
-
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter3=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter3 = $row['counter'];
-            }
-        }
 
         $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION ".
                 " , PRODUCTO,ASESOR,FECHA_GESTION ".
