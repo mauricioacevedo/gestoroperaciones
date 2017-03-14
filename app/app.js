@@ -13886,7 +13886,12 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                     $rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
 
                 }
-
+                var opciones= {
+                    fuente: $scope.peds[0].FUENTE,
+                    grupo: $scope.peds[0].GRUPO,
+                    actividad: $scope.peds[0].ACTIVIDAD
+                };
+                $scope.listarOpcionesAsginacion(opciones);
                 $scope.baby($scope.pedido1);
 
             }
@@ -13963,7 +13968,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 									$scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
 									$scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
 
-									console.log($scope.peds);
+									//console.log($scope.peds);
 									var opciones= {
 										fuente: $scope.peds[0].FUENTE,
 										grupo: $scope.peds[0].GRUPO,
@@ -14002,12 +14007,14 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		var toDate = parseInt(new Date($scope.fecha_fin).getTime() / 1000);
 		var timeDiff = (toDate - fromDate) / 3600; // will give difference in hrs
 
+       /** Ya no es necesario
 		if(InfoPedido.SOURCE!='BUSCADO'){
             var varDondeGuardar 	= $scope.iconcepto.FUENTE;
 		}else{
             var varDondeGuardar 	= InfoPedido.FUENTE;
-		}
+		} */
 
+        var varDondeGuardar     = gestion.FUENTE;
         var varEstadoGuardar	= InfoPedido.ESTADO_PROCESO;
         var varObsesGuardar		= InfoPedido.OBSERVACIONES_PROCESO;
 
@@ -14022,8 +14029,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 			$scope.InfoGestion = {
 			pedido: gestion.PEDIDO_ID,
-			fuente: varDondeGuardar,
-			actividad: $scope.actividadGo,
+			fuente: gestion.FUENTE,
+			actividad: gestion.ACTIVIDAD,
 			fecha_fin: $scope.fecha_fin,
 			user: $rootScope.logedUser.login,
 			ESTADO_ID: InfoPedido.ESTADO_PROCESO,
