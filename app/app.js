@@ -9016,6 +9016,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 
     $scope.setTipoTrabajo = function (tipo_trabajo){
+        console.log("tipo trabajo: "+$scope.tipo_trabajo+" - tipo trabajo 2: "+tipo_trabajo);
         $scope.tipo_trabajo=tipo_trabajo;
     }
 
