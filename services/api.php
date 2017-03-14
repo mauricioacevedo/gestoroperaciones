@@ -753,78 +753,6 @@ class API extends REST {
 
 
 
-//-------------------------exportar pendietes activacion ----------------------------activacion
-
-    private function csvhistorico_activacion(){
-        if($this->get_request_method() != "GET"){
-            $this->response('',406);
-        }
-        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
-        $usuarioPc      =   gethostbyaddr($usuarioIp);
-        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
-        $galleta        =   stripslashes($_COOKIE['logedUser']);
-        $galleta        =   json_decode($galleta);
-        $galleta        =   json_decode(json_encode($galleta), True);
-        $usuarioGalleta =   $galleta['login'];
-        $nombreGalleta  =   $galleta['name'];
-        $grupoGalleta   =   $galleta['GRUPO'];
-        $login = $this->_request['login'];
-        $fechaini = $this->_request['fechaini'];
-        $fechafin = $this->_request['fechafin'];
-
-        $today = date("Y-m-d h:i:s");
-        $filename="Fenix_Activacion-$login-$today.csv";
-
-        $query="SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION ".
-            " , PRODUCTO,ASESOR,FECHA_GESTION ".
-         " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
-            " from gestor_historico_activacion ".
-            " where FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59' ".
-            " order by FECHA_FIN ASC ";
-
-        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-
-        if($r->num_rows > 0){
-            $result = array();
-            $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('ORDER_SEQ_ID','PEDIDO','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','PRODUCTO','ASESOR','FECHA_GESTION','DURACION'));
-            while($row = $r->fetch_assoc()){
-                $result[] = $row;
-                fputcsv($fp, $row);
-            }
-            fclose($fp);
-            // SQL Feed----------------------------------
-            $sql_log=   "insert into portalbd.activity_feed ( ".
-                " USER ".
-                ", USER_NAME ".
-                ", GRUPO ".
-                ", STATUS ".
-                ", PEDIDO_OFERTA ".
-                ", ACCION ".
-                ", CONCEPTO_ID ".
-                ", IP_HOST ".
-                ", CP_HOST ".
-                ") values( ".
-                " UPPER('$usuarioGalleta')".
-                ", UPPER('$nombreGalleta')".
-                ", UPPER('$grupoGalleta')".
-                ",'OK' ".
-                ",'SIN PEDIDO' ".
-                ",'EXPORTO PENDIENTES' ".
-                ",'ARCHIVO EXPORTADO' ".
-                ",'$usuarioIp' ".
-                ",'$usuarioPc')";
-
-            $rlog = $this->mysqli->query($sql_log);
-            // ---------------------------------- SQL Feed
-            $this->response($this->json(array($filename,$login)), 200); // send user details
-        }
-
-        $this->response('',204);        // If no records "No Content" status
-
-    }
-
-//-------------------------fin exportar pendietes activacion ----------------------------
 
 
 //-------------------------exportar pendientes activacion siebel--------------------------------activacion
@@ -1143,7 +1071,7 @@ class API extends REST {
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
 
-            fputcsv($fp, array( 'PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','CONCEPTO_ID','COLA_ID','ACTIVIDAD_ID','USUARIO_ID','TIPO_TRABAJO','FECHA_ENTRADA_GESTOR','FECHA_ULTIMA_GESTOR'));
+            fputcsv($fp, array( 'ORDER_SEQ_ID','PEDIDO','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','PRODUCTO','ASESOR','FECHA_GESTION','DURACION'));
 
             fclose($fp);
 

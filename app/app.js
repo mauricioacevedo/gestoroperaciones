@@ -399,10 +399,6 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'csvActivacion?login=' + login);
 	};
 
-    obj.getCsvhistorico_activacion = function (login) { //exportar activacion
-		return $http.get(serviceBase + 'csvhistorico_activacion?login=' + login);
-	};
-
 	obj.getCsvActivacionSiebel = function (login) { //exportar activacion siebel
 		return $http.get(serviceBase + 'csvActivacionSiebel?login=' + login);
 	};
@@ -10595,13 +10591,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                // console.log($scope.data.concepto);
     };
 
-  $scope.csvhistorico_activacion  = function (){
-                var login=$rootScope.logedUser.login;
-                services.getCsvhistorico_activacion(login).then(function(data){
-                        window.location.href="tmp/"+data.data[0];
-                        return data.data;
-                });
-        };
+
 
      $scope.csvActivacionSiebel  = function (){
                 var login=$rootScope.logedUser.login;
