@@ -6559,7 +6559,7 @@ class API extends REST {
                  " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
                 " from gestor_historico_activacion ".
                 " where FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59' ".
-                " order by FECHA_FIN ASC limit $page ";
+                " order by FECHA_FIN ASC  ";
 
 
         //echo $query;
