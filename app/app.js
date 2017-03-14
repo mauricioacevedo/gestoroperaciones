@@ -14007,12 +14007,14 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		var toDate = parseInt(new Date($scope.fecha_fin).getTime() / 1000);
 		var timeDiff = (toDate - fromDate) / 3600; // will give difference in hrs
 
+       /** Ya no es necesario
 		if(InfoPedido.SOURCE!='BUSCADO'){
             var varDondeGuardar 	= $scope.iconcepto.FUENTE;
 		}else{
             var varDondeGuardar 	= InfoPedido.FUENTE;
-		}
+		} */
 
+        var varDondeGuardar     = gestion.FUENTE;
         var varEstadoGuardar	= InfoPedido.ESTADO_PROCESO;
         var varObsesGuardar		= InfoPedido.OBSERVACIONES_PROCESO;
 
@@ -14027,8 +14029,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 			$scope.InfoGestion = {
 			pedido: gestion.PEDIDO_ID,
-			fuente: varDondeGuardar,
-			actividad: $scope.actividadGo,
+			fuente: gestion.FUENTE,
+			actividad: gestion.ACTIVIDAD,
 			fecha_fin: $scope.fecha_fin,
 			user: $rootScope.logedUser.login,
 			ESTADO_ID: InfoPedido.ESTADO_PROCESO,
