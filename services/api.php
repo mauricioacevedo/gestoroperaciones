@@ -8232,52 +8232,7 @@ class API extends REST {
             fclose($file);
         }
 
-        //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
-        $pedido_actual = $this->_request['pedido_actual'];
-        //echo $pedido_actual;
-        //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
-        $user=strtoupper($user);
-        //NO SE PUEDE CONDICIONAR AL PEDIDO ACTUAL, SI LE DA F5 A LA PAGINA NO HAY PEDIDO ACTUAL.. ES MEJOR ASI!!!
-        $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
-        //echo $sqlupdate;
-        $xxx = $this->mysqli->query($sqlupdate);
-        //}
-        //echo "WTF";
-        $today = date("Y-m-d");
 
-        //1.consulto todo lo que tenga fecha cita de mañana
-        $hora=date("G");
-        $uphold="1";
-        if($hora<11){
-            $uphold="1";
-        }else{
-            $uphold="2";
-        }
-
-        $mypedido="";
-
-
-
-         if($mypedido==''){//ya los visite todos, que hago???
-            //echo "YA LOS VISITE TODOS, QUE HAGO?";
-            //EN LAS VISTAS, ACTUALIZO EL USUARIO PARA RESETEAR LA BUSQUEDA
-            $SQL_UPDATE="update vistas_pedidos a set a.user='$user-CICLO' where a.user='$user' AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59'";
-            $xS = $this->mysqli->query($SQL_UPDATE);
-            $pedds=explode(",", $pedidos_ignorados);
-            if(count($pedds)>0){
-                $mypedido=$pedds[0];
-            }
-        }
-        $fecha_visto= date("Y-m-d H:i:s");
-        //de una lo ocupo cucho cucho!!!!
-        $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO = '$mypedido' and STATUS='PENDI_ACTI'";
-        $x = $this->mysqli->query($sqlupdate);
-
-       if($PROGRAMADO!="NOT"){
-            $PROGRAMADO=", '$PROGRAMADO' as PROGRAMADO ";
-        }else{
-            $PROGRAMADO="";
-        }
 
         $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
             " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
@@ -8301,37 +8256,7 @@ class API extends REST {
                 $ids=$ids.$sep.$row['ID'];
                 $sep=",";
             }
-            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
-            $x = $this->mysqli->query($sqlupdate);
-            $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
-            $x = $this->mysqli->query($INSERTLOG);
 
-            // SQL Feed----------------------------------
-            $sql_log=   "insert into portalbd.activity_feed ( ".
-                " USER ".
-                ", USER_NAME ".
-                ", GRUPO ".
-                ", STATUS ".
-                ", PEDIDO_OFERTA ".
-                ", ACCION ".
-                ", CONCEPTO_ID ".
-                ", IP_HOST ".
-                ", CP_HOST ".
-                ") values( ".
-                " UPPER('$usuarioGalleta')".
-                ", UPPER('$nombreGalleta')".
-                ", UPPER('$grupoGalleta')".
-                ",'OK' ".
-                ",'$mypedido' ".
-                ",'USO DEMEPEDIDO' ".
-                ",'PEDIDO GENERADO' ".
-                ",'$usuarioIp' ".
-                ",'$usuarioPc')";
-
-            $rlog = $this->mysqli->query($sql_log);
-            // ---------------------------------- SQL Feed
-            //$sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$user','$username','','','PEDIDO: $mypedido','DEMEPEDIDO')";
-            //$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
             //sleep(20);
             unlink($filename);
