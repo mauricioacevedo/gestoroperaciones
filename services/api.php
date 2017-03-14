@@ -8633,7 +8633,7 @@ class API extends REST {
             $departamento.
             $zona.
             $microzona.
-            $tipo_trabajo
+            $tipo_trabajo.
             //$plaza.
             //" order by b.$parametroBusqueda ASC";
             " order by b.$parametroBusqueda $ordenamiento ";
