@@ -8207,9 +8207,11 @@ class API extends REST {
 //--------------------demepedidoactivacion------------------------------------
 
    private function demePedidoActivacion(){
+
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
+
         $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
         $usuarioPc      =   gethostbyaddr($usuarioIp);
         $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
@@ -8221,10 +8223,12 @@ class API extends REST {
         $grupoGalleta   =   $galleta['GRUPO'];
 
         $user = $this->_request['userID'];
-        $transaccion = $this->_request['transaccion'];
+        $username=$this->_request['username'];
+        $prioridad=$this->_request['prioridad'];
 
 
-        $filename = '../tmp/control-threads-agen.txt';
+
+        $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
             sleep(1);
         }else{
@@ -8232,17 +8236,20 @@ class API extends REST {
             fclose($file);
         }
 
+
+        $user=strtoupper($user);
         //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
         $pedido_actual = $this->_request['pedido_actual'];
-        //echo $pedido_actual;
         //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
-        $user=strtoupper($user);
+
         //NO SE PUEDE CONDICIONAR AL PEDIDO ACTUAL, SI LE DA F5 A LA PAGINA NO HAY PEDIDO ACTUAL.. ES MEJOR ASI!!!
-        $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
+        $sqlupdate="update informe_petec_pendientesm set ASESOR='' where ASESOR='$user'";
         //echo $sqlupdate;
         $xxx = $this->mysqli->query($sqlupdate);
         //}
+
         //echo "WTF";
+        $user=strtoupper($user);
         $today = date("Y-m-d");
 
         //1.consulto todo lo que tenga fecha cita de mañana
@@ -8254,23 +8261,136 @@ class API extends REST {
             $uphold="2";
         }
 
+        //14B2B
+        $llamadaReconfiguracion="0";
+
+        $ATENCION_INMEDIATA="";
         $mypedido="";
 
+        //2016-08-05: MAURICIO
+        //SE UTILIZA ESTA VARIABLE PARA PARAMETRIZAR EL STATUS
 
+        $STATUS="PENDI_ACTI";
+
+        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
+
+        /* if($fuente="SIEBEL"){
+			   $concepto=" and b.CONCEPTO_ID='$concepto'";
+		   } */
+
+        if($TABLA=="ACTIVADOR_SUSPECORE"){
+            if($transaccion=="Suspender" || $transaccion=="Reanudar"){
+                $TABLA=" and b.TABLA IN ('ACTIVADOR_SUSPECORE') ";
+            }else {
+
+                if($transaccion=="TODOS"){//para que sea posible obtener un registro de cualquier transaccion
+                    $transaccion="";
+                }
+
+
+                $sql1=   "SELECT PEDIDO, ".
+                        " FECHA_EXCEPCION, ".
+                        " FECHA_CREACION, ".
+                        " FECHA_CARGA ".
+                        " FROM  gestor_activacion_pendientes_activador_suspecore  ".
+                        " WHERE 1=1 ".
+                        " AND ASESOR='' ".
+                        " AND TABLA = '$TABLA' ".
+                        " AND STATUS='PENDI_ACTI' ".
+                        $transaccion.
+                        " ORDER BY FECHA_EXCEPCION ASC ";
+
+                $rr = $this->mysqli->query($sql1) or die($this->mysqli->error.__LINE__);
+
+                if($rr->num_rows > 0){//recorro los registros de la consulta para
+                    while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
+                        $result[] = $row;
+                        $mypedido=$row['PEDIDO'];
+                        $mypedidoresult=$rta;
+                        $ATENCION_INMEDIATA="1";
+                        break;
+                    }
+                }
+
+
+                $TABLA=" and b.TABLA IN ('ACTIVADOR_SUSPECORE') and b.PRODUCTO IN ('BA','TV') ";
+
+            }
+        }
+
+
+
+        }else if($TABLA=="ACTIVADOR_SUSPECORE"){
+            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TABLAS');
+           // $TABLA=" and b.TABLA in ('ACTIVADOR_SUSPECORE')";
+
+
+
+            $sql1="SELECT PEDIDO, FECHA_EXCEPCION,FECHA_CREACION,FECHA_CARGA ".
+                     "FROM  gestor_activacion_pendientes_activador_suspecore ".
+                     "WHERE ".
+                     "TIMEDIFF( NOW() , FECHA_EXCEPCION ) /3600 >0 ".
+                     "AND ASESOR='' ".
+                     "AND TABLA = 'ACTIVADOR_SUSPECORE' ".
+                     "AND STATUS='PENDI_ACTI' ".
+                     " ORDER BY  TIMEDIFF( NOW() , FECHA_EXCEPCION ) /3600 ASC ";
+
+            $rr = $this->mysqli->query($sql1) or die($this->mysqli->error.__LINE__);
+
+            if($rr->num_rows > 0){//recorro los registros de la consulta para
+                while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
+                    $result[] = $row;
+                    $mypedido=$row['PEDIDO'];
+                    $mypedidoresult=$rta;
+                    break;
+                }
+            }
+
+           }else if($TABLA=="ACTIVADOR_SUSPECORE"){
+            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TABLAS');
+            //$TABLA=" and b.TABLA in ('ACTIVADOR_SUSPECORE')";
+
+
+
+            $sql1="SELECT PEDIDO, FECHA_EXCEPCION,FECHA_CREACION,FECHA_CARGA ".
+                 "FROM  gestor_activacion_pendientes_activador_dom ".
+                 "WHERE ".
+                 "TIMEDIFF( NOW() , FECHA_EXCEPCION ) /3600 >0 ".
+                 "AND ASESOR='' ".
+                 "AND TABLA = 'ACTIVADOR_SUSPECORE' ".
+                 "AND STATUS='PENDI_ACTI' ".
+                 " ORDER BY  TIMEDIFF( NOW() , FECHA_EXCEPCION ) /3600 ASC ";
+
+            $rr = $this->mysqli->query($sql1) or die($this->mysqli->error.__LINE__);
+
+            if($rr->num_rows > 0){//recorro los registros de la consulta para
+                while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
+                    $result[] = $row;
+                    $mypedido=$row['PEDIDO'];
+                    $mypedidoresult=$rta;
+                    $ATENCION_INMEDIATA="1";
+                    break;
+                }
+            }
+
+
+
+        }
 
         if($prioridad!=''){
             $parametroBusqueda=$prioridad;
         }
-        if($parametroBusqueda=='') $parametroBusqueda ='FECHA_ORDEN_DEMEPEDIDO_ACTIVACION';
 
-         $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
-            " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
-            " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
-            " from gestor_activacion_pendientes_activador_suspecore b ".
-            "  where b.STATUS='PENDI_ACTI'  ".
-            " and b.ASESOR ='' ".
-            " and (b.FECHA_CREACION < CURDATE() OR b.FECHA_CREACION='9999-00-00') ".
-            " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ";
+
+
+    $query1=" select distinct b.PEDIDO, b.FECHA_CREACION ,b.ID ".
+                    " from gestor_activacion_pendientes_activador_suspecore b ".
+                    " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
+                    " and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id ".
+                    " order by b.$parametroBusqueda ASC";
+
+
+        //echo $query1;
 
         if($mypedido==""){
 
@@ -8281,19 +8401,35 @@ class API extends REST {
                 while($row = $rr->fetch_assoc()){
                     $result[] = $row;
 
-                    //$rta=$this->pedidoOcupadoFenix($row);
-                    //if($rta=="No rows!!!!"){//me sirve, salgo del ciclo y busco este pedido...
-                    //echo "el pedido es: ".$row['PEDIDO_ID'];
-                    if($row['BEENHERE']==$user){
-                        $pedidos_ignorados=$pedidos_ignorados.$row['PEDIDO'].',';
-                        //este pedido ya lo vio el dia de hoy
-                        //busco otro pedido----
-                        continue;
+                    $pedidos_ignorados.=$row['PEDIDO'].",";
+
+                    //la idea es que este codigo permita optimizar el pedido entregado
+                    //la idea es entregar de primero los pedidos con agenda para mañana cuando el parametro es fecha cita
+                    if($parametroBusqueda=='FECHA_EXCEPCION'){
+                        $today = date("Y-m-d");
+                        $date = $row[FECHA_EXCEPCION];
+
+                        if($today>=$date){
+                            continue;
+                        }
                     }
 
-                    $mypedido=$row['PEDIDO'];
-                    $mypedidoresult=$rta;
-                    break;
+                    $rta=$this->pedidoOcupadoFenix($row);
+                    //echo $rta;
+                    if($rta=="No rows!!!!"){//me sirve, salgo del ciclo y busco este pedido...
+                        //echo "el pedido es: ".$row['PEDIDO_ID'];
+
+                        /*if($row['BEENHERE']==$user){
+							$pedidos_ignorados=$pedidos_ignorados.$row['PEDIDO_ID'].',';
+							//este pedido ya lo vio el dia de hoy
+							//busco otro pedido----
+							continue;
+                                                }*/
+
+                        $mypedido=$row['PEDIDO'];
+                        $mypedidoresult=$rta;
+                        break;
+                    }
 
                 }
                 //2.traigo solo los pedidos mas viejos en la base de datos...
@@ -8312,6 +8448,7 @@ class API extends REST {
 
                         $rta=$this->pedidoOcupadoFenix($row);
                         //var_dump($rta);
+
                         if($rta=="No rows!!!!"){//me sirve, salgo del ciclo y busco este pedido...
                             //echo "el pedido es: ".$row['PEDIDO_ID'];
 
@@ -8320,6 +8457,17 @@ class API extends REST {
                             break;
                         }
 
+                        /*
+
+						if($rta['ESTADO_BLOQUEO']=='N'){//me sirve, salgo del ciclo y busco este pedido...
+							//echo "el pedido es: ".$row['PEDIDO_ID'];
+							$mypedido=$row['PEDIDO_ID'];
+							$mypedidoresult=$rta;
+							break;
+						}
+
+					*/
+                        //echo $row['PEDIDO_ID']." NO SIRVE!!!";
                     }
 
                 }
@@ -8415,9 +8563,6 @@ class API extends REST {
 
         $this->response('nothing',204);        // If no records "No Content" status
     }
-
-
-
 
 //--------------------fin demepedido activacion------------------------------
 
