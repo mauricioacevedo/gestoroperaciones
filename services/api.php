@@ -6501,8 +6501,7 @@ class API extends REST {
         $page=$page*100;
         //counter
 
-
-        $query=" SELECT count(*) as counter  FROM gestor_historico_activacion ";
+       $query="SELECT count(*) as counter from gestor_seguimiento_activacion  where FECHA_ULTIMA_GESTOR between '$fechaini 00:00:00' and '$fechafin 23:59:59' ";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter=0;
@@ -6510,6 +6509,17 @@ class API extends REST {
             $result = array();
             if($row = $rr->fetch_assoc()){
                 $counter = $row['counter'];
+            }
+        }
+
+        $query=" SELECT count(*) as counter  FROM gestor_historico_activacion ";
+
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter5=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter5 = $row['counter'];
             }
         }
         $query=" SELECT count(*) as counter ".
@@ -6581,7 +6591,7 @@ class API extends REST {
                 // var_dump($result);
             }
 
-            $this->response($this->json(array($result,$counter,$counter1,$counter2,$counter3,$counter4)), 200); // send user details
+            $this->response($this->json(array($result,$counter,$counter1,$counter2,$counter3,$counter4,$counter5)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
