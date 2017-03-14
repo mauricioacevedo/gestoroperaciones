@@ -755,7 +755,7 @@ class API extends REST {
 
 //-------------------------exportar pendietes activacion ----------------------------activacion
 
-    private function csvActivacionhistorico(){
+    private function csvhistorico_activacion(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
