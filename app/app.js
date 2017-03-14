@@ -11165,7 +11165,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.FECHA_CREACION = null;
     $scope.FECHA_INICIO = null;
 	$scope.FECHA_FIN = null;
-	$scope.transaccion = 'TODO';
+	$scope.transaccion = 'Suspender';
 
 
 
@@ -11185,7 +11185,10 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	$scope.pedidoIsActive = false;
 
-
+      $scope.settransaccion = function (transaccion{
+        console.log("transaccion: "+$scope.transaccion+" - transaccion 2: "+transaccion);
+        $scope.transaccion=transaccion;
+    }
 	// ---------------------------------fin Variables----------------------------
 
 
