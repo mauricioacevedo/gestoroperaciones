@@ -9031,9 +9031,11 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.bpedido = '';
 		$scope.busy = "";
 		$scope.pedido1 = pedido1;
-        $scope.tipo_trabajo=tipo_trabajo;
+
 		$scope.error = "";
 
+        console.log("tipo trabajo: "+$scope.tipo_trabajo+", tipo trabajo 2: "+tipo_trabajo);
+        $scope.tipo_trabajo=tipo_trabajo;
 
 
 		if ($scope.departamento == undefined || $scope.departamento == '' || $scope.departamento.DEPARTAMENT == undefined || $scope.departamento.DEPARTAMENT == '') {
