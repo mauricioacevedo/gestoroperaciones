@@ -11050,7 +11050,7 @@ $scope.set_color_Cuartil = function (value) {
 			var seconds = $scope.doubleDigit(date1.getSeconds());
 			$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
-            if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
+            	if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
 				$scope.ordenamientoDemepedido = valor;
 			}
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TABLAS") {
@@ -11070,7 +11070,7 @@ $scope.set_color_Cuartil = function (value) {
 
 		services.buscarParametro(parametro).then(function (data) {
 
-            if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
+           if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
 				$scope.UsuarioParametro = data.data['USUARIO_ID'];
 				$scope.ordenamientoDemepedido = data.data['VALOR'];
 				$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
@@ -11093,11 +11093,11 @@ $scope.set_color_Cuartil = function (value) {
 
 	//para inicializar la variable ordenamientoDemepedido
 
-    services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO').then(function (data) {
+   services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO').then(function (data) {
 
 		$scope.ordenamientoDemepedido = data.data['VALOR'];
 		$scope.ordenamientoDemepedidoNuevo = data.data['VALOR'];
-		$scope.ordenamientoDemepedido = data.data['ULTIMA_ACTUALIZACION'];
+		$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
 		$scope.UsuarioParametro = data.data['USUARIO_ID'];
 		return data.data;
 	});
