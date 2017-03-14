@@ -775,7 +775,7 @@ class API extends REST {
 
         $query="SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION ".
             " , PRODUCTO,ASESOR,FECHA_GESTION ".
-             " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
+            // " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
             " from gestor_historico_activacion ".
             " where FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59' ".
             " order by FECHA_FIN ASC ";
