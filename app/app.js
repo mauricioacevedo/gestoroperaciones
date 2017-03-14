@@ -11185,7 +11185,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	$scope.pedidoIsActive = false;
 
-      $scope.settransaccion = function (transaccion){
+      $scope.setTransaccion = function (transaccion){
         console.log("transaccion: "+$scope.transaccion+" - transaccion 2: "+transaccion);
         $scope.transaccion=transaccion;
     }
