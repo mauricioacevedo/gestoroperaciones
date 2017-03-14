@@ -13566,6 +13566,8 @@ class API extends REST {
             "	, m.PAGINA_SERVICIO ".
             "	, m.FECHA_CARGA ".
             "	, m.FUENTE ".
+            "   , m.GRUPO ".
+            "   , m.ACTIVIDAD ".
             "	, m.STATUS ".
             "	, m.ASESOR ".
             "	, m.FECHA_VISTO_ASESOR ".
