@@ -186,10 +186,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	obj.getDashboardAgendamientoPresupuestal = function () {
 		return $http.get(serviceBase + 'getDashboardAgendamientoPresupuestal'); //grafica agendamiento presupuestal
 	};
-	obj.demePedidoAgendamiento = function (user, departamento, zona, microzona, proceso, pedido_actual, plaza, username) {
+	obj.demePedidoAgendamiento = function (user, departamento, zona, microzona, proceso, pedido_actual, plaza, username, tipo_trabajo) {
 		//demepedido agendamiento
 		//console.log("zona="+zona+", microzona="+microzona+", proceso="+proceso);
-		return $http.get(serviceBase + 'demePedidoAgendamiento?userID=' + user + '&departamento=' + departamento + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&zona=' + zona + '&microzona=' + microzona + '&proceso=' + proceso);
+		return $http.get(serviceBase + 'demePedidoAgendamiento?userID=' + user + '&departamento=' + departamento + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&zona=' + zona + '&microzona=' + microzona + '&proceso=' + proceso + '&tipo_trabajo='+tipo_trabajo);
 	};
 
 	obj.demePedidoAgendamientomalo = function (user, pedido_actual, plaza, username) {
@@ -8498,6 +8498,8 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 	$scope.zona = {};
 	$scope.zona.SUBZONA_ID = '';
 	$scope.TODAY_TRIES = "";
+    $scope.tipo_trabajo = "NUEVO";
+
 
 	$scope.ordenamientoDemepedido = '';
 	$scope.ordenamientoDemepedidoUpdate = '';
@@ -9049,7 +9051,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 
 
-		var kami = services.demePedidoAgendamiento($rootScope.logedUser.login, $scope.departamento.DEPARTAMENT, $scope.zona.SUBZONA_ID, $scope.microzona, $scope.proceso,$scope.FECHA_CITA_REAGENDA, $scope.TODAY_TRIES, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name).then(function (data) {
+		var kami = services.demePedidoAgendamiento($rootScope.logedUser.login, $scope.departamento.DEPARTAMENT, $scope.zona.SUBZONA_ID, $scope.microzona, $scope.proceso,$scope.FECHA_CITA_REAGENDA, $scope.TODAY_TRIES, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, $scope.tipo_trabajo).then(function (data) {
 
 
 			if (data.data == '' || data.data == 'No hay registros!') {

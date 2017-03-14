@@ -8486,6 +8486,9 @@ class API extends REST {
         $proceso = $this->_request['proceso'];
         $zona = $this->_request['zona'];
         $username=$this->_request['username'];
+
+        $tipo_trabajo=$this->_request['tipo_trabajo'];
+
         //var_dump($proceso);
         $filename = '../tmp/control-threads-agen.txt';
         if(file_exists($filename)){
@@ -8599,6 +8602,17 @@ class API extends REST {
         }
         if($parametroBusqueda=='') $parametroBusqueda ='FECHA_ESTADO';
 
+
+        if($tipo_trabajo==""){
+            $tipo_trabajo="NO APLICA";
+        }
+
+        if($tipo_trabajo!="NO APLICA"){
+            $tipo_trabajo=" and b.TIPO_TRABAJO='$tipo_trabajo' ";
+        }else{
+            $tipo_trabajo="";
+        }
+
         $query1="select b.PEDIDO_ID,b.FECHA_CITA_FENIX ".
             ",(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO_ID=a.pedido_id ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
@@ -8615,6 +8629,7 @@ class API extends REST {
             $departamento.
             $zona.
             $microzona.
+            $tipo_trabajo
             //$plaza.
             //" order by b.$parametroBusqueda ASC";
             " order by b.$parametroBusqueda $ordenamiento ";
