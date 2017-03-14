@@ -6546,6 +6546,8 @@ class API extends REST {
             }
         }
 
+            $query=" SELECT count(*) as counter "
+                " FROM gestor_historico_activacion ";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter5=0;
