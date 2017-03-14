@@ -8206,13 +8206,10 @@ class API extends REST {
 
 //--------------------demepedidoactivacion------------------------------------
 
- private function demePedidoActivacion(){
-
-
+   private function demePedidoActivacion(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
-
         $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
         $usuarioPc      =   gethostbyaddr($usuarioIp);
         $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
@@ -8224,12 +8221,10 @@ class API extends REST {
         $grupoGalleta   =   $galleta['GRUPO'];
 
         $user = $this->_request['userID'];
-        $username=$this->_request['username'];
-        $prioridad=$this->_request['prioridad'];
+        $transaccion = $this->_request['transaccion'];
 
 
-
-        $filename = '../tmp/control-threads.txt';
+        $filename = '../tmp/control-threads-agen.txt';
         if(file_exists($filename)){
             sleep(1);
         }else{
@@ -8237,129 +8232,20 @@ class API extends REST {
             fclose($file);
         }
 
-
-        $user=strtoupper($user);
         //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
         $pedido_actual = $this->_request['pedido_actual'];
+        //echo $pedido_actual;
         //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
-
+        $user=strtoupper($user);
         //NO SE PUEDE CONDICIONAR AL PEDIDO ACTUAL, SI LE DA F5 A LA PAGINA NO HAY PEDIDO ACTUAL.. ES MEJOR ASI!!!
-        $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='' where ASESOR='$user'";
-     $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
+        $sqlupdate="update gestor_pendientes_reagendamiento set ASESOR='' where ASESOR='$user'";
         //echo $sqlupdate;
         $xxx = $this->mysqli->query($sqlupdate);
         //}
-
         //echo "WTF";
-        $user=strtoupper($user);
         $today = date("Y-m-d");
 
         //1.consulto todo lo que tenga fecha cita de mañana
-        $hora=date("G");
-        $uphold="1";
-        if($hora<11){
-            $uphold="1";
-        }else{
-            $uphold="2";
-        }
-
-        //14B2B
-        $llamadaReconfiguracion="0";
-
-        $ATENCION_INMEDIATA="";
-        $mypedido="";
-
-        //2016-08-05: MAURICIO
-        //SE UTILIZA ESTA VARIABLE PARA PARAMETRIZAR EL STATUS
-
-        $STATUS="PENDI_ACTI";
-
-        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
-
-
-        if($TABLA == "ACTIVADOR_SUSPECORE"){
-            if($TRANSACCION == "Suspender" || $TRANSACCION == "Reanudar"){
-
-                $sql1=   " SELECT PEDIDO, ".
-                         " FECHA_EXCEPCION, ".
-                         " FECHA_CREACION, ".
-                         " FECHA_CARGA, ".
-                         " TABLA ".
-                         " FROM  gestor_activacion_pendientes_activador_suspecore ".
-                         " WHERE  ASESOR='' ".
-                         " AND STATUS='PENDI_ACTI' ".
-                         " ORDER BY FECHA_EXCEPCION ASC ";
-
-        } else if($TABLA == "ACTIVADO_DOM"){
-
-             $sql1=   " SELECT PEDIDO, ".
-                         " FECHA_EXCEPCION, ".
-                         " FECHA_CREACION, ".
-                         " FECHA_CARGA, ".
-                         " TABLA ".
-                         " FROM  gestor_activacion_pendientes_activador_suspecore ".
-                         " WHERE  ASESOR='' ".
-                         " AND STATUS='PENDI_ACTI' ".
-                         " ORDER BY FECHA_EXCEPCION ASC ";
-
-
-
-
-                $rr = $this->mysqli->query($sql1) or die($this->mysqli->error.__LINE__);
-
-
-                if($rr->num_rows > 0){//recorro los registros de la consulta para
-                    while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
-                        $result[] = $row;
-                        $mypedido=$row['PEDIDO'];
-                        $mypedidoresult=$rta;
-                        $ATENCION_INMEDIATA="1";
-                        break;
-                    }
-                }
-
-
-            }
-        }
-
-
-        }else if($TABLA == "ACTIVADOR_SUSPECORE" && $TRANSACCION == "Suspender"){
-            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVADOR_SUSPECORE');
-
-            //reviso si hay llamadas que se deben hacer y las entrego de primeras
-
-            $sql1=" SELECT PEDIDO,FECHA_EXCEPCION,FECHA_CREACION ".
-                     " FROM  gestor_activacion_pendientes_activador_suspecore ".
-                     " WHERE ".
-                     " TIMEDIFF( NOW() , FECHA_EXCEPCION ) /3600 >0 ".
-                     " AND ASESOR='' ".
-                     " AND STATUS='PENDI_ACTI' ".
-                     " ORDER BY  TIMEDIFF( NOW() , FECHA_EXCEPCION ) /3600 ASC ";
-
-      }else ($TABLA == "ACTIVADO_DOM"){
-
-            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVADO_DOM');
-
-            "SELECT PEDIDO,FECHA_EXCEPCION,FECHA_CREACION "
-                 "FROM  gestor_activacion_pendientes_activador_dom "
-                " WHERE "
-                " TIMEDIFF( NOW() , FECHA_EXCEPCION ) /3600 >0 "
-                " AND STATUS='PENDI_ACTI' "
-                " ORDER BY  TIMEDIFF( NOW() , FECHA_EXCEPCION ) /3600 ASC ";
-
-            $rr = $this->mysqli->query($sql1) or die($this->mysqli->error.__LINE__);
-
-            if($rr->num_rows > 0){//recorro los registros de la consulta para
-                while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
-                    $result[] = $row;
-                    $mypedido=$row['PEDIDO'];
-                    $mypedidoresult=$rta;
-                    break;
-                }
-            }
-        }
-
-//1.consulto todo lo que tenga fecha cita de mañana
         $hora=date("G");
         $uphold="1";
         if($hora<11){
