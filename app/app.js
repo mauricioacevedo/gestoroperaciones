@@ -9020,7 +9020,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
         $scope.tipo_trabajo=tipo_trabajo;
     }
 
-	$scope.start = function (pedido,tipo_trabajo) {
+	$scope.start = function (pedido) {
 		var pedido1 = '';
 		$scope.popup = '';
 		$scope.error = "";
@@ -9033,10 +9033,6 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.pedido1 = pedido1;
 
 		$scope.error = "";
-
-        console.log("tipo trabajo: "+$scope.tipo_trabajo+", tipo trabajo 2: "+tipo_trabajo);
-        $scope.tipo_trabajo=tipo_trabajo;
-
 
 		if ($scope.departamento == undefined || $scope.departamento == '' || $scope.departamento.DEPARTAMENT == undefined || $scope.departamento.DEPARTAMENT == '') {
 			//console.log($scope.departamento);
@@ -9054,10 +9050,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 		}
 
 
-
-
-
-		var kami = services.demePedidoAgendamiento($rootScope.logedUser.login, $scope.departamento.DEPARTAMENT, $scope.zona.SUBZONA_ID, $scope.microzona, $scope.proceso,$scope.FECHA_CITA_REAGENDA, $scope.TODAY_TRIES, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, $scope.tipo_trabajo).then(function (data) {
+		var kami = services.demePedidoAgendamiento($rootScope.logedUser.login, $scope.departamento.DEPARTAMENT, $scope.zona.SUBZONA_ID, $scope.microzona, $scope.proceso, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, $scope.tipo_trabajo).then(function (data) {
 
 
 			if (data.data == '' || data.data == 'No hay registros!') {
