@@ -15359,7 +15359,7 @@ private function guardarGestionAsignaciones()
     $fuente         =   $gestion['gestion'][0].fuente;
     $estado         =   $gestion['gestion'][0].ESTADO_ID;
     $programacion   =   $gestion['gestion'][0].horaLlamar;
-    $pedido         =   $gestion['gestion'][0].pedido;
+    $pedido         =   $gestion['gestion']['pedido'];
 
     $malo           =   false;
     $programado     =   false;
