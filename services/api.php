@@ -8337,7 +8337,7 @@ class API extends REST {
 
        if($mypedido == ""){
 
-           $rr = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
+           $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
             $mypedidoresult=array();
             $pedidos_usuario="";
             if($rr->num_rows > 0){
