@@ -15686,11 +15686,11 @@ private function guardarGestionAsignaciones()
 
     $gestion        =   json_decode (file_get_contents ("php://input"), true);
     $fechaServidor  =   date("Y-m-d H:i:s");
-    $usuario        =   $gestion['gestion'].user;
-    $fuente         =   $gestion['gestion'].fuente;
-    $estado         =   $gestion['gestion'].ESTADO_ID;
-    $programacion   =   $gestion['gestion'].horaLlamar;
-    $pedido         =   $gestion['gestion'].pedido;
+    $usuario        =   $gestion['gestion']['user'];
+    $fuente         =   $gestion['gestion']['fuente'];
+    $estado         =   $gestion['gestion']['ESTADO_ID'];
+    $programacion   =   $gestion['gestion']['horaLlamar'];
+    $pedido         =   $gestion['gestion']['pedido'];
 
     $malo           =   false;
     $programado     =   false;
@@ -15708,20 +15708,25 @@ private function guardarGestionAsignaciones()
     $values = '';
 
     var_dump($gestion);
-    var_dump($keys);
+    var_dump($programacion);
+
+    echo "Variables";
+    echo $usuario."\n";
+    echo "$fuente \n";
+    echo "$estado \n";
+    echo "$programacion \n";
+    echo "$pedido \n";
 
     if($estado=='MALO'){//Si el pedido fue marcado como malo:
 
-        //TODO: Haga insert en tabla de registros.
         //TODO: Haga update en tabla de pendientes.
         echo "Entro a Malo";
         $malo = true;
         $gestionado = true;
     }
 
-    if($programacion!='undefined' || $programacion!=''){//Programaron el pedido, toca hacer algo:
+    if($programacion!=="SIN"){//Programaron el pedido, toca hacer algo:
 
-        //TODO: Haga insert en tabla de registros.
         //TODO: Haga update en pendientes con la programacion, quite radicado temporal.
         
         echo "Entro a programacion";
@@ -15748,6 +15753,7 @@ private function guardarGestionAsignaciones()
     }
 
     if($gestionado){//Si fue gestionado, mandamos JSON con respuesta.
+
         $this->response ($this->json (array($malo, $programado, $gestionado)), 200);
     }else{
         $error = 'Error guardando: $mysqlerror';

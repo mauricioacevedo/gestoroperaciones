@@ -14264,28 +14264,18 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         $scope.actividadGo = actividad[0].ACTIVIDAD;
         $scope.guardando = true;
 
-        //console.log(InfoPedido); //Seguimiento
-        //console.log(gestion);//GEstion
-        //console.log(status); //Cerrado, Pendiente o Malo
-        //console.log(actividad);
-
         var fromDate = parseInt(new Date($scope.fecha_inicio).getTime() / 1000);
         var toDate = parseInt(new Date($scope.fecha_fin).getTime() / 1000);
         var timeDiff = (toDate - fromDate) / 3600; // will give difference in hrs
-
-        /** Ya no es necesario
-         if(InfoPedido.SOURCE!='BUSCADO'){
-            var varDondeGuardar 	= $scope.iconcepto.FUENTE;
-		}else{
-            var varDondeGuardar 	= InfoPedido.FUENTE;
-		} */
 
         var varDondeGuardar = gestion.FUENTE;
         var varEstadoGuardar = InfoPedido.ESTADO_PROCESO;
         var varObsesGuardar = InfoPedido.OBSERVACIONES_PROCESO;
 
+		if(InfoPedido.PROGRAMACION==undefined){
+            InfoPedido.PROGRAMACION='SIN';
+		}
 
-        if (varDondeGuardar == 'FENIX_NAL' || varDondeGuardar == 'FENIX_BOG') {
             if (varEstadoGuardar == 'MALO') {
                 var estadoFinal = 'MALO';
             } else {
@@ -14319,51 +14309,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 INCIDENTE: InfoPedido.INCIDENTE,
                 ID: gestion.ID
             };
-        } else if (varDondeGuardar == 'SIEBEL') {
-            $scope.InfoGestion = {
-                ID: gestion.ID,
-                OFERTA: gestion.PEDIDO_ID,
-                MUNICIPIO_ID: gestion.MUNICIPIO_ID,
-                TRANSACCION: gestion.DESC_TIPO_TRABAJO,
-                ESTADO: gestion.CONCEPTO_ID,
-                FECHA: gestion.FECHA_ESTADO,
-                DURACION: timeDiff,
-                INCIDENTE: InfoPedido.INCIDENTE,
-                FECHA_INICIO: $scope.fecha_inicio,
-                FECHA_FIN: $scope.fecha_fin,
-                ESTADO_FINAL: InfoPedido.ESTADO_PROCESO,
-                OBSERVACION: InfoPedido.OBSERVACIONES_PROCESO,
-                USUARIO: $rootScope.logedUser.login,
-                STATUS: $scope.stautsGo
-            };
-        } else if (varDondeGuardar == 'EDATEL') {
-            $scope.InfoGestion = {
-                pedido: gestion.PEDIDO_ID,
-                fuente: varDondeGuardar,
-                actividad: $scope.actividadGo,
-                fecha_fin: $scope.fecha_fin,
-                user: $rootScope.logedUser.login,
-                ESTADO_ID: InfoPedido.ESTADO_PROCESO,
-                estado: InfoPedido.OBSERVACIONES_PROCESO,
-                OBSERVACIONES_PROCESO: InfoPedido.OBSERVACIONES_PROCESO,
-                duracion: timeDiff,
-                FECHA_ESTADO: gestion.FECHA_ESTADO,
-                fecha_inicio: $scope.fecha_inicio,
-                concepto_final: gestion.CONCEPTO_ID,
-                CONCEPTO_ID: gestion.CONCEPTO_ID,
-                CONCEPTO_ANTERIOR: gestion.CONCEPTO_ID,
-                source: InfoPedido.SOURCE,
-                PEDIDO_ID: gestion.PEDIDO_ID,
-                SUBPEDIDO_ID: gestion.SUBPEDIDO_ID,
-                MUNICIPIO_ID: gestion.MUNICIPIO_ID,
-                motivo_malo: InfoPedido.OBSERVACIONES_PROCESO,
-                idllamada: InfoPedido.IDLLAMADA,
-                nuevopedido: InfoPedido.NUEVOPEDIDO,
-                horaLlamar: InfoPedido.PROGRAMACION,
-                INCIDENTE: InfoPedido.INCIDENTE,
-                ID: gestion.ID
-            };
-        }
+
         services.putGestionAsignaciones($scope.InfoGestion).then(
         	function (data) {
         		console.log(data);
