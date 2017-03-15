@@ -7,6 +7,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/agendamiento/indicadores_agendamiento.html" afterPath="$PROJECT_DIR$/partials/agendamiento/indicadores_agendamiento.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/asignaciones/indicadores_asignaciones.html" afterPath="$PROJECT_DIR$/partials/asignaciones/indicadores_asignaciones.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/templates/feed.html" afterPath="$PROJECT_DIR$/partials/templates/feed.html" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
@@ -89,23 +91,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="indicadores_asignaciones.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partials/asignaciones/indicadores_asignaciones.html">
+      <file leaf-file-name="indicadores_agendamiento.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/partials/agendamiento/indicadores_agendamiento.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="483" column="44" lean-forward="false" selection-start-line="483" selection-start-column="44" selection-end-line="486" selection-end-column="99" />
+            <state relative-caret-position="224">
+              <caret line="466" column="106" lean-forward="false" selection-start-line="466" selection-start-column="106" selection-end-line="466" selection-end-column="106" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="feed.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="indicadores_asignaciones.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/partials/asignaciones/indicadores_asignaciones.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="496">
+              <caret line="518" column="8" lean-forward="false" selection-start-line="518" selection-start-column="8" selection-end-line="519" selection-end-column="106" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="feed.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/partials/templates/feed.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="41" column="20" lean-forward="false" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
+            <state relative-caret-position="289">
+              <caret line="17" column="91" lean-forward="false" selection-start-line="17" selection-start-column="91" selection-end-line="17" selection-end-column="91" />
               <folding>
-                <marker date="1489589296502" expanded="true" signature="1060:2113" ph="{&quot;USO&quot;: 'label label-info'...}" />
+                <marker date="1489589333340" expanded="true" signature="1061:2114" ph="{&quot;USO&quot;: 'label label-info'...}" />
               </folding>
             </state>
           </provider>
@@ -188,8 +200,8 @@
       <find>getBuscarOfertaSiebelAsignaciones</find>
       <find>buscarOfertaSiebelAsignaciones</find>
       <find>chat</find>
-      <find>indicadoresCtrl</find>
       <find>feed</find>
+      <find>indicadoresCtrl</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -214,16 +226,16 @@
         <option value="$PROJECT_DIR$/../../WEB_APP/AUTOBOTS/informes/pedidosdeAccesoEqured.php" />
         <option value="$PROJECT_DIR$/css/gestor.css" />
         <option value="$PROJECT_DIR$/partials/asignacion.html" />
-        <option value="$PROJECT_DIR$/partials/agendamiento/indicadores_agendamiento.html" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/partials/agendamiento/alarmados_proactivos.html" />
         <option value="$PROJECT_DIR$/partials/reagendamiento.html" />
         <option value="$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html" />
         <option value="$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html" />
         <option value="$PROJECT_DIR$/services/api.php" />
-        <option value="$PROJECT_DIR$/partials/asignaciones/indicadores_asignaciones.html" />
         <option value="$PROJECT_DIR$/app/app.js" />
         <option value="$PROJECT_DIR$/partials/templates/feed.html" />
+        <option value="$PROJECT_DIR$/partials/asignaciones/indicadores_asignaciones.html" />
+        <option value="$PROJECT_DIR$/partials/agendamiento/indicadores_agendamiento.html" />
       </list>
     </option>
   </component>
@@ -364,6 +376,42 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gestoroperaciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gestoroperaciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="partials" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="asignaciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gestoroperaciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gestoroperaciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="partials" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agendamiento" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1015,14 +1063,7 @@
       <workItem from="1489420165041" duration="4363000" />
       <workItem from="1489492306212" duration="3559000" />
       <workItem from="1489505108028" duration="4878000" />
-      <workItem from="1489586382768" duration="2226000" />
-    </task>
-    <task id="LOCAL-00629" summary="Cambio Auditoria Grande">
-      <created>1487958934476</created>
-      <option name="number" value="00629" />
-      <option name="presentableId" value="LOCAL-00629" />
-      <option name="project" value="LOCAL" />
-      <updated>1487958934476</updated>
+      <workItem from="1489586382768" duration="2333000" />
     </task>
     <task id="LOCAL-00630" summary="Cambio Auditoria Grande">
       <created>1487959024639</created>
@@ -1360,11 +1401,18 @@
       <option name="project" value="LOCAL" />
       <updated>1489589120751</updated>
     </task>
-    <option name="localTasksCounter" value="678" />
+    <task id="LOCAL-00678" summary="Feed general para cualquier grupo">
+      <created>1489589308885</created>
+      <option name="number" value="00678" />
+      <option name="presentableId" value="LOCAL-00678" />
+      <option name="project" value="LOCAL" />
+      <updated>1489589308885</updated>
+    </task>
+    <option name="localTasksCounter" value="679" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="331265000" />
+    <option name="totallyTimeSpent" value="331372000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1867,13 +1915,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/agendamiento/indicadores_agendamiento.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="649">
-          <caret line="494" column="69" lean-forward="false" selection-start-line="494" selection-start-column="69" selection-end-line="494" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/partials/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="445">
@@ -2019,19 +2060,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/asignaciones/indicadores_asignaciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="483" column="44" lean-forward="false" selection-start-line="483" selection-start-column="44" selection-end-line="486" selection-end-column="99" />
+        <state relative-caret-position="496">
+          <caret line="518" column="8" lean-forward="false" selection-start-line="518" selection-start-column="8" selection-end-line="519" selection-end-column="106" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/templates/feed.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="41" column="20" lean-forward="false" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
+        <state relative-caret-position="289">
+          <caret line="17" column="91" lean-forward="false" selection-start-line="17" selection-start-column="91" selection-end-line="17" selection-end-column="91" />
           <folding>
-            <marker date="1489589296502" expanded="true" signature="1060:2113" ph="{&quot;USO&quot;: 'label label-info'...}" />
+            <marker date="1489589333340" expanded="true" signature="1061:2114" ph="{&quot;USO&quot;: 'label label-info'...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/agendamiento/indicadores_agendamiento.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="466" column="106" lean-forward="false" selection-start-line="466" selection-start-column="106" selection-end-line="466" selection-end-column="106" />
+          <folding />
         </state>
       </provider>
     </entry>
