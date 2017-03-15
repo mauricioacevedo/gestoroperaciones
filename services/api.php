@@ -8403,10 +8403,17 @@ class API extends REST {
         $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO = '$mypedido' and STATUS='PENDI_ACTI'";
         $x = $this->mysqli->query($sqlupdate);
 
-       if($PROGRAMADO!="NOT"){
-            $PROGRAMADO=", '$PROGRAMADO' as PROGRAMADO ";
+
+         if($prioridad!=''){
+            $parametroBusqueda=$prioridad;
+        }
+        if($parametroBusqueda=='') $parametroBusqueda ='FECHA_EXCEPCION';
+
+
+        if($transaccion!="NO APLICA"){
+            $transaccion=" and b.TRANSACCION ='$transaccion' ";
         }else{
-            $PROGRAMADO="";
+            $transaccion="";
         }
 
         $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
@@ -8418,7 +8425,10 @@ class API extends REST {
             " ,b.FECHA_EXCEPCION,'AUTO' as source ".
             " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
             " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
-            " from gestor_activacion_pendientes_activador_suspecore b where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ";
+            " from gestor_activacion_pendientes_activador_suspecore b ".
+            " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
+            $transaccion.
+            " order by b.$parametroBusqueda ASC";
         //echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
