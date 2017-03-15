@@ -15377,7 +15377,7 @@ private function guardarGestionAsignaciones()
     $values = '';
 
     var_dump($gestion);
-    var_dump($keys);
+    var_dump($programacion);
 
     echo "Variables";
     echo $usuario."\n";
