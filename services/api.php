@@ -14931,7 +14931,7 @@ class API extends REST {
         }
 
     }// ------------------------------------------------------------------------ Parametros Acciones Nuevo
-//Funcion para productividad el grupo de asignaciones cada hora-----------------------------------------------
+
     /**
      * Funcion para productividad el grupo de asignaciones cada hora-
      */
