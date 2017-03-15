@@ -15422,6 +15422,7 @@ private function guardarGestionAsignaciones()
     }
 
     if($gestionado){//Si fue gestionado, mandamos JSON con respuesta.
+
         $this->response ($this->json (array($malo, $programado, $gestionado)), 200);
     }else{
         $error = 'Error guardando: $mysqlerror';
