@@ -14640,7 +14640,7 @@ app.controller('feedCtrl', function ($scope, $rootScope, $location, $routeParams
         function (event) {
             //$timeout.cancel( timer );
             //alert('pew! pew!');
-            clearInterval($scope.intervalGrafica);
+            //clearInterval($scope.intervalGrafica);
             clearInterval($scope.intervalFeed);
         }
     );
