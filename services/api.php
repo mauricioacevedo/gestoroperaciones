@@ -8644,7 +8644,7 @@ class API extends REST {
             " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
             $transaccion.
             " order by b.FECHA_EXCEPCION ASC";
-        //echo $query1;
+        echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
