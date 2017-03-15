@@ -8282,6 +8282,7 @@ class API extends REST {
 
         $user = $this->_request['userID'];
         $transaccion = $this->_request['transaccion'];
+       $tabla= $this->_request['tabla'];
 
 
         $filename = '../tmp/control-threads-agen.txt';
@@ -8406,8 +8407,14 @@ class API extends REST {
         if($parametroBusqueda=='') $parametroBusqueda ='FECHA_EXCEPCION';
 
 
+
         if($transaccion!=""){
             $transaccion=" and b.TRANSACCION ='$transaccion' ";
+        }
+
+        if($tabla == 'ACTIVADOR_SUSPECORE'){
+         if($tabla!=""){
+            $tabla=" and b.TABLA ='$tabla' ";
         }
 
         $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
@@ -8422,7 +8429,25 @@ class API extends REST {
             " from gestor_activacion_pendientes_activador_suspecore b ".
             " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
             $transaccion.
+            $tabla.
             " order by b.FECHA_EXCEPCION ASC";
+
+        }else {
+             $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
+            " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
+            " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
+            " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR ".
+            " ,group_concat(distinct b.PRODUCTO ) as PRODUCTOS ".
+            " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
+            " ,b.FECHA_EXCEPCION,'AUTO' as source ".
+            " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
+            " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
+            " from gestor_activacion_pendientes_activador_dom b ".
+            " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
+            $transaccion.
+            $tabla.
+            " order by b.FECHA_EXCEPCION ASC";
+
         //echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
@@ -8479,7 +8504,7 @@ class API extends REST {
 
         $this->response('nothing',204);        // If no records "No Content" status
     }
-
+   }
 
 
 
