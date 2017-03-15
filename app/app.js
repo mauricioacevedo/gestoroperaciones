@@ -14308,6 +14308,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 nuevopedido: InfoPedido.NUEVOPEDIDO,
                 horaLlamar: InfoPedido.PROGRAMACION,
                 INCIDENTE: InfoPedido.INCIDENTE,
+                TRANSACCION: gestion.DESC_TIPO_TRABAJO,
+                FECHA: gestion.FECHA_ESTADO,
                 ID: gestion.ID
             };
 

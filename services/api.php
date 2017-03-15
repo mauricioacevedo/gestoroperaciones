@@ -15755,6 +15755,34 @@ private function guardarGestionAsignaciones()
     if($fuente==="SIEBEL"){// Si el pedido viene de siebel
         //TODO: Haga doble insert.
         echo "Entro a siebel";
+        $sqlNca =   " INSERT INTO portalbd.transacciones_nca ( ".
+                    " OFERTA, ".
+                    " MUNICIPIO_ID, ".
+                    " TRANSACCION, ".
+                    " ESTADO, ".
+                    " FECHA, ".
+                    " DURACION, ".
+                    " INCIDENTE, ".
+                    " FECHA_INICIO, ".
+                    " FECHA_FIN, ".
+                    " ESTADO_FINAL, ".
+                    " OBSERVACION, ".
+                    " USUARIO ".
+                    " ) VALUES (".
+                    " '".$gestion['gestion']['pedido']."' , ".
+                    " '".$gestion['gestion']['MUNICIPIO_ID']."'  , ".
+                    " '".$gestion['gestion']['DESC_TIPO_TRABAJO']."'   , ".
+                    " '".$gestion['gestion']['CONCEPTO_ID']."'   , ".
+                    " '".$gestion['gestion']['FECHA']."'   , ".
+                    " '".$gestion['gestion']['duracion']."'  , ".
+                    " '".$gestion['gestion']['INCIDENTE']."'  , ".
+                    " '".$gestion['gestion']['fecha_inicio']."' , ".
+                    " '".$gestion['gestion']['fecha_fin']."'  , ".
+                    " '".$gestion['gestion']['ESTADO_ID']."'   , ".
+                    " '".$gestion['gestion']['OBSERVACIONES_PROCESO']."'  , ".
+                    " '".$gestion['gestion']['user']."'  ".
+                    " ) ";
+        $insertNca = $this->mysqli->query($sqlNca);
         $gestionado = true;
     }else{
         if($fuente==='FENIX_NAL'){// Si es fenix, vaya y mire si cambio de concepto
