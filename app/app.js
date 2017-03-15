@@ -11288,7 +11288,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	// -------------------------------------------------------------- fin DemePedido activacion
     // ------------------------DemePedido activacion dom --------------------------------------------------------------
 
-	$scope.start1 = function (pedido) {
+	$scope.startdom = function (pedido) {
 
 		var pedido1 = '';
 		$scope.popup = '';
