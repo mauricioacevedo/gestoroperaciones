@@ -8412,9 +8412,6 @@ class API extends REST {
             $transaccion=" and b.TRANSACCION ='$transaccion' ";
         }
 
-        if($tabla!=""){
-            $tabla=" and b.TABLA ='$tabla' ";
-        }
 
         if($tabla == 'ACTIVADOR_SUSPECORE'){
             $tabla=" and b.TABLA ='$tabla' ";
