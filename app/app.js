@@ -14521,9 +14521,6 @@ app.controller('feedCtrl', function ($scope, $rootScope, $location, $routeParams
     $scope.$on(
         "$destroy",
         function (event) {
-            //$timeout.cancel( timer );
-            //alert('pew! pew!');
-            //clearInterval($scope.intervalGrafica);
             clearInterval($scope.intervalFeed);
         }
     );
