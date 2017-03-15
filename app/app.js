@@ -438,9 +438,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'pedidosPorPedidoActivacion?pedido=' + pedido);
 	};
 
-	obj.demePedidoActivacion = function (user, pedido, transaccion, username) { //deme pedido activacion
+	obj.demePedidoActivacion = function (user, pedido, transaccion, tabla, username) { //deme pedido activacion
 		console.log("transaccion=" + transaccion);
-		return $http.get(serviceBase + 'demePedidoActivacion?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion + '&username=' + username );
+		return $http.get(serviceBase + 'demePedidoActivacion?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion  + '&tabla=' + tabla +'&username=' + username );
 	};
 
 
@@ -11141,6 +11141,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
     $scope.FECHA_INICIO = null;
 	$scope.FECHA_FIN = null;
 	$scope.transaccion = 'Suspender';
+    $scope.tabla = 'ACTIVADOR_SUSPECORE';
 
 
 
@@ -11162,6 +11163,10 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
       $scope.setTransaccion = function (transaccion){
         $scope.transaccion=transaccion;
+    }
+
+      $scope.setTabla = function (tabla){
+        $scope.tabla=tabla;
     }
 	// ---------------------------------fin Variables----------------------------
 
@@ -11208,7 +11213,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		var demePedidoButton = document.getElementById("iniciar");
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
-		var kami = services.demePedidoActivacion($rootScope.logedUser.login, $scope.pedido1, $scope.transaccion, $rootScope.logedUser.name).then(function (data) {
+		var kami = services.demePedidoActivacion($rootScope.logedUser.login, $scope.pedido1, $scope.transaccion,$scope.tabla, $rootScope.logedUser.name).then(function (data) {
 
 
 			$scope.peds = data.data;
