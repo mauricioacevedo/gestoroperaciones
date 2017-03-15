@@ -15673,36 +15673,36 @@ private function guardarGestionAsignaciones()
         $this->response ('', 406);
     }
 
-    $usuarioIp      = $_SERVER['REMOTE_ADDR'];
-    $usuarioPc      = gethostbyaddr ($usuarioIp);
-    $galleta        = json_decode (stripslashes ($_COOKIE['logedUser']), true);
-    $galleta        = stripslashes ($_COOKIE['logedUser']);
-    $galleta        = json_decode ($galleta);
-    $galleta        = json_decode (json_encode ($galleta), True);
-    $usuarioGalleta = $galleta['login'];
-    $nombreGalleta  = $galleta['name'];
-    $grupoGalleta   = $galleta['GRUPO'];
+    $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+    $usuarioPc      =   gethostbyaddr ($usuarioIp);
+    $galleta        =   json_decode (stripslashes ($_COOKIE['logedUser']), true);
+    $galleta        =   stripslashes ($_COOKIE['logedUser']);
+    $galleta        =   json_decode ($galleta);
+    $galleta        =   json_decode (json_encode ($galleta), True);
+    $usuarioGalleta =   $galleta['login'];
+    $nombreGalleta  =   $galleta['name'];
+    $grupoGalleta   =   $galleta['GRUPO'];
 
     $gestion        =   json_decode (file_get_contents ("php://input"), true);
     $fechaServidor  =   date("Y-m-d H:i:s");
-    $usuario        =   $gestion[0].USUARIO_ID;
-    $fuente         =   $gestion[0].FUENTE;
-    $estado         =   $gestion[0].ESTADO;
-    $programacion   =   $gestion[0].PROGRAMACION;
-    $pedido         =   $gestion[0].PEDIDO_ID;
+    $usuario        =   $gestion['gestion'].USUARIO_ID;
+    $fuente         =   $gestion['gestion'].FUENTE;
+    $estado         =   $gestion['gestion'].ESTADO;
+    $programacion   =   $gestion['gestion'].PROGRAMACION;
+    $pedido         =   $gestion['gestion'].PEDIDO_ID;
 
-    $malo           = false;
-    $programado     = false;
-    $gestionado     = false;
-    $mysqlerror     = '';
-    $error          = '';
+    $malo           =   false;
+    $programado     =   false;
+    $gestionado     =   false;
+    $mysqlerror     =   '';
+    $error          =   '';
 
     if($usuario='undefined' || $usuario=''){
         $usuario = $usuarioGalleta;
     }
 
     $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo');
-    $keys = array_keys($gestion);
+    $keys = array_keys($gestion['gestion']);
     $columns = '';
     $values = '';
 
@@ -15713,6 +15713,7 @@ private function guardarGestionAsignaciones()
 
         //TODO: Haga insert en tabla de registros.
         //TODO: Haga update en tabla de pendientes.
+        echo "Entro a Malo";
         $malo = true;
         $gestionado = true;
     }
@@ -15721,6 +15722,8 @@ private function guardarGestionAsignaciones()
 
         //TODO: Haga insert en tabla de registros.
         //TODO: Haga update en pendientes con la programacion, quite radicado temporal.
+        
+        echo "Entro a programacion";
         $programado = true;
         $gestionado = true;
     }
@@ -15732,10 +15735,12 @@ private function guardarGestionAsignaciones()
         if($fuente=='FENIX_NAL'){// Si es fenix, vaya y mire si cambio de concepto
             //TODO: Check a fenix, cambio o no de concepto.
             //TODO: Hacer insert en tabla de registros con conceptos nuevos de fenix.
+            echo "entro a fenix nal";
             $gestionado = true;
 
         }else{ // Si no aplica, haga un guardado general.
             //TODO: Metodo para guardar generico.
+            echo "entro a generico";
             $gestionado = true;
         }
 
