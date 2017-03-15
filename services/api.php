@@ -8406,10 +8406,8 @@ class API extends REST {
         if($parametroBusqueda=='') $parametroBusqueda ='FECHA_EXCEPCION';
 
 
-        if($transaccion!="NO APLICA"){
+        if($transaccion!=""){
             $transaccion=" and b.TRANSACCION ='$transaccion' ";
-        }else{
-            $transaccion="";
         }
 
         $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
