@@ -15379,6 +15379,13 @@ private function guardarGestionAsignaciones()
     var_dump($gestion);
     var_dump($keys);
 
+    echo "Variables";
+    echo $usuario."\n";
+    echo "$fuente \n";
+    echo "$estado \n";
+    echo "$programacion \n";
+    echo "$pedido \n";
+
     if($estado=='MALO'){//Si el pedido fue marcado como malo:
 
         //TODO: Haga insert en tabla de registros.
