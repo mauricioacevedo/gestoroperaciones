@@ -14264,27 +14264,17 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         $scope.actividadGo = actividad[0].ACTIVIDAD;
         $scope.guardando = true;
 
-        //console.log(InfoPedido); //Seguimiento
-        //console.log(gestion);//GEstion
-        //console.log(status); //Cerrado, Pendiente o Malo
-        //console.log(actividad);
-
         var fromDate = parseInt(new Date($scope.fecha_inicio).getTime() / 1000);
         var toDate = parseInt(new Date($scope.fecha_fin).getTime() / 1000);
         var timeDiff = (toDate - fromDate) / 3600; // will give difference in hrs
-
-        /** Ya no es necesario
-         if(InfoPedido.SOURCE!='BUSCADO'){
-            var varDondeGuardar 	= $scope.iconcepto.FUENTE;
-		}else{
-            var varDondeGuardar 	= InfoPedido.FUENTE;
-		} */
 
         var varDondeGuardar = gestion.FUENTE;
         var varEstadoGuardar = InfoPedido.ESTADO_PROCESO;
         var varObsesGuardar = InfoPedido.OBSERVACIONES_PROCESO;
 
-		console.log(InfoPedido.PROGRAMACION);
+		if(InfoPedido.PROGRAMACION==undefined){
+            InfoPedido.PROGRAMACION=null;
+		}
         if (varDondeGuardar == 'FENIX_NAL' || varDondeGuardar == 'FENIX_BOG') {
             if (varEstadoGuardar == 'MALO') {
                 var estadoFinal = 'MALO';
