@@ -8430,7 +8430,7 @@ class API extends REST {
             " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
             $transaccion.
             $tabla.
-            " order by b.FECHA_EXCEPCION ASC";
+            " order by b.$parametroBusqueda ASC";
 
             echo $query1;
         }else if($tabla == 'ACTIVADOR_SUSPECORE'){
@@ -8450,7 +8450,7 @@ class API extends REST {
             " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
             $transaccion.
             $tabla.
-            " order by b.F$parametroBusqueda ASC";
+            " order by b.$parametroBusqueda ASC";
 
         echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
