@@ -443,6 +443,11 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'demePedidoActivacion?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion + '&username=' + username );
 	};
 
+    obj.demePedidoActivaciondom = function (user, pedido, transaccion, username) { //deme pedido activacion
+		console.log("transaccion=" + transaccion);
+		return $http.get(serviceBase + 'demePedidoActivacion?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion + '&username=' + username );
+	};
+
 	obj.getBuscarpedidoactivacion = function (pedido, pedido_actual, user) { //buscar pedido activacion
 		return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID=' + pedido + '&pedido_actual=' + pedido_actual + '&userID=' + user);
 	};
@@ -11281,7 +11286,87 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	};
 
 	// -------------------------------------------------------------- fin DemePedido activacion
+    // ------------------------DemePedido activacion dom --------------------------------------------------------------
 
+	$scope.start1 = function (pedido) {
+
+		var pedido1 = '';
+		$scope.popup = '';
+        $scope.buscar = '';
+		$rootScope.errorDatos = null;
+		$scope.InfoPedido = [];
+		$scope.FECHA_CREACION = null;
+		$scope.accRdy = false;
+		$scope.InfoGestion = {};
+		$scope.pedidoIsGuardado = false;
+
+		if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
+			pedido1 = $scope.peds[0].PEDIDO;
+
+
+		}
+		$scope.peds = {};
+		$scope.mpedido = {};
+		$scope.bpedido = '';
+		$scope.busy = "";
+		$scope.pedido1 = pedido1;
+		$scope.error = "";
+
+
+
+
+
+		var demePedidoButton = document.getElementById("iniciar");
+		demePedidoButton.setAttribute("disabled", "disabled");
+		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
+		var kami = services.demePedidoActivaciondom($rootScope.logedUser.login, $scope.pedido1, $scope.transaccion, $rootScope.logedUser.name).then(function (data) {
+
+
+			$scope.peds = data.data;
+			console.log($scope.peds);
+
+			if (data.data == '') {
+
+				document.getElementById("warning").innerHTML = "No hay Registros.";
+				$rootScope.errorDatos = "No hay Registros.";
+			} else {
+
+				document.getElementById("warning").innerHTML = "";
+				$scope.pedido1 = $scope.peds[0].PEDIDO;
+				$scope.pedidoinfo = $scope.peds[0].PEDIDO;
+				$scope.pedidoIsActive = true;
+				$rootScope.errorDatos = null;
+
+
+				if ($scope.peds[0].STATUS == "PENDI_ACTI" && $scope.peds[0].ASESOR != "") {
+					$scope.busy = $scope.peds[0].ASESOR;
+					$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
+
+				}
+
+				$scope.baby($scope.pedido1);
+
+			}
+			var demePedidoButton = document.getElementById("iniciar");
+			demePedidoButton.removeAttribute("disabled");
+			demePedidoButton.className = "btn btn-success btn-DemePedido-xs";
+			return data.data;
+		});
+
+        $scope.timeInit = new Date().getTime();
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+	};
+
+	// -------------------------------------------------------------- fin DemePedido activacion
 	// ------------------------------BuscarPedido ----------------------------------------
 
 	$scope.buscarPedido = function (buscar, pedidoinfo) {
