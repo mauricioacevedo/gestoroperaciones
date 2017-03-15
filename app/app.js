@@ -14622,7 +14622,7 @@ app.controller('feedCtrl', function ($scope, $rootScope, $location, $routeParams
 
     $scope.intervalFeed = setInterval(function () {
         $scope.getFeed();
-        $scope.getLoginFeed();
+        //$scope.getLoginFeed();
     }, 20000);
 
 
