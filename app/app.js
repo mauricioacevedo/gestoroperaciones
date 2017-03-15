@@ -14273,7 +14273,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         var varObsesGuardar = InfoPedido.OBSERVACIONES_PROCESO;
 
 		if(InfoPedido.PROGRAMACION==undefined){
-            InfoPedido.PROGRAMACION=null;
+            InfoPedido.PROGRAMACION='SIN';
 		}
         if (varDondeGuardar == 'FENIX_NAL' || varDondeGuardar == 'FENIX_BOG') {
             if (varEstadoGuardar == 'MALO') {
