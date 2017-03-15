@@ -7,7 +7,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html" afterPath="$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
@@ -38,7 +37,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="451">
@@ -90,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gestion_asignaciones.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="gestion_asignaciones.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="249" column="208" lean-forward="false" selection-start-line="249" selection-start-column="208" selection-end-line="249" selection-end-column="208" />
+            <state relative-caret-position="323">
+              <caret line="252" column="155" lean-forward="false" selection-start-line="252" selection-start-column="155" selection-end-line="252" selection-end-column="155" />
               <folding />
             </state>
           </provider>
@@ -1109,8 +1108,8 @@
         <option value="$PROJECT_DIR$/partials/agendamiento/indicadores_agendamiento.html" />
         <option value="$PROJECT_DIR$/partials/activacion/indicadores_activacion.html" />
         <option value="$PROJECT_DIR$/services/api.php" />
-        <option value="$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html" />
         <option value="$PROJECT_DIR$/app/app.js" />
+        <option value="$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html" />
       </list>
     </option>
   </component>
@@ -1902,14 +1901,7 @@
       <workItem from="1489420165041" duration="4363000" />
       <workItem from="1489492306212" duration="3559000" />
       <workItem from="1489505108028" duration="4878000" />
-      <workItem from="1489586382768" duration="9212000" />
-    </task>
-    <task id="LOCAL-00642" summary="Cambio Auditoria Grande">
-      <created>1488208280159</created>
-      <option name="number" value="00642" />
-      <option name="presentableId" value="LOCAL-00642" />
-      <option name="project" value="LOCAL" />
-      <updated>1488208280159</updated>
+      <workItem from="1489586382768" duration="9447000" />
     </task>
     <task id="LOCAL-00643" summary="Cambio Auditoria Grande">
       <created>1488208382629</created>
@@ -2247,11 +2239,18 @@
       <option name="project" value="LOCAL" />
       <updated>1489596595981</updated>
     </task>
-    <option name="localTasksCounter" value="691" />
+    <task id="LOCAL-00691" summary="Cambio en Auditar pedidos Asignaciones">
+      <created>1489599333108</created>
+      <option name="number" value="00691" />
+      <option name="presentableId" value="LOCAL-00691" />
+      <option name="project" value="LOCAL" />
+      <updated>1489599333108</updated>
+    </task>
+    <option name="localTasksCounter" value="692" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="338251000" />
+    <option name="totallyTimeSpent" value="338486000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2265,7 +2264,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1296" height="1040" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39379084" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2275,7 +2274,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879817" sideWeight="0.50647247" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32879817" sideWeight="0.4935275" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11564626" sideWeight="0.4935275" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18942732" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -7324,14 +7323,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="249" column="208" lean-forward="false" selection-start-line="249" selection-start-column="208" selection-end-line="249" selection-end-column="208" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="451">
@@ -7379,6 +7370,14 @@
             <marker date="1489599306448" expanded="true" signature="430160:430166" ph="&amp;nbsp;" />
             <marker date="1489599306448" expanded="true" signature="462967:463000" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/transacciones/gestion_asignaciones.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="252" column="155" lean-forward="false" selection-start-line="252" selection-start-column="155" selection-end-line="252" selection-end-column="155" />
+          <folding />
         </state>
       </provider>
     </entry>
