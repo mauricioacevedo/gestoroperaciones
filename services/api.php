@@ -15685,11 +15685,11 @@ private function guardarGestionAsignaciones()
 
     $gestion        =   json_decode (file_get_contents ("php://input"), true);
     $fechaServidor  =   date("Y-m-d H:i:s");
-    $usuario        =   $gestion['gestion'].USUARIO_ID;
-    $fuente         =   $gestion['gestion'].FUENTE;
-    $estado         =   $gestion['gestion'].ESTADO;
-    $programacion   =   $gestion['gestion'].PROGRAMACION;
-    $pedido         =   $gestion['gestion'].PEDIDO_ID;
+    $usuario        =   $gestion['gestion'].user;
+    $fuente         =   $gestion['gestion'].fuente;
+    $estado         =   $gestion['gestion'].ESTADO_ID;
+    $programacion   =   $gestion['gestion'].horaLlamar;
+    $pedido         =   $gestion['gestion'].pedido;
 
     $malo           =   false;
     $programado     =   false;
