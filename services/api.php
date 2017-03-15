@@ -8318,10 +8318,6 @@ class API extends REST {
 
 
 
-        if($prioridad!=''){
-            $parametroBusqueda=$prioridad;
-        }
-        if($parametroBusqueda=='') $parametroBusqueda ='FECHA_ORDEN_DEMEPEDIDO_ACTIVACION';
 
          $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
             " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
