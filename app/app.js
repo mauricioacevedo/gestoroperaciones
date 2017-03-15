@@ -14607,9 +14607,57 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
 });
 
+app.controller('feedCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, services) {
 
 
-//Controlador de prueba CHAT
+    var userID = $cookieStore.get('logedUser').login;
+    $rootScope.logedUser = $cookieStore.get('logedUser');
+    document.getElementById('logout').className = "btn btn-md btn-danger";
+    var divi = document.getElementById("logoutdiv");
+    divi.style.visibility = "visible";
+    divi.style.position = "relative";
+
+    $rootScope.actualView = "Feed";
+    $rootScope.errorDatos = null;
+
+    $scope.intervalFeed = setInterval(function () {
+        $scope.getFeed();
+        $scope.getLoginFeed();
+    }, 20000);
+
+
+    $scope.getFeed = function () {
+        services.getFeed().then(function (data) {
+            $scope.listado_feed = data.data[0];
+            $scope.total_feed = data.data[1];
+            return data.data;
+        });
+
+    };
+
+    $scope.$on(
+        "$destroy",
+        function (event) {
+            //$timeout.cancel( timer );
+            //alert('pew! pew!');
+            clearInterval($scope.intervalGrafica);
+            clearInterval($scope.intervalFeed);
+        }
+    );
+
+
+    $scope.getFeed();
+
+
+    //----------Funcion para determinar el color del pendiente --------------------------
+    var colorDanger = "#E83720";
+    var colorWaring = "#E8A820";
+    var colorWarningTrans = "#ffd699";
+    var colorNormal = "#088A08";
+
+
+});//--------------- fin Controlador Feed  -----------------------
+
 
 app.directive('modal', function () {
 	return {

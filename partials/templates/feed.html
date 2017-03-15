@@ -1,4 +1,4 @@
-<div class="col-md-3" ng-controller="IndicadoresCtrl">
+<div class="col-md-3" ng-controller="feedCtrl">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -15,7 +15,7 @@
                     <ul class="list-group small">
                         <a href="" ng-repeat="data in listado_feed"
                            class="list-group-item animated slideInRight"><span
-                                class="small">{{data.USER}}</span> | <span
+                                class="small"><i class="fa fa-user-circle text-muted"></i> {{data.USER}} | <span
                                 ng-class="{
                                         'USO':'label label-info',
                                         'REAGENDO':'label label-success',
@@ -31,8 +31,7 @@
                                         'PROGRAMO':'label label-danger',
                                         'AUDITO':'label label-danger',
                                         'BODEGA':'label label-danger'
-                                         }[data.ACCION]"> {{data.DETALLE | lowercase}}</span><br><span
-                                class="small">{{data.FECHA | timeago}}</span> </a>
+                                         }[data.ACCION]"> {{data.DETALLE | lowercase}}</span><br>{{data.FECHA | timeago}}</span></a>
                     </ul>
                 </div>
                 <div class="panel-footer">
