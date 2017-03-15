@@ -8366,7 +8366,7 @@ class API extends REST {
             $transaccion=" and b.TRANSACCION ='$transaccion' ";
         }
 
-        $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
+        $query= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
             " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
             " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
             " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR ".
@@ -8380,7 +8380,7 @@ class API extends REST {
             $transaccion.
             " order by b.$parametroBusqueda ASC";
 
-                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
+                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
             $result = array();
