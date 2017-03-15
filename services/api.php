@@ -15388,16 +15388,14 @@ private function guardarGestionAsignaciones()
 
     if($estado=='MALO'){//Si el pedido fue marcado como malo:
 
-        //TODO: Haga insert en tabla de registros.
         //TODO: Haga update en tabla de pendientes.
         echo "Entro a Malo";
         $malo = true;
         $gestionado = true;
     }
 
-    if($programacion!='undefined' || $programacion!=''){//Programaron el pedido, toca hacer algo:
+    if($programacion!='undefined' || $programacion!=''|| $programacion!=null){//Programaron el pedido, toca hacer algo:
 
-        //TODO: Haga insert en tabla de registros.
         //TODO: Haga update en pendientes con la programacion, quite radicado temporal.
         
         echo "Entro a programacion";

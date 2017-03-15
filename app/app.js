@@ -14284,7 +14284,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         var varEstadoGuardar = InfoPedido.ESTADO_PROCESO;
         var varObsesGuardar = InfoPedido.OBSERVACIONES_PROCESO;
 
-
+		console.log(InfoPedido.PROGRAMACION);
         if (varDondeGuardar == 'FENIX_NAL' || varDondeGuardar == 'FENIX_BOG') {
             if (varEstadoGuardar == 'MALO') {
                 var estadoFinal = 'MALO';
