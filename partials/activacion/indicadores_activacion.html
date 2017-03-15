@@ -644,31 +644,8 @@
 			</div>
 
 		</div>
-		<div class="col-md-3">
-			<div class="row">
-			<div class="col-md-12">
-
-
-				<div class = "panel panel-default">
-					<div class = "panel-heading nav navbar-default">
-						<b><button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="getFeed()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
-									<i class="fa fa-refresh"  aria-hidden="true"></i>
-								</button> Feed</b>
-					</div>
-					<div class = "panel-body">
-
-						<ul class="list-group small">
-							<a href="" ng-repeat="data in listado_feed" class="list-group-item animated slideInRight"><span class="small">{{data.USER}}</span> | <span ng-class= "{'Busco':'label label-info','Auto':'label label-danger','Guardo':'label label-success','Siebel':'label label-success','Se logueo':'label label-default' }[data.ACCION]"> {{data.ACCION}}</span> | {{data.FECHA | timeago}}</a>
-						</ul>
-					</div>
-					<div class = "panel-footer">
-
-					</div>
-				</div>
-			</div>
-			</div>
-
-		</div><!--Colmd3 -->
+		<!--Div col 3 Feed-->
+		<div class="slide-animate" ng-include="'partials/templates/feed.html'"></div><!--Div col 3 Feed-->
 
 
 

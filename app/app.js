@@ -2767,8 +2767,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.ordenamientoDemepedidoUpdate = '';
     $rootScope.errorDatos = null;
 
-
-	$scope.intervalFeed = 0;
 	$scope.intervalGrafica = 0;
 
 	$scope.totalAD = "0";
@@ -2881,20 +2879,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		$scope.actualizarGrafica();
 	}, 60000);
 
-	$scope.intervalFeed = setInterval(function () {
-		$scope.getFeed();
-		$scope.getLoginFeed();
-	}, 20000);
 
-
-	$scope.getFeed = function () {
-		services.getFeed().then(function (data) {
-			$scope.listado_feed = data.data[0];
-			$scope.total_feed = data.data[1];
-			return data.data;
-		});
-
-	};
 
 	$scope.$on(
 		"$destroy",
@@ -2902,21 +2887,10 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			//$timeout.cancel( timer );
 			//alert('pew! pew!');
 			clearInterval($scope.intervalGrafica);
-			clearInterval($scope.intervalFeed);
+			//clearInterval($scope.intervalFeed);
 		}
 	);
 
-
-
-	$scope.getLoginFeed = function () {
-		services.getLoginFeed().then(function (data) {
-			$scope.login_feed = data.data[0];
-			$scope.total_feed = data.data[1];
-			return data.data;
-		});
-	};
-
-	$scope.getFeed();
 
 	$scope.actualizarTME = function () {
 		$scope.refresh = 'cargando';
@@ -14538,7 +14512,7 @@ app.controller('feedCtrl', function ($scope, $rootScope, $location, $routeParams
 
     $scope.intervalFeed = setInterval(function () {
         $scope.getFeed();
-        $scope.getLoginFeed();
+        //$scope.getLoginFeed();
     }, 20000);
 
 
@@ -14556,7 +14530,7 @@ app.controller('feedCtrl', function ($scope, $rootScope, $location, $routeParams
         function (event) {
             //$timeout.cancel( timer );
             //alert('pew! pew!');
-            clearInterval($scope.intervalGrafica);
+            //clearInterval($scope.intervalGrafica);
             clearInterval($scope.intervalFeed);
         }
     );
