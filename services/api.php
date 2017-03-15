@@ -15771,7 +15771,7 @@ private function guardarGestionAsignaciones()
                     " ) VALUES (".
                     " '".$gestion['gestion']['pedido']."' , ".
                     " '".$gestion['gestion']['MUNICIPIO_ID']."'  , ".
-                    " '".$gestion['gestion']['DESC_TIPO_TRABAJO']."'   , ".
+                    " '".$gestion['gestion']['TRANSACCION']."'   , ".
                     " '".$gestion['gestion']['CONCEPTO_ID']."'   , ".
                     " '".$gestion['gestion']['FECHA']."'   , ".
                     " '".$gestion['gestion']['duracion']."'  , ".
