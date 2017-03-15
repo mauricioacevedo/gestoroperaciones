@@ -13250,7 +13250,7 @@ class API extends REST {
 
     }
 //Funcion para insertar Transacciones de OXXX
-    private function insertTransaccionORDNuevo(){
+    private function guardarAuditoriaAsignaciones(){
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
