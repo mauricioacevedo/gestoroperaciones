@@ -8412,10 +8412,13 @@ class API extends REST {
             $transaccion=" and b.TRANSACCION ='$transaccion' ";
         }
 
-        if($tabla == 'ACTIVADOR_SUSPECORE'){
-         if($tabla!=""){
+        if($tabla!=""){
             $tabla=" and b.TABLA ='$tabla' ";
         }
+
+        if($tabla == 'ACTIVADOR_SUSPECORE'){
+            $tabla=" and b.TABLA ='$tabla' ";
+
 
         $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
             " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
