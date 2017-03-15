@@ -8317,7 +8317,7 @@ class API extends REST {
 
         $mypedido="";
 
-
+       $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
 
 
          $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
@@ -8427,10 +8427,11 @@ class API extends REST {
             " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
             " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
             " from gestor_activacion_pendientes_activador_suspecore b ".
-            " where b.STATUS='PENDI_ACTI' ".
+            " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
             $transaccion.
             $tabla.
             " order by b.FECHA_EXCEPCION ASC";
+
             echo $query1;
         }else if($tabla == 'ACTIVADOR_SUSPECORE'){
 
@@ -8449,7 +8450,7 @@ class API extends REST {
             " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
             $transaccion.
             $tabla.
-            " order by b.FECHA_EXCEPCION ASC";
+            " order by b.F$parametroBusqueda ASC";
 
         echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
