@@ -14069,6 +14069,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			ID: gestion.ID
 		};
 		}
+
 		 //console.log($scope.InfoGestion);
 		$scope.dondeGuardar(varDondeGuardar);
 

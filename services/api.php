@@ -15129,7 +15129,7 @@ class API extends REST {
 
     /**
      * Funcion para editar el stado de los Pedidos
-     * Malo - Pendi_petec
+     * Malo - Pendi_petec - Cerrado_petec
      */
     private function actualizarSatusPedidosAsignacion(){
 
@@ -15583,26 +15583,92 @@ class API extends REST {
         }
 
     }
-
+/**
+ * Funcin para guardar la gestion de Asignaciones.
+ * */
 private function guardarGestionAsignaciones()
 {
     if ($this->get_request_method () != "POST") {
         $this->response ('', 406);
     }
 
-    $usuarioIp = $_SERVER['REMOTE_ADDR'];
-    $usuarioPc = gethostbyaddr ($usuarioIp);
-    $galleta = json_decode (stripslashes ($_COOKIE['logedUser']), true);
-    $galleta = stripslashes ($_COOKIE['logedUser']);
-    $galleta = json_decode ($galleta);
-    $galleta = json_decode (json_encode ($galleta), True);
+    $usuarioIp      = $_SERVER['REMOTE_ADDR'];
+    $usuarioPc      = gethostbyaddr ($usuarioIp);
+    $galleta        = json_decode (stripslashes ($_COOKIE['logedUser']), true);
+    $galleta        = stripslashes ($_COOKIE['logedUser']);
+    $galleta        = json_decode ($galleta);
+    $galleta        = json_decode (json_encode ($galleta), True);
     $usuarioGalleta = $galleta['login'];
-    $nombreGalleta = $galleta['name'];
-    $grupoGalleta = $galleta['GRUPO'];
+    $nombreGalleta  = $galleta['name'];
+    $grupoGalleta   = $galleta['GRUPO'];
 
-    $gestion = json_decode (file_get_contents ("php://input"), true);
+    $gestion        =   json_decode (file_get_contents ("php://input"), true);
+    $fechaServidor  =   date("Y-m-d H:i:s");
+    $usuario        =   $gestion[0].USUARIO_ID;
+    $fuente         =   $gestion[0].FUENTE;
+    $estado         =   $gestion[0].ESTADO;
+    $programacion   =   $gestion[0].PROGRAMACION;
+    $pedido         =   $gestion[0].PEDIDO_ID;
+
+    $malo           = false;
+    $programado     = false;
+    $gestionado     = false;
+    $mysqlerror     = '';
+    $error          = '';
+
+    if($usuario='undefined' || $usuario=''){
+        $usuario = $usuarioGalleta;
+    }
+
+    $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo');
+    $keys = array_keys($gestion);
+    $columns = '';
+    $values = '';
 
     var_dump($gestion);
+    var_dump($keys);
+
+    if($estado=='MALO'){//Si el pedido fue marcado como malo:
+
+        //TODO: Haga insert en tabla de registros.
+        //TODO: Haga update en tabla de pendientes.
+        $malo = true;
+        $gestionado = true;
+    }
+
+    if($programacion!='undefined' || $programacion!=''){//Programaron el pedido, toca hacer algo:
+
+        //TODO: Haga insert en tabla de registros.
+        //TODO: Haga update en pendientes con la programacion, quite radicado temporal.
+        $programado = true;
+        $gestionado = true;
+    }
+
+    if($fuente=='SIEBEL'){// Si el pedido viene de siebel
+        //TODO: Haga doble insert.
+        $gestionado = true;
+    }else{
+        if($fuente=='FENIX_NAL'){// Si es fenix, vaya y mire si cambio de concepto
+            //TODO: Check a fenix, cambio o no de concepto.
+            //TODO: Hacer insert en tabla de registros con conceptos nuevos de fenix.
+            $gestionado = true;
+
+        }else{ // Si no aplica, haga un guardado general.
+            //TODO: Metodo para guardar generico.
+            $gestionado = true;
+        }
+
+    }
+
+    if($gestionado){//Si fue gestionado, mandamos JSON con respuesta.
+        $this->response ($this->json (array($malo, $programado, $gestionado)), 200);
+    }else{
+        $error = 'Error guardando: $mysqlerror';
+        $this->response ($this->json (array($error, $fuente, $estado, $malo, $programado, $gestionado )), 403);
+    }
+
+
+
 }
 
 }//cierre de la clase
