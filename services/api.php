@@ -8320,7 +8320,7 @@ class API extends REST {
        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
 
 
-         $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
+     /*    $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
             " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
             " from gestor_activacion_pendientes_activador_suspecore b ".
@@ -8399,7 +8399,7 @@ class API extends REST {
         //de una lo ocupo cucho cucho!!!!
         $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO = '$mypedido' and STATUS='PENDI_ACTI'";
         $x = $this->mysqli->query($sqlupdate);
-
+        */
 
          if($prioridad!=''){
             $parametroBusqueda=$prioridad;
@@ -8465,6 +8465,8 @@ class API extends REST {
                 $sep=",";
             }
             $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+            $sqlupdate="update gestor_activacion_pendientes_activador_dom  set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+            $x = $this->mys
             $x = $this->mysqli->query($sqlupdate);
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
             $x = $this->mysqli->query($INSERTLOG);
