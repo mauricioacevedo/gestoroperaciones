@@ -8424,7 +8424,7 @@ class API extends REST {
             " from gestor_activacion_pendientes_activador_suspecore b ".
             " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
             $transaccion.
-            " order by b.$parametroBusqueda ASC";
+            " order by b.FECHA_EXCEPCION ASC";
         //echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
