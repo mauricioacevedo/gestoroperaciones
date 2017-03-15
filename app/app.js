@@ -8498,7 +8498,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 	$scope.zona = {};
 	$scope.zona.SUBZONA_ID = '';
 	$scope.TODAY_TRIES = "";
-    $scope.tipo_trabajo = "NUEVO";
+    $scope.tipo_trabajo = "NO APLICA";
 
 	$scope.ordenamientoDemepedido = '';
 	$scope.ordenamientoDemepedidoUpdate = '';
