@@ -623,6 +623,12 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		});
 		return data;
 	};
+    obj.putAuditoriaAsignaciones = function (transaccion) {
+        var data = $http.post(serviceBase + 'guardarAuditoriaAsignaciones', {
+            "transaccion": transaccion
+        });
+        return data;
+    };
 
 	obj.editTransaccionORD = function (transaccionORD) {
 		var data = $http.post(serviceBase + 'editTransaccionORD', {
@@ -14224,7 +14230,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
         //angular.extend(audit, $scope.datosFnx);
 		//console.log(audit);
-        services.insertTransaccionORD(audit).then(
+        services.putAuditoriaAsignaciones(audit).then(
         	function (status) {
         		//console.log(status);
                 notify({
