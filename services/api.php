@@ -8448,7 +8448,7 @@ class API extends REST {
             $tabla.
             " order by b.FECHA_EXCEPCION ASC";
 
-        //echo $query1;
+        echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
