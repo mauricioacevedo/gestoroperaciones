@@ -6673,7 +6673,25 @@ class API extends REST {
         }
         $pedido = $this->_request['pedido'];
         $today = date("Y-m-d");
-        $query=" SELECT id, order_seq_id,pedido,reference_number,estado,fecha_creacion,tarea_excepcion,fecha_excepcion,producto,idservicioraiz,transaccion from gestor_activacion_pendientes_activador_dom where pedido like '$pedido%' order by fecha_excepcion desc limit 10 ";
+        $tabla= $this->_request['tabla'];
+
+        if($TABLA=='ACTIVADOR_SUSPECORE'){
+
+           $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
+
+       } else {
+
+           $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
+
+       }
+
+
+        $query=" SELECT id, order_seq_id,pedido,reference_number ".
+                ",estado,fecha_creacion,tarea_excepcion ".
+                ",fecha_excepcion,producto,idservicioraiz,transaccion ".
+                $TABLA.
+                " where pedido like '$pedido%' order by fecha_excepcion desc limit 10 ";
+
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
