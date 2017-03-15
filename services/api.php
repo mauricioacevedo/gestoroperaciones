@@ -15710,7 +15710,7 @@ private function guardarGestionAsignaciones()
     var_dump($gestion);
     var_dump($programacion);
 
-    echo "Variables";
+    echo "Variables \n";
     echo $usuario."\n";
     echo "$fuente \n";
     echo "$estado \n";
@@ -15734,11 +15734,12 @@ private function guardarGestionAsignaciones()
         $gestionado = true;
     }
 
-    if($fuente=='SIEBEL'){// Si el pedido viene de siebel
+    if($fuente==="SIEBEL"){// Si el pedido viene de siebel
         //TODO: Haga doble insert.
+        echo "Entro a siebel";
         $gestionado = true;
     }else{
-        if($fuente=='FENIX_NAL'){// Si es fenix, vaya y mire si cambio de concepto
+        if($fuente==='FENIX_NAL'){// Si es fenix, vaya y mire si cambio de concepto
             //TODO: Check a fenix, cambio o no de concepto.
             //TODO: Hacer insert en tabla de registros con conceptos nuevos de fenix.
             echo "entro a fenix nal";
