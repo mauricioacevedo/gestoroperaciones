@@ -15605,11 +15605,11 @@ private function guardarGestionAsignaciones()
 
     $gestion        =   json_decode (file_get_contents ("php://input"), true);
     $fechaServidor  =   date("Y-m-d H:i:s");
-    $usuario        =   $gestion[0].USUARIO_ID;
-    $fuente         =   $gestion[0].FUENTE;
-    $estado         =   $gestion[0].ESTADO;
-    $programacion   =   $gestion[0].PROGRAMACION;
-    $pedido         =   $gestion[0].PEDIDO_ID;
+    $usuario        =   $gestion['gestion'].USUARIO_ID;
+    $fuente         =   $gestion['gestion'].FUENTE;
+    $estado         =   $gestion['gestion'].ESTADO;
+    $programacion   =   $gestion['gestion'].PROGRAMACION;
+    $pedido         =   $gestion['gestion'].PEDIDO_ID;
 
     $malo           = false;
     $programado     = false;
@@ -15622,7 +15622,7 @@ private function guardarGestionAsignaciones()
     }
 
     $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo');
-    $keys = array_keys($gestion);
+    $keys = array_keys($gestion['gestion']);
     $columns = '';
     $values = '';
 
