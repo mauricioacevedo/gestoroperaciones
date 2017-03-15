@@ -8431,8 +8431,11 @@ class API extends REST {
             $transaccion.
             $tabla.
             " order by b.FECHA_EXCEPCION ASC";
+            echo $query1;
+        }else if($tabla == 'ACTIVADOR_SUSPECORE'){
 
-        }else {
+            $tabla=" and b.TABLA ='$tabla' ";
+
              $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
             " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
             " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
