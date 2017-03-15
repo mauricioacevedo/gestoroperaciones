@@ -1,0 +1,43 @@
+<div class="col-md-3" ng-controller="IndicadoresCtrl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading nav navbar-default">
+                    <b>
+                        <button type="button" class="btn btn-default btn-circle-xs pull-right"
+                                ng-click="getFeed()" title="Actualizar" data-toggle="tooltip"
+                                data-placement="left" ng-disabled="loading">
+                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                        </button>
+                        Feed</b>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group small">
+                        <a href="" ng-repeat="data in listado_feed"
+                           class="list-group-item animated slideInRight"><span
+                                class="small">{{data.USER}}</span> | <span
+                                ng-class="{
+                                        'USO':'label label-info',
+                                        'REAGENDO':'label label-success',
+                                        'ASIGNO':'label label-success',
+                                        'BUSCO':'label label-info',
+                                        'DEMONIO':'label label-primary',
+                                        'GUARDO':'label label-success',
+                                        'LOGIN':'label label-warning',
+                                        'RECONFIGURO':'label label-success',
+                                        'PRIORIZO':'label label-success',
+                                        'ACTUALIZO':'label label-success',
+                                        'EXPORTO':'label label-success',
+                                        'PROGRAMO':'label label-danger',
+                                        'AUDITO':'label label-danger',
+                                        'BODEGA':'label label-danger'
+                                         }[data.ACCION]"> {{data.DETALLE | lowercase}}</span><br><span
+                                class="small">{{data.FECHA | timeago}}</span> </a>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--Colmd3 -->
