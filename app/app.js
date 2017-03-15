@@ -14499,8 +14499,9 @@ app.controller('feedCtrl', function ($scope, $rootScope, $location, $routeParams
     divi.style.visibility = "visible";
     divi.style.position = "relative";
 
-    $rootScope.actualView = "Feed";
-    $rootScope.errorDatos = null;
+    $rootScope.actualView 	= 	"Feed";
+    $rootScope.errorDatos 	= 	null;
+	$scope.intervalFeed 	= 	0;
 
     $scope.intervalFeed = setInterval(function () {
         $scope.getFeed();
