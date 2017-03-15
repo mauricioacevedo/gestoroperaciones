@@ -15593,15 +15593,15 @@ private function guardarGestionAsignaciones()
         $this->response ('', 406);
     }
 
-    $usuarioIp      = $_SERVER['REMOTE_ADDR'];
-    $usuarioPc      = gethostbyaddr ($usuarioIp);
-    $galleta        = json_decode (stripslashes ($_COOKIE['logedUser']), true);
-    $galleta        = stripslashes ($_COOKIE['logedUser']);
-    $galleta        = json_decode ($galleta);
-    $galleta        = json_decode (json_encode ($galleta), True);
-    $usuarioGalleta = $galleta['login'];
-    $nombreGalleta  = $galleta['name'];
-    $grupoGalleta   = $galleta['GRUPO'];
+    $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+    $usuarioPc      =   gethostbyaddr ($usuarioIp);
+    $galleta        =   json_decode (stripslashes ($_COOKIE['logedUser']), true);
+    $galleta        =   stripslashes ($_COOKIE['logedUser']);
+    $galleta        =   json_decode ($galleta);
+    $galleta        =   json_decode (json_encode ($galleta), True);
+    $usuarioGalleta =   $galleta['login'];
+    $nombreGalleta  =   $galleta['name'];
+    $grupoGalleta   =   $galleta['GRUPO'];
 
     $gestion        =   json_decode (file_get_contents ("php://input"), true);
     $fechaServidor  =   date("Y-m-d H:i:s");
@@ -15611,11 +15611,11 @@ private function guardarGestionAsignaciones()
     $programacion   =   $gestion['gestion'].PROGRAMACION;
     $pedido         =   $gestion['gestion'].PEDIDO_ID;
 
-    $malo           = false;
-    $programado     = false;
-    $gestionado     = false;
-    $mysqlerror     = '';
-    $error          = '';
+    $malo           =   false;
+    $programado     =   false;
+    $gestionado     =   false;
+    $mysqlerror     =   '';
+    $error          =   '';
 
     if($usuario='undefined' || $usuario=''){
         $usuario = $usuarioGalleta;
@@ -15633,6 +15633,7 @@ private function guardarGestionAsignaciones()
 
         //TODO: Haga insert en tabla de registros.
         //TODO: Haga update en tabla de pendientes.
+        echo "Entro a Malo";
         $malo = true;
         $gestionado = true;
     }
@@ -15641,6 +15642,8 @@ private function guardarGestionAsignaciones()
 
         //TODO: Haga insert en tabla de registros.
         //TODO: Haga update en pendientes con la programacion, quite radicado temporal.
+        
+        echo "Entro a programacion";
         $programado = true;
         $gestionado = true;
     }
@@ -15652,10 +15655,12 @@ private function guardarGestionAsignaciones()
         if($fuente=='FENIX_NAL'){// Si es fenix, vaya y mire si cambio de concepto
             //TODO: Check a fenix, cambio o no de concepto.
             //TODO: Hacer insert en tabla de registros con conceptos nuevos de fenix.
+            echo "entro a fenix nal";
             $gestionado = true;
 
         }else{ // Si no aplica, haga un guardado general.
             //TODO: Metodo para guardar generico.
+            echo "entro a generico";
             $gestionado = true;
         }
 
