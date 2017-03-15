@@ -2750,7 +2750,9 @@ app.controller('DocuActivacion', function ($scope, $rootScope, $http, $location,
 
 //**********************************fin Upload*******************************
 
-//---------------indicadores procesos
+/**
+ * Indicadores Asignaciones
+ * */
 app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, services) {
 
 
@@ -8997,7 +8999,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
     $scope.setTipoTrabajo = function (tipo_trabajo){
         console.log("tipo trabajo: "+$scope.tipo_trabajo+" - tipo trabajo 2: "+tipo_trabajo);
         $scope.tipo_trabajo=tipo_trabajo;
-    }
+    };
 
 	$scope.start = function (pedido) {
 		var pedido1 = '';
@@ -9116,7 +9118,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 				data: data.data[0]
 
-			}
+			};
 			var date1 = new Date();
 			var year = date1.getFullYear();
 			var month = $scope.doubleDigit(date1.getMonth() + 1);
@@ -9366,16 +9368,6 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 	}; //FIN SAVEPEDIDO
 
-
-	$scope.getFeed = function () {
-		services.getFeed().then(function (data) {
-			$scope.listado_feed = data.data[0];
-			$scope.total_feed = data.data[1];
-			return data.data;
-		});
-
-	};
-	$scope.getFeed();
 
 	$scope.grupo = {};
 	$scope.topProductivos = function () {
