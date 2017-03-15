@@ -15394,7 +15394,7 @@ private function guardarGestionAsignaciones()
         $gestionado = true;
     }
 
-    if($programacion!="SIN"||$programacion!="undefined"){//Programaron el pedido, toca hacer algo:
+    if($programacion!=="SIN"){//Programaron el pedido, toca hacer algo:
 
         //TODO: Haga update en pendientes con la programacion, quite radicado temporal.
         
