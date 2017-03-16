@@ -8384,7 +8384,7 @@ class API extends REST {
                         $TABLA.
                         " where b.STATUS='PENDI_ACTI'  ";
                         " order by id ";
-                echo $query;
+               // echo $query;
                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
                 $mypedidoresult=array();
@@ -8432,7 +8432,7 @@ class API extends REST {
             " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
             $transaccion.
             " order by b.$parametroBusqueda ASC";
-          // echo $query1;
+           echo $query1;
                  $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
