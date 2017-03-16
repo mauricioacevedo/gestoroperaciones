@@ -8339,15 +8339,6 @@ class API extends REST {
        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
 
 
-      if($TABLA=='ACTIVADOR_SUSPECORE'){
-
-           $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
-
-       } else {
-
-           $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
-
-       }
 
 
 
