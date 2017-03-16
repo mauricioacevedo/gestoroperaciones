@@ -8355,8 +8355,8 @@ class API extends REST {
                 " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
                 " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as REPETIDO ".
                 $TABLA.
-                "  where b.STATUS='PENDI_ACTI'  ";
-              //  " and b.ASESOR ='' ";
+                "  where b.STATUS='PENDI_ACTI'  ".
+                " and b.ASESOR ='' ";
 
        if($mypedido == ""){
 
@@ -8380,7 +8380,7 @@ class API extends REST {
     } else {
                 $query=" select distinct b.PEDIDO, b.FECHA_CREACION ,b.ID ".
                         $TABLA.
-                        " where b.STATUS='PENDI_ACTI' ".
+                        " where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
                         " and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id ";
                 //echo $query1;
                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
