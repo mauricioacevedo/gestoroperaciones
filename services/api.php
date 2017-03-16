@@ -8315,7 +8315,7 @@ class API extends REST {
         //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
         $user=strtoupper($user);
         //NO SE PUEDE CONDICIONAR AL PEDIDO ACTUAL, SI LE DA F5 A LA PAGINA NO HAY PEDIDO ACTUAL.. ES MEJOR ASI!!!
-        $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
+       // $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
         //echo $sqlupdate;
         $xxx = $this->mysqli->query($sqlupdate);
         //}
@@ -8403,7 +8403,7 @@ class API extends REST {
                 $ids=$ids.$sep.$row['ID'];
                 $sep=",";
             }
-            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+           // $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
 
             $x = $this->mysqli->query($sqlupdate);
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
