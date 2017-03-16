@@ -8340,15 +8340,14 @@ class API extends REST {
 
 
 
-    if($tabla == 'ACTIVADOR_SUSPECORE'){
+
 
            $tabla = " from gestor_activacion_pendientes_activador_suspecore b " ;
 
-       } else {
 
            $tabla = " from gestor_activacion_pendientes_activador_dom b " ;
 
-       }
+
 
 
 
