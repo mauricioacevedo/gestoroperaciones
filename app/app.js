@@ -9046,6 +9046,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 				//document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.TODAY_TRIES = $scope.peds[0].TODAY_TRIES;
+                $scope.TIEMPO_TOTAL = $scope.peds[0].TIEMPO_TOTAL;
                 $scope.FECHA_CITA_REAGENDA = $scope.peds[0].FECHA_CITA_REAGENDA;
 
 				if ($scope.peds[0].STATUS == "PENDI_AGEN" && $scope.peds[0].ASESOR != "") {
@@ -9058,8 +9059,8 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			}
 
 
-        if ($scope.proceso == 'REPARACION' && $scope.peds[0].TIEMPO_TOTAL>= 10 && $scope.peds[0].TODAY_TRIES>=3 ) {
-			alert("el PEDIDO tiene en el sistema " + $scope.peds[0].TIEMPO_TOTAL + " dias o intentos de contacto " + $scope.peds[0].TODAY_TRIES + " para continuar debe colocar la  noveda CIERRE POR ILOCALIZADO con SS o AGENDAR.");
+        if ($scope.proceso == 'REPARACION' && $scope.TIEMPO_TOTAL>= 10 && $scope.TODAY_TRIES>=3 ) {
+			alert("el PEDIDO tiene en el sistema " + $scope.TIEMPO_TOTAL + " dias o intentos de contacto " + $scope.TODAY_TRIES + " para continuar debe colocar la  noveda CIERRE POR ILOCALIZADO con SS o AGENDAR.");
 			//return;
 		}
 
