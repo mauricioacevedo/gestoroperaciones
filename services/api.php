@@ -8437,12 +8437,6 @@ class API extends REST {
         }
         $fecha_visto= date("Y-m-d H:i:s");
 
-        $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO = '$mypedido' and STATUS='PENDI_ACTI'";
-
-         $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO = '$mypedido' and STATUS='PENDI_ACTI'"
-
-        $x = $this->mysqli->query($sqlupdate);
-
 
 
 
