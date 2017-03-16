@@ -8381,7 +8381,7 @@ class API extends REST {
     } else {
                 $query=" select distinct b.PEDIDO, b.FECHA_CREACION ,b.ID ".
                         " from gestor_activacion_pendientes_activador_dom b ".
-                        " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
+                        " where b.STATUS='PENDI_ACTI' ".
                         " and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id ";
                 //echo $query1;
                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
