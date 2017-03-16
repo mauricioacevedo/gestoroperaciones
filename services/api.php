@@ -8359,7 +8359,7 @@ class API extends REST {
                 $TABLA.
                 "  where b.STATUS='PENDI_ACTI'  ".
                 " and b.ASESOR ='' ";
-               echo $query;
+               //echo $query;
        if($mypedido == ""){
 
            $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -8384,7 +8384,7 @@ class API extends REST {
                         $TABLA.
                         " where b.STATUS='PENDI_ACTI'  ";
                         " order by id ";
-                //echo $query;
+                echo $query;
                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
                 $mypedidoresult=array();
