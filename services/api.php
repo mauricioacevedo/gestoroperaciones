@@ -8387,8 +8387,8 @@ class API extends REST {
                 //2.traigo solo los pedidos mas viejos en la base de datos...
             } else {
                 $query1=" select distinct b.PEDIDO, b.FECHA_EXCEPCION ,b.ID ".
-                    " from gestor_activacion_pendientes_activador_suspecore b ".
                     $TABLA.
+                    " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
                     " and FECHA_EXCEPCION between '$today 00:00:00' and '$today 23:59:59' order by id ";
                  echo $query1;
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
