@@ -15881,7 +15881,7 @@ private function guardarGestionAsignaciones()
 
 
 
-        $this->response ($this->json (array($malo, $programado)), 200);
+        $this->response ($this->json (array($malo, $programado,$programacion)), 200);
     }else{
         $error = "Error guardando: $mysqlerror";
         $this->response ($this->json (array($error, $fuente, $estado, $malo, $programado)), 403);

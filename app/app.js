@@ -14314,7 +14314,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
         services.putGestionAsignaciones($scope.InfoGestion).then(
         	function (data) {
-        		console.log(data.data);
+
                 $scope.estadoGuardo=true;
                 $scope.pedidoIsGuardado			= true;
                 $rootScope.errorDatos 			= null;
@@ -14336,10 +14336,11 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 $scope.habilitaCr				= false;
                 $scope.programar				= false;
                 $scope.accRdy					= false;
+                var fechaprogramacion = data.data[2];
                 if(data.data[1]){
 					notify({
-						message: 'Pedido Programado!',
-						duration: '1000',
+						message: 'Pedido Programado para el día: '+fechaprogramacion,
+						duration: '3000',
 						position: 'right'
 					});
 				}
