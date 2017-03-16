@@ -11216,7 +11216,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 			$scope.peds = data.data;
 			console.log($scope.peds);
-            console.log($scope.pedido1);
+            console.log($scope.peds[0].PEDIDO);
 
 			if (data.data == '') {
 
