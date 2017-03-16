@@ -11173,7 +11173,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.baby = function (pedido) {
 		console.log(pedido);
 		services.getpedidosPorPedidoActivacion(pedido).then(function (data) {
-			console.log(data.data);
+			//console.log(data.data);
 			$scope.historico_pedido = data.data;
 			//  console.log($scope.historico_pedido);
 			return data.data;
@@ -11216,7 +11216,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 			$scope.peds = data.data;
 			console.log($scope.peds);
-            console.log($scope.peds[0].PEDIDO);
+            //console.log($scope.peds[0].PEDIDO);
 
 			if (data.data == '') {
 
@@ -11355,22 +11355,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			//ID:gestion.ID,
 			ORDER_SEQ_ID: $scope.peds[0].ORDER_SEQ_ID,
 			PEDIDO: $scope.peds[0].PEDIDO,
-			REFERENCE_NUMBER: $scope.peds[0].REFERENCE_NUMBER,
-			ESTADO: $scope.peds[0].ESTADO,
-			FECHA_CREACION: $scope.peds[0].FECHA_CREACION,
-			TAREA_EXCEPCION: $scope.peds[0].TAREA_EXCEPCION,
-			FECHA_EXCEPCION: $scope.peds[0].FECHA_EXCEPCION,
-			PRODUCTO: $scope.peds[0].PRODUCTO,
-			IDSERVICIORAIZ: $scope.peds[0].IDSERVICIORAIZ,
-			TRANSACCION: $scope.peds[0].TRANSACCION,
-			CODIGO_CIUDAD: $scope.peds[0].CODIGO_CIUDAD,
-			ASESOR: $rootScope.logedUser.login,
-			FECHA_GESTION: $scope.peds[0].FECHA_GESTION,
-            FECHA_INICIO: $scope.fecha_inicio,
-            FECHA_FIN: $scope.fecha_fin,
-            DURACION: $scope.duracion,
-			STATUS: $scope.peds[0].STATUS,
-			TIPIFICACION: $scope.tipificacion,
 
 
 		};
