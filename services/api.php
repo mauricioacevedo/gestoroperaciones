@@ -15736,14 +15736,12 @@ private function guardarGestionAsignaciones()
         $values = $values."'".$pedido[$desired_key]."',";
     }
 
-    if($estado=='MALO'){//Si el pedido fue marcado como malo:
+    if($estado=='MALO') {//Si el pedido fue marcado como malo:
 
-        $sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='$estado',ASESOR='' WHERE ID=$idpedido";
-        $rUpdateMalo = $this->mysqli->query($sqlupdate);
+        $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='$estado',ASESOR='' WHERE ID=$idpedido";
+        $rUpdateMalo = $this->mysqli->query ($sqlupdate);
         $malo = true;
-        $gestionado = true;
     }
-
     if($programacion!=="SIN"){//Programaron el pedido, toca hacer algo:
 
         //TODO: Haga update en pendientes con la programacion, quite radicado temporal.
