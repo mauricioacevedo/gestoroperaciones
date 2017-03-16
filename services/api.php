@@ -8329,6 +8329,7 @@ class API extends REST {
        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
        $parametroBusqueda1= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TABLAS');
 
+
       if($transaccion!=""){
             $transaccion=" and b.TRANSACCION ='$transaccion' ";
         }
@@ -8435,8 +8436,11 @@ class API extends REST {
             }
         }
         $fecha_visto= date("Y-m-d H:i:s");
-        //de una lo ocupo cucho cucho!!!!
-        $sqlupdate="update gestor_pendientes_activacion_siebel set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO = '$mypedido' and STATUS='PENDI_ACTI'";
+
+        $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO = '$mypedido' and STATUS='PENDI_ACTI'";
+
+         $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO = '$mypedido' and STATUS='PENDI_ACTI'"
+
         $x = $this->mysqli->query($sqlupdate);
 
 
@@ -8453,6 +8457,7 @@ class API extends REST {
             " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
             $TABLA.
             " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
+            $transaccion.
             " order by b.$parametroBusqueda  ASC";
 
         //echo $query1;
@@ -8467,7 +8472,9 @@ class API extends REST {
                 $ids=$ids.$sep.$row['ID'];
                 $sep=",";
             }
-            $sqlupdate="update gestor_pendientes_activacion_siebel set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+            $x = $this->mysqli->query($sqlupdate);
+            $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
             $x = $this->mysqli->query($sqlupdate);
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
             $x = $this->mysqli->query($INSERTLOG);
