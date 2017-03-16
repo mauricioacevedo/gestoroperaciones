@@ -8359,7 +8359,7 @@ class API extends REST {
             "  where b.STATUS='PENDI_ACTI'  ".
             " and b.ASESOR ='' ".
             " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ";
-
+         echo $query1;
         if($mypedido==""){
 
             $rr = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
@@ -8390,7 +8390,7 @@ class API extends REST {
                     " from gestor_activacion_pendientes_activador_suspecore b ".
                     $TABLA.
                     " and FECHA_EXCEPCION between '$today 00:00:00' and '$today 23:59:59' order by id ";
-
+                 echo $query1;
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
                 $mypedidoresult=array();
