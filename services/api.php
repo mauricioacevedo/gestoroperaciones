@@ -15733,8 +15733,11 @@ private function guardarGestionAsignaciones()
             $$desired_key = $gestion[$desired_key];
         }
         $columns = $columns.$desired_key.',';
-        $values = $values."'".$pedido[$desired_key]."',";
+        $values = $values."'".$gestion[$desired_key]."',";
     }
+
+    var_dump($columns);
+    var_dump($values);
 
     if($estado=='MALO') {//Si el pedido fue marcado como malo:
 
