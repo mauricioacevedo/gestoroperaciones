@@ -8284,6 +8284,7 @@ class API extends REST {
         $this->response('nothing',204);        // If no records "No Content" status
     }
 
+
 //--------------------------demepedido activacion----------------------
   private function demePedidoActivacion(){
         if($this->get_request_method() != "GET"){
@@ -8327,7 +8328,6 @@ class API extends REST {
         $today = date("Y-m-d");
 
        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
-       $parametroBusqueda1= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TABLAS');
 
 
       if($transaccion!=""){
@@ -8344,7 +8344,7 @@ class API extends REST {
 
        }
 
-        //1.consulto todo lo que tenga fecha cita de mañana
+
         $hora=date("G");
         $uphold="1";
         if($hora<11){
@@ -8358,6 +8358,7 @@ class API extends REST {
 
 
         if($prioridad!=''){
+
             $parametroBusqueda=$prioridad;
         }
         if($parametroBusqueda=='') $parametroBusqueda ='FECHA_EXCEPCION';
