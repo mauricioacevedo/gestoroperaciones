@@ -8402,6 +8402,7 @@ class API extends REST {
 
             }//end if
 
+        }//end mypedido if
 
 
         if($prioridad!=''){
@@ -8635,8 +8636,7 @@ class API extends REST {
         unlink($filename);
 
         $this->response('nothing',204);        // If no records "No Content" status
-    }
-}
+  }
 
 
 
