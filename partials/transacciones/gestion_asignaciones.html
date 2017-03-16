@@ -247,9 +247,10 @@
 
                             </li>
                             <li>
-                                <button type="button" class="btn btn-success btn-xs" ng-click="guardarPedido(InfoPedido,gestion[0],status,actividad)"  ng-disabled="!accRdy || guardando || loading">
-                                    Guardar <span ng-show="guardando"><i class="fa fa-spinner fa-spin"></i></span>
-                                </button>
+                                <div ng-hide="true">
+                                    <button type="button" class="btn btn-success btn-xs" ng-click="guardarPedido(InfoPedido,gestion[0],status,actividad)"  ng-disabled="!accRdy || guardando || loading">
+                                        Guardar <span ng-show="guardando"><i class="fa fa-spinner fa-spin"></i></span>
+                                    </button></div>
                                 <button type="button" class="btn btn-primary btn-xs" ng-click="guardarPedidoGestion(InfoPedido,gestion[0],status,actividad)"  ng-disabled="!accRdy || guardando || loading">
                                     Guardar <span ng-show="guardando"><i class="fa fa-spinner fa-spin"></i></span>
                                 </button>
