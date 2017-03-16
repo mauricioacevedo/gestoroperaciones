@@ -14158,17 +14158,12 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
             OBSERVACIONES:''
 		});
 
-
-        console.log($scope.auditorias);
-        //console.log(usuario);
-        //$scope.crearnovedad();
     };
 
     $scope.removeNuevaNovedad = function() {
         var lastItem = $scope.auditorias.length-1;
         if(lastItem!=0){
             $scope.auditorias.splice(lastItem);
-            //console.log($scope.novedades);
         }
 
     };
@@ -14233,11 +14228,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 FECHA_FIN:$scope.fechaFinAuditoria
             };
             angular.extend(audit[i], $scope.datosFnx);
-            //console.log(keys[i], yourobject[keys[i]]);
+
         }
 
-        //angular.extend(audit, $scope.datosFnx);
-		//console.log(audit);
         services.putAuditoriaAsignaciones(audit).then(
         	function (status) {
         		//console.log(status);
@@ -14343,6 +14336,13 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 $scope.habilitaCr				= false;
                 $scope.programar				= false;
                 $scope.accRdy					= false;
+                if(data.data[1]){
+					notify({
+						message: 'Pedido Programado!',
+						duration: '1000',
+						position: 'right'
+					});
+				}
 
             }, function (err) {
                 $rootScope.errorDatos 			= err;
