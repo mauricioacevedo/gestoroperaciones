@@ -6675,15 +6675,11 @@ class API extends REST {
         $today = date("Y-m-d");
         $tabla= $this->_request['tabla'];
 
-        if($TABLA=='ACTIVADOR_SUSPECORE'){
+
 
            $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
 
-       } else {
 
-           $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
-
-       }
 
 
         $query=" SELECT id, order_seq_id,pedido,reference_number ".
@@ -8419,7 +8415,7 @@ class API extends REST {
             " ,b.FECHA_EXCEPCION,'AUTO' as source ".
             " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
             " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
-            " from gestor_activacion_pendientes_activador_suspecore b ".
+            $TABLA.
             " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
             $transaccion.
             " order by b.$parametroBusqueda ASC";
