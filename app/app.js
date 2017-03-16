@@ -14316,7 +14316,32 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
         services.putGestionAsignaciones($scope.InfoGestion).then(
         	function (data) {
-        		console.log(data);
+        		console.log(data.data);
+                $scope.estadoGuardo=true;
+                $scope.pedidoIsGuardado			= true;
+                $rootScope.errorDatos 			= null;
+                $scope.InfoPedido 				= [];
+                $scope.fecha_inicio 			= null;
+                $scope.fecha_fin 				= null;
+                $scope.InfoGestion 				= {};
+                $scope.guardando 				= false;
+                $scope.pedidoIsActive 			= false;
+                $scope.peds 					= {};
+                $scope.mpedido 					= {};
+                $scope.bpedido 					= '';
+                $scope.busy 					= "";
+                $scope.error 					= "";
+                $scope.iplaza 					= 'TODOS';
+                $scope.buscar 					= null;
+                $scope.info						= {};
+                $scope.habilitaSiebel			= false;
+                $scope.habilitaCr				= false;
+                $scope.programar				= false;
+                $scope.accRdy					= false;
+
+            }, function (err) {
+                $rootScope.errorDatos 			= err;
+                $scope.guardando 				= false;
 
             }
 		)
