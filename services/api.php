@@ -8358,7 +8358,6 @@ class API extends REST {
             $TABLA.
             "  where b.STATUS='PENDI_ACTI'  ".
             " and b.ASESOR ='' ".
-            " and (b.FECHA_CREACION < CURDATE() OR b.FECHA_CREACION='9999-00-00') ".
             " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ";
 
         if($mypedido==""){
@@ -8432,12 +8431,10 @@ class API extends REST {
         $sqlupdate="update gestor_pendientes_activacion_siebel set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO = '$mypedido' and STATUS='PENDI_ACTI'";
         $x = $this->mysqli->query($sqlupdate);
 
-
-        if($PROGRAMADO!="NOT"){
-            $PROGRAMADO=", '$PROGRAMADO' as PROGRAMADO ";
-        }else{
-            $PROGRAMADO="";
+      if($transaccion!=""){
+            $transaccion=" and b.TRANSACCION ='$transaccion' ";
         }
+
 
         $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
             " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
@@ -8449,7 +8446,9 @@ class API extends REST {
             " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
             " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
             $TABLA.
-            " b where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ";
+            " b where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
+             $transaccion.
+            " order by b.$parametroBusqueda ASC";;
 
         //echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
