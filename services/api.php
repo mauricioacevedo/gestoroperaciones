@@ -8298,7 +8298,7 @@ class API extends REST {
 
         $user = $this->_request['userID'];
         $transaccion = $this->_request['transaccion'];
-       $tabla= $this->_request['tabla'];
+        $tabla= $this->_request['tabla'];
 
 
         $filename = '../tmp/control-threads-agen.txt';
@@ -8315,7 +8315,8 @@ class API extends REST {
         //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
         $user=strtoupper($user);
         //NO SE PUEDE CONDICIONAR AL PEDIDO ACTUAL, SI LE DA F5 A LA PAGINA NO HAY PEDIDO ACTUAL.. ES MEJOR ASI!!!
-       // $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
+        $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
+      $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
         //echo $sqlupdate;
         $xxx = $this->mysqli->query($sqlupdate);
         //}
@@ -8336,8 +8337,16 @@ class API extends REST {
        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
 
 
-           $TABLA = " from gestor_activacion_pendientes_activador_suspecore b ";
 
+    if($TABLA == 'ACTIVADOR_SUSPECORE'){
+
+           $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
+
+       } else {
+
+           $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
+
+       }
 
 
 
@@ -8391,7 +8400,7 @@ class API extends REST {
             " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
             $transaccion.
             " order by b.$parametroBusqueda ASC";
-           //echo $query;
+           echo $query;
                  $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
