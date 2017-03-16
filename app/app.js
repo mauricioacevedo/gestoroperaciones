@@ -11219,7 +11219,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			console.log($scope.peds);
             //console.log($scope.peds[0].PEDIDO);
 
-			if (data.data == '') {
+			if (data.data == '' || data.data == null) {
 
 				document.getElementById("warning").innerHTML = "No hay Registros.";
 				$rootScope.errorDatos = "No hay Registros.";
