@@ -8386,10 +8386,10 @@ class API extends REST {
                 }
                 //pedidos viejos
             } else {
-                $query1=" select distinct b.PEDIDO, b.FECHA_CREACION ,b.ID ".
+                $query1=" select distinct b.PEDIDO, b.FECHA_CARGA ,b.ID ".
                     $TABLA.
                     " where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
-                    " and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id ";
+                    " and FECHA_CARGA between '$today 00:00:00' and '$today 23:59:59' order by id ";
                  //echo $query1;
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
