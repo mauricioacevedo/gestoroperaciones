@@ -15709,58 +15709,51 @@ private function guardarGestionAsignaciones()
     $estado         =   $gestion['gestion']['ESTADO_ID'];
     $programacion   =   $gestion['gestion']['horaLlamar'];
     $pedido         =   $gestion['gestion']['pedido'];
+    $conceptoId     =   $gestion['gestion']['CONCEPTO_ANTERIOR'];
     $idpedido       =   $gestion['gestion']['ID'];
 
     $malo           =   false;
     $programado     =   false;
-    $gestionado     =   false;
-    $mysqlerror     =   '';
-    $error          =   '';
-
-    if($usuario='undefined' || $usuario=''){
-        $usuario = $usuarioGalleta;
-    }
+    $cerrar         =   true;
+    $guardar        =   false;
+    $mysqlerror     =   "";
+    $error          =   "";
+    $sqlupdate      =   "";
+    $columns        =   '';
+    $values         =   '';
 
     $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo','fecha_estado','concepto_final','source');
     $keys = array_keys($gestion['gestion']);
-    $columns = '';
-    $values = '';
 
-    foreach($column_names as $desired_key){
-        if(!in_array($desired_key, $keys)) {
-            $$desired_key = '';
-        }else{
-            $$desired_key = $gestion['gestion'][$desired_key];
-        }
-        $columns = $columns.$desired_key.',';
-        $values = $values."'".$gestion['gestion'][$desired_key]."',";
-    }
-    var_dump($gestion['gestion']);
-    var_dump($columns);
-    var_dump($values);
+    if($usuario='undefined' || $usuario=''){$usuario = $usuarioGalleta;}
+    if($programacion!=="SIN"){$programado = true;}
+    if($estado=='MALO'){$malo = true;}
 
-    $queryGestion = "INSERT INTO pedidos(".trim($columns,',').") VALUES(".trim($values,',').")";
-
-    echo $queryGestion;
-
-    if($estado=='MALO') {//Si el pedido fue marcado como malo:
-
+    if($malo){
         $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='$estado',ASESOR='' WHERE ID=$idpedido";
-        $rUpdateMalo = $this->mysqli->query ($sqlupdate);
-        $malo = true;
+        $varFeed = "GUARDO PEDIDO MALO";
+        $cerrar = false;
     }
-    if($programacion!=="SIN"){//Programaron el pedido, toca hacer algo:
+    if($programado){
+        $sqlupdate = "";
+        $varFeed = "PROGRAMO PEDIDO";
+        $cerrar = false;
+    }
+    if($cerrar){
+        $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='CERRADO_PETEC',ASESOR='' WHERE ID=$idpedido ";
+        $varFeed = "GUARDO PEDIDO";
 
-        //TODO: Haga update en pendientes con la programacion, quite radicado temporal.
-        
-        echo "Entro a programacion";
-        $programado = true;
-        $gestionado = true;
+    }
+
+    $rUpdate = $this->mysqli->query($sqlupdate);
+    
+    var_dump($rUpdate);
+    if (!$rUpdate) {
+        $mysqlerror = $this->mysqli->error;
+        $guardar = false;
     }
 
     if($fuente==="SIEBEL"){// Si el pedido viene de siebel
-        //TODO: Haga doble insert.
-        echo "Entro a siebel";
         $sqlNca =   " INSERT INTO portalbd.transacciones_nca ( ".
                     " OFERTA, ".
                     " MUNICIPIO_ID, ".
@@ -15789,30 +15782,71 @@ private function guardarGestionAsignaciones()
                     " '".$gestion['gestion']['user']."'  ".
                     " ) ";
         $insertNca = $this->mysqli->query($sqlNca);
-        $sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='CERRADO_PETEC',ASESOR='' WHERE ID=$idpedido ";
-        $rUpdateCerrar = $this->mysqli->query($sqlupdate);
-        $gestionado = true;
+        $guardar = true;
     }else{
         if($fuente==='FENIX_NAL'){// Si es fenix, vaya y mire si cambio de concepto
             //TODO: Check a fenix, cambio o no de concepto.
-            //TODO: Hacer insert en tabla de registros con conceptos nuevos de fenix.
             echo "entro a fenix nal";
-            $gestionado = true;
+            $guardar = true;
 
         }else{ // Si no aplica, haga un guardado general.
             //TODO: Metodo para guardar generico.
             echo "entro a generico";
-            $gestionado = true;
+            $guardar = true;
         }
 
     }
 
-    if($gestionado){//Si fue gestionado, mandamos JSON con respuesta.
 
-        $this->response ($this->json (array($malo, $programado, $gestionado)), 200);
+
+    if($guardar){//Si fue gestionado, mandamos JSON con respuesta.
+        foreach($column_names as $desired_key){
+            if(!in_array($desired_key, $keys)) {
+                $$desired_key = '';
+            }else{
+                $$desired_key = $gestion['gestion'][$desired_key];
+            }
+            $columns = $columns.$desired_key.',';
+            $values = $values."'".$gestion['gestion'][$desired_key]."',";
+        }
+        var_dump($gestion['gestion']);
+        var_dump($columns);
+        var_dump($values);
+
+        $queryGestion = "INSERT INTO pedidos(".trim($columns,',').") VALUES(".trim($values,',').")";
+
+        echo $queryGestion;
+
+        //Activiy Feed ------------------------------------------------------------------
+        $sqlFeed =  "insert into portalbd.activity_feed ( ".
+                    " USER ".
+                    ", USER_NAME ".
+                    ", GRUPO ".
+                    ", STATUS ".
+                    ", PEDIDO_OFERTA ".
+                    ", ACCION ".
+                    ", CONCEPTO_ID ".
+                    ", IP_HOST ".
+                    ", CP_HOST ".
+                    ") values( ".
+                    " UPPER('$usuario')".
+                    ", UPPER('$nombreGalleta')".
+                    ", UPPER('$grupoGalleta')".
+                    ",'$estado' ".
+                    ",'$pedido' ".
+                    ",'$varFeed' ".
+                    ",'$conceptoId' ".
+                    ",'$usuarioIp' ".
+                    ",'$usuarioPc')";
+        $rFeed = $this->mysqli->query($sqlFeed);
+        //------------------------------------------------------------------Activiy Feed
+
+
+
+        $this->response ($this->json (array($malo, $programado)), 200);
     }else{
         $error = 'Error guardando: $mysqlerror';
-        $this->response ($this->json (array($error, $fuente, $estado, $malo, $programado, $gestionado )), 403);
+        $this->response ($this->json (array($error, $fuente, $estado, $malo, $programado)), 403);
     }
 
 
