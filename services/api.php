@@ -15835,13 +15835,12 @@ private function guardarGestionAsignaciones()
         $guardar = true;
     }else{
         if($fuente==='FENIX_NAL'){// Si es fenix, vaya y mire si cambio de concepto
-            //TODO: Check a fenix, cambio o no de concepto.
-            echo "entro a fenix nal";
+            //Revisamos en fenix si el concepto cambio
+            $concepto_final=$this-> buscarConceptoFinalFenix($pedido);
+            $gestion['gestion']['concepto_final'] = $concepto_final;
             $guardar = true;
 
         }else{ // Si no aplica, haga un guardado general.
-            //TODO: Metodo para guardar generico.
-            echo "entro a generico";
             $guardar = true;
         }
 
@@ -15859,9 +15858,6 @@ private function guardarGestionAsignaciones()
             $columns = $columns.$desired_key.',';
             $values = $values."'".$gestion['gestion'][$desired_key]."',";
         }
-        var_dump($gestion['gestion']);
-        var_dump($columns);
-        var_dump($values);
 
         $queryGestion = "INSERT INTO pedidos(".trim($columns,',').") VALUES(".trim($values,',').")";
 
@@ -15895,13 +15891,43 @@ private function guardarGestionAsignaciones()
 
         $this->response ($this->json (array($malo, $programado)), 200);
     }else{
-        $error = 'Error guardando: $mysqlerror';
+        $error = "Error guardando: $mysqlerror";
         $this->response ($this->json (array($error, $fuente, $estado, $malo, $programado)), 403);
     }
 
 
 
 }
+
+    private function buscarConceptoFinalFenix($pedidoBusqueda){
+
+        $this->dbFenixConnect();
+        $connf=$this->connf;
+
+
+        $sqlfenix=" select ".
+            " regexp_replace(LISTAGG(nsol.concepto_id_anterior,',') WITHIN GROUP (ORDER BY NULL),'([^,]+)(,\\1)+', '\\1' ) AS CONCEPTO_ID_ANTERIOR_FENIX  ".
+            ", regexp_replace(LISTAGG(nsol.concepto_id_actual,',') WITHIN GROUP (ORDER BY NULL),'([^,]+)(,\\1)+', '\\1' ) AS CONCEPTO_FINAL ".
+            ",MIN( to_char(nsol.fecha,'RRRR-MM-DD hh24:mi:ss')) as FECHA_FINAL ".
+            ", MIN(nsol.usuario_id) as USUARIO_ID ".
+            " from fnx_novedades_solicitudes nsol ".
+            " where nsol.pedido_id='$pedidoBusqueda' ".
+            " and nsol.consecutivo=(select max(a.consecutivo) from fenix.fnx_novedades_solicitudes a ".
+            " where nsol.pedido_id=a.pedido_id(+) ".
+            " and nsol.subpedido_id=a.subpedido_id(+) ".
+            " and nsol.solicitud_id=a.solicitud_id(+)) ";
+
+        $stid = oci_parse($connf, $sqlfenix);
+        oci_execute($stid);
+        if($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)){
+            $conceptoFinal=$row['CONCEPTO_FINAL'];
+                return $conceptoFinal;
+            }else{//no cambio de concepto, controlar...
+
+                return "SIN DATOS";
+            }
+        }
+
 
 }//cierre de la clase
 
