@@ -8382,7 +8382,7 @@ class API extends REST {
                 $query=" select distinct b.PEDIDO, b.FECHA_EXCEPCION ,b.ID ".
                         $TABLA.
                         " where b.STATUS='PENDI_ACTI'  ";
-                       // " and FECHA_EXCEPCION between '$today 00:00:00' and '$today 23:59:59' order by id ";
+                        " order by id ";
                 //echo $query;
                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
