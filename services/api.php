@@ -8344,7 +8344,7 @@ class API extends REST {
 
            $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
 
-       } else if ($TABLA == 'ACTIVADO_DOM') {
+       } else ($TABLA == 'ACTIVADO_DOM') {
 
            $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
 
