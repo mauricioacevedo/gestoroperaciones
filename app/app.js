@@ -14294,7 +14294,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 OBSERVACIONES_PROCESO: InfoPedido.OBSERVACIONES_PROCESO,
                 estado: estadoFinal,
                 duracion: timeDiff,
-                FECHA_ESTADO: gestion.FECHA_ESTADO,
+                fecha_estado: gestion.FECHA_ESTADO,
                 fecha_inicio: $scope.fecha_inicio,
                 concepto_final: gestion.CONCEPTO_ID,
                 CONCEPTO_ID: gestion.CONCEPTO_ID,
@@ -14308,6 +14308,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 nuevopedido: InfoPedido.NUEVOPEDIDO,
                 horaLlamar: InfoPedido.PROGRAMACION,
                 INCIDENTE: InfoPedido.INCIDENTE,
+                TRANSACCION: gestion.DESC_TIPO_TRABAJO,
+                FECHA: gestion.FECHA_ESTADO,
                 ID: gestion.ID
             };
 

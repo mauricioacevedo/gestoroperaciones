@@ -15709,6 +15709,7 @@ private function guardarGestionAsignaciones()
     $estado         =   $gestion['gestion']['ESTADO_ID'];
     $programacion   =   $gestion['gestion']['horaLlamar'];
     $pedido         =   $gestion['gestion']['pedido'];
+    $idpedido       =   $gestion['gestion']['ID'];
 
     $malo           =   false;
     $programado     =   false;
@@ -15720,29 +15721,34 @@ private function guardarGestionAsignaciones()
         $usuario = $usuarioGalleta;
     }
 
-    $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo');
+    $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo','fecha_estado','concepto_final','source');
     $keys = array_keys($gestion['gestion']);
     $columns = '';
     $values = '';
 
-    var_dump($gestion);
-    var_dump($programacion);
-
-    echo "Variables \n";
-    echo $usuario."\n";
-    echo "$fuente \n";
-    echo "$estado \n";
-    echo "$programacion \n";
-    echo "$pedido \n";
-
-    if($estado=='MALO'){//Si el pedido fue marcado como malo:
-
-        //TODO: Haga update en tabla de pendientes.
-        echo "Entro a Malo";
-        $malo = true;
-        $gestionado = true;
+    foreach($column_names as $desired_key){
+        if(!in_array($desired_key, $keys)) {
+            $$desired_key = '';
+        }else{
+            $$desired_key = $gestion['gestion'][$desired_key];
+        }
+        $columns = $columns.$desired_key.',';
+        $values = $values."'".$gestion['gestion'][$desired_key]."',";
     }
+    var_dump($gestion['gestion']);
+    var_dump($columns);
+    var_dump($values);
 
+    $queryGestion = "INSERT INTO pedidos(".trim($columns,',').") VALUES(".trim($values,',').")";
+
+    echo $queryGestion;
+
+    if($estado=='MALO') {//Si el pedido fue marcado como malo:
+
+        $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='$estado',ASESOR='' WHERE ID=$idpedido";
+        $rUpdateMalo = $this->mysqli->query ($sqlupdate);
+        $malo = true;
+    }
     if($programacion!=="SIN"){//Programaron el pedido, toca hacer algo:
 
         //TODO: Haga update en pendientes con la programacion, quite radicado temporal.
@@ -15755,6 +15761,36 @@ private function guardarGestionAsignaciones()
     if($fuente==="SIEBEL"){// Si el pedido viene de siebel
         //TODO: Haga doble insert.
         echo "Entro a siebel";
+        $sqlNca =   " INSERT INTO portalbd.transacciones_nca ( ".
+                    " OFERTA, ".
+                    " MUNICIPIO_ID, ".
+                    " TRANSACCION, ".
+                    " ESTADO, ".
+                    " FECHA, ".
+                    " DURACION, ".
+                    " INCIDENTE, ".
+                    " FECHA_INICIO, ".
+                    " FECHA_FIN, ".
+                    " ESTADO_FINAL, ".
+                    " OBSERVACION, ".
+                    " USUARIO ".
+                    " ) VALUES (".
+                    " '".$gestion['gestion']['pedido']."' , ".
+                    " '".$gestion['gestion']['MUNICIPIO_ID']."'  , ".
+                    " '".$gestion['gestion']['TRANSACCION']."'   , ".
+                    " '".$gestion['gestion']['CONCEPTO_ID']."'   , ".
+                    " '".$gestion['gestion']['FECHA']."'   , ".
+                    " '".$gestion['gestion']['duracion']."'  , ".
+                    " '".$gestion['gestion']['INCIDENTE']."'  , ".
+                    " '".$gestion['gestion']['fecha_inicio']."' , ".
+                    " '".$gestion['gestion']['fecha_fin']."'  , ".
+                    " '".$gestion['gestion']['ESTADO_ID']."'   , ".
+                    " '".$gestion['gestion']['OBSERVACIONES_PROCESO']."'  , ".
+                    " '".$gestion['gestion']['user']."'  ".
+                    " ) ";
+        $insertNca = $this->mysqli->query($sqlNca);
+        $sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='CERRADO_PETEC',ASESOR='' WHERE ID=$idpedido ";
+        $rUpdateCerrar = $this->mysqli->query($sqlupdate);
         $gestionado = true;
     }else{
         if($fuente==='FENIX_NAL'){// Si es fenix, vaya y mire si cambio de concepto
