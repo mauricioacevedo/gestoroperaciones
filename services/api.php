@@ -8345,7 +8345,7 @@ class API extends REST {
           // $tabla = " from gestor_activacion_pendientes_activador_suspecore b " ;
 
 
-           $tabla = " from gestor_activacion_pendientes_activador_dom b " ;
+           $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
 
 
 
@@ -8354,7 +8354,7 @@ class API extends REST {
        $query = " select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
                 " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
                 " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as REPETIDO ".
-                $tabla.
+                $TABLA.
                 "  where b.STATUS='PENDI_ACTI'  ";
               //  " and b.ASESOR ='' ";
 
@@ -8379,7 +8379,7 @@ class API extends REST {
        }
     } else {
         $query=" select distinct b.PEDIDO, b.FECHA_CREACION ,b.ID ".
-                $tabla.
+                $TABLA.
                 " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
                 " and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id ";
                 //echo $query1;
@@ -8427,7 +8427,7 @@ class API extends REST {
             " ,b.FECHA_EXCEPCION,'AUTO' as source ".
             " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
             " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
-             $tabla.
+             $TABLA.
             " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
             $transaccion.
             " order by b.$parametroBusqueda ASC";
