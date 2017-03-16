@@ -8336,7 +8336,7 @@ class API extends REST {
 
 
 
-           $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
+           $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
 
 
 
