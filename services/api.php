@@ -15740,7 +15740,7 @@ private function guardarGestionAsignaciones()
         $cerrar = false;
     }
     if($cerrar){
-        $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='CERRADO_PETEC',ASESOR='' WHERE ID=$idpedido ";
+        $sqlupdate = "update informe_petec_pendientesmx set FECHA_FINAL='$fechaServidor',STATUS='CERRADO_PETEC',ASESOR='' WHERE ID=$idpedido ";
         $varFeed = "GUARDO PEDIDO";
 
     }
