@@ -11228,7 +11228,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO;
-                $scope.tabla = $scope.peds[0].tabla;
+                $scope.tabla = $scope.peds[0].TABLA;
 				$scope.pedidoIsActive = true;
 				$rootScope.errorDatos = null;
 
@@ -11373,7 +11373,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             DURACION: $scope.duracion,
 			STATUS: $scope.peds[0].STATUS,
 			TIPIFICACION: $scope.tipificacion,
-            TABLA: $scope.tabla,
+            TABLA: $scope.peds[0].tabla,
 
 
 		};
