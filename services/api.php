@@ -8357,9 +8357,9 @@ class API extends REST {
                 " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
                 " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as REPETIDO ".
                 $TABLA.
-                "  where b.STATUS='PENDI_ACTI'  ";
-              //  " and b.ASESOR ='' ";
-              //  echo $query;
+                "  where b.STATUS='PENDI_ACTI'  ".
+                " and b.ASESOR ='' ";
+               echo $query;
        if($mypedido == ""){
 
            $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
