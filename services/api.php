@@ -15709,6 +15709,7 @@ private function guardarGestionAsignaciones()
     $estado         =   $gestion['gestion']['ESTADO_ID'];
     $programacion   =   $gestion['gestion']['horaLlamar'];
     $pedido         =   $gestion['gestion']['pedido'];
+    $idpedido       =   $gestion['gestion']['ID'];
 
     $malo           =   false;
     $programado     =   false;
@@ -15725,20 +15726,20 @@ private function guardarGestionAsignaciones()
     $columns = '';
     $values = '';
 
-    var_dump($gestion);
-    var_dump($programacion);
-
-    echo "Variables \n";
-    echo $usuario."\n";
-    echo "$fuente \n";
-    echo "$estado \n";
-    echo "$programacion \n";
-    echo "$pedido \n";
+    foreach($column_names as $desired_key){
+        if(!in_array($desired_key, $keys)) {
+            $$desired_key = '';
+        }else{
+            $$desired_key = $gestion[$desired_key];
+        }
+        $columns = $columns.$desired_key.',';
+        $values = $values."'".$pedido[$desired_key]."',";
+    }
 
     if($estado=='MALO'){//Si el pedido fue marcado como malo:
 
-        //TODO: Haga update en tabla de pendientes.
-        echo "Entro a Malo";
+        $sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='$estado',ASESOR='' WHERE ID=$idpedido";
+        $rUpdateMalo = $this->mysqli->query($sqlupdate);
         $malo = true;
         $gestionado = true;
     }
@@ -15783,6 +15784,8 @@ private function guardarGestionAsignaciones()
                     " '".$gestion['gestion']['user']."'  ".
                     " ) ";
         $insertNca = $this->mysqli->query($sqlNca);
+        $sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='CERRADO_PETEC',ASESOR='' WHERE ID=$idpedido ";
+        $rUpdateCerrar = $this->mysqli->query($sqlupdate);
         $gestionado = true;
     }else{
         if($fuente==='FENIX_NAL'){// Si es fenix, vaya y mire si cambio de concepto
