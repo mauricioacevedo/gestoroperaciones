@@ -8375,9 +8375,9 @@ class API extends REST {
        }
     } else {
         $query=" select distinct b.PEDIDO, b.FECHA_CREACION ,b.ID ".
-            " from gestor_activacion_pendientes_activador_suspecore b ".
-            " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
-            " and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id ";
+                $TABLA.
+                " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
+                " and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id ";
                 //echo $query1;
                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
@@ -8440,6 +8440,7 @@ class API extends REST {
                 $sep=",";
             }
             $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+             $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
 
             $x = $this->mysqli->query($sqlupdate);
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
