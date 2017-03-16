@@ -8318,12 +8318,16 @@ class API extends REST {
         //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
         $user=strtoupper($user);
         //NO SE PUEDE CONDICIONAR AL PEDIDO ACTUAL, SI LE DA F5 A LA PAGINA NO HAY PEDIDO ACTUAL.. ES MEJOR ASI!!!
-        $sqlupdate="update gestor_pendientes_reagendamiento set ASESOR='' where ASESOR='$user'";
+        $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
+         $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='' where ASESOR='$user'";
         //echo $sqlupdate;
         $xxx = $this->mysqli->query($sqlupdate);
         //}
         //echo "WTF";
         $today = date("Y-m-d");
+
+       $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
+       $parametroBusqueda1= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TABLAS');
 
       if($transaccion!=""){
             $transaccion=" and b.TRANSACCION ='$transaccion' ";
@@ -8449,7 +8453,7 @@ class API extends REST {
             " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
             $TABLA.
             " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
-            " order by b.$parametroBusqueda ASC";;
+            " order by b.$parametroBusqueda $parametroBusqueda1 ASC";;
 
         //echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
