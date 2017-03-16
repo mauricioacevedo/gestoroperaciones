@@ -8299,8 +8299,6 @@ class API extends REST {
         $user = $this->_request['userID'];
         $transaccion = $this->_request['transaccion'];
        $tabla= $this->_request['tabla'];
-       $username=$this->_request['username'];
-        $prioridad=$this->_request['prioridad'];
 
 
         $filename = '../tmp/control-threads-agen.txt';
@@ -8318,7 +8316,6 @@ class API extends REST {
         $user=strtoupper($user);
         //NO SE PUEDE CONDICIONAR AL PEDIDO ACTUAL, SI LE DA F5 A LA PAGINA NO HAY PEDIDO ACTUAL.. ES MEJOR ASI!!!
         $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
-        $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='' where ASESOR='$user'";
         //echo $sqlupdate;
         $xxx = $this->mysqli->query($sqlupdate);
         //}
@@ -8339,14 +8336,7 @@ class API extends REST {
        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
 
 
-
-
-
-          // $tabla = " from gestor_activacion_pendientes_activador_suspecore b " ;
-
-
            $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
-
 
 
 
@@ -8355,8 +8345,8 @@ class API extends REST {
                 " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
                 " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as REPETIDO ".
                 $TABLA.
-                "  where b.STATUS='PENDI_ACTI'  ";
-              //  " and b.ASESOR ='' ";
+                "  where b.STATUS='PENDI_ACTI'  ".
+                " and b.ASESOR ='' ";
 
        if($mypedido == ""){
 
@@ -8377,37 +8367,7 @@ class API extends REST {
                     break;
 
        }
-    } else {
-        $query=" select distinct b.PEDIDO, b.FECHA_CREACION ,b.ID ".
-                $TABLA.
-                " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
-                " and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id ";
-                //echo $query1;
-                $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-                $mypedido="";
-                $mypedidoresult=array();
-                if($r->num_rows > 0){//recorro los registros de la consulta para
-                    while($row = $r->fetch_assoc()){
-                        $result[] = $row;
-
-                        $rta=$this->pedidoOcupadoFenix($row);
-                        //var_dump($rta);
-                        if($rta=="No rows!!!!"){//me sirve, salgo del ciclo y busco este pedido...
-                            //echo "el pedido es: ".$row['PEDIDO_ID'];
-
-                            $mypedido=$row['PEDIDO'];
-                            $mypedidoresult=$rta;
-                            break;
-                        }
-
-                    }
-
-                }
-
-            }//end if
-
-        }//end mypedido if
-
+    }
 
         if($prioridad!=''){
             $parametroBusqueda=$prioridad;
@@ -8444,7 +8404,6 @@ class API extends REST {
                 $sep=",";
             }
             $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
-             $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
 
             $x = $this->mysqli->query($sqlupdate);
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
@@ -8641,16 +8600,13 @@ class API extends REST {
         unlink($filename);
 
         $this->response('nothing',204);        // If no records "No Content" status
-  }
+    }
+}
 
 
 
 //--------------------fin demepedido activacion------------------------------
 
-
-
-
-//--------------------------fin --- demepedido activacion----------------------
 
 //----------------------------------demepedido agendamiento----------------------------
 
