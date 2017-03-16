@@ -8286,11 +8286,11 @@ class API extends REST {
 
 //--------------------------demepedido activacion----------------------
   private function demePedidoActivacion(){
-
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
         $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
         $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
         $galleta        =   stripslashes($_COOKIE['logedUser']);
         $galleta        =   json_decode($galleta);
@@ -8301,7 +8301,6 @@ class API extends REST {
 
         $user = $this->_request['userID'];
         $transaccion = $this->_request['transaccion'];
-        $tabla= $this->_request['tabla'];
 
 
         $filename = '../tmp/control-threads-agen.txt';
@@ -8318,8 +8317,7 @@ class API extends REST {
         //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
         $user=strtoupper($user);
         //NO SE PUEDE CONDICIONAR AL PEDIDO ACTUAL, SI LE DA F5 A LA PAGINA NO HAY PEDIDO ACTUAL.. ES MEJOR ASI!!!
-        $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
-        $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='' where ASESOR='$user'";
+        $sqlupdate="update gestor_pendientes_reagendamiento set ASESOR='' where ASESOR='$user'";
         //echo $sqlupdate;
         $xxx = $this->mysqli->query($sqlupdate);
         //}
@@ -8337,123 +8335,14 @@ class API extends REST {
 
         $mypedido="";
 
-       $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
 
-
-        if($TABLA=='ACTIVADOR_SUSPECORE'){
-
-           $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
-
-       } else {
-
-           $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
-
-       }
-
-
-
-
-       $query = " select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
-                " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
-                " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as REPETIDO ".
-                $TABLA.
-                "  where b.STATUS='PENDI_ACTI'  ".
-                " and b.ASESOR ='' ";
-               //echo $query;
-       if($mypedido == ""){
-
-           $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-            $mypedidoresult=array();
-            $pedidos_usuario="";
-            if($rr->num_rows > 0){
-                while($row = $rr->fetch_assoc()){
-                $result[] = $row;
-
-             if($row['REPETIDO']==$user){
-                        $pedidos_usuario=$pedidos_usuario.$row['PEDIDO'].',';
-                        continue;
-                    }
-
-                     $mypedido=$row['PEDIDO'];
-                    $mypedidoresult=$rta;
-                    break;
-
-       }
-    } else {
-                $query=" select distinct b.PEDIDO, b.FECHA_EXCEPCION ,b.ID ".
-                        $TABLA.
-                        " where b.STATUS='PENDI_ACTI'  ";
-                        " order by id ";
-               // echo $query;
-                $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-                $mypedido="";
-                $mypedidoresult=array();
-                if($r->num_rows > 0){//recorro los registros de la consulta para
-                    while($row = $r->fetch_assoc()){
-                        $result[] = $row;
-
-                        $rta=$this->pedidoOcupadoFenix($row);
-                        //var_dump($rta);
-                        if($rta=="No rows!!!!"){//me sirve, salgo del ciclo y busco este pedido...
-                            //echo "el pedido es: ".$row['PEDIDO_ID'];
-
-                            $mypedido=$row['PEDIDO'];
-                            $mypedidoresult=$rta;
-                            break;
-                        }
-
-                    }
-
-                }
-
-            }//end if
-
-        }//end mypedido if
 
         if($prioridad!=''){
             $parametroBusqueda=$prioridad;
         }
-        if($parametroBusqueda=='') $parametroBusqueda ='FECHA_EXCEPCION';
+        if($parametroBusqueda=='') $parametroBusqueda ='FECHA_CREACION';
 
-            if($transaccion!=""){
-            $transaccion=" and b.TRANSACCION ='$transaccion' ";
-        }
-
-        $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
-            " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
-            " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
-            " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR ".
-            " ,group_concat(distinct b.PRODUCTO ) as PRODUCTOS ".
-            " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
-            " ,b.FECHA_EXCEPCION,'AUTO' as source ".
-            " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
-            " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
-            $TABLA.
-            " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
-            $transaccion.
-            " order by b.$parametroBusqueda ASC";
-           //echo $query1;
-                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
-
-        if($r->num_rows > 0){
-            $result = array();
-            $ids="";
-            $sep="";
-            while($row = $r->fetch_assoc()){
-                $result[] = $row;
-                $ids=$ids.$sep.$row['ID'];
-                $sep=",";
-            }
-            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
-            $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
-            $x = $this->mysqli->query($sqlupdate);
-            $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
-            $x = $this->mysqli->query($INSERTLOG);
-
-
-
-/*
-         $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
+        $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
             " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
             " from gestor_activacion_pendientes_activador_suspecore b ".
@@ -8492,7 +8381,7 @@ class API extends REST {
                     " from gestor_activacion_pendientes_activador_suspecore b ".
                     " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
                     " and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id ";
-                //echo $query1;
+
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
                 $mypedidoresult=array();
@@ -8530,25 +8419,15 @@ class API extends REST {
         }
         $fecha_visto= date("Y-m-d H:i:s");
         //de una lo ocupo cucho cucho!!!!
-        $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO = '$mypedido' and STATUS='PENDI_ACTI'";
+        $sqlupdate="update gestor_pendientes_activacion_siebel set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO = '$mypedido' and STATUS='PENDI_ACTI'";
         $x = $this->mysqli->query($sqlupdate);
 
 
-         if($prioridad!=''){
-            $parametroBusqueda=$prioridad;
+        if($PROGRAMADO!="NOT"){
+            $PROGRAMADO=", '$PROGRAMADO' as PROGRAMADO ";
+        }else{
+            $PROGRAMADO="";
         }
-        if($parametroBusqueda=='') $parametroBusqueda ='FECHA_EXCEPCION';
-
-
-
-        if($transaccion!=""){
-            $transaccion=" and b.TRANSACCION ='$transaccion' ";
-        }
-
-
-        if($tabla == 'ACTIVADOR_SUSPECORE'){
-            $tabla=" and b.TABLA ='$tabla' ";
-
 
         $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
             " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
@@ -8556,36 +8435,12 @@ class API extends REST {
             " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR ".
             " ,group_concat(distinct b.PRODUCTO ) as PRODUCTOS ".
             " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
-            " ,b.FECHA_EXCEPCION,'AUTO' as source ".
+            " ,b.FECHA_EXCEPCION $FECHA_CREACION,'AUTO' as source ".
             " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
             " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
-            " from gestor_activacion_pendientes_activador_suspecore b ".
-            " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
-            $transaccion.
-            $tabla.
-            " order by b.$parametroBusqueda ASC";
+            " from gestor_activacion_pendientes_activador_suspecore b where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ";
 
-            echo $query1;
-        }else if($tabla == 'ACTIVADOR_SUSPECORE'){
-
-            $tabla=" and b.TABLA ='$tabla' ";
-
-             $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
-            " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
-            " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
-            " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR ".
-            " ,group_concat(distinct b.PRODUCTO ) as PRODUCTOS ".
-            " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
-            " ,b.FECHA_EXCEPCION,'AUTO' as source ".
-            " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
-            " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
-            " from gestor_activacion_pendientes_activador_dom b ".
-            " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
-            $transaccion.
-            $tabla.
-            " order by b.$parametroBusqueda ASC";
-
-        echo $query1;
+        //echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -8597,12 +8452,11 @@ class API extends REST {
                 $ids=$ids.$sep.$row['ID'];
                 $sep=",";
             }
-            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
-
+            $sqlupdate="update gestor_pendientes_activacion_siebel set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
             $x = $this->mysqli->query($sqlupdate);
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
             $x = $this->mysqli->query($INSERTLOG);
-*/
+
             // SQL Feed----------------------------------
             $sql_log=   "insert into portalbd.activity_feed ( ".
                 " USER ".
@@ -8641,8 +8495,7 @@ class API extends REST {
         unlink($filename);
 
         $this->response('nothing',204);        // If no records "No Content" status
-  }
-
+    }
 
 
 
