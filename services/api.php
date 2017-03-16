@@ -8400,7 +8400,7 @@ class API extends REST {
 
                         $rta=$this->pedidoOcupadoFenix($row);
 
-                        if($rta=="No rows!!!!"){/
+                        if($rta=="No rows!!!!"){
 
 
                             $mypedido=$row['PEDIDO'];
