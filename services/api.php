@@ -8446,7 +8446,7 @@ class API extends REST {
             " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
             " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
             $TABLA.
-            " b where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
+            " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
              $transaccion.
             " order by b.$parametroBusqueda ASC";;
 
