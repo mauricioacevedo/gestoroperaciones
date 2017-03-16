@@ -14442,19 +14442,9 @@ class API extends REST {
             $this->response('',406);
         }
 
-        //$this->dbDespachoConnect();
-
-        //$params = json_decode(file_get_contents('php://input'),true);
-        $params = json_decode(file_get_contents('php://input'),true);
-        //$params = file_get_contents('php://input');
-
-        $usuario_id = $params['usuario_id'];
-
-        //$usuario_id=$this->_request['usuario_id'];
-
-        //$usuario_id = $params['usuario_id'];
-        //$usuario_id = $this->_request['usuario_id'];
-        $today = date("Y-m-d");
+        $params         =   json_decode(file_get_contents('php://input'),true);
+        $usuario_id     =   $params['usuario_id'];
+        $today          =   date("Y-m-d");
 
 
         if($usuario_id!=''){
@@ -14494,27 +14484,27 @@ class API extends REST {
             "		FROM   ".
             "			portalbd.pedidos h   ".
             "		WHERE   ".
-            "			1 = 1 AND h.estado  in ('MALO','VOLVER A LLAMAR','PENDIENTE')  ".
+            "			1 = 1 AND h.estado  in ('MALO','VOLVER A LLAMAR','PENDIENTE','GESTIONAR MAS TARDE')  ".
             "				  AND h.ID = (SELECT  MAX(hh.ID)  FROM  portalbd.pedidos hh   ".
-            "				  WHERE  hh.PEDIDO_ID = h.PEDIDO_ID and hh.estado in ('MALO','VOLVER A LLAMAR','PENDIENTE') ".
+            "				  WHERE  hh.PEDIDO_ID = h.PEDIDO_ID and hh.estado in ('MALO','VOLVER A LLAMAR','PENDIENTE','GESTIONAR MAS TARDE') ".
             "				GROUP BY hh.PEDIDO_ID) ".
             "				and h.PEDIDO_ID=P.PEDIDO_ID) as USUARIO_ID ".
             "	, (SELECT h.motivo_malo ".
             "		FROM   ".
             "			portalbd.pedidos h   ".
             "		WHERE   ".
-            "			1 = 1 AND h.estado  in ('MALO','VOLVER A LLAMAR','PENDIENTE')  ".
+            "			1 = 1 AND h.estado  in ('MALO','VOLVER A LLAMAR','PENDIENTE','GESTIONAR MAS TARDE')  ".
             "				  AND h.ID = (SELECT  MAX(hh.ID)  FROM  portalbd.pedidos hh   ".
-            "				  WHERE  hh.PEDIDO_ID = h.PEDIDO_ID and hh.estado in ('MALO','VOLVER A LLAMAR','PENDIENTE') ".
+            "				  WHERE  hh.PEDIDO_ID = h.PEDIDO_ID and hh.estado in ('MALO','VOLVER A LLAMAR','PENDIENTE','GESTIONAR MAS TARDE') ".
             "				GROUP BY hh.PEDIDO_ID) ".
             "				and h.PEDIDO_ID=P.PEDIDO_ID) as MOTIVO_MALO ".
             "	, (SELECT h.fecha_fin ".
             "		FROM   ".
             "			portalbd.pedidos h   ".
             "		WHERE   ".
-            "			1 = 1 AND h.estado  in ('MALO','VOLVER A LLAMAR','PENDIENTE')  ".
+            "			1 = 1 AND h.estado  in ('MALO','VOLVER A LLAMAR','PENDIENTE','GESTIONAR MAS TARDE')  ".
             "				  AND h.ID = (SELECT  MAX(hh.ID)  FROM  portalbd.pedidos hh   ".
-            "				  WHERE  hh.PEDIDO_ID = h.PEDIDO_ID and hh.estado in ('MALO','VOLVER A LLAMAR','PENDIENTE') ".
+            "				  WHERE  hh.PEDIDO_ID = h.PEDIDO_ID and hh.estado in ('MALO','VOLVER A LLAMAR','PENDIENTE','GESTIONAR MAS TARDE') ".
             "				GROUP BY hh.PEDIDO_ID) ".
             "				and h.PEDIDO_ID=P.PEDIDO_ID) as FECHA_GESTION  ".
             "	FROM portalbd.informe_petec_pendientesm P  ".
@@ -14524,20 +14514,15 @@ class API extends REST {
             "	group by P.PEDIDO_ID ) c2 ".
             "    where c2.USUARIO_ID='$usuario_id' ";
 
-        // echo $query;
         $rst = $this->mysqli->query($query);
 
-        //echo $this->mysqli->query($sqlLogin);
-        //
         if ($rst->num_rows > 0){
 
             $resultado=array();
 
             while($row=$rst->fetch_assoc()){
 
-                //$row['USUARIO_NOMBRE']=utf8_encode($row['USUARIO_NOMBRE']);
                 $resultado[]=$row;
-
 
             }
             $this->response($this->json(array($resultado)), 201);
