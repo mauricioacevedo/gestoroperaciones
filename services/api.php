@@ -8336,7 +8336,7 @@ class API extends REST {
        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
 
 
-           $TABLA = " from gestor_activacion_pendientes_activador_suspecore b ;
+           $TABLA = " from gestor_activacion_pendientes_activador_suspecore b ";
 
 
 
