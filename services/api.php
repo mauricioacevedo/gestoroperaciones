@@ -8360,8 +8360,8 @@ class API extends REST {
             " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
             $TABLA.
-            "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
-            " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ";
+            "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ";
+       //     " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ";
          echo $query1;
         if($mypedido==""){
 
