@@ -15705,7 +15705,7 @@ private function guardarGestionAsignaciones()
 
 
 
-    if($guardar){//Si fue gestionado, mandamos JSON con respuesta.
+    if($guardar){//Si fue gestionado, Insertamos gestion en pedidos y mandamos JSON con respuesta.
         foreach($column_names as $desired_key){
             if(!in_array($desired_key, $keys)) {
                 $$desired_key = '';
