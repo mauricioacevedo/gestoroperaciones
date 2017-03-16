@@ -8313,18 +8313,16 @@ class API extends REST {
             fclose($file);
         }
 
-        //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
+
         $pedido_actual = $this->_request['pedido_actual'];
-        //echo $pedido_actual;
-        //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
+
         $user=strtoupper($user);
-        //NO SE PUEDE CONDICIONAR AL PEDIDO ACTUAL, SI LE DA F5 A LA PAGINA NO HAY PEDIDO ACTUAL.. ES MEJOR ASI!!!
+
         $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
          $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='' where ASESOR='$user'";
         //echo $sqlupdate;
         $xxx = $this->mysqli->query($sqlupdate);
-        //}
-        //echo "WTF";
+
         $today = date("Y-m-d");
 
        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
@@ -8370,13 +8368,10 @@ class API extends REST {
             $rr = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
             $mypedidoresult=array();
             $pedidos_ignorados="";
-            if($rr->num_rows > 0){//recorro los registros de la consulta para
+            if($rr->num_rows > 0){
                 while($row = $rr->fetch_assoc()){
                     $result[] = $row;
 
-                    //$rta=$this->pedidoOcupadoFenix($row);
-                    //if($rta=="No rows!!!!"){//me sirve, salgo del ciclo y busco este pedido...
-                    //echo "el pedido es: ".$row['PEDIDO_ID'];
                     if($row['BEENHERE']==$user){
                         $pedidos_ignorados=$pedidos_ignorados.$row['PEDIDO'].',';
                         //este pedido ya lo vio el dia de hoy
@@ -8389,7 +8384,7 @@ class API extends REST {
                     break;
 
                 }
-                //2.traigo solo los pedidos mas viejos en la base de datos...
+                //pedidos viejos
             } else {
                 $query1=" select distinct b.PEDIDO, b.FECHA_CREACION ,b.ID ".
                     $TABLA.
@@ -8399,14 +8394,14 @@ class API extends REST {
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
                 $mypedidoresult=array();
-                if($r->num_rows > 0){//recorro los registros de la consulta para
+                if($r->num_rows > 0){
                     while($row = $r->fetch_assoc()){
                         $result[] = $row;
 
                         $rta=$this->pedidoOcupadoFenix($row);
-                        //var_dump($rta);
-                        if($rta=="No rows!!!!"){//me sirve, salgo del ciclo y busco este pedido...
-                            //echo "el pedido es: ".$row['PEDIDO_ID'];
+
+                        if($rta=="No rows!!!!"){/
+
 
                             $mypedido=$row['PEDIDO'];
                             $mypedidoresult=$rta;
@@ -8421,9 +8416,8 @@ class API extends REST {
 
         }//end mypedido if
 
-        if($mypedido==''){//ya los visite todos, que hago???
-            //echo "YA LOS VISITE TODOS, QUE HAGO?";
-            //EN LAS VISTAS, ACTUALIZO EL USUARIO PARA RESETEAR LA BUSQUEDA
+        if($mypedido==''){
+
             $SQL_UPDATE="update vistas_pedidos a set a.user='$user-CICLO' where a.user='$user' AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59'";
             $xS = $this->mysqli->query($SQL_UPDATE);
             $pedds=explode(",", $pedidos_ignorados);
@@ -8493,15 +8487,12 @@ class API extends REST {
 
             $rlog = $this->mysqli->query($sql_log);
             // ---------------------------------- SQL Feed
-            //$sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$user','$username','','','PEDIDO: $mypedido','DEMEPEDIDO')";
-            //$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
             //sleep(20);
             unlink($filename);
             echo json_encode($result);
             $this->response('', 200); // send user details
-        }else{//i have pretty heavy problems over here...
-            //$this->response('SYSTEM PANIC!',200);
+        }else{
             $this->response(json_encode('No hay registros!'),204);
         }
         unlink($filename);
