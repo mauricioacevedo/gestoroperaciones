@@ -8376,7 +8376,36 @@ class API extends REST {
                     break;
 
        }
-    }
+    } else {
+                $query=" select distinct b.PEDIDO, b.FECHA_CREACION ,b.ID ".
+                        $TABLA.
+                        " where b.STATUS='PENDI_ACTI'  and b.ASESOR ='' ".
+                        " and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id ";
+                //echo $query1;
+                $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+                $mypedido="";
+                $mypedidoresult=array();
+                if($r->num_rows > 0){//recorro los registros de la consulta para
+                    while($row = $r->fetch_assoc()){
+                        $result[] = $row;
+
+                        $rta=$this->pedidoOcupadoFenix($row);
+                        //var_dump($rta);
+                        if($rta=="No rows!!!!"){//me sirve, salgo del ciclo y busco este pedido...
+                            //echo "el pedido es: ".$row['PEDIDO_ID'];
+
+                            $mypedido=$row['PEDIDO'];
+                            $mypedidoresult=$rta;
+                            break;
+                        }
+
+                    }
+
+                }
+
+            }//end if
+
+        }//end mypedido if
 
         if($prioridad!=''){
             $parametroBusqueda=$prioridad;
@@ -8609,8 +8638,8 @@ class API extends REST {
         unlink($filename);
 
         $this->response('nothing',204);        // If no records "No Content" status
-    }
-}
+  }
+
 
 
 
