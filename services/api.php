@@ -13853,8 +13853,24 @@ class API extends REST {
         //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
         $pedido_actual = $this->_request['pedido_actual'];
 
+         if($TABLA=='ACTIVADOR_SUSPECORE'){
+
+           $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
+
+       } else {
+
+           $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
+
+       }
+
+
+
         if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
             $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user' ";
+            $xxx = $this->mysqli->query($sqlupdate);
+        }else{
+
+             $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='' where ASESOR='$user' ";
             $xxx = $this->mysqli->query($sqlupdate);
         }
 
@@ -13870,7 +13886,8 @@ class API extends REST {
             " ,b.FECHA_EXCEPCION $FECHA_CREACION,'AUTO' as source ".
             " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
             " where a.PEDIDO='$pedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
-            " from gestor_activacion_pendientes_activador_suspecore b where b.PEDIDO = '$pedido' and b.STATUS='PENDI_ACTI' ";
+            $TABLA.
+            " where b.PEDIDO = '$pedido' and b.STATUS='PENDI_ACTI' ";
 
 
 
