@@ -11228,7 +11228,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO;
-                $scope.tabla = $scope.peds[0].TABLA;
 				$scope.pedidoIsActive = true;
 				$rootScope.errorDatos = null;
 
