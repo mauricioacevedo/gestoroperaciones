@@ -15721,7 +15721,7 @@ private function guardarGestionAsignaciones()
         $usuario = $usuarioGalleta;
     }
 
-    $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo');
+    $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo','fecha_estado','concepto_final','source');
     $keys = array_keys($gestion['gestion']);
     $columns = '';
     $values = '';
@@ -15730,14 +15730,18 @@ private function guardarGestionAsignaciones()
         if(!in_array($desired_key, $keys)) {
             $$desired_key = '';
         }else{
-            $$desired_key = $gestion[$desired_key];
+            $$desired_key = $gestion['gestion'][$desired_key];
         }
         $columns = $columns.$desired_key.',';
-        $values = $values."'".$gestion[$desired_key]."',";
+        $values = $values."'".$gestion['gestion'][$desired_key]."',";
     }
 
     var_dump($columns);
     var_dump($values);
+
+    $queryGestion = "INSERT INTO pedidos(".trim($columns,',').") VALUES(".trim($values,',').")";
+
+    echo $queryGestion;
 
     if($estado=='MALO') {//Si el pedido fue marcado como malo:
 
