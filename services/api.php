@@ -8351,7 +8351,7 @@ class API extends REST {
                 " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as REPETIDO ".
                 $TABLA.
                 "  where b.STATUS='PENDI_ACTI'  ".
-                " and b.ASESOR ='' ";
+              //  " and b.ASESOR ='' ";
 
        if($mypedido == ""){
 
