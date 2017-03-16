@@ -8362,7 +8362,7 @@ class API extends REST {
             $TABLA.
             "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ";
        //     " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ";
-         echo $query1;
+       //  echo $query1;
         if($mypedido==""){
 
             $rr = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
