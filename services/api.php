@@ -8301,6 +8301,7 @@ class API extends REST {
 
         $user = $this->_request['userID'];
         $transaccion = $this->_request['transaccion'];
+        $tabla = $this->_request['tabla'];
 
 
         $filename = '../tmp/control-threads-agen.txt';
@@ -8323,6 +8324,10 @@ class API extends REST {
         //}
         //echo "WTF";
         $today = date("Y-m-d");
+
+      if($transaccion!=""){
+            $transaccion=" and b.TRANSACCION ='$transaccion' ";
+        }
 
        if($TABLA=='ACTIVADOR_SUSPECORE'){
 
@@ -8385,10 +8390,10 @@ class API extends REST {
                 }
                 //2.traigo solo los pedidos mas viejos en la base de datos...
             } else {
-                $query1=" select distinct b.PEDIDO, b.FECHA_EXCEPCION ,b.ID ".
+                $query1=" select distinct b.PEDIDO, b.FECHA_CREACION ,b.ID ".
                     $TABLA.
                     " where b.STATUS='PENDI_ACTI'".
-                    " and FECHA_EXCEPCION between '$today 00:00:00' and '$today 23:59:59' order by id ";
+                    " and FECHA_CREACION between '$today 00:00:00' and '$today 23:59:59' order by id ";
                  echo $query1;
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
@@ -8430,9 +8435,7 @@ class API extends REST {
         $sqlupdate="update gestor_pendientes_activacion_siebel set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO = '$mypedido' and STATUS='PENDI_ACTI'";
         $x = $this->mysqli->query($sqlupdate);
 
-      if($transaccion!=""){
-            $transaccion=" and b.TRANSACCION ='$transaccion' ";
-        }
+
 
 
         $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
