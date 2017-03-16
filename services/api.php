@@ -15856,7 +15856,7 @@ private function guardarGestionAsignaciones()
 
         $queryGestion = "INSERT INTO pedidos(".trim($columns,',').") VALUES(".trim($values,',').")";
 
-        echo $queryGestion;
+        $insertGestion = $this->mysqli->query($queryGestion);
 
         //Activiy Feed ------------------------------------------------------------------
         $sqlFeed =  "insert into portalbd.activity_feed ( ".
