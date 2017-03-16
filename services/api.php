@@ -15735,7 +15735,7 @@ private function guardarGestionAsignaciones()
         $columns = $columns.$desired_key.',';
         $values = $values."'".$gestion['gestion'][$desired_key]."',";
     }
-
+    var_dump($gestion['gestion']);
     var_dump($columns);
     var_dump($values);
 
