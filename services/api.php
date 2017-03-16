@@ -8288,6 +8288,7 @@ class API extends REST {
             $this->response('',406);
         }
         $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
         $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
         $galleta        =   stripslashes($_COOKIE['logedUser']);
         $galleta        =   json_decode($galleta);
@@ -8335,88 +8336,7 @@ class API extends REST {
 
        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
 
-       if($TABLA=='ACTIVADOR_SUSPECORE'){
 
-           $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
-
-       } else {
-
-           $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
-
-       }
-
-
-       $query = " select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
-                " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
-                " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as REPETIDO ".
-                $TABLA.
-                "  where b.STATUS='PENDI_ACTI'  ".
-                " and b.ASESOR ='' ";
-
-       if($mypedido == ""){
-
-           $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-            $mypedidoresult=array();
-            $pedidos_usuario="";
-            if($rr->num_rows > 0){
-                while($row = $rr->fetch_assoc()){
-                $result[] = $row;
-
-             if($row['REPETIDO']==$user){
-                        $pedidos_usuario=$pedidos_usuario.$row['PEDIDO'].',';
-                        continue;
-                    }
-
-                     $mypedido=$row['PEDIDO'];
-                    $mypedidoresult=$rta;
-                    break;
-
-       }
-    }
-
-        if($prioridad!=''){
-            $parametroBusqueda=$prioridad;
-        }
-        if($parametroBusqueda=='') $parametroBusqueda ='FECHA_EXCEPCION';
-
-            if($transaccion!=""){
-            $transaccion=" and b.TRANSACCION ='$transaccion' ";
-        }
-
-        $query= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
-            " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
-            " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
-            " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR ".
-            " ,group_concat(distinct b.PRODUCTO ) as PRODUCTOS ".
-            " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
-            " ,b.FECHA_EXCEPCION,'AUTO' as source ".
-            " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
-            " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
-             $TABLA.
-            " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
-            $transaccion.
-            " order by b.$parametroBusqueda ASC";
-           //echo $query;
-                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-
-        if($r->num_rows > 0){
-            $result = array();
-            $ids="";
-            $sep="";
-            while($row = $r->fetch_assoc()){
-                $result[] = $row;
-                $ids=$ids.$sep.$row['ID'];
-                $sep=",";
-            }
-            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
-
-            $x = $this->mysqli->query($sqlupdate);
-            $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
-            $x = $this->mysqli->query($INSERTLOG);
-
-
-
-/*
          $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
             " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
@@ -8562,11 +8482,10 @@ class API extends REST {
                 $sep=",";
             }
             $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
-
             $x = $this->mysqli->query($sqlupdate);
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
             $x = $this->mysqli->query($INSERTLOG);
-*/
+
             // SQL Feed----------------------------------
             $sql_log=   "insert into portalbd.activity_feed ( ".
                 " USER ".
@@ -8606,11 +8525,11 @@ class API extends REST {
 
         $this->response('nothing',204);        // If no records "No Content" status
     }
-}
+   }
 
 
 
-//--------------------fin demepedido activacion------------------------------
+
 
 
 
