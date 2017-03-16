@@ -11173,7 +11173,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.baby = function (pedido) {
 		console.log(pedido);
 		services.getpedidosPorPedidoActivacion(pedido).then(function (data) {
-			//console.log(data.data);
+			console.log(data.data);
 			$scope.historico_pedido = data.data;
 			//  console.log($scope.historico_pedido);
 			return data.data;
