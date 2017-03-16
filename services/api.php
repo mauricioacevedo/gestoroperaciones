@@ -13853,7 +13853,7 @@ class API extends REST {
         //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
         $pedido_actual = $this->_request['pedido_actual'];
 
-         if{
+         if($TABLA=='ACTIVADOR_SUSPECORE'){
 
            $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
 
