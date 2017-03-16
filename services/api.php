@@ -15744,9 +15744,11 @@ private function guardarGestionAsignaciones()
         $cerrar = false;
     }
     if($programado){
-        $sqlupdate="update informe_petec_pendientesm set PROGRAMACION='$programacion', RADICADO_TEMPORAL='NO',ASESOR='' WHERE STATUS in ('PENDI_PETEC','MALO') and PEDIDO_ID='$pedido' ";
+
+        $sqlupdate="update informe_petec_pendientesm set PROGRAMACION='$programacion', RADICADO_TEMPORAL='NO',ASESOR='', STATUS='PENDI_PETEC' WHERE STATUS in ('PENDI_PETEC','MALO') and PEDIDO_ID='$pedido' ";
         $varFeed = "PROGRAMO PEDIDO";
         $cerrar = false;
+
     }
     if($cerrar){
         $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='CERRADO_PETEC',ASESOR='' WHERE ID=$idpedido ";
