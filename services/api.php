@@ -8318,7 +8318,7 @@ class API extends REST {
         $user=strtoupper($user);
         //NO SE PUEDE CONDICIONAR AL PEDIDO ACTUAL, SI LE DA F5 A LA PAGINA NO HAY PEDIDO ACTUAL.. ES MEJOR ASI!!!
         $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
-      $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
+        $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
         //echo $sqlupdate;
         $xxx = $this->mysqli->query($sqlupdate);
         //}
@@ -8338,7 +8338,8 @@ class API extends REST {
 
        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
 
-       if($TABLA=='ACTIVADOR_SUSPECORE'){
+
+       if($TABLA!=""){
 
            $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
 
