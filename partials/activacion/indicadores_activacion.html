@@ -173,6 +173,35 @@
                                         </button>
                                     </td>
                                 </tr>
+
+                                <tr>
+                                    <td>Transaccion</td>
+                                    <td><font color='blue'>{{ordenamientoDemepedidoUpdatetablas}}</font></td>
+                                    <td>{{UsuarioParametrotablas}}</td>
+                                    <td>
+                                        <select class="btn btn-default btn-xs grupo-select" id="sel1"
+                                                ng-model="ordenamientoDemepedidotablas" style="width:auto;">
+                                            <option value="Nuevo">Nuevo</option>
+                                            <option value="Eliminar">Eliminar</option>
+                                            <option value="Actualizar">Actualizar</option>
+                                            <option value="TrasladoRetiro">TrasladoRetiro</option>
+                                            <option value="Suspender">Suspender</option>
+                                            <option value="Traslado">Traslado</option>
+
+
+
+
+                                        </select>
+                                        <button class="btn btn-success btn-xs"
+                                                ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TABLAS',ordenamientoDemepedidotablas);">
+                                            <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                                        <button type="button" class="btn btn-default btn-circle-xs"
+                                                ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TABLAS')" title="Actualizar"
+                                                data-toggle="tooltip" data-placement="left" ng-disabled="loading">
+                                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                </tr>
                             </table>
                         </div>
                         <div class="panel-footer clearfix">
