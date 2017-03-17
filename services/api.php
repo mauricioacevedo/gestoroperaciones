@@ -15817,7 +15817,7 @@ private function guardarGestionAsignaciones()
             $paramlst = " and PEDIDO_ID in (".$in_stmt.") ";
         }
 
-        $sql =  " SELECT ".
+        $sql =  " SELECT ID, ".
                 " FECHA_GESTION as FECHA_ESTUDIO ".
                 " , PEDIDO_ID ".
                 " , TIPO_ELEMENTO_ID ".
