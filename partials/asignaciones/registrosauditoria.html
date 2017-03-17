@@ -1,78 +1,46 @@
-<div class="row" ng-controller="RegistrosCtrl">
+<div class="row">
     <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <b><i class="fa fa-bars" aria-hidden="true"></i> Pendientes</b>
-                <span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle" aria-hidden="true"
-                                                              ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+        <div class = "panel panel-default">
+            <div class = "panel-heading">
+                <b><i class="fa fa-bars" aria-hidden="true"></i> Historico de Transacciones</b>
+                <span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
                 <ul class="nav navbar-nav navbar-right">
                     <div class="col-md-1 col-xs-1 ">
                         <div data-ng-if="loading">
-                            <img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif"
-                                 height="16" width="16"/>
+                            <img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif" />
                         </div>
                     </div>
-                </ul>
+                    </u>
             </div>
-            <div class="panel-heading nav navbar-default">
+            <div class = "panel-heading nav navbar-default">
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="nav navbar-nav navbar-left">
                                 <li>
-                                    <select ng-model="data1.concepto" ng-change="calcularPendientes(data1.concepto)"
-                                            class="btn btn-default btn-xs grupo-select">
-                                        <option ng-repeat="d in listadoConceptos | unique:'CONCEPTO_ID'"
-                                                value='{{d.CONCEPTO_ID}}'>{{d.CONCEPTO_ID}}
-                                        </option>
-                                    </select>
+                                    <input class="btn btn-default btn-xs" name="valorCampo" ng-model="auditoria.PEDIDO_ID" select-on-click capitalize type="text" placeholder="Palabra">
 
                                 </li>
                                 <li>&nbsp;</li>
                                 <li>
-                                    <div class="btn-group">
-                                        <input style="width:140px" class="btn btn-default btn-xs " type="text"
-                                               ng-model="auditor.PEDIDO_ID"
-                                               placeholder="Buscar..." ng-trim="true" ng-disabled="loading"
-                                               select-on-click capitalize/>
-                                        <button type="button" class="btn btn-primary btn-xs"
-                                                ng-click="listarPedidosAuditados(auditor)" ng-disabled="loading">
-                                            <i class="fa fa-search" aria-hidden="true"> </i>
+                                    <div class="input-daterange" id="datepicker">
+                                        <input type="text" class="btn btn-default btn-xs"  id="fromDate" name="fromDate" ng-model="auditoria.FECHAINI" /><i class="fa fa-calendar fa-fw"></i>
+                                        <input type="text" class="btn btn-default btn-xs"  id="toDate" name="toDate" ng-model="auditoria.FECHAFIN" /><i class="fa fa-calendar fa-fw"></i>
+                                        <button type="button" class="btn btn-primary btn-xs" ng-click="listarPedidosAuditados(auditoria)"  title="Buscar" tooltip data-placement="left" ng-disabled="loading">
+                                            <i class="fa fa-search"  aria-hidden="true"></i>
                                         </button>
-                                    </div>
+                                        <button type="button" class="btn btn-primary btn-xs" ng-click="csvHistoricos()"  title="Exportar" tooltip data-placement="left" ng-disabled="loading">
+                                            <i class="fa fa-cloud-download"  aria-hidden="true"></i>
+                                        </button>
 
+                                    </div>
                                 </li>
-                                <li>&nbsp;</li>
-                                <li>
-                                    <button type="button" class="btn btn-primary btn-xs"
-                                            ng-click="csvPendientes(data1.concepto)" title="Exportar" tooltip
-                                            data-placement="top" ng-disabled="loading">
-                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
-                                    </button>
-                                </li>
-                                <li>&nbsp;</li>
-                                <li>
-                                    <button type="button" class="btn btn-danger btn-xs"
-                                            ng-click="csvMalos(data1.concepto)" title="Exportar Malos" tooltip
-                                            data-placement="top" ng-disabled="loading">
-                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
-                                    </button>
-                                </li>
-                                <li>&nbsp;</li>
-                                <li>
-                                    <button type="button" class="btn btn-warning btn-xs"
-                                            ng-click="csvPreInstalaciones()" title="Exportar Pre Instalaciones" tooltip
-                                            data-placement="top" ng-disabled="loading">
-                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
-                                    </button>
-                                </li>
+
 
 
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <input style="width:200px" class="btn btn-default btn-xs " type="text"
-                                       ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click
-                                       capitalize/>
+                                <input style="width:200px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize />
                             </ul>
                         </div>
 
@@ -80,89 +48,50 @@
                 </div>
 
             </div>
-            <div class="panel-body fixed-panel">
-                <table class="table small table-striped table-hover table-bordered">
+            <div class="panel-body fixed-panel" >
+
+                <table class="table small table-striped table-hover table-bordered table-condensed">
                     <thead>
-                    <th>Pedido</th>
-                    <th>Tipo</th>
-                    <th>Tiempo</th>
-                    <th>Programación</th>
-                    <th>Concepto</th>
-                    <th ng-show="idPermisos.indexOf(logedUser.login)!=-1">Estado</th>
-                    <th>Obs</th>
-                    <th>Uen</th>
-                    <th>Municipio</th>
-                    <th>Fecha Estado</th>
-                    <th>Fecha Cita</th>
+                    <th>Usuario</th>
                     <th>Fuente</th>
-                    <th>Prioridad</th>
-                    <th ng-show="idPermisos.indexOf(logedUser.login)!=-1">Priorizar</th>
+                    <th>Concepto</th>
+                    <th>Estado</th>
+                    <th>Motivo Malo</th>
+                    <th>Pedido</th>
+                    <th>Fecha</th>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="data in listado_pendientes  | orderBy:'FECHA_ESTADO':false | filter:filtroInput  as InfoPed"
-                        ng-class="{warning: data.STATUS == 'MALO'}">
-                        <td>{{data.PEDIDO_ID}}-{{data.SUBPEDIDO_ID}}-{{data.SOLICITUD_ID}}</td>
-                        <td><span class="small">{{cutString(data.TIPO_ELEMENTO_ID,20)}}</span></td>
-                        <td><label style="color:red">{{data.TIEMPO_COLA}}</label></td>
-                        <td><span class="small">{{data.PROGRAMACION}}</span></td>
-                        <td><span class="small">{{data.CONCEPTO_ID}}</span></td>
-                        <td ng-show="idPermisos.indexOf(logedUser.login)!=-1" ng-mouseover="hoverEdit = true" ng-mouseleave="hoverEdit = false">
-                            <span class="small">
-                                <a href="#"
-                                   ng-style="{'color':data.STATUS=='MALO' && 'red' || 'blue', 'font-weight': 'bold' }"
-                                   editable-select="data.STATUS"
-                                   e-ng-options="s.value as s.text for s in statuses"
-                                   onaftersave="updateStatus(data)"
-                                   title="Editar"
-                                >
-                                    {{ data.STATUS }}
-                                </a>
-                                 <span ng-show="hoverEdit" class="animated bounceIn" ><i class="fa fa-pencil" aria-hidden="true"></i></span>
-
-                            </span>
-                        </td>
-                        <td><span class="small">{{data.OBS}}</span></td>
-                        <td><span class="small">{{data.UEN_CALCULADA}}</span></td>
-                        <td><span class="small">{{data.MUNICIPIO_ID}}</span></td>
-                        <td><span class="small">{{data.FECHA_ESTADO}}</span></td>
-                        <td><span class="small">{{data.FECHA_CITA}}</span></td>
-                        <td><span class="small">{{data.FUENTE}}</span></td>
-                        <td><span class="small">{{data.RADICADO_TEMPORAL || 'NO'}}</span></td>
-                        <td ng-show="idPermisos.indexOf(logedUser.login)!=-1">
-                            <span class="small">
-                                <input type="checkbox" class="flipswitch"
-                                       ng-model="data.RADICADO_TEMPORAL"
-                                       name="prioridad"
-                                       id="prioridad"
-                                       ng-true-value="'ARBOL'"
-                                       ng-change="habilitarPrioridad(data)">
-                            </span>
-
-                        </td>
+                    <tr ng-repeat="data in listaAuditados ">
+                        <td><span class="small">{{data.FECHA_ESTUDIO}}</span></td>
+                        <td><span class="small">{{data.PEDIDO_ID}}</span></td>
+                        <td><span class="small">{{data.TIPO_ELEMENTO_ID}}</span></td>
+                        <td><span class="small">{{data.USUARIO}}</span></td>
+                        <td><span class="small">{{data.ANALISIS}}</span></td>
+                        <td><span class="small">{{data.CONCEPTO_AUDITORIA}}</span></td>
+                        <td><span class="small">{{data.OBSERVACIONES}}</span></td>
                     </tr>
                     </tbody>
                 </table>
 
+
+
             </div>
-            <div class="panel-footer clearfix">
+            <div class="panel-footer clearfix" >
                 <div class="col-md-12">
                     <ul class="nav navbar-nav navbar-left">
-                        <li>Registros: <span class="badge badge-default">{{data1.totalItems}}</span></li>
+                        <li>Registros: <span class="badge badge-default">{{data.totalItems}}</span></li>
 
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
 
-                        <ul uib-pagination class="pagination-sm" total-items="data1.totalItems"
-                            ng-model="data1.currentPage" max-size="6" boundary-links="true" num-pages="smallnumPages"
-                            previous-text="&#8672;" next-text="&#8674;" last-text="Último" first-text="Primero"
-                            items-per-page="100" boundary-link-numbers="false" rotate="false"
-                            ng-change="pageChanged('listadoPendientes')" class="pagination-sm">
+                        <ul  uib-pagination class="pagination-sm" total-items="data.totalItems" ng-model="data.currentPage" max-size="6" boundary-links="true" num-pages="smallnumPages" previous-text="&#8672;" next-text="&#8674;" last-text="Último" first-text="Primero" items-per-page="100" boundary-link-numbers="false" rotate="false" ng-change="pageChanged('listadoPedidos')" class="pagination-sm">
                         </ul>
 
 
                         <!-- old pagination
-                        <pagination total-items="data1.totalItems" ng-model="data1.currentPage" ng-change="pageChanged('listadoPendientes')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination> -->
+                        <pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged('listadoPedidos')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination> -->
+
                     </ul>
                 </div>
 
@@ -175,14 +104,7 @@
 </div><!--Row 1 Novedades -->
 <br>
 <ol class="breadcrumb">
-    <li><a href=".#/">Home</a></li>
+    <li><a href=".#/">Home</a> </li>
     <li><a href="">Asignaciones</a></li>
-    <li class="active">{{title}}</li>
+    <li class="active">{{title}} </li>
 </ol>
-<script>
-    $('.input-daterange').datepicker({
-        format: 'yyyy-mm-dd',
-        todayBtn: "linked",
-        autoclose: true
-    });
-</script>

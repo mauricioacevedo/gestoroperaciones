@@ -5392,6 +5392,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
         services.buscarListarPedidoAuditoriaGestor(buscar.PEDIDO_ID, buscar.FECHAINI, buscar.FECHAFIN).then(
         	function (data) {
+        		$scope.listaAuditados = data.data[0];
         		console.log(data.data);
 
             }
