@@ -5390,7 +5390,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
     $scope.listarPedidosAuditados = function (buscar) {
     	console.log(buscar);
-			if(buscar==='undefined' || buscar.PEDIDO_ID===''){
+			if(buscar==undefined){
                 buscar.PEDIDO_ID='TODO';
 			}
         services.buscarListarPedidoAuditoriaGestor(buscar.PEDIDO_ID, buscar.FECHAINI, buscar.FECHAFIN).then(
