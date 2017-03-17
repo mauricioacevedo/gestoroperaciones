@@ -15808,7 +15808,7 @@ private function guardarGestionAsignaciones()
         if($pedido=="TODO"){
             $paramlst = " and FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59'";
         }else{
-            $in_stmt = "'".str_replace(" ", "','", $pedido)."'";
+            $in_stmt = "'".str_replace(" ", ",", $pedido)."'";
             $paramlst = " and PEDIDO_ID in (".$in_stmt.") ";
         }
 
