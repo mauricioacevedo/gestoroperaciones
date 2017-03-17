@@ -11157,6 +11157,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.FECHA_FIN = null;
 	$scope.transaccion = 'Suspender';
     $scope.tabla = 'ACTIVADOR_SUSPECORE';
+    $scope.OBSERVACION = '';
+    $scope.NUMERO_CR = '';
 
 
 
@@ -11182,6 +11184,10 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
       $scope.setTabla = function (tabla){
         $scope.tabla=tabla;
+    }
+
+    $scope.setObservacion = function (observacion){
+        $scope.OBSERVACION= observacion;
     }
 	// ---------------------------------fin Variables----------------------------
 
@@ -11390,7 +11396,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             FECHA_INICIO: $scope.fecha_inicio,
             FECHA_FIN: $scope.fecha_fin,
             DURACION: null,
-            OBSERVACION: $scope.peds[0].OBSERVACION,
+            OBSERVACION: $scope.OBSERVACION,
             USUARIO: $rootScope.logedUser.login,
             STATUS: $scope.stautsGo,
             DURACION: $scope.duracion,
