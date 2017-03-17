@@ -6172,7 +6172,7 @@ class API extends REST {
             $concepto="";
         }
 
-        $in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
+        //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
 
         $query="SELECT a.ID,a.PEDIDO_ID,a.PEDIDO,a.SUBPEDIDO_ID,a.SOLICITUD_ID ".
                 ", a.TIPO_ELEMENTO_ID, a.PRODUCTO, a.UEN_CALCULADA ".
@@ -6183,9 +6183,9 @@ class API extends REST {
                 ", ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin Observaciones') as OBS ".
                 " from informe_petec_pendientesm a ".
                 " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
-                " AND a.PEDIDO_ID in  (".$in_stmt.") ".
+                " AND a.PEDIDO_ID LIKE '$bpedido%' ".
                 " order by a.FECHA_ESTADO ";
-        echo $in_stmt;
+        //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
