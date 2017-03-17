@@ -3805,7 +3805,9 @@ class API extends REST {
             $filtro="";
         }
         else {
-            $filtro= " and $campo = '$valorCampo'";
+            $in_stmt = "'".str_replace(",", "','", $valorCampo)."'";
+            //$paramlst = " and PEDIDO_ID in (".$in_stmt.") ";
+            $filtro= " and $campo in (".$in_stmt.")";
         }
         $page=$page*100;
         //counter
@@ -6170,6 +6172,8 @@ class API extends REST {
             $concepto="";
         }
 
+        $in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
+
         $query="SELECT a.ID,a.PEDIDO_ID,a.PEDIDO,a.SUBPEDIDO_ID,a.SOLICITUD_ID ".
                 ", a.TIPO_ELEMENTO_ID, a.PRODUCTO, a.UEN_CALCULADA ".
                 ", a.ESTRATO, a.MUNICIPIO_ID, a.DIRECCION_SERVICIO, a.PAGINA_SERVICIO ".
@@ -6179,8 +6183,9 @@ class API extends REST {
                 ", ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin Observaciones') as OBS ".
                 " from informe_petec_pendientesm a ".
                 " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
-                " AND a.PEDIDO_ID LIKE '$bpedido%' order by a.FECHA_ESTADO ";
-        //echo $query;
+                " AND a.PEDIDO_ID in  (".$in_stmt.") ".
+                " order by a.FECHA_ESTADO ";
+        echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
