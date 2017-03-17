@@ -5394,8 +5394,8 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 			if(buscar==undefined){
 				buscar={};
                 buscar.PEDIDO_ID='TODO';
-                buscar.FECHAINI='';
-                buscar.FECHAFIN='';
+                buscar.FECHAINI='SIN';
+                buscar.FECHAFIN='SIN';
 			}
         services.buscarListarPedidoAuditoriaGestor(buscar.PEDIDO_ID, buscar.FECHAINI, buscar.FECHAFIN).then(
         	function (data) {
