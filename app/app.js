@@ -11376,10 +11376,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.FECHA_GESTION = year + "-" + month + "-" + day;
         $scope.duracion = new Date().getTime() - $scope.timeInit;
 
-			$scope.timeInit = new Date().getTime();
-			var df = new Date($scope.duracion);
-			$scope.duracion = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
-
 		$scope.InfoGestion = {
 			//ID:gestion.ID,
 			ORDER_SEQ_ID: $scope.peds[0].ORDER_SEQ_ID,
@@ -11399,7 +11395,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             FECHA_FIN: $scope.fecha_fin,
             OBSERVACION: $scope.OBSERVACION,
             NUMERO_CR:$scope.NUMERO_CR,
-
             USUARIO: $rootScope.logedUser.login,
             STATUS: $scope.stautsGo,
             DURACION: $scope.duracion,
