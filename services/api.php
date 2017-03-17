@@ -8339,13 +8339,13 @@ class API extends REST {
         if($transaccion!="NO APLICA"){
             $transaccion=" and b.TRANSACCION='$transaccion' ";
         }else{
-            $tipo_trabajo="";
+            $transaccion="";
         }
 
     //  if($transaccion!=""){
       //      $transaccion=" and b.TRANSACCION ='$transaccion' ";
     //    }
-/*
+
  if($TABLA=='ACTIVADOR_SUSPECORE'){
 
            $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
@@ -8355,9 +8355,9 @@ class API extends REST {
            $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
 
        }
-*/
 
-        $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
+
+  //      $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
 
         $hora=date("G");
         $uphold="1";
