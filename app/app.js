@@ -5397,7 +5397,8 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
             }
 		)
-    }
+    };
+    $scope.listarPedidosAuditados('TODO');
 
 });
 
