@@ -15805,7 +15805,7 @@ private function guardarGestionAsignaciones()
         $today          =   date("Y-m-d");
 
         if($fechaini='SIN'){
-            $fechaini = date("Y-n-j", strtotime("first day of previous month"));
+            $fechaini = date("Y-m-d", strtotime("first day of previous month"));
         }
         if($fechafin='SIN'){
             $fechafin = $today;
