@@ -15492,7 +15492,11 @@ app.config(['$routeProvider',
 			templateUrl: 'partials/registros_b2b.html',
 			controller: 'RegistrosAgendamientoCtrl'
 		})
-
+		.when('/registrosAuditoria/', {
+			title: 'Registros Auditoria',
+			templateUrl: 'partials/asignaciones/registrosauditoria.html',
+			controller: 'RegistrosCtrl'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});
