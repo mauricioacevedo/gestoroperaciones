@@ -79,18 +79,11 @@
             <div class="panel-footer clearfix" >
                 <div class="col-md-12">
                     <ul class="nav navbar-nav navbar-left">
-                        <li>Registros: <span class="badge badge-default">{{data.totalItems}}</span></li>
+                        <li>Registros: <span class="badge badge-default"></span></li>
 
                     </ul>
-
                     <ul class="nav navbar-nav navbar-right">
 
-                        <ul  uib-pagination class="pagination-sm" total-items="data.totalItems" ng-model="data.currentPage" max-size="6" boundary-links="true" num-pages="smallnumPages" previous-text="&#8672;" next-text="&#8674;" last-text="Último" first-text="Primero" items-per-page="100" boundary-link-numbers="false" rotate="false" ng-change="pageChanged('listadoPedidos')" class="pagination-sm">
-                        </ul>
-
-
-                        <!-- old pagination
-                        <pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged('listadoPedidos')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination> -->
 
                     </ul>
                 </div>
