@@ -11158,6 +11158,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.transaccion = 'Suspender';
     $scope.tabla = 'ACTIVADOR_SUSPECORE';
     $scope.NUMERO_CR = '';
+    $scope.OBSERVACION = '';
 
 
 
@@ -11373,7 +11374,11 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
         $scope.FECHA_GESTION = year + "-" + month + "-" + day;
-        $scope.duracion = $scope.fecha_inicio - $scope.fecha_fin;
+        $scope.duracion = new Date().getTime() - $scope.timeInit;
+
+			$scope.timeInit = new Date().getTime();
+			var df = new Date($scope.duracion);
+			$scope.duracion = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
 
 		$scope.InfoGestion = {
 			//ID:gestion.ID,
@@ -11392,8 +11397,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			FECHA_GESTION: $scope.FECHA_GESTION,
             FECHA_INICIO: $scope.fecha_inicio,
             FECHA_FIN: $scope.fecha_fin,
-            OBSERVACION: $scope.peds[0].OBSERVACION,
-            NUMERO_CR:$scope.peds[0].NUMERO_CR,
             OBSERVACION: $scope.OBSERVACION,
             NUMERO_CR:$scope.NUMERO_CR,
 
