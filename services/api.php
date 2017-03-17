@@ -15830,8 +15830,19 @@ private function guardarGestionAsignaciones()
                 " WHERE 1=1 ".
                 " $paramlst ";
 
+        $r = $this->mysqli->query($sql);
 
-        echo $sql;
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                $result[] = $row;
+            }
+            $this->response($this->json(array($result)), 200); // send user details
+        }else{
+            $error = "No hay datos.";
+            $this->response($this->json(array($error)), 200);
+        }
+
 
 
             //Activiy Feed ------------------------------------------------------------------
