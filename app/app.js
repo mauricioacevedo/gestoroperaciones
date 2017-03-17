@@ -11157,7 +11157,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.FECHA_FIN = null;
 	$scope.transaccion = 'Suspender';
     $scope.tabla = 'ACTIVADOR_SUSPECORE';
-    $scope.OBSERVACION = '';
     $scope.NUMERO_CR = '';
 
 
@@ -11186,9 +11185,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.tabla=tabla;
     }
 
-    $scope.setObservacion = function (observacion){
-        $scope.OBSERVACION= observacion;
-    }
+
 	// ---------------------------------fin Variables----------------------------
 
 
@@ -11375,6 +11372,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
 		$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+        $scope.FECHA_GESTION = year + "-" + month + "-" + day;
         $scope.duracion = new Date().getTime() - $scope.timeInit;
 
 
@@ -11392,11 +11390,12 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			TRANSACCION: $scope.peds[0].TRANSACCION,
 			CODIGO_CIUDAD: $scope.peds[0].CODIGO_CIUDAD,
 			ASESOR: $rootScope.logedUser.login,
-			FECHA_GESTION: $scope.peds[0].FECHA_GESTION,
+			FECHA_GESTION: $scope.FECHA_GESTION,
             FECHA_INICIO: $scope.fecha_inicio,
             FECHA_FIN: $scope.fecha_fin,
             DURACION: null,
             OBSERVACION: $scope.OBSERVACION,
+            NUMERO_CR:$scope.NUMERO_CR,
             USUARIO: $rootScope.logedUser.login,
             STATUS: $scope.stautsGo,
             DURACION: $scope.duracion,
