@@ -11291,7 +11291,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		var pedido1 = '';
 		$scope.popup = '';
-		$rootScope.errorDatos = null;
+		$rootScope.errorDatos = "";
 		$scope.InfoPedido = [];
         $scope.fecha_inicio = null;
 		$scope.FECHA_CREACION = null;
