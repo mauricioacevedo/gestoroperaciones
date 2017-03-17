@@ -989,6 +989,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
             gestion: gestion
         });
     };
+    obj.buscarListarPedidoAuditoriaGestor = function (pedido, fechaini, fechafin) {
+        return $http.get(serviceBase + 'listarBuscarPedidoAuditoriaAsignaciones?pedido=' + pedido + '&fechaini=' + fechaini + '&fechafin=' + fechafin);
+    };
 
 	return obj;
 }]);
@@ -5384,6 +5387,25 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     	//console.log(data);
         return $http.post('services/actualizarSatusPedidosAsignacion', {id: data.ID, pedido: data.PEDIDO_ID, status:data.STATUS, usuario:userID});
     };
+
+    $scope.listarPedidosAuditados = function (buscar) {
+    	console.log(buscar);
+
+			if(buscar==undefined){
+				buscar={};
+                buscar.PEDIDO_ID='TODO';
+                buscar.FECHAINI='SIN';
+                buscar.FECHAFIN='SIN';
+			}
+        services.buscarListarPedidoAuditoriaGestor(buscar.PEDIDO_ID, buscar.FECHAINI, buscar.FECHAFIN).then(
+        	function (data) {
+        		$scope.listaAuditados = data.data[0];
+        		console.log(data.data);
+
+            }
+		)
+    };
+    //$scope.listarPedidosAuditados();
 
 });
 
@@ -15479,7 +15501,11 @@ app.config(['$routeProvider',
 			templateUrl: 'partials/registros_b2b.html',
 			controller: 'RegistrosAgendamientoCtrl'
 		})
-
+		.when('/registrosAuditoria/', {
+			title: 'Registros Auditoria',
+			templateUrl: 'partials/asignaciones/registrosauditoria.html',
+			controller: 'RegistrosCtrl'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});

@@ -1,0 +1,103 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class = "panel panel-default">
+            <div class = "panel-heading">
+                <b><i class="fa fa-bars" aria-hidden="true"></i> Historico de Transacciones</b>
+                <span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+                <ul class="nav navbar-nav navbar-right">
+                    <div class="col-md-1 col-xs-1 ">
+                        <div data-ng-if="loading">
+                            <img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif" />
+                        </div>
+                    </div>
+                    </u>
+            </div>
+            <div class = "panel-heading nav navbar-default">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="nav navbar-nav navbar-left">
+                                <li>
+                                    <input class="btn btn-default btn-xs" name="valorCampo" ng-model="auditoria.PEDIDO_ID" select-on-click capitalize type="text" placeholder="Palabra">
+
+                                </li>
+                                <li>&nbsp;</li>
+                                <li>
+                                    <div class="input-daterange" id="datepicker">
+                                        <input type="text" class="btn btn-default btn-xs"  id="fromDate" name="fromDate" ng-model="auditoria.FECHAINI" /><i class="fa fa-calendar fa-fw"></i>
+                                        <input type="text" class="btn btn-default btn-xs"  id="toDate" name="toDate" ng-model="auditoria.FECHAFIN" /><i class="fa fa-calendar fa-fw"></i>
+                                        <button type="button" class="btn btn-primary btn-xs" ng-click="listarPedidosAuditados(auditoria)"  title="Buscar" tooltip data-placement="left" ng-disabled="loading">
+                                            <i class="fa fa-search"  aria-hidden="true"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-xs" ng-click="csvHistoricos()"  title="Exportar" tooltip data-placement="left" ng-disabled="loading">
+                                            <i class="fa fa-cloud-download"  aria-hidden="true"></i>
+                                        </button>
+
+                                    </div>
+                                </li>
+
+
+
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <input style="width:200px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize />
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-body fixed-panel" >
+
+                <table class="table small table-striped table-hover table-bordered table-condensed">
+                    <thead>
+                    <th>Usuario</th>
+                    <th>Fuente</th>
+                    <th>Concepto</th>
+                    <th>Estado</th>
+                    <th>Motivo Malo</th>
+                    <th>Pedido</th>
+                    <th>Fecha</th>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="audit in listaAuditados track by audit.ID">
+                        <td><span class="small">{{audit.FECHA_ESTUDIO}}</span></td>
+                        <td><span class="small">{{audit.PEDIDO_ID}}</span></td>
+                        <td><span class="small">{{audit.TIPO_ELEMENTO_ID}}</span></td>
+                        <td><span class="small">{{audit.USUARIO}}</span></td>
+                        <td><span class="small">{{audit.ANALISIS}}</span></td>
+                        <td><span class="small">{{audit.CONCEPTO_AUDITORIA}}</span></td>
+                        <td><span class="small">{{audit.OBSERVACIONES}}</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+            <div class="panel-footer clearfix" >
+                <div class="col-md-12">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>Registros: <span class="badge badge-default"></span></li>
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+
+
+                    </ul>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div><!--Row 1 Novedades -->
+<br>
+<ol class="breadcrumb">
+    <li><a href=".#/">Home</a> </li>
+    <li><a href="">Asignaciones</a></li>
+    <li class="active">{{title}} </li>
+</ol>
