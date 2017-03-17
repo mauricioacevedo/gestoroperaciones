@@ -3805,7 +3805,9 @@ class API extends REST {
             $filtro="";
         }
         else {
-            $filtro= " and $campo = '$valorCampo'";
+            $in_stmt = "'".str_replace(",", "','", $valorCampo)."'";
+            //$paramlst = " and PEDIDO_ID in (".$in_stmt.") ";
+            $filtro= " and $campo in (".$in_stmt.")";
         }
         $page=$page*100;
         //counter
