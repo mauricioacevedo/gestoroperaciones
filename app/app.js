@@ -9279,7 +9279,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
         if ($scope.proceso == 'REPARACION' &&  parseInt($scope.pedido.TIEMPO_TOTAL) >= 10 && parseInt($scope.pedido.TODAY_TRIES) >= 3 ) {
 
-            if ($scope.pedido.NOVEDAD != 'CIERRE POR ILOCALIZADO' || $scope.pedido.NOVEDAD != 'CIERRE POR ILOCALIZADO'){
+            if ($scope.pedido.NOVEDAD != 'CIERRE POR ILOCALIZADO' || $scope.pedido.NOVEDAD != 'AGENDADO'){
 
             alert('debe colocar el pedido en la novedad CIERRE POR ILOCALIZADO con SS o AGENDAR para continuar.');
 			return;
