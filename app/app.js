@@ -989,6 +989,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
             gestion: gestion
         });
     };
+    obj.buscarListarPedidoAuditoriaGestor = function (pedido, fechaini, fechafin) {
+        return $http.get(serviceBase + 'listarBuscarPedidoAuditoriaAsignaciones?pedido=' + pedido + '&fechaini=' + fechaini + '&fechafin=' + fechafin);
+    };
 
 	return obj;
 }]);
@@ -5384,6 +5387,16 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     	//console.log(data);
         return $http.post('services/actualizarSatusPedidosAsignacion', {id: data.ID, pedido: data.PEDIDO_ID, status:data.STATUS, usuario:userID});
     };
+
+    $scope.listarPedidosAuditados = function (buscar) {
+
+        services.buscarListarPedidoAuditoriaGestor(buscar.PEDIDO_ID, buscar.FECHAINI, buscar.FECHAFIN).then(
+        	function (data) {
+        		console.log(data.data);
+
+            }
+		)
+    }
 
 });
 
