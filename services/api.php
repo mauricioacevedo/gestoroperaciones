@@ -15744,9 +15744,6 @@ private function guardarGestionAsignaciones()
         $error = "Error guardando: $mysqlerror";
         $this->response ($this->json (array($error, $fuente, $estado, $malo, $programado)), 403);
     }
-
-
-
 }
 
     private function buscarConceptoFinalFenix($pedidoBusqueda){
@@ -15777,6 +15774,86 @@ private function guardarGestionAsignaciones()
                 return "SIN DATOS";
             }
         }
+
+    /**
+     * Funcin para listar y buscar pedidos que fueron Auditados
+     * */
+    private function listarBuscarPedidoAuditoriaAsignaciones()
+    {
+        if($this->get_request_method() != "GET"){
+            $this->response('Metodo no soportado',406);
+        }
+
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr ($usuarioIp);
+        $galleta        =   json_decode (stripslashes ($_COOKIE['logedUser']), true);
+        $galleta        =   stripslashes ($_COOKIE['logedUser']);
+        $galleta        =   json_decode ($galleta);
+        $galleta        =   json_decode (json_encode ($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+        $pedido         =   $this->_request['pedido'];
+        $fechaini       =   $this->_request['fechaini'];
+        $fechafin       =   $this->_request['fechafin'];
+        $paramlst       =   "";
+        $today          =   date("Y-m-d");
+
+        if($fechaini=''){
+            $fechaini = date("Y-n-j", strtotime("first day of previous month"));
+        }
+        if($fechafin=''){
+            $fechafin = $today;
+        }
+        if($pedido=="TODO"){
+            $paramlst = " and FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59'";
+        }else{
+            $in_stmt = "'".str_replace(" ", "','", $pedido)."'";
+            $paramlst = " and PEDIDO_ID in (".$in_stmt.") ";
+        }
+
+        $sql =  " SELECT ".
+                " FECHA_GESTION as FECHA_ESTUDIO ".
+                " , PEDIDO_ID ".
+                " , TIPO_ELEMENTO_ID ".
+                " , USUARIO_ID_GESTION as USUARIO ".
+                " , ANALISIS ".
+                " , CONCEPTO_ACTUAL as CONCEPTO_AUDITORIA ".
+                " , OBSERVACIONES ".
+                " , FECHA_FIN AS FECHA_GESTION  ".
+                " FROM portalbd.gestor_transacciones_oxxx ".
+                " WHERE 1=1 ".
+                " $paramlst ";
+
+
+        echo $sql;
+
+
+            //Activiy Feed ------------------------------------------------------------------
+            $sqlFeed =  "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'$estado' ".
+                ",'$pedido' ".
+                ",'$varFeed' ".
+                ",'$conceptoId' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+            //$rFeed = $this->mysqli->query($sqlFeed);
+            //------------------------------------------------------------------Activiy Feed
+
+    }
 
 
 }//cierre de la clase
