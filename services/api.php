@@ -6185,7 +6185,7 @@ class API extends REST {
                 " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
                 " AND a.PEDIDO_ID in  (".$in_stmt.") ".
                 " order by a.FECHA_ESTADO ";
-        //echo $query;
+        echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
