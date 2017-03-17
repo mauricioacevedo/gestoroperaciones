@@ -11349,45 +11349,51 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	};*/
 
 
-    $scope.buscarPedido = function (buscar) {
+   $scope.buscarPedido = function (buscar, pedidoinfo) {
 		$scope.error = "";
 		$scope.peds = {};
 		$scope.mpedido = {};
 		$scope.busy = "";
 		$scope.error = "";
-		$scope.pedidoinfo = 'Pedido';
+		$scope.TODAY_TRIES = "";
 
-		//$scope.pedidoinfo='';
-		var kami = services.getBuscarpedidoactivacion(buscar, $scope.pedidoActual, $rootScope.logedUser.login).then(
 
-			function (data) {
-
+		var kami = services.getBuscarpedidoactivacion(buscar, $scope.pedido1, $rootScope.logedUser.login, $scope.proceso, $scope.TODAY_TRIES, $rootScope.logedUser.name).then(function (data) {
 			$scope.peds = data.data;
-			//console.log(data.status);
+
 			var dat = data.status;
-			//alert("'"+data.status+"'");
+
 			if (dat == 204) {
-				document.getElementById("warning").innerHTML = "No hay Registros.";
-				$scope.error = "No hay Registros.";
+				document.getElementById("warning").innerHTML = "No hay Registros";
+				$scope.error = "No hay Registros";
+				$scope.historico_pedido = {};
+                $scope.peds = {};
+                $scope.mpedido = {};
 			} else {
-
-				if ($scope.peds[0] == "PEDIDO_OCUPADO") {
-					$scope.error = "El pedido: " + $scope.peds[2] + " está ocupado por:" + $scope.peds[1];
-					$scope.pedidoinfo = 'Pedido';
-					$scope.peds = [];
-					return;
-
-				}
-
-
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
-				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
+				$scope.baby($scope.pedido1);
+
+
+
+				if ($scope.peds[0].STATUS == "PENDI_ACTI" && $scope.peds[0].ASESOR != "") {
+					$scope.busy = $scope.peds[0].ASESOR;
+					$scope.error = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
+				}
+				$scope.proceso = $scope.peds[0].PROCESO;
+				$scope.TODAY_TRIES = $scope.peds[0].TODAY_TRIES;
+
+
+
 
 			}
 
 
 
+
+			var demePedidoButton = document.getElementById("iniciar");
+			demePedidoButton.removeAttribute("disabled");
+			demePedidoButton.className = "btn btn-sm btn-success";
 			return data.data;
 		});
 		$scope.timeInit = new Date().getTime();
@@ -11400,6 +11406,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
 		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
 
 	};
 
