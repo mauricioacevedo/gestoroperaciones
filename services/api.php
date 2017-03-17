@@ -15830,6 +15830,7 @@ private function guardarGestionAsignaciones()
                 " WHERE 1=1 ".
                 " $paramlst ";
 
+            echo $sql;
         $r = $this->mysqli->query($sql);
 
         if($r->num_rows > 0){
