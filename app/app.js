@@ -11201,13 +11201,17 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		var pedido1 = '';
 		$scope.popup = '';
-        $scope.buscar = '';
 		$rootScope.errorDatos = null;
 		$scope.InfoPedido = [];
 		$scope.FECHA_CREACION = null;
+        $scope.fecha_inicio = null;
 		$scope.accRdy = false;
 		$scope.InfoGestion = {};
 		$scope.pedidoIsGuardado = false;
+
+
+
+
 
 		if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
 			pedido1 = $scope.peds[0].PEDIDO;
@@ -11222,12 +11226,10 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.error = "";
 
 
-
-
-
 		var demePedidoButton = document.getElementById("iniciar");
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
+
 		var kami = services.demePedidoActivacion($rootScope.logedUser.login, $scope.pedido1, $scope.transaccion,$scope.tabla, $rootScope.logedUser.name).then(function (data) {
 
 
@@ -11239,6 +11241,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 				document.getElementById("warning").innerHTML = "No hay Registros.";
 				$rootScope.errorDatos = "No hay Registros.";
+
 			} else {
 
 				document.getElementById("warning").innerHTML = "";
@@ -11286,15 +11289,15 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.popup = '';
 		$rootScope.errorDatos = null;
 		$scope.InfoPedido = [];
+        $scope.fecha_inicio = null;
 		$scope.FECHA_CREACION = null;
 		$scope.accRdy = false;
 		$scope.InfoGestion = {};
 		$scope.pedidoIsGuardado = false;
 		$scope.pedidoActual = pedidoinfo;
 		$scope.buscar = buscar;
-        $scope.peds={};
-        $scope.pedidoIsGuardado = false;
-        $scope.pedidoIsActive=false;
+        //$scope.peds={};
+       // $scope.pedidoIsActive=false;
 
 
 
@@ -11321,7 +11324,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 					var dat = data.status;
 					//alert("'"+data.status+"'");
 					if (dat == 204) {
-						//document.getElementById("warning").innerHTML = "No hay Registros.";
+						document.getElementById("warning").innerHTML = "No hay Registros.";
 						$rootScope.errorDatos = "No hay Registros.";
 						$scope.peds = {};
 						$scope.mpedido = {};
@@ -11367,12 +11370,12 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
         $scope.duracion = new Date().getTime() - $scope.timeInit;
-
+        $scope.stautsGo = status[0].STATUS;
 
 		$scope.InfoGestion = {
 			//ID:gestion.ID,
 			ORDER_SEQ_ID: $scope.peds[0].ORDER_SEQ_ID,
-			PEDIDO: $scope.peds[0].PEDIDO,
+			PEDIDO: gestion.PEDIDO,
 			REFERENCE_NUMBER: $scope.peds[0].REFERENCE_NUMBER,
 			ESTADO: $scope.peds[0].ESTADO,
 			FECHA_CREACION: $scope.peds[0].FECHA_CREACION,
@@ -11386,7 +11389,11 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			FECHA_GESTION: $scope.peds[0].FECHA_GESTION,
             FECHA_INICIO: $scope.fecha_inicio,
             FECHA_FIN: $scope.fecha_fin,
-            DURACION: $scope.duracion,
+            DURACION: null,
+            OBSERVACION: InfoPedido.OBSERVACION,
+            USUARIO: $rootScope.logedUser.login,
+            STATUS: $scope.stautsGo,
+            //DURACION: $scope.duracion,
 			STATUS: $scope.peds[0].STATUS,
 			TIPIFICACION: $scope.tipificacion,
             TABLA: $scope.tabla,
@@ -11418,7 +11425,10 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				$scope.busy = "";
 				$scope.error = "";
                 $scope.tipificacion = "";
-				$scope.buscar = "";
+				$scope.buscar = null;
+                $scope.fecha_inicio = null;
+				$scope.fecha_fin = null;
+
 				return data.data;
 
 console.log($scope.InfoPedido);
