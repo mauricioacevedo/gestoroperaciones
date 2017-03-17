@@ -301,70 +301,7 @@
                                 </tr>
                             </table>
                         </div>
-				<div class="panel-body" >
-					<div ng-hide="true"><!-- Borrar este div para habilitar tabla -->
-					 <table class="table small table-bordered table-condensed">
-							  <tr>
-								<th >Grupo</th>
-								<th >Ultima Edicion</th>
-								<th >Editar</th>
-							  </tr>
-							  <tr>
-								<td >Instalaciones</td>
-								<td ><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
-								<td >
-									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevo">
-										<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
-										<option value="FECHA_ESTADO">FECHA ESTADO</option>
-										<option value="FECHA_INGRESO">FECHA INGRESO</option>
-									</select>
-									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="prioridadDemepedidoNuevo" style="width:100px;">
-									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
-											<option value="DESC">DESC</option>
-											<option value="ASC">ASC</option>
-									</select>
-									<button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO',ordenamientoDemepedidoNuevo);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-								  </td>
-							  </tr>
-							  <tr>
-								<td >Reparaciones</td>
-								<td ><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
-								<td >
-									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevoR">
-									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
-									<option value="FECHA_ESTADO">FECHA ESTADO</option>
-									<option value="FECHA_INGRESO">FECHA INGRESO</option>
-								</select>
 
-									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="prioridadDemepedidoNuevoR" style="width:100px;">
-									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
-											<option value="DESC">DESC</option>
-											<option value="ASC">ASC</option>
-								</select>
-                                <button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_REPA',ordenamientoDemepedidoNuevoR);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-								  </td>
-							  </tr>
-							 <tr>
-								<td >Edatel</td>
-								<td ><font color='blue'>{{ordenamientoDemepedidoUpdate}}</font></td>
-								<td >
-									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="ordenamientoDemepedidoNuevoED">
-									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
-									<option value="FECHA_ESTADO">FECHA ESTADO</option>
-									<option value="FECHA_INGRESO">FECHA INGRESO</option>
-								</select>
-
-									<select class="btn btn-default btn-xs grupo-select" id="sel1" ng-model="prioridadDemepedidoNuevoED" style="width:100px;">
-									<!--option value="FECHA_CITA_FENIX">FECHA CITA_FENIX</option-->
-											<option value="DESC">DESC</option>
-											<option value="ASC">ASC</option>
-								</select>
-								<button class="btn btn-success btn-xs" ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO_EDATEL',ordenamientoDemepedidoNuevoED);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-								  </td>
-							  </tr>
-						</table></div>
-
-				</div>
 				<div class="panel-footer clearfix" >
 
 					<div class="col-md-8">
