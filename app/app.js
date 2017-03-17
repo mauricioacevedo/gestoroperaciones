@@ -11280,7 +11280,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	// ------------------------------BuscarPedido ----------------------------------------
 
-	$scope.buscarPedido = function (buscar, pedidoinfo) {
+	/*$scope.buscarPedido = function (buscar, pedidoinfo) {
 
 		var pedido1 = '';
 		$scope.popup = '';
@@ -11346,7 +11346,64 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			});
 
 
+	};*/
+
+
+    $scope.buscarPedido = function (buscar) {
+		$scope.error = "";
+		$scope.peds = {};
+		$scope.mpedido = {};
+		$scope.busy = "";
+		$scope.error = "";
+		$scope.pedidoinfo = 'Pedido';
+
+		//$scope.pedidoinfo='';
+		var kami = services.getBuscarpedidoactivacion(buscar, $scope.pedidoActual, $rootScope.logedUser.login).then(
+
+			function (data) {
+
+			$scope.peds = data.data;
+			//console.log(data.status);
+			var dat = data.status;
+			//alert("'"+data.status+"'");
+			if (dat == 204) {
+				document.getElementById("warning").innerHTML = "No hay Registros.";
+				$scope.error = "No hay Registros.";
+			} else {
+
+				if ($scope.peds[0] == "PEDIDO_OCUPADO") {
+					$scope.error = "El pedido: " + $scope.peds[2] + " está ocupado por:" + $scope.peds[1];
+					$scope.pedidoinfo = 'Pedido';
+					$scope.peds = [];
+					return;
+
+				}
+
+
+				document.getElementById("warning").innerHTML = "";
+				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
+				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
+
+			}
+
+
+
+			return data.data;
+		});
+		$scope.timeInit = new Date().getTime();
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
 	};
+
+
 	// -----------------------------BuscarPedido--------------------------------------
 
 	//------------------------------ GuardarPedido ------------------------------
