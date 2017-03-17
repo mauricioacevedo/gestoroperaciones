@@ -15837,7 +15837,7 @@ private function guardarGestionAsignaciones()
                 " , FECHA_FIN AS FECHA_GESTION  ".
                 " FROM portalbd.gestor_transacciones_oxxx ".
                 " WHERE 1=1 ".
-                " $paramlst ";
+                " $paramlst limit 500 order by ID desc";
 
            // echo $sql;
         $r = $this->mysqli->query($sql);
@@ -15845,6 +15845,7 @@ private function guardarGestionAsignaciones()
         if($r->num_rows > 0){
             $result = array();
             while($row = $r->fetch_assoc()){
+                $row['OBSERVACIONES']=utf8_encode($row['OBSERVACIONES']);
                 $result[] = $row;
             }
             $this->response($this->json(array($result)), 200); // send user details
@@ -15852,32 +15853,6 @@ private function guardarGestionAsignaciones()
             $error = "No hay datos.";
             $this->response($this->json(array($error)), 200);
         }
-
-
-
-            //Activiy Feed ------------------------------------------------------------------
-            $sqlFeed =  "insert into portalbd.activity_feed ( ".
-                " USER ".
-                ", USER_NAME ".
-                ", GRUPO ".
-                ", STATUS ".
-                ", PEDIDO_OFERTA ".
-                ", ACCION ".
-                ", CONCEPTO_ID ".
-                ", IP_HOST ".
-                ", CP_HOST ".
-                ") values( ".
-                " UPPER('$usuarioGalleta')".
-                ", UPPER('$nombreGalleta')".
-                ", UPPER('$grupoGalleta')".
-                ",'$estado' ".
-                ",'$pedido' ".
-                ",'$varFeed' ".
-                ",'$conceptoId' ".
-                ",'$usuarioIp' ".
-                ",'$usuarioPc')";
-            //$rFeed = $this->mysqli->query($sqlFeed);
-            //------------------------------------------------------------------Activiy Feed
 
     }
 
