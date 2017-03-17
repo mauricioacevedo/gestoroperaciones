@@ -8332,10 +8332,19 @@ class API extends REST {
 
        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
 
-
-      if($transaccion!=""){
-            $transaccion=" and b.TRANSACCION ='$transaccion' ";
+      if($transaccion==""){
+            $transaccion="NO APLICA";
         }
+
+        if($transaccion!="NO APLICA"){
+            $transaccion=" and b.TRANSACCION='$transaccion' ";
+        }else{
+            $tipo_trabajo="";
+        }
+
+    //  if($transaccion!=""){
+      //      $transaccion=" and b.TRANSACCION ='$transaccion' ";
+    //    }
 /*
  if($TABLA=='ACTIVADOR_SUSPECORE'){
 
