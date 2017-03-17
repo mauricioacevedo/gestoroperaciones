@@ -61,14 +61,14 @@
                     <th>Fecha</th>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="data in listaAuditados ">
-                        <td><span class="small">{{data.FECHA_ESTUDIO}}</span></td>
-                        <td><span class="small">{{data.PEDIDO_ID}}</span></td>
-                        <td><span class="small">{{data.TIPO_ELEMENTO_ID}}</span></td>
-                        <td><span class="small">{{data.USUARIO}}</span></td>
-                        <td><span class="small">{{data.ANALISIS}}</span></td>
-                        <td><span class="small">{{data.CONCEPTO_AUDITORIA}}</span></td>
-                        <td><span class="small">{{data.OBSERVACIONES}}</span></td>
+                    <tr ng-repeat="audit in listaAuditados ">
+                        <td><span class="small">{{audit.FECHA_ESTUDIO}}</span></td>
+                        <td><span class="small">{{audit.PEDIDO_ID}}</span></td>
+                        <td><span class="small">{{audit.TIPO_ELEMENTO_ID}}</span></td>
+                        <td><span class="small">{{audit.USUARIO}}</span></td>
+                        <td><span class="small">{{audit.ANALISIS}}</span></td>
+                        <td><span class="small">{{audit.CONCEPTO_AUDITORIA}}</span></td>
+                        <td><span class="small">{{audit.OBSERVACIONES}}</span></td>
                     </tr>
                     </tbody>
                 </table>
