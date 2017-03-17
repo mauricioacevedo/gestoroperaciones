@@ -5389,7 +5389,9 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     };
 
     $scope.listarPedidosAuditados = function (buscar) {
-
+			if(buscar.PEDIDO_ID==undefined ||buscar.PEDIDO_ID==''){
+                buscar.PEDIDO_ID='TODO';
+			}
         services.buscarListarPedidoAuditoriaGestor(buscar.PEDIDO_ID, buscar.FECHAINI, buscar.FECHAFIN).then(
         	function (data) {
         		$scope.listaAuditados = data.data[0];
