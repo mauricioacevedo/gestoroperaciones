@@ -5389,6 +5389,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     };
 
     $scope.listarPedidosAuditados = function (buscar) {
+    	console.log(buscar);
 			if(buscar==undefined ||buscar.PEDIDO_ID==''){
                 buscar.PEDIDO_ID='TODO';
 			}
