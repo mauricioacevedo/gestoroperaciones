@@ -15828,7 +15828,7 @@ private function guardarGestionAsignaciones()
                 " , FECHA_FIN AS FECHA_GESTION  ".
                 " FROM portalbd.gestor_transacciones_oxxx ".
                 " WHERE 1=1 ".
-                " $paramlst limit 500";
+                " $paramlst limit 500 order by ID desc";
 
            // echo $sql;
         $r = $this->mysqli->query($sql);
