@@ -14098,8 +14098,7 @@ class API extends REST {
             " where a.PEDIDO='$pedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
             " from gestor_activacion_pendientes_activador_dom b ".
             " where b.PEDIDO = '$pedido' and b.STATUS='PENDI_ACTI' ";
-
-
+            echo $query1;
 
         $rPendi = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
