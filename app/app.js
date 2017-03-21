@@ -11183,8 +11183,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.FECHA_CREACION = null;
     $scope.FECHA_INICIO = null;
 	$scope.FECHA_FIN = null;
-	//$scope.transaccion = 'Suspender';
-    $scope.tabla = 'ACTIVADOR_SUSPECORE';
+	$scope.transaccion = 'Suspender';
 
 
 
@@ -11208,9 +11207,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.transaccion=transaccion;
     }
 
-      $scope.setTabla = function (tabla){
-        $scope.tabla=tabla;
-    }
+
 
 
 	// ---------------------------------fin Variables----------------------------
