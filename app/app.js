@@ -14393,9 +14393,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 
 	$scope.listarPedidosAuditados = function (buscar) {
-        //console.log(buscar);
+        console.log($scope.auditoria);
 
-        if(buscar==''){
+        if(buscar==undefined){
             buscar = {};
             buscar.PEDIDO_ID='TODO';
         }
