@@ -14400,7 +14400,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.listarPedidosAuditados = function (buscar) {
         console.log($scope.auditoria);
 
-        if($scope.auditoria == null){
+        if(Object.keys($scope.auditoria).length === 0){
         	console.log("Sin nada");
 		}
         if(buscar==undefined){
