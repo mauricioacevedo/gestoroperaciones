@@ -5,6 +5,11 @@ var app = angular.module('myApp', ['base64', 'ngRoute', 'ngCookies', 'ng-fusionc
 //El módulo ngCookies proporciona un contenedor conveniente para la lectura y la escritura del navegador cookies.
 //FusionCharts suite XT incluye una amplia gama de gráficos, indicadores y mapas que se pueden utilizar para trazar todo tipo de datos estáticos y en tiempo real .
 
+app.service('idPermisos', function ($http) {
+	this.getIds = function () {
+		return $http.get('/services/idpermisoslst')
+    }
+});
 
 app.directive('customPopover', function () {
 	return {
@@ -13606,7 +13611,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	var estadoFinal				= '';
 
     $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
-    $scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG','JCASTAMU', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
+
+	var getidsData= idPermisos.getIds();
+	console.log(getidsData);
+	$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG','JCASTAMU', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
     $scope.idConceptos=['O-13', 'O-15', 'O-106'];
 
 	// Opciones para cargar las listas de Gestion, segun el grupo, fuente, actividad--------------------------
