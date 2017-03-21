@@ -8526,7 +8526,8 @@ class API extends REST {
 
 
 //--------------------------demepedido activacion dom----------------------
-  private function demePedidoActivacion(){
+
+  private function demePedidoActivacionDom(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
