@@ -14073,12 +14073,6 @@ class API extends REST {
         $user = $this->_request['userID'];
 
 
-
-        if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
-            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user' ";
-            $xxx = $this->mysqli->query($sqlupdate);
-        }
-
         $user=strtoupper($user);
         $today = date("Y-m-d");
 
