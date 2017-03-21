@@ -14390,14 +14390,13 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		)
     };
 
-    var buscar = {};
+
 	$scope.listarPedidosAuditados = function (buscar) {
         //console.log(buscar);
 
         if(buscar==undefined){
-
+            var buscar = {};
             buscar.PEDIDO_ID='TODO';
-
         }
         if(buscar.FECHAINI==''){
             buscar.FECHAINI='SIN';
