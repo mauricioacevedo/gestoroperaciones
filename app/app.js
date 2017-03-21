@@ -11167,7 +11167,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.pedidosUnicos = '';
 	$scope.historico_pedido = [];
 	$rootScope.actualView = "/demepedido-activacion";
-    $rootScope.actualView = "/demepedidodom";
 	$scope.popup = '';
 	$scope.pedidoinfo = '';
 	$rootScope.errorDatos = null;
@@ -11303,6 +11302,281 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	};
 
 	// -------------------------------------------------------------- fin DemePedido activacion
+
+
+	// ------------------------------BuscarPedido ----------------------------------------
+
+	$scope.buscarPedido = function (buscar, pedidoinfo) {
+
+		var pedido1 = '';
+		$scope.popup = '';
+		$rootScope.errorDatos = "";
+		$scope.InfoPedido = [];
+        $scope.fecha_inicio = null;
+		$scope.FECHA_CREACION = null;
+		$scope.accRdy = false;
+		$scope.InfoGestion = {};
+		$scope.pedidoIsGuardado = false;
+		$scope.pedidoActual = pedidoinfo;
+		$scope.buscar = buscar;
+        //$scope.peds={};
+       // $scope.pedidoIsActive=false;
+
+
+
+		var kami = services.getBuscarpedidoactivacion(buscar, $scope.pedidoActual, $rootScope.logedUser.login).then(
+
+			function (data) {
+
+
+				if (data.data == '') {
+
+					$rootScope.errorDatos = "No hay Registros de activacion.";
+					$scope.peds = {};
+					$scope.mpedido = {};
+					$scope.busy = "";
+					$scope.pedidoIsActive = false;
+
+				} else {
+
+					$scope.peds = data.data[1];
+					$scope.ocupado = data.data[0];
+					$scope.pedido1 = $scope.peds[0].PEDIDO;
+					$scope.pedidoinfo = $scope.peds[0].PEDIDO;
+
+					var dat = data.status;
+					//alert("'"+data.status+"'");
+					if (dat == 204) {
+						document.getElementById("warning").innerHTML = "No hay Registros.";
+						$rootScope.errorDatos = "No hay Registros.";
+						$scope.peds = {};
+						$scope.mpedido = {};
+						$scope.busy = "";
+						$scope.pedidoIsActive = false;
+
+					} else {
+
+						if ($scope.ocupado == true) {
+							$scope.busy = $scope.peds[0].ASESOR;
+							$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.busy;
+							return;
+
+						}
+						$rootScope.errorDatos = null;
+						$scope.pedidoIsActive = true;
+
+
+						return data.data;
+					}
+				}
+			});
+
+
+	};
+
+	// -----------------------------BuscarPedido--------------------------------------
+
+	//------------------------------ GuardarPedido ------------------------------
+
+
+
+	$scope.guardar = function (InfoPedido, gestion, status) {
+
+          $scope.timeInit = new Date().getTime();
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+		$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+        $scope.FECHA_GESTION = year + "-" + month + "-" + day;
+       $scope.duracion =  $scope.doubleDigit(date1.getHours()-19)+":"+ $scope.doubleDigit(date1.getMinutes())+":"+ $scope.doubleDigit(date1.getSeconds());
+
+        if ($scope.tipificacion == 'NUMERO_CR' ) {
+			$scope.NUMERO_CR = '';
+
+		}
+
+		$scope.InfoGestion = {
+			//ID:gestion.ID,
+			ORDER_SEQ_ID: $scope.peds[0].ORDER_SEQ_ID,
+			PEDIDO: $scope.peds[0].PEDIDO,
+			REFERENCE_NUMBER: $scope.peds[0].REFERENCE_NUMBER,
+			ESTADO: $scope.peds[0].ESTADO,
+			FECHA_CREACION: $scope.peds[0].FECHA_CREACION,
+			TAREA_EXCEPCION: $scope.peds[0].TAREA_EXCEPCION,
+			FECHA_EXCEPCION: $scope.peds[0].FECHA_EXCEPCION,
+			PRODUCTO: $scope.peds[0].PRODUCTO,
+			IDSERVICIORAIZ: $scope.peds[0].IDSERVICIORAIZ,
+			TRANSACCION: $scope.peds[0].TRANSACCION,
+			CODIGO_CIUDAD: $scope.peds[0].CODIGO_CIUDAD,
+			ASESOR: $rootScope.logedUser.login,
+			FECHA_GESTION: $scope.FECHA_GESTION,
+            FECHA_INICIO: $scope.fecha_inicio,
+            FECHA_FIN: $scope.fecha_fin,
+            OBSERVACION: $scope.OBSERVACION,
+            NUMERO_CR:$scope.NUMERO_CR,
+            USUARIO: $rootScope.logedUser.login,
+            STATUS: $scope.stautsGo,
+            DURACION: $scope.duracion,
+			STATUS: $scope.peds[0].STATUS,
+			TIPIFICACION: $scope.tipificacion,
+            TABLA: $scope.tabla,
+
+
+		};
+
+        console.log($scope.InfoGestion);
+        console.log($scope.OBSERVACION);
+        console.log($scope.NUMERO_CR);
+        console.log($scope.observacion);
+        console.log($scope.numero_cr);
+
+
+
+
+		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
+
+
+			function (data) {
+
+				$scope.pedidoIsGuardado = true;
+				$rootScope.errorDatos = null;
+				$scope.InfoPedido = [];
+				$scope.FECHA_EXCEPCION = null;
+				$scope.accRdy = false;
+				$scope.InfoGestion = {};
+				$scope.pedidoOcupado = false;
+				$scope.pedidoIsActive = false;
+				$scope.peds = {};
+				$scope.mpedido = {};
+				$scope.bpedido = '';
+				$scope.busy = "";
+				$scope.error = "";
+                $scope.tipificacion = "";
+				$scope.buscar = null;
+                $scope.fecha_inicio = null;
+				$scope.fecha_fin = null;
+
+				return data.data;
+
+console.log($scope.InfoPedido);
+			},
+
+
+			function errorCallback(response, status) {
+				//console.log(status);
+				$rootScope.errorDatos = "No se pudo guardar";
+
+			}
+		);
+
+
+	};
+
+	// ----------------------------- GuardarPedido------------------------------
+
+	//------------declaracion doubleDigit
+	$scope.doubleDigit = function (num) {
+
+		if (num < 0) {
+			num = 0;
+		}
+
+		if (num <= 9) {
+			return "0" + num;
+		}
+		return num;
+	};
+
+	//------------declaracion doubleDigit
+
+
+
+});
+
+
+
+app.controller('siebelActivaciondomCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, services) {
+
+
+	// -------------------------------mirar logueo ---------------------------------
+
+	$rootScope.logedUser = $cookieStore.get('logedUser');
+	var userID = $cookieStore.get('logedUser').login;
+	document.getElementById('logout').className = "btn btn-md btn-danger";
+	var divi = document.getElementById("logoutdiv");
+	divi.style.visibility = "visible";
+	divi.style.position = "relative";
+
+
+	$rootScope.logout = function () {
+		services.logout(userID);
+		$cookieStore.remove('logedUser');
+		$rootScope.logedUser = undefined;
+		$scope.pedidos = {};
+		clearInterval($scope.intervalLightKPIS);
+		document.getElementById('logout').className = "btn btn-md btn-danger hide";
+		var divi = document.getElementById("logoutdiv");
+		divi.style.position = "absolute";
+		divi.style.visibility = "hidden";
+		$location.path('/');
+	};
+
+
+
+	//  ---------------------------------fin logueo-------------------------------------------
+
+
+	// ------------------------Variables ---------------------------------
+	$scope.pedidos = [];
+	$scope.pedidosUnicos = '';
+	$scope.historico_pedido = [];
+	$rootScope.actualView = "/demepedido-activacion";
+	$scope.popup = '';
+	$scope.pedidoinfo = '';
+	$rootScope.errorDatos = null;
+	$scope.accRdy = false;
+	$scope.FECHA_GESTION = null;
+	$scope.FECHA_CREACION = null;
+    $scope.FECHA_INICIO = null;
+	$scope.FECHA_FIN = null;
+	$scope.transaccion = 'Suspender';
+    $scope.tabla = 'ACTIVADOR_SUSPECORE';
+
+
+
+
+	var pedidos = services.getPedidosUserActivacion(userID).then(function (data) {
+		$scope.pedidos = data.data[0];
+		$scope.pedidosUnicos = data.data[1];
+		return data.data;
+	});
+
+	var original = $scope.pedidos;
+	var originalUnico = $scope.pedidosUnicos;
+
+	$scope.peds = {};
+	$scope.timeInit = 0;
+	$scope.pedidos = angular.copy(original);
+
+	$scope.pedidoIsActive = false;
+
+      $scope.setTransaccion = function (transaccion){
+        $scope.transaccion=transaccion;
+    }
+
+      $scope.setTabla = function (tabla){
+        $scope.tabla=tabla;
+    }
+
+
+	// ---------------------------------fin Variables----------------------------
+
+
     // ------------------------DemePedido activacion dom --------------------------------------------------------------
 	$scope.baby = function (pedido) {
 		console.log(pedido);
@@ -15479,7 +15753,7 @@ app.config(['$routeProvider',
         .when('/demepedidodom', {
 			title: 'DemePedido Activacion Dom',
 			templateUrl: 'partials/demepedidodom.html',
-			controller: 'siebelActivacionCtrl',
+			controller: 'siebelActivaciondomCtrl',
             grupos: ['ACTIVACION','SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
