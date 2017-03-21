@@ -11538,7 +11538,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 							return;
 
 						}
-						$rootScope.error = null;
+						$rootScope.errorDatos = null;
 						$scope.pedidoIsActive = true;
 
 
