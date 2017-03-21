@@ -24,8 +24,8 @@
                                 <li>&nbsp;</li>
                                 <li>
                                     <div class="input-daterange" id="datepicker">
-                                        <input type="text" class="btn btn-default btn-xs" ng-model="auditoria.FECHAINI" datetime-picker date-format="yyyy-MM-dd"/><i class="fa fa-calendar fa-fw"></i>
-                                        <input type="text" class="btn btn-default btn-xs" ng-model="auditoria.FECHAFIN" datetime-picker date-format="yyyy-MM-dd"/><i class="fa fa-calendar fa-fw"></i>
+                                        <input type="text" class="btn btn-default btn-xs" ng-model="auditoria.FECHAINI" datetime-picker date-only date-format="yyyy-MM-dd"/><i class="fa fa-calendar fa-fw"></i>
+                                        <input type="text" class="btn btn-default btn-xs" ng-model="auditoria.FECHAFIN" datetime-picker date-only date-format="yyyy-MM-dd"/><i class="fa fa-calendar fa-fw"></i>
                                         <button type="button" class="btn btn-primary btn-xs" ng-click="listarPedidosAuditados(auditoria)"  title="Buscar" tooltip data-placement="left" ng-disabled="loading">
                                             <i class="fa fa-search"  aria-hidden="true"></i>
                                         </button>
