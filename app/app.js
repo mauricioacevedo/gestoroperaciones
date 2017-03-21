@@ -13713,21 +13713,21 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	var estadoFinal				= '';
 
     $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
-
+/*
 	$scope.getIdsPermisos = function () {
         var getidsData = idPermisos.getIds();
         getidsData.then(
         	function (res) {
       			$scope.idPermisos = res.data;
 
-				console.log($scope.idPermisos);
-                console.log($scope.idPermisos.USUARIO_ID);
-
             }
 		)
-    };
+    }; */
 
-    $scope.getIdsPermisos();
+    //$scope.getIdsPermisos();
+	$scope.idPermisos = function () {
+		idPermisos.getIds().then( function (res) {return res.data})};
+	console.log($scope.idPermisos);
 	//$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG','JCASTAMU', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
     $scope.idConceptos=['O-13', 'O-15', 'O-106'];
 
