@@ -8715,7 +8715,7 @@ class API extends REST {
             $transaccion.
             " order by b.$parametroBusqueda  ASC";
 
-      // echo $query1;
+       echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
