@@ -6683,21 +6683,21 @@ class API extends REST {
 
 
 
-           if($TABLA=='ACTIVADOR_SUSPECORE'){
+       //    if($TABLA=='ACTIVADOR_SUSPECORE'){
 
-           $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
+         //  $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
 
-       } else {
+    //   } else {
 
-           $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
+      //     $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
 
-       }
+    //   }
 
 
         $query=" SELECT id, order_seq_id,pedido,reference_number ".
                 ",estado,fecha_creacion,tarea_excepcion ".
                 ",fecha_excepcion,producto,idservicioraiz,transaccion ".
-                $TABLA.
+                " from gestor_activacion_pendientes_activador_suspecore b ".
                 " where pedido like '$pedido%' order by fecha_excepcion desc limit 10 ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
