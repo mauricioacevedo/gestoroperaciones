@@ -10,7 +10,7 @@
                             <img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif" />
                         </div>
                     </div>
-                    </u>
+                    </ul>
             </div>
             <div class = "panel-heading nav navbar-default">
                 <div class="col-md-12">
@@ -24,8 +24,8 @@
                                 <li>&nbsp;</li>
                                 <li>
                                     <div class="input-daterange" id="datepicker">
-                                        <input type="text" class="btn btn-default btn-xs"  id="fromDate" name="fromDate" ng-model="auditoria.FECHAINI" /><i class="fa fa-calendar fa-fw"></i>
-                                        <input type="text" class="btn btn-default btn-xs"  id="toDate" name="toDate" ng-model="auditoria.FECHAFIN" /><i class="fa fa-calendar fa-fw"></i>
+                                        <input type="text" class="form-control" placeholder="id llamada" ng-model="auditoria.FECHAINI" datetime-picker date-format="yyyy-MM-dd HH:mm:ss"/><i class="fa fa-calendar fa-fw"></i>
+                                        <input type="text" class="form-control" placeholder="id llamada" ng-model="auditoria.FECHAFIN" datetime-picker date-format="yyyy-MM-dd HH:mm:ss"/><i class="fa fa-calendar fa-fw"></i>
                                         <button type="button" class="btn btn-primary btn-xs" ng-click="listarPedidosAuditados(auditoria)"  title="Buscar" tooltip data-placement="left" ng-disabled="loading">
                                             <i class="fa fa-search"  aria-hidden="true"></i>
                                         </button>
