@@ -15852,7 +15852,7 @@ private function guardarGestionAsignaciones()
             $this->response($this->json(array($result)), 200); // send user details
         }else{
             $error = "No hay datos.";
-            $this->response($this->json(array($error)), 200);
+            $this->response($this->json(array($error)), 403);
         }
 
     }

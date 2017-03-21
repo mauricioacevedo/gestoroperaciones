@@ -14403,10 +14403,11 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         services.buscarListarPedidoAuditoriaGestor(buscar.PEDIDO_ID, buscar.FECHAINI, buscar.FECHAFIN).then(
             function (data) {
                 $scope.listaAuditados = data.data[0];
-                console.log(data.data);
+                //console.log(data.data);
 
             }, function (err) {
                 $rootScope.errorDatos = err;
+                $scope.listaAuditados = {};
             }
         )
     };
