@@ -11379,7 +11379,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
         $scope.FECHA_GESTION = year + "-" + month + "-" + day;
-       $scope.duracion = $scope.fecha_fin - $scope.fecha_inicio;
+       $scope.duracion =  $scope.doubleDigit(df.getHours()-19)+":"+ $scope.doubleDigit(df.getMinutes())+":"+ $scope.doubleDigit(df.getSeconds());
 
         if ($scope.tipificacion == 'NUMERO_CR' ) {
 			$scope.NUMERO_CR = '';
