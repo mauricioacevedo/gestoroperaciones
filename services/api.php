@@ -8332,11 +8332,9 @@ class API extends REST {
 
        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
 
-      if($transaccion==""){
-            $transaccion="NO APLICA";
-        }
 
-        if($transaccion!="NO APLICA"){
+
+        if($transaccion!=""){
             $transaccion=" and b.TRANSACCION='$transaccion' ";
         }else{
             $transaccion="";
@@ -8346,13 +8344,15 @@ class API extends REST {
       //      $transaccion=" and b.TRANSACCION ='$transaccion' ";
     //    }
 
- if($TABLA=='ACTIVADOR_SUSPECORE'){
+ if($TABLA!='ACTIVADOR_SUSPECORE'){
 
-           $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
+          // $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
+        $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
 
        } else {
 
-           $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
+       //    $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
+        $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
 
        }
 
@@ -9726,11 +9726,11 @@ class API extends REST {
         $CODIGO_CIUDAD=$pedido['CODIGO_CIUDAD'];
         $STATUS=$pedido['STATUS'];
         $TIPIFICACION=$pedido['TIPIFICACION'];
-        $OBSERVACION='';
+
         $FECHA_INICIO=$pedido['FECHA_INICIO'];
         $FECHA_FIN=$pedido['FECHA_FIN'];
         $DURACION=$pedido['DURACION'];
-        $NUMERO_CR='';
+
         $TABLA=$pedido['TABLA'];
 
         if(!empty($pedido)){
