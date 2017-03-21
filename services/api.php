@@ -13982,30 +13982,22 @@ class API extends REST {
 
         $user = $this->_request['userID'];
 
-        //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
-        $pedido_actual = $this->_request['pedido_actual'];
 
-       $FECHA_EXCEPCION = $this->_request['FECHA_EXCEPCION'];
-
-        if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
-            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user' ";
-            $xxx = $this->mysqli->query($sqlupdate);
-        }
 
         $user=strtoupper($user);
         $today = date("Y-m-d");
 
-        $query1=    " SELECT distinct b.ID,b.ORDER_SEQ_ID,b.PEDIDO ".
-            " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
-            " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ ".
-            " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR ".
-            " ,group_concat(distinct b.PRODUCTO ) as PRODUCTOS ".
-            " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
-            " ,b.FECHA_EXCEPCION,'AUTO' as source ".
-            " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
-            " where a.PEDIDO='$pedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
-            " from gestor_activacion_pendientes_activador_suspecore b ".
-            " where b.PEDIDO = '$pedido' and b.STATUS='PENDI_ACTI' ";
+        $query1=     " SELECT ".
+                " p.pedido as PEDIDO_ID ".
+                " , group_concat(distinct p.PRODUCTO) as  PRODUCTOS ".
+                " , min(p.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
+                " ,min(p.FECHA_CREACION) as FECHA_CREACION ".
+                " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
+                " where a.PEDIDO='$pedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
+                " FROM portalbd.gestor_activacion_pendientes_activador_suspecore p ".
+                " where p.PEDIDO = '$pedido'  ".
+                " and p.STATUS='PENDI_ACTI' ".
+                " group by p.pedido ";
 
 
 
@@ -14033,10 +14025,6 @@ class API extends REST {
                 $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set VIEWS=VIEWS+1 where ID in ($ids)";
 
 
-            }else{
-                $FECHA_CREACION=date("Y-m-d H:i:s");
-                $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$FECHA_EXCEPCION' where ID in ($ids)";
-
             }
 
             $x = $this->mysqli->query($sqlupdate);
@@ -14053,7 +14041,7 @@ class API extends REST {
 
         }else{
             $error='No existe';
-            $this->response(json_encode($error),204);        // No encontramos nada.
+            $this->response(json_encode(array($error)),204);        // No encontramos nada.
         }
 
 
