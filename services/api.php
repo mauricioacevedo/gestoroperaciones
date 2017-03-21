@@ -16107,6 +16107,97 @@ private function guardarGestionAsignaciones()
 
     }
 
+    private function csvAuditorias(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+        $pedido         =   $this->_request['pedido'];
+        $fechaini       =   $this->_request['fechaini'];
+        $fechafin       =   $this->_request['fechafin'];
+        $paramlst       =   "";
+        $today          =   date("Y-m-d");
+
+        if($fechaini=='SIN'){
+            $fechaini = date("Y-m-d", strtotime("first day of previous month"));
+        }
+        if($fechafin=='SIN'){
+            $fechafin = $today;
+        }
+        if($pedido=="TODO" || $pedido=="" || $pedido==null){
+            $paramlst = " and FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59'";
+        }else{
+            $in_stmt = "'".str_replace(",", "','", $pedido)."'";
+            $paramlst = " and PEDIDO_ID in (".$in_stmt.") ";
+        }
+
+        $filename="AuditoriasAsignaciones-$usuarioGalleta-$today.csv";
+
+        $sql =  " SELECT  ".
+            " FECHA_GESTION as FECHA_ESTUDIO ".
+            " , PEDIDO_ID ".
+            " , TIPO_ELEMENTO_ID ".
+            " , USUARIO_ID_GESTION as USUARIO ".
+            " , ANALISIS ".
+            " , CONCEPTO_ACTUAL as CONCEPTO_AUDITORIA ".
+            " , OBSERVACIONES ".
+            " , FECHA_FIN AS FECHA_GESTION  ".
+            " FROM portalbd.gestor_transacciones_oxxx ".
+            " WHERE 1=1 ".
+            " $paramlst order by ID desc limit 500 ";
+
+        $r = $this->mysqli->query($sql);
+
+        if($r->num_rows > 0){
+            $result = array();
+            $fp = fopen("../tmp/$filename", 'w');
+            fputcsv($fp, array('FECHA_ESTUDIO','PEDIDO_ID','TIPO_ELEMENTO_ID','USUARIO',' ANALISIS',' CONCEPTO_AUDITORIA',' OBSERVACIONES',' FECHA_GESTION'));
+
+            while($row = $r->fetch_assoc()){
+                //$result[] = $row;
+                fputcsv($fp, $row);
+            }
+            fclose($fp);
+
+            // SQL Feed----------------------------------
+            $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'SIN PEDIDO' ".
+                ",'EXPORTO AUDITORIAS' ".
+                ",'ARCHIVO EXPORTADO' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
+            // ---------------------------------- SQL Feed
+            $this->response($this->json(array($filename,$usuarioGalleta)), 200); // send user details
+        }
+
+        $this->response('',204);        // If no records "No Content" status
+
+    }
     private function idpermisoslst()
     {
         if($this->get_request_method() != "GET"){

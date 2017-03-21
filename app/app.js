@@ -1011,6 +1011,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
     obj.buscarListarPedidoAuditoriaGestor = function (pedido, fechaini, fechafin) {
         return $http.get(serviceBase + 'listarBuscarPedidoAuditoriaAsignaciones?pedido=' + pedido + '&fechaini=' + fechaini + '&fechafin=' + fechafin);
     };
+    obj.csvAuditoriaAsignaciones = function (pedido, fechaini, fechafin) {
+        return $http.get(serviceBase + 'csvAuditorias?pedido=' + pedido + '&fechaini=' + fechaini + '&fechafin=' + fechafin);
+    };
 
 	return obj;
 }]);
@@ -5140,7 +5143,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 });
 
 ///---------------inicio resgistros----------------------
-app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services, notify) {
+app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services, notify, idPermisos) {
 
     var userID = $cookieStore.get('logedUser').login;
     $rootScope.logedUser = $cookieStore.get('logedUser');
@@ -5380,7 +5383,8 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         $scope.calcularPendientes($routeParams.conceptoid);
     }
 
-    $scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
+    $scope.idPermisos = idPermisos.getIds();
+    //$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
     $scope.habilitarPrioridad = function (pedinfo){
 //        console.log(pedinfo);
         services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.RADICADO_TEMPORAL,userID).then(
@@ -14905,6 +14909,22 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
     };
 
     $scope.listarPedidosAuditados();
+
+    $scope.csvAsuditoria = function (buscar) {
+        if(Object.keys($scope.auditoria).length === 0){
+            $scope.auditoria = {
+                PEDIDO_ID: 'TODO',
+                FECHAINI: 'SIN',
+                FECHAFIN: 'SIN'
+            }
+        }
+        services.csvAuditoriaAsignaciones($scope.auditoria.PEDIDO_ID, $scope.auditoria.FECHAINI, $scope.auditoria.FECHAFIN).then(
+        	function (data) {
+            window.location.href = "tmp/" + data.data[0];
+            return data.data;
+        });
+
+    };
 
 });
 // -----------------------------------------------Controlador para Gestion de Reconfiguracion Asignaciones
