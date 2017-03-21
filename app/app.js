@@ -11433,7 +11433,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 				if (data.data == '') {
-
+                    alert("'"+data.data+"'");
 					$rootScope.errorDatos = "No hay Registros de activacion.";
 					$scope.peds = {};
 					$scope.mpedido = {};
