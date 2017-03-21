@@ -443,6 +443,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'pedidosPorPedidoActivacion?pedido=' + pedido);
 	};
 
+    obj.getpedidosPorPedidoActivacionDom = function (pedido) { //pedido por pedido activacion
+		return $http.get(serviceBase + 'pedidosPorPedidoActivacionDom?pedido=' + pedido);
+	};
+
 	obj.demePedidoActivacion = function (user, pedido, transaccion, tabla, username) { //deme pedido activacion
 		console.log("transaccion=" + transaccion);
 		return $http.get(serviceBase + 'demePedidoActivacion?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion  + '&tabla=' + tabla +'&username=' + username );
@@ -11296,10 +11300,10 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	};
 
 	// -------------------------------------------------------------- fin DemePedido activacion
-    // ------------------------DemePedido activacion --------------------------------------------------------------
+    // ------------------------DemePedido activacion dom --------------------------------------------------------------
 	$scope.baby = function (pedido) {
 		console.log(pedido);
-		services.getpedidosPorPedidoActivacion(pedido).then(function (data) {
+		services.getpedidosPorPedidoActivacionDom(pedido).then(function (data) {
 			//console.log(data.data);
 			$scope.historico_pedido = data.data;
 			//  console.log($scope.historico_pedido);
