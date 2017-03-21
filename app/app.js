@@ -14907,8 +14907,6 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     // Cargar Opciones para la gestion --------------------------------
     $scope.listarOpcionesAsginacion = function (opciones) {
-    	console.log(opciones);
-
         services.getOpcionesGestionAsignaciones(opciones).then(
             function (data) {
                 if(opciones.actividad!='AUDITORIA'){

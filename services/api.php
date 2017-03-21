@@ -15174,7 +15174,7 @@ class API extends REST {
             "	where 1=1 ".
             " 	$filtros ";
 
-        echo $query;
+        //echo $query;
 
         $rst = $this->mysqli->query($query);
 
