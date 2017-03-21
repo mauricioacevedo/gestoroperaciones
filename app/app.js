@@ -14395,7 +14395,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         //console.log(buscar);
 
         if(buscar==undefined){
-            var buscar = {};
+            buscar = {};
             buscar.PEDIDO_ID='TODO';
         }
         if(buscar.FECHAINI==''){
