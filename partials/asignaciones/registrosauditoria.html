@@ -40,7 +40,7 @@
 
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <input style="width:200px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize />
+                                <input style="width:200px"  class="btn btn-default btn-xs " type="text" ng-model="filtroAuditoria" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize />
                             </ul>
                         </div>
 
@@ -62,7 +62,7 @@
                     <th>FECHA GESTION</th>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="audit in listaAuditados as results track by audit.ID | filter: filtroInput">
+                    <tr ng-repeat="audit in listaAuditados | filter:filtroAuditoria as results track by audit.ID">
                         <td><span class="small">{{audit.FECHA_ESTUDIO}}</span></td>
                         <td><span class="small">{{audit.PEDIDO_ID}}</span></td>
                         <td><span class="small">{{audit.TIPO_ELEMENTO_ID}}</span></td>
