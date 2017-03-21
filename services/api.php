@@ -15813,10 +15813,10 @@ private function guardarGestionAsignaciones()
         $paramlst       =   "";
         $today          =   date("Y-m-d");
 
-        if($fechaini='SIN'){
+        if($fechaini=='SIN'){
             $fechaini = date("Y-m-d", strtotime("first day of previous month"));
         }
-        if($fechafin='SIN'){
+        if($fechafin=='SIN'){
             $fechafin = $today;
         }
         if($pedido=="TODO" || $pedido=="" || $pedido==null){
