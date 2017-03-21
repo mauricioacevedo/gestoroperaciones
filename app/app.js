@@ -5391,7 +5391,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     $scope.listarPedidosAuditados = function (buscar) {
     	console.log(buscar);
 
-			if(buscar==undefined){
+			if(buscar==undefined || buscar.FECHAINI==''){
 				buscar={};
                 buscar.PEDIDO_ID='TODO';
                 buscar.FECHAINI='SIN';
