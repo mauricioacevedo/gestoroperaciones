@@ -153,12 +153,17 @@
                                                     <option value="FINALIZADA">FINALIZADA</option>
                                                     <option value="NUMERO_CR">NUMERO CR</option>
                                                 </select>
-                                         <div class="form-group  has-feedback">
-                                             <div class= "form-group">
-                                            <label class= "col-md-8">Numero CR: </label>
-                                            <div class="col-md-10">
-                                            <input ng-model="service.NUMERO_CR" type= "text" class= "form-control" placeholder= "1234565751"/>
-                                            </div>
+
+                                             <div  ng-show="service.TIPIFICACION=='NUMERO_CR'"><br>
+                                        <div class="col-md-10">
+                                        <div class="input-daterange control-group" id="datepicker">
+                                                <label class="control-label" for="toDate">Fecha Cita Propuesta</label><br>
+                                                <div class="input-group margin-bottom-lg">
+                                                        <span class="input-group-addon"><i class="fa fa-calendar-plus-o fa-fw"></i></span>
+                                                        <input type="text" class= "form-control" ng-model="service.NUMERO_CR">
+
+                                                </div>
+                                                <label class="control-label" for="toDate">Jornada Cita</label>  <select  ng-model="service.JORNADA_CITA" > <option>AM</option><option>PM</option></select>
                                      </div>
                                 </div>
                                   <div class= "form-group"><!--Inicia Div de Quedan Observacion-->
@@ -168,6 +173,19 @@
                                         </div>
 
                                     </div>
+                                         <div  ng-show="service.NOVEDAD=='AGENDADO' || service.NOVEDAD=='YA ESTA AGENDADO' || service.NOVEDAD=='AGENDADO_FUTURO'"><br>
+
+                                <div class="col-md-10">
+                                        <div class="input-daterange control-group" id="datepicker">
+                                                <label class="control-label" for="toDate">Fecha Cita Propuesta</label><br>
+                                                <div class="input-group margin-bottom-lg">
+                                                        <span class="input-group-addon"><i class="fa fa-calendar-plus-o fa-fw"></i></span>
+                                                        <input type="text" class= "form-control" ng-model="service.FECHA_CITA_REAGENDA">
+
+                                                </div>
+                                                <label class="control-label" for="toDate">Jornada Cita</label>  <select  ng-model="service.JORNADA_CITA" > <option>AM</option><option>PM</option></select>
+                                     </div>
+                                </div>
 
 								</div>
                             </div><!--Finaliza Div de Amanecieron-->
