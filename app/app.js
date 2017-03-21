@@ -13725,7 +13725,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		)
     };
 	 $scope.getIdsPermisos();*/
-    $scope.idPermisos = idPermisos.getIds();
+    $scope.idPermisos = idPermisos.getIds().data;
 	console.log($scope.idPermisos);
 
 	//$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG','JCASTAMU', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
