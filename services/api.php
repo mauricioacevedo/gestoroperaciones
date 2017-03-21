@@ -8711,7 +8711,7 @@ class API extends REST {
                 " ,min(p.FECHA_CREACION) as FECHA_CREACION ".
                 " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
                 " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
-                " FROM portalbd.gestor_activacion_pendientes_activador_suspecore p ".
+                " FROM portalbd.gestor_activacion_pendientes_activador_dom p ".
                 " where p.PEDIDO = '$mypedido'  ".
                 " and p.STATUS='PENDI_ACTI' ".
                 " group by p.pedido ";
