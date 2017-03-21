@@ -10,7 +10,7 @@
                             <img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif" />
                         </div>
                     </div>
-                    </u>
+                    </ul>
             </div>
             <div class = "panel-heading nav navbar-default">
                 <div class="col-md-12">
@@ -18,14 +18,14 @@
                         <div class="col-md-12">
                             <ul class="nav navbar-nav navbar-left">
                                 <li>
-                                    <input class="btn btn-default btn-xs" name="valorCampo" ng-model="auditoria.PEDIDO_ID" select-on-click capitalize type="text" placeholder="Palabra">
+                                    <input class="btn btn-default btn-xs" name="valorCampo" ng-model="auditoria.PEDIDO_ID" select-on-click capitalize type="text" placeholder="Pedido">
 
                                 </li>
                                 <li>&nbsp;</li>
                                 <li>
                                     <div class="input-daterange" id="datepicker">
-                                        <input type="text" class="btn btn-default btn-xs"  id="fromDate" name="fromDate" ng-model="auditoria.FECHAINI" /><i class="fa fa-calendar fa-fw"></i>
-                                        <input type="text" class="btn btn-default btn-xs"  id="toDate" name="toDate" ng-model="auditoria.FECHAFIN" /><i class="fa fa-calendar fa-fw"></i>
+                                        <input type="text" class="btn btn-default btn-xs" ng-model="auditoria.FECHAINI" datetime-picker date-only date-format="yyyy-MM-dd"/><i class="fa fa-calendar fa-fw"></i>
+                                        <input type="text" class="btn btn-default btn-xs" ng-model="auditoria.FECHAFIN" datetime-picker date-only date-format="yyyy-MM-dd"/><i class="fa fa-calendar fa-fw"></i>
                                         <button type="button" class="btn btn-primary btn-xs" ng-click="listarPedidosAuditados(auditoria)"  title="Buscar" tooltip data-placement="left" ng-disabled="loading">
                                             <i class="fa fa-search"  aria-hidden="true"></i>
                                         </button>
@@ -59,9 +59,10 @@
                     <th>ANALISIS</th>
                     <th>AUDITORIA</th>
                     <th>OBSERVACIONES</th>
+                    <th>FECHA GESTION</th>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="audit in listaAuditados track by audit.ID">
+                    <tr ng-repeat="audit in listaAuditados as results track by audit.ID ">
                         <td><span class="small">{{audit.FECHA_ESTUDIO}}</span></td>
                         <td><span class="small">{{audit.PEDIDO_ID}}</span></td>
                         <td><span class="small">{{audit.TIPO_ELEMENTO_ID}}</span></td>
@@ -69,6 +70,7 @@
                         <td><span class="small">{{audit.ANALISIS}}</span></td>
                         <td><span class="small">{{audit.CONCEPTO_AUDITORIA}}</span></td>
                         <td><span class="small">{{audit.OBSERVACIONES}}</span></td>
+                        <td><span class="small">{{audit.FECHA_GESTION}}</span></td>
                     </tr>
                     </tbody>
                 </table>
@@ -79,7 +81,7 @@
             <div class="panel-footer clearfix" >
                 <div class="col-md-12">
                     <ul class="nav navbar-nav navbar-left">
-                        <li>Registros: <span class="badge badge-default"></span></li>
+                        <li>Registros: <span class="badge badge-default">{{results.length}}</span></li>
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
