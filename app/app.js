@@ -463,12 +463,12 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'demePedidoActivacionDom?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion  + '&tabla=' + tabla +'&username=' + username );
 	};
 
-	obj.getBuscarpedidoactivacion = function (pedido, pedido_actual, user) { //buscar pedido activacion
-		return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID=' + pedido + '&pedido_actual=' + pedido_actual + '&userID=' + user);
+	obj.getBuscarpedidoactivacion = function (pedido, user) { //buscar pedido activacion suspecore
+		return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID=' + pedido + '&userID=' + user);
 	};
 
-    obj.getBuscarpedidoactivaciondom = function (pedido, pedido_actual, user) { //buscar pedido activacion
-		return $http.get(serviceBase + 'buscarpedidoactivaciondom?pedidoID=' + pedido + '&pedido_actual=' + pedido_actual + '&userID=' + user);
+    obj.getBuscarpedidoactivaciondom = function (pedido, user) { //buscar pedido activacion dom
+		return $http.get(serviceBase + 'buscarpedidoactivaciondom?pedidoID=' + '&userID=' + user);
 	};
 
 	obj.insertTransaccionsiebelactivacion = function (pedido) { //insertar pedidos siebel activacion
@@ -11427,12 +11427,12 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 
-		var kami = services.getBuscarpedidoactivacion(buscar, $scope.pedidoActual, $rootScope.logedUser.login).then(
+		var kami = services.getBuscarpedidoactivacion(buscar, $rootScope.logedUser.login).then(
 
 			function (data) {
 
 
-				if (data.data == '') {
+				if (data.data == '1') {
 
 					$rootScope.errorDatos = "No hay Registros de activacion.";
 					$scope.peds = {};
@@ -11499,7 +11499,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 
-		var kami = services.getBuscarpedidoactivaciondom(buscar, $scope.pedidoActual, $rootScope.logedUser.login).then(
+		var kami = services.getBuscarpedidoactivaciondom(buscar, $rootScope.logedUser.login).then(
 
 			function (data) {
 
