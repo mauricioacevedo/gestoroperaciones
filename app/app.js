@@ -14390,16 +14390,19 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		)
     };
 
-
+    var buscar = {};
 	$scope.listarPedidosAuditados = function (buscar) {
         //console.log(buscar);
 
-        if(buscar==undefined || buscar.FECHAINI==''){
-            buscar={};
+        if(buscar==undefined){
+
             buscar.PEDIDO_ID='TODO';
+
+        }
+        if(buscar.FECHAINI==''){
             buscar.FECHAINI='SIN';
             buscar.FECHAFIN='SIN';
-        }
+		}
         services.buscarListarPedidoAuditoriaGestor(buscar.PEDIDO_ID, buscar.FECHAINI, buscar.FECHAFIN).then(
             function (data) {
                 $scope.listaAuditados = data.data[0];
