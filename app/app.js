@@ -11381,6 +11381,11 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.FECHA_GESTION = year + "-" + month + "-" + day;
         $scope.duracion = new Date().getTime() - $scope.timeInit;
 
+        if ($scope.tipificacion == 'NUMERO_CR' ) {
+			$scope.NUMERO_CR = '';
+
+		}
+
 		$scope.InfoGestion = {
 			//ID:gestion.ID,
 			ORDER_SEQ_ID: $scope.peds[0].ORDER_SEQ_ID,
