@@ -11165,6 +11165,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.pedidosUnicos = '';
 	$scope.historico_pedido = [];
 	$rootScope.actualView = "/demepedido-activacion";
+    $rootScope.actualView = "/demepedidoActivaciondom";
 	$scope.popup = '';
 	$scope.pedidoinfo = '';
 	$rootScope.errorDatos = null;
@@ -15470,7 +15471,7 @@ app.config(['$routeProvider',
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
 
-        .when('/demepedidodom/', {
+        .when('/demepedidodom', {
 			title: 'DemePedido Activacion Dom',
 			templateUrl: 'partials/demepedidodom.html',
 			controller: 'siebelActivacionCtrl',
