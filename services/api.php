@@ -8344,15 +8344,14 @@ class API extends REST {
       //      $transaccion=" and b.TRANSACCION ='$transaccion' ";
     //    }
 
- if($TABLA!='ACTIVADOR_SUSPECORE'){
+ if($TABLA=='ACTIVADOR_SUSPECORE'){
 
-          // $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
-        $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
+           $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
 
        } else {
 
-       //    $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
-        $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
+           $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
+
 
        }
 
