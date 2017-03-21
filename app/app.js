@@ -13994,18 +13994,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	var estadoFinal				= '';
 
     $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
-
-	/* $scope.getIdsPermisos = function () {
-        var getidsData = idPermisos.getIds();
-        getidsData.then(
-        	function (res) {
-      			$scope.idPermisos = res.data;
-            }
-		)
-    };
-	 $scope.getIdsPermisos();*/
-    $scope.idPermisos = idPermisos.getIds();
-	console.log($scope.idPermisos);
+	$scope.idPermisos = idPermisos.getIds();
 
 	//$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG','JCASTAMU', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
     $scope.idConceptos=['O-13', 'O-15', 'O-106'];
@@ -14810,19 +14799,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				FECHAFIN: 'SIN'
 			}
 		}
-        console.log($scope.auditoria);
-        /*if(buscar==undefined){
-            buscar = {};
-            buscar.PEDIDO_ID='TODO';
-        }*/
-       /* if(buscar.FECHAINI==''){
-            buscar.FECHAINI='SIN';
-            buscar.FECHAFIN='SIN';
-		}*/
         services.buscarListarPedidoAuditoriaGestor($scope.auditoria.PEDIDO_ID, $scope.auditoria.FECHAINI, $scope.auditoria.FECHAFIN).then(
             function (data) {
                 $scope.listaAuditados = data.data[0];
-                //console.log(data.data);
 
             }, function (err) {
                 $rootScope.errorDatos = 'Error: ' + err.status + ', Msg: ' +err.data;
