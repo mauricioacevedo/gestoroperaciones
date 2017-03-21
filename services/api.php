@@ -15839,7 +15839,7 @@ private function guardarGestionAsignaciones()
                 " WHERE 1=1 ".
                 " $paramlst order by ID desc limit 500 ";
 
-           // echo $sql;
+        echo $sql;
         $r = $this->mysqli->query($sql);
 
         if($r->num_rows > 0){
