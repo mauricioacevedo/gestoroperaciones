@@ -93,17 +93,7 @@
         <entry file="file://$PROJECT_DIR$/partials/asignaciones/registrosauditoria.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="459">
-              <caret line="42" column="129" lean-forward="false" selection-start-line="42" selection-start-column="129" selection-end-line="42" selection-end-column="129" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pendientes_asignaciones.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partials/asignaciones/pendientes_asignaciones.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="101" column="114" lean-forward="false" selection-start-line="101" selection-start-column="96" selection-end-line="101" selection-end-column="114" />
+              <caret line="42" column="174" lean-forward="false" selection-start-line="42" selection-start-column="174" selection-end-line="42" selection-end-column="174" />
               <folding />
             </state>
           </provider>
@@ -1258,14 +1248,7 @@
       <workItem from="1489586382768" duration="18558000" />
       <workItem from="1489663468822" duration="16499000" />
       <workItem from="1489754768195" duration="15094000" />
-      <workItem from="1490096683816" duration="18445000" />
-    </task>
-    <task id="LOCAL-00776" summary="Cambio en Auditar pedidos Asignaciones">
-      <created>1490103635400</created>
-      <option name="number" value="00776" />
-      <option name="presentableId" value="LOCAL-00776" />
-      <option name="project" value="LOCAL" />
-      <updated>1490103635400</updated>
+      <workItem from="1490096683816" duration="18546000" />
     </task>
     <task id="LOCAL-00777" summary="Cambio en Auditar pedidos Asignaciones">
       <created>1490103732529</created>
@@ -1603,11 +1586,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490121591831</updated>
     </task>
-    <option name="localTasksCounter" value="825" />
+    <task id="LOCAL-00825" summary="Cambio en Auditar pedidos Asignaciones">
+      <created>1490121717745</created>
+      <option name="number" value="00825" />
+      <option name="presentableId" value="LOCAL-00825" />
+      <option name="project" value="LOCAL" />
+      <updated>1490121717745</updated>
+    </task>
+    <option name="localTasksCounter" value="826" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="397635000" />
+    <option name="totallyTimeSpent" value="397736000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -3058,7 +3048,7 @@
     <entry file="file://$PROJECT_DIR$/partials/asignaciones/registrosauditoria.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
-          <caret line="42" column="129" lean-forward="false" selection-start-line="42" selection-start-column="129" selection-end-line="42" selection-end-column="129" />
+          <caret line="42" column="174" lean-forward="false" selection-start-line="42" selection-start-column="174" selection-end-line="42" selection-end-column="174" />
           <folding />
         </state>
       </provider>
