@@ -9726,11 +9726,11 @@ class API extends REST {
         $CODIGO_CIUDAD=$pedido['CODIGO_CIUDAD'];
         $STATUS=$pedido['STATUS'];
         $TIPIFICACION=$pedido['TIPIFICACION'];
-        $OBSERVACION=$pedido['OBSERVACION'];
+        $OBSERVACION='';
         $FECHA_INICIO=$pedido['FECHA_INICIO'];
         $FECHA_FIN=$pedido['FECHA_FIN'];
         $DURACION=$pedido['DURACION'];
-        $NUMERO_CR=$pedido['NUMERO_CR'];
+        $NUMERO_CR='';
         $TABLA=$pedido['TABLA'];
 
         if(!empty($pedido)){
