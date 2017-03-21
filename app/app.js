@@ -14112,27 +14112,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		console.log($scope.ifuente);
 	};
 
-	// Cargar Opciones para la gestion --------------------------------
-	$scope.listarOpcionesAsginacion = function (opciones) {
 
-		services.getOpcionesGestionAsignaciones(opciones).then(
-			function (data) {
-				if(opciones.actividad!='AUDITORIA'){
-                    $scope.listaOpcionesGestion=data.data;
-				}else{
-					$scope.listaOpcionesAuditoria=data.data;
-				}
-
-				return data.data;
-
-			},
-			function errorCallback(response, status) {
-				//console.log(status);
-				$rootScope.errorDatos = 'Error, revisar opciones '+status;
-
-			}
-		);
-	};
 
 	$scope.onChangeEstado = function () {
 		$scope.programar=false;
@@ -14923,6 +14903,29 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
             return data.data;
         });
 
+    };
+
+    // Cargar Opciones para la gestion --------------------------------
+    $scope.listarOpcionesAsginacion = function (opciones) {
+    	console.log(opciones);
+
+        services.getOpcionesGestionAsignaciones(opciones).then(
+            function (data) {
+                if(opciones.actividad!='AUDITORIA'){
+                    $scope.listaOpcionesGestion=data.data;
+                }else{
+                    $scope.listaOpcionesAuditoria=data.data;
+                }
+
+                return data.data;
+
+            },
+            function errorCallback(response, status) {
+                //console.log(status);
+                $rootScope.errorDatos = 'Error, revisar opciones '+status;
+
+            }
+        );
     };
 
 });
