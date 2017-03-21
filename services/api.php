@@ -8705,7 +8705,7 @@ class API extends REST {
 
 
         $query1= " SELECT ".
-                " p.pedido as PEDIDO_ID ".
+                " p.pedido ".
                 " , group_concat(distinct p.PRODUCTO) as  PRODUCTOS ".
                 " , min(p.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
                 " ,min(p.FECHA_CREACION) as FECHA_CREACION ".
