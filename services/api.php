@@ -8355,7 +8355,7 @@ class API extends REST {
 
     //   }
 
-      echo $TABLA;
+      //echo $TABLA;
   //      $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
 
         $hora=date("G");
