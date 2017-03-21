@@ -7,8 +7,8 @@ var app = angular.module('myApp', ['base64', 'ngRoute', 'ngCookies', 'ng-fusionc
 
 app.service('idPermisos', function ($http) {
 	this.getIds = function () {
-		return $http.get('./services/idpermisoslst').then(function (res){
-			return res;
+		var usersid =  $http.get('./services/idpermisoslst').then(function (res){
+			return usersid.data;
 		})
     }
 });
@@ -14000,7 +14000,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		)
     };
 	 $scope.getIdsPermisos();*/
-    $scope.idPermisos = idPermisos.getIds().data;
+    $scope.idPermisos = idPermisos.getIds();
 	console.log($scope.idPermisos);
 
 	//$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG','JCASTAMU', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
