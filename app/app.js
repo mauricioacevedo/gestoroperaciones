@@ -14378,7 +14378,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                     actividad: $scope.peds[0].ACTIVIDAD
                 };
 
-                console.log(opciones);
+                //console.log(opciones);
                 $scope.listarOpcionesAsginacion(opciones);
                 $scope.baby($scope.pedido1);
 
