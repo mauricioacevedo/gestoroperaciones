@@ -16132,7 +16132,7 @@ private function guardarGestionAsignaciones()
         if($r->num_rows > 0){
             $result = array();
             while($row = $r->fetch_assoc()){
-                $result[] = $row;
+                $result[] = $row['USUARIO_ID'];
             }
 
             $this->response($this->json($result), 200); // send user details
