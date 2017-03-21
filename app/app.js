@@ -14799,19 +14799,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				FECHAFIN: 'SIN'
 			}
 		}
-        console.log($scope.auditoria);
-        /*if(buscar==undefined){
-            buscar = {};
-            buscar.PEDIDO_ID='TODO';
-        }*/
-       /* if(buscar.FECHAINI==''){
-            buscar.FECHAINI='SIN';
-            buscar.FECHAFIN='SIN';
-		}*/
         services.buscarListarPedidoAuditoriaGestor($scope.auditoria.PEDIDO_ID, $scope.auditoria.FECHAINI, $scope.auditoria.FECHAFIN).then(
             function (data) {
                 $scope.listaAuditados = data.data[0];
-                //console.log(data.data);
 
             }, function (err) {
                 $rootScope.errorDatos = 'Error: ' + err.status + ', Msg: ' +err.data;
