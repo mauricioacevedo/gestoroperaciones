@@ -8704,19 +8704,17 @@ class API extends REST {
 
 
 
-        $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
-            " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
-            " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
-            " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR ".
-            " ,group_concat(distinct b.PRODUCTO ) as PRODUCTOS ".
-            " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
-            " ,b.FECHA_EXCEPCION ,'AUTO' as source ".
-            " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
-            " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
-            " from gestor_activacion_pendientes_activador_dom b ".
-            " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
-            $transaccion.
-            " order by b.$parametroBusqueda  ASC";
+        $query1= " SELECT ".
+                " p.pedido as PEDIDO_ID ".
+                " , group_concat(distinct p.PRODUCTO) as  PRODUCTOS ".
+                " , min(p.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
+                " ,min(p.FECHA_CREACION) as FECHA_CREACION ".
+                " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
+                " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
+                " FROM portalbd.gestor_activacion_pendientes_activador_dom p ".
+                " where p.PEDIDO = '$mypedido'  ".
+                " and p.STATUS='PENDI_ACTI' ".
+                " group by p.pedido ";
 
        //echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
