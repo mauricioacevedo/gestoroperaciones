@@ -62,7 +62,7 @@
                     <th>FECHA GESTION</th>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="audit in listaAuditados track by audit.ID as results">
+                    <tr ng-repeat="audit in listaAuditados as results track by audit.ID ">
                         <td><span class="small">{{audit.FECHA_ESTUDIO}}</span></td>
                         <td><span class="small">{{audit.PEDIDO_ID}}</span></td>
                         <td><span class="small">{{audit.TIPO_ELEMENTO_ID}}</span></td>
