@@ -7,7 +7,9 @@ var app = angular.module('myApp', ['base64', 'ngRoute', 'ngCookies', 'ng-fusionc
 
 app.service('idPermisos', function ($http) {
 	this.getIds = function () {
-		return $http.get('./services/idpermisoslst')
+		return $http.get('./services/idpermisoslst').then(function (res){
+			return res;
+		})
     }
 });
 
@@ -13715,7 +13717,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
 
-	$scope.getIdsPermisos = function () {
+	/* $scope.getIdsPermisos = function () {
         var getidsData = idPermisos.getIds();
         getidsData.then(
         	function (res) {
@@ -13723,7 +13725,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
             }
 		)
     };
-    $scope.getIdsPermisos();
+	 $scope.getIdsPermisos();*/
+    $scope.idPermisos = idPermisos.getIds().data;
+	console.log($scope.idPermisos);
+
 	//$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG','JCASTAMU', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
     $scope.idConceptos=['O-13', 'O-15', 'O-106'];
 
