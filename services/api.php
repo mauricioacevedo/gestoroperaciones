@@ -8712,7 +8712,7 @@ class API extends REST {
             " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
             " from gestor_activacion_pendientes_activador_dom b ".
             " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
-            $transaccion.
+        //    $transaccion.
             " order by b.$parametroBusqueda  ASC";
 
        //echo $query1;
