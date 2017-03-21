@@ -11377,11 +11377,9 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		var minute = $scope.doubleDigit(date1.getMinutes());
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
-		//$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+		$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
         $scope.FECHA_GESTION = year + "-" + month + "-" + day;
-        var fromDate = parseInt(new Date($scope.fecha_inicio).getTime() / 1000);
-        var toDate = parseInt(new Date($scope.fecha_fin).getTime() / 1000);
-        var timeDiff = (toDate - fromDate) / 3600; // will give difference
+       $scope.DURACION = $scope.fecha_fin - $scope.fecha_inicio;
 
         if ($scope.tipificacion == 'NUMERO_CR' ) {
 			$scope.NUMERO_CR = '';
@@ -11409,7 +11407,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             NUMERO_CR:InfoPedido.NUMERO_CR,
             USUARIO: $rootScope.logedUser.login,
             STATUS: $scope.stautsGo,
-            DURACION: timeDiff,
+            DURACION: $scope.DURACION,
 			STATUS: $scope.peds[0].STATUS,
 			TIPIFICACION: $scope.tipificacion,
             TABLA: $scope.tabla,
