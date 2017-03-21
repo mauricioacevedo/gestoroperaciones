@@ -4764,7 +4764,7 @@ class API extends REST {
                 $categorias[]=array("label"=>"$label");
                 $totales[]=array("value"=>"$total");
                 $manual[]=array("value"=>"$manu");
-                $automatico[]=array("value"=>"$auto", "label"=>"$pauto");
+                $automatico[]=array("value"=>"$auto", "label"=>"$auto");
                 $result[] = $row;
                 $i++;
             }
@@ -7357,7 +7357,7 @@ class API extends REST {
 
             $subinsert=$subinsert.",'$status')";
             if(!$result = $this->mysqli->query($subinsert)){
-                die('There was an error running the query [' . $connm->error. ' --'.$subinsert.'** ]');
+                die('There was an error running the query [' . $this->mysqli->error. ' --'.$subinsert.'** ]');
             }
             $success="OK";
         }
@@ -15308,7 +15308,7 @@ class API extends REST {
             " , ifnull(G.SIEBEL,0) AS SIEBEL ".
             " , ifnull(G.RECONFIGURADOS,0) AS RECONFIGURADOS ".
             " , (ifnull(G.ASIGNADOS,0)+ifnull(G.SIEBEL,0)+ifnull(G.RECONFIGURADOS,0) ) AS GESTIONADOS ".
-            " , G.USUARIOS ".
+            " , ifnull(G.USUARIOS,0) as USUARIOS ".
             " FROM(SELECT  ".
             " h.HORA ".
             " , (select C2.CANTUSER ".
