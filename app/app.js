@@ -5140,7 +5140,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 });
 
 ///---------------inicio resgistros----------------------
-app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services, notify) {
+app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services, notify, idPermisos) {
 
     var userID = $cookieStore.get('logedUser').login;
     $rootScope.logedUser = $cookieStore.get('logedUser');
@@ -5380,7 +5380,8 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         $scope.calcularPendientes($routeParams.conceptoid);
     }
 
-    $scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
+    $scope.idPermisos = idPermisos.getIds();
+    //$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
     $scope.habilitarPrioridad = function (pedinfo){
 //        console.log(pedinfo);
         services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.RADICADO_TEMPORAL,userID).then(
