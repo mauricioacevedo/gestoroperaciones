@@ -8525,6 +8525,222 @@ class API extends REST {
 //--------------------fin demepedido activacion------------------------------
 
 
+//--------------------------demepedido activacion dom----------------------
+  private function demePedidoActivacion(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+        $user = $this->_request['userID'];
+        $transaccion = $this->_request['transaccion'];
+        $tabla = $this->_request['tabla'];
+
+
+        $filename = '../tmp/control-threads-agen.txt';
+        if(file_exists($filename)){
+            sleep(1);
+        }else{
+            $file = fopen($filename, 'w') or die("can't create file");
+            fclose($file);
+        }
+
+
+        $pedido_actual = $this->_request['pedido_actual'];
+
+        $user=strtoupper($user);
+
+         $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='' where ASESOR='$user'";
+        //echo $sqlupdate;
+        $xxx = $this->mysqli->query($sqlupdate);
+
+        $today = date("Y-m-d");
+
+       $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
+
+
+
+        if($transaccion!=""){
+            $transaccion=" and b.TRANSACCION='$transaccion' ";
+        }else{
+            $transaccion="";
+        }
+
+        $hora=date("G");
+        $uphold="1";
+        if($hora<11){
+            $uphold="1";
+        }else{
+            $uphold="2";
+        }
+
+        $mypedido="";
+
+
+
+        if($prioridad!=''){
+
+            $parametroBusqueda=$prioridad;
+        }
+        if($parametroBusqueda=='') $parametroBusqueda ='FECHA_EXCEPCION';
+
+        $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
+            " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
+            " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
+            " from gestor_activacion_pendientes_activador_dom b ".
+            "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ";
+       //     " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ";
+       // echo $query1;
+        if($mypedido==""){
+
+            $rr = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
+            $mypedidoresult=array();
+            $pedidos_ignorados="";
+            if($rr->num_rows > 0){
+                while($row = $rr->fetch_assoc()){
+                    $result[] = $row;
+
+                    if($row['BEENHERE']==$user){
+                        $pedidos_ignorados=$pedidos_ignorados.$row['PEDIDO'].',';
+                        //este pedido ya lo vio el dia de hoy
+                        //busco otro pedido----
+                        continue;
+                    }
+
+                    $mypedido=$row['PEDIDO'];
+                    $mypedidoresult=$rta;
+                    break;
+
+                }
+                //pedidos viejos
+            } else {
+                $query1=" select distinct b.PEDIDO, b.FECHA_CARGA ,b.ID ".
+                    " from gestor_activacion_pendientes_activador_dom b ".
+                    " where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
+                    " and FECHA_CARGA between '$today 00:00:00' and '$today 23:59:59' order by id ";
+                // echo $query1;
+                $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
+                $mypedido="";
+                $mypedidoresult=array();
+                if($r->num_rows > 0){
+                    while($row = $r->fetch_assoc()){
+                        $result[] = $row;
+
+                        $rta=$this->pedidoOcupadoFenix($row);
+
+                        if($rta=="No rows!!!!"){
+
+
+                            $mypedido=$row['PEDIDO'];
+                            $mypedidoresult=$rta;
+                            break;
+                        }
+
+                    }
+
+                }
+
+            }//end if
+
+        }//end mypedido if
+
+        if($mypedido==''){
+
+            $SQL_UPDATE="update vistas_pedidos a set a.user='$user-CICLO' where a.user='$user' AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59'";
+            $xS = $this->mysqli->query($SQL_UPDATE);
+            $pedds=explode(",", $pedidos_ignorados);
+            if(count($pedds)>0){
+                $mypedido=$pedds[0];
+            }
+        }
+        $fecha_visto= date("Y-m-d H:i:s");
+
+
+
+
+        $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
+            " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
+            " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
+            " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR ".
+            " ,group_concat(distinct b.PRODUCTO ) as PRODUCTOS ".
+            " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
+            " ,b.FECHA_EXCEPCION ,'AUTO' as source ".
+            " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
+            " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
+            " from gestor_activacion_pendientes_activador_dom b ".
+            " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
+            $transaccion.
+            " order by b.$parametroBusqueda  ASC";
+
+      // echo $query1;
+        $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            $ids="";
+            $sep="";
+            while($row = $r->fetch_assoc()){
+                $result[] = $row;
+                $ids=$ids.$sep.$row['ID'];
+                $sep=",";
+            }
+
+            $x = $this->mysqli->query($sqlupdate);
+            $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+            $x = $this->mysqli->query($sqlupdate);
+            $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
+            $x = $this->mysqli->query($INSERTLOG);
+
+            // SQL Feed----------------------------------
+            $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'$mypedido' ".
+                ",'USO DEMEPEDIDO' ".
+                ",'PEDIDO GENERADO' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
+            // ---------------------------------- SQL Feed
+
+            //sleep(20);
+            unlink($filename);
+            echo json_encode($result);
+            $this->response('', 200); // send user details
+        }else{
+            $this->response(json_encode('No hay registros!'),204);
+        }
+        unlink($filename);
+
+        $this->response('nothing',204);        // If no records "No Content" status
+    }
+
+
+
+//--------------------fin demepedido activacion dom------------------------------
+
+
 //----------------------------------demepedido agendamiento----------------------------
 
 
