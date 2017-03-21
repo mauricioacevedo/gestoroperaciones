@@ -13710,9 +13710,20 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
 
-	var getidsData= idPermisos.getIds();
-	console.log(getidsData);
-	$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG','JCASTAMU', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
+	$scope.getIdsPermisos = function () {
+        var getidsData = idPermisos.getIds();
+        getidsData.then(
+        	function (res) {
+      			$scope.idPermisos = res.data[0];
+
+				console.log($scope.idPermisos);
+
+            }
+		)
+    };
+
+    $scope.getIdsPermisos();
+	//$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG','JCASTAMU', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
     $scope.idConceptos=['O-13', 'O-15', 'O-106'];
 
 	// Opciones para cargar las listas de Gestion, segun el grupo, fuente, actividad--------------------------
