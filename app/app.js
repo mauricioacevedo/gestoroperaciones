@@ -14397,6 +14397,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                     grupo: $scope.peds[0].GRUPO,
                     actividad: $scope.peds[0].ACTIVIDAD
                 };
+
+                console.log(opciones);
                 $scope.listarOpcionesAsginacion(opciones);
                 $scope.baby($scope.pedido1);
 
