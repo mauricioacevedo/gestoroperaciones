@@ -11167,7 +11167,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.pedidosUnicos = '';
 	$scope.historico_pedido = [];
 	$rootScope.actualView = "/demepedido-activacion";
-    $rootScope.actualView = "/demepedidoActivaciondom";
+    $rootScope.actualView = "/demepedidodom";
 	$scope.popup = '';
 	$scope.pedidoinfo = '';
 	$rootScope.errorDatos = null;
