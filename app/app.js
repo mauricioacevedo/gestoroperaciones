@@ -9064,10 +9064,10 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			}
 
 
-        if ($scope.proceso == 'REPARACION' && $scope.TIEMPO_TOTAL>= 10 && $scope.TODAY_TRIES>=3 ) {
-			alert("el PEDIDO tiene en el sistema " + $scope.TIEMPO_TOTAL + " dias o intentos de contacto " + $scope.TODAY_TRIES + " para continuar debe colocar la  noveda CIERRE POR ILOCALIZADO con SS o AGENDAR.");
+       // if ($scope.proceso == 'REPARACION' && $scope.TIEMPO_TOTAL>= 10 && $scope.TODAY_TRIES>=3 ) {
+		//	alert("el PEDIDO tiene en el sistema " + $scope.TIEMPO_TOTAL + " dias o intentos de contacto " + $scope.TODAY_TRIES //+ " para continuar debe colocar la  noveda CIERRE POR ILOCALIZADO con SS o AGENDAR.");
 			//return;
-		}
+		//}
 
 			var demePedidoButton = document.getElementById("iniciar");
 			demePedidoButton.removeAttribute("disabled");
@@ -11403,8 +11403,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			FECHA_GESTION: $scope.FECHA_GESTION,
             FECHA_INICIO: $scope.fecha_inicio,
             FECHA_FIN: $scope.fecha_fin,
-            //OBSERVACION: $scope.OBSERVACION,
-           // NUMERO_CR:$scope.NUMERO_CR,
+            OBSERVACION: $scope.OBSERVACION,
+            NUMERO_CR:$scope.NUMERO_CR,
             USUARIO: $rootScope.logedUser.login,
             STATUS: $scope.stautsGo,
             DURACION: $scope.duracion,
@@ -11416,6 +11416,10 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		};
 
         console.log($scope.InfoGestion);
+        console.log($scope.OBSERVACION);
+        console.log($scope.NUMERO_CR);
+        console.log($scope.observacion);
+        console.log($scope.numero_cr);
 
 
 
