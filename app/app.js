@@ -14402,20 +14402,25 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 
 	$scope.listarPedidosAuditados = function (buscar) {
-        console.log($scope.auditoria);
 
-        if($scope.auditoria == null){
-        	console.log("Sin nada");
+
+        if(Object.keys($scope.auditoria).length === 0){
+        	$scope.auditoria = {
+        		PEDIDO_ID: 'TODO',
+				FECHAINI: 'SIN',
+				FECHAFIN: 'SIN'
+			}
 		}
-        if(buscar==undefined){
+        console.log($scope.auditoria);
+        /*if(buscar==undefined){
             buscar = {};
             buscar.PEDIDO_ID='TODO';
-        }
+        }*/
        /* if(buscar.FECHAINI==''){
             buscar.FECHAINI='SIN';
             buscar.FECHAFIN='SIN';
 		}*/
-        services.buscarListarPedidoAuditoriaGestor(buscar.PEDIDO_ID, buscar.FECHAINI, buscar.FECHAFIN).then(
+        services.buscarListarPedidoAuditoriaGestor($scope.auditoria.PEDIDO_ID, $scope.auditoria.FECHAINI, $scope.auditoria.FECHAFIN).then(
             function (data) {
                 $scope.listaAuditados = data.data[0];
                 //console.log(data.data);
