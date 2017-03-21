@@ -13587,6 +13587,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.ifuente				= {};						// Objeto con la fuente para hacer las busquedas.
 	$scope.listaOpcionesGestion = [];						// Arreglo con listado de Opciones para la Gestion.
 	$scope.info					= {};						// Objeto con Info del pedido en gestion.
+    $scope.auditoria			= {};
 	//$scope.estadoGuardo			= false;					// Habilita el guardado en la tabla de siebel.
 	$scope.habilitaCr			= false;					// Habilita el campo CR.
 	$scope.programar			= false;					// Habilitar el campo programación.
@@ -14398,10 +14399,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
             buscar = {};
             buscar.PEDIDO_ID='TODO';
         }
-        if(buscar.FECHAINI==''){
+       /* if(buscar.FECHAINI==''){
             buscar.FECHAINI='SIN';
             buscar.FECHAFIN='SIN';
-		}
+		}*/
         services.buscarListarPedidoAuditoriaGestor(buscar.PEDIDO_ID, buscar.FECHAINI, buscar.FECHAFIN).then(
             function (data) {
                 $scope.listaAuditados = data.data[0];
