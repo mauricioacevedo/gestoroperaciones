@@ -15476,7 +15476,7 @@ app.config(['$routeProvider',
 		})
 
         .when('/demepedidodom', {
-			title: 'DemePedido Activacion',
+			title: 'DemePedido Activacion Dom',
 			templateUrl: 'partials/demepedidodom.html',
 			controller: 'siebelActivacionCtrl',
             grupos: ['ACTIVACION','SUPER'],
