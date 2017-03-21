@@ -11432,7 +11432,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			function (data) {
 
 
-				if (data.data == '1') {
+				if (data.data == '') {
 
 					$rootScope.errorDatos = "No hay Registros de activacion.";
 					$scope.peds = {};
@@ -11511,7 +11511,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 					$scope.mpedido = {};
 					$scope.busy = "";
 					$scope.pedidoIsActive = false;
-                  alert("'"+data.data+"'");
+                  //alert("'"+data.data+"'");
 				} else {
 
 					$scope.peds = data.data[1];
