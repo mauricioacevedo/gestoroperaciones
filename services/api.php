@@ -8414,7 +8414,8 @@ class API extends REST {
             " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
             " from gestor_activacion_pendientes_activador_suspecore b ".
-            "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ";
+            "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
+             " order by b.$parametroBusqueda  ASC";
        //     " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ";
        // echo $query1;
         if($mypedido==""){
@@ -8443,7 +8444,8 @@ class API extends REST {
                 $query1=" select distinct b.PEDIDO, b.FECHA_CARGA ,b.ID ".
                     " from gestor_activacion_pendientes_activador_suspecore b ".
                     " where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
-                    " and FECHA_CARGA between '$today 00:00:00' and '$today 23:59:59' order by id ";
+                    " and FECHA_CARGA between '$today 00:00:00' and '$today 23:59:59' order by id ".
+                     " order by b.$parametroBusqueda  ASC";
                 // echo $query1;
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
