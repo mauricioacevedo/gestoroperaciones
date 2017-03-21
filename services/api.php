@@ -8358,7 +8358,7 @@ class API extends REST {
         $user=strtoupper($user);
 
         $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
-         $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='' where ASESOR='$user'";
+
         //echo $sqlupdate;
         $xxx = $this->mysqli->query($sqlupdate);
 
@@ -8497,7 +8497,7 @@ class API extends REST {
             " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
             " from gestor_activacion_pendientes_activador_suspecore b ".
             " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
-            $transaccion.
+            //$transaccion.
             " order by b.$parametroBusqueda  ASC";
 
       // echo $query1;
@@ -8514,8 +8514,7 @@ class API extends REST {
             }
             $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
             $x = $this->mysqli->query($sqlupdate);
-            $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
-            $x = $this->mysqli->query($sqlupdate);
+
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
             $x = $this->mysqli->query($INSERTLOG);
 
