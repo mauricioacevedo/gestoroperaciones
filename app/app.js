@@ -11504,14 +11504,14 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			function (data) {
 
 
-				if (data.data == '' || data.data == undefined) {
+				if (data.data == '') {
 
 					$rootScope.error = "No hay Registros de activacion.";
 					$scope.peds = {};
 					$scope.mpedido = {};
 					$scope.busy = "";
 					$scope.pedidoIsActive = false;
-
+                    console.log($rootScope.error);
 				} else {
 
 					$scope.peds = data.data[1];
