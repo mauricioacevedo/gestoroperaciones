@@ -15848,6 +15848,7 @@ private function guardarGestionAsignaciones()
                 $row['OBSERVACIONES']=utf8_encode($row['OBSERVACIONES']);
                 $result[] = $row;
             }
+            var_dump($result);
             $this->response($this->json(array($result)), 200); // send user details
         }else{
             $error = "No hay datos.";
