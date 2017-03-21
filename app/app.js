@@ -1011,6 +1011,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
     obj.buscarListarPedidoAuditoriaGestor = function (pedido, fechaini, fechafin) {
         return $http.get(serviceBase + 'listarBuscarPedidoAuditoriaAsignaciones?pedido=' + pedido + '&fechaini=' + fechaini + '&fechafin=' + fechafin);
     };
+    obj.csvAuditoriaAsignaciones = function (pedido, fechaini, fechafin) {
+        return $http.get(serviceBase + 'csvAuditorias?pedido=' + pedido + '&fechaini=' + fechaini + '&fechafin=' + fechafin);
+    };
 
 	return obj;
 }]);
@@ -14906,6 +14909,22 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
     };
 
     $scope.listarPedidosAuditados();
+
+    $scope.csvAsuditoria = function (buscar) {
+        if(Object.keys($scope.auditoria).length === 0){
+            $scope.auditoria = {
+                PEDIDO_ID: 'TODO',
+                FECHAINI: 'SIN',
+                FECHAFIN: 'SIN'
+            }
+        }
+        services.csvAuditoriaAsignaciones($scope.auditoria.PEDIDO_ID, $scope.auditoria.FECHAINI, $scope.auditoria.FECHAFIN).then(
+        	function (data) {
+            window.location.href = "tmp/" + data.data[0];
+            return data.data;
+        });
+
+    };
 
 });
 // -----------------------------------------------Controlador para Gestion de Reconfiguracion Asignaciones
