@@ -11485,7 +11485,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		var pedido1 = '';
 		$scope.popup = '';
-		$rootScope.error = "";
+		$rootScope.errorDatos = "";
 		$scope.InfoPedido = [];
         $scope.fecha_inicio = null;
 		$scope.FECHA_CREACION = null;
@@ -11511,7 +11511,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 					$scope.mpedido = {};
 					$scope.busy = "";
 					$scope.pedidoIsActive = false;
-                  // console.log($rootScope.errorDatos);
+                  alert("'"+data.data+"'");
 				} else {
 
 					$scope.peds = data.data[1];
@@ -11528,7 +11528,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 						$scope.mpedido = {};
 						$scope.busy = "";
 						$scope.pedidoIsActive = false;
-                        console.log($rootScope.errorDatos);
+                       // console.log($rootScope.errorDatos);
 
 					} else {
 
@@ -11540,7 +11540,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 						}
 						$rootScope.errorDatos = null;
 						$scope.pedidoIsActive = true;
-                        console.log($rootScope.errorDatos);
+
 
 						return data.data;
 					}
