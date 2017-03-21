@@ -11433,7 +11433,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 				if (data.data == '') {
-                    alert("'"+data.data+"'");
+
 					$rootScope.errorDatos = "No hay Registros de activacion.";
 					$scope.peds = {};
 					$scope.mpedido = {};
@@ -11511,7 +11511,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 					$scope.mpedido = {};
 					$scope.busy = "";
 					$scope.pedidoIsActive = false;
-                   console.log($rootScope.errorDatos);
+                  // console.log($rootScope.errorDatos);
 				} else {
 
 					$scope.peds = data.data[1];
@@ -11528,7 +11528,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 						$scope.mpedido = {};
 						$scope.busy = "";
 						$scope.pedidoIsActive = false;
-                        console.log($rootScope.errorDatos);
+                        //console.log($rootScope.errorDatos);
 
 					} else {
 
@@ -11540,7 +11540,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 						}
 						$rootScope.errorDatos = null;
 						$scope.pedidoIsActive = true;
-
+                        console.log($rootScope.errorDatos);
 
 						return data.data;
 					}
