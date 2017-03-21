@@ -467,6 +467,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID=' + pedido + '&pedido_actual=' + pedido_actual + '&userID=' + user);
 	};
 
+    obj.getBuscarpedidoactivaciondom = function (pedido, pedido_actual, user) { //buscar pedido activacion
+		return $http.get(serviceBase + 'buscarpedidoactivaciondom?pedidoID=' + pedido + '&pedido_actual=' + pedido_actual + '&userID=' + user);
+	};
+
 	obj.insertTransaccionsiebelactivacion = function (pedido) { //insertar pedidos siebel activacion
 		var data = $http.post(serviceBase + 'insertTransaccionsiebelactivacion ', {
 			"pedido": pedido
@@ -11474,6 +11478,78 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	};
 
 	// -----------------------------BuscarPedido--------------------------------------
+
+    // ------------------------------BuscarPedidodom ----------------------------------------
+
+	$scope.buscarPedidodom = function (buscar, pedidoinfo) {
+
+		var pedido1 = '';
+		$scope.popup = '';
+		$rootScope.errorDatos = "";
+		$scope.InfoPedido = [];
+        $scope.fecha_inicio = null;
+		$scope.FECHA_CREACION = null;
+		$scope.accRdy = false;
+		$scope.InfoGestion = {};
+		$scope.pedidoIsGuardado = false;
+		$scope.pedidoActual = pedidoinfo;
+		$scope.buscar = buscar;
+        //$scope.peds={};
+       // $scope.pedidoIsActive=false;
+
+
+
+		var kami = services.getBuscarpedidoactivaciondom(buscar, $scope.pedidoActual, $rootScope.logedUser.login).then(
+
+			function (data) {
+
+
+				if (data.data == '') {
+
+					$rootScope.errorDatos = "No hay Registros de activacion.";
+					$scope.peds = {};
+					$scope.mpedido = {};
+					$scope.busy = "";
+					$scope.pedidoIsActive = false;
+
+				} else {
+
+					$scope.peds = data.data[1];
+					$scope.ocupado = data.data[0];
+					$scope.pedido1 = $scope.peds[0].PEDIDO;
+					$scope.pedidoinfo = $scope.peds[0].PEDIDO;
+
+					var dat = data.status;
+					//alert("'"+data.status+"'");
+					if (dat == 204) {
+						document.getElementById("warning").innerHTML = "No hay Registros.";
+						$rootScope.errorDatos = "No hay Registros.";
+						$scope.peds = {};
+						$scope.mpedido = {};
+						$scope.busy = "";
+						$scope.pedidoIsActive = false;
+
+					} else {
+
+						if ($scope.ocupado == true) {
+							$scope.busy = $scope.peds[0].ASESOR;
+							$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.busy;
+							return;
+
+						}
+						$rootScope.errorDatos = null;
+						$scope.pedidoIsActive = true;
+
+
+						return data.data;
+					}
+				}
+			});
+
+
+	};
+
+	// -----------------------------BuscarPedidodom--------------------------------------
 
 	//------------------------------ GuardarPedido ------------------------------
 
