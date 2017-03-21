@@ -8714,6 +8714,7 @@ class API extends REST {
                 " FROM portalbd.gestor_activacion_pendientes_activador_dom p ".
                 " where p.PEDIDO = '$mypedido'  ".
                 " and p.STATUS='PENDI_ACTI' ".
+                $transaccion.
                 " group by p.pedido ";
 
        //echo $query1;
