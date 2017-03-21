@@ -59,6 +59,7 @@
                     <th>ANALISIS</th>
                     <th>AUDITORIA</th>
                     <th>OBSERVACIONES</th>
+                    <th>FECHA GESTION</th>
                     </thead>
                     <tbody>
                     <tr ng-repeat="audit in listaAuditados track by audit.ID">
@@ -69,6 +70,7 @@
                         <td><span class="small">{{audit.ANALISIS}}</span></td>
                         <td><span class="small">{{audit.CONCEPTO_AUDITORIA}}</span></td>
                         <td><span class="small">{{audit.OBSERVACIONES}}</span></td>
+                        <td><span class="small">{{audit.FECHA_GESTION}}</span></td>
                     </tr>
                     </tbody>
                 </table>
