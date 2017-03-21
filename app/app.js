@@ -5,11 +5,15 @@ var app = angular.module('myApp', ['base64', 'ngRoute', 'ngCookies', 'ng-fusionc
 //El módulo ngCookies proporciona un contenedor conveniente para la lectura y la escritura del navegador cookies.
 //FusionCharts suite XT incluye una amplia gama de gráficos, indicadores y mapas que se pueden utilizar para trazar todo tipo de datos estáticos y en tiempo real .
 
-app.service('idPermisos', function ($http) {
-	this.getIds = function () {
-		var usersid =  $http.get('./services/idpermisoslst').then(function (res){
-			return usersid.data;
-		})
+app.service('idPermisos', function ($http, $q) {
+    var self = this;
+    self.getIds = function () {
+        return $http.get('./services/idpermisoslst').then(function (res) {
+                return self.getIds(res.data);
+            }, function (res) {
+                return $q.reject(res); // chain the rejections)
+            }
+        )
     }
 });
 
