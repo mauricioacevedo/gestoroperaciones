@@ -11183,7 +11183,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.FECHA_CREACION = null;
     $scope.FECHA_INICIO = null;
 	$scope.FECHA_FIN = null;
-	$scope.transaccion = 'Suspender';
+	//$scope.transaccion = 'Suspender';
     $scope.tabla = 'ACTIVADOR_SUSPECORE';
 
 
