@@ -14416,7 +14416,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
             buscar.FECHAINI='SIN';
             buscar.FECHAFIN='SIN';
 		}*/
-        services.buscarListarPedidoAuditoriaGestor(buscar.PEDIDO_ID, buscar.FECHAINI, buscar.FECHAFIN).then(
+        services.buscarListarPedidoAuditoriaGestor($scope.auditoria.PEDIDO_ID, $scope.auditoria.FECHAINI, $scope.auditoria.FECHAFIN).then(
             function (data) {
                 $scope.listaAuditados = data.data[0];
                 //console.log(data.data);
