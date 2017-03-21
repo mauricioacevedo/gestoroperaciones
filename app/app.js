@@ -13718,9 +13718,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         var getidsData = idPermisos.getIds();
         getidsData.then(
         	function (res) {
-      			$scope.idPermisos = res.data[0];
+      			$scope.idPermisos = res.data;
 
 				console.log($scope.idPermisos);
+                console.log($scope.idPermisos.USUARIO_ID);
 
             }
 		)
