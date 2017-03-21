@@ -14388,7 +14388,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
             }
 		)
-    }
+    };
 
 
 	$scope.listarPedidosAuditados = function (buscar) {
@@ -14405,9 +14405,13 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 $scope.listaAuditados = data.data[0];
                 console.log(data.data);
 
+            }, function (err) {
+                $rootScope.errorDatos = err;
             }
         )
     };
+
+    $scope.listarPedidosAuditados();
 
 });
 // -----------------------------------------------Controlador para Gestion de Reconfiguracion Asignaciones
