@@ -14398,15 +14398,20 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 
 	$scope.listarPedidosAuditados = function (buscar) {
-        console.log($scope.auditoria);
+
 
         if(Object.keys($scope.auditoria).length === 0){
-        	console.log("Sin nada");
+        	$scope.auditoria = {
+        		PEDIDO_ID: 'TODO',
+				FECHAINI: 'SIN',
+				FECHAFIN: 'SIN'
+			}
 		}
-        if(buscar==undefined){
+        console.log($scope.auditoria);
+        /*if(buscar==undefined){
             buscar = {};
             buscar.PEDIDO_ID='TODO';
-        }
+        }*/
        /* if(buscar.FECHAINI==''){
             buscar.FECHAINI='SIN';
             buscar.FECHAFIN='SIN';
