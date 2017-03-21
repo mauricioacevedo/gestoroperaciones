@@ -7,7 +7,7 @@ var app = angular.module('myApp', ['base64', 'ngRoute', 'ngCookies', 'ng-fusionc
 
 app.service('idPermisos', function ($http) {
 	this.getIds = function () {
-		return $http.get('/services/idpermisoslst')
+		return $http.get('./services/idpermisoslst')
     }
 });
 
