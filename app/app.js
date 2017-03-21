@@ -11485,7 +11485,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		var pedido1 = '';
 		$scope.popup = '';
-		$rootScope.errorDatos = "";
+		$rootScope.error = "";
 		$scope.InfoPedido = [];
         $scope.fecha_inicio = null;
 		$scope.FECHA_CREACION = null;
@@ -11506,7 +11506,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 				if (data.data == '') {
 
-					$rootScope.errorDatos = "No hay Registros de activacion.";
+					$rootScope.error = "No hay Registros de activacion.";
 					$scope.peds = {};
 					$scope.mpedido = {};
 					$scope.busy = "";
@@ -11537,7 +11537,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 							return;
 
 						}
-						$rootScope.errorDatos = null;
+						$rootScope.error = null;
 						$scope.pedidoIsActive = true;
 
 
@@ -11573,6 +11573,11 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         if ($scope.tipificacion == 'NUMERO_CR' ) {
 			$scope.NUMERO_CR = '';
 
+		}
+
+        if ($scope.tipificacion === undefined || $scope.tipificacion == "") {
+			alert('Por favor diligenciar campo tipificacion.');
+			return;
 		}
 
 		$scope.InfoGestion = {
