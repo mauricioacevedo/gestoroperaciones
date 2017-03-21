@@ -15474,6 +15474,15 @@ app.config(['$routeProvider',
             grupos: ['ACTIVACION','SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
+
+        .when('/demepedidoDom', {
+			title: 'DemePedido Activacion',
+			templateUrl: 'partials/demepedidoDom.html',
+			controller: 'siebelActivacionCtrl',
+            grupos: ['ACTIVACION','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
+		})
+
 		.when('/activacion/', {
 			title: 'Indicadores Activación',
 			templateUrl: 'partials/activacion/indicadores_activacion.html',
