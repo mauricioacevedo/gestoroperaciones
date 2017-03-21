@@ -5388,23 +5388,6 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         return $http.post('services/actualizarSatusPedidosAsignacion', {id: data.ID, pedido: data.PEDIDO_ID, status:data.STATUS, usuario:userID});
     };
 
-    $scope.listarPedidosAuditados = function (buscar) {
-    	//console.log(buscar);
-
-			if(buscar==undefined || buscar.FECHAINI==''){
-				buscar={};
-                buscar.PEDIDO_ID='TODO';
-                buscar.FECHAINI='SIN';
-                buscar.FECHAFIN='SIN';
-			}
-        services.buscarListarPedidoAuditoriaGestor(buscar.PEDIDO_ID, buscar.FECHAINI, buscar.FECHAFIN).then(
-        	function (data) {
-        		$scope.listaAuditados = data.data[0];
-        		console.log(data.data);
-
-            }
-		)
-    };
     //$scope.listarPedidosAuditados();
 
 });
@@ -14408,8 +14391,23 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
     }
 
 
+	$scope.listarPedidosAuditados = function (buscar) {
+        //console.log(buscar);
 
+        if(buscar==undefined || buscar.FECHAINI==''){
+            buscar={};
+            buscar.PEDIDO_ID='TODO';
+            buscar.FECHAINI='SIN';
+            buscar.FECHAFIN='SIN';
+        }
+        services.buscarListarPedidoAuditoriaGestor(buscar.PEDIDO_ID, buscar.FECHAINI, buscar.FECHAFIN).then(
+            function (data) {
+                $scope.listaAuditados = data.data[0];
+                console.log(data.data);
 
+            }
+        )
+    };
 
 });
 // -----------------------------------------------Controlador para Gestion de Reconfiguracion Asignaciones
@@ -15504,7 +15502,7 @@ app.config(['$routeProvider',
 		.when('/registrosAuditoria/', {
 			title: 'Registros Auditoria',
 			templateUrl: 'partials/asignaciones/registrosauditoria.html',
-			controller: 'RegistrosCtrl'
+			controller: 'gestionAsignacionesCtrl'
 		})
 		.otherwise({
 			redirectTo: '/'
