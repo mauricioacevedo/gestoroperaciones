@@ -8605,7 +8605,7 @@ class API extends REST {
 
 
         if($transaccion!=""){
-            $transaccion=" and b.TRANSACCION='$transaccion' ";
+            $transaccion=" and p.TRANSACCION='$transaccion' ";
         }else{
             $transaccion="";
         }
