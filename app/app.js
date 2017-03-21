@@ -11528,7 +11528,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 						$scope.mpedido = {};
 						$scope.busy = "";
 						$scope.pedidoIsActive = false;
-                        //console.log($rootScope.errorDatos);
+                        console.log($rootScope.errorDatos);
 
 					} else {
 
