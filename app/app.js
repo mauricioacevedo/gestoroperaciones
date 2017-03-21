@@ -11379,7 +11379,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
         $scope.FECHA_GESTION = year + "-" + month + "-" + day;
-       $scope.DURACION = $scope.fecha_fin - $scope.fecha_inicio;
+       $scope.duracion = $scope.fecha_fin - $scope.fecha_inicio;
 
         if ($scope.tipificacion == 'NUMERO_CR' ) {
 			$scope.NUMERO_CR = '';
@@ -11407,7 +11407,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             NUMERO_CR:InfoPedido.NUMERO_CR,
             USUARIO: $rootScope.logedUser.login,
             STATUS: $scope.stautsGo,
-            DURACION: $scope.DURACION,
+            DURACION: $scope.duracion,
 			STATUS: $scope.peds[0].STATUS,
 			TIPIFICACION: $scope.tipificacion,
             TABLA: $scope.tabla,
