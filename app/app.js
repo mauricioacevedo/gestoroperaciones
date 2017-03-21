@@ -14171,7 +14171,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
     $scope.idConceptos=['O-13', 'O-15', 'O-106'];
 
 	// Opciones para cargar las listas de Gestion, segun el grupo, fuente, actividad--------------------------
-	$scope.GenerarOpcionesGestion = function () {
+	/* $scope.GenerarOpcionesGestion = function () {
 		var opciones= {
 			fuente: $scope.iconcepto.FUENTE,
 			grupo: $scope.iconcepto.GRUPO,
@@ -14179,7 +14179,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		};
 
 		$scope.listarOpcionesAsginacion(opciones);
-	};//-------------------------------------------------------------------------------------------------------
+	}; *///-------------------------------------------------------------------------------------------------------
 
 	/* Habilitar esta linea si se quiere inicializar el iconcepto con algun dato por defecto
 	$scope.iconcepto = { ID: '5', CONCEPTO_ID: '14', GRUPO: $scope.actividadGestion, ACTIVIDAD: 'ESTUDIO' ,FUENTE: 'FENIX_NAL'};
@@ -14454,7 +14454,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                     actividad: $scope.peds[0].ACTIVIDAD
                 };
 
-                console.log(opciones);
+                //console.log(opciones);
                 $scope.listarOpcionesAsginacion(opciones);
                 $scope.baby($scope.pedido1);
 
@@ -14983,8 +14983,6 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     // Cargar Opciones para la gestion --------------------------------
     $scope.listarOpcionesAsginacion = function (opciones) {
-    	console.log(opciones);
-
         services.getOpcionesGestionAsignaciones(opciones).then(
             function (data) {
                 if(opciones.actividad!='AUDITORIA'){
