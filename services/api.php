@@ -8712,7 +8712,7 @@ class API extends REST {
 
 
         $query1= " SELECT ".
-                " b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TAREA_EXCEPCION,b.IDSERVICIORAIZ,b.TRANSACCION ".
+                " b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TAREA_EXCEPCION,b.IDSERVICIORAIZ,b.TRANSACCION,b.STATUS,b.ASESOR ".
                 " , group_concat(distinct b.PRODUCTO) as  PRODUCTOS ".
                 " , min(b.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
                 " ,min(b.FECHA_CREACION) as FECHA_CREACION ".
@@ -8723,6 +8723,10 @@ class API extends REST {
                 " and b.STATUS='PENDI_ACTI' ".
                 $transaccion.
                 " order by b.$parametroBusqueda  ASC";
+
+
+
+
 
        //echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
