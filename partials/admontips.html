@@ -1,116 +1,138 @@
 <ol class="breadcrumb">
-  <li><a href="">Administración</a></li>
-  <li class="active"><a href="./#/admontips/">Tips</a></li>
-  <!--<li class="active">Administración Tips</li>-->
+    <li><a href="">Administración</a></li>
+    <li class="active"><a href="./#/admontips/">Tips</a></li>
+    <!--<li class="active">Administración Tips</li>-->
 </ol>
 <div class="row" ng-controller="TabController">
 
-        <div class="col-md-16">
-            <div class="jumbotron">
-                <div ng-show="isSet(1)">
+    <div class="col-md-16">
+        <div class="jumbotron">
+            <div ng-show="isSet(1)">
 
-                  <div class="row">
-                        <div class="col-lg-12">
-                            <h2 class="page-header"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Tips  <small> Administración</small></h2>
-                            <hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
-                            <br>
-                        </div>
-                  </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="page-header"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Tips
+                            <small> Administración</small>
+                        </h2>
+                        <hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;">
+                        <br>
+                    </div>
+                </div>
 
-        <div class="row left-block">
-            <div class="col-lg-2">
-            <button class="btn btn-primary btn-sm" ng-click='nuevo();'><i class='fa fa-exclamation-circle'></i> Nuevo TIP</button>
-          </div>
-      </div>
+                <div class="row left-block">
+                    <div class="col-lg-2">
+                        <button class="btn btn-primary btn-sm" ng-click='nuevo();'><i
+                                class='fa fa-exclamation-circle'></i> Nuevo TIP
+                        </button>
+                    </div>
+                </div>
 
-        <div class="row">
-          <br>
-        </div>
+                <div class="row">
+                    <br>
+                </div>
 
-    <div >
-      <div ng-show="error" class="alert alert-success">
-        <i class="fa fa-trash fa-2x"> </i><strong>{{error}}</strong>
-      </div>    
-    </div>
-                    <div class='row center-block'>  
+                <div>
+                    <div ng-show="error" class="alert alert-success">
+                        <i class="fa fa-trash fa-2x"> </i><strong>{{error}}</strong>
+                    </div>
+                </div>
+                <div class='row center-block'>
 
                     <table class="table small table-striped table-hover table-bordered table-condensed" width="100%">
-                            <thead>
-                                    <th width="25%">TITULO POST</th>
-                                    <th width="8%">CATEGORIA</th>
-                                    <th width="25%">TAGS</th>
-                                    <th width="7%">PRIORIDAD</th>
-                                    <th width="8%">FECHA</th>
-                                    <th width="7%">ESTADO</th>
-                                    <th width="10%">USUARIO</th>
-                                    <th width="10%">ACCIONES</th>
-                            </thead>
-                            <tbody>
-                                  <tr ng-repeat="data in listado_admontips track by $index| orderBy:'ID':true  ">
-                                    <td><div id="divTitulo{{$index}}">{{data.TITULO}}</div></td>
-                                    <td><div id="divCate{{$index}}">{{data.CATEGORIA}}</div></td>
-                                    <td><div id="divTags{{$index}}">{{data.TAGS}}</div></td>
-                                    <td><div id="divPrio{{$index}}">{{data.PRIORIDAD}}</div></td>
-                                    <td><div id="divFecha{{$index}}">{{data.POST_TIME}}</div></td>
-                                    <td><div id="divEstado{{$index}}">{{data.POST_STATUS}}</div></td>
-                                    <td><div id="divUsuario{{$index}}">{{data.USUARIO_ID}}</div></td>
-                                    <td align="center">
-                                      <div id="edi{{$index}}">
-                                        <button class="btn btn-success btn-xs" value="edit!" ng-click="ediTip(data.ID);"><i class="fa fa-pencil fa-lg"></i></button>
-                                        <button class="btn btn-danger btn-xs" value="eliminar!" ng-click="eliminarTip(data.ID);"><i class="fa fa-trash fa-lg"></i></button>
-                                      </div>
-                                    </td>
-                                  </tr>
-                            </tbody>
+                        <thead>
+                        <th width="25%">TITULO POST</th>
+                        <th width="8%">CATEGORIA</th>
+                        <th width="25%">TAGS</th>
+                        <th width="7%">PRIORIDAD</th>
+                        <th width="8%">FECHA</th>
+                        <th width="7%">ESTADO</th>
+                        <th width="10%">USUARIO</th>
+                        <th width="10%">ACCIONES</th>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="data in listado_admontips track by $index| orderBy:'ID':true  ">
+                            <td>
+                                <div id="divTitulo{{$index}}">{{data.TITULO}}</div>
+                            </td>
+                            <td>
+                                <div id="divCate{{$index}}">{{data.CATEGORIA}}</div>
+                            </td>
+                            <td>
+                                <div id="divTags{{$index}}">{{data.TAGS}}</div>
+                            </td>
+                            <td>
+                                <div id="divPrio{{$index}}">{{data.PRIORIDAD}}</div>
+                            </td>
+                            <td>
+                                <div id="divFecha{{$index}}">{{data.POST_TIME}}</div>
+                            </td>
+                            <td>
+                                <div id="divEstado{{$index}}">{{data.POST_STATUS}}</div>
+                            </td>
+                            <td>
+                                <div id="divUsuario{{$index}}">{{data.USUARIO_ID}}</div>
+                            </td>
+                            <td align="center">
+                                <div id="edi{{$index}}">
+                                    <button class="btn btn-success btn-xs" value="edit!" ng-click="ediTip(data.ID);"><i
+                                            class="fa fa-pencil fa-lg"></i></button>
+                                    <button class="btn btn-danger btn-xs" value="eliminar!"
+                                            ng-click="eliminarTip(data.ID);"><i class="fa fa-trash fa-lg"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
                     </table>
-                   </div>
-            </div>  
+                </div>
+            </div>
         </div>
     </div>
-<br>
-<div class="pull-right"><!--Flecha Arriba -->
-    <a href="#" class="scrollToTop"><i class="fa fa-chevron-circle-up fa-2x" data-toggle="tooltip" title="Volver arriba" data-placement="right"></i></a>
 </div>
+    <br>
+    <div class="pull-right"><!--Flecha Arriba -->
+        <a href="#" class="scrollToTop"><i class="fa fa-chevron-circle-up fa-2x" data-toggle="tooltip"
+                                           title="Volver arriba" data-placement="right"></i></a>
+    </div>
     <div class="container">
-      <br>
+        <br>
         <br>
         <br>
         <br>
         <br>
         <br>
     </div>
-<script>
-$('.input-daterange').datepicker({
-     format: 'yyyy-mm-dd',
-     todayBtn: "linked",
-     autoclose: true
- });
-</script>
-<script language='javascript'>
-    $(function () {
-    $('[data-toggle="tooltip"]').tooltip();
-  })
-</script>
-<!-- Flecha Arriba Estilo, dentro del head--> 
-<script>            
-$(document).ready(function(){
-    
-    //Check to see if the window is top if not then display button
-    $(window).scroll(function(){
-        if ($(this).scrollTop() > 100) {
-            $('.scrollToTop').fadeIn();
-        } else {
-            $('.scrollToTop').fadeOut();
-        }
-    });
-    
-    //Click event to scroll to top
-    $('.scrollToTop').click(function(){
-        $('html, body').animate({scrollTop : 0},800);
-        return false;
-    });
-    
-});
-</script>
-<!-- Flecha Arriba Estilo, dentro del head--> 
+    <script>
+        $('.input-daterange').datepicker({
+            format: 'yyyy-mm-dd',
+            todayBtn: "linked",
+            autoclose: true
+        });
+    </script>
+    <script language='javascript'>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        })
+    </script>
+    <!-- Flecha Arriba Estilo, dentro del head-->
+    <script>
+        $(document).ready(function () {
+
+            //Check to see if the window is top if not then display button
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('.scrollToTop').fadeIn();
+                } else {
+                    $('.scrollToTop').fadeOut();
+                }
+            });
+
+            //Click event to scroll to top
+            $('.scrollToTop').click(function () {
+                $('html, body').animate({scrollTop: 0}, 800);
+                return false;
+            });
+
+        });
+    </script>
+    <!-- Flecha Arriba Estilo, dentro del head-->
 
