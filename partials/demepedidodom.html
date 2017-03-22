@@ -129,13 +129,13 @@
 								<div class = "panel-heading">
 									<div class="container-fluid">
 
-                                         <div class="form-group " ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
-                                                <label for="estado" class="control-label">Accion:</label>
-                                                <select id="estado"
+                                         <div class="form-group " ng-class="service.TIPIFICACION">
+                                                <label for="tipificacion" class="control-label">Accion:</label>
+                                                <select id="tipificacion"
                                                         class= "form-control btn-xs"
-                                                        name="estado"
-                                                        ng-disabled="ocupado"
-                                                        ng-click="onChangeEstado()"
+                                                        name="tipificacion"
+                                                        ng-disabled="tipificacion"
+                                                        ng-click="service.TIPIFICACION"
                                                         required>
                                                     <option value="" disabled> ingrese tipificacion </option>
                                                     class= "form-control" ng-model="service.TIPIFICACION" >
