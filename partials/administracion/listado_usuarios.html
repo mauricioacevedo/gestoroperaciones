@@ -88,8 +88,9 @@
 					         <td><span class="small">{{data.CORREO_USUARIO}}</span></td>
 							  <td><span class="small">{{data.CARGO_ID}} - {{data.NOMBRE_CARGO}}</span></td>
 					         <td><span class="small" ng-class="{'ACTIVO': 'label label-success','INACTIVO': 'label label-default'}[data.ESTADO]">{{data.ESTADO}}</span></td>
-						     <td><button type="button" class="btn btn-default btn-circle-xss" ng-click="editarModal(data)" data-toggle="modal" data-target="#editarModal" data-backdrop="static" ng-disabled="loading" >
-									<i class="fa fa-pencil-square-o"  aria-hidden="true" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="Editar: {{data.USUARIO_ID}}"></i>
+						     <td>
+								 <button type="button" uib-tooltip="Editar: {{data.USUARIO_ID}}"  tooltip-placement="left" class="btn btn-default btn-circle-xss" ng-click="editarModal(data)" data-toggle="modal" data-target="#editarModal" data-backdrop="static" ng-disabled="loading" >
+									<i class="fa fa-pencil-square-o"  aria-hidden="true"></i>
 								</button>
 								<button type="button" class="btn btn-default btn-circle-xss" ng-click="borrarModal(data)" data-toggle="modal" data-target="#eliminaUsuario" data-backdrop="static"  ng-disabled="loading" >
 									<i class="fa fa-trash"  aria-hidden="true" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="Borrar"></i>
