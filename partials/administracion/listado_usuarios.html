@@ -35,13 +35,13 @@
 									<li>
 
 
-										<button type="button" class="btn btn-primary btn-circle-xs" ng-click="listadoUsuariosGeop()"   ng-disabled="loading" >
-											<i class="fa fa-refresh"  title="Actualizar" data-toggle="tooltip" data-placement="left" aria-hidden="true"></i>
+										<button type="button" uib-tooltip="Actualizar" tooltip-placement="top" class="btn btn-primary btn-circle-xs" ng-click="listadoUsuariosGeop()"   ng-disabled="loading" >
+											<i class="fa fa-refresh"   aria-hidden="true"></i>
 										</button>
-										<button type="button" class="btn btn-primary btn-circle-xs" ng-click="crearUsuarioModal()" data-toggle="modal" data-target="#editarModal" data-backdrop="static"  ng-disabled="loading" >
+										<button type="button" uib-tooltip="Nuevo" tooltip-placement="top" class="btn btn-primary btn-circle-xs" ng-click="crearUsuarioModal()" data-toggle="modal" data-target="#editarModal" data-backdrop="static"  ng-disabled="loading" >
 											<i class="fa fa-plus"  aria-hidden="true" ></i>
 										</button>
-										<button type="button" class="btn btn-primary btn-circle-xs" ng-click="csvUsuarios()"  ng-disabled="loading">
+										<button type="button" uib-tooltip="Exportar" tooltip-placement="top" class="btn btn-primary btn-circle-xs" ng-click="csvUsuarios()"  ng-disabled="loading">
 											<i class="fa fa-cloud-download" aria-hidden="true"></i>
 										</button>
 
