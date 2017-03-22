@@ -11580,23 +11580,15 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			FECHA_GESTION: $scope.FECHA_GESTION,
             FECHA_INICIO: $scope.fecha_inicio,
             FECHA_FIN: $scope.fecha_fin,
-            OBSERVACION: $scope.OBSERVACION,
-            OBSERVACION:$scope.peds[0].OBSERVACION,
             NUMERO_CR:$scope.NUMERO_CR,
             USUARIO: $rootScope.logedUser.login,
-            //STATUS: $scope.stautsGo,
+            STATUS: $scope.stautsGo,
             DURACION: $scope.duracion,
 			STATUS: $scope.peds[0].STATUS,
 			TIPIFICACION: $scope.tipificacion,
 
 
 		};
-
-        console.log($scope.InfoGestion);
-        console.log($scope.peds[0].OBSERVACION);
-        console.log($scope.NUMERO_CR);
-        console.log($scope.observacion);
-        console.log($scope.numero_cr);
 
 
 
