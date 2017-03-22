@@ -8605,7 +8605,7 @@ class API extends REST {
 
         $today = date("Y-m-d");
 
-       $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
+       $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_DOM');
 
 
 
