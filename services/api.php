@@ -8605,7 +8605,7 @@ class API extends REST {
 
 
         if($transaccion!=""){
-            $transaccion=" and p.TRANSACCION='$transaccion' ";
+            $transaccion=" and b.TRANSACCION='$transaccion' ";
         }else{
             $transaccion="";
         }
@@ -8707,17 +8707,17 @@ class API extends REST {
 
 
         $query1= " SELECT ".
-                " p.PEDIDO,p.TRANSACCION ".
-                " , group_concat(distinct p.PRODUCTO) as  PRODUCTOS ".
-                " , min(p.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
-                " ,min(p.FECHA_CREACION) as FECHA_CREACION ".
+                " b.PEDIDO,b.TRANSACCION ".
+                " , group_concat(distinct b.PRODUCTO) as  PRODUCTOS ".
+                " , min(b.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
+                " ,min(b.FECHA_CREACION) as FECHA_CREACION ".
                 " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
                 " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
                 " FROM portalbd.gestor_activacion_pendientes_activador_dom p ".
-                " where p.PEDIDO = '$mypedido'  ".
-                " and p.STATUS='PENDI_ACTI' ".
+                " where b.PEDIDO = '$mypedido'  ".
+                " and b.STATUS='PENDI_ACTI' ".
                 $transaccion.
-                " group by p.pedido ";
+                " order by b.$parametroBusqueda  ASC";
 
        //echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
