@@ -144,9 +144,10 @@
                                                     <option value="NUMERO_CR">NUMERO CR</option>
                                                 </select>
                                                 <div class= "form-group"><!--Inicia Div de Quedan Observacion-->
-                                        <label class= "col-md-5">Observacion: </label>
+                                         <label for="numero_cr" class="control-label">Numero Cr:</label>
                                         <div class="col-md-8">
-                                        <td><textarea rows='2' cols='10' ng-model="service.NUMERO_CR"></textarea><br>
+                                         <input type="text" name="numero_cr" id="numero_cr" class="form-control" placeholder="1234567890" ng-model="service.NUMERO_CR"/>
+                                             <i class="fa fa-briefcase form-control-feedback"></i>
                                         </div>
 
 
