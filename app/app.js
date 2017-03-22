@@ -455,12 +455,12 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
 	obj.demePedidoActivacion = function (user, pedido, transaccion, tabla, username) { //deme pedido activacion
 		console.log("transaccion=" + transaccion);
-		return $http.get(serviceBase + 'demePedidoActivacion?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion  + '&tabla=' + tabla +'&username=' + username );
+		return $http.get(serviceBase + 'demePedidoActivacion?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion  +'&username=' + username );
 	};
 
     obj.demePedidoActivacionDom = function (user, pedido, transaccion, tabla, username) { //deme pedido activacion
 		console.log("transaccion=" + transaccion);
-		return $http.get(serviceBase + 'demePedidoActivacionDom?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion  + '&tabla=' + tabla +'&username=' + username );
+		return $http.get(serviceBase + 'demePedidoActivacionDom?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion  +'&username=' + username );
 	};
 
 	obj.getBuscarpedidoactivacion = function (pedido, user) { //buscar pedido activacion suspecore
@@ -11261,7 +11261,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-		var kami = services.demePedidoActivacion($rootScope.logedUser.login, $scope.pedido1, $scope.transaccion,$scope.tabla, $rootScope.logedUser.name).then(function (data) {
+		var kami = services.demePedidoActivacion($rootScope.logedUser.login, $scope.pedido1, $scope.transaccion, $rootScope.logedUser.name).then(function (data) {
 
 
 			$scope.peds = data.data;
@@ -11356,7 +11356,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-		var kami = services.demePedidoActivacionDom($rootScope.logedUser.login, $scope.pedido1, $scope.transaccion,$scope.tabla, $rootScope.logedUser.name).then(function (data) {
+		var kami = services.demePedidoActivacionDom($rootScope.logedUser.login, $scope.pedido1, $scope.transaccion, $rootScope.logedUser.name).then(function (data) {
 
 
 			$scope.peds = data.data;
