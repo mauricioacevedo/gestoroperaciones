@@ -11065,14 +11065,11 @@ $scope.set_color_Cuartil = function (value) {
 			$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
 
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TABLAS") {
-				$scope.ordenamientoDemepedidotablas = valor;
-			}
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION") {
 				$scope.ordenamientoDemepedidoActivacion = valor;
 			}
-            if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TRANSACCION") {
-				$scope.ordenamientoDemepedidotransaccion = valor;
+            if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_DOM") {
+				$scope.ordenamientoDemepedidodom = valor;
 			}
 			$scope.buscarParametro(parametro);
 			return data.data;
@@ -11086,20 +11083,16 @@ $scope.set_color_Cuartil = function (value) {
 		services.buscarParametro(parametro).then(function (data) {
 
 
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TABLAS") {
-				$scope.UsuarioParametrotablas = data.data['USUARIO_ID'];
-				$scope.ordenamientoDemepedidotablas = data.data['VALOR'];
-				$scope.ordenamientoDemepedidoUpdatetablas = data.data['ULTIMA_ACTUALIZACION'];
-			}
+
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION") {
 				$scope.UsuarioParametroactivacion = data.data['USUARIO_ID'];
 				$scope.ordenamientoDemepedidoactivacion = data.data['VALOR'];
 				$scope.ordenamientoDemepedidoUpdateactivacion = data.data['ULTIMA_ACTUALIZACION'];
 			}
-            if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TRANSACCION") {
-				$scope.UsuarioParametrotransaccion = data.data['USUARIO_ID'];
-				$scope.ordenamientoDemepedidotransaccion = data.data['VALOR'];
-				$scope.ordenamientoDemepedidoUpdatetransaccion = data.data['ULTIMA_ACTUALIZACION'];
+            if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_DOM") {
+				$scope.UsuarioParametrodom = data.data['USUARIO_ID'];
+				$scope.ordenamientoDemepedidodom = data.data['VALOR'];
+				$scope.ordenamientoDemepedidoUpdatedom = data.data['ULTIMA_ACTUALIZACION'];
 			}
 			return data.data;
 		});
@@ -11109,14 +11102,6 @@ $scope.set_color_Cuartil = function (value) {
 	//para inicializar la variable ordenamientoDemepedido
 
 
-	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TABLAS').then(function (data) {
-
-		$scope.ordenamientoDemepedidotablas = data.data['VALOR'];
-		//$scope.ordenamientoDemepedidoNuevotablas = data.data['VALOR'];
-		$scope.ordenamientoDemepedidoUpdatetablas = data.data['ULTIMA_ACTUALIZACION'];
-		$scope.UsuarioParametrotablas = data.data['USUARIO_ID'];
-		return data.data;
-	});
 
 
 	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION').then(function (data) {
@@ -11128,12 +11113,12 @@ $scope.set_color_Cuartil = function (value) {
 
 		return data.data;
 	});
-services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TRANSACCION').then(function (data) {
+services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_DOM').then(function (data) {
 
-		$scope.ordenamientoDemepedidotransaccion = data.data['VALOR'];
+		$scope.ordenamientoDemepedidodom = data.data['VALOR'];
 		//$scope.ordenamientoDemepedidoNuevo=data.data['VALOR'];
-		$scope.ordenamientoDemepedidoUpdatetransaccion = data.data['ULTIMA_ACTUALIZACION'];
-		$scope.UsuarioParametrotransaccion = data.data['USUARIO_ID'];
+		$scope.ordenamientoDemepedidoUpdatedom = data.data['ULTIMA_ACTUALIZACION'];
+		$scope.UsuarioParametrodom = data.data['USUARIO_ID'];
 
 		return data.data;
 	});

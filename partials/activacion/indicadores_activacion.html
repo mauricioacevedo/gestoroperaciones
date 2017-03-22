@@ -153,20 +153,20 @@
                                 </tr>
                                 <tr>
                                     <td>Activacion Dom</td>
-                                    <td><font color='blue'>{{ordenamientoDemepedidoUpdateactivacion}}</font></td>
-                                    <td>{{UsuarioParametroactivacion}}</td>
+                                    <td><font color='blue'>{{ordenamientoDemepedidodom}}</font></td>
+                                    <td>{{UsuarioParametrodom}}</td>
                                     <td>
                                         <select class="btn btn-default btn-xs grupo-select" id="demerec"
-                                                ng-model="ordenamientoDemepedidoactivacion" style="width:auto;">
+                                                ng-model="ordenamientoDemepedidodom" style="width:auto;">
                                             <option value="FECHA_EXCEPCION">FECHA EXCEPCION</option>
                                             <option value="FECHA_CREACION">FECHA CREACION</option>
                                             <option value="FECHA_CARGA">FECHA CARGA</option>
                                         </select>
                                         <button class="btn btn-success btn-xs"
-                                                ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION',ordenamientoDemepedidoactivacion);">
+                                                ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_DOM',ordenamientoDemepedidodom);">
                                             <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                                         <button type="button" class="btn btn-default btn-circle-xs"
-                                                ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION')"
+                                                ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_DOM')"
                                                 title="Actualizar" data-toggle="tooltip" data-placement="left"
                                                 ng-disabled="loading">
                                             <i class="fa fa-refresh" aria-hidden="true"></i>
