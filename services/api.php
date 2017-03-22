@@ -8030,8 +8030,9 @@ class API extends REST {
                 }
             }
             
-            echo $mypedido;
+            //echo $mypedido;
 
+            if($mypedido==""){
             //2017-02-03 Mauricio: se agrega funcionalidad para buscar por arbol en concepto 14
                 //HAGO LA CONSULTA DE PRIORIDAD POR ARBOL
                 $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA ".
@@ -8056,7 +8057,7 @@ class API extends REST {
                     }
                 }
 
-
+            }
             //$concepto=" and b.CONCEPTO_ID='$concepto' and b.TIPO_ELEMENTO_ID IN('ACCESP','INSIP','INSHFC','TO','TOIP','STBOX') and b.UEN_CALCULADA ='HG' AND b.PROGRAMACION='' ";
             $concepto=" and b.CONCEPTO_ID='$concepto' AND b.PROGRAMACION='' ";
         }else if($concepto=="RENUM"){
