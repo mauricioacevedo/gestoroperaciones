@@ -130,29 +130,29 @@
                                     <th>Editar</th>
                                 </tr>
                                  <tr>
-                                    <td>Tablas</td>
-                                    <td><font color='blue'>{{ordenamientoDemepedidoUpdatetablas}}</font></td>
-                                    <td>{{UsuarioParametrotablas}}</td>
+                                    <td>Activacion Suspecore</td>
+                                    <td><font color='blue'>{{ordenamientoDemepedidoUpdateactivacion}}</font></td>
+                                    <td>{{UsuarioParametroactivacion}}</td>
                                     <td>
-                                        <select class="btn btn-default btn-xs grupo-select" id="sel1"
-                                                ng-model="ordenamientoDemepedidotablas" style="width:auto;">
-                                            <option value="ACTIVADO_DOM">ACTIVADO_DOM</option>
-                                            <option value="ACTIVADOR_SUSPECORE">ACTIVADOR_SUSPECORE</option>
-
-
+                                        <select class="btn btn-default btn-xs grupo-select" id="demerec"
+                                                ng-model="ordenamientoDemepedidoactivacion" style="width:auto;">
+                                            <option value="FECHA_EXCEPCION">FECHA EXCEPCION</option>
+                                            <option value="FECHA_CREACION">FECHA CREACION</option>
+                                            <option value="FECHA_CARGA">FECHA CARGA</option>
                                         </select>
                                         <button class="btn btn-success btn-xs"
-                                                ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TABLAS',ordenamientoDemepedidotablas);">
+                                                ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION',ordenamientoDemepedidoactivacion);">
                                             <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                                         <button type="button" class="btn btn-default btn-circle-xs"
-                                                ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TABLAS')" title="Actualizar"
-                                                data-toggle="tooltip" data-placement="left" ng-disabled="loading">
+                                                ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION')"
+                                                title="Actualizar" data-toggle="tooltip" data-placement="left"
+                                                ng-disabled="loading">
                                             <i class="fa fa-refresh" aria-hidden="true"></i>
                                         </button>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Activacion</td>
+                                    <td>Activacion Dom</td>
                                     <td><font color='blue'>{{ordenamientoDemepedidoUpdateactivacion}}</font></td>
                                     <td>{{UsuarioParametroactivacion}}</td>
                                     <td>
@@ -174,34 +174,7 @@
                                     </td>
                                 </tr>
 
-                                <tr>
-                                    <td>Transaccion</td>
-                                    <td><font color='blue'>{{ordenamientoDemepedidoUpdatetransaccion}}</font></td>
-                                    <td>{{UsuarioParametrotransaccion}}</td>
-                                    <td>
-                                        <select class="btn btn-default btn-xs grupo-select" id="sel1"
-                                                ng-model="ordenamientoDemepedidotransaccion" style="width:auto;">
-                                            <option value="Nuevo">NUEVO</option>
-                                            <option value="Eliminar">ELIMINAR</option>
-                                            <option value="Actualizar">ACTUALIZAR</option>
-                                            <option value="TrasladoRetiro">TRASLADOR RETIRO</option>
-                                            <option value="Suspender">SUSPENDER</option>
-                                            <option value="Traslado">TRASLADO</option>
 
-
-
-
-                                        </select>
-                                        <button class="btn btn-success btn-xs"
-                                                ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TRANSACCION',ordenamientoDemepedidotransaccion);">
-                                            <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-                                        <button type="button" class="btn btn-default btn-circle-xs"
-                                                ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_TRANSACCION')" title="Actualizar"
-                                                data-toggle="tooltip" data-placement="left" ng-disabled="loading">
-                                            <i class="fa fa-refresh" aria-hidden="true"></i>
-                                        </button>
-                                    </td>
-                                </tr>
                             </table>
                         </div>
                         <div class="panel-footer clearfix">
