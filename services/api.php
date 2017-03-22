@@ -8633,6 +8633,7 @@ class API extends REST {
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
             " from gestor_activacion_pendientes_activador_dom b ".
             "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
+            $transaccion.
             " order by b.$parametroBusqueda  ASC";
        //     " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ";
        // echo $query1;
@@ -8663,6 +8664,7 @@ class API extends REST {
                     " from gestor_activacion_pendientes_activador_dom b ".
                     " where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
                     " and FECHA_CARGA between '$today 00:00:00' and '$today 23:59:59' order by id ".
+                    $transaccion.
                     " order by b.$parametroBusqueda  ASC";
                 // echo $query1;
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
