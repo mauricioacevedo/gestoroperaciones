@@ -143,22 +143,15 @@
                                                     <option value="FINALIZADA">FINALIZADA</option>
                                                     <option value="NUMERO_CR">NUMERO CR</option>
                                                 </select>
-                                                 <div class="form-group " ng-show="InfoPedido.ESTADO_PROCESO" ng-class="{ 'has-error' : seguimiento_form.obs.$pristine && seguimiento_form.obs.$invalid}">
-                                                <label for="obs" class="control-label">Observación Gestión:</label>
-                                                <select id="obs"
-                                                        class= "form-control btn-xs"
-                                                        name="obs"
-                                                        ng-model="InfoPedido.OBSERVACION"
-                                                        ng-change="onChangeAccion(InfoPedido.OBSERVACION)" required>
-                                                    <option value="" disabled>--Seleccione--</option>
-                                                    <option
-                                                            ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO}:true | unique:'OBSERVACION_ID'"
+                                                <div class= "form-group"><!--Inicia Div de Quedan Observacion-->
+                                        <label class= "col-md-5">Observacion: </label>
+                                        <div class="col-md-8">
+                                        <td><textarea rows='2' cols='10' ng-model="service.NUMERO_CR"></textarea><br>
+                                        </div>
 
-                                                            value="{{d.OBSERVACION_ID}}">
-                                                        {{d.OBSERVACION_ID}}
-                                                    </option>
-                                                </select>
-                                            </div>
+
+                                </div>
+
 
                                  <div class= "form-group"><!--Inicia Div de Quedan Observacion-->
                                         <label class= "col-md-5">Observacion: </label>
