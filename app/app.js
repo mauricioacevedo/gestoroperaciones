@@ -10566,12 +10566,11 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
         $scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
-        $scope.data.fechaIni = fecha_inicio;
-        $scope.data.fechaFin = fecha_fin;
+
 
        $scope.listadoactivacion1  = function (){
 
-                services.getListadoActivacion(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
+                services.getListadoActivacion($scope.fecha_inicio ,$scope.fecha_fin ,$scope.data.currentPage).then(function(data){
 
                    // console.log(data);
                        $scope.listadoactivacion=data.data[0];
