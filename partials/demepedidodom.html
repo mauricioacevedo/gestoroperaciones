@@ -131,9 +131,10 @@
                                          <div class="form-group " ng-class="service.tipificacion">
                                                 <label for="tipificacion" class="control-label">Accion:</label>
                                                <select
-                                                    class= "form-control btn-xs"
-                                                    style="width: 200px">
-                                                    <option value="" > ingrese tipificacion </option>
+                                                    class= "btn btn-default btn-xs grupo-select"
+                                                    style="width: 200px"
+                                                    ng-model="tipificacion">
+                                                    <option value="" disabled> ingrese tipificacion </option>
                                                     <option value="REANUDAR">REANUDAR</option>
                                                     <option value="CONTINUAR">CONTINUAR</option>
                                                     <option value="FINALIZADA">FINALIZADA</option>
