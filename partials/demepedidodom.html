@@ -139,6 +139,7 @@
                                                         required>
                                                     <option value="" disabled> ingrese tipificacion </option>
                                                     class= "form-control" ng-model="service.TIPIFICACION" >
+                                                    <option value="" disabled>--Seleccione--</option>
                                                     <option value="REANUDAR">REANUDAR</option>
                                                     <option value="CONTINUAR">CONTINUAR</option>
                                                     <option value="FINALIZADA">FINALIZADA</option>
@@ -147,23 +148,8 @@
                                                 </select>
                                             </div>
 
-										<form name="seguimiento_form" id="seguimiento_form">
-											<div class="form-group small" ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
-												<label class= "col-md-8">Accion: </label>
-												<select
-                                                    class= "btn btn-default btn-xs grupo-select"
-                                                    style="width: 200px"
-                                                    ng-model="tipificacion">
-                                                    <option value="" disabled> ingrese tipificacion </option>
-                                                    class= "form-control" ng-model="service.TIPIFICACION" >
-                                                    <option value="REANUDAR">REANUDAR</option>
-                                                    <option value="CONTINUAR">CONTINUAR</option>
-                                                    <option value="FINALIZADA">FINALIZADA</option>
-                                                    <option value="NUMERO_CR">NUMERO CR</option>
-                                                </select>
-
-                                                    <label class= "col-md-8">Numero CR: </label>
-                                                  <input type="text" class="form-control col-xs-8" placeholder="1234567890" aria-label="..." ng-model="service.NUMERO_CR"></td>
+                                        <label class= "col-md-8">Numero CR: </label>
+                                      <input type="text" class="form-control col-xs-8" placeholder="1234567890" aria-label="..." ng-model="service.NUMERO_CR"></td>
 
 
 
