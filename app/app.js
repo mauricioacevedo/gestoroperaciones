@@ -10570,7 +10570,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
        $scope.listadoactivacion1  = function (){
 
-                services.getListadoActivacion($scope.fecha_inicio ,$scope.fecha_fin ,$scope.data.currentPage).then(function(data){
+                services.getListadoActivacion($scope.data.fecha_inicio ,$scope.data.fecha_fin ,$scope.data.currentPage).then(function(data){
 
                    // console.log(data);
                        $scope.listadoactivacion=data.data[0];
