@@ -8026,6 +8026,7 @@ class API extends REST {
                     $result[] = $row;
                     $mypedido=$row['PEDIDO_ID'];
                     $mypedidoresult=$rta;
+                    $ATENCION_INMEDIATA="1";
                     break;
                 }
             }
