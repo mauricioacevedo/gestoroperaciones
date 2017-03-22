@@ -8026,10 +8026,11 @@ class API extends REST {
                     $result[] = $row;
                     $mypedido=$row['PEDIDO_ID'];
                     $mypedidoresult=$rta;
-                    $ATENCION_INMEDIATA="1";
                     break;
                 }
             }
+            
+            echo $mypedido;
 
             //2017-02-03 Mauricio: se agrega funcionalidad para buscar por arbol en concepto 14
                 //HAGO LA CONSULTA DE PRIORIDAD POR ARBOL
