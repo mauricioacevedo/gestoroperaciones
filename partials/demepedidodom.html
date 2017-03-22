@@ -129,6 +129,19 @@
 								<div class = "panel-heading">
 									<div class="container-fluid">
 
+                                         <div class="form-group " ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
+                                                <label for="estado" class="control-label">Estado Gestión:</label>
+                                                <select id="estado"
+                                                        class= "form-control btn-xs"
+                                                        name="estado"
+                                                        ng-disabled="ocupado"
+                                                        ng-click="onChangeEstado()"
+                                                        required>
+                                                    <option value="" disabled>--Seleccione--</option>
+
+                                                </select>
+                                            </div>
+
 										<form name="seguimiento_form" id="seguimiento_form">
 											<div class="form-group small" ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
 												<label class= "col-md-8">Accion: </label>
