@@ -11415,7 +11415,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		}
 
 		$scope.InfoGestion = {
-			ID:gestion.ID,
+			//ID:gestion.ID,
 			ORDER_SEQ_ID: $scope.peds[0].ORDER_SEQ_ID,
 			PEDIDO: gestion.PEDIDO,
 			REFERENCE_NUMBER: $scope.peds[0].REFERENCE_NUMBER,
@@ -11433,9 +11433,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             FECHA_FIN: $scope.fecha_fin,
             NUMERO_CR:$scope.NUMERO_CR,
             USUARIO: $rootScope.logedUser.login,
-            STATUS: $scope.stautsGo,
             DURACION: $scope.duracion,
-			//STATUS: $scope.peds[0].STATUS,
+			STATUS: $scope.peds[0].STATUS,
 			TIPIFICACION: $scope.tipificacion,
 
 

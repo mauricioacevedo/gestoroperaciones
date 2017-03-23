@@ -177,7 +177,7 @@
                                                 <select id="estado"
                                                         class= "form-control btn-xs"
                                                         name="estado"
-                                                        ng-model="InfoPedido.ESTADO_PROCESO"
+                                                        ng-model="tipificacion"
                                                         ng-disabled="ocupado"
                                                         ng-click="onChangeEstado()"
                                                         required>
@@ -272,7 +272,7 @@
 
                             </li>
                             <li>
-                                <button type="button" class="btn btn-success btn-xs"  ng-click="guardar(InfoPedido,gestion,status);"><span id="mloader"></span>&nbsp; Guardar</button>
+                                <button type="button" class="btn btn-success btn-xs"  ng-click="guardar(InfoPedido,gestion[0],status);"><span id="mloader"></span>&nbsp; Guardar</button>
                             </li>
                             <li>&nbsp; | &nbsp;</li>
 
