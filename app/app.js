@@ -454,8 +454,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	};
 
 	obj.demePedidoActivacion = function (user, pedido, transaccion, tabla, username) { //deme pedido activacion
-		console.log("transaccion=" + transaccion);
-		return $http.get(serviceBase + 'demePedidoActivacion?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion  +'&username=' + username );
+		console.log("transaccion=" + transaccion + "tabla=" + tabla);
+		return $http.get(serviceBase + 'demePedidoActivacion?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion   + '&tabla=' + tabla  +'&username=' + username );
 	};
 
     obj.demePedidoActivacionDom = function (user, pedido, transaccion, tabla, username) { //deme pedido activacion
@@ -11174,6 +11174,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
     $scope.FECHA_INICIO = null;
 	$scope.FECHA_FIN = null;
 	$scope.transaccion = 'Suspender';
+    $scope.tabla = 'ACTIVADOR_SUSPECORE';
     $scope.listaOpcionesGestion = [];
 
 
@@ -11250,7 +11251,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-		var kami = services.demePedidoActivacion($rootScope.logedUser.login, $scope.pedido1, $scope.transaccion, $rootScope.logedUser.name).then(function (data) {
+		var kami = services.demePedidoActivacion($rootScope.logedUser.login, $scope.pedido1, $scope.transaccion,$scope.tabla $rootScope.logedUser.name).then(function (data) {
 
 
 			$scope.peds = data.data;

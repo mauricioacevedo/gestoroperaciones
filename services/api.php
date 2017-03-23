@@ -8421,16 +8421,16 @@ class API extends REST {
       //      $transaccion=" and b.TRANSACCION ='$transaccion' ";
     //    }
 
-// if($TABLA=='ACTIVADOR_SUSPECORE'){
+ if($TABLA=='ACTIVADOR_SUSPECORE'){
 
-  //         $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
+           $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
 
-    //   } else {
+       } else {
 
-      //    $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
+          $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
 
 
-    //   }
+     }
 
       //echo $TABLA;
   //      $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
@@ -8456,7 +8456,7 @@ class API extends REST {
         $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
             " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
-            " from gestor_activacion_pendientes_activador_suspecore b ".
+            $TABLA.
             "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
             $transaccion.
              " order by b.$parametroBusqueda  ASC";
@@ -8486,7 +8486,7 @@ class API extends REST {
                 //pedidos viejos
             } else {
                 $query1=" select distinct b.PEDIDO, b.FECHA_CARGA ,b.ID ".
-                    " from gestor_activacion_pendientes_activador_suspecore b ".
+                    $TABLA.
                     " where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
                     " and FECHA_CARGA between '$today 00:00:00' and '$today 23:59:59' order by id ".
                     $transaccion.
@@ -8540,7 +8540,7 @@ class API extends REST {
             " ,b.FECHA_EXCEPCION ,'AUTO' as source ".
             " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
             " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
-            " from gestor_activacion_pendientes_activador_suspecore b ".
+            $TABLA.
             " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
             //$transaccion.
             " order by b.$parametroBusqueda  ASC";
