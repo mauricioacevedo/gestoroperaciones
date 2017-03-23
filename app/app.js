@@ -11444,7 +11444,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 console.log($scope.InfoGestion);
 
 
-		/*services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
+		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
 
 
 			function (data) {
@@ -11478,7 +11478,7 @@ console.log($scope.InfoPedido);
 				$rootScope.errorDatos = "No se pudo guardar";
 
 			}
-		);*/
+		);
 
 
 	};
