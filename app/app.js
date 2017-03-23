@@ -11394,10 +11394,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	$scope.guardar = function (InfoPedido, gestion, status) {
 
-        console.log(InfoPedido);
-         console.log( gestion);
-         console.log(status);
-
           $scope.timeInit = new Date().getTime();
 		var date1 = new Date();
 		var year = date1.getFullYear();
@@ -11419,7 +11415,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		}
 
 		$scope.InfoGestion = {
-			//ID:gestion.ID,
+			ID:gestion.ID,
 			ORDER_SEQ_ID: $scope.peds[0].ORDER_SEQ_ID,
 			PEDIDO: gestion.PEDIDO,
 			REFERENCE_NUMBER: $scope.peds[0].REFERENCE_NUMBER,
@@ -11442,6 +11438,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			//STATUS: $scope.peds[0].STATUS,
 			TIPIFICACION: $scope.tipificacion,
 
+            console.log(InfoGestion);
 
 		};
 
