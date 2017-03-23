@@ -11432,7 +11432,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             FECHA_INICIO: $scope.fecha_inicio,
             FECHA_FIN: $scope.fecha_fin,
             NUMERO_CR:$scope.NUMERO_CR,
-            NUMERO_CR:$scope.OBSERVACION,
+            OBSERVACION:$scope.OBSERVACION,
             USUARIO: $rootScope.logedUser.login,
             DURACION: $scope.duracion,
 			STATUS: gestion.STATUS,
@@ -11443,6 +11443,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		};
 
 console.log($scope.InfoGestion);
+ console.log($scope.OBSERVACION);
+    console.log(gestion.OBSERVACION);
 
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
