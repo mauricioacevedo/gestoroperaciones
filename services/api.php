@@ -8421,6 +8421,9 @@ class API extends REST {
       //      $transaccion=" and b.TRANSACCION ='$transaccion' ";
     //    }
 
+
+    echo "carlitos1 {$TABLA}";
+
  if($TABLA=='ACTIVADOR_SUSPECORE'){
 
            $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
