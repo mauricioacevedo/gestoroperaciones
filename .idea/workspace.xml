@@ -5,10 +5,9 @@
     <bookmark url="file://$PROJECT_DIR$/services/api.php" line="328" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html" />
+    <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="Fix menores">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html" afterPath="$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
     <ignored path="node_modules/angular-notify/package.json" />
@@ -38,21 +37,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pendientes_agendamiento.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pendientes_agendamiento.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3196">
-              <caret line="188" column="0" lean-forward="false" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
+            <state relative-caret-position="544">
+              <caret line="104" column="71" lean-forward="false" selection-start-line="104" selection-start-column="71" selection-end-line="104" selection-end-column="71" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="15519" column="75" lean-forward="false" selection-start-line="15519" selection-start-column="75" selection-end-line="15519" selection-end-column="75" />
+            <state relative-caret-position="350">
+              <caret line="15517" column="30" lean-forward="true" selection-start-line="15517" selection-start-column="16" selection-end-line="15517" selection-end-column="38" />
               <folding>
                 <marker date="1490301859047" expanded="true" signature="184600:184606" ph="&amp;nbsp;" />
                 <marker date="1490301859047" expanded="true" signature="184606:184612" ph="&amp;nbsp;" />
@@ -177,8 +176,8 @@
         <option value="$PROJECT_DIR$/partials/templates/feed.html" />
         <option value="$PROJECT_DIR$/partials/asignaciones/registrosauditoria.html" />
         <option value="$PROJECT_DIR$/services/api.php" />
-        <option value="$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html" />
         <option value="$PROJECT_DIR$/app/app.js" />
+        <option value="$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html" />
       </list>
     </option>
   </component>
@@ -1000,14 +999,7 @@
       <workItem from="1490186133287" duration="9269000" />
       <workItem from="1490278151477" duration="843000" />
       <workItem from="1490280307086" duration="471000" />
-      <workItem from="1490280845414" duration="3465000" />
-    </task>
-    <task id="LOCAL-00797" summary="Cambio en Auditar pedidos Asignaciones">
-      <created>1490106955836</created>
-      <option name="number" value="00797" />
-      <option name="presentableId" value="LOCAL-00797" />
-      <option name="project" value="LOCAL" />
-      <updated>1490106955836</updated>
+      <workItem from="1490280845414" duration="3776000" />
     </task>
     <task id="LOCAL-00798" summary="Cambio en Auditar pedidos Asignaciones">
       <created>1490107104569</created>
@@ -1345,11 +1337,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490291992239</updated>
     </task>
-    <option name="localTasksCounter" value="846" />
+    <task id="LOCAL-00846" summary="Fix menores">
+      <created>1490301882608</created>
+      <option name="number" value="00846" />
+      <option name="presentableId" value="LOCAL-00846" />
+      <option name="project" value="LOCAL" />
+      <updated>1490301882608</updated>
+    </task>
+    <option name="localTasksCounter" value="847" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="417303000" />
+    <option name="totallyTimeSpent" value="417614000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2061,18 +2060,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3196">
-          <caret line="188" column="0" lean-forward="false" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="15519" column="75" lean-forward="false" selection-start-line="15519" selection-start-column="75" selection-end-line="15519" selection-end-column="75" />
+        <state relative-caret-position="350">
+          <caret line="15517" column="30" lean-forward="true" selection-start-line="15517" selection-start-column="16" selection-end-line="15517" selection-end-column="38" />
           <folding>
             <marker date="1490301859047" expanded="true" signature="184600:184606" ph="&amp;nbsp;" />
             <marker date="1490301859047" expanded="true" signature="184606:184612" ph="&amp;nbsp;" />
@@ -2116,6 +2107,14 @@
             <marker date="1490301859047" expanded="true" signature="432550:432556" ph="&amp;nbsp;" />
             <marker date="1490301859047" expanded="true" signature="465993:466026" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="104" column="71" lean-forward="false" selection-start-line="104" selection-start-column="71" selection-end-line="104" selection-end-column="71" />
+          <folding />
         </state>
       </provider>
     </entry>

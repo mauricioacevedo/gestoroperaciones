@@ -102,7 +102,7 @@
                     <tr ng-repeat="data in listado_pendientes  | orderBy:'FECHA_ESTADO':false | filter:filtroInput  as InfoPed"
                         ng-class="{warning: data.STATUS == 'MALO'}">
                         <td>{{data.PEDIDO_ID}}-{{data.SUBPEDIDO_ID}}-{{data.SOLICITUD_ID}}</td>
-                        <td><span class="small">{{cutString(data.TIPO_ELEMENTO_ID,20)}}</span></td>
+                        <td><span class="small">{{data.TIPO_ELEMENTO_ID}}</span></td>
                         <td><label style="color:red">{{data.TIEMPO_COLA}}</label></td>
                         <td><span class="small">{{data.PROGRAMACION}}</span></td>
                         <td><span class="small">{{data.CONCEPTO_ID}}</span></td>
