@@ -6533,7 +6533,8 @@ class API extends REST {
             }
             $this->response($this->json(array($result,$counter,$malo)), 200); // send user details
         }
-        $this->response('',204);        // If no records "No Content" status
+        $error = "Sin registros ";
+        $this->response($this->json(array($error)),403); // send user details
     }
 
 
