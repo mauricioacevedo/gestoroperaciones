@@ -8422,7 +8422,7 @@ class API extends REST {
     //    }
 
 
-    echo "carlitos1 {$TABLA}";
+    echo "carlitos1 ---$TABLA---";
 
  if($TABLA=='ACTIVADOR_SUSPECORE'){
 
