@@ -8531,19 +8531,20 @@ class API extends REST {
 
 
 
-        $query1= " SELECT distinct b.ORDER_SEQ_ID,b.PEDIDO ".
-            " ,b.REFERENCE_NUMBER,b.ESTADO,b.FECHA_CREACION,b.TAREA_EXCEPCION ".
-            " ,b.FECHA_EXCEPCION,b.PRODUCTO,b.IDSERVICIORAIZ,b.TRANSACCION ".
-            " ,b.CODIGO_CIUDAD,b.STATUS,b.ASESOR ".
-            " ,group_concat(distinct b.PRODUCTO ) as PRODUCTOS ".
-            " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_CREACION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
-            " ,b.FECHA_EXCEPCION ,'AUTO' as source ".
-            " ,(select a.TIPIFICACION from gestor_historico_activacion a ".
-            " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION ".
-            $TABLA.
-            " where b.PEDIDO = '$mypedido' and b.STATUS='PENDI_ACTI' ".
-            //$transaccion.
-            " order by b.$parametroBusqueda  ASC";
+        $query1= " SELECT ".
+                " b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TAREA_EXCEPCION,b.IDSERVICIORAIZ,b.TRANSACCION,b.STATUS,b.ASESOR ".
+                " ,b.PRODUCTO".
+                " , group_concat(distinct b.PRODUCTO) as  PRODUCTOS ".
+                " , min(b.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
+                " ,min(b.FECHA_CREACION) as FECHA_CREACION ".
+                " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
+                " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
+                $TABLA.
+                " where b.PEDIDO = '$mypedido'  ".
+                " and b.STATUS='PENDI_ACTI' ".
+                $transaccion.
+                " order by b.$parametroBusqueda  ASC";
+
 
       // echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
