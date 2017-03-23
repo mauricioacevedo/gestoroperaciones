@@ -11174,6 +11174,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
     $scope.FECHA_INICIO = null;
 	$scope.FECHA_FIN = null;
 	$scope.transaccion = 'Suspender';
+    $scope.listaOpcionesGestion = [];
 
 
 
@@ -11196,7 +11197,9 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
       $scope.setTransaccion = function (transaccion){
         $scope.transaccion=transaccion;
     }
-
+      $scope.setTabla = function (tabla){
+        $scope.tabla=tabla;
+    }
 
 
 
@@ -11275,6 +11278,15 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				}
 
 				$scope.baby($scope.pedido1);
+
+
+                var opciones= {
+                    fuente: $scope.peds[0].FUENTE,
+					grupo: $scope.peds[0].GRUPO,
+					actividad: $scope.peds[0].ACTIVIDAD
+                };
+
+                $scope.listarOpcionesAsginacion(opciones);
 
 			}
 			var demePedidoButton = document.getElementById("iniciar");
@@ -11650,7 +11662,22 @@ console.log($scope.InfoPedido);
 
 	//------------declaracion doubleDigit
 
+ // Cargar Opciones para la gestion --------------------------------
+    $scope.listarOpcionesAsginacion = function (opciones) {
+        services.getOpcionesGestionAsignaciones(opciones).then(
+            function (data) {
 
+                $scope.listaOpcionesGestion=data.data;
+                return data.data;
+
+            },
+            function errorCallback(response, status) {
+                //console.log(status);
+                $rootScope.errorDatos = 'Error, revisar opciones '+status;
+
+            }
+        );
+    };
 
 });
 

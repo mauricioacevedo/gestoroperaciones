@@ -147,6 +147,89 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+                            <div class = "panel-heading">
+                                    <div class="container-fluid">
+
+                                        <form name="seguimiento_form" id="seguimiento_form">
+                                            <div class="form-group " ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
+                                                <label for="estado" class="control-label">Estado Gestión:</label>
+                                                <select id="estado"
+                                                        class= "form-control btn-xs"
+                                                        name="estado"
+                                                        ng-model="InfoPedido.ESTADO_PROCESO"
+                                                        ng-disabled="ocupado"
+                                                        ng-click="onChangeEstado()"
+                                                        required>
+                                                    <option value="" disabled>--Seleccione--</option>
+                                                    <option
+                                                            ng-repeat="d in listaOpcionesGestion | unique:'ESTADO_ID'"
+
+                                                            value="{{d.ESTADO_ID}}">
+                                                        {{d.ESTADO_ID}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group " ng-hide="true" ng-class="{ 'has-error' : seguimiento_form.obs.$pristine && seguimiento_form.obs.$invalid}">
+                                                <label for="obs" class="control-label">Observación Gestión:</label>
+                                                <select id="obs"
+                                                        class= "form-control btn-xs"
+                                                        name="obs"
+                                                        ng-model="InfoPedido.OBSERVACIONES_PROCESO"
+                                                        ng-change="onChangeAccion(InfoPedido.OBSERVACIONES_PROCESO)" required>
+                                                    <option value="" disabled>--Seleccione--</option>
+                                                    <option
+                                                            ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO}:true | unique:'OBSERVACION_ID'"
+
+                                                            value="{{d.OBSERVACION_ID}}">
+                                                        {{d.OBSERVACION_ID}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group  has-feedback" ng-show="habilitaCr">
+                                                <label for="incidente" class="control-label">CR Incidente:</label>
+                                                <input type="text" name="incidente" id="incidente" class="form-control btn-xs" ng-model="InfoPedido.INCIDENTE">
+                                                <i class="fa fa-flag form-control-feedback"></i>
+                                            </div>
+                                            <div class="form-group  has-feedback" ng-show="habilitaCr">
+                                                <label for="incidente" class="control-label">Observacion:</label>
+                                                <textarea rows='4' cols='30' ng-model="service.OBSERVACION"></textarea>
+                                                <i class="fa fa-flag form-control-feedback"></i>
+                                            </div>
+                                            <div>
+                                                <div class="hide" ng-repeat="InfoPedido in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO, OBSERVACION_ID: InfoPedido.OBSERVACIONES_PROCESO} | unique:'STATUS' as status">
+                                                    <input ng-model="InfoPedido.STATUS">
+                                                </div>
+                                            </div>
+
+
+
+                                        </form>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             </div>
                         </div>
 					</div>
