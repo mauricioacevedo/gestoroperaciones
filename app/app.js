@@ -11394,6 +11394,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	$scope.guardar = function (InfoPedido, gestion, status) {
 
+        console.log(InfoPedido, gestion, status);
           $scope.timeInit = new Date().getTime();
 		var date1 = new Date();
 		var year = date1.getFullYear();
@@ -11444,7 +11445,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 
-		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
+		/*services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
 
 
 			function (data) {
@@ -11478,7 +11479,7 @@ console.log($scope.InfoPedido);
 				$rootScope.errorDatos = "No se pudo guardar";
 
 			}
-		);
+		);*/
 
 
 	};
