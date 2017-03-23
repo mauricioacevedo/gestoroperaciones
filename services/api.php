@@ -8422,9 +8422,9 @@ class API extends REST {
     //    }
 
 
-    echo "carlitos1 ---$TABLA---";
+    echo "carlitos1 ---$tabla---";
 
- if($TABLA=='ACTIVADOR_SUSPECORE'){
+ if($tabla=='ACTIVADOR_SUSPECORE'){
 
            $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
 
