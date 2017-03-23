@@ -11287,7 +11287,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 					actividad: $scope.peds[0].ACTIVIDAD
                 };
 
-                $scope.listarOpcionesAsginacion(opciones);
+             //   $scope.listarOpcionesAsginacion(opciones);
 
 			}
 			var demePedidoButton = document.getElementById("iniciar");
