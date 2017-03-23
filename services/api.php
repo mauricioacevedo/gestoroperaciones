@@ -5359,6 +5359,46 @@ class API extends REST {
     }
 //----------------fin pendientes por concepto reagendamiento-----------------agendamiento---------------------
 
+
+//----------------pendientes por transaccion activacio-----------------activacion---------------------
+
+    private function listaPendientesSiebel(){
+
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+
+        $querytransaccion=" select  ".
+                        " c1.TRANSACCION ".
+                        " , count(*) as CANTIDAD ".
+                        " from (SELECT r.ID, ".
+                        " r.PEDIDO, ".
+                        " case ".
+                        "	when r.TRANSACCION like '%,%' then 'VARIOS' ".
+                        "	else r.TRANSACCION ".
+                        " end as TRANSACCION ".
+                        " FROM gestor_activacion_pendientes_activador_dom r  ".
+                        " where r.STATUS in ('PENDI_ACTI')) c1  ".
+                        " group by c1.TRANSACCION order by count(*) DESC ";
+
+        $r = $this->mysqli->query($querytransaccion) or die($this->mysqli->error.__LINE__);
+
+        $resultFechaCita = array();
+        if($r->num_rows > 0){
+
+            while($row = $r->fetch_assoc()){
+                $resultFechaCita[] = $row;
+            }
+
+            $this->response($this->json(array($resultFechaCita)), 200);
+        }
+
+        $this->response('',204);
+
+    }
+//----------------fin pendientes por transaccion activacio-----------------activacion---------------------
+
+
 //-----------------pendientes con agenda gestor_pendientes_reagendamiento----agendamiento-----------------
 
     private function pedidosConAgenda(){
