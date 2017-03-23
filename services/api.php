@@ -8422,15 +8422,15 @@ class API extends REST {
     //    }
 
 
-    echo "carlitos1 ---$tabla---";
+    //echo "carlitos1 ---$tabla---";
 
  if($tabla=='ACTIVADOR_SUSPECORE'){
 
-           $TABLA = " from gestor_activacion_pendientes_activador_suspecore b " ;
+           $tabla = " from gestor_activacion_pendientes_activador_suspecore b " ;
 
        } else {
 
-          $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
+          $tabla = " from gestor_activacion_pendientes_activador_dom b " ;
 
 
      }
@@ -8459,7 +8459,7 @@ class API extends REST {
         $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
             " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
-            $TABLA.
+            $tabla.
             "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
             $transaccion.
              " order by b.$parametroBusqueda  ASC";
@@ -8489,7 +8489,7 @@ class API extends REST {
                 //pedidos viejos
             } else {
                 $query1=" select distinct b.PEDIDO, b.FECHA_CARGA ,b.ID ".
-                    $TABLA.
+                    $tabla.
                     " where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
                     " and FECHA_CARGA between '$today 00:00:00' and '$today 23:59:59' order by id ".
                     $transaccion.
@@ -8542,7 +8542,7 @@ class API extends REST {
                 " ,min(b.FECHA_CREACION) as FECHA_CREACION ".
                 " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
                 " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
-                $TABLA.
+                $tabla.
                 " where b.PEDIDO = '$mypedido'  ".
                 " and b.STATUS='PENDI_ACTI' ".
                 $transaccion.
