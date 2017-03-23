@@ -11394,7 +11394,10 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	$scope.guardar = function (InfoPedido, gestion, status) {
 
-        console.log(InfoPedido, gestion, status);
+        console.log(InfoPedido);
+         console.log( gestion);
+         console.log(status);
+
           $scope.timeInit = new Date().getTime();
 		var date1 = new Date();
 		var year = date1.getFullYear();
