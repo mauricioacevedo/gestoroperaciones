@@ -11438,11 +11438,11 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			//STATUS: $scope.peds[0].STATUS,
 			TIPIFICACION: $scope.tipificacion,
 
-            console.log(InfoGestion);
+
 
 		};
 
-
+console.log(InfoGestion);
 
 
 		/*services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
