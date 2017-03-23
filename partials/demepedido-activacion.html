@@ -182,7 +182,7 @@
                                             </div>
                                             <div class="form-group  has-feedback" ng-show="habilitaCr">
                                                 <label for="incidente" class="control-label">CR Incidente:</label>
-                                                <input type="text" name="incidente" id="incidente" class="form-control btn-xs" ng-model="InfoPedido.INCIDENTE">
+                                                <input type="text" name="incidente" id="incidente" class="form-control btn-xs" ng-model="InfoPedido.NUMERO_CR">
                                                 <i class="fa fa-flag form-control-feedback"></i>
                                             </div>
                                             <div class="form-group  has-feedback" ng-show="habilitaCr">
@@ -191,7 +191,7 @@
                                                 <i class="fa fa-flag form-control-feedback"></i>
                                             </div>
                                             <div>
-                                                <div class="hide" ng-repeat="InfoPedido in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO, OBSERVACION_ID: InfoPedido.OBSERVACIONES_PROCESO} | unique:'STATUS' as status">
+                                                <div class="hide" ng-repeat="InfoPedido in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO, OBSERVACION_ID: InfoPedido.OBSERVACIONES} | unique:'STATUS' as status">
                                                     <input ng-model="InfoPedido.STATUS">
                                                 </div>
                                             </div>
