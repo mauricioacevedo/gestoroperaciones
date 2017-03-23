@@ -11286,6 +11286,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 					grupo: $scope.peds[0].GRUPO,
 					actividad: $scope.peds[0].ACTIVIDAD
                 };
+                console.log(opciones);
 
                $scope.listarOpcionesAsginacion(opciones);
 
