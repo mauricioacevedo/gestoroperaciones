@@ -15254,7 +15254,7 @@ class API extends REST {
         $today		= date("Y-m-d");
 
         //var_dump($fuente);
-        if($fuente=='SIEBEL'){
+        /* if($fuente=='SIEBEL'){
             $grupo      =   "ASIGNACIONES";
             $actividad  =   "ESTUDIO";
             $filtros="and o.ESTADO=1 and o.FUENTE='$fuente' and o.GRUPO='$grupo' and o.ACTIVIDAD='$actividad'";
@@ -15264,8 +15264,8 @@ class API extends REST {
             }else{
                 $filtros= " and o.ESTADO=1 and o.FUENTE='$fuente' and o.GRUPO='$grupo' and o.ACTIVIDAD='$actividad' ";
             };
-        }
-
+        } */
+        $filtros= " and o.ESTADO=1 and o.FUENTE='$fuente' and o.GRUPO='$grupo' and o.ACTIVIDAD='$actividad' ";
 
         $query=	" SELECT ".
             "	o.ID ".
