@@ -6478,15 +6478,6 @@ class API extends REST {
 
         $page=$page*100;
 
-        /*if($concepto!="TODO"){
-                                if($concepto=="PETEC"){
-                                        $concepto=" and a.CONCEPTO_ID IN ('PETEC','OKRED') ";
-                                }else{
-                                        $concepto=" and a.CONCEPTO_ID='$concepto' ";
-                                }
-                        }else{
-                                $concepto="";
-                        }*/
 
         //calcular counter
         $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where (a.STATUS='PENDI_AGEN' or a.STATUS='MALO') ";
@@ -6512,7 +6503,26 @@ class API extends REST {
             }
         }
 
-        $query="SELECT a.ID,a.PEDIDO_ID,a.CONCEPTOS,a.ACTIVIDADES,a.MICROZONA,a.SUBZONA_ID,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,a.FUENTE,a.FECHA_ESTADO, a.FECHA_CITA_FENIX,a.STATUS,a.PROGRAMACION,a.DEPARTAMENTO from gestor_pendientes_reagendamiento a where (a.STATUS='PENDI_AGEN' or a.STATUS='MALO') order by a.FECHA_ESTADO ASC limit 100 offset $page";
+        $query= "SELECT ".
+                " a.ID, ".
+                " a.PEDIDO_ID, ".
+                " a.CONCEPTOS, ".
+                " a.ACTIVIDADES, ".
+                " a.MICROZONA, ".
+                " a.SUBZONA_ID, ".
+                " cast(my_sec_to_time(timestampdiff(second,FECHA_ESTADO,current_timestamp()))AS CHAR(255)) as TIEMPO_COLA, ".
+                " a.FUENTE, ".
+                " a.FECHA_ESTADO, ".
+                " a.FECHA_CITA_FENIX, ".
+                " a.STATUS, ".
+                " a.PROGRAMACION, ".
+                " a.DEPARTAMENTO, ".
+                " a.PROCESO, ".
+                " a.TIPO_TRABAJO, ".
+                " a.RADICADO ".
+                " from gestor_pendientes_reagendamiento a ".
+                " where (a.STATUS='PENDI_AGEN' or a.STATUS='MALO') ".
+                " order by a.FECHA_ESTADO ASC limit 100 offset $page";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
