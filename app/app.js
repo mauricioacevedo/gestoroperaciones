@@ -15515,6 +15515,11 @@ app.config(['$routeProvider',
 		templateUrl: 'partials/registros-reagendamiento.html',
 		controller: 'RegistrosAgendamientoCtrl'
 		})
+		.when('/pendientesAgendamiento/', {
+                title: 'Registros',
+                templateUrl: 'partials/agendamiento/pendientes_agendamiento.html',
+                controller: 'RegistrosAgendamientoCtrl'
+            })
 		.when('/codigo_resultado/', {
 			title: 'codigo_resultado',
 			templateUrl: 'partials/codigo_resultado.html',
