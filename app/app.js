@@ -7774,6 +7774,8 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 		fechaFin: ""
 	};
     $scope.idPermisos = idPermisos.getIds();
+
+    console.log($scope.idPermisos.indexOf(logedUser.login));
     /*if($routeParams.conceptoid == undefined){
             $scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "",concepto: "TODO" }
     }else{
@@ -7988,7 +7990,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 	$scope.csvAGENToday = function () {
 		var login = $rootScope.logedUser.login;
 		services.getCsvAGENToday().then(function (data) {
-			console.log(data.data[0]);
+			//console.log(data.data[0]);
 			window.location.href = "tmp/" + data.data[0];
 			return data.data;
 		});
@@ -8008,6 +8010,11 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 		$scope.calcularPendientes($routeParams.conceptoid);
 	}
 
+    $scope.statuses = [
+        {value: 'PENDI_AGEN', text: 'PENDI_AGEN'},
+        {value: 'MALO', text: 'MALO'},
+        {value: 'CERRADO_AGEN', text: 'CERRADO_AGEN'}
+    ];
 });
 
 //---------------------fin agendamiento----------------------
