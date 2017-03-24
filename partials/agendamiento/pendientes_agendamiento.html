@@ -127,20 +127,14 @@
                         &nbsp;
                         Malos: <span class="badge badge-danger">{{data.totalItems2}}</span>
                     </div>
-
-                    <ul class="nav navbar-nav navbar-right">
-
+                    <div class="pull-right">
                         <ul uib-pagination class="pagination-sm" total-items="data1.totalItems"
                             ng-model="data1.currentPage" max-size="6" boundary-links="true" num-pages="smallnumPages"
                             previous-text="&#8672;" next-text="&#8674;" last-text="Último" first-text="Primero"
                             items-per-page="100" boundary-link-numbers="false" rotate="false"
                             ng-change="pageChanged('listadoPendientes')" class="pagination-sm">
                         </ul>
-
-
-                        <!-- old pagination
-                        <pagination total-items="data1.totalItems" ng-model="data1.currentPage" ng-change="pageChanged('listadoPendientes')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination> -->
-                    </ul>
+                    </div>
                 </div>
 
             </div>
@@ -153,13 +147,6 @@
 <br>
 <ol class="breadcrumb">
     <li><a href=".#/">Home</a></li>
-    <li><a href="">Asignaciones</a></li>
+    <li><a href="">Agendamiento</a></li>
     <li class="active">{{title}}</li>
 </ol>
-<script>
-    $('.input-daterange').datepicker({
-        format: 'yyyy-mm-dd',
-        todayBtn: "linked",
-        autoclose: true
-    });
-</script>
