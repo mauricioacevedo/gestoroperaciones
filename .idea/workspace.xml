@@ -7,7 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/api.php" afterPath="$PROJECT_DIR$/services/api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html" afterPath="$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
     <ignored path="node_modules/angular-notify/package.json" />
@@ -37,10 +37,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
+            <state relative-caret-position="641">
               <caret line="6514" column="103" lean-forward="false" selection-start-line="6514" selection-start-column="103" selection-end-line="6514" selection-end-column="103" />
               <folding>
                 <marker date="1490364174453" expanded="true" signature="5041:5726" ph="insert into portalbd.activity_feed... " />
@@ -321,11 +321,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pendientes_agendamiento.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pendientes_agendamiento.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
-              <caret line="132" column="62" lean-forward="false" selection-start-line="132" selection-start-column="62" selection-end-line="132" selection-end-column="62" />
+            <state relative-caret-position="442">
+              <caret line="32" column="41" lean-forward="false" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -942,7 +942,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>insert</find>
       <find>putGestionAsignaciones</find>
       <find>insertPedido</find>
       <find>listaProgramadosUser</find>
@@ -972,6 +971,7 @@
       <find>otorgarPrioridadAbsoluta</find>
       <find>registrosA</find>
       <find>gestor_pendientes_reagendamiento</find>
+      <find>listadoPendientesAgendamiento</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -1008,8 +1008,8 @@
         <option value="$PROJECT_DIR$/partials/asignaciones/registrosauditoria.html" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/app/app.js" />
-        <option value="$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html" />
         <option value="$PROJECT_DIR$/services/api.php" />
+        <option value="$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html" />
       </list>
     </option>
   </component>
@@ -1130,6 +1130,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="partials" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gestoroperaciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gestoroperaciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="partials" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agendamiento" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1686,14 +1704,7 @@
       <workItem from="1490278151477" duration="843000" />
       <workItem from="1490280307086" duration="471000" />
       <workItem from="1490280845414" duration="5967000" />
-      <workItem from="1490354792137" duration="9480000" />
-    </task>
-    <task id="LOCAL-00834" summary="Fix menores">
-      <created>1490186925728</created>
-      <option name="number" value="00834" />
-      <option name="presentableId" value="LOCAL-00834" />
-      <option name="project" value="LOCAL" />
-      <updated>1490186925729</updated>
+      <workItem from="1490354792137" duration="10518000" />
     </task>
     <task id="LOCAL-00835" summary="Fix menores">
       <created>1490187022970</created>
@@ -2031,11 +2042,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490363865413</updated>
     </task>
-    <option name="localTasksCounter" value="883" />
+    <task id="LOCAL-00883" summary="Mejora en vista de pendientes Agendamiento">
+      <created>1490364360036</created>
+      <option name="number" value="00883" />
+      <option name="presentableId" value="LOCAL-00883" />
+      <option name="project" value="LOCAL" />
+      <updated>1490364360036</updated>
+    </task>
+    <option name="localTasksCounter" value="884" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="429285000" />
+    <option name="totallyTimeSpent" value="430323000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2444,14 +2462,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="66" column="40" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="165" column="115" lean-forward="false" selection-start-line="165" selection-start-column="115" selection-end-line="165" selection-end-column="115" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3061,17 +3071,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="132" column="62" lean-forward="false" selection-start-line="132" selection-start-column="62" selection-end-line="132" selection-end-column="62" />
+        <state relative-caret-position="765">
+          <caret line="174" column="69" lean-forward="true" selection-start-line="174" selection-start-column="69" selection-end-line="174" selection-end-column="69" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/services/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
+        <state relative-caret-position="641">
           <caret line="6514" column="103" lean-forward="false" selection-start-line="6514" selection-start-column="103" selection-end-line="6514" selection-end-column="103" />
           <folding>
             <marker date="1490364174453" expanded="true" signature="5041:5726" ph="insert into portalbd.activity_feed... " />
@@ -3348,6 +3358,14 @@
             <marker date="1490364174453" expanded="true" signature="732107:732793" ph="insert into portalbd.activity_feed... " />
             <marker date="1490364174453" expanded="true" signature="733852:733917" ph="SELECT USUAR... go_asig_idPermisos" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="32" column="41" lean-forward="false" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>

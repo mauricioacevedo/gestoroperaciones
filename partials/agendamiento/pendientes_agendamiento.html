@@ -18,6 +18,20 @@
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-12">
+                            <div class="btn-group">
+                                <input style="width:140px" class="btn btn-default btn-xs " type="text"
+                                       ng-model="bpedido" ng-change="buscarPedidoRegistro(bpedido);"
+                                       placeholder="Buscar..." ng-trim="true" ng-disabled="loading"
+                                       select-on-click capitalize/>
+                                <button type="button" class="btn btn-primary btn-xs"
+                                        ng-click="buscarPedidoRegistro(bpedido)" ng-disabled="loading">
+                                    <i class="fa fa-search" aria-hidden="true"> </i>
+                                </button>
+                                <button type="button" class="btn btn-success btn-xs"
+                                        ng-click="csvPendientesAgendamiento()" tooltip-placement="top" uib-tooltip="Exportar Pendientes" ng-disabled="loading">
+                                    <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                </button>
+                            </div>
                             <ul class="nav navbar-nav navbar-left">
                                 <li>
                                     <div class="btn-group">
