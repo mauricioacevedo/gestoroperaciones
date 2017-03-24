@@ -6510,9 +6510,9 @@ class API extends REST {
                 " a.ACTIVIDADES, ".
                 " a.MICROZONA, ".
                 " a.SUBZONA_ID, ".
-                " cast(my_sec_to_time(timestampdiff(second,FECHA_ESTADO,current_timestamp()))AS CHAR(255)) as TIEMPO_COLA, ".
+                " cast(my_sec_to_time(timestampdiff(second,if(a.FECHA_ESTADO='0000-00-00 00:00:00',FECHA_CARGA,a.FECHA_ESTADO),current_timestamp()))AS CHAR(255)) as TIEMPO_COLA, ".
                 " a.FUENTE, ".
-                " a.FECHA_ESTADO, ".
+                " if(a.FECHA_ESTADO='0000-00-00 00:00:00',FECHA_CARGA,a.FECHA_ESTADO) as FECHA_ESTADO,  ".
                 " a.FECHA_CITA_FENIX, ".
                 " a.STATUS, ".
                 " a.PROGRAMACION, ".
