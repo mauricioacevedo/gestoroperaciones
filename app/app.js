@@ -7775,7 +7775,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 	};
     $scope.idPermisos = idPermisos.getIds().then(
     	function (data) {
-    		//console.log(data);
+            $scope.idPermisos = data;
     	return data;
 	});
 
