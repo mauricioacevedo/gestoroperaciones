@@ -5,14 +5,14 @@
                 <b><i class="fa fa-bars" aria-hidden="true"></i> Pendientes</b>
                 <span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle" aria-hidden="true"
                                                               ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
-                <ul class="nav navbar-nav navbar-right">
+                <div class="pull-right">
                     <div class="col-md-1 col-xs-1 ">
                         <div data-ng-if="loading">
                             <img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif"
                                  height="16" width="16"/>
                         </div>
                     </div>
-                </ul>
+                </div>
             </div>
             <div class="panel-heading nav navbar-default">
                 <div class="col-md-12">
