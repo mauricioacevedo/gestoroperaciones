@@ -324,8 +324,8 @@
       <file leaf-file-name="pendientes_agendamiento.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+            <state relative-caret-position="238">
+              <caret line="127" column="91" lean-forward="false" selection-start-line="127" selection-start-column="91" selection-end-line="127" selection-end-column="91" />
               <folding />
             </state>
           </provider>
@@ -1704,14 +1704,7 @@
       <workItem from="1490278151477" duration="843000" />
       <workItem from="1490280307086" duration="471000" />
       <workItem from="1490280845414" duration="5967000" />
-      <workItem from="1490354792137" duration="11224000" />
-    </task>
-    <task id="LOCAL-00838" summary="Fix menores">
-      <created>1490187779901</created>
-      <option name="number" value="00838" />
-      <option name="presentableId" value="LOCAL-00838" />
-      <option name="project" value="LOCAL" />
-      <updated>1490187779901</updated>
+      <workItem from="1490354792137" duration="11314000" />
     </task>
     <task id="LOCAL-00839" summary="Fix menores">
       <created>1490189211574</created>
@@ -2049,11 +2042,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490367973336</updated>
     </task>
-    <option name="localTasksCounter" value="887" />
+    <task id="LOCAL-00887" summary="Mejora en vista de pendientes Agendamiento">
+      <created>1490368208823</created>
+      <option name="number" value="00887" />
+      <option name="presentableId" value="LOCAL-00887" />
+      <option name="project" value="LOCAL" />
+      <updated>1490368208823</updated>
+    </task>
+    <option name="localTasksCounter" value="888" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="431029000" />
+    <option name="totallyTimeSpent" value="431119000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -3363,8 +3363,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+        <state relative-caret-position="238">
+          <caret line="127" column="91" lean-forward="false" selection-start-line="127" selection-start-column="91" selection-end-line="127" selection-end-column="91" />
           <folding />
         </state>
       </provider>
