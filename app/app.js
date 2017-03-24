@@ -11437,6 +11437,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             DURACION: $scope.duracion,
 			STATUS: gestion.STATUS,
 			TIPIFICACION: $scope.tipificacion,
+            idllamada: InfoPedido.IDLLAMADA,
 
 
 
