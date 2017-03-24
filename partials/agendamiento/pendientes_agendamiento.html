@@ -86,26 +86,22 @@
                     <th>Pedido</th>
                     <th>Departamento</th>
                     <th>Tiempo</th>
-                    <th>Programación</th>
                     <th>Concepto</th>
                     <th ng-show="idPermisos.indexOf(logedUser.login)!=-1">Estado</th>
-                    <th>Obs</th>
-                    <th>Uen</th>
-                    <th>Municipio</th>
+                    <th>Zona</th>
+                    <th>Microzona</th>
                     <th>Fecha Estado</th>
                     <th>Fecha Cita</th>
                     <th>Fuente</th>
-                    <th>Prioridad</th>
                     <th ng-show="idPermisos.indexOf(logedUser.login)!=-1">Priorizar</th>
                     </thead>
                     <tbody>
                     <tr ng-repeat="data in listado_pendientes  | orderBy:'FECHA_ESTADO':false | filter:filtroInput  as InfoPed"
                         ng-class="{warning: data.STATUS == 'MALO'}">
-                        <td>{{data.PEDIDO_ID}}-{{data.SUBPEDIDO_ID}}-{{data.SOLICITUD_ID}}</td>
-                        <td><span class="small">{{data.TIPO_ELEMENTO_ID}}</span></td>
+                        <td>{{data.PEDIDO_ID}}</td>
+                        <td><span class="small">{{data.DEPARTAMENTO}}</span></td>
+                        <td><label style="color:red">{{data.CONCEPTOS}}</label></td>
                         <td><label style="color:red">{{data.TIEMPO_COLA}}</label></td>
-                        <td><span class="small">{{data.PROGRAMACION}}</span></td>
-                        <td><span class="small">{{data.CONCEPTO_ID}}</span></td>
                         <td ng-show="idPermisos.indexOf(logedUser.login)!=-1" ng-mouseover="hoverEdit = true" ng-mouseleave="hoverEdit = false">
                             <span class="small">
                                 <a href="#"
@@ -113,21 +109,18 @@
                                    editable-select="data.STATUS"
                                    e-ng-options="s.value as s.text for s in statuses"
                                    onaftersave="updateStatus(data)"
-                                   title="Editar"
-                                >
+                                   title="Editar">
                                     {{ data.STATUS }}
                                 </a>
                                  <span ng-show="hoverEdit" class="animated bounceIn" ><i class="fa fa-pencil" aria-hidden="true"></i></span>
 
                             </span>
                         </td>
-                        <td><span class="small">{{data.OBS}}</span></td>
-                        <td><span class="small">{{data.UEN_CALCULADA}}</span></td>
-                        <td><span class="small">{{data.MUNICIPIO_ID}}</span></td>
+                        <td><span class="small">{{data.SUBZONA_ID}}</span></td>
+                        <td><span class="small">{{data.MICROZONA}}</span></td>
                         <td><span class="small">{{data.FECHA_ESTADO}}</span></td>
-                        <td><span class="small">{{data.FECHA_CITA}}</span></td>
+                        <td><span class="small">{{data.FECHA_CITA_FENIX}}</span></td>
                         <td><span class="small">{{data.FUENTE}}</span></td>
-                        <td><span class="small">{{data.RADICADO_TEMPORAL || 'NO'}}</span></td>
                         <td ng-show="idPermisos.indexOf(logedUser.login)!=-1">
                             <span class="small">
                                 <input type="checkbox" class="flipswitch"
