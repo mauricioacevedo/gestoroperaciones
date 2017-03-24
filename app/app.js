@@ -463,8 +463,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'demePedidoActivacionDom?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion  +'&username=' + username );
 	};
 
-	obj.getBuscarpedidoactivacion = function (pedido, user) { //buscar pedido activacion suspecore
-		return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID=' + pedido + '&userID=' + user);
+	obj.getBuscarpedidoactivacion = function (pedido,tabla, user) { //buscar pedido activacion suspecore
+		return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID=' + pedido  + '&tabla=' + tabla  + '&userID=' + user);
 	};
 
     obj.getBuscarpedidoactivaciondom = function (pedido, user) { //buscar pedido activacion dom
