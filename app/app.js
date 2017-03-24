@@ -7751,7 +7751,7 @@ app.controller('ParametrizacionSiebel', function ($scope, $rootScope, $location,
 
 //----------------resgistros agendamiento---------------------------------
 
-app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services, idPermisos) {
+app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, notify, services, idPermisos) {
 
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
