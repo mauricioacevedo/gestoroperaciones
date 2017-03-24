@@ -9,7 +9,7 @@ app.service('idPermisos', function ($http, $q) {
     var self = this;
     self.getIds = function () {
         return $http.get('./services/idpermisoslst').then(function (res) {
-                return res.data;
+                return res.data.value;
             }, function (res) {
                 return $q.reject(res); // chain the rejections)
             }
