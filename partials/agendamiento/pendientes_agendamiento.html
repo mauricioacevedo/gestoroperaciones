@@ -34,25 +34,36 @@
                                 </li>
                                 <li>&nbsp;</li>
                                 <li>
-                                    <button type="button" class="btn btn-primary btn-xs"
-                                            ng-click="csvPendientes(data1.concepto)" title="Exportar" tooltip
-                                            data-placement="top" ng-disabled="loading">
+                                    <button type="button" class="btn btn-success btn-xs"
+                                            ng-click="csvPendientesAgendamiento()" tooltip-placement="top" uib-tooltip="Exportar Pendientes" ng-disabled="loading">
+                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                    </button>
+                                </li>
+                                <li>&nbsp;</li>
+                                <li>
+                                    <button type="button" class="btn btn-success btn-xs"
+                                            ng-click="csvPendientesAgenSiete()" tooltip-placement="top" uib-tooltip="Exportar mas 7 días" ng-disabled="loading">
                                         <i class="fa fa-cloud-download" aria-hidden="true"></i>
                                     </button>
                                 </li>
                                 <li>&nbsp;</li>
                                 <li>
                                     <button type="button" class="btn btn-danger btn-xs"
-                                            ng-click="csvMalos(data1.concepto)" title="Exportar Malos" tooltip
-                                            data-placement="top" ng-disabled="loading">
+                                            ng-click="csvMalosAgendamiento()" tooltip-placement="top" uib-tooltip="Exportar Malos" ng-disabled="loading">
                                         <i class="fa fa-cloud-download" aria-hidden="true"></i>
                                     </button>
                                 </li>
                                 <li>&nbsp;</li>
                                 <li>
                                     <button type="button" class="btn btn-warning btn-xs"
-                                            ng-click="csvPreInstalaciones()" title="Exportar Pre Instalaciones" tooltip
-                                            data-placement="top" ng-disabled="loading">
+                                            ng-click="csvAGENToday()" tooltip-placement="top" uib-tooltip="Exportar Agen" ng-disabled="loading">
+                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                    </button>
+                                </li>
+                                <li>&nbsp;</li>
+                                <li>
+                                    <button type="button" class="btn btn-warning btn-xs"
+                                            ng-click="csvPendientesAgendamientoPredictiva()" tooltip-placement="top" uib-tooltip="Exportar Predictiva" ng-disabled="loading">
                                         <i class="fa fa-cloud-download" aria-hidden="true"></i>
                                     </button>
                                 </li>
