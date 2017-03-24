@@ -30,60 +30,31 @@
                                     </button>
                                 </div>
                                 <button type="button" class="btn btn-success btn-xs"
-                                        ng-click="csvPendientesAgendamiento()" tooltip-placement="top" uib-tooltip="Exportar Pendientes" tooltip-append-to-body ng-disabled="loading">
+                                        ng-click="csvPendientesAgendamiento()" tooltip-placement="top" uib-tooltip="Exportar Pendientes" tooltip-append-to-body="true" ng-disabled="loading">
                                     <i class="fa fa-cloud-download" aria-hidden="true"></i>
                                 </button>
                                 <button type="button" class="btn btn-success btn-xs"
-                                        ng-click="csvPendientesAgendamiento()" tooltip-placement="top" uib-tooltip="Exportar Pendientes" tooltip-append-to-body ng-disabled="loading">
+                                        ng-click="csvPendientesAgenSiete()" tooltip-placement="top" uib-tooltip="Exportar mas 7 días" tooltip-append-to-body="true" ng-disabled="loading">
+                                    <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-xs"
+                                        ng-click="csvMalosAgendamiento()" tooltip-placement="top" uib-tooltip="Exportar Malos" tooltip-append-to-body="true" ng-disabled="loading">
+                                    <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-warning btn-xs"
+                                        ng-click="csvAGENToday()" tooltip-placement="top" uib-tooltip="Exportar Agen" tooltip-append-to-body="true" ng-disabled="loading">
+                                    <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-warning btn-xs"
+                                        ng-click="csvPendientesAgendamientoPredictiva()" tooltip-placement="top" uib-tooltip="Exportar Predictiva" tooltip-append-to-body="true" ng-disabled="loading">
                                     <i class="fa fa-cloud-download" aria-hidden="true"></i>
                                 </button>
                             </div>
-
-
-
-                            <ul class="nav navbar-nav">
-
-                                    <button type="button" class="btn btn-success btn-xs"
-                                            ng-click="csvPendientesAgendamiento()" tooltip-placement="top" uib-tooltip="Exportar Pendientes" ng-disabled="loading">
-                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
-                                    </button>
-                                </li>
-                                <li>&nbsp;</li>
-                                <li>
-                                    <button type="button" class="btn btn-success btn-xs"
-                                            ng-click="csvPendientesAgenSiete()" tooltip-placement="top" uib-tooltip="Exportar mas 7 días" ng-disabled="loading">
-                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
-                                    </button>
-                                </li>
-                                <li>&nbsp;</li>
-                                <li>
-                                    <button type="button" class="btn btn-danger btn-xs"
-                                            ng-click="csvMalosAgendamiento()" tooltip-placement="top" uib-tooltip="Exportar Malos" ng-disabled="loading">
-                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
-                                    </button>
-                                </li>
-                                <li>&nbsp;</li>
-                                <li>
-                                    <button type="button" class="btn btn-warning btn-xs"
-                                            ng-click="csvAGENToday()" tooltip-placement="top" uib-tooltip="Exportar Agen" ng-disabled="loading">
-                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
-                                    </button>
-                                </li>
-                                <li>&nbsp;</li>
-                                <li>
-                                    <button type="button" class="btn btn-warning btn-xs"
-                                            ng-click="csvPendientesAgendamientoPredictiva()" tooltip-placement="top" uib-tooltip="Exportar Predictiva" ng-disabled="loading">
-                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
-                                    </button>
-                                </li>
-
-
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
+                            <div class="pull-right">
                                 <input style="width:200px" class="btn btn-default btn-xs " type="text"
                                        ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click
                                        capitalize/>
-                            </ul>
+                            </div>
                         </div>
 
                     </div>
