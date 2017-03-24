@@ -7,9 +7,10 @@ var app = angular.module('myApp', ['base64', 'ngRoute', 'ngCookies', 'ng-fusionc
 
 app.service('idPermisos', function ($http, $q) {
     var self = this;
+    var deferred = $q.defer();
     self.getIds = function () {
         return $http.get('./services/idpermisoslst').then(function (res) {
-                return res.data;
+                return deferred.resolve(res);
             }, function (res) {
                 return $q.reject(res); // chain the rejections)
             }
