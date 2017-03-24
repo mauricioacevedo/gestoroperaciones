@@ -7773,13 +7773,12 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 		fechaIni: "",
 		fechaFin: ""
 	};
-    $scope.idPermisos = idPermisos.getIds().then(
+    idPermisos.getIds().then(
     	function (data) {
             $scope.idPermisos = data;
-    	return data;
-	});
-
-    console.log($scope.idPermisos);
+	}, function(){
+    		$scope.errorDatos = "Error en permisos";
+		});
     /*if($routeParams.conceptoid == undefined){
             $scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "",concepto: "TODO" }
     }else{
