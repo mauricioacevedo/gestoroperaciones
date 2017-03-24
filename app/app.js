@@ -1004,6 +1004,13 @@ app.factory("services", ['$http', '$timeout', function ($http) {
             usuario_id: usuario_id
         });
     };
+    obj.putPrioridadPedidosAgen = function (pedido_id, prioridad, usuario_id) {
+        return $http.post(serviceBase + 'otorgarPrioridadAbsolutaAgen', {
+            pedido_id: pedido_id,
+            prioridad: prioridad,
+            usuario_id: usuario_id
+        });
+    };
     obj.buscarPedidoAuditoriafenix = function (pedido){
         return $http.get(serviceBase + 'buscarPedidoAuditarFenix?pedido='+ pedido);
 	};
@@ -5283,15 +5290,6 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
     $scope.calcularListado = function () {
         $scope.listado_pedidos = [];
-        //$scope.data.campo="";
-        //$scope.data.valorCampo="";
-        //var date1 = new Date();
-        //var year  = date1.getFullYear();
-        //var month = date1.getMonth()+1;
-        //var day   = date1.getDate();
-        //var fecha_inicio=year+"-"+month+"-"+day;
-        //var fecha_fin=year+"-"+month+"-"+day;
-
         services.getListadoPedidos($scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage, $scope.data.campo, $scope.data.valorCampo).then(function (data) {
             $scope.listado_pedidos = data.data[0];
             $scope.data.totalItems = data.data[1];
@@ -7753,7 +7751,7 @@ app.controller('ParametrizacionSiebel', function ($scope, $rootScope, $location,
 
 //----------------resgistros agendamiento---------------------------------
 
-app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
+app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, notify, services, idPermisos) {
 
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
@@ -7782,12 +7780,17 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 		fechaIni: "",
 		fechaFin: ""
 	};
-
-	/*if($routeParams.conceptoid == undefined){
-	        $scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "",concepto: "TODO" }
-	}else{
-	        $scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "" }
-	}*/
+    idPermisos.getIds().then(
+    	function (data) {
+            $scope.idPermisos = data;
+	}, function(){
+    		$scope.errorDatos = "Error en permisos";
+		});
+    /*if($routeParams.conceptoid == undefined){
+            $scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "",concepto: "TODO" }
+    }else{
+            $scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "" }
+    }*/
 
 	$scope.data1 = {
 		maxSize: 5,
@@ -7997,7 +8000,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 	$scope.csvAGENToday = function () {
 		var login = $rootScope.logedUser.login;
 		services.getCsvAGENToday().then(function (data) {
-			console.log(data.data[0]);
+			//console.log(data.data[0]);
 			window.location.href = "tmp/" + data.data[0];
 			return data.data;
 		});
@@ -8016,6 +8019,32 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 	if ($routeParams.conceptoid != undefined) {
 		$scope.calcularPendientes($routeParams.conceptoid);
 	}
+
+    $scope.statuses = [
+        {value: 'PENDI_AGEN', text: 'PENDI_AGEN'},
+        {value: 'MALO', text: 'MALO'},
+        {value: 'CERRADO_AGEN', text: 'CERRADO_AGEN'}
+    ];
+
+    $scope.habilitarPrioridad = function (pedinfo){
+//        console.log(pedinfo);
+        services.putPrioridadPedidosAgen(pedinfo.PEDIDO_ID, pedinfo.RADICADO,userID).then(
+            function(data) {
+                $scope.data.RADICADO=pedinfo.PRIORIDAD;
+                notify({
+                    message: data.data[0],
+                    duration: '1000',
+                    position: 'right'
+                });
+                //console.log(data);
+            }
+        );
+    };
+
+    $scope.updateStatus = function(data) {
+        //console.log(data);
+        return $http.post('services/actualizarSatusPedidosAgendamiento', {id: data.ID, pedido: data.PEDIDO_ID, status:data.STATUS, usuario:userID});
+    };
 
 });
 

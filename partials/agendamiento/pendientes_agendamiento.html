@@ -5,75 +5,56 @@
                 <b><i class="fa fa-bars" aria-hidden="true"></i> Pendientes</b>
                 <span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle" aria-hidden="true"
                                                               ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
-                <ul class="nav navbar-nav navbar-right">
+                <div class="pull-right">
                     <div class="col-md-1 col-xs-1 ">
                         <div data-ng-if="loading">
                             <img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif"
                                  height="16" width="16"/>
                         </div>
                     </div>
-                </ul>
+                </div>
             </div>
             <div class="panel-heading nav navbar-default">
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-12">
-                            <ul class="nav navbar-nav navbar-left">
-                                <li>
-                                    <select ng-model="data1.concepto" ng-change="calcularPendientes(data1.concepto)"
-                                            class="btn btn-default btn-xs grupo-select">
-                                        <option ng-repeat="d in listadoConceptos | unique:'CONCEPTO_ID'"
-                                                value='{{d.CONCEPTO_ID}}'>{{d.CONCEPTO_ID}}
-                                        </option>
-                                    </select>
-
-                                </li>
-                                <li>&nbsp;</li>
-                                <li>
-                                    <div class="btn-group">
-                                        <input style="width:140px" class="btn btn-default btn-xs " type="text"
-                                               ng-model="bpedido" ng-change="buscarPedidoRegistro(bpedido);"
-                                               placeholder="Buscar..." ng-trim="true" ng-disabled="loading"
-                                               select-on-click capitalize/>
-                                        <button type="button" class="btn btn-primary btn-xs"
-                                                ng-click="buscarPedidoRegistro(bpedido)" ng-disabled="loading">
-                                            <i class="fa fa-search" aria-hidden="true"> </i>
-                                        </button>
-                                    </div>
-
-                                </li>
-                                <li>&nbsp;</li>
-                                <li>
+                            <div class="pull-left">
+                                <div class="btn-group">
+                                    <input style="width:140px" class="btn btn-default btn-xs " type="text"
+                                           ng-model="bpedido" ng-change="buscarPedidoRegistro(bpedido);"
+                                           placeholder="Buscar..." ng-trim="true" ng-disabled="loading"
+                                           select-on-click capitalize/>
                                     <button type="button" class="btn btn-primary btn-xs"
-                                            ng-click="csvPendientes(data1.concepto)" title="Exportar" tooltip
-                                            data-placement="top" ng-disabled="loading">
-                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                            ng-click="buscarPedidoRegistro(bpedido)" ng-disabled="loading">
+                                        <i class="fa fa-search" aria-hidden="true"> </i>
                                     </button>
-                                </li>
-                                <li>&nbsp;</li>
-                                <li>
-                                    <button type="button" class="btn btn-danger btn-xs"
-                                            ng-click="csvMalos(data1.concepto)" title="Exportar Malos" tooltip
-                                            data-placement="top" ng-disabled="loading">
-                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
-                                    </button>
-                                </li>
-                                <li>&nbsp;</li>
-                                <li>
-                                    <button type="button" class="btn btn-warning btn-xs"
-                                            ng-click="csvPreInstalaciones()" title="Exportar Pre Instalaciones" tooltip
-                                            data-placement="top" ng-disabled="loading">
-                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
-                                    </button>
-                                </li>
-
-
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
+                                </div>
+                                <button type="button" class="btn btn-success btn-xs"
+                                        ng-click="csvPendientesAgendamiento()" tooltip-placement="top" uib-tooltip="Exportar Pendientes" tooltip-append-to-body="true" ng-disabled="loading">
+                                    <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-success btn-xs"
+                                        ng-click="csvPendientesAgenSiete()" tooltip-placement="top" uib-tooltip="Exportar mas 7 días" tooltip-append-to-body="true" ng-disabled="loading">
+                                    <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-xs"
+                                        ng-click="csvMalosAgendamiento()" tooltip-placement="top" uib-tooltip="Exportar Malos" tooltip-append-to-body="true" ng-disabled="loading">
+                                    <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-warning btn-xs"
+                                        ng-click="csvAGENToday()" tooltip-placement="top" uib-tooltip="Exportar Agen" tooltip-append-to-body="true" ng-disabled="loading">
+                                    <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-warning btn-xs"
+                                        ng-click="csvPendientesAgendamientoPredictiva()" tooltip-placement="top" uib-tooltip="Exportar Predictiva" tooltip-append-to-body="true" ng-disabled="loading">
+                                    <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="pull-right">
                                 <input style="width:200px" class="btn btn-default btn-xs " type="text"
                                        ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click
                                        capitalize/>
-                            </ul>
+                            </div>
                         </div>
 
                     </div>
@@ -84,28 +65,25 @@
                 <table class="table small table-striped table-hover table-bordered">
                     <thead>
                     <th>Pedido</th>
-                    <th>Tipo</th>
+                    <th>Departamento</th>
                     <th>Tiempo</th>
-                    <th>Programación</th>
                     <th>Concepto</th>
                     <th ng-show="idPermisos.indexOf(logedUser.login)!=-1">Estado</th>
-                    <th>Obs</th>
-                    <th>Uen</th>
-                    <th>Municipio</th>
+                    <th>Zona</th>
+                    <th>Microzona</th>
                     <th>Fecha Estado</th>
                     <th>Fecha Cita</th>
                     <th>Fuente</th>
-                    <th>Prioridad</th>
+                    <th>Radicado</th>
                     <th ng-show="idPermisos.indexOf(logedUser.login)!=-1">Priorizar</th>
                     </thead>
                     <tbody>
                     <tr ng-repeat="data in listado_pendientes  | orderBy:'FECHA_ESTADO':false | filter:filtroInput  as InfoPed"
                         ng-class="{warning: data.STATUS == 'MALO'}">
-                        <td>{{data.PEDIDO_ID}}-{{data.SUBPEDIDO_ID}}-{{data.SOLICITUD_ID}}</td>
-                        <td><span class="small">{{data.TIPO_ELEMENTO_ID}}</span></td>
-                        <td><label style="color:red">{{data.TIEMPO_COLA}}</label></td>
-                        <td><span class="small">{{data.PROGRAMACION}}</span></td>
-                        <td><span class="small">{{data.CONCEPTO_ID}}</span></td>
+                        <td>{{data.PEDIDO_ID}}</td>
+                        <td><span class="small">{{data.DEPARTAMENTO}}</span></td>
+                        <td><label style="color:red">{{data.TIEMPO_COLA || '0:0:0'}}</label></td>
+                        <td><span class="small">{{data.CONCEPTOS}}</span></td>
                         <td ng-show="idPermisos.indexOf(logedUser.login)!=-1" ng-mouseover="hoverEdit = true" ng-mouseleave="hoverEdit = false">
                             <span class="small">
                                 <a href="#"
@@ -113,25 +91,23 @@
                                    editable-select="data.STATUS"
                                    e-ng-options="s.value as s.text for s in statuses"
                                    onaftersave="updateStatus(data)"
-                                   title="Editar"
-                                >
+                                   title="Editar">
                                     {{ data.STATUS }}
                                 </a>
                                  <span ng-show="hoverEdit" class="animated bounceIn" ><i class="fa fa-pencil" aria-hidden="true"></i></span>
 
                             </span>
                         </td>
-                        <td><span class="small">{{data.OBS}}</span></td>
-                        <td><span class="small">{{data.UEN_CALCULADA}}</span></td>
-                        <td><span class="small">{{data.MUNICIPIO_ID}}</span></td>
+                        <td><span class="small">{{data.SUBZONA_ID}}</span></td>
+                        <td><span class="small">{{data.MICROZONA}}</span></td>
                         <td><span class="small">{{data.FECHA_ESTADO}}</span></td>
-                        <td><span class="small">{{data.FECHA_CITA}}</span></td>
+                        <td><span class="small">{{data.FECHA_CITA_FENIX}}</span></td>
                         <td><span class="small">{{data.FUENTE}}</span></td>
-                        <td><span class="small">{{data.RADICADO_TEMPORAL || 'NO'}}</span></td>
+                        <td><span class="small">{{data.RADICADO}}</span></td>
                         <td ng-show="idPermisos.indexOf(logedUser.login)!=-1">
                             <span class="small">
                                 <input type="checkbox" class="flipswitch"
-                                       ng-model="data.RADICADO_TEMPORAL"
+                                       ng-model="data.RADICADO"
                                        name="prioridad"
                                        id="prioridad"
                                        ng-true-value="'ARBOL'"
@@ -145,25 +121,24 @@
 
             </div>
             <div class="panel-footer clearfix">
-                <div class="col-md-12">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li>Registros: <span class="badge badge-default">{{data1.totalItems}}</span></li>
-
-                    </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
-
-                        <ul uib-pagination class="pagination-sm" total-items="data1.totalItems"
-                            ng-model="data1.currentPage" max-size="6" boundary-links="true" num-pages="smallnumPages"
-                            previous-text="&#8672;" next-text="&#8674;" last-text="Último" first-text="Primero"
-                            items-per-page="100" boundary-link-numbers="false" rotate="false"
-                            ng-change="pageChanged('listadoPendientes')" class="pagination-sm">
-                        </ul>
-
-
-                        <!-- old pagination
-                        <pagination total-items="data1.totalItems" ng-model="data1.currentPage" ng-change="pageChanged('listadoPendientes')" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination> -->
-                    </ul>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="pull-left">
+                            Registros: <span class="badge badge-default">{{data1.totalItems}}</span>
+                            &nbsp;
+                            Malos: <span class="badge badge-danger">{{data.totalItems2}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="pull-right">
+                            <ul uib-pagination class="pagination-sm" total-items="data1.totalItems"
+                                ng-model="data1.currentPage" max-size="6" boundary-links="true" num-pages="smallnumPages"
+                                previous-text="&#8672;" next-text="&#8674;" last-text="Último" first-text="Primero"
+                                items-per-page="100" boundary-link-numbers="false" rotate="false"
+                                ng-change="pageChanged('listadoPendientes')" class="pagination-sm">
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -176,13 +151,6 @@
 <br>
 <ol class="breadcrumb">
     <li><a href=".#/">Home</a></li>
-    <li><a href="">Asignaciones</a></li>
+    <li><a href="">Agendamiento</a></li>
     <li class="active">{{title}}</li>
 </ol>
-<script>
-    $('.input-daterange').datepicker({
-        format: 'yyyy-mm-dd',
-        todayBtn: "linked",
-        autoclose: true
-    });
-</script>
