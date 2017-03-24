@@ -40,8 +40,8 @@
       <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="6513" column="26" lean-forward="false" selection-start-line="6513" selection-start-column="20" selection-end-line="6513" selection-end-column="26" />
+            <state relative-caret-position="425">
+              <caret line="6512" column="121" lean-forward="false" selection-start-line="6512" selection-start-column="110" selection-end-line="6512" selection-end-column="121" />
               <folding>
                 <marker date="1490303863878" expanded="true" signature="5041:5726" ph="insert into portalbd.activity_feed... " />
                 <marker date="1490303863878" expanded="true" signature="8417:9102" ph="insert into portalbd.activity_feed... " />
@@ -322,8 +322,8 @@
       <file leaf-file-name="pendientes_agendamiento.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="103" column="84" lean-forward="false" selection-start-line="103" selection-start-column="84" selection-end-line="103" selection-end-column="84" />
+            <state relative-caret-position="289">
+              <caret line="102" column="71" lean-forward="false" selection-start-line="102" selection-start-column="71" selection-end-line="102" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -1684,14 +1684,7 @@
       <workItem from="1490278151477" duration="843000" />
       <workItem from="1490280307086" duration="471000" />
       <workItem from="1490280845414" duration="5967000" />
-      <workItem from="1490354792137" duration="2073000" />
-    </task>
-    <task id="LOCAL-00803" summary="Cambio en Auditar pedidos Asignaciones">
-      <created>1490112866041</created>
-      <option name="number" value="00803" />
-      <option name="presentableId" value="LOCAL-00803" />
-      <option name="project" value="LOCAL" />
-      <updated>1490112866041</updated>
+      <workItem from="1490354792137" duration="2174000" />
     </task>
     <task id="LOCAL-00804" summary="Cambio en Auditar pedidos Asignaciones">
       <created>1490112986706</created>
@@ -2029,11 +2022,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490356305710</updated>
     </task>
-    <option name="localTasksCounter" value="852" />
+    <task id="LOCAL-00852" summary="Mejora en vista de pendientes Agendamiento">
+      <created>1490356885103</created>
+      <option name="number" value="00852" />
+      <option name="presentableId" value="LOCAL-00852" />
+      <option name="project" value="LOCAL" />
+      <updated>1490356885103</updated>
+    </task>
+    <option name="localTasksCounter" value="853" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="421878000" />
+    <option name="totallyTimeSpent" value="421979000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -3060,8 +3060,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="6513" column="26" lean-forward="false" selection-start-line="6513" selection-start-column="20" selection-end-line="6513" selection-end-column="26" />
+        <state relative-caret-position="425">
+          <caret line="6512" column="121" lean-forward="false" selection-start-line="6512" selection-start-column="110" selection-end-line="6512" selection-end-column="121" />
           <folding>
             <marker date="1490303863878" expanded="true" signature="5041:5726" ph="insert into portalbd.activity_feed... " />
             <marker date="1490303863878" expanded="true" signature="8417:9102" ph="insert into portalbd.activity_feed... " />
@@ -3340,8 +3340,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/agendamiento/pendientes_agendamiento.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="103" column="84" lean-forward="false" selection-start-line="103" selection-start-column="84" selection-end-line="103" selection-end-column="84" />
+        <state relative-caret-position="289">
+          <caret line="102" column="71" lean-forward="false" selection-start-line="102" selection-start-column="71" selection-end-line="102" selection-end-column="71" />
           <folding />
         </state>
       </provider>

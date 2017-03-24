@@ -101,7 +101,7 @@
                         <td>{{data.PEDIDO_ID}}</td>
                         <td><span class="small">{{data.DEPARTAMENTO}}</span></td>
                         <td><label style="color:red">{{data.TIEMPO_COLA}}</label></td>
-                        <td><label style="color:red">{{data.CONCEPTOS}}</label></td>
+                        <td><span class="small">{{data.CONCEPTOS}}</span></td>
                         <td ng-show="idPermisos.indexOf(logedUser.login)!=-1" ng-mouseover="hoverEdit = true" ng-mouseleave="hoverEdit = false">
                             <span class="small">
                                 <a href="#"
