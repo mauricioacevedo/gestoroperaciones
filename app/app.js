@@ -11363,7 +11363,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 
-		var kami = services.getBuscarpedidoactivacion(buscar, $rootScope.logedUser.login).then(
+		var kami = services.getBuscarpedidoactivacion(buscar,$scope.tabla, $rootScope.logedUser.login).then(
 
 			function (data) {
 
