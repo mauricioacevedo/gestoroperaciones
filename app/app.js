@@ -7776,7 +7776,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
     $scope.idPermisos = idPermisos.getIds();
 
     var peer = $scope.idPermisos;
-    console.log(peer.indexOf($rootScope.logedUser.login));
+    console.log(angular.peer.indexOf($rootScope.logedUser.login));
     /*if($routeParams.conceptoid == undefined){
             $scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "",concepto: "TODO" }
     }else{
