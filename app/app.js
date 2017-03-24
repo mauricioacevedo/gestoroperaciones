@@ -7,10 +7,9 @@ var app = angular.module('myApp', ['base64', 'ngRoute', 'ngCookies', 'ng-fusionc
 
 app.service('idPermisos', function ($http, $q) {
     var self = this;
-    var deferred = $q.defer();
     self.getIds = function () {
         return $http.get('./services/idpermisoslst').then(function (res) {
-                return deferred.resolve(res);
+                return res.data;
             }, function (res) {
                 return $q.reject(res); // chain the rejections)
             }
@@ -7774,7 +7773,10 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 		fechaIni: "",
 		fechaFin: ""
 	};
-    $scope.idPermisos = idPermisos.getIds();
+    $scope.idPermisos = idPermisos.getIds().then(
+    	function (data) {
+    	return data.data;
+	});
 
     var peer = $scope.idPermisos;
     console.log($scope.idPermisos);
