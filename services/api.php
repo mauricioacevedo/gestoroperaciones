@@ -14036,7 +14036,7 @@ class API extends REST {
 
 //------------------------buscarpedido activacion suspecore----------------
 
-    private function buscarpedidoactivacion(){
+    private function buscarpedidoactivaciondom(){
 
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -14114,7 +14114,7 @@ class API extends REST {
 
 //------------------------buscarpedido activacion dom----------------------
 
-    private function buscarpedidoactivaciondom(){
+    private function buscarpedidoactivacion(){
 
         if($this->get_request_method() != "GET"){
             $this->response('',406);
