@@ -14142,7 +14142,7 @@ class API extends REST {
 
 
         $query1=" SELECT ".
-                " p.pedido,p.ORDER_SEQ_ID,p.ESTADO,p.TAREA_EXCEPCION,p.IDSERVICIORAIZ,p.TRANSACCION ".
+                " p.PEDIDO as PEDIDO_ID,p.ORDER_SEQ_ID,p.ESTADO,p.TAREA_EXCEPCION,p.IDSERVICIORAIZ,p.TRANSACCION ".
                 " , group_concat(distinct p.PRODUCTO) as  PRODUCTOS ".
                 " , min(p.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
                 " ,min(p.FECHA_CREACION) as FECHA_CREACION ".
