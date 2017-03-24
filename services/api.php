@@ -15435,7 +15435,6 @@ class API extends REST {
         }
 
     }//-----------------------------------------------Funcion para productividad el grupo de asignaciones cada hora
-//Funcion para Habilitar Prioridad Arbol en Peiddos-----------------------------------------------
     /**
      * Funcion para que los pedidos tengan prioridad absoluta.
      */
@@ -15507,6 +15506,77 @@ class API extends REST {
         }
 
     }//-----------------------------------------------Fin funcion
+    /**
+     * Funcion para que los pedidos tengan prioridad absoluta.
+     */
+    private function otorgarPrioridadAbsolutaAgen(){
+
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+        $params = json_decode(file_get_contents('php://input'),true);
+        $prioridad = $params['prioridad'];
+        $pedido = $params['pedido_id'];
+        $usuario_id = $params['usuario_id'];
+        $today = date("Y-m-d H:i:s");
+
+        if($prioridad){
+            $prioridad='ARBOL';
+        }else{
+            $prioridad='NO';
+        }
+
+        $query= " update portalbd.gestor_pendientes_reagendamiento ".
+            " set RADICADO='$prioridad' ".
+            " where PEDIDO_ID='$pedido' ";
+
+        $rst = $this->mysqli->query($query);
+        if($rst===TRUE){
+            $msg="Prioridad Actualizada";
+
+            $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuario_id')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'$pedido' ".
+                ",'PRIORIZO PEDIDO AGENDAMIENTO' ".
+                ",'$prioridad' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            // echo $sql_log;
+            $rlog = $this->mysqli->query($sql_log);
+
+            $this->response($this->json(array($msg)), 201);
+
+        }else{
+            $msg = "No se pudo dar prioridad";
+            $this->response($this->json(array($msg)), 403);
+        }
+
+    }//-----------------------------------------------Fin funcion
 
     /**
      * Funcion para editar el stado de los Pedidos
@@ -15536,6 +15606,69 @@ class API extends REST {
         $today = date("Y-m-d H:i:s");
 
         $query= " update portalbd.informe_petec_pendientesm ".
+            " set STATUS='$status' ".
+            " where ID='$idped' and PEDIDO_ID='$pedido' ";
+
+        $rst = $this->mysqli->query($query);
+        if($rst===TRUE){
+            $msg="Status Actualizado";
+
+            $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuario_id')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'ACTUALIZAR' ".
+                ",'$pedido' ".
+                ",'ACTUALIZO ESTADO' ".
+                ",'$status' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            // echo $sql_log;
+            $rlog = $this->mysqli->query($sql_log);
+
+            $this->response($this->json(array($msg)), 201);
+
+        }else{
+            $msg = "No se pudo actualizar";
+            $this->response($this->json(array($msg)), 403);
+        }
+
+    }//-----------------------------------------------Fin funcion
+    private function actualizarSatusPedidosAgendamiento(){
+
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+        $params = json_decode(file_get_contents('php://input'),true);
+        $idped = $params['id'];
+        $pedido = $params['pedido'];
+        $status = $params['status'];
+        $usuario_id = $params['usuario'];
+        $today = date("Y-m-d H:i:s");
+
+        $query= " update portalbd.gestor_pendientes_reagendamiento ".
             " set STATUS='$status' ".
             " where ID='$idped' and PEDIDO_ID='$pedido' ";
 

@@ -94,6 +94,7 @@
                     <th>Fecha Estado</th>
                     <th>Fecha Cita</th>
                     <th>Fuente</th>
+                    <th>Radicado</th>
                     <th ng-show="idPermisos.indexOf(logedUser.login)!=-1">Priorizar</th>
                     </thead>
                     <tbody>
@@ -122,6 +123,7 @@
                         <td><span class="small">{{data.FECHA_ESTADO}}</span></td>
                         <td><span class="small">{{data.FECHA_CITA_FENIX}}</span></td>
                         <td><span class="small">{{data.FUENTE}}</span></td>
+                        <td><span class="small">{{data.RADICADO}}</span></td>
                         <td ng-show="idPermisos.indexOf(logedUser.login)!=-1">
                             <span class="small">
                                 <input type="checkbox" class="flipswitch"

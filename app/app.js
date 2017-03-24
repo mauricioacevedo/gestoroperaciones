@@ -1004,6 +1004,13 @@ app.factory("services", ['$http', '$timeout', function ($http) {
             usuario_id: usuario_id
         });
     };
+    obj.putPrioridadPedidosAgen = function (pedido_id, prioridad, usuario_id) {
+        return $http.post(serviceBase + 'otorgarPrioridadAbsolutaAgen', {
+            pedido_id: pedido_id,
+            prioridad: prioridad,
+            usuario_id: usuario_id
+        });
+    };
     obj.buscarPedidoAuditoriafenix = function (pedido){
         return $http.get(serviceBase + 'buscarPedidoAuditarFenix?pedido='+ pedido);
 	};
@@ -8018,6 +8025,27 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
         {value: 'MALO', text: 'MALO'},
         {value: 'CERRADO_AGEN', text: 'CERRADO_AGEN'}
     ];
+
+    $scope.habilitarPrioridad = function (pedinfo){
+//        console.log(pedinfo);
+        services.putPrioridadPedidosAgen(pedinfo.PEDIDO_ID, pedinfo.RADICADO,userID).then(
+            function(data) {
+                $scope.data.RADICADO=pedinfo.PRIORIDAD;
+                notify({
+                    message: data.data[0],
+                    duration: '1000',
+                    position: 'right'
+                });
+                //console.log(data);
+            }
+        );
+    };
+
+    $scope.updateStatus = function(data) {
+        //console.log(data);
+        return $http.post('services/actualizarSatusPedidosAgendamiento', {id: data.ID, pedido: data.PEDIDO_ID, status:data.STATUS, usuario:userID});
+    };
+
 });
 
 //---------------------fin agendamiento----------------------
