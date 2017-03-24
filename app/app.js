@@ -5283,15 +5283,6 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
     $scope.calcularListado = function () {
         $scope.listado_pedidos = [];
-        //$scope.data.campo="";
-        //$scope.data.valorCampo="";
-        //var date1 = new Date();
-        //var year  = date1.getFullYear();
-        //var month = date1.getMonth()+1;
-        //var day   = date1.getDate();
-        //var fecha_inicio=year+"-"+month+"-"+day;
-        //var fecha_fin=year+"-"+month+"-"+day;
-
         services.getListadoPedidos($scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage, $scope.data.campo, $scope.data.valorCampo).then(function (data) {
             $scope.listado_pedidos = data.data[0];
             $scope.data.totalItems = data.data[1];
@@ -7753,7 +7744,7 @@ app.controller('ParametrizacionSiebel', function ($scope, $rootScope, $location,
 
 //----------------resgistros agendamiento---------------------------------
 
-app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
+app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services, idPermisos) {
 
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
@@ -7782,12 +7773,12 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 		fechaIni: "",
 		fechaFin: ""
 	};
-
-	/*if($routeParams.conceptoid == undefined){
-	        $scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "",concepto: "TODO" }
-	}else{
-	        $scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "" }
-	}*/
+    $scope.idPermisos = idPermisos.getIds();
+    /*if($routeParams.conceptoid == undefined){
+            $scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "",concepto: "TODO" }
+    }else{
+            $scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "" }
+    }*/
 
 	$scope.data1 = {
 		maxSize: 5,
