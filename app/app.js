@@ -7773,7 +7773,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 		fechaIni: "",
 		fechaFin: ""
 	};
-    $scope.idPermisos = idPermisos.getIds();
+    $scope.idPermisos = idPermisos.getIds().value;
 
     var peer = $scope.idPermisos;
     console.log(peer);
