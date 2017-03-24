@@ -14128,16 +14128,6 @@ class API extends REST {
         $user=strtoupper($user);
         $today = date("Y-m-d");
 
-        if($tabla=='ACTIVADOR_SUSPECORE'){
-
-           $tabla = " from gestor_activacion_pendientes_activador_suspecore b " ;
-
-       } else {
-
-          $tabla = " from gestor_activacion_pendientes_activador_dom b " ;
-
-
-     }
 
         $query1=    " SELECT ".
                 " p.pedido as PEDIDO_ID ".
@@ -14146,7 +14136,7 @@ class API extends REST {
                 " ,min(p.FECHA_CREACION) as FECHA_CREACION ".
                 " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
                 " where a.PEDIDO='$pedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
-                $tabla.
+                " from gestor_activacion_pendientes_activador_suspecore b ".
                 " where p.PEDIDO = '$pedido'  ".
                 " and p.STATUS='PENDI_ACTI' ".
                 " group by p.pedido ";
