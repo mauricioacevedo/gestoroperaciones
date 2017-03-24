@@ -458,17 +458,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'demePedidoActivacion?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion   + '&tabla=' + tabla  +'&username=' + username );
 	};
 
-    obj.demePedidoActivacionDom = function (user, pedido, transaccion, tabla, username) { //deme pedido activacion
-		console.log("transaccion=" + transaccion);
-		return $http.get(serviceBase + 'demePedidoActivacionDom?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion  +'&username=' + username );
-	};
 
 	obj.getBuscarpedidoactivacion = function (pedido,tabla, user) { //buscar pedido activacion suspecore
 		return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID=' + pedido  + '&tabla=' + tabla  + '&userID=' + user);
-	};
-
-    obj.getBuscarpedidoactivaciondom = function (pedido, user) { //buscar pedido activacion dom
-		return $http.get(serviceBase + 'buscarpedidoactivaciondom?pedidoID=' + '&userID=' + user);
 	};
 
 	obj.insertTransaccionsiebelactivacion = function (pedido) { //insertar pedidos siebel activacion
@@ -11409,7 +11401,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 					}
 				}
 			});
-
+        CONSOLE.LOG($scope.buscar);
 
 	};
 

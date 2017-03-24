@@ -14152,7 +14152,7 @@ class API extends REST {
                 " where p.PEDIDO = '$pedido'  ".
                 " and p.STATUS='PENDI_ACTI' ".
                 " group by p.pedido ";
-           echo $query1;
+         //  echo $query1;
 
         $rPendi = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
