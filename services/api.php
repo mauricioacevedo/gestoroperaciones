@@ -9836,7 +9836,7 @@ class API extends REST {
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
 
-            //----------insert
+        /*    //----------insert
             if($tabla=='ACTIVADOR_SUSPECORE'){
             if($TIPIFICACION=='FINALIZADA'){
             $sqlupdate="update gestor_activacion_pendientes_activador_suspecore  set FECHA_GESTION='$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION='$FECHA_EXCEPCION'";
@@ -9855,7 +9855,7 @@ class API extends REST {
           $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
             //----------fin insert
 
-
+*/
             //  echo "(1)";
             $this->response(json_encode(array("msg"=>"N/A","data" => $today)),200);
 
