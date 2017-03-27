@@ -9840,12 +9840,9 @@ class API extends REST {
 
             //----------insert
 
-            if( $tabla=='ACTIVADOR_SUSPECORE'){
-            if( $TIPIFICACION=='FINALIZADA'){
+            if( $tabla=='ACTIVADOR_SUSPECORE' &&  $TIPIFICACION=='FINALIZADA'){
             $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
            //  echo $sqlupdate;
-
-       }
     }
              // echo $sqlupdate;
             $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
