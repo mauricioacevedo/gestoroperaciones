@@ -11466,9 +11466,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		};
 
 console.log($scope.InfoGestion);
- console.log($scope.OBSERVACION);
-    console.log(gestion.OBSERVACION);
-
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
 
