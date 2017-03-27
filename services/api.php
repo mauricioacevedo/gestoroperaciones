@@ -8411,7 +8411,7 @@ class API extends REST {
 
         $user=strtoupper($user);
 
-        $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
+        //$sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
 
         //echo $sqlupdate;
         $xxx = $this->mysqli->query($sqlupdate);
