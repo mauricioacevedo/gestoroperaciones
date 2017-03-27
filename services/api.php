@@ -9828,7 +9828,7 @@ class API extends REST {
         $DURACION=$pedido['DURACION'];
         $tabla = $pedido['tabla'];
         $OBSERVACION=$pedido['OBSERVACION'];
-        if(!empty($pedido)){
+       // if(!empty($pedido)){
 
             $query = "insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,STATUS,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,DURACION,OBSERVACION,NUMERO_CR,TABLA) values ('$ORDER_SEQ_ID','$PEDIDO','$REFERENCE_NUMBER','$ESTADO','$FECHA_CREACION','$TAREA_EXCEPCION','$FECHA_EXCEPCION','$PRODUCTO','$IDSERVICIORAIZ','$TRANSACCION','$CODIGO_CIUDAD','$STATUS','$ASESOR','$today','$TIPIFICACION','$FECHA_INICIO','$FECHA_FIN','$DURACION','$OBSERVACION','$NUMERO_CR','$tabla') ";
 
@@ -9839,7 +9839,7 @@ class API extends REST {
             //----------insert
             if($tabla=='ACTIVADOR_SUSPECORE'){
             if($TIPIFICACION=='FINALIZADA'){
-            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore  set STATUS='CERRADO_ACTI' where PEDIDO='$pedido'";
+            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore  set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI'";
            //  echo $sqlupdate;
          }
         }            /*else {
@@ -9860,15 +9860,43 @@ class API extends REST {
             //----------fin insert
 
 
-            //  echo "(1)";
-            $this->response(json_encode(array("msg"=>"N/A","data" => $today)),200);
+            // SQL Feed----------------------------------
+        $sql_log=   "insert into portalbd.activity_feed ( ".
+            " USER ".
+            ", USER_NAME ".
+            ", GRUPO ".
+            ", STATUS ".
+            ", PEDIDO_OFERTA ".
+            ", ACCION ".
+            ", CONCEPTO_ID ".
+            ", IP_HOST ".
+            ", CP_HOST ".
+            ") values( ".
+            " UPPER('$useri')".
+            ", UPPER('$nombreGalleta')".
+            ", UPPER('AGENDAMIENTO')".
+            ",'$novedad' ".
+            ",'$PEDIDO_ID' ".
+            ",'REAGENDO PEDIDO' ".
+            ",'$CODIGO_ESTADO' ".
+            ",'$usuarioIp' ".
+            ",'$usuarioPc')";
 
-        }else{
-            $this->response('',200);        //"No Content" status
-            //$this->response("$query",200);        //"No Content" status
-        }
+        $rlog = $this->mysqli->query($sql_log);
+        // ---------------------------------- SQL Feed
+        //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','AGENDAMIENTO','CERRADO_AGEN','PEDIDO: $PEDIDO_ID','REAGENDAMIENTO','CERRADO_AGEN') ";                        //echo $sqlfeed;
+        //$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
-    }
+        $sqlinteraccion="insert into gestor_interacciones_agendamiento (PEDIDO,CEDULA,NOMBRE,CANAL,NOVEDAD,CODIGO_ESTADO) values ('$PEDIDO_ID','$cliente_id','$nombre_usuario','CALL CENTER','$novedad','$CODIGO_ESTADO') ";
+
+        $rrrr = $this->mysqli->query($sqlinteraccion) or die($this->mysqli->error.__LINE__);
+
+
+        //hago la actualizacion en fenix
+        $this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
+  //  }
+
+ }
 
 //-------------------------fininsertactivacion*------------------
     private function insertTransaccionActividades(){
