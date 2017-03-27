@@ -11397,6 +11397,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 						$scope.pedidoIsActive = true;
 
                         console.log($scope.buscar);
+                        console.log($scope.peds);
 						return data.data;
 					}
 				}
