@@ -9845,7 +9845,7 @@ class API extends REST {
            //  echo $sqlupdate;
 
        }
-              echo $sqlupdate;
+             // echo $sqlupdate;
             $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
 
             //  echo "(1)";
