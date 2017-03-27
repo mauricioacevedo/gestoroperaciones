@@ -9854,6 +9854,7 @@ class API extends REST {
           }
     }
     */
+            echo $sqlupdate;
           $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
             //----------fin insert
 
