@@ -9836,12 +9836,12 @@ class API extends REST {
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
 
+
             //----------insert
             if($tabla=='ACTIVADOR_SUSPECORE'){
-            if($TIPIFICACION=='FINALIZADA'){
+                $TIPIFICACION=='FINALIZADA'
             $sqlupdate="update gestor_activacion_pendientes_activador_suspecore  set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI'";
            //  echo $sqlupdate;
-         }
         }            /*else {
                 sqlupdate="update gestor_activacion_pendientes_activador_suspecore  set FECHA_GESTION='$today',STATUS='PENDI_ACTI',FECHA_EXCEPCION='$FECHA_EXCEPCION'";
 
