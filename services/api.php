@@ -9823,19 +9823,29 @@ class API extends REST {
         $CODIGO_CIUDAD=$pedido['CODIGO_CIUDAD'];
         $STATUS=$pedido['STATUS'];
         $TIPIFICACION=$pedido['TIPIFICACION'];
-
         $FECHA_INICIO=$pedido['FECHA_INICIO'];
         $FECHA_FIN=$pedido['FECHA_FIN'];
         $DURACION=$pedido['DURACION'];
-
-        $TABLA=$pedido['TABLA'];
-
+        $tabla = $pedido['tabla'];
+        $OBSERVACION=$pedido['OBSERVACION'];
         if(!empty($pedido)){
 
-            $query = "insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,STATUS,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,DURACION,OBSERVACION,NUMERO_CR,TABLA) values ('$ORDER_SEQ_ID','$PEDIDO','$REFERENCE_NUMBER','$ESTADO','$FECHA_CREACION','$TAREA_EXCEPCION','$FECHA_EXCEPCION','$PRODUCTO','$IDSERVICIORAIZ','$TRANSACCION','$CODIGO_CIUDAD','$STATUS','$ASESOR','$today','$TIPIFICACION','$FECHA_INICIO','$FECHA_FIN','$DURACION','$OBSERVACION','$NUMERO_CR','$TABLA') ";
+            $query = "insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,STATUS,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,DURACION,OBSERVACION,NUMERO_CR,TABLA) values ('$ORDER_SEQ_ID','$PEDIDO','$REFERENCE_NUMBER','$ESTADO','$FECHA_CREACION','$TAREA_EXCEPCION','$FECHA_EXCEPCION','$PRODUCTO','$IDSERVICIORAIZ','$TRANSACCION','$CODIGO_CIUDAD','$STATUS','$ASESOR','$today','$TIPIFICACION','$FECHA_INICIO','$FECHA_FIN','$DURACION','$OBSERVACION','$NUMERO_CR','$tabla') ";
 
             //echo $TIPIFICACION;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+
+
+            //----------insert
+
+       /*       if( $TIPIFICACION='FINALIZADA'){
+            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore  set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI'";
+           //  echo $sqlupdate;
+        } */
+
+
+           // $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
 
             //  echo "(1)";
             $this->response(json_encode(array("msg"=>"N/A","data" => $today)),200);
@@ -9847,7 +9857,10 @@ class API extends REST {
 
     }
 
+
 //-------------------------fininsertactivacion*------------------
+
+
     private function insertTransaccionActividades(){
         if($this->get_request_method() != "POST"){
             $this->response('',406);
