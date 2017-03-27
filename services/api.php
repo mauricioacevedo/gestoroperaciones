@@ -9861,44 +9861,18 @@ class API extends REST {
           $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
             //----------fin insert
 
+$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
-            // SQL Feed----------------------------------
-        $sql_log=   "insert into portalbd.activity_feed ( ".
-            " USER ".
-            ", USER_NAME ".
-            ", GRUPO ".
-            ", STATUS ".
-            ", PEDIDO_OFERTA ".
-            ", ACCION ".
-            ", CONCEPTO_ID ".
-            ", IP_HOST ".
-            ", CP_HOST ".
-            ") values( ".
-            " UPPER('$useri')".
-            ", UPPER('$nombreGalleta')".
-            ", UPPER('AGENDAMIENTO')".
-            ",'$novedad' ".
-            ",'$PEDIDO_ID' ".
-            ",'REAGENDO PEDIDO' ".
-            ",'$CODIGO_ESTADO' ".
-            ",'$usuarioIp' ".
-            ",'$usuarioPc')";
+            //  echo "(1)";
+            $this->response(json_encode(array("msg"=>"N/A","data" => $today)),200);
 
-        $rlog = $this->mysqli->query($sql_log);
-        // ---------------------------------- SQL Feed
-        //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','AGENDAMIENTO','CERRADO_AGEN','PEDIDO: $PEDIDO_ID','REAGENDAMIENTO','CERRADO_AGEN') ";                        //echo $sqlfeed;
-        //$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+        }else{
+            $this->response('',200);        //"No Content" status
+            //$this->response("$query",200);        //"No Content" status
+        }
 
-        $sqlinteraccion="insert into gestor_interacciones_agendamiento (PEDIDO,CEDULA,NOMBRE,CANAL,NOVEDAD,CODIGO_ESTADO) values ('$PEDIDO_ID','$cliente_id','$nombre_usuario','CALL CENTER','$novedad','$CODIGO_ESTADO') ";
-
-        $rrrr = $this->mysqli->query($sqlinteraccion) or die($this->mysqli->error.__LINE__);
-
-
-        //hago la actualizacion en fenix
-        $this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
     }
 
- }
 
 //-------------------------fininsertactivacion*------------------
     private function insertTransaccionActividades(){
