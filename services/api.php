@@ -9842,9 +9842,7 @@ class API extends REST {
               if( $TIPIFICACION='FINALIZADA'){
             $sqlupdate="update gestor_activacion_pendientes_activador_suspecore  set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI'";
            //  echo $sqlupdate;
-        }else {
-                 sqlupdate="update gestor_activacion_pendientes_activador_dom  set FECHA_CARGA='$today',STATUS='PENDI_ACTI'";
-              }
+        }
 
 
             $r = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
