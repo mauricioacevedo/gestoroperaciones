@@ -217,7 +217,7 @@
                                             <td>{{prodtbl | sumarNum:'SIEBEL'}}</td>
                                             <td>{{prodtbl | sumarNum:'RECONFIGURADOS'}}</td>
                                             <td>{{prodtbl | sumarNum:'GESTIONADOS'}}</td>
-                                            <td>AVG: {{ (prodtbl | sumarNum:'USUARIOS') / prodtbl.length }}</td>
+                                            <td>AVG: {{ (prodtbl | sumarNum:'USUARIOS') / prodtbl.length | number : 2}}</td>
                                         </tr>
                                         </tfoot>
                                         <tbody>
