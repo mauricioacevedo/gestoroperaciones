@@ -9839,7 +9839,7 @@ class API extends REST {
 
             //----------insert
 
-       /      if( $TIPIFICACION='FINALIZADA'){
+            if( $TIPIFICACION='FINALIZADA'){
             $sqlupdate="update gestor_activacion_pendientes_activador_dom  set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI'";
            //  echo $sqlupdate;
 
