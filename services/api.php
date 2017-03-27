@@ -9853,10 +9853,11 @@ class API extends REST {
 
           }
     }
+    */
           $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
             //----------fin insert
 
-*/
+
             //  echo "(1)";
             $this->response(json_encode(array("msg"=>"N/A","data" => $today)),200);
 
