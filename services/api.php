@@ -9839,13 +9839,13 @@ class API extends REST {
 
             //----------insert
 
-       /*       if( $TIPIFICACION='FINALIZADA'){
-            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore  set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI'";
+       /      if( $TIPIFICACION='FINALIZADA'){
+            $sqlupdate="update gestor_activacion_pendientes_activador_dom  set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI'";
            //  echo $sqlupdate;
-        } */
 
 
-           // $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
+
+            $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
 
             //  echo "(1)";
             $this->response(json_encode(array("msg"=>"N/A","data" => $today)),200);
