@@ -9833,13 +9833,14 @@ class API extends REST {
 
             $query = "insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,STATUS,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,DURACION,OBSERVACION,NUMERO_CR,TABLA) values ('$ORDER_SEQ_ID','$PEDIDO','$REFERENCE_NUMBER','$ESTADO','$FECHA_CREACION','$TAREA_EXCEPCION','$FECHA_EXCEPCION','$PRODUCTO','$IDSERVICIORAIZ','$TRANSACCION','$CODIGO_CIUDAD','$STATUS','$ASESOR','$today','$TIPIFICACION','$FECHA_INICIO','$FECHA_FIN','$DURACION','$OBSERVACION','$NUMERO_CR','$tabla') ";
 
-             var_dump($tabla);
+            // var_dump($tabla);
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
 
 
             //----------insert
 
+            if($tabla=='ACTIVADOR_SUSPECORE' ){
             if($TIPIFICACION=='FINALIZADA'){
             $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
            //  echo $sqlupdate;
@@ -9847,6 +9848,7 @@ class API extends REST {
 
               $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set FECHA_CARGA = '$today',STATUS='PENDI_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
             }
+        }
              // echo $sqlupdate;
             $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
 
