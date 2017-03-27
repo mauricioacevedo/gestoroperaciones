@@ -16411,6 +16411,7 @@ private function guardarGestionAsignaciones()
             " , CONCEPTO_ACTUAL as CONCEPTO_AUDITORIA ".
             " , OBSERVACIONES ".
             " , FECHA_FIN AS FECHA_GESTION  ".
+            " , USUARIO_ID  ".
             " FROM portalbd.gestor_transacciones_oxxx ".
             " WHERE 1=1 ".
             " $paramlst order by ID desc limit 500 ";
