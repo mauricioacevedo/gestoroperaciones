@@ -14152,7 +14152,7 @@ class API extends REST {
                 " where p.PEDIDO = '$pedido'  ".
                 " and p.STATUS='PENDI_ACTI' ".
                 " group by p.pedido ";
-         //  echo $query1;
+           echo $query1;
 
         $rPendi = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
@@ -14174,11 +14174,7 @@ class API extends REST {
 
             $sqlupdate="";
 
-            if($busy==true){
-                $sqlupdate="update gestor_activacion_pendientes_activador_dom set VIEWS=VIEWS+1 where ID in ($ids)";
 
-
-            }
             $x = $this->mysqli->query($sqlupdate);
 
             // Feed ----------------------
