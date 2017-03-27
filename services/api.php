@@ -9840,23 +9840,12 @@ class API extends REST {
             //----------insert
 
               if( $TIPIFICACION='FINALIZADA'){
-            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore  set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI'";
+            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore  set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION='$FECHA_EXCEPCION'";
            //  echo $sqlupdate;
-        }
+        }else {
+                 sqlupdate="update gestor_activacion_pendientes_activador_dom  set FECHA_CARGA='$today',STATUS='PENDI_ACTI',FECHA_EXCEPCION='$FECHA_EXCEPCION'";
+              }
 
-          /*      else {
-               sqlupdate="update gestor_activacion_pendientes_activador_suspecore  set FECHA_GESTION='$today',STATUS='PENDI_ACTI',FECHA_EXCEPCION='$FECHA_EXCEPCION'";
-
-          }
-    } else if($tabla=='ACTIVADOR_DOM'){
-            if($TIPIFICACION=='FINALIZADA'){
-            $sqlupdate="update gestor_activacion_pendientes_activador_dom  set FECHA_GESTION='$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION='$FECHA_EXCEPCION'";
-         }else {
-                sqlupdate="update gestor_activacion_pendientes_activador_dom  set FECHA_GESTION='$today',STATUS='PENDI_ACTI',FECHA_EXCEPCION='$FECHA_EXCEPCION'";
-
-          }
-    }
-    */
 
             $r = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
             //  echo "(1)";
