@@ -11367,7 +11367,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 					$scope.mpedido = {};
 					$scope.busy = "";
 					$scope.pedidoIsActive = false;
-                    console.log($scope.buscar);
+
 				} else {
 
 					$scope.peds = data.data[1];
@@ -11396,7 +11396,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 						$rootScope.errorDatos = null;
 						$scope.pedidoIsActive = true;
 
-
+                        console.log($scope.buscar);
 						return data.data;
 					}
 				}
