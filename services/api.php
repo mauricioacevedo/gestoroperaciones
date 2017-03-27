@@ -16269,6 +16269,7 @@ private function guardarGestionAsignaciones()
                 " , CONCEPTO_ACTUAL as CONCEPTO_AUDITORIA ".
                 " , OBSERVACIONES ".
                 " , FECHA_FIN AS FECHA_GESTION  ".
+                " , USUARIO_ID ".
                 " FROM portalbd.gestor_transacciones_oxxx ".
                 " WHERE 1=1 ".
                 " $paramlst order by ID desc limit 500 ";
@@ -16335,6 +16336,7 @@ private function guardarGestionAsignaciones()
             " , CONCEPTO_ACTUAL as CONCEPTO_AUDITORIA ".
             " , OBSERVACIONES ".
             " , FECHA_FIN AS FECHA_GESTION  ".
+            " , USUARIO_ID  ".
             " FROM portalbd.gestor_transacciones_oxxx ".
             " WHERE 1=1 ".
             " $paramlst order by ID desc limit 500 ";
@@ -16344,7 +16346,7 @@ private function guardarGestionAsignaciones()
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('FECHA_ESTUDIO','PEDIDO_ID','TIPO_ELEMENTO_ID','USUARIO',' ANALISIS',' CONCEPTO_AUDITORIA',' OBSERVACIONES',' FECHA_GESTION'));
+            fputcsv($fp, array('FECHA_ESTUDIO','PEDIDO_ID','TIPO_ELEMENTO_ID','USUARIO',' ANALISIS',' CONCEPTO_AUDITORIA',' OBSERVACIONES','USUARIO_ID','FECHA_GESTION'));
 
             while($row = $r->fetch_assoc()){
                 //$result[] = $row;
