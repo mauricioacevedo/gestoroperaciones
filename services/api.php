@@ -9827,13 +9827,13 @@ class API extends REST {
         $FECHA_INICIO=$pedido['FECHA_INICIO'];
         $FECHA_FIN=$pedido['FECHA_FIN'];
         $DURACION=$pedido['DURACION'];
-        $tabla = $pedido['tabla'];
+        $tabla = $pedido['TABLA'];
         $OBSERVACION=$pedido['OBSERVACION'];
         if(!empty($pedido)){
 
             $query = "insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,STATUS,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,DURACION,OBSERVACION,NUMERO_CR,TABLA) values ('$ORDER_SEQ_ID','$PEDIDO','$REFERENCE_NUMBER','$ESTADO','$FECHA_CREACION','$TAREA_EXCEPCION','$FECHA_EXCEPCION','$PRODUCTO','$IDSERVICIORAIZ','$TRANSACCION','$CODIGO_CIUDAD','$STATUS','$ASESOR','$today','$TIPIFICACION','$FECHA_INICIO','$FECHA_FIN','$DURACION','$OBSERVACION','$NUMERO_CR','$tabla') ";
 
-             var_dump($pedido);
+             var_dump($tabla);
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
 
