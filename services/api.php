@@ -9858,7 +9858,7 @@ class API extends REST {
     }
     */
 
-
+            $r = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
             //  echo "(1)";
             $this->response(json_encode(array("msg"=>"N/A","data" => $today)),200);
 
