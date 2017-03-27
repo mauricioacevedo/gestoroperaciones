@@ -9809,6 +9809,7 @@ class API extends REST {
         $today = date("Y-m-d H:i:s");
         $today2 = date("Y-m-d");
         $FECHA_GESTION='';
+        $ID=$pedido['ID'];
         $ASESOR=$pedido['ASESOR'];
         $PEDIDO=$pedido['PEDIDO'];
         $ORDER_SEQ_ID=$pedido['ORDER_SEQ_ID'];
@@ -9840,7 +9841,7 @@ class API extends REST {
             //----------insert
 
             if( $TIPIFICACION=='FINALIZADA'){
-            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION'";
+            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
            //  echo $sqlupdate;
 
        }
