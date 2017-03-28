@@ -5348,7 +5348,7 @@ class API extends REST {
 
             while($row = $r->fetch_assoc()){
                 //$row['label']="Concepto ".$row['label'];
-                $row['CONCEPTOS']=utf8_decode($row['CONCEPTOS']);
+                $row['CONCEPTOS']=utf8_encode($row['CONCEPTOS']);
                 $resultFechaCita[] = $row;
             }
 
