@@ -675,81 +675,49 @@ class API extends REST {
 //----------------------------fin exportar historico agendamiento edatel-----------------
 
 
-    private function csvActivacion(){
-        if($this->get_request_method() != "GET"){
-            $this->response('',406);
-        }
-        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
-        $usuarioPc      =   gethostbyaddr($usuarioIp);
-        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
-        $galleta        =   stripslashes($_COOKIE['logedUser']);
-        $galleta        =   json_decode($galleta);
-        $galleta        =   json_decode(json_encode($galleta), True);
-        $usuarioGalleta =   $galleta['login'];
-        $nombreGalleta  =   $galleta['name'];
-        $grupoGalleta   =   $galleta['GRUPO'];
-        $login = $this->_request['login'];
+     private function csvActivacion(){
+                        if($this->get_request_method() != "GET"){
+                                $this->response('',406);
+                        }
+                        $login = $this->_request['login'];
 
-        $today = date("Y-m-d h:i:s");
-        $filename="Fenix_Activacion-$login-$today.csv";
-        $query=" SELECT ".
-            "  REQUERIMIENTO_ID  ".
-            " , PEDIDO_ID  ".
-            " , SUBPEDIDO_ID  ".
-            " , SOLICITUD_ID  ".
-            " , TIPO_ELEMENTO_ID  ".
-            " , TIPO_TRABAJO  ".
-            " , FECHA_ESTADO  ".
-            " , ETAPA_ID  ".
-            " , ESTADO_ID  ".
-            " , COLA_ID  ".
-            " , ACTIVIDAD_ID  ".
-            " , NOMBRE_ACTIVIDAD  ".
-            " , CONCEPTO_ID  ".
-            " ,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_PENDIENTE ".
-            " FROM  informe_activacion_pendientesm  WHERE  STATUS ='PENDI_ACTIVACION' ";
+                        $today = date("Y-m-d h:i:s");
+                        $filename="Fenix_Activacion-$login-$today.csv";
+                        $query=" SELECT ".
+			"  REQUERIMIENTO_ID  ".
+			" , PEDIDO_ID  ".
+			" , SUBPEDIDO_ID  ".
+			" , SOLICITUD_ID  ".
+			" , TIPO_ELEMENTO_ID  ".
+			" , TIPO_TRABAJO  ".
+			" , FECHA_ESTADO  ".
+			" , ETAPA_ID  ".
+			" , ESTADO_ID  ".
+			" , COLA_ID  ".
+			" , ACTIVIDAD_ID  ".
+			" , NOMBRE_ACTIVIDAD  ".
+			" , CONCEPTO_ID  ".
+                        " ,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_PENDIENTE ".
+			" FROM  informe_activacion_pendientesm  WHERE  STATUS ='PENDI_ACTIVACION' ";
 
-        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+                        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
-        if($r->num_rows > 0){
-            $result = array();
-            $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('REQUERIMIENTO_ID','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','TIPO_ELEMENTO_ID','TIPO_TRABAJO','FECHA_ESTADO','ETAPA_ID','ESTADO_ID','COLA_ID','ACTIVIDAD_ID','NOMBRE_ACTIVIDAD','CONCEPTO_ID','TIEMPO_PENDIENTE'));
-            while($row = $r->fetch_assoc()){
-                $result[] = $row;
-                fputcsv($fp, $row);
-            }
-            fclose($fp);
-            // SQL Feed----------------------------------
-            $sql_log=   "insert into portalbd.activity_feed ( ".
-                " USER ".
-                ", USER_NAME ".
-                ", GRUPO ".
-                ", STATUS ".
-                ", PEDIDO_OFERTA ".
-                ", ACCION ".
-                ", CONCEPTO_ID ".
-                ", IP_HOST ".
-                ", CP_HOST ".
-                ") values( ".
-                " UPPER('$usuarioGalleta')".
-                ", UPPER('$nombreGalleta')".
-                ", UPPER('$grupoGalleta')".
-                ",'OK' ".
-                ",'SIN PEDIDO' ".
-                ",'EXPORTO PENDIENTES' ".
-                ",'ARCHIVO EXPORTADO' ".
-                ",'$usuarioIp' ".
-                ",'$usuarioPc')";
+                        if($r->num_rows > 0){
+                                $result = array();
+                                $fp = fopen("../tmp/$filename", 'w');
+                                fputcsv($fp, array('REQUERIMIENTO_ID','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','TIPO_ELEMENTO_ID','TIPO_TRABAJO','FECHA_ESTADO','ETAPA_ID','ESTADO_ID','COLA_ID','ACTIVIDAD_ID','NOMBRE_ACTIVIDAD','CONCEPTO_ID','TIEMPO_PENDIENTE'));
+                                while($row = $r->fetch_assoc()){
+                                        $result[] = $row;
+                                        fputcsv($fp, $row);
+                                }
+                                fclose($fp);
 
-            $rlog = $this->mysqli->query($sql_log);
-            // ---------------------------------- SQL Feed
-            $this->response($this->json(array($filename,$login)), 200); // send user details
-        }
+                                $this->response($this->json(array($filename,$login)), 200); // send user details
+                        }
 
-        $this->response('',204);        // If no records "No Content" status
+                        $this->response('',204);        // If no records "No Content" status
 
-    }
+                }
 
 
 
