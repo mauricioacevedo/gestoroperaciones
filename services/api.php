@@ -6689,7 +6689,7 @@ class API extends REST {
 
 
     //-------------------------------------inicion pedido por pedido activacion
-
+/*
     private function pedidosPorPedidoActivacion(){//historico por 1 pedido
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -6731,39 +6731,7 @@ class API extends REST {
 
     //-------------------------------------fin pedido por pedido activacion
 
-
-    //-------------------------------------inicion pedido por pedido activacion dom
-
-    private function pedidosPorPedidoActivacionDom(){//historico por 1 pedido
-        if($this->get_request_method() != "GET"){
-            $this->response('',406);
-        }
-        $pedido = $this->_request['pedido'];
-        $today = date("Y-m-d");
-        $tabla= $this->_request['tabla'];
-
-
-
-
-        $query=" SELECT id, order_seq_id,pedido,reference_number ".
-                ",estado,fecha_creacion,tarea_excepcion ".
-                ",fecha_excepcion,producto,idservicioraiz,transaccion ".
-                " from gestor_activacion_pendientes_activador_dom b ".
-                " where pedido like '$pedido%' order by fecha_excepcion desc limit 10 ";
-
-        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-
-        if($r->num_rows > 0){
-            $result = array();
-            while($row = $r->fetch_assoc()){
-                $result[] = $row;
-            }
-            $this->response($this->json($result), 200); // send user details
-        }
-        $this->response('',204);        // If no records "No Content" status
-    }
-
-    //-------------------------------------fin pedido por pedido activacion dom
+*/
 
     private function vecinosPagina(){
 

@@ -11236,7 +11236,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 	// ------------------------DemePedido activacion --------------------------------------------------------------
-	$scope.baby = function (pedido) {
+	/*$scope.baby = function (pedido) {
 		console.log(pedido);
 		services.getpedidosPorPedidoActivacion(pedido).then(function (data) {
 			//console.log(data.data);
@@ -11245,7 +11245,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			return data.data;
 		});
 	};
-
+*/
 	$scope.start = function (pedido) {
 
 		var pedido1 = '';
