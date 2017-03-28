@@ -6689,7 +6689,7 @@ class API extends REST {
 
 
     //-------------------------------------inicion pedido por pedido activacion
-/*
+
     private function pedidosPorPedidoActivacion(){//historico por 1 pedido
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -6731,7 +6731,7 @@ class API extends REST {
 
     //-------------------------------------fin pedido por pedido activacion
 
-*/
+
 
     private function vecinosPagina(){
 
