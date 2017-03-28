@@ -16021,7 +16021,7 @@ private function guardarGestionAsignaciones()
         if($r->num_rows > 0){
             $result = array();
             while($row = $r->fetch_assoc()){
-                $row['OBSERVACIONES']=utf8_decode($row['OBSERVACIONES']);
+                $row['OBSERVACIONES']=utf8_encode($row['OBSERVACIONES']);
                 $result[] = $row;
             }
 
