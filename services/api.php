@@ -8533,7 +8533,7 @@ class API extends REST {
 
 
        //echo $query1;
-        $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
+        $r = $this->mysqli->query($query1);
 
         if($r->num_rows > 0){
             $result = array();
