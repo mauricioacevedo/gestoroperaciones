@@ -454,7 +454,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	};
 
 	obj.demePedidoActivacion = function (user, pedido, transaccion, tabla,producto, username) { //deme pedido activacion
-		console.log("transaccion=" + transaccion + "tabla=" + tabla);
+		console.log("transaccion=" + transaccion + "tabla=" + tabla + "producto=" + producto);
 		return $http.get(serviceBase + 'demePedidoActivacion?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion   + '&tabla=' + tabla  + '&producto=' + producto  +'&username=' + username );
 	};
 
@@ -11228,7 +11228,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.tabla=tabla;
     };
 
-    $scope.setProducto = function (producto){
+    $scope.setProducto = function(producto){
         $scope.producto=producto;
     };
 
