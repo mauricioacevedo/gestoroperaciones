@@ -8481,18 +8481,18 @@ class API extends REST {
 
 
          $query1=" SELECT ".
-                " p.PEDIDO,p.ORDER_SEQ_ID,p.ESTADO,p.TAREA_EXCEPCION,p.IDSERVICIORAIZ,p.TRANSACCION ".
-                " , group_concat(distinct p.PRODUCTO) as  PRODUCTOS ".
-                " , min(p.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
-                " ,min(p.FECHA_CREACION) as FECHA_CREACION ".
+                " b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TAREA_EXCEPCION,b.IDSERVICIORAIZ,b.TRANSACCION ".
+                " , group_concat(distinct b.PRODUCTO) as  PRODUCTOS ".
+                " , min(b.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
+                " ,min(b.FECHA_CREACION) as FECHA_CREACION ".
                 " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
                 " where a.PEDIDO='$pedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
                 $tabla.
-                " where p.PEDIDO = '$pedido'  ".
-                " and p.STATUS='PENDI_ACTI' ".
+                " where b.PEDIDO = '$pedido'  ".
+                " and b.STATUS='PENDI_ACTI' ".
                  $transaccion.
                 $producto.
-                " group by p.pedido ";
+                " group by b.pedido ";
 
 
       // echo $query1;
