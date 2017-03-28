@@ -1037,124 +1037,90 @@ class API extends REST {
 //---------------------------exportar listado activacion seguimiento--------------------------activacion
 
     private function csvListadoActivacion(){
-        if($this->get_request_method() != "GET"){
-            $this->response('',406);
-        }
-        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
-        $usuarioPc      =   gethostbyaddr($usuarioIp);
-        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
-        $galleta        =   stripslashes($_COOKIE['logedUser']);
-        $galleta        =   json_decode($galleta);
-        $galleta        =   json_decode(json_encode($galleta), True);
-        $usuarioGalleta =   $galleta['login'];
-        $nombreGalleta  =   $galleta['name'];
-        $grupoGalleta   =   $galleta['GRUPO'];
-        $login = $this->_request['login'];
-        $fechaini = $this->_request['fechaini'];
-        $fechafin = $this->_request['fechafin'];
+                        if($this->get_request_method() != "GET"){
+                                $this->response('',406);
+                        }
+                        $login = $this->_request['login'];
+                        $fechaini = $this->_request['fechaini'];
+                        $fechafin = $this->_request['fechafin'];
 
-        $today = date("Y-m-d h:i:s");
-        $filename="Activacion-Fenix_NAL-$login-$today.csv";
+                        $today = date("Y-m-d h:i:s");
+                        $filename="Activacion-Fenix_NAL-$login-$today.csv";
 
-        $query="SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION ".
-            " , PRODUCTO,ASESOR,FECHA_GESTION ".
-         " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
-            " from gestor_historico_activacion ".
-            " where FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59' ".
-            " order by FECHA_FIN ASC ";
+                        $query=" SELECT PEDIDO_ID, SUBPEDIDO_ID, SOLICITUD_ID,TIPO_TRABAJO, FECHA_ENTRADA_GESTOR, FECHA_ULTIMA_GESTOR".
+                                 " from gestor_seguimiento_activacion".
+                                " where FECHA_ULTIMA_GESTOR between '$fechaini 00:00:00' and '$fechafin 23:59:59' ".
+                                " order by FECHA_ULTIMA_GESTOR  ";
 
 
 
-        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
-        if($r->num_rows > 0){
-            $result = array();
-            $fp = fopen("../tmp/$filename", 'w');
+                        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
-            fputcsv($fp, array( 'ORDER_SEQ_ID','PEDIDO','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','PRODUCTO','ASESOR','FECHA_GESTION','DURACION'));
+                        if($r->num_rows > 0){
+                                $result = array();
+                                $fp = fopen("../tmp/$filename", 'w');
 
-            fclose($fp);
+                                fputcsv($fp, array( 'PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','TIPO_TRABAJO','FECHA_ENTRADA_GESTOR','FECHA_ULTIMA_GESTOR'));
 
-            $k=0;
-            $kk=0;
+				fclose($fp);
 
-            while($row = $r->fetch_assoc()){
+				$k=0;
+				$kk=0;
 
-                //$row['OBSERVACION_FENIX']= trim(preg_replace('/\s+/', ' ',$row['OBSERVACION_FENIX']));
-                //$row['OBSERVACION_GESTOR'] = trim(preg_replace('/\s+/', ' ', $row['OBSERVACION_GESTOR']));
+                                while($row = $r->fetch_assoc()){
 
-                $result[] = $row;
+					//$row['OBSERVACION_FENIX']= trim(preg_replace('/\s+/', ' ',$row['OBSERVACION_FENIX']));
+					//$row['OBSERVACION_GESTOR'] = trim(preg_replace('/\s+/', ' ', $row['OBSERVACION_GESTOR']));
 
-                //fputcsv($fp, $row);
+                                        $result[] = $row;
 
-                if($k>10000){//cerra y abrir
-                    //echo "la k\n";
-                    $fp = fopen("../tmp/$filename", 'a');
+                                        //fputcsv($fp, $row);
 
-                    foreach ($result as $fields) {
-                        //fwrite($fp, $fields.";");
-                        fputcsv($fp, $fields);
-                    }
-                    unset($result);
-                    $result=NULL;
-                    $result=array();
+					if($k>10000){//cerra y abrir
+						//echo "la k\n";
+						$fp = fopen("../tmp/$filename", 'a');
 
-                    unset($rows);
-                    //$r->free();
-                    //fclose($fp);
-                    //unset($fp);
-                    //$fp=null;
-                    $k=0;
-                    //gc_collect_cycles();
-                    //time_nanosleep(0, 10000000);
-                    //mysql_free_result($r);
-                    //ob_implicit_flush();
-                    //echo  "Memoria Final real: ".(memory_get_peak_usage()/1024/1024)." MiB r:\n";
-                    //$this->getMemoryUsage($r);
+						foreach ($result as $fields) {
+						    //fwrite($fp, $fields.";");
+						    fputcsv($fp, $fields);
+						}
+						unset($result);
+						$result=NULL;
+						$result=array();
+
+						unset($rows);
+						//$r->free();
+						//fclose($fp);
+						//unset($fp);
+						//$fp=null;
+						$k=0;
+						//gc_collect_cycles();
+						//time_nanosleep(0, 10000000);
+						//mysql_free_result($r);
+						//ob_implicit_flush();
+						//echo  "Memoria Final real: ".(memory_get_peak_usage()/1024/1024)." MiB r:\n";
+						//$this->getMemoryUsage($r);
+					}
+
+					$k++;
+					$kk++;
+                                }
+				//para terminar de escribir las lineas que hacen falta.
+				$fp = fopen("../tmp/$filename", 'a');
+
+                                foreach ($result as $fields) {
+                        		fputcsv($fp, $fields);
+                                }
+
+                                fclose($fp);
+
+                                $this->response($this->json(array($filename,$login)), 200); // send user details
+                        }
+
+                        $this->response('',204);        // If no records "No Content" status
+
                 }
-
-                $k++;
-                $kk++;
-            }
-            //para terminar de escribir las lineas que hacen falta.
-            $fp = fopen("../tmp/$filename", 'a');
-
-            foreach ($result as $fields) {
-                fputcsv($fp, $fields);
-            }
-
-            fclose($fp);
-            // SQL Feed----------------------------------
-            $sql_log=   "insert into portalbd.activity_feed ( ".
-                " USER ".
-                ", USER_NAME ".
-                ", GRUPO ".
-                ", STATUS ".
-                ", PEDIDO_OFERTA ".
-                ", ACCION ".
-                ", CONCEPTO_ID ".
-                ", IP_HOST ".
-                ", CP_HOST ".
-                ") values( ".
-                " UPPER('$usuarioGalleta')".
-                ", UPPER('$nombreGalleta')".
-                ", UPPER('$grupoGalleta')".
-                ",'OK' ".
-                ",'SIN PEDIDO' ".
-                ",'EXPORTO HISTORICO' ".
-                ",'ARCHIVO EXPORTADO' ".
-                ",'$usuarioIp' ".
-                ",'$usuarioPc')";
-
-            $rlog = $this->mysqli->query($sql_log);
-            // ---------------------------------- SQL Feed
-            $this->response($this->json(array($filename,$login)), 200); // send user details
-        }
-
-        $this->response('',204);        // If no records "No Content" status
-
-    }
-
 //--------------------------- fin exportar listado activacion seguimiento--------------------------
 
 
