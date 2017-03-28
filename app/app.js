@@ -11750,7 +11750,7 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
 
 			return data.data;
 		});
-	}
+	};
 
 	$scope.$on(
 		"$destroy",
