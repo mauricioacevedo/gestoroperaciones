@@ -8387,17 +8387,16 @@ class API extends REST {
 
      }
 
-      //echo $TABLA;
-  //      $TABLA = " from gestor_activacion_pendientes_activador_dom b " ;
 
-        $hora=date("G");
+
+ /*       $hora=date("G");
         $uphold="1";
         if($hora<11){
             $uphold="1";
         }else{
             $uphold="2";
         }
-
+*/
         $mypedido="";
 
 
@@ -8412,8 +8411,8 @@ class API extends REST {
             "  $transaccion ".
             " $producto ".
             " order by b.$parametroBusqueda  ASC";
-       //     " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ";
-       //echo $query1;
+
+       echo $query1;
         if($mypedido==""){
 
             $rr = $this->mysqli->query($query1);
@@ -8500,7 +8499,7 @@ class API extends REST {
                 " order by b.$parametroBusqueda  ASC";
 
 
-      // echo $query1;
+       echo $query1;
         $r = $this->mysqli->query($query1);
 
         if($r->num_rows > 0){
