@@ -14976,7 +14976,7 @@ app.directive('capitalize', function () {
 					modelCtrl.$render();
 				}
 				return capitalized;
-			}
+			};
 			modelCtrl.$parsers.push(capitalize);
 			capitalize(scope[attrs.ngModel]); // capitalize initial value
 		}
@@ -15834,16 +15834,11 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 			function (data) {
 				$rootScope.errorMalos = null;
 				$rootScope.ListadoHistoricoPedido = data.data;
-
-				//console.log(data);
-
 				return data.data;
 			},
 			function errorCallback(response) {
-
 				$rootScope.errorMalos = "Sin pedidos";
 
-				//console.log($rootScope.errorDatos);
 
 			});
 
@@ -15862,10 +15857,6 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 
 
 	$rootScope.$on("$routeChangeStart", function (evt, to, from) {
-        //console.log(to);
-		//console.log(to.grupos);
-        //console.log(to.cargos);
-        //console.log(to.$$route.controller);
 
 		if ($cookieStore.get('logedUser') == undefined) {
 			$location.path('/', true);
@@ -15899,9 +15890,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 	});
 
 	$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-		//console.log($rootScope.loginexito);
 		$rootScope.title = current.$$route.title;
-		//console.log(current.$$route.controller);
 
 	});
 
