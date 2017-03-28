@@ -8355,7 +8355,7 @@ class API extends REST {
 
        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
 
-      echo "carlitos1 ---$PRODUCTO---";
+      echo "carlitos1 ---$producto---";
 
        if($producto!=""){
             $producto=" and b.PRODUCTO='$producto' ";
