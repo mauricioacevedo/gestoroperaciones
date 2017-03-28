@@ -8480,20 +8480,19 @@ class API extends REST {
 
 
 
-        $query1= " SELECT ".
-                " b.ID,b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TAREA_EXCEPCION,b.IDSERVICIORAIZ,b.TRANSACCION,b.STATUS,b.ASESOR ".
-                " ,b.PRODUCTO,b.ACTIVIDAD,b.FUENTE,b.GRUPO".
-                " , group_concat(distinct b.PRODUCTO) as  PRODUCTOS ".
-                " , min(b.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
-                " ,min(b.FECHA_CREACION) as FECHA_CREACION ".
+         $query1=" SELECT ".
+                " p.PEDIDO,p.ORDER_SEQ_ID,p.ESTADO,p.TAREA_EXCEPCION,p.IDSERVICIORAIZ,p.TRANSACCION ".
+                " , group_concat(distinct p.PRODUCTO) as  PRODUCTOS ".
+                " , min(p.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
+                " ,min(p.FECHA_CREACION) as FECHA_CREACION ".
                 " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
-                " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
-                " $tabla ".
-                " where b.PEDIDO = '$mypedido'  ".
-                " and b.STATUS='PENDI_ACTI' ".
-                $transaccion.
+                " where a.PEDIDO='$pedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
+                $tabla.
+                " where p.PEDIDO = '$pedido'  ".
+                " and p.STATUS='PENDI_ACTI' ".
+                 $transaccion.
                 $producto.
-                " order by b.$parametroBusqueda  ASC";
+                " group by p.pedido ";
 
 
       // echo $query1;
