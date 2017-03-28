@@ -8476,11 +8476,11 @@ class API extends REST {
                 $query2=" select distinct b.PEDIDO, b.FECHA_CARGA ,b.ID ".
                     $tabla.
                     " where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
-                    " and FECHA_CARGA between '$today 00:00:00' and '$today 23:59:59' order by id ".
+                    " and FECHA_CARGA between '$today 00:00:00' and '$today 23:59:59' ".
                     $transaccion.
                     $producto.
                      " order by b.$parametroBusqueda  ASC";
-                echo $query2;
+                //echo $query2;
                 $r = $this->mysqli->query($query2);
                 $mypedido="";
                 $mypedidoresult=array();
@@ -8536,7 +8536,7 @@ class API extends REST {
                 " order by b.$parametroBusqueda  ASC";
 
 
-       echo $query1;
+       //echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
