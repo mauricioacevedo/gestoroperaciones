@@ -8483,7 +8483,7 @@ class API extends REST {
                 " and b.STATUS='PENDI_ACTI' ".
                  $transaccion.
                 $producto.
-                " group by b.pedido ";";
+                " group by b.pedido ";
 
 
       // echo $query1;
