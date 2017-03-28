@@ -8346,7 +8346,13 @@ class API extends REST {
 
         $user=strtoupper($user);
 
+
+      if($tabla=='ACTIVADOR_SUSPECORE'){
+
         $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
+      }else {
+           $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='' where ASESOR='$user'";
+      }
 
         //echo $sqlupdate;
         $xxx = $this->mysqli->query($sqlupdate);
