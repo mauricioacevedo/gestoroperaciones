@@ -8369,13 +8369,6 @@ class API extends REST {
             $transaccion="";
         }
 
-    //  if($transaccion!=""){
-      //      $transaccion=" and b.TRANSACCION ='$transaccion' ";
-    //    }
-
-
-    //echo "carlitos1 ---$tabla---";
-
  if($tabla=='ACTIVADOR_SUSPECORE'){
 
            $tabla = " from gestor_activacion_pendientes_activador_suspecore b " ;
@@ -8424,8 +8417,6 @@ class API extends REST {
 
                     if($row['BEENHERE']==$user){
                         $pedidos_ignorados=$pedidos_ignorados.$row['PEDIDO'].',';
-                        //este pedido ya lo vio el dia de hoy
-                        //busco otro pedido----
                         continue;
                     }
 
