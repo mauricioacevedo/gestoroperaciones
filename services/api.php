@@ -8486,9 +8486,9 @@ class API extends REST {
                 " , min(b.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
                 " ,min(b.FECHA_CREACION) as FECHA_CREACION ".
                 " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
-                " where a.PEDIDO='$pedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
+                " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
                 $tabla.
-                " where b.PEDIDO = '$pedido'  ".
+                " where b.PEDIDO = '$mypedido'  ".
                 " and b.STATUS='PENDI_ACTI' ".
                  $transaccion.
                 $producto.
