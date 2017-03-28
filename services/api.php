@@ -8446,10 +8446,10 @@ class API extends REST {
             " $tabla ".
             "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
             "  $transaccion ".
-            " $producto ";
-            //" order by b.$parametroBusqueda  ASC";
+            " $producto ".
+            " order by b.$parametroBusqueda  ASC";
        //     " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ";
-       echo $query1;
+       //echo $query1;
         if($mypedido==""){
 
             $rr = $this->mysqli->query($query1);
@@ -8473,15 +8473,15 @@ class API extends REST {
                 }
                 //pedidos viejos
             } else {
-                $query1=" select distinct b.PEDIDO, b.FECHA_CARGA ,b.ID ".
+                $query2=" select distinct b.PEDIDO, b.FECHA_CARGA ,b.ID ".
                     $tabla.
                     " where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
                     " and FECHA_CARGA between '$today 00:00:00' and '$today 23:59:59' order by id ".
                     $transaccion.
                     $producto.
                      " order by b.$parametroBusqueda  ASC";
-                // echo $query1;
-                $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
+                echo $query2;
+                $r = $this->mysqli->query($query2);
                 $mypedido="";
                 $mypedidoresult=array();
                 if($r->num_rows > 0){
