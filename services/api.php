@@ -8426,7 +8426,7 @@ class API extends REST {
 
                 }
                 //pedidos viejos
-            } /*else {
+            }/* else {
                 $query2=" select distinct b.PEDIDO, b.FECHA_CARGA ,b.ID ".
                     $tabla.
                     " where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
@@ -8457,7 +8457,7 @@ class API extends REST {
                 }
 
             }//end if
-            */
+        */
         }//end mypedido if
 
         if($mypedido==''){
