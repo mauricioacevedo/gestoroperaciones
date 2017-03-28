@@ -10712,7 +10712,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                             },
                                 data: data.data[0]
 
-                        }
+                        };
                         var date1 = new Date();
                         var year    = date1.getFullYear();
                         var month   = $scope.doubleDigit(date1.getMonth()+1);
@@ -10722,7 +10722,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                         var seconds = $scope.doubleDigit(date1.getSeconds());
 
                         $scope.lastUpdate=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
-                        $scope.totalAD= data.data[1]
+                        $scope.totalAD= data.data[1];
 
                         return data.data;
                 });
@@ -10813,7 +10813,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
                                 data: data.data[0]
 
-                        }
+                        };
                         var date1 = new Date();
                         var year    = date1.getFullYear();
                         var month   = $scope.doubleDigit(date1.getMonth()+1);
@@ -10823,7 +10823,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                         var seconds = $scope.doubleDigit(date1.getSeconds());
 
                         $scope.lastUpdate=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
-                        $scope.totalAD= data.data[1]
+                        $scope.totalAD= data.data[1];
 
                         return data.data;
                 });
@@ -10899,7 +10899,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                             },
                                 data: data.data[0]
 
-                        }
+                        };
                         var date1 = new Date();
                         var year    = date1.getFullYear();
                         var month   = $scope.doubleDigit(date1.getMonth()+1);
@@ -11040,7 +11040,7 @@ $scope.set_color_Cuartil = function (value) {
 
 	$scope.intervalFeed = setInterval(function(){
                 $scope.getFeed();
-                $scope.getLoginFeed();
+               // $scope.getLoginFeed();
            },20000);
 
 
@@ -11051,7 +11051,7 @@ $scope.set_color_Cuartil = function (value) {
                         return data.data;
                 });
 
-	}
+	};
 
 	$scope.$on(
        		"$destroy",
@@ -11068,7 +11068,7 @@ $scope.set_color_Cuartil = function (value) {
                         $scope.total_feed=data.data[1];
                         return data.data;
                 });
-    }
+    };
 
 	$scope.getFeed();
 
@@ -11122,9 +11122,6 @@ $scope.set_color_Cuartil = function (value) {
 	};
 
 	//para inicializar la variable ordenamientoDemepedido
-
-
-
 
 	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION').then(function (data) {
 
@@ -11218,10 +11215,10 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
       $scope.setTransaccion = function (transaccion){
         $scope.transaccion=transaccion;
-    }
+    };
       $scope.setTabla = function (tabla){
         $scope.tabla=tabla;
-    }
+    };
 
 
 
@@ -11307,7 +11304,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 					grupo: $scope.peds[0].GRUPO,
 					actividad: $scope.peds[0].ACTIVIDAD
                 };
-                console.log(opciones);
+                //console.log(opciones);
 
                $scope.listarOpcionesAsginacion(opciones);
 
@@ -11459,11 +11456,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             DURACION: $scope.duracion,
 			STATUS: gestion.STATUS,
 			TIPIFICACION: $scope.tipificacion,
-            TABLA: $scope.tabla,
-
-
-
-
+            TABLA: $scope.tabla
 		};
 
 console.log($scope.InfoGestion);
@@ -11493,7 +11486,7 @@ console.log($scope.InfoGestion);
 
 				return data.data;
 
-console.log($scope.InfoPedido);
+//console.log($scope.InfoPedido);
 			},
 
 
