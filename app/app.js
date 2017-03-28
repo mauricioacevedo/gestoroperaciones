@@ -10622,6 +10622,14 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                // console.log($scope.data.concepto);
     };
 
+    $scope.csvActivacion = function () {
+		var login = $rootScope.logedUser.login;
+		services.getCsvActivacion(login).then(function (data) {
+
+			window.location.href = "tmp/" + data.data[0];
+			return data.data;
+		});
+	};
 
 
      $scope.csvActivacionSiebel  = function (){
