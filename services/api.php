@@ -8488,7 +8488,7 @@ class API extends REST {
                     while($row = $r->fetch_assoc()){
                         $result[] = $row;
 
-                        $rta=$this->pedidoOcupadoFenix($row);
+                  //      $rta=$this->pedidoOcupadoFenix($row);
 
                         if($rta=="No rows!!!!"){
 
