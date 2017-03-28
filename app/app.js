@@ -11098,9 +11098,7 @@ $scope.set_color_Cuartil = function (value) {
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION") {
 				$scope.ordenamientoDemepedidoActivacion = valor;
 			}
-            if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_DOM") {
-				$scope.ordenamientoDemepedidodom = valor;
-			}
+
 			$scope.buscarParametro(parametro);
 			return data.data;
 		});
@@ -11119,11 +11117,7 @@ $scope.set_color_Cuartil = function (value) {
 				$scope.ordenamientoDemepedidoactivacion = data.data['VALOR'];
 				$scope.ordenamientoDemepedidoUpdateactivacion = data.data['ULTIMA_ACTUALIZACION'];
 			}
-            if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_DOM") {
-				$scope.UsuarioParametrodom = data.data['USUARIO_ID'];
-				$scope.ordenamientoDemepedidodom = data.data['VALOR'];
-				$scope.ordenamientoDemepedidoUpdatedom = data.data['ULTIMA_ACTUALIZACION'];
-			}
+
 			return data.data;
 		});
 
@@ -11140,15 +11134,7 @@ $scope.set_color_Cuartil = function (value) {
 
 		return data.data;
 	});
-services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION_DOM').then(function (data) {
 
-		$scope.ordenamientoDemepedidodom = data.data['VALOR'];
-		//$scope.ordenamientoDemepedidoNuevo=data.data['VALOR'];
-		$scope.ordenamientoDemepedidoUpdatedom = data.data['ULTIMA_ACTUALIZACION'];
-		$scope.UsuarioParametrodom = data.data['USUARIO_ID'];
-
-		return data.data;
-	});
 /* FUNCION PARA ACTUALIZAR LOS PARAMETROS DEL SISTEMA */
 
 });
