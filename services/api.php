@@ -8401,7 +8401,7 @@ class API extends REST {
             " $producto ".
             " order by b.$parametroBusqueda  ASC";
 
-       //echo $query1;
+       echo $query1;
         if($mypedido==""){
 
             $rr = $this->mysqli->query($query1);
@@ -8483,7 +8483,7 @@ class API extends REST {
                 " and b.STATUS='PENDI_ACTI' ".
                  $transaccion.
                 $producto.
-                " order by b.FECHA_EXCEPCION ASC";
+                " group by b.pedido ";";
 
 
       // echo $query1;
