@@ -8401,7 +8401,7 @@ class API extends REST {
             " $producto ".
             " order by b.$parametroBusqueda  ASC";
 
-       echo $query1;
+       //echo $query1;
         if($mypedido==""){
 
             $rr = $this->mysqli->query($query1);
