@@ -8386,16 +8386,6 @@ class API extends REST {
 
      }
 
-
-
- /*       $hora=date("G");
-        $uphold="1";
-        if($hora<11){
-            $uphold="1";
-        }else{
-            $uphold="2";
-        }
-*/
         $mypedido="";
 
 
@@ -8493,7 +8483,7 @@ class API extends REST {
                 " and b.STATUS='PENDI_ACTI' ".
                  $transaccion.
                 $producto.
-                " order by b.$parametroBusqueda  ASC";
+                " order by b.FECHA_EXCEPCION ASC";
 
 
       // echo $query1;
