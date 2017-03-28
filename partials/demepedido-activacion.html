@@ -211,18 +211,30 @@
 
 				</div><!--Panel Body -->
 
-                <div class="panel-footer clearfix" >
+                 <div class="panel-footer clearfix" >
+                    <div class="col-md-6" >
+                        <!--Campos futuros en footer izquierda -->
+                        <ul class="nav navbar-nav navbar-left animated bounceInRight" ng-show="pedidoIsActive" >
+                             <li><span class="label label-primary" tooltip data-placement="top" title="Prioridad">{{prioridadPedido || 'Normal'}}</span>
+                            </li>
 
+                        </ul>
+                    </div>
                     <div class="col-md-6">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><span class="label label-primary" tooltip data-placement="top" title="Programación">{{fechaprogramacion || 'Sin Programación'}}</span>
-                            </li>
-                            <li><span class="label label-primary" tooltip data-placement="top" title="Prioridad">{{prioridadPedido || 'Normal'}}</span>
+                            <li class="nav navbar-nav" ng-class="pedidoIsGuardado==false?'animated bounceOutRight':'animated bounceInRight'" ng-show="pedidoIsGuardado==true">
+                                <span class="label label-primary">Pedido Guardado</span>&nbsp;
+
                             </li>
                             <li>
-                                <button type="button" class="btn btn-success btn-xs"  ng-click="guardar(InfoPedido,gestion[0],status);"><span id="mloader"></span>&nbsp; Guardar</button>
+                                <div ng-hide="true">
+                                    <button type="button" class="btn btn-success btn-xs" ng-click="guardarPedido(InfoPedido,gestion[0],status,actividad)"  ng-disabled="!accRdy || guardando || loading">
+                                        Guardar <span ng-show="guardando"><i class="fa fa-spinner fa-spin"></i></span>
+                                    </button></div>
+                                 <button type="button" class="btn btn-success btn-xs"  ng-click="guardar(InfoPedido,gestion[0],status);"><span id="mloader"></span>&nbsp; Guardar</button>
                             </li>
-                            <li>&nbsp; | &nbsp;</li>
+
+
 
                         </ul>
                     </div>
