@@ -8508,7 +8508,14 @@ class API extends REST {
                 $ids=$ids.$sep.$row['ID'];
                 $sep=",";
             }
+
+            if($tabla=='ACTIVADOR_SUSPECORE'){
+
             $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+            }else {
+                $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+            }
+
             $x = $this->mysqli->query($sqlupdate);
 
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
