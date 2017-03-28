@@ -8445,7 +8445,7 @@ class API extends REST {
             " $producto ".
             " order by b.$parametroBusqueda  ASC";
        //     " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ";
-       //echo $query1;
+       echo $query1;
         if($mypedido==""){
 
             $rr = $this->mysqli->query($query1);
