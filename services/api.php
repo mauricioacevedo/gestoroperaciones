@@ -8480,7 +8480,7 @@ class API extends REST {
                     $transaccion.
                     $producto.
                      " order by b.$parametroBusqueda  ASC";
-                //echo $query2;
+                echo $query2;
                 $r = $this->mysqli->query($query2);
                 $mypedido="";
                 $mypedidoresult=array();
