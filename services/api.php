@@ -8443,13 +8443,13 @@ class API extends REST {
         $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
             " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
-            $tabla.
+            " $tabla ".
             "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
-            $transaccion.
-            $producto.
-             " order by b.$parametroBusqueda  ASC";
+            "  $transaccion ".
+            " $producto ";
+            //" order by b.$parametroBusqueda  ASC";
        //     " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ";
-       // echo $query1;
+       echo $query1;
         if($mypedido==""){
 
             $rr = $this->mysqli->query($query1);
@@ -8528,7 +8528,7 @@ class API extends REST {
                 " ,min(b.FECHA_CREACION) as FECHA_CREACION ".
                 " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
                 " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
-                $tabla.
+                " $tabla ".
                 " where b.PEDIDO = '$mypedido'  ".
                 " and b.STATUS='PENDI_ACTI' ".
                 $transaccion.
