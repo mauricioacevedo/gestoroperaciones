@@ -210,8 +210,15 @@
 					</div>
 
 				</div><!--Panel Body -->
+                 <div class="col-md-6" >
+                        <!--Campos futuros en footer izquierda -->
+                        <ul class="nav navbar-nav navbar-left animated bounceInRight" ng-show="pedidoIsActive" >
 
-<div class="panel-footer clearfix" >
+                            <li><span class="label label-primary" tooltip data-placement="top" title="Prioridad">{{prioridadPedido || 'Normal'}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                <div class="panel-footer clearfix" >
 
                     <div class="col-md-6">
                         <ul class="nav navbar-nav navbar-right">
