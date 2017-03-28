@@ -8331,6 +8331,7 @@ class API extends REST {
         $user = $this->_request['userID'];
         $transaccion = $this->_request['transaccion'];
         $tabla = $this->_request['tabla'];
+        $producto= $this->_request['producto'];
 
 
         $filename = '../tmp/control-threads-agen.txt';
