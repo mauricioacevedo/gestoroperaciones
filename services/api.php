@@ -5079,7 +5079,7 @@ class API extends REST {
             $total=0;
             while($row = $r->fetch_assoc()){
                 //2016-08-17: Mauricio - para que no muestre el string Concepto en la grafica
-                $row['label']=" ".$row['label'];
+                $row['label']=" ".utf8_encode($row['label']);
                 $total=$total + $row['value'];
                 $result[] = $row;
             }
@@ -5314,6 +5314,7 @@ class API extends REST {
 
             while($row = $r->fetch_assoc()){
                 //$row['label']="Concepto ".$row['label'];
+                $row['CONCEPTOS']=utf8_encode($row['CONCEPTOS']);
                 $resultFechaCita[] = $row;
             }
 
