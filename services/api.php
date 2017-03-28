@@ -8355,7 +8355,11 @@ class API extends REST {
 
        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
 
-
+       if($producto!=""){
+            $producto=" and b.PRODUCTO='$producto' ";
+        }else{
+            $producto="";
+        }
 
         if($transaccion!=""){
             $transaccion=" and b.TRANSACCION='$transaccion' ";
@@ -8408,6 +8412,7 @@ class API extends REST {
             $tabla.
             "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
             $transaccion.
+            $producto.
              " order by b.$parametroBusqueda  ASC";
        //     " and (b.FECHA_EXCEPCION < CURDATE() OR b.FECHA_EXCEPCION='9999-00-00' OR b.FECHA_EXCEPCION='') ";
        // echo $query1;
@@ -8439,6 +8444,7 @@ class API extends REST {
                     " where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
                     " and FECHA_CARGA between '$today 00:00:00' and '$today 23:59:59' order by id ".
                     $transaccion.
+                    $producto.
                      " order by b.$parametroBusqueda  ASC";
                 // echo $query1;
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
@@ -8492,6 +8498,7 @@ class API extends REST {
                 " where b.PEDIDO = '$mypedido'  ".
                 " and b.STATUS='PENDI_ACTI' ".
                 $transaccion.
+                $producto.
                 " order by b.$parametroBusqueda  ASC";
 
 

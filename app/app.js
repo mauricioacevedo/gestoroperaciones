@@ -453,9 +453,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'pedidosPorPedidoActivacionDom?pedido=' + pedido);
 	};
 
-	obj.demePedidoActivacion = function (user, pedido, transaccion, tabla, username) { //deme pedido activacion
+	obj.demePedidoActivacion = function (user, pedido, transaccion, tabla,producto, username) { //deme pedido activacion
 		console.log("transaccion=" + transaccion + "tabla=" + tabla);
-		return $http.get(serviceBase + 'demePedidoActivacion?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion   + '&tabla=' + tabla  +'&username=' + username );
+		return $http.get(serviceBase + 'demePedidoActivacion?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion   + '&tabla=' + tabla  + '&producto=' + producto  +'&username=' + username );
 	};
 
 
@@ -11202,7 +11202,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.transaccion = 'Suspender';
     $scope.tabla = 'ACTIVADOR_SUSPECORE';
     $scope.listaOpcionesGestion = [];
-
+    $scope.producto = 'BA';
 
 
 
@@ -11228,7 +11228,9 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.tabla=tabla;
     };
 
-
+    $scope.setProducto = function (producto){
+        $scope.producto=producto;
+    };
 
 	// ---------------------------------fin Variables----------------------------
 
@@ -11277,7 +11279,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-		var kami = services.demePedidoActivacion($rootScope.logedUser.login, $scope.pedido1, $scope.transaccion,$scope.tabla, $rootScope.logedUser.name).then(function (data) {
+		var kami = services.demePedidoActivacion($rootScope.logedUser.login, $scope.pedido1, $scope.transaccion,$scope.tabla,$scope.producto, $rootScope.logedUser.name).then(function (data) {
 
 
 			$scope.peds = data.data;
@@ -11464,7 +11466,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             DURACION: $scope.duracion,
 			STATUS: gestion.STATUS,
 			TIPIFICACION: $scope.tipificacion,
-            TABLA: $scope.tabla
+            TABLA: $scope.tabla,
 		};
 
 console.log($scope.InfoGestion);
