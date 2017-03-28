@@ -11467,7 +11467,7 @@ console.log($scope.InfoGestion);
 				$scope.InfoPedido = [];
 				$scope.FECHA_EXCEPCION = null;
 				$scope.accRdy = false;
-				$scope.InfoGestion = {};
+				$scope.InfoGestion = "";
 				$scope.pedidoOcupado = false;
 				$scope.pedidoIsActive = false;
 				$scope.peds = {};
