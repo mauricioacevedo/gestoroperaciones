@@ -399,10 +399,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	};
 
 	obj.getCsvactividades = function (login, fechaIni, fechaFin) { //exportar tabla activacion
-		return $http.get(serviceBase + 'csvactividades?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
+		return $http.get(serviceBase + 'csvactividades?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin + login=' + login);
 	};
 
-	obj.getCsvListadoActivacion = function (fechaini, fechafin) { //exportar listado activacion
+	obj.getCsvListadoActivacion = function (fechaini, fechafin,login) { //exportar listado activacion
 		return $http.get(serviceBase + 'csvListadoActivacion?fechaini=' + fechaini + '&fechafin=' + fechafin);
 	};
 
@@ -10674,7 +10674,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
         };
 
 
-        $scope.csvListadoActivacion  = function (fechaini,fechafin){
+        $scope.csvListadoActivacion  = function (){
                 var login=$rootScope.logedUser.login;
                 services.getCsvListadoActivacion($scope.data.fechaini,$scope.data.fechafin,login).then(function(data){
                         window.location.href="tmp/"+data.data[0];
