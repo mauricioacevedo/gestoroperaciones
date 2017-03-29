@@ -13895,7 +13895,7 @@ class API extends REST {
             "		and r.usuario=ul.USUARIO_ID ".
             "		limit 1 ),'00:00') as HORAINICIO ".
             " , ul.PEDIDOS ".
-            " , ul.BUSCADOS  ".
+            " , (ul.BUSCADOS-1) as BUSCADOS  ".
             " , ul.DIVISOR ".
             " from( ".
             "		select ".
