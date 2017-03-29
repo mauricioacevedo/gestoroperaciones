@@ -17,17 +17,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<ul class="nav navbar-nav navbar-left">
-									<li ng-hide="true">
-										<select ng-model="data.campo" class="btn btn-default btn-xs grupo-select">
-											<option value='TODO' selected="selected">TODO</option>
-											<option value='user'>Usuario</option>
-											<option value='fuente'>Fuente</option>
-											<option value='concepto_final'>Concepto</option>
-											<option value='estado'>Estado</option>
-											<option value='pedido_id'>Pedido</option>
-										</select>
 
-									</li>
 									<li ng-hide="true">&nbsp;</li>
 									<li ng-hide="true">
 										<input class="btn btn-default btn-xs" name="valorCampo" ng-model="data.valorCampo" select-on-click capitalize type="text" placeholder="Palabra">
@@ -36,9 +26,9 @@
 									<li>&nbsp;</li>
 									<li>
 										<div class="input-daterange" id="datepicker">
-											<input type="text" class="btn btn-default btn-xs"  id="fromDate" name="fromDate" ng-model="$scope.fechaini" /><i class="fa fa-calendar fa-fw"></i>
+											<input type="text" class="btn btn-default btn-xs"  id="fromDate" name="fromDate" ng-model="data.fechaIni" /><i class="fa fa-calendar fa-fw"></i>
 											<input type="text" class="btn btn-default btn-xs"  id="toDate" name="toDate" ng-model="data.fechaFin" /><i class="fa fa-calendar fa-fw"></i>
-											<button type="button" class="btn btn-primary btn-xs" ng-click="listadoactivacion1()"  title="Actualizar" tooltip data-placement="left" ng-disabled="loading">
+											<button type="button" class="btn btn-primary btn-xs" ng-click="calcularListado()"  title="Actualizar" tooltip data-placement="left" ng-disabled="loading">
 												<i class="fa fa-search"  aria-hidden="true"></i>
 											</button>
 											<button type="button" class="btn btn-primary btn-xs" ng-click="csvListadoActivacion()"  title="Exportar" tooltip data-placement="left" ng-disabled="loading">
@@ -47,8 +37,6 @@
 
 										</div>
 									</li>
-
-
 
 								</ul>
 								<ul class="nav navbar-nav navbar-right">
