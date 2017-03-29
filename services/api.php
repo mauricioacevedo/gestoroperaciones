@@ -8651,6 +8651,7 @@ class API extends REST {
             $microzona=" and b.MICROZONA='".utf8_decode($microzona)."' ";
         }
         //var_dump($microzona) ;
+
         ##SE DEBE BUSCAR PRIMERO LOS PROGRAMADOS PARA ASIGNARLOS.....
         //PENDIENTE: COLOCAR CODIGO PARA TENER EN CUENTA LA PROGRAMACION....................
         $sql="SELECT b.PEDIDO_ID, b.FECHA_CITA_FENIX, TIMEDIFF( b.PROGRAMACION, NOW( ) ) /3600, b.PROGRAMACION ,b.PROCESO,b.IDENTIFICADOR_ID ".
@@ -8679,6 +8680,36 @@ class API extends REST {
                 $mypedidoresult=$rta;
                 break;
             }
+        }
+
+        //2017-03-29: se agrega codigo para que se entregue pedido segun prioridad definida...
+        if($mypedido==""){
+
+            $sqlPrioridad=   "SELECT b.PEDIDO_ID, ".
+                            " b.SUBPEDIDO_ID, ".
+                            " b.SOLICITUD_ID ".
+                            " FROM  gestor_pendientes_reagendamiento b ".
+                            " WHERE 1=1 ".
+                            " and b.RADICADO IN ('ARBOL')  ".
+                            " AND b.ASESOR='' ".
+                            " AND b.STATUS='PENDI_AGEN' ".
+                            $departamento.
+                            $zona.
+                            $microzona.
+                            " ORDER BY FECHA_INGRESO ASC ";
+
+            $rr = $this->mysqli->query($sqlPrioridad) or die($this->mysqli->error.__LINE__);
+
+            if($rr->num_rows > 0){//recorro los registros de la consulta para
+                while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
+                    $result[] = $row;
+                    $mypedido=$row['PEDIDO_ID'];
+                    $mypedidoresult=$rta;
+                    $ATENCION_INMEDIATA="1";
+                    break;
+                }
+            }
+
         }
 
         if($proceso=="INSTALACION"){
