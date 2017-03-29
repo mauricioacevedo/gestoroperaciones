@@ -1016,19 +1016,27 @@ class API extends REST {
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
         $login = $this->_request['login'];
-        $fechaini = $this->_request['fechaini'];
-        $fechafin = $this->_request['fechafin'];
 
-        $today = date("Y-m-d h:i:s");
+        $fechaini = $this->_request['fecha_inicio'];
+        $fechafin = $this->_request['fecha_fin'];
+        $page = $this->_request['page'];
+        $today = date("Y-m-d");
+
+         if($page=="undefined"){
+            $page="0";
+        }else{
+            $page=$page-1;
+        }
+        $page=$page*100;
+
         $filename="Activacion-Fenix_NAL-$login-$today.csv";
 
-        $query="SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION ".
-            " , PRODUCTO,ASESOR,FECHA_GESTION ".
-         " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
-            " from gestor_historico_activacion ".
-            " where FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59' ".
-            " order by FECHA_FIN ASC ";
-
+       $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION ".
+                " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN ".
+                 " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
+                " from gestor_historico_activacion ".
+                " where fecha_fin between '$fechaini 00:00:00' ".
+                " and '$fechafin 23:59:59'  order by fecha_fin desc limit 100 offset $page";
 
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -1037,7 +1045,7 @@ class API extends REST {
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
 
-            fputcsv($fp, array( 'ORDER_SEQ_ID','PEDIDO','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','PRODUCTO','ASESOR','FECHA_GESTION','DURACION'));
+            fputcsv($fp, array( 'ORDER_SEQ_ID','PEDIDO','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','PRODUCTO','ASESOR','FECHA_GESTION','TIPIFICACION','FECHA_INICIO','FECHA_FIN','DURACION'));
 
             fclose($fp);
 
