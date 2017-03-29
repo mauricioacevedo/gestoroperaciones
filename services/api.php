@@ -6503,6 +6503,7 @@ class API extends REST {
         $this->response($this->json(array($error)),403); // send user details
     }
 
+//------------------------listado activacion-----------------
 
    private function listadoactivacion(){
 
@@ -6595,13 +6596,12 @@ class API extends REST {
                 " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN ".
                  " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
                 " from gestor_historico_activacion ".
-                " where FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59' ".
-                " order by FECHA_FIN ASC  ";
+                " where fecha_fin between '$fechaini 00:00:00' ".
+                " and '$fechafin 23:59:59'  order by fecha_fin desc limit 100 offset $page";
 
 
-        //echo $query;
-        //echo $param  ;
-        // var_dump($query);
+        echo $query;
+
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -6620,7 +6620,7 @@ class API extends REST {
 
     }
 
-
+//-----------------------fin listado activacion
 
     private function listadoactivaciontabla(){
 
