@@ -8685,9 +8685,7 @@ class API extends REST {
         //2017-03-29: se agrega codigo para que se entregue pedido segun prioridad definida...
         if($mypedido==""){
 
-            $sqlPrioridad=   "SELECT b.PEDIDO_ID, ".
-                            " b.SUBPEDIDO_ID, ".
-                            " b.SOLICITUD_ID ".
+            $sqlPrioridad=   "SELECT b.PEDIDO_ID ".
                             " FROM  gestor_pendientes_reagendamiento b ".
                             " WHERE 1=1 ".
                             " and b.RADICADO IN ('ARBOL')  ".
