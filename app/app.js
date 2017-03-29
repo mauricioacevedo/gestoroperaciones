@@ -10602,7 +10602,9 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                         $scope.data.totalItems5=data.data[5];
                         $scope.data.totalItems6=data.data[6];
 
-                    //console.log($scope.data.totalItems2);
+                    console.log($scope.listadoactivacion);
+                    console.log($scope.fecha_inicio);
+                    console.log($scope.fecha_fin);
                     return data.data;
                });
 
