@@ -10576,8 +10576,8 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 		var minute = $scope.doubleDigit(date1.getMinutes());
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
-    var fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-	var fecha_fin =  year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+    var fecha_inicio = = year + "-" + month + "-" + day;
+	var fecha_fin =  = year + "-" + month + "-" + day;
     $scope.data.fechaIni = fecha_inicio;
 	$scope.data.fechaFin = fecha_fin;
 
