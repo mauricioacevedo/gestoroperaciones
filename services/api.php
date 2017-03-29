@@ -4643,7 +4643,7 @@ class API extends REST {
                 $categorias[]=array("label"=>"$label");
                 $totales[]=array("value"=>"$total");
                 $manual[]=array("value"=>"$manu");
-                $automatico[]=array("value"=>"$auto", "label"=>"$pauto");
+                $automatico[]=array("value"=>"$auto", "label"=>"pauto");
                 $result[] = $row;
                 $i++;
             }
@@ -4824,9 +4824,9 @@ class API extends REST {
                 $em=$em-$p14-$p99;
 
 
-                $auto=$auto/$total;
-                $auto=number_format($auto, 2);
-                $manu=number_format($manu/$total, 2);
+                //$auto=$auto/$total;
+                //$auto=number_format($auto, 2);
+                //$manu=number_format($manu/$total, 2);
 
                 //$p14=number_format($p14/$em, 2)*100;
                 //$p99=number_format($p99/$em, 2)*100;
@@ -7600,7 +7600,7 @@ class API extends REST {
             $subinsert=$subinsert.",'$status')";
 
             if(!$result = $this->mysqli->query($subinsert)){
-                die('There was an error running the query [' . $connm->error. ' --'.$subinsert.'** ]');
+                die('There was an error running the query [' . $connfb->error. ' --'.$subinsert.'** ]');
             }
             $success="OK";
         }
@@ -9409,7 +9409,7 @@ class API extends REST {
 
         }
 
-        $error = array('status' => "Failed", "msg" => "Invalid User Name or password ($login) - ($password)");
+        $error = array('status' => "Failed", "msg" => "Invalid User Name or password ($login)");
         $this->response($this->json($error), 400);
     }
     //Funcion para Buscar nodos CMTS
@@ -13898,7 +13898,7 @@ class API extends REST {
             "		and r.usuario=ul.USUARIO_ID ".
             "		limit 1 ),'00:00') as HORAINICIO ".
             " , ul.PEDIDOS ".
-            " , ul.BUSCADOS  ".
+            " , (ul.BUSCADOS-1) as BUSCADOS  ".
             " , ul.DIVISOR ".
             " from( ".
             "		select ".
