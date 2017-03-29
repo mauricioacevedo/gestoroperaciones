@@ -4824,9 +4824,9 @@ class API extends REST {
                 $em=$em-$p14-$p99;
 
 
-                $auto=$auto/$total;
-                $auto=number_format($auto, 2);
-                $manu=number_format($manu/$total, 2);
+                //$auto=$auto/$total;
+                //$auto=number_format($auto, 2);
+                //$manu=number_format($manu/$total, 2);
 
                 //$p14=number_format($p14/$em, 2)*100;
                 //$p99=number_format($p99/$em, 2)*100;
