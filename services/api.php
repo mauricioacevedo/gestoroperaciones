@@ -451,7 +451,7 @@ class API extends REST {
         //$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         //Mauricio: CONSULTA REPODEROSA, unbuffered
-        $this->mysqli->real_query($query) or die($conn->error.__LINE__);
+        $this->mysqli->real_query($query) or die($this->mysqli->error.__LINE__);
 
         if($r = $this->mysqli->use_result()){
             $result = array();
@@ -1527,7 +1527,7 @@ class API extends REST {
                 $columns = '';
                 $values = '';
 
-                $sqlupdate="update informe_petec_pendientesm set PROGRAMACION='$programacion', RADICADO_TEMPORAL='NO' WHERE STATUS='PENDI_PETEC' and PEDIDO_ID='".$PEDIDO_ID."' ";
+                $sqlupdate="update informe_petec_pendientesm set PROGRAMACION='$programacion', RADICADO_TEMPORAL='NO' WHERE STATUS='PENDI_PETEC' and PEDIDO_ID='".$PEDIDO_IDi."' ";
 
                 $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
 
@@ -6661,7 +6661,7 @@ class API extends REST {
                 // var_dump($result);
             }
 
-            $this->response($this->json(array($totales,$result,$counter)), 200); // send user details
+            $this->response($this->json(array($totales,$result,$i)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
@@ -7244,8 +7244,9 @@ class API extends REST {
                 $this->buscarPedidoReconfiguracion();
             }
         }
+        $error="Pedido: $pedido, no encontrado.";
 
-        $this->response('nothing',204);        // If no records "No Content" status
+        $this->response(json_encode(array($error)),204);        // If no records "No Content" status
     }
 
 
@@ -7523,7 +7524,7 @@ class API extends REST {
             }
             $subinsert=$subinsert.",'$status')";
             if(!$result = $this->mysqli->query($subinsert)){
-                die('There was an error running the query [' . $connm->error. ' --'.$subinsert.'** ]');
+                die('There was an error running the query [' . $this->mysqli->error. ' --'.$subinsert.'** ]');
             }
             $success="OK";
         }
@@ -8650,6 +8651,7 @@ class API extends REST {
             $microzona=" and b.MICROZONA='".utf8_decode($microzona)."' ";
         }
         //var_dump($microzona) ;
+
         ##SE DEBE BUSCAR PRIMERO LOS PROGRAMADOS PARA ASIGNARLOS.....
         //PENDIENTE: COLOCAR CODIGO PARA TENER EN CUENTA LA PROGRAMACION....................
         $sql="SELECT b.PEDIDO_ID, b.FECHA_CITA_FENIX, TIMEDIFF( b.PROGRAMACION, NOW( ) ) /3600, b.PROGRAMACION ,b.PROCESO,b.IDENTIFICADOR_ID ".
@@ -8678,6 +8680,34 @@ class API extends REST {
                 $mypedidoresult=$rta;
                 break;
             }
+        }
+
+        //2017-03-29: se agrega codigo para que se entregue pedido segun prioridad definida...
+        if($mypedido==""){
+
+            $sqlPrioridad=   "SELECT b.PEDIDO_ID ".
+                            " FROM  gestor_pendientes_reagendamiento b ".
+                            " WHERE 1=1 ".
+                            " and b.RADICADO IN ('ARBOL')  ".
+                            " AND b.ASESOR='' ".
+                            " AND b.STATUS='PENDI_AGEN' ".
+                            $departamento.
+                            $zona.
+                            $microzona.
+                            " ORDER BY FECHA_INGRESO ASC ";
+
+            $rr = $this->mysqli->query($sqlPrioridad) or die($this->mysqli->error.__LINE__);
+
+            if($rr->num_rows > 0){//recorro los registros de la consulta para
+                while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
+                    $result[] = $row;
+                    $mypedido=$row['PEDIDO_ID'];
+                    $mypedidoresult=$rta;
+                    $ATENCION_INMEDIATA="1";
+                    break;
+                }
+            }
+
         }
 
         if($proceso=="INSTALACION"){
