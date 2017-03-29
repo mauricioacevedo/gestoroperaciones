@@ -10596,7 +10596,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
         $rootScope.actualView="activacion";
 
 
-         $scope.calcularListado = function () {
+         $scope.listadoactivacion1 = function () {
                 services.getListadoActivacion(fecha_inicio, fecha_fin,$scope.data.currentPage).then(function(data){
 
                    // console.log(data);
