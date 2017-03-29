@@ -451,7 +451,7 @@ class API extends REST {
         //$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         //Mauricio: CONSULTA REPODEROSA, unbuffered
-        $this->mysqli->real_query($query) or die($conn->error.__LINE__);
+        $this->mysqli->real_query($query) or die($this->mysqli->error.__LINE__);
 
         if($r = $this->mysqli->use_result()){
             $result = array();
@@ -1527,7 +1527,7 @@ class API extends REST {
                 $columns = '';
                 $values = '';
 
-                $sqlupdate="update informe_petec_pendientesm set PROGRAMACION='$programacion', RADICADO_TEMPORAL='NO' WHERE STATUS='PENDI_PETEC' and PEDIDO_ID='".$PEDIDO_ID."' ";
+                $sqlupdate="update informe_petec_pendientesm set PROGRAMACION='$programacion', RADICADO_TEMPORAL='NO' WHERE STATUS='PENDI_PETEC' and PEDIDO_ID='".$PEDIDO_IDi."' ";
 
                 $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
 
@@ -7244,8 +7244,9 @@ class API extends REST {
                 $this->buscarPedidoReconfiguracion();
             }
         }
+        $error="Pedido: $pedido, no encontrado.";
 
-        $this->response('nothing',204);        // If no records "No Content" status
+        $this->response(json_encode(array($error)),204);        // If no records "No Content" status
     }
 
 
@@ -7523,7 +7524,7 @@ class API extends REST {
             }
             $subinsert=$subinsert.",'$status')";
             if(!$result = $this->mysqli->query($subinsert)){
-                die('There was an error running the query [' . $connm->error. ' --'.$subinsert.'** ]');
+                die('There was an error running the query [' . $this->mysqli->error. ' --'.$subinsert.'** ]');
             }
             $success="OK";
         }
