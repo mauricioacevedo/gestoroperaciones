@@ -10596,7 +10596,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
         $rootScope.actualView="activacion";
 
 
-
+         $scope.calcularListado = function () {
                 services.getListadoActivacion($scope.data.fechaIni, $scope.data.fechaFin,$scope.data.currentPage).then(function(data){
 
                    // console.log(data);
@@ -10611,9 +10611,9 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                     return data.data;
                });
 
+            };
 
-
-    $scope.calcularListado = function () {
+  /*  $scope.calcularListado = function () {
         $scope.listadoactivacion = [];
         services.getListadoActivacion($scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage).then(function (data) {
             $scope.listadoactivacion = data.data[0];
@@ -10624,7 +10624,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
     };
 
-
+*/
 
       $scope.listadoactivacion1();
 
