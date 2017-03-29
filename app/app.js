@@ -402,8 +402,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'csvactividades?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
 	};
 
-	obj.getCsvListadoActivacion = function (fechaini, fechafin,login) { //exportar listado activacion
-		return $http.get(serviceBase + 'csvListadoActivacion?fechaini=' + fechaini + '&fechafin=' + fechafin + '&login=' + login);
+	obj.getCsvListadoActivacion = function (login, fechaIni, fechaFin) { //exportar listado activacion
+		return $http.get(serviceBase + 'csvListadoActivacion?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
 	};
 
 	obj.getCsvActivacion = function (login) { //exportar activacion
@@ -10676,7 +10676,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
         $scope.csvListadoActivacion  = function (){
                 var login=$rootScope.logedUser.login;
-                services.getCsvListadoActivacion($scope.data.fechaini,$scope.data.fechafin,login).then(function(data){
+                services.getCsvListadoActivacion(login, $scope.data.fechaIni, $scope.data.fechaFin).then(function(data){
                         window.location.href="tmp/"+data.data[0];
                         return data.data;
                 });
@@ -11430,7 +11430,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.FECHA_GESTION = year + "-" + month + "-" + day;
        $scope.duracion =  $scope.doubleDigit(date1.getHours()-19)+":"+ $scope.doubleDigit(date1.getMinutes())+":"+ $scope.doubleDigit(date1.getSeconds());
         $scope.OBSERVACION = $scope.peds[0].OBSERVACION;
-
+        var varObsesGuardar = InfoPedido.OBSERVACIONES_PROCESO;
 
         if ($scope.tipificacion === undefined || $scope.tipificacion == "") {
 			alert('Por favor diligenciar campo tipificacion.');
@@ -11456,6 +11456,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             FECHA_FIN: $scope.fecha_fin,
             NUMERO_CR:$scope.NUMERO_CR,
             OBSERVACION:$scope.OBSERVACION,
+            OBSERVACION: InfoPedido.OBSERVACIONES_PROCESO,
             USUARIO: $rootScope.logedUser.login,
             DURACION: $scope.duracion,
 			STATUS: gestion.STATUS,
