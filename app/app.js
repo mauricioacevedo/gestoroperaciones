@@ -10619,15 +10619,15 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
 
 
-      $scope.listadoactivacion1();
+      $scope.calcularListado();
 
 
     $scope.pageChanged = function(forma) {
 
-            $scope.listadoactivacion1();
+            $scope.calcularListado();
    
 
-               // console.log($scope.data.concepto);
+
     };
 
     $scope.csvActivacion = function () {
