@@ -9409,7 +9409,7 @@ class API extends REST {
 
         }
 
-        $error = array('status' => "Failed", "msg" => "Invalid User Name or password ($login) - ($password)");
+        $error = array('status' => "Failed", "msg" => "Invalid User Name or password ($login)");
         $this->response($this->json($error), 400);
     }
     //Funcion para Buscar nodos CMTS
