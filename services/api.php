@@ -6661,7 +6661,7 @@ class API extends REST {
                 // var_dump($result);
             }
 
-            $this->response($this->json(array($totales,$result,$counter)), 200); // send user details
+            $this->response($this->json(array($totales,$result,$i)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
