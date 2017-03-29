@@ -4643,7 +4643,7 @@ class API extends REST {
                 $categorias[]=array("label"=>"$label");
                 $totales[]=array("value"=>"$total");
                 $manual[]=array("value"=>"$manu");
-                $automatico[]=array("value"=>"$auto", "label"=>"$pauto");
+                $automatico[]=array("value"=>"$auto", "label"=>"pauto");
                 $result[] = $row;
                 $i++;
             }
