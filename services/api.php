@@ -4643,7 +4643,7 @@ class API extends REST {
                 $categorias[]=array("label"=>"$label");
                 $totales[]=array("value"=>"$total");
                 $manual[]=array("value"=>"$manu");
-                $automatico[]=array("value"=>"$auto", "label"=>"$pauto");
+                $automatico[]=array("value"=>"$auto", "label"=>"$auto");
                 $result[] = $row;
                 $i++;
             }
@@ -7600,7 +7600,7 @@ class API extends REST {
             $subinsert=$subinsert.",'$status')";
 
             if(!$result = $this->mysqli->query($subinsert)){
-                die('There was an error running the query [' . $connm->error. ' --'.$subinsert.'** ]');
+                die('There was an error running the query [' . $connfb->error. ' --'.$subinsert.'** ]');
             }
             $success="OK";
         }
