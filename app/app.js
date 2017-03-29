@@ -10559,24 +10559,15 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
      $scope.listadoactivacion=[];
 
-        $scope.data1.fechafin=fechafin;
+        $scope.data = {
+		maxSize: 5,
+		currentPage: 1,
+		numPerPage: 100,
+		totalItems: 0,
+		fechaIni: "",
+		fechaFin: ""
+	};
 
-        $rootScope.actualView="activacion";
-
-        $scope.parseInt =  function (numbero){
-        return parseInt(numbero);
-        };
-
-        $scope.parseFloat =  function (numbero){
-                return parseFloat(numbero);
-        };
-
-        $scope.roundFloat =  function (numbero){
-        var num=parseFloat(numbero).toFixed(2);
-                return num;
-        };
-
-     $scope.timeInit = new Date().getTime();
 		var date1 = new Date();
 		var year = date1.getFullYear();
 		var month = $scope.doubleDigit(date1.getMonth() + 1);
@@ -10585,13 +10576,13 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 		var minute = $scope.doubleDigit(date1.getMinutes());
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
-		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-        $scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+    var fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+	var fecha_fin =  year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+    $scope.data.fechaIni = fecha_inicio;
+	$scope.data.fechaFin = fecha_fin;
 
 
-       $scope.listadoactivacion1  = function (){
-
-                services.getListadoActivacion($scope.data.fechaini,$scope.data.fechafin,$scope.data.currentPage).then(function(data){
+                services.getListadoActivacion(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
 
                    // console.log(data);
                        $scope.listadoactivacion=data.data[0];
@@ -10606,20 +10597,27 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                     return data.data;
                });
 
+        var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
 
-        };
-  /*  $scope.calcularListado = function () {
-        $scope.listadoactivacion = [];
+        $scope.fecha_inicio=year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+        $scope.fecha_fin=year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+   $scope.calcularListado = function () {
         services.getListadoActivacion($scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage).then(function (data) {
             $scope.listadoactivacion = data.data[0];
-            $scope.data.totalItems = data.data[1];
             return data.data;
         });
 
 
     };
 
-*/
+
 
       $scope.listadoactivacion1();
 
