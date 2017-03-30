@@ -1077,8 +1077,9 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
     	function (res) {
     		$scope.userIp 		= res.data[0];
     		$scope.userDomain 	= res.data[1];
-    		$scope.autoLogin 	= res.data[2][0].NOMBRE;
+    		$scope.autoNombre 	= res.data[2][0].NOMBRE;
     		$scope.autoFecha    = res.data[2][0].FECHA;
+            $scope.msgLogin     = 'Bienvenido '+$scope.autoNombre
     }, function (res) {
     	$scope.msgLogin = res.data;
     });
