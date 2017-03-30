@@ -143,46 +143,13 @@
         <div class="caption">
             <h4 class="">{{msgLogin}}</h4>
             <small>Su última visita fue: {{autoFecha}}</small></div>
-        <form class="form-signin">
+        <form class="form-signin" ng-submit="login()">
             <span id="reauth-email" class="reauth-email"></span>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-            <div id="remember" class="checkbox">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>
-            </div>
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+            <input type="text" id="username" class="form-control" ng-model="lform.username" placeholder="Usuario" required autofocus>
+            <input type="password" id="password" class="form-control" ng-model="lform.password" placeholder="Password" required>
+            <button ng-disabled="loginexito" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Entrar <span ng-show="loginexito"><i class="fa fa-spinner fa-spin"></i></span></button>
         </form><!-- /form -->
-        <a href="#" class="forgot-password">
-            Forgot the password?
-        </a>
+
     </div><!-- /card-container -->
 </div><!-- /container -->
-<div class="container">
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <img src="images/woods.jpg">
-                <div class="caption">
-                    <h4 class="">{{msgLogin}}</h4>
-                    <small>Su última visita fue: {{autoFecha}}</small>
-
-                    <form class="form-signin" ng-submit="login()">
-
-                        <input type="text" id="username" class="form-control" ng-model="lform.username" placeholder="Usuario" required autofocus>
-                        <input type="password" id="password" class="form-control" ng-model="lform.password" placeholder="Password" required>
-                        <button ng-disabled="loginexito" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Entrar <span ng-show="loginexito"><i class="fa fa-spinner fa-spin"></i></span></button>
-                    </form><!-- /form -->
-
-
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4"></div>
-
-    </div>
-    <!--/row-->
-</div>
 
