@@ -1,3 +1,5 @@
+(function (angular) {
+    "use strict";
 var app = angular.module('myApp', ['base64', 'ngRoute', 'ngCookies', 'ng-fusioncharts', 'ngAnimate', 'ui.bootstrap', 'ui.tinymce', 'ui.select', 'ngSanitize', 'ui.calendar', 'angularFileUpload', 'cgNotify', 'firebase', 'angular-smilies', 'angularjs-datetime-picker','xeditable']);
 //Los " Myapp " solapas de parámetros a un elemento HTML en el que se ejecutará la aplicación .
 //Ahora puede agregar controladores , directivas , filtros y más, para su aplicación AngularJS .
@@ -15925,3 +15927,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 
 
 }]);
+
+
+
+}(window.angular));​
