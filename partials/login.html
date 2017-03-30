@@ -1,104 +1,164 @@
 <style>
-.navbar-header {
-    z-index:9999;
-    height: 247px;
-    background: black;
-    -webkit-box-shadow: 7px 7px 2px 0px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow: 7px 7px 2px 0px rgba(50, 50, 50, 0.75);
-    box-shadow: 5px 5px 2px 0px rgba(50, 50, 50, 0.75);
-}
-.drop-shadow{
-    box-shadow: 0px 7px 5px #888888;
-    z-index:999;
-}
+    body, html {
+        height: 100%;
+        background-repeat: no-repeat;
+        background-image: linear-gradient(rgb(216, 38, 46),rgb(0, 46, 108));
+    }
+
+    .card-container.card {
+        max-width: 350px;
+        padding: 40px 40px;
+    }
+
+    .btn {
+        font-weight: 700;
+        height: 36px;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: hand;
+    }
+
+    /*
+     * Card component
+     */
+    .card {
+        background-color: #F7F7F7;
+        /* just in case there no content*/
+        padding: 20px 25px 30px;
+        margin: 0 auto 25px;
+        margin-top: 50px;
+        /* shadows and rounded borders */
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .profile-img-card {
+        width: 96px;
+        height: 96px;
+        margin: 0 auto 10px;
+        display: block;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+    }
+
+    /*
+     * Form styles
+     */
+    .profile-name-card {
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        margin: 10px 0 0;
+        min-height: 1em;
+    }
+
+    .reauth-email {
+        display: block;
+        color: #404040;
+        line-height: 2;
+        margin-bottom: 10px;
+        font-size: 14px;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .form-signin #inputEmail,
+    .form-signin #inputPassword {
+        direction: ltr;
+        height: 44px;
+        font-size: 16px;
+    }
+
+    .form-signin input[type=email],
+    .form-signin input[type=password],
+    .form-signin input[type=text],
+    .form-signin button {
+        width: 100%;
+        display: block;
+        margin-bottom: 10px;
+        z-index: 1;
+        position: relative;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .form-signin .form-control:focus {
+        border-color: rgb(104, 145, 162);
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+    }
+
+    .btn.btn-signin {
+        /*background-color: #4d90fe; */
+        background-color: rgb(104, 145, 162);
+        /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+        padding: 0px;
+        font-weight: 700;
+        font-size: 14px;
+        height: 36px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        border: none;
+        -o-transition: all 0.218s;
+        -moz-transition: all 0.218s;
+        -webkit-transition: all 0.218s;
+        transition: all 0.218s;
+    }
+
+    .btn.btn-signin:hover,
+    .btn.btn-signin:active,
+    .btn.btn-signin:focus {
+        background-color: rgb(0, 46, 108);
+    }
+
+    .forgot-password {
+        color: rgb(104, 145, 162);
+    }
+
+    .forgot-password:hover,
+    .forgot-password:active,
+    .forgot-password:focus{
+        color: rgb(12, 97, 33);
+    }
+    .fade.ng-leave {
+        transition:0.5s linear all;
+        opacity:1;
+    }
+    .fade.ng-leave.ng-leave-active {
+        opacity:0;
+    }
 </style>
-
 <div class="container">
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <img src="images/geop_logo.jpg">
-                <div class="caption">
-                    <h4 class="">Bienvenido {{msgLogin}}</h4>
-
-                    <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur,
-                        culpa itaque odio similique suscipit</p> <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a>  <a href="#" class="btn btn-default btn-xs" role="button">More Info</a>
-
-                </div>
-            </div>
+    <div class="card card-container animated bounceInLeft" >
+        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+        <img id="profile-img" class="profile-img-card" src="images/avatar_2x.png" />
+        <p id="profile-name" class="profile-name-card"></p>
+        <div class="caption text-center">
+            <img id="logo-img"  src="images/geop_logo.jpg" width="212" height="50"/>
+            <h4 class="">{{msgLogin}}</h4>
+            <small>Su última visita fue: {{autoFecha}}</small>
         </div>
-        <div class="col-md-4"></div>
+        <form class="form-signin" ng-submit="login()">
+            <span id="reauth-email" class="reauth-email"></span>
+            <input type="text" id="username" class="form-control" ng-model="lform.username" placeholder="Usuario" required autofocus>
+            <input type="password" id="password" class="form-control" ng-model="lform.password" placeholder="Password" required>
+            <button ng-disabled="loginexito" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Entrar <span ng-show="loginexito"><i class="fa fa-spinner fa-spin"></i></span></button>
+        </form>
 
-    </div>
-    <!--/row-->
-</div>
-<!--/container -->
+    </div><!-- /card-container -->
+</div><!-- /container -->
 
-
-<div ng-show="error" class="alert alert-danger">{{error}}</div>
-<!-- comienza prueba -->
-<div class="container-fluid " style="margin-top: 60px">
-    <div>{{msgLogin}} , Tu último ingreso fue: {{autoFecha }}</div>
-            <div class="col-md-3 ">
-                <div class="login-panel panel panel-primary drop-shadow">
-                    <div class="panel-heading " >
-                        <h1 class="panel-title" >Inicie Sesión:</h1>
-                    </div>
-                    <form method="POST" name="form" ng-submit="login()" role="form">
-                    <div class="panel-body">
-                            <fieldset>
-                                
-                                <div class="input-group margin-bottom-sm">
-                                    <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                                    <input class="form-control" placeholder="Usuario" name="username" type="text" required="required"  id="username" ng-model="lform.username" rel="txtTooltip" title="Ingrese el usuario de Fenix" data-toggle="tooltip" data-placement="top" autofocus/>
-                                </div>
-                                <p></p>
-                                <div class="input-group margin-top-sm">
-                                    <span class="input-group-addon"><i class="fa fa-asterisk fa-fw"></i></span>
-                                    <input class="form-control" placeholder="password" id="password" name="password" type="password" value="" required="required" ng-model="lform.password"/>
-                                </div>
-                             <!--div class="g-recaptcha" data-sitekey="6LfgMBMTAAAAAFPQK6ANeYvjVW6uEPOqRc26x0QP"></div--> 
-                              
-                            </fieldset>
-                        
-                    </div>
-                    <div class="panel-footer " >
-                              <button type="submit" ng-disabled="loginexito" class="btn btn-danger" >Entrar <span ng-show="loginexito"><i class="fa fa-spinner fa-spin"></i></span></button>
-
-                    </div>
-                    </form>
-                </div>
-            </div><!-- termina div login-->
-
-        	<!--div class="col-md-6" --><!-- Inicia div noticias -->
-
-            	<!--div class="panel panel-primary drop-shadow">
-            		<div class="panel-heading" >
-  						<h1 class="panel-title">Noticias:</h1>
-                     </div>
-        			<div class="media">
-    				<a href="./images/supervisor.png" class="pull-left" style=" margin-bottom:5px; margin-left:5px">
-        				<img src="./images/profiles/jdelgadd.png"  height="60px" width="60px" class="media-object" >
-    				</a>
-    				<div class="media-body">
-        				<h4 class="media-heading">Juliet Delgado<small><i> Bienvenido!</i></small></h4>
-                        <p><span class="glyphicon glyphicon-exclamation-sign "></span> No olvides cerrar sesión cuando termines tu turno.</p>
-    				</div>
-				</div>
-               </div>
-        	</div-->
-
-
- <div class="col-md-9">
-		<div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-		  <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
-			<img class="animated slideInRight" ng-src="{{slide.image}}" style="margin:auto;">
-
-		  </div>
-		</div>
-
-
-  </div>
-
- </div><!-- Termina Prueba -->

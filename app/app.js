@@ -1067,7 +1067,7 @@ function ($q, $rootScope, $log) {
 app.controller('login', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, $http, $firebase, $firebaseObject, $firebaseArray, services) {
 
 	$rootScope.loginexito 		= 	false;
-    $rootScope.showFooter 		= 	false;
+    $rootScope.shownavs 		= 	false;
 
 	var footer, header;
 	footer = document.getElementById('footerazo');
@@ -1214,7 +1214,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
 
 			$rootScope.loginexito 		= 	true;
-            $rootScope.showFooter 		= 	true;
+            $rootScope.shownavs 		= 	true;
 
 			$timeout(function () {
 				var id_user = data['id'];
