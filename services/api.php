@@ -114,7 +114,7 @@ private function loginNombreIp()
         }
 
     }else{
-        $error = "Estas usando VPN.";
+        $error = "Bienvenido";
         $this->response($this->json(array($error)), 403);
     }
 }

@@ -1075,17 +1075,15 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
     $http.get('./services/loginNombreIp').then(
     	function (res) {
-    		console.log(res);
+    		//console.log(res);
     		$scope.userIp 		= res.data[0];
     		$scope.userDomain 	= res.data[1];
-    		$scope.autoLogin 	= res.data[2][0].NOMBRE;
-
-    		console.log($scope.userIp);
-            console.log($scope.userDomain);
-            console.log($scope.autoLogin);
+    		$scope.autoNombre 	= res.data[2][0].NOMBRE;
+            $scope.autoFecha 	= res.data[2][0].FECHA;
+            $scope.msgLogin = 'Bienvenido '+$scope.autoNombre;
 
     }, function (res) {
-    	$scope.msgLogin = res.data;
+    	$scope.msgLogin = res.data[0];
     });
 
 	if ($cookieStore.get('logedUser') != undefined) {
