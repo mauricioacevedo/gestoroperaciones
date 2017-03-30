@@ -1068,6 +1068,14 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
 	$rootScope.loginexito 	= 	false;
 	$scope.showFooter 		= 	false;
+	var footer, header;
+	footer = document.getElementById('footerazo');
+	header = document.getElementById('headerazo');
+
+	footer.style.display = "none";
+    header.style.display = "none";
+
+
 	if ($cookieStore.get('logedUser') != undefined) {
 		//hay alguien logeado
 		var id_user = $cookieStore.get('logedUser').id;
