@@ -9764,6 +9764,8 @@ private function loginNombreIp()
         $keys = array_keys($pedido);
         $today = date("Y-m-d H:i:s");
         $today2 = date("Y-m-d");
+        $columns = '';
+        $values = '';
         $FECHA_GESTION='';
         $ID=$pedido['ID'];
         $ASESOR=$pedido['ASESOR'];
@@ -9787,15 +9789,21 @@ private function loginNombreIp()
         $OBSERVACION=$pedido['OBSERVACION'];
        // $OBSERVACIONES_PROCESO=$pedido['OBSERVACIONES_PROCESO'];
         //$ESTADO_ID=$pedido['ESTADO_ID'];
+         foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
+            if(!in_array($desired_key, $keys)) {
+                $$desired_key = '';
+            }else{
+                $$desired_key = $pedido[$desired_key];
+            }
+            $columns = $columns.$desired_key.',';
+            $values = $values."'".$pedido[$desired_key]."',";
+        }
 
         if(!empty($pedido)){
 
-            $query = "insert into gestor_historico_activacion (ID,ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,DURACION,OBSERVACION,NUMERO_CR,TABLA) values ('$ID',$ORDER_SEQ_ID','$PEDIDO','$REFERENCE_NUMBER','$ESTADO','$FECHA_CREACION','$TAREA_EXCEPCION','$FECHA_EXCEPCION','$PRODUCTO','$IDSERVICIORAIZ','$TRANSACCION','$CODIGO_CIUDAD','$ASESOR','$today','$TIPIFICACION','$FECHA_INICIO','$FECHA_FIN','$DURACION','$OBSERVACION','$NUMERO_CR','$tabla') ";
-
-             //var_dump($ID);
+        $query = "INSERT INTO gestor_historico_activacion(".trim($columns,',').",source) VALUES(".trim($values,',').",'MANUAL')";
+            //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-
-
 
             //----------insert
 
