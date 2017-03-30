@@ -288,8 +288,8 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
+            <state relative-caret-position="425">
+              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -1194,14 +1194,7 @@
       <workItem from="1490789537705" duration="6029000" />
       <workItem from="1490874805360" duration="5915000" />
       <workItem from="1490885380899" duration="8083000" />
-      <workItem from="1490897471033" duration="1493000" />
-    </task>
-    <task id="LOCAL-00915" summary="Mejora en vista de pendientes Agendamiento">
-      <created>1490793621521</created>
-      <option name="number" value="00915" />
-      <option name="presentableId" value="LOCAL-00915" />
-      <option name="project" value="LOCAL" />
-      <updated>1490793621521</updated>
+      <workItem from="1490897471033" duration="1592000" />
     </task>
     <task id="LOCAL-00916" summary="Mejora en vista de pendientes Agendamiento">
       <created>1490811900104</created>
@@ -1539,11 +1532,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490898878816</updated>
     </task>
-    <option name="localTasksCounter" value="964" />
+    <task id="LOCAL-00964" summary="Cambios en el Login">
+      <created>1490898979054</created>
+      <option name="number" value="00964" />
+      <option name="presentableId" value="LOCAL-00964" />
+      <option name="project" value="LOCAL" />
+      <updated>1490898979054</updated>
+    </task>
+    <option name="localTasksCounter" value="965" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="465384000" />
+    <option name="totallyTimeSpent" value="465483000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2237,8 +2237,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
+        <state relative-caret-position="425">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
