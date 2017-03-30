@@ -1210,8 +1210,8 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
 		$location.path('/');
 		var success = function (data) {
-			//console.log("DATOS DE LOGIN: ");
-			//console.log(data);
+			footer.style.display = "visible";
+            header.style.display = "visible";
 
 			$rootScope.loginexito 	= 	true;
             //$scope.showFooter 		= 	true;
