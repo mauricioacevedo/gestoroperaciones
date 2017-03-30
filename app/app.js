@@ -1066,19 +1066,27 @@ function ($q, $rootScope, $log) {
 
 app.controller('login', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, $http, $firebase, $firebaseObject, $firebaseArray, services) {
 
-	$rootScope.loginexito 	= 	false;
-	$scope.showFooter 		= 	false;
+	$rootScope.loginexito 		= 	false;
+    $rootScope.showFooter 		= 	false;
+
 	var footer, header;
 	footer = document.getElementById('footerazo');
 	header = document.getElementById('headerazo');
 
-	$scope.quitarfooter = function () {
-		console.log("entre a quitar");
-        footer.style.display = "none";
-        header.style.display = "none";
-	};
+    $http.get('./services/loginNombreIp').then(
+    	function (res) {
+    		console.log(res);
+    		$scope.userIp 		= res.data[0];
+    		$scope.userDomain 	= res.data[1];
+    		$scope.autoLogin 	= res.data[2][0].NOMBRE;
 
-    $scope.quitarfooter();
+    		console.log($scope.userIp);
+            console.log($scope.userDomain);
+            console.log($scope.autoLogin);
+
+    }, function (res) {
+    	$scope.msgLogin = res.data;
+    });
 
 	if ($cookieStore.get('logedUser') != undefined) {
 		//hay alguien logeado
@@ -1107,7 +1115,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 		}
 		//$location.path('/asignacion/'+id_user);
 	}else {
-		console.log("Entre al divi");
+		console.log("No hay cookie");
 	}
 
 	$scope.doubleDigit = function (num) {
@@ -1192,7 +1200,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 	$rootScope.actualView = "";
 
 	$scope.login = function () {
-        console.log("Entre al divi");
+        //console.log("Entre al divi");
 		/*
 		var response = grecaptcha.getResponse();
 
@@ -1207,11 +1215,10 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
 		$location.path('/');
 		var success = function (data) {
-			//console.log("DATOS DE LOGIN: ");
-			//console.log(data);
 
-			$rootScope.loginexito 	= 	true;
-            $scope.showFooter 		= 	true;
+
+			$rootScope.loginexito 		= 	true;
+            $rootScope.showFooter 		= 	true;
 
 			$timeout(function () {
 				var id_user = data['id'];
@@ -1282,7 +1289,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 			// TODO: apply user notification here..
 			$scope.error = "Usuario o contraseña invalido..";
 			$rootScope.loginexito 	= 	false;
-            $scope.showFooter 		= 	false;
+            //$scope.showFooter 		= 	false;
 		};
 
 
@@ -1296,7 +1303,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 			var divi = document.getElementById("logoutdiv");
 			divi.style.position = "absolute";
 			divi.style.visibility = "hidden";
-            $scope.showFooter 		= 	false;
+            //$scope.showFooter 		= 	false;
 			$location.path('/');
 		};
 

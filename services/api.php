@@ -95,10 +95,27 @@ private function loginNombreIp()
     $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
     $usuarioPc      =   gethostbyaddr($usuarioIp);
 
-    if(!$usuarioIp){
-        $this->response($this->json(array($usuarioIp,$usuarioPc)), 200);
+    if (!filter_var($usuarioIp, FILTER_VALIDATE_IP) === false){
+        $sql =  " SELECT ".
+                " SUBSTRING_INDEX(USER_NAME, ' ', 1) as NOMBRE ".
+                " , FECHA ".
+                " FROM portalbd.activity_feed ".
+                " where IP_HOST='$usuarioIp' ".
+                " and GRUPO='LOGIN' ".
+                " order by id desc limit 1 ";
+
+        $rSql = $this->mysqli->query($sql);
+        if($rSql->num_rows > 0){
+            $result = array();
+            while($row = $rSql->fetch_assoc()) {
+                $result[] = $row;
+            }
+            $this->response($this->json(array($usuarioIp,$usuarioPc,$result)), 200);
+        }
+
     }else{
-        $this->response($this->json(array($usuarioIp,$usuarioPc)), 403);
+        $error = "Estas usando VPN.";
+        $this->response($this->json(array($error)), 403);
     }
 }
 //------------------------------exportar historico asignaciones-------------------asignacion
