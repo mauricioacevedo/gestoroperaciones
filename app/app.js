@@ -1075,7 +1075,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
     $http.get('./services/loginNombreIp').then(
     	function (res) {
-    		console.log(res);
+    		//console.log(res);
     		$scope.userIp 		= res.data[0];
     		$scope.userDomain 	= res.data[1];
     		$scope.autoNombre 	= res.data[2][0].NOMBRE;
