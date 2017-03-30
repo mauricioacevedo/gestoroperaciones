@@ -9809,16 +9809,16 @@ private function loginNombreIp()
             if($tabla=='ACTIVADOR_SUSPECORE' ){
             if($TIPIFICACION=='FINALIZADA'){
             $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
-             echo $sqlupdate;
+            // echo $sqlupdate;
     }else {
 
               $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set FECHA_CARGA = '$today',STATUS='MALO',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
-                echo $sqlupdate;
+             //   echo $sqlupdate;
             }
         } else{
             if($TIPIFICACION=='FINALIZADA'){
             $sqlupdate="update gestor_activacion_pendientes_activador_dom set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
-             echo $sqlupdate;
+           //  echo $sqlupdate;
     }else {
 
               $sqlupdate="update gestor_activacion_pendientes_activador_dom set FECHA_CARGA = '$today',STATUS='MALO',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
