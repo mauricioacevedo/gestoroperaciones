@@ -7,9 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/api.php" afterPath="$PROJECT_DIR$/services/api.php" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
     <ignored path="node_modules/angular-notify/package.json" />
@@ -910,8 +908,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="497">
-              <caret line="1284" column="29" lean-forward="false" selection-start-line="1284" selection-start-column="19" selection-end-line="1284" selection-end-column="29" />
+            <state relative-caret-position="55">
+              <caret line="1066" column="21" lean-forward="false" selection-start-line="1066" selection-start-column="16" selection-end-line="1066" selection-end-column="21" />
               <folding>
                 <marker date="1490883025110" expanded="true" signature="184317:184323" ph="&amp;nbsp;" />
                 <marker date="1490883025110" expanded="true" signature="184323:184329" ph="&amp;nbsp;" />
@@ -962,18 +960,9 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="440" column="35" lean-forward="true" selection-start-line="440" selection-start-column="35" selection-end-line="440" selection-end-column="35" />
-              <folding>
-                <marker date="1490883025153" expanded="true" signature="25817:26109" ph="..." />
-                <marker date="1490883025153" expanded="true" signature="25845:26102" ph="..." />
-                <marker date="1490883025153" expanded="true" signature="25871:26091" ph="..." />
-                <marker date="1490883025153" expanded="true" signature="27716:27771" ph="{...}" />
-                <marker date="1490883025153" expanded="true" signature="27790:29278" ph="..." />
-                <marker date="1490883025153" expanded="true" signature="27817:28154" ph="{...}" />
-                <marker date="1490883025153" expanded="true" signature="28189:28504" ph="{...}" />
-                <marker date="1490883025153" expanded="true" signature="28531:28868" ph="{...}" />
-              </folding>
+            <state relative-caret-position="409">
+              <caret line="436" column="3" lean-forward="false" selection-start-line="436" selection-start-column="3" selection-end-line="436" selection-end-column="3" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1864,14 +1853,7 @@
       <workItem from="1490703355885" duration="2763000" />
       <workItem from="1490714077148" duration="1398000" />
       <workItem from="1490789537705" duration="6029000" />
-      <workItem from="1490874805360" duration="3623000" />
-    </task>
-    <task id="LOCAL-00874" summary="Mejora en vista de pendientes Agendamiento">
-      <created>1490361269363</created>
-      <option name="number" value="00874" />
-      <option name="presentableId" value="LOCAL-00874" />
-      <option name="project" value="LOCAL" />
-      <updated>1490361269363</updated>
+      <workItem from="1490874805360" duration="3722000" />
     </task>
     <task id="LOCAL-00875" summary="Mejora en vista de pendientes Agendamiento">
       <created>1490361325459</created>
@@ -2209,11 +2191,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490880649692</updated>
     </task>
-    <option name="localTasksCounter" value="923" />
+    <task id="LOCAL-00923" summary="Cambios en el Login">
+      <created>1490883047642</created>
+      <option name="number" value="00923" />
+      <option name="presentableId" value="LOCAL-00923" />
+      <option name="project" value="LOCAL" />
+      <updated>1490883047642</updated>
+    </task>
+    <option name="localTasksCounter" value="924" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="453516000" />
+    <option name="totallyTimeSpent" value="453615000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2227,6 +2216,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1296" height="1040" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39379084" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2236,7 +2226,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3956916" sideWeight="0.512945" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16780046" sideWeight="0.487055" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16780046" sideWeight="0.487055" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18934241" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -2272,7 +2262,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Prueba rutas 2" />
     <MESSAGE value="Prioridad en Los pedidos. Funciona Bien" />
     <MESSAGE value="Historico" />
     <MESSAGE value="Errordatos null" />
@@ -2297,7 +2286,8 @@
     <MESSAGE value="Fix menores" />
     <MESSAGE value="Mejora en vista de pendientes Agendamiento" />
     <MESSAGE value="npm modules" />
-    <option name="LAST_COMMIT_MESSAGE" value="npm modules" />
+    <MESSAGE value="Cambios en el Login" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambios en el Login" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -3510,8 +3500,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="1284" column="29" lean-forward="false" selection-start-line="1284" selection-start-column="19" selection-end-line="1284" selection-end-column="29" />
+        <state relative-caret-position="55">
+          <caret line="1066" column="21" lean-forward="false" selection-start-line="1066" selection-start-column="16" selection-end-line="1066" selection-end-column="21" />
           <folding>
             <marker date="1490883025110" expanded="true" signature="184317:184323" ph="&amp;nbsp;" />
             <marker date="1490883025110" expanded="true" signature="184323:184329" ph="&amp;nbsp;" />
@@ -3560,18 +3550,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="440" column="35" lean-forward="true" selection-start-line="440" selection-start-column="35" selection-end-line="440" selection-end-column="35" />
-          <folding>
-            <marker date="1490883025153" expanded="true" signature="25817:26109" ph="..." />
-            <marker date="1490883025153" expanded="true" signature="25845:26102" ph="..." />
-            <marker date="1490883025153" expanded="true" signature="25871:26091" ph="..." />
-            <marker date="1490883025153" expanded="true" signature="27716:27771" ph="{...}" />
-            <marker date="1490883025153" expanded="true" signature="27790:29278" ph="..." />
-            <marker date="1490883025153" expanded="true" signature="27817:28154" ph="{...}" />
-            <marker date="1490883025153" expanded="true" signature="28189:28504" ph="{...}" />
-            <marker date="1490883025153" expanded="true" signature="28531:28868" ph="{...}" />
-          </folding>
+        <state relative-caret-position="409">
+          <caret line="436" column="3" lean-forward="false" selection-start-line="436" selection-start-column="3" selection-end-line="436" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
