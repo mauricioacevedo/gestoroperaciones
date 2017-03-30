@@ -6,7 +6,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gestoroperaciones.iml" afterPath="$PROJECT_DIR$/.idea/gestoroperaciones.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/login.html" afterPath="$PROJECT_DIR$/partials/login.html" />
     </list>
@@ -300,7 +299,7 @@
         <entry file="file://$PROJECT_DIR$/partials/login.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="369">
-              <caret line="150" column="105" lean-forward="false" selection-start-line="150" selection-start-column="105" selection-end-line="150" selection-end-column="105" />
+              <caret line="150" column="31" lean-forward="false" selection-start-line="150" selection-start-column="31" selection-end-line="150" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -1191,14 +1190,7 @@
       <workItem from="1490789537705" duration="6029000" />
       <workItem from="1490874805360" duration="5915000" />
       <workItem from="1490885380899" duration="8083000" />
-      <workItem from="1490897471033" duration="4878000" />
-    </task>
-    <task id="LOCAL-00941" summary="Cambios en el Login">
-      <created>1490889931027</created>
-      <option name="number" value="00941" />
-      <option name="presentableId" value="LOCAL-00941" />
-      <option name="project" value="LOCAL" />
-      <updated>1490889931027</updated>
+      <workItem from="1490897471033" duration="4934000" />
     </task>
     <task id="LOCAL-00942" summary="Cambios en el Login">
       <created>1490889938392</created>
@@ -1536,11 +1528,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490902228466</updated>
     </task>
-    <option name="localTasksCounter" value="990" />
+    <task id="LOCAL-00990" summary="Cambios en el Login">
+      <created>1490902369985</created>
+      <option name="number" value="00990" />
+      <option name="presentableId" value="LOCAL-00990" />
+      <option name="project" value="LOCAL" />
+      <updated>1490902369987</updated>
+    </task>
+    <option name="localTasksCounter" value="991" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="468769000" />
+    <option name="totallyTimeSpent" value="468825000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2217,7 +2216,7 @@
     <entry file="file://$PROJECT_DIR$/partials/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
-          <caret line="150" column="105" lean-forward="false" selection-start-line="150" selection-start-column="105" selection-end-line="150" selection-end-column="105" />
+          <caret line="150" column="31" lean-forward="false" selection-start-line="150" selection-start-column="31" selection-end-line="150" selection-end-column="31" />
           <folding />
         </state>
       </provider>
