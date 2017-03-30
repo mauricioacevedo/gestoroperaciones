@@ -1064,9 +1064,10 @@ function ($q, $rootScope, $log) {
 
 // Controlador de logueo-------------------------------------------------------
 
-app.controller('login', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, $firebase, $firebaseObject, $firebaseArray, services) {
+app.controller('login', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, $http, $firebase, $firebaseObject, $firebaseArray, services) {
 
-	$rootScope.loginexito = false;
+	$rootScope.loginexito 	= 	false;
+	$scope.showFooter 		= 	false;
 	if ($cookieStore.get('logedUser') != undefined) {
 		//hay alguien logeado
 		var id_user = $cookieStore.get('logedUser').id;
@@ -1195,7 +1196,8 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 			//console.log("DATOS DE LOGIN: ");
 			//console.log(data);
 
-			$rootScope.loginexito = true;
+			$rootScope.loginexito 	= 	true;
+            $scope.showFooter 		= 	true;
 
 			$timeout(function () {
 				var id_user = data['id'];
@@ -1265,7 +1267,8 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 		var error = function () {
 			// TODO: apply user notification here..
 			$scope.error = "Usuario o contraseña invalido..";
-			$rootScope.loginexito = false;
+			$rootScope.loginexito 	= 	false;
+            $scope.showFooter 		= 	false;
 		};
 
 
@@ -1279,6 +1282,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 			var divi = document.getElementById("logoutdiv");
 			divi.style.position = "absolute";
 			divi.style.visibility = "hidden";
+            $scope.showFooter 		= 	false;
 			$location.path('/');
 		};
 

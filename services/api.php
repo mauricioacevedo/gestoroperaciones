@@ -87,7 +87,20 @@ class API extends REST {
 
 
 //Inicia Mundo Asignaciones Y Reconfiguracion
+private function loginNombreIp()
+{
+    if ($this->get_request_method () != "GET") {
+        $this->response ('', 406);
+    }
+    $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+    $usuarioPc      =   gethostbyaddr($usuarioIp);
 
+    if(!$usuarioIp){
+        $this->response($this->json(array($usuarioIp,$usuarioPc)), 200);
+    }else{
+        $this->response($this->json(array($usuarioIp,$usuarioPc)), 403);
+    }
+}
 //------------------------------exportar historico asignaciones-------------------asignacion
     private function csvHistoricos(){
         if($this->get_request_method() != "GET"){
