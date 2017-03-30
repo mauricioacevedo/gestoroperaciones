@@ -1214,8 +1214,6 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
 
 			$rootScope.loginexito 		= 	true;
-            $rootScope.shownavs 		= 	true;
-
 			$timeout(function () {
 				var id_user = data['id'];
 				$rootScope.logedUser = data;
@@ -1244,6 +1242,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 				} else {
 					$location.path('/general/' + id_user);
 				}
+                $rootScope.shownavs 		= 	true;
 
 			}, 1000);
 
