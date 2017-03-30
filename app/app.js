@@ -15918,6 +15918,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 		} else {
 			var galleta = $cookieStore.get('logedUser');
 			var userID = $cookieStore.get('logedUser').login;
+            $rootScope.shownavs 		= 	true;
 			//var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
 			//var messageRef = $firebaseArray(root.child('messages'));
 			//var mensajes = root.child('messages');
