@@ -9775,7 +9775,7 @@ class API extends REST {
            //  echo $sqlupdate;
     }else {
 
-              $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set FECHA_CARGA = '$today',STATUS='PENDI_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
+              $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set FECHA_CARGA = '$today',STATUS='MALO',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
             }
         } elseif($tabla=='ACTIVADO_DOM' ){
             if($TIPIFICACION=='FINALIZADA'){
@@ -9783,7 +9783,7 @@ class API extends REST {
            //  echo $sqlupdate;
     }else {
 
-              $sqlupdate="update gestor_activacion_pendientes_activador_dom set FECHA_CARGA = '$today',STATUS='PENDI_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
+              $sqlupdate="update gestor_activacion_pendientes_activador_dom set FECHA_CARGA = '$today',STATUS='MALO',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
             }
         }
              // echo $sqlupdate;
