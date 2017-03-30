@@ -1214,6 +1214,8 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
 
 			$rootScope.loginexito 		= 	true;
+            $scope.error 				= 	null;
+
 			$timeout(function () {
 				var id_user = data['id'];
 				$rootScope.logedUser = data;
