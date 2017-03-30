@@ -8465,7 +8465,7 @@ private function loginNombreIp()
 
 
          $query1=" SELECT b.ID ".
-                " ,b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TAREA_EXCEPCION,b.IDSERVICIORAIZ,b.TRANSACCION,b.STATUS ".
+                " ,b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TAREA_EXCEPCION,b.IDSERVICIORAIZ,b.TRANSACCION,b.STATUS,,b.ASESOR  ".
                 ",b.ACTIVIDAD,b.FUENTE,b.GRUPO".
                 " , group_concat(distinct b.PRODUCTO) as  PRODUCTO ".
                 " , min(b.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
@@ -8493,7 +8493,7 @@ private function loginNombreIp()
                 $sep=",";
             }
 
-         /*   if($tabla=='ACTIVADOR_SUSPECORE'){
+            if($tabla=='ACTIVADOR_SUSPECORE'){
 
             $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
             }else {
@@ -8501,7 +8501,7 @@ private function loginNombreIp()
             }
 
             $x = $this->mysqli->query($sqlupdate);
-*/
+
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
             $x = $this->mysqli->query($INSERTLOG);
 
