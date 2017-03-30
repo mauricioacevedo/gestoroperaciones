@@ -1072,10 +1072,6 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 	footer = document.getElementById('footerazo');
 	header = document.getElementById('headerazo');
 
-	footer.style.display = "none";
-    header.style.display = "none";
-
-
 	if ($cookieStore.get('logedUser') != undefined) {
 		//hay alguien logeado
 		var id_user = $cookieStore.get('logedUser').id;
@@ -1102,6 +1098,9 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 			$location.path('/general/');
 		}
 		//$location.path('/asignacion/'+id_user);
+	}else {
+        footer.style.display = "none";
+        header.style.display = "none";
 	}
 
 	$scope.doubleDigit = function (num) {
