@@ -1109,6 +1109,8 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 		//$location.path('/asignacion/'+id_user);
 	}else {
 		console.log("Entre al divi");
+        footer.style.display = "none";
+        header.style.display = "none";
 	}
 
 	$scope.doubleDigit = function (num) {
