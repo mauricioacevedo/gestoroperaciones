@@ -8447,8 +8447,8 @@ private function loginNombreIp()
 
 
 
-         $query1=" SELECT ".
-                " b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TAREA_EXCEPCION,b.IDSERVICIORAIZ,b.TRANSACCION,b.STATUS ".
+         $query1=" SELECT b.ID".
+                " ,b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TAREA_EXCEPCION,b.IDSERVICIORAIZ,b.TRANSACCION,b.STATUS ".
                 ",b.ACTIVIDAD,b.FUENTE,b.GRUPO".
                 " , group_concat(distinct b.PRODUCTO) as  PRODUCTO ".
                 " , min(b.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
