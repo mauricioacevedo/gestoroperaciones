@@ -288,8 +288,18 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="19" column="66" lean-forward="false" selection-start-line="19" selection-start-column="66" selection-end-line="19" selection-end-column="66" />
+            <state relative-caret-position="0">
+              <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gestor.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/gestor.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -306,7 +316,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$http.get(</find>
       <find>$http.get('</find>
       <find>$http.post('</find>
       <find>fetch_array</find>
@@ -336,6 +345,7 @@
       <find>PedidosGestorUser</find>
       <find>login</find>
       <find>$http.get</find>
+      <find>log</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -516,6 +526,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gestoroperaciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gestoroperaciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1170,14 +1194,7 @@
       <workItem from="1490789537705" duration="6029000" />
       <workItem from="1490874805360" duration="5915000" />
       <workItem from="1490885380899" duration="8083000" />
-      <workItem from="1490897471033" duration="1393000" />
-    </task>
-    <task id="LOCAL-00914" summary="Mejora en vista de pendientes Agendamiento">
-      <created>1490790453698</created>
-      <option name="number" value="00914" />
-      <option name="presentableId" value="LOCAL-00914" />
-      <option name="project" value="LOCAL" />
-      <updated>1490790453699</updated>
+      <workItem from="1490897471033" duration="1493000" />
     </task>
     <task id="LOCAL-00915" summary="Mejora en vista de pendientes Agendamiento">
       <created>1490793621521</created>
@@ -1515,11 +1532,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490898697906</updated>
     </task>
-    <option name="localTasksCounter" value="963" />
+    <task id="LOCAL-00963" summary="Cambios en el Login">
+      <created>1490898878816</created>
+      <option name="number" value="00963" />
+      <option name="presentableId" value="LOCAL-00963" />
+      <option name="project" value="LOCAL" />
+      <updated>1490898878816</updated>
+    </task>
+    <option name="localTasksCounter" value="964" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="465284000" />
+    <option name="totallyTimeSpent" value="465384000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1725,13 +1749,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/gestor.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="820">
-          <caret line="446" column="1" lean-forward="false" selection-start-line="446" selection-start-column="1" selection-end-line="446" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -2210,10 +2227,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/css/gestor.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/partials/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="19" column="66" lean-forward="false" selection-start-line="19" selection-start-column="66" selection-end-line="19" selection-end-column="66" />
+        <state relative-caret-position="0">
+          <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
           <folding />
         </state>
       </provider>
