@@ -1,11 +1,16 @@
 {
-    "name": "gestoroperaciones",
-    "version": "1.0.0",
-    "description": "Gestor Operaciones Alistamiento",
-    "main": "app/app.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "Gerencia de Alistamiento de Operaciones",
-    "license": "ISC"
+  "name": "gestoroperaciones",
+  "version": "1.0.0",
+  "description": "Gestor Operaciones Alistamiento",
+  "main": "app/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gerencia de Alistamiento de Operaciones",
+  "license": "ISC",
+  "dependencies": {
+    "angular-animate": "^1.6.3",
+    "angular-notify": "^1.2.0",
+    "angular-xeditable": "^0.7.0"
+  }
 }
