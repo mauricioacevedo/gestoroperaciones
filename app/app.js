@@ -1072,16 +1072,14 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 	var footer, header;
 	footer = document.getElementById('footerazo');
 	header = document.getElementById('headerazo');
-    console.log(footer);
 
-	/*
-	$scope.quitarfooter = function () {
-		console.log("entre a quitar");
-        footer.style.display = "none";
-        header.style.display = "none";
-	}; */
+    $http.get('./services/loginNombreIp').then(
+    	function (res) {
+    		$scope.msgLogin = 'Bienvenido '+ res.data[2].NOMBRE;
 
-   // $scope.quitarfooter();
+    }, function (res) {
+    	$scope.msgLogin = res.data;
+    });
 
 	if ($cookieStore.get('logedUser') != undefined) {
 		//hay alguien logeado
