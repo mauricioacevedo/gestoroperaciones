@@ -7,7 +7,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/login.html" afterPath="$PROJECT_DIR$/partials/login.html" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
     <ignored path="node_modules/angular-notify/package.json" />
@@ -1061,14 +1060,7 @@
       <workItem from="1490789537705" duration="6029000" />
       <workItem from="1490874805360" duration="5915000" />
       <workItem from="1490885380899" duration="8083000" />
-      <workItem from="1490897471033" duration="359000" />
-    </task>
-    <task id="LOCAL-00909" summary="Mejora en vista de pendientes Agendamiento">
-      <created>1490704970160</created>
-      <option name="number" value="00909" />
-      <option name="presentableId" value="LOCAL-00909" />
-      <option name="project" value="LOCAL" />
-      <updated>1490704970160</updated>
+      <workItem from="1490897471033" duration="370000" />
     </task>
     <task id="LOCAL-00910" summary="Mejora en vista de pendientes Agendamiento">
       <created>1490705295774</created>
@@ -1406,11 +1398,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490897404316</updated>
     </task>
-    <option name="localTasksCounter" value="958" />
+    <task id="LOCAL-00958" summary="Cambios en el Login">
+      <created>1490897845850</created>
+      <option name="number" value="00958" />
+      <option name="presentableId" value="LOCAL-00958" />
+      <option name="project" value="LOCAL" />
+      <updated>1490897845851</updated>
+    </task>
+    <option name="localTasksCounter" value="959" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="464250000" />
+    <option name="totallyTimeSpent" value="464261000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
