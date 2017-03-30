@@ -1066,7 +1066,8 @@ function ($q, $rootScope, $log) {
 
 app.controller('login', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, $http, $firebase, $firebaseObject, $firebaseArray, services) {
 
-	$rootScope.loginexito 	= 	false;
+	$rootScope.loginexito 		= 	false;
+    $rootScope.showFooter 		= 	false;
 
 	var footer, header;
 	footer = document.getElementById('footerazo');
@@ -1108,9 +1109,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 		}
 		//$location.path('/asignacion/'+id_user);
 	}else {
-		console.log("Entre al divi");
-        footer.style.display = "none";
-        header.style.display = "none";
+		console.log("No hay cookie");
 	}
 
 	$scope.doubleDigit = function (num) {
@@ -1212,12 +1211,10 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 		var success = function (data) {
 
 
-			$rootScope.loginexito 	= 	true;
-            //$scope.showFooter 		= 	true;
+			$rootScope.loginexito 		= 	true;
+            $rootScope.showFooter 		= 	true;
 
 			$timeout(function () {
-                footer.style.display = "visible";
-                header.style.display = "visible";
 				var id_user = data['id'];
 				$rootScope.logedUser = data;
 				$cookieStore.put('logedUser', data);
