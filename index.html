@@ -64,7 +64,7 @@
     </script>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-static-top" id="headerazo">
+<nav ng-show="shownavs" class="navbar navbar-default navbar-static-top" id="headerazo">
     <div style="background:#002E6C">
         <br>
     </div>
@@ -435,7 +435,7 @@
 
     <div ng-view="" id="ng-view"></div>
 </div><!--Contendor body -->
-<div ng-show="showFooter" class="navbar navbar-default navbar-fixed-bottom" role="navigation" id="footerazo">
+<div ng-show="shownavs" class="navbar navbar-default navbar-fixed-bottom" role="navigation" id="footerazo">
     <div class="container">
         <div class="row">
             <div class="col-md-2"><img src="./images/logo_tigoune.png" height="67" width="133"></img></div>
