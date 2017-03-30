@@ -13,7 +13,8 @@ body{
                     <h4 class="">{{msgLogin}}</h4>
 
                     <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur,
-                        culpa itaque odio similique suscipit</p> <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a>  <a href="#" class="btn btn-default btn-xs" role="button">More Info</a>
+                        culpa itaque odio similique suscipit</p>
+                    <button type="submit" ng-disabled="loginexito" class="btn btn-danger pull-right" >Entrar <span ng-show="loginexito"><i class="fa fa-spinner fa-spin"></i></span></button>
 
                 </div>
             </div>
