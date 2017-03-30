@@ -134,9 +134,16 @@
     .forgot-password:focus{
         color: rgb(12, 97, 33);
     }
+    .fade.ng-leave {
+        transition:0.5s linear all;
+        opacity:1;
+    }
+    .fade.ng-leave.ng-leave-active {
+        opacity:0;
+    }
 </style>
 <div class="container">
-    <div class="card card-container animated bounceInLeft">
+    <div class="card card-container animated bounceInLeft" ng-if="loginexito" class="fade">
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
         <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
         <p id="profile-name" class="profile-name-card"></p>
@@ -148,7 +155,7 @@
             <span id="reauth-email" class="reauth-email"></span>
             <input type="text" id="username" class="form-control" ng-model="lform.username" placeholder="Usuario" required autofocus>
             <input type="password" id="password" class="form-control" ng-model="lform.password" placeholder="Password" required>
-            <button ng-disabled="loginexito" class="btn btn-lg btn-primary btn-block btn-signin animated bounceInRight" type="submit">Entrar <span ng-show="loginexito"><i class="fa fa-spinner fa-spin"></i></span></button>
+            <button ng-disabled="loginexito" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Entrar <span ng-show="loginexito"><i class="fa fa-spinner fa-spin"></i></span></button>
         </form><!-- /form -->
 
     </div><!-- /card-container -->
