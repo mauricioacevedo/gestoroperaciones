@@ -233,11 +233,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="1083" column="35" lean-forward="true" selection-start-line="1083" selection-start-column="35" selection-end-line="1083" selection-end-column="35" />
+            <state relative-caret-position="436">
+              <caret line="1084" column="7" lean-forward="true" selection-start-line="1084" selection-start-column="7" selection-end-line="1084" selection-end-column="7" />
               <folding>
                 <marker date="1490898065966" expanded="true" signature="184851:184857" ph="&amp;nbsp;" />
                 <marker date="1490898065966" expanded="true" signature="184857:184863" ph="&amp;nbsp;" />
@@ -285,11 +285,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="33" lean-forward="false" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+            <state relative-caret-position="272">
+              <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -1170,14 +1170,7 @@
       <workItem from="1490789537705" duration="6029000" />
       <workItem from="1490874805360" duration="5915000" />
       <workItem from="1490885380899" duration="8083000" />
-      <workItem from="1490897471033" duration="607000" />
-    </task>
-    <task id="LOCAL-00911" summary="Mejora en vista de pendientes Agendamiento">
-      <created>1490714149965</created>
-      <option name="number" value="00911" />
-      <option name="presentableId" value="LOCAL-00911" />
-      <option name="project" value="LOCAL" />
-      <updated>1490714149965</updated>
+      <workItem from="1490897471033" duration="1006000" />
     </task>
     <task id="LOCAL-00912" summary="Mejora en vista de pendientes Agendamiento">
       <created>1490714195942</created>
@@ -1515,11 +1508,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490897860395</updated>
     </task>
-    <option name="localTasksCounter" value="960" />
+    <task id="LOCAL-00960" summary="Cambios en el Login">
+      <created>1490898103230</created>
+      <option name="number" value="00960" />
+      <option name="presentableId" value="LOCAL-00960" />
+      <option name="project" value="LOCAL" />
+      <updated>1490898103230</updated>
+    </task>
+    <option name="localTasksCounter" value="961" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="464498000" />
+    <option name="totallyTimeSpent" value="464897000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2160,18 +2160,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="33" lean-forward="false" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="1083" column="35" lean-forward="true" selection-start-line="1083" selection-start-column="35" selection-end-line="1083" selection-end-column="35" />
+        <state relative-caret-position="436">
+          <caret line="1084" column="7" lean-forward="true" selection-start-line="1084" selection-start-column="7" selection-end-line="1084" selection-end-column="7" />
           <folding>
             <marker date="1490898065966" expanded="true" signature="184851:184857" ph="&amp;nbsp;" />
             <marker date="1490898065966" expanded="true" signature="184857:184863" ph="&amp;nbsp;" />
@@ -2215,6 +2207,14 @@
             <marker date="1490898065966" expanded="true" signature="434086:434092" ph="&amp;nbsp;" />
             <marker date="1490898065966" expanded="true" signature="467529:467562" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
