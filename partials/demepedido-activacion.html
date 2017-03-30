@@ -183,24 +183,16 @@
                                                     </option>
                                                 </select>
                                             </div>
-                                            <div class="form-group has-feedback" ng-show="programar">
-                                                <label for="programacion" class="control-label">Programación:</label>
-                                                <input type="text" name="programacion" id="programacion" class="form-control" placeholder="id llamada" ng-model="InfoPedido.PROGRAMACION" datetime-picker date-format="yyyy-MM-dd HH:mm:ss"/>
-                                                <i class="fa fa-calendar-check-o form-control-feedback"></i>
-                                            </div>
+
+
                                             <div class="form-group has-feedback">
-                                                <label for="idllamada" class="control-label">ID Llamada:</label>
-                                                <input type="text" name="idllamada" id="idllamada" class="form-control" placeholder="id llamada" ng-model="InfoPedido.IDLLAMADA"/>
-                                                <i class="fa fa-phone-square form-control-feedback"></i>
-                                            </div>
-                                            <div class="form-group has-feedback">
-                                                <label for="nuevopedido" class="control-label">Nuevo Pedido:</label>
-                                                <input type="text" name="nuevopedido" id="nuevopedido" class="form-control" placeholder="12458974145" ng-model="InfoPedido.NUEVOPEDIDO"/>
+                                                <label for="nuevopedido" class="control-label">Numero CR:</label>
+                                                <input type="text" name="nuevopedido" id="NUMERO_CR" class="form-control" placeholder="12458974145" ng-model="InfoPedido.NUEVOPEDIDO"/>
                                                 <i class="fa fa-briefcase form-control-feedback"></i>
                                             </div>
                                             <div class="form-group  has-feedback" ng-show="habilitaCr">
-                                                <label for="incidente" class="control-label">CR Incidente:</label>
-                                                <input type="text" name="incidente" id="incidente" class="form-control btn-xs" ng-model="InfoPedido.INCIDENTE">
+                                                <label for="incidente" class="control-label">OBSERVACION:</label>
+                                                <input type="text" name="incidente" id="OBSERVACION" class="form-control btn-xs" ng-model="InfoPedido.INCIDENTE">
                                                 <i class="fa fa-flag form-control-feedback"></i>
                                             </div>
                                             <div>
@@ -213,21 +205,6 @@
                                                     <input ng-model="InfoPedido.ACTIVIDAD">
                                                 </div>
                                             </div>
-                                            <div class="form-group  has-feedback" ng-show="idPermisos.indexOf(logedUser.login)!=-1">
-                                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                                                    <div class="btn-group" role="group">
-                                                        <button
-                                                                type="button"
-                                                                class="btn btn-default"
-                                                                data-toggle="modal"
-                                                                data-target="#ModalAuditoria"
-                                                                data-backdrop="static"
-                                                                ng-disabled="idConceptos.indexOf(info.CONCEPTO_ID)==-1"
-                                                                ng-click="abrirModalAuditoria(gestion[0].PEDIDO_ID,logedUser.login)">Auditar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-
 
 
                                         </form>

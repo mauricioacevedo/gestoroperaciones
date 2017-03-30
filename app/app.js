@@ -11273,6 +11273,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.accRdy = false;
 		$scope.InfoGestion = {};
 		$scope.pedidoIsGuardado = false;
+        $scope.InfoPedido.NUMERO_CR = '';
 
 
 
@@ -11477,6 +11478,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             FUENTE: gestion.FUENTE,
             ACTIVIDAD: gestion.ACTIVIDAD,
             USUARIO: $rootScope.logedUser.login,
+            NUMERO_CR: InfoPedido.NUMERO_CR,
             DURACION: $scope.duracion,
 			STATUS: gestion.STATUS,
 			TIPIFICACION: $scope.tipificacion,
