@@ -1067,18 +1067,19 @@ function ($q, $rootScope, $log) {
 app.controller('login', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, $http, $firebase, $firebaseObject, $firebaseArray, services) {
 
 	$rootScope.loginexito 	= 	false;
-	$scope.showFooter 		= 	false;
+
 	var footer, header;
 	footer = document.getElementById('footerazo');
 	header = document.getElementById('headerazo');
 
+	/*
 	$scope.quitarfooter = function () {
 		console.log("entre a quitar");
         footer.style.display = "none";
         header.style.display = "none";
-	};
+	}; */
 
-    $scope.quitarfooter();
+   // $scope.quitarfooter();
 
 	if ($cookieStore.get('logedUser') != undefined) {
 		//hay alguien logeado
@@ -1192,7 +1193,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 	$rootScope.actualView = "";
 
 	$scope.login = function () {
-        console.log("Entre al divi");
+        //console.log("Entre al divi");
 		/*
 		var response = grecaptcha.getResponse();
 
@@ -1211,7 +1212,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 			//console.log(data);
 
 			$rootScope.loginexito 	= 	true;
-            $scope.showFooter 		= 	true;
+            //$scope.showFooter 		= 	true;
 
 			$timeout(function () {
 				var id_user = data['id'];
@@ -1296,7 +1297,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 			var divi = document.getElementById("logoutdiv");
 			divi.style.position = "absolute";
 			divi.style.visibility = "hidden";
-            $scope.showFooter 		= 	false;
+            //$scope.showFooter 		= 	false;
 			$location.path('/');
 		};
 
