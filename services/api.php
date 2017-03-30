@@ -95,7 +95,7 @@ private function loginNombreIp()
     $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
     $usuarioPc      =   gethostbyaddr($usuarioIp);
 
-    if(!$usuarioIp){
+    if (!filter_var($usuarioIp, FILTER_VALIDATE_IP) === false){
         $sql =  " SELECT ".
                 " SUBSTRING_INDEX(USER_NAME, ' ', 1) as NOMBRE ".
                 " , FECHA ".
