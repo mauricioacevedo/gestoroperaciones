@@ -158,6 +158,7 @@
             <input type="password" id="password" class="form-control" ng-model="lform.password" placeholder="Password" required>
             <button ng-disabled="loginexito" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">{{loginexito ? 'Entrando':'Entrar'}}<span ng-show="loginexito"> <i class="fa fa-spinner fa-spin"></i></span></button>
         </form>
+        <div ng-show="error" class="alert alert-danger">{{error}}</div>
 
     </div><!-- /card-container -->
 </div><!-- /container -->
