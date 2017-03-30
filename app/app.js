@@ -1072,6 +1072,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 	var footer, header;
 	footer = document.getElementById('footerazo');
 	header = document.getElementById('headerazo');
+    console.log(footer);
 
 	/*
 	$scope.quitarfooter = function () {
