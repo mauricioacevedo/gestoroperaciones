@@ -1078,7 +1078,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
     		console.log(res);
     		$scope.userIp 		= res.data[0];
     		$scope.userDomain 	= res.data[1];
-    		$scope.autoLogin 	= res.data[2];
+    		$scope.autoLogin 	= res.data[2][0].NOMBRE;
 
     		console.log($scope.userIp);
             console.log($scope.userDomain);
