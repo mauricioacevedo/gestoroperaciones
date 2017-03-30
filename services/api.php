@@ -9759,7 +9759,7 @@ private function loginNombreIp()
 
         $pedido = json_decode(file_get_contents("php://input"),true);
         //var_dump($pedido);
-        $column_names = array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','STATUS','ASESOR','FECHA_GESTION','TIPIFICACION','FECHA_INICIO','FECHA_FIN','DURACION','OBSERVACION','NUMERO_CR','TABLA','ESTADO_ID', 'OBSERVACIONES_PROCESO');
+        $column_names = array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','ASESOR','FECHA_GESTION','TIPIFICACION','FECHA_INICIO','FECHA_FIN','DURACION','OBSERVACION','NUMERO_CR','TABLA','ESTADO_ID', 'OBSERVACIONES_PROCESO');
         $pedido=$pedido['pedido'];
         $keys = array_keys($pedido);
         $today = date("Y-m-d H:i:s");
