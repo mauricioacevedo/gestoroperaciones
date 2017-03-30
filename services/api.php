@@ -9780,7 +9780,7 @@ private function loginNombreIp()
         $IDSERVICIORAIZ=$pedido['IDSERVICIORAIZ'];
         $TRANSACCION=$pedido['TRANSACCION'];
         $CODIGO_CIUDAD=$pedido['CODIGO_CIUDAD'];
-        $STATUS=$pedido['STATUS'];
+        //$STATUS=$pedido['STATUS'];
         $TIPIFICACION=$pedido['TIPIFICACION'];
         $FECHA_INICIO=$pedido['FECHA_INICIO'];
         $FECHA_FIN=$pedido['FECHA_FIN'];
