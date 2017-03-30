@@ -1075,15 +1075,17 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
     $http.get('./services/loginNombreIp').then(
     	function (res) {
-    		//console.log(res);
+    		console.log(res);
     		$scope.userIp 		= res.data[0];
     		$scope.userDomain 	= res.data[1];
-    		$scope.autoNombre 	= res.data[2][0].NOMBRE;
-            $scope.autoFecha 	= res.data[2][0].FECHA;
-            $scope.msgLogin = 'Bienvenido '+$scope.autoNombre;
+    		$scope.autoLogin 	= res.data[2][0].NOMBRE;
+
+    		console.log($scope.userIp);
+            console.log($scope.userDomain);
+            console.log($scope.autoLogin);
 
     }, function (res) {
-    	$scope.msgLogin = res.data[0];
+    	$scope.msgLogin = res.data;
     });
 
 	if ($cookieStore.get('logedUser') != undefined) {
@@ -11420,7 +11422,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 						$rootScope.errorDatos = null;
 						$scope.pedidoIsActive = true;
 
-                        console.log($scope.buscar);
                         console.log($scope.peds);
 						return data.data;
 					}
@@ -11477,10 +11478,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			FECHA_GESTION: $scope.FECHA_GESTION,
             FECHA_INICIO: $scope.fecha_inicio,
             FECHA_FIN: $scope.fecha_fin,
-            NUMERO_CR:$scope.NUMERO_CR,
-            OBSERVACION:$scope.OBSERVACION,
-        //     ESTADO_ID: InfoPedido.ESTADO_PROCESO,
-         //   OBSERVACIONES_PROCESO: InfoPedido.OBSERVACIONES_PROCESO,
+            FUENTE: gestion.FUENTE,
+            ACTIVIDAD: gestion.ACTIVIDAD,
             USUARIO: $rootScope.logedUser.login,
             DURACION: $scope.duracion,
 			STATUS: gestion.STATUS,
@@ -11499,19 +11498,21 @@ console.log($scope.InfoGestion);
 				$rootScope.errorDatos = null;
 				$scope.InfoPedido = [];
 				$scope.FECHA_EXCEPCION = null;
+                $scope.fecha_inicio = null;
+                $scope.fecha_fin = null;
 				$scope.accRdy = false;
 				$scope.InfoGestion = {};
 				$scope.pedidoOcupado = false;
+                $scope.guardando = false;
 				$scope.pedidoIsActive = false;
 				$scope.peds = {};
 				$scope.mpedido = {};
 				$scope.bpedido = '';
 				$scope.busy = "";
 				$scope.error = "";
+                $scope.info	= {};
                 $scope.tipificacion = "";
 				$scope.buscar = null;
-                $scope.fecha_inicio = null;
-				$scope.fecha_fin = null;
 
 				return data.data;
 
