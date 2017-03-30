@@ -1210,13 +1210,14 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
 		$location.path('/');
 		var success = function (data) {
-			footer.style.display = "visible";
-            header.style.display = "visible";
+
 
 			$rootScope.loginexito 	= 	true;
             //$scope.showFooter 		= 	true;
 
 			$timeout(function () {
+                footer.style.display = "visible";
+                header.style.display = "visible";
 				var id_user = data['id'];
 				$rootScope.logedUser = data;
 				$cookieStore.put('logedUser', data);
@@ -1285,7 +1286,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 			// TODO: apply user notification here..
 			$scope.error = "Usuario o contraseña invalido..";
 			$rootScope.loginexito 	= 	false;
-            $scope.showFooter 		= 	false;
+            //$scope.showFooter 		= 	false;
 		};
 
 
