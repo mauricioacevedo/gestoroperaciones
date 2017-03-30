@@ -1192,7 +1192,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 	$rootScope.actualView = "";
 
 	$scope.login = function () {
-
+        console.log("Entre al divi");
 		/*
 		var response = grecaptcha.getResponse();
 
