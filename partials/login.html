@@ -156,7 +156,7 @@
             <span id="reauth-email" class="reauth-email"></span>
             <input type="text" id="username" class="form-control" ng-model="lform.username" placeholder="Usuario" required autofocus>
             <input type="password" id="password" class="form-control" ng-model="lform.password" placeholder="Password" required>
-            <button ng-disabled="loginexito" class="btn btn-lg btn-primary btn-block btn-signin" type="submit"><span ng-show="!loginexito">Entrar </span> <span ng-show="loginexito">Entrando <i class="fa fa-spinner fa-spin"></i></span></button>
+            <button ng-disabled="loginexito" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">{{loginexito ? 'Entrando':'Entrar'}}<span ng-show="loginexito"> <i class="fa fa-spinner fa-spin"></i></span></button>
         </form>
 
     </div><!-- /card-container -->
