@@ -1075,7 +1075,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
     $http.get('./services/loginNombreIp').then(
     	function (res) {
-    		$scope.msgLogin = 'Bienvenido '+ res.data[2].NOMBRE;
+    		$scope.msgLogin = 'Bienvenido '+ res.data[2];
 
     }, function (res) {
     	$scope.msgLogin = res.data;
