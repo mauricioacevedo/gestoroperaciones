@@ -8447,8 +8447,8 @@ private function loginNombreIp()
 
 
 
-         $query1=" SELECT ".
-                " b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TAREA_EXCEPCION,b.IDSERVICIORAIZ,b.TRANSACCION ".
+         $query1=" SELECT b.ID".
+                " ,b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TAREA_EXCEPCION,b.IDSERVICIORAIZ,b.TRANSACCION ".
                 ",b.ACTIVIDAD,b.FUENTE,b.GRUPO".
                 " , group_concat(distinct b.PRODUCTO) as  PRODUCTO ".
                 " , min(b.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
@@ -9775,7 +9775,7 @@ private function loginNombreIp()
 
             $query = "insert into gestor_historico_activacion (ID,ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_CREACION,TAREA_EXCEPCION,FECHA_EXCEPCION,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,DURACION,OBSERVACION,NUMERO_CR,TABLA) values ('$ID',$ORDER_SEQ_ID','$PEDIDO','$REFERENCE_NUMBER','$ESTADO','$FECHA_CREACION','$TAREA_EXCEPCION','$FECHA_EXCEPCION','$PRODUCTO','$IDSERVICIORAIZ','$TRANSACCION','$CODIGO_CIUDAD','$ASESOR','$today','$TIPIFICACION','$FECHA_INICIO','$FECHA_FIN','$DURACION','$OBSERVACION','$NUMERO_CR','$tabla') ";
 
-             var_dump($ID);
+             //var_dump($ID);
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
 
