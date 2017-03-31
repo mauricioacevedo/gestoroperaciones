@@ -99,6 +99,7 @@ private function loginNombreIp()
         $sql =  " SELECT ".
                 " SUBSTRING_INDEX(USER_NAME, ' ', 1) as NOMBRE ".
                 " , FECHA ".
+                " , date_format(FECHA,'%r') as HORA ".
                 " FROM portalbd.activity_feed ".
                 " where IP_HOST='$usuarioIp' ".
                 " and GRUPO='LOGIN' ".
