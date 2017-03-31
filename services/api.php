@@ -14565,67 +14565,7 @@ private function loginNombreIp()
 
     }//----------------------------------------------- Historico de Pedidos
 
-    //Historico de Pedidos --------------------------------------------------------
-
-    private function listaHistoricoPedidosactivacion(){
-
-        //$usuario_id="";
-        $parametro="";
-
-
-        if($this->get_request_method() != "POST"){
-            $this->response('',406);
-        }
-
-        //$this->dbDespachoConnect();
-
-        //$params = json_decode(file_get_contents('php://input'),true);
-        $params = json_decode(file_get_contents('php://input'),true);
-        //$params = file_get_contents('php://input');
-
-        $pedido = $params['pedido'];
-        $today = date("Y-m-d");
-
-        $query=" SELECT ".
-               " p.ID ".
-               ", p.PEDIDO ".
-               ", p.ORDER_SEQ_ID ".
-               ", p.FECHA_CREACION ".
-               ", p.ESTADO ".
-               ", p.ASESOR AS USUARIO_ID ".
-               ", p.TRANSACCION ".
-               ", p.PRODUCTO ".
-               ", p.TIPIFICACION ".
-               ", p.SOURCE ".
-               " from portalbd.gestor_historico_activacion p ".
-               " where p.pedido='$pedido' ".
-               " order by p.ID desc ";
-
-        // echo $query;
-        $rst = $this->mysqli->query($query);
-
-        //echo $this->mysqli->query($sqlLogin);
-        //
-        if ($rst->num_rows > 0){
-
-            $resultado=array();
-
-            while($row=$rst->fetch_assoc()){
-
-                //$row['USUARIO_NOMBRE']=utf8_encode($row['USUARIO_NOMBRE']);
-                $resultado[]=$row;
-
-
-            }
-            $this->response($this->json($resultado), 201);
-
-
-        }else{
-            $error="Sin registros";
-            $this->response($this->json($error), 403);
-        }
-
-    }//----------------------------------------------- Historico de Pedidos activacion
+   
     private function csvUsuarios(){
 
         if($this->get_request_method() != "POST"){

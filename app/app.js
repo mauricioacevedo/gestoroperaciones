@@ -984,11 +984,6 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		});
 	};
 
-    obj.getHistoricoPedidoactivacion = function (pedido) {
-		return $http.post(serviceBase + 'listaHistoricoPedidosactivacion', {
-			pedido: pedido
-		});
-	};
 	obj.getProductividadAsignacionesPorHora = function (fecha) {
 		return $http.post(serviceBase + 'productivdadAsignacionesPorHora', {
 			fecha: fecha
@@ -15893,39 +15888,6 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 	// --------------------------------------------------------------------------------------Modal Historico Pedido
 
-// Modal Historico Pedido--------------------------------------------------------------------------------------
-
-	$rootScope.historicoModal = function (pedido) {
-		$rootScope.TituloModal='';
-		$rootScope.TituloModal = "Historico del pedido: ";
-		$rootScope.listaHistoricoPedido(pedido);
-		$rootScope.errorDatos = null;
-		$rootScope.pedidoHistorico=pedido;
-		//$scope.UserProgramados=$scope.usuario_id;
-	};
-
-	//Obtener listado de Historico del pedido tal
-	$rootScope.listaHistoricoPedido = function (pedido) {
-
-		$rootScope.ListadoHistoricoPedido = [];
-
-		services.getHistoricoPedidoactivacion(pedido).then(
-
-			function (data) {
-				$rootScope.errorMalos = null;
-				$rootScope.ListadoHistoricoPedido = data.data;
-				return data.data;
-			},
-			function errorCallback(response) {
-				$rootScope.errorMalos = "Sin pedidos";
-
-
-			});
-
-	};
-
-
-	// --------------------------------------------------------------------------------------Modal Historico Pedido	
 
 });
 app.run(function(editableOptions, editableThemes) {
