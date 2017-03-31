@@ -2637,7 +2637,7 @@ private function loginNombreIp()
             while($row = $r->fetch_assoc()){
                 $result[] = $row;
             }
-            $this->response($this->json($result), 200); // send user details
+            $this->response($this->json($result,$counter), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
     }
