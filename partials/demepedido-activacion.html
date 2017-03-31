@@ -239,47 +239,6 @@
                                     </button></div>
                                  <button type="button" class="btn btn-success btn-xs"  ng-click="guardar(InfoPedido,gestion[0],status);"><span id="mloader"></span>&nbsp; Guardar</button>
                             </li>
-                               <li>&nbsp; | &nbsp;</li>
-                            <li>
-                                <button type="button" class="btn btn-info btn-circle-xss" ng-click="historicoModal(gestion[0].PEDIDO_ID)" data-toggle="modal" data-target="#HistoricoPedido" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>Historico</code>"   ng-disabled="!pedidoIsActive">
-                                    <i class="fa fa-rss"  aria-hidden="true"> </i>
-                                </button>
-
-
-                        </ul>
-                    </div>
-                </div><!--Panel Footer -->
-            </div>
-
-        </div>
-    </div><!--Row 1 Novedades -->
-</div><!--Container ppal -->
-<!-- Modal Historico Pedidos-->
- <div class="panel-footer clearfix" >
-                    <div class="col-md-6" >
-                        <!--Campos futuros en footer izquierda -->
-                        <ul class="nav navbar-nav navbar-left animated bounceInRight" ng-show="pedidoIsActive" >
-                            <li><span class="label label-primary" tooltip data-placement="top" title="Programación">{{fechaprogramacion || 'Sin Programación'}}</span>
-                            </li>
-                            <li><span class="label label-primary" tooltip data-placement="top" title="Prioridad">{{prioridadPedido || 'Normal'}}</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="nav navbar-nav" ng-class="pedidoIsGuardado==false?'animated bounceOutRight':'animated bounceInRight'" ng-show="pedidoIsGuardado==true">
-                                <span class="label label-primary">Pedido Guardado</span>&nbsp;
-
-                            </li>
-                            <li>
-                                <div ng-hide="true">
-                                    <button type="button" class="btn btn-success btn-xs" ng-click="guardarPedido(InfoPedido,gestion[0],status,actividad)"  ng-disabled="!accRdy || guardando || loading">
-                                        Guardar <span ng-show="guardando"><i class="fa fa-spinner fa-spin"></i></span>
-                                    </button></div>
-                                <button type="button" class="btn btn-primary btn-xs" ng-click="guardarPedidoGestion(InfoPedido,gestion[0],status,actividad)"  ng-disabled="!accRdy || guardando || loading">
-                                    Guardar <span ng-show="guardando"><i class="fa fa-spinner fa-spin"></i></span>
-                                </button>
-                            </li>
                             <li>&nbsp; | &nbsp;</li>
                             <li>
                                 <button type="button" class="btn btn-info btn-circle-xss" ng-click="historicoModal(gestion[0].PEDIDO_ID)" data-toggle="modal" data-target="#HistoricoPedido" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>Historico</code>"   ng-disabled="!pedidoIsActive">
@@ -297,6 +256,8 @@
                                 <button type="button" class="btn btn-info btn-circle-xss" ng-click="PedidosPorUser()" data-toggle="modal" data-target="#HistoricoPedidoUser" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>Historico por {{logedUser.login}}</code>" >
                                     <i class="fa fa-user-circle"  aria-hidden="true"> </i>
                                 </button>
+
+
                         </ul>
                     </div>
                 </div><!--Panel Footer -->
