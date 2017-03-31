@@ -102,7 +102,8 @@ private function loginNombreIp()
                 " FROM portalbd.activity_feed ".
                 " where IP_HOST='$usuarioIp' ".
                 " and GRUPO='LOGIN' ".
-                " order by id desc limit 1 ";
+                " and ACCION='SE LOGUEO'   ".
+                " order by FECHA desc limit 1 ";
 
         $rSql = $this->mysqli->query($sql);
         if($rSql->num_rows > 0){

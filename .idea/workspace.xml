@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/services/api.php" line="7831" />
-    <bookmark url="file://$PROJECT_DIR$/services/api.php" line="358" />
+    <bookmark url="file://$PROJECT_DIR$/services/api.php" line="7832" />
+    <bookmark url="file://$PROJECT_DIR$/services/api.php" line="359" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/api.php" afterPath="$PROJECT_DIR$/services/api.php" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
     <ignored path="node_modules/angular-notify/package.json" />
@@ -37,249 +37,249 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1802">
-              <caret line="106" column="41" lean-forward="false" selection-start-line="106" selection-start-column="41" selection-end-line="106" selection-end-column="41" />
+            <state relative-caret-position="408">
+              <caret line="105" column="32" lean-forward="false" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="32" />
               <folding>
-                <marker date="1490895949028" expanded="true" signature="6045:6730" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="9421:10106" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="12767:13453" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="16095:16781" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="22517:23202" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="27846:28531" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="33047:33733" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="36333:37019" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="39215:39901" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="41966:42652" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="45238:45923" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="49277:49968" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="52680:53366" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="55630:55719" ph="INSERT INTO pedidos... " />
-                <marker date="1490895949028" expanded="true" signature="55962:56632" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="59437:59539" ph="INSERT INTO pedidos... " />
-                <marker date="1490895949028" expanded="true" signature="60137:60290" ph="INSERT INTO pedidos... " />
-                <marker date="1490895949028" expanded="true" signature="60410:60505" ph="update infor... " />
-                <marker date="1490895949028" expanded="true" signature="60701:61468" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="63769:63917" ph="update infor... " />
-                <marker date="1490895949028" expanded="true" signature="64610:64763" ph="INSERT INTO pedidos... " />
-                <marker date="1490895949028" expanded="true" signature="64914:65066" ph="update infor... " />
-                <marker date="1490895949028" expanded="true" signature="65261:66025" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="67079:67232" ph="INSERT INTO pedidos... " />
-                <marker date="1490895949028" expanded="true" signature="67352:67451" ph="update infor... " />
-                <marker date="1490895949028" expanded="true" signature="67580:67806" ph="insert into activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="68385:68538" ph="INSERT INTO pedidos... " />
-                <marker date="1490895949028" expanded="true" signature="68738:68868" ph="update infor... " />
-                <marker date="1490895949028" expanded="true" signature="69062:69829" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="73191:73338" ph="INSERT INTO gestor_historicos_reagendamiento... " />
-                <marker date="1490895949028" expanded="true" signature="74385:75116" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="74534:75077" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="75934:76631" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="76075:76593" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="76683:77467" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="76830:77416" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="78324:78924" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="79409:79601" ph="insert into gestor_interacciones_agendamiento... " />
-                <marker date="1490895949028" expanded="true" signature="82108:82255" ph="INSERT INTO gestor_historicos_reagendamiento... " />
-                <marker date="1490895949028" expanded="true" signature="84264:84531" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="84411:84493" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="84582:84843" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="84723:84805" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="85030:85644" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="86129:86321" ph="insert into gestor_interacciones_agendamiento... " />
-                <marker date="1490895949028" expanded="true" signature="88908:89055" ph="INSERT INTO gestor_historicos_reagendamiento... " />
-                <marker date="1490895949028" expanded="true" signature="89653:90091" ph="insert into gestor_historicos_reagendamiento... " />
-                <marker date="1490895949028" expanded="true" signature="90576:91258" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="93892:94039" ph="INSERT INTO gestor_historicos_reagendamiento... " />
-                <marker date="1490895949028" expanded="true" signature="94674:95008" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="94823:94971" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="95240:95566" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="95381:95529" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="95618:95962" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="95764:95912" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="96172:96780" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="100123:100225" ph="INSERT INTO pedidos... " />
-                <marker date="1490895949028" expanded="true" signature="100380:100533" ph="SELECT PEDID... gestor_pedidos_desbloqueados" />
-                <marker date="1490895949028" expanded="true" signature="102657:102810" ph="INSERT INTO pedidos... " />
-                <marker date="1490895949028" expanded="true" signature="102930:103025" ph="update infor... " />
-                <marker date="1490895949028" expanded="true" signature="103285:104043" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="105228:105532" ph="INSERT INTO pedidos... " />
-                <marker date="1490895949028" expanded="true" signature="105794:105944" ph="update infor... " />
-                <marker date="1490895949028" expanded="true" signature="106140:106886" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="118487:118670" ph="SELECT ID,PE... gestor_historicos_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="120647:120897" ph="SELECT ID,DI... transacciones_actividades" />
-                <marker date="1490895949028" expanded="true" signature="123361:123573" ph="SELECT ID,PE... gestor_historicos_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="137531:137717" ph="INSERT INTO alistamiento.parametrizacion_siebel... " />
-                <marker date="1490895949028" expanded="true" signature="137890:138496" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="140322:140512" ph="INSERT INTO alistamiento.parametrizacion_siebel... " />
-                <marker date="1490895949028" expanded="true" signature="144461:145151" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="147393:148083" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="153307:154616" ph="select * fro... PEDIDO_ID" />
-                <marker date="1490895949028" expanded="true" signature="153322:154512" ph="SELECT OT.PE... FNX_ORDENES_TRABAJOS" />
-                <marker date="1490895949028" expanded="true" signature="160950:162060" ph="insert into gestor_pendientes_reagendamiento... " />
-                <marker date="1490895949028" expanded="true" signature="165842:166007" ph="SELECT * FRO... gestor_pendientes_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="167533:167643" ph="SELECT count... pedidos" />
-                <marker date="1490895949028" expanded="true" signature="167945:168169" ph="SELECT id, p... pedidos" />
-                <marker date="1490895949028" expanded="true" signature="169740:169850" ph="SELECT count... pedidos" />
-                <marker date="1490895949028" expanded="true" signature="171468:171567" ph="select NEGOC... kpi_pendientes_alistamiento" />
-                <marker date="1490895949028" expanded="true" signature="196540:196976" ph="SELECT B.FEC... FECHA" />
-                <marker date="1490895949028" expanded="true" signature="196602:196952" ph="SELECT FECHA... kpi_seguimiento_automatico" />
-                <marker date="1490895949028" expanded="true" signature="198821:199210" ph="SELECT B.FEC... DATE_FORMAT" />
-                <marker date="1490895949028" expanded="true" signature="198885:199207" ph="SELECT DATE_... kpi_agendamiento_operativo" />
-                <marker date="1490895949028" expanded="true" signature="200647:200976" ph="SELECT B.FEC... DATE_FORMAT" />
-                <marker date="1490895949028" expanded="true" signature="200690:200973" ph="SELECT DATE_... kpi_agendamiento_presupuestal" />
-                <marker date="1490895949028" expanded="true" signature="202576:202976" ph="SELECT B.FEC... DATE_FORMAT" />
-                <marker date="1490895949028" expanded="true" signature="202636:202973" ph="SELECT DATE_... kpi_seguimiento_reconfigura" />
-                <marker date="1490895949028" expanded="true" signature="213881:214436" ph="SELECT B.FEC... DATE_FORMAT" />
-                <marker date="1490895949028" expanded="true" signature="213935:214433" ph="SELECT DATE_... kpi_seguimiento_automatico" />
-                <marker date="1490895949028" expanded="true" signature="216012:216569" ph="SELECT B.FEC... DATE_FORMAT" />
-                <marker date="1490895949028" expanded="true" signature="216066:216566" ph="SELECT DATE_... kpi_seguimiento_automatico" />
-                <marker date="1490895949028" expanded="true" signature="218147:218687" ph="SELECT B.FEC... DATE_FORMAT" />
-                <marker date="1490895949028" expanded="true" signature="218213:218684" ph="SELECT DATE_... kpi_seguimiento_automatico" />
-                <marker date="1490895949028" expanded="true" signature="221015:221615" ph="SELECT B.FEC... DATE_FORMAT" />
-                <marker date="1490895949028" expanded="true" signature="221115:221612" ph="SELECT DATE_... kpi_seguimiento_reconfigura" />
-                <marker date="1490895949028" expanded="true" signature="255292:255807" ph="SELECT a.PED... informe_petec_pendientesm" />
-                <marker date="1490895949028" expanded="true" signature="260858:261544" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="264125:264811" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="269493:269685" ph="select CONCA... gestor_historicos_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="270484:271165" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="275829:276510" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="279199:279885" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="280950:281338" ph="SELECT a.ID,... gestor_pendientes_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="281663:282338" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="285960:286070" ph="SELECT count... informe_petec_pendientesm" />
-                <marker date="1490895949028" expanded="true" signature="288492:288607" ph="SELECT count... gestor_pendientes_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="288904:288994" ph="SELECT count... gestor_pendientes_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="291351:291493" ph="SELECT count... gestor_seguimiento_activacion" />
-                <marker date="1490895949028" expanded="true" signature="291791:291851" ph="SELECT count... gestor_historico_activacion" />
-                <marker date="1490895949028" expanded="true" signature="296460:296652" ph="SELECT id, p... pedidos" />
-                <marker date="1490895949028" expanded="true" signature="303262:303329" ph="update infor... " />
-                <marker date="1490895949028" expanded="true" signature="303514:303638" ph="select PEDID... informe_petec_pendientesm" />
-                <marker date="1490895949028" expanded="true" signature="304009:304145" ph="update infor... " />
-                <marker date="1490895949028" expanded="true" signature="307705:307774" ph="update infor... " />
-                <marker date="1490895949028" expanded="true" signature="307898:308016" ph="update infor... " />
-                <marker date="1490895949028" expanded="true" signature="308200:309026" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="317681:317748" ph="update infor... " />
-                <marker date="1490895949028" expanded="true" signature="321124:321193" ph="update infor... " />
-                <marker date="1490895949028" expanded="true" signature="321293:321411" ph="update infor... " />
-                <marker date="1490895949028" expanded="true" signature="321564:322238" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="328195:328232" ph="insert into informe_petec_pendientesm... " />
-                <marker date="1490895949028" expanded="true" signature="338853:338890" ph="insert into informe_petec_pendientesm... " />
-                <marker date="1490895949028" expanded="true" signature="344940:344977" ph="insert into informe_petec_pendientesm... " />
-                <marker date="1490895949028" expanded="true" signature="349976:350580" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="351127:351211" ph="SELECT VALOR... gestor_parametros" />
-                <marker date="1490895949028" expanded="true" signature="351649:351729" ph="SELECT * FRO... gestor_parametros" />
-                <marker date="1490895949028" expanded="true" signature="354961:355028" ph="update infor... " />
-                <marker date="1490895949028" expanded="true" signature="368737:368866" ph="update vista... " />
-                <marker date="1490895949028" expanded="true" signature="369228:369449" ph="update infor... " />
-                <marker date="1490895949028" expanded="true" signature="372339:372410" ph="insert into vistas_pedidos... " />
-                <marker date="1490895949028" expanded="true" signature="372548:373227" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="374176:379232" ph="..." />
-                <marker date="1490895949028" expanded="true" signature="375378:375468" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="375508:375592" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="378710:378839" ph="update vista... " />
-                <marker date="1490895949028" expanded="true" signature="380304:380411" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="380462:380563" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="380657:380728" ph="insert into vistas_pedidos... " />
-                <marker date="1490895949028" expanded="true" signature="380866:381545" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="383984:384058" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="395410:395539" ph="update vista... " />
-                <marker date="1490895949028" expanded="true" signature="395847:396023" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="396236:396916" ph="SELECT b.ID gestor_pendientes_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="396683:396796" ph="select a.NOV... gestor_historicos_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="397317:397408" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="397486:397557" ph="insert into vistas_pedidos... " />
-                <marker date="1490895949028" expanded="true" signature="397695:398374" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="401031:401105" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="409302:409431" ph="update vista... " />
-                <marker date="1490895949028" expanded="true" signature="409739:409909" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="410122:410773" ph="SELECT b.ID gestor_pendientes_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="410546:410659" ph="select a.NOV... gestor_historicos_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="411174:411265" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="411343:411414" ph="insert into vistas_pedidos... " />
-                <marker date="1490895949028" expanded="true" signature="411551:412230" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="413333:413508" ph="SELECT ID,FU... gestor_historicos_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="414446:414583" ph="SELECT count... gestor_historicos_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="414880:415167" ph="SELECT id, p... gestor_historicos_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="416602:416676" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="416780:417483" ph="SELECT b.ID gestor_pendientes_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="417217:417328" ph="select a.NOV... gestor_historicos_reagendamiento" />
-                <marker date="1490895949028" expanded="true" signature="418198:418274" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="418374:418499" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="418651:419325" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="421292:421864" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="422361:422429" ph="update infor... " />
-                <marker date="1490895949028" expanded="true" signature="422557:422706" ph="SELECT id, u... registro_ingreso_usuarios" />
-                <marker date="1490895949028" expanded="true" signature="423093:423199" ph="update regis... " />
-                <marker date="1490895949028" expanded="true" signature="425004:425257" ph="SELECT Nodo,... gestor_cmts" />
-                <marker date="1490895949028" expanded="true" signature="427278:427440" ph="SELECT ID as... tbl_usuarios" />
-                <marker date="1490895949028" expanded="true" signature="428411:428617" ph="SELECT id,fe... registro_ingreso_usuarios" />
-                <marker date="1490895949028" expanded="true" signature="428938:429023" ph="update regis... " />
-                <marker date="1490895949028" expanded="true" signature="429604:429718" ph="insert into registro_ingreso_usuarios... " />
-                <marker date="1490895949028" expanded="true" signature="430079:430230" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="430408:430611" ph="SELECT fecha... registro_ingreso_usuarios" />
-                <marker date="1490895949028" expanded="true" signature="431338:432057" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="434426:434511" ph="INSERT INTO transacciones_nca" />
-                <marker date="1490895949028" expanded="true" signature="434708:434804" ph="update infor... " />
-                <marker date="1490895949028" expanded="true" signature="434990:435668" ph="insert into portalbd.activity_feed... " />
-                <marker date="1490895949028" expanded="true" signature="438551:438660" ph="INSERT INTO gestor_historico_activacion... " />
-                <marker date="1490895949028" expanded="true" signature="438925:439076" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="439153:439296" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="439436:439581" ph="update gesto... " />
-                <marker date="1490895949028" expanded="true" signature="439600:439623" ph="..." />
+                <marker date="1490960276310" expanded="true" signature="6094:6779" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="9470:10155" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="12816:13502" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="16144:16830" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="22566:23251" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="27895:28580" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="33096:33782" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="36382:37068" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="39264:39950" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="42015:42701" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="45287:45972" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="49326:50017" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="52729:53415" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="55679:55768" ph="INSERT INTO pedidos... " />
+                <marker date="1490960276310" expanded="true" signature="56011:56681" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="59486:59588" ph="INSERT INTO pedidos... " />
+                <marker date="1490960276310" expanded="true" signature="60186:60339" ph="INSERT INTO pedidos... " />
+                <marker date="1490960276310" expanded="true" signature="60459:60554" ph="update infor... " />
+                <marker date="1490960276310" expanded="true" signature="60750:61517" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="63818:63966" ph="update infor... " />
+                <marker date="1490960276310" expanded="true" signature="64659:64812" ph="INSERT INTO pedidos... " />
+                <marker date="1490960276310" expanded="true" signature="64963:65115" ph="update infor... " />
+                <marker date="1490960276310" expanded="true" signature="65310:66074" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="67128:67281" ph="INSERT INTO pedidos... " />
+                <marker date="1490960276310" expanded="true" signature="67401:67500" ph="update infor... " />
+                <marker date="1490960276310" expanded="true" signature="67629:67855" ph="insert into activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="68434:68587" ph="INSERT INTO pedidos... " />
+                <marker date="1490960276310" expanded="true" signature="68787:68917" ph="update infor... " />
+                <marker date="1490960276310" expanded="true" signature="69111:69878" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="73240:73387" ph="INSERT INTO gestor_historicos_reagendamiento... " />
+                <marker date="1490960276310" expanded="true" signature="74434:75165" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="74583:75126" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="75983:76680" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="76124:76642" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="76732:77516" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="76879:77465" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="78373:78973" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="79458:79650" ph="insert into gestor_interacciones_agendamiento... " />
+                <marker date="1490960276310" expanded="true" signature="82157:82304" ph="INSERT INTO gestor_historicos_reagendamiento... " />
+                <marker date="1490960276310" expanded="true" signature="84313:84580" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="84460:84542" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="84631:84892" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="84772:84854" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="85079:85693" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="86178:86370" ph="insert into gestor_interacciones_agendamiento... " />
+                <marker date="1490960276310" expanded="true" signature="88957:89104" ph="INSERT INTO gestor_historicos_reagendamiento... " />
+                <marker date="1490960276310" expanded="true" signature="89702:90140" ph="insert into gestor_historicos_reagendamiento... " />
+                <marker date="1490960276310" expanded="true" signature="90625:91307" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="93941:94088" ph="INSERT INTO gestor_historicos_reagendamiento... " />
+                <marker date="1490960276310" expanded="true" signature="94723:95057" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="94872:95020" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="95289:95615" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="95430:95578" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="95667:96011" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="95813:95961" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="96221:96829" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="100172:100274" ph="INSERT INTO pedidos... " />
+                <marker date="1490960276310" expanded="true" signature="100429:100582" ph="SELECT PEDID... gestor_pedidos_desbloqueados" />
+                <marker date="1490960276310" expanded="true" signature="102706:102859" ph="INSERT INTO pedidos... " />
+                <marker date="1490960276310" expanded="true" signature="102979:103074" ph="update infor... " />
+                <marker date="1490960276310" expanded="true" signature="103334:104092" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="105277:105581" ph="INSERT INTO pedidos... " />
+                <marker date="1490960276310" expanded="true" signature="105843:105993" ph="update infor... " />
+                <marker date="1490960276310" expanded="true" signature="106189:106935" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="118536:118719" ph="SELECT ID,PE... gestor_historicos_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="120696:120946" ph="SELECT ID,DI... transacciones_actividades" />
+                <marker date="1490960276310" expanded="true" signature="123410:123622" ph="SELECT ID,PE... gestor_historicos_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="137580:137766" ph="INSERT INTO alistamiento.parametrizacion_siebel... " />
+                <marker date="1490960276310" expanded="true" signature="137939:138545" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="140371:140561" ph="INSERT INTO alistamiento.parametrizacion_siebel... " />
+                <marker date="1490960276310" expanded="true" signature="144510:145200" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="147442:148132" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="153356:154665" ph="select * fro... PEDIDO_ID" />
+                <marker date="1490960276310" expanded="true" signature="153371:154561" ph="SELECT OT.PE... FNX_ORDENES_TRABAJOS" />
+                <marker date="1490960276310" expanded="true" signature="160999:162109" ph="insert into gestor_pendientes_reagendamiento... " />
+                <marker date="1490960276310" expanded="true" signature="165891:166056" ph="SELECT * FRO... gestor_pendientes_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="167582:167692" ph="SELECT count... pedidos" />
+                <marker date="1490960276310" expanded="true" signature="167994:168218" ph="SELECT id, p... pedidos" />
+                <marker date="1490960276310" expanded="true" signature="169789:169899" ph="SELECT count... pedidos" />
+                <marker date="1490960276310" expanded="true" signature="171517:171616" ph="select NEGOC... kpi_pendientes_alistamiento" />
+                <marker date="1490960276310" expanded="true" signature="196589:197025" ph="SELECT B.FEC... FECHA" />
+                <marker date="1490960276310" expanded="true" signature="196651:197001" ph="SELECT FECHA... kpi_seguimiento_automatico" />
+                <marker date="1490960276310" expanded="true" signature="198870:199259" ph="SELECT B.FEC... DATE_FORMAT" />
+                <marker date="1490960276310" expanded="true" signature="198934:199256" ph="SELECT DATE_... kpi_agendamiento_operativo" />
+                <marker date="1490960276310" expanded="true" signature="200696:201025" ph="SELECT B.FEC... DATE_FORMAT" />
+                <marker date="1490960276310" expanded="true" signature="200739:201022" ph="SELECT DATE_... kpi_agendamiento_presupuestal" />
+                <marker date="1490960276310" expanded="true" signature="202625:203025" ph="SELECT B.FEC... DATE_FORMAT" />
+                <marker date="1490960276310" expanded="true" signature="202685:203022" ph="SELECT DATE_... kpi_seguimiento_reconfigura" />
+                <marker date="1490960276310" expanded="true" signature="213930:214485" ph="SELECT B.FEC... DATE_FORMAT" />
+                <marker date="1490960276310" expanded="true" signature="213984:214482" ph="SELECT DATE_... kpi_seguimiento_automatico" />
+                <marker date="1490960276310" expanded="true" signature="216061:216618" ph="SELECT B.FEC... DATE_FORMAT" />
+                <marker date="1490960276310" expanded="true" signature="216115:216615" ph="SELECT DATE_... kpi_seguimiento_automatico" />
+                <marker date="1490960276310" expanded="true" signature="218196:218736" ph="SELECT B.FEC... DATE_FORMAT" />
+                <marker date="1490960276310" expanded="true" signature="218262:218733" ph="SELECT DATE_... kpi_seguimiento_automatico" />
+                <marker date="1490960276310" expanded="true" signature="221064:221664" ph="SELECT B.FEC... DATE_FORMAT" />
+                <marker date="1490960276310" expanded="true" signature="221164:221661" ph="SELECT DATE_... kpi_seguimiento_reconfigura" />
+                <marker date="1490960276310" expanded="true" signature="255341:255856" ph="SELECT a.PED... informe_petec_pendientesm" />
+                <marker date="1490960276310" expanded="true" signature="260907:261593" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="264174:264860" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="269542:269734" ph="select CONCA... gestor_historicos_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="270533:271214" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="275878:276559" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="279248:279934" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="280999:281387" ph="SELECT a.ID,... gestor_pendientes_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="281712:282387" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="286009:286119" ph="SELECT count... informe_petec_pendientesm" />
+                <marker date="1490960276310" expanded="true" signature="288541:288656" ph="SELECT count... gestor_pendientes_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="288953:289043" ph="SELECT count... gestor_pendientes_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="291400:291542" ph="SELECT count... gestor_seguimiento_activacion" />
+                <marker date="1490960276310" expanded="true" signature="291840:291900" ph="SELECT count... gestor_historico_activacion" />
+                <marker date="1490960276310" expanded="true" signature="296509:296701" ph="SELECT id, p... pedidos" />
+                <marker date="1490960276310" expanded="true" signature="303311:303378" ph="update infor... " />
+                <marker date="1490960276310" expanded="true" signature="303563:303687" ph="select PEDID... informe_petec_pendientesm" />
+                <marker date="1490960276310" expanded="true" signature="304058:304194" ph="update infor... " />
+                <marker date="1490960276310" expanded="true" signature="307754:307823" ph="update infor... " />
+                <marker date="1490960276310" expanded="true" signature="307947:308065" ph="update infor... " />
+                <marker date="1490960276310" expanded="true" signature="308249:309075" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="317730:317797" ph="update infor... " />
+                <marker date="1490960276310" expanded="true" signature="321173:321242" ph="update infor... " />
+                <marker date="1490960276310" expanded="true" signature="321342:321460" ph="update infor... " />
+                <marker date="1490960276310" expanded="true" signature="321613:322287" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="328244:328281" ph="insert into informe_petec_pendientesm... " />
+                <marker date="1490960276310" expanded="true" signature="338902:338939" ph="insert into informe_petec_pendientesm... " />
+                <marker date="1490960276310" expanded="true" signature="344989:345026" ph="insert into informe_petec_pendientesm... " />
+                <marker date="1490960276310" expanded="true" signature="350025:350629" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="351176:351260" ph="SELECT VALOR... gestor_parametros" />
+                <marker date="1490960276310" expanded="true" signature="351698:351778" ph="SELECT * FRO... gestor_parametros" />
+                <marker date="1490960276310" expanded="true" signature="355010:355077" ph="update infor... " />
+                <marker date="1490960276310" expanded="true" signature="368786:368915" ph="update vista... " />
+                <marker date="1490960276310" expanded="true" signature="369277:369498" ph="update infor... " />
+                <marker date="1490960276310" expanded="true" signature="372388:372459" ph="insert into vistas_pedidos... " />
+                <marker date="1490960276310" expanded="true" signature="372597:373276" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="374225:379281" ph="..." />
+                <marker date="1490960276310" expanded="true" signature="375427:375517" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="375557:375641" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="378759:378888" ph="update vista... " />
+                <marker date="1490960276310" expanded="true" signature="380353:380460" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="380511:380612" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="380706:380777" ph="insert into vistas_pedidos... " />
+                <marker date="1490960276310" expanded="true" signature="380915:381594" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="384033:384107" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="395459:395588" ph="update vista... " />
+                <marker date="1490960276310" expanded="true" signature="395896:396072" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="396285:396965" ph="SELECT b.ID gestor_pendientes_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="396732:396845" ph="select a.NOV... gestor_historicos_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="397366:397457" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="397535:397606" ph="insert into vistas_pedidos... " />
+                <marker date="1490960276310" expanded="true" signature="397744:398423" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="401080:401154" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="409351:409480" ph="update vista... " />
+                <marker date="1490960276310" expanded="true" signature="409788:409958" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="410171:410822" ph="SELECT b.ID gestor_pendientes_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="410595:410708" ph="select a.NOV... gestor_historicos_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="411223:411314" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="411392:411463" ph="insert into vistas_pedidos... " />
+                <marker date="1490960276310" expanded="true" signature="411600:412279" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="413382:413557" ph="SELECT ID,FU... gestor_historicos_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="414495:414632" ph="SELECT count... gestor_historicos_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="414929:415216" ph="SELECT id, p... gestor_historicos_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="416651:416725" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="416829:417532" ph="SELECT b.ID gestor_pendientes_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="417266:417377" ph="select a.NOV... gestor_historicos_reagendamiento" />
+                <marker date="1490960276310" expanded="true" signature="418247:418323" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="418423:418548" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="418700:419374" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="421341:421913" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="422410:422478" ph="update infor... " />
+                <marker date="1490960276310" expanded="true" signature="422606:422755" ph="SELECT id, u... registro_ingreso_usuarios" />
+                <marker date="1490960276310" expanded="true" signature="423142:423248" ph="update regis... " />
+                <marker date="1490960276310" expanded="true" signature="425053:425306" ph="SELECT Nodo,... gestor_cmts" />
+                <marker date="1490960276310" expanded="true" signature="427327:427489" ph="SELECT ID as... tbl_usuarios" />
+                <marker date="1490960276310" expanded="true" signature="428460:428666" ph="SELECT id,fe... registro_ingreso_usuarios" />
+                <marker date="1490960276310" expanded="true" signature="428987:429072" ph="update regis... " />
+                <marker date="1490960276310" expanded="true" signature="429653:429767" ph="insert into registro_ingreso_usuarios... " />
+                <marker date="1490960276310" expanded="true" signature="430128:430279" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="430457:430660" ph="SELECT fecha... registro_ingreso_usuarios" />
+                <marker date="1490960276310" expanded="true" signature="431387:432106" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="434475:434560" ph="INSERT INTO transacciones_nca" />
+                <marker date="1490960276310" expanded="true" signature="434757:434853" ph="update infor... " />
+                <marker date="1490960276310" expanded="true" signature="435039:435717" ph="insert into portalbd.activity_feed... " />
+                <marker date="1490960276310" expanded="true" signature="438600:438709" ph="INSERT INTO gestor_historico_activacion... " />
+                <marker date="1490960276310" expanded="true" signature="438974:439125" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="439202:439345" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="439485:439630" ph="update gesto... " />
+                <marker date="1490960276310" expanded="true" signature="439649:439672" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1490906474188" expanded="true" signature="184889:184895" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="184895:184901" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="185318:185324" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="185324:185330" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="185744:185750" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="185750:185756" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="186160:186166" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="186166:186172" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="197784:197790" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="197790:197796" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="198196:198202" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="198202:198208" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="198571:198577" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="198577:198583" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="198908:198914" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="198914:198920" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="396907:396913" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="396913:396919" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="397321:397327" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="397327:397333" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="397696:397702" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="397702:397708" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="398035:398041" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="398041:398047" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="412394:412400" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="412400:412406" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="412808:412814" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="412814:412820" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="413183:413189" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="413189:413195" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="413522:413528" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="413528:413534" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="432996:433002" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="433002:433008" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="433408:433414" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="433414:433420" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="433783:433789" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="433789:433795" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="434120:434126" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="434126:434132" ph="&amp;nbsp;" />
-                <marker date="1490906474188" expanded="true" signature="467569:467602" ph="..." />
+                <marker date="1490960225517" expanded="true" signature="184889:184895" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="184895:184901" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="185318:185324" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="185324:185330" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="185744:185750" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="185750:185756" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="186160:186166" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="186166:186172" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="197784:197790" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="197790:197796" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="198196:198202" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="198202:198208" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="198571:198577" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="198577:198583" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="198908:198914" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="198914:198920" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="396953:396959" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="396959:396965" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="397367:397373" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="397373:397379" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="397742:397748" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="397748:397754" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="398081:398087" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="398087:398093" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="412440:412446" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="412446:412452" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="412854:412860" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="412860:412866" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="413229:413235" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="413235:413241" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="413568:413574" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="413574:413580" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="433042:433048" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="433048:433054" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="433454:433460" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="433460:433466" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="433829:433835" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="433835:433841" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="434166:434172" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="434172:434178" ph="&amp;nbsp;" />
+                <marker date="1490960225517" expanded="true" signature="467615:467648" ph="..." />
               </folding>
             </state>
           </provider>
@@ -288,7 +288,7 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/partials/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2140">
+            <state relative-caret-position="2720">
               <caret line="160" column="71" lean-forward="false" selection-start-line="160" selection-start-column="71" selection-end-line="160" selection-end-column="71" />
               <folding />
             </state>
@@ -382,10 +382,10 @@
         <option value="$PROJECT_DIR$/partials/asignaciones/registrosauditoria.html" />
         <option value="$PROJECT_DIR$/partials/asignaciones/indicadores_asignaciones.html" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/services/api.php" />
         <option value="$PROJECT_DIR$/partials/login.html" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/app/app.js" />
+        <option value="$PROJECT_DIR$/services/api.php" />
       </list>
     </option>
   </component>
@@ -457,20 +457,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gestoroperaciones" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gestoroperaciones" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scratches">
         <subPane>
           <PATH>
@@ -499,6 +485,20 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="d49cbaab-e1e7-436c-b048-971965fe5889" />
               <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyPsiNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gestoroperaciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gestoroperaciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -594,6 +594,7 @@
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/app.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/partials/demepedido-activacion.html</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -1180,14 +1181,8 @@
       <workItem from="1490789537705" duration="6029000" />
       <workItem from="1490874805360" duration="5915000" />
       <workItem from="1490885380899" duration="8083000" />
-      <workItem from="1490897471033" duration="8350000" />
-    </task>
-    <task id="LOCAL-00953" summary="Cambios en el Login">
-      <created>1490896466854</created>
-      <option name="number" value="00953" />
-      <option name="presentableId" value="LOCAL-00953" />
-      <option name="project" value="LOCAL" />
-      <updated>1490896466854</updated>
+      <workItem from="1490897471033" duration="8958000" />
+      <workItem from="1490960151271" duration="127000" />
     </task>
     <task id="LOCAL-00954" summary="Cambios en el Login">
       <created>1490896585825</created>
@@ -1525,11 +1520,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490906425346</updated>
     </task>
-    <option name="localTasksCounter" value="1002" />
+    <task id="LOCAL-01002" summary="Cambios en el Login">
+      <created>1490906495052</created>
+      <option name="number" value="01002" />
+      <option name="presentableId" value="LOCAL-01002" />
+      <option name="project" value="LOCAL" />
+      <updated>1490906495052</updated>
+    </task>
+    <option name="localTasksCounter" value="1003" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="472241000" />
+    <option name="totallyTimeSpent" value="472976000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1553,13 +1555,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3956916" sideWeight="0.512945" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14172335" sideWeight="0.487055" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14058957" sideWeight="0.487055" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18934241" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23543689" sideWeight="0.4955947" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2394822" sideWeight="0.4955947" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928804" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1910,7 +1912,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="9" lean-forward="false" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1936,211 +1937,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1802">
-          <caret line="106" column="41" lean-forward="false" selection-start-line="106" selection-start-column="41" selection-end-line="106" selection-end-column="41" />
-          <folding>
-            <marker date="1490895949028" expanded="true" signature="6045:6730" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="9421:10106" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="12767:13453" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="16095:16781" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="22517:23202" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="27846:28531" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="33047:33733" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="36333:37019" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="39215:39901" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="41966:42652" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="45238:45923" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="49277:49968" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="52680:53366" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="55630:55719" ph="INSERT INTO pedidos... " />
-            <marker date="1490895949028" expanded="true" signature="55962:56632" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="59437:59539" ph="INSERT INTO pedidos... " />
-            <marker date="1490895949028" expanded="true" signature="60137:60290" ph="INSERT INTO pedidos... " />
-            <marker date="1490895949028" expanded="true" signature="60410:60505" ph="update infor... " />
-            <marker date="1490895949028" expanded="true" signature="60701:61468" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="63769:63917" ph="update infor... " />
-            <marker date="1490895949028" expanded="true" signature="64610:64763" ph="INSERT INTO pedidos... " />
-            <marker date="1490895949028" expanded="true" signature="64914:65066" ph="update infor... " />
-            <marker date="1490895949028" expanded="true" signature="65261:66025" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="67079:67232" ph="INSERT INTO pedidos... " />
-            <marker date="1490895949028" expanded="true" signature="67352:67451" ph="update infor... " />
-            <marker date="1490895949028" expanded="true" signature="67580:67806" ph="insert into activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="68385:68538" ph="INSERT INTO pedidos... " />
-            <marker date="1490895949028" expanded="true" signature="68738:68868" ph="update infor... " />
-            <marker date="1490895949028" expanded="true" signature="69062:69829" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="73191:73338" ph="INSERT INTO gestor_historicos_reagendamiento... " />
-            <marker date="1490895949028" expanded="true" signature="74385:75116" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="74534:75077" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="75934:76631" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="76075:76593" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="76683:77467" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="76830:77416" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="78324:78924" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="79409:79601" ph="insert into gestor_interacciones_agendamiento... " />
-            <marker date="1490895949028" expanded="true" signature="82108:82255" ph="INSERT INTO gestor_historicos_reagendamiento... " />
-            <marker date="1490895949028" expanded="true" signature="84264:84531" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="84411:84493" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="84582:84843" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="84723:84805" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="85030:85644" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="86129:86321" ph="insert into gestor_interacciones_agendamiento... " />
-            <marker date="1490895949028" expanded="true" signature="88908:89055" ph="INSERT INTO gestor_historicos_reagendamiento... " />
-            <marker date="1490895949028" expanded="true" signature="89653:90091" ph="insert into gestor_historicos_reagendamiento... " />
-            <marker date="1490895949028" expanded="true" signature="90576:91258" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="93892:94039" ph="INSERT INTO gestor_historicos_reagendamiento... " />
-            <marker date="1490895949028" expanded="true" signature="94674:95008" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="94823:94971" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="95240:95566" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="95381:95529" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="95618:95962" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="95764:95912" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="96172:96780" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="100123:100225" ph="INSERT INTO pedidos... " />
-            <marker date="1490895949028" expanded="true" signature="100380:100533" ph="SELECT PEDID... gestor_pedidos_desbloqueados" />
-            <marker date="1490895949028" expanded="true" signature="102657:102810" ph="INSERT INTO pedidos... " />
-            <marker date="1490895949028" expanded="true" signature="102930:103025" ph="update infor... " />
-            <marker date="1490895949028" expanded="true" signature="103285:104043" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="105228:105532" ph="INSERT INTO pedidos... " />
-            <marker date="1490895949028" expanded="true" signature="105794:105944" ph="update infor... " />
-            <marker date="1490895949028" expanded="true" signature="106140:106886" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="118487:118670" ph="SELECT ID,PE... gestor_historicos_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="120647:120897" ph="SELECT ID,DI... transacciones_actividades" />
-            <marker date="1490895949028" expanded="true" signature="123361:123573" ph="SELECT ID,PE... gestor_historicos_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="137531:137717" ph="INSERT INTO alistamiento.parametrizacion_siebel... " />
-            <marker date="1490895949028" expanded="true" signature="137890:138496" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="140322:140512" ph="INSERT INTO alistamiento.parametrizacion_siebel... " />
-            <marker date="1490895949028" expanded="true" signature="144461:145151" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="147393:148083" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="153307:154616" ph="select * fro... PEDIDO_ID" />
-            <marker date="1490895949028" expanded="true" signature="153322:154512" ph="SELECT OT.PE... FNX_ORDENES_TRABAJOS" />
-            <marker date="1490895949028" expanded="true" signature="160950:162060" ph="insert into gestor_pendientes_reagendamiento... " />
-            <marker date="1490895949028" expanded="true" signature="165842:166007" ph="SELECT * FRO... gestor_pendientes_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="167533:167643" ph="SELECT count... pedidos" />
-            <marker date="1490895949028" expanded="true" signature="167945:168169" ph="SELECT id, p... pedidos" />
-            <marker date="1490895949028" expanded="true" signature="169740:169850" ph="SELECT count... pedidos" />
-            <marker date="1490895949028" expanded="true" signature="171468:171567" ph="select NEGOC... kpi_pendientes_alistamiento" />
-            <marker date="1490895949028" expanded="true" signature="196540:196976" ph="SELECT B.FEC... FECHA" />
-            <marker date="1490895949028" expanded="true" signature="196602:196952" ph="SELECT FECHA... kpi_seguimiento_automatico" />
-            <marker date="1490895949028" expanded="true" signature="198821:199210" ph="SELECT B.FEC... DATE_FORMAT" />
-            <marker date="1490895949028" expanded="true" signature="198885:199207" ph="SELECT DATE_... kpi_agendamiento_operativo" />
-            <marker date="1490895949028" expanded="true" signature="200647:200976" ph="SELECT B.FEC... DATE_FORMAT" />
-            <marker date="1490895949028" expanded="true" signature="200690:200973" ph="SELECT DATE_... kpi_agendamiento_presupuestal" />
-            <marker date="1490895949028" expanded="true" signature="202576:202976" ph="SELECT B.FEC... DATE_FORMAT" />
-            <marker date="1490895949028" expanded="true" signature="202636:202973" ph="SELECT DATE_... kpi_seguimiento_reconfigura" />
-            <marker date="1490895949028" expanded="true" signature="213881:214436" ph="SELECT B.FEC... DATE_FORMAT" />
-            <marker date="1490895949028" expanded="true" signature="213935:214433" ph="SELECT DATE_... kpi_seguimiento_automatico" />
-            <marker date="1490895949028" expanded="true" signature="216012:216569" ph="SELECT B.FEC... DATE_FORMAT" />
-            <marker date="1490895949028" expanded="true" signature="216066:216566" ph="SELECT DATE_... kpi_seguimiento_automatico" />
-            <marker date="1490895949028" expanded="true" signature="218147:218687" ph="SELECT B.FEC... DATE_FORMAT" />
-            <marker date="1490895949028" expanded="true" signature="218213:218684" ph="SELECT DATE_... kpi_seguimiento_automatico" />
-            <marker date="1490895949028" expanded="true" signature="221015:221615" ph="SELECT B.FEC... DATE_FORMAT" />
-            <marker date="1490895949028" expanded="true" signature="221115:221612" ph="SELECT DATE_... kpi_seguimiento_reconfigura" />
-            <marker date="1490895949028" expanded="true" signature="255292:255807" ph="SELECT a.PED... informe_petec_pendientesm" />
-            <marker date="1490895949028" expanded="true" signature="260858:261544" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="264125:264811" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="269493:269685" ph="select CONCA... gestor_historicos_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="270484:271165" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="275829:276510" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="279199:279885" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="280950:281338" ph="SELECT a.ID,... gestor_pendientes_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="281663:282338" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="285960:286070" ph="SELECT count... informe_petec_pendientesm" />
-            <marker date="1490895949028" expanded="true" signature="288492:288607" ph="SELECT count... gestor_pendientes_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="288904:288994" ph="SELECT count... gestor_pendientes_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="291351:291493" ph="SELECT count... gestor_seguimiento_activacion" />
-            <marker date="1490895949028" expanded="true" signature="291791:291851" ph="SELECT count... gestor_historico_activacion" />
-            <marker date="1490895949028" expanded="true" signature="296460:296652" ph="SELECT id, p... pedidos" />
-            <marker date="1490895949028" expanded="true" signature="303262:303329" ph="update infor... " />
-            <marker date="1490895949028" expanded="true" signature="303514:303638" ph="select PEDID... informe_petec_pendientesm" />
-            <marker date="1490895949028" expanded="true" signature="304009:304145" ph="update infor... " />
-            <marker date="1490895949028" expanded="true" signature="307705:307774" ph="update infor... " />
-            <marker date="1490895949028" expanded="true" signature="307898:308016" ph="update infor... " />
-            <marker date="1490895949028" expanded="true" signature="308200:309026" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="317681:317748" ph="update infor... " />
-            <marker date="1490895949028" expanded="true" signature="321124:321193" ph="update infor... " />
-            <marker date="1490895949028" expanded="true" signature="321293:321411" ph="update infor... " />
-            <marker date="1490895949028" expanded="true" signature="321564:322238" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="328195:328232" ph="insert into informe_petec_pendientesm... " />
-            <marker date="1490895949028" expanded="true" signature="338853:338890" ph="insert into informe_petec_pendientesm... " />
-            <marker date="1490895949028" expanded="true" signature="344940:344977" ph="insert into informe_petec_pendientesm... " />
-            <marker date="1490895949028" expanded="true" signature="349976:350580" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="351127:351211" ph="SELECT VALOR... gestor_parametros" />
-            <marker date="1490895949028" expanded="true" signature="351649:351729" ph="SELECT * FRO... gestor_parametros" />
-            <marker date="1490895949028" expanded="true" signature="354961:355028" ph="update infor... " />
-            <marker date="1490895949028" expanded="true" signature="368737:368866" ph="update vista... " />
-            <marker date="1490895949028" expanded="true" signature="369228:369449" ph="update infor... " />
-            <marker date="1490895949028" expanded="true" signature="372339:372410" ph="insert into vistas_pedidos... " />
-            <marker date="1490895949028" expanded="true" signature="372548:373227" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="374176:379232" ph="..." />
-            <marker date="1490895949028" expanded="true" signature="375378:375468" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="375508:375592" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="378710:378839" ph="update vista... " />
-            <marker date="1490895949028" expanded="true" signature="380304:380411" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="380462:380563" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="380657:380728" ph="insert into vistas_pedidos... " />
-            <marker date="1490895949028" expanded="true" signature="380866:381545" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="383984:384058" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="395410:395539" ph="update vista... " />
-            <marker date="1490895949028" expanded="true" signature="395847:396023" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="396236:396916" ph="SELECT b.ID gestor_pendientes_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="396683:396796" ph="select a.NOV... gestor_historicos_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="397317:397408" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="397486:397557" ph="insert into vistas_pedidos... " />
-            <marker date="1490895949028" expanded="true" signature="397695:398374" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="401031:401105" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="409302:409431" ph="update vista... " />
-            <marker date="1490895949028" expanded="true" signature="409739:409909" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="410122:410773" ph="SELECT b.ID gestor_pendientes_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="410546:410659" ph="select a.NOV... gestor_historicos_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="411174:411265" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="411343:411414" ph="insert into vistas_pedidos... " />
-            <marker date="1490895949028" expanded="true" signature="411551:412230" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="413333:413508" ph="SELECT ID,FU... gestor_historicos_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="414446:414583" ph="SELECT count... gestor_historicos_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="414880:415167" ph="SELECT id, p... gestor_historicos_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="416602:416676" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="416780:417483" ph="SELECT b.ID gestor_pendientes_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="417217:417328" ph="select a.NOV... gestor_historicos_reagendamiento" />
-            <marker date="1490895949028" expanded="true" signature="418198:418274" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="418374:418499" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="418651:419325" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="421292:421864" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="422361:422429" ph="update infor... " />
-            <marker date="1490895949028" expanded="true" signature="422557:422706" ph="SELECT id, u... registro_ingreso_usuarios" />
-            <marker date="1490895949028" expanded="true" signature="423093:423199" ph="update regis... " />
-            <marker date="1490895949028" expanded="true" signature="425004:425257" ph="SELECT Nodo,... gestor_cmts" />
-            <marker date="1490895949028" expanded="true" signature="427278:427440" ph="SELECT ID as... tbl_usuarios" />
-            <marker date="1490895949028" expanded="true" signature="428411:428617" ph="SELECT id,fe... registro_ingreso_usuarios" />
-            <marker date="1490895949028" expanded="true" signature="428938:429023" ph="update regis... " />
-            <marker date="1490895949028" expanded="true" signature="429604:429718" ph="insert into registro_ingreso_usuarios... " />
-            <marker date="1490895949028" expanded="true" signature="430079:430230" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="430408:430611" ph="SELECT fecha... registro_ingreso_usuarios" />
-            <marker date="1490895949028" expanded="true" signature="431338:432057" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="434426:434511" ph="INSERT INTO transacciones_nca" />
-            <marker date="1490895949028" expanded="true" signature="434708:434804" ph="update infor... " />
-            <marker date="1490895949028" expanded="true" signature="434990:435668" ph="insert into portalbd.activity_feed... " />
-            <marker date="1490895949028" expanded="true" signature="438551:438660" ph="INSERT INTO gestor_historico_activacion... " />
-            <marker date="1490895949028" expanded="true" signature="438925:439076" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="439153:439296" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="439436:439581" ph="update gesto... " />
-            <marker date="1490895949028" expanded="true" signature="439600:439623" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/gestor.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="11" lean-forward="false" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2140">
+        <state relative-caret-position="2720">
           <caret line="160" column="71" lean-forward="false" selection-start-line="160" selection-start-column="71" selection-end-line="160" selection-end-column="71" />
           <folding />
         </state>
@@ -2150,7 +1956,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2167,47 +1972,241 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1490906474188" expanded="true" signature="184889:184895" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="184895:184901" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="185318:185324" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="185324:185330" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="185744:185750" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="185750:185756" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="186160:186166" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="186166:186172" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="197784:197790" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="197790:197796" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="198196:198202" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="198202:198208" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="198571:198577" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="198577:198583" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="198908:198914" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="198914:198920" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="396907:396913" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="396913:396919" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="397321:397327" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="397327:397333" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="397696:397702" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="397702:397708" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="398035:398041" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="398041:398047" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="412394:412400" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="412400:412406" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="412808:412814" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="412814:412820" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="413183:413189" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="413189:413195" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="413522:413528" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="413528:413534" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="432996:433002" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="433002:433008" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="433408:433414" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="433414:433420" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="433783:433789" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="433789:433795" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="434120:434126" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="434126:434132" ph="&amp;nbsp;" />
-            <marker date="1490906474188" expanded="true" signature="467569:467602" ph="..." />
+            <marker date="1490960225517" expanded="true" signature="184889:184895" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="184895:184901" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="185318:185324" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="185324:185330" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="185744:185750" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="185750:185756" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="186160:186166" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="186166:186172" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="197784:197790" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="197790:197796" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="198196:198202" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="198202:198208" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="198571:198577" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="198577:198583" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="198908:198914" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="198914:198920" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="396953:396959" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="396959:396965" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="397367:397373" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="397373:397379" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="397742:397748" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="397748:397754" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="398081:398087" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="398087:398093" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="412440:412446" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="412446:412452" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="412854:412860" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="412860:412866" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="413229:413235" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="413235:413241" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="413568:413574" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="413574:413580" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="433042:433048" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="433048:433054" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="433454:433460" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="433460:433466" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="433829:433835" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="433835:433841" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="434166:434172" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="434172:434178" ph="&amp;nbsp;" />
+            <marker date="1490960225517" expanded="true" signature="467615:467648" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="105" column="32" lean-forward="false" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="32" />
+          <folding>
+            <marker date="1490960276310" expanded="true" signature="6094:6779" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="9470:10155" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="12816:13502" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="16144:16830" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="22566:23251" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="27895:28580" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="33096:33782" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="36382:37068" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="39264:39950" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="42015:42701" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="45287:45972" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="49326:50017" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="52729:53415" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="55679:55768" ph="INSERT INTO pedidos... " />
+            <marker date="1490960276310" expanded="true" signature="56011:56681" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="59486:59588" ph="INSERT INTO pedidos... " />
+            <marker date="1490960276310" expanded="true" signature="60186:60339" ph="INSERT INTO pedidos... " />
+            <marker date="1490960276310" expanded="true" signature="60459:60554" ph="update infor... " />
+            <marker date="1490960276310" expanded="true" signature="60750:61517" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="63818:63966" ph="update infor... " />
+            <marker date="1490960276310" expanded="true" signature="64659:64812" ph="INSERT INTO pedidos... " />
+            <marker date="1490960276310" expanded="true" signature="64963:65115" ph="update infor... " />
+            <marker date="1490960276310" expanded="true" signature="65310:66074" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="67128:67281" ph="INSERT INTO pedidos... " />
+            <marker date="1490960276310" expanded="true" signature="67401:67500" ph="update infor... " />
+            <marker date="1490960276310" expanded="true" signature="67629:67855" ph="insert into activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="68434:68587" ph="INSERT INTO pedidos... " />
+            <marker date="1490960276310" expanded="true" signature="68787:68917" ph="update infor... " />
+            <marker date="1490960276310" expanded="true" signature="69111:69878" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="73240:73387" ph="INSERT INTO gestor_historicos_reagendamiento... " />
+            <marker date="1490960276310" expanded="true" signature="74434:75165" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="74583:75126" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="75983:76680" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="76124:76642" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="76732:77516" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="76879:77465" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="78373:78973" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="79458:79650" ph="insert into gestor_interacciones_agendamiento... " />
+            <marker date="1490960276310" expanded="true" signature="82157:82304" ph="INSERT INTO gestor_historicos_reagendamiento... " />
+            <marker date="1490960276310" expanded="true" signature="84313:84580" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="84460:84542" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="84631:84892" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="84772:84854" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="85079:85693" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="86178:86370" ph="insert into gestor_interacciones_agendamiento... " />
+            <marker date="1490960276310" expanded="true" signature="88957:89104" ph="INSERT INTO gestor_historicos_reagendamiento... " />
+            <marker date="1490960276310" expanded="true" signature="89702:90140" ph="insert into gestor_historicos_reagendamiento... " />
+            <marker date="1490960276310" expanded="true" signature="90625:91307" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="93941:94088" ph="INSERT INTO gestor_historicos_reagendamiento... " />
+            <marker date="1490960276310" expanded="true" signature="94723:95057" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="94872:95020" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="95289:95615" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="95430:95578" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="95667:96011" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="95813:95961" ph="SELECT COUNT... gestor_historicos_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="96221:96829" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="100172:100274" ph="INSERT INTO pedidos... " />
+            <marker date="1490960276310" expanded="true" signature="100429:100582" ph="SELECT PEDID... gestor_pedidos_desbloqueados" />
+            <marker date="1490960276310" expanded="true" signature="102706:102859" ph="INSERT INTO pedidos... " />
+            <marker date="1490960276310" expanded="true" signature="102979:103074" ph="update infor... " />
+            <marker date="1490960276310" expanded="true" signature="103334:104092" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="105277:105581" ph="INSERT INTO pedidos... " />
+            <marker date="1490960276310" expanded="true" signature="105843:105993" ph="update infor... " />
+            <marker date="1490960276310" expanded="true" signature="106189:106935" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="118536:118719" ph="SELECT ID,PE... gestor_historicos_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="120696:120946" ph="SELECT ID,DI... transacciones_actividades" />
+            <marker date="1490960276310" expanded="true" signature="123410:123622" ph="SELECT ID,PE... gestor_historicos_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="137580:137766" ph="INSERT INTO alistamiento.parametrizacion_siebel... " />
+            <marker date="1490960276310" expanded="true" signature="137939:138545" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="140371:140561" ph="INSERT INTO alistamiento.parametrizacion_siebel... " />
+            <marker date="1490960276310" expanded="true" signature="144510:145200" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="147442:148132" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="153356:154665" ph="select * fro... PEDIDO_ID" />
+            <marker date="1490960276310" expanded="true" signature="153371:154561" ph="SELECT OT.PE... FNX_ORDENES_TRABAJOS" />
+            <marker date="1490960276310" expanded="true" signature="160999:162109" ph="insert into gestor_pendientes_reagendamiento... " />
+            <marker date="1490960276310" expanded="true" signature="165891:166056" ph="SELECT * FRO... gestor_pendientes_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="167582:167692" ph="SELECT count... pedidos" />
+            <marker date="1490960276310" expanded="true" signature="167994:168218" ph="SELECT id, p... pedidos" />
+            <marker date="1490960276310" expanded="true" signature="169789:169899" ph="SELECT count... pedidos" />
+            <marker date="1490960276310" expanded="true" signature="171517:171616" ph="select NEGOC... kpi_pendientes_alistamiento" />
+            <marker date="1490960276310" expanded="true" signature="196589:197025" ph="SELECT B.FEC... FECHA" />
+            <marker date="1490960276310" expanded="true" signature="196651:197001" ph="SELECT FECHA... kpi_seguimiento_automatico" />
+            <marker date="1490960276310" expanded="true" signature="198870:199259" ph="SELECT B.FEC... DATE_FORMAT" />
+            <marker date="1490960276310" expanded="true" signature="198934:199256" ph="SELECT DATE_... kpi_agendamiento_operativo" />
+            <marker date="1490960276310" expanded="true" signature="200696:201025" ph="SELECT B.FEC... DATE_FORMAT" />
+            <marker date="1490960276310" expanded="true" signature="200739:201022" ph="SELECT DATE_... kpi_agendamiento_presupuestal" />
+            <marker date="1490960276310" expanded="true" signature="202625:203025" ph="SELECT B.FEC... DATE_FORMAT" />
+            <marker date="1490960276310" expanded="true" signature="202685:203022" ph="SELECT DATE_... kpi_seguimiento_reconfigura" />
+            <marker date="1490960276310" expanded="true" signature="213930:214485" ph="SELECT B.FEC... DATE_FORMAT" />
+            <marker date="1490960276310" expanded="true" signature="213984:214482" ph="SELECT DATE_... kpi_seguimiento_automatico" />
+            <marker date="1490960276310" expanded="true" signature="216061:216618" ph="SELECT B.FEC... DATE_FORMAT" />
+            <marker date="1490960276310" expanded="true" signature="216115:216615" ph="SELECT DATE_... kpi_seguimiento_automatico" />
+            <marker date="1490960276310" expanded="true" signature="218196:218736" ph="SELECT B.FEC... DATE_FORMAT" />
+            <marker date="1490960276310" expanded="true" signature="218262:218733" ph="SELECT DATE_... kpi_seguimiento_automatico" />
+            <marker date="1490960276310" expanded="true" signature="221064:221664" ph="SELECT B.FEC... DATE_FORMAT" />
+            <marker date="1490960276310" expanded="true" signature="221164:221661" ph="SELECT DATE_... kpi_seguimiento_reconfigura" />
+            <marker date="1490960276310" expanded="true" signature="255341:255856" ph="SELECT a.PED... informe_petec_pendientesm" />
+            <marker date="1490960276310" expanded="true" signature="260907:261593" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="264174:264860" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="269542:269734" ph="select CONCA... gestor_historicos_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="270533:271214" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="275878:276559" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="279248:279934" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="280999:281387" ph="SELECT a.ID,... gestor_pendientes_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="281712:282387" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="286009:286119" ph="SELECT count... informe_petec_pendientesm" />
+            <marker date="1490960276310" expanded="true" signature="288541:288656" ph="SELECT count... gestor_pendientes_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="288953:289043" ph="SELECT count... gestor_pendientes_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="291400:291542" ph="SELECT count... gestor_seguimiento_activacion" />
+            <marker date="1490960276310" expanded="true" signature="291840:291900" ph="SELECT count... gestor_historico_activacion" />
+            <marker date="1490960276310" expanded="true" signature="296509:296701" ph="SELECT id, p... pedidos" />
+            <marker date="1490960276310" expanded="true" signature="303311:303378" ph="update infor... " />
+            <marker date="1490960276310" expanded="true" signature="303563:303687" ph="select PEDID... informe_petec_pendientesm" />
+            <marker date="1490960276310" expanded="true" signature="304058:304194" ph="update infor... " />
+            <marker date="1490960276310" expanded="true" signature="307754:307823" ph="update infor... " />
+            <marker date="1490960276310" expanded="true" signature="307947:308065" ph="update infor... " />
+            <marker date="1490960276310" expanded="true" signature="308249:309075" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="317730:317797" ph="update infor... " />
+            <marker date="1490960276310" expanded="true" signature="321173:321242" ph="update infor... " />
+            <marker date="1490960276310" expanded="true" signature="321342:321460" ph="update infor... " />
+            <marker date="1490960276310" expanded="true" signature="321613:322287" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="328244:328281" ph="insert into informe_petec_pendientesm... " />
+            <marker date="1490960276310" expanded="true" signature="338902:338939" ph="insert into informe_petec_pendientesm... " />
+            <marker date="1490960276310" expanded="true" signature="344989:345026" ph="insert into informe_petec_pendientesm... " />
+            <marker date="1490960276310" expanded="true" signature="350025:350629" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="351176:351260" ph="SELECT VALOR... gestor_parametros" />
+            <marker date="1490960276310" expanded="true" signature="351698:351778" ph="SELECT * FRO... gestor_parametros" />
+            <marker date="1490960276310" expanded="true" signature="355010:355077" ph="update infor... " />
+            <marker date="1490960276310" expanded="true" signature="368786:368915" ph="update vista... " />
+            <marker date="1490960276310" expanded="true" signature="369277:369498" ph="update infor... " />
+            <marker date="1490960276310" expanded="true" signature="372388:372459" ph="insert into vistas_pedidos... " />
+            <marker date="1490960276310" expanded="true" signature="372597:373276" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="374225:379281" ph="..." />
+            <marker date="1490960276310" expanded="true" signature="375427:375517" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="375557:375641" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="378759:378888" ph="update vista... " />
+            <marker date="1490960276310" expanded="true" signature="380353:380460" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="380511:380612" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="380706:380777" ph="insert into vistas_pedidos... " />
+            <marker date="1490960276310" expanded="true" signature="380915:381594" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="384033:384107" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="395459:395588" ph="update vista... " />
+            <marker date="1490960276310" expanded="true" signature="395896:396072" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="396285:396965" ph="SELECT b.ID gestor_pendientes_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="396732:396845" ph="select a.NOV... gestor_historicos_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="397366:397457" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="397535:397606" ph="insert into vistas_pedidos... " />
+            <marker date="1490960276310" expanded="true" signature="397744:398423" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="401080:401154" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="409351:409480" ph="update vista... " />
+            <marker date="1490960276310" expanded="true" signature="409788:409958" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="410171:410822" ph="SELECT b.ID gestor_pendientes_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="410595:410708" ph="select a.NOV... gestor_historicos_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="411223:411314" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="411392:411463" ph="insert into vistas_pedidos... " />
+            <marker date="1490960276310" expanded="true" signature="411600:412279" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="413382:413557" ph="SELECT ID,FU... gestor_historicos_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="414495:414632" ph="SELECT count... gestor_historicos_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="414929:415216" ph="SELECT id, p... gestor_historicos_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="416651:416725" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="416829:417532" ph="SELECT b.ID gestor_pendientes_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="417266:417377" ph="select a.NOV... gestor_historicos_reagendamiento" />
+            <marker date="1490960276310" expanded="true" signature="418247:418323" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="418423:418548" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="418700:419374" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="421341:421913" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="422410:422478" ph="update infor... " />
+            <marker date="1490960276310" expanded="true" signature="422606:422755" ph="SELECT id, u... registro_ingreso_usuarios" />
+            <marker date="1490960276310" expanded="true" signature="423142:423248" ph="update regis... " />
+            <marker date="1490960276310" expanded="true" signature="425053:425306" ph="SELECT Nodo,... gestor_cmts" />
+            <marker date="1490960276310" expanded="true" signature="427327:427489" ph="SELECT ID as... tbl_usuarios" />
+            <marker date="1490960276310" expanded="true" signature="428460:428666" ph="SELECT id,fe... registro_ingreso_usuarios" />
+            <marker date="1490960276310" expanded="true" signature="428987:429072" ph="update regis... " />
+            <marker date="1490960276310" expanded="true" signature="429653:429767" ph="insert into registro_ingreso_usuarios... " />
+            <marker date="1490960276310" expanded="true" signature="430128:430279" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="430457:430660" ph="SELECT fecha... registro_ingreso_usuarios" />
+            <marker date="1490960276310" expanded="true" signature="431387:432106" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="434475:434560" ph="INSERT INTO transacciones_nca" />
+            <marker date="1490960276310" expanded="true" signature="434757:434853" ph="update infor... " />
+            <marker date="1490960276310" expanded="true" signature="435039:435717" ph="insert into portalbd.activity_feed... " />
+            <marker date="1490960276310" expanded="true" signature="438600:438709" ph="INSERT INTO gestor_historico_activacion... " />
+            <marker date="1490960276310" expanded="true" signature="438974:439125" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="439202:439345" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="439485:439630" ph="update gesto... " />
+            <marker date="1490960276310" expanded="true" signature="439649:439672" ph="..." />
           </folding>
         </state>
       </provider>
