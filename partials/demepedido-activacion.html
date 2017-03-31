@@ -239,11 +239,11 @@
                                     </button></div>
                                  <button type="button" class="btn btn-success btn-xs"  ng-click="guardar(InfoPedido,gestion[0],status);"><span id="mloader"></span>&nbsp; Guardar</button>
                             </li>
-                                 <li>
-                                <button type="button" class="btn btn-info btn-circle-xss" ng-click="PedidosPorUser()" data-toggle="modal" data-target="#HistoricoPedidoUser" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>Historico por {{logedUser.login}}</code>" >
-                                    <i class="fa fa-user-circle"  aria-hidden="true"> </i>
+                               <li>&nbsp; | &nbsp;</li>
+                            <li>
+                                <button type="button" class="btn btn-info btn-circle-xss" ng-click="historicoModal(gestion[0].PEDIDO_ID)" data-toggle="modal" data-target="#HistoricoPedido" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>Historico</code>"   ng-disabled="!pedidoIsActive">
+                                    <i class="fa fa-rss"  aria-hidden="true"> </i>
                                 </button>
-                            </li>         
 
 
                         </ul>
@@ -255,100 +255,59 @@
     </div><!--Row 1 Novedades -->
 </div><!--Container ppal -->
 <!-- Modal Historico Pedidos-->
-<div id="PedidosProgramados" class="modal fade "  role="dialog">
+<div id="HistoricoPedido" class="modal fade "  role="dialog">
     <div class="modal-dialog modal-lg">
         <!-- Modal content-->
         <div class="modal-content" >
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">{{TituloModal}} <span class="label label-info">{{logedUser.login}} </span> </h4>
+                <h4 class="modal-title">{{TituloModal}} <span class="label label-info">{{pedidoHistorico}} </span> </h4>
+                <span style="color:red" ><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
             </div>
             <div class="modal-body" >
-                <div class="row"><!--Row Programados por USER -->
-                    <div class="col-md-12">
+                <div class = "panel panel-default">
+                    <div class = "panel-heading">
+                        <div class="panel-body fixed-panel" >
+                            <table class = "table small table-striped table-condensed">
+                                <thead>
+                                <tr >
+                                    <th><span class="small">ID</span></th>
+                                    <th><span class="small">ACTIVIDAD</span></th>
+                                    <th><span class="small">FECHA_GESTION</span></th>
+                                    <th><span class="small">ESTADO</span></th>
+                                    <th><span class="small">MOTIVO_MALO</span></th>
+                                    <th><span class="small">USUARIO_ID</span></th>
+                                    <th><span class="small">ANTERIOR</span></th>
+                                    <th><span class="small">FINAL</span></th>
+                                    <th><span class="small">IDLLAMADA</span></th>
+                                    <th><span class="small">NUEVOPEDIDO</span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="histo in ListadoHistoricoPedido" class="animated bounceInRight">
+                                    <td><span class="small">{{histo.ID}}</span></td>
+                                    <td><span class="small">{{histo.ACTIVIDAD}}</span></td>
+                                    <td><span class="small">{{histo.FECHA_GESTION}}</span></td>
+                                    <td><span class="small">{{histo.ESTADO}}</span></td>
+                                    <td><span class="small">{{histo.MOTIVO_MALO || 'Sin Motivo'}}</span></td>
+                                    <td><span class="small">{{histo.USUARIO_ID}}</span></td>
+                                    <td><span class="small">{{histo.CONCEPTO_ANTERIOR}}</span></td>
+                                    <td><span class="small">{{histo.CONCEPTO_FINAL}}</span></td>
+                                    <td><span class="small">{{histo.IDLLAMADA || 'Sin Llamada'}}</span></td>
+                                    <td><span class="small">{{histo.NUEVOPEDIDO || 'Sin Nuevo pedido'}}</span></td>
 
-                        <div class = "panel panel-default">
-                            <div class = "panel-heading">
-                                <b><i class="fa fa-bars" aria-hidden="true"></i> Pedidos Malos </b>
-                                <ul class="nav navbar-nav navbar-right">
-                                    <div class="col-md-1 col-xs-1 ">
-                                        <div data-ng-if="loading">
-                                            <img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif" />
-                                        </div>
-                                    </div>
-                                </ul>
-                            </div>
-                            <div class="panel-body fixed-panel" >
-                                <table class = "table small table-striped table-condensed">
-                                    <thead>
-                                    <tr>
-                                        <th>Pedido</th>
-                                        <th>Fecha Cita</th>
-                                        <th>Estado</th>
-                                        <th>Motivo</th>
-                                        <th>Programación</th>
-                                        <th>Agenda</th>
-                                        <th>Municipio</th>
-                                        <th>Fecha Gestión</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr ng-repeat="data in ListadoPrograUser as progra" class="animated bounceInRight">
-                                        <td>
-                                            <button type="button" class="btn btn-xs btn-warning" ng-click="executeCopy(data.PEDIDO_ID)">
-                                                {{data.PEDIDO_ID}}
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <span class="small">{{data.FECHA_CITA}}</span>
-                                        </td>
-                                        <td>
-                                            <span class="small">{{data.STATUS}}</span>
-                                        </td>
-                                        <td>
-                                            <span class="small">{{data.MOTIVO_MALO}}</span>
-                                        </td>
-                                        <td>
-                                            <span class="small">{{data.PROGRAMACION}}</span>
-                                        </td>
-                                        <td>
-                                            <span class="small" ng-class="{'ALARMADO':'label label-warning','GESTIONAR':'label label-danger','SIN CITA':'label label-info'}[data.MENSAJE]">{{data.MENSAJE}}</span>
-                                        </td>
-                                        <td>
-                                            <span class="small">{{data.MUNICIPIO_ID}}</span>
-                                        </td>
-                                        <td>
-                                            <span class="small">{{data.FECHA_GESTION}}</span>
-                                        </td>
+                                </tr>
+                                </tbody>
+                            </table>
 
-                                    </tr>
-                                    </tbody>
-                                </table>
-
-                            </div>
-                            <div class="panel-footer clearfix" >
-                                <div class="col-md-6">
-                                    <ul class="nav navbar-nav navbar-left">
-                                        <li>Registros: <span class="badge badge-default">{{progra.length}} {{errorMalos}}</span></li>
-
-                                    </ul>
-
-                                </div>
-
-
-                                <div class="col-md-6">
-
-                                </div>
-                            </div>
-                        </div><!--Panel -->
+                        </div>
                     </div>
-                </div><!--Row 1 Pedidos Programados -->
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
-</div><!-- Modal Programados-->
-
-
+</div><!-- Modal Eliminar Novedad-->
+<!-- Modal Historico Pedidos Por USER-->
