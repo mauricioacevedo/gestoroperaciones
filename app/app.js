@@ -11457,8 +11457,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
         $scope.FECHA_GESTION = year + "-" + month + "-" + day;
        $scope.duracion =  $scope.doubleDigit(date1.getHours()-19)+":"+ $scope.doubleDigit(date1.getMinutes())+":"+ $scope.doubleDigit(date1.getSeconds());
-        $scope.OBSERVACION = $scope.peds[0].OBSERVACION;
-        var varObsesGuardar = InfoPedido.OBSERVACIONES_PROCESO;
 
         if ($scope.tipificacion === undefined || $scope.tipificacion == "") {
 			alert('Por favor diligenciar campo tipificacion.');
@@ -11493,7 +11491,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		};
 
 console.log($scope.InfoGestion);
-    console.log(InfoPedido.NUMERO_CR,InfoPedido.OBSERVACION);
+    
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
 
