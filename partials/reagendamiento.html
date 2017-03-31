@@ -150,7 +150,7 @@
                                         <label for="programacion2" class="control-label">Fecha Cita Propuesta:</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-calendar-plus-o fa-fw"></i></span>
-                                            <input type="text" name="programacion" id="programacion2" class="form-control" ng-model="service.FECHA_CITA_REAGENDA" datetime-picker date-format="yyyy-MM-dd HH:mm:ss"/>
+                                            <input type="text" name="programacion" id="programacion2" class="form-control" ng-model="service.FECHA_CITA_REAGENDA" datetime-picker date-only date-format="yyyy-MM-dd"/>
                                         </div>
                                         <label class="control-label" for="toDate">Jornada Cita</label>  <select  id="toDate" ng-model="service.JORNADA_CITA" > <option>AM</option><option>PM</option></select>
                                     </div>
@@ -191,18 +191,16 @@
 
                                 </select>
                                         <div  ng-show="service.NOVEDAD=='AGENDADO' || service.NOVEDAD=='YA ESTA AGENDADO' || service.NOVEDAD=='AGENDADO_FUTURO'  || service.NOVEDAD=='YA ESTA AGENDADO-USUARIO'  "><br>
-
-                                                <div class="col-md-10">
-                                                        <div class="input-daterange control-group" id="datepicker">
-                                                                <label class="control-label" for="toDate">Fecha Cita Propuesta</label><br>
-                                                                <div class="input-group margin-bottom-lg">
-                                                                        <span class="input-group-addon"><i class="fa fa-calendar-plus-o fa-fw"></i></span>
-                                                                        <input type="text" class= "form-control" ng-model="service.FECHA_CITA_REAGENDA">
-
-                                                                </div>
-                                                                <label class="control-label" for="toDate">Jornada Cita</label>  <select  ng-model="service.JORNADA_CITA" > <option>AM</option><option>PM</option></select>
-                                                        </div>
+                                            <div class="col-md-10">
+                                                <div class="input-daterange control-group" >
+                                                    <label for="programacion2" class="control-label">Fecha Cita Propuesta:</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-calendar-plus-o fa-fw"></i></span>
+                                                        <input type="text" name="programacion3" id="programacion3" class="form-control" ng-model="service.FECHA_CITA_REAGENDA" datetime-picker date-only date-format="yyyy-MM-dd"/>
+                                                    </div>
+                                                    <label class="control-label" for="toDate2">Jornada Cita</label>  <select  id="toDate2" ng-model="service.JORNADA_CITA" > <option>AM</option><option>PM</option></select>
                                                 </div>
+                                            </div>
                                                 <script>
                                                         $('.input-daterange').datepicker({
                                                              format: 'yyyy-mm-dd',
@@ -222,8 +220,8 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                                 <label class="control-label" for="toDate">Fecha Nuevo Contacto</label><br>
-                                                            <div class="input-group date" id="datetimepicker1">
-                                                                <input type="text" id='programacion' class="form-control" ng-model="service.PROGRAMACION">
+                                                            <div class="input-group">
+                                                                <input type="text" id='programacion' class="form-control" ng-model="service.PROGRAMACION" datetime-picker date-only date-format="yyyy-MM-dd HH:mm:ss">
                                                                 <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
                                                             </div>
                                                         </div>
