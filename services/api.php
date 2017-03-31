@@ -2609,6 +2609,27 @@ private function loginNombreIp()
             " where ASESOR='$id' ".
             " and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' ";
 
+          $queryunico="SELECT ".
+            " count(distinct pedido) as pedidos ".
+            " from gestor_historico_activacion  ".
+            " where ASESOR='$id'  ".
+            " and fecha_fin between '$today 00:00:00'  ".
+            " and '$today 23:59:59' ".
+            " group by date_format(fecha_fin,'%Y-%m-%d')";
+            
+         
+        $r2 = $this->mysqli->query($queryunico) or die($this->mysqli->error.__LINE__);
+
+        //$counter="0";
+
+        if($r2->num_rows > 0){
+            $result = array();
+            if($rowd = $r2->fetch_assoc()){
+                $counter=$rowd['pedidos'];
+            }
+
+        }   
+
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
