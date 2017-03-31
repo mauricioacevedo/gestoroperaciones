@@ -167,6 +167,23 @@
                                                     </option>
                                                 </select>
                                             </div>
+                                             <div class="form-group " ng-show="InfoPedido.ESTADO_PROCESO" ng-class="{ 'has-error' : seguimiento_form.obs.$pristine && seguimiento_form.obs.$invalid}">
+                                                <label for="obs" class="control-label">Observación Gestión:</label>
+                                                <select id="obs"
+                                                        class= "form-control btn-xs"
+                                                        name="obs"
+                                                        ng-model="InfoPedido.OBSERVACIONES_PROCESO"
+                                                        ng-change="onChangeAccion(InfoPedido.OBSERVACIONES_PROCESO)" required>
+                                                    <option value="" disabled>--Seleccione--</option>
+                                                    <option
+                                                            ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: InfoPedido.ESTADO_PROCESO}:true | unique:'OBSERVACION_ID'"
+
+                                                            value="{{d.OBSERVACION_ID}}">
+                                                        {{d.OBSERVACION_ID}}
+                                                    </option>
+                                                </select>
+                                            </div>
+
 
                                             <div class="form-group has-feedback">
                                                 <label for="nuevopedido" class="control-label">Numero CR:</label>
@@ -174,8 +191,8 @@
                                                 <i class="fa fa-briefcase form-control-feedback"></i>
                                             </div>
                                              <div class="form-group has-feedback">
-                                                <label for="OBSERVACION" class="control-label">Observacion:</label>
-                                                <input type="text" name="OBSERVACION" id="OBSERVACION" class="form-control"  ng-model="InfoPedido.OBSERVACION"/>
+                                                <label for="nuevopedido" class="control-label">OBSERVACION:</label>
+                                                <input type="text" name="nuevopedido" id="nuevopedido" class="form-control" placeholder="12458974145" ng-model="InfoPedido.NUEVOPEDIDO"/>
                                                 <i class="fa fa-briefcase form-control-feedback"></i>
                                             </div>
                                             <div>
