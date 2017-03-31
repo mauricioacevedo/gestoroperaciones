@@ -6,6 +6,7 @@ var app = angular.module('myApp', ['base64', 'ngRoute', 'ngCookies', 'ng-fusionc
 //FusionCharts suite XT incluye una amplia gama de gráficos, indicadores y mapas que se pueden utilizar para trazar todo tipo de datos estáticos y en tiempo real .
 app.run(function(amMoment) {
     amMoment.changeLocale('es');
+
 });
 app.service('idPermisos', function ($http, $q) {
     var self = this;
