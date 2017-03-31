@@ -11279,6 +11279,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.InfoGestion = {};
 		$scope.pedidoIsGuardado = false;
         $scope.InfoPedido.NUMERO_CR = '';
+		$scope.InfoPedido.OBSERVACION = '';
 
 
 
@@ -11484,6 +11485,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             ACTIVIDAD: gestion.ACTIVIDAD,
             USUARIO: $rootScope.logedUser.login,
             NUMERO_CR: InfoPedido.NUMERO_CR,
+			OBSERVACION: InfoPedido.OBSERVACION,
             DURACION: $scope.duracion,
 			STATUS: gestion.STATUS,
 			TIPIFICACION: $scope.tipificacion,
@@ -11491,7 +11493,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		};
 
 console.log($scope.InfoGestion);
-        //console.log($scope.tipificacion);
+    console.log(InfoPedido.NUMERO_CR,InfoPedido.OBSERVACION);
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
 
@@ -15880,6 +15882,40 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 
 	// --------------------------------------------------------------------------------------Modal Historico Pedido
+
+// Modal Historico Pedido--------------------------------------------------------------------------------------
+
+	$rootScope.historicoModal = function (pedido) {
+		$rootScope.TituloModal='';
+		$rootScope.TituloModal = "Historico del pedido: ";
+		$rootScope.listaHistoricoPedido(pedido);
+		$rootScope.errorDatos = null;
+		$rootScope.pedidoHistorico=pedido;
+		//$scope.UserProgramados=$scope.usuario_id;
+	};
+
+	//Obtener listado de Historico del pedido tal
+	$rootScope.listaHistoricoPedido = function (pedido) {
+
+		$rootScope.ListadoHistoricoPedido = [];
+
+		services.getHistoricoPedidoactivacion(pedido).then(
+
+			function (data) {
+				$rootScope.errorMalos = null;
+				$rootScope.ListadoHistoricoPedido = data.data;
+				return data.data;
+			},
+			function errorCallback(response) {
+				$rootScope.errorMalos = "Sin pedidos";
+
+
+			});
+
+	};
+
+
+	// --------------------------------------------------------------------------------------Modal Historico Pedido	
 
 });
 app.run(function(editableOptions, editableThemes) {
