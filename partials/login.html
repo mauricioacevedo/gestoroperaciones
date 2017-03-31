@@ -152,6 +152,7 @@
             <h4 class="">{{msgLogin}}</h4>
             <small>Su última visita fue: {{autoFecha | timeago}}</small><br>
             <small>A las {{autoHora}}</small>
+            <span>{{autoFecha | amCalendar:referenceTime:formats}}</span>
         </div>
         <form class="form-signin" ng-submit="login()">
             <span id="reauth-email" class="reauth-email"></span>

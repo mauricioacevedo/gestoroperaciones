@@ -10,7 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "angular-animate": "^1.6.3",
+    "angular-moment": "^1.0.1",
     "angular-notify": "^1.2.0",
-    "angular-xeditable": "^0.7.0"
+    "angular-xeditable": "^0.7.0",
+    "moment": "^2.18.1"
   }
 }

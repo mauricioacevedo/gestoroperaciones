@@ -1,10 +1,12 @@
-var app = angular.module('myApp', ['base64', 'ngRoute', 'ngCookies', 'ng-fusioncharts', 'ngAnimate', 'ui.bootstrap', 'ui.tinymce', 'ui.select', 'ngSanitize', 'ui.calendar', 'angularFileUpload', 'cgNotify', 'firebase', 'angular-smilies', 'angularjs-datetime-picker','xeditable']);
+var app = angular.module('myApp', ['base64', 'ngRoute', 'ngCookies', 'ng-fusioncharts', 'ngAnimate', 'ui.bootstrap', 'ui.tinymce', 'ui.select', 'ngSanitize', 'ui.calendar', 'angularFileUpload', 'cgNotify', 'firebase', 'angular-smilies', 'angularjs-datetime-picker','xeditable','angularMoment']);
 //Los " Myapp " solapas de parámetros a un elemento HTML en el que se ejecutará la aplicación .
 //Ahora puede agregar controladores , directivas , filtros y más, para su aplicación AngularJS .
 //El módulo ngRoute proporciona enrutamiento y deeplinking Servicios y directivas para aplicaciones angulares .
 //El módulo ngCookies proporciona un contenedor conveniente para la lectura y la escritura del navegador cookies.
 //FusionCharts suite XT incluye una amplia gama de gráficos, indicadores y mapas que se pueden utilizar para trazar todo tipo de datos estáticos y en tiempo real .
-
+app.run(function(amMoment) {
+    amMoment.changeLocale('es');
+});
 app.service('idPermisos', function ($http, $q) {
     var self = this;
     self.getIds = function () {
