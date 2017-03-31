@@ -7,9 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8066741d-1afe-4d90-a7bc-fa657714a414" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/login.html" afterPath="$PROJECT_DIR$/partials/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/api.php" afterPath="$PROJECT_DIR$/services/api.php" />
     </list>
     <ignored path="node_modules/angular-notify/license" />
     <ignored path="node_modules/angular-notify/package.json" />
@@ -376,8 +374,8 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="508">
-              <caret line="152" column="82" lean-forward="false" selection-start-line="152" selection-start-column="82" selection-end-line="152" selection-end-column="82" />
+            <state relative-caret-position="525">
+              <caret line="153" column="20" lean-forward="false" selection-start-line="153" selection-start-column="20" selection-end-line="153" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -1270,14 +1268,7 @@
       <workItem from="1490874805360" duration="5915000" />
       <workItem from="1490885380899" duration="8083000" />
       <workItem from="1490897471033" duration="8958000" />
-      <workItem from="1490960151271" duration="811000" />
-    </task>
-    <task id="LOCAL-00955" summary="Cambios en el Login">
-      <created>1490896892231</created>
-      <option name="number" value="00955" />
-      <option name="presentableId" value="LOCAL-00955" />
-      <option name="project" value="LOCAL" />
-      <updated>1490896892231</updated>
+      <workItem from="1490960151271" duration="901000" />
     </task>
     <task id="LOCAL-00956" summary="Cambios en el Login">
       <created>1490897131149</created>
@@ -1615,11 +1606,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490960293907</updated>
     </task>
-    <option name="localTasksCounter" value="1004" />
+    <task id="LOCAL-01004" summary="Cambios en el Login">
+      <created>1490960983809</created>
+      <option name="number" value="01004" />
+      <option name="presentableId" value="LOCAL-01004" />
+      <option name="project" value="LOCAL" />
+      <updated>1490960983809</updated>
+    </task>
+    <option name="localTasksCounter" value="1005" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="473660000" />
+    <option name="totallyTimeSpent" value="473750000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2381,8 +2379,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="152" column="82" lean-forward="false" selection-start-line="152" selection-start-column="82" selection-end-line="152" selection-end-column="82" />
+        <state relative-caret-position="525">
+          <caret line="153" column="20" lean-forward="false" selection-start-line="153" selection-start-column="20" selection-end-line="153" selection-end-column="20" />
           <folding />
         </state>
       </provider>
