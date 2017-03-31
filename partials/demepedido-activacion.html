@@ -239,7 +239,11 @@
                                     </button></div>
                                  <button type="button" class="btn btn-success btn-xs"  ng-click="guardar(InfoPedido,gestion[0],status);"><span id="mloader"></span>&nbsp; Guardar</button>
                             </li>
-
+                                 <li>
+                                <button type="button" class="btn btn-info btn-circle-xss" ng-click="PedidosPorUser()" data-toggle="modal" data-target="#HistoricoPedidoUser" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>Historico por {{logedUser.login}}</code>" >
+                                    <i class="fa fa-user-circle"  aria-hidden="true"> </i>
+                                </button>
+                            </li>         
 
 
                         </ul>
@@ -251,6 +255,100 @@
     </div><!--Row 1 Novedades -->
 </div><!--Container ppal -->
 <!-- Modal Historico Pedidos-->
+<div id="PedidosProgramados" class="modal fade "  role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{TituloModal}} <span class="label label-info">{{logedUser.login}} </span> </h4>
+            </div>
+            <div class="modal-body" >
+                <div class="row"><!--Row Programados por USER -->
+                    <div class="col-md-12">
 
+                        <div class = "panel panel-default">
+                            <div class = "panel-heading">
+                                <b><i class="fa fa-bars" aria-hidden="true"></i> Pedidos Malos </b>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <div class="col-md-1 col-xs-1 ">
+                                        <div data-ng-if="loading">
+                                            <img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif" />
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                            <div class="panel-body fixed-panel" >
+                                <table class = "table small table-striped table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <th>Pedido</th>
+                                        <th>Fecha Cita</th>
+                                        <th>Estado</th>
+                                        <th>Motivo</th>
+                                        <th>Programación</th>
+                                        <th>Agenda</th>
+                                        <th>Municipio</th>
+                                        <th>Fecha Gestión</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="data in ListadoPrograUser as progra" class="animated bounceInRight">
+                                        <td>
+                                            <button type="button" class="btn btn-xs btn-warning" ng-click="executeCopy(data.PEDIDO_ID)">
+                                                {{data.PEDIDO_ID}}
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <span class="small">{{data.FECHA_CITA}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="small">{{data.STATUS}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="small">{{data.MOTIVO_MALO}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="small">{{data.PROGRAMACION}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="small" ng-class="{'ALARMADO':'label label-warning','GESTIONAR':'label label-danger','SIN CITA':'label label-info'}[data.MENSAJE]">{{data.MENSAJE}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="small">{{data.MUNICIPIO_ID}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="small">{{data.FECHA_GESTION}}</span>
+                                        </td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <div class="panel-footer clearfix" >
+                                <div class="col-md-6">
+                                    <ul class="nav navbar-nav navbar-left">
+                                        <li>Registros: <span class="badge badge-default">{{progra.length}} {{errorMalos}}</span></li>
+
+                                    </ul>
+
+                                </div>
+
+
+                                <div class="col-md-6">
+
+                                </div>
+                            </div>
+                        </div><!--Panel -->
+                    </div>
+                </div><!--Row 1 Pedidos Programados -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div><!-- Modal Programados-->
 
 
