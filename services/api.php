@@ -1048,6 +1048,8 @@ private function loginNombreIp()
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
         $login = $this->_request['login'];
+        $fechaIni = $this->_request['fechaIni'];
+        $fechaFin = $this->_request['fechaFin'];
 
         $today = date("Y-m-d");
 
@@ -1057,7 +1059,8 @@ private function loginNombreIp()
        $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION ".
                 " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN ".
                  " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
-                " from gestor_historico_activacion ";
+                " from gestor_historico_activacion ".
+                "where fecha_fin between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' $filtro ";;
 
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
