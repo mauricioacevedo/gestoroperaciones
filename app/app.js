@@ -11458,6 +11458,18 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.FECHA_GESTION = year + "-" + month + "-" + day;
        $scope.duracion =  $scope.doubleDigit(date1.getHours()-19)+":"+ $scope.doubleDigit(date1.getMinutes())+":"+ $scope.doubleDigit(date1.getSeconds());
 
+	   if ($scope.tipificacion == 'NUMERO_CR') {
+			var regexp = /^([0-9]{2,20})$/;
+
+			if (regexp.test(InfoPedido.NUMERO_CR) == false || InfoPedido.NUMERO_CR == undefined) {
+				alert('Numero CR esta mal gestionado y/o esta vacio');
+
+				return;
+
+			}
+		}
+
+
         if ($scope.tipificacion === undefined || $scope.tipificacion == "") {
 			alert('Por favor diligenciar campo tipificacion.');
 			return;
