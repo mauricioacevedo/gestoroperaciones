@@ -146,10 +146,12 @@
                                 <div  ng-show="service.NOVEDAD=='AGENDADO' || service.NOVEDAD=='YA ESTA AGENDADO' || service.NOVEDAD=='AGENDADO_FUTURO'"><br>
 
                                 <div class="col-md-10">
-                                    <div class="form-group has-feedback" >
+                                    <div class="input-daterange control-group" >
                                         <label for="programacion2" class="control-label">Fecha Cita Propuesta:</label>
-                                        <input type="text" name="programacion" id="programacion2" class="form-control" ng-model="service.FECHA_CITA_REAGENDA" datetime-picker date-format="yyyy-MM-dd HH:mm:ss"/>
-                                        <i class="fa fa-calendar-check-o form-control-feedback"></i>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-calendar-plus-o fa-fw"></i></span>
+                                            <input type="text" name="programacion" id="programacion2" class="form-control" ng-model="service.FECHA_CITA_REAGENDA" datetime-picker date-format="yyyy-MM-dd HH:mm:ss"/>
+                                        </div>
                                         <label class="control-label" for="toDate">Jornada Cita</label>  <select  id="toDate" ng-model="service.JORNADA_CITA" > <option>AM</option><option>PM</option></select>
                                     </div>
                                 </div>
