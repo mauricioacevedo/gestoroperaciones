@@ -146,7 +146,7 @@
                                 <div  ng-show="service.NOVEDAD=='AGENDADO' || service.NOVEDAD=='YA ESTA AGENDADO' || service.NOVEDAD=='AGENDADO_FUTURO'"><br>
 
                                 <div class="col-md-10">
-                                    <div class="input-daterange control-group" >
+                                    <div class="control-group" >
                                         <label for="programacion2" class="control-label">Fecha Cita Propuesta:</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-calendar-plus-o fa-fw"></i></span>
@@ -192,7 +192,7 @@
                                 </select>
                                         <div  ng-show="service.NOVEDAD=='AGENDADO' || service.NOVEDAD=='YA ESTA AGENDADO' || service.NOVEDAD=='AGENDADO_FUTURO'  || service.NOVEDAD=='YA ESTA AGENDADO-USUARIO'  "><br>
                                             <div class="col-md-10">
-                                                <div class="input-daterange control-group" >
+                                                <div class="control-group" >
                                                     <label for="programacion2" class="control-label">Fecha Cita Propuesta:</label>
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><i class="fa fa-calendar-plus-o fa-fw"></i></span>
@@ -201,15 +201,7 @@
                                                     <label class="control-label" for="toDate2">Jornada Cita</label>  <select  id="toDate2" ng-model="service.JORNADA_CITA" > <option>AM</option><option>PM</option></select>
                                                 </div>
                                             </div>
-                                                <script>
-                                                        $('.input-daterange').datepicker({
-                                                             format: 'yyyy-mm-dd',
-                                                             //todayBtn: "linked",
-                                                             todayHighlight: true,
-                                                             autoclose: true,
-                                                             language: 'es'
-                                                         });
-                                                </script>
+
                                         </div>
 
 
@@ -227,13 +219,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <script>
-                                                        $('#datetimepicker1').datetimepicker({
-                                                                locale: 'es',
-                                                                format: 'YYYY-MM-DD HH:00:00'
-                                                        });
-                                                </script>
 
                                         </div>
 
