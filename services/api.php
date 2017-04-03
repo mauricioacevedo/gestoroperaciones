@@ -9774,7 +9774,7 @@ private function loginNombreIp()
 
         $pedido = json_decode(file_get_contents("php://input"),true);
         //var_dump($pedido);
-        $column_names = array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','ASESOR','FECHA_GESTION','TIPIFICACION','FECHA_INICIO','FECHA_FIN','DURACION','OBSERVACION','NUMERO_CR','TABLA','FUENTE','GRUPO','ACTIVIDAD','ESTADO_ID', 'OBSERVACION_ID');
+        $column_names = array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','ASESOR','FECHA_GESTION','TIPIFICACION','FECHA_INICIO','FECHA_FIN','DURACION','OBSERVACION','NUMERO_CR','TABLA','FUENTE','GRUPO','ACTIVIDAD','ESTADO_ID', 'OBSERVACION_ID','PCR');
         $pedido=$pedido['pedido'];
         $keys = array_keys($pedido);
         $today = date("Y-m-d H:i:s");
@@ -9795,7 +9795,7 @@ private function loginNombreIp()
         $IDSERVICIORAIZ=$pedido['IDSERVICIORAIZ'];
         $TRANSACCION=$pedido['TRANSACCION'];
         $CODIGO_CIUDAD=$pedido['CODIGO_CIUDAD'];
-        //$STATUS=$pedido['STATUS'];
+        $PCR=$pedido['PCR'];
         $TIPIFICACION=$pedido['TIPIFICACION'];
         $FECHA_INICIO=$pedido['FECHA_INICIO'];
         $FECHA_FIN=$pedido['FECHA_FIN'];

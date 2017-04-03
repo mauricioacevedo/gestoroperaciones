@@ -11453,8 +11453,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         $scope.FECHA_GESTION = year + "-" + month + "-" + day;
        $scope.duracion =  $scope.doubleDigit(date1.getHours()-19)+":"+ $scope.doubleDigit(date1.getMinutes())+":"+ $scope.doubleDigit(date1.getSeconds());
 
-	   if ($scope.tipificacion == 'NUMERO_CR') {
-			var regexp = /^([0-9]{2,20})$/;
+	   
 
 			if (regexp.test(InfoPedido.NUMERO_CR) == false || InfoPedido.NUMERO_CR == undefined) {
 				alert('Numero CR esta mal gestionado y/o esta vacio');
@@ -11462,7 +11461,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				return;
 
 			}
-		}
+
 
 
         if ($scope.tipificacion === undefined || $scope.tipificacion == "") {
@@ -11472,7 +11471,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		$scope.InfoGestion = {
 			ID:gestion.ID,
-			ORDER_SEQ_ID: $scope.peds[0].ORDER_SEQ_ID,
+			ORDER_SEQ_ID: gestion.ORDER_SEQ_ID,
 			PEDIDO: gestion.PEDIDO,
 			REFERENCE_NUMBER: gestion.REFERENCE_NUMBER,
 			ESTADO: gestion.ESTADO,
@@ -11491,6 +11490,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             USUARIO: $rootScope.logedUser.login,
             NUMERO_CR: InfoPedido.NUMERO_CR,
 			OBSERVACION: InfoPedido.OBSERVACION,
+			PCR: InfoPedido.PCR,
             DURACION: $scope.duracion,
 			STATUS: gestion.STATUS,
 			TIPIFICACION: $scope.tipificacion,
