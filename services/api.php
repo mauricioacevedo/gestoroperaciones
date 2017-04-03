@@ -116,7 +116,7 @@ private function loginNombreIp()
         }
 
     }else{
-        $error = "Bienvenido";
+        $error = "Error";
         $this->response($this->json(array($error)), 403);
     }
 }
