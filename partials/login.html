@@ -151,6 +151,7 @@
             <img id="logo-img"  src="images/geop_logo.jpg" width="212" height="50"/>
             <h4 class="animated fadeIn">{{msgLogin}}</h4>
             <small>Su última visita fue: <span>{{autoFecha | amCalendar}}</span></small>
+            <small>¿No eres {{msgLogin}}? Inicia sesión con tus credenciales.</small>
         </div>
         <form class="form-signin" ng-submit="login()">
             <span id="reauth-email" class="reauth-email"></span>
