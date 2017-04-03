@@ -9341,17 +9341,17 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			}
 		}
 
-		if ($scope.pedido.NOVEDAD == 'AGENDADO' || $scope.pedido.NOVEDAD == 'PENDIENTE POR OTRO CONCEPTO' || $scope.pedido.NOVEDAD == 'NO DESEA EL SERVICIO' || $scope.pedido.NOVEDAD == 'YA ESTA CUMPLIDO') {
+	//	if ($scope.pedido.NOVEDAD == 'AGENDADO' || $scope.pedido.NOVEDAD == 'PENDIENTE POR OTRO CONCEPTO' || $scope.pedido.NOVEDAD == 'NO DESEA EL SERVICIO' || $scope.pedido.NOVEDAD == 'YA ESTA CUMPLIDO') {
 			//console.log($scope.pedido.NOVEDAD)
-			var regexp = /^([0-9]{2,20})$/;
+	//		var regexp = /^([0-9]{2,20})$/;
 
-			if (regexp.test($scope.pedido.IDLLAMADA) == false || $scope.pedido.IDLLAMADA == undefined) {
-				alert('id llamada esta mal gestionado y/o esta vacio');
+	//		if (regexp.test($scope.pedido.IDLLAMADA) == false || $scope.pedido.IDLLAMADA == undefined) {
+	//			alert('id llamada esta mal gestionado y/o esta vacio');
 
-				return;
+	//			return;
 
-			}
-		}
+	//		}
+	//	}
 
         if ($scope.proceso == 'REPARACION' &&  parseInt($scope.pedido.TIEMPO_TOTAL) >= 10 && parseInt($scope.pedido.TODAY_TRIES) >= 3 ) {
 
