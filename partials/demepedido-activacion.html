@@ -45,7 +45,7 @@
 								</select>
 
 							</li>
-                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>                      
                             <li>
 								<i class="fa fa-qrcode" aria-hidden="true"> </i>&nbsp;
 
@@ -189,6 +189,7 @@
                                         <div class="form-group has-feedback">
                                         <label for="PCR" class="control-label">PCR:</label>
                                         <select class= "form-control" ng-model="InfoPedido.PCR">
+                                            <option value="" disabled>--Seleccione--</option>
                                             <option value='CAMBIO'>Cambio</option>
                                             <option value='NUEVO'>Nuevo</option>
                                             <option value='RETIRO'>Retiro</option>
@@ -196,7 +197,7 @@
                                         </select>
                                         </div>
                                          <div class="form-group has-feedback">
-                                                <label for="NUMERO_CR" class="control-label">Pendiente CR -PCR:</label>
+                                                <label for="NUMERO_CR" class="control-label">Pendiente CR - PCR:</label>
                                                 <input type="text" name="NUMERO_CR" id="NUMERO_CR" class="form-control" placeholder="12458974145" ng-model="InfoPedido.NUMERO_CR"/>
                                                 <i class="fa fa-certificate form-control-feedback"></i>
                                             </div>
