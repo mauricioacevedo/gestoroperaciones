@@ -11455,14 +11455,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	   
 
-			if (regexp.test(InfoPedido.NUMERO_CR) == false || InfoPedido.NUMERO_CR == undefined) {
-				alert('Numero CR esta mal gestionado y/o esta vacio');
-
-				return;
-
-			}
-
-
 
         if ($scope.tipificacion === undefined || $scope.tipificacion == "") {
 			alert('Por favor diligenciar campo tipificacion.');
