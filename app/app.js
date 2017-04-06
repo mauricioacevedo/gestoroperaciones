@@ -347,14 +347,14 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	};
 
 	obj.getListadoActivacion = function (fecha_inicio, fecha_fin, page) { //Listado activacion
-		return $http.get(serviceBase + 'listadoactivacion?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin + '&page=' + page);
+		return $http.get(serviceBase + 'demepedidoac?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin + '&page=' + page);
 	};
 
-	obj.getListadoActivacionTabla = function (fecha_inicio, fecha_fin) { //listado tabla activacion
-		return $http.get(serviceBase + 'listadoactivaciontabla?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin);
+	obj.getdemepedidoacTabla = function (fecha_inicio, fecha_fin) { //listado tabla activacion
+		return $http.get(serviceBase + 'demepedidoactabla?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin);
 	};
-	obj.getListadoActivacionSiebel = function (fecha_inicio, fecha_fin) { //listado tabla activacion siebel
-		return $http.get(serviceBase + 'listadoactivacionsiebel?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin);
+	obj.getdemepedidoacSiebel = function (fecha_inicio, fecha_fin) { //listado tabla activacion siebel
+		return $http.get(serviceBase + 'demepedidoacsiebel?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin);
 	};
 
 
@@ -407,8 +407,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'csvactividades?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
 	};
 
-	obj.getCsvListadoActivacion = function (login, fechaIni, fechaFin) { //exportar listado activacion
-		return $http.get(serviceBase + 'csvListadoActivacion?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
+	obj.getCsvdemepedidoac = function (login, fechaIni, fechaFin) { //exportar listado activacion
+		return $http.get(serviceBase + 'csvdemepedidoac?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
 	};
 
 	obj.getCsvActivacion = function (login) { //exportar activacion
@@ -10580,7 +10580,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
      };
 
 
-     $scope.listadoactivacion=[];
+     $scope.demepedidoac=[];
 
         $scope.data = {
 		maxSize: 5,
@@ -11481,6 +11481,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             ACTIVIDAD: gestion.ACTIVIDAD,
             USUARIO: $rootScope.logedUser.login,
             NUMERO_CR: InfoPedido.NUMERO_CR,
+			NUMERO_PCR:InfoPedido.NUMERO_PCR,
 			OBSERVACION: InfoPedido.OBSERVACION,
 			PCR: InfoPedido.PCR,
             DURACION: $scope.duracion,
