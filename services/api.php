@@ -1057,7 +1057,7 @@ private function loginNombreIp()
         $filename="Activacion-Fenix_NAL-$login-$today.csv";
 
        $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION,TRANSACCION, FECHA_EXCEPCION ".
-                " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN ".
+                " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,TIEMPO_TOTAL ".
                  " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
                 " from gestor_historico_activacion ".
                 "where fecha_fin between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' $filtro ";;
