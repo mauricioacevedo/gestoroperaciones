@@ -407,8 +407,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'csvactividades?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
 	};
 
-	obj.getCsvdemepedidoac = function (login, fechaIni, fechaFin) { //exportar listado activacion
-		return $http.get(serviceBase + 'csvdemepedidoac?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
+	obj.getCsvListadoActivacion = function (login, fechaIni, fechaFin) { //exportar listado activacion
+		return $http.get(serviceBase + 'csvListadoActivacion?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
 	};
 
 	obj.getCsvActivacion = function (login) { //exportar activacion
