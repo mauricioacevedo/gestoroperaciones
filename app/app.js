@@ -347,14 +347,14 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	};
 
 	obj.getListadoActivacion = function (fecha_inicio, fecha_fin, page) { //Listado activacion
-		return $http.get(serviceBase + 'demepedidoac?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin + '&page=' + page);
+		return $http.get(serviceBase + 'listadoactivacion?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin + '&page=' + page);
 	};
 
 	obj.getdemepedidoacTabla = function (fecha_inicio, fecha_fin) { //listado tabla activacion
-		return $http.get(serviceBase + 'demepedidoactabla?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin);
+		return $http.get(serviceBase + 'listadoactivaciontabla?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin);
 	};
 	obj.getdemepedidoacSiebel = function (fecha_inicio, fecha_fin) { //listado tabla activacion siebel
-		return $http.get(serviceBase + 'demepedidoacsiebel?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin);
+		return $http.get(serviceBase + 'listadoactivacionsiebel?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin);
 	};
 
 
@@ -11481,9 +11481,9 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             ACTIVIDAD: gestion.ACTIVIDAD,
             USUARIO: $rootScope.logedUser.login,
             NUMERO_CR: InfoPedido.NUMERO_CR,
-			NUMERO_PCR:InfoPedido.NUMERO_PCR,
+			NUMERO_PSR:InfoPedido.NUMERO_PSR,
 			OBSERVACION: InfoPedido.OBSERVACION,
-			PCR: InfoPedido.PCR,
+			PSR: InfoPedido.PSR,
             DURACION: $scope.duracion,
 			STATUS: gestion.STATUS,
 			TIPIFICACION: $scope.tipificacion,
