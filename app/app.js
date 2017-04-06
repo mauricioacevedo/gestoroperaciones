@@ -350,10 +350,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoactivacion?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin + '&page=' + page);
 	};
 
-	obj.getdemepedidoacTabla = function (fecha_inicio, fecha_fin) { //listado tabla activacion
+	obj.getListadoActivacionTabla = function (fecha_inicio, fecha_fin) { //listado tabla activacion
 		return $http.get(serviceBase + 'listadoactivaciontabla?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin);
 	};
-	obj.getdemepedidoacSiebel = function (fecha_inicio, fecha_fin) { //listado tabla activacion siebel
+	obj.getListadoActivacionSiebel = function (fecha_inicio, fecha_fin) { //listado tabla activacion siebel
 		return $http.get(serviceBase + 'listadoactivacionsiebel?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin);
 	};
 
@@ -10580,7 +10580,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
      };
 
 
-     $scope.demepedidoac=[];
+     $scope.listadoactivacion=[];
 
         $scope.data = {
 		maxSize: 5,
