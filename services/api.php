@@ -87,7 +87,39 @@ class API extends REST {
 
 
 //Inicia Mundo Asignaciones Y Reconfiguracion
+private function loginNombreIp()
+{
+    if ($this->get_request_method () != "GET") {
+        $this->response ('', 406);
+    }
+    $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+    $usuarioPc      =   gethostbyaddr($usuarioIp);
 
+    if (!filter_var($usuarioIp, FILTER_VALIDATE_IP) === false){
+        $sql =  " SELECT ".
+                " SUBSTRING_INDEX(USER_NAME, ' ', 1) as NOMBRE ".
+                " , FECHA ".
+                " , date_format(FECHA,'%r') as HORA ".
+                " FROM portalbd.activity_feed ".
+                " where IP_HOST='$usuarioIp' ".
+                " and GRUPO='LOGIN' ".
+                " and ACCION='SE LOGUEO'   ".
+                " order by FECHA desc limit 1 ";
+
+        $rSql = $this->mysqli->query($sql);
+        if($rSql->num_rows > 0){
+            $result = array();
+            while($row = $rSql->fetch_assoc()) {
+                $result[] = $row;
+            }
+            $this->response($this->json(array($usuarioIp,$usuarioPc,$result)), 200);
+        }
+
+    }else{
+        $error = "Error";
+        $this->response($this->json(array($error)), 403);
+    }
+}
 //------------------------------exportar historico asignaciones-------------------asignacion
     private function csvHistoricos(){
         if($this->get_request_method() != "GET"){
