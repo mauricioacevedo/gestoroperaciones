@@ -1058,7 +1058,7 @@ class API extends REST {
 
         $filename="Activacion-Fenix_NAL-$login-$today.csv";
 
-        $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION ".
+        $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION,TRANSACCION ".
             " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN ".
             " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
             " from gestor_historico_activacion ".
@@ -1071,7 +1071,7 @@ class API extends REST {
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
 
-            fputcsv($fp, array( 'ORDER_SEQ_ID','PEDIDO','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','PRODUCTO','ASESOR','FECHA_GESTION','TIPIFICACION','FECHA_INICIO','FECHA_FIN','DURACION'));
+            fputcsv($fp, array( 'ORDER_SEQ_ID','PEDIDO','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','TRANSACCION','PRODUCTO','ASESOR','FECHA_GESTION','TIPIFICACION','FECHA_INICIO','FECHA_FIN','DURACION'));
 
             while($row = $r->fetch_assoc()){
                 //$result[] = $row;
@@ -6602,7 +6602,7 @@ class API extends REST {
         }
 
 
-        $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION ".
+        $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION,TRANSACCION ".
             " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN ".
             " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
             " from gestor_historico_activacion ".
@@ -9777,7 +9777,7 @@ class API extends REST {
 
         $pedido = json_decode(file_get_contents("php://input"),true);
         //var_dump($pedido);
-        $column_names = array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','ASESOR','FECHA_GESTION','TIPIFICACION','FECHA_INICIO','FECHA_FIN','DURACION','OBSERVACION','NUMERO_CR','TABLA','FUENTE','GRUPO','ACTIVIDAD','ESTADO_ID', 'OBSERVACION_ID','NUMERO_PSR','PSR');
+        $column_names = array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','ASESOR','FECHA_GESTION','TIPIFICACION','FECHA_INICIO','FECHA_FIN','DURACION','OBSERVACION','NUMERO_CR','TABLA','FUENTE','GRUPO','ACTIVIDAD','ESTADO_ID', 'OBSERVACION_ID','NUMERO_PSR','PSR','DESCRIPCIONEXCEPCIONACT','MOTIVOEXCEPCIONACT');
         $pedido=$pedido['pedido'];
         $keys = array_keys($pedido);
         $today = date("Y-m-d H:i:s");
