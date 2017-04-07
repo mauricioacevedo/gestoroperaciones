@@ -1,6 +1,8 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
+
 
 require_once("Rest.inc.php");
 //include_once("/var/www/html/gestorasignaciones/conn_fenix.php");
@@ -87,16 +89,16 @@ class API extends REST {
 
 
 //Inicia Mundo Asignaciones Y Reconfiguracion
-private function loginNombreIp()
-{
-    if ($this->get_request_method () != "GET") {
-        $this->response ('', 406);
-    }
-    $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
-    $usuarioPc      =   gethostbyaddr($usuarioIp);
+    private function loginNombreIp()
+    {
+        if ($this->get_request_method () != "GET") {
+            $this->response ('', 406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
 
-    if (!filter_var($usuarioIp, FILTER_VALIDATE_IP) === false){
-        $sql =  " SELECT ".
+        if (!filter_var($usuarioIp, FILTER_VALIDATE_IP) === false){
+            $sql =  " SELECT ".
                 " SUBSTRING_INDEX(USER_NAME, ' ', 1) as NOMBRE ".
                 " , FECHA ".
                 " , date_format(FECHA,'%r') as HORA ".
@@ -106,20 +108,20 @@ private function loginNombreIp()
                 " and ACCION='SE LOGUEO'   ".
                 " order by FECHA desc limit 1 ";
 
-        $rSql = $this->mysqli->query($sql);
-        if($rSql->num_rows > 0){
-            $result = array();
-            while($row = $rSql->fetch_assoc()) {
-                $result[] = $row;
+            $rSql = $this->mysqli->query($sql);
+            if($rSql->num_rows > 0){
+                $result = array();
+                while($row = $rSql->fetch_assoc()) {
+                    $result[] = $row;
+                }
+                $this->response($this->json(array($usuarioIp,$usuarioPc,$result)), 200);
             }
-            $this->response($this->json(array($usuarioIp,$usuarioPc,$result)), 200);
-        }
 
-    }else{
-        $error = "Error";
-        $this->response($this->json(array($error)), 403);
+        }else{
+            $error = "Bienvenido";
+            $this->response($this->json(array($error)), 403);
+        }
     }
-}
 //------------------------------exportar historico asignaciones-------------------asignacion
     private function csvHistoricos(){
         if($this->get_request_method() != "GET"){
@@ -707,49 +709,49 @@ private function loginNombreIp()
 //----------------------------fin exportar historico agendamiento edatel-----------------
 
 
-     private function csvActivacion(){
-                        if($this->get_request_method() != "GET"){
-                                $this->response('',406);
-                        }
-                        $login = $this->_request['login'];
+    private function csvActivacion(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $login = $this->_request['login'];
 
-                        $today = date("Y-m-d h:i:s");
-                        $filename="Fenix_Activacion-$login-$today.csv";
-                        $query=" SELECT ".
-			"  REQUERIMIENTO_ID  ".
-			" , PEDIDO_ID  ".
-			" , SUBPEDIDO_ID  ".
-			" , SOLICITUD_ID  ".
-			" , TIPO_ELEMENTO_ID  ".
-			" , TIPO_TRABAJO  ".
-			" , FECHA_ESTADO  ".
-			" , ETAPA_ID  ".
-			" , ESTADO_ID  ".
-			" , COLA_ID  ".
-			" , ACTIVIDAD_ID  ".
-			" , NOMBRE_ACTIVIDAD  ".
-			" , CONCEPTO_ID  ".
-                        " ,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_PENDIENTE ".
-			" FROM  informe_activacion_pendientesm  WHERE  STATUS ='PENDI_ACTIVACION' ";
+        $today = date("Y-m-d h:i:s");
+        $filename="Fenix_Activacion-$login-$today.csv";
+        $query=" SELECT ".
+            "  REQUERIMIENTO_ID  ".
+            " , PEDIDO_ID  ".
+            " , SUBPEDIDO_ID  ".
+            " , SOLICITUD_ID  ".
+            " , TIPO_ELEMENTO_ID  ".
+            " , TIPO_TRABAJO  ".
+            " , FECHA_ESTADO  ".
+            " , ETAPA_ID  ".
+            " , ESTADO_ID  ".
+            " , COLA_ID  ".
+            " , ACTIVIDAD_ID  ".
+            " , NOMBRE_ACTIVIDAD  ".
+            " , CONCEPTO_ID  ".
+            " ,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_PENDIENTE ".
+            " FROM  informe_activacion_pendientesm  WHERE  STATUS ='PENDI_ACTIVACION' ";
 
-                        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
-                        if($r->num_rows > 0){
-                                $result = array();
-                                $fp = fopen("../tmp/$filename", 'w');
-                                fputcsv($fp, array('REQUERIMIENTO_ID','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','TIPO_ELEMENTO_ID','TIPO_TRABAJO','FECHA_ESTADO','ETAPA_ID','ESTADO_ID','COLA_ID','ACTIVIDAD_ID','NOMBRE_ACTIVIDAD','CONCEPTO_ID','TIEMPO_PENDIENTE'));
-                                while($row = $r->fetch_assoc()){
-                                        $result[] = $row;
-                                        fputcsv($fp, $row);
-                                }
-                                fclose($fp);
+        if($r->num_rows > 0){
+            $result = array();
+            $fp = fopen("../tmp/$filename", 'w');
+            fputcsv($fp, array('REQUERIMIENTO_ID','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','TIPO_ELEMENTO_ID','TIPO_TRABAJO','FECHA_ESTADO','ETAPA_ID','ESTADO_ID','COLA_ID','ACTIVIDAD_ID','NOMBRE_ACTIVIDAD','CONCEPTO_ID','TIEMPO_PENDIENTE'));
+            while($row = $r->fetch_assoc()){
+                $result[] = $row;
+                fputcsv($fp, $row);
+            }
+            fclose($fp);
 
-                                $this->response($this->json(array($filename,$login)), 200); // send user details
-                        }
+            $this->response($this->json(array($filename,$login)), 200); // send user details
+        }
 
-                        $this->response('',204);        // If no records "No Content" status
+        $this->response('',204);        // If no records "No Content" status
 
-                }
+    }
 
 
 
@@ -775,12 +777,12 @@ private function loginNombreIp()
         $filename="Fenix_Activacion-$login-$today.csv";
 
         $query=  " SELECT ID,ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER ".
-                    " ,ESTADO,FECHA_CREACION,FECHA_EXCEPCION ".
-                    " ,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD ".
-                    " ,CODIGO_UNICO_DIRECCION,NOMBRE_CUIDAD,NOMBRE_DEPARTAMENTO ".
-                    " ,TAREA_EXCEPCION,CODIGOEXCEPCIONACT,FECHA_CARGA,STATUS ".
-                     " FROM gestor_activacion_pendientes_activador_suspecore ".
-                     " WHERE  ESTADO ='in_progress' ";
+            " ,ESTADO,FECHA_CREACION,FECHA_EXCEPCION ".
+            " ,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD ".
+            " ,CODIGO_UNICO_DIRECCION,NOMBRE_CUIDAD,NOMBRE_DEPARTAMENTO ".
+            " ,TAREA_EXCEPCION,CODIGOEXCEPCIONACT,FECHA_CARGA,STATUS ".
+            " FROM gestor_activacion_pendientes_activador_suspecore ".
+            " WHERE  ESTADO ='in_progress' ";
 
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -847,12 +849,12 @@ private function loginNombreIp()
         $today = date("Y-m-d h:i:s");
         $filename="Fenix_Activacion_dom-$login-$today.csv";
         $query=  " select ID,ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO ".
-                    " ,FECHA_CREACION,CODIGO_ERROR,VALOR_ERROR,MOTIVO_ERROR ".
-                    " ,CODIGO_UNICO_DIRECCION,TAREA_EXCEPCION,FECHA_EXCEPCION ".
-                    " ,TIPO_COMUNICACION,PRODUCTO,IDSERVICIORAIZ ".
-                    " ,TRANSACCION,CODIGO_CIUDAD,NOMBRE_CIUDAD ".
-                    " ,DEPARTAMENTO,FECHA_CARGA,STATUS ".
-                    " from gestor_activacion_pendientes_activador_dom ";
+            " ,FECHA_CREACION,CODIGO_ERROR,VALOR_ERROR,MOTIVO_ERROR ".
+            " ,CODIGO_UNICO_DIRECCION,TAREA_EXCEPCION,FECHA_EXCEPCION ".
+            " ,TIPO_COMUNICACION,PRODUCTO,IDSERVICIORAIZ ".
+            " ,TRANSACCION,CODIGO_CIUDAD,NOMBRE_CIUDAD ".
+            " ,DEPARTAMENTO,FECHA_CARGA,STATUS ".
+            " from gestor_activacion_pendientes_activador_dom ";
 
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -1034,7 +1036,7 @@ private function loginNombreIp()
 //-----------------------------fin extortar activacion GTC---------------------------------
 
 
-  private function csvListadoActivacion(){
+    private function csvListadoActivacion(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
@@ -1053,14 +1055,14 @@ private function loginNombreIp()
 
         $today = date("Y-m-d");
 
-         
+
         $filename="Activacion-Fenix_NAL-$login-$today.csv";
 
-       $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION,TRANSACCION, FECHA_EXCEPCION ".
-                " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,TIEMPO_TOTAL ".
-                 " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
-                " from gestor_historico_activacion ".
-                "where fecha_fin between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' $filtro ";;
+        $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION ".
+            " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN ".
+            " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
+            " from gestor_historico_activacion ".
+            "where fecha_fin between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' $filtro ";;
 
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -1069,9 +1071,9 @@ private function loginNombreIp()
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
 
-            fputcsv($fp, array( 'ORDER_SEQ_ID','PEDIDO','ESTADO','FECHA_CREACION','TRANSACCION','FECHA_EXCEPCION','PRODUCTO','ASESOR','FECHA_GESTION','TIPIFICACION','FECHA_INICIO','FECHA_FIN','TIEMPO_SISTEMA','DURACION'));
+            fputcsv($fp, array( 'ORDER_SEQ_ID','PEDIDO','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','PRODUCTO','ASESOR','FECHA_GESTION','TIPIFICACION','FECHA_INICIO','FECHA_FIN','DURACION'));
 
-             while($row = $r->fetch_assoc()){
+            while($row = $r->fetch_assoc()){
                 //$result[] = $row;
                 fputcsv($fp, $row);
             }
@@ -2102,7 +2104,7 @@ private function loginNombreIp()
 
         $rlog = $this->mysqli->query($sql_log);
         // ---------------------------------- SQL Feed
-       // $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','AGENDAMIENTO','CERRADO_AGEN','PEDIDO: $PEDIDO_ID','REAGENDAMIENTO','CERRADO_AGEN') ";
+        // $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','AGENDAMIENTO','CERRADO_AGEN','PEDIDO: $PEDIDO_ID','REAGENDAMIENTO','CERRADO_AGEN') ";
         //echo $sqlfeed;
         //$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
         //hago la actualizacion en fenix
@@ -2507,19 +2509,19 @@ private function loginNombreIp()
         $id = $this->_request['userID'];
         $today = date("Y-m-d");
         $query="SELECT ".
-                " id, ".
-                " pedido, ".
-                " fuente, ".
-                " actividad, ".
-                " fecha_fin, ".
-                " estado, ".
-                " my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as duracion, ".
-                " accion, ".
-                " SUBSTRING_INDEX(concepto_final, ',', 3) as concepto_final ".
-                " from pedidos ".
-                " where 1=1 ".
-                " and user='$id' ".
-                " and fecha_fin between '$today 00:00:00' and '$today 23:59:59'";
+            " id, ".
+            " pedido, ".
+            " fuente, ".
+            " actividad, ".
+            " fecha_fin, ".
+            " estado, ".
+            " my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as duracion, ".
+            " accion, ".
+            " SUBSTRING_INDEX(concepto_final, ',', 3) as concepto_final ".
+            " from pedidos ".
+            " where 1=1 ".
+            " and user='$id' ".
+            " and fecha_fin between '$today 00:00:00' and '$today 23:59:59'";
 
         $queryPediUnico="SELECT ".
             " count(distinct pedido_id) as pedidos ".
@@ -2601,15 +2603,15 @@ private function loginNombreIp()
             " where ASESOR='$id' ".
             " and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' ";
 
-          $queryunico="SELECT ".
+        $queryunico="SELECT ".
             " count(distinct pedido) as pedidos ".
             " from gestor_historico_activacion  ".
             " where ASESOR='$id'  ".
             " and fecha_fin between '$today 00:00:00'  ".
             " and '$today 23:59:59' ".
             " group by date_format(fecha_fin,'%Y-%m-%d')";
-            
-         
+
+
         $r2 = $this->mysqli->query($queryunico) or die($this->mysqli->error.__LINE__);
 
         //$counter="0";
@@ -2620,7 +2622,7 @@ private function loginNombreIp()
                 $counter=$rowd['pedidos'];
             }
 
-        }   
+        }
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -3795,14 +3797,14 @@ private function loginNombreIp()
         }
 
         $query="SELECT id, pedido_id, fuente, actividad ".
-                ", fecha_fin, estado ".
-                ", my_sec_to_time(timestampdiff(second, fecha_inicio, fecha_fin)) as duracion ".
-                ", accion ".
-                ", SUBSTRING_INDEX(SUBSTRING_INDEX(concepto_final, ',', 3), ' ', -1) as concepto_final ".
-                ",user,motivo_malo ".
-                " from pedidos ".
-                " where fecha_fin between '$fechaini 00:00:00' ".
-                " and '$fechafin 23:59:59' $filtro order by fecha_fin desc limit 100 offset $page";
+            ", fecha_fin, estado ".
+            ", my_sec_to_time(timestampdiff(second, fecha_inicio, fecha_fin)) as duracion ".
+            ", accion ".
+            ", SUBSTRING_INDEX(SUBSTRING_INDEX(concepto_final, ',', 3), ' ', -1) as concepto_final ".
+            ",user,motivo_malo ".
+            " from pedidos ".
+            " where fecha_fin between '$fechaini 00:00:00' ".
+            " and '$fechafin 23:59:59' $filtro order by fecha_fin desc limit 100 offset $page";
 
         $r = $this->mysqli->query($query);
 
@@ -3873,19 +3875,19 @@ private function loginNombreIp()
         }
 
         $query=" select ".
-               "     count(*) AS COUNTER, c1.CONCEPTO_ID ".
-               "     from( ".
-               "     select distinct pedido_id ".
-               "     , case  ".
-               "          when FUENTE='FENIX_BOG' and CONCEPTO_ID='PETEC' then 'PETEC-BOG'  ".
-               "          when CONCEPTO_ID='14' AND STATUS='PENDI_RENUMS' then '14-RENUMS'  ".
-               "          when CONCEPTO_ID='PETEC' and RADICADO_TEMPORAL='EQURED' then 'EQURED' ".
-               "          when STATUS='MALO' then 'MALO' ".
-               "         else CONCEPTO_ID  ".
-               "     end as CONCEPTO_ID  ".
-               "     from informe_petec_pendientesm ".
-               "     where status in ('PENDI_PETEC','MALO','PENDI_RENUMS') ) c1 ".
-               "     group by c1.CONCEPTO_ID ";
+            "     count(*) AS COUNTER, c1.CONCEPTO_ID ".
+            "     from( ".
+            "     select distinct pedido_id ".
+            "     , case  ".
+            "          when FUENTE='FENIX_BOG' and CONCEPTO_ID='PETEC' then 'PETEC-BOG'  ".
+            "          when CONCEPTO_ID='14' AND STATUS='PENDI_RENUMS' then '14-RENUMS'  ".
+            "          when CONCEPTO_ID='PETEC' and RADICADO_TEMPORAL='EQURED' then 'EQURED' ".
+            "          when STATUS='MALO' then 'MALO' ".
+            "         else CONCEPTO_ID  ".
+            "     end as CONCEPTO_ID  ".
+            "     from informe_petec_pendientesm ".
+            "     where status in ('PENDI_PETEC','MALO','PENDI_RENUMS') ) c1 ".
+            "     group by c1.CONCEPTO_ID ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -4212,41 +4214,41 @@ private function loginNombreIp()
         */
         //echo $query;
         $query="SELECT ".
-               " C2.CONCEPTO_ID ".
-               " , COUNT(*) AS CANTIDAD ".
-               " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Ayer' THEN 1 ELSE 0 END) as 'Ayer' ".
-               " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Hoy' THEN 1 ELSE 0 END) as 'Hoy' ".
-               " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Manana' THEN 1 ELSE 0 END) as 'Manana' ".
-               " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Pasado_Manana' THEN 1 ELSE 0 END) as 'Pasado_Manana' ".
-               " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Mas_3dias' THEN 1 ELSE 0 END) as 'Mas_de_3_dias' ".
-               " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Sin_Agenda' THEN 1 ELSE 0 END) as 'Sin_Fecha_Cita' ".
-               " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Viejos' THEN 1 ELSE 0 END) as 'Viejos' ".
-               " FROM(SELECT ".
-               " C1.PEDIDO_ID ".
-               " , MAX(C1.CONCEPTO_ID) AS CONCEPTO_ID ".
-               " , MAX(C1.RANGO_PENDIENTE) AS RANGO_PENDIENTE ".
-               " FROM(select ".
-               " PP.PEDIDO_ID ".
-               " , case    ".
-               "     when PP.FUENTE='FENIX_NAL' and PP.CONCEPTO_ID='PETEC' AND PP.STATUS!='MALO' then 'PETEC-NAL' ".
-               "     when PP.FUENTE='FENIX_BOG' and PP.CONCEPTO_ID='PETEC' AND PP.STATUS!='MALO' then 'PETEC-BOG'   ".
-               "     WHEN PP.STATUS='MALO' THEN 'MALO' ".
-               "  else PP.CONCEPTO_ID  end as CONCEPTO_ID ".
-               " , cast((CASE ".
-               "        WHEN  PP.FECHA_CITA='9999-00-00' OR PP.FECHA_CITA='0000-00-00' THEN 'Sin_Agenda'   ".
-               "        WHEN  PP.FECHA_CITA= DATE_SUB(CURDATE() , INTERVAL 1 DAY) THEN 'Ayer'   ".
-               "        WHEN  PP.FECHA_CITA=current_date() THEN 'Hoy'    ".
-               "        WHEN  PP.FECHA_CITA=DATE_ADD(CURDATE(), INTERVAL 1 DAY) THEN 'Manana'     ".
-               "        WHEN  PP.FECHA_CITA=DATE_ADD(CURDATE(), INTERVAL 2 DAY) THEN 'Pasado_Manana'    ".
-               "        WHEN  PP.FECHA_CITA>=DATE_ADD(CURDATE(), INTERVAL 3 DAY) THEN 'Mas_3dias'   ".
-               "        WHEN  PP.FECHA_CITA<= DATE_SUB(CURDATE() , INTERVAL 1 DAY) THEN 'Viejos'   ".
-               "        else PP.FECHA_CITA  ".
-               "     END ) as char )AS RANGO_PENDIENTE ".
-               " FROM portalbd.informe_petec_pendientesm PP ".
-               " WHERE PP.STATUS IN ('PENDI_PETEC','MALO') ) C1  ".
-               " GROUP BY C1.PEDIDO_ID ) C2 ".
-               " GROUP BY C2.CONCEPTO_ID ".
-               " order by count(*) DESC ";
+            " C2.CONCEPTO_ID ".
+            " , COUNT(*) AS CANTIDAD ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Ayer' THEN 1 ELSE 0 END) as 'Ayer' ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Hoy' THEN 1 ELSE 0 END) as 'Hoy' ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Manana' THEN 1 ELSE 0 END) as 'Manana' ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Pasado_Manana' THEN 1 ELSE 0 END) as 'Pasado_Manana' ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Mas_3dias' THEN 1 ELSE 0 END) as 'Mas_de_3_dias' ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Sin_Agenda' THEN 1 ELSE 0 END) as 'Sin_Fecha_Cita' ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) ='Viejos' THEN 1 ELSE 0 END) as 'Viejos' ".
+            " FROM(SELECT ".
+            " C1.PEDIDO_ID ".
+            " , MAX(C1.CONCEPTO_ID) AS CONCEPTO_ID ".
+            " , MAX(C1.RANGO_PENDIENTE) AS RANGO_PENDIENTE ".
+            " FROM(select ".
+            " PP.PEDIDO_ID ".
+            " , case    ".
+            "     when PP.FUENTE='FENIX_NAL' and PP.CONCEPTO_ID='PETEC' AND PP.STATUS!='MALO' then 'PETEC-NAL' ".
+            "     when PP.FUENTE='FENIX_BOG' and PP.CONCEPTO_ID='PETEC' AND PP.STATUS!='MALO' then 'PETEC-BOG'   ".
+            "     WHEN PP.STATUS='MALO' THEN 'MALO' ".
+            "  else PP.CONCEPTO_ID  end as CONCEPTO_ID ".
+            " , cast((CASE ".
+            "        WHEN  PP.FECHA_CITA='9999-00-00' OR PP.FECHA_CITA='0000-00-00' THEN 'Sin_Agenda'   ".
+            "        WHEN  PP.FECHA_CITA= DATE_SUB(CURDATE() , INTERVAL 1 DAY) THEN 'Ayer'   ".
+            "        WHEN  PP.FECHA_CITA=current_date() THEN 'Hoy'    ".
+            "        WHEN  PP.FECHA_CITA=DATE_ADD(CURDATE(), INTERVAL 1 DAY) THEN 'Manana'     ".
+            "        WHEN  PP.FECHA_CITA=DATE_ADD(CURDATE(), INTERVAL 2 DAY) THEN 'Pasado_Manana'    ".
+            "        WHEN  PP.FECHA_CITA>=DATE_ADD(CURDATE(), INTERVAL 3 DAY) THEN 'Mas_3dias'   ".
+            "        WHEN  PP.FECHA_CITA<= DATE_SUB(CURDATE() , INTERVAL 1 DAY) THEN 'Viejos'   ".
+            "        else PP.FECHA_CITA  ".
+            "     END ) as char )AS RANGO_PENDIENTE ".
+            " FROM portalbd.informe_petec_pendientesm PP ".
+            " WHERE PP.STATUS IN ('PENDI_PETEC','MALO') ) C1  ".
+            " GROUP BY C1.PEDIDO_ID ) C2 ".
+            " GROUP BY C2.CONCEPTO_ID ".
+            " order by count(*) DESC ";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -4933,20 +4935,20 @@ private function loginNombreIp()
         }
 
         $query= " SELECT concepto_id as label, COUNT(*) as value ".
-                "   FROM(SELECT ".
-                "    DISTINCT ".
-                "    PEDIDO_ID ".
-                "    , CASE  ".
-                "        WHEN FUENTE='FENIX_NAL' and CONCEPTO_ID='PETEC' AND STATUS!='MALO' then 'PETEC-NAL' ".
-                "        WHEN FUENTE='FENIX_BOG' and CONCEPTO_ID='PETEC' AND STATUS!='MALO' then 'PETEC-BOG' ".
-                "        WHEN STATUS='MALO' THEN 'MALO'   ".
-                "        ELSE CONCEPTO_ID END AS CONCEPTO_ID ".
-                "    , STATUS ".
-                "    , FUENTE ".
-                "    FROM informe_petec_pendientesm ".
-                "    WHERE (STATUS='PENDI_PETEC' or STATUS='MALO') ) C1 ".
-                "    GROUP BY concepto_id ".
-                "    ORDER BY COUNT(*) DESC ";
+            "   FROM(SELECT ".
+            "    DISTINCT ".
+            "    PEDIDO_ID ".
+            "    , CASE  ".
+            "        WHEN FUENTE='FENIX_NAL' and CONCEPTO_ID='PETEC' AND STATUS!='MALO' then 'PETEC-NAL' ".
+            "        WHEN FUENTE='FENIX_BOG' and CONCEPTO_ID='PETEC' AND STATUS!='MALO' then 'PETEC-BOG' ".
+            "        WHEN STATUS='MALO' THEN 'MALO'   ".
+            "        ELSE CONCEPTO_ID END AS CONCEPTO_ID ".
+            "    , STATUS ".
+            "    , FUENTE ".
+            "    FROM informe_petec_pendientesm ".
+            "    WHERE (STATUS='PENDI_PETEC' or STATUS='MALO') ) C1 ".
+            "    GROUP BY concepto_id ".
+            "    ORDER BY COUNT(*) DESC ";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -5343,17 +5345,17 @@ private function loginNombreIp()
         }
 
         $querytransaccion=" select  ".
-                        " c1.TRANSACCION ".
-                        " , count(*) as CANTIDAD ".
-                        " from (SELECT r.ID, ".
-                        " r.PEDIDO, ".
-                        " case ".
-                        "	when r.TRANSACCION like '%,%' then 'VARIOS' ".
-                        "	else r.TRANSACCION ".
-                        " end as TRANSACCION ".
-                        " FROM gestor_activacion_pendientes_activador_dom r  ".
-                        " where r.STATUS in ('PENDI_ACTI')) c1  ".
-                        " group by c1.TRANSACCION order by count(*) DESC ";
+            " c1.TRANSACCION ".
+            " , count(*) as CANTIDAD ".
+            " from (SELECT r.ID, ".
+            " r.PEDIDO, ".
+            " case ".
+            "	when r.TRANSACCION like '%,%' then 'VARIOS' ".
+            "	else r.TRANSACCION ".
+            " end as TRANSACCION ".
+            " FROM gestor_activacion_pendientes_activador_dom r  ".
+            " where r.STATUS in ('PENDI_ACTI')) c1  ".
+            " group by c1.TRANSACCION order by count(*) DESC ";
 
         $r = $this->mysqli->query($querytransaccion) or die($this->mysqli->error.__LINE__);
 
@@ -6097,27 +6099,27 @@ private function loginNombreIp()
         $filename="Malos-$login-$today.csv";
 
         $query= " Select ".
-                "     pm.PEDIDO_ID  ".
-                "    , pm.FECHA_CITA ".
-                "    , min(pm.FECHA_INGRESO) as FECHA_INGRESO ".
-                "    , max(pm.FECHA_ESTADO) as FECHA_ESTADO ".
-                "    , group_concat(distinct pm.CONCEPTO_ID) as CONCEPTO_ID ".
-                "    , pm.FUENTE ".
-                "    , pm.STATUS ".
-                "    , (Select  p.motivo_malo as motivo  ".
-                "    from portalbd.pedidos p   ".
-                "    where p.id = (select max(d.id) from portalbd.pedidos d where d.estado='MALO'  and d.pedido_id=pm.pedido_id group by d.pedido_id)) as MOTIVO_MALO ".
-                "    , (Select  p.user as motivo  ".
-                "    from portalbd.pedidos p  ".
-                "    where p.id = (select max(d.id) from portalbd.pedidos d where d.estado='MALO'  and d.pedido_id=pm.pedido_id group by d.pedido_id)) as USUARIO ".
-                "    , (Select  p.fecha_fin as fecha  ".
-                "    from portalbd.pedidos p  ".
-                "    where p.id = (select max(d.id) from portalbd.pedidos d where d.estado='MALO'  and d.pedido_id=pm.pedido_id group by d.pedido_id)) as FECHAMALO ".
-                "    from portalbd.informe_petec_pendientesm pm   ".
-                "    where   ".
-                "    pm.status='MALO'  ".
-                "    group by pm.PEDIDO_ID  ";
-       // $concepto;
+            "     pm.PEDIDO_ID  ".
+            "    , pm.FECHA_CITA ".
+            "    , min(pm.FECHA_INGRESO) as FECHA_INGRESO ".
+            "    , max(pm.FECHA_ESTADO) as FECHA_ESTADO ".
+            "    , group_concat(distinct pm.CONCEPTO_ID) as CONCEPTO_ID ".
+            "    , pm.FUENTE ".
+            "    , pm.STATUS ".
+            "    , (Select  p.motivo_malo as motivo  ".
+            "    from portalbd.pedidos p   ".
+            "    where p.id = (select max(d.id) from portalbd.pedidos d where d.estado='MALO'  and d.pedido_id=pm.pedido_id group by d.pedido_id)) as MOTIVO_MALO ".
+            "    , (Select  p.user as motivo  ".
+            "    from portalbd.pedidos p  ".
+            "    where p.id = (select max(d.id) from portalbd.pedidos d where d.estado='MALO'  and d.pedido_id=pm.pedido_id group by d.pedido_id)) as USUARIO ".
+            "    , (Select  p.fecha_fin as fecha  ".
+            "    from portalbd.pedidos p  ".
+            "    where p.id = (select max(d.id) from portalbd.pedidos d where d.estado='MALO'  and d.pedido_id=pm.pedido_id group by d.pedido_id)) as FECHAMALO ".
+            "    from portalbd.informe_petec_pendientesm pm   ".
+            "    where   ".
+            "    pm.status='MALO'  ".
+            "    group by pm.PEDIDO_ID  ";
+        // $concepto;
         //" and CONCEPTO_ID = '' ";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -6189,16 +6191,16 @@ private function loginNombreIp()
         //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
 
         $query="SELECT a.ID,a.PEDIDO_ID,a.PEDIDO,a.SUBPEDIDO_ID,a.SOLICITUD_ID ".
-                ", a.TIPO_ELEMENTO_ID, a.PRODUCTO, a.UEN_CALCULADA ".
-                ", a.ESTRATO, a.MUNICIPIO_ID, a.DIRECCION_SERVICIO, a.PAGINA_SERVICIO ".
-                ", CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA ".
-                ", a.FUENTE, a.CONCEPTO_ID, a.FECHA_ESTADO, a.FECHA_CITA, a.STATUS, a.PROGRAMACION ".
-                ", RADICADO_TEMPORAL ".
-                ", ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin Observaciones') as OBS ".
-                " from informe_petec_pendientesm a ".
-                " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
-                " AND a.PEDIDO_ID LIKE '$bpedido%' ".
-                " order by a.FECHA_ESTADO ";
+            ", a.TIPO_ELEMENTO_ID, a.PRODUCTO, a.UEN_CALCULADA ".
+            ", a.ESTRATO, a.MUNICIPIO_ID, a.DIRECCION_SERVICIO, a.PAGINA_SERVICIO ".
+            ", CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA ".
+            ", a.FUENTE, a.CONCEPTO_ID, a.FECHA_ESTADO, a.FECHA_CITA, a.STATUS, a.PROGRAMACION ".
+            ", RADICADO_TEMPORAL ".
+            ", ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin Observaciones') as OBS ".
+            " from informe_petec_pendientesm a ".
+            " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
+            " AND a.PEDIDO_ID LIKE '$bpedido%' ".
+            " order by a.FECHA_ESTADO ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -6408,17 +6410,17 @@ private function loginNombreIp()
         }
 
         $query= "SELECT a.ID ".
-                ", a.PEDIDO_ID, a.PEDIDO, a.SUBPEDIDO_ID, a.SOLICITUD_ID ".
-                ", a.TIPO_ELEMENTO_ID, a.PRODUCTO, a.UEN_CALCULADA ".
-                ", a.ESTRATO, a.MUNICIPIO_ID, a.DIRECCION_SERVICIO, a.PAGINA_SERVICIO ".
-                ", cast(my_sec_to_time(timestampdiff(second,FECHA_ESTADO,current_timestamp()))AS CHAR(255)) as TIEMPO_COLA ".
-                ", a.FUENTE, a.CONCEPTO_ID, a.FECHA_ESTADO, a.FECHA_CITA, a.STATUS, a.PROGRAMACION ".
-                ", case when a.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ARBOL' else a.RADICADO_TEMPORAL end as RADICADO_TEMPORAL ".
-                ", if(a.RADICADO_TEMPORAL='ARBOL','true','false') as PRIORIDAD ".
-                ", ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin') as OBS".
-                " from informe_petec_pendientesm a ".
-                " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
-                " order by a.FECHA_ESTADO ASC limit 100 offset $page";
+            ", a.PEDIDO_ID, a.PEDIDO, a.SUBPEDIDO_ID, a.SOLICITUD_ID ".
+            ", a.TIPO_ELEMENTO_ID, a.PRODUCTO, a.UEN_CALCULADA ".
+            ", a.ESTRATO, a.MUNICIPIO_ID, a.DIRECCION_SERVICIO, a.PAGINA_SERVICIO ".
+            ", cast(my_sec_to_time(timestampdiff(second,FECHA_ESTADO,current_timestamp()))AS CHAR(255)) as TIEMPO_COLA ".
+            ", a.FUENTE, a.CONCEPTO_ID, a.FECHA_ESTADO, a.FECHA_CITA, a.STATUS, a.PROGRAMACION ".
+            ", case when a.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ARBOL' else a.RADICADO_TEMPORAL end as RADICADO_TEMPORAL ".
+            ", if(a.RADICADO_TEMPORAL='ARBOL','true','false') as PRIORIDAD ".
+            ", ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin') as OBS".
+            " from informe_petec_pendientesm a ".
+            " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
+            " order by a.FECHA_ESTADO ASC limit 100 offset $page";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -6478,25 +6480,25 @@ private function loginNombreIp()
         }
 
         $query= "SELECT ".
-                " a.ID, ".
-                " a.PEDIDO_ID, ".
-                " a.CONCEPTOS, ".
-                " a.ACTIVIDADES, ".
-                " a.MICROZONA, ".
-                " a.SUBZONA_ID, ".
-                " cast(my_sec_to_time(timestampdiff(second,if(a.FECHA_ESTADO='0000-00-00 00:00:00',FECHA_CARGA,a.FECHA_ESTADO),current_timestamp()))AS CHAR(255)) as TIEMPO_COLA, ".
-                " a.FUENTE, ".
-                " if(a.FECHA_ESTADO='0000-00-00 00:00:00',FECHA_CARGA,a.FECHA_ESTADO) as FECHA_ESTADO,  ".
-                " a.FECHA_CITA_FENIX, ".
-                " a.STATUS, ".
-                " a.PROGRAMACION, ".
-                " a.DEPARTAMENTO, ".
-                " a.PROCESO, ".
-                " a.TIPO_TRABAJO, ".
-                " a.RADICADO ".
-                " from gestor_pendientes_reagendamiento a ".
-                " where (a.STATUS='PENDI_AGEN' or a.STATUS='MALO') ".
-                " order by a.FECHA_ESTADO ASC limit 100 offset $page";
+            " a.ID, ".
+            " a.PEDIDO_ID, ".
+            " a.CONCEPTOS, ".
+            " a.ACTIVIDADES, ".
+            " a.MICROZONA, ".
+            " a.SUBZONA_ID, ".
+            " cast(my_sec_to_time(timestampdiff(second,if(a.FECHA_ESTADO='0000-00-00 00:00:00',FECHA_CARGA,a.FECHA_ESTADO),current_timestamp()))AS CHAR(255)) as TIEMPO_COLA, ".
+            " a.FUENTE, ".
+            " if(a.FECHA_ESTADO='0000-00-00 00:00:00',FECHA_CARGA,a.FECHA_ESTADO) as FECHA_ESTADO,  ".
+            " a.FECHA_CITA_FENIX, ".
+            " a.STATUS, ".
+            " a.PROGRAMACION, ".
+            " a.DEPARTAMENTO, ".
+            " a.PROCESO, ".
+            " a.TIPO_TRABAJO, ".
+            " a.RADICADO ".
+            " from gestor_pendientes_reagendamiento a ".
+            " where (a.STATUS='PENDI_AGEN' or a.STATUS='MALO') ".
+            " order by a.FECHA_ESTADO ASC limit 100 offset $page";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -6513,7 +6515,7 @@ private function loginNombreIp()
 
 //------------------------listado activacion-----------------
 
-   private function listadoactivacion(){
+    private function listadoactivacion(){
 
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -6533,7 +6535,7 @@ private function loginNombreIp()
         $page=$page*100;
         //counter
 
-       $query="SELECT count(*) as counter from gestor_seguimiento_activacion  where FECHA_ULTIMA_GESTOR between '$fechaini 00:00:00' and '$fechafin 23:59:59' ";
+        $query="SELECT count(*) as counter from gestor_seguimiento_activacion  where FECHA_ULTIMA_GESTOR between '$fechaini 00:00:00' and '$fechafin 23:59:59' ";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter=0;
@@ -6565,7 +6567,7 @@ private function loginNombreIp()
                 $counter1 = $row['counter'];
             }
         }
-         $query=" SELECT count(*) as counter ".
+        $query=" SELECT count(*) as counter ".
             " FROM portalbd.gestor_activacion_pendientes_gtc_suspecore ";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -6576,7 +6578,7 @@ private function loginNombreIp()
                 $counter2 = $row['counter'];
             }
         }
-         $query=" SELECT count(*) as counter ".
+        $query=" SELECT count(*) as counter ".
             " FROM portalbd.gestor_activacion_pendientes_activador_dom ";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -6600,12 +6602,12 @@ private function loginNombreIp()
         }
 
 
-        $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION,TRANSACCION, FECHA_EXCEPCION ".
-                " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN ".
-                 " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
-                " from gestor_historico_activacion ".
-                " where fecha_fin between '$fechaini 00:00:00' ".
-                " and '$fechafin 23:59:59'  order by fecha_fin desc limit 100 offset $page";
+        $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION ".
+            " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN ".
+            " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
+            " from gestor_historico_activacion ".
+            " where fecha_fin between '$fechaini 00:00:00' ".
+            " and '$fechafin 23:59:59'  order by fecha_fin desc limit 100 offset $page";
 
 
         //echo $query;
@@ -6708,22 +6710,22 @@ private function loginNombreIp()
 
 
 
-           if($tabla=='ACTIVADOR_SUSPECORE'){
+        if($tabla=='ACTIVADOR_SUSPECORE'){
 
-           $tabla = " from gestor_activacion_pendientes_activador_suspecore b " ;
+            $tabla = " from gestor_activacion_pendientes_activador_suspecore b " ;
 
-       } else {
+        } else {
 
-           $tabla = " from gestor_activacion_pendientes_activador_dom b " ;
+            $tabla = " from gestor_activacion_pendientes_activador_dom b " ;
 
-       }
+        }
 
 
         $query=" SELECT id, order_seq_id,pedido,reference_number ".
-                ",estado,fecha_creacion,tarea_excepcion ".
-                ",fecha_excepcion,producto,idservicioraiz,transaccion ".
-                $tabla.
-                " where pedido like '$pedido%' order by fecha_excepcion desc limit 10 ";
+            ",estado,fecha_creacion,tarea_excepcion ".
+            ",fecha_excepcion,producto,idservicioraiz,transaccion ".
+            $tabla.
+            " where pedido like '$pedido%' order by fecha_excepcion desc limit 10 ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -6886,7 +6888,7 @@ private function loginNombreIp()
                     " a.TIPO_TRABAJO, ".
                     " a.DESC_TIPO_TRABAJO, ".
                     " a.VEL_IDEN,  ".
-                    " a.VEL_SOLI, ". 
+                    " a.VEL_SOLI, ".
                     " a.IDENTIFICADOR_ID, ".
                     " a.TIPO_ELEMENTO_ID, ".
                     " a.PRODUCTO , ".
@@ -7168,9 +7170,9 @@ private function loginNombreIp()
         //$this->response($query1,200);
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
         $busy="";
-        $cReconfiguracion=['14', '99', 'O-101'];
-        $cEdatel=['12-EDATEL'];
-        $cAsignaciones=['PETEC','OKRED','PUMED','O-106','O-13','O-15','PEOPP','19'];
+        $cReconfiguracion=array('14', '99', 'O-101');
+        $cEdatel=array('12-EDATEL');
+        $cAsignaciones=array('PETEC','OKRED','PUMED','O-106','O-13','O-15','PEOPP','19');
 
         if($r->num_rows > 0){
             $result = array();
@@ -7953,20 +7955,20 @@ private function loginNombreIp()
                     " ORDER BY FECHA_ESTADO ASC "; */
 
                 $sqlllamadas=   "SELECT PEDIDO_ID, ".
-                                " SUBPEDIDO_ID, ".
-                                " SOLICITUD_ID, ".
-                                " FECHA_ESTADO, ".
-                                " FECHA_CITA ".
-                                " FROM  informe_petec_pendientesm ".
-                                " WHERE 1=1 ".
-                                //" and (TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
-                                //" AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
-                                " and RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM','MIG','REPARMIG','MIGGPON')  ".
-                                " AND ASESOR='' ".
-                                " AND CONCEPTO_ID = '$concepto' ".
-                                " AND STATUS='PENDI_PETEC' ".
-                                $plaza2.
-                                " ORDER BY FECHA_ESTADO ASC ";
+                    " SUBPEDIDO_ID, ".
+                    " SOLICITUD_ID, ".
+                    " FECHA_ESTADO, ".
+                    " FECHA_CITA ".
+                    " FROM  informe_petec_pendientesm ".
+                    " WHERE 1=1 ".
+                    //" and (TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
+                    //" AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
+                    " and RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM','MIG','REPARMIG','MIGGPON')  ".
+                    " AND ASESOR='' ".
+                    " AND CONCEPTO_ID = '$concepto' ".
+                    " AND STATUS='PENDI_PETEC' ".
+                    $plaza2.
+                    " ORDER BY FECHA_ESTADO ASC ";
 
                 $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
@@ -8023,11 +8025,11 @@ private function loginNombreIp()
                     break;
                 }
             }
-            
+
             //echo $mypedido;
 
             if($mypedido==""){
-            //2017-02-03 Mauricio: se agrega funcionalidad para buscar por arbol en concepto 14
+                //2017-02-03 Mauricio: se agrega funcionalidad para buscar por arbol en concepto 14
                 //HAGO LA CONSULTA DE PRIORIDAD POR ARBOL
                 $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA ".
                     " FROM  informe_petec_pendientesm ".
@@ -8322,7 +8324,7 @@ private function loginNombreIp()
 
 
 //--------------------------demepedido activacion----------------------
-  private function demePedidoActivacion(){
+    private function demePedidoActivacion(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
@@ -8356,23 +8358,23 @@ private function loginNombreIp()
         $user=strtoupper($user);
 
 
-      if($tabla=='ACTIVADOR_SUSPECORE'){
+        if($tabla=='ACTIVADOR_SUSPECORE'){
 
-        $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
-      }else {
-           $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='' where ASESOR='$user'";
-      }
+            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
+        }else {
+            $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='' where ASESOR='$user'";
+        }
 
         //echo $sqlupdate;
         $xxx = $this->mysqli->query($sqlupdate);
 
         $today = date("Y-m-d");
 
-       $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
+        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
 
-    //  echo "carlitos1 ---$producto---";
+        //  echo "carlitos1 ---$producto---";
 
-       if($producto!=""){
+        if($producto!=""){
             $producto=" and b.PRODUCTO='$producto' ";
         }else{
             $producto="";
@@ -8384,16 +8386,16 @@ private function loginNombreIp()
             $transaccion="";
         }
 
- if($tabla=='ACTIVADOR_SUSPECORE'){
+        if($tabla=='ACTIVADOR_SUSPECORE'){
 
-           $tabla = " from gestor_activacion_pendientes_activador_suspecore b " ;
+            $tabla = " from gestor_activacion_pendientes_activador_suspecore b " ;
 
-       } else {
+        } else {
 
-          $tabla = " from gestor_activacion_pendientes_activador_dom b " ;
+            $tabla = " from gestor_activacion_pendientes_activador_dom b " ;
 
 
-     }
+        }
 
         $mypedido="";
 
@@ -8410,7 +8412,7 @@ private function loginNombreIp()
             " $producto ".
             " order by b.$parametroBusqueda  ASC";
 
-       //echo $query1;
+        //echo $query1;
         if($mypedido==""){
 
             $rr = $this->mysqli->query($query1);
@@ -8479,24 +8481,23 @@ private function loginNombreIp()
 
 
 
-         $query1=" SELECT b.ID ".
-                " ,b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TAREA_EXCEPCION,b.IDSERVICIORAIZ,b.TRANSACCION,b.STATUS,b.ASESOR  ".
-                ",b.ACTIVIDAD,b.FUENTE,b.GRUPO".
-                " , group_concat(distinct b.PRODUCTO) as  PRODUCTO ".
-                " , min(b.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
-                " ,min(b.FECHA_CREACION) as FECHA_CREACION ".
-                " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_EXCEPCION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL".
-                " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
-                " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
-                $tabla.
-                " where b.PEDIDO = '$mypedido'  ".
-                " and b.STATUS='PENDI_ACTI' ".
-                 $transaccion.
-                $producto.
-                " group by b.pedido ";
+        $query1=" SELECT b.ID ".
+            " ,b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TAREA_EXCEPCION,b.IDSERVICIORAIZ,b.TRANSACCION,b.STATUS,b.ASESOR  ".
+            ",b.ACTIVIDAD,b.FUENTE,b.GRUPO".
+            " , group_concat(distinct b.PRODUCTO) as  PRODUCTO ".
+            " , min(b.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
+            " ,min(b.FECHA_CREACION) as FECHA_CREACION ".
+            " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
+            " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
+            $tabla.
+            " where b.PEDIDO = '$mypedido'  ".
+            " and b.STATUS='PENDI_ACTI' ".
+            $transaccion.
+            $producto.
+            " group by b.pedido ";
 
 
-      // echo $query1;
+        // echo $query1;
         $r = $this->mysqli->query($query1);
 
         if($r->num_rows > 0){
@@ -8511,7 +8512,7 @@ private function loginNombreIp()
 
             if($tabla=='ACTIVADOR_SUSPECORE'){
 
-            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+                $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
             }else {
                 $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
             }
@@ -8695,15 +8696,15 @@ private function loginNombreIp()
         if($mypedido==""){
 
             $sqlPrioridad=   "SELECT b.PEDIDO_ID ".
-                            " FROM  gestor_pendientes_reagendamiento b ".
-                            " WHERE 1=1 ".
-                            " and b.RADICADO IN ('ARBOL')  ".
-                            " AND b.ASESOR='' ".
-                            " AND b.STATUS='PENDI_AGEN' ".
-                            $departamento.
-                            $zona.
-                            $microzona.
-                            " ORDER BY FECHA_INGRESO ASC ";
+                " FROM  gestor_pendientes_reagendamiento b ".
+                " WHERE 1=1 ".
+                " and b.RADICADO IN ('ARBOL')  ".
+                " AND b.ASESOR='' ".
+                " AND b.STATUS='PENDI_AGEN' ".
+                $departamento.
+                $zona.
+                $microzona.
+                " ORDER BY FECHA_INGRESO ASC ";
 
             $rr = $this->mysqli->query($sqlPrioridad) or die($this->mysqli->error.__LINE__);
 
@@ -9775,7 +9776,7 @@ private function loginNombreIp()
 
         $pedido = json_decode(file_get_contents("php://input"),true);
         //var_dump($pedido);
-        $column_names = array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','ASESOR','FECHA_GESTION','TIPIFICACION','FECHA_INICIO','FECHA_FIN','DURACION','OBSERVACION','NUMERO_CR','TABLA','FUENTE','GRUPO','ACTIVIDAD','ESTADO_ID', 'OBSERVACION_ID','PSR','NUMERO_PSR','TIEMPO_TOTAL');
+        $column_names = array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','ASESOR','FECHA_GESTION','TIPIFICACION','FECHA_INICIO','FECHA_FIN','DURACION','OBSERVACION','NUMERO_CR','TABLA','FUENTE','GRUPO','ACTIVIDAD','ESTADO_ID', 'OBSERVACION_ID');
         $pedido=$pedido['pedido'];
         $keys = array_keys($pedido);
         $today = date("Y-m-d H:i:s");
@@ -9796,15 +9797,15 @@ private function loginNombreIp()
         $IDSERVICIORAIZ=$pedido['IDSERVICIORAIZ'];
         $TRANSACCION=$pedido['TRANSACCION'];
         $CODIGO_CIUDAD=$pedido['CODIGO_CIUDAD'];
+        //$STATUS=$pedido['STATUS'];
         $TIPIFICACION=$pedido['TIPIFICACION'];
         $FECHA_INICIO=$pedido['FECHA_INICIO'];
         $FECHA_FIN=$pedido['FECHA_FIN'];
         $DURACION=$pedido['DURACION'];
-        $TIEMPO_TOTAL=$pedido['TIEMPO_TOTAL'];
         $tabla = $pedido['TABLA'];
         $OBSERVACION=$pedido['OBSERVACION'];
 
-         foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
+        foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
             if(!in_array($desired_key, $keys)) {
                 $$desired_key = '';
             }else{
@@ -9816,31 +9817,31 @@ private function loginNombreIp()
 
         if(!empty($pedido)){
 
-        $query = "INSERT INTO gestor_historico_activacion(".trim($columns,',').",source) VALUES(".trim($values,',').",'MANUAL')";
+            $query = "INSERT INTO gestor_historico_activacion(".trim($columns,',').",source) VALUES(".trim($values,',').",'MANUAL')";
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
             //----------insert
 
             if($tabla=='ACTIVADOR_SUSPECORE' ){
-            if($TIPIFICACION=='FINALIZADA'){
-            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
+                if($TIPIFICACION=='FINALIZADA'){
+                    $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
+                    // echo $sqlupdate;
+                }else {
+
+                    $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set FECHA_CARGA = '$today',STATUS='MALO',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
+                    //   echo $sqlupdate;
+                }
+            } else{
+                if($TIPIFICACION=='FINALIZADA'){
+                    $sqlupdate="update gestor_activacion_pendientes_activador_dom set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
+                    //  echo $sqlupdate;
+                }else {
+
+                    $sqlupdate="update gestor_activacion_pendientes_activador_dom set FECHA_CARGA = '$today',STATUS='MALO',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
+                }
+            }
             // echo $sqlupdate;
-    }else {
-
-              $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set FECHA_CARGA = '$today',STATUS='MALO',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
-             //   echo $sqlupdate;
-            }
-        } else{
-            if($TIPIFICACION=='FINALIZADA'){
-            $sqlupdate="update gestor_activacion_pendientes_activador_dom set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
-           //  echo $sqlupdate;
-    }else {
-
-              $sqlupdate="update gestor_activacion_pendientes_activador_dom set FECHA_CARGA = '$today',STATUS='MALO',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID";
-            }
-        }
-             // echo $sqlupdate;
             $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
 
             //  echo "(1)";
@@ -10326,7 +10327,7 @@ private function loginNombreIp()
             " ,GESTIONADO_DIA,QUEDAN_PENDIENTES ".
             " ,OBSERVACIONES,USUARIO,FECHA_INICIO,FECHA_FIN ".
             " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION".
-             " ,(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION_SEGUNDOS".
+            " ,(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION_SEGUNDOS".
             " from transacciones_actividades ".
             " order by FECHA ASC ";
 
@@ -10836,9 +10837,9 @@ private function loginNombreIp()
 
 
         $query= "SELECT * ".
-                " FROM portalbd.gestor_interacciones_agendamiento ";
-            //echo $query;
-            $r = $conna->query($query) or die($this->mysqli->error.__LINE__);
+            " FROM portalbd.gestor_interacciones_agendamiento ";
+        //echo $query;
+        $r = $conna->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
             $result = array();
@@ -12069,23 +12070,23 @@ private function loginNombreIp()
         //echo $query; */
 
         $query=	" SELECT  ".
-                " a.FECHA ".
-                " , a.USER ".
-                " , case ".
-                "    when a.USER='GESTOR' then 'AUTOMATICO' ".
-                "    else a.GRUPO ".
-                "    end as GRUPO ".
-                " , trim(case ".
-                "    when a.USER='GESTOR' then 'DEMONIO' ".
-                "    when a.ACCION='' then 'SIN' ".
-                "    when a.ACCION='SE LOGUEO' then 'LOGIN' ".
-                "    else substr(a.ACCION,1, INSTR(a.ACCION, ' ' )) ".
-                "    end )as ACCION ".
-                " , a.ACCION AS DETALLE ".
-                " FROM activity_feed a ".
-                " WHERE a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' ".
-                " ORDER BY a.id DESC ".
-                " LIMIT 15 ";
+            " a.FECHA ".
+            " , a.USER ".
+            " , case ".
+            "    when a.USER='GESTOR' then 'AUTOMATICO' ".
+            "    else a.GRUPO ".
+            "    end as GRUPO ".
+            " , trim(case ".
+            "    when a.USER='GESTOR' then 'DEMONIO' ".
+            "    when a.ACCION='' then 'SIN' ".
+            "    when a.ACCION='SE LOGUEO' then 'LOGIN' ".
+            "    else substr(a.ACCION,1, INSTR(a.ACCION, ' ' )) ".
+            "    end )as ACCION ".
+            " , a.ACCION AS DETALLE ".
+            " FROM activity_feed a ".
+            " WHERE a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' ".
+            " ORDER BY a.id DESC ".
+            " LIMIT 15 ";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -13424,40 +13425,40 @@ private function loginNombreIp()
 
             }
         }
-            if ($exito) {
+        if ($exito) {
 
-                // SQL Feed----------------------------------
-                $sql_log = "insert into portalbd.activity_feed ( " .
-                    " USER " .
-                    ", USER_NAME " .
-                    ", GRUPO " .
-                    ", STATUS " .
-                    ", PEDIDO_OFERTA " .
-                    ", ACCION " .
-                    ", CONCEPTO_ID " .
-                    ", IP_HOST " .
-                    ", CP_HOST " .
-                    ") values( " .
-                    " UPPER('$usuarioGalleta')" .
-                    ", UPPER('$nombreGalleta')" .
-                    ", UPPER('$grupoGalleta')" .
-                    ",'OK' " .
-                    ",'$oferta' " .
-                    ",'AUDITO PEDIDO' " .
-                    ",'$estado_final' " .
-                    ",'$usuarioIp' " .
-                    ",'$usuarioPc')";
+            // SQL Feed----------------------------------
+            $sql_log = "insert into portalbd.activity_feed ( " .
+                " USER " .
+                ", USER_NAME " .
+                ", GRUPO " .
+                ", STATUS " .
+                ", PEDIDO_OFERTA " .
+                ", ACCION " .
+                ", CONCEPTO_ID " .
+                ", IP_HOST " .
+                ", CP_HOST " .
+                ") values( " .
+                " UPPER('$usuarioGalleta')" .
+                ", UPPER('$nombreGalleta')" .
+                ", UPPER('$grupoGalleta')" .
+                ",'OK' " .
+                ",'$oferta' " .
+                ",'AUDITO PEDIDO' " .
+                ",'$estado_final' " .
+                ",'$usuarioIp' " .
+                ",'$usuarioPc')";
 
-                $rlog = $this->mysqli->query ($sql_log);
-                // ---------------------------------- SQL Feed
-                //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$useri','$username','ORD','$estado_final','PEDIDO: $oferta','ORD') ";
-                //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
-                $this->response (json_encode (array("msg" => "OK", "transaccion" => $transaccion)), 200);
+            $rlog = $this->mysqli->query ($sql_log);
+            // ---------------------------------- SQL Feed
+            //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$useri','$username','ORD','$estado_final','PEDIDO: $oferta','ORD') ";
+            //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+            $this->response (json_encode (array("msg" => "OK", "transaccion" => $transaccion)), 200);
 
-            } else {
-                $this->response (json_encode('Error'), 403);        //"No Content" status
-                //$this->response("$query",200);        //"No Content" status
-            }
+        } else {
+            $this->response (json_encode('Error'), 403);        //"No Content" status
+            //$this->response("$query",200);        //"No Content" status
+        }
 
     }
 
@@ -13844,28 +13845,28 @@ private function loginNombreIp()
 
         if($tabla=='ACTIVADOR_SUSPECORE'){
 
-           $tabla = " from gestor_activacion_pendientes_activador_suspecore p " ;
+            $tabla = " from gestor_activacion_pendientes_activador_suspecore p " ;
 
-       } else {
+        } else {
 
-          $tabla = " from gestor_activacion_pendientes_activador_dom p " ;
+            $tabla = " from gestor_activacion_pendientes_activador_dom p " ;
 
 
-     }
+        }
 
 
         $query1=" SELECT ".
-                " p.PEDIDO,p.ORDER_SEQ_ID,p.ESTADO,p.TAREA_EXCEPCION,p.IDSERVICIORAIZ,p.TRANSACCION ".
-                " , group_concat(distinct p.PRODUCTO) as  PRODUCTOS ".
-                " , min(p.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
-                " ,min(p.FECHA_CREACION) as FECHA_CREACION ".
-                " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
-                " where a.PEDIDO='$pedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
-                $tabla.
-                " where p.PEDIDO = '$pedido'  ".
-                " and p.STATUS='PENDI_ACTI' ".
-                " group by p.pedido ";
-           //echo $query1;
+            " p.PEDIDO,p.ORDER_SEQ_ID,p.ESTADO,p.TAREA_EXCEPCION,p.IDSERVICIORAIZ,p.TRANSACCION ".
+            " , group_concat(distinct p.PRODUCTO) as  PRODUCTOS ".
+            " , min(p.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
+            " ,min(p.FECHA_CREACION) as FECHA_CREACION ".
+            " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
+            " where a.PEDIDO='$pedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
+            $tabla.
+            " where p.PEDIDO = '$pedido'  ".
+            " and p.STATUS='PENDI_ACTI' ".
+            " group by p.pedido ";
+        //echo $query1;
 
         $rPendi = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
@@ -14566,7 +14567,7 @@ private function loginNombreIp()
 
     }//----------------------------------------------- Historico de Pedidos
 
-   
+
     private function csvUsuarios(){
 
         if($this->get_request_method() != "POST"){
@@ -14594,21 +14595,21 @@ private function loginNombreIp()
 
 
         $query="SELECT ".
-               " u.ID, ".
-               " u.USUARIO_ID, ".
-               " u.USUARIO_NOMBRE, ".
-               " SUBSTRING_INDEX(u.USUARIO_NOMBRE, ' ', 1) as NOMBRE, ".
-               " u.CEDULA_ID, ".
-               " u.GRUPO, ".
-               " u.CORREO_USUARIO, ".
-               " concat(u.CARGO_ID,'-',c.NOMBRE_CARGO) as CARGO_ID, ".
-               " u.SUPERVISOR, ".
-               " u.INTERVENTOR, ".
-               " u.ESTADO ".
-               " FROM portalbd.tbl_usuarios u ".
-               " left join portalbd.tbl_cargos c on u.CARGO_ID=c.ID_CARGO ".
-               " where 1=1  ".
-               " order by 5, 3 asc ";
+            " u.ID, ".
+            " u.USUARIO_ID, ".
+            " u.USUARIO_NOMBRE, ".
+            " SUBSTRING_INDEX(u.USUARIO_NOMBRE, ' ', 1) as NOMBRE, ".
+            " u.CEDULA_ID, ".
+            " u.GRUPO, ".
+            " u.CORREO_USUARIO, ".
+            " concat(u.CARGO_ID,'-',c.NOMBRE_CARGO) as CARGO_ID, ".
+            " u.SUPERVISOR, ".
+            " u.INTERVENTOR, ".
+            " u.ESTADO ".
+            " FROM portalbd.tbl_usuarios u ".
+            " left join portalbd.tbl_cargos c on u.CARGO_ID=c.ID_CARGO ".
+            " where 1=1  ".
+            " order by 5, 3 asc ";
 
         //echo $query;
 
@@ -15129,8 +15130,8 @@ private function loginNombreIp()
         }
 
         $query= " update portalbd.informe_petec_pendientesm ".
-                " set RADICADO_TEMPORAL='$prioridad' ".
-                " where PEDIDO_ID='$pedido' ";
+            " set RADICADO_TEMPORAL='$prioridad' ".
+            " where PEDIDO_ID='$pedido' ";
 
         $rst = $this->mysqli->query($query);
         if($rst===TRUE){
@@ -15157,7 +15158,7 @@ private function loginNombreIp()
                 ",'$usuarioIp' ".
                 ",'$usuarioPc')";
 
-           // echo $sql_log;
+            // echo $sql_log;
             $rlog = $this->mysqli->query($sql_log);
 
             $this->response($this->json(array($msg)), 201);
@@ -15371,11 +15372,11 @@ private function loginNombreIp()
 
     }//-----------------------------------------------Fin funcion
 
-/**
- * Funcion de Prueba, Borrar luego.
- * Descripcion: Funcion para recrear la tabla de Ocupacion de Agendas
- * Grupo: Agendamiento
- */
+    /**
+     * Funcion de Prueba, Borrar luego.
+     * Descripcion: Funcion para recrear la tabla de Ocupacion de Agendas
+     * Grupo: Agendamiento
+     */
     private function GenerarOcupacionAgendas(){
         /**
          * Pasos:
@@ -15402,49 +15403,49 @@ private function loginNombreIp()
 
         //2. desde Subzonas
         $sqlZonasAgendamiento = " 	SELECT ".
-                " CONCAT(SUBSTR(C1.DEPARTAMENTO,1,2),SUBSTR(C1.CIUDAD,1,2),SUBSTR(C1.ZONA,1,2),C1.MICROZONA,'_MODULO') AS IDZONA ".
-                " , C1.DEPARTAMENTO ".
-                " , C1.CIUDAD ".
-                " , C1.ZONA ".
-                " , C1.MICROZONA ".
-                " , 'MODULO' as FUENTE ".
-                " FROM(SELECT ".
-                " 	upper(d.dep_departamento) as DEPARTAMENTO ".
-                " ,	IFNULL(UPPER(c.cda_ciudad),'SIN_CIUDAD') AS CIUDAD ".
-                " ,	CASE   ".
-                " 		WHEN (d.dep_departamento = 'Antioquia'   ".
-                " 			AND sz.sbz_subzona IN ('AMERICA','BUENOS_AIR','CEN','CENTRO','COLON','MIRAFLORES','NUTIBARA','OTRABANDA','SAN_BERN_1','SAN_BERN_2','SAN_JAVIER','VILLAHERMO'))  ".
-                " 		THEN 'CENTRO'  ".
-                " 		WHEN d.dep_departamento = 'Antioquia'     ".
-                " 			AND sz.sbz_subzona IN ('BARCOPGIR','BELLO_1','BELLO_2','BELLO_3','BERLIN','BOSQUE_1','BOSQUE_2','CARIBE','CASTILLA','FLORENCIA','GIR','IGUANA','IGUSANCRI','NIQUIA','NOR')   ".
-                " 		THEN 'NORTE'  ". 
-                " 		WHEN d.dep_departamento = 'Antioquia'     ". 
-                " 			AND sz.sbz_subzona IN ('CALDAS','ENVIGADO_1','ENVIGADO_2','ENVIGADO_3','ESTRELLA','GUAYABAL','ITAGUI_1','ITAGUI_2','ITAGUI_3','POBLADO_1','POBLADO_2','SABANETA','SANANTPRA','SUR-ENV','SUR','SUR-SAB')   ". 
-                " 		THEN 'SUR'     ". 
-                " 		WHEN d.dep_departamento = 'Antioquia'     ". 
-                " 			AND sz.sbz_subzona IN ('M1_ORIENTE', 'M2_ORIENTE', 'M3_ORIENTE', 'M4_ORIENTE' , 'M5_ORIENTE' ,'M6_ORIENTE','M7_ORIENTE','M8_ORIENTE','RIO', 'PALMAS', 'SANTAELENA')   ". 
-                " 		THEN 'ORIENTE'      ". 
-                " 		WHEN sz.sbz_subzona IN ('CAR','M1_CARTAGE','M2_CARTAGE','M3_CARTAGE','M4_CARTAGE','M5_CARTAGE') THEN 'CARTAGENA'  ". 
-                " 		WHEN sz.sbz_subzona IN ('TUR', 'M6_CARTAGE')  THEN 'TURBACO'   ". 
-                " 		WHEN sz.sbz_subzona IN ('CAN','DEFAULT','ENG','QCA','SUB','NORTE') THEN 'BOGOTA NORTE'    ". 
-                " 		WHEN sz.sbz_subzona IN ('BOSA','ECA','FRG','TIMIZA','SUR') THEN 'BOGOTA SUR'   ". 
-                " 		WHEN sz.sbz_subzona IN ('VAL','Valle del Cauca') THEN 'CALI'     ". 
-                " 		WHEN sz.sbz_subzona = 'PAL' THEN 'PALMIRA'   ". 
-                " 		WHEN sz.sbz_subzona = 'JAM' THEN 'JAMUNDI'   ". 
-                " 		WHEN d.dep_departamento IN ('Bolivar','Atlantico','Cundinamarca','Valle del Cauca') THEN UPPER(d.dep_departamento)  ". 
-                "         else 'SIN_ZONA' ". 
-                " END AS ZONA ". 
-                " , 	upper(sz.sbz_subzona) as MICROZONA ". 
-                " FROM dbAgendamiento.agn_subzonas sz ". 
-                " INNER join dbAgendamiento.agn_departamentos d on sz.sbz_departamento=d.dep_id ". 
-                " INNER join dbAgendamiento.agn_ciudades c on sz.sbz_ciudad=c.cda_id ". 
-                " order by 1, 2,3,4 asc ) C1 ". 
-                " GROUP BY  ". 
-                " C1.DEPARTAMENTO ". 
-                " , C1.CIUDAD ". 
-                " , C1.ZONA ". 
-                " , C1.MICROZONA ";
-        
+            " CONCAT(SUBSTR(C1.DEPARTAMENTO,1,2),SUBSTR(C1.CIUDAD,1,2),SUBSTR(C1.ZONA,1,2),C1.MICROZONA,'_MODULO') AS IDZONA ".
+            " , C1.DEPARTAMENTO ".
+            " , C1.CIUDAD ".
+            " , C1.ZONA ".
+            " , C1.MICROZONA ".
+            " , 'MODULO' as FUENTE ".
+            " FROM(SELECT ".
+            " 	upper(d.dep_departamento) as DEPARTAMENTO ".
+            " ,	IFNULL(UPPER(c.cda_ciudad),'SIN_CIUDAD') AS CIUDAD ".
+            " ,	CASE   ".
+            " 		WHEN (d.dep_departamento = 'Antioquia'   ".
+            " 			AND sz.sbz_subzona IN ('AMERICA','BUENOS_AIR','CEN','CENTRO','COLON','MIRAFLORES','NUTIBARA','OTRABANDA','SAN_BERN_1','SAN_BERN_2','SAN_JAVIER','VILLAHERMO'))  ".
+            " 		THEN 'CENTRO'  ".
+            " 		WHEN d.dep_departamento = 'Antioquia'     ".
+            " 			AND sz.sbz_subzona IN ('BARCOPGIR','BELLO_1','BELLO_2','BELLO_3','BERLIN','BOSQUE_1','BOSQUE_2','CARIBE','CASTILLA','FLORENCIA','GIR','IGUANA','IGUSANCRI','NIQUIA','NOR')   ".
+            " 		THEN 'NORTE'  ".
+            " 		WHEN d.dep_departamento = 'Antioquia'     ".
+            " 			AND sz.sbz_subzona IN ('CALDAS','ENVIGADO_1','ENVIGADO_2','ENVIGADO_3','ESTRELLA','GUAYABAL','ITAGUI_1','ITAGUI_2','ITAGUI_3','POBLADO_1','POBLADO_2','SABANETA','SANANTPRA','SUR-ENV','SUR','SUR-SAB')   ".
+            " 		THEN 'SUR'     ".
+            " 		WHEN d.dep_departamento = 'Antioquia'     ".
+            " 			AND sz.sbz_subzona IN ('M1_ORIENTE', 'M2_ORIENTE', 'M3_ORIENTE', 'M4_ORIENTE' , 'M5_ORIENTE' ,'M6_ORIENTE','M7_ORIENTE','M8_ORIENTE','RIO', 'PALMAS', 'SANTAELENA')   ".
+            " 		THEN 'ORIENTE'      ".
+            " 		WHEN sz.sbz_subzona IN ('CAR','M1_CARTAGE','M2_CARTAGE','M3_CARTAGE','M4_CARTAGE','M5_CARTAGE') THEN 'CARTAGENA'  ".
+            " 		WHEN sz.sbz_subzona IN ('TUR', 'M6_CARTAGE')  THEN 'TURBACO'   ".
+            " 		WHEN sz.sbz_subzona IN ('CAN','DEFAULT','ENG','QCA','SUB','NORTE') THEN 'BOGOTA NORTE'    ".
+            " 		WHEN sz.sbz_subzona IN ('BOSA','ECA','FRG','TIMIZA','SUR') THEN 'BOGOTA SUR'   ".
+            " 		WHEN sz.sbz_subzona IN ('VAL','Valle del Cauca') THEN 'CALI'     ".
+            " 		WHEN sz.sbz_subzona = 'PAL' THEN 'PALMIRA'   ".
+            " 		WHEN sz.sbz_subzona = 'JAM' THEN 'JAMUNDI'   ".
+            " 		WHEN d.dep_departamento IN ('Bolivar','Atlantico','Cundinamarca','Valle del Cauca') THEN UPPER(d.dep_departamento)  ".
+            "         else 'SIN_ZONA' ".
+            " END AS ZONA ".
+            " , 	upper(sz.sbz_subzona) as MICROZONA ".
+            " FROM dbAgendamiento.agn_subzonas sz ".
+            " INNER join dbAgendamiento.agn_departamentos d on sz.sbz_departamento=d.dep_id ".
+            " INNER join dbAgendamiento.agn_ciudades c on sz.sbz_ciudad=c.cda_id ".
+            " order by 1, 2,3,4 asc ) C1 ".
+            " GROUP BY  ".
+            " C1.DEPARTAMENTO ".
+            " , C1.CIUDAD ".
+            " , C1.ZONA ".
+            " , C1.MICROZONA ";
+
         $rSZA = $conna->query($sqlZonasAgendamiento);
 
         if($rSZA->num_rows > 0){
@@ -15693,7 +15694,7 @@ private function loginNombreIp()
             $smg2=$iOcM." Pedidos Insertados";
             $time_end = microtime (true);
             $time = $time_end - $time_start;
-            $this->response ($this->json ([$smg1, $smg2, $time]), 200); // send user details
+            $this->response ($this->json (array($smg1, $smg2, $time)), 200); // send user details
 
         }
 
@@ -15701,9 +15702,9 @@ private function loginNombreIp()
 
     }
 
-/**
- * Funcion para traer el usuario y la fecha de la auditoria de pedidos en O-XXX
- */
+    /**
+     * Funcion para traer el usuario y la fecha de la auditoria de pedidos en O-XXX
+     */
     private function buscarPedidoAuditarFenix(){
         if($this->get_request_method() != "GET"){
             $this->response('Metodo no soportado',406);
@@ -15715,35 +15716,35 @@ private function loginNombreIp()
         $connfstby=$this->connfstby;
 
         $sqlfenix= " SELECT ".
-                   " C1.PEDIDO_ID ".
-                   " , RTRIM(REGEXP_REPLACE((LISTAGG(C1.USUARIO_ID,'-') WITHIN GROUP (ORDER BY C1.USUARIO_ID asc)) ,   ".
-                   "     '([^-]*)(-\\1)+($|-)', '\\1\\3'),'-') AS USUARIOS ".
-                   " , RTRIM(REGEXP_REPLACE((LISTAGG(C1.FECHA,',') WITHIN GROUP (ORDER BY C1.USUARIO_ID asc)) ,   ".
-                   "     '([^,]*)(,\\1)+($|,)', '\\1\\3'),',') AS FECHAS ".
-                   " , REGEXP_COUNT((RTRIM(REGEXP_REPLACE((LISTAGG(C1.USUARIO_ID,'-') WITHIN GROUP (ORDER BY C1.USUARIO_ID asc)) ,  ".
-                   "     '([^-]*)(-\\1)+($|-)', '\\1\\3'),'-')),'-')+1 AS CANTIDADUSERS ".
-                   " FROM ( ".
-                   " SELECT ".
-                   " PEDIDO_ID ".
-                   " , CASE ".
-                   "   WHEN USUARIO_ID IN ('SYS', 'FENIX') THEN 'AUTOMATICO' ".
-                   "   ELSE USUARIO_ID ".
-                   " END AS USUARIO_ID ".
-                   " , TO_CHAR(FECHA,'RRRR-MM-DD') AS FECHA ".
-                   " FROM FNX_NOVEDADES_SOLICITUDES ".
-                   " WHERE PEDIDO_ID='$pedido' ".
-                   " AND (CONCEPTO_ID_ANTERIOR='PETEC' ".
-                   " OR CONCEPTO_ID_ANTERIOR='OKRED' ".
-                   " OR CONCEPTO_ID_ANTERIOR='PEXPQ' ".
-                   " OR CONCEPTO_ID_ANTERIOR='APPRV') ".
-                   " AND CONCEPTO_ID_ACTUAL IN ('PORDE', 'PSERV') ".
-                   " AND USUARIO_ID NOT IN ('USRFRABTS','ATCFENIX') ) C1 ".
-                   " GROUP BY C1.PEDIDO_ID ";
+            " C1.PEDIDO_ID ".
+            " , RTRIM(REGEXP_REPLACE((LISTAGG(C1.USUARIO_ID,'-') WITHIN GROUP (ORDER BY C1.USUARIO_ID asc)) ,   ".
+            "     '([^-]*)(-\\1)+($|-)', '\\1\\3'),'-') AS USUARIOS ".
+            " , RTRIM(REGEXP_REPLACE((LISTAGG(C1.FECHA,',') WITHIN GROUP (ORDER BY C1.USUARIO_ID asc)) ,   ".
+            "     '([^,]*)(,\\1)+($|,)', '\\1\\3'),',') AS FECHAS ".
+            " , REGEXP_COUNT((RTRIM(REGEXP_REPLACE((LISTAGG(C1.USUARIO_ID,'-') WITHIN GROUP (ORDER BY C1.USUARIO_ID asc)) ,  ".
+            "     '([^-]*)(-\\1)+($|-)', '\\1\\3'),'-')),'-')+1 AS CANTIDADUSERS ".
+            " FROM ( ".
+            " SELECT ".
+            " PEDIDO_ID ".
+            " , CASE ".
+            "   WHEN USUARIO_ID IN ('SYS', 'FENIX') THEN 'AUTOMATICO' ".
+            "   ELSE USUARIO_ID ".
+            " END AS USUARIO_ID ".
+            " , TO_CHAR(FECHA,'RRRR-MM-DD') AS FECHA ".
+            " FROM FNX_NOVEDADES_SOLICITUDES ".
+            " WHERE PEDIDO_ID='$pedido' ".
+            " AND (CONCEPTO_ID_ANTERIOR='PETEC' ".
+            " OR CONCEPTO_ID_ANTERIOR='OKRED' ".
+            " OR CONCEPTO_ID_ANTERIOR='PEXPQ' ".
+            " OR CONCEPTO_ID_ANTERIOR='APPRV') ".
+            " AND CONCEPTO_ID_ACTUAL IN ('PORDE', 'PSERV') ".
+            " AND USUARIO_ID NOT IN ('USRFRABTS','ATCFENIX') ) C1 ".
+            " GROUP BY C1.PEDIDO_ID ";
 
         $stid = oci_parse($connfstby, $sqlfenix);
 
         oci_execute($stid);
-        $data=[];
+        $data=array();
 
         while($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)){
             $data[]=$row;
@@ -15753,175 +15754,175 @@ private function loginNombreIp()
         //var_dump($data);
         if(empty($data)){
             $smg1 = "Sin registros";
-            $this->response ($this->json ([$smg1,]), 403); // send user details
+            $this->response ($this->json (array($smg1,'')), 403); // send user details
         }else{
             $this->response ($this->json ($data), 200); // send user details
         }
 
     }
-/**
- * Funcin para guardar la gestion de Asignaciones.
- * */
-private function guardarGestionAsignaciones()
-{
-    if ($this->get_request_method () != "POST") {
-        $this->response ('', 406);
-    }
-
-    $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
-    $usuarioPc      =   gethostbyaddr ($usuarioIp);
-    $galleta        =   json_decode (stripslashes ($_COOKIE['logedUser']), true);
-    $galleta        =   stripslashes ($_COOKIE['logedUser']);
-    $galleta        =   json_decode ($galleta);
-    $galleta        =   json_decode (json_encode ($galleta), True);
-    $usuarioGalleta =   $galleta['login'];
-    $nombreGalleta  =   $galleta['name'];
-    $grupoGalleta   =   $galleta['GRUPO'];
-
-    $gestion        =   json_decode (file_get_contents ("php://input"), true);
-    $fechaServidor  =   date("Y-m-d H:i:s");
-    $usuario        =   $gestion['gestion']['user'];
-    $fuente         =   $gestion['gestion']['fuente'];
-    $estado         =   $gestion['gestion']['ESTADO_ID'];
-    $programacion   =   $gestion['gestion']['horaLlamar'];
-    $pedido         =   $gestion['gestion']['pedido'];
-    $conceptoId     =   $gestion['gestion']['CONCEPTO_ANTERIOR'];
-    $idpedido       =   $gestion['gestion']['ID'];
-
-    $malo           =   false;
-    $programado     =   false;
-    $cerrar         =   true;
-    $guardar        =   false;
-    $mysqlerror     =   "";
-    $error          =   "";
-    $sqlupdate      =   "";
-    $columns        =   '';
-    $values         =   '';
-
-    $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo','fecha_estado','concepto_final','source');
-    $keys = array_keys($gestion['gestion']);
-
-    if($usuario='undefined' || $usuario=''){$usuario = $usuarioGalleta;}
-    if($programacion!=="SIN"){$programado = true;}
-    if($estado=='MALO'){$malo = true;}
-
-    if($malo){
-        $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='$estado',ASESOR='' WHERE ID=$idpedido";
-        $varFeed = "GUARDO PEDIDO MALO";
-        $cerrar = false;
-    }
-    if($programado){
-
-        $sqlupdate="update informe_petec_pendientesm set PROGRAMACION='$programacion', RADICADO_TEMPORAL='NO',ASESOR='', STATUS='PENDI_PETEC' WHERE STATUS in ('PENDI_PETEC','MALO') and PEDIDO_ID='$pedido' ";
-        $varFeed = "PROGRAMO PEDIDO";
-        $cerrar = false;
-
-    }
-    if($cerrar){
-        $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='CERRADO_PETEC',ASESOR='' WHERE ID=$idpedido ";
-        $varFeed = "GUARDO PEDIDO";
-
-    }
-
-    $rUpdate = $this->mysqli->query($sqlupdate);
-
-    if (!$rUpdate) {
-        $mysqlerror = $this->mysqli->error;
-        $guardar = false;
-    }
-
-    if($fuente==="SIEBEL"){// Si el pedido viene de siebel
-        $sqlNca =   " INSERT INTO portalbd.transacciones_nca ( ".
-                    " OFERTA, ".
-                    " MUNICIPIO_ID, ".
-                    " TRANSACCION, ".
-                    " ESTADO, ".
-                    " FECHA, ".
-                    " DURACION, ".
-                    " INCIDENTE, ".
-                    " FECHA_INICIO, ".
-                    " FECHA_FIN, ".
-                    " ESTADO_FINAL, ".
-                    " OBSERVACION, ".
-                    " USUARIO ".
-                    " ) VALUES (".
-                    " '".$gestion['gestion']['pedido']."' , ".
-                    " '".$gestion['gestion']['MUNICIPIO_ID']."'  , ".
-                    " '".$gestion['gestion']['TRANSACCION']."'   , ".
-                    " '".$gestion['gestion']['CONCEPTO_ID']."'   , ".
-                    " '".$gestion['gestion']['FECHA']."'   , ".
-                    " '".$gestion['gestion']['duracion']."'  , ".
-                    " '".$gestion['gestion']['INCIDENTE']."'  , ".
-                    " '".$gestion['gestion']['fecha_inicio']."' , ".
-                    " '".$gestion['gestion']['fecha_fin']."'  , ".
-                    " '".$gestion['gestion']['ESTADO_ID']."'   , ".
-                    " '".$gestion['gestion']['OBSERVACIONES_PROCESO']."'  , ".
-                    " '".$gestion['gestion']['user']."'  ".
-                    " ) ";
-        $insertNca = $this->mysqli->query($sqlNca);
-        $guardar = true;
-    }else{
-        if($fuente==='FENIX_NAL'){// Si es fenix, vaya y mire si cambio de concepto
-            //Revisamos en fenix si el concepto cambio
-            $concepto_final=$this-> buscarConceptoFinalFenix($pedido);
-            $gestion['gestion']['concepto_final'] = $concepto_final;
-            $guardar = true;
-
-        }else{ // Si no aplica, haga un guardado general.
-            $guardar = true;
+    /**
+     * Funcin para guardar la gestion de Asignaciones.
+     * */
+    private function guardarGestionAsignaciones()
+    {
+        if ($this->get_request_method () != "POST") {
+            $this->response ('', 406);
         }
 
-    }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr ($usuarioIp);
+        $galleta        =   json_decode (stripslashes ($_COOKIE['logedUser']), true);
+        $galleta        =   stripslashes ($_COOKIE['logedUser']);
+        $galleta        =   json_decode ($galleta);
+        $galleta        =   json_decode (json_encode ($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
 
+        $gestion        =   json_decode (file_get_contents ("php://input"), true);
+        $fechaServidor  =   date("Y-m-d H:i:s");
+        $usuario        =   $gestion['gestion']['user'];
+        $fuente         =   $gestion['gestion']['fuente'];
+        $estado         =   $gestion['gestion']['ESTADO_ID'];
+        $programacion   =   $gestion['gestion']['horaLlamar'];
+        $pedido         =   $gestion['gestion']['pedido'];
+        $conceptoId     =   $gestion['gestion']['CONCEPTO_ANTERIOR'];
+        $idpedido       =   $gestion['gestion']['ID'];
 
+        $malo           =   false;
+        $programado     =   false;
+        $cerrar         =   true;
+        $guardar        =   false;
+        $mysqlerror     =   "";
+        $error          =   "";
+        $sqlupdate      =   "";
+        $columns        =   '';
+        $values         =   '';
 
-    if($guardar){//Si fue gestionado, Insertamos gestion en pedidos y mandamos JSON con respuesta.
-        foreach($column_names as $desired_key){
-            if(!in_array($desired_key, $keys)) {
-                $$desired_key = '';
-            }else{
-                $$desired_key = $gestion['gestion'][$desired_key];
+        $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo','fecha_estado','concepto_final','source');
+        $keys = array_keys($gestion['gestion']);
+
+        if($usuario='undefined' || $usuario=''){$usuario = $usuarioGalleta;}
+        if($programacion!=="SIN"){$programado = true;}
+        if($estado=='MALO'){$malo = true;}
+
+        if($malo){
+            $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='$estado',ASESOR='' WHERE ID=$idpedido";
+            $varFeed = "GUARDO PEDIDO MALO";
+            $cerrar = false;
+        }
+        if($programado){
+
+            $sqlupdate="update informe_petec_pendientesm set PROGRAMACION='$programacion', RADICADO_TEMPORAL='NO',ASESOR='', STATUS='PENDI_PETEC' WHERE STATUS in ('PENDI_PETEC','MALO') and PEDIDO_ID='$pedido' ";
+            $varFeed = "PROGRAMO PEDIDO";
+            $cerrar = false;
+
+        }
+        if($cerrar){
+            $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='CERRADO_PETEC',ASESOR='' WHERE ID=$idpedido ";
+            $varFeed = "GUARDO PEDIDO";
+
+        }
+
+        $rUpdate = $this->mysqli->query($sqlupdate);
+
+        if (!$rUpdate) {
+            $mysqlerror = $this->mysqli->error;
+            $guardar = false;
+        }
+
+        if($fuente==="SIEBEL"){// Si el pedido viene de siebel
+            $sqlNca =   " INSERT INTO portalbd.transacciones_nca ( ".
+                " OFERTA, ".
+                " MUNICIPIO_ID, ".
+                " TRANSACCION, ".
+                " ESTADO, ".
+                " FECHA, ".
+                " DURACION, ".
+                " INCIDENTE, ".
+                " FECHA_INICIO, ".
+                " FECHA_FIN, ".
+                " ESTADO_FINAL, ".
+                " OBSERVACION, ".
+                " USUARIO ".
+                " ) VALUES (".
+                " '".$gestion['gestion']['pedido']."' , ".
+                " '".$gestion['gestion']['MUNICIPIO_ID']."'  , ".
+                " '".$gestion['gestion']['TRANSACCION']."'   , ".
+                " '".$gestion['gestion']['CONCEPTO_ID']."'   , ".
+                " '".$gestion['gestion']['FECHA']."'   , ".
+                " '".$gestion['gestion']['duracion']."'  , ".
+                " '".$gestion['gestion']['INCIDENTE']."'  , ".
+                " '".$gestion['gestion']['fecha_inicio']."' , ".
+                " '".$gestion['gestion']['fecha_fin']."'  , ".
+                " '".$gestion['gestion']['ESTADO_ID']."'   , ".
+                " '".$gestion['gestion']['OBSERVACIONES_PROCESO']."'  , ".
+                " '".$gestion['gestion']['user']."'  ".
+                " ) ";
+            $insertNca = $this->mysqli->query($sqlNca);
+            $guardar = true;
+        }else{
+            if($fuente==='FENIX_NAL'){// Si es fenix, vaya y mire si cambio de concepto
+                //Revisamos en fenix si el concepto cambio
+                $concepto_final=$this-> buscarConceptoFinalFenix($pedido);
+                $gestion['gestion']['concepto_final'] = $concepto_final;
+                $guardar = true;
+
+            }else{ // Si no aplica, haga un guardado general.
+                $guardar = true;
             }
-            $columns = $columns.$desired_key.',';
-            $values = $values."'".$gestion['gestion'][$desired_key]."',";
+
         }
 
-        $queryGestion = "INSERT INTO pedidos(".trim($columns,',').") VALUES(".trim($values,',').")";
-
-        $insertGestion = $this->mysqli->query($queryGestion);
-
-        //Activiy Feed ------------------------------------------------------------------
-        $sqlFeed =  "insert into portalbd.activity_feed ( ".
-                    " USER ".
-                    ", USER_NAME ".
-                    ", GRUPO ".
-                    ", STATUS ".
-                    ", PEDIDO_OFERTA ".
-                    ", ACCION ".
-                    ", CONCEPTO_ID ".
-                    ", IP_HOST ".
-                    ", CP_HOST ".
-                    ") values( ".
-                    " UPPER('$usuario')".
-                    ", UPPER('$nombreGalleta')".
-                    ", UPPER('$grupoGalleta')".
-                    ",'$estado' ".
-                    ",'$pedido' ".
-                    ",'$varFeed' ".
-                    ",'$conceptoId' ".
-                    ",'$usuarioIp' ".
-                    ",'$usuarioPc')";
-        $rFeed = $this->mysqli->query($sqlFeed);
-        //------------------------------------------------------------------Activiy Feed
 
 
+        if($guardar){//Si fue gestionado, Insertamos gestion en pedidos y mandamos JSON con respuesta.
+            foreach($column_names as $desired_key){
+                if(!in_array($desired_key, $keys)) {
+                    $$desired_key = '';
+                }else{
+                    $$desired_key = $gestion['gestion'][$desired_key];
+                }
+                $columns = $columns.$desired_key.',';
+                $values = $values."'".$gestion['gestion'][$desired_key]."',";
+            }
 
-        $this->response ($this->json (array($malo, $programado,$programacion)), 200);
-    }else{
-        $error = "Error guardando: $mysqlerror";
-        $this->response ($this->json (array($error, $fuente, $estado, $malo, $programado)), 403);
+            $queryGestion = "INSERT INTO pedidos(".trim($columns,',').") VALUES(".trim($values,',').")";
+
+            $insertGestion = $this->mysqli->query($queryGestion);
+
+            //Activiy Feed ------------------------------------------------------------------
+            $sqlFeed =  "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuario')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'$estado' ".
+                ",'$pedido' ".
+                ",'$varFeed' ".
+                ",'$conceptoId' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+            $rFeed = $this->mysqli->query($sqlFeed);
+            //------------------------------------------------------------------Activiy Feed
+
+
+
+            $this->response ($this->json (array($malo, $programado,$programacion)), 200);
+        }else{
+            $error = "Error guardando: $mysqlerror";
+            $this->response ($this->json (array($error, $fuente, $estado, $malo, $programado)), 403);
+        }
     }
-}
 
     private function buscarConceptoFinalFenix($pedidoBusqueda){
 
@@ -15945,12 +15946,12 @@ private function guardarGestionAsignaciones()
         oci_execute($stid);
         if($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)){
             $conceptoFinal=$row['CONCEPTO_FINAL'];
-                return $conceptoFinal;
-            }else{//no cambio de concepto, controlar...
+            return $conceptoFinal;
+        }else{//no cambio de concepto, controlar...
 
-                return "SIN DATOS";
-            }
+            return "SIN DATOS";
         }
+    }
 
     /**
      * Funcin para listar y buscar pedidos que fueron Auditados
@@ -15990,20 +15991,20 @@ private function guardarGestionAsignaciones()
         }
 
         $sql =  " SELECT ID, ".
-                " FECHA_GESTION as FECHA_ESTUDIO ".
-                " , PEDIDO_ID ".
-                " , TIPO_ELEMENTO_ID ".
-                " , USUARIO_ID_GESTION as USUARIO ".
-                " , ANALISIS ".
-                " , CONCEPTO_ACTUAL as CONCEPTO_AUDITORIA ".
-                " , OBSERVACIONES ".
-                " , FECHA_FIN AS FECHA_GESTION  ".
-                " , USUARIO_ID ".
-                " FROM portalbd.gestor_transacciones_oxxx ".
-                " WHERE 1=1 ".
-                " $paramlst order by ID desc limit 500 ";
+            " FECHA_GESTION as FECHA_ESTUDIO ".
+            " , PEDIDO_ID ".
+            " , TIPO_ELEMENTO_ID ".
+            " , USUARIO_ID_GESTION as USUARIO ".
+            " , ANALISIS ".
+            " , CONCEPTO_ACTUAL as CONCEPTO_AUDITORIA ".
+            " , OBSERVACIONES ".
+            " , FECHA_FIN AS FECHA_GESTION  ".
+            " , USUARIO_ID ".
+            " FROM portalbd.gestor_transacciones_oxxx ".
+            " WHERE 1=1 ".
+            " $paramlst order by ID desc limit 500 ";
 
-       // echo $sql;
+        // echo $sql;
         $r = $this->mysqli->query($sql);
 
         if($r->num_rows > 0){
