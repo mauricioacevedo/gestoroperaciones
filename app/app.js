@@ -5401,7 +5401,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     }
 
     $scope.idPermisos = idPermisos.getIds().then(function(data){
-        return data;
+        $scope.idPermisos=data.value;
     });
     console.log($scope.idPermisos);
     //$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
