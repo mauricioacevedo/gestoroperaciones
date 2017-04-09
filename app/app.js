@@ -5401,6 +5401,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     }
 
     $scope.idPermisos = idPermisos.getIds();
+    console.log($scope.idPermisos);
     //$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
     $scope.habilitarPrioridad = function (pedinfo){
 //        console.log(pedinfo);
