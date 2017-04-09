@@ -5400,9 +5400,12 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         $scope.calcularPendientes($routeParams.conceptoid);
     }
 
-    $scope.idPermisos = idPermisos.getIds().then(function(data){
-        $scope.idPermisos=data.value;
-    });
+    $scope.idPermisos = idPermisos.getIds().then(
+        function(data){
+            $scope.idPermisos=data;
+    }, function(data){
+            console.log(data);
+        });
     console.log($scope.idPermisos);
     //$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
     $scope.habilitarPrioridad = function (pedinfo){
