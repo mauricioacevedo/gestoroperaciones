@@ -5399,14 +5399,20 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         //alert("hola");
         $scope.calcularPendientes($routeParams.conceptoid);
     }
-
+    idPermisos.getIds().then(
+        function (data) {
+            $scope.idPermisos = data;
+        }, function(){
+            $scope.errorDatos = "Error en permisos";
+        });
+    /*
     $scope.idPermisos = idPermisos.getIds().then(
         function(data){
             $scope.idPermisos=data;
     }, function(data){
             console.log(data);
         });
-    console.log($scope.idPermisos);
+    console.log($scope.idPermisos); */
     //$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
     $scope.habilitarPrioridad = function (pedinfo){
 //        console.log(pedinfo);
