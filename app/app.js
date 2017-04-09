@@ -13710,7 +13710,13 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	var estadoFinal				= '';
 
     $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
-	$scope.idPermisos = idPermisos.getIds();
+	//$scope.idPermisos = idPermisos.getIds();
+    idPermisos.getIds().then(
+        function (data) {
+            $scope.idPermisos = data;
+        }, function(){
+            $scope.errorDatos = "Error en permisos";
+        });
 
 	//$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG','JCASTAMU', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
     $scope.idConceptos=['O-13', 'O-15', 'O-106'];
