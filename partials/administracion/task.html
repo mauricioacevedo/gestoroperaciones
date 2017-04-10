@@ -35,7 +35,7 @@
                             <td><span class="small" ng-style="estiloflag(t.PRIORIDAD)" tooltip-placement="left" uib-tooltip="{{t.PRIORIDAD}}"><i class="fa fa-flag" aria-hidden="true"></i></span></td>
                             <td><span class="small">{{t.ESTADO}}</span></td>
                             <td><span class="small">{{t.FECHA_INICIO}}</span></td>
-                            <td><span class="small"><div class="col-sm-4"><uib-progressbar value="{{t.PROGRESO}}">{{t.PROGRESO}}</uib-progressbar></div></span></td>
+                            <td><span class="small"><div class="col-sm-4"><uib-progressbar value="t.PROGRESO">{{t.PROGRESO}}</uib-progressbar></div></span></td>
                             <td><img class="profile-card" data-ng-src="{{t.PIC || 'images/avatar_2x.png'}}" height="20px" width="20px"/> <span class="small">{{t.USUARIO_GEST}}</span></td>
                             <td><span class="small">{{t.TIPO}}</span></td>
                             <td><span class="small">{{t.CATEGORIA}}</span></td>
