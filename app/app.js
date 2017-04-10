@@ -10372,7 +10372,7 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 
 $scope.Gestion_Pendientes = function () {
 		//console.log("gestion: ".$scope.gestion_Pendientes);
-		console.log("pedido: ".$scope.pedido);
+		console.log("pedido: ".$scope.pedido1);
 		console.log("login: ".$rootScope.logedUser.login);
 }
 
