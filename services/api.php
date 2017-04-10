@@ -13633,7 +13633,7 @@ class API extends REST {
                                 ",'$OBSERVACION_GESTOR' ".
                                 ",'$HISTORICO_NOVEDAD' ".
                                 ",'$ASESOR')";
-echo $sql_gestionPendientes;
+
                             $rst = $this->connseguimiento->query($sql_gestionPendientes);
                             // ---------------------------------- SQL Feed
                             //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','ADMIN','','','UPDATEPARAMETRO','$param:$value') ";
