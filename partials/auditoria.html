@@ -263,7 +263,32 @@
                                                 </script>
                                         </div>
 
-
+                                        <hr>
+                                <div class="checkbox">
+                                  <label><input type="checkbox" ng-model="gestion_Pendientes.Gestion"><b>Gestión pendiente</b></label>
+                                </div>
+                                <br>
+                                <div ng-show="gestion_Pendientes.Gestion">
+                                <i class="fa fa-globe" aria-hidden="true"></i> Causa raiz</b>         
+                                    <select   class= "btn btn-default btn-xs grupo-select"
+                                          ng-model="gestion_Pendientes.causaraiz">
+                                        <option value="" disabled>--Seleccione--</option>
+                                        <option value="Pendiente Siebel" >Pendiente Siebel</option>
+                                        <option value="Punto de NO retorno" >Punto de NO retorno</option>
+                                        <option value="Suin" >Suin</option>
+                                        <option value="Oferta" >Oferta</option>
+                                    </select><br>
+                                    <br>
+                                   <i class="fa fa-globe" aria-hidden="true"></i> Responsable</b>         
+                                    <select   class= "btn btn-default btn-xs grupo-select"
+                                          ng-model="gestion_Pendientes.responsable">
+                                        <option value="" disabled>--Seleccione--</option>
+                                        <option value="Hernando">Hernando</option>
+                                        <option value="Wilmar Zamudio">Wilmar Zamudio</option>
+                                        <option value="Mesa de servicio">Mesa de servicio</option>
+                                        <option value="Jorge Ivan Zapata Montoya">Jorge Ivan Zapata Montoya</option>
+                                    </select>
+                                </div>     
 
                                         <div  ng-show="service.NOVEDAD!='ESCALADO CR' && service.NOVEDAD!='' && service.NOVEDAD!=undefined && service.NOVEDAD!='RECUPERAR EQUIPOS' && service.NOVEDAD!='RETIRAR ACCESO' && service.NOVEDAD!='PENDIENTE ANULAR PRODUCTO'
                                         && service.NOVEDAD!='CUMPLIDO'&& service.NOVEDAD!='PENDIENTE AGENDA'&& service.NOVEDAD!='ANULADO'
