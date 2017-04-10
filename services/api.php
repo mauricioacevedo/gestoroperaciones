@@ -16297,12 +16297,13 @@ class API extends REST {
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
         $today          =   date("Y-m-d");
+        
+        
 
         $sql =  " SELECT *, tp.PIC FROM portalbd.go_task t ".
                 " left join portalbd.go_task_profile tp on t.USUARIO_GEST=tp.USUARIO_ID ".
                 " where 1=1 ".
-                " and ESTADO='PENDIENTE' ".
-                " and USUARIO_GEST='CGONZGO' ";
+                " and ESTADO='PENDIENTE' ";
 
         // echo $sql;
         $r = $this->mysqli->query($sql);
