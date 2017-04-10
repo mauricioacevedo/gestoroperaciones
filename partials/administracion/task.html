@@ -20,6 +20,7 @@
                     <tr>
                         <th>Flag</th>
                         <th>Inicio</th>
+                        <th>Estado</th>
                         <th>Responsable</th>
                         <th>Tipo</th>
                         <th>Categoría</th>
@@ -31,6 +32,7 @@
                     <tbody>
                         <tr  ng-repeat="t in task.crud">
                             <td><span class="small" ng-style="estiloflag(t.PRIORIDAD)" tooltip-placement="left" uib-tooltip="{{t.PRIORIDAD}}"><i class="fa fa-flag" aria-hidden="true"></i></span></td>
+                            <td><span class="small">{{t.ESTADO}}</span></td>
                             <td><span class="small">{{t.FECHA_INICIO}}</span></td>
                             <td><img class="profile-card" data-ng-src="{{t.PIC || 'images/avatar_2x.png'}}" height="20px" width="20px"/> <span class="small">{{t.USUARIO_GEST}}</span></td>
                             <td><span class="small">{{t.TIPO}}</span></td>
