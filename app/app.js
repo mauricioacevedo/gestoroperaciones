@@ -15605,7 +15605,7 @@ app.config(['$routeProvider',
 		})
         .when('/taskadmin/', {
             title: 'Tareas Gerencia',
-            templateUrl: 'partials/administracion/tasks.html',
+            templateUrl: 'partials/administracion/task.html',
             controller: 'taskCtrl'
         })
 		// HERRAMIENTAS ------------------------------------------
