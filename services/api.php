@@ -13597,6 +13597,8 @@ class API extends REST {
 								$this->response('',406);
 							}
 
+                            $params = json_decode(file_get_contents('php://input'),true);
+
                             $datos = $params['datos'];
                             $causa_raiz = $datos['causaraiz'];
                             $responsable = $datos['responsable'];
