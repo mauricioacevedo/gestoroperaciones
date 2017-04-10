@@ -28,8 +28,12 @@
 
             </div>
             <div class="panel-body">
+                <ul>
+                    <li ng-repeat="t in task.crud">
+                        <img data-ng-src="data:image/JPEG;base64,{{t.PIC}}" data-err-src="images/avatar_2x.png"/>
+                    </li>
+                </ul>
 
-                <img data-ng-src="data:image/png;base64,{{task.crud.PIC}}" data-err-src="images/png/avatar.png"/>
 
 
             </div>
