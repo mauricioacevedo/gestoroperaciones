@@ -13601,18 +13601,21 @@ class API extends REST {
 
                             $datos = $params['datosPendientes'];
                             $gestion = $params['datosGestion'];
-                           
-
-                        echo var_dump($datos);
-                        echo var_dump($gestion);
+                            $NOVEDAD = $gestion[NOVEDAD];
+                            $ASESOR = $gestion[ASESOR];
+                            $OBSERVACION_GESTOR = $gestion[OBSERVACION_GESTOR];
+                            $HISTORICO_NOVEDAD = $gestion[HISTORICO_NOVEDAD];
+                            $causaraiz = $datos[causaraiz];
+                            $responsable = $gestion[responsable];
+                            $pedido = $gestion[PEDIDO_ID];
 
 
                         $today=	date("Y")."-".date("m")."-".date("d"); 
-             /*           
+                     
                         $this->dbSeguimientoConnect();
 
                             // SQL Feed----------------------------------
-                            $sql_log=   "insert into historicoGestionPendientes ( ".
+                            $sql_gestionPendientes=   "insert into historicoGestionPendientes ( ".
                                 " pedido ".
                                 ", causa_raiz ".
                                 ", responsable ".
@@ -13624,20 +13627,18 @@ class API extends REST {
                                 " $pedido".
                                 ", $causa_raiz".
                                 ", $responsable".
-                                ",'$value' ".
-                                ",'SIN PEDIDO' ".
-                                ",'ACTUALIZO PARAMETRO' ".
-                                ",'$param' ".
-                                ",'$usuarioIp' ".
-                                ",'$usuarioPc')";
-
-                            $rst = $this->connseguimiento->query($sqlLogin);
+                                ",'$OBSERVACION_GESTOR' ".
+                                ",'$HISTORICO_NOVEDAD' ".
+                                ",'$today' ".
+                                ",'$ASESOR')";
+echo $sql_gestionPendientes;
+                            $rst = $this->connseguimiento->query($sql_gestionPendientes);
                             // ---------------------------------- SQL Feed
                             //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','ADMIN','','','UPDATEPARAMETRO','$param:$value') ";
                             //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
                             $this->response(json_encode(array("OK","PARAMETRO ACTUALIZADO")), 200);
-*/
+
                         }
 
 

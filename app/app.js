@@ -10382,14 +10382,6 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 			$scope.gestion_Pendientes.Gestion == false;
 			$scope.gestion_Pendientes = {};
 	}; //FIN SAVEPEDIDO
-
-		$scope.Gestion_Pendientes = function () {
-			console.log($scope.pedido);
-				services.gestionPendientesInstaMalos($scope.gestion_Pendientes, $scope.pedido).then(function (data) {
-						return data.data;
-				});
-			}
-
 });
 
 
