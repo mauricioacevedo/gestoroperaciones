@@ -10373,7 +10373,7 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 		});
 
 			if	($scope.gestion_Pendientes.Gestion==true){
-				var novedad = $scope.peds[0].NOVEDAD
+				var novedad = $scope.peds[0].HISTORICO_NOVEDAD
 					services.gestionPendientesInstaMalos($scope.gestion_Pendientes, $scope.pedido1, $rootScope.logedUser.login, novedad).then(function (data) {
 						console.log(data.data[0]);
 						return data.data;

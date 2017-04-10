@@ -13598,10 +13598,17 @@ class API extends REST {
 							}
 
                             $datos = $params['datos'];
+                            $causa_raiz = $datos['causaraiz'];
+                            $responsable = $datos['responsable'];
 				            $pedido = $params['pedido'];
 				            $user = $params['user'];
                             $novedad = $params['novedad'];
-                          echo var_dump($datos);  
+                         
+                         echo "causa raiz: ".$causa_raiz;
+                         echo "responsable: ".$responsable;
+                         echo "pedido: ".$pedido;
+                         echo "user: ".$user;
+                         echo "novedad: ".$novedad;
 				            //HFC-DTH
 				          //  $cuentaDomiciliaria = $datos['cuenta'];
 
