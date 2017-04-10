@@ -14896,10 +14896,11 @@ $scope.getTaskOptions = function () {
 };
 
 $scope.getTaskCrud = function () {
-        $http.get('./services/taskCrud').then(
+        $http.get('./services/taskCrud', {responseType: "arraybuffer"}).then(
             function (res) {
                 $rootScope.errorDatos = null;
                 $scope.task.crud = res.data;
+                $scope.task.pic = 'data:image/jpeg;base64,' + _arrayBufferToBase64($scope.task.crud.PIC);;
             }, function (res) {
                 $rootScope.errorDatos = 'Error: '+res.status;
             }
