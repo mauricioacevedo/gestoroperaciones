@@ -9638,7 +9638,7 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 	divi.style.visibility = "visible";
 	divi.style.position = "relative";
 	$scope.lastUpdate = "";
-
+	$scope.gestion_Pendientes={};
 
 	$scope.peds = {};
 
@@ -10367,6 +10367,11 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 			return status;
 		});
 
+
+		//gestion de pendientes malos
+				console.log("si lo escogio: "+$scope.gestion_Pendientes.Gestion);
+
+		//gestion de pendientes malos
 	}; //FIN SAVEPEDIDO
 
 
