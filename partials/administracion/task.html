@@ -21,8 +21,11 @@
                         <th>Flag</th>
                         <th>Inicio</th>
                         <th>Responsable</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
+                        <th>Tipo</th>
+                        <th>Categoría</th>
+                        <th>Grupo</th>
+                        <th>Usuario</th>
+                        <th>Observaciones</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -31,7 +34,10 @@
                             <td>{{t.FECHA_INICIO}}</td>
                             <td><img class="profile-card" data-ng-src="{{t.PIC || 'images/avatar_2x.png'}}" height="20px" width="20px"/> {{t.USUARIO_GEST}}</td>
                             <td>{{t.TIPO}}</td>
-                            <td></td>
+                            <td>{{t.CATEGORIA}}</td>
+                            <td>{{t.GRUPO}}</td>
+                            <td>{{t.REPRESENTANTE}}</td>
+                            <td>{{t.OBSERVACIONES}}</td>
                         </tr>
                     </tbody>
                 </table>

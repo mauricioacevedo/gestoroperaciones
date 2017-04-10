@@ -16300,7 +16300,7 @@ class API extends REST {
         
         
 
-        $sql =  " SELECT *, tp.PIC FROM portalbd.go_task t ".
+        $sql =  " SELECT t.*, tp.PIC FROM portalbd.go_task t ".
                 " left join portalbd.go_task_profile tp on t.USUARIO_GEST=tp.USUARIO_ID ".
                 " where 1=1 ".
                 " and ESTADO='PENDIENTE' ";
