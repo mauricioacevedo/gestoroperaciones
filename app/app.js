@@ -14912,19 +14912,25 @@ $scope.getTaskCrud = function () {
 
 
     $scope.estiloflag = function (rank) {
-        console.log(rank);
+        //console.log(rank);
         var normal      =       "#24b5e8";
         var medio       =       "#e85504";
         var alto        =       "#e80f2d";
 
-        if(rank=='BAJA'){
-           $scope.colorflag =  normal
+        if(rank==='BAJA'){
+           $scope.colorflag =  {
+               color:normal
+           }
         }
-        if(rank=='MEDIA'){
-            $scope.colorflag =  medio
+        if(rank==='MEDIA'){
+            $scope.colorflag =  {
+                color:medio
+            }
         }
-        if(rank=='ALTA'){
-            $scope.colorflag =  alto
+        if(rank==='ALTA'){
+            $scope.colorflag =  {
+                color:alto
+            }
         }
         return  $scope.colorflag;
     };
