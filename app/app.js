@@ -10373,7 +10373,7 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 		});
 
 			if	($scope.gestion_Pendientes.Gestion==true){
-				console.log("pedido: "$scope.pedido);
+				console.log("pedido: "+$scope.pedido);
 					services.gestionPendientesInstaMalos($scope.gestion_Pendientes, $scope.pedido).then(function (data) {
 						console.log(data.data[0]);
 						return data.data;
