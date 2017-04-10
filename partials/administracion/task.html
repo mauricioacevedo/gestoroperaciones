@@ -28,7 +28,7 @@
                         <th>Categoría</th>
                         <th>Grupo</th>
                         <th>Usuario</th>
-                        <th>Observaciones</th>
+                        <th>Mas...</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -43,7 +43,23 @@
                             <td><span class="small">{{t.CATEGORIA}}</span></td>
                             <td><span class="small">{{t.GRUPO}}</span></td>
                             <td><span class="small">{{t.REPRESENTANTE}}</span></td>
-                            <td><span class="small">boton</span></td>
+                            <td><button type="button" uib-tooltip="Observaciones" tooltip-placement="left"
+                                        class="btn btn-default btn-circle-xss"
+                                        ng-disabled="loading">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
+                                <button type="button" uib-tooltip="Editar: {{t.IDTAREA}}" tooltip-placement="left"
+                                                            class="btn btn-default btn-circle-xss" ng-click="editarModal(data)"
+                                                            data-toggle="modal" data-target="#editarModal" data-backdrop="static"
+                                                            ng-disabled="loading">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" uib-tooltip="Borrar: {{t.IDTAREA}}" tooltip-placement="left"
+                                        class="btn btn-default btn-circle-xss" ng-click="borrarModal(data)"
+                                        data-toggle="modal" data-target="#eliminaUsuario" data-backdrop="static"
+                                        ng-disabled="loading">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button></td>
                         </tr>
                     </tbody>
                 </table>
