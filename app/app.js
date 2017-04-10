@@ -14899,7 +14899,7 @@ $scope.getTaskCrud = function () {
         $http.get('./services/taskCrud', {responseType: "arraybuffer"}).then(
             function (res) {
                 $rootScope.errorDatos = null;
-                $scope.task.crud = res.data[0];
+                $scope.task.crud = res.data[0][0];
                 $scope.task.pic = 'data:image/jpeg;base64,' + $base64.encode($scope.task.crud.PIC);
             }, function (res) {
                 $rootScope.errorDatos = 'Error: '+res.status;
