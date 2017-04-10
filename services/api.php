@@ -45,6 +45,10 @@ class API extends REST {
         $this->mysqliScheduling = getConnScheduling();
     }
 
+    private function dbSeguimientoConnect(){
+		$this->connseguimiento = getConnSeguimientoPedidos();
+    }
+
     private function dbConnect(){
         //$this->mysqli = new mysqli(self::DB_SERVER, self::DB_USER, self::DB_PASSWORD, self::DB);
         $this->mysqli = getConnPortalbd();
@@ -13583,6 +13587,56 @@ class API extends REST {
         }
 
     }
+
+
+
+//gestionMalosPendiInsta
+                    private function servicesgestionPendientesInstaMalos(){
+
+                           if($this->get_request_method() != "POST"){
+								$this->response('',406);
+							}
+
+                            $datos = $params['datos'];
+				            $pedido = $params['pedido'];
+				            $user = $params['user'];
+                            $novedad = $params['novedad'];
+                          echo var_dump($datos);  
+				            //HFC-DTH
+				          //  $cuentaDomiciliaria = $datos['cuenta'];
+
+                  /*        $this->dbSeguimientoConnect();
+
+                            // SQL Feed----------------------------------
+                            $sql_log=   "insert into portalbd.activity_feed ( ".
+                                " USER ".
+                                ", USER_NAME ".
+                                ", GRUPO ".
+                                ", STATUS ".
+                                ", PEDIDO_OFERTA ".
+                                ", ACCION ".
+                                ", CONCEPTO_ID ".
+                                ", IP_HOST ".
+                                ", CP_HOST ".
+                                ") values( ".
+                                " UPPER('$usuarioGalleta')".
+                                ", UPPER('$nombreGalleta')".
+                                ", UPPER('$grupoGalleta')".
+                                ",'$value' ".
+                                ",'SIN PEDIDO' ".
+                                ",'ACTUALIZO PARAMETRO' ".
+                                ",'$param' ".
+                                ",'$usuarioIp' ".
+                                ",'$usuarioPc')";
+
+                            $rst = $this->connseguimiento->query($sqlLogin);
+                            // ---------------------------------- SQL Feed
+                            //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','ADMIN','','','UPDATEPARAMETRO','$param:$value') ";
+                            //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+
+                            $this->response(json_encode(array("OK","PARAMETRO ACTUALIZADO")), 200);
+*/
+                        }
 
 
 

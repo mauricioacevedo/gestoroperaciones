@@ -212,6 +212,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'demePedidoAgendamientomalo?userID=' + user + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username);
 	};
 
+	obj.gestionPendientesInstaMalos=function (datos, pedido, usuario, novedad){
+    return $http.post(serviceBase + 'servicesgestionPendientesInstaMalos',{'datos':datos,"pedido":pedido,"usuario":usuario,"novedad":novedad});
+    };
+
 	obj.getDepartamentosPendientesReagendamiento = function () {
 		return $http.get(serviceBase + 'getDepartamentosPendientesReagendamiento'); //pendientes por departamento agendamiento
 	};
@@ -10367,15 +10371,17 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 			loader.className = '';
 			return status;
 		});
+
+			if	($scope.gestion_Pendientes.Gestion==true){
+				var novedad = $scope.peds[0].NOVEDAD
+					services.gestionPendientesInstaMalos($scope.gestion_Pendientes, $scope.pedido1, $rootScope.logedUser.login, novedad).then(function (data) {
+						console.log(data.data[0]);
+						return data.data;
+				});
+			}
+
+
 	}; //FIN SAVEPEDIDO
-
-
-$scope.Gestion_Pendientes = function () {
-		//console.log("gestion: ".$scope.gestion_Pendientes);
-		console.log("pedido: "+$scope.pedido1);
-		console.log("login: "+$rootScope.logedUser.login);
-		console.log("pedido: "+$scope.peds[index].PEDIDO_ID);
-}
 
 });
 
