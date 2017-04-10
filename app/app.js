@@ -14916,14 +14916,14 @@ $scope.getTaskCrud = function () {
         var medio       =       "#e85504";
         var alto        =       "#e80f2d";
 
-        if(rank=='NORMAL'){
+        if(rank=='BAJA'){
            $scope.colorflag =  normal
         }
-        if(rank=='MEDIO'){
-            $scope.colorflag =  normal
+        if(rank=='MEDIA'){
+            $scope.colorflag =  medio
         }
-        if(rank=='ALTO'){
-            $scope.colorflag =  normal
+        if(rank=='ALTA'){
+            $scope.colorflag =  alto
         }
         return  $scope.colorflag;
     };
