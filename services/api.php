@@ -13606,7 +13606,7 @@ class API extends REST {
                             $OBSERVACION_GESTOR = $gestion[OBSERVACION_GESTOR];
                             $HISTORICO_NOVEDAD = $gestion[HISTORICO_NOVEDAD];
                             $causaraiz = $datos[causaraiz];
-                            $responsable = $gestion[responsable];
+                            $responsable = $datos[responsable];
                             $pedido = $gestion[PEDIDO_ID];
 
 
@@ -13624,9 +13624,9 @@ class API extends REST {
                                 ", fecha_gestion ".
                                 ", usuario ".
                                 ") values( ".
-                                " $pedido".
-                                ", $causa_raiz".
-                                ", $responsable".
+                                " '$pedido'".
+                                ", '$causaraiz'".
+                                ", '$responsable'".
                                 ",'$OBSERVACION_GESTOR' ".
                                 ",'$HISTORICO_NOVEDAD' ".
                                 ",'$today' ".
