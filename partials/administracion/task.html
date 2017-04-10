@@ -28,12 +28,21 @@
 
             </div>
             <div class="panel-body">
-                <ul>
-                    <li ng-repeat="t in task.crud">
-                        {{t.USUARIO_GEST}}
-                        <img data-ng-src="{{t.PIC}}" data-err-src="images/avatar_2x.png" height="20px" width="20px"/>
-                    </li>
-                </ul>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="t in task.crud">
+                        <td><img data-ng-src="{{t.PIC || 'images/avatar_2x.png'}}" height="20px" width="20px"/> {{t.USUARIO_GEST}}</td>
+                    </tr>
+                    </tbody>
+                </table>
 
 
 
