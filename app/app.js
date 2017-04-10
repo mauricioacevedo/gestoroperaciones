@@ -10383,8 +10383,8 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 			$scope.gestion_Pendientes = {};
 	}; //FIN SAVEPEDIDO
 
-		$scope.Gestion_Pendientes(){
-			console.log($scope.peds);
+		$scope.Gestion_Pendientes = function () {
+			console.log($scope.peds[0]);
 			//	services.gestionPendientesInstaMalos($scope.gestion_Pendientes, $scope.pedido1, $rootScope.logedUser.login, $scope.peds[0]).then(function (data) {
 			//			return data.data;
 			//	});
