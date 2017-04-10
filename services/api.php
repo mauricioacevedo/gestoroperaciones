@@ -13600,52 +13600,48 @@ class API extends REST {
 
                             $params = json_decode(file_get_contents('php://input'),true);
 
-                            $datos = $params['datos'];
-                            $causa_raiz = $datos['causaraiz'];
-                            $responsable = $datos['responsable'];
-				            $pedido = $params['pedido'];
-				            $user = $params['user'];
-                            $novedad = $params['novedad'];
-                         
-                         echo "causa raiz: ".$causa_raiz;
-                         echo "responsable: ".$responsable;
-                         echo "pedido: ".$pedido;
-                         echo "user: ".$user;
-                         echo "novedad: ".$novedad;
-				            //HFC-DTH
-				          //  $cuentaDomiciliaria = $datos['cuenta'];
+                            $datos = $params['datosPendientes'];
+                            $gestion = $params['datosGestion'];
+                            $NOVEDAD = $gestion[NOVEDAD];
+                            $ASESOR = $gestion[ASESOR];
+                            $OBSERVACION_GESTOR = $gestion[OBSERVACION_GESTOR];
+                            $HISTORICO_NOVEDAD = $gestion[HISTORICO_NOVEDAD];
+                            $causaraiz = $datos[causaraiz];
+                            $responsable = $datos[responsable];
+                            $pedido = $gestion[PEDIDO_ID];
+                            $CR = $gestion[NUMERO_CR];
 
-                  /*        $this->dbSeguimientoConnect();
+                            if($causaraiz == "Suin"){
+                                $OBSERVACION_GESTOR = $OBSERVACION_GESTOR."-NÚMERO DE CR: ". $CR; 
+                            }
+
+                        $today=	date("Y")."-".date("m")."-".date("d"); 
+                     
+                        $this->dbSeguimientoConnect();
 
                             // SQL Feed----------------------------------
-                            $sql_log=   "insert into portalbd.activity_feed ( ".
-                                " USER ".
-                                ", USER_NAME ".
-                                ", GRUPO ".
-                                ", STATUS ".
-                                ", PEDIDO_OFERTA ".
-                                ", ACCION ".
-                                ", CONCEPTO_ID ".
-                                ", IP_HOST ".
-                                ", CP_HOST ".
+                            $sql_gestionPendientes=   "insert into historicoGestionPendientes ( ".
+                                " pedido ".
+                                ", causa_raiz ".
+                                ", responsable ".
+                                ", observacion ".
+                                ", novedad_malo ".
+                                ", usuario ".
                                 ") values( ".
-                                " UPPER('$usuarioGalleta')".
-                                ", UPPER('$nombreGalleta')".
-                                ", UPPER('$grupoGalleta')".
-                                ",'$value' ".
-                                ",'SIN PEDIDO' ".
-                                ",'ACTUALIZO PARAMETRO' ".
-                                ",'$param' ".
-                                ",'$usuarioIp' ".
-                                ",'$usuarioPc')";
+                                " '$pedido'".
+                                ", '$causaraiz'".
+                                ", '$responsable'".
+                                ",'$OBSERVACION_GESTOR' ".
+                                ",'$HISTORICO_NOVEDAD' ".
+                                ",'$ASESOR')";
 
-                            $rst = $this->connseguimiento->query($sqlLogin);
+                            $rst = $this->connseguimiento->query($sql_gestionPendientes);
                             // ---------------------------------- SQL Feed
                             //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','ADMIN','','','UPDATEPARAMETRO','$param:$value') ";
                             //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
                             $this->response(json_encode(array("OK","PARAMETRO ACTUALIZADO")), 200);
-*/
+
                         }
 
 
@@ -16275,6 +16271,47 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             while($row = $r->fetch_assoc()){
+                $result[] = $row;
+            }
+
+            $this->response($this->json($result), 200); // send user details
+        }else{
+            $error = "No hay datos.";
+            $this->response($this->json(array($error)), 403);
+        }
+
+    }
+    private function taskCrud()
+    {
+        if($this->get_request_method() != "GET"){
+            $this->response('Metodo no soportado',406);
+        }
+
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr ($usuarioIp);
+        $galleta        =   json_decode (stripslashes ($_COOKIE['logedUser']), true);
+        $galleta        =   stripslashes ($_COOKIE['logedUser']);
+        $galleta        =   json_decode ($galleta);
+        $galleta        =   json_decode (json_encode ($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+        $today          =   date("Y-m-d");
+
+        $sql =  " SELECT *, tp.PIC FROM portalbd.go_task t ".
+                " left join portalbd.go_task_profile tp on t.USUARIO_GEST=tp.USUARIO_ID ".
+                " where 1=1 ".
+                " and ESTADO='PENDIENTE' ".
+                " and USUARIO_GEST='CGONZGO' ";
+
+        // echo $sql;
+        $r = $this->mysqli->query($sql);
+
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                //$row['PIC'] = base64_encode($row['PIC']);
+                //$row['PIC'] = 'data:image/jpeg;base64,'.base64_encode( $row['PIC'] );
                 $result[] = $row;
             }
 

@@ -212,8 +212,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'demePedidoAgendamientomalo?userID=' + user + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username);
 	};
 
-	obj.gestionPendientesInstaMalos=function (datos, pedido, usuario, novedad){
-    return $http.post(serviceBase + 'servicesgestionPendientesInstaMalos',{'datos':datos,"pedido":pedido,"usuario":usuario,"novedad":novedad});
+	obj.gestionPendientesInstaMalos=function (datosPendientes, datosGestion){
+    return $http.post(serviceBase + 'servicesgestionPendientesInstaMalos',{'datosPendientes':datosPendientes,"datosGestion":datosGestion});
     };
 
 	obj.getDepartamentosPendientesReagendamiento = function () {
@@ -10373,16 +10373,15 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 		});
 
 			if	($scope.gestion_Pendientes.Gestion==true){
-				var novedad = $scope.peds[0].HISTORICO_NOVEDAD
-					services.gestionPendientesInstaMalos($scope.gestion_Pendientes, $scope.pedido1, $rootScope.logedUser.login, novedad).then(function (data) {
+					services.gestionPendientesInstaMalos($scope.gestion_Pendientes, $scope.pedido).then(function (data) {
 						console.log(data.data[0]);
 						return data.data;
 				});
 			}
 
-
+			$scope.gestion_Pendientes.Gestion == false;
+			$scope.gestion_Pendientes = {};
 	}; //FIN SAVEPEDIDO
-
 });
 
 
@@ -14896,10 +14895,20 @@ $scope.getTaskOptions = function () {
     );
 };
 
-    $scope.getTaskOptions();
-    console.log($scope.task);
+$scope.getTaskCrud = function () {
+        $http.get('./services/taskCrud').then(
+            function (res) {
+                $rootScope.errorDatos = null;
+                $scope.task.crud = res.data;
+                //console.log($scope.task.crud);
+                //$scope.task.pic = $base64.encode($scope.task.crud.PIC);
+            }, function (res) {
+                $rootScope.errorDatos = 'Error: '+res.status;
+            }
+        );
+    };
 
-
+    $scope.getTaskCrud();
 
 
 
@@ -15279,7 +15288,7 @@ app.config([
     '$compileProvider',
     function ($compileProvider)
 	{
-		$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|sip|file):/);
+		$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|ftp|mailto|blob):|data:image\//);
 		// Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
     }
 ]);

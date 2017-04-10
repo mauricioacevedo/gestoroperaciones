@@ -1,1 +1,55 @@
-{{task.grupos}}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <b><i class="fa fa-bars" aria-hidden="true"></i> Tareas Pendientes</b>
+                <span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle" aria-hidden="true"
+                                                              ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+                <div class="pull-right">
+                    <div class="col-md-1 col-xs-1 ">
+                        <div data-ng-if="loading">
+                            <img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif"
+                                 height="16" width="16"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-heading">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            </div>
+            <div class="panel-body">
+                <ul>
+                    <li ng-repeat="t in task.crud">
+                        {{t.USUARIO_GEST}}
+                        <img data-ng-src="{{t.PIC}}" data-err-src="images/avatar_2x.png" height="20px" width="20px"/>
+                    </li>
+                </ul>
+
+
+
+
+            </div>
+            <div class="panel-footer clearfix">
+
+
+            </div>
+
+    </div>
+
+</div><!--Row 1 Novedades -->
+<br>
+<ol class="breadcrumb">
+    <li><a href=".#/">Home</a></li>
+    <li><a href="">Administracion</a></li>
+    <li class="active">{{title}}</li>
+</ol>
