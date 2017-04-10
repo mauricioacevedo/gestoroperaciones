@@ -14896,7 +14896,7 @@ $scope.getTaskOptions = function () {
 };
 
 $scope.getTaskCrud = function () {
-        $http.get('./services/taskCrud', {responseType: "arraybuffer"}).then(
+        $http.get('./services/taskCrud').then(
             function (res) {
                 $rootScope.errorDatos = null;
                 $scope.task.crud = res.data;
