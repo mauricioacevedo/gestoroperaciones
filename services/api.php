@@ -13599,12 +13599,11 @@ class API extends REST {
 
                             $params = json_decode(file_get_contents('php://input'),true);
 
-                            $datos = $params['datos'];
-                            $causa_raiz = $datos['causaraiz'];
-                            $responsable = $datos['responsable'];
-				            $pedido = $params['pedido'];
-				            $user = $params['usuario'];
-                            $novedad = $params['novedad'];
+                            $datos = $params['datosPendientes'];
+                            $gestion = $params['datosGestion'];
+                           
+
+                        echo var_dump($datos);
 
 
                         $today=	date("Y")."-".date("m")."-".date("d"); 

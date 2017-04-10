@@ -212,8 +212,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'demePedidoAgendamientomalo?userID=' + user + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username);
 	};
 
-	obj.gestionPendientesInstaMalos=function (datos, pedido, usuario, novedad){
-    return $http.post(serviceBase + 'servicesgestionPendientesInstaMalos',{'datos':datos,"pedido":pedido,"usuario":usuario,"novedad":novedad});
+	obj.gestionPendientesInstaMalos=function (datosPendientes, datosGestion){
+    return $http.post(serviceBase + 'servicesgestionPendientesInstaMalos',{'datosPendientes':datosPendientes,"datosGestion":datosGestion});
     };
 
 	obj.getDepartamentosPendientesReagendamiento = function () {
@@ -10373,7 +10373,7 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 		});
 
 			if	($scope.gestion_Pendientes.Gestion==true){
-					services.gestionPendientesInstaMalos($scope.gestion_Pendientes, $scope.pedido1, $rootScope.logedUser.login, $scope.peds[0]).then(function (data) {
+					services.gestionPendientesInstaMalos($scope.gestion_Pendientes, $scope.pedido).then(function (data) {
 						console.log(data.data[0]);
 						return data.data;
 				});
@@ -10384,10 +10384,10 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 	}; //FIN SAVEPEDIDO
 
 		$scope.Gestion_Pendientes = function () {
-			console.log($scope.peds[0]);
-			//	services.gestionPendientesInstaMalos($scope.gestion_Pendientes, $scope.pedido1, $rootScope.logedUser.login, $scope.peds[0]).then(function (data) {
-			//			return data.data;
-			//	});
+			//console.log($scope.peds[0]);
+				services.gestionPendientesInstaMalos($scope.gestion_Pendientes, $scope.pedido).then(function (data) {
+						return data.data;
+				});
 			}
 
 });
