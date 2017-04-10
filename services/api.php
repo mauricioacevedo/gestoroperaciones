@@ -13604,6 +13604,7 @@ class API extends REST {
                            
 
                         echo var_dump($datos);
+                        echo var_dump($gestion);
 
 
                         $today=	date("Y")."-".date("m")."-".date("d"); 
