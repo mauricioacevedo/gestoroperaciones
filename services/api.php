@@ -13603,34 +13603,27 @@ class API extends REST {
                             $causa_raiz = $datos['causaraiz'];
                             $responsable = $datos['responsable'];
 				            $pedido = $params['pedido'];
-				            $user = $params['user'];
+				            $user = $params['usuario'];
                             $novedad = $params['novedad'];
-                         
-                         echo "causa raiz: ".$causa_raiz;
-                         echo "responsable: ".$responsable;
-                         echo "pedido: ".$pedido;
-                         echo "user: ".$user;
-                         echo "novedad: ".$novedad;
-				            //HFC-DTH
-				          //  $cuentaDomiciliaria = $datos['cuenta'];
 
-                  /*        $this->dbSeguimientoConnect();
+
+                        $today=	date("Y")."-".date("m")."-".date("d"); 
+             /*           
+                        $this->dbSeguimientoConnect();
 
                             // SQL Feed----------------------------------
-                            $sql_log=   "insert into portalbd.activity_feed ( ".
-                                " USER ".
-                                ", USER_NAME ".
-                                ", GRUPO ".
-                                ", STATUS ".
-                                ", PEDIDO_OFERTA ".
-                                ", ACCION ".
-                                ", CONCEPTO_ID ".
-                                ", IP_HOST ".
-                                ", CP_HOST ".
+                            $sql_log=   "insert into historicoGestionPendientes ( ".
+                                " pedido ".
+                                ", causa_raiz ".
+                                ", responsable ".
+                                ", observacion ".
+                                ", novedad_malo ".
+                                ", fecha_gestion ".
+                                ", usuario ".
                                 ") values( ".
-                                " UPPER('$usuarioGalleta')".
-                                ", UPPER('$nombreGalleta')".
-                                ", UPPER('$grupoGalleta')".
+                                " $pedido".
+                                ", $causa_raiz".
+                                ", $responsable".
                                 ",'$value' ".
                                 ",'SIN PEDIDO' ".
                                 ",'ACTUALIZO PARAMETRO' ".
