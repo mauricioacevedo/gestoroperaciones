@@ -14866,7 +14866,13 @@ $scope.task                 =       {};
 $scope.task.grupos          =       [];
 $scope.task.tipos           =       [];
 var userID                  =       $cookieStore.get('logedUser').login;
-var prioridad                = "#24b5e8";
+var prioridad               =       "#24b5e8";
+$rootScope.logedUser        =       $cookieStore.get('logedUser');
+
+document.getElementById('logout').className = "btn btn-md btn-danger";
+var divi = document.getElementById("logoutdiv");
+divi.style.visibility = "visible";
+divi.style.position = "relative";
 
 
 $scope.getTaskOptions = function () {
