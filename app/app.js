@@ -10383,12 +10383,11 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 
 	}; //FIN SAVEPEDIDO
 
-	if($scope.gestion_Pendientes.Gestion == true){
-		
+$scope.GestionPendientes = function () {
 		console.log("gestion: ".$scope.gestion_Pendientes.Gestion);
 		console.log("pedido: ".$scope.pedido);
 		console.log("login: ".$rootScope.logedUser.login);
-	}
+}
 
 });
 
