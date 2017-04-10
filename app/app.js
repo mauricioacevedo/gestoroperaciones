@@ -14900,8 +14900,8 @@ $scope.getTaskCrud = function () {
             function (res) {
                 $rootScope.errorDatos = null;
                 $scope.task.crud = res.data;
-                console.log($scope.task.crud);
-                $scope.task.pic = $base64.encode($scope.task.crud.PIC);
+                //console.log($scope.task.crud);
+                //$scope.task.pic = $base64.encode($scope.task.crud.PIC);
             }, function (res) {
                 $rootScope.errorDatos = 'Error: '+res.status;
             }
