@@ -10367,24 +10367,11 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 			loader.className = '';
 			return status;
 		});
-
-
-		//gestion de pendientes malos
-			if($scope.gestion_Pendientes.Gestion == true){
-			services.guardarGestionInstalaciones($scope.gestion_Pendientes.Gestion, $scope.pedido, $rootScope.logedUser.login).then(function (data) {
-				
-				return data.data;
-			});
-			}	
-		console.log("si lo escogio: "+$scope.gestion_Pendientes.Gestion);
-
-
-		//gestion de pendientes malos
-
 	}; //FIN SAVEPEDIDO
 
-$scope.GestionPendientes = function () {
-		console.log("gestion: ".$scope.gestion_Pendientes.Gestion);
+
+$scope.Gestion_Pendientes = function () {
+		//console.log("gestion: ".$scope.gestion_Pendientes);
 		console.log("pedido: ".$scope.pedido);
 		console.log("login: ".$rootScope.logedUser.login);
 }
