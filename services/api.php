@@ -13608,7 +13608,11 @@ class API extends REST {
                             $causaraiz = $datos[causaraiz];
                             $responsable = $datos[responsable];
                             $pedido = $gestion[PEDIDO_ID];
+                            $CR = $gestion[NUMERO_CR];
 
+                            if($causaraiz == "Suin"){
+                                $OBSERVACION_GESTOR = $OBSERVACION_GESTOR."-NÚMERO DE CR: ". $CR; 
+                            }
 
                         $today=	date("Y")."-".date("m")."-".date("d"); 
                      
@@ -13621,7 +13625,6 @@ class API extends REST {
                                 ", responsable ".
                                 ", observacion ".
                                 ", novedad_malo ".
-                                ", fecha_gestion ".
                                 ", usuario ".
                                 ") values( ".
                                 " '$pedido'".
@@ -13629,7 +13632,6 @@ class API extends REST {
                                 ", '$responsable'".
                                 ",'$OBSERVACION_GESTOR' ".
                                 ",'$HISTORICO_NOVEDAD' ".
-                                ",'$today' ".
                                 ",'$ASESOR')";
 echo $sql_gestionPendientes;
                             $rst = $this->connseguimiento->query($sql_gestionPendientes);
