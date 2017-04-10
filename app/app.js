@@ -14912,7 +14912,7 @@ $scope.getTaskCrud = function () {
 
 
     $scope.estiloflag = function (rank) {
-        console.log(rank);
+
         var normal      =       "#24b5e8";
         var medio       =       "#e85504";
         var alto        =       "#e80f2d";
