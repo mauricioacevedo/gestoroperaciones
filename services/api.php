@@ -16308,7 +16308,7 @@ echo $sql_gestionPendientes;
             $result = array();
             while($row = $r->fetch_assoc()){
                 //$row['PIC'] = base64_decode($row['PIC']);
-                $row['PIC'] = '<img src="data:image/jpeg;base64,'.base64_encode( $row['PIC'] ).'"/>';
+                $row['PIC'] = 'data:image/jpeg;base64,'.base64_encode( $row['PIC'] );
                 $result[] = $row;
             }
 
