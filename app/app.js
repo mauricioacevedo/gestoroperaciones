@@ -14895,10 +14895,18 @@ $scope.getTaskOptions = function () {
     );
 };
 
-    $scope.getTaskOptions();
-    console.log($scope.task);
+$scope.getTaskCrud = function () {
+        $http.get('./services/taskCrud').then(
+            function (res) {
+                $rootScope.errorDatos = null;
+                $scope.task.crud = res.data;
+            }, function (res) {
+                $rootScope.errorDatos = 'Error: '+res.status;
+            }
+        );
+    };
 
-
+    $scope.getTaskCrud();
 
 
 
