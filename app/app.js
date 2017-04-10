@@ -14862,7 +14862,53 @@ app.controller('feedCtrl', function ($scope, $rootScope, $location, $routeParams
 
 
 });//--------------- fin Controlador Feed  -----------------------
+app.controller('taskCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, services) {
+/**
+ * Controlador para Gestionar los requerimientos del Grupo
+ * */
+$rootScope.actualView 	    = 	    "Task";
+$rootScope.errorDatos 	    = 	    null;
+$scope.task                 =       {};
+$scope.task.grupos          =       [];
+$scope.task.tipos           =       [];
+var userID                  =       $cookieStore.get('logedUser').login;
+var prioridad                = "#24b5e8";
 
+
+$scope.getTaskOptions = function () {
+
+    $http.get('./services/taskgrupos').then(
+        function (res) {
+            $rootScope.errorDatos = null;
+            $scope.task.grupos = res.data;
+        }, function (res) {
+            $rootScope.errorDatos = 'Error: '+res.status;
+        }
+    );
+
+    $http.get('./services/tasktipos').then(
+        function (res) {
+            $rootScope.errorDatos = null;
+            $scope.task.tipos = res.data;
+        }, function (res) {
+            $rootScope.errorDatos = 'Error: '+res.status;
+        }
+    );
+};
+
+    $scope.getTaskOptions();
+    console.log($scope.task);
+
+
+
+
+
+
+
+
+
+
+});//--------------- fin Controlador Task  -----------------------
 
 app.directive('modal', function () {
 	return {
@@ -15563,6 +15609,11 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/chat/chatio.html',
                 controller: 'chatioCtrl'
 		})
+        .when('/taskadmin/', {
+            title: 'Tareas Gerencia',
+            templateUrl: 'partials/administracion/tasks.html',
+            controller: 'taskCtrl'
+        })
 		// HERRAMIENTAS ------------------------------------------
 		.when('/cmts/', {
 				title: 'Cmts',
