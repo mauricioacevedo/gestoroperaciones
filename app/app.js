@@ -9639,6 +9639,7 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 	divi.style.position = "relative";
 	$scope.lastUpdate = "";
 	$scope.gestion_Pendientes={};
+	$scope.gestion_Pendientes.Gestion=false;
 
 	$scope.peds = {};
 
@@ -10369,12 +10370,25 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 
 
 		//gestion de pendientes malos
-				console.log("si lo escogio: "+$scope.gestion_Pendientes.Gestion);
+			if($scope.gestion_Pendientes.Gestion == true){
+			services.guardarGestionInstalaciones($scope.gestion_Pendientes.Gestion, $scope.pedido, $rootScope.logedUser.login).then(function (data) {
+				
+				return data.data;
+			});
+			}	
+		console.log("si lo escogio: "+$scope.gestion_Pendientes.Gestion);
+
 
 		//gestion de pendientes malos
+
 	}; //FIN SAVEPEDIDO
 
-
+	if($scope.gestion_Pendientes.Gestion == true){
+		
+		console.log("gestion: ".$scope.gestion_Pendientes.Gestion);
+		console.log("pedido: ".$scope.pedido);
+		console.log("login: ".$rootScope.logedUser.login);
+	}
 
 });
 
