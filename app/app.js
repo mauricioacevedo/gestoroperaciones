@@ -15286,7 +15286,7 @@ app.config([
     '$compileProvider',
     function ($compileProvider)
 	{
-		$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|sip|file):/);
+		$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|ftp|mailto|blob):|data:image\//);
 		// Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
     }
 ]);
