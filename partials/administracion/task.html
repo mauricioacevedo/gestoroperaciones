@@ -31,10 +31,9 @@
                 <ul>
                     <li ng-repeat="t in task.crud">
                         {{t.USUARIO_GEST}}
-                        <img data-ng-src="data:image/JPEG;base64,{{t.PIC}}" data-err-src="images/avatar_2x.png"/>
+                        <img data-ng-src="{{t.PIC}}" data-err-src="images/avatar_2x.png"/>
                     </li>
                 </ul>
-                <img data-ng-src="data:image/JPEG;base64,{{task.pic}}" data-err-src="images/avatar_2x.png"/>
 
 
 
