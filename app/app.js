@@ -14865,7 +14865,7 @@ $scope.task                 =       {};
 $scope.task.grupos          =       [];
 $scope.task.tipos           =       [];
 var userID                  =       $cookieStore.get('logedUser').login;
-var prioridad               =       "#24b5e8";
+
 $rootScope.logedUser        =       $cookieStore.get('logedUser');
 
 document.getElementById('logout').className = "btn btn-md btn-danger";
@@ -14911,10 +14911,22 @@ $scope.getTaskCrud = function () {
     $scope.getTaskCrud();
 
 
+    $scope.estiloflag = function (rank) {
+        var normal      =       "#24b5e8";
+        var medio       =       "#e85504";
+        var alto        =       "#e80f2d";
 
-
-
-
+        if(rank=='NORMAL'){
+           $scope.colorflag =  normal
+        }
+        if(rank=='MEDIO'){
+            $scope.colorflag =  normal
+        }
+        if(rank=='ALTO'){
+            $scope.colorflag =  normal
+        }
+        return  $scope.colorflag;
+    };
 
 
 });//--------------- fin Controlador Task  -----------------------
