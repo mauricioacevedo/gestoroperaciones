@@ -8,7 +8,7 @@ app.run(function(amMoment) {
     amMoment.changeLocale('es',null);
     //moment.updateLocale('es', null);
     //console.log("Espa");
-
+///prueba git
 });
 app.service('idPermisos', function ($http, $q) {
     var self = this;
