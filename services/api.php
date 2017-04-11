@@ -16411,7 +16411,7 @@ class API extends REST {
             " where 1=1 ".
             " and t.USUARIO_GEST='$usuarioGalleta' ";
 
-        // echo $sql;
+        //echo $sql;
         $r = $this->mysqli->query($sql);
 
         if($r->num_rows > 0){
