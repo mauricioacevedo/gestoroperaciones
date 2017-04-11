@@ -16363,6 +16363,7 @@ class API extends REST {
 
         if($taskisdone){
             $progreso=100;
+            $estado='CERRADO';
         }else{
             $progreso=$progresotsk;
         }
