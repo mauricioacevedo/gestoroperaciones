@@ -15878,6 +15878,19 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
 
 	};
 
+    $rootScope.getTaskbyUser = function () {
+        $http.get('./services/taskCrudUser').then(
+            function (data) {
+                $rootScope.taskbyUserCount = data.data.length;
+                console.log($rootScope.taskbyUserCount);
+                return data.data;
+            }
+
+        )
+
+    };
+
+
 
 	$rootScope.cargos = [
 		{
@@ -16116,6 +16129,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 			var galleta = $cookieStore.get('logedUser');
 			var userID = $cookieStore.get('logedUser').login;
             $rootScope.shownavs 		= 	true;
+            $rootScope.getTaskbyUser();
 			//var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
 			//var messageRef = $firebaseArray(root.child('messages'));
 			//var mensajes = root.child('messages');
@@ -16145,6 +16159,24 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 		$rootScope.title = current.$$route.title;
 
 	});
+
+
+}]);
+
+app.run(['$location', '$rootScope','$cookies', '$cookieStore','services', function($location, $rootScope,  $cookies, $cookieStore, services ) {
+
+
+    $rootScope.logout = function() {
+        services.logout($rootScope.logedUser.login);
+        $cookieStore.remove('logedUser');
+        $rootScope.logedUser = undefined;
+        document.getElementById('logout').className = "btn btn-md btn-danger hide";
+        var divi = document.getElementById("logoutdiv");
+        divi.style.position = "absolute";
+        divi.style.visibility = "hidden";
+        $location.path('/');
+    }; //  ---------------------------------Basura del logueo
+
 
 
 }]);
