@@ -16359,11 +16359,11 @@ class API extends REST {
         if($rst===TRUE){
             $msg="Tarea Actualizada, progreso: $progreso";
 
-            $this->response($this->json(array($msg)), 201);
+            $this->response($this->json($msg), 201);
 
         }else{
             $msg = "No se pudo actualizar";
-            $this->response($this->json(array($msg)), 403);
+            $this->response($this->json($msg), 403);
         }
 
     }//-----------------------------------------------Fin funcion
