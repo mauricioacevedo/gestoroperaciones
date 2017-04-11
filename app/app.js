@@ -14957,7 +14957,7 @@ $scope.updateStatus = function(data, index) {
         $scope.taskIsDone = true;
     }
 
-    if(data.PROGRESO===100){
+    if(data.PROGRESO==100){
         data.ESTADO='CERRADO';
         $scope.task.crud[index].ESTADO='CERRADO';
         $scope.taskIsDone = true;
