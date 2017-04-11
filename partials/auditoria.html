@@ -196,17 +196,22 @@
                                           {{d.causaRaiz}}
                                         </option>
                                       </select>
+                                      <br>
                                       <select
                                         class= "btn btn-default btn-xs grupo-select"
-                                        ng-model="gestion_Pendientes.responsable">
+                                        ng-model="gestion_Pendientes.responsable" ng-show="Mostraresponsable">
                                         <option value="" disabled>--Seleccione--</option>
                                         <option ng-repeat="d in Listaresponsable" 
                                           value="{{d.responsables}}">
                                           {{d.responsables}}
                                         </option>
                                       </select>
+
+                                      <span class="label label-info" ng-show="Mostraresponsable2">
+                                    <i class="fa fa-info-circle" ng-model="gestion_Pendientes.responsable" aria-hidden="true">
+                                      </i> Responsable:{{gestion_Pendientes.responsable}}</span>
                                     
-                              </div>
+                              </div>  
                       </div> 
                 <div class="row">
                       <form name="pedidoForm" ng-submit="savePedido(pedido,userID)" novalidate>
@@ -308,9 +313,10 @@
                                           {{d.causaRaiz}}
                                         </option>
                                       </select>
+                                      <br>
                                       <select
                                         class= "btn btn-default btn-xs grupo-select"
-                                        ng-model="gestion_Pendientes.responsable">
+                                        ng-model="gestion_Pendientes.responsable" ng-show="Mostraresponsable">
                                         <option value="" disabled>--Seleccione--</option>
                                         <option ng-repeat="d in Listaresponsable" 
                                           value="{{d.responsables}}">
@@ -318,7 +324,7 @@
                                         </option>
                                       </select>
 
-                                      <span class="label label-info">
+                                      <span class="label label-info" ng-show="Mostraresponsable2">
                                     <i class="fa fa-info-circle" ng-model="gestion_Pendientes.responsable" aria-hidden="true">
                                       </i> Responsable:{{gestion_Pendientes.responsable}}</span>
                                     

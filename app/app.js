@@ -10400,9 +10400,12 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 
 			$scope.gestion_Pendientes.Gestion == false;
 			$scope.gestion_Pendientes = {};
+			$scope.Mostraresponsable=false;
+			$scope.Mostraresponsable2=false;
+			$scope.Listaresponsable={};
 	}; //FIN SAVEPEDIDO
 
-$scope.responsable={};
+
 $scope.listadoCausasRaiz={};
 $scope.Mostraresponsable=false;
 $scope.Mostraresponsable2=false;
@@ -10419,11 +10422,13 @@ $scope.Mostraresponsable2=false;
 					services.getResponsablePendiente($scope.gestion_Pendientes.causaraiz).then(function (data) {
 							if($scope.gestion_Pendientes.causaraiz == "Pendiente Siebel"){
 								$scope.Listaresponsable=data.data[0];
+								$scope.Mostraresponsable=true;
+								$scope.Mostraresponsable2=false;
 							}else{
 								$scope.gestion_Pendientes.responsable=data.data[0][0].responsables;
+								$scope.Mostraresponsable=false;
+								$scope.Mostraresponsable2=true;
 							}
-							console.log("responsables: "+ $scope.Listaresponsable);
-							console.log("responsables: "+ $scope.gestion_Pendientes.responsable);
 							return data.data;
 					});
 				}
