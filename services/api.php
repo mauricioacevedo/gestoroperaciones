@@ -13627,15 +13627,8 @@ class API extends REST {
                                     $OBSERVACION_GESTOR = $OBSERVACION_GESTOR."-NÚMERO DE CR: ". $CR; 
                                 }
                             }
-                            echo $HISTORICO_NOVEDAD;
-                            echo $ASESOR;
-                            echo $OBSERVACION_GESTOR;
-                            echo $causaraiz;
-                            echo $responsable;
-                            echo $pedido;
-            /*         
+                          
                         $this->dbSeguimientoConnect();
-
                             // SQL Feed----------------------------------
                             $sql_gestionPendientes=   "insert into historicoGestionPendientes ( ".
                                 " pedido ".
@@ -13651,14 +13644,14 @@ class API extends REST {
                                 ",'$OBSERVACION_GESTOR' ".
                                 ",'$HISTORICO_NOVEDAD' ".
                                 ",'$ASESOR')";
-
+echo $sql_gestionPendientes;
                             $rst = $this->connseguimiento->query($sql_gestionPendientes);
                             // ---------------------------------- SQL Feed
                             //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','ADMIN','','','UPDATEPARAMETRO','$param:$value') ";
                             //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
                             $this->response(json_encode(array("OK","PARAMETRO ACTUALIZADO")), 200);
-                            */
+                            
                         }
 
 
