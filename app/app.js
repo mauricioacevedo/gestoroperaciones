@@ -15859,7 +15859,7 @@ app.config(['$routeProvider',
 }]);
 //--------------------FIN AGENDAMIENTO------------------------
 
-app.run(['$rootScope', 'cookies', 'cookieStore', '$http','firebase', 'services', function ($rootScope, $cookies, $cookieStore, $http, $firebase, services) {
+app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $http, $firebase, services) {
 
 	$rootScope.gestor = {};
 
@@ -16107,18 +16107,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 
 	// --------------------------------------------------------------------------------------Modal Historico Pedido
-    var userID = $cookieStore.get('logedUser').login;
-	$rootScope.logout = function() {
-        services.logout(userID);
-        $cookieStore.remove('logedUser');
-        $rootScope.logedUser = undefined;
-        clearInterval($scope.intervalLightKPIS);
-        document.getElementById('logout').className = "btn btn-md btn-danger hide";
-        var divi = document.getElementById("logoutdiv");
-        divi.style.position = "absolute";
-        divi.style.visibility = "hidden";
-        $location.path('/');
-    }; //  ---------------------------------Basura del logueo
+
 
 });
 app.run(function(editableOptions, editableThemes) {
