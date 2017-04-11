@@ -14865,6 +14865,7 @@ $scope.task                 =       {};
 $scope.task.grupos          =       [];
 $scope.task.tipos           =       [];
 $scope.task.estados 		=		[];
+$scope.task.crud            =       {};
 var userID                  =       $cookieStore.get('logedUser').login;
 $rootScope.logedUser        =       $cookieStore.get('logedUser');
 
@@ -14911,10 +14912,10 @@ $scope.getTaskCrud = function () {
         );
     };
 
-    $scope.getTaskCrud();
+$scope.getTaskCrud();
 
 
-    $scope.estiloflag = function (rank) {
+$scope.estiloflag = function (rank) {
         //console.log(rank);
         var normal      =       "#24b5e8";
         var medio       =       "#e85504";
@@ -14938,6 +14939,10 @@ $scope.getTaskCrud = function () {
         return  $scope.colorflag;
     };
 
+$scope.updateStatus = function(data) {
+    $scope.task.crud.PROGRESO=100;
+        //return $http.post('services/actualizarSatusPedidosAsignacion', {id: data.ID, pedido: data.PEDIDO_ID, status:data.STATUS, usuario:userID});
+    };
 
 });//--------------- fin Controlador Task  -----------------------
 
