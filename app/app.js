@@ -16162,9 +16162,9 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 
 app.run(['$location', '$rootScope','$cookies', '$cookieStore','services', function($location, $rootScope,  $cookies, $cookieStore, services ) {
 
-    var userID = $cookieStore.get('logedUser').login;
+
     $rootScope.logout = function() {
-        services.logout(userID);
+        services.logout($rootScope.logedUser.login);
         $cookieStore.remove('logedUser');
         $rootScope.logedUser = undefined;
         document.getElementById('logout').className = "btn btn-md btn-danger hide";
