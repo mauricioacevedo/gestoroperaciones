@@ -13631,12 +13631,11 @@ class API extends REST {
                             " and causaRaiz = '$causaraiz'";
 
                        $rst = $this->connseguimiento->query($query);
-                       echo $query;
+                      // echo $query;
 
                             if ($rst->num_rows > 0){
                                 $resultado=array();
                                 while($row = $rst->fetch_assoc()){
-                                    $row['responsables']=utf8_encode($row['responsables']);
                                         $resultado[] = $row;
 
                                 }
