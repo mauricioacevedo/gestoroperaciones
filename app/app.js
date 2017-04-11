@@ -10406,7 +10406,7 @@ $scope.listadoCausasRaiz={};
 							return data.data;
 					});
 				}
-
+$scope.causaRaiz();
 });
 
 
