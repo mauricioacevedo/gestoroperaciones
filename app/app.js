@@ -10417,8 +10417,12 @@ $scope.Mostraresponsable2=false;
 
 				$scope.responsablePendiInsta = function () {
 					services.getResponsablePendiente($scope.gestion_Pendientes.causaraiz).then(function (data) {
-							$scope.Listaresponsable=data.data[0][0].responsables;
-							console.log("responsables: "+ data.data[0][0].responsables);
+							if($scope.gestion_Pendientes.causaraiz == "Pendiente Siebel"){
+								$scope.Listaresponsable=data.data[0];
+							}else{
+								$scope.Listaresponsable=data.data[0][0].responsables;
+							}
+							console.log("responsables: "+ $scope.Listaresponsable);
 							return data.data;
 					});
 				}
