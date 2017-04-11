@@ -16349,7 +16349,7 @@ class API extends REST {
         $progresotsk    =   $params['progreso'];
         $today          =   date("Y-m-d H:i:s");
         
-        var_dump($params);
+
         if($taskisdone){
             $progreso=100;
         }else{
@@ -16362,7 +16362,7 @@ class API extends REST {
             " , FECHA_MODIFICACION='$fechamod' ".
             " , USUARIO_MODIFICACION='$usuario_id' ".
             " where IDTAREA='$idtarea' ";
-        echo $query;
+
         $rst = $this->mysqli->query($query);
 
             
