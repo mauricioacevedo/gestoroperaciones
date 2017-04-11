@@ -308,22 +308,17 @@
                                           {{d.causaRaiz}}
                                         </option>
                                       </select>
-                                   <span class="label label-info" ng-show="Mostraresponsable">
-                                    <i class="fa fa-info-circle" ng-model="gestion_Pendientes.responsable" aria-hidden="true">
-                                      </i> Responsable:{{responsable}}</span>
-                                    <div ng-show="Mostraresponsable2">
-                                <i class="fa fa-globe" aria-hidden="true"></i> Responsable   
-                                    <select
+                                      <select
                                         class= "btn btn-default btn-xs grupo-select"
                                         ng-model="gestion_Pendientes.responsable">
                                         <option value="" disabled>--Seleccione--</option>
-                                        <option ng-repeat="respon in responsable" 
-                                          value="{{respon.responsables}}">
-                                          {{respon.responsables}}
+                                        <option ng-repeat="d in Listaresponsable" 
+                                          value="{{d.responsables}}">
+                                          {{d.responsables}}
                                         </option>
                                       </select>
-                                    </div>  
-                              </div>     
+                                    
+                              </div>   
 
                                         <div  ng-show="service.NOVEDAD!='ESCALADO CR' && service.NOVEDAD!='' && service.NOVEDAD!=undefined && service.NOVEDAD!='RECUPERAR EQUIPOS' && service.NOVEDAD!='RETIRAR ACCESO' && service.NOVEDAD!='PENDIENTE ANULAR PRODUCTO'
                                         && service.NOVEDAD!='CUMPLIDO'&& service.NOVEDAD!='PENDIENTE AGENDA'&& service.NOVEDAD!='ANULADO'
