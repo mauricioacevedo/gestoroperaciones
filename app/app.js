@@ -16159,3 +16159,22 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 
 
 }]);
+
+app.run(['$location', '$rootScope','$cookies', '$cookieStore','services', function($location, $rootScope,  $cookies, $cookieStore, services ) {
+
+    var userID = $cookieStore.get('logedUser').login;
+    $rootScope.logout = function() {
+        services.logout(userID);
+        $cookieStore.remove('logedUser');
+        $rootScope.logedUser = undefined;
+        $scope.pedidos = {};
+        document.getElementById('logout').className = "btn btn-md btn-danger hide";
+        var divi = document.getElementById("logoutdiv");
+        divi.style.position = "absolute";
+        divi.style.visibility = "hidden";
+        $location.path('/');
+    }; //  ---------------------------------Basura del logueo
+
+
+
+}]);
