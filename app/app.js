@@ -10407,6 +10407,15 @@ $scope.listadoCausasRaiz={};
 					});
 				}
 
+				$scope.responsablePendiInsta = function () {
+					console.log($scope.gestion_Pendientes.causaraiz);
+					/*services.getcausaRaiz().then(function (data) {
+							$scope.listadoCausasRaiz=data.data[0];
+							return data.data;
+					});*/
+				}
+
+		
 
 $scope.causaRaiz();
 });
