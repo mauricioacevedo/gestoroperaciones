@@ -14855,7 +14855,7 @@ app.controller('feedCtrl', function ($scope, $rootScope, $location, $routeParams
 
 
 });//--------------- fin Controlador Feed  -----------------------
-app.controller('taskCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, services) {
+app.controller('taskCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, notify, services) {
 /**
  * Controlador para Gestionar los requerimientos del Grupo
  * */
@@ -14943,8 +14943,20 @@ $scope.updateStatus = function(data, index) {
     $scope.fechaModifica = $rootScope.fechaProceso();
     if(data==='CERRADO'){
         $scope.task.crud[index].PROGRESO=100;
+        $scope.taskIsDone = true;
     }
-    return $http.post('services/updateTaskAdmin', {id: data.IDTAREA, estado: data.ESTADO, usuario:userID, fecha:$scope.fechaModifica});
+    $http.post('services/updateTaskAdmin', {id: data.IDTAREA, estado: data.ESTADO, usuario:userID, fecha:$scope.fechaModifica, taskIsDone:$scope.taskIsDone}).then(
+    	function (res) {
+            notify({
+                message: res.data,
+                duration: '3000',
+                position: 'right'
+            });
+
+		}, function (err) {
+            $rootScope.errorDatos = 'Error: ' + err.status + ', Msg: ' +err.data;
+		}
+	);
 };
 
 });//--------------- fin Controlador Task  -----------------------

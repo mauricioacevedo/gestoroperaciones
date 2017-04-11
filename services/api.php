@@ -16324,6 +16324,50 @@ class API extends REST {
 
     }
 
+    private function updateTaskAdmin(){
+
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+        $params         =   json_decode(file_get_contents('php://input'),true);
+        $idtarea        =   $params['id'];
+        $estado         =   $params['estado'];
+        $usuario_id     =   $params['usuario'];
+        $fechamod       =   $params['fecha'];
+        $taskisdone     =   $params['taskIsDone'];
+        $today          =   date("Y-m-d H:i:s");
+
+        if($taskisdone){$progreso=100;}
+
+        $query= " update portalbd.go_task ".
+            " set ESTADO='$estado' ".
+            " , PROGRESO=$progreso ".
+            " where ID='$idtarea' ";
+
+        $rst = $this->mysqli->query($query);
+        if($rst===TRUE){
+            $msg="Tarea Actualizada, progreso: $progreso";
+
+            $this->response($this->json(array($msg)), 201);
+
+        }else{
+            $msg = "No se pudo actualizar";
+            $this->response($this->json(array($msg)), 403);
+        }
+
+    }//-----------------------------------------------Fin funcion
+
 }//cierre de la clase
 
 // Initiiate Library
