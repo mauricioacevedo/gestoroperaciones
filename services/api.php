@@ -13594,7 +13594,8 @@ class API extends REST {
 //gestionMalosPendiInsta
                     private function servicesgestionPendientesInstaMalos(){
 
-                           if($this->get_request_method() != "POST"){
+
+                         if($this->get_request_method() != "POST"){
 								$this->response('',406);
 							}
 
@@ -13602,20 +13603,30 @@ class API extends REST {
 
                             $datos = $params['datosPendientes'];
                             $gestion = $params['datosGestion'];
-                            $NOVEDAD = $gestion[NOVEDAD];
-                            $ASESOR = $gestion[ASESOR];
-                            $OBSERVACION_GESTOR = $gestion[OBSERVACION_GESTOR];
-                            $HISTORICO_NOVEDAD = $gestion[HISTORICO_NOVEDAD];
-                            $causaraiz = $datos[causaraiz];
-                            $responsable = $datos[responsable];
-                            $pedido = $gestion[PEDIDO_ID];
-                            $CR = $gestion[NUMERO_CR];
+                                
+                            $active = $gestion[active];
 
-                            if($causaraiz == "Suin"){
-                                $OBSERVACION_GESTOR = $OBSERVACION_GESTOR."-NÚMERO DE CR: ". $CR; 
+                             if ( $active == 1){
+                                $HISTORICO_NOVEDAD = $gestion[NOVEDAD];
+                                $ASESOR = $gestion[ASESOR];
+                                $OBSERVACION_GESTOR = $gestion[OBSERVACION_GESTOR];
+                                $causaraiz = $datos[causaraiz];
+                                $responsable = $datos[responsable];
+                                $pedido = $gestion[PEDIDO_ID];
+                            }else{
+                                $NOVEDAD = $gestion[NOVEDAD];
+                                $ASESOR = $gestion[ASESOR];
+                                $OBSERVACION_GESTOR = $gestion[OBSERVACION_GESTOR];
+                                $HISTORICO_NOVEDAD = $gestion[HISTORICO_NOVEDAD];
+                                $causaraiz = $datos[causaraiz];
+                                $responsable = $datos[responsable];
+                                $pedido = $gestion[PEDIDO_ID];
+                                $CR = $gestion[NUMERO_CR];
+
+                                if($causaraiz == "Suin"){
+                                    $OBSERVACION_GESTOR = $OBSERVACION_GESTOR."-NÚMERO DE CR: ". $CR; 
+                                }
                             }
-
-                        $today=	date("Y")."-".date("m")."-".date("d"); 
                      
                         $this->dbSeguimientoConnect();
 
