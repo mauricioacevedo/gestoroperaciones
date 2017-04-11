@@ -13588,7 +13588,31 @@ class API extends REST {
         }
 
     }
+                        private function causaRaiz(){
+                        if($this->get_request_method() != "GET"){
+                        $this->response('',406);
+                        }
 
+            			$this->dbSeguimientoConnect();	
+
+                        $query=" SELECT DISTINCT causaRaiz".
+                            " FROM causaRaiz_Responsables ".
+                            " where 1=1 ".
+                            " ORDER BY causaRaiz ASC ";
+
+                       $rst = $this->connseguimiento->query($query);
+                       //echo $query;
+                            if ($rst->num_rows > 0){
+
+                                $resultado=array();
+                                while($row = $rst->fetch_assoc()){
+                                        $resultado[] = $row;
+                                }
+                                $this->response($this->json(array($resultado)), 201);
+                            }else{
+						        $this->response($this->json($error), 400);
+					        }  // If no records "No Content" status
+		            }
 
 
 //gestionMalosPendiInsta

@@ -186,22 +186,16 @@
                         </div> 
                               <div ng-show="gestion_Pendientes.Gestion">
                                 <i class="fa fa-globe" aria-hidden="true"></i> Causa raiz   
-                                    <select   class= "btn btn-default btn-xs grupo-select"
-                                          ng-model="gestion_Pendientes.causaraiz">
+                                    <select
+                                        class= "btn btn-default btn-xs grupo-select"
+                                        ng-model="gestion_Pendientes.causaraiz"
+                                        ng-change="responsablePendiInsta()">
                                         <option value="" disabled>--Seleccione--</option>
-                                        <option value="Pendiente Siebel" >Pendiente Siebel</option>
-                                        <option value="Punto de NO retorno" >Punto de NO retorno</option>
-                                        <option value="Suin" >Suin</option>
-                                        <option value="Oferta" >Oferta</option>
-                                        <option value="Anulado" >Anulado</option>
-                                        <option value="Cumplido" >Cumplido</option>
-                                        <option value="Sin equipos" >Sin equipos</option>
-                                        <option value="Acceso" >Acceso</option>
-                                        <option value="Infraestructura" >Infraestructura</option>
-                                        <option value="Posteria" >Postería</option>
-                                        <option value="Gestion instalaciones Regionales" >Gestión instalaciones Regionales</option>
-                                    </select>
-                                  
+                                        <option ng-repeat="d in listadoCausasRaiz" 
+                                          value="{{d.causaRaiz}}">
+                                          {{d.causaRaiz}}
+                                        </option>
+                                      </select>
                                    <i class="fa fa-globe" aria-hidden="true"></i> Responsable        
                                     <select   class= "btn btn-default btn-xs grupo-select"
                                           ng-model="gestion_Pendientes.responsable">
@@ -307,24 +301,19 @@
                                 </div>
                                 <br>
                                 <div ng-show="gestion_Pendientes.Gestion">
-                                <i class="fa fa-globe" aria-hidden="true"></i> Causa raiz</b>         
-                                    <select   class= "btn btn-default btn-xs grupo-select"
-                                          ng-model="gestion_Pendientes.causaraiz">
+                                <i class="fa fa-globe" aria-hidden="true"></i> Causa raiz
+                                    <select
+                                        class= "btn btn-default btn-xs grupo-select"
+                                        ng-model="gestion_Pendientes.causaraiz"
+                                        ng-change="responsablePendiInsta()">
                                         <option value="" disabled>--Seleccione--</option>
-                                        <option value="Pendiente Siebel" >Pendiente Siebel</option>
-                                        <option value="Punto de NO retorno" >Punto de NO retorno</option>
-                                        <option value="Suin" >Suin</option>
-                                        <option value="Oferta" >Oferta</option>
-                                        <option value="Anulado" >Anulado</option>
-                                        <option value="Cumplido" >Cumplido</option>
-                                        <option value="Sin equipos" >Sin equipos</option>
-                                        <option value="Acceso" >Acceso</option>
-                                        <option value="Infraestructura" >Infraestructura</option>
-                                        <option value="Posteria" >Postería</option>
-                                        <option value="Gestion instalaciones Regionales" >Gestión instalaciones Regionales</option>
-                                    </select><br>
+                                        <option ng-repeat="d in listadoCausasRaiz" 
+                                          value="{{d.causaRaiz}}">
+                                          {{d.causaRaiz}}
+                                        </option>
+                                      </select><br>
                                     <br>
-                                   <i class="fa fa-globe" aria-hidden="true"></i> Responsable</b>         
+                                   <i class="fa fa-globe" aria-hidden="true"></i> Responsable         
                                     <select   class= "btn btn-default btn-xs grupo-select"
                                           ng-model="gestion_Pendientes.responsable">
                                         <option value="" disabled>--Seleccione--</option>

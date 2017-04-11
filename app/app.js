@@ -343,6 +343,11 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	//Activacion-----------------------------------------------------------------------------------
 
 
+	
+	obj.getcausaRaiz = function () {
+     return $http.get(serviceBase + 'causaRaiz');
+        };  
+
     obj.getGestorTansacciones = function () {
 		return $http.get(serviceBase + 'gestorTransacciones');
 	};
@@ -10392,6 +10397,16 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 			$scope.gestion_Pendientes.Gestion == false;
 			$scope.gestion_Pendientes = {};
 	}; //FIN SAVEPEDIDO
+
+$scope.listadoCausasRaiz={};
+
+				$scope.causaRaiz(){
+					services.getcausaRaiz().then(function (data) {
+							$scope.listadoCausasRaiz=data.data[0];
+							return data.data;
+					});
+				}
+
 });
 
 
