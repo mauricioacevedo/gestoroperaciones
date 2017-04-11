@@ -14980,6 +14980,7 @@ $scope.updateStatus = function(data, index) {
                 duration: '3000',
                 position: 'right'
             });
+            $scope.getTaskCrud();
 
 		}, function (err) {
             $rootScope.errorDatos = 'Error: ' + err.status + ', Msg: ' +err.data[0];
