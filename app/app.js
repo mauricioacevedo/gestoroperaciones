@@ -15887,6 +15887,8 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
 
     };
 
+    $rootScope.getConceptosGestor();
+
 
 	$rootScope.cargos = [
 		{
