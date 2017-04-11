@@ -10404,7 +10404,7 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 
 $scope.responsable={};
 $scope.listadoCausasRaiz={};
-
+$scope.Mostraresponsable=false;
 				$scope.causaRaiz = function () {
 					services.getcausaRaiz().then(function (data) {
 							$scope.listadoCausasRaiz=data.data[0];
@@ -10414,6 +10414,7 @@ $scope.listadoCausasRaiz={};
 
 				$scope.responsablePendiInsta = function () {
 					services.getResponsablePendiente($scope.gestion_Pendientes.causaraiz).then(function (data) {
+							$scope.Mostraresponsable=true; 
 							$scope.responsable=data.data[0][0];
 							$scope.responsable=$scope.responsable.responsables;
 							return data.data;
