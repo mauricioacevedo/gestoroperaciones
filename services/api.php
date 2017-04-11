@@ -16354,6 +16354,8 @@ class API extends REST {
         $query= " update portalbd.go_task ".
             " set ESTADO='$estado' ".
             " , PROGRESO=$progreso ".
+            " , FECHA_MODIFICACION='$fechamod' ".
+            " , USUARIO_MODIFICACION='$usuario_id' ".
             " where IDTAREA='$idtarea' ";
 
         $rst = $this->mysqli->query($query);
