@@ -10400,12 +10400,14 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 
 $scope.listadoCausasRaiz={};
 
-				$scope.causaRaiz() = function (index) {
+				$scope.causaRaiz = function () {
 					services.getcausaRaiz().then(function (data) {
 							$scope.listadoCausasRaiz=data.data[0];
 							return data.data;
 					});
 				}
+
+
 $scope.causaRaiz();
 });
 
