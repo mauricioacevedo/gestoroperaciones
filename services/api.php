@@ -16303,7 +16303,7 @@ class API extends REST {
         $sql =  " SELECT t.*, tp.PIC FROM portalbd.go_task t ".
                 " left join portalbd.go_task_profile tp on t.USUARIO_GEST=tp.USUARIO_ID ".
                 " where 1=1 ".
-                " order by t.IDTAREA desc ";
+                " order by t.IDTAREA desc, t.PRIORIDAD ASC ";
 
         // echo $sql;
         $r = $this->mysqli->query($sql);
