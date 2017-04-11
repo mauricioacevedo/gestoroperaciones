@@ -10416,7 +10416,10 @@ $scope.Mostraresponsable2=false;
 				}
 
 				$scope.responsablePendiInsta = function () {
-					console.log($scope.gestion_Pendientes.causaraiz)
+					services.getResponsablePendiente($scope.gestion_Pendientes.causaraiz).then(function (data) {
+							$scope.Listaresponsable=data.data[0];
+							return data.data;
+					});
 				}
 
 		
