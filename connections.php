@@ -38,6 +38,25 @@ function getConnPortalbd03(){
 
 }
 
+
+function getConnSeguimientoPedidos(){
+
+        //$db = new mysqli('10.100.82.125', 'root', '123456', 'test');
+    $Host="10.100.82.73";
+    $User="root";
+    $Pwd="123456";
+    $Bd="seguimientopedidos";
+
+        $db = new mysqli($Host, $User, $Pwd, $Bd);
+
+        if($db->connect_errno > 0){
+            die('Unable to connect to database [' . $db->connect_error . ']');
+        }
+
+    return $db;
+
+}
+
 function getConnScheduling(){
 
         $Host="10.100.82.125";
