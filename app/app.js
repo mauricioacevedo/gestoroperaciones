@@ -9976,7 +9976,7 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 			$scope.pedidoinfo = 'Pedido';
 		});
 
-
+		
 		if	($scope.gestion_Pendientes.Gestion==true){
 					services.gestionPendientesInstaMalos($scope.gestion_Pendientes, $scope.pedido).then(function (data) {
 						console.log(data.data[0]);
