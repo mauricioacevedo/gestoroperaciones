@@ -10420,9 +10420,10 @@ $scope.Mostraresponsable2=false;
 							if($scope.gestion_Pendientes.causaraiz == "Pendiente Siebel"){
 								$scope.Listaresponsable=data.data[0];
 							}else{
-								$scope.Listaresponsable=data.data[0][0].responsables;
+								$scope.gestion_Pendientes.responsable=data.data[0][0].responsables;
 							}
 							console.log("responsables: "+ $scope.Listaresponsable);
+							console.log("responsables: "+ $scope.gestion_Pendientes.responsable);
 							return data.data;
 					});
 				}
