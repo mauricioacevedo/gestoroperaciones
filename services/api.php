@@ -13628,7 +13628,7 @@ class API extends REST {
                                 }
                             }
                           
-                     $this->dbSeguimientoConnect();
+                   //  $this->dbSeguimientoConnect();
                             // SQL Feed----------------------------------
                             $sql_gestionPendientes=   "insert into historicoGestionPendientes ( ".
                                 " pedido ".
