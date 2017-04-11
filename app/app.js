@@ -15887,7 +15887,6 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
 
     };
 
-    $rootScope.getTaskbyUser();
 
 
 	$rootScope.cargos = [
@@ -16127,6 +16126,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 			var galleta = $cookieStore.get('logedUser');
 			var userID = $cookieStore.get('logedUser').login;
             $rootScope.shownavs 		= 	true;
+            $rootScope.getTaskbyUser();
 			//var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
 			//var messageRef = $firebaseArray(root.child('messages'));
 			//var mensajes = root.child('messages');
