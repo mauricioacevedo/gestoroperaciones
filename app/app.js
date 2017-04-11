@@ -15875,6 +15875,18 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
 
 	};
 
+    $rootScope.getConceptosGestor = function () {
+        $http.get('./services/taskCrudUser').then(
+            function (data) {
+                $rootScope.taskbyUserCount = data.data.length;
+                console.log($rootScope.taskbyUserCount);
+                return data.data;
+            }
+
+        )
+
+    };
+
 
 	$rootScope.cargos = [
 		{
