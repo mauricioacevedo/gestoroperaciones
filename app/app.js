@@ -14958,13 +14958,13 @@ $scope.updateStatus = function(data, index) {
     $http.post('services/updateTaskAdmin', {id: data.IDTAREA, estado: data.ESTADO, usuario:userID, fecha:$scope.fechaModifica, taskIsDone:$scope.taskIsDone, progreso:data.PROGRESO}).then(
     	function (res) {
             notify({
-                message: res.data,
+                message: res.data[0],
                 duration: '3000',
                 position: 'right'
             });
 
 		}, function (err) {
-            $rootScope.errorDatos = 'Error: ' + err.status + ', Msg: ' +err.data;
+            $rootScope.errorDatos = 'Error: ' + err.status + ', Msg: ' +err.data[0];
 		}
 	);
 };
