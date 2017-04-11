@@ -15859,7 +15859,7 @@ app.config(['$routeProvider',
 }]);
 //--------------------FIN AGENDAMIENTO------------------------
 
-app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $cookies, $cookieStore, $http, $firebase, services) {
+app.run(['$rootScope', 'cookies', 'cookieStore', '$http','firebase', 'services', function ($rootScope, $cookies, $cookieStore, $http, $firebase, services) {
 
 	$rootScope.gestor = {};
 
