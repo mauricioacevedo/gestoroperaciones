@@ -16167,7 +16167,6 @@ app.run(['$location', '$rootScope','$cookies', '$cookieStore','services', functi
         services.logout(userID);
         $cookieStore.remove('logedUser');
         $rootScope.logedUser = undefined;
-        $scope.pedidos = {};
         document.getElementById('logout').className = "btn btn-md btn-danger hide";
         var divi = document.getElementById("logoutdiv");
         divi.style.position = "absolute";
