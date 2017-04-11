@@ -16357,9 +16357,10 @@ class API extends REST {
             " , FECHA_MODIFICACION='$fechamod' ".
             " , USUARIO_MODIFICACION='$usuario_id' ".
             " where IDTAREA='$idtarea' ";
-
+        echo $query;
         $rst = $this->mysqli->query($query);
 
+            
         if($rst===TRUE){
             $msg="Tarea Actualizada, progreso: $progreso";
 
