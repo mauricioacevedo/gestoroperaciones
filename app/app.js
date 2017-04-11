@@ -10410,27 +10410,13 @@ $scope.Mostraresponsable2=false;
 				$scope.causaRaiz = function () {
 					services.getcausaRaiz().then(function (data) {
 							$scope.listadoCausasRaiz=data.data[0];
-							$scope.responsable={};
+							$scope.Listaresponsable={};
 							return data.data;
 					});
 				}
 
 				$scope.responsablePendiInsta = function () {
-					services.getResponsablePendiente($scope.gestion_Pendientes.causaraiz).then(function (data) {
-							$scope.Mostraresponsable=true; 
-							$scope.gestion_Pendientes.responsable=data.data[0];
-							$scope.responsable=$scope.responsable.responsables;
-							if($scope.responsable=="Pendiente Siebel"){
-								$scope.Mostraresponsable2=true;
-								$scope.Mostraresponsable=false;
-							}else{
-								$scope.Mostraresponsable=true;
-								$scope.Mostraresponsable2=true;
-							}
-
-							return data.data;
-
-					});
+					console.log($scope.gestion_Pendientes.causaraiz)
 				}
 
 		
