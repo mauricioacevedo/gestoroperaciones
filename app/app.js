@@ -10405,6 +10405,8 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 $scope.responsable={};
 $scope.listadoCausasRaiz={};
 $scope.Mostraresponsable=false;
+$scope.Mostraresponsable2=false;
+
 				$scope.causaRaiz = function () {
 					services.getcausaRaiz().then(function (data) {
 							$scope.listadoCausasRaiz=data.data[0];
@@ -10417,7 +10419,14 @@ $scope.Mostraresponsable=false;
 							$scope.Mostraresponsable=true; 
 							$scope.responsable=data.data[0][0];
 							$scope.responsable=$scope.responsable.responsables;
+							if($scope.responsable=="Pendiente Siebel"){
+								$scope.Mostraresponsable2=true;
+							}else{
+								$scope.Mostraresponsable=true;
+							}
+
 							return data.data;
+
 					});
 				}
 

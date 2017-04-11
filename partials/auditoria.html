@@ -197,7 +197,20 @@
                                         </option>
                                       </select>
                                    <span class="label label-info" ng-show="Mostraresponsable">
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>Responsable:{{responsable}}</span>
+                                    <i class="fa fa-info-circle" ng-model="gestion_Pendientes.responsable" aria-hidden="true">
+                                      </i> Responsable:{{responsable}}</span>
+                                    <div ng-show="Mostraresponsable2">
+                                <i class="fa fa-globe" aria-hidden="true"></i> Responsable   
+                                    <select
+                                        class= "btn btn-default btn-xs grupo-select"
+                                        ng-model="gestion_Pendientes.responsable">
+                                        <option value="" disabled>--Seleccione--</option>
+                                        <option ng-repeat="d in responsable" 
+                                          value="{{d.responsables}}">
+                                          {{d.responsables}}
+                                        </option>
+                                      </select>
+                                    </div>  
                               </div>
                       </div> 
                 <div class="row">
@@ -286,11 +299,10 @@
 
                                         <hr>
                                 <div class="checkbox">
-                                  <label><input type="checkbox" ng-model="gestion_Pendientes.Gestion" ng-change="Gestion_Pendientes()"><b>Gestión pendiente</b></label>
-                                </div>
-                                <br>
-                                <div ng-show="gestion_Pendientes.Gestion">
-                                <i class="fa fa-globe" aria-hidden="true"></i> Causa raiz
+                              <label><input type="checkbox" ng-model="gestion_Pendientes.Gestion" ng-change="Gestion_Pendientes()"><b>Gestión pendiente</b></label>
+                        </div> 
+                              <div ng-show="gestion_Pendientes.Gestion">
+                                <i class="fa fa-globe" aria-hidden="true"></i> Causa raiz   
                                     <select
                                         class= "btn btn-default btn-xs grupo-select"
                                         ng-model="gestion_Pendientes.causaraiz"
@@ -300,11 +312,23 @@
                                           value="{{d.causaRaiz}}">
                                           {{d.causaRaiz}}
                                         </option>
-                                      </select><br>
-                                    <br>   
-                                      <span class="label label-info" ng-show="Mostraresponsable">
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>Responsable:{{responsable}}</span>
-                                </div>     
+                                      </select>
+                                   <span class="label label-info" ng-show="Mostraresponsable">
+                                    <i class="fa fa-info-circle" ng-model="gestion_Pendientes.responsable" aria-hidden="true">
+                                      </i> Responsable:{{responsable}}</span>
+                                    <div ng-show="Mostraresponsable2">
+                                <i class="fa fa-globe" aria-hidden="true"></i> Responsable   
+                                    <select
+                                        class= "btn btn-default btn-xs grupo-select"
+                                        ng-model="gestion_Pendientes.responsable">
+                                        <option value="" disabled>--Seleccione--</option>
+                                        <option ng-repeat="d in responsable" 
+                                          value="{{d.responsables}}">
+                                          {{d.responsables}}
+                                        </option>
+                                      </select>
+                                    </div>  
+                              </div>     
 
                                         <div  ng-show="service.NOVEDAD!='ESCALADO CR' && service.NOVEDAD!='' && service.NOVEDAD!=undefined && service.NOVEDAD!='RECUPERAR EQUIPOS' && service.NOVEDAD!='RETIRAR ACCESO' && service.NOVEDAD!='PENDIENTE ANULAR PRODUCTO'
                                         && service.NOVEDAD!='CUMPLIDO'&& service.NOVEDAD!='PENDIENTE AGENDA'&& service.NOVEDAD!='ANULADO'
