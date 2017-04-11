@@ -9934,11 +9934,8 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 		var minute = $scope.doubleDigit(date1.getMinutes());
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
-
 		console.log($scope.pedido);
 		console.log($scope.mpedido);
-
-
 
 		services.insertMPedidomalo($scope.pedido).then(function (status) {
 
@@ -9978,6 +9975,19 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 			$scope.mpedido.active = 0;
 			$scope.pedidoinfo = 'Pedido';
 		});
+
+
+		if	($scope.gestion_Pendientes.Gestion==true){
+					services.gestionPendientesInstaMalos($scope.gestion_Pendientes, $scope.pedido).then(function (data) {
+						console.log(data.data[0]);
+						return data.data;
+				});
+			}
+
+			$scope.gestion_Pendientes.Gestion == false;
+			$scope.gestion_Pendientes = {};
+
+
 	};
 
 
