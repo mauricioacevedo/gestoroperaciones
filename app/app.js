@@ -14957,6 +14957,7 @@ $scope.updateStatus = function(data, index) {
     }
     if(data.PROGRESO===100){
         data.ESTADO='CERRADO';
+        $scope.task.crud[index].ESTADO='CERRADO';
         $scope.taskIsDone = true;
     }
     $http.post('services/updateTaskAdmin', {id: data.IDTAREA, estado: data.ESTADO, usuario:userID, fecha:$scope.fechaModifica, taskIsDone:$scope.taskIsDone, progreso:data.PROGRESO}).then(
