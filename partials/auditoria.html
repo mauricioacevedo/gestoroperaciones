@@ -178,6 +178,44 @@
                           <button id="mguardar" type="button" class="btn btn-md btn-danger" ng-click="msavePedidomalo();"><span id="mloader"></span>&nbsp; Guardar</button>
                           </td>
                   </tr>
+                  <tr>
+                    <div class="checkbox">
+                                  <label><input type="checkbox" ng-model="gestion_Pendientes.Gestion" ng-change="Gestion_Pendientes()"><b>Gestión pendiente</b></label>
+                                </div>
+                                <br>
+                                <div ng-show="gestion_Pendientes.Gestion">
+                                <i class="fa fa-globe" aria-hidden="true"></i> Causa raiz</b>         
+                                    <select   class= "btn btn-default btn-xs grupo-select"
+                                          ng-model="gestion_Pendientes.causaraiz">
+                                        <option value="" disabled>--Seleccione--</option>
+                                        <option value="Pendiente Siebel" >Pendiente Siebel</option>
+                                        <option value="Punto de NO retorno" >Punto de NO retorno</option>
+                                        <option value="Suin" >Suin</option>
+                                        <option value="Oferta" >Oferta</option>
+                                        <option value="Anulado" >Anulado</option>
+                                        <option value="Cumplido" >Cumplido</option>
+                                        <option value="Sin equipos" >Sin equipos</option>
+                                        <option value="Acceso" >Acceso</option>
+                                        <option value="Infraestructura" >Infraestructura</option>
+                                        <option value="Posteria" >Postería</option>
+                                        <option value="Gestion instalaciones Regionales" >Gestión instalaciones Regionales</option>
+                                    </select><br>
+                                    <br>
+                                   <i class="fa fa-globe" aria-hidden="true"></i> Responsable</b>         
+                                    <select   class= "btn btn-default btn-xs grupo-select"
+                                          ng-model="gestion_Pendientes.responsable">
+                                        <option value="" disabled>--Seleccione--</option>
+                                        <option value="Hernando">Hernando</option>
+                                        <option value="Wilmar Zamudio">Wilmar Zamudio</option>
+                                        <option value="Mesa de servicio">Mesa de servicio</option>
+                                        <option value="Jorge Ivan Zapata Montoya">Jorge Ivan Zapata Montoya</option>
+                                        <option value="Andrea Macias Higuita">Andrea Macias Higuita</option>
+                                        <option value="Equipo Aseguramiento">Equipo Aseguramiento</option>
+                                        <option value="Silvia Elena Toro Quintero">Silvia Elena Toro Quintero</option>
+                                         <option value="Jose Fernando Garcia Ruiz">Jose Fernando Garcia Ruiz</option>
+                                    </select>
+                                </div>  
+                    </tr>
                 </table>
                 <div class="row">
                       <form name="pedidoForm" ng-submit="savePedido(pedido,userID)" novalidate>
