@@ -32,7 +32,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr  ng-repeat="t in task.crud">
+                        <tr  ng-repeat="t in task.crud as task">
                             <td><span class="small">{{t.IDTAREA}} <span  ng-style="estiloflag(t.PRIORIDAD)" tooltip-placement="left" uib-tooltip="{{t.PRIORIDAD}}"><i class="fa fa-flag" aria-hidden="true"></i></span></span></td>
                             <td><span class="small">
                                 <a href="#"
@@ -115,7 +115,13 @@
 
             </div>
             <div class="panel-footer clearfix">
-
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            Activos: <span class="badge badge-primary">{{(task|filter:'ACTIVO').length}}{{task.length}}</span>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
