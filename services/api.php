@@ -16451,6 +16451,7 @@ class API extends REST {
         $idtarea        =   $params['id'];
         $tipotarea      =   $params['tipo'];
         $categoria      =   $params['categoria'];
+        $grupo          =   $params['grupo'];
         $representante  =   $params['representante'];
         $estado         =   $params['estado'];
         $usuario_id     =   $params['usuario'];
@@ -16471,6 +16472,7 @@ class API extends REST {
             " , PROGRESO=$progreso ".
             " , TIPO='$tipotarea' ".
             " , CATEGORIA='$categoria' ".
+            " , GRUPO='$grupo' ".
             " , REPRESENTANTE='$representante' ".
             " , FECHA_MODIFICACION='$fechamod' ".
             " , USUARIO_MODIFICACION='$usuario_id' ".
