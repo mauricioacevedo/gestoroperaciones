@@ -47,7 +47,11 @@
                             <td><span class="small">{{t.FECHA_INICIO}}</span></td>
                             <td><span class="small">{{t.FECHA_MODIFICACION}}</span></td>
                             <td><span class="small">
-                                <a href="#" editable-range="t.PROGRESO" e-step="5" onaftersave="updateStatus(t,$index)">
+                                <a href="#"
+                                   edit-disabled="{{t.ESTADO == 'CERRADO'}}"
+                                   editable-range="t.PROGRESO"
+                                   e-step="5"
+                                   onaftersave="updateStatus(t,$index)">
                                     <uib-progressbar class="progress-striped" value="t.PROGRESO"  type="success">{{t.PROGRESO}}%
                                     </uib-progressbar>
                                 </a></span></td>
