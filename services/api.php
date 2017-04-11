@@ -13647,7 +13647,7 @@ class API extends REST {
 
                             $rst = $this->connseguimiento->query($sql_gestionPendientes);
                 // echo    $sql_gestionPendientes;        
-                                                       // ---------------------------------- SQL Feed
+                                         // ---------------------------------- SQL Feed
                             //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','ADMIN','','','UPDATEPARAMETRO','$param:$value') ";
                             //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
