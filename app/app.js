@@ -14941,7 +14941,7 @@ $scope.estiloflag = function (rank) {
 
 $scope.updateStatus = function(data, index) {
     $scope.task.crud.PROGRESO=100;
-    $scope.task.crud.PROGRESO.push($scope.task.crud.[index]);
+    $scope.task.crud.PROGRESO.push($scope.task.crud[index]);
     console.log($scope.task.crud);
         //return $http.post('services/actualizarSatusPedidosAsignacion', {id: data.ID, pedido: data.PEDIDO_ID, status:data.STATUS, usuario:userID});
     };
