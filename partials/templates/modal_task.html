@@ -3,6 +3,7 @@
         <label for="sltipo" class="col-lg-2 control-label">Name</label>
         <div class="col-lg-10">
             <select id="sltipo" name="sltipo"
+                    class="form-control"
                     ng-model="taskform.TIPO"
                     ng-options="g.TIPO as g.TIPO for g in task.tipos | unique:'TIPO'" required></select>
         </div>
