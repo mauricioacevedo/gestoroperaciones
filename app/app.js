@@ -14940,11 +14940,12 @@ $scope.estiloflag = function (rank) {
     };
 
 $scope.updateStatus = function(data, index) {
-    $scope.task.crud[index].PROGRESO=100;
-    //$scope.task.crud.push($scope.task.crud.PROGRESO[index]);
-    console.log(index);
-        //return $http.post('services/actualizarSatusPedidosAsignacion', {id: data.ID, pedido: data.PEDIDO_ID, status:data.STATUS, usuario:userID});
-    };
+    $scope.fechaModifica = $rootScope.fechaProceso();
+    if(data==='CERRADO'){
+        $scope.task.crud[index].PROGRESO=100;
+    }
+    return $http.post('services/updateTaskAdmin', {id: data.IDTAREA, estado: data.ESTADO, usuario:userID, fecha:$scope.fechaModifica});
+};
 
 });//--------------- fin Controlador Task  -----------------------
 
