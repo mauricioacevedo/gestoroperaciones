@@ -14951,10 +14951,12 @@ $scope.estiloflag = function (rank) {
 
 $scope.updateStatus = function(data, index) {
     $scope.fechaModifica = $rootScope.fechaProceso();
+    console.log(data);
     if(data.ESTADO==='CERRADO'){
         $scope.task.crud[index].PROGRESO=100;
         $scope.taskIsDone = true;
     }
+
     if(data.PROGRESO===100){
         data.ESTADO='CERRADO';
         $scope.task.crud[index].ESTADO='CERRADO';
