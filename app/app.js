@@ -15032,6 +15032,10 @@ $scope.updateStatus = function(data, index) {
 	);
 };
 
+$scope.saveTask = function (data) {
+		console.log(data);
+};
+
 
 });//--------------- fin Controlador Task  -----------------------
 
