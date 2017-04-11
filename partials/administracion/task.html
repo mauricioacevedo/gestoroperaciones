@@ -96,7 +96,7 @@
                             </button>
                                 <button type="button" uib-tooltip="Editar: {{t.IDTAREA}}" tooltip-placement="left"
                                                             class="btn btn-default btn-circle-xss" ng-click="editarModal(data)"
-                                                            data-toggle="modal" data-target="#editarModal" data-backdrop="static"
+                                                            data-toggle="modal" data-target="#modalTareas" data-backdrop="static"
                                                             ng-disabled="loading">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </button>
@@ -137,3 +137,28 @@
     <li><a href="">Administracion</a></li>
     <li class="active">{{title}}</li>
 </ol>
+<div id="modalTareas" class="modal fade " role="dialog">
+    <div class="modal-dialog modal-md">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                Modal
+            </div>
+            <div class="modal-body">
+                <div ng-include="'templates/modal_task.html'"></div>
+
+
+            <div class="modal-footer">
+
+
+                <button type="button" class="btn btn-success" ng-click="borrarUsuario(idUsuario)" data-dismiss="modal">
+                    Eliminar
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+
+</div><!-- Modal Eliminar Novedad-->

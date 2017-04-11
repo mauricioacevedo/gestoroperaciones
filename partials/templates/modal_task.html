@@ -1,0 +1,142 @@
+<form class="form-horizontal">
+    <fieldset>
+
+
+        <!-- change col-sm-N to reflect how you would like your column spacing (http://getbootstrap.com/css/#forms-control-sizes) -->
+
+
+        <!-- Form Name -->
+        <legend>Crear Tarea</legend>
+
+        <!-- Fuel UX Select http://getfuelux.com/javascript.html#selectlist -->
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="tipotsk">Tipo</label>
+            <div class="controls text-left col-sm-10">
+                <div class="btn-group selectlist" data-initialize="selectlist" data-resize="auto" id="tipotsk">
+                    <button class="btn btn-default dropdown-toggle input-sm" data-toggle="dropdown" type="button" required="">
+                        <span class="selected-label">&nbsp;</span>
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li data-value="NUEVO"><a href="#">NUEVO</a></li>
+                        <li data-value="EDITAR"><a href="#">EDITAR</a></li>
+                    </ul>
+                    <input class="hidden hidden-field" name="tipotsk" readonly="readonly" aria-hidden="true" type="text">
+                </div>
+                <p class="help-block">Seleccione tipo de tarea</p>
+            </div>
+        </div>
+        <!-- Fuel UX Select http://getfuelux.com/javascript.html#selectlist -->
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="categoriatsk">Categoría</label>
+            <div class="controls text-left col-sm-10">
+                <div class="btn-group selectlist" data-initialize="selectlist" data-resize="auto" id="categoriatsk">
+                    <button class="btn btn-default dropdown-toggle input-sm" data-toggle="dropdown" type="button" required="">
+                        <span class="selected-label">&nbsp;</span>
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li data-value="INFORME"><a href="#">INFORME</a></li>
+                        <li data-value="AUTOMATIZACION"><a href="#">AUTOMATIZACION</a></li>
+                        <li data-value="APLICACION"><a href="#">APLICACION</a></li>
+                    </ul>
+                    <input class="hidden hidden-field" name="categoriatsk" readonly="readonly" aria-hidden="true" type="text">
+                </div>
+                <p class="help-block">Seleccione la categoría</p>
+            </div>
+        </div>
+        <!-- Fuel UX Select http://getfuelux.com/javascript.html#selectlist -->
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="grupotsk">Grupo</label>
+            <div class="controls text-left col-sm-10">
+                <div class="btn-group selectlist" data-initialize="selectlist" data-resize="auto" id="grupotsk">
+                    <button class="btn btn-default dropdown-toggle input-sm" data-toggle="dropdown" type="button" required="">
+                        <span class="selected-label">&nbsp;</span>
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li data-value="ALISTAMIENTO"><a href="#">ALISTAMIENTO</a></li>
+                        <li data-value="B2B"><a href="#">B2B</a></li>
+                        <li data-value="DESPACHO"><a href="#">DESPACHO</a></li>
+                        <li data-value="EMTELCO"><a href="#">EMTELCO</a></li>
+                    </ul>
+                    <input class="hidden hidden-field" name="grupotsk" readonly="readonly" aria-hidden="true" type="text">
+                </div>
+                <p class="help-block">A que grupo pertenece la tarea</p>
+            </div>
+        </div>
+        <!-- Fuel UX Select http://getfuelux.com/javascript.html#selectlist -->
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="usuariotsk">Usuario</label>
+            <div class="controls text-left col-sm-10">
+                <div class="btn-group selectlist" data-initialize="selectlist" data-resize="auto" id="usuariotsk">
+                    <button class="btn btn-default dropdown-toggle input-sm" data-toggle="dropdown" type="button" required="">
+                        <span class="selected-label">&nbsp;</span>
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li data-value="VICTOR MANUEL GOMEZ SERNA"><a href="#">VICTOR MANUEL GOMEZ SERNA</a></li>
+                        <li data-value="SILVIA ELENA TORO QUINTERO"><a href="#">SILVIA ELENA TORO QUINTERO</a></li>
+                        <li data-value="MONICA TATIANA HUERTAS"><a href="#">MONICA TATIANA HUERTAS</a></li>
+                    </ul>
+                    <input class="hidden hidden-field" name="usuariotsk" readonly="readonly" aria-hidden="true" type="text">
+                </div>
+                <p class="help-block">Que persona necesita la tarea</p>
+            </div>
+        </div>
+        <!-- Textarea http://getbootstrap.com/css/#textarea -->
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="obstsk">Observaciones</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" id="obstsk" name="obstsk" rows="3" required=""></textarea>
+                <p class="help-block">De que trata la tarea.</p>
+            </div>
+        </div>
+
+        <!-- Fuel UX Select http://getfuelux.com/javascript.html#selectlist -->
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="estadotsk">Estado</label>
+            <div class="controls text-left col-sm-10">
+                <div class="btn-group selectlist" data-initialize="selectlist" data-resize="auto" id="estadotsk">
+                    <button class="btn btn-default dropdown-toggle input-sm" data-toggle="dropdown" type="button" required="">
+                        <span class="selected-label">&nbsp;</span>
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li data-value="ACTIVO"><a href="#">ACTIVO</a></li>
+                        <li data-value="PAUSA"><a href="#">PAUSA</a></li>
+                        <li data-value="CERRADO"><a href="#">CERRADO</a></li>
+                    </ul>
+                    <input class="hidden hidden-field" name="estadotsk" readonly="readonly" aria-hidden="true" type="text">
+                </div>
+                <p class="help-block">Estado de la tarea, por defecto ACTIVO</p>
+            </div>
+        </div>
+        <!-- Fuel UX Select http://getfuelux.com/javascript.html#selectlist -->
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="prioridadtsk">Prioridad</label>
+            <div class="controls text-left col-sm-10">
+                <div class="btn-group selectlist" data-initialize="selectlist" data-resize="auto" id="prioridadtsk">
+                    <button class="btn btn-default dropdown-toggle input-sm" data-toggle="dropdown" type="button" required="">
+                        <span class="selected-label">&nbsp;</span>
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li data-value="ALTA"><a href="#">ALTA</a></li>
+                        <li data-value="MEDIA"><a href="#">MEDIA</a></li>
+                        <li data-value="BAJA"><a href="#">BAJA</a></li>
+                    </ul>
+                    <input class="hidden hidden-field" name="prioridadtsk" readonly="readonly" aria-hidden="true" type="text">
+                </div>
+                <p class="help-block">Que tan importante es la tarea</p>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
