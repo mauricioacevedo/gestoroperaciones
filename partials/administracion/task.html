@@ -19,7 +19,6 @@
                     <thead>
                     <tr>
                         <th>IdTarea</th>
-                        <th>Flag</th>
                         <th>Estado</th>
                         <th>Inicio</th>
                         <th>Cambio</th>
@@ -34,8 +33,7 @@
                     </thead>
                     <tbody>
                         <tr  ng-repeat="t in task.crud">
-                            <td><span class="small">{{t.IDTAREA}}</span></td>
-                            <td><span class="small" ng-style="estiloflag(t.PRIORIDAD)" tooltip-placement="left" uib-tooltip="{{t.PRIORIDAD}}"><i class="fa fa-flag" aria-hidden="true"></i></span></td>
+                            <td><span class="small">{{t.IDTAREA}} <span  ng-style="estiloflag(t.PRIORIDAD)" tooltip-placement="left" uib-tooltip="{{t.PRIORIDAD}}"><i class="fa fa-flag" aria-hidden="true"></i></span></span></td>
                             <td><span class="small">
                                 <a href="#"
                                    edit-disabled="{{t.ESTADO == 'CERRADO'}}"
