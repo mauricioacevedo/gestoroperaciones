@@ -57,9 +57,8 @@
                                 </a></span></td>
                             <td><img class="profile-card" data-ng-src="{{t.PIC || 'images/avatar_2x.png'}}" height="20px" width="20px"/> <span class="small">{{t.USUARIO_GEST}}</span></td>
                             <td><span class="small">
-                                <a href="#"
+                                <a href="#" ng-click="getTaskOptions()"
                                    edit-disabled="{{t.ESTADO == 'CERRADO'}}"
-                                   onbeforesave="getTaskOptions()"
                                    editable-select="t.TIPO" e-ng-options="s for s in task.tipos"
                                    onaftersave="updateStatus(t,$index)">
                                 {{t.TIPO}}
