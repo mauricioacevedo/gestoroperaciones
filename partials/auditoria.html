@@ -198,20 +198,21 @@
                                       </select>
                                       <br>
                                        <br>
+                                  <div ng-show="Mostraresponsable">
                                       <i class="fa fa-globe" aria-hidden="true"></i> Responsable 
                                       <select
                                         class= "btn btn-default btn-xs grupo-select"
-                                        ng-model="gestion_Pendientes.responsable" ng-show="Mostraresponsable">
-                                        <option value="" disabled>--Seleccione--</option>
+                                        ng-model="gestion_Pendientes.responsable" >
                                         <option ng-repeat="d in Listaresponsable" 
                                           value="{{d.responsables}}">
                                           {{d.responsables}}
                                         </option>
                                       </select>
+                                      </div>
 
                                       <span class="label label-info" ng-show="Mostraresponsable2">
                                     <i class="fa fa-info-circle" ng-model="gestion_Pendientes.responsable" aria-hidden="true">
-                                      </i> Responsable:{{gestion_Pendientes.responsable}}</span>
+                                      </i> {{gestion_Pendientes.responsable}}</span>
                                     
                               </div>  
                       </div> 
@@ -317,20 +318,21 @@
                                       </select>
                                       <br>
                                        <br>
+                                       <div ng-show="Mostraresponsable">
                                       <i class="fa fa-globe" aria-hidden="true"></i> Responsable 
                                       <select
                                         class= "btn btn-default btn-xs grupo-select"
-                                        ng-model="gestion_Pendientes.responsable" ng-show="Mostraresponsable">
-                                        <option value="" disabled>--Seleccione--</option>
+                                        ng-model="gestion_Pendientes.responsable" >
                                         <option ng-repeat="d in Listaresponsable" 
                                           value="{{d.responsables}}">
                                           {{d.responsables}}
                                         </option>
                                       </select>
+                                      </div>
 
                                       <span class="label label-info" ng-show="Mostraresponsable2">
                                     <i class="fa fa-info-circle" ng-model="gestion_Pendientes.responsable" aria-hidden="true">
-                                      </i> Responsable:{{gestion_Pendientes.responsable}}</span>
+                                      </i> {{gestion_Pendientes.responsable}}</span>
                                     
                               </div>   
 
