@@ -184,8 +184,7 @@
                               <label><input type="checkbox" ng-model="gestion_Pendientes.Gestion" ng-change="Gestion_Pendientes()"><b>Gestión pendiente</b></label>
                         </div>
                         </td> 
-                                <div ng-show="gestion_Pendientes.Gestion">
-                                  <td>
+                                  <td ng-show="gestion_Pendientes.Gestion">
                                 <i class="fa fa-globe" aria-hidden="true"></i> Causa raiz   
                                     <select   class= "btn btn-default btn-xs grupo-select"
                                           ng-model="gestion_Pendientes.causaraiz">
@@ -203,7 +202,7 @@
                                         <option value="Gestion instalaciones Regionales" >Gestión instalaciones Regionales</option>
                                     </select>
                                 </td>
-                                  <td>
+                                  <td ng-show="gestion_Pendientes.Gestion">
                                    <i class="fa fa-globe" aria-hidden="true"></i> Responsable        
                                     <select   class= "btn btn-default btn-xs grupo-select"
                                           ng-model="gestion_Pendientes.responsable">
