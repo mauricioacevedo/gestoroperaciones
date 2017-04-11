@@ -13636,7 +13636,9 @@ class API extends REST {
                             if ($rst->num_rows > 0){
                                 $resultado=array();
                                 while($row = $rst->fetch_assoc()){
+                                    $row['responsables']=utf8_encode($row['responsables']);
                                         $resultado[] = $row;
+
                                 }
                                 $this->response($this->json(array($resultado)), 201);
                             }else{
