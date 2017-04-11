@@ -15031,7 +15031,10 @@ $scope.updateStatus = function(data, index) {
 		}
 	);
 };
+$scope.newTask = function () {
+    $scope.taskform = {};
 
+};
 $scope.saveTask = function (data) {
 		console.log(data);
 };
