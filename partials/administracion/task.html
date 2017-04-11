@@ -43,7 +43,11 @@
                             <td><span class="small">{{t.CATEGORIA}}</span></td>
                             <td><span class="small">{{t.GRUPO}}</span></td>
                             <td><span class="small">{{t.REPRESENTANTE}}</span></td>
-                            <td><button type="button" uib-tooltip="Observaciones" tooltip-placement="left"
+                            <td>
+                                <button type="button"
+                                        uib-tooltip="Observaciones"
+                                        tooltip-placement="left"
+                                        uib-popover-html="'<b>{{t.OBSERVACIONES}}</b>'"
                                         class="btn btn-default btn-circle-xss"
                                         ng-disabled="loading">
                                 <i class="fa fa-commenting-o" aria-hidden="true"></i>
