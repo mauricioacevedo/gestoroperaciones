@@ -13641,9 +13641,9 @@ class API extends REST {
                                 " '$pedido'".
                                 ", '$causaraiz'".
                                 ", '$responsable'".
-                                ",'$OBSERVACION_GESTOR' ".
-                                ",'$HISTORICO_NOVEDAD' ".
-                                ",'$ASESOR')";
+                                ", '$OBSERVACION_GESTOR' ".
+                                ", '$HISTORICO_NOVEDAD' ".
+                                ", '$ASESOR')";
 echo $sql_gestionPendientes;
                             $rst = $this->connseguimiento->query($sql_gestionPendientes);
                             // ---------------------------------- SQL Feed
