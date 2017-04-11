@@ -196,7 +196,8 @@
                                           {{d.causaRaiz}}
                                         </option>
                                       </select>
-                                    este es el responsable:  {{responsable}}
+                                   <span class="label label-info" ng-show="responsable">
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i>Responsable:{{responsable}}</span>
                               </div>
                       </div> 
                 <div class="row">
@@ -300,8 +301,9 @@
                                           {{d.causaRaiz}}
                                         </option>
                                       </select><br>
-                                    <br>     
-                                    este es el responsable:  {{responsable}}
+                                    <br>   
+                                      <span class="label label-info" ng-show="responsable">
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i>Responsable:{{responsable}}</span>
                                 </div>     
 
                                         <div  ng-show="service.NOVEDAD!='ESCALADO CR' && service.NOVEDAD!='' && service.NOVEDAD!=undefined && service.NOVEDAD!='RECUPERAR EQUIPOS' && service.NOVEDAD!='RETIRAR ACCESO' && service.NOVEDAD!='PENDIENTE ANULAR PRODUCTO'
