@@ -178,13 +178,15 @@
                           <button id="mguardar" type="button" class="btn btn-md btn-danger" ng-click="msavePedidomalo();"><span id="mloader"></span>&nbsp; Guardar</button>
                           </td>
                   </tr>
-                  <tr>
-                    <div class="checkbox">
-                                  <label><input type="checkbox" ng-model="gestion_Pendientes.Gestion" ng-change="Gestion_Pendientes()"><b>Gestión pendiente</b></label>
-                                </div>
-                                <br>
+                  <tr  ng-show="mpedido.active==1">
+                        <td>                    
+                        <div class="checkbox">
+                              <label><input type="checkbox" ng-model="gestion_Pendientes.Gestion" ng-change="Gestion_Pendientes()"><b>Gestión pendiente</b></label>
+                        </div>
+                        </td> 
                                 <div ng-show="gestion_Pendientes.Gestion">
-                                <i class="fa fa-globe" aria-hidden="true"></i> Causa raiz</b>         
+                                  <td>
+                                <i class="fa fa-globe" aria-hidden="true"></i> Causa raiz   
                                     <select   class= "btn btn-default btn-xs grupo-select"
                                           ng-model="gestion_Pendientes.causaraiz">
                                         <option value="" disabled>--Seleccione--</option>
@@ -199,9 +201,10 @@
                                         <option value="Infraestructura" >Infraestructura</option>
                                         <option value="Posteria" >Postería</option>
                                         <option value="Gestion instalaciones Regionales" >Gestión instalaciones Regionales</option>
-                                    </select><br>
-                                    <br>
-                                   <i class="fa fa-globe" aria-hidden="true"></i> Responsable</b>         
+                                    </select>
+                                </td>
+                                  <td>
+                                   <i class="fa fa-globe" aria-hidden="true"></i> Responsable        
                                     <select   class= "btn btn-default btn-xs grupo-select"
                                           ng-model="gestion_Pendientes.responsable">
                                         <option value="" disabled>--Seleccione--</option>
@@ -214,6 +217,7 @@
                                         <option value="Silvia Elena Toro Quintero">Silvia Elena Toro Quintero</option>
                                          <option value="Jose Fernando Garcia Ruiz">Jose Fernando Garcia Ruiz</option>
                                     </select>
+                                  </td>
                                 </div>  
                     </tr>
                 </table>
