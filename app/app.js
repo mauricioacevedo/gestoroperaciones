@@ -14955,6 +14955,10 @@ $scope.updateStatus = function(data, index) {
         $scope.task.crud[index].PROGRESO=100;
         $scope.taskIsDone = true;
     }
+    if(data.PROGRESO===100){
+        data.ESTADO='CERRADO';
+        $scope.taskIsDone = true;
+    }
     $http.post('services/updateTaskAdmin', {id: data.IDTAREA, estado: data.ESTADO, usuario:userID, fecha:$scope.fechaModifica, taskIsDone:$scope.taskIsDone, progreso:data.PROGRESO}).then(
     	function (res) {
             notify({
@@ -14968,6 +14972,25 @@ $scope.updateStatus = function(data, index) {
 		}
 	);
 };
+$scope.updateProgress = function(data, index) {
+        $scope.fechaModifica = $rootScope.fechaProceso();
+        if(data.PROGRESO===100){
+            data.ESTADO='CERRADO';
+            $scope.taskIsDone = true;
+        }
+        $http.post('services/updateTaskAdmin', {id: data.IDTAREA, estado: data.ESTADO, usuario:userID, fecha:$scope.fechaModifica, taskIsDone:$scope.taskIsDone, progreso:data.PROGRESO}).then(
+            function (res) {
+                notify({
+                    message: res.data[0],
+                    duration: '3000',
+                    position: 'right'
+                });
+
+            }, function (err) {
+                $rootScope.errorDatos = 'Error: ' + err.status + ', Msg: ' +err.data[0];
+            }
+        );
+    };
 
 });//--------------- fin Controlador Task  -----------------------
 
