@@ -118,7 +118,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
-                            Activos: <span class="badge badge-primary">{{(taskid|filter:'ACTIVO').length}}{{taskid.length}}</span>
+                            Activos: <span class="badge badge-primary">{{(taskid|filter:{ESTADO:'ACTIVO'}).length}}{{taskid.length}}</span>
                         </div>
                     </div>
                 </div>
