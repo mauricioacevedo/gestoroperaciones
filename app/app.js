@@ -14945,7 +14945,7 @@ $scope.updateStatus = function(data, index) {
         $scope.task.crud[index].PROGRESO=100;
         $scope.taskIsDone = true;
     }
-    $http.post('services/updateTaskAdmin', {id: data.IDTAREA, estado: data.ESTADO, usuario:userID, fecha:$scope.fechaModifica, taskIsDone:$scope.taskIsDone}).then(
+    $http.post('services/updateTaskAdmin', {id: data.IDTAREA, estado: data.ESTADO, usuario:userID, fecha:$scope.fechaModifica, taskIsDone:$scope.taskIsDone, progreso:data.PROGRESO}).then(
     	function (res) {
             notify({
                 message: res.data,

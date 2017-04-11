@@ -16346,9 +16346,10 @@ class API extends REST {
         $usuario_id     =   $params['usuario'];
         $fechamod       =   $params['fecha'];
         $taskisdone     =   $params['taskIsDone'];
+        $progresotsk       =   $params['progreso'];
         $today          =   date("Y-m-d H:i:s");
 
-        if($taskisdone){$progreso=100;}
+        if($taskisdone){$progreso=100;}else{$progreso=$progresotsk;}
 
         $query= " update portalbd.go_task ".
             " set ESTADO='$estado' ".
