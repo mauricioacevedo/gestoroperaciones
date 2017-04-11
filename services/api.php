@@ -16356,7 +16356,6 @@ class API extends REST {
             " , PROGRESO=$progreso ".
             " where IDTAREA='$idtarea' ";
 
-        echo $query;
         $rst = $this->mysqli->query($query);
 
         if($rst===TRUE){
