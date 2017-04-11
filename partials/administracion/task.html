@@ -59,7 +59,7 @@
                             <td><span class="small">
                                 <a href="#" ng-click="getTaskOptions()"
                                    edit-disabled="{{t.ESTADO == 'CERRADO'}}"
-                                   editable-select="t.TIPO" e-ng-options="g.TIPO as g.TIPO for g in task.tipos"
+                                   editable-select="t.TIPO" e-ng-options="g.TIPO as g.TIPO for g in task.tipos | unique:'TIPO'"
                                    onaftersave="updateStatus(t,$index)">
                                 {{t.TIPO}}
                               </a></span></td>
