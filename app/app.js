@@ -14864,14 +14864,17 @@ $rootScope.errorDatos 	    = 	    null;
 $scope.task                 =       {};
 $scope.task.grupos          =       [];
 $scope.task.tipos           =       [];
+$scope.task.estados 		=		[];
 var userID                  =       $cookieStore.get('logedUser').login;
-
 $rootScope.logedUser        =       $cookieStore.get('logedUser');
 
 document.getElementById('logout').className = "btn btn-md btn-danger";
 var divi = document.getElementById("logoutdiv");
 divi.style.visibility = "visible";
 divi.style.position = "relative";
+
+$scope.task.estados = ['ACTIVO','CERRADO','PAUSA'];
+
 
 
 $scope.getTaskOptions = function () {
