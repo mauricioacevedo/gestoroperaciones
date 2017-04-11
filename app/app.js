@@ -348,6 +348,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
      return $http.get(serviceBase + 'causaRaiz');
         };  
 
+	obj.getResponsablePendiente = function (causaraiz) {
+     return $http.get(serviceBase + 'ResponsablePendiente?causaraiz=' + causaraiz);
+        };  	
+
     obj.getGestorTansacciones = function () {
 		return $http.get(serviceBase + 'gestorTransacciones');
 	};
@@ -10398,8 +10402,6 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 			$scope.gestion_Pendientes = {};
 	}; //FIN SAVEPEDIDO
 
-$scope.listadoCausasRaiz={};
-
 				$scope.causaRaiz = function () {
 					services.getcausaRaiz().then(function (data) {
 							$scope.listadoCausasRaiz=data.data[0];
@@ -10408,16 +10410,17 @@ $scope.listadoCausasRaiz={};
 				}
 
 				$scope.responsablePendiInsta = function () {
-					console.log($scope.gestion_Pendientes.causaraiz);
-					/*services.getcausaRaiz().then(function (data) {
-							$scope.listadoCausasRaiz=data.data[0];
+					services.getResponsablePendiente($scope.gestion_Pendientes.causaraiz).then(function (data) {
+							$scope.responsable=data.data[0];
 							return data.data;
-					});*/
+					});
 				}
 
 		
 
 $scope.causaRaiz();
+$scope.responsable="",
+$scope.listadoCausasRaiz={};
 });
 
 

@@ -13615,6 +13615,34 @@ class API extends REST {
 		            }
 
 
+                    private function ResponsablePendiente(){
+                        if($this->get_request_method() != "GET"){
+                        $this->response('',406);
+                        }
+
+                        $causaraiz = $this->_request['causaraiz'];
+
+
+            			$this->dbSeguimientoConnect();	
+
+                        $query=" SELECT responsables".
+                            " FROM causaRaiz_Responsables ".
+                            " where 1=1 ".
+                            " and causaRaiz = '$causaraiz'";
+
+                       $rst = $this->connseguimiento->query($query);
+                       //echo $query;
+                            if ($rst->num_rows > 0){
+
+                                $resultado=array();
+                                while($row = $rst->fetch_assoc()){
+                                        $resultado[] = $row;
+                                }
+                                $this->response($this->json(array($resultado)), 201);
+                            }else{
+						        $this->response($this->json($error), 400);
+					        }  // If no records "No Content" status
+		            }
 //gestionMalosPendiInsta
                     private function servicesgestionPendientesInstaMalos(){
 

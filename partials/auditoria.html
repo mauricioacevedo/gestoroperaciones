@@ -196,19 +196,7 @@
                                           {{d.causaRaiz}}
                                         </option>
                                       </select>
-                                   <i class="fa fa-globe" aria-hidden="true"></i> Responsable        
-                                    <select   class= "btn btn-default btn-xs grupo-select"
-                                          ng-model="gestion_Pendientes.responsable">
-                                        <option value="" disabled>--Seleccione--</option>
-                                        <option value="Hernando">Hernando</option>
-                                        <option value="Wilmar Zamudio">Wilmar Zamudio</option>
-                                        <option value="Mesa de servicio">Mesa de servicio</option>
-                                        <option value="Jorge Ivan Zapata Montoya">Jorge Ivan Zapata Montoya</option>
-                                        <option value="Andrea Macias Higuita">Andrea Macias Higuita</option>
-                                        <option value="Equipo Aseguramiento">Equipo Aseguramiento</option>
-                                        <option value="Silvia Elena Toro Quintero">Silvia Elena Toro Quintero</option>
-                                         <option value="Jose Fernando Garcia Ruiz">Jose Fernando Garcia Ruiz</option>
-                                    </select>
+                                     {{$scope.responsable}}
                                   </div>
                       </div> 
                 <div class="row">
@@ -312,20 +300,8 @@
                                           {{d.causaRaiz}}
                                         </option>
                                       </select><br>
-                                    <br>
-                                   <i class="fa fa-globe" aria-hidden="true"></i> Responsable         
-                                    <select   class= "btn btn-default btn-xs grupo-select"
-                                          ng-model="gestion_Pendientes.responsable">
-                                        <option value="" disabled>--Seleccione--</option>
-                                        <option value="Hernando">Hernando</option>
-                                        <option value="Wilmar Zamudio">Wilmar Zamudio</option>
-                                        <option value="Mesa de servicio">Mesa de servicio</option>
-                                        <option value="Jorge Ivan Zapata Montoya">Jorge Ivan Zapata Montoya</option>
-                                        <option value="Andrea Macias Higuita">Andrea Macias Higuita</option>
-                                        <option value="Equipo Aseguramiento">Equipo Aseguramiento</option>
-                                        <option value="Silvia Elena Toro Quintero">Silvia Elena Toro Quintero</option>
-                                         <option value="Jose Fernando Garcia Ruiz">Jose Fernando Garcia Ruiz</option>
-                                    </select>
+                                    <br>     
+                                    {{$scope.responsable}}
                                 </div>     
 
                                         <div  ng-show="service.NOVEDAD!='ESCALADO CR' && service.NOVEDAD!='' && service.NOVEDAD!=undefined && service.NOVEDAD!='RECUPERAR EQUIPOS' && service.NOVEDAD!='RETIRAR ACCESO' && service.NOVEDAD!='PENDIENTE ANULAR PRODUCTO'
