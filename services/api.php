@@ -16349,7 +16349,7 @@ class API extends REST {
         $progresotsk    =   $params['progreso'];
         $today          =   date("Y-m-d H:i:s");
         
-        echo $taskisdone;
+        var_dump($params);
         if($taskisdone){
             $progreso=100;
         }else{
