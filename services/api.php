@@ -16387,7 +16387,48 @@ class API extends REST {
         }
 
     }
+    private function taskCrudUser()
+    {
+        if($this->get_request_method() != "GET"){
+            $this->response('Metodo no soportado',406);
+        }
 
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr ($usuarioIp);
+        $galleta        =   json_decode (stripslashes ($_COOKIE['logedUser']), true);
+        $galleta        =   stripslashes ($_COOKIE['logedUser']);
+        $galleta        =   json_decode ($galleta);
+        $galleta        =   json_decode (json_encode ($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+        $today          =   date("Y-m-d");
+
+
+
+        $sql =  " SELECT t.*, tp.PIC FROM portalbd.go_task t ".
+            " left join portalbd.go_task_profile tp on t.USUARIO_GEST=tp.USUARIO_ID ".
+            " where 1=1 ".
+            " and t.USUARIO_GEST='$usuarioGalleta' ";
+
+        // echo $sql;
+        $r = $this->mysqli->query($sql);
+
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                //$row['PIC'] = base64_encode($row['PIC']);
+                //$row['PIC'] = 'data:image/jpeg;base64,'.base64_encode( $row['PIC'] );
+                $result[] = $row;
+            }
+
+            $this->response($this->json($result), 200); // send user details
+        }else{
+            $error = "No hay datos.";
+            $this->response($this->json(array($error)), 403);
+        }
+
+    }
     private function updateTaskAdmin(){
 
         if($this->get_request_method() != "POST"){
