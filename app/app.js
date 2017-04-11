@@ -15850,7 +15850,7 @@ app.config(['$routeProvider',
 }]);
 //--------------------FIN AGENDAMIENTO------------------------
 
-app.run(['$rootScope', 'firebase', 'services', function ($rootScope, $firebase, services) {
+app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $http, $firebase, services) {
 
 	$rootScope.gestor = {};
 
