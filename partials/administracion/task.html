@@ -69,7 +69,14 @@
                                 {{t.CATEGORIA}}
                               </a>
                             </span></td>
-                            <td><span class="small">{{t.GRUPO}}</span></td>
+                            <td><span class="small">
+                                <a href="#" ng-click="getTaskOptions()"
+                                   edit-disabled="{{t.ESTADO == 'CERRADO'}}"
+                                   editable-select="t.GRUPO" e-ng-options="g.GRUPO as g.GRUPO for g in task.grupos | unique:'GRUPOS'"
+                                   onaftersave="updateStatus(t,$index)">
+                                {{t.GRUPO}}
+                              </a>
+                            </span></td>
                             <td><span class="small">{{t.REPRESENTANTE}}</span></td>
                             <td>
                                 <button type="button"
