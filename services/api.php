@@ -16365,7 +16365,8 @@ class API extends REST {
 
         $rst = $this->mysqli->query($query);
 
-            
+        echo $rst;
+        var_dump($rst);
         if($rst===TRUE){
             $msg="Tarea Actualizada, progreso: $progreso";
 
