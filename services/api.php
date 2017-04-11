@@ -13628,9 +13628,9 @@ class API extends REST {
                                 }
                             }
                           
-                   //  $this->dbSeguimientoConnect();
+                    //     $this->dbSeguimientoConnect();
                             // SQL Feed----------------------------------
-                            $sql_gestionPendientes=   "insert into historicoGestionPendientes ( ".
+                            $sql_gestionPendientes= "insert into historicoGestionPendientes ( ".
                                 " pedido ".
                                 ", causa_raiz ".
                                 ", responsable ".
@@ -13646,9 +13646,8 @@ class API extends REST {
                                 ", '$ASESOR')";
 
                             $rst = $this->connseguimiento->query($sql_gestionPendientes);
-
-                            echo var_dump($rst);
-                            // ---------------------------------- SQL Feed
+                 echo    $sql_gestionPendientes;        
+                                                       // ---------------------------------- SQL Feed
                             //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','ADMIN','','','UPDATEPARAMETRO','$param:$value') ";
                             //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
