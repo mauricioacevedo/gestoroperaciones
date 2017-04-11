@@ -16353,7 +16353,7 @@ class API extends REST {
         $query= " update portalbd.go_task ".
             " set ESTADO='$estado' ".
             " , PROGRESO=$progreso ".
-            " where ID='$idtarea' ";
+            " where IDTAREA='$idtarea' ";
 
         $rst = $this->mysqli->query($query);
         if($rst===TRUE){
