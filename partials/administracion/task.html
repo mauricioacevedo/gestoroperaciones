@@ -22,6 +22,7 @@
                         <th>Flag</th>
                         <th>Estado</th>
                         <th>Inicio</th>
+                        <th>Fin</th>
                         <th>Progreso</th>
                         <th>Responsable</th>
                         <th>Tipo</th>
@@ -44,6 +45,7 @@
                               </a>
                                </span></td>
                             <td><span class="small">{{t.FECHA_INICIO}}</span></td>
+                            <td><span class="small">{{t.FECHA_MODIFICACION}}</span></td>
                             <td><span class="small"><uib-progressbar class="progress-striped" value="t.PROGRESO"  type="success">{{t.PROGRESO}}%</uib-progressbar></span></td>
                             <td><img class="profile-card" data-ng-src="{{t.PIC || 'images/avatar_2x.png'}}" height="20px" width="20px"/> <span class="small">{{t.USUARIO_GEST}}</span></td>
                             <td><span class="small">{{t.TIPO}}</span></td>
