@@ -10402,6 +10402,9 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 			$scope.gestion_Pendientes = {};
 	}; //FIN SAVEPEDIDO
 
+$scope.responsable={};
+$scope.listadoCausasRaiz={}
+
 				$scope.causaRaiz = function () {
 					services.getcausaRaiz().then(function (data) {
 							$scope.listadoCausasRaiz=data.data[0];
@@ -10420,8 +10423,6 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 		
 
 $scope.causaRaiz();
-$scope.responsable="",
-$scope.listadoCausasRaiz={};
 });
 
 
