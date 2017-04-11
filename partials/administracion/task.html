@@ -72,12 +72,19 @@
                             <td><span class="small">
                                 <a href="#" ng-click="getTaskOptions()"
                                    edit-disabled="{{t.ESTADO == 'CERRADO'}}"
-                                   editable-select="t.GRUPO" e-ng-options="g.GRUPO as g.GRUPO for g in task.grupos | unique:'GRUPOS'"
+                                   editable-select="t.GRUPO" e-ng-options="g.GRUPO as g.GRUPO for g in task.grupos | unique:'GRUPO'"
                                    onaftersave="updateStatus(t,$index)">
                                 {{t.GRUPO}}
                               </a>
                             </span></td>
-                            <td><span class="small">{{t.REPRESENTANTE}}</span></td>
+                            <td><span class="small">
+                                <a href="#" ng-click="getTaskOptions()"
+                                   edit-disabled="{{t.ESTADO == 'CERRADO'}}"
+                                   editable-select="t.REPRESENTANTE" e-ng-options="g.REPRESENTANTE as g.REPRESENTANTE for g in task.grupos | unique:'REPRESENTANTE'"
+                                   onaftersave="updateStatus(t,$index)">
+                                {{t.REPRESENTANTE}}
+                              </a>
+                            </span></td>
                             <td>
                                 <button type="button"
                                         uib-tooltip="Observaciones"
