@@ -13603,9 +13603,12 @@ class API extends REST {
 
                             $datos = $params['datosPendientes'];
                             $gestion = $params['datosGestion'];
-                                
+                            
                             $active = $gestion[active];
 
+echo var_dump( $gestion);                       
+
+/*
                              if ( $active == 1){
                                 $HISTORICO_NOVEDAD = $gestion[NOVEDAD];
                                 $ASESOR = $gestion[ASESOR];
@@ -13652,7 +13655,7 @@ class API extends REST {
                             //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
                             $this->response(json_encode(array("OK","PARAMETRO ACTUALIZADO")), 200);
-
+*/
                         }
 
 
