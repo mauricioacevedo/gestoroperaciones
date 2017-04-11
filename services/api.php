@@ -16354,13 +16354,15 @@ class API extends REST {
 
         $params         =   json_decode(file_get_contents('php://input'),true);
         $idtarea        =   $params['id'];
+        $tipotarea      =   $params['tipo'];
+        $categoria      =   $params['categoria'];
+        $representante  =   $params['representante'];
         $estado         =   $params['estado'];
         $usuario_id     =   $params['usuario'];
         $fechamod       =   $params['fecha'];
         $taskisdone     =   $params['taskIsDone'];
         $progresotsk    =   $params['progreso'];
         $today          =   date("Y-m-d H:i:s");
-        
 
         if($taskisdone){
             $progreso=100;
@@ -16372,6 +16374,9 @@ class API extends REST {
         $query= " update portalbd.go_task ".
             " set ESTADO='$estado' ".
             " , PROGRESO=$progreso ".
+            " , TIPO='$tipotarea' ".
+            " , CATEGORIA='$categoria' ".
+            " , REPRESENTANTE='$representante' ".
             " , FECHA_MODIFICACION='$fechamod' ".
             " , USUARIO_MODIFICACION='$usuario_id' ".
             " where IDTAREA='$idtarea' ";

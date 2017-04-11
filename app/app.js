@@ -14951,18 +14951,29 @@ $scope.estiloflag = function (rank) {
 
 $scope.updateStatus = function(data, index) {
     $scope.fechaModifica = $rootScope.fechaProceso();
+
     if(data.ESTADO==='CERRADO'){
         $scope.task.crud[index].PROGRESO=100;
         $scope.taskIsDone = true;
     }
-
     if(data.PROGRESO==100){
         data.ESTADO='CERRADO';
         $scope.task.crud[index].ESTADO='CERRADO';
         $scope.taskIsDone = true;
     }
 
-    $http.post('services/updateTaskAdmin', {id: data.IDTAREA, estado: data.ESTADO, usuario:userID, fecha:$scope.fechaModifica, taskIsDone:$scope.taskIsDone, progreso:data.PROGRESO}).then(
+    $http.post('services/updateTaskAdmin', {
+        id: data.IDTAREA,
+        tipo:data.TIPO,
+        categoria: data.CATEGORIA,
+        grupo: data.GRUPO,
+        representante: data.REPRESENTANTE,
+        estado: data.ESTADO,
+        progreso:data.PROGRESO,
+        fecha:$scope.fechaModifica,
+        usuario:userID,
+        taskIsDone:$scope.taskIsDone
+    }).then(
     	function (res) {
             notify({
                 message: res.data[0],
