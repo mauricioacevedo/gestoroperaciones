@@ -16346,7 +16346,7 @@ class API extends REST {
         $usuario_id     =   $params['usuario'];
         $fechamod       =   $params['fecha'];
         $taskisdone     =   $params['taskIsDone'];
-        $progresotsk       =   $params['progreso'];
+        $progresotsk    =   $params['progreso'];
         $today          =   date("Y-m-d H:i:s");
         
         echo $taskisdone;
