@@ -10411,8 +10411,8 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 
 				$scope.responsablePendiInsta = function () {
 					services.getResponsablePendiente($scope.gestion_Pendientes.causaraiz).then(function (data) {
-							$scope.responsable=data.data[0];
-						console.log("responsable: "+$scope.responsable.responsables);
+							$scope.responsable=data.data[0].responsables;
+						console.log("responsable: "+$scope.responsable);
 							return data.data;
 					});
 				}

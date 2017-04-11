@@ -13631,9 +13631,9 @@ class API extends REST {
                             " and causaRaiz = '$causaraiz'";
 
                        $rst = $this->connseguimiento->query($query);
-                       echo $query;
-                            if ($rst->num_rows > 0){
+                      // echo $query;
 
+                            if ($rst->num_rows > 0){
                                 $resultado=array();
                                 while($row = $rst->fetch_assoc()){
                                         $resultado[] = $row;
