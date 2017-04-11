@@ -13609,7 +13609,7 @@ class API extends REST {
                              if ( $active == '1'){
                                 $HISTORICO_NOVEDAD = $gestion[NOVEDAD];
                                 $ASESOR = $gestion[ASESOR];
-                                $OBSERVACION_GESTOR = $gestion[OBSERVACION_GESTOR];
+                                $OBSERVACION_GESTOR = $gestion[OBSERVACION_GESTOR]."----Creado Manual----";
                                 $causaraiz = $datos[causaraiz];
                                 $responsable = $datos[responsable];
                                 $pedido = $gestion[PEDIDO_ID];
@@ -13627,7 +13627,13 @@ class API extends REST {
                                     $OBSERVACION_GESTOR = $OBSERVACION_GESTOR."-NÚMERO DE CR: ". $CR; 
                                 }
                             }
-                     
+                            echo $HISTORICO_NOVEDAD;
+                            echo $ASESOR;
+                            echo $OBSERVACION_GESTOR;
+                            echo $causaraiz;
+                            echo $responsable;
+                            echo $pedido;
+            /*         
                         $this->dbSeguimientoConnect();
 
                             // SQL Feed----------------------------------
@@ -13652,6 +13658,7 @@ class API extends REST {
                             //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
                             $this->response(json_encode(array("OK","PARAMETRO ACTUALIZADO")), 200);
+                            */
                         }
 
 
