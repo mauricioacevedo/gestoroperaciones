@@ -10416,7 +10416,7 @@ $scope.listadoCausasRaiz={};
 					services.getResponsablePendiente($scope.gestion_Pendientes.causaraiz).then(function (data) {
 							$scope.responsable=data.data[0];
 						console.log("responsable: "+$scope.responsable.responsables);
-						console.log("responsable: "+data.data[0]);
+						console.log("responsable: "+data.data[0].responsables);
 							return data.data;
 					});
 				}
