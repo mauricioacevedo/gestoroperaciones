@@ -59,14 +59,14 @@
                                    edit-disabled="{{t.ESTADO == 'CERRADO'}}"
                                    editable-select="t.TIPO" e-ng-options="g.TIPO as g.TIPO for g in task.tipos | unique:'TIPO'"
                                    onaftersave="updateStatus(t,$index)">
-                                {{t.TIPO}}
+                                {{t.TIPO || 'Vacío'}}
                               </a></span></td>
                             <td><span class="small">
                                 <a href="#" ng-click="getTaskOptions()"
                                    edit-disabled="{{t.ESTADO == 'CERRADO'}}"
                                    editable-select="t.CATEGORIA" e-ng-options="g.CATEGORIA as g.CATEGORIA for g in task.tipos | unique:'CATEGORIA'"
                                    onaftersave="updateStatus(t,$index)">
-                                {{t.CATEGORIA}}
+                                {{t.CATEGORIA || 'Vacío'}}
                               </a>
                             </span></td>
                             <td><span class="small">
@@ -74,7 +74,7 @@
                                    edit-disabled="{{t.ESTADO == 'CERRADO'}}"
                                    editable-select="t.GRUPO" e-ng-options="g.GRUPO as g.GRUPO for g in task.grupos | unique:'GRUPO'"
                                    onaftersave="updateStatus(t,$index)">
-                                {{t.GRUPO}}
+                                {{t.GRUPO || 'Vacío'}}
                               </a>
                             </span></td>
                             <td><span class="small">
@@ -82,7 +82,7 @@
                                    edit-disabled="{{t.ESTADO == 'CERRADO'}}"
                                    editable-select="t.REPRESENTANTE" e-ng-options="g.REPRESENTANTE as g.REPRESENTANTE for g in task.grupos | unique:'REPRESENTANTE'"
                                    onaftersave="updateStatus(t,$index)">
-                                {{t.REPRESENTANTE}}
+                                {{t.REPRESENTANTE || 'Vacío'}}
                               </a>
                             </span></td>
                             <td>
