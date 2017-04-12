@@ -128,7 +128,7 @@
                         <div class="col-md-6">
                             Activos: <span class="badge badge-primary">{{(taskid|filter:{ESTADO:'ACTIVO'}).length}}</span>
                             En Pausa: <span class="badge badge-primary">{{(taskid|filter:{ESTADO:'PAUSA'}).length}}</span>
-                            Cerrados : <span class="badge badge-primary">{{(taskid|filter:{ESTADO:'CERRADO'}).length}}</span>
+                            Cerrados: <span class="badge badge-primary">{{(taskid|filter:{ESTADO:'CERRADO'}).length}}</span>
                         </div>
                     </div>
                 </div>
@@ -184,7 +184,7 @@
                                     required></select>
                         </div>
                     </div>
-                    <div class="form-group" ng-class="{ 'has-error': taskform.inputSubject.$invalid  }">
+                    <div class="form-group" ng-class="{ 'has-error': taskform.grupo.$invalid  }">
                         <label for="grupo" class="col-lg-2 control-label">Grupo</label>
                         <div class="col-lg-10">
                             <select id="grupo" name="grupo"
@@ -194,21 +194,20 @@
                                     required></select>
                         </div>
                     </div>
+                    <div class="form-group" ng-class="{ 'has-error': taskform.repre.$invalid  }">
+                        <label for="repre" class="col-lg-2 control-label">Usuario</label>
+                        <div class="col-lg-10">
+                            <select id="repre" name="repre"
+                                    class="form-control"
+                                    ng-model="taskform.REPRESENTANTE"
+                                    ng-options="g.REPRESENTANTE as g.REPRESENTANTE for g in task.grupos | filter:{GRUPO: taskform.GRUPO} | unique:'REPRESENTANTE'"
+                                    required></select>
+                        </div>
+                    </div>
                     <div class="form-group" ng-class="{ 'has-error': taskform.inputMessage.$invalid }">
                         <label for="inputMessage" class="col-lg-2 control-label">Message</label>
                         <div class="col-lg-10">
                             <textarea ng-model="formData.inputMessage" class="form-control" rows="4" id="inputMessage" name="inputMessage" placeholder="Your message..." required></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-lg-offset-2 col-lg-10">
-                            <button type="submit" class="btn btn-default"
-                                    ng-click="saveTask(taskform)"
-                                    ng-disabled="taskform.$invalid"
-                                    data-dismiss="modal"
-                            >
-                                Crear
-                            </button>
                         </div>
                     </div>
                 </form>
