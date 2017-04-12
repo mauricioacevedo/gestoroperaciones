@@ -1,5 +1,14 @@
 <form  name="taskform"  class="form-horizontal" role="form" >
-    <div class="form-group" ng-class="{ 'has-error': taskform.inputName.$error.required }">
+    <div class="form-group" ng-class="{ 'has-error': taskform.userGest.$error.required }">
+        <label for="userGest" class="col-lg-2 control-label">Responsable</label>
+        <div class="col-lg-10">
+            <select id="userGest" name="userGest"
+                    class="form-control"
+                    ng-model="taskform.USUARIO_GEST"
+                    ng-options="g.USUARIO_ID as g.USUARIO_ID for g in task.usuarios" required></select>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error': taskform.sltipo.$error.required }">
         <label for="sltipo" class="col-lg-2 control-label">Name</label>
         <div class="col-lg-10">
             <select id="sltipo" name="sltipo"

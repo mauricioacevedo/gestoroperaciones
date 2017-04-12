@@ -15033,6 +15033,10 @@ $scope.updateStatus = function(data, index) {
 };
 $scope.newTask = function () {
     $scope.taskform = {};
+    $scope.taskform.USUARIO_GEST=userID;
+    services.getListadoUsuarios().then(function (data) {
+        $scope.task.usuarios = data.data[0];
+    });
 
 };
 $scope.saveTask = function (data) {
