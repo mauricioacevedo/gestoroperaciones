@@ -14909,16 +14909,18 @@ app.controller('feedCtrl', function ($scope, $rootScope, $location, $routeParams
 
 
 });//--------------- fin Controlador Feed  -----------------------
-app.controller('taskCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, notify, services) {
+app.controller('taskCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, $timeout, notify, services) {
 /**
  * Controlador para Gestionar los requerimientos del Grupo
  * */
 $rootScope.actualView 	    = 	    "Task";
 $rootScope.errorDatos 	    = 	    null;
 $scope.task                 =       {};
+$scope.taskform 			= 		{};
 $scope.task.grupos          =       [];
 $scope.task.tipos           =       [];
 $scope.task.estados 		=		[];
+$scope.task.prioridad 		=		[];
 $scope.task.crud            =       {};
 var userID                  =       $cookieStore.get('logedUser').login;
 $rootScope.logedUser        =       $cookieStore.get('logedUser');
@@ -14929,7 +14931,7 @@ divi.style.visibility = "visible";
 divi.style.position = "relative";
 
 $scope.task.estados = ['ACTIVO','CERRADO','PAUSA'];
-
+$scope.task.prioridad = ['ALTA','MEDIA','BAJA'];
 
 
 $scope.getTaskOptions = function () {
@@ -14951,6 +14953,9 @@ $scope.getTaskOptions = function () {
             $rootScope.errorDatos = 'Error: '+res.status;
         }
     );
+
+    $scope.taskoptions = true ;
+    return $scope.taskoptions
 };
 
 $scope.getTaskCrud = function () {
@@ -14958,8 +14963,7 @@ $scope.getTaskCrud = function () {
             function (res) {
                 $rootScope.errorDatos = null;
                 $scope.task.crud = res.data;
-                //console.log($scope.task.crud);
-                //$scope.task.pic = $base64.encode($scope.task.crud.PIC);
+                $scope.getTaskOptions();
             }, function (res) {
                 $rootScope.errorDatos = 'Error: '+res.status;
             }
@@ -15000,7 +15004,7 @@ $scope.updateStatus = function(data, index) {
         $scope.task.crud[index].PROGRESO=100;
         $scope.taskIsDone = true;
     }
-    if(data.PROGRESO==100){
+    if(data.PROGRESO===100){
         data.ESTADO='CERRADO';
         $scope.task.crud[index].ESTADO='CERRADO';
         $scope.taskIsDone = true;
@@ -15031,10 +15035,26 @@ $scope.updateStatus = function(data, index) {
 		}
 	);
 };
+
 $scope.newTask = function () {
     $scope.taskform = {};
+    services.getListadoUsuarios().then(function (data) {
+        $scope.task.usuarios = data.data[0];
+        $scope.taskform = {
+        	FECHA_INICIO: $rootScope.fechaProceso(),
+            USUARIO_GEST:userID,
+            TIPO: 'NUEVO',
+            CATEGORIA: '',
+            GRUPO: '',
+            REPRESENTANTE: '',
+            OBSERVACIONES: '',
+            ESTADO: 'ACTIVO',
+            PROGRESO: 10
+        };
+    });
 
 };
+
 $scope.saveTask = function (data) {
 		console.log(data);
 };
@@ -15889,7 +15909,7 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
         $http.get('./services/taskCrudUser').then(
             function (data) {
                 $rootScope.taskbyUserCount = data.data.length;
-                console.log($rootScope.taskbyUserCount);
+                //console.log($rootScope.taskbyUserCount);
                 return data.data;
             }
 

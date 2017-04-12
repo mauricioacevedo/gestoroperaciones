@@ -15,8 +15,8 @@
                     <div class="col-md-6">
                         <button type="button" uib-tooltip="Nueva Tarea" tooltip-placement="left"
                                 class="btn btn-primary btn-circle-xss"
-                                data-toggle="modal" data-target="#modalTareas" data-backdrop="static"
-                                ng-disabled="loading">
+                                data-ng-click="newTask()"
+                                data-toggle="modal" data-target="#nuevaTarea" data-backdrop="static">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -128,7 +128,7 @@
                         <div class="col-md-6">
                             Activos: <span class="badge badge-primary">{{(taskid|filter:{ESTADO:'ACTIVO'}).length}}</span>
                             En Pausa: <span class="badge badge-primary">{{(taskid|filter:{ESTADO:'PAUSA'}).length}}</span>
-                            Cerrados : <span class="badge badge-primary">{{(taskid|filter:{ESTADO:'CERRADO'}).length}}</span>
+                            Cerrados: <span class="badge badge-primary">{{(taskid|filter:{ESTADO:'CERRADO'}).length}}</span>
                         </div>
                     </div>
                 </div>
@@ -145,23 +145,94 @@
     <li><a href="">Administracion</a></li>
     <li class="active">{{title}}</li>
 </ol>
-<div id="modalTareas" class="modal fade " role="dialog" data-ng-init="getTaskOptions(); newTask()">
+<div id="nuevaTarea" class="modal fade " role="dialog">
     <div class="modal-dialog modal-md">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                Modal
+                Crear Tarea
             </div>
             <div class="modal-body">
-                <div ng-include="'partials/templates/modal_task.html'"></div>
-
-
+                <form   name="taskform"  class="form-horizontal" role="form" >
+                    <div class="form-group" ng-class="{ 'has-error': taskform.userGest.$error.required }">
+                        <label for="userGest" class="col-lg-2 control-label">Responsable</label>
+                        <div class="col-lg-10">
+                            <select id="userGest" name="userGest"
+                                    class="form-control"
+                                    ng-model="taskform.USUARIO_GEST"
+                                    ng-options="g.USUARIO_ID as g.USUARIO_ID for g in task.usuarios" required></select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': taskform.inicio.$error.required }">
+                        <label for="inicio" class="col-lg-2 control-label">Inicio</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" name="inicio" id="inicio" ng-model="taskform.FECHA_INICIO" datetime-picker date-format="yyyy-MM-dd HH:mm:ss">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': taskform.sltipo.$error.required }">
+                        <label for="sltipo" class="col-lg-2 control-label">Tipo</label>
+                        <div class="col-lg-10">
+                            <select id="sltipo" name="sltipo"
+                                    class="form-control"
+                                    ng-model="taskform.TIPO"
+                                    ng-options="g.TIPO as g.TIPO for g in task.tipos | unique:'TIPO'"
+                                    required></select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': taskform.categoria.$error.required  }">
+                        <label for="categoria" class="col-lg-2 control-label">Categoría</label>
+                        <div class="col-lg-10">
+                            <select id="categoria" name="categoria"
+                                    class="form-control"
+                                    ng-model="taskform.CATEGORIA"
+                                    ng-options="g.CATEGORIA as g.CATEGORIA for g in task.tipos | unique:'CATEGORIA'"
+                                    required></select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': taskform.grupo.$invalid  }">
+                        <label for="grupo" class="col-lg-2 control-label">Grupo</label>
+                        <div class="col-lg-10">
+                            <select id="grupo" name="grupo"
+                                    class="form-control"
+                                    ng-model="taskform.GRUPO"
+                                    ng-options="g.GRUPO as g.GRUPO for g in task.grupos | unique:'GRUPO'"
+                                    required></select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': taskform.repre.$invalid  }">
+                        <label for="repre" class="col-lg-2 control-label">Usuario</label>
+                        <div class="col-lg-10">
+                            <select id="repre" name="repre"
+                                    class="form-control"
+                                    ng-model="taskform.REPRESENTANTE"
+                                    ng-options="g.REPRESENTANTE as g.REPRESENTANTE for g in task.grupos | filter:{GRUPO: taskform.GRUPO} | unique:'REPRESENTANTE'"
+                                    required></select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': taskform.prioridad.$invalid  }">
+                        <label for="repre" class="col-lg-2 control-label">Prioridad</label>
+                        <div class="col-lg-10">
+                            <select id="prioridad" name="prioridad"
+                                    class="form-control"
+                                    ng-model="taskform.PRIORIDAD"
+                                    ng-options="g for g in task.prioridad"
+                                    required></select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': taskform.obs.$invalid }">
+                        <label for="obs" class="col-lg-2 control-label">Message</label>
+                        <div class="col-lg-10">
+                            <textarea ng-model="taskform.OBSERVACIONES" class="form-control" rows="4" id="obs" name="obs" placeholder="Requerimiento" required></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <div class="modal-footer">
 
 
-                <button type="button" class="btn btn-success" ng-click="borrarUsuario(idUsuario)" data-dismiss="modal">
-                    Eliminar
+                <button type="button" class="btn btn-success" ng-click="saveTask(taskform)" data-dismiss="modal">
+                    Guardar
                 </button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
@@ -169,4 +240,4 @@
 
     </div>
 
-</div><!-- Modal Eliminar Novedad-->
+</div>

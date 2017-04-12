@@ -256,6 +256,7 @@
                 <ul class="nav navbar-nav navbar-right navbar-pad-derecha">
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="badge badge-warning" uib-tooltip="Tareas" tooltip-placement="bottom">{{taskbyUserCount || 0}}</span>
                             <button type="button" class="btn btn-primary btn-circle-xs "><i class="fa fa-user"></i>
                             </button>
                             <strong>{{logedUser.login}}</strong>
