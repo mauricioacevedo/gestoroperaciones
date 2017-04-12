@@ -15041,7 +15041,13 @@ $scope.newTask = function () {
         $scope.task.usuarios = data.data[0];
         $scope.taskform = {
             USUARIO_GEST:userID,
-            TIPO: 'NUEVO'
+            TIPO: 'NUEVO',
+            CATEGORIA: '',
+            GRUPO: '',
+            REPRESENTANTE: '',
+            OBSERVACIONES: '',
+            ESTADO: 'ACTIVO',
+            PROGRESO: 10
         };
     });
 
