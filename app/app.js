@@ -15036,10 +15036,7 @@ $scope.updateStatus = function(data, index) {
 };
 
 $scope.newTask = function () {
-    var vm = this;
     $scope.taskform = {};
-    vm.taskform.$setPristine();
-    vm.taskform.$setUntouched();
     services.getListadoUsuarios().then(function (data) {
         $scope.task.usuarios = data.data[0];
         $scope.taskform = {
