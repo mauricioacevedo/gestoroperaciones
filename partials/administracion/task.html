@@ -210,6 +210,16 @@
                                     required></select>
                         </div>
                     </div>
+                    <div class="form-group" ng-class="{ 'has-error': taskform.prioridad.$invalid  }">
+                        <label for="repre" class="col-lg-2 control-label">Prioridad</label>
+                        <div class="col-lg-10">
+                            <select id="prioridad" name="prioridad"
+                                    class="form-control"
+                                    ng-model="taskform.PRIORIDAD"
+                                    ng-options="g for g in task.prioridad"
+                                    required></select>
+                        </div>
+                    </div>
                     <div class="form-group" ng-class="{ 'has-error': taskform.obs.$invalid }">
                         <label for="obs" class="col-lg-2 control-label">Message</label>
                         <div class="col-lg-10">

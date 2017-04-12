@@ -14920,6 +14920,7 @@ $scope.taskform 			= 		{};
 $scope.task.grupos          =       [];
 $scope.task.tipos           =       [];
 $scope.task.estados 		=		[];
+$scope.task.prioridad 		=		[];
 $scope.task.crud            =       {};
 var userID                  =       $cookieStore.get('logedUser').login;
 $rootScope.logedUser        =       $cookieStore.get('logedUser');
@@ -14930,7 +14931,7 @@ divi.style.visibility = "visible";
 divi.style.position = "relative";
 
 $scope.task.estados = ['ACTIVO','CERRADO','PAUSA'];
-
+$scope.task.prioridad = ['ALTA','MEDIA','BAJA'];
 
 
 $scope.getTaskOptions = function () {
