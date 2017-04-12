@@ -15032,9 +15032,10 @@ $scope.updateStatus = function(data, index) {
 		}
 	);
 };
+$scope.getTaskOptions();
 $scope.newTask = function () {
     $scope.taskform = {};
-    $scope.getTaskOptions();
+
     services.getListadoUsuarios().then(function (data) {
         $scope.task.usuarios = data.data[0];
     });
