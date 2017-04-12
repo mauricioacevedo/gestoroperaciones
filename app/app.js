@@ -15041,14 +15041,15 @@ $scope.newTask = function () {
     $scope.getTaskOptions();
     services.getListadoUsuarios().then(function (data) {
         $scope.task.usuarios = data.data[0];
-    });
-
-    if($scope.taskoptions){
         $scope.taskform = {
             USUARIO_GEST:userID,
             TIPO: 'NUEVO'
         };
-    }
+    });
+
+
+
+
 
     console.log($scope.taskform);
 
