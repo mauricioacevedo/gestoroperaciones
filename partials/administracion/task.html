@@ -1,3 +1,12 @@
+<style>
+    .taskform {
+        transition:all linear 0.5s;
+        background: transparent;
+    }
+    .taskform.ng-invalid {
+        background: red;
+    }
+</style>
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
@@ -154,8 +163,8 @@
                 Modal
             </div>
             <div class="modal-body">
-                <form   name="taskform"  class="form-horizontal" role="form" >
-                    <div class="form-group" ng-class="{ 'has-error': taskform.userGest.$error.required }">
+                <form   name="taskform"  class="taskform"  role="form" >
+                    <div class="form-group" ng-class="{ 'error': taskform.userGest.$error.required }">
                         <label for="userGest" class="col-lg-2 control-label">Responsable</label>
                         <div class="col-lg-10">
                             <select id="userGest" name="userGest"
@@ -174,7 +183,7 @@
                                     required></select>
                         </div>
                     </div>
-                    <div class="form-group" ng-class="{ 'has-error': taskform.categoria.$error.required  }">
+                    <div class="form-group" ng-class="{ 'error': taskform.categoria.$error.required}">
                         <label for="categoria" class="col-lg-2 control-label">Categoría</label>
                         <div class="col-lg-10">
                             <select id="categoria" name="categoria"
