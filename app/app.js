@@ -14962,8 +14962,7 @@ $scope.getTaskCrud = function () {
             function (res) {
                 $rootScope.errorDatos = null;
                 $scope.task.crud = res.data;
-                //console.log($scope.task.crud);
-                //$scope.task.pic = $base64.encode($scope.task.crud.PIC);
+                $scope.getTaskOptions();
             }, function (res) {
                 $rootScope.errorDatos = 'Error: '+res.status;
             }
@@ -15038,7 +15037,6 @@ $scope.updateStatus = function(data, index) {
 
 $scope.newTask = function () {
     $scope.taskform = {};
-    $scope.getTaskOptions();
     services.getListadoUsuarios().then(function (data) {
         $scope.task.usuarios = data.data[0];
         $scope.taskform = {
@@ -15046,10 +15044,6 @@ $scope.newTask = function () {
             TIPO: 'NUEVO'
         };
     });
-
-
-
-
 
     console.log($scope.taskform);
 
