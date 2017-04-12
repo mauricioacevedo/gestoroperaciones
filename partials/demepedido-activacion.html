@@ -253,6 +253,7 @@
                                 <span class="label label-primary">Pedido Guardado</span>&nbsp;
 
                             </li>
+                            
                             <li>
                                 <div ng-hide="true">
                                     <button type="button" class="btn btn-success btn-xs" ng-click="guardarPedido(InfoPedido,gestion[0],status,actividad)"  ng-disabled="!accRdy || guardando || loading">
@@ -260,6 +261,7 @@
                                     </button></div>
                                  <button type="button" class="btn btn-success btn-xs"  ng-click="guardar(InfoPedido,gestion[0],status);"><span id="mloader"></span>&nbsp; Guardar</button>
                             </li>
+                            <li>&nbsp; | &nbsp;</li>
                               <li>
                                 <button type="button" class="btn btn-info btn-circle-xss" ng-click="historicoModal(gestion[0].PEDIDO_ID)" data-toggle="modal" data-target="#HistoricoPedido" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>Historico</code>"   ng-disabled="!pedidoIsActive">
                                     <i class="fa fa-rss"  aria-hidden="true"> </i>
@@ -390,37 +392,36 @@
                 <div class = "panel panel-default">
                     <div class = "panel-heading">
                         <div class="panel-body fixed-panel" >
-                            <table class = "table small table-striped table-condensed">
-                                <thead>
-                                <tr >
-                                    <th><span class="small">ID</span></th>
-                                    <th><span class="small">ACTIVIDAD</span></th>
-                                    <th><span class="small">FECHA_GESTION</span></th>
-                                    <th><span class="small">ESTADO</span></th>
-                                    <th><span class="small">MOTIVO_MALO</span></th>
-                                    <th><span class="small">USUARIO_ID</span></th>
-                                    <th><span class="small">ANTERIOR</span></th>
-                                    <th><span class="small">FINAL</span></th>
-                                    <th><span class="small">IDLLAMADA</span></th>
-                                    <th><span class="small">NUEVOPEDIDO</span></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr ng-repeat="histo in ListadoHistoricoPedido" class="animated bounceInRight">
-                                    <td><span class="small">{{histo.ID}}</span></td>
-                                    <td><span class="small">{{histo.ACTIVIDAD}}</span></td>
-                                    <td><span class="small">{{histo.FECHA_GESTION}}</span></td>
-                                    <td><span class="small">{{histo.ESTADO}}</span></td>
-                                    <td><span class="small">{{histo.MOTIVO_MALO || 'Sin Motivo'}}</span></td>
-                                    <td><span class="small">{{histo.USUARIO_ID}}</span></td>
-                                    <td><span class="small">{{histo.CONCEPTO_ANTERIOR}}</span></td>
-                                    <td><span class="small">{{histo.CONCEPTO_FINAL}}</span></td>
-                                    <td><span class="small">{{histo.IDLLAMADA || 'Sin Llamada'}}</span></td>
-                                    <td><span class="small">{{histo.NUEVOPEDIDO || 'Sin Nuevo pedido'}}</span></td>
-
-                                </tr>
-                                </tbody>
-                            </table>
+                            <table class="table small table-striped table-hover table-bordered table-condensed">
+						<thead>
+							<th>ORDER_SEQ_ID</th>
+							<th>PEDIDO</th>
+							<th>ESTADO</th>
+							<th>FECHA_CREACION</th>
+							<th>FECHA_EXCEPCION</th>
+							<th>PRODUCTO</th>
+                            <th>ASESOR</th>
+							<th>TRANSACCION</th>
+                            <th>FECHA_GESTION</th>
+                            <th>DURACION</th>
+                            <th>TIPIFICACION</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat="data in listadoactivacion | filter:filtroInput as results">
+							<td><span class="small">{{data.ORDER_SEQ_ID}}</span></td>
+							<td><span class="small">{{data.PEDIDO}}</span></td>
+							<td><span class="small">{{data.ESTADO}}</span></td>
+							<td><span class="small">{{data.FECHA_CREACION}}</span></td>
+							<td><span class="small">{{data.FECHA_EXCEPCION}}</span></td>
+							<td><span class="small">{{data.PRODUCTO}}</span></td>
+                            <td><span class="small">{{data.ASESOR}}</span></td>
+							<td><span class="small">{{data.TRANSACCION}}</span></td>
+                                <td><span class="small">{{data.FECHA_GESTION}}</span></td>
+                                <td><span class="small">{{data.DURACION}}</span></td>
+                                <td><span class="small">{{data.TIPIFICACION}}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
                         </div>
                     </div>
