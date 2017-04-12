@@ -14909,7 +14909,7 @@ app.controller('feedCtrl', function ($scope, $rootScope, $location, $routeParams
 
 
 });//--------------- fin Controlador Feed  -----------------------
-app.controller('taskCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, notify, services) {
+app.controller('taskCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, $timeout, notify, services) {
 /**
  * Controlador para Gestionar los requerimientos del Grupo
  * */
@@ -15032,17 +15032,19 @@ $scope.updateStatus = function(data, index) {
 		}
 	);
 };
-$scope.getTaskOptions();
+
 $scope.newTask = function () {
     $scope.taskform = {};
-
+    $scope.getTaskOptions();
     services.getListadoUsuarios().then(function (data) {
         $scope.task.usuarios = data.data[0];
     });
-    $scope.taskform = {
+    $timeout(
+        $scope.taskform = {
         USUARIO_GEST:userID,
-		TIPO: 'NUEVO'
-	};
+        TIPO: 'NUEVO'
+        }, 3000);
+
 
     console.log($scope.taskform);
 
