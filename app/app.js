@@ -14952,6 +14952,9 @@ $scope.getTaskOptions = function () {
             $rootScope.errorDatos = 'Error: '+res.status;
         }
     );
+
+    $scope.taskoptions = true ;
+    return $scope.taskoptions
 };
 
 $scope.getTaskCrud = function () {
@@ -15039,7 +15042,8 @@ $scope.newTask = function () {
     services.getListadoUsuarios().then(function (data) {
         $scope.task.usuarios = data.data[0];
     });
-    if($scope.task.tipos!=undefined){
+
+    if($scope.taskoptions){
         $scope.taskform = {
             USUARIO_GEST:userID,
             TIPO: 'NUEVO'
