@@ -14909,7 +14909,7 @@ app.controller('feedCtrl', function ($scope, $rootScope, $location, $routeParams
 
 
 });//--------------- fin Controlador Feed  -----------------------
-app.controller('taskCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $q, $base64, $timeout, notify, services) {
+app.controller('taskCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, $timeout, notify, services) {
 /**
  * Controlador para Gestionar los requerimientos del Grupo
  * */
@@ -15038,28 +15038,18 @@ $scope.updateStatus = function(data, index) {
 
 $scope.newTask = function () {
     $scope.taskform = {};
-
-    var dfdATask= $q.defer();
-    var dfdBTask= $q.defer();
-
-    $scope.$on("eventA", function(){
-        $scope.getTaskOptions();
-        dfdATask.resolve(true);//or pass a value
-    });
-
-    $scope.$on("eventB", function(){
-        services.getListadoUsuarios().then(function (data) {
-            $scope.task.usuarios = data.data[0];
-        });
-        dfdBTask.resolve(true);//or pass a value
-    });
-
-    $q.all([dfdATask.promise, dfdBTask.promise]).then(function(){
+    $scope.getTaskOptions();
+    services.getListadoUsuarios().then(function (data) {
+        $scope.task.usuarios = data.data[0];
         $scope.taskform = {
             USUARIO_GEST:userID,
             TIPO: 'NUEVO'
         };
     });
+
+
+
+
 
     console.log($scope.taskform);
 
