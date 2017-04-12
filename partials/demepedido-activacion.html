@@ -499,7 +499,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="pediUser in listado_pedidos as pedis" class="animated bounceInRight">
+                                 <tr ng-repeat="data in listadoactivacion | filter:filtroInput as results">
                                     <td><span class="small">{{pediUser.pedido}}</span></td>
                                     <td><span class="small">{{pediUser.actividad}}</span></td>
                                     <td><span class="small">{{pediUser.fecha_fin}}</span></td>
