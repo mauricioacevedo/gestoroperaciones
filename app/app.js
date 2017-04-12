@@ -15000,7 +15000,7 @@ $scope.updateStatus = function(data, index) {
         $scope.task.crud[index].PROGRESO=100;
         $scope.taskIsDone = true;
     }
-    if(data.PROGRESO==100){
+    if(data.PROGRESO===100){
         data.ESTADO='CERRADO';
         $scope.task.crud[index].ESTADO='CERRADO';
         $scope.taskIsDone = true;
@@ -15889,7 +15889,7 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
         $http.get('./services/taskCrudUser').then(
             function (data) {
                 $rootScope.taskbyUserCount = data.data.length;
-                console.log($rootScope.taskbyUserCount);
+                //console.log($rootScope.taskbyUserCount);
                 return data.data;
             }
 
