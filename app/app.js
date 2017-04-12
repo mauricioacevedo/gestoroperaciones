@@ -14916,6 +14916,7 @@ app.controller('taskCtrl', function ($scope, $rootScope, $location, $routeParams
 $rootScope.actualView 	    = 	    "Task";
 $rootScope.errorDatos 	    = 	    null;
 $scope.task                 =       {};
+$scope.taskform 			= 		{};
 $scope.task.grupos          =       [];
 $scope.task.tipos           =       [];
 $scope.task.estados 		=		[];
