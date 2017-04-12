@@ -15045,9 +15045,8 @@ $scope.newTask = function () {
         };
     });
 
-    console.log($scope.taskform);
-
 };
+
 $scope.saveTask = function (data) {
 		console.log(data);
 };

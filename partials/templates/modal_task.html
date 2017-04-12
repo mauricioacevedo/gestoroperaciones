@@ -18,10 +18,15 @@
                      required></select>
         </div>
     </div>
-    <div class="form-group" ng-class="{ 'has-error': taskform.inputEmail.$invalid  }">
-        <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+    <div class="form-group" ng-class="{ 'has-error': taskform.categoria.$error.required  }">
+        <label for="categoria" class="col-lg-2 control-label">Categoría</label>
         <div class="col-lg-10">
-            <input ng-model="formData.inputEmail" type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Your Email" required>
+            <select id="categoria" name="categoria"
+                    class="form-control"
+                    ng-model="taskform.CATEGORIA"
+                    ng-options="g.CATEGORIA as g.CATEGORIA for g in task.tipos | unique:'CATEGORIA'"
+                    required></select>
+        </div>
         </div>
     </div>
     <div class="form-group" ng-class="{ 'has-error': taskform.inputSubject.$invalid  }">
