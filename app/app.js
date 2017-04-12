@@ -15039,12 +15039,12 @@ $scope.newTask = function () {
     services.getListadoUsuarios().then(function (data) {
         $scope.task.usuarios = data.data[0];
     });
-    $timeout(
+    if($scope.task.tipos!=undefined){
         $scope.taskform = {
-        USUARIO_GEST:userID,
-        TIPO: 'NUEVO'
-        }, 3000);
-
+            USUARIO_GEST:userID,
+            TIPO: 'NUEVO'
+        };
+    }
 
     console.log($scope.taskform);
 
