@@ -310,44 +310,37 @@
                                 <table class = "table small table-striped table-condensed">
                                     <thead>
                                     <tr>
-                                        <th>Pedido</th>
-                                        <th>Fecha Cita</th>
-                                        <th>Estado</th>
-                                        <th>Motivo</th>
-                                        <th>Programación</th>
-                                        <th>Agenda</th>
-                                        <th>Municipio</th>
-                                        <th>Fecha Gestión</th>
+                                        <th>ORDER_SEQ_ID</th>
+                                        <th>PEDIDO</th>
+                                        <th>ESTADO</th>
+                                        <th>FECHA_CREACION</th>
+                                        <th>FECHA_EXCEPCION</th>
+                                        <th>PRODUCTO</th>
+                                        <th>ASESOR</th>
+                                        <th>TRANSACCION</th>
+                                        <th>FECHA_GESTION</th>
+                                        <th>DURACION</th>
+                                        <th>TIPIFICACION</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr ng-repeat="data in ListadoPrograUser as progra" class="animated bounceInRight">
+                                    <tr ng-repeat="data in listadoactivacion | filter:filtroInput as results">
                                         <td>
-                                            <button type="button" class="btn btn-xs btn-warning" ng-click="executeCopy(data.PEDIDO_ID)">
-                                                {{data.PEDIDO_ID}}
+                                            <button type="button" class="btn btn-xs btn-warning" ng-click="executeCopy(data.PEDIDO)">
+                                                {{data.PEDIDO}}
                                             </button>
                                         </td>
-                                        <td>
-                                            <span class="small">{{data.FECHA_CITA}}</span>
-                                        </td>
-                                        <td>
-                                            <span class="small">{{data.STATUS}}</span>
-                                        </td>
-                                        <td>
-                                            <span class="small">{{data.MOTIVO_MALO}}</span>
-                                        </td>
-                                        <td>
-                                            <span class="small">{{data.PROGRAMACION}}</span>
-                                        </td>
-                                        <td>
-                                            <span class="small" ng-class="{'ALARMADO':'label label-warning','GESTIONAR':'label label-danger','SIN CITA':'label label-info'}[data.MENSAJE]">{{data.MENSAJE}}</span>
-                                        </td>
-                                        <td>
-                                            <span class="small">{{data.MUNICIPIO_ID}}</span>
-                                        </td>
-                                        <td>
-                                            <span class="small">{{data.FECHA_GESTION}}</span>
-                                        </td>
+                                        <td><span class="small">{{data.ORDER_SEQ_ID}}</span></td>
+                                        <td><span class="small">{{data.PEDIDO}}</span></td>
+                                        <td><span class="small">{{data.ESTADO}}</span></td>
+                                        <td><span class="small">{{data.FECHA_CREACION}}</span></td>
+                                        <td><span class="small">{{data.FECHA_EXCEPCION}}</span></td>
+                                        <td><span class="small">{{data.PRODUCTO}}</span></td>
+                                        <td><span class="small">{{data.ASESOR}}</span></td>
+                                        <td><span class="small">{{data.TRANSACCION}}</span></td>
+                                        <td><span class="small">{{data.FECHA_GESTION}}</span></td>
+                                        <td><span class="small">{{data.DURACION}}</span></td>
+                                        <td><span class="small">{{data.TIPIFICACION}}</span></td>
 
                                     </tr>
                                     </tbody>
