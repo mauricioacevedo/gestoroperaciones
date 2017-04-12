@@ -15219,7 +15219,7 @@ class API extends REST {
             $this->response($this->json($resultado), 201);
         }else{
             $error="Sin registros";
-            $this->response($this->json($error), 403);
+            $this->response($this->json($error), 204);
         }
 
     }//-----------------------------------------------Funcion para productividad el grupo de asignaciones cada hora
@@ -16427,7 +16427,7 @@ class API extends REST {
             $this->response($this->json($result), 200); // send user details
         }else{
             $error = "No hay datos.";
-            $this->response($this->json(array($error)), 403);
+            $this->response($this->json(array($error)), 204);
         }
 
     }
