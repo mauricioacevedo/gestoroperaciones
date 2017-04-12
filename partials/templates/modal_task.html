@@ -9,13 +9,13 @@
         </div>
     </div>
     <div class="form-group" ng-class="{ 'has-error': taskform.sltipo.$error.required }">
-        <label for="sltipo" class="col-lg-2 control-label">Name</label>
+        <label for="sltipo" class="col-lg-2 control-label">Tipo</label>
         <div class="col-lg-10">
             <select id="sltipo" name="sltipo"
                     class="form-control"
                     ng-model="taskform.TIPO"
                     ng-options="g.TIPO as g.TIPO for g in task.tipos | unique:'TIPO'"
-                    ng-init="taskform.TIPO=task.tipos['NUEVO']" required></select>
+                     required></select>
         </div>
     </div>
     <div class="form-group" ng-class="{ 'has-error': taskform.inputEmail.$invalid  }">
