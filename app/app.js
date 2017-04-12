@@ -15038,6 +15038,8 @@ $scope.newTask = function () {
         $scope.task.usuarios = data.data[0];
     });
 
+    console.log($scope.taskform);
+
 };
 $scope.saveTask = function (data) {
 		console.log(data);
