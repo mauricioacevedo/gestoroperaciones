@@ -15032,7 +15032,6 @@ $scope.updateStatus = function(data, index) {
 	);
 };
 $scope.newTask = function () {
-    $scope.taskform = undefined;
     $scope.taskform = {};
     $scope.taskform.USUARIO_GEST=userID;
     services.getListadoUsuarios().then(function (data) {
