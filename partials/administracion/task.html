@@ -16,8 +16,7 @@
                         <button type="button" uib-tooltip="Nueva Tarea" tooltip-placement="left"
                                 class="btn btn-primary btn-circle-xss"
                                 data-ng-click="newTask()"
-                                data-toggle="modal" data-target="#modalTareas" data-backdrop="static"
-                                ng-disabled="loading">
+                                data-toggle="modal" data-target="#nuevaTarea" data-backdrop="static">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -146,7 +145,7 @@
     <li><a href="">Administracion</a></li>
     <li class="active">{{title}}</li>
 </ol>
-<div id="modalTareas" class="modal fade " role="dialog">
+<div id="nuevaTarea" class="modal fade " role="dialog">
     <div class="modal-dialog modal-md">
 
         <!-- Modal content-->
