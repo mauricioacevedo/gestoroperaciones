@@ -253,12 +253,25 @@
                                 <span class="label label-primary">Pedido Guardado</span>&nbsp;
 
                             </li>
+                            
                             <li>
                                 <div ng-hide="true">
                                     <button type="button" class="btn btn-success btn-xs" ng-click="guardarPedido(InfoPedido,gestion[0],status,actividad)"  ng-disabled="!accRdy || guardando || loading">
                                         Guardar <span ng-show="guardando"><i class="fa fa-spinner fa-spin"></i></span>
                                     </button></div>
                                  <button type="button" class="btn btn-success btn-xs"  ng-click="guardar(InfoPedido,gestion[0],status);"><span id="mloader"></span>&nbsp; Guardar</button>
+                            </li>
+                            <li>&nbsp; | &nbsp;</li>
+                              <li>
+                                <button type="button" class="btn btn-info btn-circle-xss" ng-click="historicoModal(gestion[0].PEDIDO_ID)" data-toggle="modal" data-target="#HistoricoPedido" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>Historico</code>"   ng-disabled="!pedidoIsActive">
+                                    <i class="fa fa-rss"  aria-hidden="true"> </i>
+                                </button>
+                            </li>
+                            <li>&nbsp; | &nbsp;</li>
+                            <li>
+                                <button type="button" class="btn btn-info btn-circle-xss" ng-click="PedidosPorUser()" data-toggle="modal" data-target="#HistoricoPedidoUser" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>Historico por {{logedUser.login}}</code>" >
+                                    <i class="fa fa-user-circle"  aria-hidden="true"> </i>
+                                </button>
                             </li>
 
                         </ul>
@@ -270,3 +283,344 @@
     </div><!--Row 1 Novedades -->
 </div><!--Container ppal -->
 <!-- Modal Historico Pedidos-->
+<div id="PedidosProgramados" class="modal fade "  role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{TituloModal}} <span class="label label-info">{{logedUser.login}} </span> </h4>
+            </div>
+            <div class="modal-body" >
+                <div class="row"><!--Row Programados por USER -->
+                    <div class="col-md-12">
+
+                        <div class = "panel panel-default">
+                            <div class = "panel-heading">
+                                <b><i class="fa fa-bars" aria-hidden="true"></i> Pedidos Malos </b>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <div class="col-md-1 col-xs-1 ">
+                                        <div data-ng-if="loading">
+                                            <img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif" />
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                            <div class="panel-body fixed-panel" >
+                                <table class = "table small table-striped table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <th>Pedido</th>
+                                        <th>Fecha Cita</th>
+                                        <th>Estado</th>
+                                        <th>Motivo</th>
+                                        <th>Programación</th>
+                                        <th>Agenda</th>
+                                        <th>Municipio</th>
+                                        <th>Fecha Gestión</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="data in ListadoPrograUser as progra" class="animated bounceInRight">
+                                        <td>
+                                            <button type="button" class="btn btn-xs btn-warning" ng-click="executeCopy(data.PEDIDO_ID)">
+                                                {{data.PEDIDO_ID}}
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <span class="small">{{data.FECHA_CITA}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="small">{{data.STATUS}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="small">{{data.MOTIVO_MALO}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="small">{{data.PROGRAMACION}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="small" ng-class="{'ALARMADO':'label label-warning','GESTIONAR':'label label-danger','SIN CITA':'label label-info'}[data.MENSAJE]">{{data.MENSAJE}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="small">{{data.MUNICIPIO_ID}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="small">{{data.FECHA_GESTION}}</span>
+                                        </td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <div class="panel-footer clearfix" >
+                                <div class="col-md-6">
+                                    <ul class="nav navbar-nav navbar-left">
+                                        <li>Registros: <span class="badge badge-default">{{progra.length}} {{errorMalos}}</span></li>
+
+                                    </ul>
+
+                                </div>
+
+
+                                <div class="col-md-6">
+
+                                </div>
+                            </div>
+                        </div><!--Panel -->
+                    </div>
+                </div><!--Row 1 Pedidos Programados -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div><!-- Modal Programados-->
+<!-- Modal Historico Pedidos-->
+<div id="HistoricoPedido" class="modal fade "  role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{TituloModal}} <span class="label label-info">{{pedidoHistorico}} </span> </h4>
+                <span style="color:red" ><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+            </div>
+            <div class="modal-body" >
+                <div class = "panel panel-default">
+                    <div class = "panel-heading">
+                        <div class="panel-body fixed-panel" >
+                            <table class="table small table-striped table-hover table-bordered table-condensed">
+						<thead>
+							<th>ORDER_SEQ_ID</th>
+							<th>PEDIDO</th>
+							<th>ESTADO</th>
+							<th>FECHA_CREACION</th>
+							<th>FECHA_EXCEPCION</th>
+							<th>PRODUCTO</th>
+                            <th>ASESOR</th>
+							<th>TRANSACCION</th>
+                            <th>FECHA_GESTION</th>
+                            <th>DURACION</th>
+                            <th>TIPIFICACION</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat="data in listadoactivacion | filter:filtroInput as results">
+							<td><span class="small">{{data.ORDER_SEQ_ID}}</span></td>
+							<td><span class="small">{{data.PEDIDO}}</span></td>
+							<td><span class="small">{{data.ESTADO}}</span></td>
+							<td><span class="small">{{data.FECHA_CREACION}}</span></td>
+							<td><span class="small">{{data.FECHA_EXCEPCION}}</span></td>
+							<td><span class="small">{{data.PRODUCTO}}</span></td>
+                            <td><span class="small">{{data.ASESOR}}</span></td>
+							<td><span class="small">{{data.TRANSACCION}}</span></td>
+                                <td><span class="small">{{data.FECHA_GESTION}}</span></td>
+                                <td><span class="small">{{data.DURACION}}</span></td>
+                                <td><span class="small">{{data.TIPIFICACION}}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div><!-- Modal Eliminar Novedad-->
+<!-- Modal Historico Pedidos Por USER-->
+<div id="HistoricoPedidoUser" class="modal fade "  role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{TituloModal}}</h4>
+                <span style="color:red" ><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+            </div>
+            <div class = "panel-heading nav navbar-default">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="nav navbar-nav navbar-left">
+                                <li>
+                                    <select ng-model="data.campo" class="btn btn-default btn-xs grupo-select">
+                                        <option value='TODO' selected="selected">TODO</option>
+                                        <option value='user'>Usuario</option>
+                                        <option value='fuente'>Fuente</option>
+                                        <option value='concepto_final'>Concepto</option>
+                                        <option value='estado'>Estado</option>
+                                        <option value='pedido_id'>Pedido</option>
+                                    </select>
+
+                                </li>
+                                <li>&nbsp;</li>
+                                <li>
+                                    <input style="width:150px" class="btn btn-default btn-xs" name="valorCampo" ng-model="data.valorCampo" select-on-click capitalize type="text" placeholder="Palabra">
+
+                                </li>
+                                <li>&nbsp;</li>
+                                <li>
+                                    <div class="input-daterange" id="datepicker">
+                                        <input type="text" class="btn btn-default btn-xs"  ng-model="data.fechaIni" datetime-picker date-format="yyyy-MM-dd" date-only/><i class="fa fa-calendar fa-fw"></i>
+                                        <input type="text" class="btn btn-default btn-xs" ng-model="data.fechaFin" datetime-picker date-format="yyyy-MM-dd" date-only/><i class="fa fa-calendar fa-fw"></i>
+                                        <button type="button" class="btn btn-primary btn-xs" ng-click="calcularListadoReconfiguracion()"  title="Buscar" tooltip data-placement="left" ng-disabled="loading">
+                                            <i class="fa fa-search"  aria-hidden="true"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-xs" ng-click="csvHistoricosReconfiguracion()"  title="Exportar" tooltip data-placement="left" ng-disabled="loading">
+                                            <i class="fa fa-cloud-download"  aria-hidden="true"></i>
+                                        </button>
+
+                                    </div>
+                                </li>
+
+
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-body" >
+                <div class = "panel panel-default">
+                    <div class = "panel-heading">
+                        <div class="panel-body fixed-panel" >
+                            <table class = "table small table-striped table-condensed">
+                                <thead>
+                                <tr >
+                                    <th><span class="small">PEDIDO</span></th>
+                                    <th><span class="small">ACTIVIDAD</span></th>
+                                    <th><span class="small">FECHA_GESTION</span></th>
+                                    <th><span class="small">DURACION</span></th>
+                                    <th><span class="small">ESTADO</span></th>
+                                    <th><span class="small">CONCEPTO FINAL</span></th>
+                                    <th><span class="small">FUENTE</span></th>
+                                    <th><span class="small">ID</span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="pediUser in listado_pedidos as pedis" class="animated bounceInRight">
+                                    <td><span class="small">{{pediUser.pedido}}</span></td>
+                                    <td><span class="small">{{pediUser.actividad}}</span></td>
+                                    <td><span class="small">{{pediUser.fecha_fin}}</span></td>
+                                    <td><span class="small">{{pediUser.duracion}}</span></td>
+                                    <td><span class="small">{{pediUser.estado}}</span></td>
+                                    <td><span class="small">{{pediUser.concepto_final}}</span></td>
+                                    <td><span class="small">{{pediUser.fuente}}</span></td>
+                                    <td><span class="small">{{pediUser.id}}</span></td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-left">Pedidos: <span class="label label-success">{{pedidosUnicos || 0}}</span></span>&nbsp; &nbsp;
+                <span class="pull-left">Transacciones: <span class="label label-success">{{pedis.length || 0}}</span></span>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div><!-- Modal Eliminar Novedad-->
+<!-- Modal Historico Pedidos-->
+<div id="ModalAuditoria" class="modal fade "  role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{tituloModal}} <span class="label label-info">{{infoFenix.PEDIDO_ID}} </span> </h4>
+                <span style="color:red" ><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+            </div>
+            <div class="modal-body" >
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-10">
+                            <div class="well well-sm"><b>Usuarios:</b> {{infoFenix.USUARIOS}} | <b>Fechas:</b> {{infoFenix.FECHAS}} <span class="pull-right badge">{{infoFenix.CANTIDADUSERS}}</span></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-10">
+                            <div class = "well well-sm" ng-repeat="auditoria in auditorias as auditarObj track by $index  ">
+                                <form class="form-inline">
+                                    <div class="form-group" ng-controller="UsersCtrl">
+                                        <label class="sr-only" for="usrEstudio">Usuario:</label>
+                                        <ui-select id="usrEstudio" name="usrEstudio" ng-model="auditoria.USUARIO_ID_GESTION" theme="bootstrap">
+                                            <ui-select-match placeholder="Usuario">
+                                                {{auditoria.USUARIO_ID_GESTION.USUARIO_ID}}
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="g  in  listaUsuarios | filter: $select.search track by $index">
+                                                <div ng-bind-html="g.USUARIO_ID | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label class="sr-only" for="fechaEstudio">Fecha:</label>
+                                        <input id="fechaEstudio" name="fechaEstudio" style="width:120px" class="form-control btn-xs" type="text" ng-model="auditoria.FECHA_GESTION" datetime-picker date-only date-format="yyyy-MM-dd"/>
+                                        <i class="fa fa-calendar fa-fw form-control-feedback"></i>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label class="sr-only" for="estadoAuditoria">Estado:</label>
+                                        <select id="estadoAuditoria" name="estadoAuditoria"
+                                                class="form-control btn-xs" style="width: 150px;"
+                                                ng-model="auditoria.ESTADO_PROCESO"
+                                                required>
+                                            <option value="" disabled>Estado</option>
+                                            <option ng-repeat="e in listaOpcionesAuditoria | unique:'ESTADO_ID'"
+                                                    value="{{e.ESTADO_ID}}">
+                                                {{e.ESTADO_ID}}
+                                            </option>
+                                        </select>
+                                        <i class="fa fa-cog form-control-feedback" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label class="sr-only" for="obidAuditoria">Resultado:</label>
+                                        <select id="obidAuditoria" name="obidAuditoria" class="form-control btn-xs" style="width: 150px;"
+                                                ng-model="auditoria.ANALISIS">
+                                            <option value="" disabled>--Seleccione--</option>
+                                            <option ng-repeat="e in listaOpcionesAuditoria | filter:{ESTADO_ID: auditoria.ESTADO_PROCESO}:true | unique:'OBSERVACION_ID'"
+                                                    value="{{e.OBSERVACION_ID}}">
+                                                {{e.OBSERVACION_ID}}
+                                            </option>
+                                        </select>
+                                        <i class="fa fa-cog form-control-feedback" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label class="sr-only" for="obsAuditoria">Observaciones:</label>
+                                        <textarea id="obsAuditoria" name="obsAuditoria" class="form-control btn-xs" style="width:150px" rows="2" cols="50"
+                                                  ng-model="auditoria.OBSERVACIONES"></textarea>
+                                        <i class="fa fa-comment form-control-feedback" aria-hidden="true"></i>
+                                    </div>
+                                    <span class="pull-right">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-warning btn-circle-xs pull-left" ng-click="removeNuevaNovedad()" ng-show="$last">
+                                                <i class="fa fa-minus"  aria-hidden="true"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-warning btn-circle-xs pull-right" ng-show="$last" ng-click="addNuevaNovedad()">
+                                                <i class="fa fa-plus"  aria-hidden="true"></i>
+                                            </button>
+                                        </div></span>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="guardarAuditoria(auditarObj,infoFenix,gestion)" data-dismiss="modal">Guardar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div><!-- Modal Eliminar Novedad-->
+<br>
