@@ -16529,11 +16529,11 @@ class API extends REST {
             'REPRESENTANTE',
             'OBSERVACIONES',
             'ESTADO',
-            'PRIORIDAD',
-            'PROGRESO');
+            'PROGRESO',
+            'PRIORIDAD');
         $keys = array_keys($newtask['newtask']);
 
-        var_dump($keys);
+        //var_dump($keys);
 
         if($guardar){//Si fue gestionado, Insertamos gestion en pedidos y mandamos JSON con respuesta.
             foreach($column_names as $desired_key){
@@ -16543,7 +16543,7 @@ class API extends REST {
                     $$desired_key = $newtask[$desired_key];
                 }
                 $columns = $columns.$desired_key.',';
-                $values = $values."'".$newtask[$desired_key]."',";
+                $values = $values."'".$newtask['newtask'].[$desired_key]."',";
             }
 
             $queryGestion = "INSERT INTO portalbd.go_task(".trim($columns,',').") VALUES(".trim($values,',').")";
