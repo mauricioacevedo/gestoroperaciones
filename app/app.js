@@ -14963,6 +14963,7 @@ $scope.getTaskCrud = function () {
         $http.get('./services/taskCrud').then(
             function (res) {
                 $rootScope.errorDatos = null;
+                $scope.task.crud = {};
                 $scope.task.crud = res.data;
                 $scope.getTaskOptions();
             }, function (res) {
@@ -15039,6 +15040,7 @@ $scope.updateStatus = function(data, index) {
 
 $scope.newTask = function () {
     $scope.taskform = {};
+
     services.getListadoUsuarios().then(function (data) {
         $scope.task.usuarios = data.data[0];
         $scope.taskform = {
