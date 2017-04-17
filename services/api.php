@@ -16531,22 +16531,22 @@ class API extends REST {
             'ESTADO',
             'PROGRESO',
             'PRIORIDAD');
-        $keys = array_keys($newtask['newtask']);
+        //$keys = array_keys($newtask['newtask']);
 
         //var_dump($keys);
 
         if($guardar){//Si fue gestionado, Insertamos gestion en pedidos y mandamos JSON con respuesta.
-            foreach($column_names as $desired_key){
-                if(!in_array($desired_key, $keys)) {
-                    $desired_key = '';
-                }else{
-                    $desired_key = $newtask[$desired_key];
-                }
-                $columns = $columns.$desired_key.',';
-                $values = $values."'".$newtask['newtask'][$desired_key]."',";
+            $keys = array();
+            $values = array();
+            foreach ($column_names as $column) {
+                $value = trim($newtask);
+                $value = htmlspecialchars($value);
+                $keys[] = "`{$column}`";
+                $values[] = "'{$value}'";
             }
+            $queryGestion = "INSERT INTO 'portalbd.go_task' (" . implode(",", $keys) . ") VALUES (" . implode(",", $values. ")");
 
-            $queryGestion = "INSERT INTO portalbd.go_task(".trim($columns,',').") VALUES(".trim($values,',').")";
+            //$queryGestion = "INSERT INTO portalbd.go_task(".trim($columns,',').") VALUES(".trim($values,',').")";
 
              echo    $queryGestion;
             //$insertGestion = $this->mysqli->query($queryGestion);
