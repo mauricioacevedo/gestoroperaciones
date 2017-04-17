@@ -14933,7 +14933,9 @@ divi.style.position = "relative";
 
 $scope.task.estados = ['ACTIVO','CERRADO','PAUSA'];
 $scope.task.prioridad = ['ALTA','MEDIA','BAJA'];
-
+if(userID!='DEMO'){
+    $scope.task.filter.USUARIO_GEST=userID;
+}
 
 $scope.getTaskOptions = function () {
 

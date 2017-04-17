@@ -12,7 +12,7 @@
                                  height="16" width="16"/>
                         </div>
                     </div>
-                    <input type="text" ng-model="taskfilter.USUARIO_GEST"
+                    <input type="text" ng-model="task.filter.USUARIO_GEST"
                            ng-init="taskfilter.USUARIO_GEST = (logedUser.USUARIO_ID == 'DEMO') ? '' : logedUser.USUARIO_ID " class="btn btn-default btn-xs" placeholder="Usuario">
                     <button type="button" uib-tooltip="Nueva Tarea" tooltip-placement="left"
                             class="btn btn-primary btn-circle-xss"
@@ -42,7 +42,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr  ng-repeat="t in task.crud | filter:taskfilter:strict  as taskid ">
+                        <tr  ng-repeat="t in task.crud | filter:task.filter:strict  as taskid ">
                             <td><span class="small">{{t.IDTAREA}} <span  ng-style="estiloflag(t.PRIORIDAD)" tooltip-placement="left" uib-tooltip="{{t.PRIORIDAD}}"><i class="fa fa-flag" aria-hidden="true"></i></span></span></td>
                             <td><span class="small">
                                 <a href="#"
