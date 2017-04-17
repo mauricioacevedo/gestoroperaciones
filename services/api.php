@@ -16376,7 +16376,7 @@ class API extends REST {
         $sql =  " SELECT t.*, tp.PIC FROM portalbd.go_task t ".
                 " left join portalbd.go_task_profile tp on t.USUARIO_GEST=tp.USUARIO_ID ".
                 " where 1=1 ".
-                " order by t.ESTADO ASC ";
+                " and t.ESTADO in ('ACTIVO','PAUSA') ";
 
         // echo $sql;
         $r = $this->mysqli->query($sql);
@@ -16419,7 +16419,7 @@ class API extends REST {
             " left join portalbd.go_task_profile tp on t.USUARIO_GEST=tp.USUARIO_ID ".
             " where 1=1 ".
             " and t.USUARIO_GEST='$usuarioGalleta' ".
-            " and t.ESTADO='ACTIVO' ";
+            " and t.ESTADO in ('ACTIVO','PAUSA') ";
 
         //echo $sql;
         $r = $this->mysqli->query($sql);
