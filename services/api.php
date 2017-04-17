@@ -16540,8 +16540,9 @@ class API extends REST {
             $values = array();
             foreach ($column_names as $column) {
                 $value = trim($newtask['newtask']);
-                $value = htmlspecialchars($value);
                 var_dump($value);
+                $value = htmlspecialchars($value);
+
                 $keys[] = "`{$column}`";
                 $values[] = "'{$value}'";
             }
