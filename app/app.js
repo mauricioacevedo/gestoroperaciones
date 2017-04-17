@@ -14925,6 +14925,7 @@ $scope.task.tipos           =       [];
 $scope.task.estados 		=		[];
 $scope.task.prioridad 		=		[];
 $scope.task.crud            =       {};
+$scope.task.filter          =       {};
 var userID                  =       $cookieStore.get('logedUser').login;
 $rootScope.logedUser        =       $cookieStore.get('logedUser');
 
@@ -14935,7 +14936,9 @@ divi.style.position = "relative";
 
 $scope.task.estados = ['ACTIVO','CERRADO','PAUSA'];
 $scope.task.prioridad = ['ALTA','MEDIA','BAJA'];
-
+if(userID!='DEMO'){
+    $scope.task.filter.USUARIO_GEST=userID;
+}
 
 $scope.getTaskOptions = function () {
 

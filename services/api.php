@@ -16468,13 +16468,13 @@ class API extends REST {
         $progresotsk    =   $params['progreso'];
         $today          =   date("Y-m-d H:i:s");
 
-        if($taskisdone){
+        /*if($taskisdone){
             $progreso=100;
             $estado='CERRADO';
         }else{
             $progreso=$progresotsk;
-        }
-
+        } */
+        $progreso=$progresotsk;
         $query= " update portalbd.go_task ".
             " set ESTADO='$estado' ".
             " , PROGRESO=$progreso ".
