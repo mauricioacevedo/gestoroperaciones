@@ -16376,7 +16376,7 @@ class API extends REST {
         $sql =  " SELECT t.*, tp.PIC FROM portalbd.go_task t ".
                 " left join portalbd.go_task_profile tp on t.USUARIO_GEST=tp.USUARIO_ID ".
                 " where 1=1 ".
-                " order by t.IDTAREA desc, t.PRIORIDAD ASC ";
+                " order by t.ESTADO ASC ";
 
         // echo $sql;
         $r = $this->mysqli->query($sql);
@@ -16499,6 +16499,74 @@ class API extends REST {
         }
 
     }//-----------------------------------------------Fin funcion
+
+    private function putTaskAdmin()
+    {
+        if ($this->get_request_method () != "POST") {
+            $this->response ('', 406);
+        }
+
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr ($usuarioIp);
+        $galleta        =   json_decode (stripslashes ($_COOKIE['logedUser']), true);
+        $galleta        =   stripslashes ($_COOKIE['logedUser']);
+        $galleta        =   json_decode ($galleta);
+        $galleta        =   json_decode (json_encode ($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+        $newtask        =   json_decode (file_get_contents ("php://input"), true);
+        $fechaServidor  =   date("Y-m-d H:i:s");
+
+        $guardar        =   false;
+        $mysqlerror     =   "";
+        $error          =   "";
+
+        //var_dump($newtask);
+
+        $column_names = array('FECHA_INICIO',
+            'USUARIO_CREA',
+            'USUARIO_GEST',
+            'TIPO',
+            'CATEGORIA',
+            'GRUPO',
+            'REPRESENTANTE',
+            'OBSERVACIONES',
+            'ESTADO',
+            'PROGRESO',
+            'PRIORIDAD');
+
+        $keys = array();
+        $values = array();
+        foreach ($column_names as $column) {
+            $value = trim($newtask['newtask'][$column]);
+            $value = htmlspecialchars($value);
+
+            $keys[] = "`{$column}`";
+            $values[] = "'{$value}'";
+        }
+        //var_dump($values);
+        $queryGestion = " INSERT INTO portalbd.go_task (" . implode(",", $keys) . ") VALUES (" . implode(",", $values ).")";
+
+        //echo $queryGestion;
+
+        $insertGestion = $this->mysqli->query($queryGestion);
+        if($insertGestion){
+                $msg = "Tarea Creada";
+                $guardar = true ;
+            }else{
+            $mysqlerror = $this->mysqli->error;
+            $guardar = false;
+        }
+        if($guardar){
+
+            $this->response ($this->json (array($msg)), 200);
+        }else{
+            $error = "Error guardando: $mysqlerror";
+            $this->response ($this->json (array($error)), 403);
+        }
+    }
 
 }//cierre de la clase
 

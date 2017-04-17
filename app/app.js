@@ -14963,6 +14963,7 @@ $scope.getTaskCrud = function () {
         $http.get('./services/taskCrud').then(
             function (res) {
                 $rootScope.errorDatos = null;
+                $scope.task.crud = {};
                 $scope.task.crud = res.data;
                 $scope.getTaskOptions();
             }, function (res) {
@@ -15001,14 +15002,15 @@ $scope.estiloflag = function (rank) {
 $scope.updateStatus = function(data, index) {
     $scope.fechaModifica = $rootScope.fechaProceso();
 
-    if(data.ESTADO==='CERRADO'){
+    if(data.ESTADO=='CERRADO'){
         $scope.task.crud[index].PROGRESO=100;
         $scope.taskIsDone = true;
     }
-    if(data.PROGRESO===100){
+    if(data.PROGRESO==100){
         data.ESTADO='CERRADO';
         $scope.task.crud[index].ESTADO='CERRADO';
         $scope.taskIsDone = true;
+
     }
 
     $http.post('services/updateTaskAdmin', {
@@ -15039,10 +15041,12 @@ $scope.updateStatus = function(data, index) {
 
 $scope.newTask = function () {
     $scope.taskform = {};
+
     services.getListadoUsuarios().then(function (data) {
         $scope.task.usuarios = data.data[0];
         $scope.taskform = {
         	FECHA_INICIO: $rootScope.fechaProceso(),
+            USUARIO_CREA: userID,
             USUARIO_GEST:userID,
             TIPO: 'NUEVO',
             CATEGORIA: '',
@@ -15056,8 +15060,23 @@ $scope.newTask = function () {
 
 };
 
-$scope.saveTask = function (data) {
-		console.log(data);
+$scope.saveTask = function (newtask) {
+    $http.post('services/putTaskAdmin', {
+        newtask:newtask
+    }).then(
+        function (res) {
+            notify({
+                message: res.data[0],
+                duration: '3000',
+                position: 'right'
+            });
+            $scope.taskform = {};
+            $scope.getTaskCrud();
+
+        }, function (err) {
+            $rootScope.errorDatos = 'Error: ' + err.status + ', Msg: ' +err.data[0];
+        }
+    );
 };
 
 
