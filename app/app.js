@@ -15006,10 +15006,14 @@ $scope.updateStatus = function(data, index) {
         $scope.task.crud[index].PROGRESO=100;
         $scope.taskIsDone = true;
     }
+    console.log(data.PROGRESO);
     if(data.PROGRESO===100){
         data.ESTADO='CERRADO';
         $scope.task.crud[index].ESTADO='CERRADO';
         $scope.taskIsDone = true;
+
+        console.log(data.ESTADO);
+        console.log( $scope.task.crud[index].ESTADO);
     }
 
     $http.post('services/updateTaskAdmin', {
