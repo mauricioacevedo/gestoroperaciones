@@ -12,16 +12,16 @@
                                  height="16" width="16"/>
                         </div>
                     </div>
-                    <div class="col-md-8 col-xs-6 ">
-                        <input type="text" ng-model="task.filter.USUARIO_GEST"
-                               ng-init="taskfilter.USUARIO_GEST = (logedUser.USUARIO_ID == 'DEMO') ? '' : logedUser.USUARIO_ID " class="btn btn-default btn-xs" placeholder="Usuario">
-                        <button type="button" uib-tooltip="Nueva Tarea" tooltip-placement="left"
-                                class="btn btn-primary btn-circle-xss"
-                                data-ng-click="newTask()"
-                                data-toggle="modal" data-target="#nuevaTarea" data-backdrop="static">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                        </button>
-                    </div>
+
+                    <input type="text" ng-model="task.filter.USUARIO_GEST"
+                           ng-init="taskfilter.USUARIO_GEST = (logedUser.USUARIO_ID == 'DEMO') ? '' : logedUser.USUARIO_ID " class="btn btn-default btn-xs" placeholder="Usuario">
+                    <button type="button" uib-tooltip="Nueva Tarea" tooltip-placement="left"
+                            class="btn btn-primary btn-circle-xss"
+                            data-ng-click="newTask()"
+                            data-toggle="modal" data-target="#nuevaTarea" data-backdrop="static">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+
 
                 </div>
             </div>
