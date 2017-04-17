@@ -16474,7 +16474,7 @@ class API extends REST {
         }else{
             $progreso=$progresotsk;
         } */
-
+        $progreso=$progresotsk;
         $query= " update portalbd.go_task ".
             " set ESTADO='$estado' ".
             " , PROGRESO=$progreso ".
