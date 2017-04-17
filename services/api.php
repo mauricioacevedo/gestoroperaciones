@@ -16540,7 +16540,7 @@ class API extends REST {
                 if(!in_array($desired_key, $keys)) {
                     $desired_key = '';
                 }else{
-                    $desired_key = $newtask[$desired_key];
+                    $desired_key = $newtask['newtask'][$desired_key];
                 }
                 $columns = $columns.$desired_key.',';
                 $values = $values."'".$newtask[$desired_key]."',";
