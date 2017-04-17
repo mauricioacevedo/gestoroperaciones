@@ -158,12 +158,12 @@
                     <div class="form-group" ng-class="{ 'has-error': taskform.userGest.$error.required }">
                         <label for="userGest" class="col-lg-2 control-label">Responsable</label>
                         <div class="col-lg-10">
-                            <ui-select id="userGest" name="userGest" ng-model="taskform.USUARIO_GEST.USUARIO_ID" theme="bootstrap">
+                            <ui-select id="userGest" name="userGest" ng-model="taskform.USUARIO_GEST" theme="bootstrap">
                                 <ui-select-match placeholder="Usuario">
-                                    {{taskform.USUARIO_GEST.USUARIO_ID}}
+                                    {{taskform.USUARIO_GEST}}
                                 </ui-select-match>
-                                <ui-select-choices repeat="g  in task.usuarios | filter: $select.search track by $index">
-                                    <div ng-bind-html="g.USUARIO_ID | highlight: $select.search"></div>
+                                <ui-select-choices repeat="g.USUARIO_ID as USUARIO_ID  in task.usuarios | filter: $select.search track by $index">
+                                    <div ng-bind-html="USUARIO_ID | highlight: $select.search"></div>
                                 </ui-select-choices>
                             </ui-select>
                         </div>
