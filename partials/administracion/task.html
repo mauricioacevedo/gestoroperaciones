@@ -6,14 +6,12 @@
                 <span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle" aria-hidden="true"
                                                               ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
                 <div class="pull-right">
-                    <div class="row">
                         <div class="col-md-1 col-xs-1 ">
                             <div data-ng-if="loading">
                                 <img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif"
                                      height="16" width="16"/>
                             </div>
                         </div>
-
                         <div class="col-md-6">
                             <input type="text" ng-model="taskfilter.ESTADO" class="btn btn-default btn-xs">
                             <button type="button" uib-tooltip="Nueva Tarea" tooltip-placement="left"
@@ -23,7 +21,7 @@
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                             </button>
                         </div>
-                    </div>
+
                 </div>
             </div>
             <div class="panel-body fixed-panel">
