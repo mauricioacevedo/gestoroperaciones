@@ -16546,7 +16546,7 @@ class API extends REST {
                 $values[] = "'{$value}'";
             }
             var_dump($values);
-            $queryGestion = "INSERT INTO 'portalbd.go_task' (" . implode(",", $keys) . ") VALUES (" . implode(",", $values. ")");
+            $queryGestion = "INSERT INTO 'portalbd.go_task' (" . implode(",", $keys) . ") VALUES (" . implode(",", $values. ");";
 
             //$queryGestion = "INSERT INTO portalbd.go_task(".trim($columns,',').") VALUES(".trim($values,',').")";
 
