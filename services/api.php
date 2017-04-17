@@ -16533,7 +16533,7 @@ class API extends REST {
             'PROGRESO');
         $keys = array_keys($newtask);
 
-        echo  $keys;
+        var_dump($keys);
 
         if($guardar){//Si fue gestionado, Insertamos gestion en pedidos y mandamos JSON con respuesta.
             foreach($column_names as $desired_key){
