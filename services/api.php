@@ -16511,7 +16511,7 @@ class API extends REST {
         $newtask        =   json_decode (file_get_contents ("php://input"), true);
         $fechaServidor  =   date("Y-m-d H:i:s");
 
-        $guardar        =   false;
+        $guardar        =   true;
         $mysqlerror     =   "";
         $error          =   "";
         $sqlupdate      =   "";
@@ -16519,86 +16519,41 @@ class API extends REST {
         $values         =   '';
 
         var_dump($newtask);
-        $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo','fecha_estado','concepto_final','source');
-        $keys = array_keys($gestion['gestion']);
 
-        if($usuario='undefined' || $usuario=''){$usuario = $usuarioGalleta;}
-        if($programacion!=="SIN"){$programado = true;}
-        if($estado=='MALO'){$malo = true;}
-
-        if($malo){
-            $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='$estado',ASESOR='' WHERE ID=$idpedido";
-            $varFeed = "GUARDO PEDIDO MALO";
-            $cerrar = false;
-        }
-        if($programado){
-
-            $sqlupdate="update informe_petec_pendientesm set PROGRAMACION='$programacion', RADICADO_TEMPORAL='NO',ASESOR='', STATUS='PENDI_PETEC' WHERE STATUS in ('PENDI_PETEC','MALO') and PEDIDO_ID='$pedido' ";
-            $varFeed = "PROGRAMO PEDIDO";
-            $cerrar = false;
-
-        }
-        if($cerrar){
-            $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='CERRADO_PETEC',ASESOR='' WHERE ID=$idpedido ";
-            $varFeed = "GUARDO PEDIDO";
-
-        }
-
-        //$rUpdate = $this->mysqli->query($sqlupdate);
-
-        if (!$rUpdate) {
-            $mysqlerror = $this->mysqli->error;
-            $guardar = false;
-        }
-
-
-
+        $column_names = array('FECHA_INICIO',
+            'USUARIO_CREA',
+            'USUARIO_GEST',
+            'TIPO',
+            'CATEGORIA',
+            'GRUPO',
+            'REPRESENTANTE',
+            'OBSERVACIONES',
+            'ESTADO',
+            'PRIORIDAD',
+            'PROGRESO');
+        $keys = array_keys($newtask['newtask']);
 
         if($guardar){//Si fue gestionado, Insertamos gestion en pedidos y mandamos JSON con respuesta.
             foreach($column_names as $desired_key){
                 if(!in_array($desired_key, $keys)) {
                     $$desired_key = '';
                 }else{
-                    $$desired_key = $gestion['gestion'][$desired_key];
+                    $$desired_key = $newtask['newtask'][$desired_key];
                 }
                 $columns = $columns.$desired_key.',';
-                $values = $values."'".$gestion['gestion'][$desired_key]."',";
+                $values = $values."'".$newtask['$newtask'][$desired_key]."',";
             }
 
-            $queryGestion = "INSERT INTO pedidos(".trim($columns,',').") VALUES(".trim($values,',').")";
+            $queryGestion = "INSERT INTO portalbd.go_task(".trim($columns,',').") VALUES(".trim($values,',').")";
 
-            $insertGestion = $this->mysqli->query($queryGestion);
+             echo    $queryGestion;
+            //$insertGestion = $this->mysqli->query($queryGestion);
+            $msg = "Tarea Creada";
 
-            //Activiy Feed ------------------------------------------------------------------
-            $sqlFeed =  "insert into portalbd.activity_feed ( ".
-                " USER ".
-                ", USER_NAME ".
-                ", GRUPO ".
-                ", STATUS ".
-                ", PEDIDO_OFERTA ".
-                ", ACCION ".
-                ", CONCEPTO_ID ".
-                ", IP_HOST ".
-                ", CP_HOST ".
-                ") values( ".
-                " UPPER('$usuario')".
-                ", UPPER('$nombreGalleta')".
-                ", UPPER('$grupoGalleta')".
-                ",'$estado' ".
-                ",'$pedido' ".
-                ",'$varFeed' ".
-                ",'$conceptoId' ".
-                ",'$usuarioIp' ".
-                ",'$usuarioPc')";
-            $rFeed = $this->mysqli->query($sqlFeed);
-            //------------------------------------------------------------------Activiy Feed
-
-
-
-            $this->response ($this->json (array($malo, $programado,$programacion)), 200);
+            $this->response ($this->json (array($msg)), 200);
         }else{
             $error = "Error guardando: $mysqlerror";
-            $this->response ($this->json (array($error, $fuente, $estado, $malo, $programado)), 403);
+            $this->response ($this->json (array($error)), 403);
         }
     }
 
