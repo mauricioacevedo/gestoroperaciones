@@ -16531,7 +16531,7 @@ class API extends REST {
             'ESTADO',
             'PRIORIDAD',
             'PROGRESO');
-        $keys = array_keys($newtask);
+        $keys = array_keys($newtask['newtask']);
 
         var_dump($keys);
 
