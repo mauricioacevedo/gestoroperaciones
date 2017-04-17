@@ -16539,7 +16539,7 @@ class API extends REST {
             $keys = array();
             $values = array();
             foreach ($column_names as $column) {
-                $value = trim($newtask);
+                $value = trim($newtask['newtask']);
                 $value = htmlspecialchars($value);
                 $keys[] = "`{$column}`";
                 $values[] = "'{$value}'";
