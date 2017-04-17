@@ -15043,7 +15043,7 @@ $scope.newTask = function () {
     $scope.taskform = {};
 
     services.getListadoUsuarios().then(function (data) {
-        $scope.task.usuarios = data.data[0].USUARIO_ID;
+        $scope.task.usuarios = data.data[0];
         $scope.taskform = {
         	FECHA_INICIO: $rootScope.fechaProceso(),
             USUARIO_CREA: userID,

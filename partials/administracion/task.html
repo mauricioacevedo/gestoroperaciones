@@ -162,7 +162,7 @@
                                 <ui-select-match placeholder="Usuario">
                                     {{taskform.USUARIO_GEST}}
                                 </ui-select-match>
-                                <ui-select-choices repeat="g.USUARIO_ID in task.usuarios | filter: $select.search track by $index">
+                                <ui-select-choices repeat="g in task.usuarios.USUARIO_ID | filter: $select.search track by $index">
                                     <div ng-bind-html="g.USUARIO_ID | highlight: $select.search"></div>
                                 </ui-select-choices>
                             </ui-select>
