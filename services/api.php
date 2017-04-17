@@ -6570,7 +6570,7 @@ class API extends REST {
             }
         }
         $query=" SELECT count(*) as counter ".
-            " FROM portalbd.gestor_activacion_pendientes_activador_suspecore ";
+            " FROM portalbd.gestor_activacion_pendientes_activador_suspecore where status='PENDI_ACTI' ";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter1=0;
