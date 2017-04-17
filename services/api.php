@@ -16541,10 +16541,11 @@ class API extends REST {
             foreach ($column_names as $column) {
                 $value = trim($newtask['newtask'][$column]);
                 $value = htmlspecialchars($value);
-                var_dump($value);
+
                 $keys[] = "`{$column}`";
                 $values[] = "'{$value}'";
             }
+            var_dump($values);
             $queryGestion = "INSERT INTO 'portalbd.go_task' (" . implode(",", $keys) . ") VALUES (" . implode(",", $values. ")");
 
             //$queryGestion = "INSERT INTO portalbd.go_task(".trim($columns,',').") VALUES(".trim($values,',').")";
