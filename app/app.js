@@ -15069,6 +15069,7 @@ $scope.saveTask = function (newtask) {
                 duration: '3000',
                 position: 'right'
             });
+            $scope.taskform = {};
             $scope.getTaskCrud();
 
         }, function (err) {
