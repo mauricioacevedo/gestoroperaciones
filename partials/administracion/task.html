@@ -13,6 +13,10 @@
                         </div>
                     </div>
                     <div class="col-md-6">
+                        <input type="text" ng-model="taskfilter.ESTADO">
+
+                    </div>
+                    <div class="col-md-6">
                         <button type="button" uib-tooltip="Nueva Tarea" tooltip-placement="left"
                                 class="btn btn-primary btn-circle-xss"
                                 data-ng-click="newTask()"
@@ -40,7 +44,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr  ng-repeat="t in task.crud as taskid">
+                        <tr  ng-repeat="t in task.crud | filter:taskfilter as taskid ">
                             <td><span class="small">{{t.IDTAREA}} <span  ng-style="estiloflag(t.PRIORIDAD)" tooltip-placement="left" uib-tooltip="{{t.PRIORIDAD}}"><i class="fa fa-flag" aria-hidden="true"></i></span></span></td>
                             <td><span class="small">
                                 <a href="#"
