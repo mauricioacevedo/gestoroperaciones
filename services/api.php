@@ -16370,13 +16370,27 @@ class API extends REST {
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
         $today          =   date("Y-m-d");
-        
-        
+
+        $sqlCerrado =  " SELECT t.*, tp.PIC FROM portalbd.go_task t ".
+            " left join portalbd.go_task_profile tp on t.USUARIO_GEST=tp.USUARIO_ID ".
+            " where 1=1 ".
+            " and t.ESTADO in ('CERRADO') ";
+
+        $rCerrado = $this->mysqli->query($sqlCerrado);
+
+        if($rCerrado->num_rows > 0){
+            $cerrados = array();
+            while($row = $rCerrado->fetch_assoc()){
+                //$row['PIC'] = base64_encode($row['PIC']);
+                //$row['PIC'] = 'data:image/jpeg;base64,'.base64_encode( $row['PIC'] );
+                $cerrados[] = $row;
+            }
+        }
 
         $sql =  " SELECT t.*, tp.PIC FROM portalbd.go_task t ".
                 " left join portalbd.go_task_profile tp on t.USUARIO_GEST=tp.USUARIO_ID ".
                 " where 1=1 ".
-                " order by t.ESTADO ASC ";
+                " and t.ESTADO in ('ACTIVO','PAUSA') ";
 
         // echo $sql;
         $r = $this->mysqli->query($sql);
@@ -16389,7 +16403,7 @@ class API extends REST {
                 $result[] = $row;
             }
 
-            $this->response($this->json($result), 200); // send user details
+            $this->response($this->json(array($result,$cerrados)), 200); // send user details
         }else{
             $error = "No hay datos.";
             $this->response($this->json(array($error)), 403);
@@ -16419,7 +16433,7 @@ class API extends REST {
             " left join portalbd.go_task_profile tp on t.USUARIO_GEST=tp.USUARIO_ID ".
             " where 1=1 ".
             " and t.USUARIO_GEST='$usuarioGalleta' ".
-            " and t.ESTADO='ACTIVO' ";
+            " and t.ESTADO in ('ACTIVO','PAUSA') ";
 
         //echo $sql;
         $r = $this->mysqli->query($sql);

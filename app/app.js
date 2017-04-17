@@ -14925,6 +14925,7 @@ $scope.task.tipos           =       [];
 $scope.task.estados 		=		[];
 $scope.task.prioridad 		=		[];
 $scope.task.crud            =       {};
+$scope.task.cerrados        =       {};
 $scope.task.filter          =       {};
 var userID                  =       $cookieStore.get('logedUser').login;
 $rootScope.logedUser        =       $cookieStore.get('logedUser');
@@ -14969,7 +14970,8 @@ $scope.getTaskCrud = function () {
             function (res) {
                 $rootScope.errorDatos = null;
                 $scope.task.crud = {};
-                $scope.task.crud = res.data;
+                $scope.task.crud = res.data[0];
+                $scope.task.cerrados = res.data[1];
                 $scope.getTaskOptions();
             }, function (res) {
                 $rootScope.errorDatos = 'Error: '+res.status;
