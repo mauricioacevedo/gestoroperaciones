@@ -15043,6 +15043,7 @@ $scope.newTask = function () {
         $scope.task.usuarios = data.data[0];
         $scope.taskform = {
         	FECHA_INICIO: $rootScope.fechaProceso(),
+            USUARIO_CREA: userID,
             USUARIO_GEST:userID,
             TIPO: 'NUEVO',
             CATEGORIA: '',
@@ -15056,8 +15057,22 @@ $scope.newTask = function () {
 
 };
 
-$scope.saveTask = function (data) {
-		console.log(data);
+$scope.saveTask = function (newtask) {
+    $http.post('services/putTaskAdmin', {
+        newtask:newtask
+    }).then(
+        function (res) {
+            notify({
+                message: res.data[0],
+                duration: '3000',
+                position: 'right'
+            });
+            $scope.getTaskCrud();
+
+        }, function (err) {
+            $rootScope.errorDatos = 'Error: ' + err.status + ', Msg: ' +err.data[0];
+        }
+    );
 };
 
 
