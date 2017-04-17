@@ -16511,12 +16511,9 @@ class API extends REST {
         $newtask        =   json_decode (file_get_contents ("php://input"), true);
         $fechaServidor  =   date("Y-m-d H:i:s");
 
-        $guardar        =   true;
+        $guardar        =   false;
         $mysqlerror     =   "";
         $error          =   "";
-        $sqlupdate      =   "";
-        $columns        =   '';
-        $values         =   '';
 
         //var_dump($newtask);
 
@@ -16531,25 +16528,30 @@ class API extends REST {
             'ESTADO',
             'PROGRESO',
             'PRIORIDAD');
-        //$keys = array_keys($newtask['newtask']);
 
-        //var_dump($keys);
+        $keys = array();
+        $values = array();
+        foreach ($column_names as $column) {
+            $value = trim($newtask['newtask'][$column]);
+            $value = htmlspecialchars($value);
 
-        if($guardar){//Si fue gestionado, Insertamos gestion en pedidos y mandamos JSON con respuesta.
-            $keys = array();
-            $values = array();
-            foreach ($column_names as $column) {
-                $value = trim($newtask['newtask'][$column]);
-                $value = htmlspecialchars($value);
+            $keys[] = "`{$column}`";
+            $values[] = "'{$value}'";
+        }
+        //var_dump($values);
+        $queryGestion = " INSERT INTO 'portalbd.go_task' (" . implode(",", $keys) . ") VALUES (" . implode(",", $values ).")";
 
-                $keys[] = "`{$column}`";
-                $values[] = "'{$value}'";
-            }
-            //var_dump($values);
-            $queryGestion = " INSERT INTO 'portalbd.go_task' (" . implode(",", $keys) . ") VALUES (" . implode(",", $values ).")";
+        echo $queryGestion;
 
-            $insertGestion = $this->mysqli->query($queryGestion);
-            $msg = "Tarea Creada";
+        $insertGestion = $this->mysqli->query($queryGestion);
+        if($insertGestion){
+                $msg = "Tarea Creada";
+                $guardar = true ;
+            }else{
+            $mysqlerror = $this->mysqli->error;
+            $guardar = false;
+        }
+        if($guardar){
 
             $this->response ($this->json (array($msg)), 200);
         }else{
