@@ -16548,10 +16548,7 @@ class API extends REST {
             var_dump($values);
             $queryGestion = " INSERT INTO 'portalbd.go_task' (" . implode(",", $keys) . ") VALUES (" . implode(",", $values ).")";
 
-            //$queryGestion = "INSERT INTO portalbd.go_task(".trim($columns,',').") VALUES(".trim($values,',').")";
-
-             echo    $queryGestion;
-            //$insertGestion = $this->mysqli->query($queryGestion);
+            $insertGestion = $this->mysqli->query($queryGestion);
             $msg = "Tarea Creada";
 
             $this->response ($this->json (array($msg)), 200);
