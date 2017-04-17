@@ -16518,7 +16518,7 @@ class API extends REST {
         $columns        =   '';
         $values         =   '';
 
-        var_dump($newtask);
+        //var_dump($newtask);
 
         $column_names = array('FECHA_INICIO',
             'USUARIO_CREA',
