@@ -14923,6 +14923,7 @@ $scope.task.tipos           =       [];
 $scope.task.estados 		=		[];
 $scope.task.prioridad 		=		[];
 $scope.task.crud            =       {};
+$scope.task.filter          =       {};
 var userID                  =       $cookieStore.get('logedUser').login;
 $rootScope.logedUser        =       $cookieStore.get('logedUser');
 
