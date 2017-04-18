@@ -9838,7 +9838,7 @@ class API extends REST {
             //----------insert
 
             if($tabla=='ACTIVADOR_SUSPECORE' ){
-                if($TIPIFICACION=='FINALIZADA'){
+                if($TIPIFICACION=='FINALIZADA' || $TIPIFICACION=='RENUMERAR' ){
                     $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID AND STATUS='PENDI_ACTI'";
                     // echo $sqlupdate;
                 }else {
@@ -9847,7 +9847,7 @@ class API extends REST {
                     //   echo $sqlupdate;
                 }
             } else{
-                if($TIPIFICACION=='FINALIZADA'){
+                if($TIPIFICACION=='FINALIZADA' || $TIPIFICACION=='RENUMERAR'){
                     $sqlupdate="update gestor_activacion_pendientes_activador_dom set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID AND STATUS='PENDI_ACTI'";
                     //  echo $sqlupdate;
                 }else {
