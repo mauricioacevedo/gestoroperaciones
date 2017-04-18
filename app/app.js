@@ -11277,13 +11277,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
    
 
-        services.getListadoActivacion($scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage).then(function (data) {
-            $scope.listadoactivacion = data.data[0];
-            return data.data;
-        });
-
-
-    };
 
 
 	//  ---------------------------------fin logueo-------------------------------------------
