@@ -11312,6 +11312,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.pedidos = data.data[0];
 		$scope.pedidosUnicos = data.data[1];
 		return data.data;
+		console.log($scope.pedidos);
 	});
 
 	var original = $scope.pedidos;
