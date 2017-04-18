@@ -315,7 +315,7 @@
                         <!--th>Opciones</th-->
                         </thead>
                         <tbody>
-                            <tr ng-repeat="data in historico_pedido track by $index| orderBy:'fecha_fin':true ">
+                            <tr ng-repeat="data in historico_pedido | orderBy:'fecha_fin':true ">
                                 <td>{{data.ASESOR}}</td>
                                 <td>{{data.FUENTE}}</td>
                                 <td>{{data.NOVEDAD}}</td>
