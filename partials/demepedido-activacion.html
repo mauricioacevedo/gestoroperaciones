@@ -322,8 +322,8 @@
                                 <td>{{data.FECHA_FIN}}</td>
                                 <td>{{data.DURACION}}</td>
                                 <td>{{data.ACCESO}}</td>
-<td><button type="button" class="btn btn-link btn-md" ng-show="data.OBSERVACION_GESTOR"> 
-<b><i class="fa fa-info-circle" aria-hidden="true" > <span id="cerrar" custom-popover popover-html={{data.OBSERVACION_GESTOR}} data-trigger="focus" popover-placement="right" popover-label="Observaciones"></span></i></b>
+<td><button type="button" class="btn btn-link btn-md" ng-show="data.OBSERVACION"> 
+<b><i class="fa fa-info-circle" aria-hidden="true" > <span id="cerrar" custom-popover popover-html={{data.OBSERVACION}} data-trigger="focus" popover-placement="right" popover-label="Observaciones"></span></i></b>
 </button></td>
                                 <!--td>Opciones</td-->
                             </tr>
@@ -354,7 +354,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="data in pedidos| orderBy:'FECHA_FIN':true ">
-                        <td>{{data.PEDIDO_ID}}</td>
+                        <td>{{data.PEDIDO}}</td>
                         <td>{{data.FUENTE}}</td>
                         <td>{{data.NOVEDAD}}</td>
                         <td>{{data.FECHA_FIN}}</td>
