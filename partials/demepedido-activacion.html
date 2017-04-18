@@ -349,34 +349,42 @@
                      </div>
             </div>
                       
-            <div class="row">
-            <table class="table small table-striped table-hover table-bordered table-condensed ">
-                <thead>
-                <th>Pedido</th>
-                <th>Fuente</th>
-                <th>Estado</th>
-                <th>Fecha</th>
-                <th>Duracion</th>
-                <th>zona</th>
-                <!--th>Opciones</th-->
-                </thead>
-                <tbody>
-                    <tr ng-repeat="data in calcularListado| orderBy:'FECHA_FIN':true ">
-                        <td>{{data.PEDIDO}}</td>
-                        <td>{{data.FUENTE}}</td>
-                        <td>{{data.NOVEDAD}}</td>
-                        <td>{{data.FECHA_FIN}}</td>
-                        <td>{{data.DURACION}}</td>
-                        <td>{{data.SUBZONA_ID}}</td>
-                        <!--td>Opciones</td-->
-                    </tr>
-                </tbody>
-                </table>
-              </div>
-        </div>
-    </div>
+             <div class="panel-body fixed-panel" >
+
+					<table class="table small table-striped table-hover table-bordered table-condensed">
+						<thead>
+							<th>ORDER_SEQ_ID</th>
+							<th>PEDIDO</th>
+							<th>ESTADO</th>
+							<th>FECHA_CREACION</th>
+							<th>FECHA_EXCEPCION</th>
+							<th>PRODUCTO</th>
+                            <th>ASESOR</th>
+							<th>TRANSACCION</th>
+                            <th>FECHA_GESTION</th>
+                            <th>DURACION</th>
+                            <th>TIPIFICACION</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat="data in listadoactivacion | filter:filtroInput as results">
+							<td><span class="small">{{data.ORDER_SEQ_ID}}</span></td>
+							<td><span class="small">{{data.PEDIDO}}</span></td>
+							<td><span class="small">{{data.ESTADO}}</span></td>
+							<td><span class="small">{{data.FECHA_CREACION}}</span></td>
+							<td><span class="small">{{data.FECHA_EXCEPCION}}</span></td>
+							<td><span class="small">{{data.PRODUCTO}}</span></td>
+                            <td><span class="small">{{data.ASESOR}}</span></td>
+							<td><span class="small">{{data.TRANSACCION}}</span></td>
+                                <td><span class="small">{{data.FECHA_GESTION}}</span></td>
+                                <td><span class="small">{{data.DURACION}}</span></td>
+                                <td><span class="small">{{data.TIPIFICACION}}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
 
+
+				</div>
 </div>
 <div class="container">
   <br>
