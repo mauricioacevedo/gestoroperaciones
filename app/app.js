@@ -11275,7 +11275,65 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$location.path('/');
 	};
 
- 
+   $scope.listadoactivacion=[];
+
+        $scope.data = {
+		maxSize: 5,
+		currentPage: 1,
+		numPerPage: 100,
+		totalItems: 0,
+		fechaIni: "",
+		fechaFin: ""
+	};
+
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+    var fecha_inicio = year + "-" + month + "-" + day;
+	var fecha_fin = year + "-" + month + "-" + day;
+    $scope.data.fechaIni = fecha_inicio;
+	$scope.data.fechaFin = fecha_fin;
+
+
+                services.getListadoActivacion(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
+
+                   // console.log(data);
+                       $scope.listadoactivacion=data.data[0];
+                       $scope.data.totalItems=data.data[1];
+                        $scope.data.totalItems2=data.data[2];
+                        $scope.data.totalItems3=data.data[3];
+                        $scope.data.totalItems4=data.data[4];
+                        $scope.data.totalItems5=data.data[5];
+                        $scope.data.totalItems6=data.data[6];
+
+                    //console.log($scope.data.totalItems2);
+                    return data.data;
+               });
+
+        var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+        $scope.fecha_inicio=year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+        $scope.fecha_fin=year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+   $scope.calcularListado = function () {
+        services.getListadoActivacion($scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage).then(function (data) {
+            $scope.listadoactivacion = data.data[0];
+            return data.data;
+        });
+
+
+    };
 
 
 	//  ---------------------------------fin logueo-------------------------------------------
