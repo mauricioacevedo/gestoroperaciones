@@ -2603,7 +2603,7 @@ class API extends REST {
 //--------------------- pedidos por usuario activacion ----------activacion------------
 
 
-    private function pedidosPorUserActivacion(){
+     private function pedidosPorUserActivacion(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
@@ -2616,7 +2616,26 @@ class API extends REST {
             " where ASESOR='$id' ".
             " and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' ";
 
-        
+        $queryunico="SELECT ".
+            " count(distinct pedido) as pedidos ".
+            " from gestor_historico_activacion  ".
+            " where ASESOR='$id'  ".
+            " and fecha_fin between '$today 00:00:00'  ".
+            " and '$today 23:59:59' ".
+            " group by date_format(fecha_fin,'%Y-%m-%d')";
+
+
+        $r2 = $this->mysqli->query($queryunico) or die($this->mysqli->error.__LINE__);
+
+        //$counter="0";
+
+        if($r2->num_rows > 0){
+            $result = array();
+            if($rowd = $r2->fetch_assoc()){
+                $counter=$rowd['pedidos'];
+            }
+
+        }
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -2625,7 +2644,7 @@ class API extends REST {
             while($row = $r->fetch_assoc()){
                 $result[] = $row;
             }
-            $this->response($this->json($result), 200); // send user details
+            $this->response($this->json($result,$counter), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
     }
