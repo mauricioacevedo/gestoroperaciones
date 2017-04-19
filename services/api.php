@@ -5975,7 +5975,109 @@ class API extends REST {
             ", pm.OBSERVACION_FENIX".
             ", pm.PROCESO".
             " from portalbd.gestor_pendientes_reagendamiento pm ".
-            " where pm.STATUS='MALO' ";
+            " where pm.STATUS='MALO' ".
+            " and pm.PROCESO = 'INSTALACION' ";
+
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            $fp = fopen("../tmp/$filename", 'w');
+            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','FUENTE','STATUS','CONCEPTOS','FECHA_CITA','ULTIMA_NOVEDAD','MICROZONA','ZONA','OBSERVACION','PROCESO'));
+            while($row = $r->fetch_assoc()){
+
+                $row['OBSERVACION_FENIX']=str_replace(array("\n","\r"), '/', $row['OBSERVACION_FENIX']);
+
+
+                if($row['ULTIMA_NOVEDAD']=='AGENDADO_FUTURO'||$row['ULTIMA_NOVEDAD']=='AGENDADO'){
+                    //echo "detecte agendado futuro!!!\n";
+                    $sqlhis="select CONCAT(date_format(FECHA_CITA_REAGENDA,'%Y-%m-%d'),' - ',JORNADA_CITA) AS FECHA_CC from gestor_historicos_reagendamiento WHERE PEDIDO_ID='".$row['PEDIDO_ID']."' order by id desc limit 1";
+                    //echo "consulta: $sqlhis\n";
+                    $r2 = $this->mysqli->query($sqlhis);
+
+                    if($r2->num_rows > 0){
+                        //echo "si hay registros\n";
+                        if($row2 = $r2->fetch_assoc()){
+                            $row['FECHA_CITA_FENIX']=$row2['FECHA_CC'];
+                        }
+                    }
+
+                }
+
+
+                $row['ULTIMA_NOVEDAD']=utf8_decode($row['ULTIMA_NOVEDAD']);
+                //                    $row['OBSERVACION_FENIX']= trim(preg_replace('/\s+|', ' ',$row['OBSERVACION_FENIX']));
+
+
+                $result[] = $row;
+                fputcsv($fp, $row);
+            }
+            fclose($fp);
+            // SQL Feed----------------------------------
+            $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'SIN PEDIDO' ".
+                ",'EXPORTO MALOS' ".
+                ",'ARCHIVO EXPORTADO' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
+            // ---------------------------------- SQL Feed
+            $this->response($this->json(array($filename,$login)), 200); // send user details
+        }
+        $this->response('',204);        // If no records "No Content" status
+    }
+private function csvMalosAgendamientoReparaciones(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+        $login = $this->_request['login'];
+        $today = date("Y-m-d h:i:s");
+
+
+        $filename="Malos-$login-$today.csv";
+
+        $query="Select ".
+            " pm.PEDIDO_ID".
+            ", pm.FECHA_INGRESO".
+            ", pm.FECHA_ESTADO".
+            ", pm.FUENTE".
+            ", pm.STATUS".
+            ", pm.CONCEPTOS ".
+            ", pm.FECHA_CITA_FENIX ".
+            "  , (SELECT hr.NOVEDAD FROM gestor_historicos_reagendamiento hr WHERE hr.ID = (SELECT MAX( a.id )  ".
+            "     FROM gestor_historicos_reagendamiento a ".
+            "     WHERE a.PEDIDO_ID =  pm.PEDIDO_ID) )AS ULTIMA_NOVEDAD ".
+            ", pm.MICROZONA".
+            ", pm.SUBZONA_ID".
+            ", pm.OBSERVACION_FENIX".
+            ", pm.PROCESO".
+            " from portalbd.gestor_pendientes_reagendamiento pm ".
+            " where pm.STATUS='MALO' ".
+            " and pm.PROCESO = 'REPARACION' ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -16385,7 +16487,6 @@ class API extends REST {
             while($row = $rCerrado->fetch_assoc()){
                 //$row['PIC'] = base64_encode($row['PIC']);
                 //$row['PIC'] = 'data:image/jpeg;base64,'.base64_encode( $row['PIC'] );
-                $row['OBSERVACIONES'] =  utf8_encode($row['OBSERVACIONES']);
                 $cerrados[] = $row;
             }
         }
@@ -16403,7 +16504,6 @@ class API extends REST {
             while($row = $r->fetch_assoc()){
                 //$row['PIC'] = base64_encode($row['PIC']);
                 //$row['PIC'] = 'data:image/jpeg;base64,'.base64_encode( $row['PIC'] );
-                $row['OBSERVACIONES'] =  utf8_encode($row['OBSERVACIONES']);
                 $result[] = $row;
             }
 
@@ -16560,9 +16660,6 @@ class API extends REST {
         foreach ($column_names as $column) {
             $value = trim($newtask['newtask'][$column]);
             $value = htmlspecialchars($value);
-            if($column=='OBSERVACIONES'){
-                $value = utf8_decode($value);
-            }
 
             $keys[] = "`{$column}`";
             $values[] = "'{$value}'";
