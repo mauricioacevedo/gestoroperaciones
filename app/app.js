@@ -11385,7 +11385,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 			if (data.data == '') {
 
-				document.getElementById("warning").innerHTML = "No hay Registros.";
+			//	document.getElementById("warning").innerHTML = "No hay Registros.";
 				$rootScope.errorDatos = "No hay Registros.";
 
 			} else {
