@@ -6600,7 +6600,7 @@ private function csvMalosAgendamientoReparaciones(){
         if($r->num_rows > 0){
             $result = array();
             while($row = $r->fetch_assoc()){
-                $malo = $row['counter'];
+                $malo1 = $row['counter'];
                 //echo $malo;
             }
         }
