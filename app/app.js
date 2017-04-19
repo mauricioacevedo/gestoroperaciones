@@ -14051,7 +14051,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 $rootScope.errorDatos = "No hay Registros. Intente Cambiando de Concepto.";
             } else {
 
-                document.getElementById("warning").innerHTML = "";
+               // document.getElementById("warning").innerHTML = "";
                 $scope.pedido1 = $scope.peds[0].PEDIDO_ID;
                 $scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
                 $scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
