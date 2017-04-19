@@ -7908,6 +7908,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 			$scope.listado_pendientes = data.data[0];
 			$scope.data1.totalItems = data.data[1];
 			$scope.data.totalItems2 = data.data[2];
+			$scope.data.totalItems3 = data.data[2];
 			//$scope.data1.concepto=sconcept;
 			return data.data;
 		});

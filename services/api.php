@@ -6581,7 +6581,7 @@ private function csvMalosAgendamientoReparaciones(){
             }
         }
 
-        $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where (a.STATUS='MALO') ";
+        $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where (a.STATUS='MALO') and (a.PROCESO='REPARACION') ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $malo=0;
@@ -6593,6 +6593,17 @@ private function csvMalosAgendamientoReparaciones(){
             }
         }
 
+ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where (a.STATUS='MALO') and (a.PROCESO='INSTALACION') ";
+        //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $malo1=0;
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                $malo = $row['counter'];
+                //echo $malo;
+            }
+        }
         $query= "SELECT ".
             " a.ID, ".
             " a.PEDIDO_ID, ".
@@ -6621,7 +6632,7 @@ private function csvMalosAgendamientoReparaciones(){
             while($row = $r->fetch_assoc()){
                 $result[] = $row;
             }
-            $this->response($this->json(array($result,$counter,$malo)), 200); // send user details
+            $this->response($this->json(array($result,$counter,$malo,$malo1)), 200); // send user details
         }
         $error = "Sin registros ";
         $this->response($this->json(array($error)),403); // send user details
