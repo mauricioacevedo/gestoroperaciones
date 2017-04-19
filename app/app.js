@@ -11311,7 +11311,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	var pedidos = services.getPedidosUserActivacion(userID).then(function (data) {
 		$scope.pedidos = data.data[0];
 		$scope.pedidosUnicos = data.data[1];
-		console.log($scope.pedidos);
+		
 		return data.data;
 		
 	});
@@ -16101,8 +16101,8 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 		window.open(window.location.pathname + "#/tips/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
 	};
 
-$rootScope.BuscaRedEdatel = function () {
-        window.open(window.location.pathname + "#/distriedatel/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
+	$rootScope.BuscaRedEdatel = function (localidad) {
+		window.open(window.location.pathname + "#/distriedatel/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
 	};
 	// --------------------------------------------------------------------------------  BtnTools Buscadores Ventanas
 
@@ -16128,9 +16128,9 @@ $rootScope.BuscaRedEdatel = function () {
 
 				return data.data;
 			},
-			function errorCallback(res) {
+			function errorCallback(response) {
 
-				$rootScope.errorMalos = 'Sin pedidos '+res.status;
+				$rootScope.errorMalos = "Sin pedidos";
 
 				//console.log($rootScope.errorDatos);
 
@@ -16163,8 +16163,8 @@ $rootScope.BuscaRedEdatel = function () {
 				$rootScope.ListadoHistoricoPedido = data.data;
 				return data.data;
 			},
-			function errorCallback(res) {
-				$rootScope.errorMalos = 'Sin pedidos '+res.status;
+			function errorCallback(response) {
+				$rootScope.errorMalos = "Sin pedidos";
 
 
 			});
@@ -16186,7 +16186,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 
 	$rootScope.$on("$routeChangeStart", function (evt, to, from) {
 
-		if ($cookieStore.get('logedUser') === undefined) {
+		if ($cookieStore.get('logedUser') == undefined) {
 			$location.path('/', true);
 
 		} else {
@@ -16201,7 +16201,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 			//var amOnline = firebase.database().ref('.info/connected');
 			//var userRef = firebase.database().ref('presence/' + userID);
 
-			//var controlador = to.$$route.controller;
+			var controlador = to.$$route.controller;
  /*
 			if (controlador != 'IndicadoresCtrl' || controlador != 'chatioCtrl') {
 				amOnline.on('value', function (snapshot) {
@@ -16219,7 +16219,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 
 	});
 
-	$rootScope.$on('$routeChangeSuccess', function (event, current) {
+	$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
 		$rootScope.title = current.$$route.title;
 
 	});
