@@ -16101,8 +16101,8 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 		window.open(window.location.pathname + "#/tips/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
 	};
 
-	$rootScope.BuscaRedEdatel = function (localidad) {
-		window.open(window.location.pathname + "#/distriedatel/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
+$rootScope.BuscaRedEdatel = function () {
+        window.open(window.location.pathname + "#/distriedatel/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
 	};
 	// --------------------------------------------------------------------------------  BtnTools Buscadores Ventanas
 
