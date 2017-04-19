@@ -16385,6 +16385,7 @@ class API extends REST {
             while($row = $rCerrado->fetch_assoc()){
                 //$row['PIC'] = base64_encode($row['PIC']);
                 //$row['PIC'] = 'data:image/jpeg;base64,'.base64_encode( $row['PIC'] );
+                $row['OBSERVACIONES'] =  utf8_encode($row['OBSERVACIONES']);
                 $cerrados[] = $row;
             }
         }
@@ -16402,6 +16403,7 @@ class API extends REST {
             while($row = $r->fetch_assoc()){
                 //$row['PIC'] = base64_encode($row['PIC']);
                 //$row['PIC'] = 'data:image/jpeg;base64,'.base64_encode( $row['PIC'] );
+                $row['OBSERVACIONES'] =  utf8_encode($row['OBSERVACIONES']);
                 $result[] = $row;
             }
 
@@ -16558,6 +16560,9 @@ class API extends REST {
         foreach ($column_names as $column) {
             $value = trim($newtask['newtask'][$column]);
             $value = htmlspecialchars($value);
+            if($column=='OBSERVACIONES'){
+                $value = utf8_decode($value);
+            }
 
             $keys[] = "`{$column}`";
             $values[] = "'{$value}'";
