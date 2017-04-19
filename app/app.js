@@ -16128,9 +16128,9 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 				return data.data;
 			},
-			function errorCallback(response) {
+			function errorCallback(res) {
 
-				$rootScope.errorMalos = "Sin pedidos";
+				$rootScope.errorMalos = 'Sin pedidos '+res.status;
 
 				//console.log($rootScope.errorDatos);
 
@@ -16163,8 +16163,8 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 				$rootScope.ListadoHistoricoPedido = data.data;
 				return data.data;
 			},
-			function errorCallback(response) {
-				$rootScope.errorMalos = "Sin pedidos";
+			function errorCallback(res) {
+				$rootScope.errorMalos = 'Sin pedidos '+res.status;
 
 
 			});
@@ -16186,7 +16186,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 
 	$rootScope.$on("$routeChangeStart", function (evt, to, from) {
 
-		if ($cookieStore.get('logedUser') == undefined) {
+		if ($cookieStore.get('logedUser') === undefined) {
 			$location.path('/', true);
 
 		} else {
@@ -16201,7 +16201,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 			//var amOnline = firebase.database().ref('.info/connected');
 			//var userRef = firebase.database().ref('presence/' + userID);
 
-			var controlador = to.$$route.controller;
+			//var controlador = to.$$route.controller;
  /*
 			if (controlador != 'IndicadoresCtrl' || controlador != 'chatioCtrl') {
 				amOnline.on('value', function (snapshot) {
@@ -16219,7 +16219,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 
 	});
 
-	$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+	$rootScope.$on('$routeChangeSuccess', function (event, current) {
 		$rootScope.title = current.$$route.title;
 
 	});
