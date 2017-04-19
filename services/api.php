@@ -16403,6 +16403,7 @@ class API extends REST {
             while($row = $r->fetch_assoc()){
                 //$row['PIC'] = base64_encode($row['PIC']);
                 //$row['PIC'] = 'data:image/jpeg;base64,'.base64_encode( $row['PIC'] );
+                $row['OBSERVACIONES'] =  utf8_decode($row['OBSERVACIONES']);
                 $result[] = $row;
             }
 
