@@ -14047,7 +14047,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
             if (data.data == '') {
 
-                document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Concepto.";
+               // document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Concepto.";
                 $rootScope.errorDatos = "No hay Registros. Intente Cambiando de Concepto.";
             } else {
 
