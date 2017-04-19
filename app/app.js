@@ -187,6 +187,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	obj.getCsvMalosAgendamiento = function (login) {
 		return $http.get(serviceBase + 'csvMalosAgendamiento?login=' + login); // exportar datos status malos de agendamiento
 	};
+	obj.getCsvMalosAgendamientoReparaciones = function (login) {
+		return $http.get(serviceBase + 'csvMalosAgendamientoReparaciones?login=' + login); // exportar datos status malos de agendamiento
+	};
+
 	obj.getCsvAgendamiento = function (login) {
 		return $http.get(serviceBase + 'csvAgendamiento?login=' + login); // exportar todos los pendientes de agendamiento
 	};
@@ -8009,6 +8013,16 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 	$scope.csvMalosAgendamiento = function () { //exportar status malo en agendamiento
 		var login = $rootScope.logedUser.login;
 		services.getCsvMalosAgendamiento(login).then(function (data) {
+			console.log(data.data[0]);
+			window.location.href = "tmp/" + data.data[0];
+			return data.data;
+		});
+
+	};
+
+	$scope.csvMalosAgendamientoRepa = function () { //exportar status malo en agendamiento
+		var login = $rootScope.logedUser.login;
+		services.getCsvMalosAgendamientoReparaciones(login).then(function (data) {
 			console.log(data.data[0]);
 			window.location.href = "tmp/" + data.data[0];
 			return data.data;
