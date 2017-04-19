@@ -16558,6 +16558,9 @@ class API extends REST {
         foreach ($column_names as $column) {
             $value = trim($newtask['newtask'][$column]);
             $value = htmlspecialchars($value);
+            if($column=='OBSERVACIONES'){
+                $value = utf8_encode($value);
+            }
 
             $keys[] = "`{$column}`";
             $values[] = "'{$value}'";
