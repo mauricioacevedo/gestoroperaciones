@@ -11276,6 +11276,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	};
 
 
+
 	//  ---------------------------------fin logueo-------------------------------------------
 
 
@@ -11301,9 +11302,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	var pedidos = services.getPedidosUserActivacion(userID).then(function (data) {
 		$scope.pedidos = data.data[0];
 		$scope.pedidosUnicos = data.data[1];
-		
 		return data.data;
-		
 	});
 
 	var original = $scope.pedidos;
@@ -11553,8 +11552,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			IDSERVICIORAIZ:gestion.IDSERVICIORAIZ,
 			DESCRIPCIONEXCEPCIONACT:gestion.DESCRIPCIONEXCEPCIONACT,
 			MOTIVOEXCEPCIONACT:gestion.MOTIVOEXCEPCIONACT,
-			VALOR_ERROR:gestion.VALOR_ERROR,
-			MOTIVO_ERROR:gestion.MOTIVO_ERROR,
 			TRANSACCION: gestion.TRANSACCION,
 			ASESOR: $rootScope.logedUser.login,
 			FECHA_GESTION: $scope.FECHA_GESTION,
