@@ -39,7 +39,6 @@ class API extends REST {
     /*
 		 *  Connect to Database
 		*/
-    /** @var Database */
     private function dbConnectScheduling(){  //database object
 
         $this->mysqliScheduling = getConnScheduling();
