@@ -7274,7 +7274,7 @@ class API extends REST {
 
 
     //Función para buscar pedidos directamente en Fenix - Boton BuscarPedido.
-    // 2016-02-02 - Se modifica todo este negocio solo por capricho de Carlos.
+    // 2016-02-02 - Se modifica  este negocio solo por capricho de Carlos.
     private function buscarPedidoFenixReconfiguracion($pedido_id){
 
         $this->dbFenixConnect();
@@ -13534,6 +13534,8 @@ class API extends REST {
         }
 
         $today = date("Y-m-d");
+        $estados = array();
+        $observaciones = array();
 
         $query= " SELECT ".
             "	ID ".
@@ -13556,7 +13558,7 @@ class API extends REST {
         $rObservacion = $this->mysqli->query($queryObservacion);
 
         if($rObservacion->num_rows > 0){
-            $result = array();
+
             while($row=$rObservacion->fetch_assoc()){
                 $observaciones[]=$row;
 
@@ -13567,7 +13569,7 @@ class API extends REST {
         $rEstado = $this->mysqli->query($queryEstado);
 
         if($rEstado->num_rows > 0){
-            $result = array();
+
             while($row=$rEstado->fetch_assoc()){
                 $estados[]=$row;
 
@@ -13583,7 +13585,6 @@ class API extends REST {
 
             while($row=$rst->fetch_assoc()){
                 $resultado[]=$row;
-
 
             }
             $this->response($this->json(array($observaciones,$estados,$resultado)), 201);
@@ -13618,6 +13619,7 @@ class API extends REST {
                                 }
                                 $this->response($this->json(array($resultado)), 201);
                             }else{
+                                $error = "Error";
 						        $this->response($this->json($error), 400);
 					        }  // If no records "No Content" status
 		            }
@@ -13649,6 +13651,7 @@ class API extends REST {
                                 }
                                 $this->response($this->json(array($resultado)), 201);
                             }else{
+                                $error = "Error";
 						        $this->response($this->json($error), 400);
 					        }  // If no records "No Content" status
 		            }
