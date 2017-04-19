@@ -16559,7 +16559,7 @@ class API extends REST {
             $value = trim($newtask['newtask'][$column]);
             $value = htmlspecialchars($value);
             if($column=='OBSERVACIONES'){
-                $value = utf8_encode($value);
+                $value = utf8_decode($value);
             }
 
             $keys[] = "`{$column}`";
