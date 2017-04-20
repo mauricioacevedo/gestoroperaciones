@@ -3657,7 +3657,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         } else if ($scope.dynamic > 7) {
             type = 'danger';
         }
-        $scope.showWarning = type === 'danger' || type === 'warning';
         $scope.type = type;
 
     };
