@@ -14992,8 +14992,12 @@ $scope.getTaskCrud = function () {
     };
 
 $scope.updateUsers = function (username) {
-        $scope.task.crud = $filter('filter')($scope.task.crud, username);
-    };
+    if(username.length>=1){
+        $scope.task.crud = $filter('filter')($scope.task.crud, {USUARIO_GEST: username});
+    }else{
+        $scope.getTaskCrud();
+    }
+};
 
 $scope.getTaskCrud();
 
