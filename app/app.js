@@ -3660,7 +3660,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
         $scope.showWarning = type === 'danger' || type === 'warning';
 
-        $scope.dynamic = value;
+        $scope.dynamic = diferencia;
         $scope.type = type;
 
     };
