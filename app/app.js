@@ -3648,11 +3648,11 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         console.log('Limite: '+ horaLimite);
         console.log('Diferencia: '+ diferencia);
 
-        if (value < 25) {
+        if (diferencia >= 12) {
             type = 'success';
-        } else if (value < 50) {
+        } else if (diferencia >= 3 && diferencia <= 6) {
             type = 'info';
-        } else if (value < 75) {
+        } else if (diferencia < 3) {
             type = 'warning';
         } else {
             type = 'danger';
