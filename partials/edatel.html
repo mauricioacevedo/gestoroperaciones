@@ -3,7 +3,7 @@
 		<div class="col-md-12">
 			<div class = "panel panel-default">
 				<div class = "panel-heading">
-					<b><i class="fa fa-bars" aria-hidden="true"></i> DemePedido Edatel</b>
+					<b><i class="fa fa-bars" aria-hidden="true"></i> DemePedido Activacion</b>
 					<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
 
 				</div>
@@ -13,20 +13,14 @@
 					<div class="col-lg-12 col-xs-10">
 						<ul class="nav navbar-nav navbar-left">
                               <li>
-								<i class="fa fa-globe" aria-hidden="true"> </i>&nbsp; 
+								<i class="fa fa-globe" aria-hidden="true"> </i>&nbsp;
 
-                                <div class="tn btn-default btn-xs grupo-select">
-                                <label  for="Departamento">Departamento:</label>
-                            <font ng-init="departamento.DEPARTAMENT='EDATEL'" color="RED"><b>EDATEL</b></font>
-                            </div>
-                            <div class="col-lg-8 col-xs-8 form-inline">
-                                  
-
-                                <label  for="Zona">Zona:</label>
 								<select
 									class= "btn btn-default btn-xs grupo-select"
 									style="width: 200px"
-									ng-model="zona" class="form-control" ng-options="zona.SUBZONA_ID for zona in zonasedatel" ng-change="getZonas(zona)" >
+									ng-model="tabla" class="form-control" ng-change="setTabla(tabla)">
+									 <option value="ACTIVADOR_SUSPECORE">ACTIVADOR_SUSPECORE</option>
+                                         <option value="ACTIVADO_DOM">ACTIVADOR</option>
 
 								</select>
 
@@ -39,14 +33,32 @@
 								<select
 									class= "btn btn-default btn-xs grupo-select"
 									style="width: 100px"
-									ng-model="proceso" class="form-control">
-									 	 <option value="INSTALACION">INSTALACION</option>
-                                         <option value="REPARACION">REPARACION</option>
+									ng-model="transaccion" class="form-control" ng-change="setTransaccion(transaccion)">
+									 <option value="Suspender">Suspender</option>
+                                         <option value="Reanudar">Reanudar</option>
+                                         <option value="Eliminar">Eliminar</option>
+                                        <option value="Actualizar">Actualizar</option>
+                                        <option value="Nuevo">Nuevo</option>
+                                        <option value="Traslado">Traslado</option>
+                                        <option value="TrasladoRetiro">TrasladoRetiro</option>
 
 								</select>
 
-							</li>                 
-                        
+							</li>
+                            <li>&nbsp;</li>                      
+                            <li>
+								<i class="fa fa-qrcode" aria-hidden="true"> </i>&nbsp;
+
+								<select
+									class= "btn btn-default btn-xs grupo-select"
+									style="width: 100px"
+									ng-model="producto" class="form-control" ng-change="setProducto(producto)">
+									 <option value="BA">BA</option>
+                                         <option value="TOIP">TOIP</option>
+                                         <option value="TV">TV</option>
+								</select>
+
+							</li>
 							<li> &nbsp; </li>
 							<li>
                                  <button id="ped" type="button" class="btn btn-xs btn-default"  ng-show="pedidoIsActive" ng-class="pedidoIsActive==false?'animated bounceOutRight':'animated fadeInUp'" ng-click="executeCopy(pedidoinfo)" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="<i class='fa fa-clipboard'></i> Copiar">{{pedidoinfo}}
@@ -262,6 +274,7 @@
     </div><!--Row 1 Novedades -->
 </div><!--Container ppal -->
 <!-- Modal Historico Pedidos-->
+
 
 
 <br>
