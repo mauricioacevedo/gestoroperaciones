@@ -14927,7 +14927,7 @@ app.controller('feedCtrl', function ($scope, $rootScope, $location, $routeParams
 
 
 });//--------------- fin Controlador Feed  -----------------------
-app.controller('taskCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, $timeout, notify, services) {
+app.controller('taskCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, $timeout, $filter, notify, services) {
 /**
  * Controlador para Gestionar los requerimientos del Grupo
  * */
@@ -14952,9 +14952,6 @@ divi.style.position = "relative";
 
 $scope.task.estados = ['ACTIVO','CERRADO','PAUSA'];
 $scope.task.prioridad = ['ALTA','MEDIA','BAJA'];
-if(userID!='DEMO'){
-    $scope.task.filter.USUARIO_GEST=userID;
-}
 
 $scope.getTaskOptions = function () {
 
@@ -14995,6 +14992,15 @@ $scope.getTaskCrud = function () {
     };
 
 $scope.getTaskCrud();
+/*
+    if(userID!='DEMO'){
+        $scope.task.filter.USUARIO_GEST=userID;
+    } */
+
+    $scope.updateUsers = function (username) {
+        $scope.task.crud = $filter('filter')($scope.task.crud, username);
+    };
+
 
 
 $scope.estiloflag = function (rank) {
