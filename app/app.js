@@ -14997,7 +14997,7 @@ $scope.updateUsers = function (username) {
         $scope.task.crud = $filter('filter')($scope.task.crud, username);
     };
 
-
+$scope.task.crud = $scope.task.crud ;
 
 
 
