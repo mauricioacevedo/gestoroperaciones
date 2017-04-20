@@ -3641,9 +3641,11 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         var output = d.getFullYear() + '-' + (month<10 ? '0' : '') + month + '-' + (day<10 ? '0' : '') + day;
 		var ahora = $rootScope.fechaProceso();
 		var horaLimite = output + ' 18:00:00';
+		var diferencia = (horaLimite-ahora);
 
 		console.log('ahora: '+ ahora);
         console.log('Limite: '+ horaLimite);
+        console.log('Diferencia: '+ diferencia);
     };
 
 	//------PRUEBAS API OPENFIRE -----------------------------
