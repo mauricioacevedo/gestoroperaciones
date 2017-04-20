@@ -3635,6 +3635,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	};
 
 	$scope.calcularTiempo = function () {
+        var type;
         var d = new Date();
         var month = d.getMonth()+1;
         var day = d.getDate();
@@ -3646,6 +3647,22 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		console.log('ahora: '+ ahora);
         console.log('Limite: '+ horaLimite);
         console.log('Diferencia: '+ diferencia);
+
+        if (value < 25) {
+            type = 'success';
+        } else if (value < 50) {
+            type = 'info';
+        } else if (value < 75) {
+            type = 'warning';
+        } else {
+            type = 'danger';
+        }
+
+        $scope.showWarning = type === 'danger' || type === 'warning';
+
+        $scope.dynamic = value;
+        $scope.type = type;
+
     };
 
 	//------PRUEBAS API OPENFIRE -----------------------------
