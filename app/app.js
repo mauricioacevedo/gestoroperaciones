@@ -3647,7 +3647,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		console.log('ahora: '+ ahora);
         console.log('Limite: '+ horaLimite);
         console.log('Diferencia: '+ diferencia);
-        $scope.timediff = diferencia;
+
 
         $scope.dynamic = 10-(Math.round(diferencia * 1000)/1000);
 
@@ -3659,6 +3659,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
             type = 'danger';
         }
         $scope.type = type;
+
+        $scope.timediff = (Math.round(diferencia * 1000)/1000);
 
     };
 
