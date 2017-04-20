@@ -14977,6 +14977,9 @@ $scope.getTaskOptions = function () {
     return $scope.taskoptions
 };
 
+$scope.updateUsers = function (username) {
+        $scope.task.crud = $filter('filter')($scope.task.crud, username);
+    };
 $scope.getTaskCrud = function () {
         $http.get('./services/taskCrud').then(
             function (res) {
@@ -14985,6 +14988,10 @@ $scope.getTaskCrud = function () {
                 $scope.task.crud = res.data[0];
                 $scope.task.cerrados = res.data[1];
                 $scope.getTaskOptions();
+                if(userID!='DEMO'){
+                    $scope.task.filter.USUARIO_GEST=userID;
+                    $scope.updateUsers(userID);
+                }
             }, function (res) {
                 $rootScope.errorDatos = 'Error: '+res.status;
             }
@@ -14993,14 +15000,9 @@ $scope.getTaskCrud = function () {
 
 $scope.getTaskCrud();
 
-$scope.updateUsers = function (username) {
-        $scope.task.crud = $filter('filter')($scope.task.crud, username);
-    };
 
-    if(userID!='DEMO'){
-        $scope.task.filter.USUARIO_GEST=userID;
-        $scope.updateUsers(userID);
-    }
+
+
 
 
 
