@@ -3635,18 +3635,17 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	};
 
 	$scope.calcularTiempo = function () {
-        var today = new Date();
-        today = today.format('Y-M-d');
-
-        var curr_date = today.getDate();
-        var curr_month = today.getMonth();
-        var curr_year = today.getFullYear();
-        var fechaLimite = curr_year + '-' + curr_month + '-' + curr_date;
+        var d = new Date();
+        var month = d.getMonth()+1;
+        var day = d.getDate();
+        var output = (day<10 ? '0' : '') + day + "-"
+            + (month<10 ? '0' : '') + month + '-'
+            + d.getFullYear();
 		var ahora = $rootScope.fechaProceso();
-		var horaLimite = fechaLimite + ' 18:00:00';
+		var horaLimite = output + ' 18:00:00';
 
 		console.log('ahora: '+ ahora);
-        console.log('Limite: '+ today);
+        console.log('Limite: '+ horaLimite);
     };
 
 	//------PRUEBAS API OPENFIRE -----------------------------
