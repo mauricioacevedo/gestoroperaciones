@@ -14992,7 +14992,7 @@ $scope.getTaskCrud = function () {
     };
 
 $scope.updateUsers = function (username) {
-        $scope.task.crud.USUARIO_GEST = $filter('filter')($scope.task.crud, username);
+        $scope.task.crud = $filter('filter')($scope.task.crud, username);
     };
 
 $scope.getTaskCrud();
