@@ -14105,7 +14105,7 @@ private function csvMalosAgendamientoReparaciones(){
 
         $query1=" SELECT ".
             " p.PEDIDO,p.ORDER_SEQ_ID,p.ESTADO,p.TAREA_EXCEPCION,p.IDSERVICIORAIZ,p.TRANSACCION ".
-            " , group_concat(distinct p.PRODUCTO) as  PRODUCTOS ".
+            " , group_concat(distinct p.PRODUCTO) as  PRODUCTO ".
             " , min(p.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
             " ,min(p.FECHA_CREACION) as FECHA_CREACION ".
             " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
