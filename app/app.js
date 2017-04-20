@@ -14993,14 +14993,16 @@ $scope.getTaskCrud = function () {
 
 $scope.getTaskCrud();
 
+$scope.updateUsers = function (username) {
+        $scope.task.crud = $filter('filter')($scope.task.crud, username);
+    };
+
     if(userID!='DEMO'){
         $scope.task.filter.USUARIO_GEST=userID;
         $scope.updateUsers(userID);
     }
 
-    $scope.updateUsers = function (username) {
-        $scope.task.crud = $filter('filter')($scope.task.crud, username);
-    };
+
 
 
 
