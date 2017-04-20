@@ -3641,7 +3641,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         var output = d.getFullYear() + '-' + (month<10 ? '0' : '') + month + '-' + (day<10 ? '0' : '') + day;
 		var ahora = $rootScope.fechaProceso();
 		var horaLimite = output + ' 18:00:00';
-		var diferencia = (horaLimite-ahora);
+        var diferencia = Math.abs(horaLimite - ahora) / 36e5;
 
 		console.log('ahora: '+ ahora);
         console.log('Limite: '+ horaLimite);
