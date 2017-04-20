@@ -3648,19 +3648,16 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         console.log('Limite: '+ horaLimite);
         console.log('Diferencia: '+ diferencia);
 
-        if (diferencia >= 12) {
+        $scope.dynamic = 10-(Math.round(diferencia * 1000)/1000);
+
+        if ($scope.dynamic >0 && $scope.dynamic < 4) {
             type = 'success';
-        } else if (diferencia >= 3 && diferencia <= 6) {
-            type = 'info';
-        } else if (diferencia < 3) {
+        } else if ($scope.dynamic >= 4 && $scope.dynamic < 7) {
             type = 'warning';
-        } else {
+        } else if ($scope.dynamic > 7) {
             type = 'danger';
         }
-
         $scope.showWarning = type === 'danger' || type === 'warning';
-
-        $scope.dynamic = 10-(Math.round(diferencia * 1000)/1000);
         $scope.type = type;
 
     };
