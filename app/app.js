@@ -14992,8 +14992,10 @@ $scope.getTaskCrud = function () {
     };
 
 $scope.updateUsers = function (username) {
+    if(username.length>1){
         $scope.task.crud = $filter('filter')($scope.task.crud, username);
-    };
+    }
+};
 
 $scope.getTaskCrud();
 
