@@ -278,8 +278,14 @@
                                                             </tr>
                                                             </tbody>
                                                         </table>
+
+                                                    <button type="button" class="btn btn-default btn-circle-xs pull-right"
+                                                            ng-click="csvPendientes(filtroInput)"
+                                                            title="Exportar Pendientes" data-toggle="tooltip"
+                                                            data-placement="left" ng-disabled="loading">
+                                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                                    </button>
                                                 </div>
-                                                <a href="#" class="btn btn-default btn-xs pull-right" role="button">Descargar</a>
                                             </div>
                                         </div>
                                         <div class="col-xs-18 col-sm-6 col-md-4">
@@ -287,7 +293,6 @@
                                                 <img src="http://placehold.it/500x250/EEE">
                                                 <div class="caption">
                                                     <h4>Alarmados</h4>
-                                                    <span class="small">
                                                         <table class="table small table-hover table-bordered">
                                                             <thead>
                                                             <th>Grupo</th>
@@ -311,7 +316,6 @@
                                                             </tr>
                                                             </tbody>
                                                         </table>
-                                                    </span>
                                                     <a href="#" class="btn btn-default btn-xs pull-right" role="button">Descargar</a>
                                                 </div>
                                             </div>
@@ -321,7 +325,7 @@
                                                 <img src="http://placehold.it/500x250/EEE">
                                                 <div class="caption">
                                                     <h4>Recuperados</h4>
-                                                    <span class="small">
+
                                                         <table class="table small table-hover table-bordered">
                                                             <thead>
                                                             <th>Grupo</th>
@@ -345,7 +349,6 @@
                                                             </tr>
                                                             </tbody>
                                                         </table>
-                                                    </span>
                                                     <a href="#" class="btn btn-default btn-xs pull-right" role="button">Descargar</a>
                                                 </div>
                                             </div>
