@@ -3634,6 +3634,14 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		isFirstDisabled: false
 	};
 
+	$scope.calcularTiempo = function () {
+        var today = new Date();
+		var ahora = $rootScope.fechaProceso;
+		var horaLimite = today+' 18:00:00';
+
+		console.log('ahora: '+ahora);
+        console.log('Limite: '+horaLimite);
+    };
 
 	//------PRUEBAS API OPENFIRE -----------------------------
 
