@@ -3636,6 +3636,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 	$scope.calcularTiempo = function () {
         var today = new Date();
+        today = today.format('Y-M-d');
+
         var curr_date = today.getDate();
         var curr_month = today.getMonth();
         var curr_year = today.getFullYear();
@@ -3644,7 +3646,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		var horaLimite = fechaLimite + ' 18:00:00';
 
 		console.log('ahora: '+ ahora);
-        console.log('Limite: '+ horaLimite);
+        console.log('Limite: '+ today);
     };
 
 	//------PRUEBAS API OPENFIRE -----------------------------
