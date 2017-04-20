@@ -180,6 +180,10 @@
                                                                                    ng-click="setActiveTab(2);ProductividadPorHora();"
                                                                                    data-toggle="tab"><i class="fa fa-bar-chart"
                                                                                                         aria-hidden="true"></i> Gestión</a></li>
+                                    <li ng-class="{'active' : activeTabs == 3}"><a href=""
+                                                                                   ng-click="setActiveTab(3);calcularTiempo();"
+                                                                                   data-toggle="tab"><span class="DemePedido"><i class="fa fa-exclamation-circle"
+                                                                                                              aria-hidden="true"></i> Alarmados</span></a></li>
                                 </ul>
                             </span>
                         </div>
@@ -232,6 +236,10 @@
                                         </tr>
                                         </tbody>
                                     </table>
+
+                                </div>
+                                <div ng-class="{'tab-pane fade in active': activeTabs === 3, 'tab-pane' : activeTabs !== 3}"
+                                     id="tab3default">
 
                                 </div>
                             </div>
