@@ -3639,7 +3639,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         var curr_date = today.getDate();
         var curr_month = today.getMonth();
         var curr_year = today.getFullYear();
-        var fechaLimite = curr_year + '-' + curr_month + curr_date;
+        var fechaLimite = curr_year + '-' + curr_month + '-' + curr_date;
 		var ahora = $rootScope.fechaProceso();
 		var horaLimite = fechaLimite + ' 18:00:00';
 
