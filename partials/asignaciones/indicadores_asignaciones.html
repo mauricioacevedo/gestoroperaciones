@@ -240,10 +240,49 @@
                                 </div>
                                 <div ng-class="{'tab-pane fade in active': activeTabs === 3, 'tab-pane' : activeTabs !== 3}"
                                      id="tab3default">
-                                    <uib-progressbar class="progress-striped active"
-                                                     type="{{type}}"
-                                                     max="10" value="dynamic" type="danger">{{dynamic}} / 10</uib-progressbar>
-
+                                    <div class="row">
+                                        <div class="col-md-8 text-right">
+                                            Tiempo Limite:
+                                        </div>
+                                        <div class="col-md-4">
+                                            <uib-progressbar class="progress-striped active" max="10" value="dynamic" type="{{type}}">{{timediff}} horas
+                                            </uib-progressbar>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="thumbnail">
+                                                    <div class="well well-lg">23</span></div>
+                                                <div class="caption">
+                                                    <h4>Proximos</h4>
+                                                    <p>...</p>
+                                                    <p><a href="#" class="btn btn-primary" role="button">Button</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="thumbnail">
+                                                <a href="" class="thumbnail">
+                                                <img src="..." alt="...">
+                                                </a>
+                                                <div class="caption">
+                                                    <h4>Alarmados</h4>
+                                                    <p>...</p>
+                                                    <p><a href="#" class="btn btn-primary" role="button">Button</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="thumbnail">
+                                                <img src="..." alt="...">
+                                                <div class="caption">
+                                                    <h4>Recuperados</h4>
+                                                    <p>...</p>
+                                                    <p><a href="#" class="btn btn-primary" role="button">Button</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
