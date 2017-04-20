@@ -14976,8 +14976,7 @@ $scope.getTaskOptions = function () {
     $scope.taskoptions = true ;
     return $scope.taskoptions
 };
-
-$scope.updateUsers = function (username) {
+    $scope.updateUsers = function (username) {
         $scope.task.crud = $filter('filter')($scope.task.crud, username);
     };
 $scope.getTaskCrud = function () {
