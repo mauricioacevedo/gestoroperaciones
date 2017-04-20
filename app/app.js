@@ -3659,6 +3659,9 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         }
         $scope.type = type;
 
+        console.log($scope.dynamic>=4);
+        console.log($scope.type);
+
     };
 
 	//------PRUEBAS API OPENFIRE -----------------------------
