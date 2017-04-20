@@ -8606,7 +8606,7 @@ private function csvMalosAgendamientoReparaciones(){
 
 
 
-        $query1=" SELECT b.ID ".
+        $query1=" SELECT DISTINCT b.ID ".
             " ,b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TAREA_EXCEPCION,b.IDSERVICIORAIZ,b.TRANSACCION,b.STATUS,b.ASESOR,b.MOTIVOEXCEPCIONACT,b.DESCRIPCIONEXCEPCIONACT,b.VALOR_ERROR,b.MOTIVO_ERROR ".
             ",b.ACTIVIDAD,b.FUENTE,b.GRUPO".
             " , group_concat(distinct b.PRODUCTO) as  PRODUCTO ".
@@ -8614,7 +8614,7 @@ private function csvMalosAgendamientoReparaciones(){
             " ,min(b.FECHA_CREACION) as FECHA_CREACION ".
             " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_EXCEPCION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL".
             " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
-            " where a.PEDIDO='$mypedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
+            " where a.PEDIDO='$mypedido'and a.TIPIFICACION='' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
             $tabla.
             " where b.PEDIDO = '$mypedido'  ".
             " and b.STATUS='PENDI_ACTI' ".
