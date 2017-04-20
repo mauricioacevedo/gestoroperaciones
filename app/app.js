@@ -14995,6 +14995,7 @@ $scope.getTaskCrud();
 
     if(userID!='DEMO'){
         $scope.task.filter.USUARIO_GEST=userID;
+        $scope.updateUsers(userID);
     }
 
     $scope.updateUsers = function (username) {
