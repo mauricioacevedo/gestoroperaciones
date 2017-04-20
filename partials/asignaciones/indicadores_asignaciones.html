@@ -240,10 +240,17 @@
                                 </div>
                                 <div ng-class="{'tab-pane fade in active': activeTabs === 3, 'tab-pane' : activeTabs !== 3}"
                                      id="tab3default">
-                                    <div class="well">
-                                        Tiempo Limite:
-                                        <uib-progressbar class="progress-striped active" max="10" value="dynamic" type="danger">{{dynamic}} / 10
-                                        </uib-progressbar>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                Tiempo Limite:
+                                            </div>
+                                            <div class="col-md-6">
+                                                <uib-progressbar class="progress-striped active" max="10" value="dynamic" type="danger">{{dynamic}} / 10
+                                                </uib-progressbar>
+                                            </div>
+                                        </div>
+
                                     </div>
 
 
