@@ -3636,11 +3636,15 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 	$scope.calcularTiempo = function () {
         var today = new Date();
-		var ahora = $rootScope.fechaProceso;
-		var horaLimite = today+' 18:00:00';
+        var curr_date = today.getDate();
+        var curr_month = today.getMonth();
+        var curr_year = today.getFullYear();
+        var fechaLimite = curr_year + '-' + curr_month + curr_date;
+		var ahora = $rootScope.fechaProceso();
+		var horaLimite = fechaLimite + ' 18:00:00';
 
-		console.log('ahora: '+ahora);
-        console.log('Limite: '+horaLimite);
+		console.log('ahora: '+ ahora);
+        console.log('Limite: '+ horaLimite);
     };
 
 	//------PRUEBAS API OPENFIRE -----------------------------
