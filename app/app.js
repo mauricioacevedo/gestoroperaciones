@@ -3683,7 +3683,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.priorizar = function (param) {
 
 	    var pedidos = param.pedidos;
-        var regexp = /\s+/g;
+        var regexp = /\r?\n|\r/g;
         regexp.test(pedidos);
 
         console.log(pedidos);
