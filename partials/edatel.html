@@ -16,7 +16,6 @@
 								<i class="fa fa-globe" aria-hidden="true"> </i>&nbsp;
 
 								<div class="col-lg-8 col-xs-8 form-inline">
-                                <label  for="Departamento">Departamento:</label>
                             <font ng-init="departamento.DEPARTAMENT='EDATEL'" color="RED"><b>EDATEL</b></font>
                             </div>
                             <div class="col-lg-8 col-xs-8 form-inline">
@@ -24,7 +23,6 @@
    
                             <li>&nbsp;</li>
 
-                            <label  for="Zona">Zona:</label>
                             <select ng-model="zona" class="form-control" style="width: auto;" ng-options="zona.SUBZONA_ID for zona in zonasedatel" ng-change="getZonas(zona)">
                             </select>
                             
