@@ -16754,6 +16754,7 @@ private function csvMalosAgendamientoReparaciones(){
 
         $pedido         =   $this->_request['pedido'];
         $fechaServidor  =   date("Y-m-d H:i:s");
+        $horaServidor   =   date("H");
         $mysqlerror     =   "";
         $error          =   "";
         $sqlok          =   false;
