@@ -18,13 +18,18 @@
 								<div class="col-lg-8 col-xs-8 form-inline">
                             <font ng-init="departamento.DEPARTAMENT='EDATEL'" color="RED"><b>EDATEL</b></font>
                             </div>
-                            <div class="col-lg-8 col-xs-8 form-inline">
 							</li>
    
                             <li>&nbsp;</li>
 
-                            <select ng-model="zona" class="form-control" style="width: auto;" ng-options="zona.SUBZONA_ID for zona in zonasedatel" ng-change="getZonas(zona)">
-                            </select>
+                            <select
+									class= "btn btn-default btn-xs grupo-select"
+									style="width: 100px"
+									ng-model="zona" class="form-control"
+                                    ng-options="zona.SUBZONA_ID for zona in zonasedatel" ng-change="getZonas(zona)">
+				
+
+								</select>
                             
                             <li>&nbsp;</li>                      
                             <li>
@@ -35,7 +40,7 @@
 									style="width: 100px"
 									ng-model="proceso" class="form-control">
 									  <option value="INSTALACION">INSTALACION</option>
-                                <option value="REPARACION">REPARACION</option>
+                                         <option value="REPARACION">REPARACION</option>
 
 								</select>
 
