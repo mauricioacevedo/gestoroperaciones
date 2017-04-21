@@ -3682,8 +3682,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 	$scope.organizarPedidos = function (param) {
         var pedidos = param.pedidos;
-        pedidos = pedidos.replace(/(?:\r\n|\r|\n)/g, '');
-        pedidos = pedidos.replace(/,\s*$/, "");
+        pedidos = pedidos.replace(/(?:\r\n|\r|\n)/g, ','); // Reemplaza los saltos de linea.
+        pedidos = pedidos.replace(/,\s*$/, ""); // Reemplaza la ultima coma si existe.
         var count = ((pedidos.match(/,/g) || []).length)+1;
 
         $scope.priorzar.pedidos = pedidos;
