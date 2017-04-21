@@ -3726,7 +3726,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 	};
 // Opciones de Tabs para las Graficas ----------------------------------------------------
-$scope.activeTabs = 3;
+$scope.activeTabs = 1;
 $scope.setActiveTab = function (tabToSet) {
 	$scope.activeTabs = tabToSet;
 	$scope.ProductividadPorHora();
