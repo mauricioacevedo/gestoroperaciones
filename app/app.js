@@ -15027,6 +15027,7 @@ $scope.getTaskCrud = function () {
                 $scope.task.crud = res.data[0];
                 $scope.task.cerrados = res.data[1];
                 $scope.getTaskOptions();
+
             }, function (res) {
                 $rootScope.errorDatos = 'Error: '+res.status;
             }
@@ -15129,6 +15130,7 @@ $scope.newTask = function () {
             ESTADO: 'ACTIVO',
             PROGRESO: 10
         };
+        $rootScope.getTaskbyUser();
     });
 
 };
