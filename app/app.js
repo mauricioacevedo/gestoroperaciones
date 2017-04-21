@@ -3634,6 +3634,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		isFirstDisabled: false
 	};
 
+    $scope.alarmados = {};
 	$scope.calcularTiempo = function () {
         var type;
         var d = new Date();
@@ -3661,6 +3662,19 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         $scope.type = type;
 
         $scope.timediff = (Math.round(diferencia * 1000)/1000);
+
+        $http.get('./services/alarmadosProactivos').then(
+            function (res) {
+                $rootScope.errorDatos = null;
+                $scope.alarmados.alarmados = res.data[1];
+                $scope.alarmados.historico = res.data[2];
+                $scope.alarmados.recuperados = res.data[3];
+            }, function (res) {
+                $rootScope.errorDatos = 'Error: '+res.status;
+            }
+        );
+
+
 
     };
 
