@@ -254,22 +254,16 @@
                                             <div class="thumbnail">
                                                 <div class="caption">
                                                     <h5>Próximos <span class="badge">{{ (alarmas | sumarNum:'CANTIDAD') }}</span></h5>
-                                                    <button type="button" class="btn btn-primary btn-circle-xs"
-                                                            ng-click="csvAlarmadosProactivos()"
-                                                            title="Exportar" data-toggle="tooltip"
-                                                            data-placement="left" ng-disabled="loading">
-                                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
-                                                    </button>
                                                     <ul class="list-group small">
                                                         <span class="small">
                                                             <a href="" ng-repeat="a in alarmados.alarmados as alarmas" class="list-group-item animated slideInRight">{{a.RESPONSABLE}}: <span class="badge badge-info">{{a.CANTIDAD}}</span></a>
                                                         </span>
                                                     </ul>
-                                                    <button type="button" class="btn btn-primary btn-circle-xs"
-                                                        ng-click="csvPendientes(filtroInput)"
-                                                        title="Exportar Pendientes" data-toggle="tooltip"
-                                                        data-placement="left" ng-disabled="loading">
-                                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                                    <button type="button" class="btn btn-primary btn-xs"
+                                                            ng-click="csvAlarmadosProactivos()"
+                                                            title="Exportar" data-toggle="tooltip"
+                                                            data-placement="left" ng-disabled="loading">
+                                                        <i class="fa fa-cloud-download" aria-hidden="true"></i> Exportar
                                                     </button>
                                                 </div>
                                             </div>
