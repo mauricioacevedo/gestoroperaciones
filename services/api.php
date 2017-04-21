@@ -16808,8 +16808,59 @@ private function csvMalosAgendamientoReparaciones(){
             $sqlok = true;
         }else{
             $error = "No hay datos.";
-            $this->response($this->json(array($error)), 204);
+            $sqlok = false;
         }
+        
+        $sqlHistoricoAlarmados = "select ".
+                        " left(c2.RESPONSABLE,4) as RESPONSABLE ".
+                        " , count(*) as CANTIDAD ".
+                        " from ( ".
+                        " SELECT ".
+                        " C1.FECHA_CITA ".
+                        " , C1.PEDIDO_ID ".
+                        " , group_concat(distinct C1.RESPONSABLE) AS RESPONSABLE ".
+                        " , group_concat(distinct C1.CONCEPTO_ID) AS CONCEPTO_ID ".
+                        " FROM (SELECT  ".
+                        " a.PEDIDO_ID ".
+                        " , a.CONCEPTO_ID ".
+                        " , a.FECHA_CITA ".
+                        " , a.TIPO_ELEMENTO_ID ".
+                        " , a.UEN_CALCULADA ".
+                        " , a.DEPARTAMENTO ".
+                        " , ALARMO_COMP ".
+                        " , a.ANULO_COMP ".
+                        " , a.RESPONSABLE ".
+                        " FROM scheduling.historico_alarmados a ".
+                        " where 1=1 ".
+                        " and a.pedido_id not like '%pre%' ".
+                        " and a.TIPO_ELEMENTO_ID in ('ACCESP','TO','TOIP','INSIP','INSHFC') ".
+                        " and a.UEN_CALCULADA='HG' ".
+                        " ) C1 ".
+                        " WHERE 1=1 ".
+                        " AND C1.ANULO_COMP='NO' ".
+                        " and C1.FECHA_CITA=current_date() ".
+                        " GROUP BY C1.PEDIDO_ID, C1.FECHA_CITA ) c2 ".
+                        " where c2.RESPONSABLE in ('ASIGNACIONES', 'RECONFIGURACION','ACTIVACION DESACTIVACION') ".
+                        " group by c2.RESPONSABLE ";
+
+        $rAlarmadosHist = $this->mysqli->query($sqlHistoricoAlarmados);
+
+        if($rAlarmadosHist->num_rows > 0){
+            $result = array();
+            while($row = $rAlarmadosHist->fetch_assoc()){
+                $alarmadosHist[] = $row;
+            }
+
+            $sqlok = true;
+        }else{
+            $error = "No hay datos.";
+            $sqlok = false;
+        }
+        
+        
+        
+        
+        
 
         if($sqlok){
             $msg = "Consultas Realizadas";
@@ -16821,7 +16872,7 @@ private function csvMalosAgendamientoReparaciones(){
         }
 
         if($guardar){
-            $this->response ($this->json (array($msg,$alarmados)), 200);
+            $this->response ($this->json (array($msg,$alarmados,$alarmadosHist)), 200);
         }else{
             $error = "$msg: $mysqlerror";
             $this->response ($this->json (array($error)), 403);
