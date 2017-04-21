@@ -15401,22 +15401,21 @@ echo $queryselectID;
         }else{
             $paramlst = " and PEDIDO_ID='$pedido' ";
         }
-
-        echo $in_stmt;
-        echo $paramlst;
-
-
+        
         if($prioridad){
             $prioridad='ARBOL';
         }else{
             $prioridad='NO';
         }
-
+    
+        
         $query= " update portalbd.informe_petec_pendientesm ".
             " set RADICADO_TEMPORAL='$prioridad' ".
             " where 1=1 ".
             " $paramlst ";
 
+        echo $query;
+        
         $rst = $this->mysqli->query($query);
         if($rst===TRUE){
             $msg="Prioridad Actualizada";
