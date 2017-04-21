@@ -253,12 +253,12 @@
                                         <div class="col-xs-18 col-sm-6 col-md-4">
                                             <div class="thumbnail">
                                                 <div class="caption">
-                                                    <h5>Próximos <span class="badge">{{ (alarmas | sumarNum:'CANTIDAD') }}</span></h5>
                                                     <ul class="list-group small">
                                                         <span class="small">
                                                             <a href="" ng-repeat="a in alarmados.alarmados as alarmas" class="list-group-item animated slideInRight">{{a.RESPONSABLE}}: <span class="badge badge-info">{{a.CANTIDAD}}</span></a>
                                                         </span>
                                                     </ul>
+                                                    <h5>Próximos <span class="badge">{{ (alarmas | sumarNum:'CANTIDAD') }}</span></h5>
                                                     <p>Pedidos próximos a alarmarse</p>
                                                     <button type="button" class="btn btn-primary btn-xs"
                                                             ng-click="csvAlarmadosProactivos()"
