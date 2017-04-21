@@ -15418,7 +15418,7 @@ private function csvMalosAgendamientoReparaciones(){
         $rst = $this->mysqli->query($query);
 
         if($rst===TRUE){
-            $cant = $rst->affected_rows();
+            $cant = $this->mysqli->affected_rows;
             $msg = "($cant) Pedidos actualizados";
 
             $sql_log=   "insert into portalbd.activity_feed ( ".
