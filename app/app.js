@@ -3688,8 +3688,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
         $scope.priorzar.pedidos = pedidos;
         $scope.priorzar.counter = count;
-        console.log(pedidos);
-        console.log(count);
     };
 
 	$scope.priorizar = function (param) {

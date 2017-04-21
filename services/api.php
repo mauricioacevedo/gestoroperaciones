@@ -15414,9 +15414,9 @@ private function csvMalosAgendamientoReparaciones(){
             " where 1=1 ".
             " $paramlst ";
 
-        echo $query;
-        
+
         $rst = $this->mysqli->query($query);
+
         if($rst===TRUE){
             $msg="Prioridad Actualizada";
 
