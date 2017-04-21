@@ -13807,7 +13807,7 @@ private function csvMalosAgendamientoReparaciones(){
                         $this->dbSeguimientoConnect();
 
                         $queryselectID=	"select id from historicoGestionPendientes ".
-							" where pedido = '$pedido' and fecha_gestion between ('$today') and ('$today') ";
+							" where pedido = '$pedido' and fecha_gestion between ('$today 00:00:00') and ('$today 23:59:59') ";
 
                         $rstselect = $this->connseguimiento->query($queryselectID);
 echo  $queryselectID; 
