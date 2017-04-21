@@ -3662,6 +3662,17 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
         $scope.timediff = (Math.round(diferencia * 1000)/1000);
 
+        $http.get('./services/alarmadosProactivos').then(
+            function (res) {
+                $rootScope.errorDatos = null;
+                $scope.alarmados.alarmados = res.data[1];
+            }, function (res) {
+                $rootScope.errorDatos = 'Error: '+res.status;
+            }
+        );
+
+
+
     };
 
 	//------PRUEBAS API OPENFIRE -----------------------------
