@@ -3687,7 +3687,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         var count = ((pedidos.match(/,/g) || []).length)+1;
 
         $scope.priorzar.pedidos = pedidos;
-        $scope.priorizar.counter = count;
+        $scope.priorzar.counter = count;
         console.log(pedidos);
         console.log(count);
     };
