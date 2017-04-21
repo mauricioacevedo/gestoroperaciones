@@ -627,12 +627,17 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-10">
                             <div class="well well-sm">
+                                <div class="form-group">
+                                    <label for="pedidos">Pedidos:</label>
+                                    <textarea ng-model="priorzar.pedidos" class="form-control" rows="7" id="pedidos"></textarea>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" ng-click="guardarAuditoria(auditarObj,infoFenix,gestion)" data-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-default" ng-click="priorizar(priorzar)" data-dismiss="modal">Guardar</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
