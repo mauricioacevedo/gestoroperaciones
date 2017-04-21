@@ -1006,11 +1006,13 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 			fecha: fecha
 		});
 	};
-    obj.putPrioridadPedidos = function (pedido_id, prioridad, usuario_id) {
+    obj.putPrioridadPedidos = function (pedido_id, prioridad, usuario_id, multiple) {
         return $http.post(serviceBase + 'otorgarPrioridadAbsoluta', {
             pedido_id: pedido_id,
             prioridad: prioridad,
-            usuario_id: usuario_id
+            usuario_id: usuario_id,
+            multiple: multiple
+
         });
     };
     obj.putPrioridadPedidosAgen = function (pedido_id, prioridad, usuario_id) {
@@ -5487,7 +5489,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     //$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
     $scope.habilitarPrioridad = function (pedinfo){
 //        console.log(pedinfo);
-        services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.RADICADO_TEMPORAL,userID).then(
+        services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.RADICADO_TEMPORAL,userID, false).then(
             function(data) {
                 $scope.data.RADICADO_TEMPORAL=pedinfo.PRIORIDAD;
                 notify({
