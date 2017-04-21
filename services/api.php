@@ -16895,7 +16895,7 @@ private function csvMalosAgendamientoReparaciones(){
 
         if($rAlarmadosRecu->num_rows > 0){
             $alarmadosRecu = array();
-            while($row = $rAlarmadosHist->fetch_assoc()){
+            while($row = $rAlarmadosRecu->fetch_assoc()){
                 $alarmadosRecu[] = $row;
             }
 
