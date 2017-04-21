@@ -261,8 +261,7 @@
                                                     </ul>
                                                     <button type="button" class="btn btn-primary btn-xs"
                                                             ng-click="csvAlarmadosProactivos()"
-                                                            title="Exportar" data-toggle="tooltip"
-                                                            data-placement="left" ng-disabled="loading">
+                                                            title="Exportar" ng-disabled="loading">
                                                         <i class="fa fa-cloud-download" aria-hidden="true"></i> Exportar
                                                     </button>
                                                 </div>
@@ -277,11 +276,10 @@
                                                             <a href="" ng-repeat="a in alarmados.historico as historico" class="list-group-item animated slideInRight">{{a.RESPONSABLE}}: <span class="badge badge-info">{{a.CANTIDAD}}</span></a>
                                                         </span>
                                                     </ul>
-                                                    <button type="button" class="btn btn-primary btn-circle-xs"
+                                                    <button type="button" class="btn btn-primary btn-xs"
                                                             ng-click="csvAlarmadosProactivos()"
-                                                            title="Exportar Alarmados" data-toggle="tooltip"
-                                                            data-placement="left" ng-disabled="loading">
-                                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                                            title="Exportar" ng-disabled="loading">
+                                                        <i class="fa fa-cloud-download" aria-hidden="true"></i> Exportar
                                                     </button>
                                                 </div>
                                             </div>
@@ -290,17 +288,16 @@
                                             <div class="thumbnail">
                                                 <div class="caption">
                                                     <h5>Recuperados <span class="badge">{{ (recuperados | sumarNum:'CANTIDAD') }}</span></h5>
-                                                    <button type="button" class="btn btn-primary btn-circle-xs"
-                                                            ng-click="csvAlarmadosProactivos()"
-                                                            title="Exportar Pendientes" data-toggle="tooltip"
-                                                            data-placement="left" ng-disabled="loading">
-                                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
-                                                    </button>
                                                     <ul class="list-group small">
                                                         <span class="small">
                                                             <a href="" ng-repeat="a in alarmados.recuperados as recuperados" class="list-group-item animated slideInRight">{{a.RESPONSABLE}}: <span class="badge badge-info">{{a.CANTIDAD}}</span></a>
                                                         </span>
                                                     </ul>
+                                                    <button type="button" class="btn btn-primary btn-xs"
+                                                            ng-click="csvAlarmadosProactivos()"
+                                                            title="Exportar" ng-disabled="loading">
+                                                        <i class="fa fa-cloud-download" aria-hidden="true"></i> Exportar
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
