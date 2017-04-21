@@ -3693,6 +3693,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
     };
 
 	$scope.priorizar = function (param) {
+        var pedidos = param.pedidos;
         services.putPrioridadPedidos(pedidos, true, userID, true).then(
             function(data) {
                 notify({
