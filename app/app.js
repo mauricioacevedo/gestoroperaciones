@@ -3693,9 +3693,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
     };
 
 	$scope.priorizar = function (param) {
-
-
-       /* services.putPrioridadPedidos(pedidos, true, userID, true).then(
+        services.putPrioridadPedidos(pedidos, true, userID, true).then(
             function(data) {
                 notify({
                     message: data.data[0],
@@ -3704,7 +3702,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                 });
                 //console.log(data);
             }
-        ); */
+        );
     };
 
     $scope.csvAlarmadosProactivos = function (){
