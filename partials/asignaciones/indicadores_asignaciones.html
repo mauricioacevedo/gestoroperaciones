@@ -271,12 +271,12 @@
                                         <div class="col-xs-18 col-sm-6 col-md-4">
                                             <div class="thumbnail">
                                                 <div class="caption">
-                                                    <h5>Alarmados <span class="badge">{{ (historico | sumarNum:'CANTIDAD') }}</span></h5>
                                                     <ul class="list-group small">
                                                         <span class="small">
                                                             <a href="" ng-repeat="a in alarmados.historico as historico" class="list-group-item animated slideInRight">{{a.RESPONSABLE}}: <span class="badge badge-info">{{a.CANTIDAD}}</span></a>
                                                         </span>
                                                     </ul>
+                                                    <h5>Alarmados <span class="badge">{{ (historico | sumarNum:'CANTIDAD') }}</span></h5>
                                                     <p>Pedidos que hoy tenian la visita y se alarmaron</p>
                                                     <button type="button" class="btn btn-primary btn-xs"
                                                             ng-click="csvAlarmadosProactivos()"
@@ -289,12 +289,12 @@
                                         <div class="col-xs-18 col-sm-6 col-md-4">
                                             <div class="thumbnail">
                                                 <div class="caption">
-                                                    <h5>Recuperados <span class="badge">{{ (recuperados | sumarNum:'CANTIDAD') }}</span></h5>
                                                     <ul class="list-group small">
                                                         <span class="small">
                                                             <a href="" ng-repeat="a in alarmados.recuperados as recuperados" class="list-group-item animated slideInRight">{{a.RESPONSABLE}}: <span class="badge badge-info">{{a.CANTIDAD}}</span></a>
                                                         </span>
                                                     </ul>
+                                                    <h5>Recuperados <span class="badge">{{ (recuperados | sumarNum:'CANTIDAD') }}</span></h5>
                                                     <p>Pedidos que se alarmaron, pero se pudieron gestionar al final del día.</p>
                                                     <button type="button" class="btn btn-primary btn-xs"
                                                             ng-click="csvAlarmadosProactivos()"
