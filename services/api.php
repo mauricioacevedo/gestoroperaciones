@@ -16698,7 +16698,7 @@ private function csvMalosAgendamientoReparaciones(){
     }
 
     /**
-     * @const private alarmadosProactivos Indicadores
+     * Retorna los alarmados proactivos en indicadores asignaciones
      */
     private function alarmadosProactivos()
     {
@@ -16716,54 +16716,114 @@ private function csvMalosAgendamientoReparaciones(){
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
 
-        $newtask        =   json_decode (file_get_contents ("php://input"), true);
+        $pedido         =   $this->_request['pedido'];
         $fechaServidor  =   date("Y-m-d H:i:s");
-
-        $guardar        =   false;
         $mysqlerror     =   "";
         $error          =   "";
+        $sqlok          =   false;
 
-        //var_dump($newtask);
+        $sqlAlarmados = " select ".
+                        "    left(c2.RESPONSABLE,4) as RESPONSABLE ".
+                        "    , COUNT(*) as CANTIDAD ".
+                        "    from ( ".
+                        "    SELECT ".
+                        "    C1.PEDIDO_ID ".
+                        "    , case ".
+                        "        when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ASIGNACIONES,RECONFIGURACION' then 'RECONFIGURACION' ".
+                        "        else group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc)  ".
+                        "        end AS RESPONSABLE ".
+                        "    , group_concat(distinct C1.CONCEPTO_ID) AS CONCEPTO_ID ".
+                        "    , group_concat(distinct C1.ALARMAFECHA) AS ALARMA ".
+                        "    FROM (SELECT  ".
+                        "    a.PEDIDO_ID ".
+                        "    , a.SUBPEDIDO_ID ".
+                        "    , a.SOLICITUD_ID ".
+                        "    , a.FECHA_CITA ".
+                        "    , a.TIPO_ELEMENTO_ID ".
+                        "    , a.TIPO_SOLICITUD ".
+                        "    , a.TRABAJOS ".
+                        "    , a.ESTADO_ID ".
+                        "    , a.ESTADO_SOLI ".
+                        "    , a.CONCEPTO_ID ".
+                        "    , a.DESCRIPCION_CONCEPTO ".
+                        "    , a.DESCRIPCION_ESTADO ".
+                        "    , a.UEN_CALCULADA ".
+                        "    , CASE ".
+                        "        WHEN a.DEPARTAMENTO='' THEN 'Antioquia' ".
+                        "        ELSE a.DEPARTAMENTO ".
+                        "    END AS DEPARTAMENTO ".
+                        "    , CASE ".
+                        "        WHEN a.FECHA_CITA=(CURDATE() + INTERVAL 1 DAY) THEN 'MANANA' ".
+                        "        WHEN a.FECHA_CITA=(CURDATE() + INTERVAL 2 DAY) THEN 'PASADO_MANANA' ".
+                        "        WHEN a.FECHA_CITA>=(CURDATE() + INTERVAL 3 DAY) THEN 'FUTURA' ".
+                        "     END AS ALARMAFECHA ".
+                        "    , CASE ".
+                        "        WHEN a.CONCEPTO_ID NOT IN ('CUMPL','DEMO','FACTU','ORDEN','PFACT','PEXPQ','PORDE','PSERV','PXSLN','PCTEC','INCON','POPTO','PRACC','PQUET','PRUTA','PCEQU','APPRV') AND a.FECHA_CITA=(CURDATE() + INTERVAL 1 DAY) THEN 'SI' ".
+                        "        ELSE 'NO' ".
+                        "    END AS ALARMO_COMP ".
+                        "    , CASE ".
+                        "        WHEN a.CONCEPTO_ID IN ('ANCAT','ANDUS','ANFRA','ANFRU','ANINP','ANPUS','ANSPE','ANTNE','ANULA', ".
+                        "        'ANUOS','ANUPO','ANXSC','APRCT','APROB','AVENC','AXGAR','42','43','46','32','36','37')  THEN 'SI' ".
+                        "        WHEN a.ESTADO_SOLI='ANULA' THEN 'SI' ".
+                        "        ELSE 'NO' ".
+                        "    END AS ANULO_COMP ".
+                        "    ,  CASE ".
+                        "        when a.CONCEPTO_ID IN ('PETEC','OKRED','PEOPP','19','O-13','O-15','O-106','PUMED') then 'ASIGNACIONES' ".
+                        "        when a.CONCEPTO_ID IN ('O-300') then 'AYD' ".
+                        "        when a.CONCEPTO_ID IN ('14','99','O-101') then 'RECONFIGURACION' ".
+                        "        when a.CONCEPTO_ID IN ('AGEN','O-02','O-07','O-08','O-23','O-49','O-50','O-65','O-103','O-AGN','O-40','O-34','AGEND','PPRG','PROG','REAGE') then 'AGENDAMIENTO' ".
+                        "        when a.CONCEPTO_ID IN ('11','PVENC') then 'BACK' ".
+                        "        when a.CONCEPTO_ID IN ('2','O-115','O-06') then 'OPERACION CLIENTES' ".
+                        "        when a.CONCEPTO_ID IN ('PECBA','PLICO','23','24','25','25D','26D','74S','O-85','O-01','O-09') then 'ACCESO' ".
+                        "        when a.CONCEPTO_ID IN ('PEREP','PECAR','PECSA') then 'CREDITO Y CARTERA' ".
+                        "        when a.CONCEPTO_ID IN ('82','PEN82','PEFRA') then 'CONTROL FRAUDES' ".
+                        "        when a.CONCEPTO_ID IN ('47') then 'TI' ".
+                        "        when a.CONCEPTO_ID in ('42','ANPUS','ANSPE','ANUPO','ANVAL','APRCT','39','34','ANFRU','ANDUS','ANINS','ANCMT','ANFRA') then 'ANULADO CLIENTE' ".
+                        "        when a.CONCEPTO_ID in ('ANUOS') then 'ANULADO SUSTITUCION' ".
+                        "        when a.CONCEPTO_ID in ('ANCAT','43','36','32','46','AVENT') then 'ANULADO TECNICO' ".
+                        "        when a.CONCEPTO_ID in ('AXGAR','AVENC','41','40','44','98','37') then 'ANULADO VENTAS' ".
+                        "        else 'OTRO' ".
+                        "    END AS RESPONSABLE ".
+                        "    FROM scheduling.agendamientoxfenix a ".
+                        "    where 1=1 ".
+                        "    and a.pedido_id not like '%pre%' ".
+                        "    and a.TIPO_ELEMENTO_ID in ('ACCESP','TO','TOIP','INSIP','INSHFC','EQURED','SERHFC') ".
+                        "    and a.UEN_CALCULADA='HG' ".
+                        "     ) C1 ".
+                        "    WHERE 1=1 ".
+                        "    AND C1.ANULO_COMP='NO' ".
+                        "    AND C1.ALARMO_COMP='SI' ".
+                        "    GROUP BY C1.PEDIDO_ID ) c2 ".
+                        "    where c2.RESPONSABLE in ('ASIGNACIONES','RECONFIGURACION','AYD') ".
+                        "    group by c2.RESPONSABLE ";
 
-        $column_names = array('FECHA_INICIO',
-            'USUARIO_CREA',
-            'USUARIO_GEST',
-            'TIPO',
-            'CATEGORIA',
-            'GRUPO',
-            'REPRESENTANTE',
-            'OBSERVACIONES',
-            'ESTADO',
-            'PROGRESO',
-            'PRIORIDAD');
+        $rAlarmados = $this->mysqli->query($sqlAlarmados);
 
-        $keys = array();
-        $values = array();
-        foreach ($column_names as $column) {
-            $value = trim($newtask['newtask'][$column]);
-            $value = htmlspecialchars($value);
+        if($rAlarmados->num_rows > 0){
+            $result = array();
+            while($row = $rAlarmados->fetch_assoc()){
+                $alarmados[] = $row;
+            }
 
-            $keys[] = "`{$column}`";
-            $values[] = "'{$value}'";
+            $sqlok = true;
+        }else{
+            $error = "No hay datos.";
+            $this->response($this->json(array($error)), 204);
         }
-        //var_dump($values);
-        $queryGestion = " INSERT INTO portalbd.go_task (" . implode(",", $keys) . ") VALUES (" . implode(",", $values ).")";
 
-        //echo $queryGestion;
-
-        $insertGestion = $this->mysqli->query($queryGestion);
-        if($insertGestion){
-            $msg = "Tarea Creada";
+        if($sqlok){
+            $msg = "Consultas Realizadas";
             $guardar = true ;
         }else{
+            $msg = "Error, algo salio mal";
             $mysqlerror = $this->mysqli->error;
             $guardar = false;
         }
-        if($guardar){
 
-            $this->response ($this->json (array($msg)), 200);
+        if($guardar){
+            $this->response ($this->json (array($msg,$alarmados)), 200);
         }else{
-            $error = "Error guardando: $mysqlerror";
+            $error = "$msg: $mysqlerror";
             $this->response ($this->json (array($error)), 403);
         }
     }
