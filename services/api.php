@@ -16730,6 +16730,8 @@ private function csvMalosAgendamientoReparaciones(){
                         "    C1.PEDIDO_ID ".
                         "    , case ".
                         "        when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ASIGNACIONES,RECONFIGURACION' then 'RECONFIGURACION' ".
+                        "        when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ASIGNACIONES,ACCESO' then 'ACCESO' ".
+                        "        when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ASIGNACIONES,OTRO' then 'OTRO' ".
                         "        else group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc)  ".
                         "        end AS RESPONSABLE ".
                         "    , group_concat(distinct C1.CONCEPTO_ID) AS CONCEPTO_ID ".
