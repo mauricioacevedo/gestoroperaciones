@@ -15387,11 +15387,19 @@ echo  $queryselectID;
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
 
-        $params = json_decode(file_get_contents('php://input'),true);
-        $prioridad = $params['prioridad'];
-        $pedido = $params['pedido_id'];
-        $usuario_id = $params['usuario_id'];
-        $today = date("Y-m-d H:i:s");
+        $params         = json_decode(file_get_contents('php://input'),true);
+        $prioridad      = $params['prioridad'];
+        $pedido         = $params['pedido_id'];
+        $usuario_id     = $params['usuario_id'];
+        $today          = date("Y-m-d H:i:s");
+        $multiple       = $params['multiple'];
+
+        if($multiple){
+            $in_stmt = "'".str_replace(",", "','", $pedido)."'";
+            $paramlst = " and PEDIDO_ID in (".$in_stmt.") ";
+        }else{
+            $paramlst = " and PEDIDO_ID='$pedido' ";
+        }
 
         if($prioridad){
             $prioridad='ARBOL';
@@ -15401,7 +15409,8 @@ echo  $queryselectID;
 
         $query= " update portalbd.informe_petec_pendientesm ".
             " set RADICADO_TEMPORAL='$prioridad' ".
-            " where PEDIDO_ID='$pedido' ";
+            " where 1=1 ".
+            " $paramlst ";
 
         $rst = $this->mysqli->query($query);
         if($rst===TRUE){
