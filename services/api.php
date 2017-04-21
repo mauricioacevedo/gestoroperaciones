@@ -13810,7 +13810,7 @@ private function csvMalosAgendamientoReparaciones(){
 							" where pedido = '$pedido' and fecha_gestion between ('$today') and ('$today') ";
 
                         $rstselect = $this->connseguimiento->query($queryselectID);
-
+echo  $queryselectID; 
                         if ($rstselect->num_rows > 0){
                             while($row=$rstselect->fetch_assoc()){
                                 $id=$row['id'];
@@ -13832,15 +13832,16 @@ private function csvMalosAgendamientoReparaciones(){
                                 ", '$OBSERVACION_GESTOR' ".
                                 ", '$HISTORICO_NOVEDAD' ".
                                 ", '$ASESOR')";
-
+                                echo  $sql_gestionPendientes; 
                             $rst = $this->connseguimiento->query($sql_gestionPendientes);
                         }else{
 						$sqlupdate = "UPDATE historicoGestionPendientes SET ".
                                     "causa_raiz='$causaraiz', responsable ='$responsable', ".
-                    				"observacion='$OBSERVACION_GESTOR', fecha_gestion = '$today', usuario='$ASESOR'".
+                    				"observacion='$OBSERVACION_GESTOR', fecha_gestion = '$today', usuario='$ASESOR' ".
                     				" WHERE id='$id' ";
 					$rstupdate = $this->connseguimiento->query($sqlupdate);
-					}	
+                    echo  $sqlupdate; 
+					}	 
 
                             // SQL Feed----------------------------------
                             
