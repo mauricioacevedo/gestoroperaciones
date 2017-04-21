@@ -3688,6 +3688,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         var count = ((pedidos.match(/,/g) || []).length)+1;
 
         console.log(pedidos);
+        console.log(count);
        /* services.putPrioridadPedidos(pedidos, true, userID, true).then(
             function(data) {
                 notify({
