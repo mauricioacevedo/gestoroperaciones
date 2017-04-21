@@ -13810,11 +13810,12 @@ private function csvMalosAgendamientoReparaciones(){
 							" where pedido = '$pedido' and fecha_gestion between ('$today 00:00:00') and ('$today 23:59:59') ";
 
                         $rstselect = $this->connseguimiento->query($queryselectID);
-echo  $queryselectID; 
+
                         if ($rstselect->num_rows > 0){
                             while($row=$rstselect->fetch_assoc()){
                                 $id=$row['id'];
                             }
+                            echo "entro y es: ".$rstselect->num_rows; 
 				        }
 
                         if ($id == "") {
