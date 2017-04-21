@@ -259,6 +259,7 @@
                                                             <a href="" ng-repeat="a in alarmados.alarmados as alarmas" class="list-group-item animated slideInRight">{{a.RESPONSABLE}}: <span class="badge badge-info">{{a.CANTIDAD}}</span></a>
                                                         </span>
                                                     </ul>
+                                                    <p>Pedidos próximos a alarmarse</p>
                                                     <button type="button" class="btn btn-primary btn-xs"
                                                             ng-click="csvAlarmadosProactivos()"
                                                             title="Exportar" ng-disabled="loading">
@@ -276,6 +277,7 @@
                                                             <a href="" ng-repeat="a in alarmados.historico as historico" class="list-group-item animated slideInRight">{{a.RESPONSABLE}}: <span class="badge badge-info">{{a.CANTIDAD}}</span></a>
                                                         </span>
                                                     </ul>
+                                                    <p>Pedidos que hoy tenian la visita y se alarmaron</p>
                                                     <button type="button" class="btn btn-primary btn-xs"
                                                             ng-click="csvAlarmadosProactivos()"
                                                             title="Exportar" ng-disabled="loading">
@@ -293,6 +295,7 @@
                                                             <a href="" ng-repeat="a in alarmados.recuperados as recuperados" class="list-group-item animated slideInRight">{{a.RESPONSABLE}}: <span class="badge badge-info">{{a.CANTIDAD}}</span></a>
                                                         </span>
                                                     </ul>
+                                                    <p>Pedidos que se alarmaron, pero se pudieron gestionar en el día.</p>
                                                     <button type="button" class="btn btn-primary btn-xs"
                                                             ng-click="csvAlarmadosProactivos()"
                                                             title="Exportar" ng-disabled="loading">
