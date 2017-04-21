@@ -3682,6 +3682,16 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 	$scope.priorizar = function (param) {
 	    console.log(param);
+        services.putPrioridadPedidos(param.pedidos, true, userID, true).then(
+            function(data) {
+                notify({
+                    message: data.data[0],
+                    duration: '1000',
+                    position: 'right'
+                });
+                //console.log(data);
+            }
+        );
     };
 
     $scope.csvAlarmadosProactivos = function (){

@@ -15402,6 +15402,10 @@ private function csvMalosAgendamientoReparaciones(){
             $paramlst = " and PEDIDO_ID='$pedido' ";
         }
 
+        echo $in_stmt;
+        echo $paramlst;
+
+
         if($prioridad){
             $prioridad='ARBOL';
         }else{
