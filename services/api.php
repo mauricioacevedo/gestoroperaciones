@@ -13815,7 +13815,7 @@ private function csvMalosAgendamientoReparaciones(){
                             while($row=$rstselect->fetch_assoc()){
                                 $id=$row['id'];
                             }
-                            echo "entro y es: ".$rstselect->num_rows; 
+                           
 				        }
 
                         if ($id == "") {
