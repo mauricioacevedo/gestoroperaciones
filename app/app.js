@@ -3634,6 +3634,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		isFirstDisabled: false
 	};
 
+    $scope.alarmados = {};
 	$scope.calcularTiempo = function () {
         var type;
         var d = new Date();
