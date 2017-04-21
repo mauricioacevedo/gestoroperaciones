@@ -2825,7 +2825,7 @@ app.controller('DocuActivacion', function ($scope, $rootScope, $http, $location,
 /**
  * Indicadores Asignaciones
  * */
-app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, services) {
+app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, services, notify) {
 
 
 	var userID = $cookieStore.get('logedUser').login;
