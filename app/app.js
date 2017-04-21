@@ -3685,6 +3685,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	    var pedidos = param.pedidos;
        	pedidos = pedidos.replace(/(?:\r\n|\r|\n)/g, '');
         pedidos = pedidos.replace(/,\s*$/, "");
+        var count = ((pedidos.match(/,/g) || []).length)+1;
 
         console.log(pedidos);
        /* services.putPrioridadPedidos(pedidos, true, userID, true).then(
