@@ -3696,7 +3696,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
             function(data) {
                 notify({
                     message: data.data[0],
-                    duration: '1000',
+                    duration: '4000',
                     position: 'right'
                 });
                 //console.log(data);
