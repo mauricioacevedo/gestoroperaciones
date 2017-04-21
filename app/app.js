@@ -3668,6 +3668,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                 $rootScope.errorDatos = null;
                 $scope.alarmados.alarmados = res.data[1];
                 $scope.alarmados.historico = res.data[2];
+                $scope.alarmados.recuperados = res.data[3];
             }, function (res) {
                 $rootScope.errorDatos = 'Error: '+res.status;
             }
