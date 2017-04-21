@@ -3683,7 +3683,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.priorizar = function (param) {
 
 	    var pedidos = param.pedidos;
-       	pedidos = pedidos.replace(/(?:\r\n|\r|\n)/g, '<br />');
+       	pedidos = pedidos.replace(/(?:\r\n|\r|\n)/g, ' ');
 
         console.log(pedidos);
        /* services.putPrioridadPedidos(pedidos, true, userID, true).then(
