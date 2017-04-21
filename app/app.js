@@ -3678,6 +3678,10 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
     };
 
+	$scope.priorizar = function (param) {
+	    console.log(param);
+    };
+
     $scope.csvAlarmadosProactivos = function (){
         $http.get('./services/csvAlarmadosProactivos').then(function(data){
             //console.log(data.data[0]);
