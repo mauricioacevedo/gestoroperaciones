@@ -13779,7 +13779,7 @@ private function csvMalosAgendamientoReparaciones(){
 
                             $datos = $params['datosPendientes'];
                             $gestion = $params['datosGestion'];
-                            $today=	date("Y")."-".date("m")."-".date("d")." ".date("H").":".date("i").":".date("s");
+                            $today=	date("Y")."-".date("m")."-".date("d");
                             $active = $gestion[active];
     
                              if ( $active == '1'){
@@ -13810,12 +13810,12 @@ private function csvMalosAgendamientoReparaciones(){
 							" where pedido = '$pedido' and fecha_gestion between ('$today 00:00:00') and ('$today 23:59:59') ";
 
                         $rstselect = $this->connseguimiento->query($queryselectID);
-echo $queryselectID;
+
                         if ($rstselect->num_rows > 0){
                             while($row=$rstselect->fetch_assoc()){
                                 $id=$row['id'];
                             }
-                            echo "entro y es: ".$rstselect->num_rows; 
+                           // echo "entro y es: ".$rstselect->num_rows; 
 				        }
 
                         if ($id == "") {
@@ -13833,7 +13833,7 @@ echo $queryselectID;
                                 ", '$OBSERVACION_GESTOR' ".
                                 ", '$HISTORICO_NOVEDAD' ".
                                 ", '$ASESOR')";
-                                echo  $sql_gestionPendientes; 
+                           //     echo  $sql_gestionPendientes; 
                             $rst = $this->connseguimiento->query($sql_gestionPendientes);
                         }else{
 						$sqlupdate = "UPDATE historicoGestionPendientes SET ".
