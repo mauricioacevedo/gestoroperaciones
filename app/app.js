@@ -3680,15 +3680,21 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
     };
 
-	$scope.priorizar = function (param) {
-
-	    var pedidos = param.pedidos;
-       	pedidos = pedidos.replace(/(?:\r\n|\r|\n)/g, '');
+	$scope.organizarPedidos = function (param) {
+        var pedidos = param.pedidos;
+        pedidos = pedidos.replace(/(?:\r\n|\r|\n)/g, '');
         pedidos = pedidos.replace(/,\s*$/, "");
         var count = ((pedidos.match(/,/g) || []).length)+1;
 
+        $scope.priorzar.pedidos = pedidos;
+        $scope.priorizar.counter = count;
         console.log(pedidos);
         console.log(count);
+    };
+
+	$scope.priorizar = function (param) {
+
+
        /* services.putPrioridadPedidos(pedidos, true, userID, true).then(
             function(data) {
                 notify({

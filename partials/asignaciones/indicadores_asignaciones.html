@@ -629,7 +629,8 @@
                             <div class="well well-sm">
                                 <div class="form-group">
                                     <label for="pedidos">Pedidos:</label>
-                                    <textarea ng-model="priorzar.pedidos" class="form-control" rows="7" id="pedidos"></textarea>
+                                    <textarea ng-model="priorzar.pedidos" ng-change="organizarPedidos(priorzar)" class="form-control" rows="7" id="pedidos"></textarea>
+                                    {{priorzar.counter}}
                                 </div>
                             </div>
                         </div>
