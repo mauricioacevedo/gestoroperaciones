@@ -3678,6 +3678,14 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
     };
 
+    $scope.csvAlarmadosProactivos = function (){
+        $http.get('./services/csvAlarmadosProactivos').then(function(data){
+            //console.log(data.data[0]);
+            window.location.href="tmp/"+data.data[0];
+            return data.data;
+        });
+    };
+
 	//------PRUEBAS API OPENFIRE -----------------------------
 
 
