@@ -15114,6 +15114,7 @@ $scope.updateStatus = function(data, index) {
                 position: 'right'
             });
             $scope.getTaskCrud();
+            $rootScope.getTaskbyUser();
 
 		}, function (err) {
             $rootScope.errorDatos = 'Error: ' + err.status + ', Msg: ' +err.data[0];
@@ -15138,7 +15139,7 @@ $scope.newTask = function () {
             ESTADO: 'ACTIVO',
             PROGRESO: 10
         };
-        $rootScope.getTaskbyUser();
+
     });
 
 };
@@ -15155,6 +15156,7 @@ $scope.saveTask = function (newtask) {
             });
             $scope.taskform = {};
             $scope.getTaskCrud();
+            $rootScope.getTaskbyUser();
 
         }, function (err) {
             $rootScope.errorDatos = 'Error: ' + err.status + ', Msg: ' +err.data[0];
