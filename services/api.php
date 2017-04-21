@@ -13838,7 +13838,7 @@ private function csvMalosAgendamientoReparaciones(){
                         }else{
 						$sqlupdate = "UPDATE historicoGestionPendientes SET ".
                                     "causa_raiz='$causaraiz', responsable ='$responsable', ".
-                    				"observacion='$OBSERVACION_GESTOR', fecha_gestion = '$today', usuario='$ASESOR' ".
+                    				"observacion='$OBSERVACION_GESTOR', novedad_malo='$HISTORICO_NOVEDAD', fecha_gestion = '$today', usuario='$ASESOR' ".
                     				" WHERE id='$id' ";
 					$rstupdate = $this->connseguimiento->query($sqlupdate);
                     echo  $sqlupdate; 
