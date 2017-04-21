@@ -251,11 +251,23 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-18 col-sm-6 col-md-4">
-                                            <ul class="list-group small">
-                                                <span class="small">
-                                                <a href="" class="list-group-item animated slideInRight">{{ASIG}}: <span class="badge ">{{10}}</span></a></span>
-                                            </ul>
+                                            <div class="thumbnail">
+                                                <div class="caption">
+                                                    <h5>Próximos <span class="badge">42</span></h5>
 
+                                                    <ul class="list-group small">
+                                                        <span class="small">
+                                                        <a href="" class="list-group-item animated slideInRight">ASIG: <span class="badge ">{{10}}</span></a></span>
+                                                    </ul>
+                                                    <button type="button" class="btn btn-primary btn-circle-xs"
+                                                        ng-click="csvPendientes(filtroInput)"
+                                                        title="Exportar Pendientes" data-toggle="tooltip"
+                                                        data-placement="left" ng-disabled="loading">
+                                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="col-xs-18 col-sm-6 col-md-4">
                                             <div class="thumbnail">
                                                 <div class="caption">
