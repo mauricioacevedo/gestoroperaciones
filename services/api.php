@@ -13779,7 +13779,7 @@ private function csvMalosAgendamientoReparaciones(){
 
                             $datos = $params['datosPendientes'];
                             $gestion = $params['datosGestion'];
-                            
+                            $today=	date("Y")."-".date("m")."-".date("d")." ".date("H").":".date("i").":".date("s");
                             $active = $gestion[active];
     
                              if ( $active == '1'){
@@ -13805,7 +13805,19 @@ private function csvMalosAgendamientoReparaciones(){
                             }
                           
                         $this->dbSeguimientoConnect();
-                            // SQL Feed----------------------------------
+
+                        $queryselectID=	"select id from historicoGestionPendientes ".
+							" where pedido = '$pedido' ";
+
+                        $rstselect = $this->connseguimiento->query($queryselectID);
+
+                        if ($rstselect->num_rows > 0){
+                            while($row=$rstselect->fetch_assoc()){
+                                $id=$row['id'];
+                            }
+				        }
+
+                        if ($id == "") {
                             $sql_gestionPendientes= "insert into historicoGestionPendientes ( ".
                                 " pedido ".
                                 ", causa_raiz ".
@@ -13822,14 +13834,23 @@ private function csvMalosAgendamientoReparaciones(){
                                 ", '$ASESOR')";
 
                             $rst = $this->connseguimiento->query($sql_gestionPendientes);
+                        }else{
+						$sqlupdate = "UPDATE historicoGestionPendientes SET ".
+                                    "causa_raiz='$causaraiz', responsable ='$responsable', ".
+                    				"observacion='$OBSERVACION_GESTOR', fecha_gestion = '$today', usuario='$ASESOR'".
+                    				" WHERE id='$id' ";
+					$rstupdate = $this->connseguimiento->query($sqlupdate);
+					}	
+
+                            // SQL Feed----------------------------------
+                            
                 // echo    $sql_gestionPendientes;        
                                          // ---------------------------------- SQL Feed
                             //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','ADMIN','','','UPDATEPARAMETRO','$param:$value') ";
                             //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
                             $this->response(json_encode(array("OK","PARAMETRO ACTUALIZADO")), 200);
-                            
-                        }
+                 }
 
 
 
