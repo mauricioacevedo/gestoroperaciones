@@ -17018,6 +17018,7 @@ private function csvMalosAgendamientoReparaciones(){
 "        else group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc)  ".
 "        end AS RESPONSABLE ".
 "    , group_concat(distinct C1.CONCEPTO_ID) AS CONCEPTO_ID ".
+"    , group_concat(distinct C1.TIPO_ELEMENTO_ID) AS TIPO_ELEMENTO_ID ".
 "    , group_concat(distinct C1.ALARMAFECHA) AS ALARMA ".
 "    , max(C1.FECHA_CITA) as FECHA_CITA ".
 "    FROM (SELECT  ".
@@ -17093,6 +17094,7 @@ private function csvMalosAgendamientoReparaciones(){
                 'OBSERVACIONES',
                 'RESPONSABLE',
                 'CONCEPTO_ID',
+                'TIPO_ELEMENTO_IT',
                 'ALARMA',
                 'FECHA_CITA'));
 
