@@ -16853,7 +16853,8 @@ private function csvMalosAgendamientoReparaciones(){
             $error = "No hay datos.";
             $sqlok = false;
         }
-        
+
+        echo $horaServidor;
         $sqlAlarmadosHistorico = "select ".
                         " left(c2.RESPONSABLE,4) as RESPONSABLE ".
                         " , count(*) as CANTIDAD ".
