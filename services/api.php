@@ -15412,13 +15412,15 @@ private function csvMalosAgendamientoReparaciones(){
         $query= " update portalbd.informe_petec_pendientesm ".
             " set RADICADO_TEMPORAL='$prioridad' ".
             " where 1=1 ".
+            " and STATUS='PENDI_PETEC' ".
             " $paramlst ";
 
-        echo $query;
-        
+
         $rst = $this->mysqli->query($query);
+
         if($rst===TRUE){
-            $msg="Prioridad Actualizada";
+            $cant = $this->mysqli->affected_rows;
+            $msg = "($cant) Pedidos actualizados";
 
             $sql_log=   "insert into portalbd.activity_feed ( ".
                 " USER ".
@@ -16753,6 +16755,7 @@ private function csvMalosAgendamientoReparaciones(){
 
         $pedido         =   $this->_request['pedido'];
         $fechaServidor  =   date("Y-m-d H:i:s");
+        $horaServidor   =   date("H");
         $mysqlerror     =   "";
         $error          =   "";
         $sqlok          =   false;
@@ -16809,7 +16812,7 @@ private function csvMalosAgendamientoReparaciones(){
                         "    END AS ANULO_COMP ".
                         "    ,  CASE ".
                         "        when a.CONCEPTO_ID IN ('PETEC','OKRED','PEOPP','19','O-13','O-15','O-106','PUMED') then 'ASIGNACIONES' ".
-                        "        when a.CONCEPTO_ID IN ('O-300') then 'AYD' ".
+                        "        when a.CONCEPTO_ID IN ('O-300') then 'ACTIVACION DESACTIVACION' ".
                         "        when a.CONCEPTO_ID IN ('14','99','O-101') then 'RECONFIGURACION' ".
                         "        when a.CONCEPTO_ID IN ('AGEN','O-02','O-07','O-08','O-23','O-49','O-50','O-65','O-103','O-AGN','O-40','O-34','AGEND','PPRG','PROG','REAGE') then 'AGENDAMIENTO' ".
                         "        when a.CONCEPTO_ID IN ('11','PVENC') then 'BACK' ".
@@ -16992,6 +16995,7 @@ private function csvMalosAgendamientoReparaciones(){
 "    , C2.OBSERVACIONES ".
 "    , C2.RESPONSABLE ".
 "    , C2.CONCEPTO_ID ".
+"    , C2.TIPO_ELEMENTO_ID ".
 "    , C2.ALARMA ".
 "    , C2.FECHA_CITA ".
 "    FROM ( ".
@@ -17015,6 +17019,7 @@ private function csvMalosAgendamientoReparaciones(){
 "        else group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc)  ".
 "        end AS RESPONSABLE ".
 "    , group_concat(distinct C1.CONCEPTO_ID) AS CONCEPTO_ID ".
+"    , group_concat(distinct C1.TIPO_ELEMENTO_ID) AS TIPO_ELEMENTO_ID ".
 "    , group_concat(distinct C1.ALARMAFECHA) AS ALARMA ".
 "    , max(C1.FECHA_CITA) as FECHA_CITA ".
 "    FROM (SELECT  ".
@@ -17090,8 +17095,105 @@ private function csvMalosAgendamientoReparaciones(){
                 'OBSERVACIONES',
                 'RESPONSABLE',
                 'CONCEPTO_ID',
+                'TIPO_ELEMENTO_IT',
                 'ALARMA',
                 'FECHA_CITA'));
+
+            while($row = $r->fetch_assoc()){
+                //$result[] = $row;
+                fputcsv($fp, $row);
+            }
+            fclose($fp);
+
+            // SQL Feed----------------------------------
+            $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'SIN PEDIDO' ".
+                ",'EXPORTO ALARMADOS PROACTIVOS' ".
+                ",'ARCHIVO EXPORTADO' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
+            // ---------------------------------- SQL Feed
+            $this->response($this->json(array($filename,$usuarioGalleta)), 200); // send user details
+        }
+
+        $this->response('',204);        // If no records "No Content" status
+
+    }
+
+    private function csvAlarmadosHistorico(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+        $pedido         =   $this->_request['pedido'];
+        $fechaini       =   $this->_request['fechaini'];
+        $fechafin       =   $this->_request['fechafin'];
+        $paramlst       =   "";
+        $today          =   date("Y-m-d");
+
+
+        $filename="AlarmadosHistorico_$usuarioGalleta-$today.csv";
+
+        $sql =  "    SELECT  ".
+             " C1.FECHA_CITA  ".
+             " , C1.PEDIDO_ID  ".
+             " , group_concat(distinct C1.RESPONSABLE) AS RESPONSABLE  ".
+             " , group_concat(distinct C1.CONCEPTO_ID) AS CONCEPTO_ID  ".
+             " FROM (SELECT   ".
+             " a.PEDIDO_ID  ".
+             " , a.CONCEPTO_ID  ".
+             " , a.FECHA_CITA  ".
+             " , a.TIPO_ELEMENTO_ID  ".
+             " , a.UEN_CALCULADA  ".
+             " , a.DEPARTAMENTO  ".
+             " , ALARMO_COMP  ".
+             " , a.ANULO_COMP  ".
+             " , a.RESPONSABLE  ".
+             " FROM scheduling.historico_alarmados a  ".
+             " where 1=1  ".
+             " and a.pedido_id not like '%pre%'  ".
+             " and a.TIPO_ELEMENTO_ID in ('ACCESP','TO','TOIP','INSIP','INSHFC')  ".
+             " and a.UEN_CALCULADA='HG'  ".
+             " ) C1  ".
+             " WHERE 1=1  ".
+             " AND C1.ANULO_COMP='NO'  ".
+             " and C1.FECHA_CITA=current_date()  ".
+             " GROUP BY C1.PEDIDO_ID, C1.FECHA_CITA  ";
+
+        $r = $this->mysqli->query($sql);
+
+        if($r->num_rows > 0){
+            $result = array();
+            $fp = fopen("../tmp/$filename", 'w');
+            fputcsv($fp, array('FECHA_CITA',
+                'PEDIDO_ID',
+                'RESPONSABLE',
+                'CONCEPTO_ID'));
 
             while($row = $r->fetch_assoc()){
                 //$result[] = $row;

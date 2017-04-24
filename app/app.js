@@ -2825,7 +2825,7 @@ app.controller('DocuActivacion', function ($scope, $rootScope, $http, $location,
 /**
  * Indicadores Asignaciones
  * */
-app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, services) {
+app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, services, notify) {
 
 
 	var userID = $cookieStore.get('logedUser').login;
@@ -3688,8 +3688,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
         $scope.priorzar.pedidos = pedidos;
         $scope.priorzar.counter = count;
-        console.log(pedidos);
-        console.log(count);
     };
 
 	$scope.priorizar = function (param) {
@@ -3698,7 +3696,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
             function(data) {
                 notify({
                     message: data.data[0],
-                    duration: '1000',
+                    duration: '4000',
                     position: 'right'
                 });
                 //console.log(data);
@@ -3708,6 +3706,14 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
     $scope.csvAlarmadosProactivos = function (){
         $http.get('./services/csvAlarmadosProactivos').then(function(data){
+            //console.log(data.data[0]);
+            window.location.href="tmp/"+data.data[0];
+            return data.data;
+        });
+    };
+
+    $scope.csvAlarmadosHoy = function (){
+        $http.get('./services/csvAlarmadosHistorico').then(function(data){
             //console.log(data.data[0]);
             window.location.href="tmp/"+data.data[0];
             return data.data;
