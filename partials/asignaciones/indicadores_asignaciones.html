@@ -286,11 +286,6 @@
                                                     </ul>
                                                     <h5>Alarmados <span class="badge">{{ (historico | sumarNum:'CANTIDAD') }}</span></h5>
                                                     <p>Pedidos que hoy tenían la visita y se alarmaron</p>
-                                                    <button type="button" class="btn btn-primary btn-xs"
-                                                            ng-click="csvAlarmadosProactivos()"
-                                                            title="Exportar" ng-disabled="loading">
-                                                        <i class="fa fa-cloud-download" aria-hidden="true"></i> Exportar
-                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -304,11 +299,6 @@
                                                     </ul>
                                                     <h5>Recuperados <span class="badge">{{ (recuperados | sumarNum:'CANTIDAD') }}</span></h5>
                                                     <p>Pedidos que se alarmaron, pero se pudieron gestionar al final del día.</p>
-                                                    <button type="button" class="btn btn-primary btn-xs"
-                                                            ng-click="csvAlarmadosProactivos()"
-                                                            title="Exportar" ng-disabled="loading">
-                                                        <i class="fa fa-cloud-download" aria-hidden="true"></i> Exportar
-                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
