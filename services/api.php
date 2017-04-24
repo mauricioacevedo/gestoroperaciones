@@ -16995,6 +16995,7 @@ private function csvMalosAgendamientoReparaciones(){
 "    , C2.OBSERVACIONES ".
 "    , C2.RESPONSABLE ".
 "    , C2.CONCEPTO_ID ".
+"    , C2.TIPO_ELEMENTO_ID ".
 "    , C2.ALARMA ".
 "    , C2.FECHA_CITA ".
 "    FROM ( ".
