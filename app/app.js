@@ -3712,6 +3712,14 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         });
     };
 
+    $scope.csvAlarmadosHoy = function (){
+        $http.get('./services/csvAlarmadosHistorico').then(function(data){
+            //console.log(data.data[0]);
+            window.location.href="tmp/"+data.data[0];
+            return data.data;
+        });
+    };
+
 	//------PRUEBAS API OPENFIRE -----------------------------
 
 

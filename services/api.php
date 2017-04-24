@@ -17132,6 +17132,102 @@ private function csvMalosAgendamientoReparaciones(){
 
     }
 
+    private function csvAlarmadosHistorico(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+        $pedido         =   $this->_request['pedido'];
+        $fechaini       =   $this->_request['fechaini'];
+        $fechafin       =   $this->_request['fechafin'];
+        $paramlst       =   "";
+        $today          =   date("Y-m-d");
+
+
+        $filename="AlarmadosHistorico_$usuarioGalleta-$today.csv";
+
+        $sql =  "    SELECT  ".
+             " C1.FECHA_CITA  ".
+             " , C1.PEDIDO_ID  ".
+             " , group_concat(distinct C1.RESPONSABLE) AS RESPONSABLE  ".
+             " , group_concat(distinct C1.CONCEPTO_ID) AS CONCEPTO_ID  ".
+             " FROM (SELECT   ".
+             " a.PEDIDO_ID  ".
+             " , a.CONCEPTO_ID  ".
+             " , a.FECHA_CITA  ".
+             " , a.TIPO_ELEMENTO_ID  ".
+             " , a.UEN_CALCULADA  ".
+             " , a.DEPARTAMENTO  ".
+             " , ALARMO_COMP  ".
+             " , a.ANULO_COMP  ".
+             " , a.RESPONSABLE  ".
+             " FROM scheduling.historico_alarmados a  ".
+             " where 1=1  ".
+             " and a.pedido_id not like '%pre%'  ".
+             " and a.TIPO_ELEMENTO_ID in ('ACCESP','TO','TOIP','INSIP','INSHFC')  ".
+             " and a.UEN_CALCULADA='HG'  ".
+             " ) C1  ".
+             " WHERE 1=1  ".
+             " AND C1.ANULO_COMP='NO'  ".
+             " and C1.FECHA_CITA=current_date()  ".
+             " GROUP BY C1.PEDIDO_ID, C1.FECHA_CITA  ";
+
+        $r = $this->mysqli->query($sql);
+
+        if($r->num_rows > 0){
+            $result = array();
+            $fp = fopen("../tmp/$filename", 'w');
+            fputcsv($fp, array('FECHA_CITA',
+                'PEDIDO_ID',
+                'RESPONSABLE',
+                'CONCEPTO_ID'));
+
+            while($row = $r->fetch_assoc()){
+                //$result[] = $row;
+                fputcsv($fp, $row);
+            }
+            fclose($fp);
+
+            // SQL Feed----------------------------------
+            $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'SIN PEDIDO' ".
+                ",'EXPORTO ALARMADOS PROACTIVOS' ".
+                ",'ARCHIVO EXPORTADO' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
+            // ---------------------------------- SQL Feed
+            $this->response($this->json(array($filename,$usuarioGalleta)), 200); // send user details
+        }
+
+        $this->response('',204);        // If no records "No Content" status
+
+    }
+
 }//cierre de la clase
 
 // Initiiate Library
