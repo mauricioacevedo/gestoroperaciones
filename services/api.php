@@ -16812,7 +16812,7 @@ private function csvMalosAgendamientoReparaciones(){
                         "    END AS ANULO_COMP ".
                         "    ,  CASE ".
                         "        when a.CONCEPTO_ID IN ('PETEC','OKRED','PEOPP','19','O-13','O-15','O-106','PUMED') then 'ASIGNACIONES' ".
-                        "        when a.CONCEPTO_ID IN ('O-300') then 'AYD' ".
+                        "        when a.CONCEPTO_ID IN ('O-300') then 'ACTIVACION DESACTIVACION' ".
                         "        when a.CONCEPTO_ID IN ('14','99','O-101') then 'RECONFIGURACION' ".
                         "        when a.CONCEPTO_ID IN ('AGEN','O-02','O-07','O-08','O-23','O-49','O-50','O-65','O-103','O-AGN','O-40','O-34','AGEND','PPRG','PROG','REAGE') then 'AGENDAMIENTO' ".
                         "        when a.CONCEPTO_ID IN ('11','PVENC') then 'BACK' ".
