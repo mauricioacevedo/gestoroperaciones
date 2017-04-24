@@ -16756,7 +16756,7 @@ private function csvMalosAgendamientoReparaciones(){
         $pedido         =   $this->_request['pedido'];
         $fechaServidor  =   date("Y-m-d H:i:s");
         $horaServidor   =   date("H");
-        $intervaltime    =   " current_date()";
+        $intervaltime   =   date("Y-m-d");
         $mysqlerror     =   "";
         $error          =   "";
         $sqlok          =   false;
@@ -16856,7 +16856,7 @@ private function csvMalosAgendamientoReparaciones(){
         }
 
        if($horaServidor>=18){
-            $intervaltime = " DATE_ADD(current_date(), INTERVAL 1 DAY) " ;
+            $intervaltime = " DATE_ADD($intervaltime, INTERVAL 1 DAY) " ;
        }
         $sqlAlarmadosHistorico = "select ".
                         " left(c2.RESPONSABLE,4) as RESPONSABLE ".
