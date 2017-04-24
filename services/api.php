@@ -15412,6 +15412,7 @@ private function csvMalosAgendamientoReparaciones(){
         $query= " update portalbd.informe_petec_pendientesm ".
             " set RADICADO_TEMPORAL='$prioridad' ".
             " where 1=1 ".
+            " and STATUS='PENDI_PETEC' ".
             " $paramlst ";
 
 
