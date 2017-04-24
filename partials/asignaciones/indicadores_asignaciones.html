@@ -285,7 +285,7 @@
                                                         </span>
                                                     </ul>
                                                     <h5>Alarmados <span class="badge">{{ (historico | sumarNum:'CANTIDAD') }}</span></h5>
-                                                    <p>Pedidos que hoy tenían la visita y se alarmaron</p>
+                                                    <p>Pedidos que tenían la visita el dia <span class="small">{{alarmados.fechacita}}</span> y se alarmaron</p>
                                                     <button type="button" class="btn btn-primary btn-xs"
                                                             ng-click="csvAlarmadosHoy()"
                                                             title="Exportar" ng-disabled="loading">

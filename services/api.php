@@ -16962,7 +16962,7 @@ private function csvMalosAgendamientoReparaciones(){
         }
 
         if($guardar){
-            $this->response ($this->json (array($msg,$alarmados,$alarmadosHist,$alarmadosRecu)), 200);
+            $this->response ($this->json (array($msg,$alarmados,$alarmadosHist,$alarmadosRecu,$intervaltime)), 200);
         }else{
             $error = "$msg: $mysqlerror";
             $this->response ($this->json (array($error)), 403);
