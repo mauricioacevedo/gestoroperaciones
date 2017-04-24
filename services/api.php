@@ -16756,6 +16756,7 @@ private function csvMalosAgendamientoReparaciones(){
         $pedido         =   $this->_request['pedido'];
         $fechaServidor  =   date("Y-m-d H:i:s");
         $horaServidor   =   date("H");
+        $intervaltime    =   " current_date()";
         $mysqlerror     =   "";
         $error          =   "";
         $sqlok          =   false;
@@ -16854,7 +16855,9 @@ private function csvMalosAgendamientoReparaciones(){
             $sqlok = false;
         }
 
-        echo $horaServidor;
+       if($horaServidor>=18){
+            $intervaltime = " DATE_ADD(current_date(), INTERVAL 1 DAY) " ;
+       }
         $sqlAlarmadosHistorico = "select ".
                         " left(c2.RESPONSABLE,4) as RESPONSABLE ".
                         " , count(*) as CANTIDAD ".
@@ -16882,7 +16885,7 @@ private function csvMalosAgendamientoReparaciones(){
                         " ) C1 ".
                         " WHERE 1=1 ".
                         " AND C1.ANULO_COMP='NO' ".
-                        " and C1.FECHA_CITA=current_date() ".
+                        " and C1.FECHA_CITA=$intervaltime ".
                         " GROUP BY C1.PEDIDO_ID, C1.FECHA_CITA ) c2 ".
                         " where c2.RESPONSABLE in ('ASIGNACIONES', 'RECONFIGURACION','ACTIVACION DESACTIVACION') ".
                         " group by c2.RESPONSABLE ";
