@@ -8995,7 +8995,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			var dat = data.status;
 
 			if (dat == 204) {
-				document.getElementById("warning").innerHTML = "No hay Registros";
+				//document.getElementById("warning").innerHTML = "No hay Registros";
 				$scope.error = "No hay Registros";
 				$scope.historico_pedido = {};
                 $scope.peds = {};
