@@ -16857,7 +16857,8 @@ private function csvMalosAgendamientoReparaciones(){
         }
 
        if($horaServidor>=18){
-            $intervaltime = " DATE_ADD($fecha, INTERVAL 1 DAY) " ;
+           $intervaltime = " DATE_ADD($fecha, INTERVAL 1 DAY) " ;
+           $fecha = date('Y-m-d',strtotime($fecha . "+1 days"));
        }
         $sqlAlarmadosHistorico = "select ".
                         " left(c2.RESPONSABLE,4) as RESPONSABLE ".
@@ -16963,7 +16964,7 @@ private function csvMalosAgendamientoReparaciones(){
         }
 
         if($guardar){
-            $this->response ($this->json (array($msg,$alarmados,$alarmadosHist,$alarmadosRecu,$intervaltime)), 200);
+            $this->response ($this->json (array($msg,$alarmados,$alarmadosHist,$alarmadosRecu,$fecha)), 200);
         }else{
             $error = "$msg: $mysqlerror";
             $this->response ($this->json (array($error)), 403);
