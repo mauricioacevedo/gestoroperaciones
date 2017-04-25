@@ -16869,7 +16869,7 @@ private function csvMalosAgendamientoReparaciones(){
         }
 
        if($horaServidor>=16){
-           $intervaltime = " DATE_ADD($fecha, INTERVAL 1 DAY) " ;
+           $intervaltime = " DATE_ADD('$fecha', INTERVAL 1 DAY) " ;
            $fecha = date('Y-m-d',strtotime($fecha . "+1 days"));
        }
         $sqlAlarmadosHistorico = "select ".
@@ -16903,7 +16903,7 @@ private function csvMalosAgendamientoReparaciones(){
                         " GROUP BY C1.PEDIDO_ID, C1.FECHA_CITA ) c2 ".
                         " where c2.RESPONSABLE in ('ASIGNACIONES', 'RECONFIGURACION','ACTIVACION DESACTIVACION') ".
                         " group by c2.RESPONSABLE ";
-        echo $sqlAlarmadosHistorico;
+        //echo $sqlAlarmadosHistorico;
         $rAlarmadosHist = $this->mysqli->query($sqlAlarmadosHistorico);
 
         if($rAlarmadosHist->num_rows > 0){
