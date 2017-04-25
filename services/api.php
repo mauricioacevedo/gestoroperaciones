@@ -16947,7 +16947,7 @@ private function csvMalosAgendamientoReparaciones(){
             " WHERE 1=1 ".
             " AND C1.ANULO_COMP='NO' ".
             " and C1.RECUPERADO='SI' ".
-            " and C1.FECHA_CITA=$intervaltime ".
+            " and C1.FECHA_CITA=current_date() ".
             " GROUP BY C1.PEDIDO_ID, C1.FECHA_CITA ) c2 ".
             " where c2.RESPONSABLE in ('ASIGNACIONES', 'RECONFIGURACION','ACTIVACION DESACTIVACION') ".
             " group by c2.RESPONSABLE ";
