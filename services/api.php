@@ -16868,7 +16868,7 @@ private function csvMalosAgendamientoReparaciones(){
             $sqlok = false;
         }
 
-       if($horaServidor>=18){
+       if($horaServidor>=16){
            $intervaltime = " DATE_ADD($fecha, INTERVAL 1 DAY) " ;
            $fecha = date('Y-m-d',strtotime($fecha . "+1 days"));
        }
@@ -17007,100 +17007,100 @@ private function csvMalosAgendamientoReparaciones(){
         $filename="AlarmadosProactivos_$usuarioGalleta-$today.csv";
 
         $sql =  "    SELECT ".
-"    C2.PEDIDO_ID ".
-"    , C2.ESTADO_GESTOR ".
-"    , C2.RADICADO_TEMPORAL ".
-"    , C2.OBSERVACIONES ".
-"    , C2.RESPONSABLE ".
-"    , C2.CONCEPTO_ID ".
-"    , C2.TIPO_ELEMENTO_ID ".
-"    , C2.ALARMA ".
-"    , C2.FECHA_CITA ".
-"    FROM ( ".
-"    SELECT ".
-"    C1.PEDIDO_ID ".
-"    , ifnull((SELECT  ".
-"    		case  ".
-"    			when group_concat(distinct b.status order by b.status asc) = 'CERRADO_PETEC,PENDI_PETEC' then 'PENDI_PETEC' ".
-"                when group_concat(distinct b.status order by b.status asc) like  '%MALO%' then 'MALO' ".
-"                else group_concat(distinct b.status order by b.status asc) ".
-"                end as ESTADO ".
-"    	FROM portalbd.informe_petec_pendientesm b  ".
-"        where b.PEDIDO_ID=C1.PEDIDO_ID group by b.PEDIDO_ID),'NO ESTA') as ESTADO_GESTOR ".
-"    , IFNULL((SELECT group_concat(DISTINCT b.RADICADO_TEMPORAL) AS RA FROM portalbd.informe_petec_pendientesm b  ".
-"        where b.PEDIDO_ID=C1.PEDIDO_ID group by b.PEDIDO_ID),'NO ESTA') as RADICADO_TEMPORAL ".
-"    , ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and p.estado_id='MALO'  and p.pedido_id=C1.PEDIDO_ID  order by p.id desc   limit 1 ), 'NO ESTA') as OBSERVACIONES ".
-"    , case ".
-"    	when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ASIGNACIONES,RECONFIGURACION' then 'RECONFIGURACION' ".
-"        when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ACCESO,ASIGNACIONES' then 'ACCESO' ".
-"        when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ASIGNACIONES,OTRO' then 'OTRO' ".
-"        else group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc)  ".
-"        end AS RESPONSABLE ".
-"    , group_concat(distinct C1.CONCEPTO_ID) AS CONCEPTO_ID ".
-"    , group_concat(distinct C1.TIPO_ELEMENTO_ID) AS TIPO_ELEMENTO_ID ".
-"    , group_concat(distinct C1.ALARMAFECHA) AS ALARMA ".
-"    , max(C1.FECHA_CITA) as FECHA_CITA ".
-"    FROM (SELECT  ".
-"    a.PEDIDO_ID ".
-"    , a.SUBPEDIDO_ID ".
-"    , a.SOLICITUD_ID ".
-"    , a.FECHA_CITA ".
-"    , a.TIPO_ELEMENTO_ID ".
-"    , a.TIPO_SOLICITUD ".
-"    , a.TRABAJOS ".
-"    , a.ESTADO_ID ".
-"    , a.ESTADO_SOLI ".
-"    , a.CONCEPTO_ID ".
-"    , a.DESCRIPCION_CONCEPTO ".
-"    , a.DESCRIPCION_ESTADO ".
-"    , a.UEN_CALCULADA ".
-"    , CASE ".
-"    	WHEN a.DEPARTAMENTO='' THEN 'Antioquia' ".
-"        ELSE a.DEPARTAMENTO ".
-"    END AS DEPARTAMENTO ".
-"    , CASE ".
-"    	WHEN a.FECHA_CITA=(CURDATE() + INTERVAL 1 DAY) THEN 'MANANA' ".
-"        WHEN a.FECHA_CITA=(CURDATE() + INTERVAL 2 DAY) THEN 'PASADO_MANANA' ".
-"        WHEN a.FECHA_CITA>=(CURDATE() + INTERVAL 3 DAY) THEN 'FUTURA' ".
-"     END AS ALARMAFECHA ".
-"    , CASE ".
-"    	WHEN a.CONCEPTO_ID NOT IN ('CUMPL','DEMO','FACTU','ORDEN','PFACT','PEXPQ','PORDE','PSERV','PXSLN','PCTEC','INCON','POPTO','PRACC','PQUET','PRUTA','PCEQU','APPRV') AND a.FECHA_CITA=(CURDATE() + INTERVAL 1 DAY) THEN 'SI' ".
-"        ELSE 'NO' ".
-"    END AS ALARMO_COMP ".
-"    , CASE ".
-"    	WHEN a.CONCEPTO_ID IN ('ANCAT','ANDUS','ANFRA','ANFRU','ANINP','ANPUS','ANSPE','ANTNE','ANULA', ".
-"        'ANUOS','ANUPO','ANXSC','APRCT','APROB','AVENC','AXGAR','42','43','46','32','36','37')  THEN 'SI' ".
-"        WHEN a.ESTADO_SOLI='ANULA' THEN 'SI' ".
-"        ELSE 'NO' ".
-"    END AS ANULO_COMP ".
-"    ,  CASE ".
-"    	when a.CONCEPTO_ID IN ('PETEC','OKRED','PEOPP','19','O-13','O-15','O-106','PUMED') then 'ASIGNACIONES' ".
-"    	when a.CONCEPTO_ID IN ('O-300') then 'ACTIVACION' ".
-"    	when a.CONCEPTO_ID IN ('14','99','O-101') then 'RECONFIGURACION' ".
-"        when a.CONCEPTO_ID IN ('AGEN','O-02','O-07','O-08','O-23','O-49','O-50','O-65','O-103','O-AGN','O-40','O-34','AGEND','PPRG','PROG','REAGE') then 'AGENDAMIENTO' ".
-"        when a.CONCEPTO_ID IN ('11','PVENC') then 'BACK' ".
-"        when a.CONCEPTO_ID IN ('2','O-115','O-06') then 'OPERACION CLIENTES' ".
-"    	when a.CONCEPTO_ID IN ('PECBA','PLICO','23','24','25','25D','25G','26D','74S','O-85','O-01','O-09') then 'ACCESO' ".
-"        when a.CONCEPTO_ID IN ('PEREP','PECAR','PECSA') then 'CREDITO Y CARTERA' ".
-"        when a.CONCEPTO_ID IN ('82','PEN82','PEFRA') then 'CONTROL FRAUDES' ".
-"        when a.CONCEPTO_ID IN ('47') then 'TI' ".
-"        when a.CONCEPTO_ID in ('42','ANPUS','ANSPE','ANUPO','ANVAL','APRCT','39','34','ANFRU','ANDUS','ANINS','ANCMT','ANFRA') then 'ANULADO CLIENTE' ".
-"        when a.CONCEPTO_ID in ('ANUOS') then 'ANULADO SUSTITUCION' ".
-"        when a.CONCEPTO_ID in ('ANCAT','43','36','32','46','AVENT') then 'ANULADO TECNICO' ".
-"        when a.CONCEPTO_ID in ('AXGAR','AVENC','41','40','44','98','37') then 'ANULADO VENTAS' ".
-"        else 'OTRO' ".
-"    END AS RESPONSABLE ".
-"    FROM scheduling.agendamientoxfenix a ".
-"    where 1=1 ".
-"    and a.pedido_id not like '%pre%' ".
-"    and a.TIPO_ELEMENTO_ID in ('ACCESP','TO','TOIP','INSIP','INSHFC','EQURED','SERHFC') ".
-"    and a.UEN_CALCULADA='HG' ".
-"    ORDER BY 1 ASC ) C1 ".
-"    WHERE 1=1 ".
-"    AND C1.ANULO_COMP='NO' ".
-"    AND C1.ALARMO_COMP='SI' ".
-"    GROUP BY C1.PEDIDO_ID ) C2 ".
-"    WHERE C2.RESPONSABLE IN ('ASIGNACIONES','RECONFIGURACION','AYD') ";
+                "    C2.PEDIDO_ID ".
+                "    , C2.ESTADO_GESTOR ".
+                "    , C2.RADICADO_TEMPORAL ".
+                "    , C2.OBSERVACIONES ".
+                "    , C2.RESPONSABLE ".
+                "    , C2.CONCEPTO_ID ".
+                "    , C2.TIPO_ELEMENTO_ID ".
+                "    , C2.ALARMA ".
+                "    , C2.FECHA_CITA ".
+                "    FROM ( ".
+                "    SELECT ".
+                "    C1.PEDIDO_ID ".
+                "    , ifnull((SELECT  ".
+                "    		case  ".
+                "    			when group_concat(distinct b.status order by b.status asc) = 'CERRADO_PETEC,PENDI_PETEC' then 'PENDI_PETEC' ".
+                "                when group_concat(distinct b.status order by b.status asc) like  '%MALO%' then 'MALO' ".
+                "                else group_concat(distinct b.status order by b.status asc) ".
+                "                end as ESTADO ".
+                "    	FROM portalbd.informe_petec_pendientesm b  ".
+                "        where b.PEDIDO_ID=C1.PEDIDO_ID group by b.PEDIDO_ID),'NO ESTA') as ESTADO_GESTOR ".
+                "    , IFNULL((SELECT group_concat(DISTINCT b.RADICADO_TEMPORAL) AS RA FROM portalbd.informe_petec_pendientesm b  ".
+                "        where b.PEDIDO_ID=C1.PEDIDO_ID group by b.PEDIDO_ID),'NO ESTA') as RADICADO_TEMPORAL ".
+                "    , ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and p.estado_id='MALO'  and p.pedido_id=C1.PEDIDO_ID  order by p.id desc   limit 1 ), 'NO ESTA') as OBSERVACIONES ".
+                "    , case ".
+                "    	when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ASIGNACIONES,RECONFIGURACION' then 'RECONFIGURACION' ".
+                "        when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ACCESO,ASIGNACIONES' then 'ACCESO' ".
+                "        when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ASIGNACIONES,OTRO' then 'OTRO' ".
+                "        else group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc)  ".
+                "        end AS RESPONSABLE ".
+                "    , group_concat(distinct C1.CONCEPTO_ID) AS CONCEPTO_ID ".
+                "    , group_concat(distinct C1.TIPO_ELEMENTO_ID) AS TIPO_ELEMENTO_ID ".
+                "    , group_concat(distinct C1.ALARMAFECHA) AS ALARMA ".
+                "    , max(C1.FECHA_CITA) as FECHA_CITA ".
+                "    FROM (SELECT  ".
+                "    a.PEDIDO_ID ".
+                "    , a.SUBPEDIDO_ID ".
+                "    , a.SOLICITUD_ID ".
+                "    , a.FECHA_CITA ".
+                "    , a.TIPO_ELEMENTO_ID ".
+                "    , a.TIPO_SOLICITUD ".
+                "    , a.TRABAJOS ".
+                "    , a.ESTADO_ID ".
+                "    , a.ESTADO_SOLI ".
+                "    , a.CONCEPTO_ID ".
+                "    , a.DESCRIPCION_CONCEPTO ".
+                "    , a.DESCRIPCION_ESTADO ".
+                "    , a.UEN_CALCULADA ".
+                "    , CASE ".
+                "    	WHEN a.DEPARTAMENTO='' THEN 'Antioquia' ".
+                "        ELSE a.DEPARTAMENTO ".
+                "    END AS DEPARTAMENTO ".
+                "    , CASE ".
+                "    	WHEN a.FECHA_CITA=(CURDATE() + INTERVAL 1 DAY) THEN 'MANANA' ".
+                "        WHEN a.FECHA_CITA=(CURDATE() + INTERVAL 2 DAY) THEN 'PASADO_MANANA' ".
+                "        WHEN a.FECHA_CITA>=(CURDATE() + INTERVAL 3 DAY) THEN 'FUTURA' ".
+                "     END AS ALARMAFECHA ".
+                "    , CASE ".
+                "    	WHEN a.CONCEPTO_ID NOT IN ('CUMPL','DEMO','FACTU','ORDEN','PFACT','PEXPQ','PORDE','PSERV','PXSLN','PCTEC','INCON','POPTO','PRACC','PQUET','PRUTA','PCEQU','APPRV') AND a.FECHA_CITA=(CURDATE() + INTERVAL 1 DAY) THEN 'SI' ".
+                "        ELSE 'NO' ".
+                "    END AS ALARMO_COMP ".
+                "    , CASE ".
+                "    	WHEN a.CONCEPTO_ID IN ('ANCAT','ANDUS','ANFRA','ANFRU','ANINP','ANPUS','ANSPE','ANTNE','ANULA', ".
+                "        'ANUOS','ANUPO','ANXSC','APRCT','APROB','AVENC','AXGAR','42','43','46','32','36','37')  THEN 'SI' ".
+                "        WHEN a.ESTADO_SOLI='ANULA' THEN 'SI' ".
+                "        ELSE 'NO' ".
+                "    END AS ANULO_COMP ".
+                "    ,  CASE ".
+                "    	when a.CONCEPTO_ID IN ('PETEC','OKRED','PEOPP','19','O-13','O-15','O-106','PUMED') then 'ASIGNACIONES' ".
+                "    	when a.CONCEPTO_ID IN ('O-300') then 'ACTIVACION' ".
+                "    	when a.CONCEPTO_ID IN ('14','99','O-101') then 'RECONFIGURACION' ".
+                "        when a.CONCEPTO_ID IN ('AGEN','O-02','O-07','O-08','O-23','O-49','O-50','O-65','O-103','O-AGN','O-40','O-34','AGEND','PPRG','PROG','REAGE') then 'AGENDAMIENTO' ".
+                "        when a.CONCEPTO_ID IN ('11','PVENC') then 'BACK' ".
+                "        when a.CONCEPTO_ID IN ('2','O-115','O-06') then 'OPERACION CLIENTES' ".
+                "    	when a.CONCEPTO_ID IN ('PECBA','PLICO','23','24','25','25D','25G','26D','74S','O-85','O-01','O-09') then 'ACCESO' ".
+                "        when a.CONCEPTO_ID IN ('PEREP','PECAR','PECSA') then 'CREDITO Y CARTERA' ".
+                "        when a.CONCEPTO_ID IN ('82','PEN82','PEFRA') then 'CONTROL FRAUDES' ".
+                "        when a.CONCEPTO_ID IN ('47') then 'TI' ".
+                "        when a.CONCEPTO_ID in ('42','ANPUS','ANSPE','ANUPO','ANVAL','APRCT','39','34','ANFRU','ANDUS','ANINS','ANCMT','ANFRA') then 'ANULADO CLIENTE' ".
+                "        when a.CONCEPTO_ID in ('ANUOS') then 'ANULADO SUSTITUCION' ".
+                "        when a.CONCEPTO_ID in ('ANCAT','43','36','32','46','AVENT') then 'ANULADO TECNICO' ".
+                "        when a.CONCEPTO_ID in ('AXGAR','AVENC','41','40','44','98','37') then 'ANULADO VENTAS' ".
+                "        else 'OTRO' ".
+                "    END AS RESPONSABLE ".
+                "    FROM scheduling.agendamientoxfenix a ".
+                "    where 1=1 ".
+                "    and a.pedido_id not like '%pre%' ".
+                "    and a.TIPO_ELEMENTO_ID in ('ACCESP','TO','TOIP','INSIP','INSHFC','EQURED','SERHFC') ".
+                "    and a.UEN_CALCULADA='HG' ".
+                "    ORDER BY 1 ASC ) C1 ".
+                "    WHERE 1=1 ".
+                "    AND C1.ANULO_COMP='NO' ".
+                "    AND C1.ALARMO_COMP='SI' ".
+                "    GROUP BY C1.PEDIDO_ID ) C2 ".
+                "    WHERE C2.RESPONSABLE IN ('ASIGNACIONES','RECONFIGURACION','AYD') ";
 
         $r = $this->mysqli->query($sql);
 

@@ -3653,11 +3653,11 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         console.log('Diferencia: '+ diferencia);
 
 
-        $scope.dynamic = 11-(Math.round(diferencia * 1000)/1000);
+        $scope.dynamic = 10-(Math.round(diferencia * 1000)/1000);
 
         if ($scope.dynamic >0 && $scope.dynamic < 4) {
             type = 'success';
-        } else if ($scope.dynamic >= 4 && $scope.dynamic < 8) {
+        } else if ($scope.dynamic >= 4 && $scope.dynamic < 6) {
             type = 'warning';
         } else if ($scope.dynamic > 8) {
             type = 'danger';
