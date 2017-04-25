@@ -16032,8 +16032,9 @@ private function csvMalosAgendamientoReparaciones(){
             " AND (CONCEPTO_ID_ANTERIOR='PETEC' ".
             " OR CONCEPTO_ID_ANTERIOR='OKRED' ".
             " OR CONCEPTO_ID_ANTERIOR='PEXPQ' ".
+            " OR CONCEPTO_ID_ANTERIOR='PRESI' ".
             " OR CONCEPTO_ID_ANTERIOR='APPRV') ".
-            " AND CONCEPTO_ID_ACTUAL IN ('PORDE', 'PSERV') ".
+            " AND CONCEPTO_ID_ACTUAL IN ('PORDE', 'PSERV','PSIEB') ".
             " AND USUARIO_ID NOT IN ('USRFRABTS','ATCFENIX') ) C1 ".
             " GROUP BY C1.PEDIDO_ID ";
 
