@@ -3659,7 +3659,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
             type = 'success';
         } else if ($scope.dynamic >= 4 && $scope.dynamic < 6) {
             type = 'warning';
-        } else if ($scope.dynamic > 8) {
+        } else if ($scope.dynamic > 6) {
             type = 'danger';
         }
         $scope.type = type;
