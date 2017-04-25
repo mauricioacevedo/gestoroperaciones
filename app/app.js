@@ -1015,11 +1015,12 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
         });
     };
-    obj.putPrioridadPedidosAgen = function (pedido_id, prioridad, usuario_id) {
+    obj.putPrioridadPedidosAgen = function (pedido_id, prioridad, usuario_id, multiple) {
         return $http.post(serviceBase + 'otorgarPrioridadAbsolutaAgen', {
             pedido_id: pedido_id,
             prioridad: prioridad,
-            usuario_id: usuario_id
+            usuario_id: usuario_id,
+            multiple: multiple
         });
     };
     obj.buscarPedidoAuditoriafenix = function (pedido){
@@ -8168,7 +8169,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 
     $scope.habilitarPrioridad = function (pedinfo){
 //        console.log(pedinfo);
-        services.putPrioridadPedidosAgen(pedinfo.PEDIDO_ID, pedinfo.RADICADO,userID).then(
+        services.putPrioridadPedidosAgen(pedinfo.PEDIDO_ID, pedinfo.RADICADO,userID, false).then(
             function(data) {
                 $scope.data.RADICADO=pedinfo.PRIORIDAD;
                 notify({
