@@ -5983,7 +5983,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','FUENTE','STATUS','CONCEPTOS','FECHA_CITA','ULTIMA_NOVEDAD','MICROZONA','ZONA','OBSERVACION','PROCESO'),chr(42));
+            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','FUENTE','STATUS','CONCEPTOS','FECHA_CITA','ULTIMA_NOVEDAD','MICROZONA','ZONA','OBSERVACION','PROCESO'),chr(35));
             while($row = $r->fetch_assoc()){
 
               //  $row['OBSERVACION_FENIX']=str_replace(array("\n","\r"), '/', $row['OBSERVACION_FENIX']);
@@ -6010,7 +6010,7 @@ class API extends REST {
 
 
                 $result[] = $row;
-                fputcsv($fp, $row,chr(42));
+                fputcsv($fp, $row,chr(35));
             }
             fclose($fp);
             // SQL Feed----------------------------------
