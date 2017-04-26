@@ -8514,7 +8514,7 @@ private function csvMalosAgendamientoReparaciones(){
         if($tabla=='ACTIVADOR_SUSPECORE'){
 
             $tabla = " from gestor_activacion_pendientes_activador_suspecore b " ;
-
+            $MOTIVOEXCEPCIONACT = " and b.MOTIVOEXCEPCIONACT <> 'La Cuenta NO existe.' ";   
         } else {
 
             $tabla = " from gestor_activacion_pendientes_activador_dom b " ;
@@ -8535,6 +8535,7 @@ private function csvMalosAgendamientoReparaciones(){
             "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
             "  $transaccion ".
             " $producto ".
+            " $MOTIVOEXCEPCIONACT ".
             " order by b.$parametroBusqueda  ASC";
 
         //echo $query1;
@@ -8620,6 +8621,7 @@ private function csvMalosAgendamientoReparaciones(){
             " and b.STATUS='PENDI_ACTI' ".
             $transaccion.
             $producto.
+            $MOTIVOEXCEPCIONACT.
             " group by b.pedido ";
 
 
