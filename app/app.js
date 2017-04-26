@@ -14654,7 +14654,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				}
 
             }, function (err) {
-                $rootScope.errorDatos 			= err;
+                $rootScope.errorDatos 			= err.data[0];
                 $scope.guardando 				= false;
 
             }

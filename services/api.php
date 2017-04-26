@@ -16122,7 +16122,7 @@ private function csvMalosAgendamientoReparaciones(){
                     */
                 }else{
                     //me debo devolver de aca ya que el pedido no ha sido agendado.....
-                    $error="El pedido $pedido no tiene agenda para futuro..";
+                    $error="El pedido $pedidonuevo no tiene agenda para futuro..";
                     $this->response ($this->json (array($error, $fuente, $estado, $malo, $programado)), 400);
                     return;
                 }
