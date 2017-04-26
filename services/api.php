@@ -6006,7 +6006,7 @@ class API extends REST {
 
 
                 $row['ULTIMA_NOVEDAD']=utf8_decode($row['ULTIMA_NOVEDAD']);
-               $row['OBSERVACION_FENIX']= trim(preg_replace('/\s+|,', ' ',$row['OBSERVACION_FENIX']));
+               //$row['OBSERVACION_FENIX']= trim(preg_replace('/\s+|,', ' ',$row['OBSERVACION_FENIX']));
 
 
                 $result[] = $row;
