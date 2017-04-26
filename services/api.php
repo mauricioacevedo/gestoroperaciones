@@ -5983,7 +5983,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','FUENTE','STATUS','CONCEPTOS','FECHA_CITA','ULTIMA_NOVEDAD','MICROZONA','ZONA','OBSERVACION','PROCESO'),chr (124));
+            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','FUENTE','STATUS','CONCEPTOS','FECHA_CITA','ULTIMA_NOVEDAD','MICROZONA','ZONA','OBSERVACION','PROCESO'));
             while($row = $r->fetch_assoc()){
 
               //  $row['OBSERVACION_FENIX']=str_replace(array("\n","\r"), '/', $row['OBSERVACION_FENIX']);
@@ -6006,11 +6006,11 @@ class API extends REST {
 
 
                 $row['ULTIMA_NOVEDAD']=utf8_decode($row['ULTIMA_NOVEDAD']);
-               //$row['OBSERVACION_FENIX']= trim(preg_replace('/\s+|,', ' ',$row['OBSERVACION_FENIX']));
+               $row['OBSERVACION_FENIX']= trim(preg_replace('/\s+|,', ' ',$row['OBSERVACION_FENIX']));
 
 
                 $result[] = $row;
-                fputcsv($fp, $row,chr (124));
+                fputcsv($fp, $row;
             }
             fclose($fp);
             // SQL Feed----------------------------------
