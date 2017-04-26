@@ -3645,7 +3645,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         var day = d.getDate();
         var output = d.getFullYear() + '-' + (month<10 ? '0' : '') + month + '-' + (day<10 ? '0' : '') + day;
 		var ahora = $rootScope.fechaProceso();
-		var horaLimite = output + ' 16:00:00';
+		var horaLimite = output + ' 18:00:00';
         var diferencia = Math.abs(Date.parse(horaLimite) - Date.parse(ahora)) / 36e5;
 
 		console.log('ahora: '+ ahora);
@@ -3653,13 +3653,13 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         console.log('Diferencia: '+ diferencia);
 
 
-        $scope.dynamic = 9-(Math.round(diferencia * 1000)/1000);
+        $scope.dynamic = 11-(Math.round(diferencia * 1000)/1000);
 
         if ($scope.dynamic >0 && $scope.dynamic < 4) {
             type = 'success';
-        } else if ($scope.dynamic >= 4 && $scope.dynamic < 6) {
+        } else if ($scope.dynamic >= 4 && $scope.dynamic < 7) {
             type = 'warning';
-        } else if ($scope.dynamic > 6) {
+        } else if ($scope.dynamic > 7) {
             type = 'danger';
         }
         $scope.type = type;
