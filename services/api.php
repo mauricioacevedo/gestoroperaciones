@@ -8946,7 +8946,7 @@ private function csvMalosAgendamientoReparaciones(){
                     $zona.
                     $microzona.
                     // " and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
-                    " and (select NOVEDAD,OBSERVACION_GESTOR from gestor_historicos_reagendamiento a where a.PEDIDO_ID=b.PEDIDO_ID and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' order by id desc limit 1) not like '%AGENDADO%' ".
+                    " and (select NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID=b.PEDIDO_ID and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' order by id desc limit 1) not like '%AGENDADO%' ".
                     //$plaza.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
                     " order by b.VIEWS,b.FECHA_ESTADO ASC";
