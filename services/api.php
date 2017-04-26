@@ -8618,6 +8618,7 @@ private function csvMalosAgendamientoReparaciones(){
             $tabla.
             " where b.PEDIDO = '$mypedido'  ".
             " and b.STATUS='PENDI_ACTI' ".
+            " and b.MOTIVOEXCEPCIONACT <>'La Cuenta NO existe.'".
             $transaccion.
             $producto.
             " group by b.pedido ";
