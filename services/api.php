@@ -16129,6 +16129,7 @@ private function csvMalosAgendamientoReparaciones(){
             }
         }
 
+        $this->response ($this->json (array("TODO ESTA OK", $fuente, $estado, $malo, $programado)), 401);
         return;
 
         $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo','fecha_estado','concepto_final','source');
