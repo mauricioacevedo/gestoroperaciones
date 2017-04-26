@@ -16107,11 +16107,12 @@ private function csvMalosAgendamientoReparaciones(){
         + Mauricio.
         */
 
-        if($conceptoId=="14"){
-            $conna=getConnAgendamiento();
+        $pedidonuevo=$gestion['gestion']['nuevopedido'];
 
+        if($conceptoId=="14" && $pedidonuevo!=""){
+            $conna=getConnAgendamiento();
             $today=date("Y-m-d");
-            $pedidonuevo=$gestion['gestion']['nuevopedido'];
+
             $sqlfechacita="SELECT agm_fechacita FROM dbAgendamiento.agn_agendamientos where agm_pedido = '$pedidonuevo' ".
                             " and agm_fechacita > '$today' ";
 
@@ -16122,15 +16123,12 @@ private function csvMalosAgendamientoReparaciones(){
                     */
                 }else{
                     //me debo devolver de aca ya que el pedido no ha sido agendado.....
-                    $error="El pedido $pedidonuevo no tiene agenda para futuro..";
+                    $error="El pedido $pedidonuevo no tiene agenda para futuro. Por favor agendar.";
                     $this->response ($this->json (array($error, $fuente, $estado, $malo, $programado)), 400);
                     return;
                 }
             }
         }
-
-        $this->response ($this->json (array("TODO ESTA OK", $fuente, $estado, $malo, $programado)), 401);
-        return;
 
         $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo','fecha_estado','concepto_final','source');
         $keys = array_keys($gestion['gestion']);
