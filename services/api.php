@@ -6010,7 +6010,7 @@ class API extends REST {
 
 
                 $result[] = $row;
-                fputcsv($fp, $row;
+                fputcsv($fp, $row);
             }
             fclose($fp);
             // SQL Feed----------------------------------
