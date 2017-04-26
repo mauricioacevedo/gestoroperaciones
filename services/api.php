@@ -5972,8 +5972,8 @@ class API extends REST {
             "     WHERE a.PEDIDO_ID =  pm.PEDIDO_ID) )AS ULTIMA_NOVEDAD ".
             ", pm.MICROZONA".
             ", pm.SUBZONA_ID".
-            ", pm.OBSERVACION_FENIX".
             ", pm.PROCESO".
+            ", pm.OBSERVACION_FENIX".           
             " from portalbd.gestor_pendientes_reagendamiento pm ".
             " where pm.STATUS='MALO' ".
             " and pm.PROCESO = 'INSTALACION' ";
@@ -5983,7 +5983,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','FUENTE','STATUS','CONCEPTOS','FECHA_CITA','ULTIMA_NOVEDAD','MICROZONA','ZONA','OBSERVACION','PROCESO'),chr(35));
+            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','FUENTE','STATUS','CONCEPTOS','FECHA_CITA','ULTIMA_NOVEDAD','MICROZONA','ZONA','PROCESO','OBSERVACION'),chr(35));
             while($row = $r->fetch_assoc()){
 
               //  $row['OBSERVACION_FENIX']=str_replace(array("\n","\r"), '/', $row['OBSERVACION_FENIX']);
