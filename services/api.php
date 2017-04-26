@@ -5673,7 +5673,7 @@ class API extends REST {
         }
 
         $filename="Pendientes-$login-$today.csv";
-        $query="SELECT a.PEDIDO_ID,a.PEDIDO,a.SUBPEDIDO_ID,a.SOLICITUD_ID,a.TIPO_TRABAJO, a.TIPO_ELEMENTO_ID,a.PRODUCTO,a.UEN_CALCULADA,a.ESTRATO,MUNICIPIO_ID,a.PAGINA_SERVICIO, a.DIRECCION_SERVICIO, CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA, hour(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO))) as TIEMPO_HORAS,a.FUENTE,a.CONCEPTO_ID,a.FECHA_ESTADO,a.FECHA_INGRESO, a.FECHA_CITA,a.STATUS,a.RADICADO_TEMPORAL from informe_petec_pendientesm a where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ";
+        $query="SELECT a.PEDIDO_ID,a.PEDIDO,a.SUBPEDIDO_ID,a.SOLICITUD_ID,a.TIPO_TRABAJO, a.TIPO_ELEMENTO_ID,a.PRODUCTO,a.UEN_CALCULADA,a.ESTRATO,MUNICIPIO_ID,a.PAGINA_SERVICIO, a.DIRECCION_SERVICIO, CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA, hour(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO))) as TIEMPO_HORAS,a.FUENTE,a.CONCEPTO_ID,a.FECHA_ESTADO,a.FECHA_INGRESO, a.FECHA_CITA,a.STATUS, ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin') as OBS, a.RADICADO_TEMPORAL from informe_petec_pendientesm a where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -6531,7 +6531,7 @@ private function csvMalosAgendamientoReparaciones(){
             ", a.FUENTE, a.CONCEPTO_ID, a.FECHA_ESTADO, a.FECHA_CITA, a.STATUS, a.PROGRAMACION ".
             ", case when a.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ARBOL' else a.RADICADO_TEMPORAL end as RADICADO_TEMPORAL ".
             ", if(a.RADICADO_TEMPORAL='ARBOL','true','false') as PRIORIDAD ".
-            ", ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin') as OBS".
+            ", ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin') as OBS ".
             " from informe_petec_pendientesm a ".
             " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
             " order by a.FECHA_ESTADO ASC limit 100 offset $page";
