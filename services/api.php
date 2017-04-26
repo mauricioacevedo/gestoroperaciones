@@ -8533,7 +8533,6 @@ private function csvMalosAgendamientoReparaciones(){
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
             " $tabla ".
             "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
-            " and b.MOTIVOEXCEPCIONACT <> 'La Cuenta NO existe.' ".
             "  $transaccion ".
             " $producto ".
             " order by b.$parametroBusqueda  ASC";
@@ -8619,7 +8618,6 @@ private function csvMalosAgendamientoReparaciones(){
             $tabla.
             " where b.PEDIDO = '$mypedido'  ".
             " and b.STATUS='PENDI_ACTI' ".
-            " and b.MOTIVOEXCEPCIONACT <> 'La Cuenta NO existe.' ".
             $transaccion.
             $producto.
             " group by b.pedido ";
