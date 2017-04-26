@@ -8998,7 +8998,7 @@ private function csvMalosAgendamientoReparaciones(){
             $PROGRAMADO="";
         }
 
-        $query1="SELECT b.ID as PARENT_ID,b.PEDIDO_ID,b.FECHA_CITA_FENIX,b.CLIENTE_ID,b.CELULAR_AVISAR,b.CORREO_UNE,b.DIRECCION_ENVIO,b.E_MAIL_AVISAR,b.NOMBRE_USUARIO,b.FECHA_INGRESO,b.TELEFONO_AVISAR,b.CONCEPTOS,b.ACTIVIDADES,b.PROCESO,b.SUBZONA_ID,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_INGRESO),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL,b.MICROZONA,b.OBSERVACION_FENIX,b.FUENTE,b.TODAY_TRIES,b.PROGRAMACION,b.FECHA_ESTADO $PROGRAMADO,'AUTO' as source,(select a.NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID='$mypedido' order by a.ID desc limit 1) as HISTORICO_NOVEDAD from gestor_pendientes_reagendamiento b where b.PEDIDO_ID = '$mypedido' and b.STATUS='PENDI_AGEN' ";
+        $query1="SELECT b.ID as PARENT_ID,b.PEDIDO_ID,b.FECHA_CITA_FENIX,b.CLIENTE_ID,b.CELULAR_AVISAR,b.CORREO_UNE,b.DIRECCION_ENVIO,b.E_MAIL_AVISAR,b.NOMBRE_USUARIO,b.FECHA_INGRESO,b.TELEFONO_AVISAR,b.CONCEPTOS,b.ACTIVIDADES,b.PROCESO,b.SUBZONA_ID,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_INGRESO),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL,b.MICROZONA,b.OBSERVACION_FENIX,b.FUENTE,b.TODAY_TRIES,b.PROGRAMACION,b.FECHA_ESTADO $PROGRAMADO,'AUTO' as source,(select a.NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID='$mypedido' order by a.ID desc limit 1) as HISTORICO_NOVEDAD,(select a.OBSERVACION_GESTOR from gestor_historicos_reagendamiento a where a.PEDIDO_ID='$mypedido' order by a.ID desc limit 1) as HISTORICO_OBSERVACION from gestor_pendientes_reagendamiento b where b.PEDIDO_ID = '$mypedido' and b.STATUS='PENDI_AGEN' ";
 
         //echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
