@@ -3655,6 +3655,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
         $scope.dynamic = 11-(Math.round(diferencia * 1000)/1000);
 
+        console.log($scope.dynamic);
+
         if ($scope.dynamic >0 && $scope.dynamic < 6) {
             type = 'success';
         } else if ($scope.dynamic >= 6 && $scope.dynamic < 8) {
