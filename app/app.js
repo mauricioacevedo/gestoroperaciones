@@ -9800,7 +9800,18 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
  $scope.setProceso = function (proceso){
         $scope.proceso=proceso;
     };
+$scope.getDepartamentos = function () {
 
+		$scope.departamentos = {};
+		$scope.microzonas = {};
+		services.getDepartamentosPendientesReagendamiento($scope.proceso).then(function (data) {
+			$scope.departamentos = data.data;
+			//console.log($scope.proceso);
+
+			return data.data;
+		});
+	};
+	
 	$scope.getDepartamentos();
 
 
