@@ -3648,14 +3648,14 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		var horaLimite = output + ' 18:00:00';
         var diferencia = Math.abs(Date.parse(horaLimite) - Date.parse(ahora)) / 36e5;
 
-		console.log('ahora: '+ ahora);
-        console.log('Limite: '+ horaLimite);
-        console.log('Diferencia: '+ diferencia);
+		//console.log('ahora: '+ ahora);
+        //console.log('Limite: '+ horaLimite);
+       // console.log('Diferencia: '+ diferencia);
 
 
         $scope.dynamic = 11-(Math.round(diferencia * 1000)/1000);
 
-        console.log($scope.dynamic);
+        //console.log($scope.dynamic);
 
         if ($scope.dynamic >0 && $scope.dynamic < 6) {
             type = 'success';
