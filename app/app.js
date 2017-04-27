@@ -10153,14 +10153,14 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 		$scope.peds = {};
 		$scope.mpedido = {};
 		$scope.busy = "";
-		$scope.error = "";
+		//$scope.error = "";
 		var kami = services.buscarPedidoAgendamiento(bpedido, $scope.pedido1, $rootScope.logedUser.login, $rootScope.logedUser.name).then(function (data) {
 			$scope.peds = data.data;
 			console.log($scope.peds);
 			var dat = data.status;
 
 			if (dat == 204) {
-				document.getElementById("warning").innerHTML = "No hay Registros";
+			//	document.getElementById("warning").innerHTML = "No hay Registros";
 				$scope.error = "No hay Registros";
 			} else {
 				document.getElementById("warning").innerHTML = "";
