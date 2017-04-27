@@ -8,14 +8,13 @@
       <div class="panel-heading">Registros Malos</div>
       <div class="row">
 
-       
         <div class="col-lg-8 col-xs-8 form-inline">
           <label  for="proceso">Proceso:</label>
              <td><select class= "form-control" ng-model="proceso">
                                 <option value="INSTALACION">INSTALACION</option>
                                 <option value="REPARACION">REPARACION</option>
 
-                                </select>
+                   </select>
         
         </div>
     
@@ -29,15 +28,11 @@
                  <input type="text" size="10px" class="form-control btn-group btn btn-md btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Buscador de Pedido" ng-model="bpedido">
                 <button type="button" class="form-control btn btn-md btn-primary"  title="Buscar Pedido" data-toggle="tooltip" data-placement="top" ng-click="buscarPedidoAgendamientoAuditoria(bpedido);"><i class="fa fa-search" aria-hidden="true"></i></button>
                  <button id="manual" type="button" class="form-control btn btn-md btn-warning" title="Ingrese Pedido Manual" data-toggle="tooltip" data-placement="top" ng-click="manual();"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
-
-              </div>   
               </div>
-            </form>
-            
-        </div>
-    </div>
 
-    </div><!--Panel Heading -->
+          </form>
+       </div>   
+              
     
   <div class="panel-body">
 
@@ -386,25 +381,17 @@
                         </table>
                                       <!--td><button id="iniciar" type="button" class="btn btn-md btn-success" onclick="javascript:activar();">Iniciar</a></td-->
                         <div id="warning" ng-model="warnin"></div>
-                                      
 
-                        </form>
-
-                </div>
-    
-
-
-
+                         </form>
+               </div>
             </div>
+    </div>
+  </div>
+  </div>
+</div>
 
-
-    </div><!-- Row Deme Pedido -->
-</div><!--Panel body -->
-    
-
-
-  </div><!--Panel -->
 </div><!--Row DemePedido -->
+
 
 <br>
 
