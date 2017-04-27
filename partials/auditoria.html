@@ -11,6 +11,7 @@
   
        
         <div class="col-lg-8 col-xs-8 form-inline">
+          <label  for="proceso">Proceso:</label>
              <td><select class= "form-control" ng-model="proceso">
                                 <option value="INSTALACION">INSTALACION</option>
                                 <option value="REPARACION">REPARACION</option>
@@ -25,16 +26,12 @@
                 <div class="btn-group"> 
                     <!--button type="button"  class="btn btn-md btn-default"  title="Click para copiar" data-toggle="tooltip" data-placement="top" ng-click="executeCopy(pedidoinfo);">{{pedidoinfo}}</button -->
                     <button id="iniciar" type="button" class="form-control btn-group btn btn-md btn-danger" ng-click="start(pedido);">Deme Pedido Malo</button>
-                   
-              
-                </div>
 
-              <div class="form-group btn-group">
-               
                  <input type="text" size="13px" class="form-control btn-group btn btn-md btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Buscador de Pedido" ng-model="bpedido">
                 <button type="button" class="form-control btn btn-md btn-primary"  title="Buscar Pedido" data-toggle="tooltip" data-placement="top" ng-click="buscarPedidoAgendamientoAuditoria(bpedido);"><i class="fa fa-search" aria-hidden="true"></i></button>
                  <button id="manual" type="button" class="form-control btn btn-md btn-warning" title="Ingrese Pedido Manual" data-toggle="tooltip" data-placement="top" ng-click="manual();"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
 
+              </div>   
               </div>
             </form>
             
