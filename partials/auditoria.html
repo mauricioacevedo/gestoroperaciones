@@ -10,16 +10,8 @@
 <div class="panel panel-info">
   <div class="panel-heading">
       <div class="row"><!--Row Concepto Plaza - -->
-        <div class="row">
-                <div class="col-lg-8 col-xs-8 form-inline">
-                        <label  for="Departamento">Proceso:</label>
-                                <select ng-model="proceso" class="form-control" ng-change="getDepartamentos()">
-                                         <option value="REPARACION">REPARACIONES</option>
-                                         <option value="INSTALACION">INSTALACIONES</option>
-                                </select>
-                        
-                </div>
-        </div>
+      
+       
         
         <div class="col-lg-5 col-xs-5">
 
@@ -27,6 +19,12 @@
             <form class="form-inline" role="form">
 
               <div class="form-group btn-group">
+                <div class="col-lg-8 col-xs-8 form-inline">
+                        <label  for="Departamento">Proceso:</label>
+                                <select ng-model="proceso" class="form-control" ng-change="getDepartamentos()">
+                                         <option value="REPARACION">REPARACIONES</option>
+                                         <option value="INSTALACION">INSTALACIONES</option>
+                                </select>
 
                <button id="iniciar" type="button" class="form-control btn-group btn btn-md btn-danger" ng-click="start(pedido);">Deme Pedido Malo</button>
                 <input type="text" size="13px" class="form-control btn-group btn btn-md btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Buscador de Pedido" ng-model="bpedido">
@@ -35,6 +33,7 @@
              
 
                 </div>
+              </div>  
              </form>
         </div>
             
