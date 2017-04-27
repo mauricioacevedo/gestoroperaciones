@@ -17,14 +17,14 @@
                             <div class="panel-body">
                                 <div class="row">
                                 <div class="col-lg-6">
-                                 <label for="titulo" class="control-label">Titulo: </label><input name="titulo"type="text" class="form-control md" ng-model='edicionTip.TITULO'>
+                                 <label for="titulo" class="control-label">Titulo: </label><input name="titulo" id="titulo" type="text" class="form-control md" ng-model='edicionTip.TITULO'>
                                 </div>
                                 <div class="col-lg-4">
-                                 <label for="" class="control-label">Tags:</label><input type="text" class="form-control" ng-model='edicionTip.TAGS'>
+                                 <label for="tags" class="control-label">Tags:</label><input type="text" name="tags" id="tags" class="form-control" ng-model='edicionTip.TAGS'>
                                 </div>
                                 <div class="col-lg-2">
-                                 <label for="" class="control-label">Estado:</label>
-                                    <select class="form-control" ng-model="edicionTip.POST_STATUS">            
+                                 <label for="status" class="control-label">Estado:</label>
+                                    <select name="status" id="status" class="form-control" ng-model="edicionTip.POST_STATUS">
                                         <option value="0">ACTIVO</option>
                                         <option value="1">INACTIVO</option>
                                     </select>
@@ -47,9 +47,9 @@
                                 </select>
                                 </div>
                                 <div class="col-lg-3">
-                                 <label for="" class="control-label">Fecha:</label>
+                                 <label for="date" class="control-label">Fecha:</label>
                                  <div class="input-group merged">
-                                    <input type="text" id="datetimepicker1" class="form-control  sm"  ng-model="edicionTip.POST_TIME"><span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
+                                    <input type="text" id="date" class="form-control  sm"  ng-model="edicionTip.POST_TIME" datetime-picker date-format="yyyy-MM-dd HH:mm:ss"><span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
                                    </div>
                                 </div>
                                 <div class="col-lg-3">
