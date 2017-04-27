@@ -10101,7 +10101,7 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 	};
 
 
-	$scope.buscarPedidoAgendamiento = function (bpedido) {
+/*	$scope.buscarPedidoAgendamiento = function (bpedido) {
 		$scope.error = "";
 		$scope.peds = {};
 		$scope.mpedido = {};
@@ -10147,7 +10147,7 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 
 	};
 
-
+*/
 	$scope.buscarPedidoAgendamientoAuditoria = function (bpedido) {
 		$scope.error = "";
 		$scope.peds = {};
