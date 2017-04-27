@@ -7279,7 +7279,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 			//Logic to delete the item
 			services.eliminarfile1(file).then(function (data) {
 				if (data.data == 'OK') {
-					document.getElementById("warning").innerHTML = "Archivo " + file + " eliminado correctamente.";
+					//document.getElementById("warning").innerHTML = "Archivo " + file + " eliminado correctamente.";
 					$scope.error = "Archivo " + file + " eliminado correctamente.";
 				}
 				services.listar1().then(function (data) {
