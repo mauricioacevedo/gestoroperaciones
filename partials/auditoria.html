@@ -3,15 +3,14 @@
   
 </ol>
 
+
 <div class="row"><!--Row DemePedido -->
-  <div class="panel panel-primary">
-      <div class="panel-heading">Registros Malos</div>
-  
 <div class="panel panel-info">
   <div class="panel-heading">
-      <div class="row"><!--Row Concepto Plaza - -->
-           <div class="col-lg-8 col-xs-8 form-inline">
-
+      <div class="row">
+  
+       
+        <div class="col-lg-8 col-xs-8 form-inline">
              <td><select class= "form-control" ng-model="proceso">
                                 <option value="INSTALACION">INSTALACION</option>
                                 <option value="REPARACION">REPARACION</option>
@@ -19,44 +18,42 @@
                                 </select>
         
         </div>
-        
-        <div class="col-lg-5 col-xs-5">
-
+    
+        <div class="col-lg-4 col-xs-4">
 
             <form class="form-inline" role="form">
+                <div class="btn-group"> 
+                    <!--button type="button"  class="btn btn-md btn-default"  title="Click para copiar" data-toggle="tooltip" data-placement="top" ng-click="executeCopy(pedidoinfo);">{{pedidoinfo}}</button -->
+                    <button id="iniciar" type="button" class="form-control btn-group btn btn-md btn-danger" ng-click="start(pedido);">Deme Pedido Malo</button>
+                   
+              
+                </div>
 
               <div class="form-group btn-group">
-
-               <button id="iniciar" type="button" class="form-control btn-group btn btn-md btn-danger" ng-click="start(pedido);">Deme Pedido Malo</button>
-                <input type="text" size="13px" class="form-control btn-group btn btn-md btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Buscador de Pedido" ng-model="bpedido">
+               
+                 <input type="text" size="13px" class="form-control btn-group btn btn-md btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Buscador de Pedido" ng-model="bpedido">
                 <button type="button" class="form-control btn btn-md btn-primary"  title="Buscar Pedido" data-toggle="tooltip" data-placement="top" ng-click="buscarPedidoAgendamientoAuditoria(bpedido);"><i class="fa fa-search" aria-hidden="true"></i></button>
                  <button id="manual" type="button" class="form-control btn btn-md btn-warning" title="Ingrese Pedido Manual" data-toggle="tooltip" data-placement="top" ng-click="manual();"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
-             
 
-                </div>
-             </form>
-        </div>
+              </div>
+            </form>
             
-        
-
-    </div><!--Row Concepto Plaza - Buscador Tips -->
-
-</div>
-
+        </div>
+    </div>
 
     </div><!--Panel Heading -->
+    
   <div class="panel-body">
 
     <div class="row"><!--Row Deme Pedido -->
  
       <div ng-show="error" class="alert alert-danger "><!--Muestra error cuando no hay pedidos -->
-        <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{error}}
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{error}}.
       </div><!--Muestra error cuando no hay pedidos -->
 
           <div class="col-lg-12 col-xs-12">
 
-              
-              <table class="table small table-striped table-hover table-bordered table-condensed" width="300" style="width: auto !important;" ng-show="mpedido.active==1">
+ <table class="table small table-striped table-hover table-bordered table-condensed" width="300" style="width: auto !important;" ng-show="mpedido.active==1">
                    <thead>
                           <th>Pedido</th>
                            <th>Fuente</th>
