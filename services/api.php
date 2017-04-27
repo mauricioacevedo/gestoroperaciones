@@ -9081,6 +9081,7 @@ private function csvMalosAgendamientoReparaciones(){
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
         $user = $this->_request['userID'];
+        $proceso = $this->_request['proceso'];
         //$departamento = $this->_request['departamento'];
         //$plaza = $this->_request['plaza'];
         // $microzona = $this->_request['microzona'];
@@ -9107,7 +9108,11 @@ private function csvMalosAgendamientoReparaciones(){
         //}
         //echo "WTF";
         $today = date("Y-m-d");
-
+         if($proceso!=""){
+            $proceso=" and b.PROCESO='$proceso' ";
+        }else{
+            $proceso="";
+        }
         //1.consulto todo lo que tenga fecha cita de mañana
         $hora=date("G");
         $uphold="1";
@@ -9178,7 +9183,7 @@ private function csvMalosAgendamientoReparaciones(){
             //$departamento.
             //$zona.
             //$microzona.
-            //$plaza.
+            $proceso.
             //" order by b.$parametroBusqueda ASC";
             " order by b.$parametroBusqueda $ordenamiento ";
         // var_dump($query1);
@@ -9231,7 +9236,7 @@ private function csvMalosAgendamientoReparaciones(){
                     " where b.STATUS='MALO'  and b.ASESOR ='' ".
                     "  $departamento ".
                     //$zona.
-                    //$microzona.
+                    $proceso.
                     " and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
                     " and (select NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID=b.PEDIDO_ID and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' order by id desc limit 1) not like '%AGENDADO%' ".
                     //$plaza.

@@ -9797,16 +9797,9 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 
 
 
-	$scope.getDepartamentos = function () {
-		$scope.departamentos = {};
-		$scope.microzonas = {};
-		services.getDepartamentosPendientesReagendamiento().then(function (data) {
-			$scope.departamentos = data.data;
-			//console.log($scope.departamentos);
-
-			return data.data;
-		});
-	};
+ $scope.setProceso = function (proceso){
+        $scope.proceso=proceso;
+    };
 
 	$scope.getDepartamentos();
 
