@@ -10,7 +10,16 @@
 <div class="panel panel-info">
   <div class="panel-heading">
       <div class="row"><!--Row Concepto Plaza - -->
-
+        <div class="row">
+                <div class="col-lg-8 col-xs-8 form-inline">
+                        <label  for="Departamento">Proceso:</label>
+                                <select ng-model="proceso" class="form-control" ng-change="getDepartamentos()">
+                                         <option value="REPARACION">REPARACIONES</option>
+                                         <option value="INSTALACION">INSTALACIONES</option>
+                                </select>
+                        
+                </div>
+        </div>
         
         <div class="col-lg-5 col-xs-5">
 
