@@ -1721,7 +1721,10 @@ class API extends REST {
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         //cierro el registro en la tabla de automatizacion asignaciones
 
-        if($novedad=='AGENDADO'||$novedad=='AGENDADO MANUAL'|| $novedad=='AGENDADO_FUTURO'|| $novedad=='NO CONOCE EL PEDIDO'|| $novedad=='SIN CITA'|| $novedad=='PENDIENTE EN OTRO CONCEPTO'|| $novedad=='NO DESEA EL SERVICIO'|| $novedad=='YA ESTA CUMPLIDO'|| $novedad=='LIBERACION DE CUPOS' || $novedad=='CONFIRMA SOLUCION' || $novedad=='CONFIRMADA' || $novedad=='CONFIRMADA-DATOS ERRADOS'){
+        if($novedad=='AGENDADO'||$novedad=='AGENDADO MANUAL'|| $novedad=='AGENDADO_FUTURO'|| $novedad=='CONFIRMA SOLUCION' 
+        || $novedad=='CONFIRMADA'|| $novedad=='CONFIRMADA-DATOS ERRADOS'|| $novedad=='NO CONOCE EL PEDIDO'
+        || $novedad=='NO DESEA EL SERVICIO'|| $novedad=='LIBERACION DE CUPOS' || $novedad=='PENDIENTE EN OTRO CONCEPTO'
+        || $novedad=='SIN CITA'|| $novedad=='YA ESTA CUMPLIDO'){
             $sqlupdate="update gestor_pendientes_reagendamiento set FECHA_ACTUALIZACION='$today',STATUS='CERRADO_AGEN',FECHA_CITA_REAGENDA='$fecha_cita_reagen',TODAY_TRIES=(SELECT COUNT(*) FROM gestor_historicos_reagendamiento WHERE PEDIDO_ID='$PEDIDO_ID'  and NOVEDAD in ('AGENDADO','AGENDADO FUTURO','ANULADO 42','ANULADO AXGAR','ANULADO APRCT','LLAMADA SIN INFORMACION-MUDA','CLIENTE NO CONTACTADO','NO PUEDE ATENDER LLAMADA','LLAMAR FUTURO','INCUMPLIMIENTO FECHA CITA HOY','SE BRINDA INFORMACION','YA ESTA ANULADO-PENDIENTE','YA ESTA CUMPLIDO-PENDIENTE','PENDIENTE RECONFIGURAR PEDIDO','CONFIRMA SOLUCION','CLIENTE NO AUTORIZA','CLIENTE ILOCALIZADO','CONFIRMADA','CONFIRMADA-DATOS ERRADOS','CLIENTES NOS ESPERA')  ),PROGRAMACION='',ASESOR='' WHERE ID=$parent ";
         }else if($novedad=='ANULADO 42'||$novedad=='ANULADO APRCT' ||$novedad=='ANULADO AXGAR' ||$novedad=='CAMBIO_NUMERO/PLAN' 
             ||$novedad=='ERROR SIEBEL 8.1' ||$novedad=='MIGRACION HFC' || $novedad=='NO DESEA EL SERVICIO' ||$novedad=='PEDIDO EN OTRO CONCEPTO' 
