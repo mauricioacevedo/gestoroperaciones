@@ -212,8 +212,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'demePedidoAgendamiento?userID=' + user + '&departamento=' + departamento + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&zona=' + zona + '&microzona=' + microzona + '&proceso=' + proceso + '&tipo_trabajo='+tipo_trabajo);
 	};
 
-	obj.demePedidoAgendamientomalo = function (user, pedido_actual, plaza, username) {
-		return $http.get(serviceBase + 'demePedidoAgendamientomalo?userID=' + user + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username);
+	obj.demePedidoAgendamientomalo = function (user, pedido_actual, plaza, username,proceso) {
+		return $http.get(serviceBase + 'demePedidoAgendamientomalo?userID=' + user + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&proceso=' + proceso);
 	};
 
 	obj.gestionPendientesInstaMalos=function (datosPendientes, datosGestion){
@@ -10298,7 +10298,7 @@ $scope.getDepartamentos = function () {
 		});
 
 	////////////////////////////////////////////////////////////////
-	
+
 	$scope.setProceso = function(proceso){
         $scope.proceso=proceso;
     };
@@ -10325,7 +10325,7 @@ $scope.getDepartamentos = function () {
 
 
 
-		var kami = services.demePedidoAgendamientomalo($rootScope.logedUser.login, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '').then(function (data) {
+		var kami = services.demePedidoAgendamientomalo($rootScope.logedUser.login, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, $scope.proceso).then(function (data) {
 			$scope.peds = data.data;
 			console.log(data.data);
 			if (data.data == '' || data.data == 'No hay registros!') {
