@@ -16152,7 +16152,7 @@ private function csvMalosAgendamientoReparaciones(){
             }
         }
 
-        $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo','fecha_estado','concepto_final','source');
+        $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo','fecha_estado','concepto_final','source','fecha_cita');
         $keys = array_keys($gestion['gestion']);
 
         if($usuario='undefined' || $usuario=''){$usuario = $usuarioGalleta;}
