@@ -9111,11 +9111,7 @@ private function csvMalosAgendamientoReparaciones(){
         //}
         //echo "WTF";
         $today = date("Y-m-d");
-         if($proceso!=""){
-            $proceso=" and b.PROCESO='$proceso' ";
-        }else{
-            $proceso="";
-        }
+       
         //1.consulto todo lo que tenga fecha cita de mañana
         $hora=date("G");
         $uphold="1";
@@ -9133,7 +9129,7 @@ private function csvMalosAgendamientoReparaciones(){
         //echo "este es el departamento" .$departamento;
         ##SE DEBE BUSCAR PRIMERO LOS PROGRAMADOS PARA ASIGNARLOS.....
         //PENDIENTE: COLOCAR CODIGO PARA TENER EN CUENTA LA PROGRAMACION....................
-        $sql="SELECT b.PEDIDO_ID, b.FECHA_CITA_FENIX, TIMEDIFF( b.PROGRAMACION, NOW( ) ) /3600, b.PROGRAMACION ".
+        $sql="SELECT b.PEDIDO_ID, b.FECHA_CITA_FENIX,b.proceso, TIMEDIFF( b.PROGRAMACION, NOW( ) ) /3600, b.PROGRAMACION ".
             " FROM gestor_pendientes_reagendamiento b ".
             " WHERE b.ASESOR =  '' ".
             " AND b.STATUS =  'MALO' ".
@@ -9171,7 +9167,7 @@ private function csvMalosAgendamientoReparaciones(){
         }
         if($parametroBusqueda=='') $parametroBusqueda ='FECHA_ESTADO';
 
-        $query1="select b.PEDIDO_ID,b.FECHA_CITA_FENIX ".
+        $query1="select b.PEDIDO_ID,b.FECHA_CITA_FENIX,b.proceso ".
             ",(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO_ID=a.pedido_id ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
             " from gestor_pendientes_reagendamiento b ".
@@ -9234,7 +9230,7 @@ private function csvMalosAgendamientoReparaciones(){
                 }
                 //2.traigo solo los pedidos mas viejos en la base de datos...
             } else {
-                $query1="select b.PEDIDO_ID, b.FECHA_CITA_FENIX ".
+                $query1="select b.PEDIDO_ID, b.FECHA_CITA_FENIX,b.proceso ".
                     " from gestor_pendientes_reagendamiento b ".
                     " where b.STATUS='MALO'  and b.ASESOR ='' ".
                     "  $departamento ".
