@@ -8523,6 +8523,7 @@ private function csvMalosAgendamientoReparaciones(){
         } else {
 
             $tabla = " from gestor_activacion_pendientes_activador_dom b " ;
+            $MOTIVO_ERROR = " and b.MOTIVOEXCEPCIONACT <> 'La Cuenta NO existe.' "; 
 
 
         }
@@ -8541,6 +8542,7 @@ private function csvMalosAgendamientoReparaciones(){
             "  $transaccion ".
             " $producto ".
             " $MOTIVOEXCEPCIONACT ".
+            "  $MOTIVO_ERROR ".
             " order by b.$parametroBusqueda  ASC";
 
         //echo $query1;
@@ -8627,6 +8629,7 @@ private function csvMalosAgendamientoReparaciones(){
             $transaccion.
             $producto.
             $MOTIVOEXCEPCIONACT.
+            $MOTIVO_ERROR.
             " group by b.pedido ";
 
 
