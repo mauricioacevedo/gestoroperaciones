@@ -9771,6 +9771,7 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 	$scope.zonas = {};
 	$scope.microzonas = {};
 	$scope.departamento = "";
+	$scope.proceso = "INSTALACION";
 
 
 	$scope.ordenamientoDemepedido = '';
@@ -9797,9 +9798,7 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 
 
 
- $scope.setProceso = function (proceso){
-        $scope.proceso=proceso;
-    };
+ 
 $scope.getDepartamentos = function () {
 
 		$scope.departamentos = {};
@@ -10299,6 +10298,7 @@ $scope.getDepartamentos = function () {
 		});
 
 	////////////////////////////////////////////////////////////////
+	
 	$scope.setProceso = function(proceso){
         $scope.proceso=proceso;
     };
