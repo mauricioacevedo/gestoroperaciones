@@ -866,7 +866,8 @@ class API extends REST {
             " ,TIPO_COMUNICACION,PRODUCTO,IDSERVICIORAIZ ".
             " ,TRANSACCION,CODIGO_CIUDAD,NOMBRE_CIUDAD ".
             " ,DEPARTAMENTO,FECHA_CARGA,STATUS ".
-            " from gestor_activacion_pendientes_activador_dom ";
+            " from gestor_activacion_pendientes_activador_dom ".
+            " WHERE STATUS='PENDI_ACTI'";
 
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
