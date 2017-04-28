@@ -9212,21 +9212,7 @@ private function csvMalosAgendamientoReparaciones(){
                     break;
                     //} //2016-04-12: SE QUITO VALIDACION CONTRA FENIX
 
-                    /*
-                                        if($rta['ESTADO_BLOQUEO']=='N'){//me sirve, salgo del ciclo y busco este pedido...
-                                                //echo "el pedido es: ".$row['PEDIDO_ID'];
-
-                                                if($row['BEENHERE']==$user){
-                                                        $pedidos_ignorados=$pedidos_ignorados.$row['PEDIDO_ID'].',';
-                                                        //este pedido ya lo vio el dia de hoy
-                                                        //busco otro pedido----
-                                                        continue;
-                                                }
-
-                                                $mypedido=$row['PEDIDO_ID'];
-                                                $mypedidoresult=$rta;
-                                                break;
-                                        }*/
+              
                 }
                 //2.traigo solo los pedidos mas viejos en la base de datos...
             } else {
@@ -9290,7 +9276,7 @@ private function csvMalosAgendamientoReparaciones(){
             $PROGRAMADO="";
         }
 
-        $query1="SELECT b.ID as PARENT_ID,b.PEDIDO_ID,b.FECHA_CITA_FENIX,b.CLIENTE_ID,b.CELULAR_AVISAR,b.CORREO_UNE,b.DIRECCION_ENVIO,b.E_MAIL_AVISAR,b.NOMBRE_USUARIO,b.FECHA_INGRESO,b.TELEFONO_AVISAR,b.CONCEPTOS,b.ACTIVIDADES,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_INGRESO),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL,b.MICROZONA,b.OBSERVACION_FENIX,b.FUENTE,b.TODAY_TRIES,b.PROGRAMACION,b.FECHA_ESTADO $PROGRAMADO,'AUTO' as source,(select a.NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID='$mypedido' order by a.ID desc limit 1) as HISTORICO_NOVEDAD from gestor_pendientes_reagendamiento b where b.PEDIDO_ID = '$mypedido' and b.STATUS='MALO' ";
+        $query1="SELECT b.ID as PARENT_ID,b.PEDIDO_ID,b.FECHA_CITA_FENIX,b.CLIENTE_ID,b.CELULAR_AVISAR,b.CORREO_UNE,b.DIRECCION_ENVIO,b.E_MAIL_AVISAR,b.NOMBRE_USUARIO,b.FECHA_INGRESO,b.TELEFONO_AVISAR,b.CONCEPTOS,b.ACTIVIDADES,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_INGRESO),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL,b.MICROZONA,b.OBSERVACION_FENIX,b.FUENTE,b.TODAY_TRIES,b.PROGRAMACION,b.PROCESO,b.FECHA_ESTADO $PROGRAMADO,'AUTO' as source,(select a.NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID='$mypedido' order by a.ID desc limit 1) as HISTORICO_NOVEDAD from gestor_pendientes_reagendamiento b where b.PEDIDO_ID = '$mypedido' and b.STATUS='MALO' ";
 
         //echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
