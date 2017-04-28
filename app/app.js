@@ -6574,7 +6574,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 			var dat = data.status;
 			//alert("'"+data.status+"'");
 			if (dat == 204) {
-				document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Plaza";
+				//document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Plaza";
 				$scope.error = "No hay Registros. Intente Cambiando de Plaza";
 			} else {
 
