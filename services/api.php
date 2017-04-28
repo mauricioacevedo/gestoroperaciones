@@ -16123,6 +16123,7 @@ private function csvMalosAgendamientoReparaciones(){
         */
 
         $pedidonuevo=$gestion['gestion']['nuevopedido'];
+        $gestion['gestion']['fecha_cita']="SIN AGENDA";
 
         if($conceptoId=="14" && $pedidonuevo!=""){
             $conna=getConnAgendamiento();
@@ -16133,19 +16134,25 @@ private function csvMalosAgendamientoReparaciones(){
 
             if ($result2 = $conna->query($sqlfechacita)) {
                 if($obj = $result2->fetch_object()){
+                        if( $obj->agm_fechacita=="0000-00-00"){
+                                $gestion['gestion']['fecha_cita']="SIN AGENDA";
+                        }else{
+                            $gestion['gestion']['fecha_cita']=$obj->agm_fechacita;
+                        }
+
                     /**
                     [OK]: Tiene una fecha cita futura, se puede guardar el pedido
                     */
                 }else{
                     //me debo devolver de aca ya que el pedido no ha sido agendado.....
                     $error="El pedido $pedidonuevo no tiene agenda para futuro. Por favor agendar.";
-                    $this->response ($this->json (array($error, $fuente, $estado, $malo, $programado)), 400);
-                    return;
+                    //$this->response ($this->json (array($error, $fuente, $estado, $malo, $programado)), 400);
+                    //return;
                 }
             }
         }
 
-        $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo','fecha_estado','concepto_final','source');
+        $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo','fecha_estado','concepto_final','source','fecha_cita');
         $keys = array_keys($gestion['gestion']);
 
         if($usuario='undefined' || $usuario=''){$usuario = $usuarioGalleta;}
