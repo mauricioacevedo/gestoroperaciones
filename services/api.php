@@ -9085,7 +9085,7 @@ private function csvMalosAgendamientoReparaciones(){
         $grupoGalleta   =   $galleta['GRUPO'];
         $user = $this->_request['userID'];
         $proceso = $this->_request['proceso'];
-        //$departamento = $this->_request['departamento'];
+        $departamento = $this->_request['departamento'];
         //$plaza = $this->_request['plaza'];
         // $microzona = $this->_request['microzona'];
         // $zona = $this->_request['zona'];
@@ -9139,7 +9139,7 @@ private function csvMalosAgendamientoReparaciones(){
             " AND b.STATUS =  'MALO' ".
             " AND TIMEDIFF( b.PROGRAMACION, NOW( ) ) /3600 <0 ".
             " and b.CONCEPTOS NOT LIKE '%REAGE%' ".
-            //$departamento.
+            $departamento.
             //$zona.
             //$microzona.
             " and (select count(*) from gestor_historicos_reagendamiento a where a.PEDIDO_ID=b.PEDIDO_ID and a.FECHA_FIN between '$today 00:00:00' and '$today 23:59:59') <=1 ".
@@ -9183,10 +9183,10 @@ private function csvMalosAgendamientoReparaciones(){
             " and b.CONCEPTOS NOT LIKE '%REAGE%' ".
             " AND (b.PROGRAMACION='' or b.PROGRAMACION is null ) ".
             " and (select count(*) from gestor_historicos_reagendamiento a where a.PEDIDO_ID=b.PEDIDO_ID and NOVEDAD IN ('ESCALADO CR','RECUPERAR EQUIPOS','RETIRAR ACCESO','ERROR SIEBEL','CUMPLIDO','PENDIENTE AGENDA','ANULADO','OTROS CONCEPTO ESCALADO','NO APLICA GESTION','DESINSTALAR','YA ESTA AGENDADO','ERRORES DE FACTURACION','INFORMACION-PARA CONFIRMAR LLEGADA DE TECNICO','ESCALAMIENTO INSTALACIONES ANTIOQUIA','INFORMACION GENERAL') ) <1 ".
-            //$departamento.
+            $departamento.
             //$zona.
             //$microzona.
-            $proceso.
+          //  $proceso.
             //" order by b.$parametroBusqueda ASC";
             " order by b.$parametroBusqueda $ordenamiento ";
         // var_dump($query1);
@@ -9239,7 +9239,7 @@ private function csvMalosAgendamientoReparaciones(){
                     " where b.STATUS='MALO'  and b.ASESOR ='' ".
                     "  $departamento ".
                     //$zona.
-                    $proceso.
+                    //$proceso.
                     " and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
                     " and (select NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID=b.PEDIDO_ID and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' order by id desc limit 1) not like '%AGENDADO%' ".
                     //$plaza.
