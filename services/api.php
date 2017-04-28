@@ -9183,7 +9183,7 @@ private function csvMalosAgendamientoReparaciones(){
                     " where b.STATUS='MALO'  and b.ASESOR ='' ".
                     $proceso.
                     " and (select NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID=b.PEDIDO_ID and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' order by id desc limit 1) not like '%AGENDADO%' ".
-                    " order by b.VIEWS,b.FECHA_ESTADO ASC";
+                    " order by b.VIEWS,b.FECHA_INGRESO ASC";
                 //echo $query1;
 
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
@@ -9244,7 +9244,8 @@ private function csvMalosAgendamientoReparaciones(){
         " ,(select a.NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID='$mypedido' order by a.ID desc limit 1) as HISTORICO_NOVEDAD ".
         " from gestor_pendientes_reagendamiento b where b.PEDIDO_ID = '$mypedido' ".
         $proceso.
-        " and b.STATUS='MALO' ";
+        " and b.STATUS='MALO' ".
+        " order by b.FECHA_INGRESO ASC";
 
 
         //echo $query1;
