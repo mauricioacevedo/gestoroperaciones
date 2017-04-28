@@ -8523,7 +8523,7 @@ private function csvMalosAgendamientoReparaciones(){
         } else {
 
             $tabla = " from gestor_activacion_pendientes_activador_dom b " ;
-            $MOTIVO_ERROR = " and b.MOTIVOEXCEPCIONACT <> 'La Cuenta NO existe.' "; 
+            $MOTIVO_ERROR = " and b.MOTIVO_ERROR <> 'La Cuenta NO existe.' "; 
 
 
         }
