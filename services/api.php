@@ -1071,7 +1071,7 @@ class API extends REST {
         $filename="Activacion-Fenix_NAL-$login-$today.csv";
 
         $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION,TRANSACCION ".
-            " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,OBSERVACION_ID,PSR,NUMERO_PSR ".  
+            " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,OBSERVACION,PSR,NUMERO_PSR ".  
             " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
             " from gestor_historico_activacion ".
             "where fecha_fin between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' $filtro ";;
@@ -1083,7 +1083,7 @@ class API extends REST {
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
 
-            fputcsv($fp, array( 'ORDER_SEQ_ID','PEDIDO','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','TRANSACCION','PRODUCTO','ASESOR','FECHA_GESTION','TIPIFICACION','FECHA_INICIO','FECHA_FIN','OBSERVACION_ID','PSR','NUMERO_PSR','DURACION'));
+            fputcsv($fp, array( 'ORDER_SEQ_ID','PEDIDO','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','TRANSACCION','PRODUCTO','ASESOR','FECHA_GESTION','TIPIFICACION','FECHA_INICIO','FECHA_FIN','OBSERVACION','PSR','NUMERO_PSR','DURACION'));
 
             while($row = $r->fetch_assoc()){
                 //$result[] = $row;
