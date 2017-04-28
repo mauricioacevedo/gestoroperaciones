@@ -1,72 +1,43 @@
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<div class = "panel panel-default">
-				<div class = "panel-heading">
-					<b><i class="fa fa-bars" aria-hidden="true"></i> DemePedido Malo</b>
-					<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+<ol class="breadcrumb">
+  <li><a href="./#/">Auditoria</a></li>
+  
+</ol>
 
-				</div>
+<div class="row"><!--Row DemePedido -->
+<div class="panel panel-info">
+  <div class="panel-heading">
+      <div class="row"><!--Row Concepto Plaza - -->
+      
+ <div class="col-lg-8 col-xs-8 form-inline">
+          <label  for="proceso">Proceso:</label>
+                 <td><select class= "form-control" ng-model="proceso">
+                                <option value="INSTALACION">INSTALACION</option>
+                                <option value="REPARACION">REPARACION</option>
 
-				<div class = "panel-heading nav navbar-default">
+                                </select>
+        
 
-					<div class="col-lg-12 col-xs-10">
-						<ul class="nav navbar-nav navbar-left">
-                              <li>
-								<i class="fa fa-globe" aria-hidden="true"> </i>&nbsp;
+        </div>
+       
+    
+        <div class="col-lg-4 col-xs-4">
 
-								<select
-									class= "btn btn-default btn-xs grupo-select"
-									style="width: 200px"
-									ng-model="proceso" class="form-control">
-									 <option value="INSTALACION">INSTALACION</option>
-                    <option value="REPARACION">REPARACION</option>
-
-								</select>
-
-							</li>
-   
-                       
-                            <li>&nbsp;</li>                      
-						
-	
-							<li>
-                    <button id="ped" type="button" class="btn btn-xs btn-default"  ng-show="pedidoIsActive" ng-class="pedidoIsActive==false?'animated bounceOutRight':'animated fadeInUp'" ng-click="executeCopy(pedidoinfo)" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="<i class='fa fa-clipboard'></i> Copiar">{{pedidoinfo}}
-                  </button>
-								 <button id="iniciar" type="button" class="form-control btn-group btn btn-md btn-danger" ng-click="start(pedido);">Deme Pedido Malo</button>
+            <form class="form-inline" role="form">
+                <div class="btn-group"> 
                   
+                    <button id="iniciar" type="button" class="form-control btn-group btn btn-md btn-danger" ng-click="start(pedido);">Deme Pedido Malo</button>
 
-							</li>
-						</ul>
-                        <ul class="nav navbar-nav navbar-right">
-							<li>
-								<div class="col-lg-1 col-xs-1">
-									<div class="loading-spiner-holder" data-loading ><div class="loading-spiner"><img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="images/loader.gif" /></div></div>
-							 </div></li>
-							<li>
-								<div class="btn-group">
-									 <input type="text" size="10px" class="form-control btn-group btn btn-md btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Pedido" ng-model="bpedido">
+                 <input type="text" size="10px" class="form-control btn-group btn btn-md btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Pedido" ng-model="bpedido">
                 <button type="button" class="form-control btn btn-md btn-primary"  title="Buscar Pedido" data-toggle="tooltip" data-placement="top" ng-click="buscarPedidoAgendamientoAuditoria(bpedido);"><i class="fa fa-search" aria-hidden="true"></i></button>
                  <button id="manual" type="button" class="form-control btn btn-md btn-warning" title="Ingrese Pedido Manual" data-toggle="tooltip" data-placement="top" ng-click="manual();"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
-									<i class="fa fa-search-plus" aria-hidden="true"> </i>
-									</button>
-								</div>
-							</li>
-							<li> &nbsp;</li>
+              </div>
 
-					</div>
-
-				</div>
-
-				<div class="panel-body fixed-panel ">
-					<div class="container-fluid"  ng-show="pedidoIsActive==false">
-						<div class="jumbotron animated bounceInRight ">
-							<center><h3>Gestión Pendientes Malos</h3></center>
-						</div>
-
-					</div>
-
-					<div class="panel-body">
+          </form>
+       </div>   
+     </div><!--Row Concepto Plaza - Buscador Tips -->
+   </div><!--Panel Heading -->           
+    
+  <div class="panel-body">
 
     <div class="row"><!--Row Deme Pedido -->
  
@@ -75,8 +46,16 @@
       </div><!--Muestra error cuando no hay pedidos -->
 
           <div class="col-lg-12 col-xs-12">
+            <div class="row">
+                <div  class="container" ng-hide="departamento!='' || bpedido!=''">
+                  <div class="jumbotron">
+                    <center><h3> Presione <strong>DemePedido</strong> para obtener el pedido.</h3></center>
+                  </div>
+                </div>
+              </div>
+              
            
- <table class="table small table-striped table-hover table-bordered table-condensed" width="300" style="width: auto !important;" ng-show="mpedido.active==1">
+  <table class="table small table-striped table-hover table-bordered table-condensed" width="300" style="width: auto !important;" ng-show="mpedido.active==1">
                    <thead>
                           <th>Pedido</th>
                            <th>Fuente</th>
@@ -404,50 +383,24 @@
                                         <option value="DESINSTALAR">DESINSTALAR</option>
 
                                 </select></td>
-                                    </div>
-                                </div>
 
-                            </div>
-                        </div>
-					</div>
-
-				</div><!--Panel Body -->
-
-                 <div class="panel-footer clearfix" >
-                     <div class="col-md-6" >
-                        <!--Campos futuros en footer izquierda -->
-                        <ul class="nav navbar-nav navbar-left animated bounceInRight" ng-show="pedidoIsActive" >
-                             <li><span class="label label-primary" tooltip data-placement="top" title="Prioridad">{{prioridadPedido || 'Normal'}}</span>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="nav navbar-nav" ng-class="pedidoIsGuardado==false?'animated bounceOutRight':'animated bounceInRight'" ng-show="pedidoIsGuardado==true">
-                                <span class="label label-primary">Pedido Guardado</span>&nbsp;
-
-                            </li>
-                            <li>&nbsp; | &nbsp;</li>
-                            <li>
-                                <div ng-hide="true">
-                                    
-                                 <<button id="mybutt{{$index}}" type="button" class="btn btn-md btn-danger" ng-click="saveAuditoria($index)" ><span id="class{{$index}}"></span>&nbsp; Guardar</button>
+                                <td>
+                                <!--button ng-show="isAuthorized(service.CONCEPTO_ID);" id="mybutt{{$index}}" type="button" class="btn btn-md btn-success" ng-click="savePedido($index)" ><span id="class{{$index}}"></span>&nbsp; Guardar</button-->
+                                <button id="mybutt{{$index}}" type="button" class="btn btn-md btn-danger" ng-click="saveAuditoria($index)" ><span id="class{{$index}}"></span>&nbsp; Guardar</button>
                                 </td>
 
-                            </li>
-                            <li>&nbsp; | &nbsp;</li>
-                              
+                        </tr>
+                        </table>
+                                      <!--td><button id="iniciar" type="button" class="btn btn-md btn-success" onclick="javascript:activar();">Iniciar</a></td-->
+                        <div id="warning" ng-model="warnin"></div>
 
-                        </ul>
-                    </div>
-                </div><!--Panel Footer -->
+                         </form>
+               </div>
             </div>
+    </div>
+  </div>
+</div><!--Row DemePedido -->
 
-        </div>
-    </div><!--Row 1 Novedades -->
-</div><!--Container ppal -->
-<!-- Modal Historico Pedidos-->
 
 
 
