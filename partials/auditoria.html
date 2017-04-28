@@ -10,11 +10,12 @@
       
  <div class="col-lg-8 col-xs-8 form-inline">
           <label  for="proceso">Proceso:</label>
-                 <td><select class= "form-control" ng-model="proceso">
+                 <td><select ng-model="proceso" class="form-control" ng-change="setProceso(proceso)">
                                 <option value="INSTALACION">INSTALACION</option>
                                 <option value="REPARACION">REPARACION</option>
 
                                 </select>
+                              
         
 
         </div>
