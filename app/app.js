@@ -10299,6 +10299,9 @@ $scope.getDepartamentos = function () {
 		});
 
 	////////////////////////////////////////////////////////////////
+	$scope.setProceso = function(proceso){
+        $scope.proceso=proceso;
+    };
 
 
 	$scope.start = function (pedido) {

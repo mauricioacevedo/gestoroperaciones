@@ -9121,53 +9121,24 @@ private function csvMalosAgendamientoReparaciones(){
             $uphold="2";
         }
         //14B2B
-        $llamadaReconfiguracion="0";
 
         $mypedido="";
 
-
-        //echo "este es el departamento" .$departamento;
-        ##SE DEBE BUSCAR PRIMERO LOS PROGRAMADOS PARA ASIGNARLOS.....
-        //PENDIENTE: COLOCAR CODIGO PARA TENER EN CUENTA LA PROGRAMACION....................
-        $sql="SELECT b.PEDIDO_ID, b.FECHA_CITA_FENIX,b.proceso, TIMEDIFF( b.PROGRAMACION, NOW( ) ) /3600, b.PROGRAMACION ".
-            " FROM gestor_pendientes_reagendamiento b ".
-            " WHERE b.ASESOR =  '' ".
-            " AND b.STATUS =  'MALO' ".
-            " AND TIMEDIFF( b.PROGRAMACION, NOW( ) ) /3600 <0 ".
-            " and b.CONCEPTOS NOT LIKE '%REAGE%' ".
-            $departamento.
-            //$zona.
-            //$microzona.
-            " and (select count(*) from gestor_historicos_reagendamiento a where a.PEDIDO_ID=b.PEDIDO_ID and a.FECHA_FIN between '$today 00:00:00' and '$today 23:59:59') <=1 ".
-            " and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
-            " ORDER BY PROGRAMACION ASC ";
-        //PENDIENTE: COLOCAR CODIGO PARA TENER EN CUENTA LA PROGRAMACION....................
-        $PROGRAMADO="NOT";
-        //echo $sql;
-
-        /*
-            $rr = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
-
-                        if($rr->num_rows > 0){//recorro los registros de la consulta para
-                                   while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO
-                                        $result[] = $row;
-                                        $mypedido=$row['PEDIDO_ID'];
-                    $PROGRAMADO=$row['PROGRAMACION'];
-                                        $mypedidoresult=$rta;
-                                        break;
-                                    }
-                        }
-		*/
-
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO');
         $ordenamiento = $this->buscarParametroFechaDemePedido('PRIORIDAD_DEMEPEDIDO_AGENDAMIENTO');
+        
+          if($proceso!=""){
+            $proceso=" and b.PROCESO='$proceso' ";
+        }else{
+            $proceso="";
+        }
 
         if($prioridad!=''){
             $parametroBusqueda=$prioridad;
         }
         if($parametroBusqueda=='') $parametroBusqueda ='FECHA_ESTADO';
 
-        $query1="select b.PEDIDO_ID,b.FECHA_CITA_FENIX,b.proceso ".
+        $query1="select b.PEDIDO_ID,b.FECHA_CITA_FENIX".
             ",(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO_ID=a.pedido_id ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
             " from gestor_pendientes_reagendamiento b ".
@@ -9175,19 +9146,11 @@ private function csvMalosAgendamientoReparaciones(){
             " and b.ASESOR ='' ".
             " and (b.FECHA_CITA_FENIX < CURDATE() OR b.FECHA_CITA_FENIX='9999-00-00') ".
             " and (b.FECHA_CITA_REAGENDA < CURDATE() OR b.FECHA_CITA_REAGENDA='9999-00-00' OR b.FECHA_CITA_REAGENDA='') ".
-            " and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
             " and b.CONCEPTOS NOT LIKE '%REAGE%' ".
             " AND (b.PROGRAMACION='' or b.PROGRAMACION is null ) ".
             " and (select count(*) from gestor_historicos_reagendamiento a where a.PEDIDO_ID=b.PEDIDO_ID and NOVEDAD IN ('ESCALADO CR','RECUPERAR EQUIPOS','RETIRAR ACCESO','ERROR SIEBEL','CUMPLIDO','PENDIENTE AGENDA','ANULADO','OTROS CONCEPTO ESCALADO','NO APLICA GESTION','DESINSTALAR','YA ESTA AGENDADO','ERRORES DE FACTURACION','INFORMACION-PARA CONFIRMAR LLEGADA DE TECNICO','ESCALAMIENTO INSTALACIONES ANTIOQUIA','INFORMACION GENERAL') ) <1 ".
-            $departamento.
-            //$zona.
-            //$microzona.
-          //  $proceso.
-            //" order by b.$parametroBusqueda ASC";
             " order by b.$parametroBusqueda $ordenamiento ";
-        // var_dump($query1);
-        //echo "\nmypedicure: $mypedido";
-        //echo $query1;
+
         if($mypedido==""){
 
             $rr = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
@@ -9197,9 +9160,7 @@ private function csvMalosAgendamientoReparaciones(){
                 while($row = $rr->fetch_assoc()){
                     $result[] = $row;
 
-                    //$rta=$this->pedidoOcupadoFenix($row);
-                    //if($rta=="No rows!!!!"){//me sirve, salgo del ciclo y busco este pedido...
-                    //echo "el pedido es: ".$row['PEDIDO_ID'];
+                    
                     if($row['BEENHERE']==$user){
                         $pedidos_ignorados=$pedidos_ignorados.$row['PEDIDO_ID'].',';
                         //este pedido ya lo vio el dia de hoy
@@ -9216,16 +9177,10 @@ private function csvMalosAgendamientoReparaciones(){
                 }
                 //2.traigo solo los pedidos mas viejos en la base de datos...
             } else {
-                $query1="select b.PEDIDO_ID, b.FECHA_CITA_FENIX,b.proceso ".
+                $query1="select b.PEDIDO_ID, b.FECHA_CITA_FENIX ".
                     " from gestor_pendientes_reagendamiento b ".
                     " where b.STATUS='MALO'  and b.ASESOR ='' ".
-                    "  $departamento ".
-                    //$zona.
-                    //$proceso.
-                    " and (b.MIGRACION='NO' or b.MIGRACION='' or b.MIGRACION is null ) ".
                     " and (select NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID=b.PEDIDO_ID and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' order by id desc limit 1) not like '%AGENDADO%' ".
-                    //$plaza.
-                    //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
                     " order by b.VIEWS,b.FECHA_ESTADO ASC";
                 //echo $query1;
 
@@ -9276,7 +9231,19 @@ private function csvMalosAgendamientoReparaciones(){
             $PROGRAMADO="";
         }
 
-        $query1="SELECT b.ID as PARENT_ID,b.PEDIDO_ID,b.FECHA_CITA_FENIX,b.CLIENTE_ID,b.CELULAR_AVISAR,b.CORREO_UNE,b.DIRECCION_ENVIO,b.E_MAIL_AVISAR,b.NOMBRE_USUARIO,b.FECHA_INGRESO,b.TELEFONO_AVISAR,b.CONCEPTOS,b.ACTIVIDADES,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_INGRESO),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL,b.MICROZONA,b.OBSERVACION_FENIX,b.FUENTE,b.TODAY_TRIES,b.PROGRAMACION,b.PROCESO,b.FECHA_ESTADO $PROGRAMADO,'AUTO' as source,(select a.NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID='$mypedido' order by a.ID desc limit 1) as HISTORICO_NOVEDAD from gestor_pendientes_reagendamiento b where b.PEDIDO_ID = '$mypedido' and b.STATUS='MALO' ";
+        $query1=" SELECT b.ID as PARENT_ID,b.PEDIDO_ID,b.FECHA_CITA_FENIX ".
+        " ,b.CLIENTE_ID,b.CELULAR_AVISAR,b.CORREO_UNE,b.DIRECCION_ENVIO ".
+        " ,b.E_MAIL_AVISAR,b.NOMBRE_USUARIO,b.FECHA_INGRESO,b.TELEFONO_AVISAR ".
+        " ,b.CONCEPTOS,b.ACTIVIDADES ".
+        " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_INGRESO),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
+        " ,b.MICROZONA,b.OBSERVACION_FENIX,b.FUENTE,b.TODAY_TRIES ".
+        " ,b.PROGRAMACION,b.PROCESO,b.FECHA_ESTADO $PROGRAMADO ".
+        " ,'AUTO' as source ".
+        " ,(select a.NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID='$mypedido' order by a.ID desc limit 1) as HISTORICO_NOVEDAD ".
+        " from gestor_pendientes_reagendamiento b where b.PEDIDO_ID = '$mypedido' ".
+        $proceso.
+        " and b.STATUS='MALO' ";
+
 
         //echo $query1;
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
