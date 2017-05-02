@@ -11400,8 +11400,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.accRdy = false;
 	$scope.FECHA_GESTION = null;
 	$scope.FECHA_CREACION = null;
-    $scope.FECHA_INICIO = null;
-	$scope.FECHA_FIN = null;
+	$scope.fecha_inicio = null;
+	$scope.fecha_fin = null;
 	$scope.transaccion = 'Suspender';
     $scope.tabla = 'ACTIVADOR_SUSPECORE';
     $scope.listaOpcionesGestion = [];
@@ -11463,7 +11463,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.pedidoIsGuardado = false;
         $scope.InfoPedido.NUMERO_CR = '';
 		$scope.InfoPedido.OBSERVACION = '';
-
+		
 
 
 
