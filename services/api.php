@@ -16873,8 +16873,14 @@ private function csvMalosAgendamientoReparaciones(){
 
             $sqlok = true;
         }else{
+            $alarmados = array(
+                array('RESPONSABLE'=>'ACTI', 'CANTIDAD'=>0),
+                array('RESPONSABLE'=>'ASIG', 'CANTIDAD'=>0),
+                array('RESPONSABLE'=>'RECO', 'CANTIDAD'=>0)
+
+            );
             $error = "No hay datos.";
-            $sqlok = false;
+            $sqlok = tru;
         }
 
        if($horaServidor>=16){
@@ -16923,8 +16929,14 @@ private function csvMalosAgendamientoReparaciones(){
 
             $sqlok = true;
         }else{
+            $alarmadosHist = array(
+                array('RESPONSABLE'=>'ACTI', 'CANTIDAD'=>0),
+                array('RESPONSABLE'=>'ASIG', 'CANTIDAD'=>0),
+                array('RESPONSABLE'=>'RECO', 'CANTIDAD'=>0)
+
+            );
             $error = "No hay datos.";
-            $sqlok = false;
+            $sqlok = true;
         }
 
         $sqlAlarmadosRecuperados = "select ".
