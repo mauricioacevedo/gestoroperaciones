@@ -6710,7 +6710,7 @@ private function csvMalosAgendamientoReparaciones(){
             }
         }
         $query=" SELECT count(*) as counter ".
-            " FROM portalbd.gestor_activacion_pendientes_activador_dom ";
+            " FROM portalbd.gestor_activacion_pendientes_activador_dom where status='PENDI_ACTI'";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter4=0;
