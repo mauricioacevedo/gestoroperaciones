@@ -8032,7 +8032,7 @@ private function csvMalosAgendamientoReparaciones(){
         $user=strtoupper($user);
         $today = date("Y-m-d");
 
-        //1.consulto todo lo que tenga fecha cita de mañana
+        //1.consulto  lo que tenga fecha cita de mañana
         $hora=date("G");
         $uphold="1";
         if($hora<11){
@@ -8389,7 +8389,8 @@ private function csvMalosAgendamientoReparaciones(){
             " b.CELULAR_AVISAR, ".
             " b.TELEFONO_AVISAR,	".
             " b.PROGRAMACION, ".
-            " case when b.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ALTA' else 'NORMAL' end as PRIORIDAD 	".
+            " case when b.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ALTA' else 'NORMAL' end as PRIORIDAD, 	".
+            " b.APROVISIONADOR ".
             " from informe_petec_pendientesm b 	".
             " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto ";
 
@@ -16873,8 +16874,14 @@ private function csvMalosAgendamientoReparaciones(){
 
             $sqlok = true;
         }else{
+            $alarmados = array(
+                array('RESPONSABLE'=>'ACTI', 'CANTIDAD'=>0),
+                array('RESPONSABLE'=>'ASIG', 'CANTIDAD'=>0),
+                array('RESPONSABLE'=>'RECO', 'CANTIDAD'=>0)
+
+            );
             $error = "No hay datos.";
-            $sqlok = false;
+            $sqlok = tru;
         }
 
        if($horaServidor>=16){
@@ -16923,8 +16930,14 @@ private function csvMalosAgendamientoReparaciones(){
 
             $sqlok = true;
         }else{
+            $alarmadosHist = array(
+                array('RESPONSABLE'=>'ACTI', 'CANTIDAD'=>0),
+                array('RESPONSABLE'=>'ASIG', 'CANTIDAD'=>0),
+                array('RESPONSABLE'=>'RECO', 'CANTIDAD'=>0)
+
+            );
             $error = "No hay datos.";
-            $sqlok = false;
+            $sqlok = true;
         }
 
         $sqlAlarmadosRecuperados = "select ".
@@ -16970,8 +16983,14 @@ private function csvMalosAgendamientoReparaciones(){
 
             $sqlok = true;
         }else{
+            $alarmadosRecu = array(
+                array('RESPONSABLE'=>'ACTI', 'CANTIDAD'=>0),
+                array('RESPONSABLE'=>'ASIG', 'CANTIDAD'=>0),
+                array('RESPONSABLE'=>'RECO', 'CANTIDAD'=>0)
+
+            );
             $error = "No hay datos.";
-            $sqlok = false;
+            $sqlok = true;
         }
 
 
