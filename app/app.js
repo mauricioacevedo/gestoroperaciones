@@ -14167,6 +14167,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 $scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
                 $scope.prioridadPedido=$scope.peds[0].PRIORIDAD;
                 $scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
+                $scope.info.APROVISIONADOR=$scope.peds[0].APROVISIONADOR;
                 $scope.pedidoIsActive = true;
                 $rootScope.errorDatos = null;
                 $scope.fecha_inicio = $rootScope.fechaProceso();
