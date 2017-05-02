@@ -92,7 +92,10 @@
                             <div class = "panel panel-default">
                                 <div class = "panel-heading">
                                     <b><i class="fa fa-tasks" aria-hidden="true"> </i> INFORMACIÓN</b>
-                                    <span class="pull-right">Concepto: <span class="btn btn-info btn-xs">{{info.CONCEPTO_ID}}</span></span>
+                                    <span class="pull-right">
+                                        Concepto: <span class="btn btn-info btn-xs">{{info.CONCEPTO_ID}} </span>
+                                        Aprovisionador: <span class="btn btn-info btn-xs">{{info.APROVISIONADOR}} </span>
+                                    </span>
                                 </div>
                                 <div class="panel-body">
                                     <ul class="list-group" ng-repeat="service in peds  as gestion" >
