@@ -16970,7 +16970,12 @@ private function csvMalosAgendamientoReparaciones(){
 
             $sqlok = true;
         }else{
-            $alarmadosRecu = array('ACTI'=>0, 'ASIG'=>0,'RECO'=>0);
+            $alarmadosRecu = array(
+                array('RESPONSABLE'=>'ACTI', 'CANTIDAD'=>0),
+                array('RESPONSABLE'=>'ASIG', 'CANTIDAD'=>0),
+                array('RESPONSABLE'=>'RECO', 'CANTIDAD'=>0)
+
+            );
             $error = "No hay datos.";
             $sqlok = true;
         }
