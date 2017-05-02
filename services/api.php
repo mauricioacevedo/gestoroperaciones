@@ -6688,7 +6688,7 @@ private function csvMalosAgendamientoReparaciones(){
             }
         }
         $query=" SELECT count(*) as counter ".
-            " FROM portalbd.gestor_activacion_pendientes_activador_suspecore where status='PENDI_ACTI' and MOTIVOEXCEPCIONACT <> 'La Cuenta NO existe. ";
+            " FROM portalbd.gestor_activacion_pendientes_activador_suspecore where status='PENDI_ACTI' and MOTIVOEXCEPCIONACT <> 'La Cuenta NO existe.' ";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter1=0;
@@ -6710,7 +6710,7 @@ private function csvMalosAgendamientoReparaciones(){
             }
         }
         $query=" SELECT count(*) as counter ".
-            " FROM portalbd.gestor_activacion_pendientes_activador_dom where status='PENDI_ACTI' and MOTIVO_ERROR <> 'La Cuenta NO existe.";
+            " FROM portalbd.gestor_activacion_pendientes_activador_dom where status='PENDI_ACTI' and MOTIVO_ERROR <> 'La Cuenta NO existe.'";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter4=0;
