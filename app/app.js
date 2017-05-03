@@ -11573,7 +11573,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		var pedido1 = '';
 		$scope.popup = '';
-		$rootScope.errorDatos = "";
+		$rootScope.errorDatos = null;
 		$scope.InfoPedido = [];
         $scope.fecha_inicio = null;
 		$scope.FECHA_CREACION = null;
