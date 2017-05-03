@@ -6254,6 +6254,9 @@ private function csvMalosAgendamientoReparaciones(){
             "    , (Select  p.motivo_malo as motivo  ".
             "    from portalbd.pedidos p   ".
             "    where p.id = (select max(d.id) from portalbd.pedidos d where d.estado='MALO'  and d.pedido_id=pm.pedido_id group by d.pedido_id)) as MOTIVO_MALO ".
+            "    , (Select  p.INCIDENTE ".
+            "    from portalbd.pedidos p   ".
+            "    where p.id = (select max(d.id) from portalbd.pedidos d where d.estado='MALO'  and d.pedido_id=pm.pedido_id group by d.pedido_id)) as INCIDENTE ".
             "    , (Select  p.user as motivo  ".
             "    from portalbd.pedidos p  ".
             "    where p.id = (select max(d.id) from portalbd.pedidos d where d.estado='MALO'  and d.pedido_id=pm.pedido_id group by d.pedido_id)) as USUARIO ".
