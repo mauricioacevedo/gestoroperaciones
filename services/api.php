@@ -17169,6 +17169,7 @@ private function csvMalosAgendamientoReparaciones(){
             $fp = fopen("../tmp/$filename", 'w');
             fputcsv($fp, array('PEDIDO_ID',
                 'ESTADO_GESTOR',
+                'PROGRAMACION',
                 'RADICADO_TEMPORAL',
                 'OBSERVACIONES',
                 'RESPONSABLE',
