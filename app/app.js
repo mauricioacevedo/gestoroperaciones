@@ -11715,7 +11715,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			TIEMPO_TOTAL: $scope.TIEMPO_TOTAL,
             DURACION: $scope.duracion,
 			STATUS: gestion.STATUS,
-			TIPIFICACION: $scope.tipificacion,
+			TIPIFICACION: InfoPedido.tipificacion,
             TABLA: $scope.tabla,
 		};
 
