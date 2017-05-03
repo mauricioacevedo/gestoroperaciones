@@ -8165,7 +8165,7 @@ private function csvMalosAgendamientoReparaciones(){
 
             $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION');
             //reviso si hay llamadas que se deben hacer y las entrego de primeras
-            $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA ".
+            $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA, PROGRAMACION ".
                 " FROM  informe_petec_pendientesm ".
                 " WHERE ".
                 " TIMEDIFF( NOW() , PROGRAMACION ) /3600 >0 ".
@@ -8180,6 +8180,7 @@ private function csvMalosAgendamientoReparaciones(){
                 while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
                     $result[] = $row;
                     $mypedido=$row['PEDIDO_ID'];
+                    $fechaprogramacion = $row['PROGRAMACION'];
                     $mypedidoresult=$rta;
                     break;
                 }
@@ -8433,6 +8434,7 @@ private function csvMalosAgendamientoReparaciones(){
             while($row = $r->fetch_assoc()){
                 $observaciones = $this->quitar_tildes(utf8_encode($row['OBSERVACIONES']));
                 $row['OBSERVACIONES'] = $observaciones;
+                $row['PROGRAMACION']= $fechaprogramacion ;
                 $result[] = $row;
                 $ids=$ids.$sep.$row['ID'];
                 $sep=",";
