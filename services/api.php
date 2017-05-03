@@ -6274,7 +6274,7 @@ private function csvMalosAgendamientoReparaciones(){
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','FECHA_CITA','FECHA_INGRESO','FECHA_ESTADO','CONCEPTO_ID', 'FUENTE','STATUS','MOTIVO_MALO','USUARIO','FECHAMALO'));
+            fputcsv($fp, array('PEDIDO_ID','FECHA_CITA','FECHA_INGRESO','FECHA_ESTADO','CONCEPTO_ID', 'FUENTE','STATUS','MOTIVO_MALO','INCIDENTE','USUARIO','FECHAMALO'));
             while($row = $r->fetch_assoc()){
                 $result[] = $row;
                 fputcsv($fp, $row);
