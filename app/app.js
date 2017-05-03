@@ -5557,9 +5557,9 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         {value: 'TELEV EN PETEC', text: 'TELEV EN PETEC'}
     ];
 
-    $scope.updateStatus = function(data) {
+    $scope.updateStatus = function(data, updobs) {
     	//console.log(data);
-        return $http.post('services/actualizarSatusPedidosAsignacion', {id: data.ID, pedido: data.PEDIDO_ID, status:data.STATUS, obs:data.OBS, usuario:userID});
+        return $http.post('services/actualizarSatusPedidosAsignacion', {id: data.ID, pedido: data.PEDIDO_ID, status:data.STATUS, obs:data.OBS, usuario:userID, updateobs:updobs});
     };
 
     //$scope.listarPedidosAuditados();
