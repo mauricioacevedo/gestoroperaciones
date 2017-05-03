@@ -11583,7 +11583,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.pedidoIsGuardado = false;
 		$scope.pedidoActual = pedidoinfo;
 		$scope.buscar = buscar;
-        //$scope.peds={};
+        $scope.peds={};
        // $scope.pedidoIsActive=false;
 
 console.log($scope.InfoGestion);
@@ -11634,7 +11634,7 @@ console.log($scope.InfoGestion);
 
               		 $scope.listarOpcionesAsginacion(opciones);
 
-					//	$rootScope.errorDatos = null;
+						$rootScope.errorDatos = null;
 						$scope.pedidoIsActive = true;
 
                         console.log($scope.peds);
