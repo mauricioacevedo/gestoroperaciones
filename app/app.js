@@ -14229,7 +14229,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			$scope.habilitaCr			= true;
 			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
 		}else{
-			$scope.habilitaCr			= false;
+			$scope.habilitaCr			= true;
 			var kami = services.buscarPedidoReconfiguracion(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login);
 		}
 
