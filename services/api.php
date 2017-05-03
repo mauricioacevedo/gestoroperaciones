@@ -6706,7 +6706,8 @@ private function csvMalosAgendamientoReparaciones(){
         }
 
         $query=" SELECT count(*) as counter  FROM gestor_historico_activacion ".
-                 " where fecha_fin between '$fechaini 00:00:00' ";
+                " where fecha_fin between '$fechaini 00:00:00' ".
+                " and '$fechafin 23:59:59'  order by fecha_fin desc ";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter5=0;
