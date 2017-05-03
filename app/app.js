@@ -11483,7 +11483,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.InfoPedido.OBSERVACION = '';
 		
 
-	console.log($scope.InfoGestion);		
+	//console.log($scope.InfoGestion);		
 
 
 		if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
@@ -11507,7 +11507,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 			$scope.peds = data.data;
-			console.log($scope.peds);
+			//console.log($scope.peds);
 			//$scope.TIEMPO_TOTAL = $scope.peds[0].TIEMPO_TOTAL;
             //console.log($scope.peds[0].PEDIDO);
 
@@ -11539,7 +11539,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 					grupo: $scope.peds[0].GRUPO,
 					actividad: $scope.peds[0].ACTIVIDAD
                 };
-                console.log(data.data);
+              //  console.log(data.data);
 
                $scope.listarOpcionesAsginacion(opciones);
 
@@ -11583,10 +11583,10 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.pedidoIsGuardado = false;
 		$scope.pedidoActual = pedidoinfo;
 		$scope.buscar = buscar;
-        $scope.peds={};
+        //$scope.peds={};
        // $scope.pedidoIsActive=false;
 
-console.log($scope.InfoGestion);
+		//console.log($scope.InfoGestion);
 
 		var kami = services.getBuscarpedidoactivacion(buscar,$scope.tabla, $rootScope.logedUser.login).then(
 
@@ -11637,7 +11637,7 @@ console.log($scope.InfoGestion);
 						$rootScope.errorDatos = null;
 						$scope.pedidoIsActive = true;
 
-                        console.log($scope.peds);
+                       // console.log($scope.peds);
 						return data.data;
 					}
 				}
