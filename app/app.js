@@ -11634,7 +11634,7 @@ console.log($scope.InfoGestion);
 
               		 $scope.listarOpcionesAsginacion(opciones);
 
-						$rootScope.errorDatos = null;
+					//	$rootScope.errorDatos = null;
 						$scope.pedidoIsActive = true;
 
                         console.log($scope.peds);
