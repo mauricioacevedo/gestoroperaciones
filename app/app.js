@@ -14118,13 +14118,13 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         $scope.pedidoIsGuardado 	= false;
         $scope.programar			= false;
         $scope.pedidoIsActive		= false;
-        $scope.habilitaCr			= false;
+        $scope.habilitaCr			= true;
         $scope.buscar				= '';
         //$scope.estadoGuardo			= false;
 
-        if($scope.iconcepto.FUENTE=='SIEBEL'){
+        /*if($scope.iconcepto.FUENTE=='SIEBEL'){
             $scope.habilitaCr			= true;
-        }
+        }*/
 
 
         if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
