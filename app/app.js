@@ -11472,7 +11472,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		var pedido1 = '';
 		$scope.popup = '';
 		$rootScope.errorDatos = null;
-		$scope.InfoPedido = [];
+		//$scope.InfoPedido = [];
+		$scope.InfoPedido = {};
 		//$scope.InfoGestion = [];
 		$scope.FECHA_CREACION = null;
         $scope.fecha_inicio = null;
@@ -11574,7 +11575,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		var pedido1 = '';
 		$scope.popup = '';
 		$rootScope.errorDatos = null;
-		$scope.InfoPedido = [];
+		//$scope.InfoPedido = [];
+		$scope.InfoPedido = {};
         $scope.fecha_inicio = null;
 		$scope.FECHA_CREACION = null;
 		$scope.accRdy = false;
