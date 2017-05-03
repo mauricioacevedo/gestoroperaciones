@@ -13091,7 +13091,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 		$scope.pedidoActual = pedidoinfo;
 
 		$scope.buscar = buscar;
-
+console.log($scope.InfoGestion);
 
 
 		var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login).then(
