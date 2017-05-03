@@ -17066,6 +17066,7 @@ private function csvMalosAgendamientoReparaciones(){
         $sql =  "    SELECT ".
                 "    C2.PEDIDO_ID ".
                 "    , C2.ESTADO_GESTOR ".
+                "    , C2.PROGRAMACION ".
                 "    , C2.RADICADO_TEMPORAL ".
                 "    , C2.OBSERVACIONES ".
                 "    , C2.RESPONSABLE ".
@@ -17084,6 +17085,8 @@ private function csvMalosAgendamientoReparaciones(){
                 "                end as ESTADO ".
                 "    	FROM portalbd.informe_petec_pendientesm b  ".
                 "        where b.PEDIDO_ID=C1.PEDIDO_ID group by b.PEDIDO_ID),'NO ESTA') as ESTADO_GESTOR ".
+                "    , IFNULL((SELECT group_concat(DISTINCT b.PROGRAMACION) AS RA FROM portalbd.informe_petec_pendientesm b ".
+	            "        where b.PEDIDO_ID=C1.PEDIDO_ID and b.PROGRAMACION!='' group by b.PEDIDO_ID),'Sin') as PROGRAMACION ".
                 "    , IFNULL((SELECT group_concat(DISTINCT b.RADICADO_TEMPORAL) AS RA FROM portalbd.informe_petec_pendientesm b  ".
                 "        where b.PEDIDO_ID=C1.PEDIDO_ID group by b.PEDIDO_ID),'NO ESTA') as RADICADO_TEMPORAL ".
                 "    , ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and p.estado_id='MALO'  and p.pedido_id=C1.PEDIDO_ID  order by p.id desc   limit 1 ), 'NO ESTA') as OBSERVACIONES ".
