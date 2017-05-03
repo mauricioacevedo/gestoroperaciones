@@ -81,7 +81,7 @@
                 <div class="panel-body fixed-panel ">
                     <div class="container-fluid"  ng-show="pedidoIsActive==false">
                         <div class="jumbotron animated bounceInRight ">
-                            <center><h3>Gestión Pendientes {{iconcepto.GRUPO}}</h3></center>
+                            <div class="text-center"><h3>Gestión Pendientes {{iconcepto.GRUPO}}</h3></div>
                         </div>
 
                     </div>
@@ -94,7 +94,7 @@
                                     <b><i class="fa fa-tasks" aria-hidden="true"> </i> INFORMACIÓN</b>
                                     <span class="pull-right">
                                         Concepto: <span class="btn btn-info btn-xs">{{info.CONCEPTO_ID}} </span>
-                                        Aprovisionador: <span class="btn btn-info btn-xs">{{info.APROVISIONADOR}} </span>
+                                        Aprovisionador: <span class="btn btn-info btn-xs">{{info.APROVISIONADOR || 'SIN'}} </span>
                                     </span>
                                 </div>
                                 <div class="panel-body">
