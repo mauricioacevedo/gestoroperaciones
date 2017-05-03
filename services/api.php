@@ -5701,6 +5701,7 @@ class API extends REST {
             " a.FECHA_CITA, ".
             " a.STATUS, ".
             " ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin') as OBS, ".
+            " ifnull((Select  p.INCIDENTE from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin') as INCIDENTE, ".
             " a.RADICADO_TEMPORAL ".
             " from informe_petec_pendientesm a ".
             " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ";
@@ -5710,7 +5711,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','PEDIDO','SUBPEDIDO_ID','SOLICITUD_ID','TIPO_TRABAJO','TIPO_ELEMENTO_ID','PRODUCTO','UEN_CALCULADA','ESTRATO','MUNICIPIO_ID','PAGINA_SERVICIO','DIRECCION_SERVICIO','TIEMPO_COLA','TIEMPO_HORAS','FUENTE','CONCEPTO_ID','FECHA_ESTADO','FECHA_INGRESO','FECHA_CITA','STATUS','MOTIVO_MALO','RADICADO_TEMPORAL'));
+            fputcsv($fp, array('PEDIDO_ID','PEDIDO','SUBPEDIDO_ID','SOLICITUD_ID','TIPO_TRABAJO','TIPO_ELEMENTO_ID','PRODUCTO','UEN_CALCULADA','ESTRATO','MUNICIPIO_ID','PAGINA_SERVICIO','DIRECCION_SERVICIO','TIEMPO_COLA','TIEMPO_HORAS','FUENTE','CONCEPTO_ID','FECHA_ESTADO','FECHA_INGRESO','FECHA_CITA','STATUS','MOTIVO_MALO','INCIDENTE','RADICADO_TEMPORAL'));
             while($row = $r->fetch_assoc()){
                 $result[] = $row;
                 fputcsv($fp, $row);
