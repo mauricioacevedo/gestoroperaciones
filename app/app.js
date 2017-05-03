@@ -10106,7 +10106,7 @@ $scope.getDepartamentos = function () {
 	};
 
 
-/*	$scope.buscarPedidoAgendamiento = function (bpedido) {
+	$scope.buscarPedidoAgendamiento = function (bpedido) {
 		$scope.error = "";
 		$scope.peds = {};
 		$scope.mpedido = {};
@@ -10152,7 +10152,7 @@ $scope.getDepartamentos = function () {
 
 	};
 
-*/
+
 	$scope.buscarPedidoAgendamientoAuditoria = function (bpedido) {
 		$scope.error = "";
 		$scope.peds = {};
