@@ -11522,6 +11522,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 			//	document.getElementById("warning").innerHTML = "No hay Registros.";
 				$rootScope.errorDatos = "No hay Registros.";
+				$scope.pedidoIsActive = false;
 
 			} else {
 
@@ -11627,7 +11628,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 						$scope.pedidoIsActive = false;
 
 					} else {
-
+							
 						if ($scope.ocupado == true) {
 							$scope.busy = $scope.peds[0].ASESOR;
 							$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.busy;
