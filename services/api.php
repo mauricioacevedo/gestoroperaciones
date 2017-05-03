@@ -14121,7 +14121,7 @@ private function csvMalosAgendamientoReparaciones(){
         $today = date("Y-m-d");
 
 
-        if($tabla=='ACTIVADOR_SUSPECORE'){
+       /* if($tabla=='ACTIVADOR_SUSPECORE'){
 
             $tabla = " from gestor_activacion_pendientes_activador_suspecore p " ;
 
@@ -14131,7 +14131,7 @@ private function csvMalosAgendamientoReparaciones(){
 
 
         }
-
+*/
 
         $query1=" SELECT p.ID ".
             " , p.PEDIDO,p.ORDER_SEQ_ID,p.ESTADO,p.TAREA_EXCEPCION,p.IDSERVICIORAIZ,p.TRANSACCION ".
@@ -14142,10 +14142,25 @@ private function csvMalosAgendamientoReparaciones(){
             " ,min(p.FECHA_CREACION) as FECHA_CREACION ".
             " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
             " where a.PEDIDO='$pedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
-            $tabla.
+            " from gestor_activacion_pendientes_activador_suspecore p ". 
             " where p.PEDIDO = '$pedido'  ".
-            " and p.STATUS='PENDI_ACTI' ".
+            " and p.STATUS in ('PENDI_ACTI','MALO') ".
+            " group by p.pedido ".
+            " UNION ".
+            " SELECT p.ID ".
+            " , p.PEDIDO,p.ORDER_SEQ_ID,p.ESTADO,p.TAREA_EXCEPCION,p.IDSERVICIORAIZ,p.TRANSACCION ".
+            " ,p.ACTIVIDAD,p.FUENTE,p.GRUPO,p.MOTIVOEXCEPCIONACT,p.MOTIVO_ERROR,p.DESCRIPCIONEXCEPCIONACT ".
+            " ,p.VALOR_ERROR, p.STATUS ".
+            " , group_concat(distinct p.PRODUCTO) as  PRODUCTO ".
+            " , min(p.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
+            " ,min(p.FECHA_CREACION) as FECHA_CREACION ".
+            " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
+            " where a.PEDIDO='$pedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
+            " from gestor_activacion_pendientes_activador_dom p ".
+            " where p.PEDIDO = '$pedido'  ".
+            " and p.STATUS in ('PENDI_ACTI','MALO') ".
             " group by p.pedido ";
+
         //echo $query1;
 
         $rPendi = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
