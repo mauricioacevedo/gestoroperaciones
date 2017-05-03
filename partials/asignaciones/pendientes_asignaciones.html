@@ -112,7 +112,7 @@
                                    ng-style="{'color':data.STATUS=='MALO' && 'red' || 'blue', 'font-weight': 'bold' }"
                                    editable-select="data.STATUS"
                                    e-ng-options="s.value as s.text for s in statuses"
-                                   onaftersave="updateStatus(data)"
+                                   onaftersave="updateStatus(data,false)"
                                    title="Editar"
                                 >
                                     {{ data.STATUS }}
@@ -125,7 +125,7 @@
                             <a href="#"
                                editable-select="data.OBS"
                                e-ng-options="s.value as s.text for s in obsStatuses"
-                               onaftersave="updateStatus(data)"
+                               onaftersave="updateStatus(data,true)"
                                title="Editar"
                             >
                                     {{ data.OBS }}

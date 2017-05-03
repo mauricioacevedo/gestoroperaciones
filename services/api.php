@@ -15566,16 +15566,29 @@ private function csvMalosAgendamientoReparaciones(){
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
 
-        $params = json_decode(file_get_contents('php://input'),true);
-        $idped = $params['id'];
-        $pedido = $params['pedido'];
-        $status = $params['status'];
-        $usuario_id = $params['usuario'];
-        $today = date("Y-m-d H:i:s");
+        $params         = json_decode(file_get_contents('php://input'),true);
+        $idped          = $params['id'];
+        $pedido         = $params['pedido'];
+        $status         = $params['status'];
+        $usuario_id     = $params['usuario'];
+        $obs            = $params['obs'];
+        $updateobs      = $params['updateobs'];
+        $today          = date("Y-m-d H:i:s");
 
-        $query= " update portalbd.informe_petec_pendientesm ".
-            " set STATUS='$status' ".
-            " where ID='$idped' and PEDIDO_ID='$pedido' ";
+        if($updateobs){
+
+            $query= " update portalbd.pedidos ".
+                " set OBSERVACIONES_PROCESO='$obs' ".
+                " where PEDIDO_ID='$pedido' and ESTADO_ID='MALO' ";
+
+        }else{
+            $query= " update portalbd.informe_petec_pendientesm ".
+                " set STATUS='$status' ".
+                " where ID='$idped' and PEDIDO_ID='$pedido' ";
+
+        }
+
+
 
         $rst = $this->mysqli->query($query);
         if($rst===TRUE){
