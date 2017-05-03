@@ -5683,7 +5683,7 @@ class API extends REST {
                 " a.PEDIDO, ".
             " a.SUBPEDIDO_ID, ".
             " a.SOLICITUD_ID, ".
-            " a.PROGRAMACION ".
+            " a.PROGRAMACION, ".
             " a.TIPO_TRABAJO, ".
             " a.TIPO_ELEMENTO_ID, ".
             " a.PRODUCTO, ".
