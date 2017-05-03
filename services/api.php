@@ -14159,7 +14159,7 @@ private function csvMalosAgendamientoReparaciones(){
             " from gestor_activacion_pendientes_activador_dom p ".
             " where p.PEDIDO = '$pedido'  ".
             " and p.STATUS in ('PENDI_ACTI','MALO') ".
-            " group by p.pedido ".
+            " group by p.pedido ";
 
         //echo $query1;
 
