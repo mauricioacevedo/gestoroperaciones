@@ -11607,15 +11607,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 							return;
 
 						}
-
-					 var opciones= {
-                    fuente: $scope.peds[0].FUENTE,
-					grupo: $scope.peds[0].GRUPO,
-					actividad: $scope.peds[0].ACTIVIDAD
-                };
-
-               $scope.listarOpcionesAsginacion(opciones);
-
 						$rootScope.errorDatos = null;
 						$scope.pedidoIsActive = true;
 
