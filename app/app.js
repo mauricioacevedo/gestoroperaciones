@@ -5559,7 +5559,13 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
     $scope.updateStatus = function(data, updobs) {
     	//console.log(data);
-        return $http.post('services/actualizarSatusPedidosAsignacion', {id: data.ID, pedido: data.PEDIDO_ID, status:data.STATUS, obs:data.OBS, usuario:userID, updateobs:updobs});
+        return $http.post('services/actualizarSatusPedidosAsignacion', {
+        	id: data.ID,
+			pedido: data.PEDIDO_ID,
+			status:data.STATUS,
+			obs:data.OBS,
+			usuario:userID,
+			updateobs:updobs});
     };
 
     //$scope.listarPedidosAuditados();
