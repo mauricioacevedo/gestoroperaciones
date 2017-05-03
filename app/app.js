@@ -5540,9 +5540,26 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         {value: 'CERRADO_PETEC', text: 'CERRADO_PETEC'}
     ];
 
+    $scope.obsStatuses = [
+        {value: 'AUTOCONSUMOS', text: 'AUTOCONSUMOS'},
+        {value: 'CABEZA DEL PAQUETE EN PETEC', text: 'CABEZA DEL PAQUETE EN PETEC'},
+        {value: 'CONSTRUCCION - PENDIENTE', text: 'CONSTRUCCION - PENDIENTE'},
+        {value: 'EQURED EN PETEC', text: 'EQURED EN PETEC'},
+        {value: 'NO APLICA ASIGNACIONES', text: 'NO APLICA ASIGNACIONES'},
+        {value: 'NO APLICA RECONFIGURACION', text: 'NO APLICA RECONFIGURACION'},
+        {value: 'NO CARGO COMPONENTES', text: 'NO CARGO COMPONENTES'},
+        {value: 'NO REQUIERE ASIGNACION MANUAL', text: 'NO REQUIERE ASIGNACION MANUAL'},
+        {value: 'PEDIDO NO SE DEJA GESTIONAR', text: 'PEDIDO NO SE DEJA GESTIONAR'},
+        {value: 'PENDIENTE ACCESO', text: 'PENDIENTE ACCESO'},
+        {value: 'PENDIENTE B2B', text: 'PENDIENTE B2B'},
+        {value: 'SE ENVIA CR', text: 'SE ENVIA CR'},
+        {value: 'SERHFC EN PETEC', text: 'SERHFC EN PETEC'},
+        {value: 'TELEV EN PETEC', text: 'TELEV EN PETEC'}
+    ];
+
     $scope.updateStatus = function(data) {
     	//console.log(data);
-        return $http.post('services/actualizarSatusPedidosAsignacion', {id: data.ID, pedido: data.PEDIDO_ID, status:data.STATUS, usuario:userID});
+        return $http.post('services/actualizarSatusPedidosAsignacion', {id: data.ID, pedido: data.PEDIDO_ID, status:data.STATUS, obs:data.OBS, usuario:userID});
     };
 
     //$scope.listarPedidosAuditados();

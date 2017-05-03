@@ -121,7 +121,15 @@
 
                             </span>
                         </td>
-                        <td><span class="small">{{data.OBS}}</span></td>
+                        <td><span class="small">
+                            <a href="#"
+                               editable-select="data.STATUS"
+                               e-ng-options="s.value as s.text for s in obsStatuses"
+                               onaftersave="updateStatus(data)"
+                               title="Editar"
+                            >
+                                    {{ data.OBS }}
+                                </a></span></td>
                         <td><span class="small">{{data.UEN_CALCULADA}}</span></td>
                         <td><span class="small">{{data.MUNICIPIO_ID}}</span></td>
                         <td><span class="small">{{data.FECHA_ESTADO}}</span></td>
