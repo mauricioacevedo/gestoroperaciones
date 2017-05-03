@@ -17067,7 +17067,7 @@ private function csvMalosAgendamientoReparaciones(){
                 "    C2.PEDIDO_ID ".
                 "    , C2.ESTADO_GESTOR ".
                 "    , C2.PROGRAMACION ".
-                "    , C2.RADICADO_TEMPORAL ".
+                "    , case when C2.RADICADO_TEMPORAL like '%ARBOL%' then 'ARBOL' else C2.RADICADO_TEMPORAL end as RADICADO_TEMPORAL ".
                 "    , C2.OBSERVACIONES ".
                 "    , C2.RESPONSABLE ".
                 "    , C2.CONCEPTO_ID ".
