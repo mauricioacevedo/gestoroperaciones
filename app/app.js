@@ -11483,7 +11483,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.InfoPedido.OBSERVACION = '';
 		
 
-
+	console.log($scope.InfoGestion);		
 
 
 		if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
@@ -11586,7 +11586,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
         //$scope.peds={};
        // $scope.pedidoIsActive=false;
 
-
+console.log($scope.InfoGestion);
 
 		var kami = services.getBuscarpedidoactivacion(buscar,$scope.tabla, $rootScope.logedUser.login).then(
 
