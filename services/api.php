@@ -15594,6 +15594,7 @@ private function csvMalosAgendamientoReparaciones(){
 
             $query= " update portalbd.pedidos ".
                 " set OBSERVACIONES_PROCESO='$obs' ".
+                " , MOTIVO_MALO = '$obs' ".
                 " where PEDIDO_ID='$pedido' and ESTADO_ID='MALO' ";
 
         }else{
