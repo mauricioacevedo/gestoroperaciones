@@ -11681,7 +11681,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	   
 
 
-        if ($scope.tipificacion === undefined || $scope.tipificacion == "") {
+        if (InfoPedido.tipificacion === undefined || InfoPedido.tipificacion == "") {
 			alert('Por favor diligenciar campo tipificacion.');
 			return;
 		}
