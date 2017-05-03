@@ -7006,7 +7006,7 @@ private function csvMalosAgendamientoReparaciones(){
         //}
 
 
-        //1. CIERRO TODO LO QUE ESTE ABIERTO DE ESTE PEDIDO EN EL GESTOR..
+        //1. CIERRO  LO QUE ESTE ABIERTO DE ESTE PEDIDO EN EL GESTOR..
         //
         //
         $sqlOcupado="select  PEDIDO_ID, ASESOR from informe_petec_pendientesm where PEDIDO_ID='$pedido' and ASESOR!='' group by PEDIDO_ID, ASESOR";
@@ -7076,6 +7076,7 @@ private function csvMalosAgendamientoReparaciones(){
                     " a.EJECUTIVO_ID, ".
                     " a.CANAL_ID, ".
                     " a.CELULAR_AVISAR, ".
+                    ", a.PROGRAMACION, ".
                     " a.TELEFONO_AVISAR from informe_petec_pendientesm a ".
                     " JOIN (SELECT distinct(a.pedido) as pedido2,(select b.id from informe_petec_pendientesm b ".
                     " where b.pedido=a.pedido order by id desc limit 1 ) as id2 ".
