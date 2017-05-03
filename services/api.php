@@ -155,7 +155,7 @@ class API extends REST {
         $today = date("Y-m-d h:i:s");
         $filename="Fenix_NAL-$login-$today.csv";
         $query=" SELECT ".
-            " pedido_id,subpedido_id,solicitud_id,municipio_id, fuente, actividad, fecha_fin, estado,duracion,accion,concepto_final,concepto_anterior,user,idllamada,motivo,nuevopedido,caracteristica,motivo_malo ".
+            " pedido_id,subpedido_id,solicitud_id,municipio_id, fuente, actividad, fecha_fin, estado,duracion,INCIDENTE,concepto_final,concepto_anterior,user,idllamada,motivo,nuevopedido,caracteristica,motivo_malo ".
             " from pedidos where ".
             " fecha_fin between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' $filtro ";
 
@@ -235,7 +235,7 @@ class API extends REST {
         $today = date("Y-m-d h:i:s");
         $filename="Fenix_NAL-$userID-$today.csv";
         $query=" SELECT ".
-            " pedido_id,subpedido_id,solicitud_id,municipio_id, fuente, actividad, fecha_fin, estado,duracion,accion,concepto_final,concepto_anterior,user,idllamada,motivo,nuevopedido,caracteristica ".
+            " pedido_id,subpedido_id,solicitud_id,municipio_id, fuente, actividad, fecha_fin, estado,duracion,INCIDENTE,concepto_final,concepto_anterior,user,idllamada,motivo,nuevopedido,caracteristica ".
             " from pedidos where ".
             " fecha_fin between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' $filtro ";
 
@@ -244,7 +244,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('pedido_id','subpedido_id','solicitud_id','municipio_id',' fuente',' actividad',' fecha_fin',' estado', 'duracion','accion','concepto_final','concepto_anterior','user','idllamada','motivo','nuevopedido','caracteristica'));
+            fputcsv($fp, array('pedido_id','subpedido_id','solicitud_id','municipio_id',' fuente',' actividad',' fecha_fin',' estado', 'duracion','INCIDENTE','concepto_final','concepto_anterior','user','idllamada','motivo','nuevopedido','caracteristica'));
             while($row = $r->fetch_assoc()){
                 //$result[] = $row;
                 fputcsv($fp, $row);
@@ -1328,7 +1328,7 @@ class API extends REST {
         $grupoGalleta   =   $galleta['GRUPO'];
 
         $pedido = json_decode(file_get_contents("php://input"),true);
-        $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','accion','fecha_inicio','fecha_fin','concepto_final');
+        $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','concepto_final');
         $keys = array_keys($pedido);
         $columns = '';
         $values = '';
@@ -2534,7 +2534,7 @@ class API extends REST {
             " fecha_fin, ".
             " estado, ".
             " my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as duracion, ".
-            " accion, ".
+            " INCIDENTE, ".
             " SUBSTRING_INDEX(concepto_final, ',', 3) as concepto_final ".
             " from pedidos ".
             " where 1=1 ".
@@ -3758,7 +3758,7 @@ class API extends REST {
             }
         }
 
-        $query="SELECT id, pedido, fuente, actividad, fecha_fin, estado,duracion,accion,concepto_final,user from pedidos where fecha_fin between '$fechaini 00:00:00' and '$fechafin 23:59:59' $filtro order by fecha_fin desc limit 100 offset $page";
+        $query="SELECT id, pedido, fuente, actividad, fecha_fin, estado,duracion,INCIDENTE,concepto_final,user from pedidos where fecha_fin between '$fechaini 00:00:00' and '$fechafin 23:59:59' $filtro order by fecha_fin desc limit 100 offset $page";
 
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -3817,7 +3817,7 @@ class API extends REST {
         $query="SELECT id, pedido_id, fuente, actividad ".
             ", fecha_fin, estado ".
             ", my_sec_to_time(timestampdiff(second, fecha_inicio, fecha_fin)) as duracion ".
-            ", accion ".
+            ", INCIDENTE ".
             ", SUBSTRING_INDEX(SUBSTRING_INDEX(concepto_final, ',', 3), ' ', -1) as concepto_final ".
             ",user,motivo_malo ".
             " from pedidos ".
@@ -5490,7 +5490,7 @@ class API extends REST {
             "       PE.`user`,  ".
             "       PE.`estado`,  ".
             "       PE.`duracion`,  ".
-            "       PE.`accion`,  ".
+            "       PE.`INCIDENTE`,  ".
             "       PE.`fecha_estado`,  ".
             "       PE.`fecha_inicio`,  ".
             "       case  ".
@@ -5679,7 +5679,31 @@ class API extends REST {
         }
 
         $filename="Pendientes-$login-$today.csv";
-        $query="SELECT a.PEDIDO_ID,a.PEDIDO,a.SUBPEDIDO_ID,a.SOLICITUD_ID,a.TIPO_TRABAJO, a.TIPO_ELEMENTO_ID,a.PRODUCTO,a.UEN_CALCULADA,a.ESTRATO,MUNICIPIO_ID,a.PAGINA_SERVICIO, a.DIRECCION_SERVICIO, CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA, hour(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO))) as TIEMPO_HORAS,a.FUENTE,a.CONCEPTO_ID,a.FECHA_ESTADO,a.FECHA_INGRESO, a.FECHA_CITA,a.STATUS, ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin') as OBS, a.RADICADO_TEMPORAL from informe_petec_pendientesm a where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ";
+        $query="SELECT a.PEDIDO_ID,".
+                " a.PEDIDO, ".
+            " a.SUBPEDIDO_ID, ".
+            " a.SOLICITUD_ID, ".
+            " a.PROGRAMACION ".
+            " a.TIPO_TRABAJO, ".
+            " a.TIPO_ELEMENTO_ID, ".
+            " a.PRODUCTO, ".
+            " a.UEN_CALCULADA, ".
+            " a.ESTRATO, ".
+            " a.MUNICIPIO_ID, ".
+            " a.PAGINA_SERVICIO, ".
+            " a.DIRECCION_SERVICIO, ".
+            " CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA, ".
+            " hour(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO))) as TIEMPO_HORAS, ".
+            " a.FUENTE, ".
+            " a.CONCEPTO_ID, ".
+            " a.FECHA_ESTADO, ".
+            " a.FECHA_INGRESO, ".
+            " a.FECHA_CITA, ".
+            " a.STATUS, ".
+            " ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin') as OBS, ".
+            " a.RADICADO_TEMPORAL ".
+            " from informe_petec_pendientesm a ".
+            " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -6815,7 +6839,7 @@ private function csvMalosAgendamientoReparaciones(){
         }
         $pedido = $this->_request['pedido'];
         $today = date("Y-m-d");
-        $query="SELECT id, pedido, fuente, actividad, fecha_estado,fecha_inicio,fecha_fin, estado,accion,duracion,user,concepto_final from pedidos where pedido like '$pedido%' order by fecha_fin desc limit 10";
+        $query="SELECT id, pedido, fuente, actividad, fecha_estado,fecha_inicio,fecha_fin, estado,INCIDENTE,duracion,user,concepto_final from pedidos where pedido like '$pedido%' order by fecha_fin desc limit 10";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
