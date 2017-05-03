@@ -14144,7 +14144,7 @@ private function csvMalosAgendamientoReparaciones(){
             " where a.PEDIDO='$pedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
             $tabla.
             " where p.PEDIDO = '$pedido'  ".
-            " and p.STATUS='PENDI_ACTI' ".
+            " and p.STATUS in ('PENDI_ACTI','MALO') ".
             " group by p.pedido ";
         //echo $query1;
 
