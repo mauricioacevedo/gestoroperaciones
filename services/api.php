@@ -14134,7 +14134,7 @@ private function csvMalosAgendamientoReparaciones(){
 
 
         $query1=" SELECT ".
-            " p.PEDIDO,p.ORDER_SEQ_ID,p.ESTADO,p.TAREA_EXCEPCION,p.IDSERVICIORAIZ,p.TRANSACCION,p.ACTIVIDAD,p.FUENTE,p.GRUPO ".
+            " p.PEDIDO,p.ORDER_SEQ_ID,p.ESTADO,p.TAREA_EXCEPCION,p.IDSERVICIORAIZ,p.TRANSACCION,p.ACTIVIDAD,p.FUENTE,p.GRUPO,p.MOTIVOEXCEPCIONACT,p.MOTIVO_ERROR,p.DESCRIPCIONEXCEPCIONACT,p.VALOR_ERROR ".
             " , group_concat(distinct p.PRODUCTO) as  PRODUCTO ".
             " , min(p.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
             " ,min(p.FECHA_CREACION) as FECHA_CREACION ".
