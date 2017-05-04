@@ -795,7 +795,7 @@ class API extends REST {
             " FROM gestor_activacion_pendientes_activador_suspecore ".
             " WHERE  ESTADO ='in_progress' ".
             " AND STATUS IN ('PENDI_ACTI','MALO')".
-            " AND MOTIVOEXCEPCIONACT ='La Cuenta NO existe.'";
+            " AND MOTIVOEXCEPCIONACT <>'La Cuenta NO existe.'";
 
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
