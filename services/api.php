@@ -6796,7 +6796,20 @@ private function csvMalosAgendamientoReparaciones(){
                 $counter3 = $row['counter'];
             }
         }
+        
+         $query=" SELECT count(*) as counter  ".
+            "  FROM  informe_activacion_pendientesm  WHERE  STATUS ='PENDI_ACTIVACION' ".
+			" and cola_id in ('TRGPON','TOIPON','CTVPONST','CBAPON') ".
+		    " and tipo_trabajo in ('RETIR') ";
 
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter6=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter6 = $row['counter'];
+            }
+        }    
 
         $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION,TRANSACCION ".
             " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN ".
@@ -6820,7 +6833,7 @@ private function csvMalosAgendamientoReparaciones(){
                 // var_dump($result);
             }
 
-            $this->response($this->json(array($result,$counter,$counter1,$counter2,$counter3,$counter4,$counter5)), 200); // send user details
+            $this->response($this->json(array($result,$counter,$counter1,$counter2,$counter3,$counter4,$counter5,$counter6)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
