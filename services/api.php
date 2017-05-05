@@ -17395,6 +17395,18 @@ private function csvMalosAgendamientoReparaciones(){
 
     }
 
+    /**
+     * Funcion que llama procedimiento en java para extraer pedidos alarmados
+     */
+    private function runJavaAlarmadosProactivos(){
+    if($this->get_request_method() != "GET"){
+        $this->response('',406);
+    }
+
+
+
+    }
+
 }//cierre de la clase
 
 // Initiiate Library
