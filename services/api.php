@@ -1346,7 +1346,7 @@ private function csvActivacioncolas(){
     }
 //-- --------------------- fin exportar agendamiento pedientes-------agendamiento------
 
-//-------------------------------------insertar pedido ---------asignacion------
+//-------------------------------------insertar pedido ---------asignacion---------
 
     private function insertMPedido(){
         if($this->get_request_method() != "POST"){
