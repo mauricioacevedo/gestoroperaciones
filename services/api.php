@@ -17408,7 +17408,7 @@ private function csvMalosAgendamientoReparaciones(){
         $msg = "Funciono";
 
         $last_line = system('/usr/java/java8/bin/java -jar /var/www/html/scheduling/java/agendamiento.jar request=verificarAgendamientos fileConfig=/var/www/html/scheduling/java/fileConfig.xml', $retval);
-        $this->response($this->json(array($msg,$last_line)), 200);
+        $this->response($this->json(array($msg,$last_line,$retval)), 200);
     }
 
 }//cierre de la clase
