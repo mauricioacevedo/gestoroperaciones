@@ -17399,12 +17399,14 @@ private function csvMalosAgendamientoReparaciones(){
      * Funcion que llama procedimiento en java para extraer pedidos alarmados
      */
     private function runJavaAlarmadosProactivos(){
-    if($this->get_request_method() != "GET"){
-        $this->response('',406);
-    }
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
 
 
-
+        $javaexec=shell_exec('/usr/java/java8/bin/java -jar /var/www/html/scheduling/java/agendamiento.jar request=verificarAgendamientos fileConfig=/var/www/html/scheduling/java/fileConfig.xml > /var/www/html/scheduling/java/proceso.log 2>&1');
+        $msg = "Funciono";
+        $this->response($this->json(array($msg)), 200);
     }
 
 }//cierre de la clase
