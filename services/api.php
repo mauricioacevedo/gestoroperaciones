@@ -1127,7 +1127,7 @@ private function csvActivacioncolas(){
             }
 
             fclose($fp);
-            // SQL Feed----------------------------------
+            // SQL Feed---------------------------------------
             $sql_log=   "insert into portalbd.activity_feed ( ".
                 " USER ".
                 ", USER_NAME ".
