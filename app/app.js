@@ -3252,14 +3252,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		});
 	};
 
-	$scope.csvActivacioncolas = function () {
-		var login = $rootScope.logedUser.login;
-		services.getCsvActivacioncolas(login).then(function (data) {
-
-			window.location.href = "tmp/" + data.data[0];
-			return data.data;
-		});
-	};
+	
 
 
 	$scope.actualizarGrafica = function () {
@@ -10885,7 +10878,14 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 			return data.data;
 		});
 	};
+$scope.csvActivacioncolas = function () {
+		var login = $rootScope.logedUser.login;
+		services.getCsvActivacioncolas(login).then(function (data) {
 
+			window.location.href = "tmp/" + data.data[0];
+			return data.data;
+		});
+	};
 
      $scope.csvActivacionSiebel  = function (){
                 var login=$rootScope.logedUser.login;
