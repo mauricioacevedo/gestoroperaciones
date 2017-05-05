@@ -17404,11 +17404,12 @@ private function csvMalosAgendamientoReparaciones(){
         }
 
 
-        $javaexec=shell_exec("/usr/java/java8/bin/java -jar /var/www/html/scheduling/java/agendamiento.jar request=verificarAgendamientos fileConfig=/var/www/html/scheduling/java/fileConfig.xml > /var/www/html/scheduling/java/proceso.log 2>&1");
-        $msg = "Funciono";
+        //$javaexec=shell_exec("/usr/java/java8/bin/java -jar /var/www/html/scheduling/java/agendamiento.jar request=verificarAgendamientos fileConfig=/var/www/html/scheduling/java/fileConfig.xml > /var/www/html/scheduling/java/proceso.log 2>&1");
+        //$msg = "Funciono";
 
         $last_line = system('/usr/java/java8/bin/java -jar /var/www/html/scheduling/java/agendamiento.jar request=verificarAgendamientos fileConfig=/var/www/html/scheduling/java/fileConfig.xml', $retval);
-        $this->response($this->json(array($msg,$last_line,$retval)), 200);
+        ($last_line == 0) or die("returned an error: $retval");
+        $this->response($this->json(array('Termino:',$last_line,$retval)), 200);
     }
 
 }//cierre de la clase
