@@ -11475,17 +11475,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
     };
 
 	// ---------------------------------fin Variables----------------------------
-	
- var date1 = new Date();
-		var year = date1.getFullYear();
-		var month = $scope.doubleDigit(date1.getMonth() + 1);
-		var day = $scope.doubleDigit(date1.getDate());
-		var hour = $scope.doubleDigit(date1.getHours());
-		var minute = $scope.doubleDigit(date1.getMinutes());
-		var seconds = $scope.doubleDigit(date1.getSeconds());
 
-        $scope.fecha_inicio=year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-        $scope.fecha_fin=year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
    $scope.calcularListado = function () {
         services.getListadoActivacion($scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage).then(function (data) {
