@@ -348,7 +348,7 @@
 							
 						</thead>
 						<tbody>
-							<tr ng-repeat="data in pedidos | orderBy:'FECHA_FIN':true ">
+							<tr ng-repeat="data in listadoactivacion | filter:filtroInput as results">
 						   <td>{{data.PEDIDO}}</td>
                       
                             </tr>
