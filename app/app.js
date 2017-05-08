@@ -11427,28 +11427,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	//  ---------------------------------fin logueo-------------------------------------------
 $scope.listadoactivacion=[];
 
-        $scope.data = {
-		maxSize: 5,
-		currentPage: 1,
-		numPerPage: 100,
-		totalItems: 0,
-		fechaIni: "",
-		fechaFin: ""
-	};
-
-		var date1 = new Date();
-		var year = date1.getFullYear();
-		var month = $scope.doubleDigit(date1.getMonth() + 1);
-		var day = $scope.doubleDigit(date1.getDate());
-		var hour = $scope.doubleDigit(date1.getHours());
-		var minute = $scope.doubleDigit(date1.getMinutes());
-		var seconds = $scope.doubleDigit(date1.getSeconds());
-
-    var fecha_inicio = year + "-" + month + "-" + day;
-	var fecha_fin = year + "-" + month + "-" + day;
-    $scope.data.fechaIni = fecha_inicio;
-	$scope.data.fechaFin = fecha_fin;
-
 
                 services.getListadoActivacion(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
 
