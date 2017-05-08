@@ -300,21 +300,13 @@
             <table class="table small table-striped table-hover table-bordered table-condensed ">
                 <thead>
                 <th>Pedido</th>
-                <th>Fuente</th>
-                <th>Estado</th>
-                <th>Fecha</th>
-                <th>Duracion</th>
-                <th>zona</th>
+        
                 <!--th>Opciones</th-->
                 </thead>
                 <tbody>
                     <tr ng-repeat="data in pedidos| orderBy:'FECHA_FIN':true ">
                         <td>{{data.PEDIDO}}</td>
-                        <td>{{data.FUENTE}}</td>
-                        <td>{{data.NOVEDAD}}</td>
-                        <td>{{data.FECHA_FIN}}</td>
-                        <td>{{data.DURACION}}</td>
-                        <td>{{data.SUBZONA_ID}}</td>
+                    
                         <!--td>Opciones</td-->
                     </tr>
                 </tbody>
