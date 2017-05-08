@@ -2656,7 +2656,7 @@ private function csvActivacioncolas(){
             " where ASESOR='$id' ".
             " and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' ";
 
-        $queryunico="SELECT ".
+        /*$queryunico="SELECT ".
             " count(distinct pedido) as pedidos ".
             " from gestor_historico_activacion  ".
             " where ASESOR='$id'  ".
@@ -2676,7 +2676,7 @@ private function csvActivacioncolas(){
             }
 
         }
-
+*/
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
