@@ -357,17 +357,12 @@
 						</thead>
 						<tbody>
 							<tr ng-repeat="data in pedidos| orderBy:'FECHA_FIN':true ">
-							<td><span class="small">{{data.ORDER_SEQ_ID}}</span></td>
-							<td><span class="small">{{data.PEDIDO}}</span></td>
-							<td><span class="small">{{data.ESTADO}}</span></td>
-							<td><span class="small">{{data.FECHA_CREACION}}</span></td>
-							<td><span class="small">{{data.FECHA_EXCEPCION}}</span></td>
-							<td><span class="small">{{data.PRODUCTO}}</span></td>
-                            <td><span class="small">{{data.ASESOR}}</span></td>
-							<td><span class="small">{{data.TRANSACCION}}</span></td>
-                                <td><span class="small">{{data.FECHA_GESTION}}</span></td>
-                                <td><span class="small">{{data.DURACION}}</span></td>
-                                <td><span class="small">{{data.TIPIFICACION}}</span></td>
+						   <td>{{data.PEDIDO}}</td>
+                        <td>{{data.FUENTE}}</td>
+                        <td>{{data.NOVEDAD}}</td>
+                        <td>{{data.FECHA_FIN}}</td>
+                        <td>{{data.DURACION}}</td>
+                        <td>{{data.SUBZONA_ID}}</td>
                             </tr>
                         </tbody>
                     </table>
