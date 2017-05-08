@@ -4730,6 +4730,7 @@ app.controller('nuevoTipsCtrl', function ($scope, $rootScope, $location, $routeP
 
 
 	$scope.insertarTip = function (nuevoTip) {
+        console.log(nuevoTip);
 
 		//var x = document.getElementById("miAreaTexto").text;
 		var x = tinymce.get('miAreaTexto').getContent();
@@ -4741,7 +4742,7 @@ app.controller('nuevoTipsCtrl', function ($scope, $rootScope, $location, $routeP
 		if (nuevoTip.USUARIO_ID.USUARIO_ID != undefined) {
 			nuevoTip.USUARIO_ID = nuevoTip.USUARIO_ID.USUARIO_ID;
 		}
-		console.log(nuevoTip);
+
 		services.insertarTip(nuevoTip).then(function (data) {
 			return data.data;
 		});
