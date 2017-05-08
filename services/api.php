@@ -2677,7 +2677,7 @@ private function csvActivacioncolas(){
 
         }
 */
-        echo $query;
+       // echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
