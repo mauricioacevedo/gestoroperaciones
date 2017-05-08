@@ -348,8 +348,8 @@
 							
 						</thead>
 						<tbody>
-							<tr ng-repeat="data in pedidos| orderBy:'FECHA_FIN':true ">
-						   <td>{{service.PEDIDO}}</td>
+							<tr ng-repeat="data in pedidos ">
+						   <td>{{data.PEDIDO}}</td>
                       
                             </tr>
                         </tbody>
