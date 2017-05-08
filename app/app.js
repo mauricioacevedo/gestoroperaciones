@@ -11425,19 +11425,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 	//  ---------------------------------fin logueo-------------------------------------------
-$scope.listadoactivacion=[];
-
-
-                services.getListadoActivacion().then(function(data){
-
-                   // console.log(data);
-                       $scope.listadoactivacion=data.data[0];
-                       $scope.data.totalItems=data.data[1];
-                
-
-                    //console.log($scope.data.totalItems2);
-                    return data.data;
-               });
 
 
 	// ------------------------Variables ---------------------------------
