@@ -243,8 +243,7 @@
                     <div class="col-md-6" >
                         <!--Campos futuros en footer izquierda -->
                         <ul class="nav navbar-nav navbar-left animated bounceInRight" ng-show="pedidoIsActive" >
-                            <li><span class="label label-primary" tooltip data-placement="top" title="Programación">{{fechaprogramacion || 'Sin Programación'}}</span>
-                            </li>
+                           
                             <li><span class="label label-primary" tooltip data-placement="top" title="Prioridad">{{prioridadPedido || 'Normal'}}</span>
                             </li>
                         </ul>
@@ -339,26 +338,15 @@
                             <table class = "table small table-striped table-condensed">
                                 <thead>
                                 <tr >
+                                   
                                     <th><span class="small">PEDIDO</span></th>
-                                    <th><span class="small">ACTIVIDAD</span></th>
-                                    <th><span class="small">FECHA_GESTION</span></th>
-                                    <th><span class="small">DURACION</span></th>
-                                    <th><span class="small">ESTADO</span></th>
-                                    <th><span class="small">CONCEPTO FINAL</span></th>
-                                    <th><span class="small">FUENTE</span></th>
-                                    <th><span class="small">ID</span></th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="pediUser in listado_pedidos as pedis" class="animated bounceInRight">
+                                <tr ng-repeat="pediUser in pedidos as pedis" class="animated bounceInRight">
                                     <td><span class="small">{{pediUser.pedido}}</span></td>
-                                    <td><span class="small">{{pediUser.actividad}}</span></td>
-                                    <td><span class="small">{{pediUser.fecha_fin}}</span></td>
-                                    <td><span class="small">{{pediUser.duracion}}</span></td>
-                                    <td><span class="small">{{pediUser.estado}}</span></td>
-                                    <td><span class="small">{{pediUser.concepto_final}}</span></td>
-                                    <td><span class="small">{{pediUser.fuente}}</span></td>
-                                    <td><span class="small">{{pediUser.id}}</span></td>
+                                
 
                                 </tr>
                                 </tbody>
