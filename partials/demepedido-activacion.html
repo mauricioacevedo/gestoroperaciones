@@ -301,7 +301,7 @@
                 <table class="table small table-striped table-hover table-bordered table-condensed ">
                         <thead>
                         <th>Usuario</th>
-                        <th>Fuente</th>
+                        <th>Pedido</th>
                         <th>Novedad</th>
                         <th>Fecha</th>
                         <th>Duracion</th>
@@ -312,7 +312,7 @@
                         <tbody>
                             <tr ng-repeat="data in historico_pedido track by $index| orderBy:'fecha_fin':true ">
                                 <td>{{data.ASESOR}}</td>
-                                <td>{{data.FUENTE}}</td>
+                                <td>{{data.PEDIDO}}</td>
                                 <td>{{data.NOVEDAD}}</td>
                                 <td>{{data.FECHA_FIN}}</td>
                                 <td>{{data.DURACION}}</td>
