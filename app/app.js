@@ -11426,7 +11426,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	//  ---------------------------------fin logueo-------------------------------------------
 
-
+   
 	// ------------------------Variables ---------------------------------
 	$scope.pedidos = [];
 	$scope.pedidosUnicos = '';
