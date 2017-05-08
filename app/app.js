@@ -4730,18 +4730,19 @@ app.controller('nuevoTipsCtrl', function ($scope, $rootScope, $location, $routeP
 
 
 	$scope.insertarTip = function (nuevoTip) {
+        console.log(nuevoTip);
 
 		//var x = document.getElementById("miAreaTexto").text;
 		var x = tinymce.get('miAreaTexto').getContent();
 		nuevoTip.USER_POST = x;
-		var datetime = document.getElementById("datetimepicker1").value;
-		nuevoTip.POST_TIME = datetime;
+		//var datetime = document.getElementById("datetimepicker1").value;
+		//nuevoTip.POST_TIME = datetime;
 
 
 		if (nuevoTip.USUARIO_ID.USUARIO_ID != undefined) {
 			nuevoTip.USUARIO_ID = nuevoTip.USUARIO_ID.USUARIO_ID;
 		}
-		console.log(nuevoTip);
+
 		services.insertarTip(nuevoTip).then(function (data) {
 			return data.data;
 		});
