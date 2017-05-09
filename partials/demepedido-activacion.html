@@ -300,14 +300,15 @@
             <table class="table small table-striped table-hover table-bordered table-condensed ">
                 <thead>
                 <th>Pedido</th>
-                
+                <th>Pedido2</th>
         
                 <!--th>Opciones</th-->
                 </thead>
                 <tbody>
-                    <tr ng-repeat="data in pedidos| orderBy:'FECHA_FIN':true ">
+                    <tr ng-repeat="pediUser in listado_pedidos as pedis" class="animated bounceInRight">
+                                    
                         <td>{{data.PEDIDO}}</td>
-                      
+                         <td><span class="small">{{pediUser.pedido}}</span></td>
                     
                         <!--td>Opciones</td-->
                     </tr>
