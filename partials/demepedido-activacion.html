@@ -300,6 +300,11 @@
             <table class="table small table-striped table-hover table-bordered table-condensed ">
                 <thead>
                 <th>Pedido</th>
+                <th>Estado</th>
+                <th>Transaccion</th>
+                <th>Asesor</th>
+                <th>Duracion</th>
+
     
         
                 <!--th>Opciones</th-->
@@ -307,6 +312,10 @@
                 <tbody>
                     <tr ng-repeat="data in pedidos ">
                         <td>{{data.PEDIDO}}</td>
+                        <td>{{data.ESTADO}}</td>
+                        <td>{{data.TRANSACCION}}</td>
+                        <td>{{data.ASESOR}}</td>
+                        <td>{{data.DURACION}}</td>
                         
                     
                         <!--td>Opciones</td-->
