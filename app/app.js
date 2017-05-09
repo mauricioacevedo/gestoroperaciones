@@ -11445,30 +11445,16 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
     $scope.tabla = 'ACTIVADOR_SUSPECORE';
     $scope.listaOpcionesGestion = [];
     $scope.producto = 'BA';
-//------------------------------------------------------
 
-$scope.pedidosPorUserActivacion= function () {
-		$rootScope.TituloModal='';
-		$rootScope.TituloModal="Pedigos Gestionados por: "+userID;
-		$rootScope.errorDatos = null;
-		$scope.data = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin:"", campo:"User", valorCampo: userID };
-		var pedidos = services.getPedidosUserActivacion(userID).then(function (data) {
-		$scope.pedidos = data.data[0];
-		$scope.pedidosUnicos = data.data[1];
-	//	console.log($scope.pedidos);
-		return data.data;
-		
-	});
-};
-//------------------------------------------------------	
-/*	var pedidos = services.getPedidosUserActivacion(userID).then(function (data) {
+	
+	var pedidos = services.getPedidosUserActivacion(userID).then(function (data) {
 		$scope.pedidos = data.data[0];
 	//	$scope.pedidosUnicos = data.data[1];
 		console.log($scope.pedidos);
 		return data.data;
 		
 	});
-*/
+
 	var original = $scope.pedidos;
 	var originalUnico = $scope.pedidosUnicos;
 
