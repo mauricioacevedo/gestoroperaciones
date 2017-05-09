@@ -2640,10 +2640,34 @@ private function csvActivacioncolas(){
 
 //---------------------fin pedidos por usuario reagendamiento ----------asignacion------
 
+
+ private function pedidosPorUserActivacion(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $id = $this->_request['userID'];
+        $today = date("Y-m-d");
+
+         $query=" SELECT ID,PEDIDO,ESTADO,TIPIFICACION,FECHA_FIN,TRANSACCION,ASESOR ".
+            " from gestor_historico_activacion ".
+            " where ASESOR='$id' ".
+            " and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' ";
+
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                $result[] = $row;
+            }
+            $this->response($this->json($result), 200); // send user details
+        }
+        $this->response('',204);        // If no records "No Content" status
+    }
 //--------------------- pedidos por usuario activacion ----------activacion------------
 
 
-     private function pedidosPorUserActivacion(){
+/*     private function pedidosPorUserActivacion(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
@@ -2678,7 +2702,7 @@ private function csvActivacioncolas(){
         }
 */
        // echo $query;
-        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+  /*      $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
             $result = array();
@@ -2691,7 +2715,7 @@ private function csvActivacioncolas(){
     }
 
 //--------------------- fin pedidos por usuario activacion ----------activacion------------
-
+*/
 //-----------------------actividades por usuario------------------------activacion---------
 
     private function actividadesUser(){
