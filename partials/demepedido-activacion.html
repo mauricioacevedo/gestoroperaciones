@@ -305,10 +305,9 @@
                 <!--th>Opciones</th-->
                 </thead>
                 <tbody>
-                    <tr ng-repeat="pediUser in listado_pedidos as pedis" class="animated bounceInRight">
+                    <tr ng-repeat="data in pedidos| orderBy:'FECHA_FIN':true ">
                         <td>{{data.PEDIDO}}</td>
-                         <td><span class="small">{{pediUser.pedido}}</span></td>
-
+                       <td><span class="small">{{data.pedido}}</span></td>
                     
                         <!--td>Opciones</td-->
                     </tr>
