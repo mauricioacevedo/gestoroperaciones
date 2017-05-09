@@ -300,12 +300,14 @@
             <table class="table small table-striped table-hover table-bordered table-condensed ">
                 <thead>
                 <th>Pedido</th>
+                <th>Pedido2</th>
         
                 <!--th>Opciones</th-->
                 </thead>
                 <tbody>
                     <tr ng-repeat="data in pedidos| orderBy:'FECHA_FIN':true ">
                         <td>{{data.PEDIDO}}</td>
+                         <td>{{gestion.PEDIDO}}</td>
                     
                         <!--td>Opciones</td-->
                     </tr>

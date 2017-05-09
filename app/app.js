@@ -11450,7 +11450,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	var pedidos = services.getPedidosUserActivacion(userID).then(function (data) {
 		$scope.pedidos = data.data[0];
 	//	$scope.pedidosUnicos = data.data[1];
-		console.log(data.data);
+		console.log($scope.pedidos);
 		return data.data;
 		
 	});
