@@ -4663,9 +4663,9 @@ app.controller('editTipsCtrl', function ($scope, $rootScope, $location, $routePa
 		//var x = document.getElementById("miAreaTexto").text;
 		var x = tinymce.get('miAreaTexto').getContent();
 		guardarEdicion.USER_POST = x;
-		var datetime = document.getElementById("datetimepicker1").value;
-		guardarEdicion.POST_TIME = datetime;
-		console.log(guardarEdicion.USER_POST);
+		//var datetime = document.getElementById("datetimepicker1").value;
+		//guardarEdicion.POST_TIME = datetime;
+		//console.log(guardarEdicion.USER_POST);
 
 
 		if (guardarEdicion.USUARIO_ID.USUARIO_ID != undefined) {
