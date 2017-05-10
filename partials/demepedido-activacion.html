@@ -263,6 +263,12 @@
                                     </button></div>
                                  <button type="button" class="btn btn-success btn-xs"  ng-click="guardar(InfoPedido,gestion[0],status);"><span id="mloader"></span>&nbsp; Guardar</button>
                             </li>
+                             <li>&nbsp; | &nbsp;</li>
+                            <li>
+                                <button type="button" class="btn btn-info btn-circle-xss" ng-click="Pedidos()" data-toggle="modal" data-target="#HistoricoPedidoUser" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>Historico por {{logedUser.login}}</code>" >
+                                    <i class="fa fa-user-circle"  aria-hidden="true"> </i>
+                                </button>
+                            </li>
                             <li>&nbsp; | &nbsp;</li>
                               
 
@@ -329,3 +335,53 @@
 
 
 </div>
+
+<div id="HistoricoPedidoUser" class="modal fade "  role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{TituloModal}}</h4>
+                <span style="color:red" ><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+            </div>
+            <div class="modal-body" >
+                <div class = "panel panel-default">
+                    <div class = "panel-heading">
+                        <div class="panel-body fixed-panel" >
+                            <table class = "table small table-striped table-condensed">
+                                <thead>
+                                <tr >
+                                    <th><span class="small">PEDIDO</span></th>
+                                    <th><span class="small">ESTADO</span></th>
+                                    <th><span class="small">TRANSACCION</span></th>
+                                    <th><span class="small">ASESOR</span></th>
+                                    <th><span class="small">FECHA</span></th>
+                                
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="data in pedidos "class="animated bounceInRight">
+                                    <td><span class="small">{{data.PEDIDO}}</span></td>
+                                    <td><span class="small">{{data.ESTADO}}</span></td>
+                                    <td><span class="small">{{data.TRANSACCION}}</span></td>
+                                    <td><span class="small">{{data.ASESOR}}</span></td>
+                                    <td><span class="small">{{data.FECHA_FIN}}/span></td>
+                              
+
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-left">Pedidos: <span class="label label-success">{{pedidosUnicos || 0}}</span></span>&nbsp; &nbsp;
+                <span class="pull-left">Transacciones: <span class="label label-success">{{pedis.length || 0}}</span></span>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div><!-- Modal Eliminar Novedad-->
