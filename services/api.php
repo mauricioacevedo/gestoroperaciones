@@ -2650,7 +2650,7 @@ private function csvActivacioncolas(){
         $id = $this->_request['userID'];
         $today = date("Y-m-d");
 
-        $query=" SELECT ID,PEDIDO,ESTADO,TIPIFICACION,FECHA_FIN,TRANSACCION,ASESOR ".
+        $query=" SELECT ID,PEDIDO,ESTADO,TIPIFICACION,FECHA_FIN,TRANSACCION,ASESOR,TABLA  ".
             ", my_sec_to_time(timestampdiff(second, fecha_inicio, fecha_fin)) as duracion ".
             " from gestor_historico_activacion ".
             " where ASESOR='$id' ".
