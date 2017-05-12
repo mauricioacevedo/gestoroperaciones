@@ -11556,7 +11556,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 				}
 				if ($scope.peds[0].TIEMPO_TOTAL >= 10 ) {
 
-					$rootScope.errorDatos = "El pedido tiene muco tiempo en el sistema " + $scope.peds[0].TIEMPO_TOTAL;
+					$rootScope.errorDatos = "El pedido tiene mucho tiempo en el sistema " + $scope.peds[0].TIEMPO_TOTAL;
 
 				}
 				$scope.baby($scope.pedido1);
