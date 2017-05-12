@@ -11530,7 +11530,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 			$scope.peds = data.data;
-			//console.log($scope.peds);
+			console.log($scope.peds);
 			//$scope.TIEMPO_TOTAL = $scope.peds[0].TIEMPO_TOTAL;
             //console.log($scope.peds[0].PEDIDO);
 
