@@ -11520,7 +11520,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.busy = "";
 		$scope.pedido1 = pedido1;
 		$scope.error = "";
-		$scope.TIEMPO_TOTAL = $scope.TIEMPO_TOTAL + " DIAS";
+
 
 		var demePedidoButton = document.getElementById("iniciar");
 		demePedidoButton.setAttribute("disabled", "disabled");
@@ -11572,15 +11572,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			demePedidoButton.removeAttribute("disabled");
 			demePedidoButton.className = "btn btn-success btn-DemePedido-xs";
 			return data.data;
-
-
-			 if (parseInt($scope.TIEMPO_TOTAL) >= 10 ) {
-
-            alert('loco.');
-			return;
-		
-    }
-
 		});
 
         $scope.timeInit = new Date().getTime();
@@ -11787,8 +11778,8 @@ console.log($scope.InfoGestion);
 			}
 		);
 
-		
-};
+
+	};
 
 	// ----------------------------- GuardarPedido------------------------------
 
@@ -11823,24 +11814,6 @@ console.log($scope.InfoGestion);
             }
         );
     };
-
-$scope.set_color = function (service) {
-       
-
-		if (service.TIEMPO_TOTAL >= 10) {
-			$scope.error = 'Recuerde agendar o en su defecto anular el pedido';
-			//alert('pedido especial');
-
-			$scope.estilo = {
-				"color": "white",
-				"background-color": "red",
-				"font-size": "10px",
-				"padding": "2px"
-			};
-
-			return $scope.estilo;
-		} 
-	};	
 
 });
 
