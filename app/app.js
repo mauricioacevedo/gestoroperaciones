@@ -11554,7 +11554,11 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 					$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
 
 				}
+				if ($scope.peds[0].TIEMPO_TOTAL >= 10 ) {
 
+					$rootScope.errorDatos = "El pedido tiene muco tiempo en el sistema " + $scope.peds[0].TIEMPO_TOTAL;
+
+				}
 				$scope.baby($scope.pedido1);
 
 
@@ -11572,6 +11576,9 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			demePedidoButton.removeAttribute("disabled");
 			demePedidoButton.className = "btn btn-success btn-DemePedido-xs";
 			return data.data;
+		
+
+
 		});
 
         $scope.timeInit = new Date().getTime();
