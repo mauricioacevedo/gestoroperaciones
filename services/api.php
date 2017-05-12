@@ -9994,7 +9994,7 @@ private function csvMalosAgendamientoReparaciones(){
 
         if(!empty($pedido)){
 
-            $query = "INSERT INTO gestor_historico_activacion(".trim($columns,',').",source) VALUES(".trim($values,',').",'MANUAL')";
+            $query = "INSERT INTO gestor_historico_activacion(".trim($columns,',').",source) VALUES(".trim($values,',').",'AUTO')";
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
