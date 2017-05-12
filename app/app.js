@@ -11778,23 +11778,7 @@ console.log($scope.InfoGestion);
 			}
 		);
 
-		$scope.set_color = function (service) {
-       
-
-		if (service.TIEMPO_TOTAL >= 10) {
-			$scope.error = 'Recuerde agendar o en su defecto anular el pedido';
-			//alert('pedido especial');
-
-			$scope.estilo = {
-				"color": "white",
-				"background-color": "red",
-				"font-size": "10px",
-				"padding": "2px"
-			};
-
-			return $scope.estilo;
-		} 
-	};
+		
 };
 
 	// ----------------------------- GuardarPedido------------------------------
@@ -11830,6 +11814,24 @@ console.log($scope.InfoGestion);
             }
         );
     };
+
+$scope.set_color = function (service) {
+       
+
+		if (service.TIEMPO_TOTAL >= 10) {
+			$scope.error = 'Recuerde agendar o en su defecto anular el pedido';
+			//alert('pedido especial');
+
+			$scope.estilo = {
+				"color": "white",
+				"background-color": "red",
+				"font-size": "10px",
+				"padding": "2px"
+			};
+
+			return $scope.estilo;
+		} 
+	};	
 
 });
 
