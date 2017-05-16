@@ -11577,11 +11577,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			demePedidoButton.className = "btn btn-success btn-DemePedido-xs";
 			return data.data;
 		
-
-
-		});
-
-        $scope.timeInit = new Date().getTime();
+			$scope.timeInit = new Date().getTime();
 		var date1 = new Date();
 		var year = date1.getFullYear();
 		var month = $scope.doubleDigit(date1.getMonth() + 1);
@@ -11592,6 +11588,10 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
+
+		});
+
+        
 	};
 
 	// -------------------------------------------------------------- fin DemePedido activacion
