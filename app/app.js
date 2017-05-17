@@ -11859,7 +11859,7 @@ app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $locatio
 	$scope.pedidos = [];
 	$scope.pedidosUnicos = '';
 	$scope.historico_pedido = [];
-	$rootScope.actualView = "/demepedido-activacion";
+	$rootScope.actualView = "/amarillas";
 	$scope.popup = '';
 	$scope.pedidoinfo = '';
 	$rootScope.errorDatos = null;
@@ -11981,11 +11981,7 @@ app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $locatio
 					$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
 
 				}
-				if ($scope.peds[0].TIEMPO_TOTAL >= 10 ) {
-
-					$rootScope.errorDatos = "El pedido tiene mucho tiempo en el sistema " + $scope.peds[0].TIEMPO_TOTAL;
-
-				}
+				
 				$scope.baby($scope.pedido1);
 
 
