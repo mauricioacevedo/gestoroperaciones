@@ -56,45 +56,50 @@
 				</div>
 			</div>
 			</div>
-			<div class="row">
-			<div class="col-md-12 col-xs-12">
-
-				<div class = "panel panel-default" >
-					<div class = "panel-heading nav navbar-default ">
-						<div class="row">
-							<div class="col-md-12">
-							<b>Productividad</b></div></div>
-						<div class="row">
-							<div class="col-md-12" ng-hide="true">
-							<select id="grupo" name="grupo" class="btn btn-default btn-xs grupo-select" ng-model="grupo.Cuartil" ng-change="topProductivos()">
-								<option value="" disabled>---Grupo---</option>
-								<option value="INSTALACION">INSTALACION</option>
-								<option value="REPARACION" >REPARACION</option>
-							</select>
-							<button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="topProductivos()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
-									<i class="fa fa-refresh"  aria-hidden="true"></i>
-								</button></div>
-						</div></div>
-					<div class = "panel-body fixed-panel">
-						<div class="jumbotron"><h4>Módulo no disponible</h4></div>
-						<div ng-hide="true"><!-- Borrar cuando este disponible -->
-						<ul class="list-group small">
+		<div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading nav navbar-default ">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <b>Productividad</b></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <select id="grupo" name="grupo" class="btn btn-default btn-xs grupo-select"
+                                            ng-model="grupo.Cuartil" ng-options="g for g in grupos.values"
+                                            ng-change="topProductivos()">
+                                        <option value="" disabled>Grupo</option>
+                                    </select>
+                                    <button type="button" class="btn btn-default btn-circle-xs pull-right"
+                                            ng-click="topProductivos()" title="Actualizar" data-toggle="tooltip"
+                                            data-placement="left" ng-disabled="loading">
+                                        <i class="fa fa-refresh" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-heading nav navbar-default">
+                            <ul class="list-group small">
 							<span class="small">
-							<a href="" ng-repeat="datar in listaProductivos as ranks" class="list-group-item animated slideInRight" ng-style="set_color_Cuartil(parseInt(datar.CUARTIL))">{{datar.RANK}} - <span ng-class= "{'on':'label label-info','off':'label label-danger'}[datar.ESTADO]">{{datar.ESTADO}}</span> - {{datar.USUARIO_ID}}  <span class = "badge ">{{datar.PEDIDOS}}</span></a>
+							<a href="" ng-repeat="datar in listaProductivos as ranks"
+                               popover popover-placement="left" uib-popover-html="'<b>Cuartil:</b> ' +{{datar.CUARTIL}}"  popover-trigger="'mouseenter'"
+                               class="list-group-item animated slideInRight"
+                               ng-style="set_color_Cuartil(parseInt(datar.CUARTIL))">{{datar.RANK}} - <span
+                                    ng-class="{'on':'label label-info','off':'label label-danger'}[datar.ESTADO]">{{datar.ESTADO}}</span> - {{datar.USUARIO_ID}}  <span
+                                    class="label label-default pull-right" popover popover-placement="top" uib-popover-html="'<b>Pedidos:</b> ' +{{datar.PEDIDOS}}"  popover-trigger="'mouseenter'">{{datar.PEDIDOS}}</span> <span
+                                    class="label label-warning pull-right" popover popover-placement="top" uib-popover-html="'<b>Buscados:</b> ' +{{datar.BUSCADOS}}"  popover-trigger="'mouseenter'">{{datar.BUSCADOS}}  </span></a>
 							</span>
-						</ul></div>
-
-					</div>
-					<div class="panel-footer clearfix">
-						Usuarios: <span class="label label-success">{{ranks.length}}</span>
-					</div>
-				</div>
-
-			</div>
-
-			</div>
-
-	</div><!--Colmd3 -->
+                            </ul>
+                        </div>
+                        <div class="panel-footer clearfix">
+                            Usuarios: <span class="label label-success">{{ranks.length}}</span>
+                            Gestionados: <span class="label label-success">{{ranks | sumarNum:'PEDIDOS'}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--Colmd3 -->
 
 		<div class="col-md-6"><!--Colmd6 -->
 		<div class="row">
