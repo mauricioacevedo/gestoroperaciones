@@ -14537,12 +14537,12 @@ private function csvMalosAgendamientoReparaciones(){
             ", C2.DIVISOR ".
             " FROM (SELECT  ".
             "	R.ASESOR AS USUARIO_ID ".
-            "	, COUNT(DISTINCT R.PEDIDO) AS PEDIDOS ".
+            "	, COUNT(R.PEDIDO) AS PEDIDOS ".
             "	FROM portalbd.gestor_historico_activacion R ".
             "	where R.TABLA='$grupo' ".
             "	AND R.FECHA_FIN between '$today 00:00:00' and '$today 23:59:59'  ".
             " GROUP BY R.ASESOR) C1,  ".
-            "	(SELECT COUNT(distinct A.ASESOR) AS DIVISOR ".
+            "	(SELECT COUNT(A.ASESOR) AS DIVISOR ".
             "	FROM portalbd.gestor_historico_activacion A ".
             "	where A.TABLA='$grupo' ".
             "	AND A.FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' ) C2 ".
