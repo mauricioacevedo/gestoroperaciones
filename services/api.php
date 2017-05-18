@@ -14491,6 +14491,10 @@ private function csvMalosAgendamientoReparaciones(){
         $today = date("Y-m-d");
         $grupo=$this->_request['grupo'];
 
+         
+        if($grupo==""||$grupo=="undefined"){
+            $grupo="ACTIVADOR_SUSPECORE";
+        }   
 
         $query= " SET @rank=0  ";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -14533,16 +14537,14 @@ private function csvMalosAgendamientoReparaciones(){
             ", C2.DIVISOR ".
             " FROM (SELECT  ".
             "	R.ASESOR AS USUARIO_ID ".
-            "	, COUNT(DISTINCT R.PEDIDO_ID) AS PEDIDOS ".
+            "	, COUNT(DISTINCT R.PEDIDO) AS PEDIDOS ".
             "	FROM portalbd.gestor_historico_activacion R ".
-            "	where R.acceso='CONTACT_CENTER' ".
-            "	AND R.PROCESO='$grupo' ".
+            "	where R.TABLA='$grupo' ".
             "	AND R.FECHA_FIN between '$today 00:00:00' and '$today 23:59:59'  ".
             " GROUP BY R.ASESOR) C1,  ".
             "	(SELECT COUNT(distinct A.ASESOR) AS DIVISOR ".
             "	FROM portalbd.gestor_historico_activacion A ".
-            "	where A.acceso='CONTACT_CENTER' ".
-            "	AND A.PROCESO='$grupo' ".
+            "	where A.TABLA='$grupo' ".
             "	AND A.FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' ) C2 ".
             " ORDER BY 2 DESC) Z1 ) L1 ";
         //echo $query;
