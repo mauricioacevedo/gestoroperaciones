@@ -513,6 +513,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'gettransaccion?transaccion=' + transaccion);
 	};
 
+	obj.getPedidosGestorUserActivacion = function (grupo) {
+		return $http.get(serviceBase + 'PedidosGestorUserActivacion?grupo=' + grupo);
+	};
 
 	//------------------------------------------------------fin_Activacion
 
@@ -10872,6 +10875,36 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
     };
 
+	$scope.grupo = {};
+	$scope.topProductivos = function () {
+		//console.log($scope.grupo);
+
+		services.getPedidosGestorUserActivacion($scope.grupo.Cuartil).then(
+
+
+			function (data) {
+
+				$scope.listaProductivos = data.data[0];
+				$scope.grupo.Cuartil = data.data[1];
+				$scope.grupo.fecha = data.data[2];
+				//console.log($scope.listaProductivos);
+
+				return data.data;
+
+
+			},
+			function errorCallback(response, status) {
+				//console.log(status);
+				$rootScope.errorDatos = "Ops, probelemas";
+
+
+
+			}
+		);
+
+
+	};
+
     $scope.csvActivacion = function () {
 		var login = $rootScope.logedUser.login;
 		services.getCsvActivacion(login).then(function (data) {
@@ -11668,6 +11701,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 						$rootScope.errorDatos = null;
 						$scope.pedidoIsActive = true;
+						
 
                        // console.log($scope.peds);
 						return data.data;

@@ -14480,7 +14480,89 @@ private function csvMalosAgendamientoReparaciones(){
 
     //------------------------Listado de Pedidos por Usuario dia actual REAGENDAMIENTO
 
+  //Listado de Pedidos por Usuario dia actual ACTIVACION----------------------------------------
 
+    private function PedidosGestorUserActivacion(){
+
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+
+        $today = date("Y-m-d");
+        $grupo=$this->_request['grupo'];
+
+
+        $query= " SET @rank=0  ";
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $query=	" SELECT ".
+            " case  ".
+            "	when L1.RANK <= round(L1.DIVISOR*0.25) then 1  ".
+            "	when L1.RANK > round(L1.DIVISOR*0.25) and L1.RANK <= round(L1.DIVISOR*0.50)  then 2  ".
+            "	when L1.RANK > round(L1.DIVISOR*0.50) and L1.RANK <= round(L1.DIVISOR*0.75)  then 3  ".
+            "	else 4  ".
+            " end as CUARTIL ".
+            ", L1.RANK ".
+            ", L1.USUARIO_ID ".
+            ", ifnull((SELECT  ".
+            "	case  ".
+            "	when r.status='logged in' then 'on'  ".
+            "	else 'off'  ".
+            "	end as estado  ".
+            "	FROM portalbd.registro_ingreso_usuarios r  ".
+            "	where 1=1  ".
+            "	and r.fecha_ingreso between '$today 00:00:00' and '$today 23:59:59'  ".
+            "	and r.usuario=L1.USUARIO_ID  ".
+            "	limit 1 ),'off') as ESTADO  ".
+            ", ifnull((SELECT  ".
+            "	date_format(r.fecha_ingreso,'%H:%i') as HORA  ".
+            "	FROM portalbd.registro_ingreso_usuarios r  ".
+            "	where 1=1  ".
+            "	and r.fecha_ingreso between '$today 00:00:00' and '$today 23:59:59'  ".
+            "	and r.usuario=L1.USUARIO_ID  ".
+            "	limit 1 ),'00:00') as HORAINICIO  ".
+            ", L1.PEDIDOS ".
+            ", L1.DIVISOR ".
+            " FROM (SELECT ".
+            " @rank:=@rank+1 AS RANK ".
+            ", Z1.USUARIO_ID ".
+            ", Z1.PEDIDOS ".
+            ", Z1.DIVISOR ".
+            " FROM(SELECT ".
+            "  C1.USUARIO_ID ".
+            ", C1.PEDIDOS ".
+            ", C2.DIVISOR ".
+            " FROM (SELECT  ".
+            "	R.ASESOR AS USUARIO_ID ".
+            "	, COUNT(DISTINCT R.PEDIDO_ID) AS PEDIDOS ".
+            "	FROM portalbd.gestor_historico_activacion R ".
+            "	where R.acceso='CONTACT_CENTER' ".
+            "	AND R.PROCESO='$grupo' ".
+            "	AND R.FECHA_FIN between '$today 00:00:00' and '$today 23:59:59'  ".
+            " GROUP BY R.ASESOR) C1,  ".
+            "	(SELECT COUNT(distinct A.ASESOR) AS DIVISOR ".
+            "	FROM portalbd.gestor_historico_activacion A ".
+            "	where A.acceso='CONTACT_CENTER' ".
+            "	AND A.PROCESO='$grupo' ".
+            "	AND A.FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' ) C2 ".
+            " ORDER BY 2 DESC) Z1 ) L1 ";
+        //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+
+            while($row = $r->fetch_assoc()){
+
+                $result[] = $row;
+            }
+
+            $this->response($this->json(array($result,$grupo,$today)), 200); // send user details
+        }
+        $this->response('',204);        // If no records "No Content" status
+
+    }
+
+    //------------------------Listado de Pedidos por Usuario dia actual activacion
 
     // Listado de Localidades Edatel Asginaciones ------------------------------------
 
