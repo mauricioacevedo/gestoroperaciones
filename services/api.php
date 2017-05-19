@@ -8141,7 +8141,7 @@ private function csvMalosAgendamientoReparaciones(){
 
 
 
-        if($concepto=="PETEC" || $concepto=="COBERTURA" || $concepto=="CONSTRUCCION" || $concepto=="DISENO" || $concepto=="DISPONIBILIDAD"){
+        if($concepto=="PETEC"){
             if($plaza=="BOGOTA-COBRE"){
                 $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') ";
             }else {
@@ -8207,6 +8207,35 @@ private function csvMalosAgendamientoReparaciones(){
 
         }else if($fuente=="SIEBEL"||$fuente=="EDATEL"){
             $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ASGINGACIONES_SIEBEL');
+            $sqlllamadas=   "SELECT PEDIDO_ID, ".
+                " SUBPEDIDO_ID, ".
+                " SOLICITUD_ID, ".
+                " FECHA_ESTADO, ".
+                " FECHA_CITA ".
+                " FROM  informe_petec_pendientesm ".
+                " WHERE 1=1 ".
+                //" and (TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
+                //" AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
+                " and RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM','MIG','REPARMIG','MIGGPON')  ".
+                " AND ASESOR='' ".
+                " AND CONCEPTO_ID = '$concepto' ".
+                " AND STATUS='PENDI_PETEC' ".
+                $plaza2.
+                " ORDER BY FECHA_ESTADO ASC ";
+
+            $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
+
+            if($rr->num_rows > 0){//recorro los registros de la consulta para
+                while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
+                    $result[] = $row;
+                    $mypedido=$row['PEDIDO_ID'];
+                    $mypedidoresult=$rta;
+                    $ATENCION_INMEDIATA="1";
+                    break;
+                }
+            }
+
+
             $concepto=" and b.CONCEPTO_ID in ('$concepto')";
         }else if($concepto=="STBOX"){
             $concepto=" and b.CONCEPTO_ID in ('PETEC','15') and (b.TIPO_ELEMENTO_ID IN ('STBOX') )";
