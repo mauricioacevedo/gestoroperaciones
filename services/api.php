@@ -8138,7 +8138,10 @@ private function csvMalosAgendamientoReparaciones(){
 			   $concepto=" and b.CONCEPTO_ID='$concepto'";
 		   } */
 
-        if($concepto=="PETEC"){
+
+
+
+        if($concepto=="PETEC" || $concepto=="COBERTURA" || $concepto=="CONSTRUCCION" || $concepto=="DISENO" || $concepto=="DISPONIBILIDAD"){
             if($plaza=="BOGOTA-COBRE"){
                 $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') ";
             }else {
