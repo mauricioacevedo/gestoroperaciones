@@ -2239,7 +2239,7 @@ private function csvActivacioncolas(){
 
             $fuente=$pedido['fuente'];
 
-            if($fuente=='FENIX_NAL'){
+            if($fuente=='FENIX_NAL' && $CONCEPT=='PETEC'){
                 $concepto_final=$this->updateFenix($pedido);
                 $estado=$pedido['pedido']['estado'];
                 //echo "estado: '$estadum'";
