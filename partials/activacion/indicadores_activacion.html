@@ -34,28 +34,7 @@
 				</div>
 			</div>
 			</div>
-			<div class="row">
-			<div class="col-md-12 col-xs-12">
-
-
-				<div class = "panel panel-default">
-					<div class = "panel-heading nav navbar-default">
-						<b><button type="button" class="btn btn-default btn-circle-xs pull-right" ng-click="actualizarGraficaADS()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
-									<i class="fa fa-refresh"  aria-hidden="true"></i>
-								</button>Pendientes Siebel</b>
-					</div>
-					<div class = "panel-body">
-						<ul class="list-group small">
-							<span class="small">
-							<a href="" ng-repeat="siebel in listadoactivacion2 as PendiSiebel" class="list-group-item animated slideInRight" ng-style="set_color(parseInt(siebel.value))">{{siebel.label}}: <span class = "badge ">{{siebel.value}}</span></a></span>
-						</ul>
-					</div>
-					<div class="panel-footer clearfix">
-						Total: <span class="label label-success">{{PendiSiebel|sumarNum:'value'}}</span>
-					</div>
-				</div>
-			</div>
-			</div>
+		
 	<div class="row">
 			<div class="col-md-12 col-xs-12">
 
