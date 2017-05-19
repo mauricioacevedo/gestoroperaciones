@@ -11426,7 +11426,9 @@ $scope.set_color_Cuartil = function (value) {
 	});
 
 /* FUNCION PARA ACTUALIZAR LOS PARAMETROS DEL SISTEMA */
-
+$scope.actualizarPendientesPorConceptoColaActivacion();
+$scope.actualizarGraficaAD();
+$scope.topProductivos();
 });
 
 
