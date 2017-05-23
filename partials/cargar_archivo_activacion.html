@@ -36,8 +36,8 @@ table, th, td {
 				<div class="panel-heading nav navbar-default">
 					<ul class="nav navbar-nav navbar-left">
 					<select id="tipo_carga" ng-model="tipoCarga" class="btn btn-default btn-xs" title="Tipo de carga" data-toggle="tooltip" data-placement="top"> 
-								<option value="previsa">Carga Prevista(Jonatan Arbelaez)</option>
-								<option value="real">Carga Real(Supervisores)</option>
+								<option value="previsa">Amarillas</option>
+								
 					</select> 
 					<div class="fileUpload btn btn-primary btn-xs">
 						<span class="glyphicon glyphicon-upload"></span> Seleccionar Archivo
@@ -52,19 +52,13 @@ table, th, td {
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 							<button type="button" class="btn btn-info btn-xs" 
-										ng-click="exportarFile('Jonatan')"
+										ng-click="exportarFile('amarillas')"
 										ng-disabled="loading"
-										title="Archivo Jonatan" 
+										title="Archivo amarillas" 
 										tooltip
-										data-placement="top">Jonatan
+										data-placement="top">amarillas
 										<i class="fa fa-cloud-download" aria-hidden="true"> </i></button>
-							<button type="button" class="btn btn-info btn-xs" 
-										ng-click="exportarFile('Supervisores')"
-										ng-disabled="loading"
-										title="Archivo Supervisores" 
-										tooltip
-										data-placement="top">Supervisores
-										<i class="fa fa-cloud-download" aria-hidden="true"> </i></button>
+							
 						<input style="width:130px" type="text" class="btn btn-default btn-xs ng-pristine ng-valid ng-touched"  ng-model="tecnicos.fecha" placeholder= "Fecha a consultar..." datetime-picker="" date-format="yyyy-MM-dd" title="Actualizar" 
 										tooltip
 										data-placement="top"> <i class="fa fa-calendar fa-fw"></i>
