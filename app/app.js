@@ -7346,6 +7346,54 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 });
 //----------------------------------fin subir archivo--------------------
 
+//-------------------------subir activos activacion--------------------------
+app.controller('cargar_datos_activacionCtrl', function ($scope, $rootScope, $location, $route, $routeParams, $cookies, $cookieStore, $timeout, services, fileUpload) {
+$scope.listaAsigancionTecnicos={};
+
+          $scope.uploadFile = function(){
+             $scope.carga_ok=true;
+             var file = $scope.myFile;
+                $scope.user=$rootScope.galletainfo.LOGIN;
+                $scope.name = '';
+            //   console.log('file is ');
+              // console.dir(file);
+               // console.dir($scope.tipoCarga);
+               $scope.delete_ok=false;
+               
+            var uploadUrl = 'services/cargar_datos';
+               fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user, $scope.tipoCarga);
+                $scope.msg="Se cargo el archivo: "+file.name;
+              $scope.resumenAsigancionTecnicos();
+               
+          };
+
+              $scope.resumenAsigancionTecnicos = function(){
+              $scope.errorDatos = "";
+              //console.log($scope.tecnicos);
+              services.getresumenAsigancionTecnicos($scope.tecnicos).then(
+                          function(data){
+                          $scope.listaAsigancionTecnicos=data.data[0];
+                            return data.data;
+                        }
+                        , function errorCallback(response) {
+                           $scope.errorDatos="No hay datos cargados";
+                });
+              //console.log($scope.listaRegistrosCarga);
+              };
+
+
+      $scope.exportarFile  = function (encargado){
+              if (encargado=="Jonatan"){
+                window.location.href="./Phpexcel/Jonatan.xlsx";
+              }else{
+                 window.location.href="./Phpexcel/Supervisores.xlsx";
+              }
+      };
+
+
+ $scope.resumenAsigancionTecnicos();
+ });
+//-------------------------fin subir activos activacion--------------------------
 
 app.controller('Pedidos_MicrozonasCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
 
@@ -16386,6 +16434,12 @@ app.config(['$routeProvider',
             grupos: ['ACTIVACION','SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
+		.when('/cargar_datos_activacion/', {
+			title: 'cargar_arcvivos_activacion',
+			templateUrl: 'partials/cargar_archivo_activacion.html',
+			controller: 'cargar_datos_activacionCtrl'
+		})
+
 		.when('/docuactivacion/', {
 			title: 'documentacionactivacion',
 			templateUrl: 'partials/docuactivacion.html',
@@ -16485,6 +16539,8 @@ app.config(['$routeProvider',
 			templateUrl: 'partials/codigo_resultado.html',
 			controller: 'cargar_datosCtrl'
 		})
+
+		
 		.when('/cupos-agendamiento/', {
 			title: 'Ocupacion',
 			templateUrl: 'partials/ocupacion-agendamiento.html',
