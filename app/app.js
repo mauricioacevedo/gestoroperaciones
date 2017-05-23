@@ -7348,51 +7348,75 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 
 //-------------------------subir activos activacion--------------------------
 app.controller('cargar_datos_activacionCtrl', function ($scope, $rootScope, $location, $route, $routeParams, $cookies, $cookieStore, $timeout, services, fileUpload) {
-$scope.listaAsigancionTecnicos={};
 
-          $scope.uploadFile = function(){
-             $scope.carga_ok=true;
-             var file = $scope.myFile;
-                $scope.user=$rootScope.galletainfo.LOGIN;
-                $scope.name = '';
-            //   console.log('file is ');
-              // console.dir(file);
-               // console.dir($scope.tipoCarga);
-               $scope.delete_ok=false;
-               
-            var uploadUrl = 'services/cargar_datos';
-               fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user, $scope.tipoCarga);
-                $scope.msg="Se cargo el archivo: "+file.name;
-              $scope.resumenAsigancionTecnicos();
-               
-          };
+var userID = $cookieStore.get('logedUser').login;
+	$rootScope.logedUser = $cookieStore.get('logedUser');
+	document.getElementById('logout').className = "btn btn-md btn-danger";
+	var divi = document.getElementById("logoutdiv");
+	divi.style.visibility = "visible";
+	divi.style.position = "relative";
+	$rootScope.iconcepto = "TODO";
+	$rootScope.actualView = "usuarios";
 
-              $scope.resumenAsigancionTecnicos = function(){
-              $scope.errorDatos = "";
-              //console.log($scope.tecnicos);
-              services.getresumenAsigancionTecnicos($scope.tecnicos).then(
-                          function(data){
-                          $scope.listaAsigancionTecnicos=data.data[0];
-                            return data.data;
-                        }
-                        , function errorCallback(response) {
-                           $scope.errorDatos="No hay datos cargados";
-                });
-              //console.log($scope.listaRegistrosCarga);
-              };
+	//console.log ($rootScope.logedUser)
+	$scope.usert = {};
+	$scope.usert.EQUIPO_ID = "MANUAL";
+	$scope.usert.ID = "";
 
 
-      $scope.exportarFile  = function (encargado){
-              if (encargado=="Jonatan"){
-                window.location.href="./Phpexcel/Jonatan.xlsx";
-              }else{
-                 window.location.href="./Phpexcel/Supervisores.xlsx";
-              }
-      };
+	services.listar1().then(function (data) {
+		$scope.listadodocu1 = data.data[0];
+		console.log($scope.listadodocu1);
+		return data.data;
+	});
+	// FILTERS
+	$scope.uploadFile = function () {
+		$scope.user = $rootScope.logedUser.login;
+
+		var file = $scope.myFile;
+		console.log('file is');
+		console.dir(file);
 
 
- $scope.resumenAsigancionTecnicos();
- });
+		var uploadUrl = 'services/cargar_datos';
+		// console.log ($scope.user);
+		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
+
+	};
+
+
+	$scope.eliminarfi = function (file) {
+		//console.log(data.data);
+		var result = confirm("Esta seguro que desea eliminar el archivo " + file + "?");
+		if (result) {
+			//Logic to delete the item
+			services.eliminarfile1(file).then(function (data) {
+				if (data.data == 'OK') {
+					//document.getElementById("warning").innerHTML = "Archivo " + file + " eliminado correctamente.";
+					$scope.error = "Archivo " + file + " eliminado correctamente.";
+				}
+				services.listar1().then(function (data) {
+					$scope.listadodocu1 = data.data[0];
+					//console.log($scope.listadodocu);
+					return data.data;
+				});
+			});
+		}
+	};
+
+
+	$scope.doubleDigit = function (num) {
+
+		if (num < 0) {
+			num = 0;
+		}
+
+		if (num <= 9) {
+			return "0" + num;
+		}
+		return num;
+	};
+
 //-------------------------fin subir activos activacion--------------------------
 
 app.controller('Pedidos_MicrozonasCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
