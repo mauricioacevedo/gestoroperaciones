@@ -7346,78 +7346,6 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 });
 //----------------------------------fin subir archivo--------------------
 
-//-------------------------subir activos activacion--------------------------
-app.controller('cargar_datos_activacionCtrl', function ($scope, $rootScope, $location, $route, $routeParams, $cookies, $cookieStore, $timeout, services, fileUpload) {
-
-var userID = $cookieStore.get('logedUser').login;
-	$rootScope.logedUser = $cookieStore.get('logedUser');
-	document.getElementById('logout').className = "btn btn-md btn-danger";
-	var divi = document.getElementById("logoutdiv");
-	divi.style.visibility = "visible";
-	divi.style.position = "relative";
-	$rootScope.iconcepto = "TODO";
-	$rootScope.actualView = "usuarios";
-
-	//console.log ($rootScope.logedUser)
-	$scope.usert = {};
-	$scope.usert.EQUIPO_ID = "MANUAL";
-	$scope.usert.ID = "";
-
-
-	services.listar1().then(function (data) {
-		$scope.listadodocu1 = data.data[0];
-		console.log($scope.listadodocu1);
-		return data.data;
-	});
-	// FILTERS
-	$scope.uploadFile = function () {
-		$scope.user = $rootScope.logedUser.login;
-
-		var file = $scope.myFile;
-		console.log('file is');
-		console.dir(file);
-
-
-		var uploadUrl = 'services/cargar_datos';
-		// console.log ($scope.user);
-		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
-
-	};
-
-
-	$scope.eliminarfi = function (file) {
-		//console.log(data.data);
-		var result = confirm("Esta seguro que desea eliminar el archivo " + file + "?");
-		if (result) {
-			//Logic to delete the item
-			services.eliminarfile1(file).then(function (data) {
-				if (data.data == 'OK') {
-					//document.getElementById("warning").innerHTML = "Archivo " + file + " eliminado correctamente.";
-					$scope.error = "Archivo " + file + " eliminado correctamente.";
-				}
-				services.listar1().then(function (data) {
-					$scope.listadodocu1 = data.data[0];
-					//console.log($scope.listadodocu);
-					return data.data;
-				});
-			});
-		}
-	};
-
-
-	$scope.doubleDigit = function (num) {
-
-		if (num < 0) {
-			num = 0;
-		}
-
-		if (num <= 9) {
-			return "0" + num;
-		}
-		return num;
-	};
-
-//-------------------------fin subir activos activacion--------------------------
 
 app.controller('Pedidos_MicrozonasCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
 
@@ -16458,12 +16386,6 @@ app.config(['$routeProvider',
             grupos: ['ACTIVACION','SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-		.when('/cargar_datos_activacion/', {
-			title: 'cargar_arcvivos_activacion',
-			templateUrl: 'partials/cargar_archivo_activacion.html',
-			controller: 'cargar_datos_activacionCtrl'
-		})
-
 		.when('/docuactivacion/', {
 			title: 'documentacionactivacion',
 			templateUrl: 'partials/docuactivacion.html',
@@ -16563,8 +16485,6 @@ app.config(['$routeProvider',
 			templateUrl: 'partials/codigo_resultado.html',
 			controller: 'cargar_datosCtrl'
 		})
-
-		
 		.when('/cupos-agendamiento/', {
 			title: 'Ocupacion',
 			templateUrl: 'partials/ocupacion-agendamiento.html',
