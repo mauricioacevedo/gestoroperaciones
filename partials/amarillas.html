@@ -88,25 +88,20 @@
 												{{service.PEDIDO}}
 											</button> </li>
 
-											  <li class="list-group-item small" ><b>ORDER_SEQ_ID:</b> {{service.ORDER_SEQ_ID}}  </li>
-                                            <li class="list-group-item small" ><b>ESTADO:</b> {{service.ESTADO}}  </li>
-                                            <li class="list-group-item small" ><b>FECHA_CREACION:</b> {{service.FECHA_CREACION}}
-                                            <li class="list-group-item small" ><b>TAREA_EXCEPCION:</b> {{service.TAREA_EXCEPCION}}</li>
-                                            <li class="list-group-item small" ><b>TIEMPO:</b> {{service.TIEMPO_TOTAL}} dias</li>
-                                            <li class="list-group-item small" ><b>DESCRIPCIONEXCEPCIONACT:</b> {{service.DESCRIPCIONEXCEPCIONACT}}</li>
-                                             <li class="list-group-item small" ><b>VALOR_ERROR:</b> {{service.VALOR_ERROR}}</li>        
+											  <li class="list-group-item small" ><b>IDGRUPOAGENDA:</b> {{service.IDGRUPOAGENDA}}  </li>
+                                            <li class="list-group-item small" ><b>IDESTADO:</b> {{service.IDESTADO}}  </li>
+                                            <li class="list-group-item small" ><b>NOMBRE:</b> {{service.NOMBRE}}
+                                            <li class="list-group-item small" ><b>NOMBRECOMERCIAL:</b> {{service.NOMBRECOMERCIAL}}</li>
+                                            
 
 
 										</div>
 
 										<div class="col-md-6">
-											<li class="list-group-item small" ><b>FECHA_EXCEPCION:</b> {{service.FECHA_EXCEPCION}} </li>
-                                            <li class="list-group-item small" ><b>PRODUCTOS:</b> {{service.PRODUCTO}} </li>
-                                               <li class="list-group-item small" ><b>IDSERVICIORAIZ:</b> {{service.IDSERVICIORAIZ}} </li>
-                                            <li class="list-group-item small" ><b>TRANSACCION:</b> {{service.TRANSACCION}} </li>
-                                             <li class="list-group-item small" ><b>REFERENCE_NUMBER:</b> {{service.REFERENCE_NUMBER}} </li>
-                                             <li class="list-group-item small" ><b>MOTIVOEXCEPCIONACT:</b> {{service.MOTIVOEXCEPCIONACT}} </li>
-                                             <li class="list-group-item small" ><b>MOTIVO_ERROR:</b> {{service.MOTIVO_ERROR}} </li>
+											<li class="list-group-item small" ><b>FECHADIAGENDA:</b> {{service.FECHADIAGENDA}} dias</li>
+                                            <li class="list-group-item small" ><b>FECHACARGA:</b> {{service.FECHACARGA}}</li>
+                                             <li class="list-group-item small" ><b>OFERTAPEDIDO:</b> {{service.OFERTAPEDIDO}}</li>  
+                                             <li class="list-group-item small" ><b>DEPARTAMENTO:</b> {{service.DEPARTAMENTO}}</li>       
 
                                              <br><span ng-show="service.HISTORICO_TIPIFICACION" class="ng-binding label label-warning">[HISTORICO_TIPIFICACION]{{service.HISTORICO_TIPIFICACION}}</span>
 										</div>

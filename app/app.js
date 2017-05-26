@@ -485,6 +485,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'demePedidoActivacion?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion   + '&tabla=' + tabla  + '&producto=' + producto  +'&username=' + username );
 	};
 
+		obj.demePedidoAmarillas = function (user, pedido, username) { //deme pedido activacion
+		return $http.get(serviceBase + 'demePedidoAmarillas?pedidoID=' + pedido + '&userID=' + user +'&username=' + username );
+	};
+
 
 	obj.getBuscarpedidoactivacion = function (pedido,tabla, user) { //buscar pedido activacion suspecore
 		return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID=' + pedido  + '&tabla=' + tabla  + '&userID=' + user);
@@ -11476,10 +11480,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.FECHA_CREACION = null;
 	$scope.fecha_inicio = null;
 	$scope.fecha_fin = null;
-	$scope.transaccion = 'Suspender';
-    $scope.tabla = 'ACTIVADOR_SUSPECORE';
-    $scope.listaOpcionesGestion = [];
-    $scope.producto = 'BA';
 
 	
 	var pedidos = services.getPedidosUserActivacion(userID).then(function (data) {
@@ -11499,16 +11499,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 	$scope.pedidoIsActive = false;
 
-      $scope.setTransaccion = function (transaccion){
-        $scope.transaccion=transaccion;
-    };
-      $scope.setTabla = function (tabla){
-        $scope.tabla=tabla;
-    };
-
-    $scope.setProducto = function(producto){
-        $scope.producto=producto;
-    };
 
 	// ---------------------------------fin Variables----------------------------
 
@@ -11537,8 +11527,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.accRdy = false;
 		$scope.InfoGestion = {};
 		$scope.pedidoIsGuardado = false;
-        $scope.InfoPedido.NUMERO_CR = '';
-		$scope.InfoPedido.OBSERVACION = '';
+
 		
 
 	//console.log($scope.InfoGestion);		
@@ -11561,7 +11550,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-		var kami = services.demePedidoAmarillas($rootScope.logedUser.login, $scope.pedido1, $scope.transaccion,$scope.tabla,$scope.producto, $rootScope.logedUser.name).then(function (data) {
+		var kami = services.demePedidoAmarillas($rootScope.logedUser.login, $scope.pedido1, $rootScope.logedUser.name).then(function (data) {
 
 
 			$scope.peds = data.data;
