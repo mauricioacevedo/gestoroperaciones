@@ -6951,7 +6951,37 @@ private function csvMalosAgendamientoReparaciones(){
 
     //-------------------------------------fin pedido por pedido activacion
 
+ //-------------------------------------inicion pedido por pedido activacion
 
+    private function pedidosPorPedidoAmarillas(){//historico por 1 pedido
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $pedido = $this->_request['pedido'];
+        $today = date("Y-m-d");
+        $tabla= $this->_request['tabla'];
+
+
+
+        $query=" SELECT ID, IDGRUPOAGENDA,PEDIDO,IDESTADO ".
+            ",NOMBRE,FECHADIAGENDA,FECHACARGA ".
+            " FROM portalbd.dlt_cn_estadooperacion ".
+            " where pedido like '$pedido%' order by fecha_excepcion desc limit 10 " .
+			" and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' ";
+
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                $result[] = $row;
+            }
+            $this->response($this->json($result), 200); // send user details
+        }
+        $this->response('',204);        // If no records "No Content" status
+    }
+
+    //-------------------------------------fin pedido por pedido activacion
 
     private function vecinosPagina(){
 

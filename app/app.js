@@ -476,6 +476,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'pedidosPorPedidoActivacion?pedido=' + pedido);
 	};
 
+	obj.getpedidosPorPedidoAmarillas = function (pedido) { //pedido por pedido activacion
+		return $http.get(serviceBase + 'pedidosPorPedidoAmarillas?pedido=' + pedido);
+	};
+
     obj.getpedidosPorPedidoActivacionDom = function (pedido) { //pedido por pedido activacion
 		return $http.get(serviceBase + 'pedidosPorPedidoActivacionDom?pedido=' + pedido);
 	};
@@ -11936,7 +11940,7 @@ app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $locatio
 	// ------------------------DemePedido activacion --------------------------------------------------------------
 	$scope.baby = function (pedido) {
 		console.log(pedido);
-		services.getpedidosPorPedidoActivacion(pedido).then(function (data) {
+		services.getpedidosPorPedidoAmarillas(pedido).then(function (data) {
 			//console.log(data.data);
 			$scope.historico_pedido = data.data;
 			//  console.log($scope.historico_pedido);
