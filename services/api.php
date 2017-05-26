@@ -8777,8 +8777,11 @@ private function csvMalosAgendamientoReparaciones(){
             if($tabla=='ACTIVADOR_SUSPECORE'){
 
                 $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
-            }else {
+            }else  if($tabla=='ACTIVADOR_SUSPECORE') {
                 $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+            } else {
+
+                $sqlupdate="update dlt_cn_estadooperacion set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
             }
 
             $x = $this->mysqli->query($sqlupdate);
