@@ -509,6 +509,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'pedidosPorUserActivacion?userID=' + userID);
 	};
 
+	obj.getPedidosUserAmarillas = function (userID) { //pedidos por user activacion
+		return $http.get(serviceBase + 'pedidosPorUserAmarillas?userID=' + userID);
+	};
+
 	obj.listar = function () {
 		return $http.get(serviceBase + 'listadoarchivosdocu'); //listado activacion
 	};

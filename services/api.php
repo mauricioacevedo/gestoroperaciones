@@ -6959,15 +6959,15 @@ private function csvMalosAgendamientoReparaciones(){
         }
         $pedido = $this->_request['pedido'];
         $today = date("Y-m-d");
-        $tabla= $this->_request['tabla'];
+    
 
 
 
-        $query=" SELECT ID, IDGRUPOAGENDA,PEDIDO,IDESTADO ".
+        $query=" SELECT id, IDGRUPOAGENDA,PEDIDO,IDESTADO ".
             ",NOMBRE,FECHADIAGENDA,FECHACARGA ".
-            " FROM portalbd.dlt_cn_estadooperacion ".
-            " where pedido like '$pedido%' order by fecha_excepcion desc limit 10 " .
-			" and FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' ";
+            ",OFERTAPEDIDO,DEPARTAMENTO ".
+            " from dlt_cn_estadooperacion  ". 
+            " where pedido like '$pedido%' order by fecha_excepcion desc limit 10 ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
