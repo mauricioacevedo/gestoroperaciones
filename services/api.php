@@ -8644,13 +8644,16 @@ private function csvMalosAgendamientoReparaciones(){
         if($tabla=='ACTIVADOR_SUSPECORE'){
 
             $tabla = " from gestor_activacion_pendientes_activador_suspecore b " ;
-            $MOTIVOEXCEPCIONACT = " and b.MOTIVOEXCEPCIONACT <> 'La Cuenta NO existe.' ";   
-        } else {
+            $MOTIVOEXCEPCIONACT = " and b.MOTIVOEXCEPCIONACT <> 'La Cuenta NO existe.' ";
+
+        } else if ($tabla=='ACTIVADOR_DOM'){
 
             $tabla = " from gestor_activacion_pendientes_activador_dom b " ;
             $MOTIVO_ERROR = " and b.MOTIVO_ERROR <> 'La Cuenta NO existe.' "; 
 
+        } else {
 
+            $tabla = " from dlt_cn_estadooperacion b " ;
         }
 
         $mypedido="";
