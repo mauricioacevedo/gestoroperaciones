@@ -6924,13 +6924,10 @@ private function csvMalosAgendamientoReparaciones(){
 
             $tabla = " from gestor_activacion_pendientes_activador_suspecore b " ;
 
-        } else if ($tabla=='ACTIVADOR_DOM'){
+        } else {
 
             $tabla = " from gestor_activacion_pendientes_activador_dom b " ;
 
-        } else {
-
-            $tabla = " from dlt_cn_estadooperacion b " ;
         }
 
 
@@ -8610,14 +8607,8 @@ private function csvMalosAgendamientoReparaciones(){
         if($tabla=='ACTIVADOR_SUSPECORE'){
 
             $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
-        
-        }else if($tabla=='ACTIVADOR_DOM'){
-
+        }else {
             $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='' where ASESOR='$user'";
-
-        } else{
-
-               $sqlupdate="update dlt_cn_estadooperacion set ASESOR='' where ASESOR='$user'";                      
         }
 
         //echo $sqlupdate;
@@ -8644,16 +8635,13 @@ private function csvMalosAgendamientoReparaciones(){
         if($tabla=='ACTIVADOR_SUSPECORE'){
 
             $tabla = " from gestor_activacion_pendientes_activador_suspecore b " ;
-            $MOTIVOEXCEPCIONACT = " and b.MOTIVOEXCEPCIONACT <> 'La Cuenta NO existe.' ";
-
-        } else if ($tabla=='ACTIVADOR_DOM'){
+            $MOTIVOEXCEPCIONACT = " and b.MOTIVOEXCEPCIONACT <> 'La Cuenta NO existe.' ";   
+        } else {
 
             $tabla = " from gestor_activacion_pendientes_activador_dom b " ;
             $MOTIVO_ERROR = " and b.MOTIVO_ERROR <> 'La Cuenta NO existe.' "; 
 
-        } else {
 
-            $tabla = " from dlt_cn_estadooperacion b " ;
         }
 
         $mypedido="";
@@ -8777,11 +8765,8 @@ private function csvMalosAgendamientoReparaciones(){
             if($tabla=='ACTIVADOR_SUSPECORE'){
 
                 $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
-            }else  if($tabla=='ACTIVADOR_SUSPECORE') {
+            }else {
                 $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
-            } else {
-
-                $sqlupdate="update dlt_cn_estadooperacion set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
             }
 
             $x = $this->mysqli->query($sqlupdate);
