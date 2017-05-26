@@ -11917,6 +11917,7 @@ app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $locatio
 	$scope.fecha_inicio = null;
 	$scope.fecha_fin = null;
     $scope.listaOpcionesGestion = [];
+	$scope.NOMBRECOMERCIAL = 'Internet';
   
 
 	
