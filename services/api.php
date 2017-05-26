@@ -6924,10 +6924,13 @@ private function csvMalosAgendamientoReparaciones(){
 
             $tabla = " from gestor_activacion_pendientes_activador_suspecore b " ;
 
-        } else {
+        } else if ($tabla=='ACTIVADOR_DOM'){
 
             $tabla = " from gestor_activacion_pendientes_activador_dom b " ;
 
+        } else {
+
+            $tabla = " from dlt_cn_estadooperacion b " ;
         }
 
 
@@ -8607,8 +8610,14 @@ private function csvMalosAgendamientoReparaciones(){
         if($tabla=='ACTIVADOR_SUSPECORE'){
 
             $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user'";
-        }else {
+        
+        }else if($tabla=='ACTIVADOR_DOM'){
+
             $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='' where ASESOR='$user'";
+
+        } else{
+
+               $sqlupdate="update dlt_cn_estadooperacion set ASESOR='' where ASESOR='$user'";                      
         }
 
         //echo $sqlupdate;
