@@ -8848,7 +8848,7 @@ private function csvMalosAgendamientoReparaciones(){
 
 //--------------------------demepedido activacion----------------------amarillas
     private function demePedidoAmarillas(){
-        if($this->get_request_method() != "GET"){
+          if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
         $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
@@ -8862,7 +8862,9 @@ private function csvMalosAgendamientoReparaciones(){
         $grupoGalleta   =   $galleta['GRUPO'];
 
         $user = $this->_request['userID'];
-        
+        $transaccion = $this->_request['transaccion'];
+        $tabla = $this->_request['tabla'];
+        $producto= $this->_request['producto'];
 
 
         $filename = '../tmp/control-threads-agen.txt';
@@ -8879,7 +8881,6 @@ private function csvMalosAgendamientoReparaciones(){
         $user=strtoupper($user);
 
 
-            $sqlupdate="update dlt_cn_estadooperacion set ASESOR='' where ASESOR='$user'";
        
 
         //echo $sqlupdate;
@@ -8890,25 +8891,28 @@ private function csvMalosAgendamientoReparaciones(){
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
 
         //  echo "carlitos1 ---$producto---";
-         if($nombrecomercial!=""){
-            $nombrecomercial=" and b.NOMBRECOMERCIAL='$nombrecomercial' ";
+
+        if($producto!=""){
+            $producto=" and b.PRODUCTO='$producto' ";
         }else{
-            $nombrecomercial="";
+            $producto="";
         }
+
+       
 
         $mypedido="";
 
 
 
-        if($parametroBusqueda=='') $parametroBusqueda ='FECHADIAGENDA';
+        if($parametroBusqueda=='') $parametroBusqueda ='FECHA_EXCEPCION';
 
-        $query1= " select distinct b.PEDIDO,b.FECHADIAGENDA  ".
-                " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
-                " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
-                " from dlt_cn_estadooperacion b ".
-                "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
-                $nombrecomercial.
-                " order by b. FECHADIAGENDA ASC ";
+        $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
+            " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
+            " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
+            " from dlt_cn_estadooperacion b".
+            "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
+            " $producto ".
+            " order by b.$parametroBusqueda  ASC";
 
         //echo $query1;
         if($mypedido==""){
@@ -8948,17 +8952,20 @@ private function csvMalosAgendamientoReparaciones(){
 
 
 
-        $query1= " SELECT DISTINCT b.ID ". 
-                    " ,b.IDGRUPOAGENDA,b.IDESTADO,b.PEDIDO,b.NOMBRE,b.NOMBRECOMERCIAL,b.FECHADIAGENDA,b.FECHACARGA,b.ACTIVIDAD,b.FUENTE,b.GRUPO ".
-                    " ,b.OFERTAPEDIDO,b.ESTADOORDEN,b.DEPARTAMENTO,b.STATUS,b.ASESOR ".
-                    " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHADIAGENDA),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
-                    " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
-                    " where a.PEDIDO='$mypedido'and a.TIPIFICACION='' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
-                    " from dlt_cn_estadooperacion b ".
-                    "  where b.PEDIDO = '$mypedido' ". 
-                    " and b.STATUS='PENDI_ACTI'  ".
-                    $nombrecomercial.
-                    " group by b.pedido ";
+        $query1=" SELECT DISTINCT b.ID ".
+            " ,b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TRANSACCION,b.PRODUCTO,b.FECHA_EXCEPCION,b.FECHA_CARGA,b.TIPO_COMUNICACION,b.TAREA_EXCEPCION,b.DEPARTAMENTO,b.STATUS,b.ASESOR ".
+            ",b.ACTIVIDAD,b.FUENTE,b.GRUPO".
+            " , group_concat(distinct b.PRODUCTO) as  PRODUCTO ".
+            " , min(b.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
+            " ,min(b.FECHA_CREACION) as FECHA_CREACION ".
+            " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_EXCEPCION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL".
+            " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
+            " where a.PEDIDO='$mypedido'and a.TIPIFICACION='' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
+           " from dlt_cn_estadooperacion b".
+            " where b.PEDIDO = '$mypedido'  ".
+            " and b.STATUS='PENDI_ACTI' ".
+            $producto.
+            " group by b.pedido ";
 
 
         // echo $query1;
@@ -8974,9 +8981,12 @@ private function csvMalosAgendamientoReparaciones(){
                 $sep=",";
             }
 
+            if($tabla=='ACTIVADOR_SUSPECORE'){
 
-                $sqlupdate="update dlt_cn_estadooperacion set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
-           
+                $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+            }else {
+                $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+            }
 
             $x = $this->mysqli->query($sqlupdate);
 
@@ -9019,7 +9029,6 @@ private function csvMalosAgendamientoReparaciones(){
 
         $this->response('nothing',204);        // If no records "No Content" status
     }
-
 
 
 //--------------------fin demepedido activacion------------------------------amarillas

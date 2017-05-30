@@ -21,7 +21,7 @@
 								<select
 									class= "btn btn-default btn-xs grupo-select"
 									style="width: 100px"
-									ng-model="nombrecomercial" class="form-control" ng-change="setnombrecomercial(nombrecomercial)">
+									ng-model="producto" class="form-control" ng-change="setProducto(producto)">
 									 <option value="Televisión Empresarial">Televisión Empresarial</option>
                                          <option value="Internet">Internet</option>
                                          <option value="Telefonía">Telefonía</option>
@@ -88,19 +88,19 @@
 												{{service.PEDIDO}}
 											</button> </li>
 
-											  <li class="list-group-item small" ><b>IDGRUPOAGENDA:</b> {{service.IDGRUPOAGENDA}}  </li>
-                                            <li class="list-group-item small" ><b>IDESTADO:</b> {{service.IDESTADO}}  </li>
-                                            <li class="list-group-item small" ><b>NOMBRE:</b> {{service.NOMBRE}}
-                                            <li class="list-group-item small" ><b>NOMBRECOMERCIAL:</b> {{service.NOMBRECOMERCIAL}}</li>
+											  <li class="list-group-item small" ><b>ORDER_SEQ_ID:</b> {{service.ORDER_SEQ_ID}}  </li>
+                                            <li class="list-group-item small" ><b>ESTADO:</b> {{service.ESTADO}}  </li>
+                                            <li class="list-group-item small" ><b>TRANSACCION:</b> {{service.TRANSACCION}}
+                                            <li class="list-group-item small" ><b>PRODUCTO:</b> {{service.PRODUCTO}}</li>
                                             
 
 
 										</div>
 
 										<div class="col-md-6">
-											<li class="list-group-item small" ><b>FECHADIAGENDA:</b> {{service.FECHADIAGENDA}} dias</li>
-                                            <li class="list-group-item small" ><b>FECHACARGA:</b> {{service.FECHACARGA}}</li>
-                                             <li class="list-group-item small" ><b>OFERTAPEDIDO:</b> {{service.OFERTAPEDIDO}}</li>  
+											<li class="list-group-item small" ><b>FECHA_EXCEPCION:</b> {{service.FECHA_EXCEPCION}} dias</li>
+                                            <li class="list-group-item small" ><b>FECHA_CARGA:</b> {{service.FECHA_CARGA}}</li>
+                                             <li class="list-group-item small" ><b>TIPO_COMUNICACION:</b> {{service.TIPO_COMUNICACION}}</li>  
                                              <li class="list-group-item small" ><b>DEPARTAMENTO:</b> {{service.DEPARTAMENTO}}</li>       
 
                     
