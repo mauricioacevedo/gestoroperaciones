@@ -8949,7 +8949,7 @@ private function csvMalosAgendamientoReparaciones(){
 
 
         $query1= " SELECT DISTINCT b.ID ". 
-                    " ,b.IDGRUPOAGENDA,b.IDESTADO,b.PEDIDO,b.NOMBRE,b.NOMBRECOMERCIAL,b.FECHADIAGENDA,b.FECHACARGA ".
+                    " ,b.IDGRUPOAGENDA,b.IDESTADO,b.PEDIDO,b.NOMBRE,b.NOMBRECOMERCIAL,b.FECHADIAGENDA,b.FECHACARGA,b.ACTIVIDAD,b.FUENTE,b.GRUPO ".
                     " ,b.OFERTAPEDIDO,b.ESTADOORDEN,b.DEPARTAMENTO,b.STATUS,b.ASESOR ".
                     " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHADIAGENDA),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
                     " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
