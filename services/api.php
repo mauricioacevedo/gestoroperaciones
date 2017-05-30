@@ -8957,7 +8957,6 @@ private function csvMalosAgendamientoReparaciones(){
             ",b.ACTIVIDAD,b.FUENTE,b.GRUPO".
             " , group_concat(distinct b.PRODUCTO) as  PRODUCTO ".
             " , min(b.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
-            " ,min(b.FECHA_CREACION) as FECHA_CREACION ".
             " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_EXCEPCION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL".
             " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
             " where a.PEDIDO='$mypedido'and a.TIPIFICACION='' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
