@@ -14531,7 +14531,7 @@ private function csvMalosAgendamientoReparaciones(){
                 " a.ESTADO, ".
                 " a.PEDIDO, ".
                 " a.TRANSACCION, ".
-                " group_concat(distinct a.PRODUCTO) as  PRODUCTO, ".
+                " group_concat(a.PRODUCTO) as  PRODUCTO, ".
                 " a.FECHA_EXCEPCION, ".
                 " a.FECHA_CARGA, ".
                 " a.TIPO_COMUNICACION, ".
