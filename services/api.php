@@ -8862,9 +8862,9 @@ private function csvMalosAgendamientoReparaciones(){
         $grupoGalleta   =   $galleta['GRUPO'];
 
         $user = $this->_request['userID'];
-        $transaccion = $this->_request['transaccion'];
-        $tabla = $this->_request['tabla'];
-        $producto= $this->_request['producto'];
+
+        $estado = $this->_request['estado'];
+      
 
 
         $filename = '../tmp/control-threads-agen.txt';
@@ -8892,10 +8892,10 @@ private function csvMalosAgendamientoReparaciones(){
 
         //  echo "carlitos1 ---$producto---";
 
-        if($producto!=""){
-            $producto=" and b.PRODUCTO='$producto' ";
+        if($estado!=""){
+            $estado=" and b.ESTADO='$estado' ";
         }else{
-            $producto="";
+            $estado="";
         }
 
        
@@ -8911,7 +8911,7 @@ private function csvMalosAgendamientoReparaciones(){
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
             " from pendientes_amarillas b".
             "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
-            " $producto ".
+            " $estado ".
             " order by b.$parametroBusqueda  ASC";
 
         //echo $query1;
@@ -8963,7 +8963,7 @@ private function csvMalosAgendamientoReparaciones(){
            " from pendientes_amarillas b".
             " where b.PEDIDO = '$mypedido'  ".
             " and b.STATUS='PENDI_ACTI' ".
-            $producto.
+            $estado.
             " group by b.pedido ";
 
 
