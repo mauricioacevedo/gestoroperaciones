@@ -491,7 +491,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
 	
 	obj.demePedidoAmarillas = function (user, pedido,nombrecomercial, username) { //deme pedido activacion	
-		return $http.get(serviceBase + 'demePedidoAmarillas?pedidoID=' + pedido + '&nombrecomercial=' + nombrecomercial + '&userID=' + user  +'&username=' + username );
+		return $http.get(serviceBase + 'demePedidoAmarillas?pedidoID=' + pedido + '&userID=' + user + '&nombrecomercial=' + nombrecomercial +'&username=' + username );
 	};
 
 	obj.getBuscarpedidoactivacion = function (pedido,tabla, user) { //buscar pedido activacion suspecore
