@@ -14545,12 +14545,11 @@ private function csvMalosAgendamientoReparaciones(){
                 " a.GRUPO, ".
                 " a.ACTIVIDAD ".
                 " from pendientes_amarillas a ".
-                " JOIN (SELECT distinct(a.pedido) as pedido,(select b.id from pendientes_amarillas b ".
+                " JOIN (SELECT (a.pedido) as pedido,(select b.id from pendientes_amarillas b ".
                 " where b.pedido=a.pedido order by id desc limit 1 ) as id2 ".
                 " FROM `pendientes_amarillas` a ".
                 " WHERE a.PEDIDO='$pedido'  ".
-                " and (a.STATUS='PENDI_ACTI' or a.STATUS='MALO')) kai on a.id=kai.id2 ".
-                " group by a.pedido ";
+                " and (a.STATUS='PENDI_ACTI' or a.STATUS='MALO')) kai on a.id=kai.id2 ";
 
         //echo $query1;
 
