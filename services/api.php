@@ -14525,30 +14525,18 @@ private function csvMalosAgendamientoReparaciones(){
 
 
 
-        $query1= " SELECT  ". 
-                " a.ID, ".
-                " a.ORDER_SEQ_ID, ".
-                " a.ESTADO, ".
-                " a.PEDIDO, ".
-                " a.TRANSACCION, ".
-                " group_concat(distinct a.PRODUCTO) as  PRODUCTO, ".
-                " a.FECHA_EXCEPCION, ".
-                " a.FECHA_CARGA, ".
-                " a.TIPO_COMUNICACION, ".
-                " a.TAREA_EXCEPCION, ".
-                " a.DEPARTAMENTO, ".
-                " a.STATUS, ".
-                " a.ASESOR, ".
-                " a.TABLA, ".
-                " a.FUENTE, ".
-                " a.GRUPO, ".
-                " a.ACTIVIDAD ".
-                " from pendientes_amarillas a ".
-                " JOIN (SELECT (a.pedido) as pedido,(select b.id from pendientes_amarillas b ".
-                " where b.pedido=a.pedido order by id desc limit 1 ) as id2 ".
-                " FROM `pendientes_amarillas` a ".
-                " WHERE a.PEDIDO='$pedido'  ".
-                " and (a.STATUS='PENDI_ACTI' or a.STATUS='MALO')) kai on a.id=kai.id2 ";
+        $query1= " SELECT b.ID ".
+            " ,b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TRANSACCION,b.PRODUCTO,b.FECHA_EXCEPCION,b.FECHA_CARGA,b.TABLA,b.TIPO_COMUNICACION,b.TAREA_EXCEPCION,b.DEPARTAMENTO,b.STATUS,b.ASESOR ".
+            ",b.ACTIVIDAD,b.FUENTE,b.GRUPO".
+            " , group_concat(b.PRODUCTO) as  PRODUCTO ".
+            " , min(b.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
+            " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_EXCEPCION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL".
+            " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
+            " where a.PEDIDO='$pedido'and a.TIPIFICACION='' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
+           " from pendientes_amarillas b".
+            " where b.PEDIDO = '$pedido'  ".
+            " and b.STATUS='PENDI_ACTI' ".
+            " group by b.pedido ";
 
         //echo $query1;
 
