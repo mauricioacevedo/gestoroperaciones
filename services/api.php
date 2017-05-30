@@ -8975,7 +8975,7 @@ private function csvMalosAgendamientoReparaciones(){
             $ids="";
             $sep="";
             while($row = $r->fetch_assoc()){
-                $row['PRODUCTO']=utf8_decode($row['PRODUCTO']);
+                $row['PRODUCTO']=utf8_encode($row['PRODUCTO']);
                 $result[] = $row;
                 $ids=$ids.$sep.$row['ID'];
                 $sep=",";
