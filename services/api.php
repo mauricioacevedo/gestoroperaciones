@@ -7158,7 +7158,7 @@ private function csvMalosAgendamientoReparaciones(){
                     " a.CANAL_ID, ".
                     " a.CELULAR_AVISAR, ".
                     " a.PROGRAMACION, ".
-                    " a.TELEFONO_AVISAR from     a ".
+                    " a.TELEFONO_AVISAR from informe_petec_pendientesm a ".
                     " JOIN (SELECT distinct(a.pedido) as pedido2,(select b.id from informe_petec_pendientesm b ".
                     " where b.pedido=a.pedido order by id desc limit 1 ) as id2 ".
                     " FROM `informe_petec_pendientesm` a ".
@@ -14522,6 +14522,7 @@ private function csvMalosAgendamientoReparaciones(){
 
         $user=strtoupper($user);
         $today = date("Y-m-d");
+
 
 
 
