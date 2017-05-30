@@ -8955,7 +8955,7 @@ private function csvMalosAgendamientoReparaciones(){
         $query1=" SELECT b.ID ".
             " ,b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TRANSACCION,b.PRODUCTO,b.FECHA_EXCEPCION,b.FECHA_CARGA,b.TABLA,b.TIPO_COMUNICACION,b.TAREA_EXCEPCION,b.DEPARTAMENTO,b.STATUS,b.ASESOR ".
             ",b.ACTIVIDAD,b.FUENTE,b.GRUPO".
-            " , group_concat(distinct b.PRODUCTO) as  PRODUCTO ".
+            " , group_concat(b.PRODUCTO) as  PRODUCTO ".
             " , min(b.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
             " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_EXCEPCION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL".
             " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
