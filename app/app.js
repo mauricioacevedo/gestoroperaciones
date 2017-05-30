@@ -12092,7 +12092,7 @@ app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $locatio
 
 				if (data.data == '') {
 
-					$rootScope.errorDatos = "No hay Registros de activacion.";
+					$rootScope.errorDatos = "No hay Registros.";
 					$scope.peds = {};
 					$scope.mpedido = {};
 					$scope.busy = "";
