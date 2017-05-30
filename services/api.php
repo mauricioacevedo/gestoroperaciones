@@ -7158,7 +7158,7 @@ private function csvMalosAgendamientoReparaciones(){
                     " a.CANAL_ID, ".
                     " a.CELULAR_AVISAR, ".
                     " a.PROGRAMACION, ".
-                    " a.TELEFONO_AVISAR from informe_petec_pendientesm a ".
+                    " a.TELEFONO_AVISAR from     a ".
                     " JOIN (SELECT distinct(a.pedido) as pedido2,(select b.id from informe_petec_pendientesm b ".
                     " where b.pedido=a.pedido order by id desc limit 1 ) as id2 ".
                     " FROM `informe_petec_pendientesm` a ".
@@ -14506,6 +14506,93 @@ private function csvMalosAgendamientoReparaciones(){
 
 
     } // -------------------------Busca Pedido Siebel Activacion dom----------------------
+
+//------------------------buscarpedido activacion amarillas----------------------
+
+    private function buscarpedidoamarillas(){
+
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+
+        $pedido = $this->_request['pedidoID'];
+
+        $user = $this->_request['userID'];
+        $tabla = $this->_request['tabla'];
+
+        $user=strtoupper($user);
+        $today = date("Y-m-d");
+
+
+
+        $query1= " SELECT  ". 
+                " a.ID, ".
+                " a.ORDER_SEQ_ID, ".
+                " a.ESTADO, ".
+                " a.PEDIDO, ".
+                " a.TRANSACCION, ".
+                " a.PRODUCTO, ".
+                " a.FECHA_EXCEPCION, ".
+                " a.FECHA_CARGA, ".
+                " a.TIPO_COMUNICACION, ".
+                " a.TAREA_EXCEPCION, ".
+                " a.DEPARTAMENTO, ".
+                " a.STATUS, ".
+                " a.ASESOR, ".
+                " a.TABLA, ".
+                " a.FUENTE, ".
+                " a.GRUPO, ".
+                " a.ACTIVIDAD ".
+                " from pendientes_amarillas a ".
+                " JOIN (SELECT distinct(a.pedido) as pedido,(select b.id from pendientes_amarillas b ".
+                " where b.pedido=a.pedido order by id desc limit 1 ) as id2 ".
+                " FROM `pendientes_amarillas` a ".
+                " WHERE a.PEDIDO='$pedido'  ".
+                " and (a.STATUS='PENDI_ACTI' or a.STATUS='MALO')) kai on a.id=kai.id2 ".
+                " group by a.pedido ";
+
+        //echo $query1;
+
+        $rPendi = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
+
+        $busy=false;
+
+        if($rPendi->num_rows > 0){
+            $result = array();
+            while($row = $rPendi->fetch_assoc()){
+
+                $result[] = $row;
+                $ids=$row['ID'];
+                $asess=$row['ASESOR'];
+
+                if($asess!='' && $asess!=$user){//este pedido esta ocupado, no deberia hacer la actualizacion de abajo..
+                    $busy=true;
+                }
+
+            }//chao While
+
+            $sqlupdate="";
+
+
+            $x = $this->mysqli->query($sqlupdate);
+
+            // Feed ----------------------
+            $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','') ";
+            $xx = $this->mysqli->query($sqlfeed);
+            //  ---------------------- Feed
+
+
+
+            $this->response(json_encode(array($busy,$result)), 200); //Resultado final si encontro registros
+            $this->response($this->json(array($result)), 200);
+
+        }else{
+            $error='No existe';
+            $this->response(json_encode(array($error)),204);        // No encontramos nada.
+        }
+
+
+    } // -------------------------Busca Pedido Siebel Activacion amarillas----------------------
 
     //Listado de Pedidos por Usuario dia actual----------------------------------------
 

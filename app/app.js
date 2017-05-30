@@ -498,6 +498,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID=' + pedido  + '&tabla=' + tabla  + '&userID=' + user);
 	};
 
+		obj.getBuscarpedidoamarillas = function (pedido,tabla, user) { //buscar pedido activacion suspecore
+		return $http.get(serviceBase + 'buscarpedidoamarillas?pedidoID=' + pedido  + '&tabla=' + tabla  + '&userID=' + user);
+	};
+
 	obj.insertTransaccionsiebelactivacion = function (pedido) { //insertar pedidos siebel activacion
 		var data = $http.post(serviceBase + 'insertTransaccionsiebelactivacion ', {
 			"pedido": pedido
@@ -12081,7 +12085,7 @@ app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $locatio
 
 		//console.log($scope.InfoGestion);
 
-		var kami = services.getBuscarpedidoactivacion(buscar,$scope.tabla, $rootScope.logedUser.login).then(
+		var kami = services.getBuscarpedidoamarillas(buscar,$scope.tabla, $rootScope.logedUser.login).then(
 
 			function (data) {
 
@@ -12174,7 +12178,6 @@ app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $locatio
 			ID:gestion.ID,
 			ORDER_SEQ_ID: gestion.ORDER_SEQ_ID,
 			PEDIDO: gestion.PEDIDO,
-			REFERENCE_NUMBER: gestion.REFERENCE_NUMBER,
 			ESTADO: gestion.ESTADO,
 			FECHA_CREACION: gestion.FECHA_CREACION,
 			TAREA_EXCEPCION: gestion.TAREA_EXCEPCION,
@@ -12194,9 +12197,7 @@ app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $locatio
             ACTIVIDAD: gestion.ACTIVIDAD,
             USUARIO: $rootScope.logedUser.login,
             NUMERO_CR: InfoPedido.NUMERO_CR,
-			NUMERO_PSR:InfoPedido.NUMERO_PSR,
 			OBSERVACION: InfoPedido.OBSERVACION,
-			PSR: InfoPedido.PSR,
 			TIEMPO_TOTAL: $scope.TIEMPO_TOTAL,
             DURACION: $scope.duracion,
 			STATUS: gestion.STATUS,
