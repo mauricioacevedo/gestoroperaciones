@@ -490,8 +490,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	};
 
 	
-	obj.demePedidoAmarillas = function (user, pedido, username) { //deme pedido activacion	
-		return $http.get(serviceBase + 'demePedidoAmarillas?pedidoID=' + pedido + '&userID=' + user  +'&username=' + username );
+	obj.demePedidoAmarillas = function (user, pedido,nombrecomercial, username) { //deme pedido activacion	
+		return $http.get(serviceBase + 'demePedidoAmarillas?pedidoID=' + pedido + '&nombrecomercial=' + nombrecomercial + '&userID=' + user  +'&username=' + username );
 	};
 
 	obj.getBuscarpedidoactivacion = function (pedido,tabla, user) { //buscar pedido activacion suspecore
@@ -11917,7 +11917,7 @@ app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $locatio
 	$scope.fecha_inicio = null;
 	$scope.fecha_fin = null;
     $scope.listaOpcionesGestion = [];
-	$scope.NOMBRECOMERCIAL = 'Internet';
+	$scope.nombrecomercial = 'Internet';
   
 
 	
@@ -11938,6 +11938,9 @@ app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $locatio
 
 	$scope.pedidoIsActive = false;
 
+  $scope.setnombrecomercial = function(nombrecomercial){
+        $scope.nombrecomercial=nombrecomercial;
+    };
 
 	// ---------------------------------fin Variables----------------------------
 
@@ -11989,8 +11992,7 @@ app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $locatio
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-		var kami = services.demePedidoAmarillas($rootScope.logedUser.login, $scope.pedido1, $rootScope.logedUser.name).then(function (data) {
-
+		var kami = services.demePedidoAmarillas($rootScope.logedUser.login, $scope.pedido1,$scope.nombrecomercial, $rootScope.logedUser.name).then(function (data) {
 
 			$scope.peds = data.data;
 			console.log($scope.peds);

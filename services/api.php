@@ -8890,19 +8890,24 @@ private function csvMalosAgendamientoReparaciones(){
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
 
         //  echo "carlitos1 ---$producto---";
-
+         if($nombrecomercial!=""){
+            $nombrecomercial=" and b.NOMBRECOMERCIAL='$nombrecomercial' ";
+        }else{
+            $nombrecomercial="";
+        }
 
         $mypedido="";
 
 
 
-        if($parametroBusqueda=='') $parametroBusqueda ='FECHA_EXCEPCION';
+        if($parametroBusqueda=='') $parametroBusqueda ='FECHADIAGENDA';
 
         $query1= " select distinct b.PEDIDO,b.FECHADIAGENDA  ".
                 " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
                 " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
                 " from dlt_cn_estadooperacion b ".
                 "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
+                $nombrecomercial.
                 " order by b. FECHADIAGENDA ASC ";
 
         //echo $query1;
@@ -8944,7 +8949,7 @@ private function csvMalosAgendamientoReparaciones(){
 
 
         $query1= " SELECT DISTINCT b.ID ". 
-                    " ,b.IDGRUPOAGENDA,b.IDESTADO,b.PEDIDO,b.NOMBRE,b.NOMBRECOMERCIAL,b.FECHADIAGENDA,b.FECHACARGA,b.ASESOR ".
+                    " ,b.IDGRUPOAGENDA,b.IDESTADO,b.PEDIDO,b.NOMBRE,b.NOMBRECOMERCIAL,b.FECHADIAGENDA,b.FECHACARGA ".
                     " ,b.OFERTAPEDIDO,b.ESTADOORDEN,b.DEPARTAMENTO,b.STATUS,b.ASESOR ".
                     " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHADIAGENDA),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
                     " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
@@ -8952,6 +8957,7 @@ private function csvMalosAgendamientoReparaciones(){
                     " from dlt_cn_estadooperacion b ".
                     "  where b.PEDIDO = '$mypedido' ". 
                     " and b.STATUS='PENDI_ACTI'  ".
+                    $nombrecomercial.
                     " group by b.pedido ";
 
 
