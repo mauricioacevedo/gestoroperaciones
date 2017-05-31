@@ -6709,6 +6709,18 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             }
         }
 
+   $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where (a.STATUS in ('PENDI_AGEN','MALO')) and (a.PROCESO='REPARACION') ";
+        //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter2=0;
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                $counter2 = $row['counter'];
+                //echo $malo;
+            }
+        }     
+
         $query= "SELECT ".
             " a.ID, ".
             " a.PEDIDO_ID, ".
@@ -6737,7 +6749,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             while($row = $r->fetch_assoc()){
                 $result[] = $row;
             }
-            $this->response($this->json(array($result,$counter,$malo,$malo1,$counter1)), 200); // send user details
+            $this->response($this->json(array($result,$counter,$malo,$malo1,$counter1,$counter2)), 200); // send user details
         }
         $error = "Sin registros ";
         $this->response($this->json(array($error)),403); // send user details
