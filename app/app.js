@@ -8047,6 +8047,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 			$scope.data1.totalItems = data.data[1];
 			$scope.data.totalItems2 = data.data[2];
 			$scope.data.totalItems3 = data.data[3];
+			$scope.data.totalItems4 = data.data[4];
 			//$scope.data1.concepto=sconcept;
 			return data.data;
 		});

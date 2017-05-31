@@ -6696,6 +6696,19 @@ private function csvMalosAgendamientoReparaciones(){
                 //echo $malo;
             }
         }
+
+$query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where (a.STATUS='PENDI_AGEN') and (a.PROCESO='INSTALACION') ";
+        //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter1=0;
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                $counter1 = $row['counter'];
+                //echo $malo;
+            }
+        }
+
         $query= "SELECT ".
             " a.ID, ".
             " a.PEDIDO_ID, ".
@@ -6724,7 +6737,7 @@ private function csvMalosAgendamientoReparaciones(){
             while($row = $r->fetch_assoc()){
                 $result[] = $row;
             }
-            $this->response($this->json(array($result,$counter,$malo,$malo1)), 200); // send user details
+            $this->response($this->json(array($result,$counter,$malo,$malo1,$counter1)), 200); // send user details
         }
         $error = "Sin registros ";
         $this->response($this->json(array($error)),403); // send user details
