@@ -181,8 +181,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	obj.getCsvAGENToday = function (login) {
 		return $http.get(serviceBase + 'csvAGENToday?login=' + login); //exportar pendientes de la tabla FNX_ORDENES_TRABAJOS
 	};
-	obj.getCsvPendientesAgenSiete = function (login) {
-		return $http.get(serviceBase + 'csvPendientesAgenSiete?login=' + login); // pendientes agendamiento de siete dias
+	obj.getCsvPendientesAgenRepa = function (login) {
+		return $http.get(serviceBase + 'csvPendientesAgenRepa?login=' + login); // pendientes agendamiento de siete dias
 	};
 	obj.getCsvMalosAgendamiento = function (login) {
 		return $http.get(serviceBase + 'csvMalosAgendamiento?login=' + login); // exportar datos status malos de agendamiento
@@ -8140,9 +8140,9 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 		});
 	};
 
-	$scope.csvPendientesAgenSiete = function (concep) {
+	$scope.csvPendientesAgenRepa = function (concep) {
 		var login = $rootScope.logedUser.login;
-		services.getCsvPendientesAgenSiete(login).then(function (data) {
+		services.getCsvPendientesAgenrepa(login).then(function (data) {
 			console.log(data.data[0]);
 			window.location.href = "tmp/" + data.data[0];
 			return data.data;

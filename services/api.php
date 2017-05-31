@@ -5959,7 +5959,7 @@ private function csvActivacioncolas(){
 
 
 
-    private function csvPendientesAgenSiete(){
+    private function csvPendientesAgenRepa(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
@@ -5971,20 +5971,41 @@ private function csvActivacioncolas(){
 
         $query="SELECT pm.PEDIDO_ID ".
             "  , pm.FECHA_INGRESO ".
-            "  , EXTRACT(hour FROM TIMEDIFF(NOW(), pm.FECHA_INGRESO)) AS HORAS_PENDIENTE_INGRESO ".
             "  , pm.FECHA_ESTADO ".
             "  , pm.FUENTE ".
             "  , pm.STATUS ".
+            "   ,pm.NUMERO_CR ".
             "  , (SELECT hr.NOVEDAD FROM gestor_historicos_reagendamiento hr WHERE hr.ID = (SELECT MAX( a.id )  ".
-            "   FROM gestor_historicos_reagendamiento a ".
-            "    WHERE a.PEDIDO_ID =  pm.PEDIDO_ID) )AS ULTIMA_NOVEDAD ".
-            "  , pm.MICROZONA ".
-            "  , pm.SUBZONA_ID ".
+            "       FROM gestor_historicos_reagendamiento a ".
+            "        WHERE a.PEDIDO_ID =  pm.PEDIDO_ID) )AS ULTIMA_NOVEDAD ".
+            "    , (SELECT hr.TIEMPO_TOTAL FROM gestor_historicos_reagendamiento hr WHERE hr.ID = (SELECT MAX( a.id ) ".
+            "       FROM gestor_historicos_reagendamiento a ".
+            "        WHERE a.PEDIDO_ID =  pm.PEDIDO_ID) )AS TIEMPO_TOTAL ".
+            " ,pm.CONCEPTOS ".
+            " ,pm.ACTIVIDADES ".
+            " ,pm.FECHA_CITA_FENIX ".
+            " ,pm.MIGRACION ".
+            " ,pm.MICROZONA ".
+            " ,pm.SUBZONA_ID ".
+            " ,pm.CLIENTE_ID ".
+            " ,pm.CELULAR_AVISAR ".
+            " ,pm.CORREO_UNE ".
+            " ,pm.DIRECCION_ENVIO ".
+            " ,pm.E_MAIL_AVISAR ".
+            " ,pm.NOMBRE_USUARIO ".
+            " ,pm.TELEFONO_AVISAR ".
+            " ,pm.RADICADO ".
+            " ,pm.MUNICIPIO ".
+            " ,pm.DEPARTAMENTO ".
             "  , pm.OBSERVACION_FENIX ".
             "  , pm.PROGRAMACION ".
+            "  , pm.PROCESO ".
+            "  , pm.TODAY_TRIES ".
+            "  , pm.TIEMPO_SISTEMA ".
+            "  , pm.FECHA_CITA_REAGENDA ".
             " FROM portalbd.gestor_pendientes_reagendamiento pm ".
             " WHERE pm.STATUS IN ('PENDI_AGEN',  'MALO') ".
-            " AND EXTRACT(hour FROM TIMEDIFF(NOW(), pm.FECHA_INGRESO))>='168' ";
+            " AND pm.PROCESO = 'REPACION'";
 
         //" and CONCEPTO_ID = '' ";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
