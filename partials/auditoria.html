@@ -97,37 +97,32 @@
                           </td>
                           <td>
                             <select class= "form-control" ng-model="mpedido.NOVEDAD">
-                                  <OPTION VALUE="ESCALADO CR">ESCALADO CR</OPTION>
-                                <OPTION VALUE="RECUPERAR EQUIPOS">RECUPERAR EQUIPOS</OPTION>
-                                 <OPTION VALUE="CIERRE POR ILOCALIZADO">CIERRE POR ILOCALIZADO</OPTION>
-                                <OPTION VALUE="CLIENTE ILOCALIZADO">CLIENTE ILOCALIZADO</OPTION>
-                                <OPTION VALUE="SE BRINDA INFORMACION">SE BRINDA INFORMACION</OPTION>
-                                <OPTION VALUE="RETIRAR ACCESO">RETIRAR ACCESO</OPTION>
-                                <OPTION VALUE="CONFIRMA SOLUCIÓN">CONFIRMA SOLUCIÓN</OPTION>
-                                <OPTION VALUE="PENDIENTE POR ANULACION PRODUCTO">PENDIENTE POR ANULACION PRODUCTO</OPTION>
-                                <OPTION VALUE="CLIENTE ILOCALIZADO">CLIENTE ILOCALIZADO</OPTION>
-                                <OPTION VALUE="CUMPLIDO">CUMPLIDO</OPTION>
-                                <OPTION VALUE="PENDIENTE AGENDA">PENDIENTE AGENDA</OPTION>
-                                <OPTION VALUE="ERROR SIEBEL 8.1 ">ERROR SIEBEL 8.1</OPTION>
-                                <OPTION VALUE="ANULADO">ANULADO</OPTION>
-                                <OPTION VALUE="OTROS CONCEPTO ESCALADO">OTROS CONCEPTO ESCALADO</OPTION>
-                                <OPTION VALUE="NO APLICA GESTION">NO APLICA GESTION</OPTION>
+                                 <OPTION VALUE="AGENDADO">AGENDADO</OPTION>
+                                  <OPTION VALUE="AGENDADO_FUTURO">AGENDADO_FUTURO</OPTION>
+                                <OPTION VALUE="ANULADO BACK">ANULADO BACK</OPTION>
+                                 <OPTION VALUE="ANULADO CERRADO Y/O PENDIENTE">ANULADO CERRADO Y/O PENDIENTE</OPTION>
+                                <OPTION VALUE="ANULADO POR ASESOR">ANULADO POR ASESOR</OPTION>
+                                <OPTION VALUE="CLIENTE NO CONTACTADO">CLIENTE NO CONTACTADO</OPTION>
+                                <OPTION VALUE="CUMPLIDO BACK">CUMPLIDO BACK</OPTION>
+                                <OPTION VALUE="CUMPLIDO CERRADO Y/O PEDIENTE">CUMPLIDO CERRADO Y/O PEDIENTE</OPTION>
                                 <OPTION VALUE="DESINSTALAR">DESINSTALAR</OPTION>
+                                <OPTION VALUE="ERROR SIEBEL">ERROR SIEBEL</OPTION>
+                                <OPTION VALUE="ESCALADO CR">ESCALADO CR</OPTION>
+                                <OPTION VALUE="ESCALAMIENTO INSTALACIONES ANTIQUIA">ESCALAMIENTO INSTALACIONES ANTIQUIA</OPTION>
+                                <OPTION VALUE="FINALIZADOS EN CLICK">FINALIZADOS EN CLICK</OPTION>
+                                <OPTION VALUE="LLAMAR FUTURO">LLAMAR FUTURO</OPTION>
+                                <OPTION VALUE="NO APLICA GESTION">NO APLICA GESTION</OPTION>
+                                <OPTION VALUE="NO PUEDE ATENDER LLAMADA">NO PUEDE ATENDER LLAMADA</OPTION>
+                                <OPTION VALUE="OTROS CONCEPTO ESCALADO">OTROS CONCEPTO ESCALADO</OPTION>
+                                <OPTION VALUE="PEDIDO EN OTRO CONCEPTO">PEDIDO EN OTRO CONCEPTO</OPTION>
+                                <OPTION VALUE="PENDIENTE AGENDA">PENDIENTE AGENDA</OPTION>
+                                <OPTION VALUE="PENDIENTE ANULAR PRODUCTO">PENDIENTE ANULAR PRODUCTO</OPTION>
+                                <OPTION VALUE="PENDIENTE LLAMAR POR SERIALES">PENDIENTE LLAMAR POR SERIALES</OPTION>
+                                <OPTION VALUE="PENDIENTE RECONFIGURAR PEDIDO">PENDIENTE RECONFIGURAR PEDIDO</OPTION>
+                                <OPTION VALUE="RECUPERAR EQUIPOS">RECUPERAR EQUIPOS</OPTION>
+                                <OPTION VALUE="RETIRAR ACCESO">RETIRAR ACCESO</OPTION>
+                                <OPTION VALUE="TERRENO- FINALIZADO EN CLICK">TERRENO- FINALIZADO EN CLICK</OPTION>
                                 <OPTION VALUE="YA ESTA AGENDADO">YA ESTA AGENDADO</OPTION>
-                                <OPTION VALUE="ERRORES DE FACTURACION">ERRORES DE FACTURACION</OPTION>
-                                <OPTION VALUE="INFORMACION-PARA CONFIRMAR LLEGADA DE TECNICO">INFORMACION-PARA CONFIRMAR LLEGADA DE TECNICO</OPTION>
-                                <OPTION VALUE="ESCALAMIENTO INSTALACIONES ANTIOQUIA">ESCALAMIENTO INSTALACIONES ANTIOQUIA</OPTION>
-                                <OPTION VALUE="INFORMACION GENERAL">INFORMACION GENERAL</OPTION>
-                                <OPTION VALUE="AGENDADO">AGENDADO</OPTION>
-                                <OPTION VALUE="AGENDADO SIN CONTACTO">AGENDADO SIN CONTACTO</OPTION>
-                                <OPTION VALUE="SIN CITA">SIN CITA</OPTION>
-                                <OPTION VALUE="PENDIENTE EN OTRO CONCEPTO">PENDIENTE EN OTRO CONCEPTO</OPTION>
-                                <OPTION VALUE="NO APARECE EN MOVILIDAD">NO APARECE EN MOVILIDAD</OPTION>
-                                <OPTION VALUE="NO DESEA EL SERVICIO">NO DESEA EL SERVICIO</OPTION>
-                                <OPTION VALUE="YA ESTA CUMPLIDO">YA ESTA CUMPLIDO</OPTION>
-                                <OPTION VALUE="LIBERACION DE CUPOS">LIBERACION DE CUPOS</OPTION>
-                                <OPTION VALUE="AGENDADO_FUTURO">AGENDADO_FUTURO</OPTION>
-                                 <OPTION VALUE="GESTION REAGE">GESTION REAGE</OPTION>
                                
                             </select>
                                 <div  ng-show="mpedido.NOVEDAD=='AGENDADO' || mpedido.NOVEDAD=='AGENDADO_FUTURO' || mpedido.NOVEDAD=='PENDIENTE AGENDA' || mpedido.NOVEDAD=='AGENDADO SIN CONTACTO' "><br>
@@ -275,23 +270,32 @@
                                 Numero CR:<input type="text" class="form-control col-xs-8" aria-label="..." ng-model="service.NUMERO_CR"></td>
                                 <!--td><select ng-show="isAuthorized(service.CONCEPTO_ID);" class= "form-control" ng-model="service.estado"-->
                                 <td><select class= "form-control" ng-model="service.NOVEDAD">
+                                <OPTION VALUE="AGENDADO">AGENDADO</OPTION>
+                                  <OPTION VALUE="AGENDADO_FUTURO">AGENDADO_FUTURO</OPTION>
+                                <OPTION VALUE="ANULADO BACK">ANULADO BACK</OPTION>
+                                 <OPTION VALUE="ANULADO CERRADO Y/O PENDIENTE">ANULADO CERRADO Y/O PENDIENTE</OPTION>
+                                <OPTION VALUE="ANULADO POR ASESOR">ANULADO POR ASESOR</OPTION>
+                                <OPTION VALUE="CLIENTE NO CONTACTADO">CLIENTE NO CONTACTADO</OPTION>
+                                <OPTION VALUE="CUMPLIDO BACK">CUMPLIDO BACK</OPTION>
+                                <OPTION VALUE="CUMPLIDO CERRADO Y/O PEDIENTE">CUMPLIDO CERRADO Y/O PEDIENTE</OPTION>
+                                <OPTION VALUE="DESINSTALAR">DESINSTALAR</OPTION>
+                                <OPTION VALUE="ERROR SIEBEL">ERROR SIEBEL</OPTION>
                                 <OPTION VALUE="ESCALADO CR">ESCALADO CR</OPTION>
+                                <OPTION VALUE="ESCALAMIENTO INSTALACIONES ANTIQUIA">ESCALAMIENTO INSTALACIONES ANTIQUIA</OPTION>
+                                <OPTION VALUE="FINALIZADOS EN CLICK">FINALIZADOS EN CLICK</OPTION>
+                                <OPTION VALUE="LLAMAR FUTURO">LLAMAR FUTURO</OPTION>
+                                <OPTION VALUE="NO APLICA GESTION">NO APLICA GESTION</OPTION>
+                                <OPTION VALUE="NO PUEDE ATENDER LLAMADA">NO PUEDE ATENDER LLAMADA</OPTION>
+                                <OPTION VALUE="OTROS CONCEPTO ESCALADO">OTROS CONCEPTO ESCALADO</OPTION>
+                                <OPTION VALUE="PEDIDO EN OTRO CONCEPTO">PEDIDO EN OTRO CONCEPTO</OPTION>
+                                <OPTION VALUE="PENDIENTE AGENDA">PENDIENTE AGENDA</OPTION>
+                                <OPTION VALUE="PENDIENTE ANULAR PRODUCTO">PENDIENTE ANULAR PRODUCTO</OPTION>
+                                <OPTION VALUE="PENDIENTE LLAMAR POR SERIALES">PENDIENTE LLAMAR POR SERIALES</OPTION>
+                                <OPTION VALUE="PENDIENTE RECONFIGURAR PEDIDO">PENDIENTE RECONFIGURAR PEDIDO</OPTION>
                                 <OPTION VALUE="RECUPERAR EQUIPOS">RECUPERAR EQUIPOS</OPTION>
                                 <OPTION VALUE="RETIRAR ACCESO">RETIRAR ACCESO</OPTION>
-                                <OPTION VALUE="SE BRINDA INFORMACION">SE BRINDA INFORMACION</OPTION>
-                                <OPTION VALUE="PENDIENTE ANULAR PRODUCTO">PENDIENTE ANULAR PRODUCTO</OPTION>
-                                <OPTION VALUE="CUMPLIDO">CUMPLIDO</OPTION>
-                                <OPTION VALUE="PENDIENTE AGENDA">PENDIENTE AGENDA</OPTION>
-                                <OPTION VALUE="ANULADO">ANULADO</OPTION>
-                                <OPTION VALUE="OTROS CONCEPTO ESCALADO">OTROS CONCEPTO ESCALADO</OPTION>
-                                <OPTION VALUE="NO APLICA GESTION">NO APLICA GESTION</OPTION>
-                                <OPTION VALUE="DESINSTALAR">DESINSTALAR</OPTION>
+                                <OPTION VALUE="TERRENO- FINALIZADO EN CLICK">TERRENO- FINALIZADO EN CLICK</OPTION>
                                 <OPTION VALUE="YA ESTA AGENDADO">YA ESTA AGENDADO</OPTION>
-                                <OPTION VALUE="ERRORES DE FACTURACION">ERRORES DE FACTURACION</OPTION>
-                                 <OPTION VALUE="INFORMACION-PARA CONFIRMAR LLEGADA DE TECNICO">INFORMACION-PARA CONFIRMAR LLEGADA DE TECNICO</OPTION>
-                                <OPTION VALUE="ESCALAMIENTO INSTALACIONES ANTIOQUIA">ESCALAMIENTO INSTALACIONES ANTIOQUIA</OPTION>
-                                <OPTION VALUE="INFORMACION GENERAL">INFORMACION GENERAL</OPTION>
-                                <OPTION VALUE="GESTION REAGE">GESTION REAGE</OPTION>
 
                                 </select>
                                         <div  ng-show="service.NOVEDAD=='ESCALADO CR' || service.NOVEDAD=='RECUPERAR EQUIPOS' || 
