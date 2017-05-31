@@ -6013,7 +6013,7 @@ private function csvActivacioncolas(){
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','HORAS_PENDIENTE_INGRESO','FECHA_ESTADO','FUENTE','STATUS','ULTIMA_NOVEDAD','MICROZONA','ZONA','OBSERVACION','PROGRAMACION'));
+            fputcsv($fp, array('PEDIDO_ID','FECHA_INGRESO','FECHA_ESTADO','FUENTE','STATUS','NUMERO_CR','ULTIMA_NOVEDAD','TIEMPO_SISTEMA','CONCEPTOS','ACTIVIDADES','FECHA_CITA_FENIX','MIGRACION','MICROZONA','SUBZONA_ID','CLIENTE_ID','CELULAR_AVISAR','CORREO_UNE','DIRECCION_ENVIO','E_MAIL_AVISAR','NOMBRE_USUARIO','TELEFONO_AVISAR','RADICADO','MUNICIPIO','DEPARTAMENTO','OBSERVACION_FENIX','PROGRAMACION','PROCESO','INTENTOS DE CONTACTO','FECHA_CITA_REAGENDA'));
             while($row = $r->fetch_assoc()){
 
                 $row['ULTIMA_NOVEDAD']=utf8_decode($row['ULTIMA_NOVEDAD']);
