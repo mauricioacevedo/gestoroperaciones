@@ -10506,7 +10506,7 @@ $scope.getDepartamentos = function () {
 		services.insertPedidoAuditoria($scope.pedido).then(function (status) {
 			$scope.pedido.fecha = status.data['data'];
 			$scope.pedido.concepto_final = status.data['msg'];
-
+			console.log($scope.pedidos);
 			if ($scope.pedido.concepto_final == "El pedido NO ha cambiado de concepto en Fenix!!!" || $scope.pedido.concepto_final == "ERROR!") {
 				alert($scope.pedido.concepto_final);
 
