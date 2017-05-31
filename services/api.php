@@ -5778,7 +5778,7 @@ private function csvActivacioncolas(){
 
     }
 
-    private function csvPendientesAgendamiento(){
+    private function csvPendientesAgendamientoInsta(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
@@ -5832,7 +5832,8 @@ private function csvActivacioncolas(){
             "  , pm.TIEMPO_SISTEMA ".
             "  , pm.FECHA_CITA_REAGENDA ".
             " FROM portalbd.gestor_pendientes_reagendamiento pm ".
-            " WHERE pm.STATUS IN ('PENDI_AGEN',  'MALO') ";
+            " WHERE pm.STATUS IN ('PENDI_AGEN',  'MALO') ".
+            " AND pm.PROCESO = 'INSTALACION'";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 

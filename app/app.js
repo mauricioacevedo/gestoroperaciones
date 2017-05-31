@@ -172,8 +172,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	obj.getBuscarPedidoAgendamientoRegistro1 = function (bpedido, page) {
 		return $http.get(serviceBase + 'buscarPedidoAgendamientoRegistro1?bpedido=' + bpedido + '&page=' + page); // buscar pedido agendamiento
 	};
-	obj.getCsvPendientesAgendamiento = function (login) {
-		return $http.get(serviceBase + 'csvPendientesAgendamiento?login=' + login); //csv exportar datos pendientes agendamiento
+	obj.getCsvPendientesAgendamientoInsta = function (login) {
+		return $http.get(serviceBase + 'csvPendientesAgendamientoInsta?login=' + login); //csv exportar datos pendientes agendamiento
 	};
 	obj.getCsvPendientesAgendamientoPredictiva = function (login) {
 		return $http.get(serviceBase + 'csvPendientesAgendamientoPredictiva?login=' + login); // exportar agendamiento predictiva
@@ -8122,9 +8122,9 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 		}
 	};
 
-	$scope.csvPendientesAgendamiento = function (concep) { //exportar pendientes agendas
+	$scope.csvPendientesAgendamientoInsta = function (concep) { //exportar pendientes agendas
 		var login = $rootScope.logedUser.login;
-		services.getCsvPendientesAgendamiento(login).then(function (data) {
+		services.getCsvPendientesAgendamientoInsta(login).then(function (data) {
 			console.log(data.data[0]);
 			window.location.href = "tmp/" + data.data[0];
 			return data.data;
