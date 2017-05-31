@@ -8142,7 +8142,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 
 	$scope.csvPendientesAgenRepa = function (concep) {
 		var login = $rootScope.logedUser.login;
-		services.getCsvPendientesAgenrepa(login).then(function (data) {
+		services.getCsvPendientesAgenRepa(login).then(function (data) {
 			console.log(data.data[0]);
 			window.location.href = "tmp/" + data.data[0];
 			return data.data;
