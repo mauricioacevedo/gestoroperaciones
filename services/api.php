@@ -6697,7 +6697,7 @@ private function csvMalosAgendamientoReparaciones(){
             }
         }
 
-$query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where (a.STATUS='PENDI_AGEN') and (a.PROCESO='INSTALACION') ";
+$query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where (a.STATUS in ('PENDI_AGEN','MALO') and (a.PROCESO='INSTALACION') ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter1=0;
