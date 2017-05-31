@@ -126,13 +126,7 @@
                              
                                
                             </select>
-                                  <div  ng-show="mpedido.NOVEDAD=='ANULADO BACK' || mpedido.NOVEDAD=='ANULADO CERRADO Y/O PENDIENTE' || 
-                                        mpedido.NOVEDAD=='ANULADO POR ASESOR'  || mpedido.NOVEDAD=='CLIENTE NO CONTACTADO' || mpedido.NOVEDAD=='CUMPLIDO BACK'
-                                        || mpedido.NOVEDAD=='CUMPLIDO CERRADO Y/O PEDIENTE'|| mpedido.NOVEDAD=='DESINSTALAR' || mpedido.NOVEDAD=='ERROR SIEBEL' 
-                                        || mpedido.NOVEDAD=='ESCALADO CR'|| mpedido.NOVEDAD=='ESCALAMIENTO INSTALACIONES ANTIQUIA' || mpedido.NOVEDAD=='FINALIZADOS EN CLICK'
-                                        || mpedido.NOVEDAD=='LLAMAR FUTURO' || mpedido.NOVEDAD=='NO APLICA GESTION'  || mpedido.NOVEDAD=='NO PUEDE ATENDER LLAMADA'  || mpedido.NOVEDAD=='OTROS CONCEPTO ESCALADO'  
-                                        || mpedido.NOVEDAD=='PEDIDO EN OTRO CONCEPTO' || mpedido.NOVEDAD=='PENDIENTE AGENDA' || mpedido.NOVEDAD=='PENDIENTE ANULAR PRODUCTO'  || mpedido.NOVEDAD=='PENDIENTE LLAMAR POR SERIALES'  
-                                        || mpedido.NOVEDAD=='PENDIENTE RECONFIGURAR PEDIDO' || mpedido.NOVEDAD=='RECUPERAR EQUIPOS' || mpedido.NOVEDAD=='RETIRAR ACCESO' || mpedido.NOVEDAD=='TERRENO- FINALIZADO EN CLICK' || mpedido.NOVEDAD=='YA ESTA AGENDADO'"><br>
+                                <div  ng-show="mpedido.NOVEDAD=='AGENDADO' || mpedido.NOVEDAD=='AGENDADO_FUTURO' || mpedido.NOVEDAD=='PENDIENTE AGENDA' || mpedido.NOVEDAD=='AGENDADO SIN CONTACTO' "><br>
 
                                                 <div class="col-md-10">
                                                         <div class="input-daterange control-group" id="datepicker">
@@ -361,9 +355,13 @@
                                     
                               </div>   
 
-                                        <div  ng-show="service.NOVEDAD!='ESCALADO CR' && service.NOVEDAD!='' && service.NOVEDAD!=undefined && service.NOVEDAD!='RECUPERAR EQUIPOS' && service.NOVEDAD!='RETIRAR ACCESO' && service.NOVEDAD!='PENDIENTE ANULAR PRODUCTO'
-                                        && service.NOVEDAD!='CUMPLIDO'&& service.NOVEDAD!='PENDIENTE AGENDA'&& service.NOVEDAD!='ANULADO'
-                                        && service.NOVEDAD!='OTROS CONCEPTO ESCALADO'&& service.NOVEDAD!='NO APLICA GESTION'&& service.NOVEDAD!='DESINSTALAR' && service.NOVEDAD!='YA ESTA AGENDADO' && service.NOVEDAD!='ERRORES DE FACTURACION' &&service.NOVEDAD!='INFORMACION-PARA CONFIRMAR LLEGADA DE TECNICO' && service.NOVEDAD!='ESCALAMIENTO INSTALACIONES ANTIOQUIA' && service.NOVEDAD!='INFORMACION GENERAL' && service.NOVEDAD!='GESTION REAGE' "><br>
+                                        <div  ng-show="service.NOVEDAD!='' && service.NOVEDAD!=undefined && service.NOVEDAD!='ANULADO BACK' && service.NOVEDAD!='ANULADO CERRADO Y/O PENDIENTE'  
+                                        && service.NOVEDAD!='ANULADO POR ASESOR'  && service.NOVEDAD!='CLIENTE NO CONTACTADO' && service.NOVEDAD!='CUMPLIDO BACK'
+                                        && service.NOVEDAD!='CUMPLIDO CERRADO Y/O PEDIENTE' && service.NOVEDAD!='DESINSTALAR' && service.NOVEDAD!='ERROR SIEBEL' 
+                                        && service.NOVEDAD!='ESCALADO CR' && service.NOVEDAD!='ESCALAMIENTO INSTALACIONES ANTIQUIA' && service.NOVEDAD!='FINALIZADOS EN CLICK'
+                                        && service.NOVEDAD!='LLAMAR FUTURO' && service.NOVEDAD!='NO APLICA GESTION'  && service.NOVEDAD!='NO PUEDE ATENDER LLAMADA'  && service.NOVEDAD=='OTROS CONCEPTO ESCALADO'  
+                                        && service.NOVEDAD!='PEDIDO EN OTRO CONCEPTO' && service.NOVEDAD!='PENDIENTE AGENDA' && service.NOVEDAD!='PENDIENTE ANULAR PRODUCTO'  && service.NOVEDAD!='PENDIENTE LLAMAR POR SERIALES'  
+                                        && service.NOVEDAD!='PENDIENTE RECONFIGURAR PEDIDO' && service.NOVEDAD!='RECUPERAR EQUIPOS' && service.NOVEDAD!='RETIRAR ACCESO' && service.NOVEDAD!='TERRENO- FINALIZADO EN CLICK' && service.NOVEDAD!='YA ESTA AGENDADO'"><br>
 
                                                 <div class="row">
                                                     <div class="col-md-12">
