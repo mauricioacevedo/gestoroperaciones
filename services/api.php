@@ -1885,7 +1885,7 @@ private function csvActivacioncolas(){
         $fecha_fin='';
 
         $novedad=$pedido['NOVEDAD'];
-        var_dump($query);
+        //var_dump($query);
         fwrite($f, "$query\n");
 
         fclose($f);
