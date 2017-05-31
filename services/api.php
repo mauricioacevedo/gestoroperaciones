@@ -6005,7 +6005,7 @@ private function csvActivacioncolas(){
             "  , pm.FECHA_CITA_REAGENDA ".
             " FROM portalbd.gestor_pendientes_reagendamiento pm ".
             " WHERE pm.STATUS IN ('PENDI_AGEN',  'MALO') ".
-            " AND pm.PROCESO = 'REPACION'";
+            " AND pm.PROCESO = 'REPARACION'";
 
         //" and CONCEPTO_ID = '' ";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
