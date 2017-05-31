@@ -271,8 +271,8 @@
                                 Numero CR:<input type="text" class="form-control col-xs-8" aria-label="..." ng-model="service.NUMERO_CR"></td>
                                 <!--td><select ng-show="isAuthorized(service.CONCEPTO_ID);" class= "form-control" ng-model="service.estado"-->
                                 <td><select class= "form-control" ng-model="service.NOVEDAD">
-                                <OPTION VALUE="AGENDADO">AGENDADO</OPTION>
-                                <OPTION VALUE="AGENDADO_FUTURO">AGENDADO_FUTURO</OPTION>
+                               <OPTION VALUE="AGENDADO">AGENDADO</OPTION>
+                                  <OPTION VALUE="AGENDADO_FUTURO">AGENDADO_FUTURO</OPTION>
                                 <OPTION VALUE="ANULADO BACK">ANULADO BACK</OPTION>
                                  <OPTION VALUE="ANULADO CERRADO Y/O PENDIENTE">ANULADO CERRADO Y/O PENDIENTE</OPTION>
                                 <OPTION VALUE="ANULADO POR ASESOR">ANULADO POR ASESOR</OPTION>
@@ -299,13 +299,9 @@
                                 <OPTION VALUE="YA ESTA AGENDADO">YA ESTA AGENDADO</OPTION>
 
                                 </select>
-                                        <div  ng-show="service.NOVEDAD=='ANULADO BACK' || service.NOVEDAD=='ANULADO CERRADO Y/O PENDIENTE' || 
-                                        service.NOVEDAD=='ANULADO POR ASESOR'  || service.NOVEDAD=='CLIENTE NO CONTACTADO' || service.NOVEDAD=='CUMPLIDO BACK'
-                                        || service.NOVEDAD=='CUMPLIDO CERRADO Y/O PEDIENTE'|| service.NOVEDAD=='DESINSTALAR' || service.NOVEDAD=='ERROR SIEBEL' 
-                                        || service.NOVEDAD=='ESCALADO CR'|| service.NOVEDAD=='ESCALAMIENTO INSTALACIONES ANTIQUIA' || service.NOVEDAD=='FINALIZADOS EN CLICK'
-                                        || service.NOVEDAD=='LLAMAR FUTURO' || service.NOVEDAD=='NO APLICA GESTION'  || service.NOVEDAD=='NO PUEDE ATENDER LLAMADA'  || service.NOVEDAD=='OTROS CONCEPTO ESCALADO'  
-                                        || service.NOVEDAD=='PEDIDO EN OTRO CONCEPTO' || service.NOVEDAD=='PENDIENTE AGENDA' || service.NOVEDAD=='PENDIENTE ANULAR PRODUCTO'  || service.NOVEDAD=='PENDIENTE LLAMAR POR SERIALES'  
-                                        || service.NOVEDAD=='PENDIENTE RECONFIGURAR PEDIDO' || service.NOVEDAD=='RECUPERAR EQUIPOS' || service.NOVEDAD=='RETIRAR ACCESO' || service.NOVEDAD=='TERRENO- FINALIZADO EN CLICK' || service.NOVEDAD=='YA ESTA AGENDADO'"><br>
+                                        <div  ng-show="service.NOVEDAD=='ESCALADO CR' || service.NOVEDAD=='RECUPERAR EQUIPOS' || 
+                                        service.NOVEDAD=='RETIRAR ACCESO'  || service.NOVEDAD=='PENDIENTE ANULAR PRODUCTO' || service.NOVEDAD=='CUMPLIDO'
+                                        || service.NOVEDAD=='PENDIENTE AGENDA'|| service.NOVEDAD=='ANULADO' || service.NOVEDAD=='OTROS CONCEPTO ESCALADO' || service.NOVEDAD=='NO APLICA GESTION'|| service.NOVEDAD=='DESINSTALAR' || service.NOVEDAD=='YA ESTA AGENDADO' "><br>
 
                                               
                                                 <script>
