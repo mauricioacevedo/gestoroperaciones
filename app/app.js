@@ -10601,6 +10601,8 @@ $scope.causaRaiz();
 });
 
 
+
+
 app.controller('Tabla_agendamientoCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services, $compile) {
 
 	var userID = $cookieStore.get('logedUser').login;
