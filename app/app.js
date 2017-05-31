@@ -10506,7 +10506,7 @@ $scope.getDepartamentos = function () {
 		services.insertPedidoAuditoria($scope.pedido).then(function (status) {
 			$scope.pedido.fecha = status.data['data'];
 			$scope.pedido.concepto_final = status.data['msg'];
-			console.log($scope.pedidos);
+			//console.log($scope.pedidos);
 			if ($scope.pedido.concepto_final == "El pedido NO ha cambiado de concepto en Fenix!!!" || $scope.pedido.concepto_final == "ERROR!") {
 				alert($scope.pedido.concepto_final);
 
@@ -10523,7 +10523,7 @@ $scope.getDepartamentos = function () {
 					$scope.pedidos = "";
 				} else {
 					console.log("EL PEDIDO QUEDO ASI: ");
-					console.log($scope.pedido);
+					console.log($scope.pedidos);
 					$scope.historico_pedido = $scope.historico_pedido.concat(angular.copy($scope.pedido));
 					$scope.peds.splice(index, 1);
 					if ($scope.pedidos == "") {
