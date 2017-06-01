@@ -302,7 +302,8 @@
                                         service.NOVEDAD=='RETIRAR ACCESO'  || service.NOVEDAD=='PENDIENTE ANULAR PRODUCTO' || service.NOVEDAD=='CUMPLIDO'
                                         || service.NOVEDAD=='PENDIENTE AGENDA'|| service.NOVEDAD=='ANULADO' || service.NOVEDAD=='OTROS CONCEPTO ESCALADO' || service.NOVEDAD=='NO APLICA GESTION'|| service.NOVEDAD=='DESINSTALAR' || service.NOVEDAD=='YA ESTA AGENDADO' "><br>
 
-                                              
+                                         
+
                                                 <script>
                                                         $('.input-daterange').datepicker({
                                                              format: 'yyyy-mm-dd',
@@ -350,9 +351,18 @@
                                     
                               </div>   
 
-                                        <div  ng-show="service.NOVEDAD!='ANULADO BACK' &&service.NOVEDAD!='ESCALADO CR' && service.NOVEDAD!='' && service.NOVEDAD!=undefined && service.NOVEDAD!='RECUPERAR EQUIPOS' && service.NOVEDAD!='RETIRAR ACCESO' && service.NOVEDAD!='PENDIENTE ANULAR PRODUCTO'
-                                        && service.NOVEDAD!='CUMPLIDO'&& service.NOVEDAD!='PENDIENTE AGENDA'&& service.NOVEDAD!='ANULADO'
-                                        && service.NOVEDAD!='OTROS CONCEPTO ESCALADO'&& service.NOVEDAD!='NO APLICA GESTION'&& service.NOVEDAD!='DESINSTALAR' && service.NOVEDAD!='YA ESTA AGENDADO' && service.NOVEDAD!='ERRORES DE FACTURACION' &&service.NOVEDAD!='INFORMACION-PARA CONFIRMAR LLEGADA DE TECNICO' && service.NOVEDAD!='ESCALAMIENTO INSTALACIONES ANTIQUIA' && service.NOVEDAD!='INFORMACION GENERAL' && service.NOVEDAD!='GESTION REAGE' "><br>
+                                        <div  ng-show=" service.NOVEDAD!='' && service.NOVEDAD!=undefined && service.NOVEDAD!='ANULADO BACK' 
+                                         && service.NOVEDAD!='ANULADO CERRADO Y/O PENDIENTE' && service.NOVEDAD!='ANULADO POR ASESOR'
+                                        && service.NOVEDAD!='CLIENTE NO CONTACTADO'&& service.NOVEDAD!='CUMPLIDO BACK'&& service.NOVEDAD!='CUMPLIDO CERRADO Y/O PEDIENTE'
+                                        && service.NOVEDAD!='DESINSTALAR'&& service.NOVEDAD!='ERROR SIEBEL'
+                                        && service.NOVEDAD!='ESCALADO CR' && service.NOVEDAD!='ESCALAMIENTO INSTALACIONES ANTIQUIA' 
+                                        && service.NOVEDAD!='FINALIZADOS EN CLICK' &&service.NOVEDAD!='NO APLICA GESTION'
+                                         && service.NOVEDAD!='NO PUEDE ATENDER LLAMADA' && service.NOVEDAD!='OTROS CONCEPTO ESCALADO' 
+                                         && service.NOVEDAD!='PEDIDO EN OTRO CONCEPTO' && service.NOVEDAD!='PENDIENTE AGENDA' 
+                                         && service.NOVEDAD!='PENDIENTE ANULAR PRODUCTO' && service.NOVEDAD!='PENDIENTE LLAMAR POR SERIALES'
+                                         && service.NOVEDAD!='PENDIENTE RECONFIGURAR PEDIDO' && service.NOVEDAD!='RECUPERAR EQUIPOS' 
+                                         && service.NOVEDAD!='RETIRAR ACCESO' && service.NOVEDAD!='TERRENO- FINALIZADO EN CLICK' 
+                                        && service.NOVEDAD!='YA ESTA AGENDADO' "><br>
 
                                                 <div class="row">
                                                     <div class="col-md-12">
