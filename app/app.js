@@ -9840,7 +9840,7 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 $scope.pedidoporuserfun = function() {
  console.log('hola');
 	services.getPedidosUserReagendamiento(userID).then(function (data) {
-		$scope.pedidosporuser = data.data;
+		$scope.pedidosporuser = data.data[0];
 		console.log($scope.pedidosporuser);
 		return data.data;
 	});
