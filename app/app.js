@@ -8875,6 +8875,18 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			$scope.mpedido.active = 0;
 			$scope.pedidoinfo = 'Pedido';
 		});
+		if	($scope.gestion_Pendientes.Gestion==true){
+					services.gestionPendientesInstaMalos($scope.gestion_Pendientes, $scope.pedido).then(function (data) {
+						console.log(data.data[0]);
+						return data.data;
+				});
+			}
+
+			$scope.gestion_Pendientes.Gestion == false;
+			$scope.gestion_Pendientes = {};
+
+
+	};
 
 		
 		if	($scope.gestion_Pendientes.Gestion==true){
