@@ -8745,7 +8745,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 
 	var pedidos = services.getPedidosUserReagendamiento(userID).then(function (data) {
-		$scope.pedidos = data.data;
+		$scope.pedidos = data.data[0];
 		return data.data;
 	});
 
