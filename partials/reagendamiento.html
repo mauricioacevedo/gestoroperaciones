@@ -56,7 +56,7 @@
                 <input type="text" size="14" class="form-control btn-group btn btn-md btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Buscador de Pedido" ng-model="bpedido">
                 <button type="button" class="form-control btn btn-md btn-primary"  title="Buscar Pedido" data-toggle="tooltip" data-placement="top" ng-click="buscarPedidoAgendamiento(bpedido);"><i class="fa fa-search" aria-hidden="true"></i></button>
                 <button id="manual" type="button" class="form-control btn btn-md btn-warning" title="Ingrese Pedido Manual" data-toggle="tooltip" data-placement="top" ng-click="manual();"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
-                <button id="manual" type="button" class="btn btn-info btn-circle-xss" title="Ingrese Pedido Manual" ng-click="manual();" data-toggle="modal" data-toggle="tooltip" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>manual por {{logedUser.login}}</code>" >
+                <button type="button" class="btn btn-info btn-circle-xss" ng-click="Pedidos()" data-toggle="modal" data-target="#HistoricoPedidoUser" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>Pedidos por {{logedUser.login}}</code>" >
                                     <i class="fa  fa-address-card"  aria-hidden="true"> </i>
                                 </button>
             </div>
