@@ -9832,7 +9832,7 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 
 
 	var pedidos = services.getPedidosUserReagendamiento(userID).then(function (data) {
-		$scope.pedidos = data.data;
+		$scope.pedidosporuser = data.data;
 		return data.data;
 	});
 
