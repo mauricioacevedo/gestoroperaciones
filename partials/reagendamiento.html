@@ -56,7 +56,9 @@
                 <input type="text" size="14" class="form-control btn-group btn btn-md btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Buscador de Pedido" ng-model="bpedido">
                 <button type="button" class="form-control btn btn-md btn-primary"  title="Buscar Pedido" data-toggle="tooltip" data-placement="top" ng-click="buscarPedidoAgendamiento(bpedido);"><i class="fa fa-search" aria-hidden="true"></i></button>
                 <button id="manual" type="button" class="form-control btn btn-md btn-warning" title="Ingrese Pedido Manual" data-toggle="tooltip" data-placement="top" ng-click="manual();"><i class="fa fa-users" aria-hidden="true"></i></button>
-              
+            <button type="button" class="btn btn-info btn-circle-xss" ng-click="Pedidos()" data-toggle="modal" data-target="#HistoricoPedidoUser" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>Pedidos por {{logedUser.login}}</code>" >
+                                    <i class="fa  fa-address-card"  aria-hidden="true"> </i>
+                                </button>
               </div>
             </form>
 
@@ -477,7 +479,158 @@
               </div>
         </div>
     </div>
+<div id="HistoricoPedidoUser" class="modal fade "  role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{TituloModal}}</h4>
+                <span style="color:red" ><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+            </div>
+            <div class="modal-body" >
+                <div class = "panel panel-default">
+                    <div class = "panel-heading">
+                        <div class="panel-body fixed-panel" >
+                            <table class = "table small table-striped table-condensed">
+                                <thead>
+                                <tr >
+                                    <th><span class="small">PEDIDO</span></th>
+                                    <th><span class="small">FUENTE</span></th>
+                                    <th><span class="small">PROCESO</span></th>
+                                    <th><span class="small">CLIENTE</span></th>
+                                    <th><span class="small">NOVEDAD</span></th>
+                                    <th><span class="small">DEPARTAMENTO</span></th>
+                                    <th><span class="small">OBSERVACION</span></th>
+                                
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="data in pedidos "class="animated bounceInRight">
+                                    <td><span class="small">{{data.PEDIDO}}</span></td>
+                                    <td><span class="small">{{data.ESTADO}}</span></td>
+                                    <td><span class="small">{{data.TRANSACCION}}</span></td>
+                                    <td><span class="small">{{data.ASESOR}}</span></td>
+                                    <td><span class="small">{{data.FECHA_FIN}}</span></td>
+                                     <td><span class="small">{{data.TABLA}}</span></td>
+                              
 
+                                </tr>
+                                </tbody>
+            
+
+                  <tr>
+
+
+                          <td><input id='ipedido' ng-model="mpedido.PEDIDO_ID" type="text" class= "form-control" placeholder= "Pedido" /></td>
+                         <td>
+                            <select ng-model="mpedido.FUENTE" class= "form-control">
+                                    <option value='ELITE'>ELITE</option>
+                                    <option value='SIEBEL'>SIEBEL</option>
+                                    <option value='FENIX'>FENIX</option>
+                                    <option value='REDCO'>REDCO</option>
+                                    <option value='EDATEL'>EDATEL</option>
+                                      
+                            </select>
+                          </td>
+                          <td>
+                             
+                            <select type="text" class="form-control col-xs-8" aria-label="" ng-model="mpedido.proceso">
+                                  <OPTION VALUE="INSTALACION">INSTALACION</OPTION>
+                                <OPTION VALUE="REPARACION">REPARACION</OPTION>
+                                  
+                            </select>
+                          </td>
+
+                        <td>
+                          <span ng-show="mpedido.PROGRAMADO"  class="ng-binding label label-danger">[PROGRAMADO]{{mpedido.PROGRAMADO}}</span>
+                            <input type="text" class="form-control col-xs-8" aria-label="" ng-model="mpedido.CLIENTE_ID"> 
+                          </td>
+                          <td>
+                            <select class= "form-control" ng-model="mpedido.NOVEDAD">
+                                 <OPTION VALUE="AGENDADO">AGENDADO</OPTION>
+                                  <OPTION VALUE="AGENDADO_FUTURO">AGENDADO_FUTURO</OPTION>
+                                <OPTION VALUE="ANULADO POR ASESOR">ANULADO POR ASESOR</OPTION>
+                                 <OPTION VALUE="CLIENTE NO CONTACTADO">CLIENTE NO CONTACTADO</OPTION>
+                                <OPTION VALUE="CUMPLIDO CERRADO Y/O PEDIENTE">CUMPLIDO CERRADO Y/O PEDIENTE</OPTION>
+                                <OPTION VALUE="ERROR SIEBEL">ERROR SIEBEL</OPTION>
+                                <OPTION VALUE="LLAMAR FUTURO">LLAMAR FUTURO</OPTION>
+                                <OPTION VALUE="NO PUEDE ATENDER LLAMADA">NO PUEDE ATENDER LLAMADA</OPTION>
+                                <OPTION VALUE="PEDIDO EN OTRO CONCEPTO">PEDIDO EN OTRO CONCEPTO</OPTION>
+                                <OPTION VALUE="PENDIENTE RECONFIGURAR PEDIDO">PENDIENTE RECONFIGURAR PEDIDO</OPTION>
+                                <OPTION VALUE="YA ESTA AGENDADO">YA ESTA AGENDADO</OPTION>
+                               
+                               
+                            </select>
+                                <div  ng-show="mpedido.NOVEDAD=='AGENDADO' || mpedido.NOVEDAD=='AGENDADO_FUTURO' || mpedido.NOVEDAD=='PENDIENTE AGENDA' || mpedido.NOVEDAD=='AGENDADO SIN CONTACTO' "><br>
+
+                                                <div class="col-md-10">
+                                                        <div class="input-daterange control-group" id="datepicker">
+                                                                <label class="control-label" for="toDate">Fecha Cita Propuesta</label><br>
+                                                                <div class="input-group margin-bottom-lg">
+                                                                        <span class="input-group-addon"><i class="fa fa-calendar-plus-o fa-fw"></i></span>
+                                                                        <input type="text" class= "form-control" ng-model="mpedido.FECHA_CITA_REAGENDA">
+
+                                                                </div>
+                                                                <label class="control-label" for="toDate">Jornada Cita</label>  <select  ng-model="mpedido.JORNADA_CITA" > <option>AM</option><option>PM</option></select>
+                                                        </div>
+                                                </div>
+                                                <script>
+                                                        $('.input-daterange').datepicker({
+                                                             format: 'yyyy-mm-dd',
+                                                             //todayBtn: "linked",
+                                                             todayHighlight: true,
+                                                             autoclose: true,
+                                                             language: 'es'
+                                                         });
+                                                </script>
+                                        </div>
+                          </td>
+                      
+                            <td>
+                             
+                            <select type="text" class="form-control col-xs-8" aria-label="" ng-model="mpedido.DEPARTAMENTO">
+                                  <OPTION VALUE="ANTIOQUIA">ANTIOQUIA</OPTION>
+                                <OPTION VALUE="NOTIFICACION-INCUMPLIMIENTO">NOTIFICACION-INCUMPLIMIENTO</OPTION>
+                                <OPTION VALUE="ATLANTICO">ATLANTICO</OPTION>
+                                <OPTION VALUE="BOGOTA D.C">BOGOTA D.C</OPTION>
+                                <OPTION VALUE="BOLIVAR">BOLIVAR</OPTION>
+                                <OPTION VALUE="CALDAS">CALDAS</OPTION>
+                                <OPTION VALUE="CESAR">CESAR</OPTION>
+                                <OPTION VALUE="CORDOBA">CORDOBA</OPTION>
+                                <OPTION VALUE="CUNDINAMARCA">CUNDINAMARCA</OPTION>
+                                <OPTION VALUE="MAGDALENA">MARGDALENA</OPTION>
+                                <OPTION VALUE="NORTE DE SANTANDER">NORTE DE SANTANDER</OPTION>
+                                <OPTION VALUE="QUINDIO">QUINDIO</OPTION>
+                                <OPTION VALUE="SANTANDER">SANTANDER</OPTION>
+                                <OPTION VALUE="SUCRE">SUCRE</OPTION>
+                                 <OPTION VALUE="VALLE">VALLE</OPTION>
+                                  <OPTION VALUE="VALLE DEL CAUCA">VALLE DEL CAUCA</OPTION>
+                                  
+                            </select>
+                          </td>
+                          
+                          <td>
+
+                            <input type="text" class="form-control col-xs-8" aria-label="" ng-model="mpedido.OBSERVACION_GESTOR"> 
+                          </td>
+                          <td>
+                          <button id="mguardar" type="button" class="btn btn-md btn-danger" ng-click="msavePedidomalo();"><span id="mloader"></span>&nbsp; Guardar</button>
+                          </td>
+                  </tr>
+                </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-left">Pedidos: <span class="label label-success">{{pedidos.length}}</span></span>&nbsp; &nbsp;
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div><!-- Modal Eliminar Novedad-->
 
 
 </div>
