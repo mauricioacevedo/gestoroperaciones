@@ -8749,6 +8749,147 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 		return data.data;
 	});
 
+	$scope.manual = function () {
+		$scope.peds = {};
+		$scope.error = "";
+		$scope.pedido1 = "";
+		$scope.mpedido = {};
+		$scope.bpedido = '';
+		$scope.busy = "";
+		$scope.historico_pedido = [];
+		$scope.mpedido.active = 1;
+		//$scope.mpedido.PROGRAMACION="";
+
+		$scope.timeInit = new Date().getTime();
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+		$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+	};
+
+
+
+	$scope.msavePedidomalo = function () { //validacion datos para ingreso manual
+
+		$scope.pedido = {};
+		$scope.error = "";
+		angular.copy($scope.mpedido, $scope.pedido);
+
+		if ($scope.mpedido.PEDIDO_ID == "" || $scope.mpedido.PEDIDO_ID == {} || $scope.mpedido.PEDIDO_ID === undefined) {
+			alert("Pedido vacio.");
+			return;
+		}
+		if ($scope.pedido.NOVEDAD === undefined) {
+			alert('Por favor diligenciar la NOVEDAD.');
+			return;
+		}
+
+		$scope.pedido.ASESOR = $rootScope.logedUser.login;
+		$scope.pedido.ASESORNAME = $rootScope.logedUser.name;
+		$scope.pedido.DURACION = new Date().getTime() - $scope.timeInit;
+
+
+		$scope.pedido.ACTIVIDAD_GESTOR = "REAGENDAMIENTO";
+		$scope.pedido.FUENTE = $scope.mpedido.FUENTE;
+		$scope.pedido.OBSERVACION_GESTOR = $scope.mpedido.OBSERVACION_GESTOR;
+		$scope.pedido.proceso = $scope.mpedido.proceso;
+		//$scope.pedido.PROGRAMACION=$scope.mpedido.PROGRAMACION;
+		// $scope.pedido.ACTIVIDADES="INSTA";
+
+		if (document.getElementById('programacion') == null) {
+			$scope.pedido.PROGRAMACION = "";
+
+			console.log($scope.pedido.PROGRAMACION);
+		} else {
+			$scope.pedido.PROGRAMACION = document.getElementById('programacion').value;
+
+		}
+
+		//console.log($scope.pedido.ACTIVIDAD_GESTOR);
+
+		if ($scope.pedido.NOVEDAD != 'AGENDADO' && $scope.pedido.NOVEDAD != 'YA ESTA AGENDADO' && $scope.pedido.NOVEDAD != 'AGENDADO MANUAL' && $scope.pedido.NOVEDAD != 'AGENDADO_FUTURO' && $scope.pedido.NOVEDAD != 'YA ESTA AGENDADO-USUARIO') {
+			$scope.pedido.FECHA_CITA_REAGENDA = '';
+			$scope.pedido.JORNADA_CITA = '';
+
+			//console.log($scope.pedido.PROGRAMACION);
+
+
+		} else {
+			$scope.pedido.PROGRAMACION = '';
+		}
+
+
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+		console.log($scope.pedido);
+		console.log($scope.mpedido);
+
+		services.insertMPedidomalo($scope.pedido).then(function (status) {
+
+			if ($scope.pedidos == "") {
+				$scope.pedidos = new Array();
+			}
+			$scope.pedidos = $scope.pedidos.concat($scope.pedido);
+			if ($scope.historico_pedido == "") {
+				$scope.historico_pedido = new Array();
+			}
+
+			$scope.baby($scope.pedido.PEDIDO_ID);
+			$scope.pedido1 = $scope.pedido.PEDIDO_ID;
+
+			$scope.timeInit = new Date().getTime();
+			date1 = new Date();
+			year = date1.getFullYear();
+			month = $scope.doubleDigit(date1.getMonth() + 1);
+			day = $scope.doubleDigit(date1.getDate());
+			hour = $scope.doubleDigit(date1.getHours());
+			minute = $scope.doubleDigit(date1.getMinutes());
+			seconds = $scope.doubleDigit(date1.getSeconds());
+
+			$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+
+			$scope.pedido = {};
+			$scope.peds = {};
+			$scope.pedido1 = "";
+			$scope.mpedido = {};
+			$scope.bpedido = '';
+			$scope.proceso = '';
+			$scope.historico_pedido = [];
+
+			$scope.mpedido.active = 1;
+			$scope.busy = "";
+			$scope.mpedido.active = 0;
+			$scope.pedidoinfo = 'Pedido';
+		});
+
+		
+		if	($scope.gestion_Pendientes.Gestion==true){
+					services.gestionPendientesInstaMalos($scope.gestion_Pendientes, $scope.pedido).then(function (data) {
+						console.log(data.data[0]);
+						return data.data;
+				});
+			}
+
+			$scope.gestion_Pendientes.Gestion == false;
+			$scope.gestion_Pendientes = {};
+
+
+	};
+
 
 	$rootScope.logout = function () {
 		services.logout($rootScope.logedUser.login);
