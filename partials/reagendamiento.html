@@ -56,7 +56,10 @@
                 <input type="text" size="14" class="form-control btn-group btn btn-md btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Buscador de Pedido" ng-model="bpedido">
                 <button type="button" class="form-control btn btn-md btn-primary"  title="Buscar Pedido" data-toggle="tooltip" data-placement="top" ng-click="buscarPedidoAgendamiento(bpedido);"><i class="fa fa-search" aria-hidden="true"></i></button>
                 <button id="manual" type="button" class="form-control btn btn-md btn-warning" title="Ingrese Pedido Manual" data-toggle="tooltip" data-placement="top" ng-click="manual();"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
-              </div>
+                <button id="manual" type="button" class="btn btn-info btn-circle-xss" title="Ingrese Pedido Manual" ng-click="manual();" data-toggle="modal" data-toggle="tooltip" data-backdrop="static"  popover data-trigger="hover" data-placement="left" data-html="true" data-content="<code>manual por {{logedUser.login}}</code>" >
+                                    <i class="fa  fa-address-card"  aria-hidden="true"> </i>
+                                </button>
+            </div>
             </form>
 
         </div>
@@ -398,6 +401,56 @@
 
   </div><!--Panel -->
 </div><!--Row DemePedido -->
+<div id="HistoricoPedidoUser" class="modal fade "  role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{TituloModal}}</h4>
+                <span style="color:red" ><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+            </div>
+            <div class="modal-body" >
+                <div class = "panel panel-default">
+                    <div class = "panel-heading">
+                        <div class="panel-body fixed-panel" >
+                            <table class = "table small table-striped table-condensed">
+                                <thead>
+                                <tr >
+                                    <th><span class="small">PEDIDO</span></th>
+                                    <th><span class="small">ESTADO</span></th>
+                                    <th><span class="small">TRANSACCION</span></th>
+                                    <th><span class="small">ASESOR</span></th>
+                                    <th><span class="small">FECHA</span></th>
+                                    <th><span class="small">TABLA</span></th>
+                                
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="data in pedidos "class="animated bounceInRight">
+                                    <td><span class="small">{{data.PEDIDO}}</span></td>
+                                    <td><span class="small">{{data.ESTADO}}</span></td>
+                                    <td><span class="small">{{data.TRANSACCION}}</span></td>
+                                    <td><span class="small">{{data.ASESOR}}</span></td>
+                                    <td><span class="small">{{data.FECHA_FIN}}</span></td>
+                                     <td><span class="small">{{data.TABLA}}</span></td>
+                              
+
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-left">Pedidos: <span class="label label-success">{{pedidos.length}}</span></span>&nbsp; &nbsp;
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div><!-- Modal Eliminar Novedad-->
 
 <br>
 
