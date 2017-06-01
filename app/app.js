@@ -9831,22 +9831,13 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 	$scope.ordenamientoDemepedidoNuevo = '';
 
 
-/*	var pedidos = services.getPedidosUserReagendamiento(userID).then(function (data) {
-		$scope.pedidosporuser = data.data;
-		console.log($scope.pedidosporuser);
-		return data.data;
-	});*/
-
-$scope.pedidoporuserfun = function() {
- console.log('hola');
-	services.getPedidosUserReagendamiento(userID).then(function (data) {
-		$scope.pedidosporuser = data.data[0];
-		console.log($scope.pedidosporuser);
+	var pedidos = services.getPedidosUserReagendamiento(userID).then(function (data) {
+		$scope.pedidos = data.data[0];
+		//console.log($scope.pedidos);
 		return data.data;
 	});
 
-};
-$scope.pedidoporuserfun();
+
 
 	$rootScope.logout = function () {
 		services.logout($rootScope.logedUser.login);
