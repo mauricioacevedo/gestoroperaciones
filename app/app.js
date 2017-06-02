@@ -5581,7 +5581,9 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         {value: 'PENDIENTE B2B', text: 'PENDIENTE B2B'},
         {value: 'SE ENVIA CR', text: 'SE ENVIA CR'},
         {value: 'SERHFC EN PETEC', text: 'SERHFC EN PETEC'},
-        {value: 'TELEV EN PETEC', text: 'TELEV EN PETEC'}
+        {value: 'TELEV EN PETEC', text: 'TELEV EN PETEC'},
+		{value: 'PENDIENTE CUMPLIR PEDIDO DE RETIRO', text: 'PENDIENTE CUMPLIR PEDIDO DE RETIRO'},
+        {value: 'PENDIENTE ADECUACION CIRCUITO', text: 'PENDIENTE ADECUACION CIRCUITO'}
     ];
 
     $scope.updateStatus = function(data, updobs) {
