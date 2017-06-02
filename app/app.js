@@ -8834,8 +8834,6 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 		var minute = $scope.doubleDigit(date1.getMinutes());
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
-		console.log($scope.pedido);
-		console.log($scope.mpedido);
 
 		services.insertMPedidomalo($scope.pedido).then(function (status) {
 			
@@ -8843,8 +8841,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			if ($scope.pedidos == "") {
 				$scope.pedidos = new Array();
 			}
-			$scope.pedidos = $scope.pedidos.concat($scope.pedido);
-			console.log($scope.pedido);
+			$scope.pedidos = $scope.pedidos.array($scope.pedido);
 			if ($scope.historico_pedido == "") {
 				$scope.historico_pedido = new Array();
 			}
