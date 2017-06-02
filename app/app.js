@@ -8833,7 +8833,8 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 		var hour = $scope.doubleDigit(date1.getHours());
 		var minute = $scope.doubleDigit(date1.getMinutes());
 		var seconds = $scope.doubleDigit(date1.getSeconds());
-
+		
+		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
 		services.insertMPedidomalo($scope.pedido).then(function (status) {
 			
