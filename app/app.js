@@ -8749,7 +8749,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 		return data.data;
 	});
 
-	$scope.manual = function () {
+		$scope.manual = function () {
 		$scope.peds = {};
 		$scope.error = "";
 		$scope.pedido1 = "";
@@ -8838,11 +8838,13 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 		console.log($scope.mpedido);
 
 		services.insertMPedidomalo($scope.pedido).then(function (status) {
+			
 
 			if ($scope.pedidos == "") {
 				$scope.pedidos = new Array();
 			}
 			$scope.pedidos = $scope.pedidos.concat($scope.pedido);
+			console.log($scope.pedido);
 			if ($scope.historico_pedido == "") {
 				$scope.historico_pedido = new Array();
 			}
@@ -8875,7 +8877,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			$scope.mpedido.active = 0;
 			$scope.pedidoinfo = 'Pedido';
 		});
-		
+
 
 	};
 
