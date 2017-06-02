@@ -160,7 +160,7 @@
 
                                 <td  ng-show="proceso=='INSTALACION'">
                                 <select class= "form-control" ng-model="service.NOVEDAD">
-                                <option value="AGENDADO">AGENDADO</option>
+                                <!--option value="AGENDADO">AGENDADO</option>
                                 <option value="LLAMAR FUTURO">LLAMAR FUTURO</option>
                                 <option value="AGENDADO_FUTURO">AGENDADO_FUTURO</option>
                                 <option value="YA ESTA AGENDADO">YA ESTA AGENDADO</option>
@@ -172,25 +172,36 @@
                                 <option value="ERROR SIEBEL 8.1">ERROR SIEBEL 8.1</option>
                                 <option value="LLAMADA SIN INFORMACION-MUDA">LLAMADA SIN INFORMACION-MUDA</option>
                                 <option value="NO DESEA CAMBIAR AGENDA">NO DESEA CAMBIAR AGENDA</option>
-                                <!--option value="NO CONOCE EL PEDIDO">NO CONOCE EL PEDIDO</option-->
+                                <option value="NO CONOCE EL PEDIDO">NO CONOCE EL PEDIDO</option>
                                 <option value="CLIENTE NO CONTACTADO">CLIENTE NO CONTACTADO</option>
                                 <option value="NO PUEDE ATENDER LLAMADA">NO PUEDE ATENDER LLAMADA</option>
                                 <option value="PEDIDO EN OTRO CONCEPTO">PEDIDO EN OTRO CONCEPTO</option>
-                                <!--option value="REQUIERE ANULACION">REQUIERE ANULACION</option-->
+                                <option value="REQUIERE ANULACION">REQUIERE ANULACION</option>
                                 <option value="SE BRINDA INFORMACION">SE BRINDA INFORMACION</option>
-                                <!--option value="NO HAY AGENDA">NO HAY AGENDA</option-->
-                                <!--option value="TELEFONOS ERRADOS">TELEFONOS ERRADOS</option-->
-                                  <!--option value="INCUMPLIMIENTO FECHA CITA HOY">INCUMPLIMIENTO FECHA CITA HOY--</option>
-                                <!--option value="YA ESTA AGENDADO-USUARIO">YA ESTA AGENDADO-USUARIO</option-->
-                                <!--option value="YA ESTA ANULADO">YA ESTA ANULADO</option-->
-                                <!--option value="YA ESTA CUMPLIDO">YA ESTA CUMPLIDO</option-->
+                                <option value="NO HAY AGENDA">NO HAY AGENDA</option>
+                                <option value="TELEFONOS ERRADOS">TELEFONOS ERRADOS</option>
+                                  <option value="INCUMPLIMIENTO FECHA CITA HOY">INCUMPLIMIENTO FECHA CITA HOY</option>
+                                <option value="YA ESTA AGENDADO-USUARIO">YA ESTA AGENDADO-USUARIO</option>
+                                <option value="YA ESTA ANULADO">YA ESTA ANULADO</option>
+                                <option value="YA ESTA CUMPLIDO">YA ESTA CUMPLIDO</option>
                                 <option value="PENDIENTE RECONFIGUAR PEDIDO">PENDIENTE RECONFIGUAR PEDIDO</option>
-                                <!--option value="ACTIVACION_O_RETIRO_DE_CANALES">ACTIVACION_O_RETIRO_DE_CANALES</option-->
+                                <option value="ACTIVACION_O_RETIRO_DE_CANALES">ACTIVACION_O_RETIRO_DE_CANALES</option>
                                 <option value="YA ESTA ANULADO-CERRADO">YA ESTA ANULADO-CERRADO</option>
                                 <option value="YA ESTA ANULADO-PENDIENTE">YA ESTA ANULADO-PENDIENTE</option>
                                 <OPTION VALUE="YA ESTA CUMPLIDO–CERRADO">YA ESTA CUMPLIDO–CERRADO</OPTION>
-                                <OPTION VALUE="YA ESTA CUMPLIDO–PENDIENTE">YA ESTA CUMPLIDO–PENDIENTE</OPTION>
+                                <OPTION VALUE="YA ESTA CUMPLIDO–PENDIENTE">YA ESTA CUMPLIDO–PENDIENTE</OPTION-->
 
+                                 <OPTION VALUE="AGENDADO">AGENDADO</OPTION>
+                                  <OPTION VALUE="AGENDADO_FUTURO">AGENDADO_FUTURO</OPTION>
+                                <OPTION VALUE="ANULADO POR ASESOR">ANULADO POR ASESOR</OPTION>
+                                 <OPTION VALUE="CLIENTE NO CONTACTADO">CLIENTE NO CONTACTADO</OPTION>
+                                <OPTION VALUE="CUMPLIDO CERRADO Y/O PEDIENTE">CUMPLIDO CERRADO Y/O PEDIENTE</OPTION>
+                                <OPTION VALUE="ERROR SIEBEL">ERROR SIEBEL</OPTION>
+                                <OPTION VALUE="LLAMAR FUTURO">LLAMAR FUTURO</OPTION>
+                                <OPTION VALUE="NO PUEDE ATENDER LLAMADA">NO PUEDE ATENDER LLAMADA</OPTION>
+                                <OPTION VALUE="PEDIDO EN OTRO CONCEPTO">PEDIDO EN OTRO CONCEPTO</OPTION>
+                                <OPTION VALUE="PENDIENTE RECONFIGURAR PEDIDO">PENDIENTE RECONFIGURAR PEDIDO</OPTION>
+                                <OPTION VALUE="YA ESTA AGENDADO">YA ESTA AGENDADO</OPTION>           
                                 </select>
                                         <div  ng-show="service.NOVEDAD=='AGENDADO' || service.NOVEDAD=='YA ESTA AGENDADO' || service.NOVEDAD=='AGENDADO_FUTURO'  || service.NOVEDAD=='YA ESTA AGENDADO-USUARIO'  "><br>
                                             <div class="col-md-10">
