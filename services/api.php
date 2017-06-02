@@ -6062,7 +6062,7 @@ private function csvActivacioncolas(){
             ", pm.MICROZONA".
             ", pm.SUBZONA_ID".
             ", pm.PROCESO".
-            ", pm.OBSERVACION_FENIX".           
+            ", replace(pm.OBSERVACION_FENIX,'|',' ') as OBSERVACION_FENIX ".
             " from portalbd.gestor_pendientes_reagendamiento pm ".
             " where pm.STATUS='MALO' ".
             " and pm.PROCESO = 'INSTALACION' ";
