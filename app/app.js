@@ -8770,7 +8770,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
 		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-		$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+		
 
 	};
 
@@ -8858,7 +8858,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			minute = $scope.doubleDigit(date1.getMinutes());
 			seconds = $scope.doubleDigit(date1.getSeconds());
 
-			$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+			$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
 
 			$scope.pedido = {};
