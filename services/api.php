@@ -1,7 +1,7 @@
 <?php
 
-//error_reporting(E_ALL);
-//ini_set('display_errors', '1');
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
 
 require_once("Rest.inc.php");
@@ -17863,13 +17863,107 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             $this->response('',406);
         }
 
-
         //$javaexec=shell_exec("/usr/java/java8/bin/java -jar /var/www/html/scheduling/java/agendamiento.jar request=verificarAgendamientos fileConfig=/var/www/html/scheduling/java/fileConfig.xml > /var/www/html/scheduling/java/proceso.log 2>&1");
         //$msg = "Funciono";
 
         $last_line = system('/usr/java/java8/bin/java -jar /var/www/html/scheduling/java/agendamiento.jar request=verificarAgendamientos fileConfig=/var/www/html/scheduling/java/fileConfig.xml', $retval);
         ($last_line == 0) or die("returned an error: $retval");
         $this->response($this->json(array('Termino:',$last_line,$retval)), 200);
+    }
+
+    /**
+     * getLdapUserInfo, vamos a el servidor de LDPA y buscamos info del usuario
+     */
+    private function getLdapUserInfo(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+
+        $user           =   $this->_request['userID'];
+        $userBusqueda   =   $this->_request['userbusqueda'];
+
+
+        if($user=='' || $user=='undefined'){
+            $user = $usuarioGalleta;
+        }
+
+        $userBusqueda   = str_replace(' ', '', $userBusqueda);
+        $userBusqueda   = strtoupper($userBusqueda);
+
+        $ldapserver     =   'net-dc05';
+        $user           =   "CGONZGO";
+        $ldapuser       =   "EPMTELCO\\$user";
+        $ldappass       =   addslashes("Mangoperajunio2017*");
+        $ldaptree       =   "OU=Usuarios,DC=epmtelco,DC=com,DC=co";
+        $varuser        =   "(samaccountname=$userBusqueda)";
+
+        if(!isset($userBusqueda) || $userBusqueda!==''){
+            print("Buscando usuario: ".$userBusqueda);
+
+            $ldapconn = ldap_connect($ldapserver) or die("Could not connect to LDAP server.");
+
+            if($ldapconn) {
+                // binding to ldap server
+                $ldapbind = ldap_bind($ldapconn, $ldapuser, $ldappass) or die ("Error trying to bind: ".ldap_error($ldapconn));
+                // verify binding
+                if ($ldapbind) {
+                    echo "LDAP bind successful...<br /><br />";
+
+
+                    $result = ldap_search($ldapconn,$ldaptree, $varuser) or die ("Error in search query: ".ldap_error($ldapconn));
+                    $data = ldap_get_entries($ldapconn, $result);
+
+                    // SHOW ALL DATA
+                    echo '<h1>Dump all data</h1><pre>';
+                    print_r($data);
+                    echo '</pre>';
+
+
+                    // iterate over array and print data for each entry
+                    echo '<h1>Show me the users</h1>';
+                    for ($i=0; $i<$data["count"]; $i++) {
+                        //echo "dn is: ". $data[$i]["dn"] ."<br />";
+                        echo "USUARIO_ID: ". $data[$i]["samaccountname"][0] ."<br />";
+                        echo "USUARIO_NOMBRE: ". $data[$i]["displayname"][0] ."<br />";
+                        echo "CARGO: ". $data[$i]["title"][0] ."<br />";
+                        if(isset($data[$i]["mail"][0])) {
+                            echo "CORREO_USUARIO: ". $data[$i]["mail"][0] ."<br /><br />";
+                        } else {
+                            echo "CORREO_USUARIO: None<br /><br />";
+                        }
+                    }
+                    // print number of entries found
+                    echo "Number of entries found: " . ldap_count_entries($ldapconn, $result);
+                } else {
+                    echo "LDAP bind failed...";
+                }
+
+            }
+
+
+
+
+
+
+
+
+
+
+        }else{
+            $error = "Ingrese usuario a buscar.";
+            $this->response($this->json(array($error)), 403);
+        }
+
     }
 
 }//cierre de la clase
