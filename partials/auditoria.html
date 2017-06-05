@@ -97,7 +97,7 @@
                           </td>
                           
                               <td ng-show="mpedido.proceso=='REPARACION'">
-                                <select class= "form-control" ng-model="service.NOVEDAD" >
+                                <select class= "form-control" ng-model="mpedido.NOVEDAD" >
                                 <option value="AGENDADO">AGENDADO</option>
                                 <option value="AGENDADO_FUTURO">AGENDADO_FUTURO</option>
                                 <option value="CONFIRMA SOLUCION">CONFIRMA SOLUCION</option>
@@ -112,16 +112,16 @@
 
                                 </select>
 
-                                <div  ng-show="service.NOVEDAD=='AGENDADO' || service.NOVEDAD=='YA ESTA AGENDADO' || service.NOVEDAD=='AGENDADO_FUTURO'"><br>
+                                <div  ng-show="mpedido.NOVEDAD=='AGENDADO' || mpedido.NOVEDAD=='YA ESTA AGENDADO' || mpedido.NOVEDAD=='AGENDADO_FUTURO'"><br>
 
                                 <div class="col-md-10">
                                     <div class="control-group" >
                                         <label for="programacion2" class="control-label">Fecha Cita Propuesta:</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-calendar-plus-o fa-fw"></i></span>
-                                            <input type="text" name="programacion" id="programacion2" style="size:25px" class="form-control" ng-model="service.FECHA_CITA_REAGENDA" datetime-picker date-only date-format="yyyy-MM-dd"/>
+                                            <input type="text" name="programacion" id="programacion2" style="size:25px" class="form-control" ng-model="mpedido.FECHA_CITA_REAGENDA" datetime-picker date-only date-format="yyyy-MM-dd"/>
                                         </div>
-                                        <label class="control-label" for="toDate">Jornada Cita</label>  <select  id="toDate" ng-model="service.JORNADA_CITA" > <option>AM</option><option>PM</option></select>
+                                        <label class="control-label" for="toDate">Jornada Cita</label>  <select  id="toDate" ng-model="mpedido.JORNADA_CITA" > <option>AM</option><option>PM</option></select>
                                     </div>
                                 </div>
 
