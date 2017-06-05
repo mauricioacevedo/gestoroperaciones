@@ -95,7 +95,7 @@
                           <span ng-show="mpedido.PROGRAMADO"  class="ng-binding label label-danger">[PROGRAMADO]{{mpedido.PROGRAMADO}}</span>
                             <input type="text" class="form-control col-xs-8" aria-label="" ng-model="mpedido.CLIENTE_ID"> 
                           </td>
-                          <td>
+                          
                               <td ng-show="mpedido.proceso=='REPARACION'">
                                 <select class= "form-control" ng-model="service.NOVEDAD" >
                                 <option value="AGENDADO">AGENDADO</option>
@@ -124,7 +124,7 @@
                                         <label class="control-label" for="toDate">Jornada Cita</label>  <select  id="toDate" ng-model="service.JORNADA_CITA" > <option>AM</option><option>PM</option></select>
                                     </div>
                                 </div>
-
+                                  
                                 <td  ng-show="mpedido.proceso=='INSTALACION'">
                             <select class= "form-control" ng-model="mpedido.NOVEDAD">
                                  <OPTION VALUE="AGENDADO">AGENDADO</OPTION>
