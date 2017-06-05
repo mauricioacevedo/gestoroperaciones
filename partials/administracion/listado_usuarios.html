@@ -193,7 +193,8 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="well form-horizontal small" action=" " method="post" name="contact_form" id="contact_form">
+                            <form class="well form-horizontal small" action=" " method="post" name="contact_form"
+                                  id="contact_form">
                                 <fieldset>
 
                                     <!-- Text input-->
@@ -203,11 +204,12 @@
                                         <label class="col-md-4 control-label">Login</label>
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-user"
-                                                                           aria-hidden="true"></i></span>
+                                            <span class="input-group-addon"><i class="fa fa-user"
+                                                                               aria-hidden="true"></i></span>
                                                 <input name="login" class="form-control" type="text"
                                                        value="{{editaInfo.USUARIO_ID}}" ng-model="editaInfo.USUARIO_ID"
                                                        ng-minlength="4" capitalize required>
+                                                <button type="button" class="close" ng-click="buscarId(editaInfo.USUARIO_ID)"><i class="fa fa-search" aria-hidden="true"></i></button>
 
                                             </div>
                                         </div>
@@ -223,7 +225,8 @@
                                         <span class="input-group-addon"><i class="fa fa-user"
                                                                            aria-hidden="true"></i></span>
                                                 <input name="nombre" class="form-control" type="text"
-                                                       value="{{editaInfo.USUARIO_NOMBRE}}" ng-model="editaInfo.USUARIO_NOMBRE"
+                                                       value="{{editaInfo.USUARIO_NOMBRE}}"
+                                                       ng-model="editaInfo.USUARIO_NOMBRE"
                                                        capitalize required>
                                             </div>
                                         </div>
@@ -238,7 +241,8 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user-secret"></i></span>
                                                 <input name="cedula" class="form-control" type="text"
-                                                       value="{{editaInfo.CEDULA_ID}}" ng-model="editaInfo.CEDULA_ID" capitalize
+                                                       value="{{editaInfo.CEDULA_ID}}" ng-model="editaInfo.CEDULA_ID"
+                                                       capitalize
                                                        required>
                                             </div>
                                         </div>
@@ -252,8 +256,10 @@
                                             <div class="input-group">
                                         <span class="input-group-addon"><i
                                                 class="glyphicon glyphicon-envelope"></i></span>
-                                                <input name="email" placeholder="E-Mail" class="form-control" type="text"
-                                                       value="{{editaInfo.CORREO_USUARIO}}" ng-model="editaInfo.CORREO_USUARIO"
+                                                <input name="email" placeholder="E-Mail" class="form-control"
+                                                       type="text"
+                                                       value="{{editaInfo.CORREO_USUARIO}}"
+                                                       ng-model="editaInfo.CORREO_USUARIO"
                                                        capitalize required>
                                             </div>
                                         </div>
@@ -290,9 +296,11 @@
                                         <label class="col-md-4 control-label">Grupo</label>
                                         <div class="col-md-4 selectContainer">
                                             <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
+                                                <span class="input-group-addon"><i
+                                                        class="fa fa-check-square"></i></span>
                                                 <select id="grupo" name="grupo" class="form-control selectpicker"
-                                                        ng-model="editaInfo.GRUPO" ng-options="g for g in grupos.values">
+                                                        ng-model="editaInfo.GRUPO"
+                                                        ng-options="g for g in grupos.values">
                                                     <option value="" disabled>Seleccione</option>
                                                 </select>
                                             </div>
@@ -303,9 +311,11 @@
                                         <label class="col-md-4 control-label">Función</label>
                                         <div class="col-md-4 selectContainer">
                                             <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
+                                                <span class="input-group-addon"><i
+                                                        class="fa fa-check-square"></i></span>
                                                 <select id="funcion" name="funcion" class="form-control selectpicker"
-                                                        ng-model="editaInfo.FUNCION" ng-options="g for g in funciones.values">
+                                                        ng-model="editaInfo.FUNCION"
+                                                        ng-options="g for g in funciones.values">
                                                     <option value="" disabled>Seleccione</option>
                                                 </select>
                                             </div>
@@ -316,7 +326,8 @@
                                         <label class="col-md-4 control-label">Turno</label>
                                         <div class="col-md-4 selectContainer">
                                             <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
+                                                <span class="input-group-addon"><i
+                                                        class="fa fa-check-square"></i></span>
                                                 <select id="turno" name="turno" class="form-control selectpicker"
                                                         ng-model="editaInfo.TURNO">
                                                     <option value="" disabled>Seleccione</option>
@@ -331,8 +342,10 @@
                                         <label class="col-md-4 control-label">Supervisor</label>
                                         <div class="col-md-4 selectContainer">
                                             <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
-                                                <select id="supervisor" name="supervisor" class="form-control selectpicker"
+                                                <span class="input-group-addon"><i
+                                                        class="fa fa-check-square"></i></span>
+                                                <select id="supervisor" name="supervisor"
+                                                        class="form-control selectpicker"
                                                         ng-model="editaInfo.SUPERVISOR">
                                                     <option value="" disabled>Seleccione</option>
                                                     <option value="YENY GOMEZ GARCIA">YENY GOMEZ GARCIA</option>
@@ -346,8 +359,10 @@
                                         <label class="col-md-4 control-label">Interventor</label>
                                         <div class="col-md-4 selectContainer">
                                             <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
-                                                <select id="interventor" name="interventor" class="form-control selectpicker"
+                                                <span class="input-group-addon"><i
+                                                        class="fa fa-check-square"></i></span>
+                                                <select id="interventor" name="interventor"
+                                                        class="form-control selectpicker"
                                                         ng-model="editaInfo.INTERVENTOR"
                                                         ng-options="g for g in interventores.values">
                                                     <option value="" disabled>Seleccione</option>
@@ -376,7 +391,8 @@
                                         <label class="col-md-4 control-label">Estado</label>
                                         <div class="col-md-4 selectContainer">
                                             <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
+                                                <span class="input-group-addon"><i
+                                                        class="fa fa-check-square"></i></span>
                                                 <select name="state" class="form-control selectpicker"
                                                         ng-model="editaInfo.ESTADO">
                                                     <option selected="selected">ACTIVO</option>
