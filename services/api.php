@@ -17945,8 +17945,9 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 $resultoci= oci_execute($stid);
 
                 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
-                    var_dump($row);
+
                     $cedula=$this->$row['CEDULA_ID'];
+                    var_dump($cedula);
                 }
                 $object->CEDULA_ID = $cedula;
 
