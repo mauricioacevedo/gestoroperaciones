@@ -17952,12 +17952,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                     $this->response($this->json(array($object, $userBusqueda)), 200);
 
 
-                }else{
-                    $error = "Usuario no encontrado";
-                    $this->response($this->json(array($error, $userBusqueda)), 200);
                 }
-
-
 
             }else {
                 $error = "Falló la conexión con LDAP";
