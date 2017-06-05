@@ -4180,7 +4180,6 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 	};
 
 	$scope.buscarIdLdap = function (userid) {
-        $scope.editaInfo = {};
 		$http.get('./services/getLdapUserInfo?userbusqueda='+userid).then(
 			function (data){
 
@@ -4197,10 +4196,12 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 				}else{
 
                     $scope.msgLdap = data.data[0];
+                    $scope.cargoLabel = null;
 				}
 			},
 			function errorCallback(res){
                 $rootScope.errorDatos = res.data;
+                $scope.cargoLabel = null;
 			}
 		)
 	}
