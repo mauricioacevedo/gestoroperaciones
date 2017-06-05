@@ -17941,7 +17941,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                         }
 
                     }
-                    $object->CEDULA_ID = $objectFenix['CEDULA_ID'];
+                    $object->CEDULA_ID = $objectFenix[0]['CEDULA_ID'];
 
                     $this->response($this->json(array($object, $userBusqueda)), 200);
 
