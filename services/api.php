@@ -17937,7 +17937,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
                         $row = $rSql->fetch_assoc();
                     }
-                    var_dump ($row);
+                    echo ($sqlFenix);
                     $object->CEDULA_ID = $row['CEDULA_ID'];
 
                     $this->response($this->json(array($object, $userBusqueda)), 200);
