@@ -17933,6 +17933,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
                     $rSql = $this->mysqli->query($sqlFenix);
                     
+                    echo $rSql;
+                    
                     if($rSql->num_rows > 0){
 
                         $row = $rSql->fetch_assoc();
