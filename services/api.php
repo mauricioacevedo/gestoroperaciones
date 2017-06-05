@@ -17917,11 +17917,12 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 // binding to ldap server
                 $ldapbind = ldap_bind($ldapconn, $ldapuser, $ldappass) or die ("Error trying to bind: ".ldap_error($ldapconn));
                 // verify binding
+                $object = new stdClass();
                 if ($ldapbind) {
 
                     $result = ldap_search($ldapconn,$ldaptree, $varuser) or die ("Error in search query: ".ldap_error($ldapconn));
                     $data = ldap_get_entries($ldapconn, $result);
-                    $object = new stdClass();
+
                     for ($i=0; $i<$data["count"]; $i++) {
                         //echo "dn is: ". $data[$i]["dn"] ."<br />";
                         $object->USUARIO_ID = strtoupper($data[$i]["samaccountname"][0]);
@@ -17930,29 +17931,31 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                         $object->CORREO_USUARIO = strtoupper($data[$i]["mail"][0]);
                     }
 
-                    $sqlFenix = " SELECT ".
-                        " U.REGISTRO AS CEDULA_ID ".
-                        " FROM FNX_USUARIOS U ".
-                        " WHERE U.USUARIO_ID='$userBusqueda'";
 
-                    $stid = oci_parse($connf, $sqlFenix);
-                    $resultoci= oci_execute($stid);
-                    var_dump($resultoci);
 
-                    while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
-
-                        $cedula=$this->$row['CEDULA_ID'];
-                    }
-                    $object->CEDULA_ID = $cedula;
-
-                    $this->response($this->json(array($object, $userBusqueda)), 200);
-
-                } else {
-                    $error = "Falló la conexión con LDAP";
-
-                    $this->response($this->json(array($error)), 200);
                 }
 
+                $sqlFenix = " SELECT ".
+                    " U.REGISTRO AS CEDULA_ID ".
+                    " FROM FNX_USUARIOS U ".
+                    " WHERE U.USUARIO_ID='$userBusqueda'";
+
+                $stid = oci_parse($connf, $sqlFenix);
+                $resultoci= oci_execute($stid);
+                var_dump($resultoci);
+
+                while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
+
+                    $cedula=$this->$row['CEDULA_ID'];
+                }
+                $object->CEDULA_ID = $cedula;
+
+                $this->response($this->json(array($object, $userBusqueda)), 200);
+
+            }else {
+                $error = "Falló la conexión con LDAP";
+
+                $this->response($this->json(array($error)), 200);
             }
 
 
