@@ -17927,17 +17927,17 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                         $object->CORREO_USUARIO = strtoupper($data[$i]["mail"][0]);
                     }
                     $sqlFenix = " SELECT ".
-                        " , U.REGISTRO AS CEDULA_ID ".
+                        " U.REGISTRO AS CEDULA_ID ".
                         " FROM FNX_USUARIOS U ".
                         " WHERE U.USUARIO_ID='$userBusqueda'";
 
                     $rSql = $this->mysqli->query($sqlFenix);
-
-                    $objectFenix = [];
+                    
                     if($rSql->num_rows > 0){
 
                         $row = $rSql->fetch_assoc();
                     }
+                    //var_dump ($row);
                     $object->CEDULA_ID = $row['CEDULA_ID'];
 
                     $this->response($this->json(array($object, $userBusqueda)), 200);
