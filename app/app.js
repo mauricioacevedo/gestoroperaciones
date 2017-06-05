@@ -3984,6 +3984,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 		$scope.UsuarioNom = '';
 		$scope.TituloModal = "Crear Usuario Nuevo.";
 		$scope.UsuarioNuevo = true;
+        $scope.cargoLabel = null;
 	};
 	//Modal para borrar usuarios.
 	$scope.borrarModal = function (data) {
@@ -4021,6 +4022,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 	$scope.editarUsuario = function (editaInfo) {
 
 		//console.log(editaInfo);
+        $scope.cargoLabel = null;
 
 		services.editUsuario(editaInfo).then(
 
