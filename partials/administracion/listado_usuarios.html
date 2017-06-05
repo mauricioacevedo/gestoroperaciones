@@ -213,8 +213,10 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-md-2 padding-0"><button type="button" class="btn btn-default btn-sm" ng-hide="!UsuarioNuevo" ng-click="buscarIdLdap(editaInfo.USUARIO_ID)">
+                                        <div class="col-md-4 padding-0">
+                                            <button type="button" class="btn btn-default btn-sm" ng-hide="!UsuarioNuevo" ng-click="buscarIdLdap(editaInfo.USUARIO_ID)">
                                             <i class="fa fa-search" aria-hidden="true"></i></button>
+                                            {{msgLdap || ''}}
                                         </div>
                                     </div>
 

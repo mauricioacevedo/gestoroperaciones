@@ -3974,6 +3974,9 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 		$scope.editaInfo = data;
 		$scope.TituloModal = "Editar Usuario con el ID:";
 		$scope.UsuarioNuevo = false;
+        //console.log(editaInfo);
+        $scope.cargoLabel = null;
+        $scope.msgLdap = null;
 		//$scope.editaInfo.CARGO_ID=data.CARGO_ID;
 	};
 	//Modal para Crear Usuario Nuevo
@@ -3984,6 +3987,8 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 		$scope.UsuarioNom = '';
 		$scope.TituloModal = "Crear Usuario Nuevo.";
 		$scope.UsuarioNuevo = true;
+        $scope.cargoLabel = null;
+        $scope.msgLdap = null;
 	};
 	//Modal para borrar usuarios.
 	$scope.borrarModal = function (data) {
@@ -4019,8 +4024,6 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 
 	//Editar Usuario Servicio
 	$scope.editarUsuario = function (editaInfo) {
-
-		//console.log(editaInfo);
 
 		services.editUsuario(editaInfo).then(
 
@@ -4180,13 +4183,22 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 		$http.get('./services/getLdapUserInfo?userbusqueda='+userid).then(
 			function (data){
 
-                $scope.editaInfo = {
-                    USUARIO_ID: userid,
-                    USUARIO_NOMBRE: data.data[0].USUARIO_NOMBRE,
-                    CEDULA_ID: data.data[0].CEDULA_ID,
-                    CORREO_USUARIO: data.data[0].CORREO_USUARIO
-				};
-                $scope.cargoLabel = data.data[0].CARGO;
+				if(data.status!=201){
+					$scope.msgLdap = "Usuario encontrado";
+                    $scope.editaInfo = {
+                        USUARIO_ID: userid,
+                        USUARIO_NOMBRE: data.data[0].USUARIO_NOMBRE,
+                        CEDULA_ID: data.data[0].CEDULA_ID,
+                        CORREO_USUARIO: data.data[0].CORREO_USUARIO
+                    };
+                    $scope.cargoLabel = data.data[0].CARGO;
+
+				}else{
+
+                    $scope.msgLdap = data.data[0];
+				}
+
+
 
 			},
 			function errorCallback(res){
