@@ -17925,32 +17925,39 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                     $data = ldap_get_entries($ldapconn, $result);
                     $cantdata = ldap_count_entries($ldapconn, $result);
 
-                    var_dump ($cantdata);
+                    if($cantdata>0){
 
-                    for ($i=0; $i<$data["count"]; $i++) {
-                        //echo "dn is: ". $data[$i]["dn"] ."<br />";
-                        $object->USUARIO_ID = strtoupper($data[$i]["samaccountname"][0]);
-                        $object->USUARIO_NOMBRE = strtoupper($data[$i]["displayname"][0]);
-                        $object->CARGO = strtoupper($data[$i]["title"][0]);
-                        $object->CORREO_USUARIO = strtoupper($data[$i]["mail"][0]);
+                        for ($i=0; $i<$data["count"]; $i++) {
+                            //echo "dn is: ". $data[$i]["dn"] ."<br />";
+                            $object->USUARIO_ID = strtoupper($data[$i]["samaccountname"][0]);
+                            $object->USUARIO_NOMBRE = strtoupper($data[$i]["displayname"][0]);
+                            $object->CARGO = strtoupper($data[$i]["title"][0]);
+                            $object->CORREO_USUARIO = strtoupper($data[$i]["mail"][0]);
+                        }
+
+                        $sqlFenix = " SELECT ".
+                            " U.REGISTRO AS CEDULA_ID ".
+                            " FROM FNX_USUARIOS U ".
+                            " WHERE U.USUARIO_ID='$userBusqueda'";
+
+                        $stid = oci_parse($connf, $sqlFenix);
+                        $resultoci= oci_execute($stid);
+                        $cedula = "";
+                        while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
+
+                            $cedula = $row['CEDULA_ID'];
+
+                        }
+                        $object->CEDULA_ID = $cedula;
+
+                        $this->response($this->json(array($object, $userBusqueda)), 200);
+
+
+
+                    }else{
+                        $error = "Usuario no encontrado";
+                        $this->response($this->json(array($error)), 200);
                     }
-
-                    $sqlFenix = " SELECT ".
-                        " U.REGISTRO AS CEDULA_ID ".
-                        " FROM FNX_USUARIOS U ".
-                        " WHERE U.USUARIO_ID='$userBusqueda'";
-
-                    $stid = oci_parse($connf, $sqlFenix);
-                    $resultoci= oci_execute($stid);
-                    $cedula = "";
-                    while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
-
-                        $cedula = $row['CEDULA_ID'];
-
-                    }
-                    $object->CEDULA_ID = $cedula;
-
-                    $this->response($this->json(array($object, $userBusqueda)), 200);
 
 
                 }
@@ -17958,7 +17965,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             }else {
                 $error = "Falló la conexión con LDAP";
 
-                $this->response($this->json(array($error)), 200);
+                $this->response($this->json(array($error)), 403);
             }
 
 
