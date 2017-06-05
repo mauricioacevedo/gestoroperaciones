@@ -95,37 +95,8 @@
                           <span ng-show="mpedido.PROGRAMADO"  class="ng-binding label label-danger">[PROGRAMADO]{{mpedido.PROGRAMADO}}</span>
                             <input type="text" class="form-control col-xs-8" aria-label="" ng-model="mpedido.CLIENTE_ID"> 
                           </td>
-                          
-                              <td ng-show="proceso=='REPARACION'">
-                                <select class= "form-control" ng-model="service.NOVEDAD" >
-                                <option value="AGENDADO">AGENDADO</option>
-                                <option value="AGENDADO_FUTURO">AGENDADO_FUTURO</option>
-                                <option value="CONFIRMA SOLUCION">CONFIRMA SOLUCION</option>
-                                <option value="CAUSA COMUN CONOCIDA">CAUSA COMUN CONOCIDA</option>
-                                <option value="CLIENTE NO AUTORIZA">CLIENTE NO AUTORIZA</option>
-                                <option value="CLIENTE ILOCALIZADO">CLIENTE ILOCALIZADO</option>
-                                <option value="YA ESTA AGENDADO">YA ESTA AGENDADO</option>
-                                <option value="YA ESTA CUMPLIDO">YA ESTA CUMPLIDO</option>
-                                <option value="ERROR SIEBEL 8.1">ERROR SIEBEL 8.1</option>
-                                <option value="CIERRE POR ILOCALIZADO">CIERRE POR ILOCALIZADO</option>
-
-
-                                </select>
-
-                                <div  ng-show="service.NOVEDAD=='AGENDADO' || service.NOVEDAD=='YA ESTA AGENDADO' || service.NOVEDAD=='AGENDADO_FUTURO'"><br>
-
-                                <div class="col-md-10">
-                                    <div class="control-group" >
-                                        <label for="programacion2" class="control-label">Fecha Cita Propuesta:</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-calendar-plus-o fa-fw"></i></span>
-                                            <input type="text" name="programacion" id="programacion2" style="size:25px" class="form-control" ng-model="service.FECHA_CITA_REAGENDA" datetime-picker date-only date-format="yyyy-MM-dd"/>
-                                        </div>
-                                        <label class="control-label" for="toDate">Jornada Cita</label>  <select  id="toDate" ng-model="service.JORNADA_CITA" > <option>AM</option><option>PM</option></select>
-                                    </div>
-                                </div>
-
-                               <td  ng-show="proceso=='INSTALACION'">
+                          <td>
+                            
                             <select class= "form-control" ng-model="mpedido.NOVEDAD">
                                  <OPTION VALUE="AGENDADO">AGENDADO</OPTION>
                                   <OPTION VALUE="AGENDADO_FUTURO">AGENDADO_FUTURO</OPTION>
