@@ -3974,6 +3974,9 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 		$scope.editaInfo = data;
 		$scope.TituloModal = "Editar Usuario con el ID:";
 		$scope.UsuarioNuevo = false;
+        //console.log(editaInfo);
+        $scope.cargoLabel = null;
+        $scope.msgLdap = null;
 		//$scope.editaInfo.CARGO_ID=data.CARGO_ID;
 	};
 	//Modal para Crear Usuario Nuevo
@@ -3985,6 +3988,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 		$scope.TituloModal = "Crear Usuario Nuevo.";
 		$scope.UsuarioNuevo = true;
         $scope.cargoLabel = null;
+        $scope.msgLdap = null;
 	};
 	//Modal para borrar usuarios.
 	$scope.borrarModal = function (data) {
@@ -4020,9 +4024,6 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 
 	//Editar Usuario Servicio
 	$scope.editarUsuario = function (editaInfo) {
-
-		//console.log(editaInfo);
-        $scope.cargoLabel = null;
 
 		services.editUsuario(editaInfo).then(
 
@@ -4193,7 +4194,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
                     $scope.cargoLabel = data.data[0].CARGO;
 
 				}else{
-					console.log(data);
+
                     $scope.msgLdap = data.data[0];
 				}
 
