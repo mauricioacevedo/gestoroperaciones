@@ -10243,7 +10243,7 @@ $scope.getDepartamentos = function () {
 			if ($scope.pedidos == "") {
 				$scope.pedidos = new Array();
 			}
-			$scope.pedidos = $scope.pedidos.concat($scope.pedido);
+			$scope.pedidos = $scope.pedido;
 			if ($scope.historico_pedido == "") {
 				$scope.historico_pedido = new Array();
 			}
