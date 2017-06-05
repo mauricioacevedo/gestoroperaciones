@@ -17923,8 +17923,9 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
                     $result = ldap_search($ldapconn,$ldaptree, $varuser) or die ("Error in search query: ".ldap_error($ldapconn));
                     $data = ldap_get_entries($ldapconn, $result);
+                    $cantdata = ldap_count_entries($ldapconn, $result);
 
-                    var_dump ($result);
+                    var_dump ($cantdata);
 
                     for ($i=0; $i<$data["count"]; $i++) {
                         //echo "dn is: ". $data[$i]["dn"] ."<br />";
