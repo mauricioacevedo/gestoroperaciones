@@ -17863,13 +17863,58 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             $this->response('',406);
         }
 
-
         //$javaexec=shell_exec("/usr/java/java8/bin/java -jar /var/www/html/scheduling/java/agendamiento.jar request=verificarAgendamientos fileConfig=/var/www/html/scheduling/java/fileConfig.xml > /var/www/html/scheduling/java/proceso.log 2>&1");
         //$msg = "Funciono";
 
         $last_line = system('/usr/java/java8/bin/java -jar /var/www/html/scheduling/java/agendamiento.jar request=verificarAgendamientos fileConfig=/var/www/html/scheduling/java/fileConfig.xml', $retval);
         ($last_line == 0) or die("returned an error: $retval");
         $this->response($this->json(array('Termino:',$last_line,$retval)), 200);
+    }
+
+    /**
+     * getLdapUserInfo, vamos a el servidor de LDPA y buscamos info del usuario
+     */
+    private function getLdapUserInfo(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+        $userBusqueda   =   $this->_request['userbusqueda'];
+        $user           =   $this->_request['userID'];
+
+        if($user=='' || $user=='undefined'){
+            $user = $usuarioGalleta;
+        }
+
+        $userBusqueda = str_replace(' ', '', $userBusqueda);
+        $userBusqueda = strtoupper($userBusqueda);
+
+        if(!isset($userBusqueda) || $userBusqueda!==''){
+            print("Buscando usuario: ".$userBusqueda);
+
+
+
+
+
+
+
+
+
+
+        }else{
+            $error = "Ingrese usuario a buscar.";
+            $this->response($this->json(array($error)), 403);
+        }
+
     }
 
 }//cierre de la clase
