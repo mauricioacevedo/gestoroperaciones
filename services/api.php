@@ -17888,18 +17888,67 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
 
-        $userBusqueda   =   $this->_request['userbusqueda'];
+
         $user           =   $this->_request['userID'];
+        $userBusqueda   =   $this->_request['userbusqueda'];
+
 
         if($user=='' || $user=='undefined'){
             $user = $usuarioGalleta;
         }
 
-        $userBusqueda = str_replace(' ', '', $userBusqueda);
-        $userBusqueda = strtoupper($userBusqueda);
+        $userBusqueda   = str_replace(' ', '', $userBusqueda);
+        $userBusqueda   = strtoupper($userBusqueda);
+
+        $ldapserver     =   'net-dc05';
+        $user           =   "CGONZGO";
+        $ldapuser       =   "EPMTELCO\\$user";
+        $ldappass       =   addslashes("Mangoperafebrero2017*");
+        $ldaptree       =   "OU=Usuarios,DC=epmtelco,DC=com,DC=co";
+        $varuser        =   "(samaccountname=$userBusqueda)";
 
         if(!isset($userBusqueda) || $userBusqueda!==''){
             print("Buscando usuario: ".$userBusqueda);
+
+            $ldapconn = ldap_connect($ldapserver) or die("Could not connect to LDAP server.");
+
+            if($ldapconn) {
+                // binding to ldap server
+                $ldapbind = ldap_bind($ldapconn, $ldapuser, $ldappass) or die ("Error trying to bind: ".ldap_error($ldapconn));
+                // verify binding
+                if ($ldapbind) {
+                    echo "LDAP bind successful...<br /><br />";
+
+
+                    $result = ldap_search($ldapconn,$ldaptree, $varuser) or die ("Error in search query: ".ldap_error($ldapconn));
+                    $data = ldap_get_entries($ldapconn, $result);
+
+                    // SHOW ALL DATA
+                    echo '<h1>Dump all data</h1><pre>';
+                    print_r($data);
+                    echo '</pre>';
+
+
+                    // iterate over array and print data for each entry
+                    echo '<h1>Show me the users</h1>';
+                    for ($i=0; $i<$data["count"]; $i++) {
+                        //echo "dn is: ". $data[$i]["dn"] ."<br />";
+                        echo "USUARIO_ID: ". $data[$i]["samaccountname"][0] ."<br />";
+                        echo "USUARIO_NOMBRE: ". $data[$i]["displayname"][0] ."<br />";
+                        echo "CARGO: ". $data[$i]["title"][0] ."<br />";
+                        if(isset($data[$i]["mail"][0])) {
+                            echo "CORREO_USUARIO: ". $data[$i]["mail"][0] ."<br /><br />";
+                        } else {
+                            echo "CORREO_USUARIO: None<br /><br />";
+                        }
+                    }
+                    // print number of entries found
+                    echo "Number of entries found: " . ldap_count_entries($ldapconn, $result);
+                } else {
+                    echo "LDAP bind failed...";
+                }
+
+            }
 
 
 
