@@ -17936,7 +17936,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                     if($rSql->num_rows > 0){
 
                         $row = $rSql->fetch_assoc();
-                        var_dump($sqlFenix);
+                        var_dump($row);
                     }
 
                     $object->CEDULA_ID = $row['CEDULA_ID'];
