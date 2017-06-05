@@ -17943,7 +17943,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
                 $stid = oci_parse($connf, $sqlFenix);
                 $resultoci= oci_execute($stid);
-                var_dump($connf);
+                var_dump($resultoci);
 
                 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
 
