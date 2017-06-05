@@ -17932,19 +17932,13 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                         " FROM FNX_USUARIOS U ".
                         " WHERE U.USUARIO_ID='$userBusqueda'";
 
-                    $rSql = $this->mysqli->query($sqlFenix);
-                    var_dump ($rSql);
-
-                    if($rSql->num_rows > 0){
-
-                        $row = $rSql->fetch_assoc();
-
+                    $stid = oci_parse($connf, $sqlFenix);
+                    oci_execute($stid);
+                    if($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)){
                         $cedula =$row['CEDULA_ID'];
 
                         $object->CEDULA_ID = $cedula;
                     }
-
-
 
                     $this->response($this->json(array($object, $userBusqueda)), 200);
 
