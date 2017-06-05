@@ -17932,26 +17932,30 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                         $object->CORREO_USUARIO = strtoupper($data[$i]["mail"][0]);
                     }
 
+                    $sqlFenix = " SELECT ".
+                        " U.REGISTRO AS CEDULA_ID ".
+                        " FROM FNX_USUARIOS U ".
+                        " WHERE U.USUARIO_ID='$userBusqueda'";
+
+                    $stid = oci_parse($connf, $sqlFenix);
+                    $resultoci= oci_execute($stid);
+                    $cedula = "";
+                    while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
+
+                        $cedula = $row['CEDULA_ID'];
+
+                    }
+                    $object->CEDULA_ID = $cedula;
+
+                    $this->response($this->json(array($object, $userBusqueda)), 200);
 
 
+                }else{
+                    $error = "Usuario no encontrado";
+                    $this->response($this->json(array($error, $userBusqueda)), 200);
                 }
 
-                $sqlFenix = " SELECT ".
-                    " U.REGISTRO AS CEDULA_ID ".
-                    " FROM FNX_USUARIOS U ".
-                    " WHERE U.USUARIO_ID='$userBusqueda'";
 
-                $stid = oci_parse($connf, $sqlFenix);
-                $resultoci= oci_execute($stid);
-                $cedula = "";
-                while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
-
-                    $cedula = $row['CEDULA_ID'];
-
-                }
-                $object->CEDULA_ID = $cedula;
-
-                $this->response($this->json(array($object, $userBusqueda)), 200);
 
             }else {
                 $error = "Falló la conexión con LDAP";
