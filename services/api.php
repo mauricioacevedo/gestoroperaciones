@@ -17935,7 +17935,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                     
                     if($rSql->num_rows > 0){
 
-                        $row = $rSql->fetch_assoc();
+                        $row = $rSql->fetch_row();
                         var_dump($row);
                     }
 
