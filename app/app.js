@@ -4181,6 +4181,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 			function (data){
 
                 $scope.editaInfo = {
+                    USUARIO_ID: userid,
                     USUARIO_NOMBRE: data.data[0].USUARIO_NOMBRE,
                     CEDULA_ID: data.data[0].CEDULA_ID,
                     CORREO_USUARIO: data.data[0].CORREO_USUARIO
@@ -4188,7 +4189,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 
 
 			},
-			function (res){
+			function errorCallback(res){
                 $rootScope.errorDatos = res.data;
 			}
 		)
