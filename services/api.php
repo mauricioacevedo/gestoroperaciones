@@ -1,7 +1,7 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
 
 
 require_once("Rest.inc.php");
@@ -17917,45 +17917,26 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 $ldapbind = ldap_bind($ldapconn, $ldapuser, $ldappass) or die ("Error trying to bind: ".ldap_error($ldapconn));
                 // verify binding
                 if ($ldapbind) {
-                    echo "LDAP bind successful...<br /><br />";
-
 
                     $result = ldap_search($ldapconn,$ldaptree, $varuser) or die ("Error in search query: ".ldap_error($ldapconn));
                     $data = ldap_get_entries($ldapconn, $result);
-
-                    // SHOW ALL DATA
-                    echo '<h1>Dump all data</h1><pre>';
-                    print_r($data);
-                    echo '</pre>';
-
-
-                    // iterate over array and print data for each entry
-                    echo '<h1>Show me the users</h1>';
+                    $object = new stdClass();
                     for ($i=0; $i<$data["count"]; $i++) {
                         //echo "dn is: ". $data[$i]["dn"] ."<br />";
-                        echo "USUARIO_ID: ". $data[$i]["samaccountname"][0] ."<br />";
-                        echo "USUARIO_NOMBRE: ". $data[$i]["displayname"][0] ."<br />";
-                        echo "CARGO: ". $data[$i]["title"][0] ."<br />";
-                        if(isset($data[$i]["mail"][0])) {
-                            echo "CORREO_USUARIO: ". $data[$i]["mail"][0] ."<br /><br />";
-                        } else {
-                            echo "CORREO_USUARIO: None<br /><br />";
-                        }
+                        $object->USUARIO_ID = strtoupper($data[$i]["samaccountname"][0]);
+                        $object->USUARIO_NOMBRE = strtoupper($data[$i]["displayname"][0]);
+                        $object->CARGO = strtoupper($data[$i]["title"][0]);
+                        $object->CORREO_USUARIO = strtoupper($data[$i]["mail"][0]);
                     }
-                    // print number of entries found
-                    echo "Number of entries found: " . ldap_count_entries($ldapconn, $result);
+                    $this->response($this->json(array($object)), 200);
+
                 } else {
-                    echo "LDAP bind failed...";
+                    $error = "Falló la conexión con LDAP";
+
+                    $this->response($this->json(array($error)), 200);
                 }
 
             }
-
-
-
-
-
-
-
 
 
 
