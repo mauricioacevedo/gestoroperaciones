@@ -498,3 +498,7 @@ input.filtro {
 .badge-inverse:hover {
     background-color: #1a1a1a;
 }
+.padding-0{
+    padding-right:0;
+    padding-left:0;
+}
