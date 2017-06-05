@@ -17879,7 +17879,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             $this->response('',406);
         }
 
-        $connf=$this->dbFenixConnect();
+        $this->dbFenixSTBYConnect();
+        $connf=$this->connfstby;
 
         $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
         $usuarioPc      =   gethostbyaddr($usuarioIp);
@@ -17942,7 +17943,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
                 $stid = oci_parse($connf, $sqlFenix);
                 $resultoci= oci_execute($stid);
-                var_dump($connf);
+               // var_dump($connf);
 
                 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
 
