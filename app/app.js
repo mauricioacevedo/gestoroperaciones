@@ -4182,7 +4182,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 		$http.get('./services/getLdapUserInfo?userbusqueda='+userid).then(
 			function (data){
 
-				if(data.status!=204){
+				if(data.status!=201){
 					$scope.msgLdap = "Usuario encontrado";
                     $scope.editaInfo = {
                         USUARIO_ID: userid,
