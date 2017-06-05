@@ -4180,9 +4180,12 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 		$http.get('./services/getLdapUserInfo?userbusqueda='+userid).then(
 			function (data){
 
-                $scope.editaInfo.USUARIO_NOMBRE=data.data[0].USUARIO_NOMBRE;
-                $scope.editaInfo.CEDULA_ID=data.data[0].CEDULA_ID;
-                $scope.editaInfo.CORREO_USUARIO=data.data[0].CORREO_USUARIO;
+                $scope.editaInfo = {
+                    USUARIO_NOMBRE: data.data[0].USUARIO_NOMBRE,
+                    CEDULA_ID: data.data[0].CEDULA_ID,
+                    CORREO_USUARIO: data.data[0].CORREO_USUARIO
+				};
+
 
 			},
 			function (res){
