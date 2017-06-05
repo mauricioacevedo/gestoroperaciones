@@ -17926,6 +17926,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                         $object->CARGO = strtoupper($data[$i]["title"][0]);
                         $object->CORREO_USUARIO = strtoupper($data[$i]["mail"][0]);
                     }
+
                     $sqlFenix = " SELECT ".
                         " U.REGISTRO AS CEDULA_ID ".
                         " FROM FNX_USUARIOS U ".
@@ -17933,7 +17934,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
                     $rSql = $this->mysqli->query($sqlFenix);
                     
-                    echo $rSql;
+                    echo $sqlFenix;
                     
                     if($rSql->num_rows > 0){
 
