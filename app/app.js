@@ -4193,6 +4193,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
                     $scope.cargoLabel = data.data[0].CARGO;
 
 				}else{
+					console.log(data);
                     $scope.msgLdap = data.data[0];
 				}
 
