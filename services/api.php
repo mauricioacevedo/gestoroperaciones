@@ -17918,7 +17918,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
             if($ldapconn) {
                 // binding to ldap server
-                $ldapbind = ldap_bind($ldapconn, $ldapuser, $ldappass) or die ("Error trying to bind: ".ldap_error($ldapconn));
+                $ldapbind = ldap_bind($ldapconn, $ldapuser, $ldappass);
                 // verify binding
                 $object = new stdClass();
                 if ($ldapbind) {
@@ -17967,7 +17967,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             }else {
                 $error = "Falló la conexión con LDAP";
 
-                $this->response($this->json(array($error)), 403);
+                $this->response($this->json(array($error, ldap_error($ldapconn))), 403);
             }
 
 
