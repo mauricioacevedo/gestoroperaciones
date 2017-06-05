@@ -96,7 +96,7 @@
                             <input type="text" class="form-control col-xs-8" aria-label="" ng-model="mpedido.CLIENTE_ID"> 
                           </td>
                           
-                              <td ng-show="mpedido.proceso=='REPARACION'">
+                              <td ng-show="pedido.proceso=='REPARACION'">
                                 <select class= "form-control" ng-model="service.NOVEDAD" >
                                 <option value="AGENDADO">AGENDADO</option>
                                 <option value="AGENDADO_FUTURO">AGENDADO_FUTURO</option>
@@ -124,8 +124,8 @@
                                         <label class="control-label" for="toDate">Jornada Cita</label>  <select  id="toDate" ng-model="service.JORNADA_CITA" > <option>AM</option><option>PM</option></select>
                                     </div>
                                 </div>
-                                  
-                                <td  ng-show="mpedido.proceso=='INSTALACION'">
+
+                                <td  ng-show="pedido.proceso=='INSTALACION'">
                             <select class= "form-control" ng-model="mpedido.NOVEDAD">
                                  <OPTION VALUE="AGENDADO">AGENDADO</OPTION>
                                   <OPTION VALUE="AGENDADO_FUTURO">AGENDADO_FUTURO</OPTION>
