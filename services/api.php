@@ -17908,7 +17908,6 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $varuser        =   "(samaccountname=$userBusqueda)";
 
         if(!isset($userBusqueda) || $userBusqueda!==''){
-            print("Buscando usuario: ".$userBusqueda);
 
             $ldapconn = ldap_connect($ldapserver) or die("Could not connect to LDAP server.");
 
@@ -17928,7 +17927,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                         $object->CARGO = strtoupper($data[$i]["title"][0]);
                         $object->CORREO_USUARIO = strtoupper($data[$i]["mail"][0]);
                     }
-                    $this->response($this->json(array($object)), 200);
+                    $this->response($this->json(array($object, $userBusqueda)), 200);
 
                 } else {
                     $error = "Falló la conexión con LDAP";
