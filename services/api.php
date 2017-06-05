@@ -17933,9 +17933,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                         " WHERE U.USUARIO_ID='$userBusqueda'";
 
                     $rSql = $this->mysqli->query($sqlFenix);
-                    
-                    echo $sqlFenix;
-                    
+                    var_dump ($rSql);
+
                     if($rSql->num_rows > 0){
 
                         $row = $rSql->fetch_assoc();
