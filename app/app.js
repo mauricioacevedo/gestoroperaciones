@@ -3854,7 +3854,7 @@ $scope.topProductivos();
 
 //------------controlador usuarios -------------------
 
-app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
+app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services) {
 
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
@@ -4174,6 +4174,21 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 		};
 
 
+	};
+
+	$scope.buscarIdLdap = function (userid) {
+		$http.get('./services/getLdapUserInfo?userbusqueda='+userid).then(
+			function (data){
+
+                $scope.editaInfo.USUARIO_NOMBRE=data.data[0].USUARIO_NOMBRE;
+                $scope.editaInfo.CEDULA_ID=data.data[0].CEDULA_ID;
+                $scope.editaInfo.CORREO_USUARIO=data.data[0].CORREO_USUARIO;
+
+			},
+			function (res){
+                $rootScope.errorDatos = res.data;
+			}
+		)
 	}
 
 
