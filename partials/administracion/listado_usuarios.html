@@ -191,200 +191,208 @@
             <div class="modal-body">
 
                 <div class="container-fluid">
-                    <form class="well form-horizontal" action=" " method="post" name="contact_form" id="contact_form">
-                        <fieldset>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <form class="well form-horizontal" action=" " method="post" name="contact_form" id="contact_form">
+                                <fieldset>
 
-                            <!-- Text input-->
+                                    <!-- Text input-->
 
-                            <div class="form-group"
-                                 ng-class="{ 'has-error' : contact_form.login.$touched && contact_form.login.$invalid}">
-                                <label class="col-md-4 control-label">Login</label>
-                                <div class="col-md-4 inputGroupContainer">
-                                    <div class="input-group">
+                                    <div class="form-group"
+                                         ng-class="{ 'has-error' : contact_form.login.$touched && contact_form.login.$invalid}">
+                                        <label class="col-md-4 control-label">Login</label>
+                                        <div class="col-md-4 inputGroupContainer">
+                                            <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user"
                                                                            aria-hidden="true"></i></span>
-                                        <input name="login" class="form-control" type="text"
-                                               value="{{editaInfo.USUARIO_ID}}" ng-model="editaInfo.USUARIO_ID"
-                                               ng-minlength="4" capitalize required>
+                                                <input name="login" class="form-control" type="text"
+                                                       value="{{editaInfo.USUARIO_ID}}" ng-model="editaInfo.USUARIO_ID"
+                                                       ng-minlength="4" capitalize required>
 
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <!-- Text input-->
+                                    <!-- Text input-->
 
-                            <div class="form-group"
-                                 ng-class="{ 'has-error' : contact_form.nombre.$touched && contact_form.nombre.$invalid}">
-                                <label class="col-md-4 control-label">Nombre</label>
-                                <div class="col-md-4 inputGroupContainer">
-                                    <div class="input-group">
+                                    <div class="form-group"
+                                         ng-class="{ 'has-error' : contact_form.nombre.$touched && contact_form.nombre.$invalid}">
+                                        <label class="col-md-4 control-label">Nombre</label>
+                                        <div class="col-md-4 inputGroupContainer">
+                                            <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user"
                                                                            aria-hidden="true"></i></span>
-                                        <input name="nombre" class="form-control" type="text"
-                                               value="{{editaInfo.USUARIO_NOMBRE}}" ng-model="editaInfo.USUARIO_NOMBRE"
-                                               capitalize required>
+                                                <input name="nombre" class="form-control" type="text"
+                                                       value="{{editaInfo.USUARIO_NOMBRE}}" ng-model="editaInfo.USUARIO_NOMBRE"
+                                                       capitalize required>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <!-- Text input-->
+                                    <!-- Text input-->
 
-                            <div class="form-group"
-                                 ng-class="{ 'has-error' : contact_form.cedula.$touched && contact_form.cedula.$invalid}">
-                                <label class="col-md-4 control-label">Cédula / Registro</label>
-                                <div class="col-md-4 inputGroupContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-user-secret"></i></span>
-                                        <input name="cedula" class="form-control" type="text"
-                                               value="{{editaInfo.CEDULA_ID}}" ng-model="editaInfo.CEDULA_ID" capitalize
-                                               required>
+                                    <div class="form-group"
+                                         ng-class="{ 'has-error' : contact_form.cedula.$touched && contact_form.cedula.$invalid}">
+                                        <label class="col-md-4 control-label">Cédula / Registro</label>
+                                        <div class="col-md-4 inputGroupContainer">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-user-secret"></i></span>
+                                                <input name="cedula" class="form-control" type="text"
+                                                       value="{{editaInfo.CEDULA_ID}}" ng-model="editaInfo.CEDULA_ID" capitalize
+                                                       required>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <!-- Text input-->
-                            <div class="form-group"
-                                 ng-class="{ 'has-error' : contact_form.email.$touched && contact_form.email.$invalid}">
-                                <label class="col-md-4 control-label">E-Mail</label>
-                                <div class="col-md-4 inputGroupContainer">
-                                    <div class="input-group">
+                                    <!-- Text input-->
+                                    <div class="form-group"
+                                         ng-class="{ 'has-error' : contact_form.email.$touched && contact_form.email.$invalid}">
+                                        <label class="col-md-4 control-label">E-Mail</label>
+                                        <div class="col-md-4 inputGroupContainer">
+                                            <div class="input-group">
                                         <span class="input-group-addon"><i
                                                 class="glyphicon glyphicon-envelope"></i></span>
-                                        <input name="email" placeholder="E-Mail" class="form-control" type="text"
-                                               value="{{editaInfo.CORREO_USUARIO}}" ng-model="editaInfo.CORREO_USUARIO"
-                                               capitalize required>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <!-- Text input-->
-
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Cargo ID</label>
-                                <div class="col-md-4 inputGroupContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                        <select name="cargo" class="form-control selectpicker"
-                                                ng-model="editaInfo.CARGO_ID" required>
-                                            <option ng-repeat="c in cargos track by c.CARGO_ID"
-                                                    ng-selected="c.CARGO_ID == editaInfo.CARGO_ID"
-                                                    value="{{c.CARGO_ID}}">{{c.CARGO_ID}} - {{c.VALOR}}
-                                            </option>
-                                            }
-
-                                        </select>
-
-
+                                                <input name="email" placeholder="E-Mail" class="form-control" type="text"
+                                                       value="{{editaInfo.CORREO_USUARIO}}" ng-model="editaInfo.CORREO_USUARIO"
+                                                       capitalize required>
+                                            </div>
+                                        </div>
                                     </div>
 
-                                </div>
-                            </div>
+
+                                    <!-- Text input-->
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Cargo ID</label>
+                                        <div class="col-md-4 inputGroupContainer">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                                <select name="cargo" class="form-control selectpicker"
+                                                        ng-model="editaInfo.CARGO_ID" required>
+                                                    <option ng-repeat="c in cargos track by c.CARGO_ID"
+                                                            ng-selected="c.CARGO_ID == editaInfo.CARGO_ID"
+                                                            value="{{c.CARGO_ID}}">{{c.CARGO_ID}} - {{c.VALOR}}
+                                                    </option>
+                                                    }
+
+                                                </select>
 
 
-                            <!-- Select Basic -->
+                                            </div>
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Grupo</label>
-                                <div class="col-md-4 selectContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
-                                        <select id="grupo" name="grupo" class="form-control selectpicker"
-                                                ng-model="editaInfo.GRUPO" ng-options="g for g in grupos.values">
-                                            <option value="" disabled>Seleccione</option>
-                                        </select>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Función</label>
-                                <div class="col-md-4 selectContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
-                                        <select id="funcion" name="funcion" class="form-control selectpicker"
-                                                ng-model="editaInfo.FUNCION" ng-options="g for g in funciones.values">
-                                            <option value="" disabled>Seleccione</option>
-                                        </select>
+
+                                    <!-- Select Basic -->
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Grupo</label>
+                                        <div class="col-md-4 selectContainer">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
+                                                <select id="grupo" name="grupo" class="form-control selectpicker"
+                                                        ng-model="editaInfo.GRUPO" ng-options="g for g in grupos.values">
+                                                    <option value="" disabled>Seleccione</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Turno</label>
-                                <div class="col-md-4 selectContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
-                                        <select id="turno" name="turno" class="form-control selectpicker"
-                                                ng-model="editaInfo.TURNO">
-                                            <option value="" disabled>Seleccione</option>
-                                            <option value="AM">AM</option>
-                                            <option value="PM">PM</option>
-                                        </select>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Función</label>
+                                        <div class="col-md-4 selectContainer">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
+                                                <select id="funcion" name="funcion" class="form-control selectpicker"
+                                                        ng-model="editaInfo.FUNCION" ng-options="g for g in funciones.values">
+                                                    <option value="" disabled>Seleccione</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Supervisor</label>
-                                <div class="col-md-4 selectContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
-                                        <select id="supervisor" name="supervisor" class="form-control selectpicker"
-                                                ng-model="editaInfo.SUPERVISOR">
-                                            <option value="" disabled>Seleccione</option>
-                                            <option value="YENY GOMEZ GARCIA">YENY GOMEZ GARCIA</option>
-                                            <option value="OTRO">OTRO</option>
-                                        </select>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Turno</label>
+                                        <div class="col-md-4 selectContainer">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
+                                                <select id="turno" name="turno" class="form-control selectpicker"
+                                                        ng-model="editaInfo.TURNO">
+                                                    <option value="" disabled>Seleccione</option>
+                                                    <option value="AM">AM</option>
+                                                    <option value="PM">PM</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Interventor</label>
-                                <div class="col-md-4 selectContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
-                                        <select id="interventor" name="interventor" class="form-control selectpicker"
-                                                ng-model="editaInfo.INTERVENTOR"
-                                                ng-options="g for g in interventores.values">
-                                            <option value="" disabled>Seleccione</option>
-                                        </select>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Supervisor</label>
+                                        <div class="col-md-4 selectContainer">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
+                                                <select id="supervisor" name="supervisor" class="form-control selectpicker"
+                                                        ng-model="editaInfo.SUPERVISOR">
+                                                    <option value="" disabled>Seleccione</option>
+                                                    <option value="YENY GOMEZ GARCIA">YENY GOMEZ GARCIA</option>
+                                                    <option value="OTRO">OTRO</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <!-- Text input-->
-
-                            <div class="form-group"
-                                 ng-class="{ 'has-error' : contact_form.password.$touched && contact_form.password.$invalid}">
-                                <label class="col-md-4 control-label">Password</label>
-                                <div class="col-md-4 inputGroupContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
-                                        <input name="password" class="form-control" type="password"
-                                               value="editaInfo.PASSWORD" ng-model="editaInfo.PASSWORD">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Interventor</label>
+                                        <div class="col-md-4 selectContainer">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
+                                                <select id="interventor" name="interventor" class="form-control selectpicker"
+                                                        ng-model="editaInfo.INTERVENTOR"
+                                                        ng-options="g for g in interventores.values">
+                                                    <option value="" disabled>Seleccione</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <!-- Select Basic -->
+                                    <!-- Text input-->
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Estado</label>
-                                <div class="col-md-4 selectContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
-                                        <select name="state" class="form-control selectpicker"
-                                                ng-model="editaInfo.ESTADO">
-                                            <option selected="selected">ACTIVO</option>
-                                            <option>INACTIVO</option>
-                                        </select>
+                                    <div class="form-group"
+                                         ng-class="{ 'has-error' : contact_form.password.$touched && contact_form.password.$invalid}">
+                                        <label class="col-md-4 control-label">Password</label>
+                                        <div class="col-md-4 inputGroupContainer">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
+                                                <input name="password" class="form-control" type="password"
+                                                       value="editaInfo.PASSWORD" ng-model="editaInfo.PASSWORD">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
+
+                                    <!-- Select Basic -->
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Estado</label>
+                                        <div class="col-md-4 selectContainer">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
+                                                <select name="state" class="form-control selectpicker"
+                                                        ng-model="editaInfo.ESTADO">
+                                                    <option selected="selected">ACTIVO</option>
+                                                    <option>INACTIVO</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="col-md-4">
+
+                        </div>
+                    </div>
+
                     <!-- Mensajes de Error -->
                     <div class="help-block" ng-messages="contact_form.login.$error">
 
