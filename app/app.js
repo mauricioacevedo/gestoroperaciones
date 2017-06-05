@@ -4182,13 +4182,21 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 		$http.get('./services/getLdapUserInfo?userbusqueda='+userid).then(
 			function (data){
 
-                $scope.editaInfo = {
-                    USUARIO_ID: userid,
-                    USUARIO_NOMBRE: data.data[0].USUARIO_NOMBRE,
-                    CEDULA_ID: data.data[0].CEDULA_ID,
-                    CORREO_USUARIO: data.data[0].CORREO_USUARIO
-				};
-                $scope.cargoLabel = data.data[0].CARGO;
+				if(data.status!=204){
+					$scope.msgLdap = "Usuario encontrado";
+                    $scope.editaInfo = {
+                        USUARIO_ID: userid,
+                        USUARIO_NOMBRE: data.data[0].USUARIO_NOMBRE,
+                        CEDULA_ID: data.data[0].CEDULA_ID,
+                        CORREO_USUARIO: data.data[0].CORREO_USUARIO
+                    };
+                    $scope.cargoLabel = data.data[0].CARGO;
+
+				}else{
+                    $scope.msgLdap = data.data[0];
+				}
+
+
 
 			},
 			function errorCallback(res){

@@ -17958,7 +17958,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
                     }else{
                         $error = "Usuario no encontrado";
-                        $this->response($this->json(array($error)), 200);
+                        $this->response($this->json(array($error)), 204);
                     }
 
 
