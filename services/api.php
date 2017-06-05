@@ -17878,6 +17878,9 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
+        $this->dbFenixConnect();
+        $connf=$this->connf;
+
         $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
         $usuarioPc      =   gethostbyaddr($usuarioIp);
         $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
