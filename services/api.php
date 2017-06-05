@@ -17888,7 +17888,6 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
 
-
         $user           =   $this->_request['userID'];
         $userBusqueda   =   $this->_request['userbusqueda'];
 
@@ -17927,6 +17926,23 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                         $object->CARGO = strtoupper($data[$i]["title"][0]);
                         $object->CORREO_USUARIO = strtoupper($data[$i]["mail"][0]);
                     }
+                    $sqlFenix = " SELECT ".
+                        " , U.REGISTRO AS CEDULA_ID ".
+                        " FROM FNX_USUARIOS U ".
+                        " WHERE U.USUARIO_ID='$userBusqueda'";
+
+                    $rSql = $this->mysqli->query($sqlFenix);
+
+                    $objectFenix = [];
+                    if($rSql->num_rows > 0){
+
+                        while($row = $rSql->fetch_assoc()){
+                            $objectFenix[] = $row;
+                        }
+
+                    }
+                    $object->CEDULA_ID = $objectFenix['CEDULA_ID'];
+
                     $this->response($this->json(array($object, $userBusqueda)), 200);
 
                 } else {
