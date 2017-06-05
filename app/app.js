@@ -4186,7 +4186,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
                     CEDULA_ID: data.data[0].CEDULA_ID,
                     CORREO_USUARIO: data.data[0].CORREO_USUARIO
 				};
-
+                $scope.cargoLabel = data.data[0].CARGO;
 
 			},
 			function errorCallback(res){
