@@ -17918,7 +17918,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
             if($ldapconn) {
                 // binding to ldap server
-                $ldapbind = ldap_bind($ldapconn, $ldapuser, $ldappass);
+                $ldapbind = ldap_bind($ldapconn, $ldapuser, $ldappass) or die ("Error trying to bind: ".ldap_error($ldapconn));
                 // verify binding
                 $object = new stdClass();
                 if ($ldapbind) {
