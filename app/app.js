@@ -11580,6 +11580,9 @@ $scope.set_color_Cuartil = function (value) {
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION") {
 				$scope.ordenamientoDemepedidoActivacion = valor;
 			}
+			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_AMARILLAS") {
+				$scope.ordenamientoDemepedidoamarillas = valor;
+			}
 
 			$scope.buscarParametro(parametro);
 			return data.data;
@@ -11599,6 +11602,11 @@ $scope.set_color_Cuartil = function (value) {
 				$scope.ordenamientoDemepedidoactivacion = data.data['VALOR'];
 				$scope.ordenamientoDemepedidoUpdateactivacion = data.data['ULTIMA_ACTUALIZACION'];
 			}
+			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_AMARILLAS") {
+				$scope.UsuarioParametroamarillas = data.data['USUARIO_ID'];
+				$scope.ordenamientoDemepedidoamarillas = data.data['VALOR'];
+				$scope.ordenamientoDemepedidoUpdateamarillas = data.data['ULTIMA_ACTUALIZACION'];
+			}
 
 			return data.data;
 		});
@@ -11614,6 +11622,14 @@ $scope.set_color_Cuartil = function (value) {
 		$scope.ordenamientoDemepedidoUpdateactivacion = data.data['ULTIMA_ACTUALIZACION'];
 		$scope.UsuarioParametroactivacion = data.data['USUARIO_ID'];
 
+		return data.data;
+	});
+	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_AMARILLAS').then(function (data) {
+
+		$scope.ordenamientoDemepedidoamarillas= data.data['VALOR'];
+		//$scope.ordenamientoDemepedidoNuevo=data.data['VALOR'];
+		$scope.ordenamientoDemepedidoUpdateamarillas = data.data['ULTIMA_ACTUALIZACION'];
+		$scope.UsuarioParametroamarillas = data.data['USUARIO_ID'];
 		return data.data;
 	});
 
