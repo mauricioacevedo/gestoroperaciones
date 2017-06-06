@@ -4189,7 +4189,8 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
                         USUARIO_ID: userid,
                         USUARIO_NOMBRE: data.data[0].USUARIO_NOMBRE,
                         CEDULA_ID: data.data[0].CEDULA_ID,
-                        CORREO_USUARIO: data.data[0].CORREO_USUARIO
+                        CORREO_USUARIO: data.data[0].CORREO_USUARIO,
+                        ESTADO: 'ACTIVO'
                     };
                     $scope.cargoLabel = data.data[0].CARGO;
 
