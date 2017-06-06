@@ -17951,6 +17951,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                         $stid = oci_parse($connf, $sqlFenix);
                         $resultoci= oci_execute($stid);
                         $cedula = "";
+                        $nombre = "";
                         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
 
                             $cedula = $row['CEDULA_ID'];
@@ -17958,7 +17959,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
                         }
                         $object->CEDULA_ID = $cedula;
-                        if($object->USUARIO_NOMBRE=''){
+                        if($object->USUARIO_NOMBRE==null){
                             $object->USUARIO_NOMBRE = $nombre;
                         }
 
