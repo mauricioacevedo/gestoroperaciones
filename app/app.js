@@ -4195,6 +4195,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
                         ESTADO: 'ACTIVO'
                     };
                     $scope.cargoLabel = data.data[0].CARGO;
+                    $scope.pic = data.data[0].PICTURE;
 
 				}else{
 
