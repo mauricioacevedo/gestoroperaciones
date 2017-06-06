@@ -4195,11 +4195,15 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
                         ESTADO: 'ACTIVO'
                     };
                     $scope.cargoLabel = data.data[0].CARGO;
+                    $scope.pic = data.data[0].PICTURE;
+
+                    console.log(data.data[0]);
 
 				}else{
 
                     $scope.msgLdap = data.data[0];
                     $scope.cargoLabel = null;
+                    $scope.pic = null;
 				}
 			},
 			function errorCallback(res){

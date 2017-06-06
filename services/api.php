@@ -17910,6 +17910,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $ldappass       =   addslashes("Mangoperajunio2017*");
         //$ldappass       =   addslashes("n0sun32008*");
         $ldaptree       =   "OU=Usuarios,DC=epmtelco,DC=com,DC=co";
+        //$ldaptree       =   "OU=Epm Une,DC=epmtelco,DC=com,DC=co";
         $varuser        =   "(samaccountname=$userBusqueda)";
         
         //echo  $userBusqueda;
@@ -17934,25 +17935,30 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                         for ($i=0; $i<$data["count"]; $i++) {
                             //echo "dn is: ". $data[$i]["dn"] ."<br />";
                             $object->USUARIO_ID = strtoupper($data[$i]["samaccountname"][0]);
-                            $object->USUARIO_NOMBRE = strtoupper($data[$i]["displayname"][0]);
+                            $object->USUARIO_NOMBRE = $this->clean_chars($this->quitar_tildes(utf8_decode(strtoupper($data[$i]["displayname"][0]))));
                             $object->CARGO = strtoupper($data[$i]["title"][0]);
                             $object->CORREO_USUARIO = strtoupper($data[$i]["mail"][0]);
+                            $object->PICTURE = base64_encode($data[$i]["thumbnailphoto"][0]);
+
+                            //var_dump($data[$i]);
                         }
 
                         $sqlFenix = " SELECT ".
-                            " U.REGISTRO AS CEDULA_ID ".
+                            " U.REGISTRO AS CEDULA_ID, convert(U.NOMBRE,'US7ASCII') AS NOMBRE".
                             " FROM FNX_USUARIOS U ".
                             " WHERE U.USUARIO_ID='$userBusqueda'";
 
                         $stid = oci_parse($connf, $sqlFenix);
                         $resultoci= oci_execute($stid);
                         $cedula = "";
+                        $nombre = "";
                         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
 
                             $cedula = $row['CEDULA_ID'];
+                            $nombre = $row['NOMBRE'];
 
                         }
-                        $object->CEDULA_ID = $cedula;
+
 
                         $this->response($this->json(array($object, $userBusqueda)), 200);
 
