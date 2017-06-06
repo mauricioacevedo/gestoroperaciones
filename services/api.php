@@ -17958,7 +17958,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                             $nombre = $row['NOMBRE'];
 
                         }
-
+                        $object->CEDULA_ID = $cedula;
 
                         $this->response($this->json(array($object, $userBusqueda)), 200);
 
