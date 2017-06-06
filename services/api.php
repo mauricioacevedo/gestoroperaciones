@@ -17912,7 +17912,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $ldaptree       =   "OU=Usuarios,DC=epmtelco,DC=com,DC=co";
         $varuser        =   "(samaccountname=$userBusqueda)";
 
-        if(!isset($userBusqueda) || $userBusqueda!==''){
+        if(!isset($userBusqueda) || $userBusqueda!=='' || $userBusqueda!=='undefined'){
 
             $ldapconn = ldap_connect($ldapserver) or die("Could not connect to LDAP server.");
 
