@@ -17958,7 +17958,9 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                             $nombre = $row['NOMBRE'];
 
                         }
-
+                        if($object->PICTURE=''){
+                            $object->PICTURE = null;
+                        }
 
                         $this->response($this->json(array($object, $userBusqueda)), 200);
 
