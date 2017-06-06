@@ -17944,7 +17944,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                         }
 
                         $sqlFenix = " SELECT ".
-                            " U.REGISTRO AS CEDULA_ID, U.NOMBRE".
+                            " U.REGISTRO AS CEDULA_ID, convert(U.NOMBRE,'US7ASCII') AS NOMBRE".
                             " FROM FNX_USUARIOS U ".
                             " WHERE U.USUARIO_ID='$userBusqueda'";
 
