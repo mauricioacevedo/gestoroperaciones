@@ -12092,6 +12092,7 @@ app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $locatio
 	$scope.fecha_fin = null;
     $scope.listaOpcionesGestion = [];
 	$scope.transaccion = 'Nuevo';
+	$scope.tabla = 'AMARILLAS';
   
 
 	
