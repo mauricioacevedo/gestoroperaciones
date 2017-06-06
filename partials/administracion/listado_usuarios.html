@@ -199,7 +199,7 @@
 
                                     <!-- Text input-->
 
-                                    <div class="form-group"
+                                    <div class="form-group has-feedback"
                                          ng-class="{ 'has-error' : contact_form.login.$touched && contact_form.login.$invalid}">
                                         <label class="col-md-4 control-label">Login</label>
                                         <div class="col-md-4 inputGroupContainer">
@@ -209,7 +209,7 @@
                                                 <input name="login" class="form-control" type="text"
                                                        value="{{editaInfo.USUARIO_ID}}" ng-model="editaInfo.USUARIO_ID"
                                                        ng-minlength="4" capitalize required>
-                                                <span class="input-group-addon">
+                                                <span class="form-control-feedback">
                                                      <img class="profile-card" data-ng-src="data:image/jpeg;base64,{{pic}}" height="40px" width="40px"/>
                                                 </span>
 
