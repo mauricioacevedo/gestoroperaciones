@@ -209,6 +209,9 @@
                                                 <input name="login" class="form-control" type="text"
                                                        value="{{editaInfo.USUARIO_ID}}" ng-model="editaInfo.USUARIO_ID"
                                                        ng-minlength="4" capitalize required>
+                                                <span class="input-group-addon">
+                                                     <img class="profile-card" data-ng-src="data:image/jpeg;base64,{{pic}}" height="40px" width="40px"/>
+                                                </span>
 
                                             </div>
 
@@ -217,7 +220,7 @@
                                             <button type="button" class="btn btn-default btn-sm" ng-hide="!UsuarioNuevo" ng-click="buscarIdLdap(editaInfo.USUARIO_ID)">
                                             <i class="fa fa-search" aria-hidden="true"></i></button>
                                             {{msgLdap || ''}}
-                                            <img class="profile-card" data-ng-src="data:image/jpeg;base64,{{pic}}" height="40px" width="40px"/>
+
                                         </div>
                                     </div>
 
