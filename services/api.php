@@ -17935,7 +17935,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                         for ($i=0; $i<$data["count"]; $i++) {
                             //echo "dn is: ". $data[$i]["dn"] ."<br />";
                             $object->USUARIO_ID = strtoupper($data[$i]["samaccountname"][0]);
-                            $object->USUARIO_NOMBRE = $this->quitar_tildes(strtoupper($data[$i]["displayname"][0]));
+                            $object->USUARIO_NOMBRE = $this->clean_chars($this->quitar_tildes(utf8_decode(strtoupper($data[$i]["displayname"][0]))));
                             $object->CARGO = strtoupper($data[$i]["title"][0]);
                             $object->CORREO_USUARIO = strtoupper($data[$i]["mail"][0]);
                             $object->PICTURE = base64_encode($data[$i]["thumbnailphoto"][0]);
