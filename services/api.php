@@ -17958,6 +17958,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                             $nombre = $row['NOMBRE'];
 
                         }
+                        echo "$nombre";
+                        echo $object->USUARIO_NOMBRE;
                         $object->CEDULA_ID = $cedula;
                         if($object->USUARIO_NOMBRE==null){
                             $object->USUARIO_NOMBRE = $nombre;
