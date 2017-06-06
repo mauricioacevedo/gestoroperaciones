@@ -8935,7 +8935,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
         $today = date("Y-m-d");
 
-        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ACTIVACION');
+        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_AMARILLAS');
 
         //  echo "carlitos1 ---$producto---";
 
