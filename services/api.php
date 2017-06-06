@@ -17914,7 +17914,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         
         //echo  $userBusqueda;
 
-        if($userBusqueda!=='' || $userBusqueda!=='UNDEFINED' || $userBusqueda!== null){
+        if($userBusqueda!='' || $userBusqueda!='UNDEFINED' || $userBusqueda!= null){
 
             $ldapconn = ldap_connect($ldapserver) or die("Could not connect to LDAP server.");
 
