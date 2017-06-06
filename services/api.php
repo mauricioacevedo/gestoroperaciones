@@ -8910,7 +8910,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
         $user = $this->_request['userID'];
 
-        $estado = $this->_request['estado'];
+        $transaccion = $this->_request['transaccion'];
       
 
 
