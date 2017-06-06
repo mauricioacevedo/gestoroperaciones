@@ -212,6 +212,7 @@
                                                 <span class="input-group-addon">
                                                      <img class="profile-card" data-ng-src="data:image/jpeg;base64,{{pic}}" height="40px" width="40px"/>
                                                 </span>
+                                                <p  class="help-block">{{msgLdap || ''}}</p>
 
                                             </div>
 
@@ -219,7 +220,7 @@
                                         <div class="col-md-4 padding-0">
                                             <button type="button" class="btn btn-default btn-sm" ng-hide="!UsuarioNuevo" ng-click="buscarIdLdap(editaInfo.USUARIO_ID)">
                                             <i class="fa fa-search" aria-hidden="true"></i></button>
-                                            {{msgLdap || ''}}
+
 
                                         </div>
                                     </div>
