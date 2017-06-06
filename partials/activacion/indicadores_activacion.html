@@ -128,6 +128,28 @@
                                         </button>
                                     </td>
                                 </tr>
+								  <tr>
+                                    <td>Amarillas</td>
+                                    <td><font color='blue'>{{ordenamientoDemepedidoUpdateamarillas}}</font></td>
+                                    <td>{{UsuarioParametroamarillas}}</td>
+                                    <td>
+                                        <select class="btn btn-default btn-xs grupo-select" id="demerec"
+                                                ng-model="ordenamientoDemepedidoamarillas" style="width:auto;">
+                                            <option value="FECHA_EXCEPCION">FECHA EXCEPCION</option>
+                                            <option value="FECHA_CREACION">FECHA CREACION</option>
+                                            <option value="FECHA_CARGA">FECHA CARGA</option>
+                                        </select>
+                                        <button class="btn btn-success btn-xs"
+                                                ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_AMARILLAS',ordenamientoDemepedidoamarillas);">
+                                            <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                                        <button type="button" class="btn btn-default btn-circle-xs"
+                                                ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO_AMARILLAS')"
+                                                title="Actualizar" data-toggle="tooltip" data-placement="left"
+                                                ng-disabled="loading">
+                                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                </tr>
 
 
                             </table>
