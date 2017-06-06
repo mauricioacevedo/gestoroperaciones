@@ -491,6 +491,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
 	
 	obj.demePedidoAmarillas = function (user, pedido,transaccion, username) { //deme pedido activacion	
+		console.log("transaccion=" + transaccion + "tabla=" + tabla);
 		return $http.get(serviceBase + 'demePedidoAmarillas?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion +'&username=' + username );
 	};
 
