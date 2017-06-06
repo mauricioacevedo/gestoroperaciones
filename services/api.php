@@ -8953,7 +8953,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
         if($parametroBusqueda=='') $parametroBusqueda ='FECHA_EXCEPCION';
 
-        $query1=" select b.PEDIDO,b.FECHA_EXCEPCION ".
+        $query1=" select b.ID, b.PEDIDO,b.FECHA_EXCEPCION ".
             " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
             " from pendientes_amarillas b".
@@ -8999,8 +8999,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
 
 
-        $query1=" SELECT b.ID ".
-            " ,b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TRANSACCION,b.PRODUCTO,b.FECHA_EXCEPCION,b.FECHA_CARGA,b.TABLA,b.TIPO_COMUNICACION,b.TAREA_EXCEPCION,b.DEPARTAMENTO,b.STATUS,b.ASESOR ".
+        $query1=" SELECT  ".
+            " b.PEDIDO,b.ORDER_SEQ_ID,b.ESTADO,b.TRANSACCION,b.PRODUCTO,b.FECHA_EXCEPCION,b.FECHA_CARGA,b.TABLA,b.TIPO_COMUNICACION,b.TAREA_EXCEPCION,b.DEPARTAMENTO,b.STATUS,b.ASESOR ".
             ",b.ACTIVIDAD,b.FUENTE,b.GRUPO".
             " , group_concat(b.PRODUCTO) as  PRODUCTO ".
             " , min(b.FECHA_EXCEPCION) as FECHA_EXCEPCION ".
