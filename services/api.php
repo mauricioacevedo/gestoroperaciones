@@ -17944,7 +17944,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                         }
 
                         $sqlFenix = " SELECT ".
-                            " U.REGISTRO AS CEDULA_ID ".
+                            " U.REGISTRO AS CEDULA_ID, U.NOMBRE".
                             " FROM FNX_USUARIOS U ".
                             " WHERE U.USUARIO_ID='$userBusqueda'";
 
@@ -17954,9 +17954,13 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
 
                             $cedula = $row['CEDULA_ID'];
+                            $nombre = $row['NOMBRE'];
 
                         }
                         $object->CEDULA_ID = $cedula;
+                        if($object->USUARIO_NOMBRE=''){
+                            $object->USUARIO_NOMBRE = $nombre;
+                        }
 
                         $this->response($this->json(array($object, $userBusqueda)), 200);
 
