@@ -17911,6 +17911,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         //$ldappass       =   addslashes("n0sun32008*");
         $ldaptree       =   "OU=Usuarios,DC=epmtelco,DC=com,DC=co";
         $varuser        =   "(samaccountname=$userBusqueda)";
+        
+        echo  $userBusqueda;
 
         if($userBusqueda!=='' || $userBusqueda!=='undefined' || $userBusqueda!== null){
 
