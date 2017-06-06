@@ -490,9 +490,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	};
 
 	
-	obj.demePedidoAmarillas = function (user, pedido,transaccion, username) { //deme pedido activacion	
+	obj.demePedidoAmarillas = function (user, pedido,transaccion,tabla, username) { //deme pedido activacion	
 		console.log("transaccion=" + transaccion + "tabla=" + tabla);
-		return $http.get(serviceBase + 'demePedidoAmarillas?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion +'&username=' + username );
+		return $http.get(serviceBase + 'demePedidoAmarillas?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion + '&tabla=' + tabla +'&username=' + username );
 	};
 
 	obj.getBuscarpedidoactivacion = function (pedido,tabla, user) { //buscar pedido activacion suspecore
@@ -12166,7 +12166,7 @@ app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $locatio
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-		var kami = services.demePedidoAmarillas($rootScope.logedUser.login, $scope.pedido1,$scope.transaccion, $rootScope.logedUser.name).then(function (data) {
+		var kami = services.demePedidoAmarillas($rootScope.logedUser.login, $scope.pedido1,$scope.transaccion,$scope.tabla, $rootScope.logedUser.name).then(function (data) {
 
 			$scope.peds = data.data;
 			console.log($scope.peds);
