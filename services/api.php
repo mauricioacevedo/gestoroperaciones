@@ -17912,7 +17912,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $ldaptree       =   "OU=Usuarios,DC=epmtelco,DC=com,DC=co";
         $varuser        =   "(samaccountname=$userBusqueda)";
         
-        //echo  $userBusqueda;
+        echo  $userBusqueda;
 
         if($userBusqueda!='' || $userBusqueda!='UNDEFINED' || $userBusqueda!= null){
 
