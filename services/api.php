@@ -8939,10 +8939,10 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
         //  echo "carlitos1 ---$producto---";
 
-        if($nombre!=""){
-            $nombre=" and b.NOMBRE='$nombre' ";
+        if($transaccion!=""){
+            $transaccion=" and b.TRANSACCION='$transaccion' ";
         }else{
-            $nombre="";
+            $transaccion="";
         }
 
        
@@ -8958,7 +8958,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
             " from pendientes_amarillas b".
             "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
-            " $nombre ".
+            " $transaccion ".
             " order by b.$parametroBusqueda  ASC";
 
         //echo $query1;
@@ -9010,7 +9010,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
            " from pendientes_amarillas b".
             " where b.PEDIDO = '$mypedido'  ".
             " and b.STATUS='PENDI_ACTI' ".
-            $nombre.
+            $transaccion.
             " group by b.pedido ";
 
 
