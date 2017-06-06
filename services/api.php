@@ -17938,6 +17938,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                             $object->CARGO = strtoupper($data[$i]["title"][0]);
                             $object->CORREO_USUARIO = strtoupper($data[$i]["mail"][0]);
                             $object->PICTURE = base64_encode($data[$i]["thumbnailPhoto"][0]);
+
+                            var_dump($data[$i]);
                         }
 
                         $sqlFenix = " SELECT ".
