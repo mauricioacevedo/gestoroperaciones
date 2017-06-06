@@ -4203,6 +4203,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 
                     $scope.msgLdap = data.data[0];
                     $scope.cargoLabel = null;
+                    $scope.pic = null;
 				}
 			},
 			function errorCallback(res){
