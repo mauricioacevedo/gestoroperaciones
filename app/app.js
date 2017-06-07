@@ -3978,6 +3978,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
         //console.log(editaInfo);
         $scope.cargoLabel = null;
         $scope.msgLdap = null;
+        $scope.pic = null;
 		//$scope.editaInfo.CARGO_ID=data.CARGO_ID;
 	};
 	//Modal para Crear Usuario Nuevo
@@ -3990,6 +3991,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 		$scope.UsuarioNuevo = true;
         $scope.cargoLabel = null;
         $scope.msgLdap = null;
+        $scope.pic = null;
 	};
 	//Modal para borrar usuarios.
 	$scope.borrarModal = function (data) {
@@ -4195,7 +4197,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
                         ESTADO: 'ACTIVO'
                     };
                     $scope.cargoLabel = data.data[0].CARGO;
-                    $scope.pic = data.data[0].PICTURE;
+                    $scope.pic = 'data:image/jpeg;base64,'+data.data[0].PICTURE;
 
                     console.log(data.data[0]);
 
