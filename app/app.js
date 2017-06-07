@@ -1119,6 +1119,8 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 	header = document.getElementById('headerazo');
     $scope.pic = 'images/avatar_2x.png';
 
+    $timeout.cancel( $scope.intervalLightKPIS );
+
     $http.get('./services/loginNombreIp').then(
     	function (res) {
     		$scope.userIp 		= res.data[0];
