@@ -7251,8 +7251,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                         ", IP_HOST ".
                         ", CP_HOST ".
                         ") values( ".
-                        " UPPER('$usuarioGalleta')".
-                        ", UPPER('$nombreGalleta')".
+                        " UPPER('$user')".
+                        ", UPPER('$username')".
                         ", UPPER('$grupoGalleta')".
                         ",'OK' ".
                         ",'$pedido' ".
