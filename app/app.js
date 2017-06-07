@@ -1117,6 +1117,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 	var footer, header;
 	footer = document.getElementById('footerazo');
 	header = document.getElementById('headerazo');
+    $scope.pic = 'images/avatar_2x.png';
 
     $http.get('./services/loginNombreIp').then(
     	function (res) {
