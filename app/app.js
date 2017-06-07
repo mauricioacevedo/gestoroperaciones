@@ -1154,7 +1154,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
                 $rootScope.errorDatos = res.data;
             }
         );
-    }, 5000 );
+    }, 3000 );
 
 
 	if ($cookieStore.get('logedUser') != undefined) {
