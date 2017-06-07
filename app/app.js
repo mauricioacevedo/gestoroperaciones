@@ -4190,7 +4190,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 				if(data.status!=201){
 					$scope.msgLdap = "Usuario encontrado";
                     $scope.editaInfo = {
-                        USUARIO_ID: userid,
+                        USUARIO_ID: data.data[0].USUARIO_ID,
                         USUARIO_NOMBRE: data.data[0].USUARIO_NOMBRE,
                         CEDULA_ID: data.data[0].CEDULA_ID,
                         CORREO_USUARIO: data.data[0].CORREO_USUARIO,
