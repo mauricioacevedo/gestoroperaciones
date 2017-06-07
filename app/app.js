@@ -1113,7 +1113,8 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
 	$rootScope.loginexito 		= 	false;
     $rootScope.shownavs 		= 	false;
-
+    var canceler = $q.defer();
+    canceler.resolve();
 
 	var footer, header;
 	footer = document.getElementById('footerazo');
