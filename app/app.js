@@ -4197,7 +4197,12 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
                         ESTADO: 'ACTIVO'
                     };
                     $scope.cargoLabel = data.data[0].CARGO;
-                    $scope.pic = 'data:image/jpeg;base64,'+data.data[0].PICTURE;
+                    if(data.data[0].PICTURE!==''){
+                        $scope.pic = 'data:image/jpeg;base64,'+data.data[0].PICTURE;
+					}else{
+                        $scope.pic = 'images/avatar_2x.png';
+					}
+
 
                     console.log(data.data[0]);
 
