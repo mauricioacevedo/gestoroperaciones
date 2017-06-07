@@ -1130,6 +1130,28 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
     	$scope.msgLogin = res.data;
     });
 
+    $http.get('./services/getLdapUserInfo?userbusqueda='+$scope.msgLogin).then(
+        function (data){
+
+            if(data.status!=201){
+                if(data.data[0].PICTURE!==''){
+                    $scope.pic = 'data:image/jpeg;base64,'+data.data[0].PICTURE;
+                }else{
+                    $scope.pic = 'images/avatar_2x.png';
+                }
+
+
+                //console.log(data.data[0]);
+
+            }else{
+                $scope.pic = 'images/avatar_2x.png';
+            }
+        },
+        function errorCallback(res){
+            $rootScope.errorDatos = res.data;
+        }
+    );
+
 	if ($cookieStore.get('logedUser') != undefined) {
 		//hay alguien logeado
 		var id_user = $cookieStore.get('logedUser').id;
@@ -4204,7 +4226,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 					}
 
 
-                    console.log(data.data[0]);
+                    //console.log(data.data[0]);
 
 				}else{
 
