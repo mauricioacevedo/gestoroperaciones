@@ -103,6 +103,7 @@ class API extends REST {
         if (!filter_var($usuarioIp, FILTER_VALIDATE_IP) === false){
             $sql =  " SELECT ".
                 " SUBSTRING_INDEX(USER_NAME, ' ', 1) as NOMBRE ".
+                " , USER as USUARIO_ID".
                 " , FECHA ".
                 " , date_format(FECHA,'%r') as HORA ".
                 " FROM portalbd.activity_feed ".
@@ -17904,10 +17905,10 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $userBusqueda   = strtoupper($userBusqueda);
 
         $ldapserver     =   'net-dc05';
-        $user           =   "CGONZGO";
+        $user           =   "MACEVEDG";
         //$user           = "sape";
         $ldapuser       =   "EPMTELCO\\$user";
-        $ldappass       =   addslashes("Mangoperajunio2017*");
+        $ldappass       =   addslashes("switzerland2017++");
         //$ldappass       =   addslashes("n0sun32008*");
         $ldaptree       =   "OU=Usuarios,DC=epmtelco,DC=com,DC=co";
         //$ldaptree       =   "OU=Epm Une,DC=epmtelco,DC=com,DC=co";
@@ -17958,7 +17959,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                             $nombre = $row['NOMBRE'];
 
                         }
-
+                        $object->CEDULA_ID = $cedula;
 
                         $this->response($this->json(array($object, $userBusqueda)), 200);
 

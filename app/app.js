@@ -1117,6 +1117,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 	var footer, header;
 	footer = document.getElementById('footerazo');
 	header = document.getElementById('headerazo');
+    $scope.pic = 'images/avatar_2x.png';
 
     $http.get('./services/loginNombreIp').then(
     	function (res) {
@@ -1125,10 +1126,36 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
     		$scope.autoNombre 	= res.data[2][0].NOMBRE;
     		$scope.autoFecha    = res.data[2][0].FECHA;
             $scope.autoHora    	= res.data[2][0].HORA;
-            $scope.msgLogin     = $scope.autoNombre
+            $scope.msgLogin     = $scope.autoNombre;
+			$scope.userId 		= res.data[2][0].USUARIO_ID;
     }, function (res) {
     	$scope.msgLogin = res.data;
     });
+
+    $timeout( function(){
+        $http.get('./services/getLdapUserInfo?userbusqueda='+$scope.userId).then(
+            function (data){
+
+                if(data.status!=201){
+                    if(data.data[0].PICTURE!==''){
+                        $scope.pic = 'data:image/jpeg;base64,'+data.data[0].PICTURE;
+                    }else{
+                        $scope.pic = 'images/avatar_2x.png';
+                    }
+
+
+                    //console.log(data.data[0]);
+
+                }else{
+                    $scope.pic = 'images/avatar_2x.png';
+                }
+            },
+            function errorCallback(res){
+                $rootScope.errorDatos = res.data;
+            }
+        );
+    }, 5000 );
+
 
 	if ($cookieStore.get('logedUser') != undefined) {
 		//hay alguien logeado
@@ -3978,6 +4005,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
         //console.log(editaInfo);
         $scope.cargoLabel = null;
         $scope.msgLdap = null;
+        $scope.pic = 'images/avatar_2x.png';
 		//$scope.editaInfo.CARGO_ID=data.CARGO_ID;
 	};
 	//Modal para Crear Usuario Nuevo
@@ -3990,6 +4018,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 		$scope.UsuarioNuevo = true;
         $scope.cargoLabel = null;
         $scope.msgLdap = null;
+        $scope.pic = 'images/avatar_2x.png';
 	};
 	//Modal para borrar usuarios.
 	$scope.borrarModal = function (data) {
@@ -4188,16 +4217,21 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 				if(data.status!=201){
 					$scope.msgLdap = "Usuario encontrado";
                     $scope.editaInfo = {
-                        USUARIO_ID: userid,
+                        USUARIO_ID: data.data[0].USUARIO_ID,
                         USUARIO_NOMBRE: data.data[0].USUARIO_NOMBRE,
                         CEDULA_ID: data.data[0].CEDULA_ID,
                         CORREO_USUARIO: data.data[0].CORREO_USUARIO,
                         ESTADO: 'ACTIVO'
                     };
                     $scope.cargoLabel = data.data[0].CARGO;
-                    $scope.pic = data.data[0].PICTURE;
+                    if(data.data[0].PICTURE!==''){
+                        $scope.pic = 'data:image/jpeg;base64,'+data.data[0].PICTURE;
+					}else{
+                        $scope.pic = 'images/avatar_2x.png';
+					}
 
-                    console.log(data.data[0]);
+
+                    //console.log(data.data[0]);
 
 				}else{
 
