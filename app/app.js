@@ -1132,27 +1132,30 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
     	$scope.msgLogin = res.data;
     });
 
-    $http.get('./services/getLdapUserInfo?userbusqueda='+$scope.userId).then(
-        function (data){
+    $timeout( function(){
+        $http.get('./services/getLdapUserInfo?userbusqueda='+$scope.userId).then(
+            function (data){
 
-            if(data.status!=201){
-                if(data.data[0].PICTURE!==''){
-                    $scope.pic = 'data:image/jpeg;base64,'+data.data[0].PICTURE;
+                if(data.status!=201){
+                    if(data.data[0].PICTURE!==''){
+                        $scope.pic = 'data:image/jpeg;base64,'+data.data[0].PICTURE;
+                    }else{
+                        $scope.pic = 'images/avatar_2x.png';
+                    }
+
+
+                    //console.log(data.data[0]);
+
                 }else{
                     $scope.pic = 'images/avatar_2x.png';
                 }
-
-
-                //console.log(data.data[0]);
-
-            }else{
-                $scope.pic = 'images/avatar_2x.png';
+            },
+            function errorCallback(res){
+                $rootScope.errorDatos = res.data;
             }
-        },
-        function errorCallback(res){
-            $rootScope.errorDatos = res.data;
-        }
-    );
+        );
+    }, 5000 );
+
 
 	if ($cookieStore.get('logedUser') != undefined) {
 		//hay alguien logeado
