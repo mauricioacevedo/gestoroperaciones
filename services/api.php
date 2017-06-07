@@ -103,6 +103,7 @@ class API extends REST {
         if (!filter_var($usuarioIp, FILTER_VALIDATE_IP) === false){
             $sql =  " SELECT ".
                 " SUBSTRING_INDEX(USER_NAME, ' ', 1) as NOMBRE ".
+                " , USER as USUARIO_ID".
                 " , FECHA ".
                 " , date_format(FECHA,'%r') as HORA ".
                 " FROM portalbd.activity_feed ".

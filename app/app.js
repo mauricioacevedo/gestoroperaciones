@@ -1126,12 +1126,13 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
     		$scope.autoNombre 	= res.data[2][0].NOMBRE;
     		$scope.autoFecha    = res.data[2][0].FECHA;
             $scope.autoHora    	= res.data[2][0].HORA;
-            $scope.msgLogin     = $scope.autoNombre
+            $scope.msgLogin     = $scope.autoNombre;
+			$scope.userId 		= res.data[2][0].USUARIO_ID;
     }, function (res) {
     	$scope.msgLogin = res.data;
     });
 
-    $http.get('./services/getLdapUserInfo?userbusqueda='+$scope.msgLogin).then(
+    $http.get('./services/getLdapUserInfo?userbusqueda='+$scope.userId).then(
         function (data){
 
             if(data.status!=201){
