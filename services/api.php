@@ -1509,7 +1509,7 @@ private function csvActivacioncolas(){
                     ", IP_HOST ".
                     ", CP_HOST ".
                     ") values( ".
-                    " UPPER('$usuarioGalleta')".
+                    " UPPER('$useri')".
                     ", UPPER('$nombreGalleta')".
                     ", UPPER('$grupoGalleta')".
                     ",'$estadum' ".
@@ -10212,7 +10212,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 ", IP_HOST ".
                 ", CP_HOST ".
                 ") values( ".
-                " UPPER('$usuarioGalleta')".
+                " UPPER('$useri')".
                 ", UPPER('$nombreGalleta')".
                 ", UPPER('$grupoGalleta')".
                 ",'OK' ".
@@ -13922,7 +13922,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 ", IP_HOST " .
                 ", CP_HOST " .
                 ") values( " .
-                " UPPER('$usuarioGalleta')" .
+                " UPPER('$useri')" .
                 ", UPPER('$nombreGalleta')" .
                 ", UPPER('$grupoGalleta')" .
                 ",'OK' " .
