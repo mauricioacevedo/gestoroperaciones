@@ -17905,13 +17905,13 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $userBusqueda   = strtoupper($userBusqueda);
 
         $ldapserver     =   'net-dc05';
-        $user           =   "CGONZGO";
+        $user           =   "MACEVEDG";
         //$user           = "sape";
         $ldapuser       =   "EPMTELCO\\$user";
-        $ldappass       =   addslashes("Mangoperajunio2017*");
+        $ldappass       =   addslashes("switzerland2017++");
         //$ldappass       =   addslashes("n0sun32008*");
-        $ldaptree       =   "OU=Usuarios,DC=epmtelco,DC=com,DC=co";
-        //$ldaptree       =   "OU=Epm Une,DC=epmtelco,DC=com,DC=co";
+        //$ldaptree       =   "OU=Usuarios,DC=epmtelco,DC=com,DC=co";
+        $ldaptree       =   "OU=Epm Une,DC=epmtelco,DC=com,DC=co";
         $varuser        =   "(samaccountname=$userBusqueda)";
         
         //echo  $userBusqueda;
