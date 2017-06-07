@@ -1113,17 +1113,12 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
 	$rootScope.loginexito 		= 	false;
     $rootScope.shownavs 		= 	false;
-    var canceler = $q.defer();
-    canceler.resolve();
-
-    console.log(canceler);
 
 	var footer, header;
 	footer = document.getElementById('footerazo');
 	header = document.getElementById('headerazo');
     $scope.pic = 'images/avatar_2x.png';
 
-    $timeout.cancel( $scope.intervalLightKPIS );
 
     $http.get('./services/loginNombreIp').then(
     	function (res) {
@@ -1490,6 +1485,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 		"$destroy",
 		function (event) {
 			clearInterval($scope.intervalFeed);
+			clearInterval($scope.intervalLightKPIS);
 		}
 	);
 
