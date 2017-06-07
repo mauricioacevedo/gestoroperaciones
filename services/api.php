@@ -17901,15 +17901,27 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             $user = $usuarioGalleta;
         }
 
+        $sqlLdapSesion =  " SELECT * FROM portalbd.go_admin_ldaplogin ";
+        $r = $this->mysqli->query($sqlLdapSesion);
+
+        if($r->num_rows > 0){
+            while($row = $r->fetch_assoc()){
+                $userConLdap = $row['USUARIO_ID'];
+                $passConLdap = $row['PASSWORD'];
+            }
+        }
+
         $userBusqueda   = str_replace(' ', '', $userBusqueda);
         $userBusqueda   = strtoupper($userBusqueda);
 
         $ldapserver     =   'net-dc05';
-        $user           =   "MACEVEDG";
+        //$user           =   "MACEVEDG";
         //$user           = "sape";
+        $user           = $userConLdap;
         $ldapuser       =   "EPMTELCO\\$user";
-        $ldappass       =   addslashes("switzerland2017++");
+        //$ldappass       =   addslashes("switzerland2017++");
         //$ldappass       =   addslashes("n0sun32008*");
+        $ldappass       = addslashes("$passConLdap");
         $ldaptree       =   "OU=Usuarios,DC=epmtelco,DC=com,DC=co";
         //$ldaptree       =   "OU=Epm Une,DC=epmtelco,DC=com,DC=co";
         $varuser        =   "(samaccountname=$userBusqueda)";
