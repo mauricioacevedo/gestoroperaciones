@@ -1114,6 +1114,9 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 	$rootScope.loginexito 		= 	false;
     $rootScope.shownavs 		= 	false;
 
+    console.log($destroy);
+    console.log($timeout);
+
 	var footer, header;
 	footer = document.getElementById('footerazo');
 	header = document.getElementById('headerazo');
