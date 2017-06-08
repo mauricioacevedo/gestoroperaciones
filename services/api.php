@@ -17896,6 +17896,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
         $user           =   $this->_request['userID'];
         $userBusqueda   =   $this->_request['userbusqueda'];
+        $userConLdap    = null;
+        $passConLdap    = null;
 
 
         if($user=='' || $user=='undefined'){
