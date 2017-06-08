@@ -17874,6 +17874,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
     /**
      * getLdapUserInfo, vamos a el servidor de LDPA y buscamos info del usuario
+     * function getLdapUserInfo
+     * @access private
      */
     private function getLdapUserInfo(){
         if($this->get_request_method() != "GET"){
