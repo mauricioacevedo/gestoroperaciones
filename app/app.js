@@ -1137,7 +1137,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
         $http.get('./services/getLdapUserInfo?userbusqueda='+$scope.userId).then(
             function (data){
 
-                if(data.status!=201){
+                if(data.status!== 201){
                     if(data.data[0].PICTURE!==''){
                         $scope.pic = 'data:image/jpeg;base64,'+data.data[0].PICTURE;
                     }else{
@@ -1158,7 +1158,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
     }, 3000 );
 
 
-	if ($cookieStore.get('logedUser') != undefined) {
+	if ($cookieStore.get('logedUser') !== undefined) {
 		//hay alguien logeado
 		var id_user = $cookieStore.get('logedUser').id;
 		document.getElementById('logout').className = "btn btn-md btn-danger";
@@ -1209,7 +1209,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 	var currIndex = 0;
 
 	$scope.addSlide = function () {
-		var newWidth = 0 + slides.length + 1;
+		var newWidth = slides.length + 1;
 		slides.push({
 			image: './images/reglas/' + newWidth + '.jpg',
 			//text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
