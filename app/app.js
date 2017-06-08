@@ -14634,10 +14634,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.programar			= false;					// Habilitar el campo programación.
 	$scope.accRdy				= false; 					// Habilitar el boton de Guardar.
     $scope.pedidoIsActive 		= false;
-	var varDondeGuardar 		= '';
-	var varEstadoGuardar		= '';
-	var varObsesGuardar			= '';
-	var estadoFinal				= '';
+	//var varDondeGuardar 		= '';
+	//var varEstadoGuardar		= '';
+	//var varObsesGuardar			= '';
+	//var estadoFinal				= '';
 
     $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
 	//$scope.idPermisos = idPermisos.getIds();
@@ -15232,7 +15232,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     $scope.removeNuevaNovedad = function() {
         var lastItem = $scope.auditorias.length-1;
-        if(lastItem!=0){
+        if(lastItem!==0){
             $scope.auditorias.splice(lastItem);
         }
 
@@ -15483,6 +15483,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
             }
         );
     };
+
+    $scope.actualizarLightKPIS();
 
 });
 // -----------------------------------------------Controlador para Gestion de Reconfiguracion Asignaciones
