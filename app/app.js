@@ -194,7 +194,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	obj.getCsvAgendamiento = function (login) {
 		return $http.get(serviceBase + 'csvAgendamiento?login=' + login); // exportar todos los pendientes de agendamiento
 	};
-	obj.getCsvHistoricosAgendamiento = function (login, fechaIni, fechaFin) { //exportar historico agendamiento todo
+	obj.getCsvHistoricosAgendamiento = function (login, fechaIni, fechaFin) { //exportar historico agendamiento
 		return $http.get(serviceBase + 'csvHistoricosAgendamiento?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
 	};
 	obj.getCsvHistoricosAgendamientoEdatel = function (login, fechaIni, fechaFin) { // exportar historicos solo edatel
@@ -1113,6 +1113,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
 	$rootScope.loginexito 		= 	false;
     $rootScope.shownavs 		= 	false;
+    $scope.lform 				= {};
 
 	var footer, header;
 	footer = document.getElementById('footerazo');
