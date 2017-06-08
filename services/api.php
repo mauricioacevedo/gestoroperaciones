@@ -4,8 +4,6 @@
 //ini_set('display_errors', '1');
 
 
-use MongoDB\Driver\Query;
-
 require_once("Rest.inc.php");
 //include_once("/var/www/html/gestorasignaciones/conn_fenix.php");
 //include_once("/var/www/html/gestorasignaciones/conn_fenix_bogota.php");
