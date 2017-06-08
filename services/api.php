@@ -8960,7 +8960,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             " from pendientes_amarillas b".
             "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
             " $transaccion ".
-            " order by b.$parametroBusqueda  ASC";
+            " order by b.FECHA_EXCEPCION  ASC";
 
         //echo $query1;
         if($mypedido==""){
