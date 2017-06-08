@@ -10297,7 +10297,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         if(!empty($pedido)){
 
             $query = "INSERT INTO gestor_historico_activacion(".trim($columns,',').",source) VALUES(".trim($values,',').",'AUTO')";
-            echo $query,$pedido;
+          //  echo $query,$pedido;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
             //----------insert
@@ -10321,8 +10321,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 }
             }else {
                 if($TIPIFICACION=='FINALIZADA' || $TIPIFICACION=='RENUMERAR'){
-                    $sqlupdate="update pendientes_amarillas set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID and STATUS='PENDI_ACTI'";
-                     // echo $sqlupdate;
+                    $sqlupdate="update pendientes_amarillas set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE PEDIDO=$pedido and STATUS='PENDI_ACTI'";
+                      echo $sqlupdate;
                 }else {
 
                     $sqlupdate="update pendientes_amarillas set FECHA_CARGA = '$today',STATUS='MALO',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID and STATUS='PENDI_ACTI'";
