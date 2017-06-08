@@ -18009,5 +18009,3 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
 $api = new API;
 $api->processApi();
-
-?>
