@@ -4,6 +4,8 @@
 //ini_set('display_errors', '1');
 
 
+use MongoDB\Driver\Query;
+
 require_once("Rest.inc.php");
 //include_once("/var/www/html/gestorasignaciones/conn_fenix.php");
 //include_once("/var/www/html/gestorasignaciones/conn_fenix_bogota.php");
@@ -10699,7 +10701,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $user = $this->_request['userID'];
 
 
-        $query="select * from tbl_usuarios where ID=$user";
+        $query="select * from portalbd.tbl_usuarios where ID=$user";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -17875,7 +17877,6 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
     /**
      * getLdapUserInfo, vamos a el servidor de LDPA y buscamos info del usuario
      * function getLdapUserInfo
-     * @access private
      */
     private function getLdapUserInfo(){
         if($this->get_request_method() != "GET"){
