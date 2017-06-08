@@ -10297,7 +10297,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         if(!empty($pedido)){
 
             $query = "INSERT INTO gestor_historico_activacion(".trim($columns,',').",source) VALUES(".trim($values,',').",'AUTO')";
-            //echo $query;
+            echo $query,$pedido;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
             //----------insert
