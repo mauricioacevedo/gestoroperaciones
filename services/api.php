@@ -90,6 +90,13 @@ class API extends REST {
 
     }
 
+    /**
+     *
+     * @uses  demePedido()
+     * @uses  buscarPedido()
+     * @uses  guardarGestionAsignaciones()
+     *
+     */
 
 //Inicia Mundo Asignaciones Y Reconfiguracion
     private function loginNombreIp()
@@ -17878,7 +17885,6 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
      *
      * @uses  getLdapUserInfo()
      * getLdapUserInfo, vamos a el servidor de LDPA y buscamos info del usuario
-     * function getLdapUserInfo
      */
     private function getLdapUserInfo(){
         if($this->get_request_method() != "GET"){
