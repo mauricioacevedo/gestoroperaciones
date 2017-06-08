@@ -8016,7 +8016,9 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 		}
 
 */
-
+    /**
+     * @uses  updateParametro()
+     */
     private function updateParametro(){
 
         if($this->get_request_method() != "GET"){
@@ -17873,6 +17875,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
     }
 
     /**
+     *
+     * @uses  getLdapUserInfo()
      * getLdapUserInfo, vamos a el servidor de LDPA y buscamos info del usuario
      * function getLdapUserInfo
      */
