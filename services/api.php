@@ -10256,7 +10256,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $pedido = json_decode(file_get_contents("php://input"),true);
         //var_dump($pedido);
         $column_names = array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','ASESOR','FECHA_GESTION','TIPIFICACION','FECHA_INICIO','FECHA_FIN','DURACION','OBSERVACION','NUMERO_CR','TABLA','FUENTE','GRUPO','ACTIVIDAD','ESTADO_ID', 'OBSERVACION_ID','NUMERO_PSR','PSR','DESCRIPCIONEXCEPCIONACT','MOTIVOEXCEPCIONACT');
-        $pedido1=$pedido['pedido'];
+        $pedido=$pedido['pedido'];
         $keys = array_keys($pedido);
         $today = date("Y-m-d H:i:s");
         $today2 = date("Y-m-d");
@@ -10321,8 +10321,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 }
             }else {
                 if($TIPIFICACION=='FINALIZADA' || $TIPIFICACION=='RENUMERAR'){
-                    $sqlupdate="update pendientes_amarillas set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE PEDIDO= $pedido1 and STATUS='PENDI_ACTI'";
-                      echo $sqlupdate;
+                    $sqlupdate="update pendientes_amarillas set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID and STATUS='PENDI_ACTI'";
+                     // echo $sqlupdate;
                 }else {
 
                     $sqlupdate="update pendientes_amarillas set FECHA_CARGA = '$today',STATUS='MALO',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID and STATUS='PENDI_ACTI'";
