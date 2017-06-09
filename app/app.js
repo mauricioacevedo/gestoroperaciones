@@ -510,6 +510,13 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return data;
 	};
 
+	obj.insertTransaccionsiebelamarillas = function (pedido) { //insertar pedidos siebel activacion
+		var data = $http.post(serviceBase + 'insertTransaccionsiebelamarillas ', {
+			"pedido": pedido
+		});
+		return data;
+	};
+
 	obj.getPedidosUserActivacion = function (userID) { //pedidos por user activacion
 		return $http.get(serviceBase + 'pedidosPorUserActivacion?userID=' + userID);
 	};
