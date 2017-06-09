@@ -110,7 +110,7 @@ app.directive('fileModel', ['$parse', function ($parse) {
 //---cargar aqrchivo agendamiento-----------------------------------
 
 app.factory('socket', function ($rootScope) {
-    var socket = io.connect();
+    var socket = io.connect('http://10.65.65.83:3000');
     return {
         on: function (eventName, callback) {
             socket.on(eventName, function () {
