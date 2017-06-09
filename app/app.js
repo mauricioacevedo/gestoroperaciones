@@ -110,7 +110,7 @@ app.directive('fileModel', ['$parse', function ($parse) {
 //---cargar aqrchivo agendamiento-----------------------------------
 
 app.factory('socket', function ($rootScope) {
-    var socket = io.connect('http://10.65.65.83:3000');
+
     return {
         on: function (eventName, callback) {
             socket.on(eventName, function () {
@@ -1324,6 +1324,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
 			$rootScope.loginexito 		= 	true;
             $scope.error 				= 	null;
+            var socket = io.connect('http://10.65.65.83:3000');
 
 			$timeout(function () {
 				var id_user = data['id'];
