@@ -1149,6 +1149,11 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
     $rootScope.shownavs 		= 	false;
     $scope.lform 				= {};
 
+    $scope.$on('socket:error', function (ev, data) {
+		console.log(ev);
+        console.log(data);
+    });
+
 	var footer, header;
 	footer = document.getElementById('footerazo');
 	header = document.getElementById('headerazo');
