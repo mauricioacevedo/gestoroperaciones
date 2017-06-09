@@ -17130,7 +17130,7 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 
 }]);
 
-app.run(['$location', '$rootScope','$cookies', '$cookieStore','services', function($location, $rootScope,  $cookies, $cookieStore, services ) {
+app.run(['$location', '$rootScope','$cookies', '$cookieStore','services','socket', function($location, $rootScope,  $cookies, $cookieStore, services, socket ) {
 
 
     $rootScope.logout = function() {
@@ -17141,6 +17141,11 @@ app.run(['$location', '$rootScope','$cookies', '$cookieStore','services', functi
         var divi = document.getElementById("logoutdiv");
         divi.style.position = "absolute";
         divi.style.visibility = "hidden";
+        $scope.$on('$destroy', function (event) {
+            //socket.removeAllListeners();
+            // or something like
+            socket.removeListener(this);
+        });
         $location.path('/');
     }; //  ---------------------------------Basura del logueo
 
