@@ -12441,7 +12441,7 @@ app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $locatio
 console.log($scope.InfoGestion);
     
 
-		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
+		services.insertTransaccionsiebelamarillas($scope.InfoGestion).then(
 
 
 			function (data) {
