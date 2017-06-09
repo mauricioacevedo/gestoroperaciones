@@ -1410,11 +1410,6 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 			var divi = document.getElementById("logoutdiv");
 			divi.style.position = "absolute";
 			divi.style.visibility = "hidden";
-            $scope.$on('$destroy', function (event) {
-                socket.removeAllListeners();
-                // or something like
-                // socket.removeListener(this);
-            });
             //$scope.showFooter 		= 	false;
 			$location.path('/');
 		};
@@ -17146,11 +17141,6 @@ app.run(['$location', '$rootScope','$cookies', '$cookieStore','services','socket
         var divi = document.getElementById("logoutdiv");
         divi.style.position = "absolute";
         divi.style.visibility = "hidden";
-        $scope.$on('$destroy', function (event) {
-            socket.removeAllListeners();
-            // or something like
-            //socket.removeListener(this);
-        });
         $location.path('/');
     }; //  ---------------------------------Basura del logueo
 
