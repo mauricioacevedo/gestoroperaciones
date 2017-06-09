@@ -10311,7 +10311,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                     $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set FECHA_CARGA = '$today',STATUS='MALO',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID AND STATUS='PENDI_ACTI'";
                     //   echo $sqlupdate;
                 }
-            } else if($tabla=='ACTIVADOR_DOM' ){
+            } else {
                 if($TIPIFICACION=='FINALIZADA' || $TIPIFICACION=='RENUMERAR'){
                     $sqlupdate="update gestor_activacion_pendientes_activador_dom set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID AND STATUS='PENDI_ACTI'";
                   echo $sqlupdate;
@@ -10319,7 +10319,77 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
                     $sqlupdate="update gestor_activacion_pendientes_activador_dom set FECHA_CARGA = '$today',STATUS='MALO',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID AND STATUS='PENDI_ACTI'";
                 }
-            }else {
+            }
+            // echo $sqlupdate;
+            $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
+
+            //  echo "(1)";
+            $this->response(json_encode(array("msg"=>"N/A","data" => $today)),200);
+
+        }else{
+            $this->response('',200);        //"No Content" status
+            //$this->response("$query",200);        //"No Content" status
+        }
+
+    }
+
+  private function insertTransaccionsiebelamarillas(){
+
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+
+        $pedido = json_decode(file_get_contents("php://input"),true);
+        //var_dump($pedido);
+        $column_names = array('ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','TAREA_EXCEPCION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','ASESOR','FECHA_GESTION','TIPIFICACION','FECHA_INICIO','FECHA_FIN','DURACION','OBSERVACION','NUMERO_CR','TABLA','FUENTE','GRUPO','ACTIVIDAD','ESTADO_ID', 'OBSERVACION_ID','NUMERO_PSR','PSR','DESCRIPCIONEXCEPCIONACT','MOTIVOEXCEPCIONACT');
+        $pedido=$pedido['pedido'];
+        $keys = array_keys($pedido);
+        $today = date("Y-m-d H:i:s");
+        $today2 = date("Y-m-d");
+        $columns = '';
+        $values = '';
+        $FECHA_GESTION='';
+        $ID=$pedido['ID'];
+        $ASESOR=$pedido['ASESOR'];
+        $PEDIDO=$pedido['PEDIDO'];
+        $ORDER_SEQ_ID=$pedido['ORDER_SEQ_ID'];
+        $REFERENCE_NUMBER=$pedido['REFERENCE_NUMBER'];
+        $ESTADO=$pedido['ESTADO'];
+        $FECHA_CREACION=$pedido['FECHA_CREACION'];
+        $TAREA_EXCEPCION=$pedido['TAREA_EXCEPCION'];
+        $FECHA_EXCEPCION=$pedido['FECHA_EXCEPCION'];
+        $PRODUCTO=$pedido['PRODUCTO'];
+        $IDSERVICIORAIZ=$pedido['IDSERVICIORAIZ'];
+        $TRANSACCION=$pedido['TRANSACCION'];
+        $CODIGO_CIUDAD=$pedido['CODIGO_CIUDAD'];
+        //$STATUS=$pedido['STATUS'];
+        $TIPIFICACION=$pedido['TIPIFICACION'];
+        $FECHA_INICIO=$pedido['FECHA_INICIO'];
+        $FECHA_FIN=$pedido['FECHA_FIN'];
+        $DURACION=$pedido['DURACION'];
+        $tabla = $pedido['TABLA'];
+        $OBSERVACION=$pedido['OBSERVACION'];
+
+        foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
+            if(!in_array($desired_key, $keys)) {
+                $$desired_key = '';
+            }else{
+                $$desired_key = $pedido[$desired_key];
+            }
+            $columns = $columns.$desired_key.',';
+            $values = $values."'".$pedido[$desired_key]."',";
+        }
+
+        if(!empty($pedido)){
+
+            $query = "INSERT INTO gestor_historico_activacion(".trim($columns,',').",source) VALUES(".trim($values,',').",'AUTO')";
+          //  echo $query,$pedido;
+            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+            //----------insert
+
+        
+            if($tabla=='AMARILLAS' ){
                 if($TIPIFICACION=='FINALIZADA' || $TIPIFICACION=='RENUMERAR'){
                     $sqlupdate="update pendientes_amarillas set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID and STATUS='PENDI_ACTI'";
                      // echo $sqlupdate;
@@ -10340,8 +10410,6 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         }
 
     }
-
-
 //-------------------------fininsertactivacion*------------------
 
 
