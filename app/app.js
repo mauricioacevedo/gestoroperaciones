@@ -1143,7 +1143,7 @@ function ($q, $rootScope, $log) {
 
 // Controlador de logueo-------------------------------------------------------
 
-app.controller('login', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $q, $timeout, $http, $firebase, $firebaseObject, $firebaseArray, services) {
+app.controller('login', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $q, $timeout, $http, $firebase, $firebaseObject, $firebaseArray, services, socket) {
 
 	$rootScope.loginexito 		= 	false;
     $rootScope.shownavs 		= 	false;
