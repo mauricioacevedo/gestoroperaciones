@@ -105,7 +105,34 @@ app.directive('fileModel', ['$parse', function ($parse) {
 	};
 }]);
 
+
+
 //---cargar aqrchivo agendamiento-----------------------------------
+
+app.factory('socket', function ($rootScope) {
+    var socket = io.connect('http://10.65.65.83:3000');
+    return {
+        on: function (eventName, callback) {
+            socket.on(eventName, function () {
+                var args = arguments;
+                $rootScope.$apply(function () {
+                    callback.apply(socket, args);
+                });
+            });
+        },
+        emit: function (eventName, data, callback) {
+            socket.emit(eventName, data, function () {
+                var args = arguments;
+                $rootScope.$apply(function () {
+                    if (callback) {
+                        callback.apply(socket, args);
+                    }
+                });
+            })
+        }
+    };
+});
+
 
 app.factory("services", ['$http', '$timeout', function ($http) {
 	var serviceBase = 'services/';
@@ -1116,7 +1143,7 @@ function ($q, $rootScope, $log) {
 
 // Controlador de logueo-------------------------------------------------------
 
-app.controller('login', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $q, $timeout, $http, $firebase, $firebaseObject, $firebaseArray, services) {
+app.controller('login', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $q, $timeout, $http, $firebase, $firebaseObject, $firebaseArray, services, socket) {
 
 	$rootScope.loginexito 		= 	false;
     $rootScope.shownavs 		= 	false;
