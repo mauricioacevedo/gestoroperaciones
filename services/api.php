@@ -10391,7 +10391,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         
             if($tabla=='AMARILLAS' ){
                 if($TIPIFICACION=='FINALIZADA' || $TIPIFICACION=='RENUMERAR'){
-                    $sqlupdate="update pendientes_amarillas set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE PEDIDO=$PEDIDO and STATUS='PENDI_ACTI'";
+                    $sqlupdate="update pendientes_amarillas set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE PEDIDO='$PEDIDO' and STATUS='PENDI_ACTI'";
                       echo $sqlupdate;
                 }else {
 
