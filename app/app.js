@@ -1149,7 +1149,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
     $rootScope.shownavs 		= 	false;
     $scope.lform 				= {};
 
-    socket.$on('broad', function (data) {
+    $scope.$on('socket:broad', function (data) {
         notify({
             message: data,
             duration: '8000',
