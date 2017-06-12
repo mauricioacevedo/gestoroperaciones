@@ -1152,9 +1152,10 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
     socket.on("broad", function (data) {
         notify({
             message: data,
-            duration: '8000',
-            position: 'right',
-            classes: 'btn-warning'
+			classes: 'btn-warning',
+            duration: 8000,
+            position: 'right'
+
         });
     });
 
