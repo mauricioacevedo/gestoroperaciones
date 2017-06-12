@@ -12453,7 +12453,7 @@ app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $locatio
 			PEDIDO: gestion.PEDIDO,
 			REFERENCE_NUMBER: gestion.REFERENCE_NUMBER,
 			ESTADO: gestion.ESTADO,
-		//	FECHA_CREACION: gestion.FECHA_CREACION,
+			FECHA_CREACION: gestion.FECHA_CREACION,
 			TAREA_EXCEPCION: gestion.TAREA_EXCEPCION,
 			FECHA_EXCEPCION: gestion.FECHA_EXCEPCION,
 			PRODUCTO: gestion.PRODUCTO,
