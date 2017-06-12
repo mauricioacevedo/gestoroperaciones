@@ -12330,7 +12330,7 @@ app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $locatio
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
 		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-
+		console.log($scope.fecha_inicio);
 	};
 
 	// -------------------------------------------------------------- fin DemePedido activacion
