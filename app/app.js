@@ -15747,7 +15747,6 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
         {
             $scope.play();
         }
-        console.log($scope.newMessage);
 
 	};
 
