@@ -15736,17 +15736,24 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 		});
 
 
-
 		mensajes.on('child_added', function (newMessageSnapshot) {
-
+            $scope.newMessage = null;
 			$scope.newMessage = newMessageSnapshot.val();
-            $scope.play();
+            $scope.logResults($scope.newMessage);
+
 			//console.log($scope.newMessage);
 		});
 
 
 	};
 
+    $scope.logResults = function (postsData) {
+        if (postsData.status.indexOf("joined") > -1) {
+            $scope.play();
+
+        }
+
+    };
 
 
 	$scope.agregar = function () {
