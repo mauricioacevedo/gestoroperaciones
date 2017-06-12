@@ -1154,7 +1154,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
             message: data,
             duration: '8000',
             position: 'right',
-            className: 'alert-warning'
+            className: 'btn-warning'
         });
     });
 
