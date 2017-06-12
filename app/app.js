@@ -12079,6 +12079,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		};
 
 console.log($scope.InfoGestion);
+console.log($scope.fecha_inicio);
     
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
