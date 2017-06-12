@@ -110,7 +110,7 @@ app.directive('fileModel', ['$parse', function ($parse) {
 //---cargar aqrchivo agendamiento-----------------------------------
 
 app.factory('socket', function ($rootScope) {
-    var socket = io.connect('http://10.65.65.83:3000');
+    var socket = io.connect('http://10.65.65.68:3000');
     return {
         on: function (eventName, callback) {
             socket.on(eventName, function () {
@@ -1143,15 +1143,19 @@ function ($q, $rootScope, $log) {
 
 // Controlador de logueo-------------------------------------------------------
 
-app.controller('login', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $q, $timeout, $http, $firebase, $firebaseObject, $firebaseArray, services, socket) {
+app.controller('login', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $q, $timeout, $http, $firebase, $firebaseObject, $firebaseArray, services, socket, notify) {
 
 	$rootScope.loginexito 		= 	false;
     $rootScope.shownavs 		= 	false;
     $scope.lform 				= {};
 
-    $scope.$on('socket:error', function (ev, data) {
-		console.log(ev);
-        console.log(data);
+    socket.on("broad", function (data) {
+        notify({
+            message: data,
+            duration: '8000',
+            position: 'right',
+            classes: 'btn-warning'
+        });
     });
 
 	var footer, header;
