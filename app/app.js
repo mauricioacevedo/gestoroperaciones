@@ -1149,15 +1149,6 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
     $rootScope.shownavs 		= 	false;
     $scope.lform 				= {};
 
-    socket.on("broad", function (data) {
-        notify({
-            message: data,
-			classes: 'btn-warning',
-            duration: 8000,
-            position: 'right'
-
-        });
-    });
 
 	var footer, header;
 	footer = document.getElementById('footerazo');
@@ -1439,6 +1430,25 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 });
 
 //------------------------------------------------------- Controlador de logueo
+
+app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $q, $timeout, $http, socket, notify) {
+    /**
+    * Controlador para Enviar notificaciones a el mundo.
+    * */
+
+    socket.on("broad", function (data) {
+        notify({
+            message: data,
+            classes: 'btn-warning',
+            duration: 8000,
+            position: 'right'
+
+        });
+    });
+
+
+
+});
 
 //-----------------------Dashboard graficas y seguimiento------------------
 
