@@ -15739,7 +15739,7 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 		mensajes.on('child_added', function (newMessageSnapshot) {
             $scope.newMessage = null;
 			$scope.newMessage = newMessageSnapshot.val();
-			if($scope.newMessage!==undefined)
+			if($scope.newMessage!=undefined)
 			{
                 $scope.play();
 			}
