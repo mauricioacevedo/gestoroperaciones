@@ -15650,7 +15650,13 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
 	};
 
-
+    $scope.playing = false;
+    $scope.audio = document.createElement('audio');
+    $scope.audio.src = './sounds/isnt-it.mp3';
+    $scope.play = function() {
+        $scope.audio.play();
+        $scope.playing = true;
+    };
 
 
 	// Chat Firebase ---------------------------------------------------
@@ -15734,6 +15740,7 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 		mensajes.on('child_added', function (newMessageSnapshot) {
 
 			$scope.newMessage = newMessageSnapshot.val();
+            $scope.play();
 			//console.log($scope.newMessage);
 		});
 
