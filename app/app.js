@@ -1440,7 +1440,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
         notify({
             message: data,
             classes: 'btn-warning',
-            duration: 8000,
+            duration: 15000,
             position: 'right'
 
         });
