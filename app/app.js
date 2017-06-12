@@ -15739,12 +15739,12 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 		mensajes.on('child_added', function (newMessageSnapshot) {
             $scope.newMessage = null;
 			$scope.newMessage = newMessageSnapshot.val();
-			console.log($scope.newMessage);
+
             //$scope.logResults($scope.newMessage);
 
 			//console.log($scope.newMessage);
 		});
-
+        console.log($scope.newMessage);
 
 	};
 
