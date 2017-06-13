@@ -1480,13 +1480,18 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     };
     socket.on("broad", function (data) {
         $scope.play();
+        var messageTemplate = '<span>'+data+' <a href="" ng-click="clickedLink()">ClickMe!</a></span>';
         notify({
-            message: data,
+            messageTemplate: messageTemplate,
             classes: 'btn-warning',
             duration: 15000,
             position: 'right'
 
         });
+
+        $scope.clickedLink = function(){
+          console.log("No quiero");
+        };
 
 
     });
