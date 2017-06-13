@@ -15661,9 +15661,24 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
     $scope.newExcitingAlerts = function () {
         var oldTitle = $route.current.title;
-        console.log(oldTitle);
+        var msg = "Nuevo Mensaje!";
+        var timeoutId;
+        var blink = function() { $route.current.title = $route.current.title == msg ? ' ' : msg; };
+        var clear = function() {
+            clearInterval(timeoutId);
+            $route.current.title = oldTitle;
+            window.onmousemove = null;
+            timeoutId = null;
+        };
+        return function () {
+            if (!timeoutId) {
+                timeoutId = setInterval(blink, 1000);
+                window.onmousemove = clear;
+            }
+        };
+
 	};
-    $scope.newExcitingAlerts();
+
 
     // Chat Firebase ---------------------------------------------------
 
@@ -15747,6 +15762,7 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
         if($scope.newMessage!==undefined)
         {
             $scope.play();
+            $scope.newExcitingAlerts();
         }
 
 	};
