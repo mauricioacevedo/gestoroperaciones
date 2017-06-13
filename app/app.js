@@ -15799,8 +15799,8 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
         if($scope.newMessage!==undefined)
         {
-            $scope.play();
-            flashService.flashWindow("Nuevo Mensaje!", 10);
+           // $scope.play();
+           // flashService.flashWindow("Nuevo Mensaje!", 10);
         }
 
 	};
