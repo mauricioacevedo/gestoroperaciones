@@ -110,7 +110,8 @@ app.directive('fileModel', ['$parse', function ($parse) {
 //---cargar aqrchivo agendamiento-----------------------------------
 
 app.factory('socket', function ($rootScope) {
-    var socket = io.connect('http://10.65.65.88:3000');
+    //var socket = io.connect('http://10.65.65.88:3000');
+    socket = io.connect('http://10.100.82.125:4000');
     return {
         on: function (eventName, callback) {
             socket.on(eventName, function () {
@@ -15650,7 +15651,13 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
 	};
 
-
+    $scope.playing = false;
+    $scope.audio = document.createElement('audio');
+    $scope.audio.src = './sounds/chatio.mp3';
+    $scope.play = function() {
+        $scope.audio.play();
+        $scope.playing = true;
+    };
 
 
 	// Chat Firebase ---------------------------------------------------
@@ -15730,13 +15737,17 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 		});
 
 
-
 		mensajes.on('child_added', function (newMessageSnapshot) {
-
+            $scope.newMessage = null;
 			$scope.newMessage = newMessageSnapshot.val();
-			//console.log($scope.newMessage);
+
+
 		});
 
+        if($scope.newMessage!==undefined)
+        {
+            $scope.play();
+        }
 
 	};
 
