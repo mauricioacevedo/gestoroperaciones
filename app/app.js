@@ -15659,8 +15659,13 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
         $scope.playing = true;
     };
 
+    $scope.newExcitingAlerts = function () {
+        var oldTitle = document.title;
+        console.log(oldTitle);
+	};
+    $scope.newExcitingAlerts();
 
-	// Chat Firebase ---------------------------------------------------
+    // Chat Firebase ---------------------------------------------------
 
 	//var userRef = listRef.push();
 	//var presenceRef = firebase.database().ref(".info/connected");
@@ -15670,9 +15675,6 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
 	$scope.listado = function () {
 
-
-
-
 		amOnline.on('value', function (snapshot) {
 			if (snapshot.val()) {
 
@@ -15680,7 +15682,6 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 				userRef.onDisconnect().remove();
 			}
 		});
-
 
 		listRef.on('value', function (snap) {
 
@@ -15705,7 +15706,6 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
 			//$scope.currentUsers=lstUsers.join('<br>');
 			$scope.objCurrentUsers = log;
-
 			//console.log($scope.currentUsers);
 			//console.log("# of online users = " + snap.numChildren());
 
