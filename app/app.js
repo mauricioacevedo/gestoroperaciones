@@ -15608,7 +15608,7 @@ app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $locat
 
 //Controlador de prueba CHAT
 
-app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $sce, $firebase, $firebaseObject, $firebaseArray, notify, services) {
+app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $sce, $firebase, $firebaseObject, $firebaseArray, $window, notify, services) {
 
 
 
@@ -15660,6 +15660,29 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
     };
 
     $scope.newExcitingAlerts = function () {
+        if (!$window.hasFocus) { // or whatever the property is
+            blinkInterval = setInterval("blink()", 500);
+        }
+
+        function blink() {
+            if ($window.blinkOn) {
+                $window.title = "New Message!";
+                $window.blinkOn = false;
+            }
+            else {
+                $window.title = "Normal Title";
+                $window.blinkOn = true;
+            }
+        }
+
+        $window.onfocus = function () { // or whatever the event handler is...
+            if (blinkInterval) clearInterval(blinkInterval);
+            blinkInterval = false;
+        }
+    };
+
+/*
+    $scope.newExcitingAlerts = function () {
         var oldTitle = $route.current.title;
         var msg = "Nuevo Mensaje!";
         var timeoutId;
@@ -15678,7 +15701,7 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
         };
 
 	};
-
+*/
 
     // Chat Firebase ---------------------------------------------------
 
