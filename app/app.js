@@ -15661,12 +15661,11 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
     $scope.newExcitingAlerts = function () {
         if (!$window.hasFocus) { // or whatever the property is
-            blinkInterval = setInterval($scope.blink(), 500);
+           console.log("sin focus");
         }
 
-        $window.onfocus = function () { // or whatever the event handler is...
-            if (blinkInterval) clearInterval(blinkInterval);
-            blinkInterval = false;
+        $window.onfocus = function(){
+            console.log("focused");
         }
 
 
