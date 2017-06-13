@@ -15608,7 +15608,7 @@ app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $locat
 
 //Controlador de prueba CHAT
 
-app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $sce, $firebase, $firebaseObject, $firebaseArray, $window, notify, services) {
+app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $sce, $firebase, $firebaseObject, $firebaseArray, $window, $interval, notify, services) {
 
 
 
