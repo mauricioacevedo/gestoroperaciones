@@ -1486,15 +1486,13 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
             classes: 'btn-warning',
             duration: 15000,
             position: 'right'
-
         });
 
-        $scope.clickedLink = function(){
-          console.log("No quiero");
-        };
-
-
     });
+
+    $scope.clickedLink = function(){
+        console.log("No quiero");
+    };
 
 
 
