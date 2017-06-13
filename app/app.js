@@ -15661,30 +15661,6 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
     var oldTitle = $route.current.title;
     var timeoutId;
 
-    $scope.newExcitingAlerts = function () {
-
-        if (!$window.onfocus) { // or whatever the property is
-           console.log($window.hasFocus);
-            timeoutId = $interval($scope.blink(), 1000);
-        }
-
-
-
-    };
-    $window.onfocus = function(){
-        console.log("focused");
-        $scope.stopNewMsg();
-    };
-
-    $scope.stopNewMsg = function () {
-        $interval.cancel(timeoutId);
-	};
-
-    $scope.blink = function () {
-        $route.current.title = "Nuevo Mensaje";
-    };
-
-
 /*
     $scope.newExcitingAlerts = function () {
         var oldTitle = $route.current.title;
@@ -15789,7 +15765,6 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
         if($scope.newMessage!==undefined)
         {
             $scope.play();
-            $scope.newExcitingAlerts();
         }
 
 	};
@@ -15836,9 +15811,6 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
 	};
 
-    $scope.$on('$destroy', function() {
-        $scope.stopNewMsg();
-    });
 
 });
 
