@@ -15661,7 +15661,7 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
     $scope.newExcitingAlerts = function () {
         if (!$window.hasFocus) { // or whatever the property is
-            blinkInterval = setInterval("$scope.blink()", 500);
+            blinkInterval = setInterval($scope.blink(), 500);
         }
 
         $scope.blink = function () {
