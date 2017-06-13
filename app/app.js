@@ -15661,10 +15661,10 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
     $scope.newExcitingAlerts = function () {
         if (!$window.hasFocus) { // or whatever the property is
-            blinkInterval = setInterval("blink()", 500);
+            blinkInterval = setInterval("$scope.blink()", 500);
         }
 
-        function blink() {
+        $scope.blink = function () {
             if ($window.blinkOn) {
                 $window.title = "New Message!";
                 $window.blinkOn = false;
