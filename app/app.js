@@ -15660,7 +15660,7 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
     };
 
     $scope.newExcitingAlerts = function () {
-        var oldTitle = $route.title;
+        var oldTitle = $route.current.title;
         console.log(oldTitle);
 	};
     $scope.newExcitingAlerts();
