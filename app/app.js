@@ -11832,7 +11832,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.InfoPedido = {};
 		//$scope.InfoGestion = [];
 		$scope.FECHA_CREACION = null;
-        $scope.fecha_inicio = null;
+        //$scope.fecha_inicio = null;
 		$scope.accRdy = false;
 		$scope.InfoGestion = {};
 		$scope.pedidoIsGuardado = false;
