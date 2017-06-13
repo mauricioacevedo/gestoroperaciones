@@ -2569,7 +2569,7 @@ private function csvActivacioncolas(){
         }
         $id = $this->_request['userID'];
         $today = date("Y-m-d");
-        $query="SELECT ".
+        /*$query="SELECT ".
             " id, ".
             " pedido, ".
             " fuente, ".
@@ -2582,7 +2582,37 @@ private function csvActivacioncolas(){
             " from pedidos ".
             " where 1=1 ".
             " and user='$id' ".
-            " and fecha_fin between '$today 00:00:00' and '$today 23:59:59'";
+            " and fecha_fin between '$today 00:00:00' and '$today 23:59:59'";*/
+
+        $query = "SELECT ".
+                 "   id, ".
+                 "   pedido, ".
+                 "   fuente, ".
+                 "   actividad, ".
+                 "   fecha_fin, ".
+                 "   estado, ".
+                 "   my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as duracion, ".
+                 "   INCIDENTE, ".
+                 "   SUBSTRING_INDEX(concepto_final, ',', 3) as concepto_final ".
+                 "   from pedidos ".
+                 "   where 1=1 ".
+                 "   and user='$id' ".
+                 "   and fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
+                 "   UNION ".
+                 "   SELECT ".
+                 "   id ".
+                 "   , oferta as pedido ".
+                 "   ,'SIEBEL' as fuente ".
+                 "   , 'ESTUDIO' as actividad ".
+                 "   , fecha_fin ".
+                 "   , observacion as estado ".
+                 "   , my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as duracion ".
+                 "   , incidente ".
+                 "   , SUBSTRING_INDEX(ESTADO_FINAL, ',', 3) as concepto_final  ".
+                 "   FROM portalbd.transacciones_nca ".
+                 "   where 1=1  ".
+                 "   and USUARIO='$id'  ".
+                 "   and fecha_fin between '$today 00:00:00' and '$today 23:59:59'";
 
         $queryPediUnico="SELECT ".
             " count(distinct pedido_id) as pedidos ".
