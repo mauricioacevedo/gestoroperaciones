@@ -1480,7 +1480,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     };
     socket.on("broad", function (data) {
         $scope.play();
-        var messageTemplate = '<span>'+data+' <a href="" ng-click="clickedLink()">ClickMe!</a></span>';
+        var messageTemplate = '<span>'+data+' <p><button type="button" class="btn btn-default" ng-click="clickedLink()">Click</button></p></span>';
         notify({
             messageTemplate: messageTemplate,
             classes: 'btn-warning',
