@@ -134,10 +134,10 @@ app.factory('socket', function ($rootScope) {
     };
 });
 
-app.factory('flashService', function () {
+app.factory('flashService', function ($route) {
 
     var flashService = {};
-    var original = document.title;
+    var original = $route.current.title;
     var timeout;
 
     var _cancelFlashWindow = function (newMsg, howManyTimes) {
