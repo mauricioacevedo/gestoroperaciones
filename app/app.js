@@ -15661,7 +15661,7 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
     $scope.newExcitingAlerts = function () {
         if (!$window.hasFocus) { // or whatever the property is
-           console.log("sin focus");
+           console.log($window.hasFocus);
         }
 
         $window.onfocus = function(){
