@@ -15664,6 +15664,11 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
             blinkInterval = setInterval($scope.blink(), 500);
         }
 
+        $window.onfocus = function () { // or whatever the event handler is...
+            if (blinkInterval) clearInterval(blinkInterval);
+            blinkInterval = false;
+        }
+
 
     };
 
@@ -15678,12 +15683,6 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
         }
     };
 
-
-
-    $window.onfocus = function () { // or whatever the event handler is...
-        if (blinkInterval) clearInterval(blinkInterval);
-        blinkInterval = false;
-    }
 
 /*
     $scope.newExcitingAlerts = function () {
