@@ -1471,8 +1471,15 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     /**
     * Controlador para Enviar notificaciones a el mundo.
     * */
-
+    $scope.playing = false;
+    $scope.audio = document.createElement('audio');
+    $scope.audio.src = './sounds/chatio.mp3';
+    $scope.play = function() {
+        $scope.audio.play();
+        $scope.playing = true;
+    };
     socket.on("broad", function (data) {
+        $scope.play();
         notify({
             message: data,
             classes: 'btn-warning',
@@ -1480,6 +1487,8 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
             position: 'right'
 
         });
+
+
     });
 
 
@@ -15693,8 +15702,7 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
         $scope.audio.play();
         $scope.playing = true;
     };
-    var oldTitle = $route.current.title;
-    var timeoutId;
+
 
 /*
     $scope.newExcitingAlerts = function () {
