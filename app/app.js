@@ -15664,13 +15664,13 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
            console.log($window.hasFocus);
         }
 
-        $window.onfocus = function(){
-            console.log("focused");
-        }
+
 
 
     };
-
+    $window.onfocus = function(){
+        console.log("focused");
+    }
     $scope.blink = function () {
         if ($window.blinkOn) {
             $window.title = "New Message!";
