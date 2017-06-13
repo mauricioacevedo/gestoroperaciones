@@ -15664,22 +15664,26 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
             blinkInterval = setInterval($scope.blink(), 500);
         }
 
-        $scope.blink = function () {
-            if ($window.blinkOn) {
-                $window.title = "New Message!";
-                $window.blinkOn = false;
-            }
-            else {
-                $window.title = "Normal Title";
-                $window.blinkOn = true;
-            }
-        }
 
-        $window.onfocus = function () { // or whatever the event handler is...
-            if (blinkInterval) clearInterval(blinkInterval);
-            blinkInterval = false;
+    };
+
+    $scope.blink = function () {
+        if ($window.blinkOn) {
+            $window.title = "New Message!";
+            $window.blinkOn = false;
+        }
+        else {
+            $window.title = "Normal Title";
+            $window.blinkOn = true;
         }
     };
+
+
+
+    $window.onfocus = function () { // or whatever the event handler is...
+        if (blinkInterval) clearInterval(blinkInterval);
+        blinkInterval = false;
+    }
 
 /*
     $scope.newExcitingAlerts = function () {
