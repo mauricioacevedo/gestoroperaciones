@@ -134,6 +134,41 @@ app.factory('socket', function ($rootScope) {
     };
 });
 
+app.factory('flashService', function () {
+
+    var flashService = {};
+    var original = document.title;
+    var timeout;
+
+    var _cancelFlashWindow = function (newMsg, howManyTimes) {
+        clearTimeout(timeout);
+        document.title = original;
+    };
+
+    var _flashWindow = function (newMsg, howManyTimes) {
+        function step() {
+            document.title = (document.title == original) ? newMsg : original;
+
+            if (--howManyTimes > 0) {
+                timeout = setTimeout(step, 1000);
+            }
+        }
+
+        howManyTimes = parseInt(howManyTimes);
+
+        if (isNaN(howManyTimes)) {
+            howManyTimes = 5;
+        }
+
+        _cancelFlashWindow(timeout);
+        step();
+    };
+
+    flashService.flashWindow = _flashWindow;
+    flashService.cancelFlashWindow = _cancelFlashWindow;
+
+    return flashService;
+});
 
 app.factory("services", ['$http', '$timeout', function ($http) {
 	var serviceBase = 'services/';
@@ -15608,7 +15643,7 @@ app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $locat
 
 //Controlador de prueba CHAT
 
-app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $sce, $firebase, $firebaseObject, $firebaseArray, $window, $interval, notify, services) {
+app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $sce, $firebase, $firebaseObject, $firebaseArray, $window, $interval, notify, services, flashService) {
 
 
 
@@ -15765,6 +15800,7 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
         if($scope.newMessage!==undefined)
         {
             $scope.play();
+            flashService.flashWindow("Nuevo Mensaje!", 10);
         }
 
 	};
