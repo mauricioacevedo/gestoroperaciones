@@ -50,12 +50,16 @@
 				</div>
             </div>    
 
+
+                                
+ </div><!--Row 1 Novedades -->
+</div><!--Container ppal -->       
 <div class="col-md-12">
 			<div class = "panel panel-default">
 				<div class = "panel-heading nav navbar-default">
 
 					<ul class="nav navbar-nav navbar-left">
-						<b>Exportes</b>
+						<b>activacion</b>
 						<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
 
 					</ul>
@@ -111,41 +115,6 @@
 
 			</div>
 		</div>
-                                     
- <div class="row">
-     <div class="col-md-12">
-      <div class="container">
-    <h2 class="page-header"><i class="fa fa-file-photo-o" aria-hidden="true"></i>Cargar<small> Archivo</small></h2>
-              <div id="dvData">
-                   <div ng-show="error" class="alert alert-danger "><!--Muestra error cuando no hay pedidos -->
-                      <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{error}}
-                  </div><!--Muestra error cuando no hay pedidos -->
-                            <table class="table small table-striped table-hover table-bordered table-condensed">
-                            <thead>
-                            <th>Archivo</th>
-                            <th>Tamaño</th>
-                            <th>Fecha Actualización</th>
-                            <th>Acción</th>
-                            </thead>
-                            <tbody>
-                              <tr ng-repeat="data in listadodocu1" >
-                                    <td>{{data.nombre}}</td>
-                                    <td>{{data.size}}</td>
-                                    <td>{{data.fecha}}</td>
-                                    <td><a href="../uploads/"{{data.nombre}}" download> </a>
-                                    <button class="btn btn-danger btn-sm" value="eliminar" ng-show="logedUser.CARGO_ID<='4'" ng-click="eliminarfi(data.nombre)" popover data-trigger="hover" data-placement="top" data-html="true" data-selector="" data-content="Eliminar Archivo"><span class="glyphicon glyphicon-trash"></span></button>
-                                  </td>
-                                </tr>
-                            </tbody>
-                            </table>
-                    </div>
-                </div>
-            </div>
-
-  </div> 
- </div><!--Row 1 Novedades -->
-</div><!--Container ppal -->       
-
 
 <br>
 
