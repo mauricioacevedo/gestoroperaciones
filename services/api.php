@@ -11733,6 +11733,7 @@ private function cargar_datos_activacion(){
         $TRANSACCION='';
         $ASESOR='';
         $TIPIFICACION='';
+        $SOURCE='';
         $today = date("Y-m-d");
 
 
@@ -11888,6 +11889,7 @@ private function cargar_datos_activacion(){
             $TRANSACCION="";
             $ASESOR="";
             $TIPIFICACION="";
+            $SOURCE="";
             $NOMBRE_ARCHIVO="";
             $TAMANO="";
             $VISTA="";
