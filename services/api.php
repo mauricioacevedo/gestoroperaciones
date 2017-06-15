@@ -11883,7 +11883,7 @@ private function cargar_datos_activacion(){
             $table .= "</tr>";
         }
 
-        for($v=$start_v; $v<=$end_v; $v++){
+        /*for($v=$start_v; $v<=$end_v; $v++){
             //empieza lectura horizontal
 
             if ($v==1) continue;
@@ -11955,7 +11955,7 @@ private function cargar_datos_activacion(){
 
 
             $table .= "</tr>";
-        }
+        }*/
 
 
         $this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
