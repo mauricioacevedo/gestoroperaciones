@@ -11850,8 +11850,12 @@ private function cargar_datos_activacion(){
                     
 
                 }*/
-
-            }
+                 if($h=="E"){
+                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
+                    $FECHA_EXCEPCION = gmdate("Y-m-d 00:00:00",$timestamp);//fecha formateada+
+                    $table .= "<td>";
+                }
+            }       
 
             $guardar=rtrim($guardar,',');
 
@@ -11867,7 +11871,9 @@ private function cargar_datos_activacion(){
                 //echo  $sqldatos;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
 
-
+                   $sqldatos1="insert into gestor_historico_activacion (SOURCE) values ('MANUAL')";
+                //echo  $sqldatos;
+                $r = $this->mysqli->query($sqldatos1) or die($this->mysqli->error.__LINE__);
 
             }
 
