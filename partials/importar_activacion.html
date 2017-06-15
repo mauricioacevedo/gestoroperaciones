@@ -15,23 +15,33 @@
 					<div class="col-lg-12 col-xs-10">
 						<ul class="nav navbar-nav navbar-left">
                               <li>
-								<i class="fa fa-globe" aria-hidden="true"> </i>&nbsp;
 
-								 <select class= "form-control" class="ARCHIVO  A CARGAR">
-                                    <option value="ACTIVACION">ACTIVACION</option>
-                                     <option value="ACTIVACION_FENIX">ACTIVACION_FENIX</option>
+								  <select class= "form-control" class="ARCHIVO  A CARGAR">
+                                <option value="ACTIVACION">ACTIVACION</option>
+                                <option value="ACTIVACION_FENIX">ACTIVACION_FENIX</option>
 
 
 
                                 </select>
 
-							</li>
-   
-                            <li>&nbsp;</li>
-                         
-                            <li>&nbsp;</li>                      
-                           
-							<li> &nbsp; </li>
+
+                           </div>
+                        <div Class="col-md-12 ">
+                       <div class="col-lg-8 col-xs-8 form-inline">
+                      <div class="fileUpload btn btn-primary">
+                          <span class="glyphicon glyphicon-upload"></span> Seleccionar Archivo
+                          <input type="file" class="upload" file-model = "myFile" />
+                      </div>
+                             <button class="btn btn-success btn-md" value="cargar" id="cargar" ng-click="uploadFile();"><span class="glyphicon glyphicon-cloud-upload"></span> Cargar</button>
+                             <div class="loading-spiner-holder" data-loading ><div class="loading-spiner"><img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="images/loader.gif" /></div></div>
+
+                        <div ng-show="error" class="alert alert-danger">
+                      {{error}}
+                    </div>
+
+                </div>
+
+				
 							
 						</ul>
                     
