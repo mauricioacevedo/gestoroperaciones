@@ -16868,9 +16868,9 @@ app.config(['$routeProvider',
 			controller: 'cargar_datosCtrl'
 		})
 
-		.when('/codigo_resultado/', {
-			title: 'codigo_resultado',
-			templateUrl: 'partials/codigo_resultado.html',
+		.when('/cargar_activacion/', {
+			title: 'importar_activacion',
+			templateUrl: 'partials/importar_activacion.html',
 			controller: 'cargar_datos_activacionCtrl'
 		})
 		.when('/cupos-agendamiento/', {
