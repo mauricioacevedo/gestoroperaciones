@@ -75,68 +75,22 @@
 				</div>
                  <div class="panel-body">
                             <table class="table small table-bordered table-condensed">
-                                <tr>
-                                    <th>Exporte</th>
-                                    <th>Accion</th>
-                                    <th>Totales</th>
-
-
+                         <thead>
+                            <th>Archivo</th>
+                            <th>Tamaño</th>
+                            <th>Fecha Actualización</th>
+                            <th>Acción</th>
+                            </thead>
+                            <tbody>
+                              <tr ng-repeat="data in listadodocu1" >
+                                    <td>{{data.nombre}}</td>
+                                    <td>{{data.size}}</td>
+                                    <td>{{data.fecha}}</td>
+                                    <td><a href="../uploads/"{{data.nombre}}" download> </a>
+                                    <button class="btn btn-danger btn-sm" value="eliminar" ng-show="logedUser.CARGO_ID<='4'" ng-click="eliminarfi(data.nombre)" popover data-trigger="hover" data-placement="top" data-html="true" data-selector="" data-content="Eliminar Archivo"><span class="glyphicon glyphicon-trash"></span></button>
+                                  </td>
                                 </tr>
-                                <tr>
-                                    <td>Pendientes Activador Suspecore Siebel</td>
-                                    <td>
-								<button class="btn btn-success btn-xs" ng-click="csvActivacionSiebel();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
-							</td>
-                                     <td>
-								 <span class="label label-success">{{data.totalItems2}}</span>
-
-
-							</td>
-                                </tr>
-                                  <tr>
-                                    <td>Activacion Pendientes Activador Dom</td>
-                                    <td>
-								<button class="btn btn-success btn-xs" ng-click="csvActivacionSiebeldom();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
-							</td>
-                                     <td>
-								 <span class="label label-success">{{data.totalItems5}}</span>
-
-
-							</td>
-                                </tr>
-                              
-
-                                  <tr>
-                                    <td>Seguimiento Activacion Fenix</td>
-                                   <td>
-								<button class="btn btn-success btn-xs" ng-click="csvListadoActivacion();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
-							</td>
-                                       <td>
-								 <span class="label label-success">{{data.totalItems}}</span>
-
-							</td>
-                                </tr>
-
-                                <tr>
-                                    <td> Fenix</td>
-                                   <td>
-								<button class="btn btn-success btn-xs" ng-click="csvActivacion();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
-							</td>
-                                       <td>
-								 <span class="label label-success">{{Pendis|sumarNum:'CANTIDAD'}}</span>
-
-							</td>
-                                </tr>
-								 <tr>
-                                    <td> Fenix colas</td>
-                                   <td>
-								<button class="btn btn-success btn-xs" ng-click="csvActivacioncolas();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
-							</td>
-                                       <td>
-								 <span class="label label-success">{{data.totalItems7}}</span>
-
-							</td>
-                                </tr>
+                            </tbody>
                             </table>
                         </div>
 
