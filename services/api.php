@@ -11860,7 +11860,7 @@ private function cargar_datos_activacion(){
                 $r = $this->mysqli->query($sqlactivacion) or die($this->mysqli->error.__LINE__);
 */
                 $sqldatos="insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO) values ($guardar)";
-                echo  $sqldatos;
+                //echo  $sqldatos;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
 
 
