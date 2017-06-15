@@ -134,41 +134,6 @@ app.factory('socket', function ($rootScope) {
     };
 });
 
-app.factory('flashService', function ($route) {
-
-    var flashService = {};
-    var original = $route.current.title;
-    var timeout;
-
-    var _cancelFlashWindow = function (newMsg, howManyTimes) {
-        clearTimeout(timeout);
-        document.title = original;
-    };
-
-    var _flashWindow = function (newMsg, howManyTimes) {
-        function step() {
-            document.title = (document.title == original) ? newMsg : original;
-
-            if (--howManyTimes > 0) {
-                timeout = setTimeout(step, 1000);
-            }
-        }
-
-        howManyTimes = parseInt(howManyTimes);
-
-        if (isNaN(howManyTimes)) {
-            howManyTimes = 5;
-        }
-
-        _cancelFlashWindow(timeout);
-        step();
-    };
-
-    flashService.flashWindow = _flashWindow;
-    flashService.cancelFlashWindow = _cancelFlashWindow;
-
-    return flashService;
-});
 
 app.factory("services", ['$http', '$timeout', function ($http) {
 	var serviceBase = 'services/';
@@ -1471,28 +1436,16 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     /**
     * Controlador para Enviar notificaciones a el mundo.
     * */
-    $scope.playing = false;
-    $scope.audio = document.createElement('audio');
-    $scope.audio.src = './sounds/chatio.mp3';
-    $scope.play = function() {
-        $scope.audio.play();
-        $scope.playing = true;
-    };
+
     socket.on("broad", function (data) {
-        $scope.play();
-        var messageTemplate = '<span>'+data+'</span>';
         notify({
-            messageTemplate: messageTemplate,
+            message: data,
             classes: 'btn-warning',
             duration: 15000,
             position: 'right'
+
         });
-
     });
-
-    $scope.clickedLink = function(){
-        console.log("No quiero");
-    };
 
 
 
@@ -7540,6 +7493,84 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 
 });
 //----------------------------------fin subir archivo--------------------
+
+
+//-------------------------------cargar datos subir archivo activacion----------------------
+app.controller('cargar_datos_activacionCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services, fileUpload) {
+
+	var userID = $cookieStore.get('logedUser').login;
+	$rootScope.logedUser = $cookieStore.get('logedUser');
+	document.getElementById('logout').className = "btn btn-md btn-danger";
+	var divi = document.getElementById("logoutdiv");
+	divi.style.visibility = "visible";
+	divi.style.position = "relative";
+	$rootScope.iconcepto = "TODO";
+	$rootScope.actualView = "usuarios";
+
+	//console.log ($rootScope.logedUser)
+	$scope.usert = {};
+	$scope.usert.EQUIPO_ID = "MANUAL";
+	$scope.usert.ID = "";
+
+
+	services.listar1().then(function (data) {
+		$scope.listadodocu1 = data.data[0];
+		console.log($scope.listadodocu1);
+		return data.data;
+	});
+	// FILTERS
+	$scope.uploadFile = function () {
+		$scope.user = $rootScope.logedUser.login;
+
+		var file = $scope.myFile;
+		console.log('file is');
+		console.dir(file);
+
+
+		var uploadUrl = 'services/cargar_datos';
+		// console.log ($scope.user);
+		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
+
+	};
+
+
+	$scope.eliminarfi = function (file) {
+		//console.log(data.data);
+		var result = confirm("Esta seguro que desea eliminar el archivo " + file + "?");
+		if (result) {
+			//Logic to delete the item
+			services.eliminarfile1(file).then(function (data) {
+				if (data.data == 'OK') {
+					//document.getElementById("warning").innerHTML = "Archivo " + file + " eliminado correctamente.";
+					$scope.error = "Archivo " + file + " eliminado correctamente.";
+				}
+				services.listar1().then(function (data) {
+					$scope.listadodocu1 = data.data[0];
+					//console.log($scope.listadodocu);
+					return data.data;
+				});
+			});
+		}
+	};
+
+
+	$scope.doubleDigit = function (num) {
+
+		if (num < 0) {
+			num = 0;
+		}
+
+		if (num <= 9) {
+			return "0" + num;
+		}
+		return num;
+	};
+
+
+
+
+});
+//----------------------------------fin subir archivo activacion--------------------
 
 
 app.controller('Pedidos_MicrozonasCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
@@ -15655,7 +15686,7 @@ app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $locat
 
 //Controlador de prueba CHAT
 
-app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $sce, $firebase, $firebaseObject, $firebaseArray, $window, $interval, notify, services, flashService) {
+app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $sce, $firebase, $firebaseObject, $firebaseArray, notify, services) {
 
 
 
@@ -15707,29 +15738,7 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
     };
 
 
-/*
-    $scope.newExcitingAlerts = function () {
-        var oldTitle = $route.current.title;
-        var msg = "Nuevo Mensaje!";
-        var timeoutId;
-        var blink = function() { $route.current.title = $route.current.title == msg ? ' ' : msg; };
-        var clear = function() {
-            clearInterval(timeoutId);
-            $route.current.title = oldTitle;
-            window.onmousemove = null;
-            timeoutId = null;
-        };
-        return function () {
-            if (!timeoutId) {
-                timeoutId = setInterval(blink, 1000);
-                window.onmousemove = clear;
-            }
-        };
-
-	};
-*/
-
-    // Chat Firebase ---------------------------------------------------
+	// Chat Firebase ---------------------------------------------------
 
 	//var userRef = listRef.push();
 	//var presenceRef = firebase.database().ref(".info/connected");
@@ -15739,6 +15748,9 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
 	$scope.listado = function () {
 
+
+
+
 		amOnline.on('value', function (snapshot) {
 			if (snapshot.val()) {
 
@@ -15746,6 +15758,7 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 				userRef.onDisconnect().remove();
 			}
 		});
+
 
 		listRef.on('value', function (snap) {
 
@@ -15770,6 +15783,7 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
 			//$scope.currentUsers=lstUsers.join('<br>');
 			$scope.objCurrentUsers = log;
+
 			//console.log($scope.currentUsers);
 			//console.log("# of online users = " + snap.numChildren());
 
@@ -15810,8 +15824,7 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
         if($scope.newMessage!==undefined)
         {
-           // $scope.play();
-           // flashService.flashWindow("Nuevo Mensaje!", 10);
+            $scope.play();
         }
 
 	};
@@ -15856,8 +15869,7 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
 		} */
 
-	};
-
+	}
 
 });
 
@@ -16854,6 +16866,12 @@ app.config(['$routeProvider',
 			title: 'codigo_resultado',
 			templateUrl: 'partials/codigo_resultado.html',
 			controller: 'cargar_datosCtrl'
+		})
+
+		.when('/codigo_resultado/', {
+			title: 'codigo_resultado',
+			templateUrl: 'partials/codigo_resultado.html',
+			controller: 'cargar_datos_activacionCtrl'
 		})
 		.when('/cupos-agendamiento/', {
 			title: 'Ocupacion',
