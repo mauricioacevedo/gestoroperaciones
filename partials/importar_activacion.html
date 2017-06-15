@@ -42,51 +42,121 @@
                 </div>
                     
 					</div>
-
-				</div>
-            </div>    
-        <div class="panel-body"><!--contenido -->
-            <div class="row">
-                <div Class="col-md-4 ">
-                  <select class= "form-control" class="ARCHIVO  A CARGAR">
-                                <option value="ACTIVACION">ACTIVACION</option>
-                                <option value="ACTIVACION_FENIX">ACTIVACION_FENIX</option>
-
-
-
-                                </select>
-
-
-                           </div>
-                        <div Class="col-md-12 ">
-                       <div class="col-lg-8 col-xs-8 form-inline">
-                      <div class="fileUpload btn btn-primary">
-                          <span class="glyphicon glyphicon-upload"></span> Seleccionar Archivo
-                          <input type="file" class="upload" file-model = "myFile" />
-                      </div>
-                             <button class="btn btn-success btn-md" value="cargar" id="cargar" ng-click="uploadFile();"><span class="glyphicon glyphicon-cloud-upload"></span> Cargar</button>
-                             <div class="loading-spiner-holder" data-loading ><div class="loading-spiner"><img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="images/loader.gif" /></div></div>
-
-                        <div ng-show="error" class="alert alert-danger">
-                      {{error}}
-                    </div>
-
-                </div>
-
-          <div class="row">
-                                <div class="col-sm-6" ><!--Acordeon con Tablas -->
-                                    <accordion close-others="oneAtATime"><!--Acordeones -->
-                                        <accordion-group><!--Fecha Estado -->
-                                            <accordion-heading>
-                                                Bodega de Datos: </i> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                                            </accordion-heading>
-                                           <table class="table small table-striped table-hover table-bordered table-condensed">
-                        
-                           <thead>
+                     <thead>
                             <a href="./plantillas/activacion.xlsx">plantilla activacion historicos</a>
 
                          </thead>
-                    </table>
+
+				</div>
+            </div>    
+
+<div class="col-md-12">
+			<div class = "panel panel-default">
+				<div class = "panel-heading nav navbar-default">
+
+					<ul class="nav navbar-nav navbar-left">
+						<b>Exportes</b>
+						<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<div class="col-md-1 col-xs-1 ">
+						            <div data-ng-if="loading">
+										<img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="img/loader.gif" />
+						            </div>
+						    </div>
+						</li>
+						<li>
+
+						</li>
+					</ul>
+
+				</div>
+                 <div class="panel-body">
+                            <table class="table small table-bordered table-condensed">
+                                <tr>
+                                    <th>Exporte</th>
+                                    <th>Accion</th>
+                                    <th>Totales</th>
+
+
+                                </tr>
+                                <tr>
+                                    <td>Pendientes Activador Suspecore Siebel</td>
+                                    <td>
+								<button class="btn btn-success btn-xs" ng-click="csvActivacionSiebel();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
+							</td>
+                                     <td>
+								 <span class="label label-success">{{data.totalItems2}}</span>
+
+
+							</td>
+                                </tr>
+                                  <tr>
+                                    <td>Activacion Pendientes Activador Dom</td>
+                                    <td>
+								<button class="btn btn-success btn-xs" ng-click="csvActivacionSiebeldom();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
+							</td>
+                                     <td>
+								 <span class="label label-success">{{data.totalItems5}}</span>
+
+
+							</td>
+                                </tr>
+                              
+
+                                  <tr>
+                                    <td>Seguimiento Activacion Fenix</td>
+                                   <td>
+								<button class="btn btn-success btn-xs" ng-click="csvListadoActivacion();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
+							</td>
+                                       <td>
+								 <span class="label label-success">{{data.totalItems}}</span>
+
+							</td>
+                                </tr>
+
+                                <tr>
+                                    <td> Fenix</td>
+                                   <td>
+								<button class="btn btn-success btn-xs" ng-click="csvActivacion();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
+							</td>
+                                       <td>
+								 <span class="label label-success">{{Pendis|sumarNum:'CANTIDAD'}}</span>
+
+							</td>
+                                </tr>
+								 <tr>
+                                    <td> Fenix colas</td>
+                                   <td>
+								<button class="btn btn-success btn-xs" ng-click="csvActivacioncolas();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
+							</td>
+                                       <td>
+								 <span class="label label-success">{{data.totalItems7}}</span>
+
+							</td>
+                                </tr>
+                            </table>
+                        </div>
+
+				<div class="panel-footer clearfix" >
+
+					<div class="col-md-8">
+
+						<ul class="nav navbar-nav navbar-left">
+
+
+						</ul>
+
+					</div>
+
+
+				</div>
+
+
+			</div>
+		</div>
                                      
  <div class="row">
      <div class="col-md-12">
