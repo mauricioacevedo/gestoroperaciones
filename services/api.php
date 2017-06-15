@@ -11723,14 +11723,12 @@ private function cargar_datos_activacion(){
         $TAMANO =$_FILES["fileUpload"]["size"];
         //$pedido = json_decode(file_get_contents("php://input"),true);
         $usas = $this->_request['user'];
-        //echo var_dump($_FILES);
-        //echo var_dump($_FILES );
-        //$this->response(json_encode(""),200);
-        $PEDIDO_ID='';
-        $cliente_id='';
-        $ACCESO='';
+       
+        $ORDER_SEQ_ID='';
+        $PEDIDO='';
+        $SOURCE='';
         $ESTADO='';
-        $FECHA_INGRESO='';
+        $FECHA_EXCEPCION='';
         $today = date("Y-m-d");
 
 
@@ -11820,7 +11818,7 @@ private function cargar_datos_activacion(){
                 if($cellValue !== null){
                     $table .= $cellValue;
                 }
-                if($h=="L"){
+                /*if($h=="L"){
                     $PEDIDO_ID=$cellValue;
                 }
                 if($h=="J"){
@@ -11847,7 +11845,7 @@ private function cargar_datos_activacion(){
                     $OBSERVACION_GESTOR=strtoupper($cellValue);
                     
 
-                }
+                }*/
 
             }
 
@@ -11855,13 +11853,13 @@ private function cargar_datos_activacion(){
 
 
 
-            if ($tname1  == "bodega_datos.xlsx"){
+            if ($tname1  == "activacion.xlsx"){
 
 
-                $sqlbodega_datos="insert into portalbd.gestor_bodega_bodega_datos (CAMPANAID,LANZAMIENTO,IDLLAMADA1,TELEFONO,MENSAJE,ACCION,FECHA,IDLLAMADA2,ESTADO,CEDULA,DETALLE,PEDIDO,CODIGO_RESULTADO,FECHA_AGENDA,JORNADA_AGENDA,CAUSA,MUNICIPIO,ZONA,TIPO_TRANSACCION,NOMBRE_CLIENTE,DEPARTAMENTO,EMAIL,FECHA_ENVIO,HORA_ENVIO,INTERFAZ,ACCESO) values ($guardar) ";
-                $r = $this->mysqli->query($sqlbodega_datos) or die($this->mysqli->error.__LINE__);
-
-                $sqldatos="insert into portalbd.gestor_historicos_reagendamiento (PEDIDO_ID,CLIENTE_ID,ACCESO,FUENTE,FECHA_FIN,ASESOR,NOVEDAD,OBSERVACION_GESTOR) values ('$PEDIDO_ID','$cliente_id','$ACCESO','$FUENTE','$FECHA_FIN','$usas','$NOVEDAD','$OBSERVACION_GESTOR')";
+               /* $sqlactivacion="insert into portalbd.gestor_bodega_bodega_datos (CAMPANAID,LANZAMIENTO,IDLLAMADA1,TELEFONO,MENSAJE,ACCION,FECHA,IDLLAMADA2,ESTADO,CEDULA,DETALLE,PEDIDO,CODIGO_RESULTADO,FECHA_AGENDA,JORNADA_AGENDA,CAUSA,MUNICIPIO,ZONA,TIPO_TRANSACCION,NOMBRE_CLIENTE,DEPARTAMENTO,EMAIL,FECHA_ENVIO,HORA_ENVIO,INTERFAZ,ACCESO) values ($guardar) ";
+                $r = $this->mysqli->query($sqlactivacion) or die($this->mysqli->error.__LINE__);
+*/
+                $sqldatos="insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO) values ($guardar)";
                 //echo  $sqldatos;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
 
@@ -11871,12 +11869,11 @@ private function cargar_datos_activacion(){
 
 
             $guardar="";
-            $PEDIDO_ID="";
-            $cliente_id="";
-            $ACCESO="";
-            $FUENTE="";
-            $FECHA_FIN="";
-            $NOVEDAD="";
+            $ORDER_SEQ_ID='';
+            $PEDIDO='';
+            $SOURCE='';
+            $ESTADO='';
+            $FECHA_EXCEPCION='';
             $NOMBRE_ARCHIVO="";
             $TAMANO="";
             $VISTA="";
