@@ -11726,18 +11726,22 @@ private function cargar_datos_activacion(){
        
         $ORDER_SEQ_ID='';
         $PEDIDO='';
-        $SOURCE='';
+        $REFERENCE_NUMBER='';
         $ESTADO='';
         $FECHA_EXCEPCION='';
+        $PRODUCTO='';
+        $TRANSACCION='';
+        $ASESOR='';
+        $TIPIFICACION='';
         $today = date("Y-m-d");
 
 
 
-        $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','BODEGA DATOS')";
+        $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','IMPORTAR ACTIVACION')";
         //echo  $user;
         $r = $this->mysqli->query($sqlupload) or die($this->mysqli->error.__LINE__);
 
-        $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$usas','','','','','BODEGA DATOS')";
+        $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$usas','','','','','IMPORTAR ACTIVACION')";
         $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
 
 
@@ -11859,7 +11863,7 @@ private function cargar_datos_activacion(){
                /* $sqlactivacion="insert into portalbd.gestor_bodega_bodega_datos (CAMPANAID,LANZAMIENTO,IDLLAMADA1,TELEFONO,MENSAJE,ACCION,FECHA,IDLLAMADA2,ESTADO,CEDULA,DETALLE,PEDIDO,CODIGO_RESULTADO,FECHA_AGENDA,JORNADA_AGENDA,CAUSA,MUNICIPIO,ZONA,TIPO_TRANSACCION,NOMBRE_CLIENTE,DEPARTAMENTO,EMAIL,FECHA_ENVIO,HORA_ENVIO,INTERFAZ,ACCESO) values ($guardar) ";
                 $r = $this->mysqli->query($sqlactivacion) or die($this->mysqli->error.__LINE__);
 */
-                $sqldatos="insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO) values ($guardar)";
+                $sqldatos="insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_EXCEPCION,PRODUCTO,TRANSACCION,ASESOR,TIPIFICACION) values ($guardar)";
                 //echo  $sqldatos;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
 
@@ -11869,11 +11873,15 @@ private function cargar_datos_activacion(){
 
 
             $guardar="";
-            $ORDER_SEQ_ID='';
-            $PEDIDO='';
-            $SOURCE='';
-            $ESTADO='';
-            $FECHA_EXCEPCION='';
+           $ORDER_SEQ_ID='';
+            $PEDIDO="";
+            $REFERENCE_NUMBER="";
+            $ESTADO="";
+            $FECHA_EXCEPCION="";
+            $PRODUCTO="";
+            $TRANSACCION="";
+            $ASESOR="";
+            $TIPIFICACION="";
             $NOMBRE_ARCHIVO="";
             $TAMANO="";
             $VISTA="";
