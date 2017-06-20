@@ -6934,11 +6934,11 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 " where status='PENDI_ACTI' ";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter4=0;
+        $counter7=0;
         if($rr->num_rows > 0){
             $result = array();
             if($row = $rr->fetch_assoc()){
-                $counter4 = $row['counter'];
+                $counter7 = $row['counter'];
             }
         }
         $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION,TRANSACCION ".
