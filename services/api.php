@@ -6922,14 +6922,25 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 		    " and tipo_trabajo in ('RETIR') ";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter6=0;
+        $counter7=0;
         if($rr->num_rows > 0){
             $result = array();
             if($row = $rr->fetch_assoc()){
-                $counter6 = $row['counter'];
+                $counter7 = $row['counter'];
             }
         }    
+         $query=" select count(*) ".
+                " FROM pendientes_amarillas b ".
+                " where status='PENDI_ACTI' ";
 
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter4=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter4 = $row['counter'];
+            }
+        }
         $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION,TRANSACCION ".
             " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN ".
             " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
@@ -6952,7 +6963,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 // var_dump($result);
             }
 
-            $this->response($this->json(array($result,$counter,$counter1,$counter2,$counter3,$counter4,$counter5,$counter6)), 200); // send user details
+            $this->response($this->json(array($result,$counter,$counter1,$counter2,$counter3,$counter4,$counter5,$counter6,$counter7)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
