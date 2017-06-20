@@ -807,6 +807,39 @@ private function csvActivacioncolas(){
 
     }
 
+private function csvAmarillas(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $login = $this->_request['login'];
+
+        $today = date("Y-m-d h:i:s");
+        $filename="Fenix_Activacion-$login-$today.csv";
+        $query=" select b.ORDER_SEQ_ID,b.ESTADO,b.PEDIDO,b.TRANSACCION,b.PRODUCTO ".
+                " ,b.FECHA_EXCEPCION,b.TIPO_COMUNICACION,b.DEPARTAMENTO,b.STATUS ".
+                " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
+                " where a.PEDIDO=b.PEDIDO order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
+                " FROM pendientes_amarillas b ";
+
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            $fp = fopen("../tmp/$filename", 'w');
+            fputcsv($fp, array('ORDER_SEQ_ID','ESTADO','PEDIDO','TRANSACCION','PRODUCTO','FECHA_EXCEPCION','TIPO_COMUNICACION','DEPARTAMENTO','STATUS','HISTORICO_TIPIFICACION'));
+            while($row = $r->fetch_assoc()){
+                $result[] = $row;
+                fputcsv($fp, $row);
+            }
+            fclose($fp);
+
+            $this->response($this->json(array($filename,$login)), 200); // send user details
+        }
+
+        $this->response('',204);        // If no records "No Content" status
+
+    }
+
 
 
 
