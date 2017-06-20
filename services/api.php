@@ -14910,7 +14910,7 @@ private function cargar_datos_activacion(){
 */
 
         $query1=" SELECT p.ID ".
-            " , p.PEDIDO,group_concat(distinct.ORDER_SEQ_ID),p.ESTADO,p.TAREA_EXCEPCION,p.IDSERVICIORAIZ,p.TRANSACCION ".
+            " , p.PEDIDO,group_concat(distinct p.ORDER_SEQ_ID),p.ESTADO,p.TAREA_EXCEPCION,p.IDSERVICIORAIZ,p.TRANSACCION ".
             " ,p.ACTIVIDAD,p.FUENTE,p.GRUPO,p.MOTIVOEXCEPCIONACT,p.MOTIVO_ERROR,p.DESCRIPCIONEXCEPCIONACT ".
             " ,p.VALOR_ERROR, p.STATUS ".
             " , group_concat(distinct p.PRODUCTO) as  PRODUCTO ".
@@ -14924,7 +14924,7 @@ private function cargar_datos_activacion(){
             " group by p.pedido ".
             " UNION ".
             " SELECT p.ID ".
-            " , p.PEDIDO,group_concat(distinct.ORDER_SEQ_ID),p.ESTADO,p.TAREA_EXCEPCION,p.IDSERVICIORAIZ,p.TRANSACCION ".
+            " , p.PEDIDO,group_concat(distinct p.ORDER_SEQ_ID),p.ESTADO,p.TAREA_EXCEPCION,p.IDSERVICIORAIZ,p.TRANSACCION ".
             " ,p.ACTIVIDAD,p.FUENTE,p.GRUPO,p.MOTIVOEXCEPCIONACT,p.MOTIVO_ERROR,p.DESCRIPCIONEXCEPCIONACT ".
             " ,p.VALOR_ERROR, p.STATUS ".
             " , group_concat(distinct p.PRODUCTO) as  PRODUCTO ".
