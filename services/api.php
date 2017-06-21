@@ -789,7 +789,7 @@ private function csvActivacioncolas(){
             "			WHERE  STATUS ='PENDI_ACTIVACION'  ".
             "			and cola_id in ('CBAPON','CTVPONST','TRGPON')  ".
             "		and TIPO_TRABAJO IN ('RETIR') ".
-            " UNION all ".
+            " UNION  ".
             " SELECT REQUERIMIENTO_ID  , PEDIDO_ID  , SUBPEDIDO_ID  , SOLICITUD_ID ".
             "	 , TIPO_ELEMENTO_ID  , TIPO_TRABAJO  , FECHA_ESTADO  , ETAPA_ID  ".
             " 		 , ESTADO_ID  , COLA_ID  , ACTIVIDAD_ID  , NOMBRE_ACTIVIDAD  , CONCEPTO_ID  ".
@@ -797,7 +797,7 @@ private function csvActivacioncolas(){
             "		  FROM  informe_activacion_pendientesm  ".
             "			WHERE  STATUS ='PENDI_ACTIVACION' ". 
             "			and cola_id in ('GPONSR') ".
-            " UNION all ".
+            " UNION ".
             " SELECT REQUERIMIENTO_ID  , PEDIDO_ID  , SUBPEDIDO_ID  , SOLICITUD_ID ".
             "		 , TIPO_ELEMENTO_ID  , TIPO_TRABAJO  , FECHA_ESTADO  , ETAPA_ID  ".
             "		 , ESTADO_ID  , COLA_ID  , ACTIVIDAD_ID  , NOMBRE_ACTIVIDAD  , CONCEPTO_ID  ".
@@ -806,7 +806,7 @@ private function csvActivacioncolas(){
             "			WHERE  STATUS ='PENDI_ACTIVACION' ".
             "			and cola_id in ('TOIPON') ".
             "			and ACTIVIDAD_ID IN ('ANOLT','DEOLT') ".
-            " UNION  all".
+            " UNION ".
             " SELECT REQUERIMIENTO_ID  , PEDIDO_ID  , SUBPEDIDO_ID  , SOLICITUD_ID ".
             "		 , TIPO_ELEMENTO_ID  , TIPO_TRABAJO  , FECHA_ESTADO  , ETAPA_ID  ".
             "		 , ESTADO_ID  , COLA_ID  , ACTIVIDAD_ID  , NOMBRE_ACTIVIDAD  , CONCEPTO_ID  ".
