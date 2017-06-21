@@ -789,7 +789,7 @@ private function csvActivacioncolas(){
             "			WHERE  STATUS ='PENDI_ACTIVACION'  ".
             "			and cola_id in ('CBAPON','CTVPONST','TRGPON')  ".
             "		and TIPO_TRABAJO IN ('RETIR') ".
-            " UNION ".
+            " UNION all ".
             " SELECT REQUERIMIENTO_ID  , PEDIDO_ID  , SUBPEDIDO_ID  , SOLICITUD_ID ".
             "	 , TIPO_ELEMENTO_ID  , TIPO_TRABAJO  , FECHA_ESTADO  , ETAPA_ID  ".
             " 		 , ESTADO_ID  , COLA_ID  , ACTIVIDAD_ID  , NOMBRE_ACTIVIDAD  , CONCEPTO_ID  ".
@@ -797,7 +797,7 @@ private function csvActivacioncolas(){
             "		  FROM  informe_activacion_pendientesm  ".
             "			WHERE  STATUS ='PENDI_ACTIVACION' ". 
             "			and cola_id in ('GPONSR') ".
-            " UNION ".
+            " UNION all ".
             " SELECT REQUERIMIENTO_ID  , PEDIDO_ID  , SUBPEDIDO_ID  , SOLICITUD_ID ".
             "		 , TIPO_ELEMENTO_ID  , TIPO_TRABAJO  , FECHA_ESTADO  , ETAPA_ID  ".
             "		 , ESTADO_ID  , COLA_ID  , ACTIVIDAD_ID  , NOMBRE_ACTIVIDAD  , CONCEPTO_ID  ".
@@ -806,10 +806,10 @@ private function csvActivacioncolas(){
             "			WHERE  STATUS ='PENDI_ACTIVACION' ".
             "			and cola_id in ('TOIPON') ".
             "			and ACTIVIDAD_ID IN ('ANOLT','DEOLT') ".
-            " UNION ".
+            " UNION  all".
             " SELECT REQUERIMIENTO_ID  , PEDIDO_ID  , SUBPEDIDO_ID  , SOLICITUD_ID ".
             "		 , TIPO_ELEMENTO_ID  , TIPO_TRABAJO  , FECHA_ESTADO  , ETAPA_ID  ".
-            "		 , ESTADO_ID  , COLA_ID  , ACTIVIDAD_ID  , NOMBRE_ACTIVIDAD  , CONCEPTO_ID  "-
+            "		 , ESTADO_ID  , COLA_ID  , ACTIVIDAD_ID  , NOMBRE_ACTIVIDAD  , CONCEPTO_ID  ".
             "		 ,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_PENDIENTE ".
             "		  FROM  informe_activacion_pendientesm  ".
             "			WHERE  STATUS ='PENDI_ACTIVACION' ". 
@@ -817,7 +817,7 @@ private function csvActivacioncolas(){
             "			and CONCEPTO_ID NOT IN ('PROG') ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        echo $query;
+        
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
