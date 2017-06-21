@@ -11804,7 +11804,10 @@ private function cargar_datos_activacion(){
         $ASESOR='';
         $TIPIFICACION='';
         $SOURCE='';
+        $FECHA_INICIO='';
+        $FECHA_FIN='';
         $today = date("Y-m-d");
+        $today2 = date("Y-m-d H:i:s");
 
 
 
@@ -11942,8 +11945,8 @@ private function cargar_datos_activacion(){
                 //echo  $sqldatos;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
 
-                   $sqldatos1="insert into gestor_historico_activacion (SOURCE) values ('MANUAL')";
-                //echo  $sqldatos;
+                   $sqldatos1="insert into gestor_historico_activacion (SOURCE,FECHA_INICIO,FECHA_FIN) values ('MANUAL','$today2','$today2')";
+                echo  $sqldatos1;
                 $r = $this->mysqli->query($sqldatos1) or die($this->mysqli->error.__LINE__);
 
             }
