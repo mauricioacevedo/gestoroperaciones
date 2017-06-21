@@ -11966,6 +11966,8 @@ private function cargar_datos_activacion(){
             $NOMBRE_ARCHIVO="";
             $TAMANO="";
             $VISTA="";
+            $FECHA_INICIO="";
+            $FECHA_FIN="";
 
 
 
