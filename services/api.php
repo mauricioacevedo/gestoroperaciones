@@ -11942,7 +11942,7 @@ private function cargar_datos_activacion(){
                 $r = $this->mysqli->query($sqlactivacion) or die($this->mysqli->error.__LINE__);
 */
                 $sqldatos="insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_EXCEPCION,PRODUCTO,TRANSACCION,ASESOR,TIPIFICACION,SOURCE,FECHA_INICIO,FECHA_FIN) values ($guardar,'MANUAL',$today2,$today2)";
-                echo  $sqldatos;
+               // echo  $sqldatos;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
 
                  //  $sqldatos1="insert into gestor_historico_activacion (SOURCE,FECHA_INICIO,FECHA_FIN) values ('MANUAL','$today2','$today2')";
