@@ -780,13 +780,40 @@ private function csvActivacioncolas(){
 
         $today = date("Y-m-d h:i:s");
         $filename="Fenix_Activacion-$login-$today.csv";
-        $query=" SELECT REQUERIMIENTO_ID  , PEDIDO_ID  , SUBPEDIDO_ID  , SOLICITUD_ID ".
-                    " , TIPO_ELEMENTO_ID  , TIPO_TRABAJO  , FECHA_ESTADO  , ETAPA_ID  ".
-                    " , ESTADO_ID  , COLA_ID  , ACTIVIDAD_ID  , NOMBRE_ACTIVIDAD  , CONCEPTO_ID  ".
-                    " ,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_PENDIENTE ".
-                    "  FROM  informe_activacion_pendientesm  WHERE  STATUS ='PENDI_ACTIVACION' ".
-                    " and cola_id in ('TRGPON','TOIPON','CTVPONST','CBAPON') ".
-                    " and tipo_trabajo in ('RETIR') ";
+        $query="SELECT REQUERIMIENTO_ID  , PEDIDO_ID  , SUBPEDIDO_ID  , SOLICITUD_ID ".
+            "		 , TIPO_ELEMENTO_ID  , TIPO_TRABAJO  , FECHA_ESTADO  , ETAPA_ID  ".
+            "		 , ESTADO_ID  , COLA_ID  , ACTIVIDAD_ID  , NOMBRE_ACTIVIDAD  , CONCEPTO_ID  ".
+            "		 ,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_PENDIENTE ".
+            "		  FROM  informe_activacion_pendientesm  ".
+            "			WHERE  STATUS ='PENDI_ACTIVACION'  ".
+            "			and cola_id in ('CBAPON','CTVPONST','TRGPON ')  ".
+            "		and TIPO_TRABAJO IN ('RETIR') ".
+            " UNION ".
+            " SELECT REQUERIMIENTO_ID  , PEDIDO_ID  , SUBPEDIDO_ID  , SOLICITUD_ID ".
+            "	 , TIPO_ELEMENTO_ID  , TIPO_TRABAJO  , FECHA_ESTADO  , ETAPA_ID  ".
+            " 		 , ESTADO_ID  , COLA_ID  , ACTIVIDAD_ID  , NOMBRE_ACTIVIDAD  , CONCEPTO_ID  ".
+            "		 ,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_PENDIENTE ".
+            "		  FROM  informe_activacion_pendientesm  ".
+            "			WHERE  STATUS ='PENDI_ACTIVACION' ". 
+            "			and cola_id in ('GPONSR ') ".
+            " UNION ".
+            " SELECT REQUERIMIENTO_ID  , PEDIDO_ID  , SUBPEDIDO_ID  , SOLICITUD_ID ".
+            "		 , TIPO_ELEMENTO_ID  , TIPO_TRABAJO  , FECHA_ESTADO  , ETAPA_ID  ".
+            "		 , ESTADO_ID  , COLA_ID  , ACTIVIDAD_ID  , NOMBRE_ACTIVIDAD  , CONCEPTO_ID  ".
+            "		 ,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_PENDIENTE ".
+            "		  FROM  informe_activacion_pendientesm  ".
+            "			WHERE  STATUS ='PENDI_ACTIVACION' ".
+            "			and cola_id in ('TOIPON ') ".
+            "			and ACTIVIDAD_ID IN ('ANOLT','DEOLT') ".
+            " UNION ".
+            " SELECT REQUERIMIENTO_ID  , PEDIDO_ID  , SUBPEDIDO_ID  , SOLICITUD_ID ".
+            "		 , TIPO_ELEMENTO_ID  , TIPO_TRABAJO  , FECHA_ESTADO  , ETAPA_ID  ".
+            "		 , ESTADO_ID  , COLA_ID  , ACTIVIDAD_ID  , NOMBRE_ACTIVIDAD  , CONCEPTO_ID  "-
+            "		 ,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_PENDIENTE ".
+            "		  FROM  informe_activacion_pendientesm  ".
+            "			WHERE  STATUS ='PENDI_ACTIVACION' ". 
+            "			and cola_id in ('VRMAT') ". 
+            "			and CONCEPTO_ID NOT IN ('PROG') ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
