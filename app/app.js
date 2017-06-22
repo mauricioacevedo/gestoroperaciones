@@ -1478,6 +1478,10 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
 
         });
     });
+
+    socket.on('broadcast',function(data){
+        $scope.nodeClients = data.description;
+    });
     
     $scope.abrirMsgNode = function () {
         $window.open(urlNode,'Enviar Mensajes Masivos','width=600,height=600,menubar=0,toolbar=0');
