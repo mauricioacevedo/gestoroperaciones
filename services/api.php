@@ -11901,34 +11901,7 @@ private function cargar_datos_activacion(){
                     $FECHA_EXCEPCION = gmdate("Y-m-d 00:00:00",$timestamp);//fecha formateada+
                     $table .= "<td>";
                 }
-                /*if($h=="L"){
-                    $PEDIDO_ID=$cellValue;
-                }
-                if($h=="J"){
-                    $cliente_id=$cellValue;
-                }
-                if($h=="Z"){
-                    $ACCESO=$cellValue;
-                }
-                if($h=="Y"){
-                    $FUENTE=$cellValue;
-                }
-                if($h=="G"){
-                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
-                    $FECHA_FIN = gmdate("Y-m-d 00:00:00",$timestamp);//fecha formateada+
-                    $table .= "<td>";
-                }
-
-                if($h=="I"){
-                    $NOVEDAD=strtoupper($cellValue);
-                    //$NOVEDAD=strtoupper($NOVEDAD);
-
-                }
-                if($h=="E"){
-                    $OBSERVACION_GESTOR=strtoupper($cellValue);
-                    
-
-                }*/
+               
                  if($h=="E"){
                     $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
                     $FECHA_EXCEPCION = gmdate("Y-m-d 00:00:00",$timestamp);//fecha formateada+
@@ -11950,10 +11923,7 @@ private function cargar_datos_activacion(){
                // echo  $sqldatos;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
 
-                $fecha=date("Y-m-d H:i:s");
-                $sqlupdate="update gestor_historico_activacion set fecha_inicio='$fecha' , fecha_fin='$fecha'WHERE fecha_inicio is null and fecha_fin=''";
-             echo  $sqlupdate;
-                $rr = $this->mysqli->query($sqlupdate);
+               
 
             }
 
@@ -11980,80 +11950,7 @@ private function cargar_datos_activacion(){
             $table .= "</tr>";
         }
 
-        /*for($v=$start_v; $v<=$end_v; $v++){
-            //empieza lectura horizontal
-
-            if ($v==1) continue;
-            $table .= "<tr>";
-            //$filas= $start_h + 1;
-
-
-            for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
-                $cellValue = $this->get_cell($h.$v, $objPHPExcel);
-
-                $table .= "<td>";
-                $guardar .=" '$cellValue',";
-
-                if($cellValue !== null){
-                    $table .= $cellValue;
-                }
-
-            }
-
-            $guardar=rtrim($guardar,',');
-
-
-            if ($tname1 <> ""){
-
-
-
-
-                $che=explode(",",$guardar);//validacion de datos que carguen pedidos diferentes y omita los repetidos
-                $pedido=$che[0];
-
-                //echo var_dump($che);
-
-                //$this->response('okidokie',200);
-
-                $pend=" SELECT PEDIDO_ID ".
-                    " FROM portalbd.gestor_pendientes_reagendamiento ".
-                    " WHERE PEDIDO_ID=$pedido and STATUS IN ('MALO','PENDI_AGEN')";
-                //echo $pend;
-                $rst = $this->mysqli->query($pend);
-
-
-                if ($rst->num_rows > 0){
-                    continue;
-                }
-
-                $sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID,CONCEPTOS,CLIENTE_ID,NOMBRE_USUARIO,DEPARTAMENTO,SUBZONA_ID,DIRECCION_ENVIO,FUENTE,PROCESO,CELULAR_AVISAR,TELEFONO_AVISAR,IDENTIFICADOR_ID,FECHA_INGRESO,MICROZONA,OBSERVACION_FENIX,TECNOLOGIA_ID) values ($guardar) ";
-                // echo($sqlemail);
-                $r = $this->mysqli->query($sqlemail) or die($this->mysqli->error.__LINE__);
-
-                $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','PENDIENTES REAGENDAMIENTO')";
-                //echo  $sqlupload;
-                $r = $this->mysqli->query($sqlupload) or die($this->mysqli->error.__LINE__);
-
-            }
-
-
-
-            $guardar="";
-            $PEDIDO_ID="";
-            $cliente_id="";
-            $ACCESO="";
-            $FUENTE="";
-            $FECHA_FIN="";
-            $NOVEDAD="";
-            $NOMBRE_ARCHIVO="";
-            $TAMANO="";
-            $VISTA="";
-            $FECHA_INGRESO="";
-
-
-            $table .= "</tr>";
-        }*/
-
+       
 
         $this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
 
