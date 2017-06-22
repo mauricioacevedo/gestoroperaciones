@@ -11806,7 +11806,7 @@ private function cargar_datos_activacion(){
         $SOURCE='';
         $FECHA_INICIO='';
         $FECHA_FIN='';
-        $today = gmdate("Y-m-d",$timestamp);
+        $today = date("d-m-Y",strtotime($today)); ;
         
 
 
