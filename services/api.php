@@ -11951,7 +11951,7 @@ private function cargar_datos_activacion(){
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
 
                 $fecha=date("Y-m-d H:i:s");
-                $sqlupdate="update gestor_historico_activacion set fecha_inicio='$fecha' , fecha_fin='$fecha'WHERE fecha_inicio='' and fecha_fin=''";
+                $sqlupdate="update gestor_historico_activacion set fecha_inicio='$fecha' , fecha_fin='$fecha'WHERE fecha_inicio is null and fecha_fin=''";
              echo  $sqlupdate;
                 $rr = $this->mysqli->query($sqlupdate);
 
