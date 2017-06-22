@@ -300,9 +300,9 @@
                                     <div class="row">
                                         <div class="form-inline">
                                             <div class="col-lg-12 pull-right">
-                                                <div class="btn-group" role="group" ng-controller="pushNotificationsCtrl">
-                                                    <button type="button" class="btn btn-default"  ng-disabled="logedUser.CARGO_ID!=1" ng-click="abrirMsgNode()"><i class="fa fa-user-o" aria-hidden="true"></i><span class="noti red">{{nodeClients}}</span></button>
-                                                    <button type="button" class="btn btn-default"  ng-disabled="logedUser.CARGO_ID!=1" ng-click="abrirMsgNode()"><i class="fa fa-envelope-open-o" aria-hidden="true"></i> msg</button>
+                                                <div class="btn-group" role="group" ng-controller="pushNotificationsCtrl" ng-show="logedUser.CARGO_ID==1">
+                                                    <button type="button" class="btn btn-default" ng-click="abrirMsgNode()"><i class="fa fa-user-o" aria-hidden="true"></i><span class="noti red">{{nodeClients}}</span></button>
+                                                    <button type="button" class="btn btn-default" ng-click="abrirMsgNode()"><i class="fa fa-envelope-open-o" aria-hidden="true"></i> msg</button>
                                                 </div>
 
 
