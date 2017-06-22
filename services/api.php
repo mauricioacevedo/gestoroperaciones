@@ -11806,7 +11806,8 @@ private function cargar_datos_activacion(){
         $SOURCE='';
         $FECHA_INICIO='';
         $FECHA_FIN='';
-        $today = date("Y-m-d");
+        //$today = date("Y-m-d");
+        $today = $_POST['today']; 
        
 
 
