@@ -302,8 +302,9 @@
                                             <div class="col-lg-12">
                                                 <p class="text-right">
                                                     <button type="button" ng-controller="pushNotificationsCtrl"
+                                                            ng-show="logedUser.CARGO_ID==1"
                                                             class="btn form-control btn-md btn-primary navbar-btn"
-                                                            ng-click="abrirMsgNode()">Salir
+                                                            ng-click="abrirMsgNode()">mensajes
                                                     </button>
                                                     <!--button  type="button" class="btn form-control btn-md  btn-primary navbar-btn" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#myModal" onclick="">Pausa</button-->
                                                     <button id="logout" type="button"
