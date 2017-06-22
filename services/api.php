@@ -11898,8 +11898,7 @@ private function cargar_datos_activacion(){
                 }
                  if($h=="E"){
                     $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
-                    $guardar = gmdate("Y-m-d",$timestamp);//fecha formateada+
-                   //$FECHA_EXCEPCION = $guardar-> gmdate("Y-m-d 00:00:00",$timestamp);
+                    $FECHA_EXCEPCION = gmdate("Y-m-d 00:00:00",$timestamp);//fecha formateada+
                     $table .= "<td>";
                 }
                
@@ -11915,8 +11914,8 @@ private function cargar_datos_activacion(){
                /* $sqlactivacion="insert into portalbd.gestor_bodega_bodega_datos (CAMPANAID,LANZAMIENTO,IDLLAMADA1,TELEFONO,MENSAJE,ACCION,FECHA,IDLLAMADA2,ESTADO,CEDULA,DETALLE,PEDIDO,CODIGO_RESULTADO,FECHA_AGENDA,JORNADA_AGENDA,CAUSA,MUNICIPIO,ZONA,TIPO_TRANSACCION,NOMBRE_CLIENTE,DEPARTAMENTO,EMAIL,FECHA_ENVIO,HORA_ENVIO,INTERFAZ,ACCESO) values ($guardar) ";
                 $r = $this->mysqli->query($sqlactivacion) or die($this->mysqli->error.__LINE__);
 */
-                $sqldatos="insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_EXCEPCION,PRODUCTO,TRANSACCION,ASESOR,TIPIFICACION,SOURCE,FECHA_INICIO,FECHA_FIN) values ($guardar,'MANUAL','$today','$today')";
-                //echo  $sqldatos;
+                $sqldatos="insert into gestor_historico_activacion (ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO,FECHA_EXCEPCION,PRODUCTO,TRANSACCION,ASESOR,TIPIFICACION,SOURCE,FECHA_INICIO,FECHA_FIN) values ($guardar,'MANUAL',$today,$today)";
+               // echo  $sqldatos;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
 
                
