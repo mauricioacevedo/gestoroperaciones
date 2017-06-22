@@ -11902,11 +11902,6 @@ private function cargar_datos_activacion(){
                     $table .= "<td>";
                 }
                
-                 if($h=="E"){
-                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
-                    $FECHA_EXCEPCION = gmdate("Y-m-d 00:00:00",$timestamp);//fecha formateada+
-                    $table .= "<td>";
-                }
             }       
 
             $guardar=rtrim($guardar,',');
