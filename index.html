@@ -300,25 +300,22 @@
                                     <div class="row">
                                         <div class="form-inline">
                                             <div class="col-lg-12">
-                                                <p class="text-right">
-
-                                                        <div class="btn-group" role="group" ng-controller="pushNotificationsCtrl">
-                                                            <button type="button" class="btn btn-default">{{nodeClients}} <i class="fa fa-user-o" aria-hidden="true"></i></button>
-                                                            <button type="button"
-                                                                    ng-show="logedUser.CARGO_ID==1"
-                                                                    class="btn btn-md btn-primary"
-                                                                    ng-click="abrirMsgNode()"> <i class="fa fa-comments-o" aria-hidden="true"></i>
-                                                            </button>
-                                                        </div>
-
-
-                                                    <!--button  type="button" class="btn form-control btn-md  btn-primary navbar-btn" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#myModal" onclick="">Pausa</button-->
-                                                    <button id="logout" type="button"
-                                                            class="btn form-control btn-md btn-danger navbar-btn"
-                                                            ng-click="logout();">Salir
+                                                <div class="btn-group" role="group" ng-controller="pushNotificationsCtrl">
+                                                    <button type="button" class="btn btn-default">{{nodeClients}} <i class="fa fa-user-o" aria-hidden="true"></i></button>
+                                                    <button type="button"
+                                                            ng-show="logedUser.CARGO_ID==1"
+                                                            class="btn btn-md btn-primary"
+                                                            ng-click="abrirMsgNode()"> <i class="fa fa-comments-o" aria-hidden="true"></i>
                                                     </button>
+                                                </div>
 
-                                                </p>
+
+                                                <!--button  type="button" class="btn form-control btn-md  btn-primary navbar-btn" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#myModal" onclick="">Pausa</button-->
+                                                <button id="logout" type="button"
+                                                        class="btn form-control btn-md btn-danger navbar-btn"
+                                                        ng-click="logout();">Salir
+                                                </button>
+
                                             </div>
                                         </div>
                                     </div>
