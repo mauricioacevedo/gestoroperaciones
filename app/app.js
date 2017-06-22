@@ -1464,11 +1464,11 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
 //------------------------------------------------------- Controlador de logueo
 
-app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $q, $timeout, $http, socket, notify) {
+app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $q, $timeout, $http, $window, socket, notify) {
     /**
     * Controlador para Enviar notificaciones a el mundo.
     * */
-
+	var urlNode = "http://10.100.82.125:4000";
     socket.on("broad", function (data) {
     	notify({
 			message: data.usuario+': '+data.mensaje,
@@ -1478,6 +1478,11 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
 
         });
     });
+    
+    $scope.abrirMsgNode = function () {
+        $window.open(urlNode,'Enviar Mensajes Masivos','width=600,height=600,menubar=0,toolbar=0');
+    	console.log("Abrir ventana mensajes rdy");
+	};
 
 
 
