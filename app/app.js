@@ -1472,7 +1472,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     socket.on("broad", function (data) {
     	notify({
 			message: data.mensaje,
-            classes: 'btn-warning',
+            classes: data.tipo,
             duration: 15000,
             position: 'right'
 
