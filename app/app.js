@@ -1495,6 +1495,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     });
 
     socket.on('broadcast',function(data){
+    	console.log(winMsgNode);
     	if(typeof(winMsgNode) === 'undefined' || winMsgNode.closed){
             $scope.nodeClients = data.description;
 		}else{
