@@ -1494,7 +1494,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     });
     
     $scope.abrirMsgNode = function () {
-        $window.open(urlNode,'Enviar Mensajes Masivos','width=630,height=460,menubar=0,toolbar=0');
+        var winMsgNode = $window.open(urlNode,'Enviar Mensajes Masivos','width=630,height=460,menubar=0,toolbar=0');
     	console.log("Abrir ventana mensajes rdy");
 	};
 
