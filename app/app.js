@@ -1477,6 +1477,11 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
         $scope.playing = true;
     };
 
+    $scope.abrirMsgNode = function () {
+        var winMsgNode = $window.open(urlNode,'Enviar Mensajes Masivos','width=630,height=460,menubar=0,toolbar=0');
+        console.log("Abrir ventana mensajes rdy");
+    };
+
 	var urlNode = "http://10.100.82.125:4000";
     socket.on("broad", function (data) {
     	$scope.play();
@@ -1490,13 +1495,15 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     });
 
     socket.on('broadcast',function(data){
-        $scope.nodeClients = data.description;
+    	if(typeof(winMsgNode) === 'undefined' || winMsgNode.closed){
+            $scope.nodeClients = data.description;
+		}else{
+            $scope.nodeClients = data.description-1;
+		}
+
     });
     
-    $scope.abrirMsgNode = function () {
-        var winMsgNode = $window.open(urlNode,'Enviar Mensajes Masivos','width=630,height=460,menubar=0,toolbar=0');
-    	console.log("Abrir ventana mensajes rdy");
-	};
+
 
 
 
