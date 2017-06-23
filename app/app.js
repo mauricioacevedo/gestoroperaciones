@@ -1468,8 +1468,18 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     /**
     * Controlador para Enviar notificaciones a el mundo.
     * */
+
+    $scope.playing = false;
+    $scope.audio = document.createElement('audio');
+    $scope.audio.src = './sounds/chatio.mp3';
+    $scope.play = function() {
+        $scope.audio.play();
+        $scope.playing = true;
+    };
+
 	var urlNode = "http://10.100.82.125:4000";
     socket.on("broad", function (data) {
+    	$scope.play();
     	notify({
 			message: data.usuario+': '+data.mensaje,
             classes: data.tipo,
@@ -15781,13 +15791,6 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
 	};
 
-    $scope.playing = false;
-    $scope.audio = document.createElement('audio');
-    $scope.audio.src = './sounds/chatio.mp3';
-    $scope.play = function() {
-        $scope.audio.play();
-        $scope.playing = true;
-    };
 
 
 	// Chat Firebase ---------------------------------------------------
@@ -15874,10 +15877,6 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
 		});
 
-        if($scope.newMessage!==undefined)
-        {
-            $scope.play();
-        }
 
 	};
 
