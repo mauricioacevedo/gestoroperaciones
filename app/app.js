@@ -1478,7 +1478,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     };
 
     $scope.abrirMsgNode = function () {
-        var winMsgNode = $window.open(urlNode,'Enviar Mensajes Masivos','width=630,height=460,menubar=0,toolbar=0');
+        $scope.winMsgNode = $window.open(urlNode,'Enviar Mensajes Masivos','width=630,height=460,menubar=0,toolbar=0');
         console.log("Abrir ventana mensajes rdy");
     };
 
@@ -1495,8 +1495,8 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     });
 
     socket.on('broadcast',function(data){
-    	console.log(winMsgNode);
-    	if(typeof(winMsgNode) === 'undefined' || winMsgNode.closed){
+    	console.log($scope.winMsgNode);
+    	if(typeof($scope.winMsgNode) === 'undefined' || $scope.winMsgNode.closed){
             $scope.nodeClients = data.description;
 		}else{
             $scope.nodeClients = data.description-1;
