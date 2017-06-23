@@ -15691,7 +15691,7 @@ app.controller('gestionAsignacionesSiebelCtrl', function ($scope, $rootScope, $l
 
 
 
-    $scope.actualizarLightKPIS();
+    //$scope.actualizarLightKPIS();
 
 });
 // -----------------------------------------------Controlador para Gestion de Reconfiguracion Asignaciones
