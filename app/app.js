@@ -15686,6 +15686,18 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 // -----------------------------------------------Controlador para Gestion de Reconfiguracion Asignaciones
 
 
+// Controlador para Gestion General de los procesos de Asignaciones -----------------------------------------------
+app.controller('gestionAsignacionesSiebelCtrl', function ($scope, $rootScope, $location, $route, $routeParams, $cookies, $cookieStore, $timeout, notify, services, idPermisos) {
+
+
+
+    $scope.actualizarLightKPIS();
+
+});
+// -----------------------------------------------Controlador para Gestion de Reconfiguracion Asignaciones
+//ENDEND
+
+
 
 
 
@@ -16604,7 +16616,13 @@ app.config(['$routeProvider',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-
+		.when('/tx/asignaciones/siebel_tabs/', {
+			title: "Gestion Asignaciones Siebel",
+			templateUrl: 'partials/transacciones/gestion_asignaciones_siebel_tabs.html',
+			controller: 'gestionAsignacionesSiebelCtrl',
+            //grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            //cargos: ['1','2','3','4','5','6','7','8','9']
+		})
 
 		.when('/nca/', {
 			title: 'NCA',
