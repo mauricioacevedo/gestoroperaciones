@@ -1472,6 +1472,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     $scope.playing = false;
     $scope.audio = document.createElement('audio');
     $scope.audio.src = './sounds/chatio.mp3';
+    $scope.template = '';
     $scope.play = function() {
         $scope.audio.play();
         $scope.playing = true;
@@ -1494,6 +1495,8 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
 			//message: data.usuario+': '+data.mensaje,
             messageTemplate: messageTemplate,
             classes: data.tipo,
+            scope:$scope,
+            templateUrl: $scope.template,
             duration: '0',
             position: 'right'
 
