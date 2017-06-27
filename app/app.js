@@ -1488,7 +1488,6 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     	notify({
 			message: data.usuario+': '+data.mensaje,
             classes: data.tipo,
-            duration: 15000,
             position: 'right'
 
         });
