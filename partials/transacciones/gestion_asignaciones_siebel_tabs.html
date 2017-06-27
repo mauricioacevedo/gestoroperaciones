@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-repeat="theped in deme_pedidos">
     <div class="row">
         <div class="col-md-12">
             <div class = "panel panel-default">
@@ -278,6 +278,7 @@
         </div>
     </div><!--Row 1 Novedades -->
 </div><!--Container ppal -->
+
 <!-- Modal Historico Pedidos-->
 <div id="PedidosProgramados" class="modal fade "  role="dialog">
     <div class="modal-dialog modal-lg">
@@ -613,6 +614,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" ng-click="guardarAuditoria(auditarObj,infoFenix,gestion)" data-dismiss="modal">Guardar</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
