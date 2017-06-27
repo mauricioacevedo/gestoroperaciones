@@ -15740,6 +15740,7 @@ app.controller('gestionAsignacionesSiebelCtrl', function ($scope, $rootScope, $l
 	$scope.programar			= false;					// Habilitar el campo programación.
 	$scope.accRdy				= false; 					// Habilitar el boton de Guardar.
     $scope.pedidoIsActive 		= false;
+    $scope.deme_pedidos = [{PEDIDO_ID:"NUEVO"}];
 
     //$scope.actualizarLightKPIS();
 
