@@ -1472,6 +1472,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     $scope.playing = false;
     $scope.audio = document.createElement('audio');
     $scope.audio.src = './sounds/chatio.mp3';
+    $scope.template = '';
     $scope.play = function() {
         $scope.audio.play();
         $scope.playing = true;
@@ -1485,17 +1486,29 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
 	var urlNode = "http://10.100.82.125:4000";
     socket.on("broad", function (data) {
     	$scope.play();
+
+        var messageTemplate = '<span>'+ data.usuario +': ' + data.mensaje + '<br><br>'+
+            '<p class="text-left"><a href="" class="btn btn-primary btn-sm" ng-click="clickedLink()">Cerrar</a> </p></span>';
+        /*
+        var messageTemplate = '<span>This is an example using a dynamically rendered Angular template for the message text. '+
+            'I can have <a href="" ng-click="clickedLink()">hyperlinks</a> with ng-click or any valid Angular enhanced html.</span>';
+            */
     	notify({
-			message: data.usuario+': '+data.mensaje,
+			//message: data.usuario+': '+data.mensaje,
+            messageTemplate: messageTemplate,
             classes: data.tipo,
+            scope:$scope,
+            templateUrl: $scope.template,
             duration: '0',
-            position: 'right',
-            onClose: function () {
-                console.log('closed at', new Date());
-            }
+            position: 'right'
 
         });
     });
+
+    $scope.clickedLink = function(){
+        console.log("Cerre notify");
+        notify.closeAll();
+    };
 
     socket.on('broadcast',function(data){
     	//console.log($scope.winMsgNode);
