@@ -192,7 +192,7 @@
                                 <tr>
                                     <th>Exporte</th>
                                     <th>Accion</th>
-                                    <th>Totales</th>
+                                    
 
 
                                 </tr>
@@ -201,22 +201,14 @@
                                     <td>
 								<button class="btn btn-success btn-xs" ng-click="csvActivacionSiebel();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
 							</td>
-                                     <td>
-								 <span class="label label-success">{{data.totalItems2}}</span>
-
-
-							</td>
+                                    
                                 </tr>
                                   <tr>
                                     <td>Activacion Pendientes Activador Dom</td>
                                     <td>
 								<button class="btn btn-success btn-xs" ng-click="csvActivacionSiebeldom();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
 							</td>
-                                     <td>
-								 <span class="label label-success">{{data.totalItems5}}</span>
-
-
-							</td>
+                                    
                                 </tr>
                               
 
@@ -225,10 +217,7 @@
                                    <td>
 								<button class="btn btn-success btn-xs" ng-click="csvListadoActivacion();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
 							</td>
-                                       <td>
-								 <span class="label label-success">{{data.totalItems}}</span>
-
-							</td>
+                                      
                                 </tr>
 
                                 <tr>
@@ -236,20 +225,14 @@
                                    <td>
 								<button class="btn btn-success btn-xs" ng-click="csvActivacion();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
 							</td>
-                                       <td>
-								 <span class="label label-success">{{Pendis|sumarNum:'CANTIDAD'}}</span>
-
-							</td>
+                                      
                                 </tr>
 								 <tr>
                                     <td> Fenix colas</td>
                                    <td>
 								<button class="btn btn-success btn-xs" ng-click="csvActivacioncolas();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
 							</td>
-                                       <td>
-								 <span class="label label-success">{{data.totalItems7}}</span>
-
-							</td>
+                                      
                                 </tr>
 
 								 <tr>
@@ -257,10 +240,7 @@
                                    <td>
 								<button class="btn btn-success btn-xs" ng-click="csvAmarillas();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
 							</td>
-                                       <td>
-								 <span class="label label-success">{{data.totalItems8}}</span>
-
-							</td>
+                                       
                                 </tr>
                             </table>
                         </div>
