@@ -1485,14 +1485,21 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
 	var urlNode = "http://10.100.82.125:4000";
     socket.on("broad", function (data) {
     	$scope.play();
+        var messageTemplate = '<span>'+ data.usuario +':' + data + '<br>'+
+            '<p><a href="" ng-click="clickedLink()">Cerrar</a> </p></span>';
     	notify({
-			message: data.usuario+': '+data.mensaje,
+			//message: data.usuario+': '+data.mensaje,
+            messageTemplate: messageTemplate,
             classes: data.tipo,
             duration: '0',
             position: 'right'
 
         });
     });
+
+    $scope.clickedLink = function(){
+        console.log("Cerre notify");
+    };
 
     socket.on('broadcast',function(data){
     	//console.log($scope.winMsgNode);
