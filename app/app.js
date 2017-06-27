@@ -1489,10 +1489,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
 			message: data.usuario+': '+data.mensaje,
             classes: data.tipo,
             duration: '0',
-            position: 'right',
-            onClose: function () {
-                console.log('closed at', new Date());
-            }
+            position: 'right'
 
         });
     });
