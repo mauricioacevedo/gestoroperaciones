@@ -6461,6 +6461,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 	$scope.pedidoinfo = 'Pedido';
     $scope.listaOpcionesGestion = [];						// Arreglo con listado de Opciones para la Gestion.
     $scope.accRdy = false;
+    $scope.deme_pedidos = [{PEDIDO_ID:"NUEVO"}];
 
 	var pedidos = services.getPedidosUser(userID).then(function (data) {
 		$scope.pedidos = data.data[0];
