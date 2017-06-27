@@ -15757,8 +15757,9 @@ app.controller('gestionAsignacionesSiebelCtrl', function ($scope, $rootScope, $l
     $scope.pedidoIsActive 		= false;
     $scope.deme_pedidos = [{PEDIDO_ID:"NUEVO"}];
     $scope.tab = 1;
+    $rootScope.listadoConceptos =
+	[{"ID":"16","CONCEPTO_ID":"COBERTURA","GRUPO":"ASIGNACIONES","ACTIVIDAD":"ESTUDIO","FUENTE":"SIEBEL","ESTADO":"1"},{"ID":"17","CONCEPTO_ID":"CONSTRUCCION","GRUPO":"ASIGNACIONES","ACTIVIDAD":"ESTUDIO","FUENTE":"SIEBEL","ESTADO":"1"},{"ID":"18","CONCEPTO_ID":"DISENO","GRUPO":"ASIGNACIONES","ACTIVIDAD":"ESTUDIO","FUENTE":"SIEBEL","ESTADO":"1"},{"ID":"19","CONCEPTO_ID":"DISPONIBILIDAD","GRUPO":"ASIGNACIONES","ACTIVIDAD":"ESTUDIO","FUENTE":"SIEBEL","ESTADO":"1"}];
 
-    $rootScope.getConceptosGestor();
 
 
 	$scope.setTab = function (newTab) {
