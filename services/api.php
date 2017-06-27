@@ -16246,6 +16246,7 @@ private function cargar_datos_activacion(){
             " 	, DATE_FORMAT(MAX(n.fecha_fin),'%H:00') AS HORA_FULL ".
             " 	FROM portalbd.transacciones_nca n ".
             " 	where n.fecha_fin between '$fecha 00:00:00' and '$fecha 23:59:59' ".
+            "   and n.OFERTA not in (select a.pedido_id from pedidos a where 1=1 and  a.fecha_fin between '$fecha 00:00:00' and '$fecha 23:59:59' ) ".
             " 	group by n.OFERTA ) SI ".
             "     WHERE SI.HORA=h.HORA ".
             " 	GROUP BY SI.HORA) AS SIEBEL ".
