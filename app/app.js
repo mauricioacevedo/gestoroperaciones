@@ -14578,7 +14578,6 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 				}
 			});
 
-
 	};
 
 	// --------------------------------------------------------------- BuscarPedido
@@ -15744,7 +15743,18 @@ app.controller('gestionAsignacionesSiebelCtrl', function ($scope, $rootScope, $l
 	$scope.accRdy				= false; 					// Habilitar el boton de Guardar.
     $scope.pedidoIsActive 		= false;
     $scope.deme_pedidos = [{PEDIDO_ID:"NUEVO"}];
+    $scope.tab = 1;
 
+    $rootScope.getConceptosGestor();
+
+
+	$scope.setTab = function (newTab) {
+		$scope.tab = newTab;
+	};
+
+	$scope.isSet = function (tabNum) {
+		return $scope.tab === tabNum;
+	};
     //$scope.actualizarLightKPIS();
 
 });
