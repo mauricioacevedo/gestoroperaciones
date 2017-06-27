@@ -2634,7 +2634,7 @@ private function csvAmarillas(){
 
         $query = "	SELECT  ".
             " p.id,  ".
-            " p.pedido_id as PEDIDO_ID,  ".
+            " p.pedido_id as pedido,  ".
             " p.fuente,  ".
             " p.actividad,  ".
             " p.fecha_fin,  ".
@@ -2650,7 +2650,7 @@ private function csvAmarillas(){
             " UNION  ".
             " SELECT  ".
             " nn.id  ".
-            " , nn.oferta as PEDIDO_ID ".
+            " , nn.oferta as pedido ".
             " ,'SIEBEL' as fuente  ".
             " , 'ESTUDIO' as actividad  ".
             " , nn.fecha_fin  ".
