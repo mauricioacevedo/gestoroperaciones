@@ -1487,8 +1487,8 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     socket.on("broad", function (data) {
     	$scope.play();
 
-        var messageTemplate = '<span>'+ data.usuario +':' + data.mensaje + '<br>'+
-            '<p><a href="" ng-click="clickedLink()">Cerrar</a> </p></span>';
+        var messageTemplate = '<span>'+ data.usuario +': ' + data.mensaje + '<br>'+
+            '<p><a href="" class="btn btn-success btn-sm" ng-click="clickedLink()">Cerrar</a> </p></span>';
         /*
         var messageTemplate = '<span>This is an example using a dynamically rendered Angular template for the message text. '+
             'I can have <a href="" ng-click="clickedLink()">hyperlinks</a> with ng-click or any valid Angular enhanced html.</span>';
@@ -1507,6 +1507,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
 
     $scope.clickedLink = function(){
         console.log("Cerre notify");
+        notify.closeAll();
     };
 
     socket.on('broadcast',function(data){
