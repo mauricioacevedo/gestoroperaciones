@@ -11823,6 +11823,7 @@ private function cargar_datos_activacion(){
         $SOURCE='';
         $FECHA_INICIO='';
         $FECHA_FIN='';
+        $TABLA='';
         $today = date("Y-m-d");
         //$today = $_POST['today']; 
        
@@ -11934,7 +11935,7 @@ private function cargar_datos_activacion(){
             */   
             
                 $sqldatos="insert into gestor_historico_activacion (FECHA_EXCEPCION,HORA,PEDIDO,PRODUCTO,TRANSACCION,APLICATIVO,OBSERVACION,NUMERO_CR,TIPIFICACION,ASESOR
-,PEDIDO_FENIX,SOURCE,FECHA_INICIO,FECHA_FIN) values ($guardar,'MANUAL',$today,$today)";
+,PEDIDO_FENIX,SOURCE,FECHA_INICIO,FECHA_FIN,TABLA) values ($guardar,'MANUAL',$today,$today)";
               //  echo  $sqldatos,$FECHA_EXCEPCION;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
 
@@ -11959,6 +11960,7 @@ private function cargar_datos_activacion(){
             $VISTA="";
             $FECHA_INICIO='';
              $FECHA_FIN='';
+             $TABLA='';
 
 
 
