@@ -15694,10 +15694,51 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 // -----------------------------------------------Controlador para Gestion de Reconfiguracion Asignaciones
 
 
-// Controlador para Gestion General de los procesos de Asignaciones -----------------------------------------------
+// Controlador para Gestion General de los procesos de Asignaciones SIEBEL -----------------------------------------------
 app.controller('gestionAsignacionesSiebelCtrl', function ($scope, $rootScope, $location, $route, $routeParams, $cookies, $cookieStore, $timeout, notify, services, idPermisos) {
+	// Basura del logueo ---------------------------------
+		$rootScope.logedUser = $cookieStore.get('logedUser');
+        var userID = $cookieStore.get('logedUser').login;
+        document.getElementById('logout').className = "btn btn-md btn-danger";
+        var divi = document.getElementById("logoutdiv");
+        divi.style.visibility = "visible";
+        divi.style.position = "relative";
 
 
+        $rootScope.logout = function() {
+            services.logout(userID);
+            $cookieStore.remove('logedUser');
+            $rootScope.logedUser = undefined;
+            $scope.pedidos = {};
+            clearInterval($scope.intervalLightKPIS);
+            document.getElementById('logout').className = "btn btn-md btn-danger hide";
+            var divi = document.getElementById("logoutdiv");
+            divi.style.position = "absolute";
+            divi.style.visibility = "hidden";
+            $location.path('/');
+        }; //  ---------------------------------Basura del logueo
+
+    // Inicio de Variables ---------------------------------------------------------------------------------
+	$scope.tools				= true;						// Herramientas de gestion habilitadas.
+	$scope.pedidosUnicos		= '';						// Pedidos Unicos, cantidad.
+	$rootScope.actualView		= 'Gestion Asignaciones';	// Vista Actual, sirve para los KPIS.
+	$scope.intervalLightKPIS	= '';
+	$scope.pedidoinfo			= '';
+	$rootScope.errorDatos		= null; 					// Mensajes de Error.
+	$scope.fecha_inicio 		= null; 					// Fecha Inicial de la gestion.
+	$scope.fecha_fin 			= null; 					// Fecha Final de la gestion.
+	$scope.pedidos				= [];						// Arreglo de pedidos.
+	$scope.data					= {};						// Objeto de datos.
+	$scope.iconcepto			= {};						// Objeto de datos que contiene Grupo, Concepto y Fuente.
+	$scope.ifuente				= {};						// Objeto con la fuente para hacer las busquedas.
+	$scope.listaOpcionesGestion = [];						// Arreglo con listado de Opciones para la Gestion.
+	$scope.info					= {};						// Objeto con Info del pedido en gestion.
+    $scope.auditoria			= {};
+	//$scope.estadoGuardo			= false;					// Habilita el guardado en la tabla de siebel.
+	$scope.habilitaCr			= false;					// Habilita el campo CR.
+	$scope.programar			= false;					// Habilitar el campo programación.
+	$scope.accRdy				= false; 					// Habilitar el boton de Guardar.
+    $scope.pedidoIsActive 		= false;
 
     //$scope.actualizarLightKPIS();
 
