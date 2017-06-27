@@ -2630,59 +2630,76 @@ private function csvAmarillas(){
         }
         $id = $this->_request['userID'];
         $today = date("Y-m-d");
-        /*$query="SELECT ".
-            " id, ".
-            " pedido, ".
-            " fuente, ".
-            " actividad, ".
-            " fecha_fin, ".
-            " estado, ".
-            " my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as duracion, ".
-            " INCIDENTE, ".
-            " SUBSTRING_INDEX(concepto_final, ',', 3) as concepto_final ".
-            " from pedidos ".
-            " where 1=1 ".
-            " and user='$id' ".
-            " and fecha_fin between '$today 00:00:00' and '$today 23:59:59'";*/
 
-        $query = "SELECT ".
-                 "   id, ".
-                 "   pedido, ".
-                 "   fuente, ".
-                 "   actividad, ".
-                 "   fecha_fin, ".
-                 "   estado, ".
-                 "   my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as duracion, ".
-                 "   INCIDENTE, ".
-                 "   SUBSTRING_INDEX(concepto_final, ',', 3) as concepto_final ".
-                 "   from pedidos ".
-                 "   where 1=1 ".
-                 "   and user='$id' ".
-                 "   and fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
-                 "   UNION ".
-                 "   SELECT ".
-                 "   id ".
-                 "   , oferta as pedido ".
-                 "   ,'SIEBEL' as fuente ".
-                 "   , 'ESTUDIO' as actividad ".
-                 "   , fecha_fin ".
-                 "   , observacion as estado ".
-                 "   , my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as duracion ".
-                 "   , incidente ".
-                 "   , SUBSTRING_INDEX(ESTADO_FINAL, ',', 3) as concepto_final  ".
-                 "   FROM portalbd.transacciones_nca ".
-                 "   where 1=1  ".
-                 "   and USUARIO='$id'  ".
-                 "   and fecha_fin between '$today 00:00:00' and '$today 23:59:59'";
 
-        $queryPediUnico="SELECT ".
-            " count(distinct pedido_id) as pedidos ".
-            " from  ".
-            " pedidos  ".
-            " where user='$id'  ".
-            " and fecha_fin between '$today 00:00:00'  ".
-            " and '$today 23:59:59' ".
-            " group by date_format(fecha_fin,'%Y-%m-%d')";
+        $query = "	SELECT  ".
+            " p.id,  ".
+            " p.pedido_id as PEDIDO_ID,  ".
+            " p.fuente,  ".
+            " p.actividad,  ".
+            " p.fecha_fin,  ".
+            " p.estado,  ".
+            " my_sec_to_time(timestampdiff(second,p.fecha_inicio,p.fecha_fin)) as duracion,  ".
+            " p.INCIDENTE,  ".
+            " SUBSTRING_INDEX(p.concepto_final, ',', 3) as concepto_final, ".
+            " p.source ".
+            " from pedidos p ".
+            " where 1=1  ".
+            " and p.user='$id'  ".
+            " and p.fecha_fin between '$today 00:00:00' and '$today 23:59:59'  ".
+            " UNION  ".
+            " SELECT  ".
+            " nn.id  ".
+            " , nn.oferta as PEDIDO_ID ".
+            " ,'SIEBEL' as fuente  ".
+            " , 'ESTUDIO' as actividad  ".
+            " , nn.fecha_fin  ".
+            " , nn.observacion as estado  ".
+            " , my_sec_to_time(timestampdiff(second,nn.fecha_inicio,nn.fecha_fin)) as duracion  ".
+            " , nn.incidente  ".
+            " , SUBSTRING_INDEX(nn.ESTADO_FINAL, ',', 3) as concepto_final  ".
+            " , 'MANUAL' as source ".
+            " FROM portalbd.transacciones_nca nn ".
+            " where 1=1   ".
+            " and nn.USUARIO='$id'  ".
+            " and nn.fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
+            " and nn.OFERTA not in (select a.pedido_id from pedidos a where a.user='$id' and  a.fecha_fin between '$today 00:00:00' and '$today 23:59:59' ) ";
+
+        $queryPediUnico="	SELECT  ".
+            " COUNT(distinct c1.PEDIDO_ID) as pedidos ".
+            " from ( ".
+            " SELECT  ".
+            " p.id,  ".
+            " p.pedido_id as PEDIDO_ID,  ".
+            " p.fuente,  ".
+            " p.actividad,  ".
+            " p.fecha_fin,  ".
+            " p.estado,  ".
+            " my_sec_to_time(timestampdiff(second,p.fecha_inicio,p.fecha_fin)) as duracion,  ".
+            " p.INCIDENTE,  ".
+            " SUBSTRING_INDEX(p.concepto_final, ',', 3) as concepto_final, ".
+            " p.source ".
+            " from pedidos p ".
+            " where 1=1  ".
+            " and p.user='$id'  ".
+            " and p.fecha_fin between '$today 00:00:00' and '$today 23:59:59'  ".
+            " UNION  ".
+            " SELECT  ".
+            " nn.id  ".
+            " , nn.oferta as PEDIDO_ID ".
+            " ,'SIEBEL' as fuente  ".
+            " , 'ESTUDIO' as actividad  ".
+            " , nn.fecha_fin  ".
+            " , nn.observacion as estado  ".
+            " , my_sec_to_time(timestampdiff(second,nn.fecha_inicio,nn.fecha_fin)) as duracion  ".
+            " , nn.incidente  ".
+            " , SUBSTRING_INDEX(nn.ESTADO_FINAL, ',', 3) as concepto_final  ".
+            " , 'MANUAL' as source ".
+            " FROM portalbd.transacciones_nca nn ".
+            " where 1=1   ".
+            " and nn.USUARIO='$id'  ".
+            " and nn.fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
+            " and nn.OFERTA not in (select a.pedido_id from pedidos a where a.user='$id' and  a.fecha_fin between '$today 00:00:00' and '$today 23:59:59' ) ) c1 ";
 
 
         $r2 = $this->mysqli->query($queryPediUnico) or die($this->mysqli->error.__LINE__);
