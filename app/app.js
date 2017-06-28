@@ -1489,6 +1489,8 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
 	var urlNode = "http://10.100.82.125:4000";
     socket.on("broad", function (data) {
     	$scope.play();
+        var tituloviejo = $rootScope.title;
+        console.log(tituloviejo);
        	$rootScope.title = "Nuevo Mensaje!";
 
         var messageTemplate = '<span>'+ data.usuario +': ' + data.mensaje + '<br><br>'+
@@ -1506,8 +1508,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
         });
     });
 
-    var tituloviejo = $rootScope.title;
-    console.log(tituloviejo);
+
 
     $scope.clickedLink = function(){
         console.log("Cerre notify");
