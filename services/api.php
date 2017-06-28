@@ -16216,7 +16216,8 @@ private function cargar_datos_activacion(){
             " 	WHERE 1=1 ".
             " 	AND M.FECHA_ESTADO between '$fecha 00:00:00' and '$fecha 23:59:59' ".
             "   AND M.CONCEPTO_ANTERIOR IN ('PETEC','PUMED','PEOPP','O-15', 'O-13', 'O-106', '19' ".
-            "   ,'OKRED','21','70','65','ESTTX','DISPONIBILIDAD','CONSTRUCCION','COBERTURA','12') ".
+            "   ,'OKRED','21','70','65','ESTTX','DISPONIBILIDAD','CONSTRUCCION','COBERTURA','12','14','99','O-101','DISENO','OT-T04' ".
+            "   , 'OT-T01', 'OT-T05', 'OT-C11','OT-C08') ".
             " 	GROUP BY M.PEDIDO_ID ) ING ".
             "    where ING.HORA=h.HORA ".
             " 	GROUP BY ING.HORA) as INGRESOS ".
