@@ -1473,7 +1473,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     $scope.audio = document.createElement('audio');
     $scope.audio.src = './sounds/chatio.mp3';
     $scope.template = '';
-    var tituloPagina = $$route.title;
+    var tituloPagina = $routeParams.current.title;
     console.log(tituloPagina);
 
     $scope.play = function() {
