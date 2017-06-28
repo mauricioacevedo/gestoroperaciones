@@ -1532,7 +1532,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
 
 
     $scope.$on('$destroy', function(){
-        $interval.cancel(blinkMsg);
+        $interval.cancel($scope.blinkMsg);
     });
 
 
