@@ -1475,7 +1475,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     $scope.template = '';
 
     var tituloPagina = $window.document.title;
-    console.log($state.current.title);
+    console.log($state.current.title);console.log($routeParams.current.title);
 
     $scope.play = function() {
         $scope.audio.play();
