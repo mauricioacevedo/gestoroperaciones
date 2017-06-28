@@ -1492,7 +1492,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
         $scope.tituloviejo = $rootScope.title;
        	$rootScope.title = "Nuevo Mensaje!";
 
-        $interval(function (i) {
+        var blinkMsg = $interval(function (i) {
             $rootScope.title = i % 2 ? 'Nuevo Mensaje!' : $scope.tituloviejo;
         }, 1000);
 
@@ -1517,6 +1517,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
         console.log("Cerre notify");
         notify.closeAll();
         $rootScope.title = $scope.tituloviejo;
+        $interval.cancel(blinkMsg);
     };
 
     socket.on('broadcast',function(data){
@@ -1528,9 +1529,11 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
 		}
 
     });
-    
 
 
+    $scope.$on('$destroy', function(){
+        $interval.cancel(blinkMsg);
+    });
 
 
 });
