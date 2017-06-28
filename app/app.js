@@ -1480,7 +1480,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     });
 
     var tituloPagina = $window.document.title;
-    console.log(currentTitle);
+    console.log($scope.currentTitle);
     console.log(tituloPagina);
 
     $scope.play = function() {
