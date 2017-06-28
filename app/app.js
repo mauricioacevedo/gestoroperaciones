@@ -1474,8 +1474,8 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     $scope.audio.src = './sounds/chatio.mp3';
     $scope.template = '';
 
-    var tituloPagina = $window.document.title;
-    //console.log($route.current.originalPath);
+    var tituloPagina = angular.element(window.document)[0].title;
+    console.log(tituloPagina);
 
     $scope.play = function() {
         $scope.audio.play();
