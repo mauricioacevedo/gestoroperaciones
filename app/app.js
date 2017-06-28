@@ -1464,7 +1464,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
 //------------------------------------------------------- Controlador de logueo
 
-app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $q, $timeout, $http, $window, socket, notify) {
+app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location, $routeParams, $state, $cookies, $cookieStore, $q, $timeout, $http, $window, socket, notify) {
     /**
     * Controlador para Enviar notificaciones a el mundo.
     * */
@@ -1475,6 +1475,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     $scope.template = '';
 
     var tituloPagina = $window.document.title;
+    console.log($state.current.title);
 
     $scope.play = function() {
         $scope.audio.play();
