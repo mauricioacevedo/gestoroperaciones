@@ -1474,8 +1474,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     $scope.audio.src = './sounds/chatio.mp3';
     $scope.template = '';
 
-    var tituloviejo = $rootScope.title;
-    console.log(tituloviejo);
+
 
     $scope.play = function() {
         $scope.audio.play();
@@ -1506,6 +1505,9 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
 
         });
     });
+
+    var tituloviejo = $rootScope.title;
+    console.log(tituloviejo);
 
     $scope.clickedLink = function(){
         console.log("Cerre notify");
