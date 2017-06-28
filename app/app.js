@@ -1474,8 +1474,8 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     $scope.audio.src = './sounds/chatio.mp3';
     $scope.template = '';
 
-    var tituloPagina = angular.element(window.document)[0].title;
-    console.log(tituloPagina);
+    //var tituloPagina = angular.element(window.document)[0].title;
+    //console.log(tituloPagina);
 
     $scope.play = function() {
         $scope.audio.play();
@@ -1490,7 +1490,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
 	var urlNode = "http://10.100.82.125:4000";
     socket.on("broad", function (data) {
     	$scope.play();
-        $window.document.title = "Nuevo Mensaje!";
+        //$window.document.title = "Nuevo Mensaje!";
 
         var messageTemplate = '<span>'+ data.usuario +': ' + data.mensaje + '<br><br>'+
             '<p class="text-left"><a href="" class="btn btn-primary btn-sm" ng-click="clickedLink()">Cerrar</a> </p></span>';
