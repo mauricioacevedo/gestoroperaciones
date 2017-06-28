@@ -1474,8 +1474,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     $scope.audio.src = './sounds/chatio.mp3';
     $scope.template = '';
 
-    //var tituloPagina = angular.element(window.document)[0].title;
-    //console.log(tituloPagina);
+    var tituloviejo = $rootScope.title;
 
     $scope.play = function() {
         $scope.audio.play();
@@ -1510,7 +1509,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     $scope.clickedLink = function(){
         console.log("Cerre notify");
         notify.closeAll();
-        $window.document.title = tituloPagina;
+        $rootScope.title = tituloviejo;
     };
 
     socket.on('broadcast',function(data){
