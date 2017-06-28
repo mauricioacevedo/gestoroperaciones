@@ -815,7 +815,7 @@ private function csvActivacioncolas(){
             "			WHERE  STATUS ='PENDI_ACTIVACION' ". 
             "			and cola_id in ('VRMAT') ". 
             "			and CONCEPTO_ID NOT IN ('PROG') ".
-            " UNION "
+            " UNION ".
             " SELECT REQUERIMIENTO_ID  , PEDIDO_ID  , SUBPEDIDO_ID  , SOLICITUD_ID ". 
             " , TIPO_ELEMENTO_ID  , TIPO_TRABAJO  , FECHA_ESTADO  , ETAPA_ID  ".
             " , ESTADO_ID  , COLA_ID  , ACTIVIDAD_ID  , NOMBRE_ACTIVIDAD  , CONCEPTO_ID ".  
