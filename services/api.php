@@ -787,7 +787,7 @@ private function csvActivacioncolas(){
             "		 ,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_PENDIENTE ".
             "		  FROM  informe_activacion_pendientesm  ".
             "			WHERE  STATUS ='PENDI_ACTIVACION'  ".
-            "			and cola_id in ('CBAPON','CTVPONST','TRGPON')  ".
+            "			and cola_id in ('CBAPON','TRGPON')  ".
             "		and TIPO_TRABAJO IN ('RETIR') ".
             " UNION  ".
             " SELECT REQUERIMIENTO_ID  , PEDIDO_ID  , SUBPEDIDO_ID  , SOLICITUD_ID ".
@@ -814,10 +814,20 @@ private function csvActivacioncolas(){
             "		  FROM  informe_activacion_pendientesm  ".
             "			WHERE  STATUS ='PENDI_ACTIVACION' ". 
             "			and cola_id in ('VRMAT') ". 
-            "			and CONCEPTO_ID NOT IN ('PROG') ";
+            "			and CONCEPTO_ID NOT IN ('PROG') ".
+            " UNION "
+            " SELECT REQUERIMIENTO_ID  , PEDIDO_ID  , SUBPEDIDO_ID  , SOLICITUD_ID ". 
+            " , TIPO_ELEMENTO_ID  , TIPO_TRABAJO  , FECHA_ESTADO  , ETAPA_ID  ".
+            " , ESTADO_ID  , COLA_ID  , ACTIVIDAD_ID  , NOMBRE_ACTIVIDAD  , CONCEPTO_ID ".  
+            " ,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_PENDIENTE ".
+            " FROM  informe_activacion_pendientesm  ".
+            " WHERE  STATUS ='PENDI_ACTIVACION'  ".
+            " and cola_id in ('CTVPONST')  ".
+            " and estado_id='PENDI' ".
+            " AND ACTIVIDAD_ID IN ('DEGTV') ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        
+                   
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
