@@ -1475,6 +1475,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     $scope.template = '';
 
     var tituloviejo = $rootScope.title;
+    console.log(tituloviejo);
 
     $scope.play = function() {
         $scope.audio.play();
