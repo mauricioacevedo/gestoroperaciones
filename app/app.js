@@ -1490,7 +1490,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
 	var urlNode = "http://10.100.82.125:4000";
     socket.on("broad", function (data) {
     	$scope.play();
-        //$window.document.title = "Nuevo Mensaje!";
+       	$rootScope.title = "Nuevo Mensaje!";
 
         var messageTemplate = '<span>'+ data.usuario +': ' + data.mensaje + '<br><br>'+
             '<p class="text-left"><a href="" class="btn btn-primary btn-sm" ng-click="clickedLink()">Cerrar</a> </p></span>';
