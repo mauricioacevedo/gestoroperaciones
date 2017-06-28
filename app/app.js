@@ -1492,6 +1492,10 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
         $scope.tituloviejo = $rootScope.title;
        	$rootScope.title = "Nuevo Mensaje!";
 
+        $interval(function (i) {
+            $rootScope.title = i % 2 ? 'Nuevo Mensaje!' : $scope.tituloviejo;
+        }, 1000);
+
         var messageTemplate = '<span>'+ data.usuario +': ' + data.mensaje + '<br><br>'+
             '<p class="text-left"><a href="" class="btn btn-primary btn-sm" ng-click="clickedLink()">Cerrar</a> </p></span>';
 
