@@ -11930,9 +11930,6 @@ private function cargar_datos_activacion(){
             if ($tname1 <> ""){
 
 
-               /* $sqlactivacion="insert into portalbd.gestor_bodega_bodega_datos (CAMPANAID,LANZAMIENTO,IDLLAMADA1,TELEFONO,MENSAJE,ACCION,FECHA,IDLLAMADA2,ESTADO,CEDULA,DETALLE,PEDIDO,CODIGO_RESULTADO,FECHA_AGENDA,JORNADA_AGENDA,CAUSA,MUNICIPIO,ZONA,TIPO_TRANSACCION,NOMBRE_CLIENTE,DEPARTAMENTO,EMAIL,FECHA_ENVIO,HORA_ENVIO,INTERFAZ,ACCESO) values ($guardar) ";
-                $r = $this->mysqli->query($sqlactivacion) or die($this->mysqli->error.__LINE__);
-            */   
             
                 $sqldatos="insert into gestor_historico_activacion (FECHA_EXCEPCION,HORA,PEDIDO,PRODUCTO,TRANSACCION,APLICATIVO,OBSERVACION,NUMERO_CR,TIPIFICACION,ASESOR
 ,PEDIDO_FENIX,TABLA,SOURCE,FECHA_INICIO,FECHA_FIN) values ($guardar,'MANUAL',$today,$today)";
