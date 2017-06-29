@@ -8336,7 +8336,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                     $counter=$row['counter'];
 
                     if($counter>=3){
-                        $this->response('Limite de pedidos alcanzado!',204);
+                        $this->response('Limite de pedidos alcanzado!',401);
                         return;
                     }
                 }
