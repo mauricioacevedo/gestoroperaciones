@@ -8318,10 +8318,37 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $pedido_actual = $this->_request['pedido_actual'];
         //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
 
-        //NO SE PUEDE CONDICIONAR AL PEDIDO ACTUAL, SI LE DA F5 A LA PAGINA NO HAY PEDIDO ACTUAL.. ES MEJOR ASI!!!
-        $sqlupdate="update informe_petec_pendientesm set ASESOR='' where ASESOR='$user'";
-        //echo $sqlupdate;
-        $xxx = $this->mysqli->query($sqlupdate);
+        if($fuente=="SIEBEL"){//PARA LA FORMA DE SIEBEL SE QUIERE QUE ADMITA VARIOS PEDIDOS POR ASESOR!!!!
+
+            if($pedido_actual!=''){
+                $sqlupdate="update informe_petec_pendientesm set ASESOR='' where PEDIDO_ID='$user' AND STATUS IN ('PENDI_PETEC','MALO')";
+                //echo $sqlupdate;
+                $xxx = $this->mysqli->query($sqlupdate);
+            }
+
+            //1. validar el conteo de pedidos agarrados, si es superior a 3 devuelvo un objeto vacio...
+            $sqlcount="select count(*) as counter from informe_petec_pendientesm where ASESOR='$user' ";
+            $rr = $this->mysqli->query($sqlcount) or die($this->mysqli->error.__LINE__);
+
+            if($rr->num_rows > 0){//recorro los registros de la consulta para
+                if($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
+                    $result[] = $row;
+                    $counter=$row['counter'];
+
+                    if($counter>=3){
+                        $this->response('Limite de pedidos alcanzado!',204);
+                        return;
+                    }
+                }
+            }
+
+        }else {
+            //NO SE PUEDE CONDICIONAR AL PEDIDO ACTUAL, SI LE DA F5 A LA PAGINA NO HAY PEDIDO ACTUAL.. ES MEJOR ASI!!!
+            $sqlupdate="update informe_petec_pendientesm set ASESOR='' where ASESOR='$user'";
+            //echo $sqlupdate;
+            $xxx = $this->mysqli->query($sqlupdate);
+        }
+
         //}
 
         //echo "WTF";
