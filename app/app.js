@@ -3900,6 +3900,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                 notify({
                     message: data.data[0],
                     duration: '4000',
+                    classes: 'btn-primary',
                     position: 'right'
                 });
                 //console.log(data);
@@ -5771,6 +5772,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
                 notify({
                     message: data.data[0],
                     duration: '1000',
+                    classes: 'btn-primary',
                     position: 'right'
                 });
                 //console.log(data);
@@ -8527,6 +8529,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
                 notify({
                     message: data.data[0],
                     duration: '1000',
+                    classes: 'btn-primary',
                     position: 'right'
                 });
                 //console.log(data);
@@ -15539,6 +15542,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 notify({
                     message: 'Pedido Auditado!',
                     duration: '1000',
+                    classes: 'btn-primary',
                     position: 'right'
                 });
 
@@ -15643,6 +15647,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 					notify({
 						message: 'Pedido Programado para el día: '+fechaprogramacion,
 						duration: '3000',
+                        classes: 'btn-primary',
 						position: 'right'
 					});
 				}
@@ -16208,6 +16213,7 @@ $scope.updateStatus = function(data, index) {
             notify({
                 message: res.data[0],
                 duration: '3000',
+                classes: 'btn-primary',
                 position: 'right'
             });
             $scope.getTaskCrud();
@@ -16249,6 +16255,7 @@ $scope.saveTask = function (newtask) {
             notify({
                 message: res.data[0],
                 duration: '3000',
+                classes: 'btn-primary',
                 position: 'right'
             });
             $scope.taskform = {};
@@ -17259,6 +17266,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 		notify({
 			message: 'Copiado',
 			duration: '1000',
+            classes: 'btn-primary',
 			position: 'right'
 		});
 		input.remove();
