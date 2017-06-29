@@ -15146,7 +15146,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
                // document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Concepto.";
                 $rootScope.errorDatos = "No hay Registros. Intente Cambiando de Concepto.";
-                //console.log(data);
+                console.log(data);
             } else {
 
                // document.getElementById("warning").innerHTML = "";
