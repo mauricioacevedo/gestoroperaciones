@@ -15146,8 +15146,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
                // document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Concepto.";
                 $rootScope.errorDatos = "No hay Registros. Intente Cambiando de Concepto.";
-                console.log(data);
-            } else {
+                //console.log(data);
+            } else if(data.data=="Limite de pedidos alcanzado!"){
+                $rootScope.errorDatos = "Limite de pedidos alcanzado!.";
+            }else {
 
                // document.getElementById("warning").innerHTML = "";
                 $scope.pedido1 = $scope.peds[0].PEDIDO_ID;
