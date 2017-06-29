@@ -15148,7 +15148,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 $rootScope.errorDatos = "No hay Registros. Intente Cambiando de Concepto.";
                 //console.log(data);
             } else if(data.data=="Limite de pedidos alcanzado!"){
-                $rootScope.errorDatos = "Limite de pedidos alcanzado!.";
+                $rootScope.errorDatos = "LIMITE DE PEDIDOS ALCANZADO!.";
             }else {
 
                // document.getElementById("warning").innerHTML = "";
