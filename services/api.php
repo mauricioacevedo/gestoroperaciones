@@ -11950,7 +11950,7 @@ private function cargar_datos_activacion(){
                 $cellValue1 = $cellValue; 
 
                  $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue1);//fecha larga
-                $today = gmdate("Y-m-d H:i:s",$timestamp);//fecha formateada+
+                $today = gmdate("Y-m-d",$timestamp);//fecha formateada+
 
                  if($h=="A"){
                     $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue1);//fecha larga
