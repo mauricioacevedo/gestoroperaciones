@@ -11862,6 +11862,8 @@ private function cargar_datos_activacion(){
         $FECHA_FIN='';
         $TABLA='';
         $today = date("Y-m-d");
+        $timestamp = PHPExcel_Shared_Date::ExcelToPHP($today);//fecha larga
+         $today = gmdate("Y-m-d H:i:s",$timestamp);//fecha formateada+
         //$today = $_POST['today']; 
        
 
