@@ -11860,6 +11860,7 @@ private function cargar_datos_activacion(){
         $SOURCE='';
         $FECHA_INICIO='';
         $FECHA_FIN='';
+        $FECHA_GESTION='';
         $TABLA='';
         $today = date("Y-m-d");
         
@@ -11958,6 +11959,11 @@ private function cargar_datos_activacion(){
                     $cellValue1 = gmdate("H:i:s",$timestamp);//fecha formateada+
                     //$table .= "<td>";
                 }
+                if($h=="M"){
+                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue1);//fecha larga
+                    $cellValue1 = gmdate("H:i:s",$timestamp);//fecha formateada+
+                    //$table .= "<td>";
+                }
 
                // $table .= "<td>";
                 if($cellValue !== null){
@@ -11978,7 +11984,7 @@ private function cargar_datos_activacion(){
 
             
                 $sqldatos="insert into gestor_historico_activacion (FECHA_EXCEPCION,HORA,PEDIDO,PRODUCTO,TRANSACCION,APLICATIVO,OBSERVACION,NUMERO_CR,TIPIFICACION,ASESOR
-,PEDIDO_FENIX,TABLA,SOURCE,FECHA_INICIO,FECHA_FIN) values ($guardar,'MANUAL',$today,$today)";
+,PEDIDO_FENIX,TABLA,FECHA_GESTION,SOURCE,FECHA_INICIO,FECHA_FIN) values ($guardar,'MANUAL',$today,$FECHA_GESTION)";
               //  echo  $sqldatos,$FECHA_EXCEPCION;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
 
@@ -12004,6 +12010,7 @@ private function cargar_datos_activacion(){
             $FECHA_INICIO="";
              $FECHA_FIN="";
              $TABLA="";
+             $FECHA_GESTION="";
 
 
 
