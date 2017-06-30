@@ -11862,9 +11862,7 @@ private function cargar_datos_activacion(){
         $FECHA_FIN='';
         $TABLA='';
         $today = date("Y-m-d");
-        $timestamp = PHPExcel_Shared_Date::ExcelToPHP($today);//fecha larga
-         $today = gmdate("Y-m-d H:i:s",$timestamp);//fecha formateada+
-        //$today = $_POST['today']; 
+        
        
 
 
@@ -11936,12 +11934,12 @@ private function cargar_datos_activacion(){
         list($end, $end_h, $end_v) = $rslt;
 
         //empieza  lectura vertical
-        $table = "<table  border='1'>";
+        //$table = "<table  border='1'>";
         for($v=$start_v; $v<=$end_v; $v++){
             //empieza lectura horizontal
 
             if ($v==1) continue;
-            $table .= "<tr>";
+           // $table .= "<tr>";
             //$filas= $start_h + 1;
 
 
@@ -11961,10 +11959,10 @@ private function cargar_datos_activacion(){
                     //$table .= "<td>";
                 }
 
-                $table .= "<td>";
+               // $table .= "<td>";
                 if($cellValue !== null){
                     $table .= $cellValue1;
-                 $table .= "</td>";   
+                // $table .= "</td>";   
                 }
                 
                 $guardar .=" '$cellValue1',";
@@ -12009,7 +12007,7 @@ private function cargar_datos_activacion(){
 
 
 
-            $table .= "</tr>";
+          //  $table .= "</tr>";
         }
 
        
