@@ -11966,10 +11966,10 @@ private function cargar_datos_activacion(){
                 }
                 
 
-              //  $table .= "<td>";
+                $table .= "<td>";
                 if($cellValue1 !== null){
-              /    $table .= $cellValue1;
-             /   $table .= "</td>";
+                  $table .= $cellValue1;
+                $table .= "</td>";
                 // echo  $cellValue1;   
                 }
                 
