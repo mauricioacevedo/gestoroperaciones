@@ -11948,7 +11948,7 @@ private function cargar_datos_activacion(){
 
                 $cellValue1 = $cellValue;              
 
-                 if($h=="E"){
+                 if($h=="A"){
                     $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
                     $cellValue1 = gmdate("Y-m-d 00:00:00",$timestamp);//fecha formateada+
                     //$table .= "<td>";
