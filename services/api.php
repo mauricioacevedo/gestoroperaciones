@@ -11935,13 +11935,13 @@ private function cargar_datos_activacion(){
         list($end, $end_h, $end_v) = $rslt;
 
         //empieza  lectura vertical
-        $table = "<table  border='1'>";
+       // $table = "<table  border='1'>";
         for($v=$start_v; $v<=$end_v; $v++){
             //empieza lectura horizontal
 
             if ($v==1) continue;
-            $table .= "<tr>";
-            //$filas= $start_h + 1;
+           // $table .= "<tr>";
+            $filas= $start_h + 1;
 
 
             for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
@@ -11952,24 +11952,24 @@ private function cargar_datos_activacion(){
                  if($h=="A"){
                     $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue1);//fecha larga
                     $cellValue1 = gmdate("Y-m-d H:i:s",$timestamp);//fecha formateada+
-                    $table .= "<td>";
+                  //  $table .= "<td>";
                 }
                  if($h=="B"){
                     $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue1);//fecha larga
                     $cellValue1 = gmdate("H:i:s",$timestamp);//fecha formateada+
-                    $table .= "<td>";
+                 //   $table .= "<td>";
                 }
                 if($h=="M"){
                     $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue1);//fecha larga
                     $cellValue1 = gmdate("Y-m-d H:i:s",$timestamp);//fecha formateada+
-                    $table .= "<td>";
+               //     $table .= "<td>";
                 }
                 
 
-                $table .= "<td>";
+              //  $table .= "<td>";
                 if($cellValue1 !== null){
-                   $table .= $cellValue1;
-                 $table .= "</td>";
+              //     $table .= $cellValue1;
+             //    $table .= "</td>";
                 // echo  $cellValue1;   
                 }
                 
@@ -12016,7 +12016,7 @@ private function cargar_datos_activacion(){
 
 
 
-           $table .= "</tr>";
+        //   $table .= "</tr>";
         }
 
        
