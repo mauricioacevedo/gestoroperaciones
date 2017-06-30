@@ -11862,7 +11862,7 @@ private function cargar_datos_activacion(){
         $FECHA_FIN='';
         $FECHA_GESTION='';
         $TABLA='';
-        //$today = date("Y-m-d");
+        $today = date("Y-m-d");
         
        
 
@@ -11964,11 +11964,7 @@ private function cargar_datos_activacion(){
                     $cellValue1 = gmdate("Y-m-d H:i:s",$timestamp);//fecha formateada+
                     //$table .= "<td>";
                 }
-                if($h){
-                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue1);//fecha larga
-                    $today = gmdate("Y-m-d",$timestamp);//fecha formateada+
-                    //$table .= "<td>";
-                }
+                
 
                // $table .= "<td>";
                 if($cellValue1 !== null){
