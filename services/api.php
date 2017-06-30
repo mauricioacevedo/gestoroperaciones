@@ -11946,17 +11946,21 @@ private function cargar_datos_activacion(){
             for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
                 $cellValue = $this->get_cell($h.$v, $objPHPExcel);
 
-                $table .= "<td>";
-                $guardar .=" '$cellValue',";
+                $cellValue1 = $cellValue;              
 
-                if($cellValue !== null){
-                    $table .= $cellValue;
-                }
                  if($h=="E"){
                     $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
-                    $FECHA_EXCEPCION = gmdate("Y-m-d 00:00:00",$timestamp);//fecha formateada+
-                    $table .= "<td>";
+                    $cellValue1 = gmdate("Y-m-d 00:00:00",$timestamp);//fecha formateada+
+                    //$table .= "<td>";
                 }
+
+                $table .= "<td>";
+                if($cellValue !== null){
+                    $table .= $cellValue1;
+                 $table .= "</td>";   
+                }
+                
+                $guardar .=" '$cellValue1',";
                
             }       
 
