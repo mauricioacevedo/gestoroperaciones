@@ -1544,11 +1544,11 @@ app.controller('popupsCtrl', function ($scope, $rootScope, $location, $routePara
     var h = $window.innerHeight;
     var w = $window.innerWidth;
     var urls = {
-          urlNodoHfc: "http://10.100.82.125/gestoroperaciones/#/cmts/"
-		, urlNodoGpon: "http://10.100.82.125/gestoroperaciones/#/gpon/"
-		, urlDistancia: "http://10.100.82.125/gestoroperaciones/#/distancia/"
-		, urlTips: "http://10.100.82.125/gestoroperaciones/#/tips/"
-        , urlEdatel: "http://10.100.82.125/gestoroperaciones/#/distriedatel/"
+          urlNodoHfc: "http://10.100.82.125/gestoroperaciones-dev/#/cmts/"
+		, urlNodoGpon: "http://10.100.82.125/gestoroperaciones-dev/#/gpon/"
+		, urlDistancia: "http://10.100.82.125/gestoroperaciones-dev/#/distancia/"
+		, urlTips: "http://10.100.82.125/gestoroperaciones-dev/#/tips/"
+        , urlEdatel: "http://10.100.82.125/gestoroperaciones-dev/#/distriedatel/"
     };
 
     $scope.btnFunctions = {
