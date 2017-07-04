@@ -1560,7 +1560,7 @@ app.controller('popupsCtrl', function ($scope, $rootScope, $location, $routePara
             $scope.winBuscaGPON = $window.open(urls.urlNodoGpon, 'Buscar Capacidad Gpon','width=830,height=660,menubar=0,toolbar=0');
         }
         , abrirCalculoDistancia: function () {
-            $scope.winabrirCalculoDistancia = $window.open(urls.urlDistancia, 'Buscar Capacidad REDCO','width=1000,height=560,menubar=0,toolbar=0');
+            $scope.winabrirCalculoDistancia = $window.open(urls.urlDistancia, 'Buscar Capacidad REDCO','width=1100,height=560,menubar=0,toolbar=0');
         }
         , abrirTips: function () {
             $scope.winabrirTips = $window.open(urls.urlTips, 'Buscar Tips','width=830,height=560,menubar=0,toolbar=0');
