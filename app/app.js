@@ -1537,7 +1537,38 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
 
 
 });
+app.controller('popupsCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $q, $timeout, $interval, $http, $window, notify) {
+    /**
+     * Controlador para Abrir Popups con herramientas
+     * */
+    var urls = {
+          urlNodoHfc: "http://10.100.82.125/gestoroperaciones/#/cmts/"
+		, urlNodoGpon: "http://10.100.82.125/gestoroperaciones/#/gpon/"
+		, urlDistancia: "http://10.100.82.125/gestoroperaciones/#/distancia/"
+		, urlTips: "http://10.100.82.125/gestoroperaciones/#/tips/"
+    };
 
+    $scope.btnFunctions = {
+        BuscaNodo: function () {
+            $window.open(urls.urlNodoHfc, 'Buscar Nodo HFC','width=630,height=460,menubar=0,toolbar=0');
+		}
+        , BuscaGPON: function () {
+
+        }
+        , abrirCalculoDistancia: function () {
+
+        }
+        , abrirTips: function () {
+
+        }
+		, BuscaRedEdatel: function () {
+
+        }
+    };
+
+
+
+});
 //-----------------------Dashboard graficas y seguimiento------------------
 
 app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) { //graficas
@@ -17275,40 +17306,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 		input.remove();
 	};
 
-	// BtnTools Buscadores Ventanas --------------------------------------------------------------------------------
-	$rootScope.btnUrls = {
-        bNodoHfc:'',
-        bNodoGpon:'',
-        bNodoDistancia:'',
-        bTips:'',
-        bEdatel:''
-	};
-	$rootScope.BuscaNodo = function () {
-		var urlNodoHfc = "http://10.100.82.125/gestoroperaciones/#/cmts/";
-        var params = 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=50, innerWidth=600, innerHeight=450';
-        $rootScope.btnUrls.bNodoHfc = $window.open(urlNodoHfc, 'Buscar Nodo HFC','target _blank', params);
-        $rootScope.btnUrls.bNodoHfc.resizeBy(700,600);
-        //var bNodoWin = $window.open(window.location.pathname + "#/cmts/", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
-	};
-	$rootScope.BuscaGPON = function () {
-        var urlNodoGpon = "http://10.100.82.125/gestoroperaciones/#/gpon/";
-        $rootScope.btnUrls.bNodoGpon = $window.open(urlNodoGpon, 'Buscar Nodo GPON', 'target _blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=50, width=1100, height=450');
-        $rootScope.btnUrls.bNodoGpon.resizeBy(800,600);
-	};
-	$rootScope.abrirCalculoDistancia = function () {
-        var urlDistancia = "http://10.100.82.125/gestoroperaciones/#/distancia/";
-        $rootScope.btnUrls.bNodoDistancia = $window.open(urlDistancia, 'Buscar Armario redco','target _blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=1200px, height=600');
-	};
-	$rootScope.abrirTips = function () {
-        var urlTips = "http://10.100.82.125/gestoroperaciones/#/tips/";
-        $rootScope.btnUrls.bTips = $window.open(urlTips, 'Buscar Tips','target _blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600');
-	};
 
-	$rootScope.BuscaRedEdatel = function (localidad) {
-        var urlEdatel = "http://10.100.82.125/gestoroperaciones/#/distriedatel/";
-        $rootScope.btnUrls.bEdatel = $window.open(urlEdatel, 'Buscar Edatel','target _blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600');
-	};
-	// --------------------------------------------------------------------------------  BtnTools Buscadores Ventanas
 
 	$rootScope.ProgramadosModal = function () {
 		$rootScope.listaProgramados();

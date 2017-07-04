@@ -1,10 +1,10 @@
-<div>
+<div ng-controller="popupsCtrl">
 	<ul class="nav navbar-nav pull-right">
 		<li>
 			<span style="color:red" ><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span></li>
 		<li> &nbsp; </li>
 		<li >
-			<button type="button" ng-click="BuscaNodo()" class="btn btn-primary btn-circle-xs " title="Buscar capacidad HFC" tooltip data-placement="top"><i class="fa fa-television"></i></button>
+			<button type="button" ng-click="btnFunctions.BuscaNodo()" class="btn btn-primary btn-circle-xs " title="Buscar capacidad HFC" tooltip data-placement="top"><i class="fa fa-television"></i></button>
 		</li>
 		<li>
 			<button type="button" ng-click="abrirCalculoDistancia()" class="btn btn-primary btn-circle-xs" title="Buscar capacidad REDCO" tooltip data-placement="top"><i class="fa fa-tty"></i></button></li>
