@@ -17278,12 +17278,12 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 	// BtnTools Buscadores Ventanas --------------------------------------------------------------------------------
 	$rootScope.BuscaNodo = function () {
 		var urlNodoHfc = "http://10.100.82.125/gestoroperaciones/#/cmts/";
-        $rootScope.bNodoWin = $window.open(urlNodoHfc, 'Buscar Nodo HFC','target _blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=500px, height=500px');
+        $rootScope.bNodoHfc = $window.open(urlNodoHfc, 'Buscar Nodo HFC','target _blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=500px, height=500px');
         //var bNodoWin = $window.open(window.location.pathname + "#/cmts/", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
 	};
 	$rootScope.BuscaGPON = function () {
         var urlNodoGpon = "http://10.100.82.125/gestoroperaciones/#/gpon/";
-		$window.open(urlNodoGpon, 'Buscar Nodo GPON', 'target _blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=50, width=1100, height=450');
+        $rootScope.bNodoGpon = $window.open(urlNodoGpon, 'Buscar Nodo GPON', 'target _blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=50, width=1100, height=450');
 	};
 	$rootScope.abrirCalculoDistancia = function () {
 		$window.open(window.location.pathname + "#/distancia/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=1200px, height=600");
