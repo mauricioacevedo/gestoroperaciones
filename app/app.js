@@ -4655,7 +4655,7 @@ app.controller('AlarmasActivacionCtrl', function ($scope, $rootScope, $location,
 });
 //-----------------------------fin alarmas activacion--------------------
 
-app.controller('tipsCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
+app.controller('tipsCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $window, services) {
 
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
@@ -4715,7 +4715,7 @@ app.controller('tipsCtrl', function ($scope, $rootScope, $location, $routeParams
 	$scope.AbreTips = function (id) {
 
 		var link = "#/tips/visualizacionTip/" + id;
-		window.open(window.location.pathname + link, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650");
+		$scope.wAbreTipId = $window.open($window.location.pathname + link, 'Visualizar Tip', "toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650");
 
 	};
 
