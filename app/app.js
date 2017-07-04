@@ -17298,6 +17298,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 	$rootScope.abrirCalculoDistancia = function () {
         var urlDistancia = "http://10.100.82.125/gestoroperaciones/#/distancia/";
         $rootScope.btnUrls.bNodoDistancia = $window.open(urlDistancia, 'Buscar Armario redco','target _blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=1200px, height=600');
+        $rootScope.btnUrls.bNodoDistancia.resizeBy(800,600);
 	};
 	$rootScope.abrirTips = function () {
         var urlTips = "http://10.100.82.125/gestoroperaciones/#/tips/";
