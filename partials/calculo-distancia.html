@@ -21,14 +21,14 @@
 
                     <input type="text" class="btn btn-default btn-xs" placeholder="Distancia"
                            ng-model="distancia">
-                    <button type="button" uib-tooltip="Calcular" tooltip-placement="left"
+                    <button type="button" uib-tooltip="Calcular" tooltip-placement="top"
                             class="btn btn-primary btn-circle-xss"
                             data-ng-click="demeCapacidad(distancia)">
                         <i class="fa fa-calculator" aria-hidden="true"></i>
                     </button>
                     <input type="text" class="btn btn-default btn-xs" placeholder="Armario"
                            ng-model="armario">
-                    <button type="button" uib-tooltip="Buscar" tooltip-placement="left"
+                    <button type="button" uib-tooltip="Buscar" tooltip-placement="top"
                             class="btn btn-primary btn-circle-xss"
                             data-ng-click="buscarCapacidadCobre(armario)">
                         <i class="fa fa-search" aria-hidden="true"></i>
@@ -64,7 +64,7 @@
                             <td>{{data.DISTANCIA_SECUNDARIA}} <span ng-show="data.DISTANCIA_SECUNDARIA!=NULL">Mt</span>
                             </td>
                             <td>{{data.DISTANCIA_TOTAL}} Mt</td>
-                            <td><span class="text-danger">{{data.VELOCIDAD_SPORTADA}}</span></td>
+                            <td><span class="btn-success">{{data.VELOCIDAD_SPORTADA}}</span></td>
                         </tr>
                         </tbody>
                     </table>
