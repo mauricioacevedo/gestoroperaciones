@@ -4715,7 +4715,7 @@ app.controller('tipsCtrl', function ($scope, $rootScope, $location, $routeParams
 	$scope.AbreTips = function (id) {
 
 		var link = "#/tips/visualizacionTip/" + id;
-		$scope.wAbreTipId = $window.open($window.location.pathname + link, 'Visualizar Tip', "toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650");
+		$scope.wAbreTipId = $window.open($window.location.pathname + link, 'Visualizar Tip', 'toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650');
 
 	};
 
@@ -5976,7 +5976,7 @@ app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $
         });
 
         var link = "#/tips/visualizacionTip/"+id;
-        window.open(window.location.pathname+ link, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650");
+        $scope.wAbreTipId = $window.open($window.location.pathname + link, 'Visualizar Tip', 'toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650');
 
     };
 
@@ -6506,7 +6506,7 @@ $scope.actualizarLightKPIS();
 //-----------------------------ASIGNACIONES--------------------------------
 
 
-app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, services) {
+app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, $window, services) {
 
 	//var userID = ($routeParams.userID) ? parseInt($routeParams.userID) : 0;
 	//
@@ -6618,7 +6618,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		});
 
 		var link = "#/tips/visualizacionTip/" + id;
-		window.open(window.location.pathname + link, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650");
+        $scope.wAbreTipId = $window.open($window.location.pathname + link, 'Visualizar Tip', 'toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650');
 
 	};
 
@@ -6638,7 +6638,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		//document.getElementById("mostrarTIP").style.display = "none";
 
 		var link = "#/vecinos/" + pagina;
-		window.open(window.location.pathname + link, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=70, right=100, width=1200, height=600");
+        $scope.wAbreVecinos = $window.open($window.location.pathname + link, 'Visualizar Tip', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=70, right=100, width=1200, height=600');
+		//window.open(window.location.pathname + link, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=70, right=100, width=1200, height=600");
 
 	};
 
@@ -12875,10 +12876,12 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
 			return data.data;
 		});
 
-		var link = "#/tips/visualizacionTip/" + id;
-		window.open(window.location.pathname + link, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650");
+        $scope.AbreTips = function (id) {
 
-	}; //Termina Código de TIPS
+            var link = "#/tips/visualizacionTip/" + id;
+            $scope.wAbreTipId = $window.open($window.location.pathname + link, 'Visualizar Tip', 'toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650');
+
+        };
 
 	//Funcion para copyclipboard
 	$scope.executeCopy = function executeCopy(text) {
