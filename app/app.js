@@ -1554,10 +1554,10 @@ app.controller('popupsCtrl', function ($scope, $rootScope, $location, $routePara
     $scope.btnFunctions = {
         BuscaNodo: function () {
             $scope.winBuscaNodo = $window.open(urls.urlNodoHfc, 'Buscar Nodo HFC','width=730,height=560,menubar=0,toolbar=0');
-            console.log('h: '+h+' - '+'w: '+w);
+           // console.log('h: '+h+' - '+'w: '+w);
 		}
         , BuscaGPON: function () {
-            $scope.winBuscaGPON = $window.open(urls.urlNodoGpon, 'Buscar Capacidad Gpon','width=730,height=560,menubar=0,toolbar=0');
+            $scope.winBuscaGPON = $window.open(urls.urlNodoGpon, 'Buscar Capacidad Gpon','width=830,height=660,menubar=0,toolbar=0');
         }
         , abrirCalculoDistancia: function () {
             $scope.winabrirCalculoDistancia = $window.open(urls.urlDistancia, 'Buscar Capacidad REDCO','width=830,height=560,menubar=0,toolbar=0');
