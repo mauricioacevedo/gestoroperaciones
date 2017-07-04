@@ -4,86 +4,52 @@
         document.getElementById('footerazo').style.display = 'none';
     }
 </script>
-<div class="page-header">
-    <h1>Buscador de Disponibilidad REDCO</h1>
-</div>
-<div class="panel panel-info">
-    <div class="panel-heading nav navbar-default">
-        <div class="row"><!--Row Concepto Plaza - Buscador Tips -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <b><i class="fa fa-bars" aria-hidden="true"></i> Buscador Red de Cobre</b>
+                <span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle" aria-hidden="true"
+                                                              ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+                <div class="pull-right">
+                    <div class="col-md-1 col-xs-1 ">
+                        <div data-ng-if="loading">
+                            <img title="Esperando respuesta" tooltip data-placement="top" src="images/loader.gif"
+                                 height="16" width="16"/>
+                        </div>
+                    </div>
 
-            <div class="col-md-12">
-                <div class="btn-group">
-                    <input type="text" class=""
-                           onClick="this.setSelectionRange(0, this.value.length)" title="Escriba distancia del armario"
-                           data-toggle="tooltip" data-placement="top" ng-model="distancia"
-                           placeholder="Distancia Armario">
-                    <button type="button" class="btn btn-md btn-primary"
-                            ng-click="demeCapacidad(distancia);"><i class="fa fa-calculator" aria-hidden="true"></i>
-                        Calcular
+                    <input type="text" class="btn btn-default btn-xs" placeholder="Usuario"
+                           ng-model="distancia">
+                    <button type="button" uib-tooltip="Nueva Tarea" tooltip-placement="left"
+                            class="btn btn-primary btn-circle-xss"
+                            data-ng-click="demeCapacidad(distancia)">
+                        <i class="fa calculator" aria-hidden="true"></i>
+                         Calcular
                     </button>
+
+
+                </div>
+            </div>
+            <div class="panel-body fixed-panel">
+
+
+            </div>
+            <div class="panel-footer clearfix">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
                 </div>
 
             </div>
-                <div class="btn-group">
-                    <input type="text" class="form-control"
-                           onClick="this.setSelectionRange(0, this.value.length)" title="Escriba Armario a buscar"
-                           data-toggle="tooltip" data-placement="top" placeholder="Buscar Armario" ng-model="armario">
-                    <button type="button" class="btn btn-md btn-primary"
-                            ng-click="buscarCapacidadCobre(armario);"><i class="fa fa-search" aria-hidden="true"></i>
-                        Buscar
-                    </button>
-                </div>
-            <div class="col-lg-2">
-                <div class="loading-spiner-holder" data-loading>
-                    <div class="loading-spiner"><img title="Esperando respuesta" data-toggle="tooltip"
-                                                     data-placement="top" src="images/loader.gif"/></div>
-                </div>
-            </div>
 
-        </div><!--Row heading -->
-    </div><!--Panel Heading -->
-    <div class="panel-body">
-
-        <div class="row">
-            <div ng-show="error" class="alert alert-danger">{{error}}</div>
         </div>
-        <div class="row">
-            <div class="jumbotron">
-                <div class="row" ng-show="capacidad">
-                    <h3>Capacidad: <font color='red'><strong>{{capacidad}} Mb.</strong></font></h3>
-                </div>
+    </div>
 
-                <div class="row" ng-show="resultado">
-
-                    <table class="table small table-striped table-hover table-bordered table-condensed">
-                        <thead>
-                        <th ng-repeat="key in getKeysOfCollection(resultado[0])">{{key}}
-                            <input class="buscador" placeholder="&#xf0b0; Filtro" type="text" ng-model="search[key]"/>
-
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="data in resultado | filter:search">
-                            <td>{{data.ARMARIO_ID}}</td>
-                            <td>{{data.CAJA_ID}}</td>
-                            <td>{{data.NODOS}}</td>
-                            <td>{{data.ADIN_PRI}}</td>
-                            <td>{{data.ADIN_SEC}}</td>
-                            <td>{{data.DISTANCIA_CAJA}} Mt</td>
-                            <td>{{data.DISTANCIA_ARMARIO}} Mt</td>
-                            <td>{{data.DISTANCIA_SECUNDARIA}} <span ng-show="data.DISTANCIA_SECUNDARIA!=NULL">Mt</span>
-                            </td>
-                            <td>{{data.DISTANCIA_TOTAL}} Mt</td>
-                            <td>{{data.VELOCIDAD_SPORTADA}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div><!-- Jumbotron -->
-        </div><!-- Container -->
-
-    </div><!--Panle Body  -->
-</div><!--Panel -->
+</div><!--Row 1 Novedades -->
 
 
 <script language='javascript'>
