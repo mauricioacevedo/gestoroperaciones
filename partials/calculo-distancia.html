@@ -26,6 +26,13 @@
                             data-ng-click="demeCapacidad(distancia)">
                         <i class="fa fa-calculator" aria-hidden="true"></i>
                     </button>
+                    <input type="text" class="btn btn-default btn-xs" placeholder="Armario"
+                           ng-model="armario">
+                    <button type="button" uib-tooltip="Calcular" tooltip-placement="left"
+                            class="btn btn-primary btn-circle-xss"
+                            data-ng-click="buscarCapacidadCobre(armario)">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
 
 
                 </div>
