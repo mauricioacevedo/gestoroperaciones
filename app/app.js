@@ -1546,23 +1546,24 @@ app.controller('popupsCtrl', function ($scope, $rootScope, $location, $routePara
 		, urlNodoGpon: "http://10.100.82.125/gestoroperaciones/#/gpon/"
 		, urlDistancia: "http://10.100.82.125/gestoroperaciones/#/distancia/"
 		, urlTips: "http://10.100.82.125/gestoroperaciones/#/tips/"
+        , urlEdatel: "http://10.100.82.125/gestoroperaciones/#/distriedatel/"
     };
 
     $scope.btnFunctions = {
         BuscaNodo: function () {
-            $window.open(urls.urlNodoHfc, 'Buscar Nodo HFC','width=730,height=560,menubar=0,toolbar=0');
+            $scope.winBuscaNodo = $window.open(urls.urlNodoHfc, 'Buscar Nodo HFC','width=730,height=560,menubar=0,toolbar=0');
 		}
         , BuscaGPON: function () {
-
+            $scope.winBuscaGPON = $window.open(urls.urlNodoGpon, 'Buscar Capacidad Gpon','width=730,height=560,menubar=0,toolbar=0');
         }
         , abrirCalculoDistancia: function () {
-
+            $scope.winabrirCalculoDistancia = $window.open(urls.urlDistancia, 'Buscar Capacidad REDCO','width=730,height=560,menubar=0,toolbar=0');
         }
         , abrirTips: function () {
-
+            $scope.winabrirTips = $window.open(urls.urlTips, 'Buscar Tips','width=730,height=560,menubar=0,toolbar=0');
         }
 		, BuscaRedEdatel: function () {
-
+            $scope.winBuscaRedEdatel = $window.open(urls.urlEdatel, 'Buscar Capacidad Edatel','width=730,height=560,menubar=0,toolbar=0');
         }
     };
 
