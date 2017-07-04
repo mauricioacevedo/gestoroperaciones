@@ -4714,8 +4714,8 @@ app.controller('tipsCtrl', function ($scope, $rootScope, $location, $routeParams
 
 	$scope.AbreTips = function (id) {
 
-		var link = "#/tips/visualizacionTip/" + id;
-		$scope.wAbreTipId = $window.open($window.location.pathname + link, 'Visualizar Tip', 'toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650');
+		var link = $window.location.pathname+'/#/tips/visualizacionTip/' + id;
+		$scope.wAbreTipId = $window.open(link, 'Visualizar Tip', 'toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650');
 
 	};
 
