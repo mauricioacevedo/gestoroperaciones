@@ -1550,7 +1550,7 @@ app.controller('popupsCtrl', function ($scope, $rootScope, $location, $routePara
 
     $scope.btnFunctions = {
         BuscaNodo: function () {
-            $window.open(urls.urlNodoHfc, 'Buscar Nodo HFC','width=630,height=460,menubar=0,toolbar=0');
+            $window.open(urls.urlNodoHfc, 'Buscar Nodo HFC','width=730,height=560,menubar=0,toolbar=0');
 		}
         , BuscaGPON: function () {
 
