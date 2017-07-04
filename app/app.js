@@ -17287,7 +17287,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 		var urlNodoHfc = "http://10.100.82.125/gestoroperaciones/#/cmts/";
         var params = 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=50, innerWidth=600, innerHeight=450';
         $rootScope.btnUrls.bNodoHfc = $window.open(urlNodoHfc, 'Buscar Nodo HFC','target _blank', params);
-        $rootScope.btnUrls.bNodoHfc.resizeBy(400,500);
+        $rootScope.btnUrls.bNodoHfc.resizeBy(700,600);
         //var bNodoWin = $window.open(window.location.pathname + "#/cmts/", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
 	};
 	$rootScope.BuscaGPON = function () {
