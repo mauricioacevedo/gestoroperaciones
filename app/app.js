@@ -1544,7 +1544,7 @@ app.controller('popupsCtrl', function ($scope, $rootScope, $location, $routePara
     var h = $window.innerHeight;
     var w = $window.innerWidth;
     var urls = {
-          urlNodoHfc: "http://10.100.82.125/gestoroperaciones-dev/#/cmts/"
+          urlNodoHfc: $window.location.pathname+'/#/cmts/'
 		, urlNodoGpon: "http://10.100.82.125/gestoroperaciones-dev/#/gpon/"
 		, urlDistancia: "http://10.100.82.125/gestoroperaciones-dev/#/distancia/"
 		, urlTips: "http://10.100.82.125/gestoroperaciones-dev/#/tips/"
