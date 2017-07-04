@@ -15175,7 +15175,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
             $scope.peds = data.data;
 
-            console.log(data.data);
+            //console.log(data.data);
 
             if (data.data == '') {
 
