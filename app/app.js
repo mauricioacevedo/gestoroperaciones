@@ -17239,7 +17239,7 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
 }]);
 
 //Variables Globales
-app.run(function ($rootScope, $scope, $compile, $window, notify, services) {
+app.run(function ($rootScope, $compile, $window, notify, services) {
 
 	$rootScope.daysInMonth = function (year, month) {
 		return new Date(year, month + 1, 0).getDate();
@@ -17277,7 +17277,7 @@ app.run(function ($rootScope, $scope, $compile, $window, notify, services) {
 
 	// BtnTools Buscadores Ventanas --------------------------------------------------------------------------------
 	$rootScope.BuscaNodo = function () {
-        $scope.bNodoWin = $window.open('http://10.100.82.125/gestoroperaciones/#/cmts/', '_blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600');
+        $rootScope.bNodoWin = $window.open('http://10.100.82.125/gestoroperaciones/#/cmts/', '_blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600');
         //var bNodoWin = $window.open(window.location.pathname + "#/cmts/", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
 	};
 	$rootScope.BuscaGPON = function () {
