@@ -1541,6 +1541,8 @@ app.controller('popupsCtrl', function ($scope, $rootScope, $location, $routePara
     /**
      * Controlador para Abrir Popups con herramientas
      * */
+    var h = $window.innerHeight;
+    var w = $window.innerWidth;
     var urls = {
           urlNodoHfc: "http://10.100.82.125/gestoroperaciones/#/cmts/"
 		, urlNodoGpon: "http://10.100.82.125/gestoroperaciones/#/gpon/"
@@ -1552,6 +1554,7 @@ app.controller('popupsCtrl', function ($scope, $rootScope, $location, $routePara
     $scope.btnFunctions = {
         BuscaNodo: function () {
             $scope.winBuscaNodo = $window.open(urls.urlNodoHfc, 'Buscar Nodo HFC','width=730,height=560,menubar=0,toolbar=0');
+            console.log('h: '+h+' - '+'w: '+w);
 		}
         , BuscaGPON: function () {
             $scope.winBuscaGPON = $window.open(urls.urlNodoGpon, 'Buscar Capacidad Gpon','width=730,height=560,menubar=0,toolbar=0');
