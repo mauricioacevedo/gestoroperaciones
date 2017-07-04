@@ -12,12 +12,12 @@
         <div class="row"><!--Row Concepto Plaza - Buscador Tips -->
 
             <div class="col-md-5 ">
-                <div class="form-group btn-group">
-                    <input type="text" class="form-control"
+                <div class="btn-group">
+                    <input type="text" class=""
                            onClick="this.setSelectionRange(0, this.value.length)" title="Escriba distancia del armario"
                            data-toggle="tooltip" data-placement="top" ng-model="distancia"
                            placeholder="Distancia Armario">
-                    <button type="button" class="form-control btn btn-md btn-primary"
+                    <button type="button" class="btn btn-md btn-primary"
                             ng-click="demeCapacidad(distancia);"><i class="fa fa-calculator" aria-hidden="true"></i>
                         Calcular
                     </button>
@@ -25,11 +25,11 @@
 
             </div>
             <div class="col-md-5">
-                <div class="form-group btn-group">
+                <div class="btn-group">
                     <input type="text" class="form-control"
                            onClick="this.setSelectionRange(0, this.value.length)" title="Escriba Armario a buscar"
                            data-toggle="tooltip" data-placement="top" placeholder="Buscar Armario" ng-model="armario">
-                    <button type="button" class="form-control btn btn-md btn-primary"
+                    <button type="button" class="btn btn-md btn-primary"
                             ng-click="buscarCapacidadCobre(armario);"><i class="fa fa-search" aria-hidden="true"></i>
                         Buscar
                     </button>
