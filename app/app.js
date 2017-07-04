@@ -1473,7 +1473,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
     $scope.audio = document.createElement('audio');
     $scope.audio.src = './sounds/chatio.mp3';
     $scope.template = '';
-
+    var urlNode = "http://10.100.82.125:4000";
 
 
     $scope.play = function() {
@@ -1486,7 +1486,7 @@ app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location,
         console.log("Abrir ventana mensajes rdy");
     };
 
-	var urlNode = "http://10.100.82.125:4000";
+
     socket.on("broad", function (data) {
     	$scope.play();
         $scope.tituloviejo = $rootScope.title;
@@ -17277,7 +17277,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 	// BtnTools Buscadores Ventanas --------------------------------------------------------------------------------
 	$rootScope.BuscaNodo = function () {
-		var bNodoWin = $window.open('http://10.100.82.125/gestoroperaciones/#/cmts/', '_blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600');
+        $scope.bNodoWin = $window.open('http://10.100.82.125/gestoroperaciones/#/cmts/', '_blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600');
         //var bNodoWin = $window.open(window.location.pathname + "#/cmts/", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
 	};
 	$rootScope.BuscaGPON = function () {
