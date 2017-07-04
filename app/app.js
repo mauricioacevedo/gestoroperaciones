@@ -17277,7 +17277,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 	// BtnTools Buscadores Ventanas --------------------------------------------------------------------------------
 	$rootScope.BuscaNodo = function () {
-		var bNodoWin = $window.open('http://10.100.82.125/gestoroperaciones/#/cmts/', '_parent', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600');
+		var bNodoWin = $window.open('http://10.100.82.125/gestoroperaciones/#/cmts/', '_top', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600');
         //var bNodoWin = $window.open(window.location.pathname + "#/cmts/", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
 	};
 	$rootScope.BuscaGPON = function () {
