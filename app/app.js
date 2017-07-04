@@ -1545,10 +1545,10 @@ app.controller('popupsCtrl', function ($scope, $rootScope, $location, $routePara
     var w = $window.innerWidth;
     var urls = {
           urlNodoHfc: $window.location.pathname+'/#/cmts/'
-		, urlNodoGpon: "http://10.100.82.125/gestoroperaciones-dev/#/gpon/"
-		, urlDistancia: "http://10.100.82.125/gestoroperaciones-dev/#/distancia/"
-		, urlTips: "http://10.100.82.125/gestoroperaciones-dev/#/tips/"
-        , urlEdatel: "http://10.100.82.125/gestoroperaciones-dev/#/distriedatel/"
+		, urlNodoGpon: $window.location.pathname+'/#/gpon/'
+		, urlDistancia: $window.location.pathname+'/#/distancia/'
+		, urlTips: $window.location.pathname+'/#/tips/'
+        , urlEdatel: $window.location.pathname+'/#/distriedatel/'
     };
 
     $scope.btnFunctions = {
