@@ -225,11 +225,11 @@
                         </ul>
                     </li><!-- Activacion -->
                     <!-- Herramientas -->
-                    <li class="dropdown">
+                    <li class="dropdown" ng-controller="popupsCtrl">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">Herramientas <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="javascript:BuscaNodo();"><span class="fa fa-search"></span> Buscador Nodos HFC</a>
+                            <li><a href="" ng-click="btnFunctions.BuscaNodo()"><span class="fa fa-search"></span> Buscador Nodos HFC</a>
                             </li>
                             <li><a href="javascript:BuscaGPON();"><span class="fa fa-search"></span> Buscador GPON</a>
                             </li>
