@@ -17293,6 +17293,7 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 	$rootScope.BuscaGPON = function () {
         var urlNodoGpon = "http://10.100.82.125/gestoroperaciones/#/gpon/";
         $rootScope.btnUrls.bNodoGpon = $window.open(urlNodoGpon, 'Buscar Nodo GPON', 'target _blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=50, width=1100, height=450');
+        $rootScope.btnUrls.bNodoGpon.resizeBy(800,600);
 	};
 	$rootScope.abrirCalculoDistancia = function () {
         var urlDistancia = "http://10.100.82.125/gestoroperaciones/#/distancia/";
