@@ -17276,6 +17276,13 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 	};
 
 	// BtnTools Buscadores Ventanas --------------------------------------------------------------------------------
+	$rootScope.btnUrls = {
+        bNodoHfc:'',
+        bNodoGpon:'',
+        bNodoDistancia:'',
+        bTips:'',
+        bEdatel:''
+	};
 	$rootScope.BuscaNodo = function () {
 		var urlNodoHfc = "http://10.100.82.125/gestoroperaciones/#/cmts/";
         $rootScope.bNodoHfc = $window.open(urlNodoHfc, 'Buscar Nodo HFC','target _blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=500px, height=500px');
@@ -17283,17 +17290,20 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 	};
 	$rootScope.BuscaGPON = function () {
         var urlNodoGpon = "http://10.100.82.125/gestoroperaciones/#/gpon/";
-        $rootScope.bNodoGpon = $window.open(urlNodoGpon, 'Buscar Nodo GPON', 'target _blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=50, width=1100, height=450');
+        $rootScope.btnUrls.bNodoGpon = $window.open(urlNodoGpon, 'Buscar Nodo GPON', 'target _blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=50, width=1100, height=450');
 	};
 	$rootScope.abrirCalculoDistancia = function () {
-		$window.open(window.location.pathname + "#/distancia/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=1200px, height=600");
+        var urlDistancia = "http://10.100.82.125/gestoroperaciones/#/distancia/";
+        $rootScope.btnUrls.bNodoDistancia = $window.open(urlDistancia, 'Buscar Armario redco','target _blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=1200px, height=600');
 	};
 	$rootScope.abrirTips = function () {
-		$window.open(window.location.pathname + "#/tips/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
+        var urlTips = "http://10.100.82.125/gestoroperaciones/#/tips/";
+        $rootScope.btnUrls.bTips = $window.open(urlTips, 'Buscar Tips','target _blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600');
 	};
 
 	$rootScope.BuscaRedEdatel = function (localidad) {
-		$window.open(window.location.pathname + "#/distriedatel/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
+        var urlEdatel = "http://10.100.82.125/gestoroperaciones/#/distriedatel/";
+        $rootScope.btnUrls.bEdatel = $window.open(urlEdatel, 'Buscar Edatel','target _blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600');
 	};
 	// --------------------------------------------------------------------------------  BtnTools Buscadores Ventanas
 
