@@ -857,6 +857,8 @@ private function csvAmarillas(){
                 " ,b.FECHA_EXCEPCION,b.TIPO_COMUNICACION,b.DEPARTAMENTO,b.STATUS ".
                 " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
                 " where a.PEDIDO=b.PEDIDO order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
+                " , (select a.ASESOR from gestor_historico_activacion a  ".
+                " where a.PEDIDO=b.PEDIDO order by a.ID desc limit 1) as ASESOR  ".
                 " FROM pendientes_amarillas b ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
