@@ -854,7 +854,7 @@ private function csvAmarillas(){
         $today = date("Y-m-d h:i:s");
         $filename="Fenix_Activacion-$login-$today.csv";
         $query=" select b.ORDER_SEQ_ID,b.ESTADO,b.PEDIDO,b.TRANSACCION,b.PRODUCTO ".
-                " ,b.FECHA_CARGA,b.TIPO_COMUNICACION,b.DEPARTAMENTO,b.STATUS ".
+                " ,b.FECHA_EXCEPCION,b.TIPO_COMUNICACION,b.DEPARTAMENTO,b.STATUS ".
                 " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
                 " where a.PEDIDO=b.PEDIDO order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
                 " FROM pendientes_amarillas b ";
@@ -864,7 +864,7 @@ private function csvAmarillas(){
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('ORDER_SEQ_ID','ESTADO','PEDIDO','TRANSACCION','PRODUCTO','FECHA_CARGA','TIPO_COMUNICACION','DEPARTAMENTO','STATUS','HISTORICO_TIPIFICACION'));
+            fputcsv($fp, array('ORDER_SEQ_ID','ESTADO','PEDIDO','TRANSACCION','PRODUCTO','FECHA_EXCEPCION','TIPO_COMUNICACION','DEPARTAMENTO','STATUS','HISTORICO_TIPIFICACION'));
             while($row = $r->fetch_assoc()){
                 $result[] = $row;
                 fputcsv($fp, $row);
