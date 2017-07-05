@@ -18454,7 +18454,7 @@ private function cargar_datos_activacion(){
 
         $sqlfenix="	SELECT   ".
                   "  SOL.PEDIDO_ID AS  PEDIDOFNX ".
-                  "  , MAX(e,SOL.CONCEPTO_ID) as CONCEPTOS ".
+                  "  , MAX(SOL.CONCEPTO_ID) as CONCEPTOS ".
                   "  FROM FNX_SOLICITUDES SOL    ".
                   "  , FNX_PEDIDOS     ".
                   "   WHERE 1=1 ".
