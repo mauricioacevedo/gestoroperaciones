@@ -11999,17 +11999,6 @@ private function cargar_datos_activacion(){
                //echo  $today;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
 
-                
-                if($TIPIFICACION=='CR'){
-
-                    $sqlupdate="update pendientes_amarillas set FECHA_CARGA = '$today',STATUS='MALO',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE PEDIDO='$PEDIDO' and STATUS='PENDI_ACTI'";
-                      echo $sqlupdate;
-                }else {
-
-                    $sqlupdate="update pendientes_amarillas set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE PEDIDO='$PEDIDO' and STATUS='PENDI_ACTI'";
-                }
-             echo $sqlupdate;
-            $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
 
 
             }
