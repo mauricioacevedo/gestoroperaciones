@@ -18454,7 +18454,7 @@ private function cargar_datos_activacion(){
 
         $sqlfenix=" SELECT ".
                   "  C1.PEDIDO_ID AS PEDIDOFNX ".
-                  "  ,  LISTAGG(C1.CONCEPTO_ID, ',') WITHIN GROUP (ORDER BY C1.CONCEPTO_ID) AS CONCEPTOS ".
+                  "  ,  REGEXP_REPLACE((LISTAGG(C1.CONCEPTO_ID, ',') WITHIN GROUP (ORDER BY C1.CONCEPTO_ID)), '([^,]*)(,\\1)+($|,)', '\\1\\3') AS CONCEPTOS ".
                   "  FROM ( ".
                   "      SELECT ".
                   "  SOL.PEDIDO_ID ".
