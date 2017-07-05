@@ -5877,6 +5877,8 @@ private function csvAmarillas(){
             while($row = $r->fetch_assoc()){
                 $pedidoCrm = $row['PEDIDO_ID'];
                 $objRtaFenix = $this->conceptoPedidoSiebelFenix ($pedidoCrm);
+                var_dump ($objRtaFenix);
+                return;
                 $row['CONCEPTO_CRM'] = $objRtaFenix['CONCEPTOS'];
                 $result[] = $row;
                 fputcsv($fp, $row);
