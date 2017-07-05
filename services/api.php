@@ -18455,7 +18455,7 @@ private function cargar_datos_activacion(){
 
         $sqlfenix="	SELECT   ".
                   "  SOL.PEDIDO_ID AS  PEDIDOFNX ".
-                  "  , REGEXP_REPLACE((rtrim(xmlagg(xmlelement(e,SOL.CONCEPTO_ID,',').extract('//text()') order by SOL.CONCEPTO_ID).GetClobVal(),',')), '([^,]+)(,\1)+', '\1') as CONCEPTOS ".
+                  "  , TO_CHAR(REGEXP_REPLACE((rtrim(xmlagg(xmlelement(e,SOL.CONCEPTO_ID,',').extract('//text()') order by SOL.CONCEPTO_ID).GetClobVal(),',')), '([^,]+)(,\1)+', '\1')) as CONCEPTOS ".
                   "  FROM FNX_SOLICITUDES SOL    ".
                   "  , FNX_PEDIDOS     ".
                   "   WHERE 1=1 ".
