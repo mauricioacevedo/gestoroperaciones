@@ -47,8 +47,6 @@
 						<thead>
 							<th>ORDER_SEQ_ID</th>
 							<th>PEDIDO</th>
-							<th>ESTADO</th>
-							<th>FECHA_CREACION</th>
 							<th>FECHA_EXCEPCION</th>
 							<th>PRODUCTO</th>
                             <th>ASESOR</th>
@@ -61,8 +59,6 @@
 							<tr ng-repeat="data in listadoactivacion | filter:filtroInput as results">
 							<td><span class="small">{{data.ORDER_SEQ_ID}}</span></td>
 							<td><span class="small">{{data.PEDIDO}}</span></td>
-							<td><span class="small">{{data.ESTADO}}</span></td>
-							<td><span class="small">{{data.FECHA_CREACION}}</span></td>
 							<td><span class="small">{{data.FECHA_EXCEPCION}}</span></td>
 							<td><span class="small">{{data.PRODUCTO}}</span></td>
                             <td><span class="small">{{data.ASESOR}}</span></td>
