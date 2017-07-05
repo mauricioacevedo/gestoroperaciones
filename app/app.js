@@ -4764,42 +4764,15 @@ app.controller('unicoTipCtrl', function ($scope, $rootScope, $location, $routePa
 	var original = transtip.data;
 	original._id = tipID;
 	$scope.visualizarTip = angular.copy(original);
-	console.log($scope.visualizarTip);
+
 
 	line = "";
 	line += "<div>";
 	line += $scope.visualizarTip.USER_POST;
 	line += "</div></br></br></br>";
-	console.log(line);
 	document.getElementById("poster").innerHTML = line;
 
-	/* document.getElementById("btnNuevo").style.visibility = "hidden";
-                document.getElementById("btnNuevo").style.display = "none";
-                document.getElementById("btnEditar").style.visibility = "visible";
-                document.getElementById("btnEditar").style.display = "inline";
 
-        $scope.editar = function(guardarEdicion){
-
-                //var x = document.getElementById("miAreaTexto").text;
-                var x = tinymce.get('miAreaTexto').getContent();
-                guardarEdicion.USER_POST=x;
-                var datetime = document.getElementById("datetimepicker1").value;
-                guardarEdicion.POST_TIME=datetime;
-                console.log(guardarEdicion.USER_POST);
-
-
-                if (guardarEdicion.USUARIO_ID.USUARIO_ID!=undefined ){
-                    guardarEdicion.USUARIO_ID=guardarEdicion.USUARIO_ID.USUARIO_ID;
-                }
-
-                services.actualizarTip(guardarEdicion).then(function(data){
-                    return data.data;
-                });
-
-                $location.path('/admontips');
-
-
-        };*/
 
 });
 
@@ -5562,7 +5535,6 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     var divi = document.getElementById("logoutdiv");
     divi.style.visibility = "visible";
     divi.style.position = "relative";
-    //$rootScope.iconcepto="TODO";
     $scope.checho = "-1";
     $rootScope.errorDatos=null;
     $rootScope.getConceptosGestor();
