@@ -18452,16 +18452,21 @@ private function cargar_datos_activacion(){
         $this->dbFenixConnect();
         $connf=$this->connf;
 
-        $sqlfenix="	SELECT   ".
-                  "  SOL.PEDIDO_ID AS  PEDIDOFNX ".
-                  "  , MAX(SOL.CONCEPTO_ID) as CONCEPTOS ".
-                  "  FROM FNX_SOLICITUDES SOL    ".
-                  "  , FNX_PEDIDOS     ".
-                  "   WHERE 1=1 ".
-                  "    AND SOL.TIPO_ELEMENTO_ID IN ('INSIP','INSHFC','TO','TOIP','ACCESP') ".
-                  "    and FNX_PEDIDOS.PEDIDO_CRM IN ('$obj')    ".
-                  "    AND SOL.PEDIDO_ID=FNX_PEDIDOS.PEDIDO_ID ".
-                  "    group by SOL.PEDIDO_ID ";
+        $sqlfenix=" SELECT ".
+                  "  C1.PEDIDO_ID AS PEDIDOFNX ".
+                  "  ,  LISTAGG(C1.CONCEPTO_ID, ',') WITHIN GROUP (ORDER BY C1.CONCEPTO_ID) AS CONCEPTOS ".
+                  "  FROM ( ".
+                  "      SELECT ".
+                  "  SOL.PEDIDO_ID ".
+                  "  , SOL.SUBPEDIDO_ID ".
+                  "  , SOL.CONCEPTO_ID ".
+                  "  FROM FNX_SOLICITUDES SOL ".
+                  "  , FNX_PEDIDOS ".
+                  "  WHERE 1=1 ".
+                  "          AND SOL.TIPO_ELEMENTO_ID IN ('INSIP','INSHFC','TO','TOIP','ACCESP') ".
+                  "          and FNX_PEDIDOS.PEDIDO_CRM IN ('$obj') ".
+                  "          AND SOL.PEDIDO_ID=FNX_PEDIDOS.PEDIDO_ID ) C1 ".
+                  "  group by C1.PEDIDO_ID ";
 
         $stid = oci_parse($connf, $sqlfenix);
         oci_execute($stid);
