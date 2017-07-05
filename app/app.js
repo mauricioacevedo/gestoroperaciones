@@ -5709,7 +5709,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         var login = $rootScope.logedUser.login;
         services.getCsvPendientes(login, concep).then(function (data) {
             //console.log(data.data[0]);
-            window.location.href = "tmp/" + data.data[0];
+           window.location.href = "tmp/" + data.data[0];
             return data.data;
         });
     };

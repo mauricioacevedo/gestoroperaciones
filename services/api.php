@@ -5873,8 +5873,13 @@ private function csvAmarillas(){
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','PEDIDO','SUBPEDIDO_ID','SOLICITUD_ID','PROGRAMACION','TIPO_TRABAJO','TIPO_ELEMENTO_ID','PRODUCTO','UEN_CALCULADA','ESTRATO','MUNICIPIO_ID','PAGINA_SERVICIO','DIRECCION_SERVICIO','TIEMPO_COLA','TIEMPO_HORAS','FUENTE','CONCEPTO_ID','FECHA_ESTADO','FECHA_INGRESO','FECHA_CITA','STATUS','MOTIVO_MALO','INCIDENTE','RADICADO_TEMPORAL'));
+            fputcsv($fp, array('PEDIDO_ID','PEDIDO','SUBPEDIDO_ID','SOLICITUD_ID','PROGRAMACION','TIPO_TRABAJO','TIPO_ELEMENTO_ID','PRODUCTO','UEN_CALCULADA','ESTRATO','MUNICIPIO_ID','PAGINA_SERVICIO','DIRECCION_SERVICIO','TIEMPO_COLA','TIEMPO_HORAS','FUENTE','CONCEPTO_ID','FECHA_ESTADO','FECHA_INGRESO','FECHA_CITA','STATUS','MOTIVO_MALO','INCIDENTE','RADICADO_TEMPORAL','PEDIDOFNX', 'CONCEPTO_CRM'));
             while($row = $r->fetch_assoc()){
+                $pedidoCrm = $row['PEDIDO_ID'];
+                $objRtaFenix = $this->conceptoPedidoSiebelFenix ($pedidoCrm);
+                $row['PEDIDOFNX'] = $objRtaFenix['PEDIDOFNX'];
+                $row['CONCEPTO_CRM'] = $objRtaFenix['CONCEPTOS'];
+
                 $result[] = $row;
                 fputcsv($fp, $row);
             }
@@ -5883,6 +5888,8 @@ private function csvAmarillas(){
         }
         $this->response('',204);        // If no records "No Content" status
     }
+
+
     private function Pendientespetec(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -18438,6 +18445,35 @@ private function cargar_datos_activacion(){
             $this->response($this->json(array($error)), 403);
         }
 
+    }
+
+    private function conceptoPedidoSiebelFenix($obj){
+
+        $this->dbFenixConnect();
+        $connf=$this->connf;
+
+        $sqlfenix=" SELECT ".
+                  "  C1.PEDIDO_ID AS PEDIDOFNX ".
+                  "  ,  REGEXP_REPLACE((LISTAGG(C1.CONCEPTO_ID, ',') WITHIN GROUP (ORDER BY C1.CONCEPTO_ID)), '([^,]*)(,\\1)+($|,)', '\\1\\3') AS CONCEPTOS ".
+                  "  FROM ( ".
+                  "      SELECT ".
+                  "  SOL.PEDIDO_ID ".
+                  "  , SOL.SUBPEDIDO_ID ".
+                  "  , SOL.CONCEPTO_ID ".
+                  "  FROM FNX_SOLICITUDES SOL ".
+                  "  , FNX_PEDIDOS ".
+                  "  WHERE 1=1 ".
+                  "          AND SOL.TIPO_ELEMENTO_ID IN ('INSIP','INSHFC','TO','TOIP','ACCESP') ".
+                  "          and FNX_PEDIDOS.PEDIDO_CRM IN ('$obj') ".
+                  "          AND SOL.PEDIDO_ID=FNX_PEDIDOS.PEDIDO_ID ) C1 ".
+                  "  group by C1.PEDIDO_ID ";
+
+        $stid = oci_parse($connf, $sqlfenix);
+        oci_execute($stid);
+        if($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)){
+            return $row;
+        }
+        return "NO";
     }
 
 }//cierre de la clase
