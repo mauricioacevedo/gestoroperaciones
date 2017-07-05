@@ -18455,12 +18455,12 @@ private function cargar_datos_activacion(){
 
         $sqlfenix="	SELECT   ".
                   "  SOL.PEDIDO_ID AS  PEDIDOFNX ".
-                  "  , TO_CHAR(REGEXP_REPLACE((rtrim(xmlagg(xmlelement(e,SOL.CONCEPTO_ID,',').extract('//text()') order by SOL.CONCEPTO_ID).GetClobVal(),',')), '([^,]+)(,\1)+', '\1')) as CONCEPTOS ".
+                  "  , MAX(e,SOL.CONCEPTO_ID) as CONCEPTOS ".
                   "  FROM FNX_SOLICITUDES SOL    ".
                   "  , FNX_PEDIDOS     ".
                   "   WHERE 1=1 ".
                   "    AND SOL.TIPO_ELEMENTO_ID IN ('INSIP','INSHFC','TO','TOIP','ACCESP') ".
-                  "    and FNX_PEDIDOS.PEDIDO_CRM IN ('1-1YEQYD8BI')    ".
+                  "    and FNX_PEDIDOS.PEDIDO_CRM IN ('$obj')    ".
                   "    AND SOL.PEDIDO_ID=FNX_PEDIDOS.PEDIDO_ID ".
                   "    group by SOL.PEDIDO_ID ";
 
