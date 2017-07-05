@@ -5879,7 +5879,8 @@ private function csvAmarillas(){
                 $objRtaFenix = $this->conceptoPedidoSiebelFenix ($pedidoCrm);
 
                 $row['CONCEPTO_CRM'] = $objRtaFenix['CONCEPTOS'];
-                echo ($row['CONCEPTO_CRM']);
+                $pruebaecho = $row['CONCEPTO_CRM'];
+                var_dump ($pruebaecho);
                 $result[] = $row;
                 fputcsv($fp, $row);
             }
