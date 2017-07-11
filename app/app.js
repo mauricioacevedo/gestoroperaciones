@@ -6888,19 +6888,6 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 	};
 
-	$scope.isEstratoNull = function (obj) {
-        $scope.error = null;
-        angular.forEach(obj, function(value, key){
-            console.log(key + ': ' + value);
-            if(value.TIPO_ELEMENTO_ID==='ACCESP' || value.TIPO_ELEMENTO_ID==='TO'|| value.TIPO_ELEMENTO_ID==='INSHFC'){
-                if(value.ESTRATOMALO==='1'){
-                    $scope.error = "Pedido con estrato MALO, por favor verifique bien antes de aprobar.";
-                }
-            }
-        });
-        return $scope.error;
-	};
-
 	$scope.msavePedido = function () {
 
 		var loader = document.getElementById("mloader");
@@ -7150,7 +7137,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
-				$scope.isEstratoNull = $scope.peds[0].ESTRATOMALO;
+
 
 
 
@@ -7160,9 +7147,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 					$scope.error = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
 
 				}
-				if($scope.isEstratoNull==='1'){
-                    $scope.error = "Pedido con estrato MALO, por favor verifique bien antes de aprobar.";
-				}
+                $scope.isEstratoNull($scope.peds);
+
 
 				$scope.baby($scope.pedido1);
 
@@ -7202,6 +7188,24 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
     $scope.onChangeAccion = function () {
         $scope.accRdy = true;
         //$scope.programar=false;
+    };
+
+    $scope.isEstratoNull = function (obj) {
+        $scope.error = null;
+        var eletofind = ['ACCESP','TO','TOIP','INSIP','INSHFC'];
+
+        angular.forEach(obj, function(value, key){
+            console.log(key + ': ' + value);
+            if(eletofind.include(value.TIPO_ELEMENTO_ID)){
+            	console.log("Verdadero");
+			}
+            if(value.TIPO_ELEMENTO_ID==='ACCESP' || value.TIPO_ELEMENTO_ID==='TO'|| value.TIPO_ELEMENTO_ID==='INSHFC'){
+                if(value.ESTRATOMALO==='1'){
+                    $scope.error = "Pedido con estrato MALO, por favor verifique bien antes de aprobar.";
+                }
+            }
+        });
+        return $scope.error;
     };
 
 });//--------------------fin asignacion-----------------------------
