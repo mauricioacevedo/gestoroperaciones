@@ -6890,6 +6890,9 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 	$scope.checkEstrato = function (es) {
 		console.log(es);
+        $scope.stiloError = {
+            'color':'black'
+        }
 		if(es==='1'){
 			$scope.stiloError = {
                 'color':'red'
