@@ -7138,7 +7138,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
 				$scope.isEstratoNull = $scope.peds[0].ESTRATOMALO;
-				console.log($scope.isEstratoNull);
+
 
 
 
@@ -7146,6 +7146,9 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 					$scope.busy = $scope.peds[0].ASESOR;
 					$scope.error = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
 
+				}
+				if($scope.isEstratoNull==='1'){
+                    $scope.error = "Pedido con estrato MALO, por favor verifique bien antes de aprobar.";
 				}
 
 				$scope.baby($scope.pedido1);
