@@ -8725,6 +8725,12 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             " b.PRODUCTO_ID,	".
             " b.UEN_CALCULADA, ".
             " b.ESTRATO, ".
+            "  CASE ".
+		    "	 WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.ESTRATO='0' THEN TRUE ".
+            "    WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.ESTRATO='' THEN TRUE ".
+            "    WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.PAGINA_SERVICIO='' THEN TRUE ".
+            "    ELSE FALSE ".
+            "    END AS ESTRATOMALO, ".
             " b.MUNICIPIO_ID, ".
             " b.DIRECCION_SERVICIO, ".
             " b.PAGINA_SERVICIO, ".
