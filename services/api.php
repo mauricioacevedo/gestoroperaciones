@@ -7329,9 +7329,9 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                     " a.UEN_CALCULADA, ".
                     " a.ESTRATO, ".
                     "  CASE ".
-                    "	 WHEN a.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND a.TIPO_ELEMENTO_ID!='EQURED' AND a.ESTRATO='0' THEN TRUE ".
-                    "    WHEN a.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND a.TIPO_ELEMENTO_ID!='EQURED' AND a.ESTRATO='' THEN TRUE ".
-                    "    WHEN a.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND a.TIPO_ELEMENTO_ID!='EQURED' AND a.PAGINA_SERVICIO='' THEN TRUE ".
+                    "	 WHEN a.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND a.TIPO_ELEMENTO_ID!='EQURED' AND a.UEN_CALCULADA IN ('HG','E3') AND a.ESTRATO='0' THEN TRUE ".
+                    "    WHEN a.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND a.TIPO_ELEMENTO_ID!='EQURED' AND a.UEN_CALCULADA IN ('HG','E3') AND a.ESTRATO='' THEN TRUE ".
+                    "    WHEN a.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND a.TIPO_ELEMENTO_ID!='EQURED' AND a.UEN_CALCULADA IN ('HG','E3') AND a.PAGINA_SERVICIO='' THEN TRUE ".
                     "    ELSE FALSE ".
                     "    END AS ESTRATOMALO, ".
                     " a.MUNICIPIO_ID, ".
@@ -8732,9 +8732,9 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             " b.UEN_CALCULADA, ".
             " b.ESTRATO, ".
             "  CASE ".
-		    "	 WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.ESTRATO='0' THEN TRUE ".
-            "    WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.ESTRATO='' THEN TRUE ".
-            "    WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.PAGINA_SERVICIO='' THEN TRUE ".
+		    "	 WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.UEN_CALCULADA IN ('HG','E3') AND b.ESTRATO='0' THEN TRUE ".
+            "    WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.UEN_CALCULADA IN ('HG','E3') AND b.ESTRATO='' THEN TRUE ".
+            "    WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.UEN_CALCULADA IN ('HG','E3') AND b.PAGINA_SERVICIO='' THEN TRUE ".
             "    ELSE FALSE ".
             "    END AS ESTRATOMALO, ".
             " b.MUNICIPIO_ID, ".
