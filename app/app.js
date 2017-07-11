@@ -7197,13 +7197,10 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
         angular.forEach(obj, function(value, key){
             console.log(key + ': ' + value);
             if(eletofind.indexOf(value.TIPO_ELEMENTO_ID)>-1){
-            	console.log("Verdadero");
-			}
-            if(value.TIPO_ELEMENTO_ID==='ACCESP' || value.TIPO_ELEMENTO_ID==='TO'|| value.TIPO_ELEMENTO_ID==='INSHFC'){
                 if(value.ESTRATOMALO==='1'){
                     $scope.error = "Pedido con estrato MALO, por favor verifique bien antes de aprobar.";
                 }
-            }
+			}
         });
         return $scope.error;
     };
