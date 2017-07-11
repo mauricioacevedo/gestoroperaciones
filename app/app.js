@@ -6873,7 +6873,11 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
                 angular.forEach($scope.peds, function(value, key){
                     console.log(key + ': ' + value);
-                    console.log(value[ESTRATOMALO]);
+                    if(value.TIPO_ELEMENTO_ID==='ACCESP' || value.TIPO_ELEMENTO_ID==='TO'|| value.TIPO_ELEMENTO_ID==='INSHFC'){
+                    	if(value.ESTRATOMALO==='1'){
+                            $scope.error = "Pedido con estrato MALO, por favor verifique bien antes de aprobar.";
+						}
+					}
                 });
 
 			}
