@@ -275,7 +275,7 @@
                                         <br>
 
 
-                                        <b>Estrato:</b> {{service.ESTRATO==''?'Vacio':service.ESTRATO}}<br>
+                                        <b>Estrato:</b><span ng-style="checkEstrato(service.ESTRATOMALO)"> {{service.ESTRATO==''?'Vacio':service.ESTRATO}}</span><br>
                                         <b>Municipio ID:</b> {{service.MUNICIPIO_ID}}<br>
                                         <b>UEN:</b> {{service.UEN_CALCULADA}}
                                     </td>
