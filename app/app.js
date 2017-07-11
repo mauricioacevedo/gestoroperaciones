@@ -6873,7 +6873,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
                 angular.forEach($scope.peds, function(value, key){
                     console.log(key + ': ' + value);
-                    console.log(value.ESTRATOMALO);
+                    console.log(value[ESTRATOMALO]);
                 });
 
 			}
