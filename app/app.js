@@ -6866,33 +6866,11 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 				}
 
-
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
-				//$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
-
-				//alert("El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR);
-				/*if($scope.peds[0].STATUS=="PENDI_PETEC"&&$scope.peds[0].ASESOR!=""){
-					$scope.busy=$scope.peds[0].ASESOR;
-					//alert("El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR);
-					$scope.error="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
-				}*/
-
-				/*   console.log("este es el municipo: " + $scope.peds[0].MUNICIPIO_ID);
-				    $scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
-				    buscar = /ANTCOL/;
-				    $scope.validaMunicipio = buscar.test($scope.peds[0].MUNICIPIO_ID);
-				    console.log("este es el municipo abreviado: " + $scope.validaMunicipio);
-				        $scope.baby($scope.pedido1);*/
 			}
 
-			//$scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
-			//  buscar = /ANTCOL/;
-			//$scope.validaMunicipio = buscar.test($scope.peds[0].MUNICIPIO_ID);
-			//console.log("esta es la validacion " + $scope.validaMunicipio);
-			//$rootScope.pagina_servicio_vecinos = $scope.peds[0].PAGINA_SERVICIO;
-			//console.log("esto es lo que retorna" + $scope.validaMunicipio + " y la pagina " + $scope.peds[0].PAGINA_SERVICIO);
 
 			return data.data;
 		});
@@ -7159,25 +7137,19 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
+				$scope.isEstratoNull = $scope.peds[0].ESTRATOMALO;
+				console.log($scope.isEstratoNull);
 
 
 
 				if ($scope.peds[0].STATUS == "PENDI_PETEC" && $scope.peds[0].ASESOR != "") {
 					$scope.busy = $scope.peds[0].ASESOR;
 					$scope.error = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
-					//alert("El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR);
-					//$scope.popup='done';
-					//}
+
 				}
 
 				$scope.baby($scope.pedido1);
-				//console.log("este es el municipio" + $scope.peds[0].MUNICIPIO_ID);
-				/*$scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
-				buscar = /ANTCOL/;
-				$scope.validaMunicipio = buscar.test($scope.MUNICIPIO);*/
-				//console.log("esta es la validacion " + $scope.validaMunicipio);
-				//$rootScope.pagina_servicio_vecinos = $scope.peds[0].PAGINA_SERVICIO;
-				//console.log("esto es lo que retorna" + $scope.validaMunicipio + " y la pagina " + $scope.peds[0].PAGINA_SERVICIO);
+
 			}
 			var demePedidoButton = document.getElementById("iniciar");
 			demePedidoButton.removeAttribute("disabled");
