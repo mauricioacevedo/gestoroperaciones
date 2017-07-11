@@ -6895,7 +6895,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
                 'color':'red'
 			}
 		}
-
+		return $scope.stiloError;
     };
 
 	$scope.msavePedido = function () {
