@@ -7148,7 +7148,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 				}
 				if($scope.isEstratoNull==='1'){
-                    $scope.error = "Pedido con estrato MALO, por favor verifique bien antes de aprobar.";
+                    $scope.error = "Pedido con estrato <strong>MALO</strong>, por favor verifique bien antes de aprobar.";
 				}
 
 				$scope.baby($scope.pedido1);
