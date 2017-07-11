@@ -6870,6 +6870,11 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
                 $scope.isEstratoNull = $scope.peds[0].ESTRATOMALO;
+
+                angular.forEach($scope.peds, function(value, key){
+                    console.log(key + ': ' + value);
+                });
+
 			}
 
 
