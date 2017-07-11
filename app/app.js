@@ -7195,7 +7195,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
         var eletofind = ['ACCESP','TO','TOIP','INSIP','INSHFC'];
 
         angular.forEach(obj, function(value, key){
-            console.log(key + ': ' + value);
+           // console.log(key + ': ' + value);
             if(eletofind.indexOf(value.TIPO_ELEMENTO_ID)>-1){
                 if(value.ESTRATOMALO==='1'){
                     $scope.error = "Pedido con estrato MALO, por favor verifique bien antes de aprobar.";
