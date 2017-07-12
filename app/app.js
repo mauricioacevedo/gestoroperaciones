@@ -7565,7 +7565,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 
 
 		var uploadUrl = 'services/cargar_datos';
-		// console.log ($scope.user);
+		 console.log ($scope.user);
 		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
 
 	};
