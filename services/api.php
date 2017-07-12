@@ -11615,37 +11615,39 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
                 $cellValue = $this->get_cell($h.$v, $objPHPExcel);
 
-                $table .= "<td>";
-                $guardar .=" '$cellValue',";
+                $cellValue2 = $cellValue; 
 
-                if($cellValue !== null){
-                    $table .= $cellValue;
+                $table .= "<td>";
+                $guardar .=" '$cellValue2',";
+
+                if($cellValue2 !== null){
+                    $table .= $cellValue2;
                 }
                 if($h=="L"){
-                    $PEDIDO_ID=$cellValue;
+                    $PEDIDO_ID=$cellValue2;
                 }
                 if($h=="J"){
-                    $cliente_id=$cellValue;
+                    $cliente_id=$cellValue2;
                 }
                 if($h=="Z"){
-                    $ACCESO=$cellValue;
+                    $ACCESO=$cellValue2;
                 }
                 if($h=="Y"){
-                    $FUENTE=$cellValue;
+                    $FUENTE=$cellValue2;
                 }
                 if($h=="G"){
-                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
+                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue2);//fecha larga
                     $FECHA_FIN = gmdate("Y-m-d 00:00:00",$timestamp);//fecha formateada+
                     $table .= "<td>";
                 }
 
                 if($h=="I"){
-                    $NOVEDAD=strtoupper($cellValue);
+                    $NOVEDAD=strtoupper($cellValue2);
                     //$NOVEDAD=strtoupper($NOVEDAD);
 
                 }
                 if($h=="E"){
-                    $OBSERVACION_GESTOR=strtoupper($cellValue);
+                    $OBSERVACION_GESTOR=strtoupper($cellValue2);
                     
 
                 }
