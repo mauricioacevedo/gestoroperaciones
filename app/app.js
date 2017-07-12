@@ -6866,12 +6866,33 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 				}
 
+
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
-				$scope.isEstratoNull($scope.peds);
+				//$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+
+				//alert("El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR);
+				/*if($scope.peds[0].STATUS=="PENDI_PETEC"&&$scope.peds[0].ASESOR!=""){
+					$scope.busy=$scope.peds[0].ASESOR;
+					//alert("El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR);
+					$scope.error="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
+				}*/
+
+				/*   console.log("este es el municipo: " + $scope.peds[0].MUNICIPIO_ID);
+				    $scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
+				    buscar = /ANTCOL/;
+				    $scope.validaMunicipio = buscar.test($scope.peds[0].MUNICIPIO_ID);
+				    console.log("este es el municipo abreviado: " + $scope.validaMunicipio);
+				        $scope.baby($scope.pedido1);*/
 			}
 
+			//$scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
+			//  buscar = /ANTCOL/;
+			//$scope.validaMunicipio = buscar.test($scope.peds[0].MUNICIPIO_ID);
+			//console.log("esta es la validacion " + $scope.validaMunicipio);
+			//$rootScope.pagina_servicio_vecinos = $scope.peds[0].PAGINA_SERVICIO;
+			//console.log("esto es lo que retorna" + $scope.validaMunicipio + " y la pagina " + $scope.peds[0].PAGINA_SERVICIO);
 
 			return data.data;
 		});
@@ -6887,6 +6908,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
 	};
+
 
 	$scope.msavePedido = function () {
 
@@ -7140,18 +7162,22 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 
 
-
-
 				if ($scope.peds[0].STATUS == "PENDI_PETEC" && $scope.peds[0].ASESOR != "") {
 					$scope.busy = $scope.peds[0].ASESOR;
 					$scope.error = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
-
+					//alert("El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR);
+					//$scope.popup='done';
+					//}
 				}
-                $scope.isEstratoNull($scope.peds);
-
 
 				$scope.baby($scope.pedido1);
-
+				//console.log("este es el municipio" + $scope.peds[0].MUNICIPIO_ID);
+				/*$scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
+				buscar = /ANTCOL/;
+				$scope.validaMunicipio = buscar.test($scope.MUNICIPIO);*/
+				//console.log("esta es la validacion " + $scope.validaMunicipio);
+				//$rootScope.pagina_servicio_vecinos = $scope.peds[0].PAGINA_SERVICIO;
+				//console.log("esto es lo que retorna" + $scope.validaMunicipio + " y la pagina " + $scope.peds[0].PAGINA_SERVICIO);
 			}
 			var demePedidoButton = document.getElementById("iniciar");
 			demePedidoButton.removeAttribute("disabled");
@@ -7188,21 +7214,6 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
     $scope.onChangeAccion = function () {
         $scope.accRdy = true;
         //$scope.programar=false;
-    };
-
-    $scope.isEstratoNull = function (obj) {
-        $scope.error = null;
-        var eletofind = ['ACCESP','TO','TOIP','INSIP','INSHFC'];
-
-        angular.forEach(obj, function(value, key){
-           // console.log(key + ': ' + value);
-            if(eletofind.indexOf(value.TIPO_ELEMENTO_ID)>-1){
-                if(value.ESTRATOMALO==='1'){
-                    $scope.error = "Pedido con estrato MALO, por favor verifique bien antes de aprobar.";
-                }
-			}
-        });
-        return $scope.error;
     };
 
 });//--------------------fin asignacion-----------------------------
@@ -11289,7 +11300,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 						$scope.data.totalItems7=data.data[7];
 						$scope.data.totalItems8=data.data[8];
 
-                    //console.log($scope.data.totalItems2);
+                    console.log($scope.listadoactivacion);
                     return data.data;
                });
 
@@ -12663,7 +12674,7 @@ app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $locatio
             NUMERO_CR: InfoPedido.NUMERO_CR,
 			NUMERO_PSR:InfoPedido.NUMERO_PSR,
 			OBSERVACION: InfoPedido.OBSERVACION,
-			PSR: InfoPedido.PSR,
+			PSR: InfoPedido.PSR,	
 			//TIEMPO_TOTAL: $scope.TIEMPO_TOTAL,
             DURACION: $scope.duracion,
 			STATUS: gestion.STATUS,
