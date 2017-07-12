@@ -11562,7 +11562,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 echo "Ha habido un error al subir el archivo.";
             }
         }
-        // var_dump($_FILES);
+         var_dump($_FILES);
         $tname1 = basename( $_FILES["fileUpload"]["name"]);
 
         if($type == 'application/vnd.ms-excel')
