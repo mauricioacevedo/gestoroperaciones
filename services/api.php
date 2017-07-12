@@ -6912,99 +6912,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $page=$page*100;
         //counter
 
-        $query="SELECT count(*) as counter from gestor_seguimiento_activacion  where FECHA_ULTIMA_GESTOR between '$fechaini 00:00:00' and '$fechafin 23:59:59' ";
-
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter = $row['counter'];
-            }
-        }
-
-        $query=" SELECT count(*) as counter  FROM gestor_historico_activacion ".
-                " where fecha_fin between '$fechaini 00:00:00' ".
-                " and '$fechafin 23:59:59'  order by fecha_fin desc ";
-
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter5=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter5 = $row['counter'];
-            }
-        }
-        $query=" SELECT count(*) as counter ".
-            " FROM portalbd.gestor_activacion_pendientes_activador_suspecore where status='PENDI_ACTI' and MOTIVOEXCEPCIONACT <> 'La Cuenta NO existe.' ";
-
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter1=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter1 = $row['counter'];
-            }
-        }
-        $query=" SELECT count(*) as counter ".
-            " FROM portalbd.gestor_activacion_pendientes_gtc_suspecore ";
-
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter2=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter2 = $row['counter'];
-            }
-        }
-        $query=" SELECT count(*) as counter ".
-            " FROM portalbd.gestor_activacion_pendientes_activador_dom where status='PENDI_ACTI' and MOTIVO_ERROR <> 'La Cuenta NO existe.'";
-
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter4=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter4 = $row['counter'];
-            }
-        }
-        $query=" SELECT count(*) as counter ".
-            " FROM portalbd.gestor_activacion_tbl_pendi_gtc ";
-
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter3=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter3 = $row['counter'];
-            }
-        }
-        
-         $query=" SELECT count(*) as counter  ".
-            "  FROM  informe_activacion_pendientesm  WHERE  STATUS ='PENDI_ACTIVACION' ".
-			" and cola_id in ('TRGPON','TOIPON','CTVPONST','CBAPON') ".
-		    " and tipo_trabajo in ('RETIR') ";
-
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter7=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter7 = $row['counter'];
-            }
-        }    
-         $query=" select count(*) ".
-                " FROM pendientes_amarillas b ".
-                " where status='PENDI_ACTI' ";
-
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter7=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter7 = $row['counter'];
-            }
-        }
+      
         $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION,TRANSACCION ".
             " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,TABLA ".
             " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
@@ -7027,7 +6935,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
              //    var_dump($result);
             }
 
-            $this->response($this->json(array($result,$counter,$counter1,$counter2,$counter3,$counter4,$counter5,$counter6,$counter7)), 200); // send user details
+            $this->response($this->json(array($result)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
