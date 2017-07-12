@@ -11654,7 +11654,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
             }
 
-            $guardar2=rtrim($guardar,',');
+            $guardar2=rtrim($guardar2,',');
 
 
 
