@@ -6912,11 +6912,11 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $page=$page*100;
         //counter
     
-         $query="SELECT count(*)"
+         $query="SELECT count(*)".
             " from gestor_historico_activacion ".
             " where fecha_fin between '$fechaini 00:00:00' ".
             " and '$fechafin 23:59:59'  order by fecha_fin desc limit 100 offset $page";
-            
+
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter=0;
         if($rr->num_rows > 0){
