@@ -6911,7 +6911,20 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         }
         $page=$page*100;
         //counter
-
+    
+         $query="SELECT count(*)"
+            " from gestor_historico_activacion ".
+            " where fecha_fin between '$fechaini 00:00:00' ".
+            " and '$fechafin 23:59:59'  order by fecha_fin desc limit 100 offset $page";
+            
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter = $row['counter'];
+            }
+        }
       
         $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION,TRANSACCION ".
             " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,TABLA ".
@@ -6935,7 +6948,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
              //    var_dump($result);
             }
 
-            $this->response($this->json(array($result)), 200); // send user details
+            $this->response($this->json(array($result,$counter)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
