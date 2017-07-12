@@ -1,7 +1,7 @@
 <?php
 
-//error_reporting(E_ALL);
-//ini_set('display_errors', '1');
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
 
 require_once("Rest.inc.php");
@@ -11769,7 +11769,201 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
 //-------------------------importar listadoactivacion
 
+private function cargar_datos_activacion(){
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+        //$user = $this->_request['userID'];
+        require_once '../librerias/importar_excel/reader/Classes/PHPExcel/IOFactory.php';
 
+
+        $pedido=json_decode(file_get_contents("php://input"),true);
+
+        $target_dir = "../uploads/";
+        $target_file = $target_dir . basename($_FILES["fileUpload"]["name"]);
+        //$name     = $_FILES['fileUpload']['name'];
+        $tname    = $_FILES['fileUpload']['tmp_name'];
+        $type     = $_FILES['fileUpload']['type'];
+        $NOMBRE_ARCHIVO=$_FILES["fileUpload"]["name"];
+        $TAMANO =$_FILES["fileUpload"]["size"];
+        //$pedido = json_decode(file_get_contents("php://input"),true);
+        $usas = $this->_request['user'];
+       
+        $ORDER_SEQ_ID='';
+        $PEDIDO='';
+        $REFERENCE_NUMBER='';
+        $ESTADO='';
+        $FECHA_EXCEPCION='';
+        $PRODUCTO='';
+        $TRANSACCION='';
+        $ASESOR='';
+        $TIPIFICACION='';
+        $SOURCE='';
+        $FECHA_INICIO='';
+        $FECHA_FIN='';
+        $FECHA_GESTION='';
+        $TABLA='';
+        $today = date("Y-m-d");
+        
+       
+
+
+
+        $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','IMPORTAR ACTIVACION')";
+        //echo  $user;
+        $r = $this->mysqli->query($sqlupload) or die($this->mysqli->error.__LINE__);
+
+        $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$usas','','','','','IMPORTAR ACTIVACION')";
+        $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+
+
+
+        //$target_file = basename($_FILES["fileUpload"]["name"]);
+        $uploadOk = 1;
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo  "Lo sentimos , el archivo no se ha subido.";
+            // if everything is ok, try to upload file
+        } else {
+
+            if (move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $target_file)){
+                echo "El archivo ". basename( $_FILES["fileUpload"]["name"]). " se ha subido.";
+
+            } else {
+
+                echo "Ha habido un error al subir el archivo.";
+            }
+        }
+        // var_dump($_FILES);
+        $tname1 = basename( $_FILES["fileUpload"]["name"]);
+
+        if($type == 'application/vnd.ms-excel')
+        {
+            // Extension excel 97
+            $ext = 'xls';
+        }
+        else if($type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        {
+            // Extension excel 2007 y 2010
+            $ext = 'xlsx';
+        }else{
+            // Extension no valida
+            echo "Extension no valida.";
+            exit();
+        }
+
+        $xlsx = 'Excel2007';
+        $xls  = 'Excel5';
+
+        //creando el lector
+        $objReader = PHPExcel_IOFactory::createReader($$ext);
+
+        //cargamos el archivo
+        $objPHPExcel = $objReader->load($target_file);
+
+        $dim = $objPHPExcel->getActiveSheet()->calculateWorksheetDimension();
+
+        // list coloca en array $start y $end Lista Coloca en array $ inicio y final $
+        list($start, $end) = explode(':', $dim);
+
+        if(!preg_match('#([A-Z]+)([0-9]+)#', $start, $rslt)){
+            return false;
+        }
+        list($start, $start_h, $start_v) = $rslt;
+        if(!preg_match('#([A-Z]+)([0-9]+)#', $end, $rslt)){
+            return false;
+        }
+        list($end, $end_h, $end_v) = $rslt;
+
+        //empieza  lectura vertical
+        $table = "<table  border='1'>";
+        for($v=$start_v; $v<=$end_v; $v++){
+            //empieza lectura horizontal
+
+            if ($v==1) continue;
+            $table .= "<tr>";
+            $filas= $start_h + 1;
+
+
+            for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
+                $cellValue = $this->get_cell($h.$v, $objPHPExcel);
+
+                $cellValue1 = $cellValue; 
+
+                 if($h=="A"){
+                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue1);//fecha larga
+                    $cellValue1 = gmdate("Y-m-d H:i:s",$timestamp);//fecha formateada+
+                    $table .= "<td>";
+                }
+                 if($h=="B"){
+                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue1);//fecha larga
+                    $cellValue1 = gmdate("H:i:s",$timestamp);//fecha formateada+
+                    $table .= "<td>";
+                }
+                if($h=="M"){
+                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue1);//fecha larga
+                    $cellValue1 = gmdate("Y-m-d H:i:s",$timestamp);//fecha formateada+
+                    $table .= "<td>";
+                }
+                
+
+                $table .= "<td>";
+                if($cellValue1 !== null){
+                  $table .= $cellValue1;
+                $table .= "</td>";
+                // echo  $cellValue1;   
+                }
+                
+                $guardar .=" '$cellValue1',";
+               
+            }       
+
+            $guardar=rtrim($guardar,',');
+
+
+
+            if ($tname1 <> ""){
+
+
+            
+                $sqldatos="insert into gestor_historico_activacion (FECHA_EXCEPCION,HORA,PEDIDO,PRODUCTO,TRANSACCION,APLICATIVO,OBSERVACION,NUMERO_CR,TIPIFICACION,ASESOR
+,PEDIDO_FENIX,TABLA,FECHA_GESTION,SOURCE,FECHA_INICIO,FECHA_FIN) values ($guardar,'MANUAL','$today','$today'                )";
+             //  echo  $sqldatos;
+                $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
+
+            }
+
+
+            $guardar="";
+           $ORDER_SEQ_ID='';
+            $PEDIDO="";
+            $REFERENCE_NUMBER="";
+            $ESTADO="";
+            $FECHA_EXCEPCION="";
+            $PRODUCTO="";
+            $TRANSACCION="";
+            $ASESOR="";
+            $TIPIFICACION="";
+            $SOURCE="";
+            $NOMBRE_ARCHIVO="";
+            $TAMANO="";
+            $VISTA="";
+            $FECHA_INICIO="";
+             $FECHA_FIN="";
+             $TABLA="";
+             $FECHA_GESTION="";
+
+
+
+           $table .= "</tr>";
+        }
+
+       
+
+        $this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
+
+
+    }
 
 //-------------------------fin importar cargar_datos
 
