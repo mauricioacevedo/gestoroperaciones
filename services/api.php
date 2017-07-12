@@ -11618,7 +11618,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 $cellValue2 = $cellValue; 
 
                 $table .= "<td>";
-                $guardar .=" '$cellValue2',";
+                $guardar2 .=" '$cellValue2',";
 
                 if($cellValue2 !== null){
                     $table .= $cellValue2;
@@ -11654,16 +11654,16 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
             }
 
-            $guardar=rtrim($guardar,',');
+            $guardar2=rtrim($guardar,',');
 
 
 
             if ($tname1  == "bodega_datos.xlsx"){
 
 
-                $sqlbodega_datos="insert into portalbd.gestor_bodega_bodega_datos (CAMPANAID,LANZAMIENTO,IDLLAMADA1,TELEFONO,MENSAJE,ACCION,FECHA,IDLLAMADA2,ESTADO,CEDULA,DETALLE,PEDIDO,CODIGO_RESULTADO,FECHA_AGENDA,JORNADA_AGENDA,CAUSA,MUNICIPIO,ZONA,TIPO_TRANSACCION,NOMBRE_CLIENTE,DEPARTAMENTO,EMAIL,FECHA_ENVIO,HORA_ENVIO,INTERFAZ,ACCESO) values ($guardar) ";
+                $sqlbodega_datos="insert into portalbd.gestor_bodega_bodega_datos (CAMPANAID,LANZAMIENTO,IDLLAMADA1,TELEFONO,MENSAJE,ACCION,FECHA,IDLLAMADA2,ESTADO,CEDULA,DETALLE,PEDIDO,CODIGO_RESULTADO,FECHA_AGENDA,JORNADA_AGENDA,CAUSA,MUNICIPIO,ZONA,TIPO_TRANSACCION,NOMBRE_CLIENTE,DEPARTAMENTO,EMAIL,FECHA_ENVIO,HORA_ENVIO,INTERFAZ,ACCESO) values ($guardar2) ";
                 $r = $this->mysqli->query($sqlbodega_datos) or die($this->mysqli->error.__LINE__);
-               //  echo  $sqlbodega_datos;   
+                 echo  $guardar2;   
                 $sqldatos="insert into portalbd.gestor_historicos_reagendamiento (PEDIDO_ID,CLIENTE_ID,ACCESO,FUENTE,FECHA_FIN,ASESOR,NOVEDAD,OBSERVACION_GESTOR) values ('$PEDIDO_ID','$cliente_id','$ACCESO','$FUENTE','$FECHA_FIN','$usas','$NOVEDAD','$OBSERVACION_GESTOR')";
                 //echo  $sqldatos;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
@@ -11673,7 +11673,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             }
 
 
-            $guardar="";
+            $guardar2="";
             $PEDIDO_ID="";
             $cliente_id="";
             $ACCESO="";
@@ -11701,7 +11701,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 $cellValue = $this->get_cell($h.$v, $objPHPExcel);
 
                 $table .= "<td>";
-                $guardar .=" '$cellValue',";
+                $guardar2 .=" '$cellValue',";
 
                 if($cellValue !== null){
                     $table .= $cellValue;
@@ -11709,7 +11709,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
             }
 
-            $guardar=rtrim($guardar,',');
+            $guardar=rtrim($guardar2,',');
 
 
             if ($tname1 <> ""){
@@ -11717,7 +11717,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
 
 
-                $che=explode(",",$guardar);//validacion de datos que carguen pedidos diferentes y omita los repetidos
+                $che=explode(",",$guardar2);//validacion de datos que carguen pedidos diferentes y omita los repetidos
                 $pedido=$che[0];
 
                 //echo var_dump($che);
@@ -11735,7 +11735,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                     continue;
                 }
 
-                $sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID,CONCEPTOS,CLIENTE_ID,NOMBRE_USUARIO,DEPARTAMENTO,SUBZONA_ID,DIRECCION_ENVIO,FUENTE,PROCESO,CELULAR_AVISAR,TELEFONO_AVISAR,IDENTIFICADOR_ID,FECHA_INGRESO,MICROZONA,OBSERVACION_FENIX,TECNOLOGIA_ID) values ($guardar) ";
+                $sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID,CONCEPTOS,CLIENTE_ID,NOMBRE_USUARIO,DEPARTAMENTO,SUBZONA_ID,DIRECCION_ENVIO,FUENTE,PROCESO,CELULAR_AVISAR,TELEFONO_AVISAR,IDENTIFICADOR_ID,FECHA_INGRESO,MICROZONA,OBSERVACION_FENIX,TECNOLOGIA_ID) values ($guardar2) ";
                 // echo($sqlemail);
                 $r = $this->mysqli->query($sqlemail) or die($this->mysqli->error.__LINE__);
 
@@ -11747,7 +11747,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
 
 
-            $guardar="";
+            $guardar2="";
             $PEDIDO_ID="";
             $cliente_id="";
             $ACCESO="";
