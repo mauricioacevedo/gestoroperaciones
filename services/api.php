@@ -11535,7 +11535,6 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $FECHA_INGRESO='';
         $today = date("Y-m-d");
 
-    echo  $today;
 
         $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','BODEGA DATOS')";
         //echo  $user;
