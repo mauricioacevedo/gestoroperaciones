@@ -11888,33 +11888,33 @@ private function cargar_datos_activacion(){
             for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
                 $cellValue = $this->get_cell($h.$v, $objPHPExcel);
 
-                $cellValue1 = $cellValue; 
+                
 
                  if($h=="A"){
-                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue1);//fecha larga
-                    $cellValue1 = gmdate("Y-m-d H:i:s",$timestamp);//fecha formateada+
+                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
+                    $cellValue = gmdate("Y-m-d H:i:s",$timestamp);//fecha formateada+
                     $table .= "<td>";
                 }
                  if($h=="B"){
-                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue1);//fecha larga
-                    $cellValue1 = gmdate("H:i:s",$timestamp);//fecha formateada+
+                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
+                    $cellValue = gmdate("H:i:s",$timestamp);//fecha formateada+
                     $table .= "<td>";
                 }
                 if($h=="M"){
-                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue1);//fecha larga
-                    $cellValue1 = gmdate("Y-m-d H:i:s",$timestamp);//fecha formateada+
+                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
+                    $cellValue = gmdate("Y-m-d H:i:s",$timestamp);//fecha formateada+
                     $table .= "<td>";
                 }
                 
 
                 $table .= "<td>";
-                if($cellValue1 !== null){
-                  $table .= $cellValue1;
+                if($cellValue !== null){
+                  $table .= $cellValue;
                 $table .= "</td>";
                 // echo  $cellValue1;   
                 }
                 
-                $guardar .=" '$cellValue1',";
+                $guardar .=" '$cellValue',";
                
             }       
 
