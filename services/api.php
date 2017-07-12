@@ -11562,7 +11562,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 echo "Ha habido un error al subir el archivo.";
             }
         }
-         var_dump($_FILES);
+         //var_dump($_FILES);
         $tname1 = basename( $_FILES["fileUpload"]["name"]);
 
         if($type == 'application/vnd.ms-excel')
@@ -11726,7 +11726,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 $pend=" SELECT PEDIDO_ID ".
                     " FROM portalbd.gestor_pendientes_reagendamiento ".
                     " WHERE PEDIDO_ID=$pedido and STATUS IN ('MALO','PENDI_AGEN')";
-                //echo $pend;
+                echo $pend;
                 $rst = $this->mysqli->query($pend);
 
 
