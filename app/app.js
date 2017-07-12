@@ -70,7 +70,7 @@ app.service('fileUpload', ['$http', '$cookieStore', function ($http, $cookieStor
 	}
 }]);
 
-app.service('fileUpload', ['$http', '$cookieStore', function ($http, $cookieStore) {
+app.service('fileUpload1', ['$http', '$cookieStore', function ($http, $cookieStore) {
 	this.uploadFileToUrl = function (file, uploadUrl) {
 		var fd = new FormData();
 		var user = $cookieStore.get('logedUser').login;
