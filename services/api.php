@@ -11538,7 +11538,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
 
         $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','BODEGA DATOS')";
-        //echo  $user;
+        echo  $user;
         $r = $this->mysqli->query($sqlupload) or die($this->mysqli->error.__LINE__);
 
         $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$usas','','','','','BODEGA DATOS')";
