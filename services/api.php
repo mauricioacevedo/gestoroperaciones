@@ -11664,7 +11664,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 $r = $this->mysqli->query($sqlbodega_datos) or die($this->mysqli->error.__LINE__);
                //  echo  $sqlbodega_datos;   
                 $sqldatos="insert into portalbd.gestor_historicos_reagendamiento (PEDIDO_ID,CLIENTE_ID,ACCESO,FUENTE,FECHA_FIN,ASESOR,NOVEDAD,OBSERVACION_GESTOR) values ('$PEDIDO_ID','$cliente_id','$ACCESO','$FUENTE','$FECHA_FIN','$usas','$NOVEDAD','$OBSERVACION_GESTOR')";
-                echo  $sqldatos;
+               // echo  $sqldatos;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
 
 
@@ -11726,7 +11726,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 $pend=" SELECT PEDIDO_ID ".
                     " FROM portalbd.gestor_pendientes_reagendamiento ".
                     " WHERE PEDIDO_ID=$pedido and STATUS IN ('MALO','PENDI_AGEN')";
-                echo $pend;
+               // echo $pend;
                 $rst = $this->mysqli->query($pend);
 
 
