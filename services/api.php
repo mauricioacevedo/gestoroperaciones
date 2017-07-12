@@ -6921,7 +6921,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             " and '$fechafin 23:59:59'  order by fecha_fin desc limit 100 offset $page";
 
 
-        echo $query;
+        //echo $query;
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
