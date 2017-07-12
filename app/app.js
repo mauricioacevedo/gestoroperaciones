@@ -11317,7 +11317,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 					//	$scope.data.totalItems7=data.data[7];
 					//	$scope.data.totalItems8=data.data[8];
 
-                    console.log(data.data[0]);
+                    console.log($scope.data.totalItems);
                     return data.data;
                });
 
