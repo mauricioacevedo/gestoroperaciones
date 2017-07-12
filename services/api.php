@@ -7814,14 +7814,14 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             "  , SOL.TIPO_ELEMENTO_ID ".
             "  , SOL.ESTADO_BLOQUEO ".
             "  , SOL.USUARIO_ID AS USUARIO_BLOQUEO_FENIX ".
-            "  , (SELECT MAX(T.TIPO_TRABAJO) AS TIPO_TRABAJO ".
+            "  , (SELECT MIN(T.TIPO_TRABAJO) AS TIPO_TRABAJO ".
             "       FROM FNX_TRABAJOS_SOLICITUDES T ".
             "       WHERE 1=1 ".
             "       AND T.PEDIDO_ID=SOL.PEDIDO_ID ".
             "       AND T.SUBPEDIDO_ID=SOL.SUBPEDIDO_ID ".
             "       AND T.SOLICITUD_ID=SOL.SOLICITUD_ID ".
             "       GROUP BY T.PEDIDO_ID, T.SUBPEDIDO_ID, T.SOLICITUD_ID ) AS  TIPO_TRABAJO ".
-            "  , ( SELECT convert((MAX(T.TIPO_TRABAJO) || '-' || FN_NOMBRE_CARACTERISTICA(MAX(T.CARACTERISTICA_ID))),'US7ASCII') as DESC_TIPO_TRABAJO ".
+            "  , ( SELECT convert((MIN(T.TIPO_TRABAJO) || '-' || FN_NOMBRE_CARACTERISTICA(MAX(T.CARACTERISTICA_ID))),'US7ASCII') as DESC_TIPO_TRABAJO ".
             "         FROM FNX_TRABAJOS_SOLICITUDES T ".
             "         WHERE 1=1 ".
             "         AND T.PEDIDO_ID=SOL.PEDIDO_ID ".
@@ -7845,7 +7845,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             "  , FN_VALOR_CARACT_SUBPEDIDO(SOL.PEDIDO_ID, SOL.SUBPEDIDO_ID,37) as  ESTRATO  ".
             "  , SOL.CONCEPTO_ID  ".
             "  , SOL.CONCEPTO_ID as CONCEPTO_ANTERIOR ".
-            //"  , upper(fn_nombre_departamento(FN_VALOR_CARACT_SUBPEDIDO(SOL.PEDIDO_ID, SOL.SUBPEDIDO_ID,'34'))) as DEPARTAMENTO ".
+            "  , upper(fn_nombre_departamento(FN_VALOR_CARACT_SUBPEDIDO(SOL.PEDIDO_ID, SOL.SUBPEDIDO_ID,'34'))) as DEPARTAMENTO ".
             "  , TRIM(FN_VALOR_CARACTERISTICA_SOL (SOL.PEDIDO_ID, SOL.SUBPEDIDO_ID, SOL.SOLICITUD_ID,'34')) AS MUNICIPIO_ID  ".
             "  , TO_CHAR(TRIM(FN_VALOR_CARACTERISTICA_SOL (SOL.PEDIDO_ID, SOL.SUBPEDIDO_ID, SOL.SOLICITUD_ID,'35'))) AS DIRECCION_SERVICIO ".
             "  , fn_valor_caracteristica_sol(SOL.PEDIDO_ID, SOL.SUBPEDIDO_ID, SOL.SOLICITUD_ID,'38') as PAGINA_SERVICIO ".
@@ -7929,7 +7929,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             " GROUP BY C1.PEDIDO_ID ) IDTV ".
             " WHERE ".
             "       SOL.PEDIDO_ID='$pedido_id' ".
-            "       and SOL.TIPO_ELEMENTO_ID IN ('BDID', 'TDID','BDIDE1', 'TDIDE1', 'BDODE1', 'TDODE1', 'TO', 'TOIP','INSHFC', 'INSIP', 'INSTIP', 'SEDEIP', 'P2MB', '3PLAY', 'CNTXIP', 'ACCESP', 'PLANT', 'PLP', 'PTLAN', 'PMULT', 'PPCM', 'PBRI', 'PPRI', 'INSTA', 'TP', 'PBRI','SLL', 'TC', 'SLLBRI', 'TCBRI', 'SLLPRI', 'TCPRI','SEDEIP','SEDECX','EQURED','STBOX','EQACCP','ACCESO','DECO','INTCON','TELEV','SERHFC') ".
+            "       and SOL.TIPO_ELEMENTO_ID IN ('BDID', 'TDID','BDIDE1', 'TDIDE1', 'BDODE1', 'TDODE1', 'TO', 'TOIP','INSHFC', 'INSIP', 'INSTIP', 'SEDEIP', 'P2MB', '3PLAY', 'CNTXIP', 'ACCESP', 'PLANT', 'PLP', 'PTLAN', 'PMULT', 'PPCM', 'PBRI', 'PPRI', 'INSTA', 'TP', 'PBRI','SLL', 'TC', 'SLLBRI', 'TCBRI', 'SLLPRI', 'TCPRI','SEDEIP','SEDECX','EQURED','STBOX','ACCESO','DECO') ".
             "       	AND SOL.CONCEPTO_ID NOT IN ('14','99') ".
             "       AND SOL.SUBPEDIDO_ID=FNX_SUBPEDIDOS.SUBPEDIDO_ID  ".
             "       AND SOL.PEDIDO_ID=FNX_SUBPEDIDOS.PEDIDO_ID  ".

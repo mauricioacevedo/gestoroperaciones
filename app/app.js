@@ -7216,6 +7216,23 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
         //$scope.programar=false;
     };
 
+
+    $scope.isEstratoNull = function (obj) {
+        $scope.error = null;
+        var eletofind = ['ACCESP','TO','TOIP','INSIP','INSHFC'];
+
+        angular.forEach(obj, function(value, key){
+           // console.log(key + ': ' + value);
+            if(eletofind.indexOf(value.TIPO_ELEMENTO_ID)>-1){
+                if(value.ESTRATOMALO==='1'){
+                    $scope.error = "Pedido con estrato o página MALA, por favor verifique bien antes de aprobar.";
+                }
+			}
+        });
+        return $scope.error;
+    };
+
+
 });//--------------------fin asignacion-----------------------------
 
 app.controller('listCtrl', function ($scope, services) {
@@ -11300,7 +11317,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 						$scope.data.totalItems7=data.data[7];
 						$scope.data.totalItems8=data.data[8];
 
-                    console.log($scope.listadoactivacion);
+                    //console.log($scope.listadoactivacion);
                     return data.data;
                });
 
