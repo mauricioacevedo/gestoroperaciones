@@ -70,32 +70,7 @@ app.service('fileUpload', ['$http', '$cookieStore', function ($http, $cookieStor
 	}
 }]);
 
-app.service('fileUpload', ['$http', '$cookieStore', function ($http, $cookieStore) {
-	this.uploadFileToUrl = function (file, uploadUrl) {
-		var fd = new FormData();
-		var user = $cookieStore.get('logedUser').login;
-		file['user'] = user + '6666666';
-		fd.append('user', user);
-		fd.append('fileUpload', file);
-		$http.post('services/cargar_datos_activacion', fd, {
-				withCredentials: false,
-				transformRequest: angular.identity,
-				headers: {
-					'Content-Type': undefined
-				},
-				params: {
-					'user': user
-				},
-				responseType: "arraybuffer"
-			})
-			.success(function () {
-				alert('El archivo a sido subido correctamente');
-			})
-			.error(function () {
-				alert('Ha habido un error al subir el archivo');
-			});
-	}
-}]);
+
 
 
 app.service('fileUpload2', ['$http', function ($http) {
