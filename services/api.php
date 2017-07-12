@@ -7013,7 +7013,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             " and '$fechafin 23:59:59'  order by fecha_fin desc limit 100 offset $page";
 
 
-        //echo $query;
+        echo $query;
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -7024,7 +7024,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
                 $result[] = $row;
 
-                 var_dump($result);
+             //    var_dump($result);
             }
 
             $this->response($this->json(array($result,$counter,$counter1,$counter2,$counter3,$counter4,$counter5,$counter6,$counter7)), 200); // send user details
