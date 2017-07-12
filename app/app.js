@@ -7611,7 +7611,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 
 
 //-------------------------------cargar datos subir archivo activacion----------------------
-app.controller('cargar_datos_activacionCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services, fileUpload) {
+app.controller('cargar_datos_activacionCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services, fileUpload1) {
 
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
@@ -7644,7 +7644,7 @@ app.controller('cargar_datos_activacionCtrl', function ($scope, $rootScope, $loc
 
 		var uploadUrl = 'services/cargar_datos_activacion';
 		// console.log ($scope.user);
-		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
+		fileUpload1.uploadFileToUrl(file, uploadUrl, $scope.user);
 
 	};
 
