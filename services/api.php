@@ -1,7 +1,7 @@
 <?php
 
-//error_reporting(E_ALL);
-//ini_set('display_errors', '1');
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
 
 require_once("Rest.inc.php");
@@ -4381,7 +4381,7 @@ private function csvAmarillas(){
             "		AND ( ".
             "           (PP.FUENTE='SIEBEL' AND DESC_TIPO_TRABAJO = 'NA NUEVO') ".
 			"		   OR ".
-			"		   (PP.FUENTE='FENIX_NAL' AND TIPO_TRABAJO IN ('NUEVO','NUEVO,RETIR')) ".
+			"		   (PP.FUENTE='FENIX_NAL' AND TIPO_TRABAJO = 'NUEVO') ".
 			"		   OR ".
 			"		   (PP.FUENTE='FENIX_BOG' AND TIPO_TRABAJO = 'NUEVO') ".
 			"	    ) ".
