@@ -4353,6 +4353,53 @@ private function csvAmarillas(){
             }
         }
 
+        $queryConceptosNUEVO="SELECT ".
+            " C2.CONCEPTO_ID ".
+            " , COUNT(*) AS CANTIDAD ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 0 AND (C2.RANGO_PENDIENTE) <= 2 THEN 1 ELSE 0 END) as 'Entre02' ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 3 AND (C2.RANGO_PENDIENTE) <= 4 THEN 1 ELSE 0 END) as 'Entre34' ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 5 AND (C2.RANGO_PENDIENTE) <= 6 THEN 1 ELSE 0 END) as 'Entre56' ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 7 AND (C2.RANGO_PENDIENTE) <= 12 THEN 1 ELSE 0 END) as 'Entre712' ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 13 AND (C2.RANGO_PENDIENTE) <= 24 THEN 1 ELSE 0 END) as 'Entre1324' ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 25 AND (C2.RANGO_PENDIENTE) <= 48 THEN 1 ELSE 0 END) as 'Entre2548' ".
+            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) > 48 THEN 1 ELSE 0 END) as 'Masde48' ".
+            " FROM(SELECT ".
+            " C1.PEDIDO_ID ".
+            " , MAX(C1.CONCEPTO_ID) AS CONCEPTO_ID ".
+            " , MAX(C1.RANGO_PENDIENTE) AS RANGO_PENDIENTE ".
+            " FROM(select ".
+            " PP.PEDIDO_ID ".
+            " , case   ".
+            "        when PP.FUENTE='FENIX_NAL' and PP.CONCEPTO_ID='PETEC' AND PP.STATUS!='MALO' then 'PETEC-NAL'  ".
+            "        when PP.FUENTE='FENIX_BOG' and PP.CONCEPTO_ID='PETEC' AND PP.STATUS!='MALO' then 'PETEC-BOG'  ".
+            "        WHEN PP.STATUS='MALO' THEN 'MALO' ".
+            "        else PP.CONCEPTO_ID  ".
+            "      end as CONCEPTO_ID ".
+            " , HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) AS RANGO_PENDIENTE ".
+            " FROM portalbd.informe_petec_pendientesm PP ".
+            " WHERE PP.STATUS IN ('PENDI_PETEC','MALO') ".
+            "		AND ( ".
+            "           (PP.FUENTE='SIEBEL' AND DESC_TIPO_TRABAJO LIKE '%NA NUEVO%') ".
+			"		   OR ".
+			"		   (PP.FUENTE='FENIX_NAL' AND TIPO_TRABAJO LIKE  '%NUEVO%') ".
+			"		   OR ".
+			"		   (PP.FUENTE='FENIX_BOG' AND TIPO_TRABAJO LIKE  '%NUEVO%') ".
+			"	    ) ".
+            " ) C1  ".
+            " GROUP BY C1.PEDIDO_ID ) C2 ".
+            " GROUP BY C2.CONCEPTO_ID ".
+            " order by count(*) DESC ";
+        $rr = $this->mysqli->query($queryConceptosNUEVO) or die($this->mysqli->error.__LINE__);
+
+        $queryConceptosNUEVO = array();
+        if($rr->num_rows > 0){
+
+            while($row = $rr->fetch_assoc()){
+                //$row['label']="Concepto ".$row['label'];
+                $queryConceptosNUEVO[] = $row;
+            }
+        }
+
         /*
          * *Query viejo para sacar los pendientes segun su fecha cita por servicios
         $query=    " select  ".
@@ -4439,7 +4486,7 @@ private function csvAmarillas(){
                 //$row['label']="Concepto ".$row['label'];
                 $queryConceptosFcita[] = $row;
             }
-            $this->response($this->json(array('','',$queryConceptos,'',$queryConceptosFcita)), 200); // send user details
+            $this->response($this->json(array('','',$queryConceptos,'',$queryConceptosFcita,$queryConceptos)), 200); // send user details
         }
 
         $this->response('',204);        // If no records "No Content" status

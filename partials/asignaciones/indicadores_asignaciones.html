@@ -598,32 +598,32 @@
                                 <th>Más de 48h</th>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="datar in listado_conceptosasn | filter:filtroInput">
+                                <tr ng-repeat="datar in listado_conceptosasnNUEVO | filter:filtroInput">
                                     <td>
                                         <!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->
                                         {{datar.CONCEPTO_ID}}</span></td>
-                                    <td ng-init="listado_conceptosasn.totales = parseInt(listado_conceptosasn.totales) + parseInt(datar.CANTIDAD)">
+                                    <td ng-init="listado_conceptosasnNUEVO.totales = parseInt(listado_conceptosasnNUEVO.totales) + parseInt(datar.CANTIDAD)">
                                         {{datar.CANTIDAD}}
                                     </td>
-                                    <td ng-init="listado_conceptosasn.total02 = parseInt(listado_conceptosasn.total02) + parseInt(datar.Entre02)">
+                                    <td ng-init="listado_conceptosasnNUEVO.total02 = parseInt(listado_conceptosasnNUEVO.total02) + parseInt(datar.Entre02)">
                                         {{datar.Entre02}}
                                     </td>
-                                    <td ng-init="listado_conceptosasn.total34 = parseInt(listado_conceptosasn.total34) + parseInt(datar.Entre34)">
+                                    <td ng-init="listado_conceptosasnNUEVO.total34 = parseInt(listado_conceptosasnNUEVO.total34) + parseInt(datar.Entre34)">
                                         {{datar.Entre34}}
                                     </td>
-                                    <td ng-init="listado_conceptosasn.total56 = parseInt(listado_conceptosasn.total56) + parseInt(datar.Entre56)">
+                                    <td ng-init="listado_conceptosasnNUEVO.total56 = parseInt(listado_conceptosasnNUEVO.total56) + parseInt(datar.Entre56)">
                                         {{datar.Entre56}}
                                     </td>
-                                    <td ng-init="listado_conceptosasn.total712 = parseInt(listado_conceptosasn.total712) + parseInt(datar.Entre712)">
+                                    <td ng-init="listado_conceptosasnNUEVO.total712 = parseInt(listado_conceptosasnNUEVO.total712) + parseInt(datar.Entre712)">
                                         {{datar.Entre712}}
                                     </td>
-                                    <td ng-init="listado_conceptosasn.total1324 = parseInt(listado_conceptosasn.total1324) + parseInt(datar.Entre1324)">
+                                    <td ng-init="listado_conceptosasnNUEVO.total1324 = parseInt(listado_conceptosasnNUEVO.total1324) + parseInt(datar.Entre1324)">
                                         {{datar.Entre1324}}
                                     </td>
-                                    <td ng-init="listado_conceptosasn.total2548 = parseInt(listado_conceptosasn.total2548) + parseInt(datar.Entre2548)">
+                                    <td ng-init="listado_conceptosasnNUEVO.total2548 = parseInt(listado_conceptosasnNUEVO.total2548) + parseInt(datar.Entre2548)">
                                         {{datar.Entre2548}}
                                     </td>
-                                    <td ng-init="listado_conceptosasn.totalmas48 = parseInt(listado_conceptosasn.totalmas48) + parseInt(datar.Masde48)">
+                                    <td ng-init="listado_conceptosasnNUEVO.totalmas48 = parseInt(listado_conceptosasnNUEVO.totalmas48) + parseInt(datar.Masde48)">
                                         {{datar.Masde48}}
                                     </td>
                                 </tr>
@@ -631,14 +631,14 @@
                                 <tfoot>
                                 <tr class="info">
                                     <th>TOTALES</th>
-                                    <th>{{listado_conceptosasn.totales}}</th>
-                                    <th>{{listado_conceptosasn.total02}}</th>
-                                    <th>{{listado_conceptosasn.total34}}</th>
-                                    <th>{{listado_conceptosasn.total56}}</th>
-                                    <th>{{listado_conceptosasn.total712}}</th>
-                                    <th>{{listado_conceptosasn.total1324}}</th>
-                                    <th>{{listado_conceptosasn.total2548}}</th>
-                                    <th>{{listado_conceptosasn.totalmas48}}</th>
+                                    <th>{{listado_conceptosasnNUEVO.totales}}</th>
+                                    <th>{{listado_conceptosasnNUEVO.total02}}</th>
+                                    <th>{{listado_conceptosasnNUEVO.total34}}</th>
+                                    <th>{{listado_conceptosasnNUEVO.total56}}</th>
+                                    <th>{{listado_conceptosasnNUEVO.total712}}</th>
+                                    <th>{{listado_conceptosasnNUEVO.total1324}}</th>
+                                    <th>{{listado_conceptosasnNUEVO.total2548}}</th>
+                                    <th>{{listado_conceptosasnNUEVO.totalmas48}}</th>
                                 </tr>
                                 </tfoot>
                             </table>

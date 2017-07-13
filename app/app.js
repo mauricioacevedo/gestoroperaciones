@@ -3615,6 +3615,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			$scope.listado_plazas_bogota = data.data[1];
 			$scope.listado_conceptosas = data.data[2];
 			$scope.listado_conceptosasn = angular.copy(data.data[2]);
+            $scope.listado_conceptosasnNUEVO = angular.copy(data.data[5]);
 			$scope.listado_conceptosin = data.data[3];
 			$scope.listado_conceptosfc = data.data[4];
 
@@ -3645,6 +3646,15 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			$scope.listado_conceptosasn.total1324 = 0;
 			$scope.listado_conceptosasn.total2548 = 0;
 			$scope.listado_conceptosasn.totalmas48 = 0;
+
+            $scope.listado_conceptosasnNUEVO.totales = 0;
+			$scope.listado_conceptosasnNUEVO.total02 = 0;
+			$scope.listado_conceptosasnNUEVO.total34 = 0;
+			$scope.listado_conceptosasnNUEVO.total56 = 0;
+			$scope.listado_conceptosasnNUEVO.total712 = 0;
+			$scope.listado_conceptosasnNUEVO.total1324 = 0;
+			$scope.listado_conceptosasnNUEVO.total2548 = 0;
+			$scope.listado_conceptosasnNUEVO.totalmas48 = 0;
 
 			$scope.listado_conceptosas.totales = 0;
 			$scope.listado_conceptosas.total02 = 0;
