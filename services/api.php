@@ -4486,7 +4486,7 @@ private function csvAmarillas(){
                 //$row['label']="Concepto ".$row['label'];
                 $queryConceptosFcita[] = $row;
             }
-            $this->response($this->json(array('','',$queryConceptos,'',$queryConceptosFcita,$queryConceptos)), 200); // send user details
+            $this->response($this->json(array('','',$queryConceptos,'',$queryConceptosFcita,$queryConceptosNUEVO)), 200); // send user details
         }
 
         $this->response('',204);        // If no records "No Content" status
