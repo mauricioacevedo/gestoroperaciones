@@ -11666,7 +11666,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
                 $table .= "<td>";
                 $guardar .=" '$cellValue',";
-                 echo $cellValue;           
+                 //echo $cellValue;           
                 if($cellValue!== null){
                     $table .= $cellValue;
                 }
