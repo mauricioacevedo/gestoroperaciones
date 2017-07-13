@@ -6911,8 +6911,11 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         }
         $page=$page*100;
         //counter
-
-        $query="SELECT count(*) as counter from gestor_seguimiento_activacion  where FECHA_ULTIMA_GESTOR between '$fechaini 00:00:00' and '$fechafin 23:59:59' ";
+    
+         $query="SELECT count(*)".
+            " from gestor_historico_activacion ".
+            " where fecha_fin between '$fechaini 00:00:00' ".
+            " and '$fechafin 23:59:59'  order by fecha_fin desc limit 100 offset $page";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter=0;
@@ -6922,89 +6925,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 $counter = $row['counter'];
             }
         }
-
-        $query=" SELECT count(*) as counter  FROM gestor_historico_activacion ".
-                " where fecha_fin between '$fechaini 00:00:00' ".
-                " and '$fechafin 23:59:59'  order by fecha_fin desc ";
-
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter5=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter5 = $row['counter'];
-            }
-        }
-        $query=" SELECT count(*) as counter ".
-            " FROM portalbd.gestor_activacion_pendientes_activador_suspecore where status='PENDI_ACTI' and MOTIVOEXCEPCIONACT <> 'La Cuenta NO existe.' ";
-
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter1=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter1 = $row['counter'];
-            }
-        }
-        $query=" SELECT count(*) as counter ".
-            " FROM portalbd.gestor_activacion_pendientes_gtc_suspecore ";
-
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter2=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter2 = $row['counter'];
-            }
-        }
-        $query=" SELECT count(*) as counter ".
-            " FROM portalbd.gestor_activacion_pendientes_activador_dom where status='PENDI_ACTI' and MOTIVO_ERROR <> 'La Cuenta NO existe.'";
-
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter4=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter4 = $row['counter'];
-            }
-        }
-        $query=" SELECT count(*) as counter ".
-            " FROM portalbd.gestor_activacion_tbl_pendi_gtc ";
-
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter3=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter3 = $row['counter'];
-            }
-        }
-        
-         $query=" SELECT count(*) as counter  ".
-            "  FROM  informe_activacion_pendientesm  WHERE  STATUS ='PENDI_ACTIVACION' ".
-			" and cola_id in ('TRGPON','TOIPON','CTVPONST','CBAPON') ".
-		    " and tipo_trabajo in ('RETIR') ";
-
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter7=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter7 = $row['counter'];
-            }
-        }    
-         $query=" select count(*) ".
-                " FROM pendientes_amarillas b ".
-                " where status='PENDI_ACTI' ";
-
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter7=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter7 = $row['counter'];
-            }
-        }
+     // echo $query; 
         $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION,TRANSACCION ".
             " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,TABLA ".
             " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
@@ -7024,10 +6945,10 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
                 $result[] = $row;
 
-                // var_dump($result);
+             //    var_dump($result);
             }
 
-            $this->response($this->json(array($result,$counter,$counter1,$counter2,$counter3,$counter4,$counter5,$counter6,$counter7)), 200); // send user details
+            $this->response($this->json(array($result,$counter)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
@@ -7814,14 +7735,14 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             "  , SOL.TIPO_ELEMENTO_ID ".
             "  , SOL.ESTADO_BLOQUEO ".
             "  , SOL.USUARIO_ID AS USUARIO_BLOQUEO_FENIX ".
-            "  , (SELECT MAX(T.TIPO_TRABAJO) AS TIPO_TRABAJO ".
+            "  , (SELECT MIN(T.TIPO_TRABAJO) AS TIPO_TRABAJO ".
             "       FROM FNX_TRABAJOS_SOLICITUDES T ".
             "       WHERE 1=1 ".
             "       AND T.PEDIDO_ID=SOL.PEDIDO_ID ".
             "       AND T.SUBPEDIDO_ID=SOL.SUBPEDIDO_ID ".
             "       AND T.SOLICITUD_ID=SOL.SOLICITUD_ID ".
             "       GROUP BY T.PEDIDO_ID, T.SUBPEDIDO_ID, T.SOLICITUD_ID ) AS  TIPO_TRABAJO ".
-            "  , ( SELECT convert((MAX(T.TIPO_TRABAJO) || '-' || FN_NOMBRE_CARACTERISTICA(MAX(T.CARACTERISTICA_ID))),'US7ASCII') as DESC_TIPO_TRABAJO ".
+            "  , ( SELECT convert((MIN(T.TIPO_TRABAJO) || '-' || FN_NOMBRE_CARACTERISTICA(MAX(T.CARACTERISTICA_ID))),'US7ASCII') as DESC_TIPO_TRABAJO ".
             "         FROM FNX_TRABAJOS_SOLICITUDES T ".
             "         WHERE 1=1 ".
             "         AND T.PEDIDO_ID=SOL.PEDIDO_ID ".
@@ -7845,7 +7766,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             "  , FN_VALOR_CARACT_SUBPEDIDO(SOL.PEDIDO_ID, SOL.SUBPEDIDO_ID,37) as  ESTRATO  ".
             "  , SOL.CONCEPTO_ID  ".
             "  , SOL.CONCEPTO_ID as CONCEPTO_ANTERIOR ".
-            //"  , upper(fn_nombre_departamento(FN_VALOR_CARACT_SUBPEDIDO(SOL.PEDIDO_ID, SOL.SUBPEDIDO_ID,'34'))) as DEPARTAMENTO ".
+            "  , upper(fn_nombre_departamento(FN_VALOR_CARACT_SUBPEDIDO(SOL.PEDIDO_ID, SOL.SUBPEDIDO_ID,'34'))) as DEPARTAMENTO ".
             "  , TRIM(FN_VALOR_CARACTERISTICA_SOL (SOL.PEDIDO_ID, SOL.SUBPEDIDO_ID, SOL.SOLICITUD_ID,'34')) AS MUNICIPIO_ID  ".
             "  , TO_CHAR(TRIM(FN_VALOR_CARACTERISTICA_SOL (SOL.PEDIDO_ID, SOL.SUBPEDIDO_ID, SOL.SOLICITUD_ID,'35'))) AS DIRECCION_SERVICIO ".
             "  , fn_valor_caracteristica_sol(SOL.PEDIDO_ID, SOL.SUBPEDIDO_ID, SOL.SOLICITUD_ID,'38') as PAGINA_SERVICIO ".
@@ -7929,7 +7850,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             " GROUP BY C1.PEDIDO_ID ) IDTV ".
             " WHERE ".
             "       SOL.PEDIDO_ID='$pedido_id' ".
-            "       and SOL.TIPO_ELEMENTO_ID IN ('BDID', 'TDID','BDIDE1', 'TDIDE1', 'BDODE1', 'TDODE1', 'TO', 'TOIP','INSHFC', 'INSIP', 'INSTIP', 'SEDEIP', 'P2MB', '3PLAY', 'CNTXIP', 'ACCESP', 'PLANT', 'PLP', 'PTLAN', 'PMULT', 'PPCM', 'PBRI', 'PPRI', 'INSTA', 'TP', 'PBRI','SLL', 'TC', 'SLLBRI', 'TCBRI', 'SLLPRI', 'TCPRI','SEDEIP','SEDECX','EQURED','STBOX','EQACCP','ACCESO','DECO','INTCON','TELEV','SERHFC') ".
+            "       and SOL.TIPO_ELEMENTO_ID IN ('BDID', 'TDID','BDIDE1', 'TDIDE1', 'BDODE1', 'TDODE1', 'TO', 'TOIP','INSHFC', 'INSIP', 'INSTIP', 'SEDEIP', 'P2MB', '3PLAY', 'CNTXIP', 'ACCESP', 'PLANT', 'PLP', 'PTLAN', 'PMULT', 'PPCM', 'PBRI', 'PPRI', 'INSTA', 'TP', 'PBRI','SLL', 'TC', 'SLLBRI', 'TCBRI', 'SLLPRI', 'TCPRI','SEDEIP','SEDECX','EQURED','STBOX','ACCESO','DECO') ".
             "       	AND SOL.CONCEPTO_ID NOT IN ('14','99') ".
             "       AND SOL.SUBPEDIDO_ID=FNX_SUBPEDIDOS.SUBPEDIDO_ID  ".
             "       AND SOL.PEDIDO_ID=FNX_SUBPEDIDOS.PEDIDO_ID  ".
@@ -11615,7 +11536,6 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $today = date("Y-m-d");
 
 
-
         $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','BODEGA DATOS')";
         //echo  $user;
         $r = $this->mysqli->query($sqlupload) or die($this->mysqli->error.__LINE__);
@@ -11641,7 +11561,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 echo "Ha habido un error al subir el archivo.";
             }
         }
-        // var_dump($_FILES);
+         //var_dump($_FILES);
         $tname1 = basename( $_FILES["fileUpload"]["name"]);
 
         if($type == 'application/vnd.ms-excel')
@@ -11695,10 +11615,12 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
                 $cellValue = $this->get_cell($h.$v, $objPHPExcel);
 
+               
+
                 $table .= "<td>";
                 $guardar .=" '$cellValue',";
 
-                if($cellValue !== null){
+                if($cellValue!== null){
                     $table .= $cellValue;
                 }
                 if($h=="L"){
@@ -11740,8 +11662,9 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
 
                 $sqlbodega_datos="insert into portalbd.gestor_bodega_bodega_datos (CAMPANAID,LANZAMIENTO,IDLLAMADA1,TELEFONO,MENSAJE,ACCION,FECHA,IDLLAMADA2,ESTADO,CEDULA,DETALLE,PEDIDO,CODIGO_RESULTADO,FECHA_AGENDA,JORNADA_AGENDA,CAUSA,MUNICIPIO,ZONA,TIPO_TRANSACCION,NOMBRE_CLIENTE,DEPARTAMENTO,EMAIL,FECHA_ENVIO,HORA_ENVIO,INTERFAZ,ACCESO) values ($guardar) ";
+                //echo  $guardar;
                 $r = $this->mysqli->query($sqlbodega_datos) or die($this->mysqli->error.__LINE__);
-
+                // echo  $guardar2;   
                 $sqldatos="insert into portalbd.gestor_historicos_reagendamiento (PEDIDO_ID,CLIENTE_ID,ACCESO,FUENTE,FECHA_FIN,ASESOR,NOVEDAD,OBSERVACION_GESTOR) values ('$PEDIDO_ID','$cliente_id','$ACCESO','$FUENTE','$FECHA_FIN','$usas','$NOVEDAD','$OBSERVACION_GESTOR')";
                 //echo  $sqldatos;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
@@ -11805,7 +11728,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 $pend=" SELECT PEDIDO_ID ".
                     " FROM portalbd.gestor_pendientes_reagendamiento ".
                     " WHERE PEDIDO_ID=$pedido and STATUS IN ('MALO','PENDI_AGEN')";
-                //echo $pend;
+               // echo $pend;
                 $rst = $this->mysqli->query($pend);
 
 
@@ -12008,7 +11931,7 @@ private function cargar_datos_activacion(){
             
                 $sqldatos="insert into gestor_historico_activacion (FECHA_EXCEPCION,HORA,PEDIDO,PRODUCTO,TRANSACCION,APLICATIVO,OBSERVACION,NUMERO_CR,TIPIFICACION,ASESOR
 ,PEDIDO_FENIX,TABLA,FECHA_GESTION,SOURCE,FECHA_INICIO,FECHA_FIN) values ($guardar,'MANUAL','$today','$today'                )";
-               //echo  $today;
+             //  echo  $sqldatos;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
 
             }

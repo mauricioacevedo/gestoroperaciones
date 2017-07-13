@@ -70,7 +70,7 @@ app.service('fileUpload', ['$http', '$cookieStore', function ($http, $cookieStor
 	}
 }]);
 
-app.service('fileUpload', ['$http', '$cookieStore', function ($http, $cookieStore) {
+app.service('fileUpload1', ['$http', '$cookieStore', function ($http, $cookieStore) {
 	this.uploadFileToUrl = function (file, uploadUrl) {
 		var fd = new FormData();
 		var user = $cookieStore.get('logedUser').login;
@@ -6866,12 +6866,33 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 				}
 
+
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
-				$scope.isEstratoNull($scope.peds);
+				//$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
+
+				//alert("El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR);
+				/*if($scope.peds[0].STATUS=="PENDI_PETEC"&&$scope.peds[0].ASESOR!=""){
+					$scope.busy=$scope.peds[0].ASESOR;
+					//alert("El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR);
+					$scope.error="El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR;
+				}*/
+
+				/*   console.log("este es el municipo: " + $scope.peds[0].MUNICIPIO_ID);
+				    $scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
+				    buscar = /ANTCOL/;
+				    $scope.validaMunicipio = buscar.test($scope.peds[0].MUNICIPIO_ID);
+				    console.log("este es el municipo abreviado: " + $scope.validaMunicipio);
+				        $scope.baby($scope.pedido1);*/
 			}
 
+			//$scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
+			//  buscar = /ANTCOL/;
+			//$scope.validaMunicipio = buscar.test($scope.peds[0].MUNICIPIO_ID);
+			//console.log("esta es la validacion " + $scope.validaMunicipio);
+			//$rootScope.pagina_servicio_vecinos = $scope.peds[0].PAGINA_SERVICIO;
+			//console.log("esto es lo que retorna" + $scope.validaMunicipio + " y la pagina " + $scope.peds[0].PAGINA_SERVICIO);
 
 			return data.data;
 		});
@@ -6887,6 +6908,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
 	};
+
 
 	$scope.msavePedido = function () {
 
@@ -7140,18 +7162,22 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 
 
-
-
 				if ($scope.peds[0].STATUS == "PENDI_PETEC" && $scope.peds[0].ASESOR != "") {
 					$scope.busy = $scope.peds[0].ASESOR;
 					$scope.error = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
-
+					//alert("El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR);
+					//$scope.popup='done';
+					//}
 				}
-                $scope.isEstratoNull($scope.peds);
-
 
 				$scope.baby($scope.pedido1);
-
+				//console.log("este es el municipio" + $scope.peds[0].MUNICIPIO_ID);
+				/*$scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
+				buscar = /ANTCOL/;
+				$scope.validaMunicipio = buscar.test($scope.MUNICIPIO);*/
+				//console.log("esta es la validacion " + $scope.validaMunicipio);
+				//$rootScope.pagina_servicio_vecinos = $scope.peds[0].PAGINA_SERVICIO;
+				//console.log("esto es lo que retorna" + $scope.validaMunicipio + " y la pagina " + $scope.peds[0].PAGINA_SERVICIO);
 			}
 			var demePedidoButton = document.getElementById("iniciar");
 			demePedidoButton.removeAttribute("disabled");
@@ -7190,6 +7216,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
         //$scope.programar=false;
     };
 
+
     $scope.isEstratoNull = function (obj) {
         $scope.error = null;
         var eletofind = ['ACCESP','TO','TOIP','INSIP','INSHFC'];
@@ -7198,12 +7225,13 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
            // console.log(key + ': ' + value);
             if(eletofind.indexOf(value.TIPO_ELEMENTO_ID)>-1){
                 if(value.ESTRATOMALO==='1'){
-                    $scope.error = "Pedido con estrato MALO, por favor verifique bien antes de aprobar.";
+                    $scope.error = "Pedido con estrato o página MALA, por favor verifique bien antes de aprobar.";
                 }
 			}
         });
         return $scope.error;
     };
+
 
 });//--------------------fin asignacion-----------------------------
 
@@ -7537,7 +7565,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 
 
 		var uploadUrl = 'services/cargar_datos';
-		// console.log ($scope.user);
+		 console.log ($scope.user);
 		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
 
 	};
@@ -7583,7 +7611,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 
 
 //-------------------------------cargar datos subir archivo activacion----------------------
-app.controller('cargar_datos_activacionCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services, fileUpload) {
+app.controller('cargar_datos_activacionCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services, fileUpload1) {
 
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
@@ -7616,7 +7644,7 @@ app.controller('cargar_datos_activacionCtrl', function ($scope, $rootScope, $loc
 
 		var uploadUrl = 'services/cargar_datos_activacion';
 		// console.log ($scope.user);
-		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
+		fileUpload1.uploadFileToUrl(file, uploadUrl, $scope.user);
 
 	};
 
@@ -11281,15 +11309,15 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                    // console.log(data);
                        $scope.listadoactivacion=data.data[0];
                        $scope.data.totalItems=data.data[1];
-                        $scope.data.totalItems2=data.data[2];
-                        $scope.data.totalItems3=data.data[3];
-                        $scope.data.totalItems4=data.data[4];
-                        $scope.data.totalItems5=data.data[5];
-                        $scope.data.totalItems6=data.data[6];
-						$scope.data.totalItems7=data.data[7];
-						$scope.data.totalItems8=data.data[8];
+                       // $scope.data.totalItems2=data.data[2];
+                      //  $scope.data.totalItems3=data.data[3];
+                      //  $scope.data.totalItems4=data.data[4];
+                       // $scope.data.totalItems5=data.data[5];
+                      //  $scope.data.totalItems6=data.data[6];
+					//	$scope.data.totalItems7=data.data[7];
+					//	$scope.data.totalItems8=data.data[8];
 
-                    //console.log($scope.data.totalItems2);
+                    console.log(data.data[1]);
                     return data.data;
                });
 
@@ -12663,7 +12691,7 @@ app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $locatio
             NUMERO_CR: InfoPedido.NUMERO_CR,
 			NUMERO_PSR:InfoPedido.NUMERO_PSR,
 			OBSERVACION: InfoPedido.OBSERVACION,
-			PSR: InfoPedido.PSR,
+			PSR: InfoPedido.PSR,	
 			//TIEMPO_TOTAL: $scope.TIEMPO_TOTAL,
             DURACION: $scope.duracion,
 			STATUS: gestion.STATUS,
