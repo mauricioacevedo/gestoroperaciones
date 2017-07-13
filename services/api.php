@@ -4381,7 +4381,7 @@ private function csvAmarillas(){
             "		AND ( ".
             "           (PP.FUENTE='SIEBEL' AND DESC_TIPO_TRABAJO = 'NA NUEVO') ".
 			"		   OR ".
-			"		   (PP.FUENTE='FENIX_NAL' AND TIPO_TRABAJO = 'NUEVO') ".
+			"		   (PP.FUENTE='FENIX_NAL' AND TIPO_TRABAJO = ('NUEVO','NUEVO,RETIR') ) ".
 			"		   OR ".
 			"		   (PP.FUENTE='FENIX_BOG' AND TIPO_TRABAJO = 'NUEVO') ".
 			"	    ) ".
