@@ -4379,11 +4379,11 @@ private function csvAmarillas(){
             " FROM portalbd.informe_petec_pendientesm PP ".
             " WHERE PP.STATUS IN ('PENDI_PETEC','MALO') ".
             "		AND ( ".
-            "           (PP.FUENTE='SIEBEL' AND DESC_TIPO_TRABAJO LIKE '%NA NUEVO%') ".
+            "           (PP.FUENTE='SIEBEL' AND DESC_TIPO_TRABAJO = 'NA NUEVO') ".
 			"		   OR ".
-			"		   (PP.FUENTE='FENIX_NAL' AND TIPO_TRABAJO LIKE  '%NUEVO%') ".
+			"		   (PP.FUENTE='FENIX_NAL' AND TIPO_TRABAJO = 'NUEVO') ".
 			"		   OR ".
-			"		   (PP.FUENTE='FENIX_BOG' AND TIPO_TRABAJO LIKE  '%NUEVO%') ".
+			"		   (PP.FUENTE='FENIX_BOG' AND TIPO_TRABAJO = 'NUEVO') ".
 			"	    ) ".
             " ) C1  ".
             " GROUP BY C1.PEDIDO_ID ) C2 ".
