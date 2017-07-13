@@ -11761,8 +11761,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
             $guardar=rtrim($guardar,',');
              //var_dump($guardar);   
-             echo $tname1;    
-            if ($tname1 <> "" && $tname1<>"bodega_datos.xlsx"){
+             //echo $tname1;    
+            if ($tname1 <> "" && $tname1 <>"bodega_datos.xlsx"){
 
 
 
