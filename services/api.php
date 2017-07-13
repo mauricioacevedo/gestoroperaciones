@@ -11732,6 +11732,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             $NOMBRE_ARCHIVO="";
             $TAMANO="";
             $VISTA="";
+            $tname1="";
 
 
 
@@ -11759,9 +11760,9 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             }
 
             $guardar=rtrim($guardar,',');
-             var_dump($guardar);   
-
-            if ($tname1 <> ""){
+             //var_dump($guardar);   
+             echo $tname1;    
+            if ($tname1 <> "" && $tname1<>"bodega_datos.xlsx"){
 
 
 
