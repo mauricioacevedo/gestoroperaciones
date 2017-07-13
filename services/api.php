@@ -11705,7 +11705,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
 
 
-            if ($tname1  == "bodega_datos.xlsx"){
+            if ($tname1  <> ""){
 
 
                 $sqlbodega_datos="insert into portalbd.gestor_bodega_bodega_datos (CAMPANAID,LANZAMIENTO,IDLLAMADA1,TELEFONO,MENSAJE,ACCION,FECHA,IDLLAMADA2,ESTADO,CEDULA,DETALLE,PEDIDO,CODIGO_RESULTADO,FECHA_AGENDA,JORNADA_AGENDA,CAUSA,MUNICIPIO,ZONA,TIPO_TRANSACCION,NOMBRE_CLIENTE,DEPARTAMENTO,EMAIL,FECHA_ENVIO,HORA_ENVIO,INTERFAZ,ACCESO) values ($guardar) ";
