@@ -4353,42 +4353,56 @@ private function csvAmarillas(){
             }
         }
 
-        $queryConceptosNUEVO="SELECT ".
-            " C2.CONCEPTO_ID ".
-            " , COUNT(*) AS CANTIDAD ".
-            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 0 AND (C2.RANGO_PENDIENTE) <= 2 THEN 1 ELSE 0 END) as 'Entre02' ".
-            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 3 AND (C2.RANGO_PENDIENTE) <= 4 THEN 1 ELSE 0 END) as 'Entre34' ".
-            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 5 AND (C2.RANGO_PENDIENTE) <= 6 THEN 1 ELSE 0 END) as 'Entre56' ".
-            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 7 AND (C2.RANGO_PENDIENTE) <= 12 THEN 1 ELSE 0 END) as 'Entre712' ".
-            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 13 AND (C2.RANGO_PENDIENTE) <= 24 THEN 1 ELSE 0 END) as 'Entre1324' ".
-            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 25 AND (C2.RANGO_PENDIENTE) <= 48 THEN 1 ELSE 0 END) as 'Entre2548' ".
-            " , sum( CASE WHEN (C2.RANGO_PENDIENTE) > 48 THEN 1 ELSE 0 END) as 'Masde48' ".
-            " FROM(SELECT ".
-            " C1.PEDIDO_ID ".
-            " , MAX(C1.CONCEPTO_ID) AS CONCEPTO_ID ".
-            " , MAX(C1.RANGO_PENDIENTE) AS RANGO_PENDIENTE ".
-            " FROM(select ".
-            " PP.PEDIDO_ID ".
-            " , case   ".
-            "        when PP.FUENTE='FENIX_NAL' and PP.CONCEPTO_ID='PETEC' AND PP.STATUS!='MALO' then 'PETEC-NAL'  ".
-            "        when PP.FUENTE='FENIX_BOG' and PP.CONCEPTO_ID='PETEC' AND PP.STATUS!='MALO' then 'PETEC-BOG'  ".
-            "        WHEN PP.STATUS='MALO' THEN 'MALO' ".
-            "        else PP.CONCEPTO_ID  ".
-            "      end as CONCEPTO_ID ".
-            " , HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) AS RANGO_PENDIENTE ".
-            " FROM portalbd.informe_petec_pendientesm PP ".
-            " WHERE PP.STATUS IN ('PENDI_PETEC','MALO') ".
-            "		AND ( ".
-            "           (PP.FUENTE='SIEBEL' AND DESC_TIPO_TRABAJO = 'NA NUEVO') ".
-			"		   OR ".
-			"		   (PP.FUENTE='FENIX_NAL' AND TIPO_TRABAJO IN ('NUEVO','NUEVO,RETIR') ) ".
-			"		   OR ".
-			"		   (PP.FUENTE='FENIX_BOG' AND TIPO_TRABAJO = 'NUEVO') ".
-			"	    ) ".
-            " ) C1  ".
-            " GROUP BY C1.PEDIDO_ID ) C2 ".
-            " GROUP BY C2.CONCEPTO_ID ".
-            " order by count(*) DESC ";
+        $queryConceptosNUEVO="     SELECT  ".
+            "    C2.CONCEPTO_ID  ".
+            "    , COUNT(*) AS CANTIDAD  ".
+            "    , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 0 AND (C2.RANGO_PENDIENTE) <= 2 THEN 1 ELSE 0 END) as 'Entre02'  ".
+            "    , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 3 AND (C2.RANGO_PENDIENTE) <= 4 THEN 1 ELSE 0 END) as 'Entre34'  ".
+            "    , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 5 AND (C2.RANGO_PENDIENTE) <= 6 THEN 1 ELSE 0 END) as 'Entre56'  ".
+            "    , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 7 AND (C2.RANGO_PENDIENTE) <= 12 THEN 1 ELSE 0 END) as 'Entre712'  ".
+            "    , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 13 AND (C2.RANGO_PENDIENTE) <= 24 THEN 1 ELSE 0 END) as 'Entre1324'  ".
+            "    , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 25 AND (C2.RANGO_PENDIENTE) <= 48 THEN 1 ELSE 0 END) as 'Entre2548'  ".
+            "    , sum( CASE WHEN (C2.RANGO_PENDIENTE) > 48 THEN 1 ELSE 0 END) as 'Masde48'  ".
+            "    FROM( ".
+            "    SELECT ".
+            "    C1.PEDIDO_ID ".
+            "    , C1.CONCEPTO_ID ".
+            "    , group_concat(DISTINCT C1.TIPO_TRABAJO order by 1 asc) AS TIPO_TRABAJO ".
+            "    , group_concat(DISTINCT C1.FUENTE) AS FUENTE ".
+            "    , group_concat(DISTINCT C1.RADICADO_TEMPORAL) AS RADICADO_TEMPORAL ".
+            "    , MAX(C1.RANGO_PENDIENTE) as RANGO_PENDIENTE ".
+            "    FROM ( ".
+            "    SELECT  ".
+            "    PEDIDO_ID ".
+            "    , SUBPEDIDO_ID ".
+            "    , SOLICITUD_ID ".
+            "    , CASE ".
+            "    	when FUENTE='FENIX_BOG' and CONCEPTO_ID='PETEC' and STATUS!='MALO' then 'PETEC-BOG'  ".
+            "        when FUENTE='FENIX_NAL' and CONCEPTO_ID='PETEC' and STATUS!='MALO' then 'PETEC-NAL'  ".
+            "        when STATUS='MALO' then 'MALO' ".
+            "        ELSE CONCEPTO_ID ".
+            "     END AS CONCEPTO_ID ".
+            "    , CASE ".
+            "    	when DESC_TIPO_TRABAJO='NA NUEVO' then 'NUEVO' ".
+            "        when DESC_TIPO_TRABAJO='MODIFICACION,NA NUEVO' then 'CAMBI,NUEVO' ".
+            "        when TIPO_TRABAJO='CAMBIO' then 'CAMBI' ".
+            "        when TIPO_TRABAJO='NUEVO,RETIR' then 'NUEVO' ".
+            "        when TIPO_TRABAJO='CAMBI,NUEVO,RETIR' then 'CAMBI,NUEVO' ".
+            "        when TIPO_TRABAJO='CAMBIO,VENTA' then 'CAMBI,NUEVO' ".
+            "        else TIPO_TRABAJO ".
+            "        end as TIPO_TRABAJO ".
+            "    , FUENTE ".
+            "    , RADICADO_TEMPORAL ".
+            "    , HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO))) AS RANGO_PENDIENTE  ".
+            "    FROM portalbd.informe_petec_pendientesm ".
+            "    where 1=1 ".
+            "    and STATUS in ('PENDI_PETEC','MALO') ".
+            "    and fuente in ('FENIX_NAL','FENIX_BOG','SIEBEL') ".
+            "    and CONCEPTO_ID NOT IN ('OT-C11','OT-C08','OT-T01','OT-T04','OT-T05') )C1 ".
+            "    GROUP BY C1.PEDIDO_ID, C1.CONCEPTO_ID ) C2 ".
+            "    WHERE C2.TIPO_TRABAJO='NUEVO' ".
+            "    GROUP BY C2.CONCEPTO_ID  ".
+            "    order by count(*) DESC";
         $rr = $this->mysqli->query($queryConceptosNUEVO) or die($this->mysqli->error.__LINE__);
 
         $queryConceptosNUEVO = array();
