@@ -6880,6 +6880,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
+                $scope.isEstratoNull($scope.peds[0]);
 				//$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 
 				//alert("El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR);
@@ -7175,19 +7176,11 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				if ($scope.peds[0].STATUS == "PENDI_PETEC" && $scope.peds[0].ASESOR != "") {
 					$scope.busy = $scope.peds[0].ASESOR;
 					$scope.error = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
-					//alert("El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR);
-					//$scope.popup='done';
-					//}
 				}
 
 				$scope.baby($scope.pedido1);
-				//console.log("este es el municipio" + $scope.peds[0].MUNICIPIO_ID);
-				/*$scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
-				buscar = /ANTCOL/;
-				$scope.validaMunicipio = buscar.test($scope.MUNICIPIO);*/
-				//console.log("esta es la validacion " + $scope.validaMunicipio);
-				//$rootScope.pagina_servicio_vecinos = $scope.peds[0].PAGINA_SERVICIO;
-				//console.log("esto es lo que retorna" + $scope.validaMunicipio + " y la pagina " + $scope.peds[0].PAGINA_SERVICIO);
+                $scope.isEstratoNull($scope.peds[0]);
+
 			}
 			var demePedidoButton = document.getElementById("iniciar");
 			demePedidoButton.removeAttribute("disabled");
