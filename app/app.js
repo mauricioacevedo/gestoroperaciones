@@ -6880,7 +6880,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
-                $scope.isEstratoNull($scope.peds[0]);
+                $scope.isEstratoNull($scope.peds);
 				//$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 
 				//alert("El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR);
@@ -7179,7 +7179,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				}
 
 				$scope.baby($scope.pedido1);
-                $scope.isEstratoNull($scope.peds[0]);
+                $scope.isEstratoNull($scope.peds);
 
 			}
 			var demePedidoButton = document.getElementById("iniciar");
