@@ -45,7 +45,7 @@ class API extends REST {
     }
 
     private function dbSeguimientoConnect(){
-		$this->connseguimiento = getConnSeguimientoPedidos();
+        $this->connseguimiento = getConnSeguimientoPedidos();
     }
 
     private function dbConnect(){
@@ -631,7 +631,7 @@ class API extends REST {
             "   WHERE b.PEDIDO_ID =  a.PEDIDO_ID) )AS INTENTOS_CONTACTO ".
             " from gestor_historicos_reagendamiento a ".
             "  where fecha_fin between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' ".
-			"	and fuente='EDATEL' ";
+            "	and fuente='EDATEL' ";
 
 
 
@@ -772,7 +772,7 @@ class API extends REST {
 
     }
 
-private function csvActivacioncolas(){
+    private function csvActivacioncolas(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
@@ -795,7 +795,7 @@ private function csvActivacioncolas(){
             " 		 , ESTADO_ID  , COLA_ID  , ACTIVIDAD_ID  , NOMBRE_ACTIVIDAD  , CONCEPTO_ID  ".
             "		 ,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_PENDIENTE ".
             "		  FROM  informe_activacion_pendientesm  ".
-            "			WHERE  STATUS ='PENDI_ACTIVACION' ". 
+            "			WHERE  STATUS ='PENDI_ACTIVACION' ".
             "			and cola_id in ('GPONSR') ".
             " UNION ".
             " SELECT REQUERIMIENTO_ID  , PEDIDO_ID  , SUBPEDIDO_ID  , SOLICITUD_ID ".
@@ -812,13 +812,13 @@ private function csvActivacioncolas(){
             "		 , ESTADO_ID  , COLA_ID  , ACTIVIDAD_ID  , NOMBRE_ACTIVIDAD  , CONCEPTO_ID  ".
             "		 ,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_PENDIENTE ".
             "		  FROM  informe_activacion_pendientesm  ".
-            "			WHERE  STATUS ='PENDI_ACTIVACION' ". 
-            "			and cola_id in ('VRMAT') ". 
+            "			WHERE  STATUS ='PENDI_ACTIVACION' ".
+            "			and cola_id in ('VRMAT') ".
             "			and CONCEPTO_ID NOT IN ('PROG') ".
             " UNION ".
-            " SELECT REQUERIMIENTO_ID  , PEDIDO_ID  , SUBPEDIDO_ID  , SOLICITUD_ID ". 
+            " SELECT REQUERIMIENTO_ID  , PEDIDO_ID  , SUBPEDIDO_ID  , SOLICITUD_ID ".
             "   , TIPO_ELEMENTO_ID  , TIPO_TRABAJO  , FECHA_ESTADO  , ETAPA_ID  ".
-            "   , ESTADO_ID  , COLA_ID  , ACTIVIDAD_ID  , NOMBRE_ACTIVIDAD  , CONCEPTO_ID ".  
+            "   , ESTADO_ID  , COLA_ID  , ACTIVIDAD_ID  , NOMBRE_ACTIVIDAD  , CONCEPTO_ID ".
             "   ,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_PENDIENTE ".
             "   FROM  informe_activacion_pendientesm  ".
             "   WHERE  STATUS ='PENDI_ACTIVACION'  ".
@@ -827,7 +827,7 @@ private function csvActivacioncolas(){
             "   AND ACTIVIDAD_ID IN ('DEGTV') ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-                   
+
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
@@ -845,7 +845,7 @@ private function csvActivacioncolas(){
 
     }
 
-private function csvAmarillas(){
+    private function csvAmarillas(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
@@ -854,12 +854,12 @@ private function csvAmarillas(){
         $today = date("Y-m-d h:i:s");
         $filename="Fenix_Activacion-$login-$today.csv";
         $query=" select b.ORDER_SEQ_ID,b.ESTADO,b.PEDIDO,b.TRANSACCION,b.PRODUCTO ".
-                " ,b.FECHA_EXCEPCION,b.TIPO_COMUNICACION,b.DEPARTAMENTO,b.STATUS ".
-                " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
-                " where a.PEDIDO=b.PEDIDO order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
-                " , (select a.ASESOR from gestor_historico_activacion a  ".
-                " where a.PEDIDO=b.PEDIDO order by a.ID desc limit 1) as ASESOR  ".
-                " FROM pendientes_amarillas b ";
+            " ,b.FECHA_EXCEPCION,b.TIPO_COMUNICACION,b.DEPARTAMENTO,b.STATUS ".
+            " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
+            " where a.PEDIDO=b.PEDIDO order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
+            " , (select a.ASESOR from gestor_historico_activacion a  ".
+            " where a.PEDIDO=b.PEDIDO order by a.ID desc limit 1) as ASESOR  ".
+            " FROM pendientes_amarillas b ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -1188,7 +1188,7 @@ private function csvAmarillas(){
         $filename="Activacion-Fenix_NAL-$login-$today.csv";
 
         $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION,TRANSACCION ".
-            " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,OBSERVACION,PSR,NUMERO_PSR,TABLA ".  
+            " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,OBSERVACION,PSR,NUMERO_PSR,TABLA ".
             " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
             " from gestor_historico_activacion ".
             "where fecha_fin between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' $filtro ";;
@@ -1617,7 +1617,7 @@ private function csvAmarillas(){
                     $pedido['horaLlamar']="manana";
                 }
 
-                /*if($pedido['horaLlamar']=="manana"){//este pedido se programo para ser entregado maÃ±ana
+                /*if($pedido['horaLlamar']=="manana"){//este pedido se programo para ser entregado mañana
 						$datetime = new DateTime('tomorrow');
 						//echo "PROGRAMACION: ".$datetime->format('Y-m-d 08:00:00');
 						 $programacion=$datetime->format('Y-m-d 08:00:00');
@@ -1838,16 +1838,16 @@ private function csvAmarillas(){
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         //cierro el registro en la tabla de automatizacion asignaciones
 
-        if($novedad=='AGENDADO'||$novedad=='AGENDADO MANUAL'|| $novedad=='AGENDADO_FUTURO'|| $novedad=='CONFIRMA SOLUCION' 
-        || $novedad=='CONFIRMADA'|| $novedad=='CONFIRMADA-DATOS ERRADOS'|| $novedad=='NO CONOCE EL PEDIDO'
-        || $novedad=='NO DESEA EL SERVICIO'|| $novedad=='LIBERACION DE CUPOS' || $novedad=='PENDIENTE EN OTRO CONCEPTO'
-        || $novedad=='SIN CITA'|| $novedad=='YA ESTA CUMPLIDO'){
+        if($novedad=='AGENDADO'||$novedad=='AGENDADO MANUAL'|| $novedad=='AGENDADO_FUTURO'|| $novedad=='CONFIRMA SOLUCION'
+            || $novedad=='CONFIRMADA'|| $novedad=='CONFIRMADA-DATOS ERRADOS'|| $novedad=='NO CONOCE EL PEDIDO'
+            || $novedad=='NO DESEA EL SERVICIO'|| $novedad=='LIBERACION DE CUPOS' || $novedad=='PENDIENTE EN OTRO CONCEPTO'
+            || $novedad=='SIN CITA'|| $novedad=='YA ESTA CUMPLIDO'){
             $sqlupdate="update gestor_pendientes_reagendamiento set FECHA_ACTUALIZACION='$today',STATUS='CERRADO_AGEN',FECHA_CITA_REAGENDA='$fecha_cita_reagen',TODAY_TRIES=(SELECT COUNT(*) FROM gestor_historicos_reagendamiento WHERE PEDIDO_ID='$PEDIDO_ID'  and NOVEDAD in ('AGENDADO','AGENDADO FUTURO','ANULADO 42','ANULADO AXGAR','ANULADO APRCT','LLAMADA SIN INFORMACION-MUDA','CLIENTE NO CONTACTADO','NO PUEDE ATENDER LLAMADA','LLAMAR FUTURO','INCUMPLIMIENTO FECHA CITA HOY','SE BRINDA INFORMACION','YA ESTA ANULADO-PENDIENTE','YA ESTA CUMPLIDO-PENDIENTE','PENDIENTE RECONFIGURAR PEDIDO','CONFIRMA SOLUCION','CLIENTE NO AUTORIZA','CLIENTE ILOCALIZADO','CONFIRMADA','CONFIRMADA-DATOS ERRADOS','CLIENTES NOS ESPERA')  ),PROGRAMACION='',ASESOR='' WHERE ID=$parent ";
-        }else if($novedad=='ANULADO 42'||$novedad=='ANULADO APRCT' ||$novedad=='ANULADO AXGAR' ||$novedad=='CAMBIO_NUMERO/PLAN' 
-            ||$novedad=='ERROR SIEBEL 8.1' ||$novedad=='MIGRACION HFC' || $novedad=='NO DESEA EL SERVICIO' ||$novedad=='PEDIDO EN OTRO CONCEPTO' 
-        ||$novedad=='PENDIENTE RECONFIGUAR PEDIDO' ||$novedad=='PENDIENTE OTRO CONCEPTO' || $novedad=='YA ESTA CUMPLIDO'
-        || $novedad=='YA ESTA ANULADO'||$novedad=='YA ESTA ANULADO-CERRADO'||$novedad=='YA ESTA ANULADO-PENDIENTE' 
-        ||$novedad=='YA ESTA CUMPLIDOâCERRADO'||$novedad=='YA ESTA CUMPLIDOâPENDIENTE' ){
+        }else if($novedad=='ANULADO 42'||$novedad=='ANULADO APRCT' ||$novedad=='ANULADO AXGAR' ||$novedad=='CAMBIO_NUMERO/PLAN'
+            ||$novedad=='ERROR SIEBEL 8.1' ||$novedad=='MIGRACION HFC' || $novedad=='NO DESEA EL SERVICIO' ||$novedad=='PEDIDO EN OTRO CONCEPTO'
+            ||$novedad=='PENDIENTE RECONFIGUAR PEDIDO' ||$novedad=='PENDIENTE OTRO CONCEPTO' || $novedad=='YA ESTA CUMPLIDO'
+            || $novedad=='YA ESTA ANULADO'||$novedad=='YA ESTA ANULADO-CERRADO'||$novedad=='YA ESTA ANULADO-PENDIENTE'
+            ||$novedad=='YA ESTA CUMPLIDO–CERRADO'||$novedad=='YA ESTA CUMPLIDO–PENDIENTE' ){
             $sqlupdate="update gestor_pendientes_reagendamiento set FECHA_ACTUALIZACION='$today',STATUS='MALO',FECHA_CITA_REAGENDA='$fecha_cita_reagen',TODAY_TRIES=(SELECT COUNT(*) FROM gestor_historicos_reagendamiento WHERE PEDIDO_ID='$PEDIDO_ID' and NOVEDAD in ('AGENDADO','AGENDADO FUTURO','ANULADO 42','ANULADO AXGAR','ANULADO APRCT','LLAMADA SIN INFORMACION-MUDA','NO PUEDE ATENDER LLAMADA','LLAMAR FUTURO','INCUMPLIMIENTO FECHA CITA HOY','SE BRINDA INFORMACION','YA ESTA ANULADO-PENDIENTE','YA ESTA CUMPLIDO-PENDIENTE','PENDIENTE RECONFIGURAR PEDIDO','CONFIRMA SOLUCION','CLIENTE NO AUTORIZA','CLIENTE ILOCALIZADO','CONFIRMADA','CONFIRMADA-DATOS ERRADOS','CLIENTES NOS ESPERA') ),PROGRAMACION='',ASESOR='' WHERE ID=$parent ";
         } else {
             $sqlupdate="update gestor_pendientes_reagendamiento set FECHA_ACTUALIZACION='$today',STATUS='PENDI_AGEN',FECHA_CITA_REAGENDA='$fecha_cita_reagen',TODAY_TRIES=(SELECT COUNT(*) FROM gestor_historicos_reagendamiento WHERE PEDIDO_ID='$PEDIDO_ID'  and NOVEDAD in ('AGENDADO','AGENDADO FUTURO','ANULADO 42','ANULADO AXGAR','ANULADO APRCT','LLAMADA SIN INFORMACION-MUDA','CLIENTE NO CONTACTADO','NO PUEDE ATENDER LLAMADA','LLAMAR FUTURO','INCUMPLIMIENTO FECHA CITA HOY','SE BRINDA INFORMACION','YA ESTA ANULADO-PENDIENTE','YA ESTA CUMPLIDO-PENDIENTE','PENDIENTE RECONFIGURAR PEDIDO','CONFIRMA SOLUCION','CLIENTE NO AUTORIZA','CLIENTE ILOCALIZADO','CONFIRMADA','CONFIRMADA-DATOS ERRADOS','CLIENTES NOS ESPERA','CLIENTE NO CONTACTADO','PENDIENTE AGENDA') ),PROGRAMACION='$programacion',ASESOR='' WHERE ID=$parent ";
@@ -2771,7 +2771,7 @@ private function csvAmarillas(){
 //--------------------- pedidos por usuario activacion ----------activacion------------
 
 
-     private function pedidosPorUserActivacion(){
+    private function pedidosPorUserActivacion(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
@@ -2805,7 +2805,7 @@ private function csvAmarillas(){
 
         }
 */
-       // echo $query;
+        // echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -3846,7 +3846,7 @@ private function csvAmarillas(){
 
     function quitar_tildes($cadena) {
         //echo 'recibi cadena'.$cadena;
-        $no_permitidas= array ("Ã¡","Ã©","Ã­","Ã³","Ãº","Ã","Ã","Ã","Ã","Ã","Ã±","Ã","Ã","Ã","Ã","Ã","Ãâ¢","Ã ","ÃÂ¨","ÃÂ¬","ÃÂ²","ÃÂ¹","Ã§","Ã","ÃÂ¢","Ãª","ÃÂ®","ÃÂ´","ÃÂ»","Ãâ","ÃÅ ","ÃÅ½","Ãâ","Ãâº","Ã¼","ÃÂ¶","Ãâ","ÃÂ¯","ÃÂ¤","Â«","Ã","ÃÂ","Ãâ","Ãâ¹");
+        $no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
         $permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
         $texto = str_replace($no_permitidas, $permitidas ,$cadena);
         //echo "\nsalida".$texto;
@@ -5905,7 +5905,7 @@ private function csvAmarillas(){
 
         $filename="Pendientes-$login-$today.csv";
         $query="SELECT a.PEDIDO_ID,".
-                " a.PEDIDO, ".
+            " a.PEDIDO, ".
             " a.SUBPEDIDO_ID, ".
             " a.SOLICITUD_ID, ".
             " a.PROGRAMACION, ".
@@ -6291,7 +6291,7 @@ private function csvAmarillas(){
 
 
                 $row['ULTIMA_NOVEDAD']=utf8_decode($row['ULTIMA_NOVEDAD']);
-               $row['OBSERVACION_FENIX']= trim(preg_replace('/\s+|,', ' ',$row['OBSERVACION_FENIX']));
+                $row['OBSERVACION_FENIX']= trim(preg_replace('/\s+|,', ' ',$row['OBSERVACION_FENIX']));
 
 
                 $result[] = $row;
@@ -6326,7 +6326,7 @@ private function csvAmarillas(){
         }
         $this->response('',204);        // If no records "No Content" status
     }
-private function csvMalosAgendamientoReparaciones(){
+    private function csvMalosAgendamientoReparaciones(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
@@ -6881,7 +6881,7 @@ private function csvMalosAgendamientoReparaciones(){
             }
         }
 
- $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where (a.STATUS='MALO') and (a.PROCESO='INSTALACION') ";
+        $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where (a.STATUS='MALO') and (a.PROCESO='INSTALACION') ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $malo1=0;
@@ -6893,7 +6893,7 @@ private function csvMalosAgendamientoReparaciones(){
             }
         }
 
-$query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where (a.STATUS in ('PENDI_AGEN','MALO')) and (a.PROCESO='INSTALACION') ";
+        $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where (a.STATUS in ('PENDI_AGEN','MALO')) and (a.PROCESO='INSTALACION') ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter1=0;
@@ -6905,7 +6905,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             }
         }
 
-   $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where (a.STATUS in ('PENDI_AGEN','MALO')) and (a.PROCESO='REPARACION') ";
+        $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where (a.STATUS in ('PENDI_AGEN','MALO')) and (a.PROCESO='REPARACION') ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter2=0;
@@ -6915,7 +6915,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 $counter2 = $row['counter'];
                 //echo $malo;
             }
-        }     
+        }
 
         $query= "SELECT ".
             " a.ID, ".
@@ -6972,8 +6972,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         }
         $page=$page*100;
         //counter
-    
-         $query="SELECT count(*)".
+
+        $query="SELECT count(*)".
             " from gestor_historico_activacion ".
             " where fecha_fin between '$fechaini 00:00:00' ".
             " and '$fechafin 23:59:59'  order by fecha_fin desc limit 100 offset $page";
@@ -6986,7 +6986,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 $counter = $row['counter'];
             }
         }
-     // echo $query; 
+        // echo $query;
         $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION,TRANSACCION ".
             " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,TABLA ".
             " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
@@ -7006,7 +7006,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
                 $result[] = $row;
 
-             //    var_dump($result);
+                //    var_dump($result);
             }
 
             $this->response($this->json(array($result,$counter)), 200); // send user details
@@ -7126,7 +7126,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
     //-------------------------------------fin pedido por pedido activacion
 
- //-------------------------------------inicion pedido por pedido activacion
+    //-------------------------------------inicion pedido por pedido activacion
 
     private function pedidosPorPedidoAmarillas(){//historico por 1 pedido
         if($this->get_request_method() != "GET"){
@@ -7134,14 +7134,14 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         }
         $pedido = $this->_request['pedido'];
         $today = date("Y-m-d");
-    
+
 
 
 
         $query=" SELECT id, IDGRUPOAGENDA,PEDIDO,IDESTADO ".
             ",NOMBRE,FECHADIAGENDA,FECHACARGA ".
             ",OFERTAPEDIDO,DEPARTAMENTO ".
-            " from getpedidosPorPedidoAmarillas  ". 
+            " from getpedidosPorPedidoAmarillas  ".
             " where pedido like '$pedido%' order by fecha_excepcion desc limit 10 ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -7285,8 +7285,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
             $r = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
 
-            if ($plaza=="BOGOTA-COBRE"){//pregunta si se debe buscar en fenix BogotÃ¡ o se debe buscar en fenix nacional por medio de la plaza.
-                //echo "Esta Entrando por aca para llamar a fenix BogotÃ¡";
+            if ($plaza=="BOGOTA-COBRE"){//pregunta si se debe buscar en fenix Bogotá o se debe buscar en fenix nacional por medio de la plaza.
+                //echo "Esta Entrando por aca para llamar a fenix Bogotá";
                 $success=$this->buscarPedidoFenixBogota($pedido);
 
             } else{
@@ -7459,8 +7459,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                         //si el pedido no esta en la base de datos buscar en los dos fenix, esto implica insertar en la tabla core..
 
 
-                      if ($plaza=="BOGOTA-COBRE"){//pregunta si se debe buscar en fenix BogotÃ¡ o se debe buscar en fenix nacional por medio de la plaza.
-                        //echo "Esta Entrando por aca para llamar a fenix BogotÃ¡";
+                      if ($plaza=="BOGOTA-COBRE"){//pregunta si se debe buscar en fenix Bogotá o se debe buscar en fenix nacional por medio de la plaza.
+                        //echo "Esta Entrando por aca para llamar a fenix Bogotá";
                          $success=$this->buscarPedidoFenixBogota($pedido);
 
                       } else{
@@ -7668,8 +7668,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             //$this->response('test', 200); // send user details
         }else {
 
-            if ($plaza=="BOGOTA-COBRE"){//pregunta si se debe buscar en fenix BogotÃ¡ o se debe buscar en fenix nacional por medio de la plaza.
-                //echo "Esta Entrando por aca para llamar a fenix BogotÃ¡";
+            if ($plaza=="BOGOTA-COBRE"){//pregunta si se debe buscar en fenix Bogotá o se debe buscar en fenix nacional por medio de la plaza.
+                //echo "Esta Entrando por aca para llamar a fenix Bogotá";
                 $success=$this->buscarPedidoFenixBogota($pedido);
 
             } else{
@@ -7686,7 +7686,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
     }
 
 
-    //FunciÃ³n para buscar pedidos directamente en Fenix - Boton BuscarPedido.
+    //Función para buscar pedidos directamente en Fenix - Boton BuscarPedido.
     // 2016-02-02 - Se modifica  este negocio solo por capricho de Carlos.
     private function buscarPedidoFenixReconfiguracion($pedido_id){
 
@@ -7785,7 +7785,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         }
         return $success;
     }
-    //FunciÃ³n para buscar pedidos directamente en Fenix - Boton BuscarPedido.
+    //Función para buscar pedidos directamente en Fenix - Boton BuscarPedido.
     // 2015-09-17 - Se modifica fecha estado, ahora vamos a novedades por ella - CGONZGO
     private function buscarPedidoFenix($pedido_id){
 
@@ -7967,7 +7967,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         return $success;
     }
 
-//funciÃ³n para buscar pedidos en fenix BogotÃ¡ que no estan en la base de datos.
+//función para buscar pedidos en fenix Bogotá que no estan en la base de datos.
     private function buscarPedidoFenixBogota($pedido_id){
 
         $this->dbFenixBogotaConnect();
@@ -8356,7 +8356,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $user=strtoupper($user);
         $today = date("Y-m-d");
 
-        //1.consulto  lo que tenga fecha cita de maÃ±ana
+        //1.consulto  lo que tenga fecha cita de mañana
         $hora=date("G");
         $uphold="1";
         if($hora<11){
@@ -8600,7 +8600,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                     $pedidos_ignorados.=$row['PEDIDO_ID'].",";
 
                     //la idea es que este codigo permita optimizar el pedido entregado
-                    //la idea es entregar de primero los pedidos con agenda para maÃ±ana cuando el parametro es fecha cita
+                    //la idea es entregar de primero los pedidos con agenda para mañana cuando el parametro es fecha cita
                     if($parametroBusqueda=='FECHA_CITA'){
                         $today = date("Y-m-d");
                         $date = $row[FECHA_CITA];
@@ -8718,7 +8718,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             " b.UEN_CALCULADA, ".
             " b.ESTRATO, ".
             "  CASE ".
-		    "	 WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.UEN_CALCULADA IN ('HG','E3') AND b.ESTRATO='0' THEN TRUE ".
+            "	 WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.UEN_CALCULADA IN ('HG','E3') AND b.ESTRATO='0' THEN TRUE ".
             "    WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.UEN_CALCULADA IN ('HG','E3') AND b.ESTRATO='' THEN TRUE ".
             "    WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.UEN_CALCULADA IN ('HG','E3') AND b.PAGINA_SERVICIO='' THEN TRUE ".
             "    ELSE FALSE ".
@@ -8887,11 +8887,11 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         if($tabla=='ACTIVADOR_SUSPECORE'){
 
             $tabla = " from gestor_activacion_pendientes_activador_suspecore b " ;
-            $MOTIVOEXCEPCIONACT = " and b.MOTIVOEXCEPCIONACT <> 'La Cuenta NO existe.' ";   
+            $MOTIVOEXCEPCIONACT = " and b.MOTIVOEXCEPCIONACT <> 'La Cuenta NO existe.' ";
         } else {
 
             $tabla = " from gestor_activacion_pendientes_activador_dom b " ;
-            $MOTIVO_ERROR = " and b.MOTIVO_ERROR <> 'La Cuenta NO existe.' "; 
+            $MOTIVO_ERROR = " and b.MOTIVO_ERROR <> 'La Cuenta NO existe.' ";
 
 
         }
@@ -9070,7 +9070,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
 //--------------------------demepedido activacion----------------------amarillas
     private function demePedidoAmarillas(){
-          if($this->get_request_method() != "GET"){
+        if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
         $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
@@ -9086,7 +9086,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $user = $this->_request['userID'];
 
         $transaccion = $this->_request['transaccion'];
-      
+
 
 
         $filename = '../tmp/control-threads-agen.txt';
@@ -9103,14 +9103,14 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $user=strtoupper($user);
 
 
-       
+
 
         //echo $sqlupdate;
         $xxx = $this->mysqli->query($sqlupdate);
 
         $today = date("Y-m-d");
 
-       // $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_AMARILLAS');
+        // $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_AMARILLAS');
 
         //  echo "carlitos1 ---$producto---";
 
@@ -9120,7 +9120,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             $transaccion="";
         }
 */
-       
+
 
         $mypedido="";
 
@@ -9181,13 +9181,13 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_EXCEPCION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL".
             " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
             " where a.PEDIDO='$mypedido'and a.TIPIFICACION='' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
-           " from pendientes_amarillas b".
+            " from pendientes_amarillas b".
             " where b.PEDIDO = '$mypedido'  ".
             " and b.STATUS='PENDI_ACTI' ".
             " group by b.pedido ";
 
 
-      //  echo $query1;
+        //  echo $query1;
         $r = $this->mysqli->query($query1);
 
         if($r->num_rows > 0){
@@ -9201,10 +9201,10 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 $sep=",";
             }
 
-          
 
-                $sqlupdate="update pendientes_amarillas set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
-           
+
+            $sqlupdate="update pendientes_amarillas set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+
 
             $x = $this->mysqli->query($sqlupdate);
 
@@ -9302,7 +9302,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         //echo "WTF";
         $today = date("Y-m-d");
 
-        //1.consulto todo lo que tenga fecha cita de maÃ±ana
+        //1.consulto todo lo que tenga fecha cita de mañana
         $hora=date("G");
         $uphold="1";
         if($hora<11){
@@ -9660,8 +9660,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         //}
         //echo "WTF";
         $today = date("Y-m-d");
-       
-        //1.consulto todo lo que tenga fecha cita de maÃ±ana
+
+        //1.consulto todo lo que tenga fecha cita de mañana
         $hora=date("G");
         $uphold="1";
         if($hora<11){
@@ -9675,8 +9675,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_AGENDAMIENTO');
         $ordenamiento = $this->buscarParametroFechaDemePedido('PRIORIDAD_DEMEPEDIDO_AGENDAMIENTO');
-        
-          if($proceso!=""){
+
+        if($proceso!=""){
             $proceso=" and b.PROCESO='$proceso' ";
         }else{
             $proceso="";
@@ -9710,7 +9710,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 while($row = $rr->fetch_assoc()){
                     $result[] = $row;
 
-                    
+
                     if($row['BEENHERE']==$user){
                         $pedidos_ignorados=$pedidos_ignorados.$row['PEDIDO_ID'].',';
                         //este pedido ya lo vio el dia de hoy
@@ -9723,7 +9723,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                     break;
                     //} //2016-04-12: SE QUITO VALIDACION CONTRA FENIX
 
-              
+
                 }
                 //2.traigo solo los pedidos mas viejos en la base de datos...
             } else {
@@ -9783,18 +9783,18 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         }
 
         $query1=" SELECT b.ID as PARENT_ID,b.PEDIDO_ID,b.FECHA_CITA_FENIX ".
-        " ,b.CLIENTE_ID,b.CELULAR_AVISAR,b.CORREO_UNE,b.DIRECCION_ENVIO ".
-        " ,b.E_MAIL_AVISAR,b.NOMBRE_USUARIO,b.FECHA_INGRESO,b.TELEFONO_AVISAR ".
-        " ,b.CONCEPTOS,b.ACTIVIDADES ".
-        " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_INGRESO),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
-        " ,b.MICROZONA,b.OBSERVACION_FENIX,b.FUENTE,b.TODAY_TRIES ".
-        " ,b.PROGRAMACION,b.PROCESO,b.FECHA_ESTADO $PROGRAMADO ".
-        " ,'AUTO' as source ".
-        " ,(select a.NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID='$mypedido' order by a.ID desc limit 1) as HISTORICO_NOVEDAD ".
-        " from gestor_pendientes_reagendamiento b where b.PEDIDO_ID = '$mypedido' ".
-        $proceso.
-        " and b.STATUS='MALO' ".
-        " order by b.FECHA_INGRESO ASC";
+            " ,b.CLIENTE_ID,b.CELULAR_AVISAR,b.CORREO_UNE,b.DIRECCION_ENVIO ".
+            " ,b.E_MAIL_AVISAR,b.NOMBRE_USUARIO,b.FECHA_INGRESO,b.TELEFONO_AVISAR ".
+            " ,b.CONCEPTOS,b.ACTIVIDADES ".
+            " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_INGRESO),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL ".
+            " ,b.MICROZONA,b.OBSERVACION_FENIX,b.FUENTE,b.TODAY_TRIES ".
+            " ,b.PROGRAMACION,b.PROCESO,b.FECHA_ESTADO $PROGRAMADO ".
+            " ,'AUTO' as source ".
+            " ,(select a.NOVEDAD from gestor_historicos_reagendamiento a where a.PEDIDO_ID='$mypedido' order by a.ID desc limit 1) as HISTORICO_NOVEDAD ".
+            " from gestor_pendientes_reagendamiento b where b.PEDIDO_ID = '$mypedido' ".
+            $proceso.
+            " and b.STATUS='MALO' ".
+            " order by b.FECHA_INGRESO ASC";
 
 
         //echo $query1;
@@ -10460,7 +10460,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         if(!empty($pedido)){
 
             $query = "INSERT INTO gestor_historico_activacion(".trim($columns,',').",source) VALUES(".trim($values,',').",'AUTO')";
-          //  echo $query,$pedido;
+            //  echo $query,$pedido;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
             //----------insert
@@ -10468,7 +10468,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             if($tabla=='ACTIVADOR_SUSPECORE' ){
                 if($TIPIFICACION=='FINALIZADA' || $TIPIFICACION=='RENUMERAR' ){
                     $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID AND STATUS='PENDI_ACTI'";
-                     //echo $sqlupdate;
+                    //echo $sqlupdate;
                 }else {
 
                     $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set FECHA_CARGA = '$today',STATUS='MALO',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID AND STATUS='PENDI_ACTI'";
@@ -10477,7 +10477,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             } else {
                 if($TIPIFICACION=='FINALIZADA' || $TIPIFICACION=='RENUMERAR'){
                     $sqlupdate="update gestor_activacion_pendientes_activador_dom set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID AND STATUS='PENDI_ACTI'";
-                  //echo $sqlupdate;
+                    //echo $sqlupdate;
                 }else {
 
                     $sqlupdate="update gestor_activacion_pendientes_activador_dom set FECHA_CARGA = '$today',STATUS='MALO',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE ID=$ID AND STATUS='PENDI_ACTI'";
@@ -10496,7 +10496,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
     }
 
-  private function insertTransaccionsiebelamarillas(){
+    private function insertTransaccionsiebelamarillas(){
 
         if($this->get_request_method() != "POST"){
             $this->response('',406);
@@ -10546,16 +10546,16 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         if(!empty($pedido)){
 
             $query = "INSERT INTO gestor_historico_activacion(".trim($columns,',').",source) VALUES(".trim($values,',').",'AUTO')";
-          //  echo $query;
+            //  echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
             //----------insert
 
-        
+
             if($tabla=='AMARILLAS' ){
                 if($TIPIFICACION=='FINALIZADA' || $TIPIFICACION=='RENUMERAR'){
                     $sqlupdate="update pendientes_amarillas set FECHA_CARGA = '$today',STATUS='CERRADO_ACTI',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE PEDIDO='$PEDIDO' and STATUS='PENDI_ACTI'";
-                      //echo $sqlupdate;
+                    //echo $sqlupdate;
                 }else {
 
                     $sqlupdate="update pendientes_amarillas set FECHA_CARGA = '$today',STATUS='MALO',FECHA_EXCEPCION = '$FECHA_EXCEPCION' WHERE PEDIDO='$PEDIDO' and STATUS='PENDI_ACTI'";
@@ -11604,7 +11604,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
 
         $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','BODEGA DATOS')";
-       // echo  $sqlupload;
+        // echo  $sqlupload;
         $r = $this->mysqli->query($sqlupload) or die($this->mysqli->error.__LINE__);
 
         $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$usas','','','','','BODEGA DATOS')";
@@ -11629,7 +11629,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 echo "Ha habido un error al subir el archivo.";
             }
         }
-         //var_dump($_FILES);
+        //var_dump($_FILES);
         $tname1 = basename( $_FILES["fileUpload"]["name"]);
 
         if($type == 'application/vnd.ms-excel')
@@ -11683,11 +11683,11 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
                 $cellValue = $this->get_cell($h.$v, $objPHPExcel);
 
-               
+
 
                 $table .= "<td>";
                 $guardar .=" '$cellValue',";
-                 //echo $cellValue;           
+                //echo $cellValue;
                 if($cellValue!== null){
                     $table .= $cellValue;
                 }
@@ -11716,7 +11716,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 }
                 if($h=="E"){
                     $OBSERVACION_GESTOR=strtoupper($cellValue);
-                    
+
 
                 }
 
@@ -11732,7 +11732,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 $sqlbodega_datos="insert into portalbd.gestor_bodega_bodega_datos (CAMPANAID,LANZAMIENTO,IDLLAMADA1,TELEFONO,MENSAJE,ACCION,FECHA,IDLLAMADA2,ESTADO,CEDULA,DETALLE,PEDIDO,CODIGO_RESULTADO,FECHA_AGENDA,JORNADA_AGENDA,CAUSA,MUNICIPIO,ZONA,TIPO_TRANSACCION,NOMBRE_CLIENTE,DEPARTAMENTO,EMAIL,FECHA_ENVIO,HORA_ENVIO,INTERFAZ,ACCESO) values ($guardar) ";
                 //echo  $sqlbodega_datos;
                 $r = $this->mysqli->query($sqlbodega_datos) or die($this->mysqli->error.__LINE__);
-                // echo  $guardar2;   
+                // echo  $guardar2;
                 $sqldatos="insert into portalbd.gestor_historicos_reagendamiento (PEDIDO_ID,CLIENTE_ID,ACCESO,FUENTE,FECHA_FIN,ASESOR,NOVEDAD,OBSERVACION_GESTOR) values ('$PEDIDO_ID','$cliente_id','$ACCESO','$FUENTE','$FECHA_FIN','$usas','$NOVEDAD','$OBSERVACION_GESTOR')";
                 //echo  $sqldatos;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
@@ -11780,8 +11780,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             }
 
             $guardar=rtrim($guardar,',');
-             //var_dump($guardar);   
-             //echo $tname1;    
+            //var_dump($guardar);
+            //echo $tname1;
             if ($tname1 <> "" && $tname1 <>"bodega_datos.xlsx"){
 
 
@@ -11797,7 +11797,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                 $pend=" SELECT PEDIDO_ID ".
                     " FROM portalbd.gestor_pendientes_reagendamiento ".
                     " WHERE PEDIDO_ID=$pedido and STATUS IN ('MALO','PENDI_AGEN')";
-               // echo $pend;
+                // echo $pend;
                 $rst = $this->mysqli->query($pend);
 
 
@@ -11841,7 +11841,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
 //-------------------------importar listadoactivacion
 
-private function cargar_datos_activacion(){
+    private function cargar_datos_activacion(){
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
@@ -11860,7 +11860,7 @@ private function cargar_datos_activacion(){
         $TAMANO =$_FILES["fileUpload"]["size"];
         //$pedido = json_decode(file_get_contents("php://input"),true);
         $usas = $this->_request['user'];
-       
+
         $ORDER_SEQ_ID='';
         $PEDIDO='';
         $REFERENCE_NUMBER='';
@@ -11876,8 +11876,8 @@ private function cargar_datos_activacion(){
         $FECHA_GESTION='';
         $TABLA='';
         $today = date("Y-m-d");
-        
-       
+
+
 
 
 
@@ -11960,14 +11960,14 @@ private function cargar_datos_activacion(){
             for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
                 $cellValue = $this->get_cell($h.$v, $objPHPExcel);
 
-                $cellValue1 = $cellValue; 
+                $cellValue1 = $cellValue;
 
-                 if($h=="A"){
+                if($h=="A"){
                     $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue1);//fecha larga
                     $cellValue1 = gmdate("Y-m-d H:i:s",$timestamp);//fecha formateada+
                     $table .= "<td>";
                 }
-                 if($h=="B"){
+                if($h=="B"){
                     $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue1);//fecha larga
                     $cellValue1 = gmdate("H:i:s",$timestamp);//fecha formateada+
                     $table .= "<td>";
@@ -11977,18 +11977,18 @@ private function cargar_datos_activacion(){
                     $cellValue1 = gmdate("Y-m-d H:i:s",$timestamp);//fecha formateada+
                     $table .= "<td>";
                 }
-                
+
 
                 $table .= "<td>";
                 if($cellValue1 !== null){
-                  $table .= $cellValue1;
-                $table .= "</td>";
-                // echo  $cellValue1;   
+                    $table .= $cellValue1;
+                    $table .= "</td>";
+                    // echo  $cellValue1;
                 }
-                
+
                 $guardar .=" '$cellValue1',";
-               
-            }       
+
+            }
 
             $guardar=rtrim($guardar,',');
 
@@ -11997,17 +11997,17 @@ private function cargar_datos_activacion(){
             if ($tname1 <> ""){
 
 
-            
+
                 $sqldatos="insert into gestor_historico_activacion (FECHA_EXCEPCION,HORA,PEDIDO,PRODUCTO,TRANSACCION,APLICATIVO,OBSERVACION,NUMERO_CR,TIPIFICACION,ASESOR
 ,PEDIDO_FENIX,TABLA,FECHA_GESTION,SOURCE,FECHA_INICIO,FECHA_FIN) values ($guardar,'MANUAL','$today','$today'                )";
-             //  echo  $sqldatos;
+                //  echo  $sqldatos;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
 
             }
 
 
             $guardar="";
-           $ORDER_SEQ_ID='';
+            $ORDER_SEQ_ID='';
             $PEDIDO="";
             $REFERENCE_NUMBER="";
             $ESTADO="";
@@ -12021,16 +12021,16 @@ private function cargar_datos_activacion(){
             $TAMANO="";
             $VISTA="";
             $FECHA_INICIO="";
-             $FECHA_FIN="";
-             $TABLA="";
-             $FECHA_GESTION="";
+            $FECHA_FIN="";
+            $TABLA="";
+            $FECHA_GESTION="";
 
 
 
-           $table .= "</tr>";
+            $table .= "</tr>";
         }
 
-       
+
 
         $this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
 
@@ -12292,7 +12292,7 @@ private function cargar_datos_activacion(){
                 }
             }
 
-            $no_permitidas= array ("Ã¡","Ã©","Ã­","Ã³","Ãº","Ã","Ã","Ã","Ã","Ã","Ã±","Ã","Ã","Ã","Ã","Ã","Ãâ¢","Ã ","ÃÂ¨","ÃÂ¬","ÃÂ²","ÃÂ¹","Ã§","Ã","ÃÂ¢","Ãª","ÃÂ®","ÃÂ´","ÃÂ»","Ãâ","ÃÅ ","ÃÅ½","Ãâ","Ãâº","Ã¼","ÃÂ¶","Ãâ","ÃÂ¯","ÃÂ¤","Â«","Ã","ÃÂ","Ãâ","Ãâ¹","Ã");
+            $no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹","Ñ");
             $permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E","N");
             $departamento = str_replace($no_permitidas, $permitidas ,$departamento);
             $zona = str_replace($no_permitidas, $permitidas ,$zona);
@@ -12337,7 +12337,7 @@ private function cargar_datos_activacion(){
     }
 ////////////////////////////////////////////////////////
     private  function get_cell($cell, $objPHPExcel){
-        //select one cell seleccionar una cÃ©lda
+        //select one cell seleccionar una célda
         $objCell = ($objPHPExcel->getActiveSheet()->getCell($cell));
         //get cell value obtener valor de la celda
         return $objCell->getvalue();
@@ -12891,7 +12891,7 @@ private function cargar_datos_activacion(){
             //echo($query);
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
             //$success = array('status' => "Success", "msg" => "Successfully deleted one record.");
-            $this->response(json_encode(array('msg'=>'Se realizo la eliminaciÃ³n del TIP','id' => $id)),200);
+            $this->response(json_encode(array('msg'=>'Se realizo la eliminación del TIP','id' => $id)),200);
             //$this->response($this->json($success),200);
         }else
         {
@@ -14508,150 +14508,150 @@ private function cargar_datos_activacion(){
         }
 
     }
-                        private function causaRaiz(){
-                        if($this->get_request_method() != "GET"){
-                        $this->response('',406);
-                        }
+    private function causaRaiz(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
 
-            			$this->dbSeguimientoConnect();	
+        $this->dbSeguimientoConnect();
 
-                        $query=" SELECT DISTINCT causaRaiz".
-                            " FROM causaRaiz_Responsables ".
-                            " where 1=1 ".
-                            " ORDER BY causaRaiz ASC ";
+        $query=" SELECT DISTINCT causaRaiz".
+            " FROM causaRaiz_Responsables ".
+            " where 1=1 ".
+            " ORDER BY causaRaiz ASC ";
 
-                       $rst = $this->connseguimiento->query($query);
-                       //echo $query;
-                            if ($rst->num_rows > 0){
+        $rst = $this->connseguimiento->query($query);
+        //echo $query;
+        if ($rst->num_rows > 0){
 
-                                $resultado=array();
-                                while($row = $rst->fetch_assoc()){
-                                        $resultado[] = $row;
-                                }
-                                $this->response($this->json(array($resultado)), 201);
-                            }else{
-                                $error = "Error";
-						        $this->response($this->json($error), 400);
-					        }  // If no records "No Content" status
-		            }
-
-
-                    private function ResponsablePendiente(){
-                        if($this->get_request_method() != "GET"){
-                        $this->response('',406);
-                        }
-
-                        $causaraiz = $this->_request['causaraiz'];
+            $resultado=array();
+            while($row = $rst->fetch_assoc()){
+                $resultado[] = $row;
+            }
+            $this->response($this->json(array($resultado)), 201);
+        }else{
+            $error = "Error";
+            $this->response($this->json($error), 400);
+        }  // If no records "No Content" status
+    }
 
 
-            			$this->dbSeguimientoConnect();	
+    private function ResponsablePendiente(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
 
-                        $query=" SELECT responsables".
-                            " FROM causaRaiz_Responsables ".
-                            " where 1=1 ".
-                            " and causaRaiz = '$causaraiz'";
+        $causaraiz = $this->_request['causaraiz'];
 
-                       $rst = $this->connseguimiento->query($query);
-                      // echo $query;
 
-                            if ($rst->num_rows > 0){
-                                $resultado=array();
-                                while($row = $rst->fetch_assoc()){
-                                        $resultado[] = $row;
+        $this->dbSeguimientoConnect();
 
-                                }
-                                $this->response($this->json(array($resultado)), 201);
-                            }else{
-                                $error = "Error";
-						        $this->response($this->json($error), 400);
-					        }  // If no records "No Content" status
-		            }
+        $query=" SELECT responsables".
+            " FROM causaRaiz_Responsables ".
+            " where 1=1 ".
+            " and causaRaiz = '$causaraiz'";
+
+        $rst = $this->connseguimiento->query($query);
+        // echo $query;
+
+        if ($rst->num_rows > 0){
+            $resultado=array();
+            while($row = $rst->fetch_assoc()){
+                $resultado[] = $row;
+
+            }
+            $this->response($this->json(array($resultado)), 201);
+        }else{
+            $error = "Error";
+            $this->response($this->json($error), 400);
+        }  // If no records "No Content" status
+    }
 //gestionMalosPendiInsta
-                    private function servicesgestionPendientesInstaMalos(){
+    private function servicesgestionPendientesInstaMalos(){
 
 
-                         if($this->get_request_method() != "POST"){
-								$this->response('',406);
-							}
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
 
-                            $params = json_decode(file_get_contents('php://input'),true);
+        $params = json_decode(file_get_contents('php://input'),true);
 
-                            $datos = $params['datosPendientes'];
-                            $gestion = $params['datosGestion'];
-                            $today=	date("Y")."-".date("m")."-".date("d");
-                            $active = $gestion[active];
-    
-                             if ( $active == '1'){
-                                $HISTORICO_NOVEDAD = $gestion[NOVEDAD];
-                                $ASESOR = $gestion[ASESOR];
-                                $OBSERVACION_GESTOR = $gestion[OBSERVACION_GESTOR]."----Creado Manual----";
-                                $causaraiz = $datos[causaraiz];
-                                $responsable = $datos[responsable];
-                                $pedido = $gestion[PEDIDO_ID];
-                            }else{
-                                $NOVEDAD = $gestion[NOVEDAD];
-                                $ASESOR = $gestion[ASESOR];
-                                $OBSERVACION_GESTOR = $gestion[OBSERVACION_GESTOR];
-                                $HISTORICO_NOVEDAD = $gestion[HISTORICO_NOVEDAD];
-                                $causaraiz = $datos[causaraiz];
-                                $responsable = $datos[responsable];
-                                $pedido = $gestion[PEDIDO_ID];
-                                $CR = $gestion[NUMERO_CR];
+        $datos = $params['datosPendientes'];
+        $gestion = $params['datosGestion'];
+        $today=	date("Y")."-".date("m")."-".date("d");
+        $active = $gestion[active];
 
-                                if($causaraiz == "Suin"){
-                                    $OBSERVACION_GESTOR = $OBSERVACION_GESTOR."-NÃMERO DE CR: ". $CR; 
-                                }
-                            }
-                          
-                        $this->dbSeguimientoConnect();
+        if ( $active == '1'){
+            $HISTORICO_NOVEDAD = $gestion[NOVEDAD];
+            $ASESOR = $gestion[ASESOR];
+            $OBSERVACION_GESTOR = $gestion[OBSERVACION_GESTOR]."----Creado Manual----";
+            $causaraiz = $datos[causaraiz];
+            $responsable = $datos[responsable];
+            $pedido = $gestion[PEDIDO_ID];
+        }else{
+            $NOVEDAD = $gestion[NOVEDAD];
+            $ASESOR = $gestion[ASESOR];
+            $OBSERVACION_GESTOR = $gestion[OBSERVACION_GESTOR];
+            $HISTORICO_NOVEDAD = $gestion[HISTORICO_NOVEDAD];
+            $causaraiz = $datos[causaraiz];
+            $responsable = $datos[responsable];
+            $pedido = $gestion[PEDIDO_ID];
+            $CR = $gestion[NUMERO_CR];
 
-                        $queryselectID=	"select id from historicoGestionPendientes ".
-							" where pedido = '$pedido' and fecha_gestion between ('$today 00:00:00') and ('$today 23:59:59') ";
+            if($causaraiz == "Suin"){
+                $OBSERVACION_GESTOR = $OBSERVACION_GESTOR."-NÚMERO DE CR: ". $CR;
+            }
+        }
 
-                        $rstselect = $this->connseguimiento->query($queryselectID);
+        $this->dbSeguimientoConnect();
 
-                        if ($rstselect->num_rows > 0){
-                            while($row=$rstselect->fetch_assoc()){
-                                $id=$row['id'];
-                            }
-                           // echo "entro y es: ".$rstselect->num_rows; 
-				        }
+        $queryselectID=	"select id from historicoGestionPendientes ".
+            " where pedido = '$pedido' and fecha_gestion between ('$today 00:00:00') and ('$today 23:59:59') ";
 
-                        if ($id == "") {
-                            $sql_gestionPendientes= "insert into historicoGestionPendientes ( ".
-                                " pedido ".
-                                ", causa_raiz ".
-                                ", responsable ".
-                                ", observacion ".
-                                ", novedad_malo ".
-                                ", usuario ".
-                                ") values( ".
-                                " '$pedido'".
-                                ", '$causaraiz'".
-                                ", '$responsable'".
-                                ", '$OBSERVACION_GESTOR' ".
-                                ", '$HISTORICO_NOVEDAD' ".
-                                ", '$ASESOR')";
-                           //     echo  $sql_gestionPendientes; 
-                            $rst = $this->connseguimiento->query($sql_gestionPendientes);
-                        }else{
-						$sqlupdate = "UPDATE historicoGestionPendientes SET ".
-                                    "causa_raiz='$causaraiz', responsable ='$responsable', ".
-                    				"observacion='$OBSERVACION_GESTOR', novedad_malo='$HISTORICO_NOVEDAD', fecha_gestion = '$today', usuario='$ASESOR' ".
-                    				" WHERE id='$id' ";
-					$rstupdate = $this->connseguimiento->query($sqlupdate);
-                    echo  $sqlupdate; 
-					}	 
+        $rstselect = $this->connseguimiento->query($queryselectID);
 
-                            // SQL Feed----------------------------------
-                            
-                // echo    $sql_gestionPendientes;        
-                                         // ---------------------------------- SQL Feed
-                            //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','ADMIN','','','UPDATEPARAMETRO','$param:$value') ";
-                            //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+        if ($rstselect->num_rows > 0){
+            while($row=$rstselect->fetch_assoc()){
+                $id=$row['id'];
+            }
+            // echo "entro y es: ".$rstselect->num_rows;
+        }
 
-                            $this->response(json_encode(array("OK","PARAMETRO ACTUALIZADO")), 200);
-                 }
+        if ($id == "") {
+            $sql_gestionPendientes= "insert into historicoGestionPendientes ( ".
+                " pedido ".
+                ", causa_raiz ".
+                ", responsable ".
+                ", observacion ".
+                ", novedad_malo ".
+                ", usuario ".
+                ") values( ".
+                " '$pedido'".
+                ", '$causaraiz'".
+                ", '$responsable'".
+                ", '$OBSERVACION_GESTOR' ".
+                ", '$HISTORICO_NOVEDAD' ".
+                ", '$ASESOR')";
+            //     echo  $sql_gestionPendientes;
+            $rst = $this->connseguimiento->query($sql_gestionPendientes);
+        }else{
+            $sqlupdate = "UPDATE historicoGestionPendientes SET ".
+                "causa_raiz='$causaraiz', responsable ='$responsable', ".
+                "observacion='$OBSERVACION_GESTOR', novedad_malo='$HISTORICO_NOVEDAD', fecha_gestion = '$today', usuario='$ASESOR' ".
+                " WHERE id='$id' ";
+            $rstupdate = $this->connseguimiento->query($sqlupdate);
+            echo  $sqlupdate;
+        }
+
+        // SQL Feed----------------------------------
+
+        // echo    $sql_gestionPendientes;
+        // ---------------------------------- SQL Feed
+        //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','ADMIN','','','UPDATEPARAMETRO','$param:$value') ";
+        //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+
+        $this->response(json_encode(array("OK","PARAMETRO ACTUALIZADO")), 200);
+    }
 
 
 
@@ -14913,17 +14913,17 @@ private function cargar_datos_activacion(){
         $today = date("Y-m-d");
 
 
-       /* if($tabla=='ACTIVADOR_SUSPECORE'){
+        /* if($tabla=='ACTIVADOR_SUSPECORE'){
 
-            $tabla = " from gestor_activacion_pendientes_activador_suspecore p " ;
+             $tabla = " from gestor_activacion_pendientes_activador_suspecore p " ;
 
-        } else {
+         } else {
 
-            $tabla = " from gestor_activacion_pendientes_activador_dom p " ;
+             $tabla = " from gestor_activacion_pendientes_activador_dom p " ;
 
 
-        }
-*/
+         }
+ */
 
         $query1=" SELECT p.ID ".
             " , p.PEDIDO,group_concat(distinct p.ORDER_SEQ_ID) as ORDER_SEQ_ID,p.ESTADO,p.TAREA_EXCEPCION,p.IDSERVICIORAIZ,p.TRANSACCION ".
@@ -14934,7 +14934,7 @@ private function cargar_datos_activacion(){
             " ,min(p.FECHA_CREACION) as FECHA_CREACION ".
             " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
             " where a.PEDIDO='$pedido' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
-            " from gestor_activacion_pendientes_activador_suspecore p ". 
+            " from gestor_activacion_pendientes_activador_suspecore p ".
             " where p.PEDIDO = '$pedido'  ".
             " and p.STATUS in ('PENDI_ACTI','MALO') ".
             " group by p.pedido ".
@@ -15023,7 +15023,7 @@ private function cargar_datos_activacion(){
             " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_EXCEPCION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL".
             " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
             " where a.PEDIDO='$pedido'and a.TIPIFICACION='' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
-           " from pendientes_amarillas b".
+            " from pendientes_amarillas b".
             " where b.PEDIDO = '$pedido'  ".
             " and b.STATUS='PENDI_ACTI' ".
             " group by b.pedido ";
@@ -15037,7 +15037,7 @@ private function cargar_datos_activacion(){
         if($rPendi->num_rows > 0){
             $result = array();
             while($row = $rPendi->fetch_assoc()){
-                 $row['PRODUCTO']=utf8_encode($row['PRODUCTO']);
+                $row['PRODUCTO']=utf8_encode($row['PRODUCTO']);
                 $result[] = $row;
                 $ids=$row['ID'];
                 $asess=$row['ASESOR'];
@@ -15300,7 +15300,7 @@ private function cargar_datos_activacion(){
 
     //------------------------Listado de Pedidos por Usuario dia actual REAGENDAMIENTO
 
-  //Listado de Pedidos por Usuario dia actual ACTIVACION----------------------------------------
+    //Listado de Pedidos por Usuario dia actual ACTIVACION----------------------------------------
 
     private function PedidosGestorUserActivacion(){
 
@@ -15311,10 +15311,10 @@ private function cargar_datos_activacion(){
         $today = date("Y-m-d");
         $grupo=$this->_request['grupo'];
 
-         
+
         if($grupo==""||$grupo=="undefined"){
             $grupo="ACTIVADOR_SUSPECORE";
-        }   
+        }
 
         $query= " SET @rank=0  ";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -16381,14 +16381,14 @@ private function cargar_datos_activacion(){
         }else{
             $paramlst = " and PEDIDO_ID='$pedido' ";
         }
-        
+
         if($prioridad){
             $prioridad='ARBOL';
         }else{
             $prioridad='NO';
         }
-    
-        
+
+
         $query= " update portalbd.informe_petec_pendientesm ".
             " set RADICADO_TEMPORAL='$prioridad' ".
             " where 1=1 ".
@@ -17095,7 +17095,7 @@ private function cargar_datos_activacion(){
         /**
         + 2017-04-26: check para evitar que se guarde el registro de Reconfiguracion si el nuevo pedido no esta agendado(solo sistema Fenix)
         + Mauricio.
-        */
+         */
 
         $pedidonuevo=$gestion['gestion']['nuevopedido'];
         $gestion['gestion']['fecha_cita']="SIN AGENDA";
@@ -17105,19 +17105,19 @@ private function cargar_datos_activacion(){
             $today=date("Y-m-d");
 
             $sqlfechacita="SELECT agm_fechacita FROM dbAgendamiento.agn_agendamientos where agm_pedido = '$pedidonuevo' ".
-                            " and agm_fechacita > '$today' ";
+                " and agm_fechacita > '$today' ";
 
             if ($result2 = $conna->query($sqlfechacita)) {
                 if($obj = $result2->fetch_object()){
-                        if( $obj->agm_fechacita=="0000-00-00"){
-                                $gestion['gestion']['fecha_cita']="SIN AGENDA";
-                        }else{
-                            $gestion['gestion']['fecha_cita']=$obj->agm_fechacita;
-                        }
+                    if( $obj->agm_fechacita=="0000-00-00"){
+                        $gestion['gestion']['fecha_cita']="SIN AGENDA";
+                    }else{
+                        $gestion['gestion']['fecha_cita']=$obj->agm_fechacita;
+                    }
 
                     /**
                     [OK]: Tiene una fecha cita futura, se puede guardar el pedido
-                    */
+                     */
                 }else{
                     //me debo devolver de aca ya que el pedido no ha sido agendado.....
                     $error="El pedido $pedidonuevo no tiene agenda para futuro. Por favor agendar.";
@@ -17583,9 +17583,9 @@ private function cargar_datos_activacion(){
         }
 
         $sql =  " SELECT t.*, tp.PIC FROM portalbd.go_task t ".
-                " left join portalbd.go_task_profile tp on t.USUARIO_GEST=tp.USUARIO_ID ".
-                " where 1=1 ".
-                " and t.ESTADO in ('ACTIVO','PAUSA') ";
+            " left join portalbd.go_task_profile tp on t.USUARIO_GEST=tp.USUARIO_ID ".
+            " where 1=1 ".
+            " and t.ESTADO in ('ACTIVO','PAUSA') ";
 
         // echo $sql;
         $r = $this->mysqli->query($sql);
@@ -17762,9 +17762,9 @@ private function cargar_datos_activacion(){
 
         $insertGestion = $this->mysqli->query($queryGestion);
         if($insertGestion){
-                $msg = "Tarea Creada";
-                $guardar = true ;
-            }else{
+            $msg = "Tarea Creada";
+            $guardar = true ;
+        }else{
             $mysqlerror = $this->mysqli->error;
             $guardar = false;
         }
@@ -17809,81 +17809,81 @@ private function cargar_datos_activacion(){
         $alarmadosHist  =   array();
 
         $sqlAlarmados = " select ".
-                        "    left(c2.RESPONSABLE,4) as RESPONSABLE ".
-                        "    , COUNT(*) as CANTIDAD ".
-                        "    from ( ".
-                        "    SELECT ".
-                        "    C1.PEDIDO_ID ".
-                        "    , case ".
-                        "        when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ASIGNACIONES,RECONFIGURACION' then 'RECONFIGURACION' ".
-                        "        when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ACCESO,ASIGNACIONES' then 'ACCESO' ".
-                        "        when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ASIGNACIONES,OTRO' then 'OTRO' ".
-                        "        else group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc)  ".
-                        "        end AS RESPONSABLE ".
-                        "    , group_concat(distinct C1.CONCEPTO_ID) AS CONCEPTO_ID ".
-                        "    , group_concat(distinct C1.ALARMAFECHA) AS ALARMA ".
-                        "    FROM (SELECT  ".
-                        "    a.PEDIDO_ID ".
-                        "    , a.SUBPEDIDO_ID ".
-                        "    , a.SOLICITUD_ID ".
-                        "    , a.FECHA_CITA ".
-                        "    , a.TIPO_ELEMENTO_ID ".
-                        "    , a.TIPO_SOLICITUD ".
-                        "    , a.TRABAJOS ".
-                        "    , a.ESTADO_ID ".
-                        "    , a.ESTADO_SOLI ".
-                        "    , a.CONCEPTO_ID ".
-                        "    , a.DESCRIPCION_CONCEPTO ".
-                        "    , a.DESCRIPCION_ESTADO ".
-                        "    , a.UEN_CALCULADA ".
-                        "    , CASE ".
-                        "        WHEN a.DEPARTAMENTO='' THEN 'Antioquia' ".
-                        "        ELSE a.DEPARTAMENTO ".
-                        "    END AS DEPARTAMENTO ".
-                        "    , CASE ".
-                        "        WHEN a.FECHA_CITA=(CURDATE() + INTERVAL 1 DAY) THEN 'MANANA' ".
-                        "        WHEN a.FECHA_CITA=(CURDATE() + INTERVAL 2 DAY) THEN 'PASADO_MANANA' ".
-                        "        WHEN a.FECHA_CITA>=(CURDATE() + INTERVAL 3 DAY) THEN 'FUTURA' ".
-                        "     END AS ALARMAFECHA ".
-                        "    , CASE ".
-                        "        WHEN a.CONCEPTO_ID NOT IN ('CUMPL','DEMO','FACTU','ORDEN','PFACT','PEXPQ','PORDE','PSERV','PXSLN','PCTEC','INCON','POPTO','PRACC','PQUET','PRUTA','PCEQU','APPRV') AND a.FECHA_CITA=(CURDATE() + INTERVAL 1 DAY) THEN 'SI' ".
-                        "        ELSE 'NO' ".
-                        "    END AS ALARMO_COMP ".
-                        "    , CASE ".
-                        "        WHEN a.CONCEPTO_ID IN ('ANCAT','ANDUS','ANFRA','ANFRU','ANINP','ANPUS','ANSPE','ANTNE','ANULA', ".
-                        "        'ANUOS','ANUPO','ANXSC','APRCT','APROB','AVENC','AXGAR','42','43','46','32','36','37')  THEN 'SI' ".
-                        "        WHEN a.ESTADO_SOLI='ANULA' THEN 'SI' ".
-                        "        ELSE 'NO' ".
-                        "    END AS ANULO_COMP ".
-                        "    ,  CASE ".
-                        "        when a.CONCEPTO_ID IN ('PETEC','OKRED','PEOPP','19','O-13','O-15','O-106','PUMED') then 'ASIGNACIONES' ".
-                        "        when a.CONCEPTO_ID IN ('O-300') then 'ACTIVACION' ".
-                        "        when a.CONCEPTO_ID IN ('14','99','O-101') then 'RECONFIGURACION' ".
-                        "        when a.CONCEPTO_ID IN ('AGEN','O-02','O-07','O-08','O-23','O-49','O-50','O-65','O-103','O-AGN','O-40','O-34','AGEND','PPRG','PROG','REAGE') then 'AGENDAMIENTO' ".
-                        "        when a.CONCEPTO_ID IN ('11','PVENC') then 'BACK' ".
-                        "        when a.CONCEPTO_ID IN ('2','O-115','O-06') then 'OPERACION CLIENTES' ".
-                        "        when a.CONCEPTO_ID IN ('PECBA','PLICO','23','24','25','25D','26D','74S','O-85','O-01','O-09') then 'ACCESO' ".
-                        "        when a.CONCEPTO_ID IN ('PEREP','PECAR','PECSA') then 'CREDITO Y CARTERA' ".
-                        "        when a.CONCEPTO_ID IN ('82','PEN82','PEFRA') then 'CONTROL FRAUDES' ".
-                        "        when a.CONCEPTO_ID IN ('47') then 'TI' ".
-                        "        when a.CONCEPTO_ID in ('42','ANPUS','ANSPE','ANUPO','ANVAL','APRCT','39','34','ANFRU','ANDUS','ANINS','ANCMT','ANFRA') then 'ANULADO CLIENTE' ".
-                        "        when a.CONCEPTO_ID in ('ANUOS') then 'ANULADO SUSTITUCION' ".
-                        "        when a.CONCEPTO_ID in ('ANCAT','43','36','32','46','AVENT') then 'ANULADO TECNICO' ".
-                        "        when a.CONCEPTO_ID in ('AXGAR','AVENC','41','40','44','98','37') then 'ANULADO VENTAS' ".
-                        "        else 'OTRO' ".
-                        "    END AS RESPONSABLE ".
-                        "    FROM scheduling.agendamientoxfenix a ".
-                        "    where 1=1 ".
-                        "    and a.pedido_id not like '%pre%' ".
-                        "    and a.TIPO_ELEMENTO_ID in ('ACCESP','TO','TOIP','INSIP','INSHFC','EQURED','SERHFC') ".
-                        "    and a.UEN_CALCULADA='HG' ".
-                        "     ) C1 ".
-                        "    WHERE 1=1 ".
-                        "    AND C1.ANULO_COMP='NO' ".
-                        "    AND C1.ALARMO_COMP='SI' ".
-                        "    GROUP BY C1.PEDIDO_ID ) c2 ".
-                        "    where c2.RESPONSABLE in ('ASIGNACIONES','RECONFIGURACION','ACTIVACION') ".
-                        "    group by c2.RESPONSABLE ";
+            "    left(c2.RESPONSABLE,4) as RESPONSABLE ".
+            "    , COUNT(*) as CANTIDAD ".
+            "    from ( ".
+            "    SELECT ".
+            "    C1.PEDIDO_ID ".
+            "    , case ".
+            "        when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ASIGNACIONES,RECONFIGURACION' then 'RECONFIGURACION' ".
+            "        when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ACCESO,ASIGNACIONES' then 'ACCESO' ".
+            "        when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ASIGNACIONES,OTRO' then 'OTRO' ".
+            "        else group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc)  ".
+            "        end AS RESPONSABLE ".
+            "    , group_concat(distinct C1.CONCEPTO_ID) AS CONCEPTO_ID ".
+            "    , group_concat(distinct C1.ALARMAFECHA) AS ALARMA ".
+            "    FROM (SELECT  ".
+            "    a.PEDIDO_ID ".
+            "    , a.SUBPEDIDO_ID ".
+            "    , a.SOLICITUD_ID ".
+            "    , a.FECHA_CITA ".
+            "    , a.TIPO_ELEMENTO_ID ".
+            "    , a.TIPO_SOLICITUD ".
+            "    , a.TRABAJOS ".
+            "    , a.ESTADO_ID ".
+            "    , a.ESTADO_SOLI ".
+            "    , a.CONCEPTO_ID ".
+            "    , a.DESCRIPCION_CONCEPTO ".
+            "    , a.DESCRIPCION_ESTADO ".
+            "    , a.UEN_CALCULADA ".
+            "    , CASE ".
+            "        WHEN a.DEPARTAMENTO='' THEN 'Antioquia' ".
+            "        ELSE a.DEPARTAMENTO ".
+            "    END AS DEPARTAMENTO ".
+            "    , CASE ".
+            "        WHEN a.FECHA_CITA=(CURDATE() + INTERVAL 1 DAY) THEN 'MANANA' ".
+            "        WHEN a.FECHA_CITA=(CURDATE() + INTERVAL 2 DAY) THEN 'PASADO_MANANA' ".
+            "        WHEN a.FECHA_CITA>=(CURDATE() + INTERVAL 3 DAY) THEN 'FUTURA' ".
+            "     END AS ALARMAFECHA ".
+            "    , CASE ".
+            "        WHEN a.CONCEPTO_ID NOT IN ('CUMPL','DEMO','FACTU','ORDEN','PFACT','PEXPQ','PORDE','PSERV','PXSLN','PCTEC','INCON','POPTO','PRACC','PQUET','PRUTA','PCEQU','APPRV') AND a.FECHA_CITA=(CURDATE() + INTERVAL 1 DAY) THEN 'SI' ".
+            "        ELSE 'NO' ".
+            "    END AS ALARMO_COMP ".
+            "    , CASE ".
+            "        WHEN a.CONCEPTO_ID IN ('ANCAT','ANDUS','ANFRA','ANFRU','ANINP','ANPUS','ANSPE','ANTNE','ANULA', ".
+            "        'ANUOS','ANUPO','ANXSC','APRCT','APROB','AVENC','AXGAR','42','43','46','32','36','37')  THEN 'SI' ".
+            "        WHEN a.ESTADO_SOLI='ANULA' THEN 'SI' ".
+            "        ELSE 'NO' ".
+            "    END AS ANULO_COMP ".
+            "    ,  CASE ".
+            "        when a.CONCEPTO_ID IN ('PETEC','OKRED','PEOPP','19','O-13','O-15','O-106','PUMED') then 'ASIGNACIONES' ".
+            "        when a.CONCEPTO_ID IN ('O-300') then 'ACTIVACION' ".
+            "        when a.CONCEPTO_ID IN ('14','99','O-101') then 'RECONFIGURACION' ".
+            "        when a.CONCEPTO_ID IN ('AGEN','O-02','O-07','O-08','O-23','O-49','O-50','O-65','O-103','O-AGN','O-40','O-34','AGEND','PPRG','PROG','REAGE') then 'AGENDAMIENTO' ".
+            "        when a.CONCEPTO_ID IN ('11','PVENC') then 'BACK' ".
+            "        when a.CONCEPTO_ID IN ('2','O-115','O-06') then 'OPERACION CLIENTES' ".
+            "        when a.CONCEPTO_ID IN ('PECBA','PLICO','23','24','25','25D','26D','74S','O-85','O-01','O-09') then 'ACCESO' ".
+            "        when a.CONCEPTO_ID IN ('PEREP','PECAR','PECSA') then 'CREDITO Y CARTERA' ".
+            "        when a.CONCEPTO_ID IN ('82','PEN82','PEFRA') then 'CONTROL FRAUDES' ".
+            "        when a.CONCEPTO_ID IN ('47') then 'TI' ".
+            "        when a.CONCEPTO_ID in ('42','ANPUS','ANSPE','ANUPO','ANVAL','APRCT','39','34','ANFRU','ANDUS','ANINS','ANCMT','ANFRA') then 'ANULADO CLIENTE' ".
+            "        when a.CONCEPTO_ID in ('ANUOS') then 'ANULADO SUSTITUCION' ".
+            "        when a.CONCEPTO_ID in ('ANCAT','43','36','32','46','AVENT') then 'ANULADO TECNICO' ".
+            "        when a.CONCEPTO_ID in ('AXGAR','AVENC','41','40','44','98','37') then 'ANULADO VENTAS' ".
+            "        else 'OTRO' ".
+            "    END AS RESPONSABLE ".
+            "    FROM scheduling.agendamientoxfenix a ".
+            "    where 1=1 ".
+            "    and a.pedido_id not like '%pre%' ".
+            "    and a.TIPO_ELEMENTO_ID in ('ACCESP','TO','TOIP','INSIP','INSHFC','EQURED','SERHFC') ".
+            "    and a.UEN_CALCULADA='HG' ".
+            "     ) C1 ".
+            "    WHERE 1=1 ".
+            "    AND C1.ANULO_COMP='NO' ".
+            "    AND C1.ALARMO_COMP='SI' ".
+            "    GROUP BY C1.PEDIDO_ID ) c2 ".
+            "    where c2.RESPONSABLE in ('ASIGNACIONES','RECONFIGURACION','ACTIVACION') ".
+            "    group by c2.RESPONSABLE ";
 
         $rAlarmados = $this->mysqli->query($sqlAlarmados);
 
@@ -17905,41 +17905,41 @@ private function cargar_datos_activacion(){
             $sqlok = tru;
         }
 
-       if($horaServidor>=16){
-           $intervaltime = " DATE_ADD('$fecha', INTERVAL 1 DAY) " ;
-           $fecha = date('Y-m-d',strtotime($fecha . "+1 days"));
-       }
+        if($horaServidor>=16){
+            $intervaltime = " DATE_ADD('$fecha', INTERVAL 1 DAY) " ;
+            $fecha = date('Y-m-d',strtotime($fecha . "+1 days"));
+        }
         $sqlAlarmadosHistorico = "select ".
-                        " left(c2.RESPONSABLE,4) as RESPONSABLE ".
-                        " , count(*) as CANTIDAD ".
-                        " from ( ".
-                        " SELECT ".
-                        " C1.FECHA_CITA ".
-                        " , C1.PEDIDO_ID ".
-                        " , group_concat(distinct C1.RESPONSABLE) AS RESPONSABLE ".
-                        " , group_concat(distinct C1.CONCEPTO_ID) AS CONCEPTO_ID ".
-                        " FROM (SELECT  ".
-                        " a.PEDIDO_ID ".
-                        " , a.CONCEPTO_ID ".
-                        " , a.FECHA_CITA ".
-                        " , a.TIPO_ELEMENTO_ID ".
-                        " , a.UEN_CALCULADA ".
-                        " , a.DEPARTAMENTO ".
-                        " , ALARMO_COMP ".
-                        " , a.ANULO_COMP ".
-                        " , a.RESPONSABLE ".
-                        " FROM scheduling.historico_alarmados a ".
-                        " where 1=1 ".
-                        " and a.pedido_id not like '%pre%' ".
-                        " and a.TIPO_ELEMENTO_ID in ('ACCESP','TO','TOIP','INSIP','INSHFC') ".
-                        " and a.UEN_CALCULADA='HG' ".
-                        " ) C1 ".
-                        " WHERE 1=1 ".
-                        " AND C1.ANULO_COMP='NO' ".
-                        " and C1.FECHA_CITA=$intervaltime ".
-                        " GROUP BY C1.PEDIDO_ID, C1.FECHA_CITA ) c2 ".
-                        " where c2.RESPONSABLE in ('ASIGNACIONES', 'RECONFIGURACION','ACTIVACION DESACTIVACION') ".
-                        " group by c2.RESPONSABLE ";
+            " left(c2.RESPONSABLE,4) as RESPONSABLE ".
+            " , count(*) as CANTIDAD ".
+            " from ( ".
+            " SELECT ".
+            " C1.FECHA_CITA ".
+            " , C1.PEDIDO_ID ".
+            " , group_concat(distinct C1.RESPONSABLE) AS RESPONSABLE ".
+            " , group_concat(distinct C1.CONCEPTO_ID) AS CONCEPTO_ID ".
+            " FROM (SELECT  ".
+            " a.PEDIDO_ID ".
+            " , a.CONCEPTO_ID ".
+            " , a.FECHA_CITA ".
+            " , a.TIPO_ELEMENTO_ID ".
+            " , a.UEN_CALCULADA ".
+            " , a.DEPARTAMENTO ".
+            " , ALARMO_COMP ".
+            " , a.ANULO_COMP ".
+            " , a.RESPONSABLE ".
+            " FROM scheduling.historico_alarmados a ".
+            " where 1=1 ".
+            " and a.pedido_id not like '%pre%' ".
+            " and a.TIPO_ELEMENTO_ID in ('ACCESP','TO','TOIP','INSIP','INSHFC') ".
+            " and a.UEN_CALCULADA='HG' ".
+            " ) C1 ".
+            " WHERE 1=1 ".
+            " AND C1.ANULO_COMP='NO' ".
+            " and C1.FECHA_CITA=$intervaltime ".
+            " GROUP BY C1.PEDIDO_ID, C1.FECHA_CITA ) c2 ".
+            " where c2.RESPONSABLE in ('ASIGNACIONES', 'RECONFIGURACION','ACTIVACION DESACTIVACION') ".
+            " group by c2.RESPONSABLE ";
         //echo $sqlAlarmadosHistorico;
         $rAlarmadosHist = $this->mysqli->query($sqlAlarmadosHistorico);
 
@@ -18056,103 +18056,103 @@ private function cargar_datos_activacion(){
         $filename="AlarmadosProactivos_$usuarioGalleta-$today.csv";
 
         $sql =  "    SELECT ".
-                "    C2.PEDIDO_ID ".
-                "    , C2.ESTADO_GESTOR ".
-                "    , C2.PROGRAMACION ".
-                "    , case when C2.RADICADO_TEMPORAL like '%ARBOL%' then 'ARBOL' else C2.RADICADO_TEMPORAL end as RADICADO_TEMPORAL ".
-                "    , C2.OBSERVACIONES ".
-                "    , C2.RESPONSABLE ".
-                "    , C2.CONCEPTO_ID ".
-                "    , C2.TIPO_ELEMENTO_ID ".
-                "    , C2.ALARMA ".
-                "    , C2.FECHA_CITA ".
-                "    FROM ( ".
-                "    SELECT ".
-                "    C1.PEDIDO_ID ".
-                "    , ifnull((SELECT  ".
-                "    		case  ".
-                "    			when group_concat(distinct b.status order by b.status asc) = 'CERRADO_PETEC,PENDI_PETEC' then 'PENDI_PETEC' ".
-                "                when group_concat(distinct b.status order by b.status asc) like  '%MALO%' then 'MALO' ".
-                "                else group_concat(distinct b.status order by b.status asc) ".
-                "                end as ESTADO ".
-                "    	FROM portalbd.informe_petec_pendientesm b  ".
-                "        where b.PEDIDO_ID=C1.PEDIDO_ID group by b.PEDIDO_ID),'NO ESTA') as ESTADO_GESTOR ".
-                "    , IFNULL((SELECT group_concat(DISTINCT b.PROGRAMACION) AS RA FROM portalbd.informe_petec_pendientesm b ".
-	            "        where b.PEDIDO_ID=C1.PEDIDO_ID and b.PROGRAMACION!='' group by b.PEDIDO_ID),'Sin') as PROGRAMACION ".
-                "    , IFNULL((SELECT group_concat(DISTINCT b.RADICADO_TEMPORAL) AS RA FROM portalbd.informe_petec_pendientesm b  ".
-                "        where b.PEDIDO_ID=C1.PEDIDO_ID group by b.PEDIDO_ID),'NO ESTA') as RADICADO_TEMPORAL ".
-                "    , ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and p.estado_id='MALO'  and p.pedido_id=C1.PEDIDO_ID  order by p.id desc   limit 1 ), 'NO ESTA') as OBSERVACIONES ".
-                "    , case ".
-                "    	when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ASIGNACIONES,RECONFIGURACION' then 'RECONFIGURACION' ".
-                "        when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ACCESO,ASIGNACIONES' then 'ACCESO' ".
-                "        when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ASIGNACIONES,OTRO' then 'OTRO' ".
-                "        else group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc)  ".
-                "        end AS RESPONSABLE ".
-                "    , group_concat(distinct C1.CONCEPTO_ID) AS CONCEPTO_ID ".
-                "    , group_concat(distinct C1.TIPO_ELEMENTO_ID) AS TIPO_ELEMENTO_ID ".
-                "    , group_concat(distinct C1.ALARMAFECHA) AS ALARMA ".
-                "    , max(C1.FECHA_CITA) as FECHA_CITA ".
-                "    FROM (SELECT  ".
-                "    a.PEDIDO_ID ".
-                "    , a.SUBPEDIDO_ID ".
-                "    , a.SOLICITUD_ID ".
-                "    , a.FECHA_CITA ".
-                "    , a.TIPO_ELEMENTO_ID ".
-                "    , a.TIPO_SOLICITUD ".
-                "    , a.TRABAJOS ".
-                "    , a.ESTADO_ID ".
-                "    , a.ESTADO_SOLI ".
-                "    , a.CONCEPTO_ID ".
-                "    , a.DESCRIPCION_CONCEPTO ".
-                "    , a.DESCRIPCION_ESTADO ".
-                "    , a.UEN_CALCULADA ".
-                "    , CASE ".
-                "    	WHEN a.DEPARTAMENTO='' THEN 'Antioquia' ".
-                "        ELSE a.DEPARTAMENTO ".
-                "    END AS DEPARTAMENTO ".
-                "    , CASE ".
-                "    	WHEN a.FECHA_CITA=(CURDATE() + INTERVAL 1 DAY) THEN 'MANANA' ".
-                "        WHEN a.FECHA_CITA=(CURDATE() + INTERVAL 2 DAY) THEN 'PASADO_MANANA' ".
-                "        WHEN a.FECHA_CITA>=(CURDATE() + INTERVAL 3 DAY) THEN 'FUTURA' ".
-                "     END AS ALARMAFECHA ".
-                "    , CASE ".
-                "    	WHEN a.CONCEPTO_ID NOT IN ('CUMPL','DEMO','FACTU','ORDEN','PFACT','PEXPQ','PORDE','PSERV','PXSLN','PCTEC','INCON','POPTO','PRACC','PQUET','PRUTA','PCEQU','APPRV') AND a.FECHA_CITA=(CURDATE() + INTERVAL 1 DAY) THEN 'SI' ".
-                "        ELSE 'NO' ".
-                "    END AS ALARMO_COMP ".
-                "    , CASE ".
-                "    	WHEN a.CONCEPTO_ID IN ('ANCAT','ANDUS','ANFRA','ANFRU','ANINP','ANPUS','ANSPE','ANTNE','ANULA', ".
-                "        'ANUOS','ANUPO','ANXSC','APRCT','APROB','AVENC','AXGAR','42','43','46','32','36','37')  THEN 'SI' ".
-                "        WHEN a.ESTADO_SOLI='ANULA' THEN 'SI' ".
-                "        ELSE 'NO' ".
-                "    END AS ANULO_COMP ".
-                "    ,  CASE ".
-                "    	when a.CONCEPTO_ID IN ('PETEC','OKRED','PEOPP','19','O-13','O-15','O-106','PUMED') then 'ASIGNACIONES' ".
-                "    	when a.CONCEPTO_ID IN ('O-300') then 'ACTIVACION' ".
-                "    	when a.CONCEPTO_ID IN ('14','99','O-101') then 'RECONFIGURACION' ".
-                "        when a.CONCEPTO_ID IN ('AGEN','O-02','O-07','O-08','O-23','O-49','O-50','O-65','O-103','O-AGN','O-40','O-34','AGEND','PPRG','PROG','REAGE') then 'AGENDAMIENTO' ".
-                "        when a.CONCEPTO_ID IN ('11','PVENC') then 'BACK' ".
-                "        when a.CONCEPTO_ID IN ('2','O-115','O-06') then 'OPERACION CLIENTES' ".
-                "    	when a.CONCEPTO_ID IN ('PECBA','PLICO','23','24','25','25D','25G','26D','74S','O-85','O-01','O-09') then 'ACCESO' ".
-                "        when a.CONCEPTO_ID IN ('PEREP','PECAR','PECSA') then 'CREDITO Y CARTERA' ".
-                "        when a.CONCEPTO_ID IN ('82','PEN82','PEFRA') then 'CONTROL FRAUDES' ".
-                "        when a.CONCEPTO_ID IN ('47') then 'TI' ".
-                "        when a.CONCEPTO_ID in ('42','ANPUS','ANSPE','ANUPO','ANVAL','APRCT','39','34','ANFRU','ANDUS','ANINS','ANCMT','ANFRA') then 'ANULADO CLIENTE' ".
-                "        when a.CONCEPTO_ID in ('ANUOS') then 'ANULADO SUSTITUCION' ".
-                "        when a.CONCEPTO_ID in ('ANCAT','43','36','32','46','AVENT') then 'ANULADO TECNICO' ".
-                "        when a.CONCEPTO_ID in ('AXGAR','AVENC','41','40','44','98','37') then 'ANULADO VENTAS' ".
-                "        else 'OTRO' ".
-                "    END AS RESPONSABLE ".
-                "    FROM scheduling.agendamientoxfenix a ".
-                "    where 1=1 ".
-                "    and a.pedido_id not like '%pre%' ".
-                "    and a.TIPO_ELEMENTO_ID in ('ACCESP','TO','TOIP','INSIP','INSHFC','EQURED','SERHFC') ".
-                "    and a.UEN_CALCULADA='HG' ".
-                "    ORDER BY 1 ASC ) C1 ".
-                "    WHERE 1=1 ".
-                "    AND C1.ANULO_COMP='NO' ".
-                "    AND C1.ALARMO_COMP='SI' ".
-                "    GROUP BY C1.PEDIDO_ID ) C2 ".
-                "    WHERE C2.RESPONSABLE IN ('ASIGNACIONES','RECONFIGURACION','AYD') ";
+            "    C2.PEDIDO_ID ".
+            "    , C2.ESTADO_GESTOR ".
+            "    , C2.PROGRAMACION ".
+            "    , case when C2.RADICADO_TEMPORAL like '%ARBOL%' then 'ARBOL' else C2.RADICADO_TEMPORAL end as RADICADO_TEMPORAL ".
+            "    , C2.OBSERVACIONES ".
+            "    , C2.RESPONSABLE ".
+            "    , C2.CONCEPTO_ID ".
+            "    , C2.TIPO_ELEMENTO_ID ".
+            "    , C2.ALARMA ".
+            "    , C2.FECHA_CITA ".
+            "    FROM ( ".
+            "    SELECT ".
+            "    C1.PEDIDO_ID ".
+            "    , ifnull((SELECT  ".
+            "    		case  ".
+            "    			when group_concat(distinct b.status order by b.status asc) = 'CERRADO_PETEC,PENDI_PETEC' then 'PENDI_PETEC' ".
+            "                when group_concat(distinct b.status order by b.status asc) like  '%MALO%' then 'MALO' ".
+            "                else group_concat(distinct b.status order by b.status asc) ".
+            "                end as ESTADO ".
+            "    	FROM portalbd.informe_petec_pendientesm b  ".
+            "        where b.PEDIDO_ID=C1.PEDIDO_ID group by b.PEDIDO_ID),'NO ESTA') as ESTADO_GESTOR ".
+            "    , IFNULL((SELECT group_concat(DISTINCT b.PROGRAMACION) AS RA FROM portalbd.informe_petec_pendientesm b ".
+            "        where b.PEDIDO_ID=C1.PEDIDO_ID and b.PROGRAMACION!='' group by b.PEDIDO_ID),'Sin') as PROGRAMACION ".
+            "    , IFNULL((SELECT group_concat(DISTINCT b.RADICADO_TEMPORAL) AS RA FROM portalbd.informe_petec_pendientesm b  ".
+            "        where b.PEDIDO_ID=C1.PEDIDO_ID group by b.PEDIDO_ID),'NO ESTA') as RADICADO_TEMPORAL ".
+            "    , ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and p.estado_id='MALO'  and p.pedido_id=C1.PEDIDO_ID  order by p.id desc   limit 1 ), 'NO ESTA') as OBSERVACIONES ".
+            "    , case ".
+            "    	when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ASIGNACIONES,RECONFIGURACION' then 'RECONFIGURACION' ".
+            "        when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ACCESO,ASIGNACIONES' then 'ACCESO' ".
+            "        when group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc) ='ASIGNACIONES,OTRO' then 'OTRO' ".
+            "        else group_concat(distinct C1.RESPONSABLE order by C1.RESPONSABLE asc)  ".
+            "        end AS RESPONSABLE ".
+            "    , group_concat(distinct C1.CONCEPTO_ID) AS CONCEPTO_ID ".
+            "    , group_concat(distinct C1.TIPO_ELEMENTO_ID) AS TIPO_ELEMENTO_ID ".
+            "    , group_concat(distinct C1.ALARMAFECHA) AS ALARMA ".
+            "    , max(C1.FECHA_CITA) as FECHA_CITA ".
+            "    FROM (SELECT  ".
+            "    a.PEDIDO_ID ".
+            "    , a.SUBPEDIDO_ID ".
+            "    , a.SOLICITUD_ID ".
+            "    , a.FECHA_CITA ".
+            "    , a.TIPO_ELEMENTO_ID ".
+            "    , a.TIPO_SOLICITUD ".
+            "    , a.TRABAJOS ".
+            "    , a.ESTADO_ID ".
+            "    , a.ESTADO_SOLI ".
+            "    , a.CONCEPTO_ID ".
+            "    , a.DESCRIPCION_CONCEPTO ".
+            "    , a.DESCRIPCION_ESTADO ".
+            "    , a.UEN_CALCULADA ".
+            "    , CASE ".
+            "    	WHEN a.DEPARTAMENTO='' THEN 'Antioquia' ".
+            "        ELSE a.DEPARTAMENTO ".
+            "    END AS DEPARTAMENTO ".
+            "    , CASE ".
+            "    	WHEN a.FECHA_CITA=(CURDATE() + INTERVAL 1 DAY) THEN 'MANANA' ".
+            "        WHEN a.FECHA_CITA=(CURDATE() + INTERVAL 2 DAY) THEN 'PASADO_MANANA' ".
+            "        WHEN a.FECHA_CITA>=(CURDATE() + INTERVAL 3 DAY) THEN 'FUTURA' ".
+            "     END AS ALARMAFECHA ".
+            "    , CASE ".
+            "    	WHEN a.CONCEPTO_ID NOT IN ('CUMPL','DEMO','FACTU','ORDEN','PFACT','PEXPQ','PORDE','PSERV','PXSLN','PCTEC','INCON','POPTO','PRACC','PQUET','PRUTA','PCEQU','APPRV') AND a.FECHA_CITA=(CURDATE() + INTERVAL 1 DAY) THEN 'SI' ".
+            "        ELSE 'NO' ".
+            "    END AS ALARMO_COMP ".
+            "    , CASE ".
+            "    	WHEN a.CONCEPTO_ID IN ('ANCAT','ANDUS','ANFRA','ANFRU','ANINP','ANPUS','ANSPE','ANTNE','ANULA', ".
+            "        'ANUOS','ANUPO','ANXSC','APRCT','APROB','AVENC','AXGAR','42','43','46','32','36','37')  THEN 'SI' ".
+            "        WHEN a.ESTADO_SOLI='ANULA' THEN 'SI' ".
+            "        ELSE 'NO' ".
+            "    END AS ANULO_COMP ".
+            "    ,  CASE ".
+            "    	when a.CONCEPTO_ID IN ('PETEC','OKRED','PEOPP','19','O-13','O-15','O-106','PUMED') then 'ASIGNACIONES' ".
+            "    	when a.CONCEPTO_ID IN ('O-300') then 'ACTIVACION' ".
+            "    	when a.CONCEPTO_ID IN ('14','99','O-101') then 'RECONFIGURACION' ".
+            "        when a.CONCEPTO_ID IN ('AGEN','O-02','O-07','O-08','O-23','O-49','O-50','O-65','O-103','O-AGN','O-40','O-34','AGEND','PPRG','PROG','REAGE') then 'AGENDAMIENTO' ".
+            "        when a.CONCEPTO_ID IN ('11','PVENC') then 'BACK' ".
+            "        when a.CONCEPTO_ID IN ('2','O-115','O-06') then 'OPERACION CLIENTES' ".
+            "    	when a.CONCEPTO_ID IN ('PECBA','PLICO','23','24','25','25D','25G','26D','74S','O-85','O-01','O-09') then 'ACCESO' ".
+            "        when a.CONCEPTO_ID IN ('PEREP','PECAR','PECSA') then 'CREDITO Y CARTERA' ".
+            "        when a.CONCEPTO_ID IN ('82','PEN82','PEFRA') then 'CONTROL FRAUDES' ".
+            "        when a.CONCEPTO_ID IN ('47') then 'TI' ".
+            "        when a.CONCEPTO_ID in ('42','ANPUS','ANSPE','ANUPO','ANVAL','APRCT','39','34','ANFRU','ANDUS','ANINS','ANCMT','ANFRA') then 'ANULADO CLIENTE' ".
+            "        when a.CONCEPTO_ID in ('ANUOS') then 'ANULADO SUSTITUCION' ".
+            "        when a.CONCEPTO_ID in ('ANCAT','43','36','32','46','AVENT') then 'ANULADO TECNICO' ".
+            "        when a.CONCEPTO_ID in ('AXGAR','AVENC','41','40','44','98','37') then 'ANULADO VENTAS' ".
+            "        else 'OTRO' ".
+            "    END AS RESPONSABLE ".
+            "    FROM scheduling.agendamientoxfenix a ".
+            "    where 1=1 ".
+            "    and a.pedido_id not like '%pre%' ".
+            "    and a.TIPO_ELEMENTO_ID in ('ACCESP','TO','TOIP','INSIP','INSHFC','EQURED','SERHFC') ".
+            "    and a.UEN_CALCULADA='HG' ".
+            "    ORDER BY 1 ASC ) C1 ".
+            "    WHERE 1=1 ".
+            "    AND C1.ANULO_COMP='NO' ".
+            "    AND C1.ALARMO_COMP='SI' ".
+            "    GROUP BY C1.PEDIDO_ID ) C2 ".
+            "    WHERE C2.RESPONSABLE IN ('ASIGNACIONES','RECONFIGURACION','AYD') ";
 
         $r = $this->mysqli->query($sql);
 
@@ -18231,30 +18231,30 @@ private function cargar_datos_activacion(){
         $filename="AlarmadosHistorico_$usuarioGalleta-$today.csv";
 
         $sql =  "    SELECT  ".
-             " C1.FECHA_CITA  ".
-             " , C1.PEDIDO_ID  ".
-             " , group_concat(distinct C1.RESPONSABLE) AS RESPONSABLE  ".
-             " , group_concat(distinct C1.CONCEPTO_ID) AS CONCEPTO_ID  ".
-             " FROM (SELECT   ".
-             " a.PEDIDO_ID  ".
-             " , a.CONCEPTO_ID  ".
-             " , a.FECHA_CITA  ".
-             " , a.TIPO_ELEMENTO_ID  ".
-             " , a.UEN_CALCULADA  ".
-             " , a.DEPARTAMENTO  ".
-             " , ALARMO_COMP  ".
-             " , a.ANULO_COMP  ".
-             " , a.RESPONSABLE  ".
-             " FROM scheduling.historico_alarmados a  ".
-             " where 1=1  ".
-             " and a.pedido_id not like '%pre%'  ".
-             " and a.TIPO_ELEMENTO_ID in ('ACCESP','TO','TOIP','INSIP','INSHFC')  ".
-             " and a.UEN_CALCULADA='HG'  ".
-             " ) C1  ".
-             " WHERE 1=1  ".
-             " AND C1.ANULO_COMP='NO'  ".
-             " and C1.FECHA_CITA=current_date()  ".
-             " GROUP BY C1.PEDIDO_ID, C1.FECHA_CITA  ";
+            " C1.FECHA_CITA  ".
+            " , C1.PEDIDO_ID  ".
+            " , group_concat(distinct C1.RESPONSABLE) AS RESPONSABLE  ".
+            " , group_concat(distinct C1.CONCEPTO_ID) AS CONCEPTO_ID  ".
+            " FROM (SELECT   ".
+            " a.PEDIDO_ID  ".
+            " , a.CONCEPTO_ID  ".
+            " , a.FECHA_CITA  ".
+            " , a.TIPO_ELEMENTO_ID  ".
+            " , a.UEN_CALCULADA  ".
+            " , a.DEPARTAMENTO  ".
+            " , ALARMO_COMP  ".
+            " , a.ANULO_COMP  ".
+            " , a.RESPONSABLE  ".
+            " FROM scheduling.historico_alarmados a  ".
+            " where 1=1  ".
+            " and a.pedido_id not like '%pre%'  ".
+            " and a.TIPO_ELEMENTO_ID in ('ACCESP','TO','TOIP','INSIP','INSHFC')  ".
+            " and a.UEN_CALCULADA='HG'  ".
+            " ) C1  ".
+            " WHERE 1=1  ".
+            " AND C1.ANULO_COMP='NO'  ".
+            " and C1.FECHA_CITA=current_date()  ".
+            " GROUP BY C1.PEDIDO_ID, C1.FECHA_CITA  ";
 
         $r = $this->mysqli->query($sql);
 
@@ -18376,7 +18376,7 @@ private function cargar_datos_activacion(){
         $ldaptree       =   "OU=Usuarios,DC=epmtelco,DC=com,DC=co";
         //$ldaptree       =   "OU=Epm Une,DC=epmtelco,DC=com,DC=co";
         $varuser        =   "(samaccountname=$userBusqueda)";
-        
+
         //echo  $userBusqueda;
 
         if($userBusqueda!='UNDEFINED'){
@@ -18437,7 +18437,7 @@ private function cargar_datos_activacion(){
                 }
 
             }else {
-                $error = "FallÃ³ la conexiÃ³n con LDAP";
+                $error = "Falló la conexión con LDAP";
 
                 $this->response($this->json(array($error, ldap_error($ldapconn))), 403);
             }
@@ -18457,20 +18457,20 @@ private function cargar_datos_activacion(){
         $connf=$this->connf;
 
         $sqlfenix=" SELECT ".
-                  "  C1.PEDIDO_ID AS PEDIDOFNX ".
-                  "  ,  REGEXP_REPLACE((LISTAGG(C1.CONCEPTO_ID, ',') WITHIN GROUP (ORDER BY C1.CONCEPTO_ID)), '([^,]*)(,\\1)+($|,)', '\\1\\3') AS CONCEPTOS ".
-                  "  FROM ( ".
-                  "      SELECT ".
-                  "  SOL.PEDIDO_ID ".
-                  "  , SOL.SUBPEDIDO_ID ".
-                  "  , SOL.CONCEPTO_ID ".
-                  "  FROM FNX_SOLICITUDES SOL ".
-                  "  , FNX_PEDIDOS ".
-                  "  WHERE 1=1 ".
-                  "          AND SOL.TIPO_ELEMENTO_ID IN ('INSIP','INSHFC','TO','TOIP','ACCESP') ".
-                  "          and FNX_PEDIDOS.PEDIDO_CRM IN ('$obj') ".
-                  "          AND SOL.PEDIDO_ID=FNX_PEDIDOS.PEDIDO_ID ) C1 ".
-                  "  group by C1.PEDIDO_ID ";
+            "  C1.PEDIDO_ID AS PEDIDOFNX ".
+            "  ,  REGEXP_REPLACE((LISTAGG(C1.CONCEPTO_ID, ',') WITHIN GROUP (ORDER BY C1.CONCEPTO_ID)), '([^,]*)(,\\1)+($|,)', '\\1\\3') AS CONCEPTOS ".
+            "  FROM ( ".
+            "      SELECT ".
+            "  SOL.PEDIDO_ID ".
+            "  , SOL.SUBPEDIDO_ID ".
+            "  , SOL.CONCEPTO_ID ".
+            "  FROM FNX_SOLICITUDES SOL ".
+            "  , FNX_PEDIDOS ".
+            "  WHERE 1=1 ".
+            "          AND SOL.TIPO_ELEMENTO_ID IN ('INSIP','INSHFC','TO','TOIP','ACCESP') ".
+            "          and FNX_PEDIDOS.PEDIDO_CRM IN ('$obj') ".
+            "          AND SOL.PEDIDO_ID=FNX_PEDIDOS.PEDIDO_ID ) C1 ".
+            "  group by C1.PEDIDO_ID ";
 
         $stid = oci_parse($connf, $sqlfenix);
         oci_execute($stid);
