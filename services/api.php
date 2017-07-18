@@ -1617,7 +1617,7 @@ private function csvAmarillas(){
                     $pedido['horaLlamar']="manana";
                 }
 
-                /*if($pedido['horaLlamar']=="manana"){//este pedido se programo para ser entregado mañana
+                /*if($pedido['horaLlamar']=="manana"){//este pedido se programo para ser entregado maÃ±ana
 						$datetime = new DateTime('tomorrow');
 						//echo "PROGRAMACION: ".$datetime->format('Y-m-d 08:00:00');
 						 $programacion=$datetime->format('Y-m-d 08:00:00');
@@ -1847,7 +1847,7 @@ private function csvAmarillas(){
             ||$novedad=='ERROR SIEBEL 8.1' ||$novedad=='MIGRACION HFC' || $novedad=='NO DESEA EL SERVICIO' ||$novedad=='PEDIDO EN OTRO CONCEPTO' 
         ||$novedad=='PENDIENTE RECONFIGUAR PEDIDO' ||$novedad=='PENDIENTE OTRO CONCEPTO' || $novedad=='YA ESTA CUMPLIDO'
         || $novedad=='YA ESTA ANULADO'||$novedad=='YA ESTA ANULADO-CERRADO'||$novedad=='YA ESTA ANULADO-PENDIENTE' 
-        ||$novedad=='YA ESTA CUMPLIDO–CERRADO'||$novedad=='YA ESTA CUMPLIDO–PENDIENTE' ){
+        ||$novedad=='YA ESTA CUMPLIDOâCERRADO'||$novedad=='YA ESTA CUMPLIDOâPENDIENTE' ){
             $sqlupdate="update gestor_pendientes_reagendamiento set FECHA_ACTUALIZACION='$today',STATUS='MALO',FECHA_CITA_REAGENDA='$fecha_cita_reagen',TODAY_TRIES=(SELECT COUNT(*) FROM gestor_historicos_reagendamiento WHERE PEDIDO_ID='$PEDIDO_ID' and NOVEDAD in ('AGENDADO','AGENDADO FUTURO','ANULADO 42','ANULADO AXGAR','ANULADO APRCT','LLAMADA SIN INFORMACION-MUDA','NO PUEDE ATENDER LLAMADA','LLAMAR FUTURO','INCUMPLIMIENTO FECHA CITA HOY','SE BRINDA INFORMACION','YA ESTA ANULADO-PENDIENTE','YA ESTA CUMPLIDO-PENDIENTE','PENDIENTE RECONFIGURAR PEDIDO','CONFIRMA SOLUCION','CLIENTE NO AUTORIZA','CLIENTE ILOCALIZADO','CONFIRMADA','CONFIRMADA-DATOS ERRADOS','CLIENTES NOS ESPERA') ),PROGRAMACION='',ASESOR='' WHERE ID=$parent ";
         } else {
             $sqlupdate="update gestor_pendientes_reagendamiento set FECHA_ACTUALIZACION='$today',STATUS='PENDI_AGEN',FECHA_CITA_REAGENDA='$fecha_cita_reagen',TODAY_TRIES=(SELECT COUNT(*) FROM gestor_historicos_reagendamiento WHERE PEDIDO_ID='$PEDIDO_ID'  and NOVEDAD in ('AGENDADO','AGENDADO FUTURO','ANULADO 42','ANULADO AXGAR','ANULADO APRCT','LLAMADA SIN INFORMACION-MUDA','CLIENTE NO CONTACTADO','NO PUEDE ATENDER LLAMADA','LLAMAR FUTURO','INCUMPLIMIENTO FECHA CITA HOY','SE BRINDA INFORMACION','YA ESTA ANULADO-PENDIENTE','YA ESTA CUMPLIDO-PENDIENTE','PENDIENTE RECONFIGURAR PEDIDO','CONFIRMA SOLUCION','CLIENTE NO AUTORIZA','CLIENTE ILOCALIZADO','CONFIRMADA','CONFIRMADA-DATOS ERRADOS','CLIENTES NOS ESPERA','CLIENTE NO CONTACTADO','PENDIENTE AGENDA') ),PROGRAMACION='$programacion',ASESOR='' WHERE ID=$parent ";
@@ -3846,7 +3846,7 @@ private function csvAmarillas(){
 
     function quitar_tildes($cadena) {
         //echo 'recibi cadena'.$cadena;
-        $no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+        $no_permitidas= array ("Ã¡","Ã©","Ã­","Ã³","Ãº","Ã","Ã","Ã","Ã","Ã","Ã±","Ã","Ã","Ã","Ã","Ã","Ãâ¢","Ã ","ÃÂ¨","ÃÂ¬","ÃÂ²","ÃÂ¹","Ã§","Ã","ÃÂ¢","Ãª","ÃÂ®","ÃÂ´","ÃÂ»","Ãâ","ÃÅ ","ÃÅ½","Ãâ","Ãâº","Ã¼","ÃÂ¶","Ãâ","ÃÂ¯","ÃÂ¤","Â«","Ã","ÃÂ","Ãâ","Ãâ¹");
         $permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
         $texto = str_replace($no_permitidas, $permitidas ,$cadena);
         //echo "\nsalida".$texto;
@@ -7285,8 +7285,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
 
             $r = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
 
-            if ($plaza=="BOGOTA-COBRE"){//pregunta si se debe buscar en fenix Bogotá o se debe buscar en fenix nacional por medio de la plaza.
-                //echo "Esta Entrando por aca para llamar a fenix Bogotá";
+            if ($plaza=="BOGOTA-COBRE"){//pregunta si se debe buscar en fenix BogotÃ¡ o se debe buscar en fenix nacional por medio de la plaza.
+                //echo "Esta Entrando por aca para llamar a fenix BogotÃ¡";
                 $success=$this->buscarPedidoFenixBogota($pedido);
 
             } else{
@@ -7459,8 +7459,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                         //si el pedido no esta en la base de datos buscar en los dos fenix, esto implica insertar en la tabla core..
 
 
-                      if ($plaza=="BOGOTA-COBRE"){//pregunta si se debe buscar en fenix Bogotá o se debe buscar en fenix nacional por medio de la plaza.
-                        //echo "Esta Entrando por aca para llamar a fenix Bogotá";
+                      if ($plaza=="BOGOTA-COBRE"){//pregunta si se debe buscar en fenix BogotÃ¡ o se debe buscar en fenix nacional por medio de la plaza.
+                        //echo "Esta Entrando por aca para llamar a fenix BogotÃ¡";
                          $success=$this->buscarPedidoFenixBogota($pedido);
 
                       } else{
@@ -7668,8 +7668,8 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
             //$this->response('test', 200); // send user details
         }else {
 
-            if ($plaza=="BOGOTA-COBRE"){//pregunta si se debe buscar en fenix Bogotá o se debe buscar en fenix nacional por medio de la plaza.
-                //echo "Esta Entrando por aca para llamar a fenix Bogotá";
+            if ($plaza=="BOGOTA-COBRE"){//pregunta si se debe buscar en fenix BogotÃ¡ o se debe buscar en fenix nacional por medio de la plaza.
+                //echo "Esta Entrando por aca para llamar a fenix BogotÃ¡";
                 $success=$this->buscarPedidoFenixBogota($pedido);
 
             } else{
@@ -7686,7 +7686,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
     }
 
 
-    //Función para buscar pedidos directamente en Fenix - Boton BuscarPedido.
+    //FunciÃ³n para buscar pedidos directamente en Fenix - Boton BuscarPedido.
     // 2016-02-02 - Se modifica  este negocio solo por capricho de Carlos.
     private function buscarPedidoFenixReconfiguracion($pedido_id){
 
@@ -7785,7 +7785,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         }
         return $success;
     }
-    //Función para buscar pedidos directamente en Fenix - Boton BuscarPedido.
+    //FunciÃ³n para buscar pedidos directamente en Fenix - Boton BuscarPedido.
     // 2015-09-17 - Se modifica fecha estado, ahora vamos a novedades por ella - CGONZGO
     private function buscarPedidoFenix($pedido_id){
 
@@ -7967,7 +7967,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         return $success;
     }
 
-//función para buscar pedidos en fenix Bogotá que no estan en la base de datos.
+//funciÃ³n para buscar pedidos en fenix BogotÃ¡ que no estan en la base de datos.
     private function buscarPedidoFenixBogota($pedido_id){
 
         $this->dbFenixBogotaConnect();
@@ -8356,7 +8356,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         $user=strtoupper($user);
         $today = date("Y-m-d");
 
-        //1.consulto  lo que tenga fecha cita de mañana
+        //1.consulto  lo que tenga fecha cita de maÃ±ana
         $hora=date("G");
         $uphold="1";
         if($hora<11){
@@ -8600,7 +8600,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
                     $pedidos_ignorados.=$row['PEDIDO_ID'].",";
 
                     //la idea es que este codigo permita optimizar el pedido entregado
-                    //la idea es entregar de primero los pedidos con agenda para mañana cuando el parametro es fecha cita
+                    //la idea es entregar de primero los pedidos con agenda para maÃ±ana cuando el parametro es fecha cita
                     if($parametroBusqueda=='FECHA_CITA'){
                         $today = date("Y-m-d");
                         $date = $row[FECHA_CITA];
@@ -9302,7 +9302,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         //echo "WTF";
         $today = date("Y-m-d");
 
-        //1.consulto todo lo que tenga fecha cita de mañana
+        //1.consulto todo lo que tenga fecha cita de maÃ±ana
         $hora=date("G");
         $uphold="1";
         if($hora<11){
@@ -9661,7 +9661,7 @@ $query="SELECT count(*) as counter from gestor_pendientes_reagendamiento a where
         //echo "WTF";
         $today = date("Y-m-d");
        
-        //1.consulto todo lo que tenga fecha cita de mañana
+        //1.consulto todo lo que tenga fecha cita de maÃ±ana
         $hora=date("G");
         $uphold="1";
         if($hora<11){
@@ -12292,7 +12292,7 @@ private function cargar_datos_activacion(){
                 }
             }
 
-            $no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹","Ñ");
+            $no_permitidas= array ("Ã¡","Ã©","Ã­","Ã³","Ãº","Ã","Ã","Ã","Ã","Ã","Ã±","Ã","Ã","Ã","Ã","Ã","Ãâ¢","Ã ","ÃÂ¨","ÃÂ¬","ÃÂ²","ÃÂ¹","Ã§","Ã","ÃÂ¢","Ãª","ÃÂ®","ÃÂ´","ÃÂ»","Ãâ","ÃÅ ","ÃÅ½","Ãâ","Ãâº","Ã¼","ÃÂ¶","Ãâ","ÃÂ¯","ÃÂ¤","Â«","Ã","ÃÂ","Ãâ","Ãâ¹","Ã");
             $permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E","N");
             $departamento = str_replace($no_permitidas, $permitidas ,$departamento);
             $zona = str_replace($no_permitidas, $permitidas ,$zona);
@@ -12337,7 +12337,7 @@ private function cargar_datos_activacion(){
     }
 ////////////////////////////////////////////////////////
     private  function get_cell($cell, $objPHPExcel){
-        //select one cell seleccionar una célda
+        //select one cell seleccionar una cÃ©lda
         $objCell = ($objPHPExcel->getActiveSheet()->getCell($cell));
         //get cell value obtener valor de la celda
         return $objCell->getvalue();
@@ -12891,7 +12891,7 @@ private function cargar_datos_activacion(){
             //echo($query);
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
             //$success = array('status' => "Success", "msg" => "Successfully deleted one record.");
-            $this->response(json_encode(array('msg'=>'Se realizo la eliminación del TIP','id' => $id)),200);
+            $this->response(json_encode(array('msg'=>'Se realizo la eliminaciÃ³n del TIP','id' => $id)),200);
             //$this->response($this->json($success),200);
         }else
         {
@@ -14599,7 +14599,7 @@ private function cargar_datos_activacion(){
                                 $CR = $gestion[NUMERO_CR];
 
                                 if($causaraiz == "Suin"){
-                                    $OBSERVACION_GESTOR = $OBSERVACION_GESTOR."-NÚMERO DE CR: ". $CR; 
+                                    $OBSERVACION_GESTOR = $OBSERVACION_GESTOR."-NÃMERO DE CR: ". $CR; 
                                 }
                             }
                           
@@ -18437,7 +18437,7 @@ private function cargar_datos_activacion(){
                 }
 
             }else {
-                $error = "Falló la conexión con LDAP";
+                $error = "FallÃ³ la conexiÃ³n con LDAP";
 
                 $this->response($this->json(array($error, ldap_error($ldapconn))), 403);
             }
