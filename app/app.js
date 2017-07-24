@@ -15786,7 +15786,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     $scope.checkMunicipiosAsignaciones = function () {
 
-        if($scope.checkMunicipiosAsignaciones()){
+        if($scope.iconcepto.FUENTE=='SIEBEL' & ( $scope.iconcepto.CONCEPTO_ID=='COBERTURA' | $scope.iconcepto.CONCEPTO_ID=='DISPONIBILIDAD' | $scope.iconcepto.CONCEPTO_ID=='CONSTRUCCION' | $scope.iconcepto.CONCEPTO_ID=='DISENO' )){
 
             $scope.listarMunicipiosAsignacionesSiebel($scope.iconcepto.CONCEPTO_ID);
         }
