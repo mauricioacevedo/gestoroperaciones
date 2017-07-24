@@ -16208,7 +16208,7 @@ class API extends REST {
         if ($rst->num_rows > 0){
 
             $resultado=array();
-
+            $resultado[]={"MUNICIPIO_ID":"TODOS","COUNTER":"TODOS"};
             while($row=$rst->fetch_assoc()){
 
                 //$row['nombre']=utf8_encode($row['nombre']);
