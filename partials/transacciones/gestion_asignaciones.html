@@ -38,7 +38,7 @@
                                         style="width: 200px"
                                         ng-model="imunicipio"
                                         ng-options="d.MUNICIPIO_ID +'('+d.COUNTER+')'+ ''  for d in listadoMunicipios "
-                                        ng-show="iconcepto.FUENTE='SIEBEL' & ( iconcepto.CONCEPTO_ID=='COBERTURA' | iconcepto.CONCEPTO_ID=='DISPONIBILIDAD' | iconcepto.CONCEPTO_ID=='CONSTRUCCION' | iconcepto.CONCEPTO_ID=='DISENO' )"
+                                        ng-show="condicionMunicipiosShow(iconcepto)"
                                         >
                                     <option value="" disabled>--Seleccione Municipio--</option>
                                 </select>

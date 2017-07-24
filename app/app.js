@@ -15779,6 +15779,11 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         );
     };
 
+    $scope.condicionMunicipiosShow = function (iconcepto) {
+
+        return (iconcepto.FUENTE='SIEBEL' & ( iconcepto.CONCEPTO_ID=='COBERTURA' | iconcepto.CONCEPTO_ID=='DISPONIBILIDAD' | iconcepto.CONCEPTO_ID=='CONSTRUCCION' | iconcepto.CONCEPTO_ID=='DISENO' ));
+    };
+
     $scope.checkMunicipiosAsignaciones = function (conceptoSelected) {
 
         console.log(conceptoSelected);
