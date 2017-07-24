@@ -16190,9 +16190,11 @@ class API extends REST {
         }
 
         $params 	= json_decode(file_get_contents('php://input'),true);
+        $concepto 	= $params['concepto'];
         $today		= date("Y-m-d");
 
-        $filtros= " and o.STATUS ='PENDI_PETEC' and o.FUENTE='SIEBEL' GROUP BY o.MUNICIPIO_ID ORDER BY COUNT(*) DESC ";
+        $filtros= " and o.STATUS ='PENDI_PETEC' and o.FUENTE='SIEBEL' AND o.CONCEPTO_ID='$concepto' ".
+                    " GROUP BY o.MUNICIPIO_ID ORDER BY COUNT(*) DESC ";
 
         $query=	" SELECT ".
             "	o.MUNICIPIO_ID ".
