@@ -1087,6 +1087,11 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		//return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
 		return $http.post(serviceBase + 'opcionesGestionAsignaciones', opciones);
 	};
+    obj.getMunicipiosAsignacionesSiebel = function () {
+		//return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
+        var opciones={};
+		return $http.post(serviceBase + 'municipiosAsignacionesSiebel', opciones);
+	};
 	obj.getHistoricoPedido = function (pedido) {
 		return $http.post(serviceBase + 'listaHistoricoPedidos', {
 			pedido: pedido
@@ -14901,6 +14906,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.programar			= false;					// Habilitar el campo programación.
 	$scope.accRdy				= false; 					// Habilitar el boton de Guardar.
     $scope.pedidoIsActive 		= false;
+    $scope.imunicipio           = {};
+    $scope.listadoMunicipios    =[];
 	//var varDondeGuardar 		= '';
 	//var varEstadoGuardar		= '';
 	//var varObsesGuardar			= '';
@@ -14981,7 +14988,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				$scope.data.totalItems=data.data[1];
 				return data.data;
 		});
-        };
+    };
 
 		//$scope.PedidosPorUser();
 
@@ -15756,6 +15763,23 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         );
     };
 
+      // Cargar Opciones para la gestion --------------------------------
+    $scope.listarMunicipiosAsignacionesSiebel = function () {
+        services.getMunicipiosAsignacionesSiebel().then(
+            function (data) {
+                $scope.listadoMunicipios=data.data;
+                return data.data;
+
+            },
+            function errorCallback(response, status) {
+                //console.log(status);
+                $rootScope.errorDatos = 'Error, No es posible traer el listado de municipios.. '+status;
+
+            }
+        );
+    };
+
+    $scope.listarMunicipiosAsignacionesSiebel();
     $scope.actualizarLightKPIS();
 
 });

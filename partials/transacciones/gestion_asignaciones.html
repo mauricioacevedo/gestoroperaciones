@@ -30,7 +30,18 @@
                                     <option value="" disabled>--Seleccione Concepto--</option>
                                 </select>
                             </li>
-                            <li> &nbsp; </li>
+                            <li>
+
+                                <!--i class="fa fa-globe" aria-hidden="true"> </i-->&nbsp;
+                                <select class="btn btn-default btn-xs grupo-select"
+                                        style="width: 200px"
+                                        ng-model="imunicipio"
+                                        ng-options="d.MUNICIPIO_ID+' for d in listadoMunicipios track by d.ID "
+                                        >
+                                    <option value="" disabled>--Seleccione Municipio--</option>
+                                </select>
+
+                            </li>
                             <li>
 
                                 <button id="ped" type="button" class="btn btn-xs btn-default"  ng-show="pedidoIsActive" ng-class="pedidoIsActive==false?'animated bounceOutRight':'animated fadeInUp'" ng-click="executeCopy(pedidoinfo)" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="<i class='fa fa-clipboard'></i> Copiar">{{pedidoinfo}}

@@ -16182,6 +16182,51 @@ class API extends REST {
 
     }//Funcion para listar la productividad del grupo
 
+
+    private function municipiosAsignacionesSiebel(){
+
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+
+        $params 	= json_decode(file_get_contents('php://input'),true);
+        $today		= date("Y-m-d");
+
+        $filtros= " and o.STATUS ='PENDI_PETEC' and o.FUENTE='SIEBEL'";
+
+        $query=	" SELECT ".
+            "	o.MUNICIPIO_ID ".
+            ",	COUNT(*) ".
+            "	FROM portalbd.informe_petec_pendientesm o ".
+            "	where 1=1 ".
+            " 	$filtros ";
+
+        //echo $query;
+
+        $rst = $this->mysqli->query($query);
+
+        if ($rst->num_rows > 0){
+
+            $resultado=array();
+
+            while($row=$rst->fetch_assoc()){
+
+                //$row['nombre']=utf8_encode($row['nombre']);
+                $resultado[]=$row;
+
+
+            }
+            $this->response($this->json($resultado), 201);
+
+
+        }else{
+            $error="Error en extraccion de municipios.";
+            $this->response($this->json($error), 400);
+        }
+
+    }// ------------------------------------------------------------------------ Parametros Acciones Nuevo
+
+
     private function opcionesGestionAsignaciones(){
 
 
