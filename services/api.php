@@ -16192,7 +16192,7 @@ class API extends REST {
         $params 	= json_decode(file_get_contents('php://input'),true);
         $today		= date("Y-m-d");
 
-        $filtros= " and o.STATUS ='PENDI_PETEC' and o.FUENTE='SIEBEL' GROUP BY o.MUNICIPIO_ID ";
+        $filtros= " and o.STATUS ='PENDI_PETEC' and o.FUENTE='SIEBEL' GROUP BY o.MUNICIPIO_ID ORDER BY COUNT(*) DESC ";
 
         $query=	" SELECT ".
             "	o.MUNICIPIO_ID ".
