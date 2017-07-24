@@ -26,6 +26,7 @@
                                         style="width: 200px"
                                         ng-model="iconcepto"
                                         ng-options="d.CONCEPTO_ID+' | '+d.FUENTE group by d.GRUPO for d in listadoConceptos | filter:{ESTADO: '1',} track by d.ID "
+                                        ng-change="checkMunicipiosAsignaciones(iconcepto)"
                                         >
                                     <option value="" disabled>--Seleccione Concepto--</option>
                                 </select>

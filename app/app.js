@@ -15779,6 +15779,11 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         );
     };
 
+    $scope.checkMunicipiosAsignaciones = function (conceptoSelected) {
+
+        console.log(conceptoSelected);
+    };
+
     $scope.listarMunicipiosAsignacionesSiebel();
     $scope.actualizarLightKPIS();
 
