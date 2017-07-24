@@ -15781,7 +15781,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     $scope.condicionMunicipiosShow = function () {
 
-        return ($scope.iconcepto.FUENTE='SIEBEL' & ( $scope.iconcepto.CONCEPTO_ID=='COBERTURA' | $scope.iconcepto.CONCEPTO_ID=='DISPONIBILIDAD' | $scope.iconcepto.CONCEPTO_ID=='CONSTRUCCION' | $scope.iconcepto.CONCEPTO_ID=='DISENO' ));
+        return ($scope.iconcepto.FUENTE=='SIEBEL' & ( $scope.iconcepto.CONCEPTO_ID=='COBERTURA' | $scope.iconcepto.CONCEPTO_ID=='DISPONIBILIDAD' | $scope.iconcepto.CONCEPTO_ID=='CONSTRUCCION' | $scope.iconcepto.CONCEPTO_ID=='DISENO' ));
     };
 
     $scope.checkMunicipiosAsignaciones = function (conceptoSelected) {
