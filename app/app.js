@@ -15792,7 +15792,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         }
     };
 
-    $scope.listarMunicipiosAsignacionesSiebel();
+    $scope.checkMunicipiosAsignaciones();
     $scope.actualizarLightKPIS();
 
 });
