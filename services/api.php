@@ -18547,6 +18547,142 @@ class API extends REST {
         return "NO";
     }
 
+    /**
+     * @uses pendientesSiebelFenix()
+     */
+    private function pendientesSiebelFenix(){
+
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+
+
+        $this->dbFenixConnect();
+        $connf=$this->connf;
+        
+        $sqlTrunca = " TRUNCATE TABLE portalbd.go_asig_siebelfenix ";
+        $rTrunc = $this->mysqli->query($sqlTrunca);
+
+        $sqlGestor= "SELECT DISTINCT PP.PEDIDO_ID AS NUMERO_OFERTA ".
+                    " , PP.CONCEPTO_ID as  ESTADO_OFERTA ".
+                    " , PP.FECHA_ESTADO ".
+                    " , CASE ".
+                    "    WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) >= 0 and HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) <= 2 THEN 'Entre 0-2' ".
+                    "    WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) >= 3 and HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) <= 4 THEN 'Entre 3-4'  ".
+                    "    WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) >= 5 and HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) <= 6 THEN 'Entre 5-6'  ".
+                    "    WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) >= 7 and HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) <= 12 THEN 'Entre 7-12'  ".
+                    "    WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) >= 13 and HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) <= 24 THEN 'Entre 13-24' ".
+                    "    WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) >= 25 and HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) <= 48 THEN 'Entre 25-48' ".
+                    "    WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) > 48 THEN 'Mas de 48' ".
+                    " END AS RANGO_PENDIENTE ".
+                    " FROM portalbd.informe_petec_pendientesm  PP ".
+                    " where PP.FUENTE='SIEBEL' ".
+                    " and PP.STATUS in ('PENDI_PETEC','MALO') ".
+                    " and PP.CONCEPTO_ID NOT IN ('OT-C08','OT-T01','OT-C11','OT-T04','OT-T05','')";
+
+        $r = $this->mysqli->query($sqlGestor);
+
+        if($r->num_rows > 0){
+            while($row = $r->fetch_assoc()){
+                $oferta = $row['NUMERO_OFERTA'];
+
+                $objPendiente       =   $row;
+                $objFenix           =   $this->buscarPedidoCrmFenix($oferta);
+
+                if($objFenix=='NO'){
+                    continue;
+                }
+
+                $objPendiente       =   array_merge($objPendiente,$objFenix);
+                $columns            =   array_keys($objPendiente);
+                $ncols              =   count($columns);
+
+                $sqlinsert = "";
+                $sqlinsertm2 = "insert into portalbd.go_asig_siebelfenix ";
+
+                $fields = "";
+                $sep = "";
+                $values = "";
+
+                for ($i = 0; $i < $ncols; $i++) {
+
+                    $key    =   $columns[$i];
+                    $value  =   $objPendiente[$key];
+                    $fields =   $fields.$sep.$key;
+                    $values =   "$values$sep'$value'";
+
+                    $sep=",";
+                    $value = "";
+                    $key = "";
+
+                }
+
+                $sep="";
+
+                $sqlinsert = $sqlinsertm2;
+                $sqlinsert = "$sqlinsert ($fields) values ($values)";
+
+                $rlog = $this->mysqli->query($sqlinsert);
+
+
+            }
+            $res = "Inserte el chorizo ";
+            $this->response($this->json(array($res)), 200);
+        }
+
+
+    }
+
+    private function buscarPedidoCrmFenix($obj){
+
+        $this->dbFenixConnect();
+        $connf=$this->connf;
+
+        $sqlfenix=" SELECT P.PEDIDO_CRM AS NUMERO_OFERTA ".
+            "  ,P.PEDIDO_ID ".
+            "  , NVL((SELECT 1 FROM FNX_SOLICITUDES S  ".
+            "    WHERE S.PEDIDO_ID=P.PEDIDO_ID  ".
+            "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INISIP','INSHFC','TO','TOIP') ".
+            "    AND S.CONCEPTO_ID='PETEC' ".
+            "    GROUP BY S.PEDIDO_ID),0) AS PETEC ".
+            "  , NVL((SELECT 1 FROM FNX_SOLICITUDES S  ".
+            "    WHERE S.PEDIDO_ID=P.PEDIDO_ID  ".
+            "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INISIP','INSHFC','TO','TOIP') ".
+            "    AND S.CONCEPTO_ID IN ('14','O-101') ".
+            "    GROUP BY S.PEDIDO_ID),0) AS RECONFIGURACION ".
+            "  , NVL((SELECT 1 FROM FNX_SOLICITUDES S  ".
+            "    WHERE S.PEDIDO_ID=P.PEDIDO_ID  ".
+            "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INISIP','INSHFC','TO','TOIP') ".
+            "    AND S.CONCEPTO_ID IN ('99') ".
+            "    GROUP BY S.PEDIDO_ID),0) AS INCONSISTENCIA ".
+            "  , NVL((SELECT 1 FROM FNX_SOLICITUDES S  ".
+            "    WHERE S.PEDIDO_ID=P.PEDIDO_ID  ".
+            "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INISIP','INSHFC','TO','TOIP') ".
+            "    AND S.CONCEPTO_ID IN ('24', '24C', '24E','25', '25C', '25D', '25G', '25i', '25P', '26E', '26D', '74', '74E', '74S', 'PECBA') ".
+            "    GROUP BY S.PEDIDO_ID),0) AS ACCESO ".
+            "  , NVL((SELECT 1 FROM FNX_SOLICITUDES S  ".
+            "    WHERE S.PEDIDO_ID=P.PEDIDO_ID  ".
+            "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INISIP','INSHFC','TO','TOIP') ".
+            "    AND S.CONCEPTO_ID IN ('PRESI','PSIEB') ".
+            "    GROUP BY S.PEDIDO_ID),0) AS SIEBEL ".
+            "  , NVL((SELECT 1 FROM FNX_SOLICITUDES S  ".
+            "    WHERE S.PEDIDO_ID=P.PEDIDO_ID  ".
+            "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INISIP','INSHFC','TO','TOIP') ".
+            "    AND S.CONCEPTO_ID NOT IN ('24', '24C', '24E','25', '25C', '25D', '25G', '25i' ".
+            "    , '25P', '26E', '26D', '74', '74E', '74S', 'PECBA' ".
+            "    , 'PETEC','14','O-101','99','PRESI','PSIEB') ".
+            "    GROUP BY S.PEDIDO_ID),0) AS OTRO ".
+            "  FROM FNX_PEDIDOS P ".
+            " WHERE P.PEDIDO_CRM='$obj' ";
+
+        $stid = oci_parse($connf, $sqlfenix);
+        oci_execute($stid);
+        if($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)){
+            return $row;
+        }
+        return "NO";
+    }
+
 }//cierre de la clase
 
 // Initiiate Library
