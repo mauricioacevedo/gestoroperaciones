@@ -4077,6 +4077,7 @@ $scope.topProductivos();
         $http.get('./services/pendientesSiebelFenix').then(
         	function(data){
         		$scope.objTabla = data.data[0];
+        		$scope.objTablaFcarga = $scope.objTabla[0].FECHA_CARGA;
 
         }, function(res){
                 $rootScope.errorDatos = res.data[0];
