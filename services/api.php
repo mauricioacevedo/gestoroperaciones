@@ -18622,14 +18622,38 @@ class API extends REST {
 
                 $sqlinsert = $sqlinsertm2;
                 $sqlinsert = "$sqlinsert ($fields) values ($values)";
-                echo $sqlinsert;
-
-                $rlog = $this->mysqli->query($sqlinsert);
+                $rInsert = $this->mysqli->query($sqlinsert);
 
 
             }
-            $res = "Inserte el chorizo ";
-            $this->response($this->json(array($res)), 200);
+            $sqlFinal = " SELECT ".
+                        " a.RANGO_PENDIENTE ".
+                        " , count(a.NUMERO_OFERTA) as OFERTAS ".
+                        " , sum(a.PETEC) as PETEC ".
+                        " , sum(a.RECONFIGURACION) as RECONFIGURACION ".
+                        " , sum(a.INCONSISTENCIA) as INCONSISTENCIA ".
+                        " , sum(a.ACCESO) as ACCESO ".
+                        " , sum(a.SIEBEL) as SIEBEL ".
+                        " , sum(a.OTRO) as OTRO ".
+                        " , max(a.FECHA_CARGA) as FECHA_CARGA ".
+                        " FROM portalbd.go_asig_siebelfenix a ".
+                        " group by a.RANGO_PENDIENTE ";
+            $rFin = $this->mysqli->query($sqlFinal);
+            $objAsig = [];
+            if($rFin->num_rows > 0){
+                while($rowF = $rFin->fetch_assoc()) {
+
+                    $objAsig[] = $rowF;
+                }
+
+                $res = "Inserte el chorizo ";
+                $this->response($this->json(array($objAsig)), 200);
+
+            }else{
+                $res = "Error. No hay datos";
+                $this->response($this->json(array($res)), 403);
+            }
+
         }
 
 
