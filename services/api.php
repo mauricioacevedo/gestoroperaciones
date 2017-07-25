@@ -18549,6 +18549,7 @@ class API extends REST {
 
     /**
      * @uses pendientesSiebelFenix()
+     * Funcion para buscar pedidos en fenix de siebel
      */
     private function pendientesSiebelFenix(){
 
