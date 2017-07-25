@@ -18595,8 +18595,6 @@ class API extends REST {
                 }
 
                 $objPendiente       =   array_merge($objPendiente,$objFenix);
-                var_dump ($objPendiente);
-                return;
                 $columns            =   array_keys($objPendiente);
                 $ncols              =   count($columns);
 
@@ -18624,6 +18622,7 @@ class API extends REST {
 
                 $sqlinsert = $sqlinsertm2;
                 $sqlinsert = "$sqlinsert ($fields) values ($values)";
+                echo $sqlinsert;
 
                 $rlog = $this->mysqli->query($sqlinsert);
 
