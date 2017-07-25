@@ -18668,32 +18668,32 @@ class API extends REST {
             "  ,P.PEDIDO_ID ".
             "  , NVL((SELECT 1 FROM FNX_SOLICITUDES S  ".
             "    WHERE S.PEDIDO_ID=P.PEDIDO_ID  ".
-            "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INISIP','INSHFC','TO','TOIP') ".
+            "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP') ".
             "    AND S.CONCEPTO_ID in ('PETEC','21','65','OKRED') ".
             "    GROUP BY S.PEDIDO_ID),0) AS PETEC ".
             "  , NVL((SELECT 1 FROM FNX_SOLICITUDES S  ".
             "    WHERE S.PEDIDO_ID=P.PEDIDO_ID  ".
-            "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INISIP','INSHFC','TO','TOIP') ".
+            "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP') ".
             "    AND S.CONCEPTO_ID IN ('14','O-101') ".
             "    GROUP BY S.PEDIDO_ID),0) AS RECONFIGURACION ".
             "  , NVL((SELECT 1 FROM FNX_SOLICITUDES S  ".
             "    WHERE S.PEDIDO_ID=P.PEDIDO_ID  ".
-            "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INISIP','INSHFC','TO','TOIP') ".
+            "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP') ".
             "    AND S.CONCEPTO_ID IN ('99','PUMED') ".
             "    GROUP BY S.PEDIDO_ID),0) AS INCONSISTENCIA ".
             "  , NVL((SELECT 1 FROM FNX_SOLICITUDES S  ".
             "    WHERE S.PEDIDO_ID=P.PEDIDO_ID  ".
-            "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INISIP','INSHFC','TO','TOIP') ".
+            "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP') ".
             "    AND S.CONCEPTO_ID IN ('22','23','24', '24C', '24E','25', '25E','25C', '25D', '25G', '25i', '25P', '26E', '26D', '74', '74E', '74S', 'PECBA') ".
             "    GROUP BY S.PEDIDO_ID),0) AS ACCESO ".
             "  , NVL((SELECT 1 FROM FNX_SOLICITUDES S  ".
             "    WHERE S.PEDIDO_ID=P.PEDIDO_ID  ".
-            "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INISIP','INSHFC','TO','TOIP') ".
+            "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP') ".
             "    AND S.CONCEPTO_ID IN ('PRESI','PSIEB') ".
             "    GROUP BY S.PEDIDO_ID),0) AS SIEBEL ".
             "  , NVL((SELECT 1 FROM FNX_SOLICITUDES S  ".
             "    WHERE S.PEDIDO_ID=P.PEDIDO_ID  ".
-            "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INISIP','INSHFC','TO','TOIP') ".
+            "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP') ".
             "    AND S.CONCEPTO_ID NOT IN ('22','23','24', '24C', '24E','25', '25E','25C', '25D', '25G', '25i' ".
             "    , '25P', '26E', '26D', '74', '74E', '74S', 'PECBA' ".
             "    , 'PETEC','14','O-101','99','PRESI','PSIEB','21','65','OKRED','PUMED') ".
