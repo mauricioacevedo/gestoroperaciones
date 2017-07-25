@@ -18588,9 +18588,10 @@ class API extends REST {
                 $oferta = $row['NUMERO_OFERTA'];
 
                 $objPendiente       =   $row;
-                var_dump ($objPendiente);
-                return;
+
                 $objFenix           =   $this->buscarPedidoCrmFenix($oferta);
+                var_dump ($objFenix);
+                return;
 
                 if($objFenix=='NO'){
                     continue;
