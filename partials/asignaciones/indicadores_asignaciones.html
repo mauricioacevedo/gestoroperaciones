@@ -651,7 +651,106 @@
                         </div>
                     </div>
                 </div>
+                <!--PENDIENTES DISPO PEDIDO EN FENIX-->
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading nav navbar-default">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="nav navbar-nav navbar-left">
+                                        <b>Pendientes Siebel con pedido en Fénix</b>
+                                        <span style="color:red" class="pull-right"><i
+                                                class="fa fa-exclamation-triangle warning" aria-hidden="true"
+                                                ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <div class="col-md-1 col-xs-1 ">
+                                            <div data-ng-if="loading">
+                                                <img title="Esperando respuesta" data-toggle="tooltip"
+                                                     data-placement="top" src="img/loader.gif" height="16px" width="16px"/>
+                                            </div>
+                                        </div>
+                                        <li>
+                                            <div class="col-md-12 col-xs-6 ">
+                                                <input style="width:120px" class="btn btn-default btn-xs " type="text"
+                                                       ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading"
+                                                       select-on-click capitalize/>
+                                                <button type="button" class="btn btn-default btn-circle-xs"
+                                                        ng-click="calcularPendientesSiebelFnx()" title="Actualizar"
+                                                        data-toggle="tooltip" data-placement="left"
+                                                        ng-disabled="loading">
+                                                    <i class="fa fa-refresh" aria-hidden="true"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-default btn-circle-xs"
+                                                        ng-click="csvPendientes(filtroInput)"
+                                                        title="Exportar Pendientes" data-toggle="tooltip"
+                                                        data-placement="left" ng-disabled="loading">
+                                                    <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table small table-striped table-hover table-bordered table-condensed">
+                                <thead>
+                                <th>Rango</th>
+                                <th>Total</th>
+                                <th>PETEC</th>
+                                <th>RECONF.</th>
+                                <th>INCONS.</th>
+                                <th>ACCESO</th>
+                                <th>SIEBEL</th>
+                                <th>OTRO</th>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="obj in objTabla | filter:filtroInput">
+                                    <td>
+                                        <span>
+                                        {{obj.RANGO_PENDIENTE}}</span></td>
+                                    <td>
+                                        <span>
+                                        {{obj.OFERTAS}}</span></td>
+                                    <td>
+                                        <span>
+                                        {{obj.PETEC}}</span></td>
+                                    <td>
+                                        <span>
+                                        {{obj.RECONFIGURACION}}</span></td>
+                                    <td>
+                                        <span>
+                                        {{obj.INCONSISTENCIA}}</span></td>
+                                    <td>
+                                        <span>
+                                        {{obj.ACCESO}}</span></td>
+                                    <td>
+                                        <span>
+                                        {{obj.SIEBEL}}</span></td>
+                                    <td>
+                                        <span>
+                                        {{obj.OTRO}}</span></td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr class="info">
+                                    <th>TOTALES</th>
 
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="panel-footer clearfix">
+                            <div class="col-md-8">
+                                <ul class="nav navbar-nav navbar-left">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 

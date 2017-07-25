@@ -4073,6 +4073,16 @@ $scope.ProductividadPorHora = function (fecha){
 $scope.actualizarGrafica();
 $scope.topProductivos();
 
+    $scope.calcularPendientesSiebelFnx = function (){
+        $http.get('./services/pendientesSiebelFenix').then(
+        	function(data){
+        		$scope.objTabla = data.data[0];
+
+        }, function(res){
+                $rootScope.errorDatos = res.data[0];
+			});
+    };
+
 });//--------------- fin Controlador indicadores Asignaciones -----------------------
 
 
