@@ -738,7 +738,13 @@
                                 <tfoot>
                                 <tr class="info">
                                     <th>TOTALES</th>
-                                    <th>{{objSiebel.OFERTAS | sumarNum }}</th>
+                                    <th>{{objSiebel | sumarNum:'OFERTAS'}}</th>
+                                    <th>{{objSiebel | sumarNum:'PETEC'}}</th>
+                                    <th>{{objSiebel | sumarNum:'RECONFIGURACION'}}</th>
+                                    <th>{{objSiebel | sumarNum:'INCONSISTENCIA'}}</th>
+                                    <th>{{objSiebel | sumarNum:'ACCESO'}}</th>
+                                    <th>{{objSiebel | sumarNum:'SIEBEL'}}</th>
+                                    <th>{{objSiebel | sumarNum:'OTRO'}}</th>
 
                                 </tr>
                                 </tfoot>
