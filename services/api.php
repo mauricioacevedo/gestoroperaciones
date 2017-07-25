@@ -18588,16 +18588,15 @@ class API extends REST {
                 $oferta = $row['NUMERO_OFERTA'];
 
                 $objPendiente       =   $row;
-
                 $objFenix           =   $this->buscarPedidoCrmFenix($oferta);
-                var_dump ($objFenix);
-                return;
 
                 if($objFenix=='NO'){
                     continue;
                 }
 
                 $objPendiente       =   array_merge($objPendiente,$objFenix);
+                var_dump ($objPendiente);
+                return;
                 $columns            =   array_keys($objPendiente);
                 $ncols              =   count($columns);
 
