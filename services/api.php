@@ -18684,7 +18684,7 @@ class API extends REST {
             "  , NVL((SELECT 1 FROM FNX_SOLICITUDES S  ".
             "    WHERE S.PEDIDO_ID=P.PEDIDO_ID  ".
             "    AND S.TIPO_ELEMENTO_ID IN ('ACCESP','INISIP','INSHFC','TO','TOIP') ".
-            "    AND S.CONCEPTO_ID IN ('24', '24C', '24E','25', '25C', '25D', '25G', '25i', '25P', '26E', '26D', '74', '74E', '74S', 'PECBA') ".
+            "    AND S.CONCEPTO_ID IN ('23','24', '24C', '24E','25', '25C', '25D', '25G', '25i', '25P', '26E', '26D', '74', '74E', '74S', 'PECBA') ".
             "    GROUP BY S.PEDIDO_ID),0) AS ACCESO ".
             "  , NVL((SELECT 1 FROM FNX_SOLICITUDES S  ".
             "    WHERE S.PEDIDO_ID=P.PEDIDO_ID  ".
