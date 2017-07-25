@@ -708,7 +708,7 @@
                                 <th>OTRO</th>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="obj in objTabla | filter:filtroInput">
+                                <tr ng-repeat="obj in objTabla | filter:filtroInput as objSiebel">
                                     <td>
                                         <span>
                                         {{obj.RANGO_PENDIENTE}}</span></td>
@@ -738,6 +738,7 @@
                                 <tfoot>
                                 <tr class="info">
                                     <th>TOTALES</th>
+                                    <th>{{objSiebel.OFERTAS | sumarNum }}</th>
 
                                 </tr>
                                 </tfoot>
