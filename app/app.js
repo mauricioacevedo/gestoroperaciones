@@ -5205,7 +5205,7 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
             nuevopedido: '',
             horaLlamar: '',
             INCIDENTE: transaccion.INCIDENTE,
-            DEPARTAMENTO: MUNICIPIO_ID: transaccion.MUNICIPIO_ID.DEPARTAMENTO,
+            DEPARTAMENTO: transaccion.MUNICIPIO_ID.DEPARTAMENTO,
             TIPO_TRABAJO: transaccion.TRANSACCION,
             TECNOLOGIA_ID: ''
         };
