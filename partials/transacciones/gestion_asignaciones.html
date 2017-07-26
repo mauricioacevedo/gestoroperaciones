@@ -31,12 +31,12 @@
                                     <option value="" disabled>--Seleccione Concepto--</option>
                                 </select>
                             </li>
-                            <li ng-hide="true">
+                            <li>
 
                                 <!--i class="fa fa-globe" aria-hidden="true"> </i-->&nbsp;
                                 <select class="btn btn-default btn-xs grupo-select"
                                         style="width: 200px"
-                                        ng-model="imunicipio"
+                                        ng-model="iplaza"
                                         ng-options="d.MUNICIPIO_ID +'('+d.COUNTER+')'+ ''  for d in listadoMunicipios "
                                         ng-show="condicionMunicipiosShow()"
                                         >

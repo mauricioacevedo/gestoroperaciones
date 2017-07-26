@@ -8315,12 +8315,12 @@ class API extends REST {
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
 
-        $user = $this->_request['userID'];
-        $concepto = $this->_request['concepto'];
-        $plaza = $this->_request['plaza'];
-        $fuente = $this->_request['fuente'];
-        $username=$this->_request['username'];
-        $prioridad=$this->_request['prioridad'];
+        $user           =   $this->_request['userID'];
+        $concepto       =   $this->_request['concepto'];
+        $plaza          =   $this->_request['plaza'];
+        $fuente         =   $this->_request['fuente'];
+        $username       =   $this->_request['username'];
+        $prioridad      =   $this->_request['prioridad'];
 
 
 
@@ -8469,6 +8469,7 @@ class API extends REST {
 
 
         }else if($fuente=="SIEBEL"||$fuente=="EDATEL"){
+            $plaza2=" AND MUNICIPIO_ID='$plaza' ";
             $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ASGINGACIONES_SIEBEL');
             $sqlllamadas=   "SELECT PEDIDO_ID, ".
                 " SUBPEDIDO_ID, ".

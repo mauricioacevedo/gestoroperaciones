@@ -15222,7 +15222,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         $scope.busy = "";
         $scope.pedido1 = pedido1;
         $rootScope.error = "";
-        $scope.iplaza = 'TODOS';
+        //$scope.iplaza = 'TODOS';
         $scope.fuente = $scope.iconcepto.FUENTE;
         $scope.InfoPedido.SOURCE = 'AUTO';
         $scope.InfoPedido.FUENTE = $scope.fuente;
