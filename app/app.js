@@ -1087,9 +1087,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		//return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
 		return $http.post(serviceBase + 'opcionesGestionAsignaciones', opciones);
 	};
-    obj.getMunicipiosAsignacionesSiebel = function (conceptoSelected) {
+    obj.getMunicipiosAsignacionesSiebel = function (conceptoSelected, fuente) {
 		//return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
-        var opciones={concepto: conceptoSelected};
+        var opciones={concepto: conceptoSelected, fuente: fuente};
 		return $http.post(serviceBase + 'municipiosAsignacionesSiebel', opciones);
 	};
 	obj.getHistoricoPedido = function (pedido) {
@@ -15825,8 +15825,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
     };
 
       // Cargar Opciones para la gestion --------------------------------
-    $scope.listarMunicipiosAsignacionesSiebel = function (concepto) {
-        services.getMunicipiosAsignacionesSiebel(concepto).then(
+    $scope.listarMunicipiosAsignacionesSiebel = function (concepto, fuente) {
+        services.getMunicipiosAsignacionesSiebel(concepto, fuente).then(
             function (data) {
                 $scope.listadoMunicipios=data.data;
                 return data.data;
@@ -15846,11 +15846,12 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
     };
 
     $scope.checkMunicipiosAsignaciones = function () {
-
+        /*
         if($scope.iconcepto.FUENTE=='SIEBEL' & ( $scope.iconcepto.CONCEPTO_ID=='COBERTURA' | $scope.iconcepto.CONCEPTO_ID=='DISPONIBILIDAD' | $scope.iconcepto.CONCEPTO_ID=='CONSTRUCCION' | $scope.iconcepto.CONCEPTO_ID=='DISENO' )){
 
             $scope.listarMunicipiosAsignacionesSiebel($scope.iconcepto.CONCEPTO_ID);
-        }
+        } */
+        $scope.listarMunicipiosAsignacionesSiebel($scope.iconcepto.CONCEPTO_ID, $scope.iconcepto.FUENTE);
     };
 
     $scope.checkMunicipiosAsignaciones();

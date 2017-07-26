@@ -8577,7 +8577,8 @@ class API extends REST {
         if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
             $plaza="";
         }else{
-            $plaza=" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
+            //$plaza=" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
+            $plaza=" AND b.MUNICIPIO_ID IN ('$plaza') ";
         }
 
         //$parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
@@ -16192,9 +16193,10 @@ class API extends REST {
 
         $params 	= json_decode(file_get_contents('php://input'),true);
         $concepto 	= $params['concepto'];
+        $fuente     = $params['fuente'];
         $today		= date("Y-m-d");
 
-        $filtros= " and o.STATUS ='PENDI_PETEC' and o.FUENTE='SIEBEL' AND o.CONCEPTO_ID='$concepto' ".
+        $filtros= " and o.STATUS ='PENDI_PETEC' and o.FUENTE='$fuente' AND o.CONCEPTO_ID='$concepto' ".
                     " GROUP BY o.MUNICIPIO_ID ORDER BY COUNT(*) DESC ";
 
         $query=	" SELECT ".
