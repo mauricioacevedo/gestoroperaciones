@@ -15852,7 +15852,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
             $scope.listarMunicipiosAsignacionesSiebel($scope.iconcepto.CONCEPTO_ID);
         } */
-        $scope.listarMunicipiosAsignacionesSiebel($scope.iconcepto.CONCEPTO_ID, $scope.iconcepto.FUENTE);
+        if(typeof  $scope.iconcepto !== "undefined"){
+            $scope.listarMunicipiosAsignacionesSiebel($scope.iconcepto.CONCEPTO_ID, $scope.iconcepto.FUENTE);
+        }
+
     };
 
     $scope.checkMunicipiosAsignaciones();
