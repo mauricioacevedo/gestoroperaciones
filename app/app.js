@@ -15760,9 +15760,12 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 					});
 				}
 
+                $scope.checkMunicipiosAsignaciones();
+
             }, function (err) {
                 $rootScope.errorDatos 			= err.data[0];
                 $scope.guardando 				= false;
+                $scope.checkMunicipiosAsignaciones();
 
             }
 		)
