@@ -8322,7 +8322,7 @@ class API extends REST {
         $username       =   $this->_request['username'];
         $prioridad      =   $this->_request['prioridad'];
 
-
+        var_dump($plaza);
 
         $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
