@@ -5181,10 +5181,44 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 		$scope.transaccion.USUARIO = userID;
 		$scope.transaccion.USERNAME = $rootScope.logedUser.name;
 
-		services.insertTransaccionNCA($scope.transaccion).then(function (data) {
+        $scope.InfoGestion = {
+            pedido: transaccion.OFERTA,
+            fuente: 'SIEBEL',
+            actividad: 'ESTUDIO',
+            fecha_fin: $scope.transaccion.FECHA_FIN,
+            user: $rootScope.logedUser.login,
+            ESTADO_ID: transaccion.ESTADO_FINAL,
+            OBSERVACIONES_PROCESO: transaccion.OBSERVACION,
+            estado: transaccion.ESTADO_FINAL,
+            duracion: $scope.transaccion.DURACION,
+            fecha_estado: transaccion.FECHA+' 00:00:00',
+            fecha_inicio: $scope.transaccion.FECHA_FIN,
+            concepto_final: transaccion.ESTADO_FINAL,
+            CONCEPTO_ID: transaccion.ESTADO,
+            CONCEPTO_ANTERIOR: transaccion.ESTADO,
+            source: 'MANUAL',
+            PEDIDO_ID: transaccion.OFERTA,
+            SUBPEDIDO_ID: '1',
+            MUNICIPIO_ID: transaccion.MUNICIPIO_ID,
+            motivo_malo: transaccion.OBSERVACION,
+            idllamada: '',
+            nuevopedido: '',
+            horaLlamar: '',
+            INCIDENTE: transaccion.INCIDENTE,
+            TIPO_TRABAJO: transaccion.TRANSACCION
+        };
+
+        services.putGestionAsignaciones($scope.InfoGestion).then(function (data) {
+                $location.path('/nca/');
+                return data.data;
+            }
+        )
+
+		/*services.insertTransaccionNCA($scope.transaccion).then(function (data) {
 			$location.path('/nca/');
 			return data.data;
-		});
+		}); */
+
 	};
 
 	$scope.listado_transacciones = [];
