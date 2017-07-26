@@ -15230,7 +15230,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         console.log($scope.iplaza);
 
         if(angular.equals($scope.iplaza,{})){
-            $scope.iplaza.MUNICIPIO_ID ="TODO";
+            $scope.iplaza.MUNICIPIO_ID ="TODOS";
         }
 
 
