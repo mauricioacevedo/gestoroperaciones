@@ -15833,9 +15833,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 return data.data;
 
             },
-            function errorCallback(response, status) {
+            function errorCallback(res) {
                 //console.log(status);
-                $rootScope.errorDatos = 'Error, No es posible traer el listado de municipios.. '+status;
+                $rootScope.errorDatos = res.data[0];
 
             }
         );

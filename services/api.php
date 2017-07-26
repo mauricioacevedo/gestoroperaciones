@@ -16225,8 +16225,8 @@ class API extends REST {
 
 
         }else{
-            $error="Error en extraccion de municipios.";
-            $this->response($this->json($error), 400);
+            $error="Error. Este concepto no tiene pendientes";
+            $this->response($this->json(array($error)), 400);
         }
 
     }// ------------------------------------------------------------------------ Parametros Acciones Nuevo
