@@ -15227,8 +15227,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         $scope.InfoPedido.SOURCE = 'AUTO';
         $scope.InfoPedido.FUENTE = $scope.fuente;
 
+        console.log($scope.iplaza);
+
         if(angular.equals($scope.iplaza,{})){
-            $scope.iplaza ="TODO";
+            $scope.iplaza.MUNICIPIO_ID ="TODO";
         }
 
 
