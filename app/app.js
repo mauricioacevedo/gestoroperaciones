@@ -5295,6 +5295,8 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
         )
     }
 
+    $scope.objMunicipios();
+
 
 });
 
