@@ -7315,8 +7315,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
     $scope.checkMunicipiosAsignaciones = function () {
         $rootScope.errorDatos = null;
-        if(!angular.equals($scope.iplaza, {})){
-            $scope.listarMunicipiosAsignacionesSiebel($scope.iplaza, 'FENIX_NAL');
+        if(!angular.equals($scope.iconcepto, {})){
+            $scope.listarMunicipiosAsignacionesSiebel($scope.iconcepto, 'FENIX_NAL');
         }
 
     };
