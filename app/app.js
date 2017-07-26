@@ -5205,7 +5205,9 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
             nuevopedido: '',
             horaLlamar: '',
             INCIDENTE: transaccion.INCIDENTE,
-            TIPO_TRABAJO: transaccion.TRANSACCION
+            DEPARTAMENTO: '',
+            TIPO_TRABAJO: transaccion.TRANSACCION,
+            TECNOLOGIA_ID: ''
         };
 
         services.putGestionAsignaciones($scope.InfoGestion).then(function (data) {
@@ -15701,6 +15703,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 horaLlamar: InfoPedido.PROGRAMACION,
                 INCIDENTE: InfoPedido.INCIDENTE,
                 TRANSACCION: gestion.DESC_TIPO_TRABAJO,
+                DEPARTAMENTO: gestion.DEPARTAMENTO,
+                TIPO_TRABAJO: gestion.TIPO_TRABAJO,
+                TECNOLOGIA_ID: gestion.TECNOLOGIA_ID,
                 FECHA: gestion.FECHA_ESTADO,
                 ID: gestion.ID
             };
