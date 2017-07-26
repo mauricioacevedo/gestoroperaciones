@@ -16196,7 +16196,13 @@ class API extends REST {
         $fuente     = $params['fuente'];
         $today		= date("Y-m-d");
 
-        $filtros= " and o.STATUS ='PENDI_PETEC' and o.FUENTE='$fuente' AND o.CONCEPTO_ID='$concepto' ".
+        if($fuente=='FENIX_NAL'){
+            $paramFuente = " o.FUENTE in ('FENIX_NAL','FENIX_BOG')";
+        }else{
+            $paramFuente = " o.FUENTE='$fuente'";
+        }
+
+        $filtros= " and o.STATUS ='PENDI_PETEC' and $paramFuente AND o.CONCEPTO_ID='$concepto' ".
                     " GROUP BY o.MUNICIPIO_ID ORDER BY COUNT(*) DESC ";
 
         $query=	" SELECT ".
