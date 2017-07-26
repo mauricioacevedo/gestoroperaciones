@@ -7320,7 +7320,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
         }
 
     };
-
+    $scope.checkMunicipiosAsignaciones();
 
 });//--------------------fin asignacion-----------------------------
 
