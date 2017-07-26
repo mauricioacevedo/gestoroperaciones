@@ -18709,6 +18709,38 @@ class API extends REST {
         return "NO";
     }
 
+
+    /**
+     * @uses objMunicipios()
+     */
+    private function objMunicipios(){
+        if($this->get_request_method() != "GET"){
+            $this->response('Metodo no soportado',406);
+        }
+
+        $sql =  " SELECT m.ID ".
+                " , m.MUNICIPIO_ID ".
+                " , m.MUNICIPIO ".
+                " , m.DEPARTAMENTO ".
+                " , m.REGIONAL ".
+                " FROM portalbd.tbl_municipios m ";
+
+        $r = $this->mysqli->query($sql);
+
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                $result[] = $row;
+            }
+
+            $this->response($this->json(array($result)), 200); // send user details
+        }else{
+            $error = "No hay datos.";
+            $this->response($this->json(array($error)), 403);
+        }
+
+    }
+
 }//cierre de la clase
 
 // Initiiate Library

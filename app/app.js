@@ -5023,7 +5023,7 @@ app.controller('nuevoTipsCtrl', function ($scope, $rootScope, $location, $routeP
 
 });
 //--------------ingreso de NCA--------------------
-app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
+app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services) {
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
 	document.getElementById('logout').className = "btn btn-md btn-danger";
@@ -5285,6 +5285,15 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 		});
 
 	};
+
+	$scope.objMunicipios = function () {
+        $http.get('./services/objMunicipios').then(
+            function (res) {
+                $scope.lstMunicipios = res.data[0];
+
+            }
+        )
+    }
 
 
 });

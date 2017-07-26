@@ -31,6 +31,15 @@
             <div class= "form-group"><!--Inicia Div de Municipio-->
                 <label class= "col-md-2">Municipio: </label>
                 <div class="col-md-4">
+					<ui-select ng-model="transaccion.MUNICIPIO_ID" style="width:200px;" append-to-body="true">
+						<ui-select-match placeholder="Localidad">
+							{{transaccion.MUNICIPIO_ID.MUNICIPIO}}
+						</ui-select-match>
+						<ui-select-choices repeat="g  in  lstMunicipios | filter: $select.search track by $index">
+							<div ng-bind-html="g.MUNICIPIO | highlight: $select.search"></div>
+							<small ng-bind-html="g.DEPARTAMENTO | highlight: $select.search"></small>
+						</ui-select-choices>
+					</ui-select>
             	<select ng-model="transaccion.MUNICIPIO_ID" class="form-control" style="width: auto;">
 					<option value='' disabled>----SELECCIONE----</option>
             		<option value='BARRANCABERMEJA'>BARRANCABERMEJA</option>
