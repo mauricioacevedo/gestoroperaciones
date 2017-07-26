@@ -66,8 +66,10 @@
 
                 <div class="col-lg-5 col-xs-5 form-inline">
                     <label for="conceptos">Concepto:</label>
-                    <select id="conceptos" ng-model="iconcepto" class="form-control" style="width: 100px"
-                            ng-change="GenerarOpcionesGestion()">
+                    <select id="conceptos" ng-model="iconcepto"
+                            class="form-control" style="width: 100px"
+
+                            ng-change="GenerarOpcionesGestion(); checkMunicipiosAsignaciones()">
                         <option value='PETEC'>PETEC</option>
                         <option value='15'>15</option>
                         <option value='19'>19</option>
@@ -81,18 +83,14 @@
 
                     </select>
                     <label for="Plaza">Plaza:</label>
-                    <select id="Plaza" ng-model="iplaza" class="form-control" style="width: 120px">
-                        <option value="TODOS">TODOS</option>
-                        <option value="MEDELLIN">MEDELLIN</option>
-                        <option value="BARRANQUILLA">BARRANQUILLA</option>
-                        <option value="BOGOTA">BOGOTA</option>
-                        <option value="BOGOTA-COBRE">BOGOTA-COBRE</option>
-                        <option value="CALI">CALI</option>
-                        <option value="CARTAGENA">CARTAGENA</option>
-                        <option value="EJE CAFETERO">EJE CAFETERO</option>
-                        <option value="SANTANDERES">SANTANDERES</option>
-                        <option value="TOLIMA">TOLIMA</option>
+                    <select id="Plaza" class="form-control"
+                            style="width: 150px"
+                            ng-model="iplaza"
+                            ng-options="d.MUNICIPIO_ID +'('+d.COUNTER+')'+ ''  for d in listadoMunicipios "
+                    >
+                        <option value="" disabled>--Seleccione Municipio--</option>
                     </select>
+
 
 
                 </div>

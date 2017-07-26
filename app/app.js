@@ -7298,6 +7298,29 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
         return $scope.error;
     };
 
+    $scope.listarMunicipiosAsignacionesSiebel = function (concepto, fuente) {
+        services.getMunicipiosAsignacionesSiebel(concepto, fuente).then(
+            function (data) {
+                $scope.listadoMunicipios=data.data;
+                return data.data;
+
+            },
+            function errorCallback(res) {
+                //console.log(status);
+                $rootScope.errorDatos = res.data[0];
+
+            }
+        );
+    };
+
+    $scope.checkMunicipiosAsignaciones = function () {
+        $rootScope.errorDatos = null;
+        if(!angular.equals($scope.iplaza, {})){
+            $scope.listarMunicipiosAsignacionesSiebel($scope.iplaza, 'FENIX_NAL');
+        }
+
+    };
+
 
 });//--------------------fin asignacion-----------------------------
 
