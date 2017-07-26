@@ -15223,12 +15223,14 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         $scope.busy = "";
         $scope.pedido1 = pedido1;
         $rootScope.error = "";
-        //$scope.iplaza = 'TODOS';
         $scope.fuente = $scope.iconcepto.FUENTE;
         $scope.InfoPedido.SOURCE = 'AUTO';
         $scope.InfoPedido.FUENTE = $scope.fuente;
 
-        //console.log($scope.iconcepto);
+        if(angular.equals($scope.iplaza,{})){
+            $scope.iplaza ="TODO";
+        }
+
 
         var demePedidoButton = document.getElementById("iniciar");
         demePedidoButton.setAttribute("disabled", "disabled");
