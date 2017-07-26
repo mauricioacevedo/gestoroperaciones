@@ -5199,13 +5199,13 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
             source: 'MANUAL',
             PEDIDO_ID: transaccion.OFERTA,
             SUBPEDIDO_ID: '1',
-            MUNICIPIO_ID: transaccion.MUNICIPIO_ID,
+            MUNICIPIO_ID: transaccion.MUNICIPIO_ID.MUNICIPIO_ID,
             motivo_malo: transaccion.OBSERVACION,
             idllamada: '',
             nuevopedido: '',
             horaLlamar: '',
             INCIDENTE: transaccion.INCIDENTE,
-            DEPARTAMENTO: '',
+            DEPARTAMENTO: MUNICIPIO_ID: transaccion.MUNICIPIO_ID.DEPARTAMENTO,
             TIPO_TRABAJO: transaccion.TRANSACCION,
             TECNOLOGIA_ID: ''
         };
@@ -5293,7 +5293,7 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 
             }
         )
-    }
+    };
 
     $scope.objMunicipios();
 

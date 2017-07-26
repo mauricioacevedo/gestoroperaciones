@@ -32,7 +32,7 @@
                 <label class= "col-md-2">Municipio: </label>
                 <div class="col-md-4">
 					<ui-select ng-model="transaccion.MUNICIPIO_ID" style="width:200px;" append-to-body="true">
-						<ui-select-match placeholder="Localidad">
+						<ui-select-match placeholder="MUNICIPIO">
 							{{transaccion.MUNICIPIO_ID.MUNICIPIO}}
 						</ui-select-match>
 						<ui-select-choices repeat="g  in  lstMunicipios | filter: $select.search track by $index">
