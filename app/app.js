@@ -14956,6 +14956,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.data					= {};						// Objeto de datos.
 	$scope.iconcepto			= {};						// Objeto de datos que contiene Grupo, Concepto y Fuente.
 	$scope.ifuente				= {};						// Objeto con la fuente para hacer las busquedas.
+    $scope.iplaza               = {};
 	$scope.listaOpcionesGestion = [];						// Arreglo con listado de Opciones para la Gestion.
 	$scope.info					= {};						// Objeto con Info del pedido en gestion.
     $scope.auditoria			= {};
