@@ -17263,7 +17263,7 @@ class API extends REST {
                 " '".$gestion['gestion']['OBSERVACIONES_PROCESO']."'  , ".
                 " '".$gestion['gestion']['user']."'  ".
                 " ) ";
-            $insertNca = $this->mysqli->query($sqlNca);
+            //$insertNca = $this->mysqli->query($sqlNca);
             $guardar = true;
         }else{
             if($fuente==='FENIX_NAL'){// Si es fenix, vaya y mire si cambio de concepto
