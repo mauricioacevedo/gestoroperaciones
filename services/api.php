@@ -8405,7 +8405,7 @@ class API extends REST {
 
 
         if($concepto=="PETEC"){
-            if($plaza=="BOGOTA-COBRE"){
+            if($plaza=="BOG-COBRE"){
                 $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') ";
             }else {
 
