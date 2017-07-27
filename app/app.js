@@ -15771,7 +15771,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 $scope.bpedido 					= '';
                 $scope.busy 					= "";
                 $scope.error 					= "";
-                $scope.iplaza 					= {MUNICIPIO_ID: $scope.municipio};
+                $scope.iplaza 					= {MUNICIPIO_ID: $scope.municipio, COUNTER:0};
                 $scope.buscar 					= null;
                 $scope.info						= {};
                 $scope.habilitaSiebel			= false;
