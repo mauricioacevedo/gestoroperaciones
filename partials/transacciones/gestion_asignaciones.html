@@ -37,7 +37,7 @@
                                 <select class="btn btn-default btn-xs grupo-select"
                                         style="width: 200px"
                                         ng-model="iplaza"
-                                        ng-options="d.MUNICIPIO_ID +'('+d.COUNTER+')'+ ''  for d in listadoMunicipios "
+                                        ng-options="d.MUNICIPIO_ID +'('+d.COUNTER+')'+ ''  for d in listadoMunicipios track by d.MUNICIPIO_ID"
                                         ng-show="condicionMunicipiosShow()"
                                         >
                                     <option value="" disabled>--Seleccione Municipio--</option>
