@@ -7304,7 +7304,7 @@ class API extends REST {
 
             $r = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
 
-            if ($plaza=="BOGOTA-COBRE"){//pregunta si se debe buscar en fenix Bogotá o se debe buscar en fenix nacional por medio de la plaza.
+            if ($plaza=="BOG-COBRE"){//pregunta si se debe buscar en fenix Bogotá o se debe buscar en fenix nacional por medio de la plaza.
                 //echo "Esta Entrando por aca para llamar a fenix Bogotá";
                 $success=$this->buscarPedidoFenixBogota($pedido);
 
