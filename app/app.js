@@ -15752,6 +15752,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 FECHA: gestion.FECHA_ESTADO,
                 ID: gestion.ID
             };
+		$scope.municipio= $scope.InfoGestion.MUNICIPIO_ID;
 
         services.putGestionAsignaciones($scope.InfoGestion).then(
         	function (data) {
@@ -15788,8 +15789,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				}
 
                 $scope.checkMunicipiosAsignaciones();
-                $scope.listadoMunicipios.MUNICIPIO_ID=gestion.MUNICIPIO_ID;
-                console.log($scope.listadoMunicipios.MUNICIPIO_ID);
+               // $scope.listadoMunicipios.MUNICIPIO_ID=gestion.MUNICIPIO_ID;
+                //console.log($scope.listadoMunicipios.MUNICIPIO_ID);
             }, function (err) {
                 $rootScope.errorDatos 			= err.data[0];
                 $scope.guardando 				= false;
@@ -15865,6 +15866,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         services.getMunicipiosAsignacionesSiebel(concepto, fuente).then(
             function (data) {
                 $scope.listadoMunicipios=data.data;
+                $scope.listadoMunicipios.MUNICIPIO_ID= $scope.municipio;
                 return data.data;
 
             },
