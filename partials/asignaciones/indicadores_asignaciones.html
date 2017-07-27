@@ -188,16 +188,6 @@
                             </span>
                         </div>
                         <div class="panel-body">
-                            <div>
-                                <button type="button" class="btn btn-primary btn-xs"
-                                        ng-click=""
-                                        data-toggle="modal" data-target="#modalPriorizar" data-backdrop="static"
-                                        uib-tooltip="Priorizar"
-                                        tooltip-placement="top"
-                                        tooltip-trigger="'mouseenter'">
-                                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                                </button>
-                            </div>
                             <div class="tab-content">
                                 <div ng-class="{'tab-pane fade in active': activeTabs === 1, 'tab-pane' : activeTabs !== 1}"
                                      id="tab1default">
@@ -315,9 +305,18 @@
                             </div>
                         </div>
                         <div class="panel-footer clearfix">
-                            <div class="col-md-8">
-                                <ul class="nav navbar-nav navbar-left">
-                                </ul>
+                            <div class="col-md-12">
+                                <div class="text-right">
+                                    <span>Priorizar Pedidos </span>
+                                    <button type="button" class="btn btn-primary btn-xs"
+                                            ng-click=""
+                                            data-toggle="modal" data-target="#modalPriorizar" data-backdrop="static"
+                                            uib-tooltip="Priorizar"
+                                            tooltip-placement="top"
+                                            tooltip-trigger="'mouseenter'">
+                                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
