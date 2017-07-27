@@ -15771,7 +15771,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 $scope.bpedido 					= '';
                 $scope.busy 					= "";
                 $scope.error 					= "";
-                $scope.iplaza 					= {MUNICIPIO_ID: $scope.municipio, COUNTER:0};
+                $scope.iplaza 					= [{MUNICIPIO_ID: $scope.municipio}];
                 $scope.buscar 					= null;
                 $scope.info						= {};
                 $scope.habilitaSiebel			= false;
@@ -15867,7 +15867,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
             function (data) {
                 $scope.listadoMunicipios=data.data;
                 console.log($scope.municipio);
-                $scope.iplaza = {MUNICIPIO_ID: $scope.municipio};
+                $scope.iplaza = [{MUNICIPIO_ID: $scope.municipio}];
+                console.log($scope.iplaza );
                 return data.data;
 
             },
