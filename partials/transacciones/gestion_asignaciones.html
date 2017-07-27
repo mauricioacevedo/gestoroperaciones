@@ -37,7 +37,7 @@
                                 <select class="btn btn-default btn-xs grupo-select"
                                         style="width: 200px"
                                         ng-model="iplaza"
-                                        ng-init="iplaza=municipio"
+                                        ng-init="iplaza.MUNICIPIO_ID=municipio"
                                         ng-options="d.MUNICIPIO_ID +'('+d.COUNTER+')'+ ''  for d in listadoMunicipios "
                                         ng-show="condicionMunicipiosShow()"
                                         >
