@@ -15788,11 +15788,12 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				}
 
                 $scope.checkMunicipiosAsignaciones();
+                $scope.listadoMunicipios.MUNICIPIO_ID=gestion.MUNICIPIO_ID;
 
             }, function (err) {
                 $rootScope.errorDatos 			= err.data[0];
                 $scope.guardando 				= false;
-                $scope.checkMunicipiosAsignaciones();
+                //$scope.checkMunicipiosAsignaciones();
 
             }
 		)
