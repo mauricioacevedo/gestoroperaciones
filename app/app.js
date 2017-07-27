@@ -15853,9 +15853,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 return data.data;
 
             },
-            function errorCallback(response, status) {
+            function errorCallback(response) {
                 //console.log(status);
-                $rootScope.errorDatos = 'Error, revisar opciones '+status;
+                $rootScope.errorDatos = 'Error, revisar opciones '+response.status;
 
             }
         );
