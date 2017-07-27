@@ -15866,7 +15866,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         services.getMunicipiosAsignacionesSiebel(concepto, fuente).then(
             function (data) {
                 $scope.listadoMunicipios=data.data;
-                $scope.listadoMunicipios.MUNICIPIO_ID= $scope.municipio;
+                $scope.iplaza.MUNICIPIO_ID= $scope.municipio;
                 return data.data;
 
             },
