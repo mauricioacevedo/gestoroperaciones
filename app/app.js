@@ -1087,6 +1087,11 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		//return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
 		return $http.post(serviceBase + 'opcionesGestionAsignaciones', opciones);
 	};
+    obj.getMunicipiosAsignacionesSiebel = function (conceptoSelected, fuente) {
+		//return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
+        var opciones={concepto: conceptoSelected, fuente: fuente};
+		return $http.post(serviceBase + 'municipiosAsignacionesSiebel', opciones);
+	};
 	obj.getHistoricoPedido = function (pedido) {
 		return $http.post(serviceBase + 'listaHistoricoPedidos', {
 			pedido: pedido
@@ -4068,6 +4073,17 @@ $scope.ProductividadPorHora = function (fecha){
 $scope.actualizarGrafica();
 $scope.topProductivos();
 
+    $scope.calcularPendientesSiebelFnx = function (){
+        $http.get('./services/pendientesSiebelFenix').then(
+        	function(data){
+        		$scope.objTabla = data.data[0];
+        		$scope.objTablaFcarga = $scope.objTabla[0].FECHA_CARGA;
+
+        }, function(res){
+                $rootScope.errorDatos = res.data[0];
+			});
+    };
+
 });//--------------- fin Controlador indicadores Asignaciones -----------------------
 
 
@@ -5007,7 +5023,7 @@ app.controller('nuevoTipsCtrl', function ($scope, $rootScope, $location, $routeP
 
 });
 //--------------ingreso de NCA--------------------
-app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
+app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services) {
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
 	document.getElementById('logout').className = "btn btn-md btn-danger";
@@ -5165,10 +5181,46 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 		$scope.transaccion.USUARIO = userID;
 		$scope.transaccion.USERNAME = $rootScope.logedUser.name;
 
-		services.insertTransaccionNCA($scope.transaccion).then(function (data) {
+        $scope.InfoGestion = {
+            pedido: transaccion.OFERTA,
+            fuente: 'SIEBEL',
+            actividad: 'ESTUDIO',
+            fecha_fin: $scope.transaccion.FECHA_FIN,
+            user: $rootScope.logedUser.login,
+            ESTADO_ID: transaccion.ESTADO_FINAL,
+            OBSERVACIONES_PROCESO: transaccion.OBSERVACION,
+            estado: transaccion.ESTADO_FINAL,
+            duracion: $scope.transaccion.DURACION,
+            fecha_estado: transaccion.FECHA+' 00:00:00',
+            fecha_inicio: $scope.transaccion.FECHA_FIN,
+            concepto_final: transaccion.ESTADO_FINAL,
+            CONCEPTO_ID: transaccion.ESTADO,
+            CONCEPTO_ANTERIOR: transaccion.ESTADO,
+            source: 'MANUAL',
+            PEDIDO_ID: transaccion.OFERTA,
+            SUBPEDIDO_ID: '1',
+            MUNICIPIO_ID: transaccion.MUNICIPIO_ID.MUNICIPIO,
+            motivo_malo: transaccion.OBSERVACION,
+            idllamada: '',
+            nuevopedido: '',
+            horaLlamar: '',
+            INCIDENTE: transaccion.INCIDENTE,
+            DEPARTAMENTO: transaccion.MUNICIPIO_ID.DEPARTAMENTO,
+            TIPO_TRABAJO: transaccion.TRANSACCION,
+            TECNOLOGIA_ID: ''
+        };
+
+        services.putGestionAsignaciones($scope.InfoGestion).then(function (data) {
+                $location.path('/nca/');
+                return data.data;
+            }
+        )
+
+		/*services.insertTransaccionNCA($scope.transaccion).then(function (data) {
 			$location.path('/nca/');
 			return data.data;
-		});
+		}); */
+
 	};
 
 	$scope.listado_transacciones = [];
@@ -5233,6 +5285,17 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 		});
 
 	};
+
+	$scope.objMunicipios = function () {
+        $http.get('./services/objMunicipios').then(
+            function (res) {
+                $scope.lstMunicipios = res.data[0];
+
+            }
+        )
+    };
+
+    $scope.objMunicipios();
 
 
 });
@@ -6858,7 +6921,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.pedidoinfo = 'Pedido';
 
 		//$scope.pedidoinfo='';
-		var kami = services.buscarPedido(bpedido, iplaza, $scope.pedido1, $rootScope.logedUser.login, $rootScope.logedUser.name).then(function (data) {
+		var kami = services.buscarPedido(bpedido, iplaza.MUNICIPIO_ID, $scope.pedido1, $rootScope.logedUser.login, $rootScope.logedUser.name).then(function (data) {
 			$scope.peds = data.data;
 			//console.log(data.status);
 			var dat = data.status;
@@ -7147,6 +7210,10 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.busy = "";
 		$scope.pedido1 = pedido1;
 
+        if(angular.equals($scope.iplaza,{})){
+            $scope.iplaza.MUNICIPIO_ID ="TODOS";
+        }
+
 
 		$scope.error = "";
 
@@ -7154,7 +7221,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-sm btn-success disabled";
 
-		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '').then(function (data) {
+		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '').then(function (data) {
 			$scope.peds = data.data;
 			//console.log("este es el municipio" + $scope.peds[0].MUNICIPIO_ID);
 			//$scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
@@ -7235,6 +7302,29 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
         return $scope.error;
     };
 
+    $scope.listarMunicipiosAsignacionesSiebel = function (concepto, fuente) {
+        services.getMunicipiosAsignacionesSiebel(concepto, fuente).then(
+            function (data) {
+                $scope.listadoMunicipios=data.data;
+                return data.data;
+
+            },
+            function errorCallback(res) {
+                //console.log(status);
+                $rootScope.errorDatos = res.data[0];
+
+            }
+        );
+    };
+
+    $scope.checkMunicipiosAsignaciones = function () {
+        $rootScope.errorDatos = null;
+        if(!angular.equals($scope.iconcepto, {})){
+            $scope.listarMunicipiosAsignacionesSiebel($scope.iconcepto, 'FENIX_NAL');
+        }
+
+    };
+    $scope.checkMunicipiosAsignaciones();
 
 });//--------------------fin asignacion-----------------------------
 
@@ -14893,6 +14983,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.data					= {};						// Objeto de datos.
 	$scope.iconcepto			= {};						// Objeto de datos que contiene Grupo, Concepto y Fuente.
 	$scope.ifuente				= {};						// Objeto con la fuente para hacer las busquedas.
+    $scope.iplaza               = {};
 	$scope.listaOpcionesGestion = [];						// Arreglo con listado de Opciones para la Gestion.
 	$scope.info					= {};						// Objeto con Info del pedido en gestion.
     $scope.auditoria			= {};
@@ -14901,6 +14992,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.programar			= false;					// Habilitar el campo programación.
 	$scope.accRdy				= false; 					// Habilitar el boton de Guardar.
     $scope.pedidoIsActive 		= false;
+    $scope.imunicipio           = {};
+    $scope.listadoMunicipios    =[];
 	//var varDondeGuardar 		= '';
 	//var varEstadoGuardar		= '';
 	//var varObsesGuardar			= '';
@@ -14981,7 +15074,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				$scope.data.totalItems=data.data[1];
 				return data.data;
 		});
-        };
+    };
 
 		//$scope.PedidosPorUser();
 
@@ -15157,18 +15250,22 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         $scope.busy = "";
         $scope.pedido1 = pedido1;
         $rootScope.error = "";
-        $scope.iplaza = 'TODOS';
         $scope.fuente = $scope.iconcepto.FUENTE;
         $scope.InfoPedido.SOURCE = 'AUTO';
         $scope.InfoPedido.FUENTE = $scope.fuente;
 
-        //console.log($scope.iconcepto);
+        //console.log($scope.iplaza);
+
+        if(angular.equals($scope.iplaza,{})){
+            $scope.iplaza.MUNICIPIO_ID ="TODOS";
+        }
+
 
         var demePedidoButton = document.getElementById("iniciar");
         demePedidoButton.setAttribute("disabled", "disabled");
         demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-        var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE).then(function (data) {
+        var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE).then(function (data) {
 
             $scope.peds = data.data;
 
@@ -15649,9 +15746,13 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 horaLlamar: InfoPedido.PROGRAMACION,
                 INCIDENTE: InfoPedido.INCIDENTE,
                 TRANSACCION: gestion.DESC_TIPO_TRABAJO,
+                DEPARTAMENTO: gestion.DEPARTAMENTO,
+                TIPO_TRABAJO: gestion.TIPO_TRABAJO,
+                TECNOLOGIA_ID: gestion.TECNOLOGIA_ID,
                 FECHA: gestion.FECHA_ESTADO,
                 ID: gestion.ID
             };
+        $scope.municipio= gestion.MUNICIPIO_ID;
 
         services.putGestionAsignaciones($scope.InfoGestion).then(
         	function (data) {
@@ -15670,7 +15771,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 $scope.bpedido 					= '';
                 $scope.busy 					= "";
                 $scope.error 					= "";
-                $scope.iplaza 					= 'TODOS';
+                //$scope.iplaza 					= [{MUNICIPIO_ID: $scope.municipio}];
                 $scope.buscar 					= null;
                 $scope.info						= {};
                 $scope.habilitaSiebel			= false;
@@ -15687,9 +15788,13 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 					});
 				}
 
+                $scope.checkMunicipiosAsignaciones();
+               // $scope.listadoMunicipios.MUNICIPIO_ID=gestion.MUNICIPIO_ID;
+                //console.log($scope.listadoMunicipios.MUNICIPIO_ID);
             }, function (err) {
                 $rootScope.errorDatos 			= err.data[0];
                 $scope.guardando 				= false;
+                //$scope.checkMunicipiosAsignaciones();
 
             }
 		)
@@ -15748,14 +15853,53 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 return data.data;
 
             },
-            function errorCallback(response, status) {
+            function errorCallback(response) {
                 //console.log(status);
-                $rootScope.errorDatos = 'Error, revisar opciones '+status;
+                $rootScope.errorDatos = 'Error, revisar opciones '+response.status;
 
             }
         );
     };
 
+      // Cargar Opciones para la gestion --------------------------------
+    $scope.listarMunicipiosAsignacionesSiebel = function (concepto, fuente) {
+        services.getMunicipiosAsignacionesSiebel(concepto, fuente).then(
+            function (data) {
+                $scope.listadoMunicipios=data.data;
+                $scope.iplaza = {'MUNICIPIO_ID':$scope.municipio};
+                //console.log($scope.municipio);
+                console.log($scope.iplaza );
+                return data.data;
+
+            },
+            function errorCallback(res) {
+                //console.log(status);
+                $rootScope.errorDatos = res.data[0];
+
+            }
+        );
+    };
+
+    $scope.condicionMunicipiosShow = function () {
+
+        return ($scope.iconcepto.FUENTE=='SIEBEL' & ( $scope.iconcepto.CONCEPTO_ID=='COBERTURA' | $scope.iconcepto.CONCEPTO_ID=='DISPONIBILIDAD' | $scope.iconcepto.CONCEPTO_ID=='CONSTRUCCION' | $scope.iconcepto.CONCEPTO_ID=='DISENO' ));
+    };
+
+    $scope.checkMunicipiosAsignaciones = function () {
+        $rootScope.errorDatos = null;
+        /*
+        if($scope.iconcepto.FUENTE=='SIEBEL' & ( $scope.iconcepto.CONCEPTO_ID=='COBERTURA' | $scope.iconcepto.CONCEPTO_ID=='DISPONIBILIDAD' | $scope.iconcepto.CONCEPTO_ID=='CONSTRUCCION' | $scope.iconcepto.CONCEPTO_ID=='DISENO' )){
+
+            $scope.listarMunicipiosAsignacionesSiebel($scope.iconcepto.CONCEPTO_ID);
+        } */
+        //console.log($scope.iconcepto);
+        if(!angular.equals($scope.iconcepto, {})){
+            $scope.listarMunicipiosAsignacionesSiebel($scope.iconcepto.CONCEPTO_ID, $scope.iconcepto.FUENTE);
+        }
+
+    };
+
+    $scope.checkMunicipiosAsignaciones();
     $scope.actualizarLightKPIS();
 
 });
