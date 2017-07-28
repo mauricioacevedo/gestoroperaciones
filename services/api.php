@@ -11107,7 +11107,7 @@ class API extends REST {
         }
         $page=$page*100;
         //counter
-        $query="SELECT count(*) as counter from transacciones_nca where FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59'";
+        $query="SELECT count(*) as counter from portalbd.pedidos where fuente='SIEBEL' and FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59'";
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter=0;
         if($rr->num_rows > 0){
@@ -11118,7 +11118,7 @@ class API extends REST {
         }
 
 
-        $query="SELECT * FROM transacciones_nca where FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59' order by FECHA_FIN desc limit 100 offset $page";
+        $query="SELECT * FROM portalbd.pedidos where fuente='SIEBEL' and FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59' order by FECHA_FIN desc limit 100 offset $page";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
