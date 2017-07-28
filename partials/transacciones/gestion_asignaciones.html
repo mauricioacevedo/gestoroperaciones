@@ -107,7 +107,7 @@
                                     <b><i class="fa fa-tasks" aria-hidden="true"> </i> INFORMACIÓN</b>
                                     <span class="pull-right">
                                         Concepto: <span class="btn btn-info btn-xs">{{info.CONCEPTO_ID}} </span>
-                                        Pedido CRM: <span class="btn btn-info btn-xs">{{info.PEDIDO_CRM || 'SIN'}} </span>
+                                        Pedido CRM: <button  class="btn btn-info btn-xs" ng-click="executeCopy(info.PEDIDO_CRM)">{{info.PEDIDO_CRM || 'SIN'}} </button>
                                     </span>
                                 </div>
                                 <div class="panel-body">
