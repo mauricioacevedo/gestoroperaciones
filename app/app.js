@@ -15752,7 +15752,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 FECHA: gestion.FECHA_ESTADO,
                 ID: gestion.ID
             };
-        $scope.municipio= gestion.MUNICIPIO_ID;
+        $scope.municipio= $scope.iplaza.MUNICIPIO_ID;
 
         services.putGestionAsignaciones($scope.InfoGestion).then(
         	function (data) {
