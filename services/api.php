@@ -8730,6 +8730,7 @@ class API extends REST {
         $x = $this->mysqli->query($sqlupdate);
 
         $query1="SELECT b.ID, ".
+            " b.ID as PARENTID, ".
             " b.PEDIDO_ID, ".
             " b.SUBPEDIDO_ID, ".
             " b.SOLICITUD_ID, ".
@@ -8775,7 +8776,8 @@ class API extends REST {
             " b.TELEFONO_AVISAR,	".
             " b.PROGRAMACION, ".
             " case when b.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ALTA' else 'NORMAL' end as PRIORIDAD, 	".
-            " b.APROVISIONADOR ".
+            " b.APROVISIONADOR, ".
+            " b.PEDIDO_CRM ".
             " from informe_petec_pendientesm b 	".
             " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto ";
 
