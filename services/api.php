@@ -8338,6 +8338,13 @@ class API extends REST {
         $pedido_actual = $this->_request['pedido_actual'];
         //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
 
+        $sqlupdate="update informe_petec_pendientesm set ASESOR='' where ASESOR='$user'";
+        //echo $sqlupdate;
+        $xxx = $this->mysqli->query($sqlupdate);
+
+        /*
+        * 2017-07-28:
+        *SE DEBE VOLVER A LA FORMA HABITUAL DE ENTREGA DE PEDIDOS YA QUE ESTE CODIGO CONTABA CUANDO SE DABA VARIAS VECES CONSECUTIVAS DEMEPEDIDO.....
         if($fuente=="SIEBEL"){//PARA LA FORMA DE SIEBEL SE QUIERE QUE ADMITA VARIOS PEDIDOS POR ASESOR!!!!
 
             if($pedido_actual!=''){
@@ -8368,7 +8375,7 @@ class API extends REST {
             //echo $sqlupdate;
             $xxx = $this->mysqli->query($sqlupdate);
         }
-
+        */
         //}
 
         //echo "WTF";
