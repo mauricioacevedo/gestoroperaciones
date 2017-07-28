@@ -8673,7 +8673,7 @@ class API extends REST {
                     "  $concepto ".
                     $plaza.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-                    " order by b.FECHA_ESTADO ASC";
+                    " order by b.VIEWS,b.FECHA_ESTADO ASC";
                 //echo $query1;
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
