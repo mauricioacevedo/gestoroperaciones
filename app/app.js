@@ -15286,7 +15286,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 $scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
                 $scope.prioridadPedido=$scope.peds[0].PRIORIDAD;
                 $scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
-                $scope.info.APROVISIONADOR=$scope.peds[0].APROVISIONADOR;
+                $scope.info.PEDIDO_CRM=$scope.peds[0].PEDIDO_CRM;
                 $scope.pedidoIsActive = true;
                 $rootScope.errorDatos = null;
                 $scope.fecha_inicio = $rootScope.fechaProceso();
@@ -15752,7 +15752,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 FECHA: gestion.FECHA_ESTADO,
                 ID: gestion.ID
             };
-        $scope.municipio= gestion.MUNICIPIO_ID;
+
+        //$scope.municipio= $scope.iplaza.MUNICIPIO_ID;
 
         services.putGestionAsignaciones($scope.InfoGestion).then(
         	function (data) {

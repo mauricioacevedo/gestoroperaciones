@@ -8338,6 +8338,13 @@ class API extends REST {
         $pedido_actual = $this->_request['pedido_actual'];
         //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
 
+        $sqlupdate="update informe_petec_pendientesm set ASESOR='' where ASESOR='$user'";
+        //echo $sqlupdate;
+        $xxx = $this->mysqli->query($sqlupdate);
+
+        /*
+        * 2017-07-28:
+        *SE DEBE VOLVER A LA FORMA HABITUAL DE ENTREGA DE PEDIDOS YA QUE ESTE CODIGO CONTABA CUANDO SE DABA VARIAS VECES CONSECUTIVAS DEMEPEDIDO.....
         if($fuente=="SIEBEL"){//PARA LA FORMA DE SIEBEL SE QUIERE QUE ADMITA VARIOS PEDIDOS POR ASESOR!!!!
 
             if($pedido_actual!=''){
@@ -8368,7 +8375,7 @@ class API extends REST {
             //echo $sqlupdate;
             $xxx = $this->mysqli->query($sqlupdate);
         }
-
+        */
         //}
 
         //echo "WTF";
@@ -8730,6 +8737,7 @@ class API extends REST {
         $x = $this->mysqli->query($sqlupdate);
 
         $query1="SELECT b.ID, ".
+            " b.ID as PARENTID, ".
             " b.PEDIDO_ID, ".
             " b.SUBPEDIDO_ID, ".
             " b.SOLICITUD_ID, ".
@@ -8775,7 +8783,8 @@ class API extends REST {
             " b.TELEFONO_AVISAR,	".
             " b.PROGRAMACION, ".
             " case when b.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ALTA' else 'NORMAL' end as PRIORIDAD, 	".
-            " b.APROVISIONADOR ".
+            " b.APROVISIONADOR, ".
+            " b.PEDIDO_CRM ".
             " from informe_petec_pendientesm b 	".
             " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto ";
 
@@ -11107,7 +11116,7 @@ class API extends REST {
         }
         $page=$page*100;
         //counter
-        $query="SELECT count(*) as counter from transacciones_nca where FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59'";
+        $query="SELECT count(*) as counter from portalbd.pedidos where fuente='SIEBEL' and FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59'";
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter=0;
         if($rr->num_rows > 0){
@@ -11118,7 +11127,7 @@ class API extends REST {
         }
 
 
-        $query="SELECT * FROM transacciones_nca where FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59' order by FECHA_FIN desc limit 100 offset $page";
+        $query="SELECT * FROM portalbd.pedidos where fuente='SIEBEL' and FECHA_FIN between '$fechaini 00:00:00' and '$fechafin 23:59:59' order by FECHA_FIN desc limit 100 offset $page";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 

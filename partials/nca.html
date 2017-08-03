@@ -72,18 +72,18 @@
                                     <th width="8%">Fecha</th>
                                     <th width="17%">Estado Final</th>
                                     <th width="27%">Observacion</th>
-                                    <th width="4%">Acciones</th>
+                                    <th ng-hide="true" width="4%">Acciones</th>
                             </thead>
                             <tbody>
                                     <tr ng-repeat="data in listado_transacciones| orderBy:'FECHA_FIN':true ">
-                                    <td>{{data.OFERTA}}</td>
-                                    <td>{{data.USUARIO}}</td>
-                                    <td>{{data.MUNICIPIO_ID}}</td>
-                                    <td>{{data.TRANSACCION}}</td>
-                                    <td>{{data.FECHA}}</td>
-                                    <td>{{data.ESTADO_FINAL}}</td>
-                                    <td>{{data.OBSERVACION}}</td>
-                                    <td align="center"><button class="btn btn-success btn-xs" value="edit!" ng-click="getTransaccionNCA(data.ID);"><i class="fa fa-pencil fa-lg"></i></button></td>
+                                    <td>{{data.pedido_id}}</td>
+                                    <td>{{data.user}}</td>
+                                    <td>{{data.municipio_id}}</td>
+                                    <td>{{data.TIPO_TRABAJO}}</td>
+                                    <td>{{data.fecha_fin}}</td>
+                                    <td>{{data.concepto_final}}</td>
+                                    <td>{{data.OBSERVACIONES_PROCESO}}</td>
+                                    <td ng-hide="true" align="center"><button class="btn btn-success btn-xs" value="edit!" ng-click="getTransaccionNCA(data.ID);"><i class="fa fa-pencil fa-lg"></i></button></td>
                             </tr>
                             </tbody>
                     </table>
