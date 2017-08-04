@@ -9163,7 +9163,7 @@ class API extends REST {
             " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
             " from pendientes_amarillas b".
-            "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
+            "  where b.STATUS='PENDI_ACTI' ".
             " order by b.FECHA_CARGA ASC";
 
         echo $query1;
