@@ -9166,7 +9166,7 @@ class API extends REST {
             "  where b.STATUS='PENDI_ACTI' ".
             " order by b.FECHA_CARGA ASC";
 
-        echo $query1;
+        //echo $query1;
         if($mypedido==""){
 
             $rr = $this->mysqli->query($query1);
