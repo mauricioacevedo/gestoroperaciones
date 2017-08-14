@@ -11832,7 +11832,14 @@ $scope.csvActivacioncolas = function () {
                         data: []
 
         };
-
+// Opciones de Tabs para las Graficas ----------------------------------------------------
+$scope.activeTabs = 1;
+$scope.setActiveTab = function (tabToSet) {
+	$scope.activeTabs = tabToSet;
+	$scope.ProductividadPorHora();
+	$scope.actualizarGrafica();
+};
+// ----------------------------------------------------Opciones de Tabs para las Graficas 
 	//----------Funcion para determinar el color del pendiente --------------------------
 var colorDanger="#E83720";
 var colorWaring="#E8A820";
