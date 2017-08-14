@@ -906,7 +906,7 @@ class API extends REST {
             " ,ESTADO,FECHA_CREACION,FECHA_EXCEPCION ".
             " ,PRODUCTO,IDSERVICIORAIZ,TRANSACCION,CODIGO_CIUDAD ".
             " ,CODIGO_UNICO_DIRECCION,NOMBRE_CUIDAD,NOMBRE_DEPARTAMENTO ".
-            " ,TAREA_EXCEPCION,CODIGOEXCEPCIONACT,FECHA_CARGA,STATUS ".
+            " ,TAREA_EXCEPCION,CODIGOEXCEPCIONACT,FECHA_CARGA,DESCRIPCIONEXCEPCIONACT,MOTIVOEXCEPCIONACT,STATUS ".
             " FROM gestor_activacion_pendientes_activador_suspecore ".
             " WHERE  ESTADO ='in_progress' ".
             " AND STATUS IN ('PENDI_ACTI','MALO')".
@@ -918,10 +918,10 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('ID','ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','CODIGO_UNICO_DIRECCION','NOMBRE_CUIDAD','NOMBRE_DEPARTAMENTO','TAREA_EXCEPCION','CODIGOEXCEPCIONACT','FECHA_CARGA','STATUS'));
+            fputcsv($fp, array('ID','ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','CODIGO_UNICO_DIRECCION','NOMBRE_CUIDAD','NOMBRE_DEPARTAMENTO','TAREA_EXCEPCION','CODIGOEXCEPCIONACT','FECHA_CARGA','DESCRIPCIONEXCEPCIONACT','MOTIVOEXCEPCIONACT','STATUS'));
             while($row = $r->fetch_assoc()){
-                //$row = str_replace(',', '', $row); 
-               // $row['DESCRIPCIONEXCEPCIONACT']=str_replace(array(","," "," "), "\"", $row['DESCRIPCIONEXCEPCIONACT']);
+                $row = str_replace( ' " ', ' ', $row); 
+                //$row['DESCRIPCIONEXCEPCIONACT']=str_replace(array(","," "," "), "\"", $row['DESCRIPCIONEXCEPCIONACT']);
                 //$row['MOTIVOEXCEPCIONACT']=str_replace(array(","), "\"", $row['MOTIVOEXCEPCIONACT']);  
                 $result[] = $row;
                 fputcsv($fp, $row);
