@@ -925,7 +925,7 @@ class API extends REST {
 
 
                   $row['DESCRIPCIONEXCEPCIONACT']=str_replace(array(","), "."", $row['DESCRIPCIONEXCEPCIONACT']);
-                  echo $row; 
+                   
             }
             fclose($fp);
             // SQL Feed----------------------------------
