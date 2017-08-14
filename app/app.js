@@ -11836,7 +11836,7 @@ $scope.csvActivacioncolas = function () {
 $scope.activeTabs = 1;
 $scope.setActiveTab = function (tabToSet) {
 	$scope.activeTabs = tabToSet;
-	$scope.ProductividadPorHora();
+	//$scope.ProductividadPorHora();
 	$scope.actualizarGrafica();
 };
 // ----------------------------------------------------Opciones de Tabs para las Graficas 
