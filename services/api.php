@@ -921,7 +921,7 @@ class API extends REST {
             fputcsv($fp, array('ID','ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','CODIGO_UNICO_DIRECCION','NOMBRE_CUIDAD','NOMBRE_DEPARTAMENTO','TAREA_EXCEPCION','CODIGOEXCEPCIONACT','FECHA_CARGA','DESCRIPCIONEXCEPCIONACT','MOTIVOEXCEPCIONACT','STATUS'));
             while($row = $r->fetch_assoc()){
                // $row = str_replace( ' " ', ' ', $row); 
-                $row = eregi_replace(“[\n|\r|\n\r]”, ‘ ‘, $row); 
+                $row = str_replace(“[\n|\r|\n\r]”, ‘ ‘, $row); 
                 //$row['DESCRIPCIONEXCEPCIONACT']=str_replace(array(","," "," "), "\"", $row['DESCRIPCIONEXCEPCIONACT']);
                 //$row['MOTIVOEXCEPCIONACT']=str_replace(array(","), "\"", $row['MOTIVOEXCEPCIONACT']);  
                 $result[] = $row;
