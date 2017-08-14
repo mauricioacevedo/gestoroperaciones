@@ -335,70 +335,7 @@
                                     </table>
 
                                 </div>
-                                <div ng-class="{'tab-pane fade in active': activeTabs === 3, 'tab-pane' : activeTabs !== 3}"
-                                     id="tab3default">
-                                    <div class="row">
-                                        <div class="col-md-8 text-right">
-                                            Tiempo Limite:
-                                        </div>
-                                        <div class="col-md-4">
-                                            <uib-progressbar class="progress-striped active" max="11" value="dynamic" type="{{type}}">{{timediff}} horas
-                                            </uib-progressbar>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-18 col-sm-6 col-md-4">
-                                            <div class="thumbnail">
-                                                <div class="caption">
-                                                    <ul class="list-group small">
-                                                        <span class="small">
-                                                            <a href="" ng-repeat="a in alarmados.alarmados as alarmas" class="list-group-item animated slideInRight">{{a.RESPONSABLE}}: <span class="badge badge-info">{{a.CANTIDAD}}</span></a>
-                                                        </span>
-                                                    </ul>
-                                                    <h5>Próximos <span class="badge">{{ (alarmas | sumarNum:'CANTIDAD') }}</span></h5>
-                                                    <p>Pedidos próximos a alarmarse</p>
-                                                    <button type="button" class="btn btn-primary btn-xs"
-                                                            ng-click="csvAlarmadosProactivos()"
-                                                            title="Exportar" ng-disabled="loading">
-                                                        <i class="fa fa-cloud-download" aria-hidden="true"></i> Exportar
-                                                    </button>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-18 col-sm-6 col-md-4">
-                                            <div class="thumbnail">
-                                                <div class="caption">
-                                                    <ul class="list-group small">
-                                                        <span class="small">
-                                                            <a href="" ng-repeat="a in alarmados.historico as historico" class="list-group-item animated slideInRight">{{a.RESPONSABLE}}: <span class="badge badge-info">{{a.CANTIDAD}}</span></a>
-                                                        </span>
-                                                    </ul>
-                                                    <h5>Alarmados <span class="badge">{{ (historico | sumarNum:'CANTIDAD') }}</span></h5>
-                                                    <p>Pedidos que tenían la visita el dia <span class="small">{{alarmados.fechacita}}</span> y se alarmaron</p>
-                                                    <button type="button" class="btn btn-primary btn-xs"
-                                                            ng-click="csvAlarmadosHoy()"
-                                                            title="Exportar" ng-disabled="loading">
-                                                        <i class="fa fa-cloud-download" aria-hidden="true"></i> Exportar
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-18 col-sm-6 col-md-4">
-                                            <div class="thumbnail">
-                                                <div class="caption">
-                                                    <ul class="list-group small">
-                                                        <span class="small">
-                                                            <a href="" ng-repeat="a in alarmados.recuperados as recuperados" class="list-group-item animated slideInRight">{{a.RESPONSABLE}}: <span class="badge badge-info">{{a.CANTIDAD}}</span></a>
-                                                        </span>
-                                                    </ul>
-                                                    <h5>Recuperados <span class="badge">{{ (recuperados | sumarNum:'CANTIDAD') }}</span></h5>
-                                                    <p>Pedidos que se alarmaron, pero se pudieron gestionar al final del día.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                               
                             </div>
                         </div>
                        
