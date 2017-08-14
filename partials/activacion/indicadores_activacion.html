@@ -297,7 +297,33 @@
                                 <div ng-class="{'tab-pane fade in active ': activeTabs === 2, 'tab-pane' : activeTabs !== 2}"
                                      id="tab2default">
 
-                                    <table class="table small table-striped table-hover table-bordered table-condensed">
+                                   <div class="col-md-6">
+							<ul class="nav navbar-nav navbar-right">
+								<div class="col-md-1 col-xs-1 ">
+											<div data-ng-if="loading">
+												<img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="img/loader.gif" />
+											</div>
+									</div>
+								<li>
+									<div class="col-md-12 col-xs-6 ">
+										<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
+										<button type="button" class="btn btn-default btn-circle-xs" ng-click="actualizarGraficaAD()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
+											<i class="fa fa-refresh"  aria-hidden="true"></i>
+										</button>
+										<button type="button" class="btn btn-default btn-circle-xs" ng-click="csvActivacion()" title="Exportar Pendientes" data-toggle="tooltip" data-placement="left" ng-disabled="loading">
+											<i class="fa fa-cloud-download"  aria-hidden="true"></i>
+										</button>
+									</div>
+								</li>
+							</ul>
+							</div>
+
+
+						</div>
+				</div>
+				<div class="panel-body fixed-panel">
+
+						<table class="table small table-striped table-hover table-bordered table-condensed">
 							<thead>
 								<th>Cola</th>
 								<th>Total</th>
@@ -339,6 +365,24 @@
 
                                 </tfoot>
 						</table>
+
+				</div>
+				<div class="panel-footer clearfix" >
+
+					<div class="col-md-8">
+
+						<ul class="nav navbar-nav navbar-left">
+							Total: <span class="label label-success">{{listado_colas.totales}}</span>
+						</ul>
+
+					</div>
+
+
+				</div>
+
+
+				</div>
+			</div>
 
                                 </div>
                                
