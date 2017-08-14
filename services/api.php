@@ -855,11 +855,8 @@ class API extends REST {
         $filename="Fenix_Activacion-$login-$today.csv";
         $query=" select b.ORDER_SEQ_ID,b.ESTADO,b.PEDIDO,b.TRANSACCION,b.PRODUCTO ".
             " ,b.FECHA_EXCEPCION,b.TIPO_COMUNICACION,b.DEPARTAMENTO,b.STATUS ".
-            " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
-            " where a.PEDIDO=b.PEDIDO order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
-            " , (select a.ASESOR from gestor_historico_activacion a  ".
-            " where a.PEDIDO=b.PEDIDO order by a.ID desc limit 1) as ASESOR  ".
-            " FROM pendientes_amarillas b ";
+            " FROM pendientes_amarillas b ".
+            " where b.STATUS in ('PENDI_ACTI','MALO')" ;
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
