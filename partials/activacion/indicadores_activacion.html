@@ -297,7 +297,18 @@
                                 <div ng-class="{'tab-pane fade in active ': activeTabs === 2, 'tab-pane' : activeTabs !== 2}"
                                      id="tab2default">
 
-                                   <div class="col-md-6">
+                                    <div class="col-md-12">
+			<div class = "panel panel-default">
+				<div class = "panel-heading nav navbar-default">
+					<div class="row">
+						<div class="col-md-6">
+							<ul class="nav navbar-nav navbar-left">
+								<b>Pendientes por Cola</b>
+								<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+
+							</ul>
+						</div>
+						<div class="col-md-6">
 							<ul class="nav navbar-nav navbar-right">
 								<div class="col-md-1 col-xs-1 ">
 											<div data-ng-if="loading">
