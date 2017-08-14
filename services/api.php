@@ -920,8 +920,8 @@ class API extends REST {
             $fp = fopen("../tmp/$filename", 'w');
             fputcsv($fp, array('ID','ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','CODIGO_UNICO_DIRECCION','NOMBRE_CUIDAD','NOMBRE_DEPARTAMENTO','TAREA_EXCEPCION','CODIGOEXCEPCIONACT','FECHA_CARGA','STATUS'));
             while($row = $r->fetch_assoc()){
-                $row = str_replace(',','',$row); 
-                $row = str_replace("[\n|\r|\n\r|\t|\0|\x0B]", ' ', $row); 
+              //  $row = str_replace(',','',$row); 
+                //$row = str_replace("[\n|\r|\n\r|\t|\0|\x0B]", ' ', $row); 
                
                 //$row['DESCRIPCIONEXCEPCIONACT']=str_replace(array(","," "," "), "\"", $row['DESCRIPCIONEXCEPCIONACT']);
                 //$row['MOTIVOEXCEPCIONACT']=str_replace(array(","), "\"", $row['MOTIVOEXCEPCIONACT']);  
@@ -986,7 +986,7 @@ class API extends REST {
         $today = date("Y-m-d h:i:s");
         $filename="Fenix_Activacion_dom-$login-$today.csv";
         $query=  " select ID,ORDER_SEQ_ID,PEDIDO,REFERENCE_NUMBER,ESTADO ".
-            " ,FECHA_CREACION,CODIGO_ERROR,VALOR_ERROR,MOTIVO_ERROR ".
+            " ,FECHA_CREACION,CODIGO_ERROR ".
             " ,CODIGO_UNICO_DIRECCION,TAREA_EXCEPCION,FECHA_EXCEPCION ".
             " ,TIPO_COMUNICACION,PRODUCTO,IDSERVICIORAIZ ".
             " ,TRANSACCION,CODIGO_CIUDAD,NOMBRE_CIUDAD ".
@@ -1000,7 +1000,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('ID','ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','CODIGO_ERROR','VALOR_ERROR','MOTIVO_ERROR','CODIGO_UNICO_DIRECCION','TAREA_EXCEPCION','FECHA_EXCEPCION','TIPO_COMUNICACION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','NOMBRE_CIUDAD','DEPARTAMENTO','FECHA_CARGA','STATUS'));
+            fputcsv($fp, array('ID','ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','CODIGO_ERROR','CODIGO_UNICO_DIRECCION','TAREA_EXCEPCION','FECHA_EXCEPCION','TIPO_COMUNICACION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','NOMBRE_CIUDAD','DEPARTAMENTO','FECHA_CARGA','STATUS'));
             while($row = $r->fetch_assoc()){
                 $result[] = $row;
                 fputcsv($fp, $row);
