@@ -297,92 +297,13 @@
                                 <div ng-class="{'tab-pane fade in active ': activeTabs === 2, 'tab-pane' : activeTabs !== 2}"
                                      id="tab2default">
 
-                                    <div class="col-md-12">
-			<div class = "panel panel-default">
-				<div class = "panel-heading nav navbar-default">
-					<div class="row">
-						<div class="col-md-6">
-							<ul class="nav navbar-nav navbar-left">
-								<b>Pendientes por Cola</b>
-								<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
-
-							</ul>
-						</div>
-						<div class="col-md-6">
-							<ul class="nav navbar-nav navbar-right">
-								<div class="col-md-1 col-xs-1 ">
-											<div data-ng-if="loading">
-												<img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="img/loader.gif" />
-											</div>
-									</div>
-								<li>
-									<div class="col-md-12 col-xs-6 ">
-										<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
-										<button type="button" class="btn btn-default btn-circle-xs" ng-click="actualizarGraficaAD()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
-											<i class="fa fa-refresh"  aria-hidden="true"></i>
-										</button>
-										<button type="button" class="btn btn-default btn-circle-xs" ng-click="csvActivacion()" title="Exportar Pendientes" data-toggle="tooltip" data-placement="left" ng-disabled="loading">
-											<i class="fa fa-cloud-download"  aria-hidden="true"></i>
-										</button>
-									</div>
-								</li>
-							</ul>
-							</div>
-
-
-						</div>
-				</div>
-				<div class="panel-body fixed-panel">
-
-						<table class="table small table-striped table-hover table-bordered table-condensed">
-							<thead>
-								<th>Cola</th>
-								<th>Total</th>
-								<th> 0-2h</th>
-								<th> 3-4h</th>
-								<th> 5-6h</th>
-								<th> 7-12h</th>
-								<th> 13-24h</th>
-								<th> 25-48h</th>
-								<th>Mas de 48h</th>
-                               </thead>
-                               <tbody>
-                                   <tr ng-repeat="data in listado_colas | orderBy:'fecha_fin':true | filter:filtroInput">
-									   	<td>{{data.COLA_ID}}</td>
-										<td ng-init="listado_colas.totales = parseInt(listado_colas.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
-										<td ng-init="listado_colas.total02 = parseInt(listado_colas.total02) + parseInt(data.Entre02)">{{data.Entre02}}</td>
-										<td ng-init="listado_colas.total34 = parseInt(listado_colas.total34) + parseInt(data.Entre34)">{{data.Entre34}}</td>
-										<td ng-init="listado_colas.total56 = parseInt(listado_colas.total56) + parseInt(data.Entre56)">{{data.Entre56}}</td>
-										<td ng-init="listado_colas.total712 = parseInt(listado_colas.total712) + parseInt(data.Entre712)">{{data.Entre712}}</td>
-										<td ng-init="listado_colas.total1324 = parseInt(listado_colas.total1324) + parseInt(data.Entre1324)">{{data.Entre1324}}</td>
-										<td ng-init="listado_colas.total2548 = parseInt(listado_colas.total2548) + parseInt(data.Entre2548)">{{data.Entre2548}}</td>
-
-										<td ng-init="listado_colas.totalmas48 = parseInt(listado_colas.totalmas48) + parseInt(data.Masde48)">{{data.Masde48}}</td>
-
-                                        </tr>
-                                </tbody>
-                                <tfoot>
-									<tr class="info">
-									 	<th>Totales</th>
-										<th>{{listado_colas.totales}}</th>
-										<th>{{listado_colas.total02}}</th>
-										<th>{{listado_colas.total34}}</th>
-										<th>{{listado_colas.total56}}</th>
-										<th>{{listado_colas.total712}}</th>
-										<th>{{listado_colas.total1324}}</th>
-										<th>{{listado_colas.total2548}}</th>
-										<th>{{listado_colas.totalmas48}}</th>
-									</tr>
-
-                                </tfoot>
-						</table>
-
-				</div>
-			
-
-
-				</div>
-			</div>
+                                      <div fusioncharts
+									type= "column2d"
+									renderAt= "chart-container"
+									width= "500"
+									height= "300"
+									datasource="{{myDataSourceAD}}">
+								</div><!--Fusioncharts-->
 
                                 </div>
                                
