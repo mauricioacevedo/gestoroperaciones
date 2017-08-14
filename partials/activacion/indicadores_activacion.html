@@ -263,7 +263,98 @@
 
 			</div>
 		</div>
+		                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h6 >Gráficas</h6>
+                            <span class="pull-right">
+                                <!-- Tabs -->
+                                <ul class="nav panel-tabs">
+                                    <li ng-class="{'active' : activeTabs == 1}"><a href="" ng-click="setActiveTab(1)"
+                                                                                   data-toggle="tab"><i class="fa fa-bar-chart"
+                                                                                                        aria-hidden="true"></i> Pendientes</a></li>
+                                    <li ng-class="{'active' : activeTabs == 2}"><a href=""
+                                                                                   ng-click="setActiveTab(2);ProductividadPorHora();"
+                                                                                   data-toggle="tab"><i class="fa fa-bar-chart"
+                                                                                                        aria-hidden="true"></i> Gestión</a></li>
+                                    <li ng-class="{'active' : activeTabs == 3}"><a href=""
+                                                                                   ng-click="setActiveTab(3);calcularTiempo();"
+                                                                                   data-toggle="tab"><span class="DemePedido"><i class="fa fa-exclamation-circle"
+                                                                                                              aria-hidden="true"></i> Alarmados</span></a></li>
+                                </ul>
+                            </span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <div ng-class="{'tab-pane fade in active': activeTabs === 1, 'tab-pane' : activeTabs !== 1}"
+                                     id="tab1default">
+                                    <div fusioncharts
+                                         type="column2d"
+                                         renderAt="chart-container"
+                                         width="500"
+                                         height="300"
+                                         datasource="{{myDataSource}}">
+                                    </div><!--Fusioncharts -->
+                                </div>
 
+                                <div ng-class="{'tab-pane fade in active ': activeTabs === 2, 'tab-pane' : activeTabs !== 2}"
+                                     id="tab2default">
+
+                                    <table class="table small table-striped table-hover table-bordered table-condensed">
+                                        <thead>
+                                        <th>Hora</th>
+                                        <th>Ingresos</th>
+                                        <th>Asignados</th>
+                                        <th>Siebel</th>
+                                        <th>Reconfigurados</th>
+                                        <th>Gestionados</th>
+                                        <th>Usuarios</th>
+                                        </thead>
+                                        <tfoot>
+                                        <tr class="info">
+                                            <td>Totales</td>
+                                            <td>{{prodtbl | sumarNum:'INGRESOS'}}</td>
+                                            <td>{{prodtbl | sumarNum:'ASIGNADOS'}}</td>
+                                            <td>{{prodtbl | sumarNum:'SIEBEL'}}</td>
+                                            <td>{{prodtbl | sumarNum:'RECONFIGURADOS'}}</td>
+                                            <td>{{prodtbl | sumarNum:'GESTIONADOS'}}</td>
+                                            <td>AVG: {{ (prodtbl | sumarNum:'USUARIOS') / prodtbl.length | number : 0}}</td>
+                                        </tr>
+                                        </tfoot>
+                                        <tbody>
+                                        <tr ng-repeat="prod in tablaProductividadPorHora as prodtbl">
+                                            <td>{{prod.HORA}}</td>
+                                            <td>{{prod.INGRESOS}}</td>
+                                            <td>{{prod.ASIGNADOS}}</td>
+                                            <td>{{prod.SIEBEL}}</td>
+                                            <td>{{prod.RECONFIGURADOS}}</td>
+                                            <td>{{prod.GESTIONADOS}}</td>
+                                            <td>{{prod.USUARIOS}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                             
+                            </div>
+                        </div>
+                        <div class="panel-footer clearfix">
+                            <div class="col-md-12">
+                                <div class="text-right">
+                                    <span>Priorizar Pedidos </span>
+                                    <button type="button" class="btn btn-primary btn-xs"
+                                            ng-click=""
+                                            data-toggle="modal" data-target="#modalPriorizar" data-backdrop="static"
+                                            uib-tooltip="Priorizar"
+                                            tooltip-placement="top"
+                                            tooltip-trigger="'mouseenter'">
+                                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 		<div class="col-md-12">
 		<div class = "panel panel-default">
 			<div class = "panel-heading nav navbar-default">
