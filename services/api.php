@@ -923,8 +923,8 @@ class API extends REST {
                 $result[] = $row;
                 fputcsv($fp, $row);
 
-
-                  $row['DESCRIPCIONEXCEPCIONACT']=str_replace(array(","), "\"", $row['DESCRIPCIONEXCEPCIONACT']);
+                  $row = str_replace(',', '', $row);      
+            //      $row['DESCRIPCIONEXCEPCIONACT']=str_replace(array(","), "\"", $row['DESCRIPCIONEXCEPCIONACT']);
             }
             fclose($fp);
             // SQL Feed----------------------------------
