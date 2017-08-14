@@ -918,10 +918,10 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('ID','ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','CODIGO_UNICO_DIRECCION','NOMBRE_CUIDAD','NOMBRE_DEPARTAMENTO','TAREA_EXCEPCION','CODIGOEXCEPCIONACT','FECHA_CARGA','DESCRIPCIONEXCEPCIONACT','MOTIVOEXCEPCIONACT','STATUS'),chr (124));
+            fputcsv($fp, array('ID','ORDER_SEQ_ID','PEDIDO','REFERENCE_NUMBER','ESTADO','FECHA_CREACION','FECHA_EXCEPCION','PRODUCTO','IDSERVICIORAIZ','TRANSACCION','CODIGO_CIUDAD','CODIGO_UNICO_DIRECCION','NOMBRE_CUIDAD','NOMBRE_DEPARTAMENTO','TAREA_EXCEPCION','CODIGOEXCEPCIONACT','FECHA_CARGA','DESCRIPCIONEXCEPCIONACT','MOTIVOEXCEPCIONACT','STATUS'));
             while($row = $r->fetch_assoc()){
                 $result[] = $row;
-                fputcsv($fp, $row,chr (124));
+                fputcsv($fp, $row);
             }
             fclose($fp);
             // SQL Feed----------------------------------
