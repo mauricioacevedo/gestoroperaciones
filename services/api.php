@@ -9054,6 +9054,7 @@ class API extends REST {
      
             if($tabla=='ACTIVADOR_SUSPECORE'){
 
+                
                 $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where PEDIDO='$mypedido'and STATUS='PENDI_ACTI'";
             }
                echo $sqlupdate;          
