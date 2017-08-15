@@ -9053,10 +9053,10 @@ class API extends REST {
             }
             
    if($tabla=='ACTIVADO_DOM'){
-                        echo "tabla es activaDOM";   
+                        echo "tabla es activaDOM".$tabla;   
         //    $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
         }else {
-             echo "tabla es suspecore";   
+             echo "tabla es suspecore".$tabla;  
         //    $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
         }
 
