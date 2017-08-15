@@ -8901,7 +8901,7 @@ class API extends REST {
             $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='' where ASESOR='$user'";
         }
 
-        echo $sqlupdate;
+       // echo $sqlupdate;
         $xxx = $this->mysqli->query($sqlupdate);
 
         $today = date("Y-m-d");
@@ -9401,7 +9401,7 @@ class API extends REST {
             " ORDER BY PROGRAMACION ASC ";
         //PENDIENTE: COLOCAR CODIGO PARA TENER EN CUENTA LA PROGRAMACION....................
         $PROGRAMADO="NOT";
-        echo $sql;
+        //echo $sql;
 
         $rr = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
 
