@@ -12260,8 +12260,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		//console.log($scope.InfoGestion);
 
-
-
 		var kami = services.getBuscarpedidoactivacion(buscar,$scope.tabla, $rootScope.logedUser.login).then(
 
 			function (data) {
@@ -12294,15 +12292,12 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 					} else {
 							
-					if ($scope.peds[0] == "PEDIDO_OCUPADO") {
-					$scope.error = "El pedido: " + $scope.peds[2] + " está ocupado por:" + $scope.peds[1];
-					$scope.pedidoinfo = 'Pedido';
-					$scope.peds = [];
-					 console.log($scope.peds[0]);
-					return;
-					// console.log($scope.peds[0]);
-				}
+						if ($scope.ocupado == true) {
+							$scope.busy = $scope.peds[0].ASESOR;
+							$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.busy;
+							return;
 
+						}
 						var opciones= {
                   	  	fuente: $scope.peds[0].FUENTE,
 						grupo: $scope.peds[0].GRUPO,
