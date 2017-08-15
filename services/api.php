@@ -8879,7 +8879,7 @@ class API extends REST {
         $tabla = $this->_request['tabla'];
         $producto= $this->_request['producto'];
 
-
+        echo " esta es la tabla. " $tabla ;
         $filename = '../tmp/control-threads-agen.txt';
         if(file_exists($filename)){
             sleep(1);
