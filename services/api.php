@@ -9051,17 +9051,15 @@ class API extends REST {
                 $ids=$ids.$sep.$row['ID'];
                 $sep=",";
             }
-     
-               if($tabla=='ACTIVADOR_SUSPECORE'){
+            
+   if($tabla=='ACTIVADOR_SUSPECORE'){
 
-            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where         ASESOR='$user'";
+            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
         }else {
-            $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='' where ASESOR='$user'";
+            $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
         }
 
-        echo $sqlupdate;
-        $xxx = $this->mysqli->query($sqlupdate);
-            //   echo $sqlupdate;          
+               echo $sqlupdate;          
             $x = $this->mysqli->query($sqlupdate);
 
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
