@@ -14949,21 +14949,18 @@ class API extends REST {
         $user = $this->_request['userID'];
         $tabla = $this->_request['tabla'];
 
+
+
+        //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
+        $pedido_actual = $this->_request['pedido_actual'];
+
+         if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
+            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where ASESOR='$user' ";
+            $xxx = $this->mysqli->query($sqlupdate);
+        }
+
         $user=strtoupper($user);
         $today = date("Y-m-d");
-
-        
-        /* if($tabla=='ACTIVADOR_SUSPECORE'){
-
-             $tabla = " from gestor_activacion_pendientes_activador_suspecore p " ;
-
-         } else {
-
-             $tabla = " from gestor_activacion_pendientes_activador_dom p " ;
-
-
-         }
- */
 
         $query1=" SELECT p.ID ".
             " , p.PEDIDO,group_concat(distinct p.ORDER_SEQ_ID) as ORDER_SEQ_ID,p.ESTADO,p.TAREA_EXCEPCION,p.IDSERVICIORAIZ,p.TRANSACCION ".
@@ -15014,7 +15011,11 @@ class API extends REST {
             }//chao While
 
             $sqlupdate="";
+             if($busy==true){
+                $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set VIEWS=VIEWS+1 where ID in ($ids)";
 
+
+            }
 
             $x = $this->mysqli->query($sqlupdate);
 
