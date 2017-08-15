@@ -15013,7 +15013,7 @@ class API extends REST {
             $sqlupdate="";
              if($busy==true){
                 $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set VIEWS=VIEWS+1 where ID in ($ids)";
-                echo "esta es la tabla".$sqlupdate;
+              //  echo "esta es la tabla".$sqlupdate;
 
             }
 
