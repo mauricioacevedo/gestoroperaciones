@@ -14994,7 +14994,7 @@ class API extends REST {
 
         $rPendi = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
-        $busy=false;
+       /* $busy=false;
 
         if($rPendi->num_rows > 0){
             $result = array();
@@ -15009,7 +15009,7 @@ class API extends REST {
                 }
 
             }//chao While
-
+*/
             $sqlupdate="";
              if($busy==true){
                 $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set VIEWS=VIEWS+1 where ID in ($ids)";
