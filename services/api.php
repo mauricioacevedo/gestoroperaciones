@@ -9334,7 +9334,7 @@ class API extends REST {
         $user=strtoupper($user);
         //NO SE PUEDE CONDICIONAR AL PEDIDO ACTUAL, SI LE DA F5 A LA PAGINA NO HAY PEDIDO ACTUAL.. ES MEJOR ASI!!!
         $sqlupdate="update gestor_pendientes_reagendamiento set ASESOR='' where ASESOR='$user'";
-        echo $sqlupdate;
+        //echo $sqlupdate;
         $xxx = $this->mysqli->query($sqlupdate);
         //}
         //echo "WTF";
@@ -9401,7 +9401,7 @@ class API extends REST {
             " ORDER BY PROGRAMACION ASC ";
         //PENDIENTE: COLOCAR CODIGO PARA TENER EN CUENTA LA PROGRAMACION....................
         $PROGRAMADO="NOT";
-        //echo $sql;
+        echo $sql;
 
         $rr = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
 
