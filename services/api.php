@@ -9051,10 +9051,10 @@ class API extends REST {
                 $ids=$ids.$sep.$row['ID'];
                 $sep=",";
             }
-
+     
             if($tabla=='ACTIVADOR_SUSPECORE'){
 
-                $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user' where ID in ($ids)";
+                $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where PEDIDO='$mypedido'and STATUS='PENDI_ACTI'";
             }
                echo $sqlupdate;          
             $x = $this->mysqli->query($sqlupdate);
