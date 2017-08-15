@@ -15012,7 +15012,9 @@ class API extends REST {
 
             $sqlupdate="";
 
-             if($busy==true && $tabla=='ACTIVADO_DOM'){
+             if($busy==true){
+
+                if($tabla=='ACTIVADO_DOM'){
                        // echo "tabla es activaDOM".$tabla;   
                      $sqlupdate1="update gestor_activacion_pendientes_activador_dom set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
                     }else {
