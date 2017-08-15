@@ -9054,14 +9054,14 @@ class API extends REST {
             
    if($tabla=='ACTIVADO_DOM'){
                        // echo "tabla es activaDOM".$tabla;   
-        $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
+        $sqlupdate1="update gestor_activacion_pendientes_activador_dom set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
         }else {
            //  echo "tabla es suspecore".$tabla;  
             $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
         }
 
-           //  echo $sqlupdate;          
-            $x = $this->mysqli->query($sqlupdate);
+             echo $sqlupdate1;          
+            $x = $this->mysqli->query($sqlupdate1);
 
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
             $x = $this->mysqli->query($INSERTLOG);
