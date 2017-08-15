@@ -14994,7 +14994,7 @@ class API extends REST {
 
         $rPendi = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
-        $busy=true;
+        $busy=false;
 
         if($rPendi->num_rows > 0){
             $result = array();
