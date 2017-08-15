@@ -8901,7 +8901,7 @@ class API extends REST {
             $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='' where ASESOR='$user'";
         }
 
-        //echo $sqlupdate;
+        echo $sqlupdate;
         $xxx = $this->mysqli->query($sqlupdate);
 
         $today = date("Y-m-d");
