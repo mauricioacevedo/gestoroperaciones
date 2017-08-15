@@ -14952,7 +14952,26 @@ class API extends REST {
         $user=strtoupper($user);
         $today = date("Y-m-d");
 
+        //1. CIERRO  LO QUE ESTE ABIERTO DE ESTE PEDIDO EN EL GESTOR..
+        //
+        //
+        $sqlOcupado="select  PEDIDO, ASESOR from gestor_activacion_pendientes_activador_suspecore where PEDIDO='$pedido' and ASESOR!='' group by PEDIDO, ASESOR";
 
+
+        $rOcu = $this->mysqli->query($sqlOcupado) or die($this->mysqli->error.__LINE__);
+
+        if($rOcu->num_rows > 0){
+
+            $row = $rOcu->fetch_assoc();
+
+            $asesorito=$row['ASESOR'];
+
+
+            //json_encode($result)
+            $this->response(json_encode(array("PEDIDO_OCUPADO",$asesorito,$pedido)),200);
+
+
+        }
         /* if($tabla=='ACTIVADOR_SUSPECORE'){
 
              $tabla = " from gestor_activacion_pendientes_activador_suspecore p " ;
