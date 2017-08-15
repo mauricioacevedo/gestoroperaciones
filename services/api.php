@@ -9057,7 +9057,7 @@ class API extends REST {
         $sqlupdate1="update gestor_activacion_pendientes_activador_dom set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
         }else {
            //  echo "tabla es suspecore".$tabla;  
-            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
+            $sqlupdate1="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
         }
 
              echo $sqlupdate1;          
