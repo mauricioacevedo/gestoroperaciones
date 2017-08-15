@@ -14957,7 +14957,7 @@ class API extends REST {
         //
         $sqlOcupado="select  PEDIDO, ASESOR from gestor_activacion_pendientes_activador_suspecore where PEDIDO='$pedido' and ASESOR!='' group by PEDIDO, ASESOR";
 
-        echo $sqlOcupado;
+       // echo $sqlOcupado;
         $rOcu = $this->mysqli->query($sqlOcupado) or die($this->mysqli->error.__LINE__);
 
         if($rOcu->num_rows > 0){
