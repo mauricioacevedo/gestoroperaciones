@@ -9053,11 +9053,10 @@ class API extends REST {
             }
      
             if($tabla=='ACTIVADOR_SUSPECORE'){
-
-                
+   
                 $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where PEDIDO='$mypedido'and STATUS='PENDI_ACTI'";
             }
-               echo $sqlupdate;          
+            //   echo $sqlupdate;          
             $x = $this->mysqli->query($sqlupdate);
 
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
