@@ -8924,11 +8924,11 @@ class API extends REST {
 
         if($tabla=='ACTIVADOR_SUSPECORE'){
 
-            $tabla = " from gestor_activacion_pendientes_activador_suspecore b " ;
+            $tabla1 = " from gestor_activacion_pendientes_activador_suspecore b " ;
             $MOTIVOEXCEPCIONACT = " and b.MOTIVOEXCEPCIONACT <> 'La Cuenta NO existe.' ";
         } else {
 
-            $tabla = " from gestor_activacion_pendientes_activador_dom b " ;
+            $tabla1 = " from gestor_activacion_pendientes_activador_dom b " ;
             $MOTIVO_ERROR = " and b.MOTIVO_ERROR <> 'La Cuenta NO existe.' ";
 
 
@@ -8943,7 +8943,7 @@ class API extends REST {
         $query1=" select distinct b.PEDIDO,b.FECHA_EXCEPCION ".
             " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
-            " $tabla ".
+            " $tabla1 ".
             "  where b.STATUS='PENDI_ACTI' and b.ASESOR ='' ".
             "  $transaccion ".
             " $producto ".
@@ -9029,7 +9029,7 @@ class API extends REST {
             " ,cast(TIMESTAMPDIFF(HOUR,(b.FECHA_EXCEPCION),CURRENT_TIMESTAMP())/24 AS decimal(5,2)) as TIEMPO_TOTAL".
             " , (select a.TIPIFICACION from gestor_historico_activacion a  ".
             " where a.PEDIDO='$mypedido'and a.TIPIFICACION='' order by a.ID desc limit 1) as HISTORICO_TIPIFICACION  ".
-            $tabla.
+            $tabla1.
             " where b.PEDIDO = '$mypedido'  ".
             " and b.STATUS='PENDI_ACTI' ".
             $transaccion.
