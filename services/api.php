@@ -8951,7 +8951,7 @@ class API extends REST {
             "  $MOTIVO_ERROR ".
             " order by b.$parametroBusqueda  ASC";
 
-        //echo $query1;
+        echo $query1;
         if($mypedido==""){
 
             $rr = $this->mysqli->query($query1);
@@ -9039,7 +9039,7 @@ class API extends REST {
             " group by b.pedido ";
 
 
-     echo $query1;
+    // echo $query1;
         $r = $this->mysqli->query($query1);
 
         if($r->num_rows > 0){
