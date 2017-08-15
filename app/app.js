@@ -12298,8 +12298,9 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 					$scope.error = "El pedido: " + $scope.peds[2] + " está ocupado por:" + $scope.peds[1];
 					$scope.pedidoinfo = 'Pedido';
 					$scope.peds = [];
-					return;
 					 console.log($scope.peds[0]);
+					return;
+					// console.log($scope.peds[0]);
 				}
 
 						var opciones= {
