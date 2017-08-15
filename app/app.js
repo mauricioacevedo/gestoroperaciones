@@ -12291,13 +12291,17 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 						$scope.pedidoIsActive = false;
 
 					} else {
-							
-						if ($scope.ocupado == true) {
+						if ($scope.peds[0].STATUS == "PENDI_ACTI" && $scope.peds[0].ASESOR != "") {
+					$scope.busy = $scope.peds[0].ASESOR;
+					$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
+
+				}	
+						/*if ($scope.ocupado == true) {
 							$scope.busy = $scope.peds[0].ASESOR;
 							$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.busy;
 							return;
 
-						}
+						}*/
 						var opciones= {
                   	  	fuente: $scope.peds[0].FUENTE,
 						grupo: $scope.peds[0].GRUPO,
