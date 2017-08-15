@@ -12260,6 +12260,8 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		//console.log($scope.InfoGestion);
 
+
+
 		var kami = services.getBuscarpedidoactivacion(buscar,$scope.tabla, $rootScope.logedUser.login).then(
 
 			function (data) {
@@ -12297,7 +12299,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 					$scope.pedidoinfo = 'Pedido';
 					$scope.peds = [];
 					return;
-
+					 console.log($scope.peds[0]);
 				}
 
 						var opciones= {
