@@ -9052,7 +9052,7 @@ class API extends REST {
                 $sep=",";
             }
             
-   if($tabla!='ACTIVADOR_SUSPECORE'){
+   if($tabla=='ACTIVADO_DOM'){
 
             $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
         }else {
