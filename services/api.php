@@ -9052,10 +9052,15 @@ class API extends REST {
                 $sep=",";
             }
      
-            if($tabla=='ACTIVADOR_SUSPECORE'){
-   
-                $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user',VIEWS=VIEWS+1 where PEDIDO='$mypedido'and STATUS='PENDI_ACTI'";
-            }
+               if($tabla=='ACTIVADOR_SUSPECORE'){
+
+            $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set ASESOR='' where         ASESOR='$user'";
+        }else {
+            $sqlupdate="update gestor_activacion_pendientes_activador_dom set ASESOR='' where ASESOR='$user'";
+        }
+
+        echo $sqlupdate;
+        $xxx = $this->mysqli->query($sqlupdate);
             //   echo $sqlupdate;          
             $x = $this->mysqli->query($sqlupdate);
 
