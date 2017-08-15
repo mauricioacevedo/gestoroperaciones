@@ -14994,7 +14994,7 @@ class API extends REST {
 
         $rPendi = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
-        $busy=false;
+        $busy=true;
 
         if($rPendi->num_rows > 0){
             $result = array();
@@ -15011,13 +15011,21 @@ class API extends REST {
             }//chao While
 
             $sqlupdate="";
+
              if($busy==true){
-                $sqlupdate="update gestor_activacion_pendientes_activador_suspecore set VIEWS=VIEWS+1 where ID in ($ids)";
-              //  echo "esta es la tabla".$sqlupdate;
 
-            }
+               if($tabla=='ACTIVADO_DOM'){
+                       // echo "tabla es activaDOM".$tabla;   
+        $sqlupdate1="update gestor_activacion_pendientes_activador_dom set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
+        }else {
+           //  echo "tabla es suspecore".$tabla;  
+            $sqlupdate1="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
+        }
 
-            $x = $this->mysqli->query($sqlupdate);
+             echo $sqlupdate1;         
+  }
+
+            $x = $this->mysqli->query($sqlupdate1);
 
             // Feed ----------------------
             $sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','','','PEDIDO: $pedido','BUSCARPEDIDO','') ";
