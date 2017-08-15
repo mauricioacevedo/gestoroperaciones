@@ -15012,18 +15012,16 @@ class API extends REST {
 
             $sqlupdate="";
 
-             if($busy==true){
-
-               if($tabla=='ACTIVADO_DOM'){
+             if($busy==true || $tabla=='ACTIVADO_DOM'){
                        // echo "tabla es activaDOM".$tabla;   
-        $sqlupdate1="update gestor_activacion_pendientes_activador_dom set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
-        }else {
+                     $sqlupdate1="update gestor_activacion_pendientes_activador_dom set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
+                    }else {
            //  echo "tabla es suspecore".$tabla;  
-            $sqlupdate1="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
-        }
+                    $sqlupdate1="update gestor_activacion_pendientes_activador_suspecore set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
+                 }
 
              echo $sqlupdate1;         
-  }
+              }
 
             $x = $this->mysqli->query($sqlupdate1);
 
