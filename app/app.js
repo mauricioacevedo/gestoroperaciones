@@ -11738,8 +11738,8 @@ $scope.csvActivacioncolas = function () {
 
                            chart: {
                                 "caption": "Grafica Activación / Desactivación",
-                                "subCaption": "Pendientes",
-                                "xAxisName": "Colas",
+                                "subCaption": "Seguimiento",
+                                "xAxisName": "Asesor",
                                 "yAxisName": "Pendientes",
                                 "numberPrefix": "",
                                 "paletteColors": "#0075c2",
