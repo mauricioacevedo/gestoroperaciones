@@ -5264,7 +5264,37 @@ class API extends REST {
 
     }
 //----------------------grafica pendientes informe_activacion_pendientesm -------activacion------------
+//----------------------grafica GESTION -------activacion------------
 
+
+    private function activacionGraficaseguimiento(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $today = date("Y-m-d");
+
+        $query= " SELECT ASESOR as label, COUNT(*) as value  ".
+                " FROM  gestor_historico_activacion  ".
+                "  WHERE  FECHA_FIN between '$today 00:00:00' and '$today 23:59:59' ".
+                "  GROUP BY ASESOR ".
+                " ORDER BY COUNT(*) DESC ";
+        //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            $total=0;
+            while($row = $r->fetch_assoc()){
+                $row['label']="Asesor ".$row['label'];
+                $total=$total + $row['value'];
+                $result[] = $row;
+            }
+            $this->response($this->json(array($result,$total)), 200); // send user details
+        }
+        $this->response('',204);        // If no records "No Content" status
+
+    }
+//----------------------grafica GESTION -------activacion------------
 
 //--------------------------pendientes siebel grafica gestor_pendientes_activacion_siebel---activacion---
 
@@ -5343,7 +5373,7 @@ class API extends REST {
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
-
+         $today = date("Y-m-d");                      
         $query= "SELECT (CASE WHEN CONCEPTOS LIKE  '%,%' THEN  'VARIOS_CONCEPTOS' ELSE CONCEPTOS END) AS label, COUNT( * ) as value ".
             " FROM  gestor_pendientes_reagendamiento ".
             " WHERE  STATUS in  ('PENDI_AGEN') ".

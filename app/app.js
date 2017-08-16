@@ -528,6 +528,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'pendientesGraficaAD');
 	};
 
+	obj.getactivacionGraficaseguimiento = function () { // grafica pendientes activacion
+		return $http.get(serviceBase + 'activacionGraficaseguimiento');
+	};
+
 	obj.getPendientesSiebelGraficaAD = function () { //pendientes siebel grafica
 		return $http.get(serviceBase + 'PendientesSiebelGraficaAD');
 	};
@@ -11610,6 +11614,71 @@ $scope.csvActivacioncolas = function () {
 
         services.logVista($cookieStore.get('logedUser').login,"Indicadores Activacion y Desactivacion");
            };
+
+//---------------------seguimiento
+ $scope.actualizarGraficaAD   = function (){
+    //TOMAR MUESTRA
+                var data1=services.getactivacionGraficaseguimiento().then(function(data){
+
+                        $scope.myDataSourceAD1 = {
+                             /*   chart: {
+                                        caption: "Grafica A y D",
+                                        subcaption: "Pendientes",
+                                        startingangle: "120",
+                                        showlabels: "1",
+                                        showlegend: "1",
+                                        enablemultislicing: "0",
+                                        formatNumberScale: "0",
+                                        slicingdistance: "15",
+                                        showpercentvalues: "0",
+                                        showpercentintooltip: "0",
+                        }, */
+
+                           chart: {
+                                "caption": "Grafica Activación / Desactivación",
+                                "subCaption": "Pendientes",
+                                "xAxisName": "Asesor",
+                                "yAxisName": "Pendientes",
+                                "numberPrefix": "",
+                                "paletteColors": "#0075c2",
+                                "bgColor": "#ffffff",
+                                "borderAlpha": "20",
+                                "canvasBorderAlpha": "0",
+                                "usePlotGradientColor": "0",
+                                "plotBorderAlpha": "10",
+                                "placevaluesInside": "0",
+                                "rotatevalues": "0",
+                                "valueFontColor": "#0075c2",
+                                "showXAxisLine": "1",
+                                "xAxisLineColor": "#999999",
+                                "divlineColor": "#999999",
+                                "divLineDashed": "1",
+                                "showAlternateHGridColor": "0",
+                                "subcaptionFontBold": "0",
+                                "subcaptionFontSize": "14"
+                            },
+                                data: data.data[0]
+
+                        };
+                        var date1 = new Date();
+                        var year    = date1.getFullYear();
+                        var month   = $scope.doubleDigit(date1.getMonth()+1);
+                        var day     = $scope.doubleDigit(date1.getDate());
+                        var hour    = $scope.doubleDigit(date1.getHours());
+                        var minute  = $scope.doubleDigit(date1.getMinutes());
+                        var seconds = $scope.doubleDigit(date1.getSeconds());
+
+                        $scope.lastUpdate=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
+                        $scope.totalAD= data.data[1];
+
+                        return data.data;
+                });
+        $scope.actualizarPendientesPorConceptoColaActivacion();
+
+        services.logVista($cookieStore.get('logedUser').login,"Indicadores Activacion y Desactivacion");
+           };
+
+//-----------------fin seguimiento fin		   
 
 
         $scope.actualizarPendientesPorConceptoColaActivacion  = function (){
