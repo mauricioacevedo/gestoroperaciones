@@ -302,7 +302,7 @@
 									renderAt= "chart-container"
 									width= "500"
 									height= "300"
-									datasource="{{myDataSourceAD2}}">
+									datasource="{{myDataSourceAD}}">
 								</div><!--Fusioncharts-->
 
                                 </div>
@@ -312,6 +312,55 @@
                        
                     </div>
                 </div>
+		                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h6 >Gráficas</h6>
+                            <span class="pull-right">
+                                <!-- Tabs -->
+                                <ul class="nav panel-tabs">
+                                    <li ng-class="{'active' : activeTabs == 1}"><a href="" ng-click="setActiveTab(1)"
+                                                                                   data-toggle="tab"><i class="fa fa-bar-chart"
+                                                                                                        aria-hidden="true"></i> Pendientes</a></li>
+                                    <li ng-class="{'active' : activeTabs == 2}"><a href=""
+                                                                                   ng-click="setActiveTab(2);ProductividadPorHora();"
+                                                                                   data-toggle="tab"><i class="fa fa-bar-chart"
+                                                                                                        aria-hidden="true"></i> Seguimiento</a></li>
+                                   
+                                </ul>
+                            </span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <div ng-class="{'tab-pane fade in active': activeTabs === 1, 'tab-pane' : activeTabs !== 1}"
+                                     id="tab1default">
+                                    <div fusioncharts
+									type= "column2d"
+									renderAt= "chart-container"
+									width= "500"
+									height= "300"
+									datasource="{{myDataSourceAD}}">
+								</div><!--Fusioncharts -->
+                                </div>
+
+                               <div ng-class="{'tab-pane fade in active': activeTabs === 2, 'tab-pane' : activeTabs !== 2}"
+                                     id="tab2default">
+
+                                      <div fusioncharts
+									type= "column2d"
+									renderAt= "chart-container"
+									width= "500"
+									height= "300"
+									datasource="{{myDataSourceAD}}">
+								</div><!--Fusioncharts-->
+
+                                </div>
+                               
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>		
 
 		<div class="col-md-12">
 			<div class = "panel panel-default">
