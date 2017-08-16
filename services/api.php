@@ -9243,10 +9243,10 @@ class API extends REST {
 
 
 
-            $sqlupdate="update pendientes_amarillas set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
+            $sqlupdate1="update pendientes_amarillas set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
 
-
-            $x = $this->mysqli->query($sqlupdate);
+            echo $sqlupdate1;
+            $x = $this->mysqli->query($sqlupdate1);
 
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
             $x = $this->mysqli->query($INSERTLOG);
