@@ -11616,7 +11616,7 @@ $scope.csvActivacioncolas = function () {
            };
 
 //---------------------seguimiento
- $scope.actualizarGraficaADU   = function (){
+ $scope.actualizarGraficaAD   = function (){
     //TOMAR MUESTRA
                 var data1=services.getactivacionGraficaseguimiento().then(function(data){
 
