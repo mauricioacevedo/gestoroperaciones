@@ -11718,67 +11718,79 @@ $scope.csvActivacioncolas = function () {
 
 
 		   //---------------------seguimiento
-   $scope.actualizarGraficaAD   = function (){
-    //TOMAR MUESTRA
-                var data1=services.getactivacionGraficaseguimiento().then(function(data){
+   $scope.myDataSourceActivacion = {
+		chart: {
+			startingangle: "120",
+			showlabels: "1",
+			showlegend: "1",
+			enablemultislicing: "0",
+			paletteColors: "#008ee4",
+			slicingdistance: "15",
+			formatNumberScale: "0",
+			showpercentvalues: "1",
+			showpercentintooltip: "0",
+			plottooltext: "Age group : $label Total visit : $datavalue"
+		},
+		data: []
 
-                        $scope.myDataSourceAD = {
-                                chart: {
-                                        caption: "Grafica A y D",
-                                        subcaption: "Pendientes",
-                                        startingangle: "120",
-                                        showlabels: "1",
-                                        showlegend: "1",
-                                        enablemultislicing: "0",
-                                        formatNumberScale: "0",
-                                        slicingdistance: "15",
-                                        showpercentvalues: "0",
-                                        showpercentintooltip: "0",
-                        }, 
+	};
 
-                           chart: {
-                                "caption": "Grafica Activación / Desactivación",
-                                "subCaption": "Seguimiento",
-                                "xAxisName": "Asesor",
-                                "yAxisName": "Pendientes",
-                                "numberPrefix": "",
-                                "paletteColors": "#0075c2",
-                                "bgColor": "#ffffff",
-                                "borderAlpha": "20",
-                                "canvasBorderAlpha": "0",
-                                "usePlotGradientColor": "0",
-                                "plotBorderAlpha": "10",
-                                "placevaluesInside": "0",
-                                "rotatevalues": "0",
-                                "valueFontColor": "#0075c2",
-                                "showXAxisLine": "1",
-                                "xAxisLineColor": "#999999",
-                                "divlineColor": "#999999",
-                                "divLineDashed": "1",
-                                "showAlternateHGridColor": "0",
-                                "subcaptionFontBold": "0",
-                                "subcaptionFontSize": "14"
-                            },
-                                data: data.data[0]
 
-                        };
-                        var date1 = new Date();
-                        var year    = date1.getFullYear();
-                        var month   = $scope.doubleDigit(date1.getMonth()+1);
-                        var day     = $scope.doubleDigit(date1.getDate());
-                        var hour    = $scope.doubleDigit(date1.getHours());
-                        var minute  = $scope.doubleDigit(date1.getMinutes());
-                        var seconds = $scope.doubleDigit(date1.getSeconds());
+	$scope.actualizarGraficaActivacion = function () {
+		var data1 = services.getactivacionGraficaseguimiento().then(function (data) {
+			//var nombremes=data.data[0];
+			//var tmaa=data.data[1];
+			//console.log(nombremes);
+			//var p14=data.data[2];
+			//var p99=data.data[3];
 
-                        $scope.lastUpdate=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
-                        $scope.totalAD= data.data[1];
+			$scope.myDataSourceActivacion = {
+				chart: {
+					"xAxisName": "Mes",
+					"yAxisName": "TMA",
+					"numberPrefix": "",
+					"bgColor": "#ffffff",
+					"borderAlpha": "20",
+					"canvasBorderAlpha": "0",
+					"usePlotGradientColor": "0",
+					"plotBorderAlpha": "10",
+					"placevaluesInside": "0",
+					"rotatevalues": "0",
+					"valueFontColor": "#0075c2",
+					"showXAxisLine": "1",
+					"xAxisLineColor": "#999999",
+					"divlineColor": "#999999",
+					"divLineDashed": "1",
+					"showAlternateHGridColor": "0",
+					"showPercentValues": "1",
+					"subcaptionFontBold": "0",
+					"subcaptionFontSize": "14",
+					"toolTipBorderColor": "#FFFFFF",
+					"toolTipBgAlpha": "80"
 
-                        return data.data;
-                });
-   
+				},
+				data: data.data
 
-        services.logVista($cookieStore.get('logedUser').login,"Indicadores Activacion y Desactivacion");
-           };
+			};
+
+
+			var date1 = new Date();
+			var year = date1.getFullYear();
+			var month = $scope.doubleDigit(date1.getMonth() + 1);
+			var day = $scope.doubleDigit(date1.getDate());
+			var hour = $scope.doubleDigit(date1.getHours());
+			var minute = $scope.doubleDigit(date1.getMinutes());
+			var seconds = $scope.doubleDigit(date1.getSeconds());
+
+			$scope.lastUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+			return data.data;
+		});
+		//$scope.actualizarGraficaActivacionMes();
+
+		services.logVista($cookieStore.get('logedUser').login, "Dashboard grafica activacion mes");
+
+	};
 
 		//-----------------fin seguimiento fin		   
 
