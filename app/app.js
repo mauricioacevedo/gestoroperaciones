@@ -11718,37 +11718,29 @@ $scope.csvActivacioncolas = function () {
 
 
 		   //---------------------seguimiento
-   $scope.myDataSourceAD = {
-                        chart: {
-                        caption: "Grafica General",
-                        subcaption: "Pendientes A y D",
-                        startingangle: "120",
-                        showlabels: "0",
-                        showlegend: "1",
-                        enablemultislicing: "0",
-                        slicingdistance: "15",
-                        formatNumberScale: "0",
-                        showpercentvalues: "1",
-                        showpercentintooltip: "0",
-                        plottooltext: "Age group : $label Total visit : $datavalue",
-                        theme: "fint"
-                        },
-                        data: []
-
-        };
-
-
-          $scope.actualizarseguimientoGraficaAD   = function (){
+   $scope.actualizarGraficaAD   = function (){
     //TOMAR MUESTRA
                 var data1=services.getactivacionGraficaseguimiento().then(function(data){
 
-                        $scope.myDataSourceAD = {
+                        $scope.myDataSourceAD2 = {
+                                chart: {
+                                        caption: "Grafica A y D",
+                                        subcaption: "Pendientes",
+                                        startingangle: "120",
+                                        showlabels: "1",
+                                        showlegend: "1",
+                                        enablemultislicing: "0",
+                                        formatNumberScale: "0",
+                                        slicingdistance: "15",
+                                        showpercentvalues: "0",
+                                        showpercentintooltip: "0",
+                        }, 
 
-
-                            chart: {
-                                "caption": "Pedidos Cumplidos / Activación",
+                           chart: {
+                                "caption": "Grafica Activación / Desactivación",
+                                "subCaption": "Pendientes",
                                 "xAxisName": "Colas",
-                                "yAxisName": "Pedidos",
+                                "yAxisName": "Pendientes",
                                 "numberPrefix": "",
                                 "paletteColors": "#0075c2",
                                 "bgColor": "#ffffff",
@@ -11767,9 +11759,6 @@ $scope.csvActivacioncolas = function () {
                                 "subcaptionFontBold": "0",
                                 "subcaptionFontSize": "14"
                             },
-
-
-
                                 data: data.data[0]
 
                         };
@@ -11786,9 +11775,11 @@ $scope.csvActivacioncolas = function () {
 
                         return data.data;
                 });
+   
 
-
+        services.logVista($cookieStore.get('logedUser').login,"Indicadores Activacion y Desactivacion");
            };
+
 		//-----------------fin seguimiento fin		   
 
 
