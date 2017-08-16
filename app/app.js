@@ -11616,11 +11616,11 @@ $scope.csvActivacioncolas = function () {
            };
 
 //---------------------seguimiento
- $scope.actualizarGraficaAD   = function (){
+ $scope.actualizarGraficaADU   = function (){
     //TOMAR MUESTRA
                 var data1=services.getactivacionGraficaseguimiento().then(function(data){
 
-                        $scope.myDataSourceADO = {
+                        $scope.myDataSourceAD = {
                              /*   chart: {
                                         caption: "Grafica A y D",
                                         subcaption: "Pendientes",
