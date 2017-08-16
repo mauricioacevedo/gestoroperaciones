@@ -9175,7 +9175,7 @@ class API extends REST {
             "  where b.STATUS='PENDI_ACTI' and b.asesor='' ".
             " order by b.FECHA_CARGA ASC";
 
-        echo $query2;
+       // echo $query2;
         if($mypedido==""){
 
             $rr = $this->mysqli->query($query2);
@@ -9245,7 +9245,7 @@ class API extends REST {
 
             $sqlupdate1="update pendientes_amarillas set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
 
-            echo $sqlupdate1;
+            //echo $sqlupdate1;
             $x = $this->mysqli->query($sqlupdate1);
 
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
