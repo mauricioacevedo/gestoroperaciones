@@ -9168,17 +9168,17 @@ class API extends REST {
 
         //if($parametroBusqueda=='') $parametroBusqueda ='FECHA_EXCEPCION';
 
-        $query1=" select  b.PEDIDO,b.FECHA_EXCEPCION,b.FECHA_CARGA ".
+        $query2=" select  b.PEDIDO,b.FECHA_EXCEPCION,b.FECHA_CARGA ".
             " ,(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO=a.PEDIDO_ID ".
             " AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59' limit 1) as BEENHERE ".
             " from pendientes_amarillas b".
             "  where b.STATUS='PENDI_ACTI' and b.asesor='' ".
             " order by b.FECHA_CARGA ASC";
 
-        //echo $query1;
+        echo $query2;
         if($mypedido==""){
 
-            $rr = $this->mysqli->query($query1);
+            $rr = $this->mysqli->query($query2);
             $mypedidoresult=array();
             $pedidos_ignorados="";
             if($rr->num_rows > 0){
@@ -9227,7 +9227,7 @@ class API extends REST {
             " group by b.pedido ";
 
 
-          echo $query1;
+        //  echo $query1;
         $r = $this->mysqli->query($query1);
 
         if($r->num_rows > 0){
