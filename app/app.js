@@ -11620,7 +11620,7 @@ $scope.csvActivacioncolas = function () {
     //TOMAR MUESTRA
                 var data1=services.getactivacionGraficaseguimiento().then(function(data){
 
-                        $scope.myDataSourceAD = {
+                        $scope.myDataSourceADO = {
                              /*   chart: {
                                         caption: "Grafica A y D",
                                         subcaption: "Pendientes",
