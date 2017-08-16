@@ -1,0 +1,98 @@
+<script>
+   if (window.opener) {
+      /* i'm a popup, add "popup" class to <html> element */
+      /*document.documentElement.className += " footerazo";*/
+      document.getElementById('headerazo').style.display='none';
+      document.getElementById('footerazo').style.display='none';
+   }
+</script>
+<div class="page-header">
+        <h1>Buscador de Nodos HFC</h1>
+</div>
+<div ng-show="error" class="alert alert-danger">{{error}}</div>
+
+
+
+
+                <div class="col-lg-8 col-xs-8 form-inline">
+                      <div class="fileUpload btn btn-primary">
+                          <span class="glyphicon glyphicon-upload"></span> Seleccionar Archivo
+                          <input type="file" class="upload" file-model = "myFile" />
+                      </div>
+                             <button class="btn btn-success btn-md" value="cargar" id="cargar" ng-click="uploadFile();"><span class="glyphicon glyphicon-cloud-upload"></span> Cargar</button>
+                             <div class="loading-spiner-holder" data-loading ><div class="loading-spiner"><img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="images/loader.gif" /></div></div>
+
+                        <div ng-show="error" class="alert alert-danger">
+                      {{error}}
+                    </div>
+
+                </div>
+
+
+<div class="conaiter fluid">
+    <div class="col-md-8">
+    <div class="input-group">
+      <input type="text" class="form-control col-xs-8" aria-label="..." ng-model="nodo_id"  placeholder="Ingrese el nodo a buscar">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-md btn-primary dropdown-toggle"  ng-click="buscarCmts(nodo_id);"><span class="glyphicon glyphicon glyphicon-search"></span> Buscar Nodo</button>
+      </div><!-- /btn-group -->
+    </div><!-- /input-group -->
+    <div class="page-header">
+        <h4>Información del Nodo: <small>{{nodo_id}}</small></h4>
+    </div>
+
+	<form name="CmtsForm">
+
+    <table class="table small table-striped table-bordered table-condensed table-fixed">
+                     <thead style="border-top:1px solid gray;">
+                            <th>NODO</th>
+                            <th>DIRECCION</th>
+                            <th>SOPORTA_TOIP</th>
+                            <th>SOPORTA_TVDIGITAL</th>
+                            <th>TVDIGITAL_INYECTADA</th>
+                            <th>NODO_DIGITAL</th>
+                    </thead>
+
+                    <tr ng-repeat="dota in nodshfc">
+                        <td><span class="badge">{{dota.NODO}}</span></td>
+                        <td><span class="badge">{{dota.DIRECCION}}</span></td>
+                        <td><span ng-class="{'SI':'label label-success','NO':'label label-danger'}[dota.SOPORTA_TOIP]">{{dota.SOPORTA_TOIP}}</span></td>
+                        <td><span ng-class="{'SI':'label label-success','NO':'label label-danger'}[dota.SOPORTA_TVDIGITAL]">{{dota.SOPORTA_TVDIGITAL}}</span></td>
+                        <td><span ng-class="{'SI':'label label-success','NO':'label label-danger'}[dota.TVDIGITAL_INYECTADA]">{{dota.TVDIGITAL_INYECTADA}}</span></td>
+                        <td><span ng-class="{'SI':'label label-success','NO':'label label-danger'}[dota.NODO_DIGITAL]">{{dota.NODO_DIGITAL}}</span></td>
+                    </tr>
+                    </table>
+
+    <div class="page-header">
+        <h4>Disponibilidad CMTS: <small>{{nodo_id}}</small></h4>
+    </div>
+
+	<table class="table small table-striped table-bordered table-condensed">
+	 <thead style="border-top:1px solid gray;">
+            <th>Nodo</th>
+		    <th>10 Mbps</th>
+        	<th>12 Mbps</th>
+        	<th>15 Mbps</th>
+        	<th>20 Mbps</th>
+        	<th>30 Mbps</th>
+        	<th>CDI</th>
+            <th>MUNICIPIO</th>
+	</thead>
+
+	<tr ng-repeat="service in nods | filter:nodo_id">
+		<td><span class="badge">{{service.Nodo}}</span></td>
+		<td><span ng-class="{'Disponible':'label label-success','No Disponible':'label label-danger'}[service.Diez_Mbps]">{{service.Diez_Mbps}}</span></td>
+		<td><span ng-class="{'Disponible':'label label-success','No Disponible':'label label-danger'}[service.Doce_Mbps]">{{service.Doce_Mbps}}</span></td>
+		<td><span ng-class="{'Disponible':'label label-success','No Disponible':'label label-danger'}[service.Quince_Mbps]">{{service.Quince_Mbps}}</span></td>
+        <td><span ng-class="{'Disponible':'label label-success','No Disponible':'label label-danger'}[service.Veinte_Mbps]">{{service.Veinte_Mbps}}</span></td>
+        <td><span ng-class="{'Disponible':'label label-success','No Disponible':'label label-danger'}[service.Treinta_Mbps]">{{service.Treinta_Mbps}}</span></td>
+        <td>{{service.CDI}}</td>
+        <td>{{service.MUNICIPIO}}</td>
+	</tr>
+	</table>
+                <!--td><button id="iniciar" type="button" class="btn btn-md btn-success" onclick="javascript:activar();">Iniciar</a></td-->
+	<div id="warning"></div>
+
+	</form>
+  </div>
+</div>
