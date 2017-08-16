@@ -9227,7 +9227,7 @@ class API extends REST {
             " group by b.pedido ";
 
 
-        //  echo $query1;
+          echo $query1;
         $r = $this->mysqli->query($query1);
 
         if($r->num_rows > 0){
