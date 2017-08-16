@@ -11718,102 +11718,78 @@ $scope.csvActivacioncolas = function () {
 
 
 		   //---------------------seguimiento
- $scope.actualizarGraficaAD   = function (){
+   $scope.myDataSourceAD = {
+                        chart: {
+                        caption: "Grafica General",
+                        subcaption: "Pendientes A y D",
+                        startingangle: "120",
+                        showlabels: "0",
+                        showlegend: "1",
+                        enablemultislicing: "0",
+                        slicingdistance: "15",
+                        formatNumberScale: "0",
+                        showpercentvalues: "1",
+                        showpercentintooltip: "0",
+                        plottooltext: "Age group : $label Total visit : $datavalue",
+                        theme: "fint"
+                        },
+                        data: []
+
+        };
+
+
+          $scope.actualizarseguimientoGraficaAD   = function (){
     //TOMAR MUESTRA
                 var data1=services.getactivacionGraficaseguimiento().then(function(data){
 
-                        $scope.myDataSource = {
+                        $scope.myDataSourceAD = {
 
 
-                           chart: {
-                    // "caption": "Grafica Pendientes",
-                    //"subCaption": "Conceptos",
-                    "xAxisName": "Conceptos",
-                    "yAxisName": "Serivicios",
-                    "numberPrefix": "",
-                    "paletteColors": "#0075c2",
-                    "bgColor": "#ffffff",
-                    "borderAlpha": "20",
-                    "canvasBorderAlpha": "0",
-                    "bgAlpha": "50",
-                    "usePlotGradientColor": "0",
-                    "plotBorderAlpha": "10",
-                    "placevaluesInside": "0",
-                    "rotatevalues": "0",
-                    "valueFontColor": "#0075c2",
-                    "showXAxisLine": "1",
-                    "xAxisLineColor": "#999999",
-                    "divlineColor": "#999999",
-                    "divLineDashed": "1",
-                    "showAlternateHGridColor": "0",
-                    "subcaptionFontBold": "0",
-                    "subcaptionFontSize": "14",
-                    "labelDisplay": "rotate",
-                    "slantLabels": "1"
-                },
+                            chart: {
+                                "caption": "Pedidos Cumplidos / Activación",
+                                "xAxisName": "Colas",
+                                "yAxisName": "Pedidos",
+                                "numberPrefix": "",
+                                "paletteColors": "#0075c2",
+                                "bgColor": "#ffffff",
+                                "borderAlpha": "20",
+                                "canvasBorderAlpha": "0",
+                                "usePlotGradientColor": "0",
+                                "plotBorderAlpha": "10",
+                                "placevaluesInside": "0",
+                                "rotatevalues": "0",
+                                "valueFontColor": "#0075c2",
+                                "showXAxisLine": "1",
+                                "xAxisLineColor": "#999999",
+                                "divlineColor": "#999999",
+                                "divLineDashed": "1",
+                                "showAlternateHGridColor": "0",
+                                "subcaptionFontBold": "0",
+                                "subcaptionFontSize": "14"
+                            },
 
-                data: data.data
 
-            };
-            var date1 = new Date();
-            var year = date1.getFullYear();
-            var month = $scope.doubleDigit(date1.getMonth() + 1);
-            var day = $scope.doubleDigit(date1.getDate());
-            var hour = $scope.doubleDigit(date1.getHours());
-            var minute = $scope.doubleDigit(date1.getMinutes());
-            var seconds = $scope.doubleDigit(date1.getSeconds());
 
-            $scope.lastUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+                                data: data.data[0]
 
-            return data.data;
-        });
-        //para actualizar la tabla...
-        $scope.actualizarPendientesPorPlaza();
+                        };
+                        var date1 = new Date();
+                        var year    = date1.getFullYear();
+                        var month   = $scope.doubleDigit(date1.getMonth()+1);
+                        var day     = $scope.doubleDigit(date1.getDate());
+                        var hour    = $scope.doubleDigit(date1.getHours());
+                        var minute  = $scope.doubleDigit(date1.getMinutes());
+                        var seconds = $scope.doubleDigit(date1.getSeconds());
 
-        //$scope.actualizarGraficaAgendamiento();
+                        $scope.lastUpdate=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
+                        $scope.totalAD= data.data[1];
 
-        services.logVista($cookieStore.get('logedUser').login, "Indicadores General");
+                        return data.data;
+                });
 
-    };
 
-    $scope.actualizarGraficaAD = function () {
-        //TOMAR MUESTRA
-        var data1 = services.getactivacionGraficaseguimiento().then(function (data) {
-            $scope.myDataSource = {
-                chart: {
-                    caption: "Seguimiento",
-                    subcaption: "Activacion",
-                    startingangle: "120",
-                    showlabels: "1",
-                    showlegend: "1",
-                    enablemultislicing: "0",
-                    formatNumberScale: "0",
-                    slicingdistance: "15",
-                    showpercentvalues: "0",
-                    showpercentintooltip: "0"
-                },
-
-                data: data.data[0]
-
-            };
-            var date1 = new Date();
-            var year = date1.getFullYear();
-            var month = $scope.doubleDigit(date1.getMonth() + 1);
-            var day = $scope.doubleDigit(date1.getDate());
-            var hour = $scope.doubleDigit(date1.getHours());
-            var minute = $scope.doubleDigit(date1.getMinutes());
-            var seconds = $scope.doubleDigit(date1.getSeconds());
-
-            $scope.lastUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-            $scope.totalAD = data.data[1];
-
-            return data.data;
-        });
-       
-
-        services.logVista($cookieStore.get('logedUser').login, "Indicadores Activacion y Desactivacion");
-    };
-//-----------------fin seguimiento fin		   
+           };
+		//-----------------fin seguimiento fin		   
 
 
           $scope.listadoactivacion2  = function (){
