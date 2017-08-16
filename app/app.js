@@ -11776,13 +11776,13 @@ $scope.csvActivacioncolas = function () {
 
     };
 
-    $scope.actualizarGraficaAD = function () {
+    $scope.actualizarGraficaADO = function () {
         //TOMAR MUESTRA
         var data1 = services.getactivacionGraficaseguimiento().then(function (data) {
             $scope.myDataSourceAD = {
                 chart: {
-                    caption: "Grafica A y D",
-                    subcaption: "Pendientes",
+                    caption: "Seguimiento",
+                    subcaption: "Activacion",
                     startingangle: "120",
                     showlabels: "1",
                     showlegend: "1",
@@ -11809,7 +11809,7 @@ $scope.csvActivacioncolas = function () {
 
             return data.data;
         });
-        $scope.actualizarPendientesPorConceptoColaActivacion();
+       
 
         services.logVista($cookieStore.get('logedUser').login, "Indicadores Activacion y Desactivacion");
     };
