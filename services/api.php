@@ -9245,7 +9245,7 @@ class API extends REST {
 
             $sqlupdate1="update pendientes_amarillas set ASESOR='$user' where ID in ($ids) and pedido='$mypedido'";
 
-           // echo $sqlupdate1;
+            echo $sqlupdate1;
             $x = $this->mysqli->query($sqlupdate1);
 
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
