@@ -16066,7 +16066,7 @@ app.controller('gestionAsignacionesSiebelCtrl', function ($scope, $rootScope, $l
 
 
 
-app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
+app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, services, fileUpload) {
 	$scope.header = 'Buscador Nodos CMTS';
 	$scope.footer = 'Gerencia Alistamiento';
 	$scope.nods = [];
@@ -16092,6 +16092,21 @@ app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $locat
 
 	$scope.closeToMe = function (po) {
 		$scope.nods = [];
+	};
+
+
+    $scope.uploadFile = function () {
+		$scope.user = $rootScope.logedUser.login;
+
+		var file = $scope.myFile;
+		console.log('file is');
+		console.dir(file);
+
+
+		var uploadUrl = 'services/cargar_datos';
+		 console.log ($scope.user);
+		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
+
 	};
 
 	$scope.buscarCmts = function (nnodo) {
