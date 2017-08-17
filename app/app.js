@@ -11747,8 +11747,6 @@ $scope.csvActivacioncolas = function () {
 			//var p14=data.data[2];
 			//var p99=data.data[3];
 
-
-			
 			$scope.myDataSourceActivacion = {
 				chart: {
                                 "caption": "Grafica Activación / Siebel",
