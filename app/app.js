@@ -11752,7 +11752,7 @@ $scope.csvActivacioncolas = function () {
                                 "caption": "Grafica Activación ",
                                 "subCaption": "Seguimiento",
                                 "xAxisName": "Asesor",
-                                "yAxisName": "Pendientes",
+                                "yAxisName": "Gestionado",
                                 "numberPrefix": "",
                                 "paletteColors": "#0075c2",
                                 "bgColor": "#ffffff",
