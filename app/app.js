@@ -11837,9 +11837,9 @@ $scope.csvActivacioncolas = function () {
                         $scope.myDataSourceAD = {
 
                            chart: {
-                                "caption": "Grafica Activación / Siebel",
-                                "subCaption": "Pendientes",
-                                "xAxisName": "Pedidos Por Producto",
+                                "caption": "Grafica Activación ",
+                                "subCaption": "Seguimiento",
+                                "xAxisName": "Asesor",
                                 "yAxisName": "Pendientes",
                                 "numberPrefix": "",
                                 "paletteColors": "#0075c2",
