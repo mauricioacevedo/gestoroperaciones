@@ -15,20 +15,15 @@
 
 
                 <div class="col-lg-8 col-xs-8 form-inline">
-                      <!--div class="fileUpload btn btn-primary">
+                      <div class="fileUpload btn btn-primary">
                           <span class="glyphicon glyphicon-upload"></span> Seleccionar Archivo
-                          <input type="file"  file-model = "myFile" />{{myfile}}|
-                      </div-->
-                    <div class="fileinput fileinput-new" data-provides="fileinput">
-                        <span class="btn btn-default btn-file"><span>Choose file</span><input type="file" file-model = "myFile" /></span>
-                        <span class="fileinput-filename"></span><span class="fileinput-new">No file chosen</span>
-                    </div>
+                          <input type="file"  file-model = "myFile" />
+                      </div>
+
                              <button class="btn btn-success btn-md" value="cargar" id="cargar" ng-click="uploadFile();"><span class="glyphicon glyphicon-cloud-upload"></span> Cargar</button>
                              <div class="loading-spiner-holder" data-loading ><div class="loading-spiner"><img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="images/loader.gif" /></div></div>
 
-                        <div ng-show="error" class="alert alert-danger">
-                      {{error}}
-                    </div>
+                        <div ng-show="error" class="alert alert-danger">{{error}}</div>
 
                 </div>
 
