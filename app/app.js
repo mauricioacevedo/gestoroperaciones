@@ -11749,9 +11749,9 @@ $scope.csvActivacioncolas = function () {
 			//EL CHECHE2
 			$scope.myDataSourceActivacion = {
 				chart: {
-                                "caption": "Grafica Activación / Siebel",
-                                "subCaption": "Pendientes",
-                                "xAxisName": "Pedidos Por Producto",
+                                "caption": "Grafica Activación ",
+                                "subCaption": "Seguimiento",
+                                "xAxisName": "Asesor",
                                 "yAxisName": "Pendientes",
                                 "numberPrefix": "",
                                 "paletteColors": "#0075c2",
@@ -11837,9 +11837,9 @@ $scope.csvActivacioncolas = function () {
                         $scope.myDataSourceAD = {
 
                            chart: {
-                                "caption": "Grafica Activación ",
-                                "subCaption": "Seguimiento",
-                                "xAxisName": "Asesor",
+                                "caption": "Grafica Activación / Siebel",
+                                "subCaption": "Pendientes",
+                                "xAxisName": "Pedidos Por Producto",
                                 "yAxisName": "Pendientes",
                                 "numberPrefix": "",
                                 "paletteColors": "#0075c2",
