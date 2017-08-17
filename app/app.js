@@ -11746,7 +11746,7 @@ $scope.csvActivacioncolas = function () {
 			//console.log(nombremes);
 			//var p14=data.data[2];
 			//var p99=data.data[3];
-			//EL CHECHE
+			//EL CHECHE2
 			$scope.myDataSourceActivacion = {
 				chart: {
                                 "caption": "Grafica Activación / Siebel",
