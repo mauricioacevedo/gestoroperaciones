@@ -11749,52 +11749,47 @@ $scope.csvActivacioncolas = function () {
 
 			$scope.myDataSourceActivacion = {
 				chart: {
-					"xAxisName": "Asesor",
-					"yAxisName": "Seguimiento",
-					"numberPrefix": "",
-					"bgColor": "#ffffff",
-					"borderAlpha": "20",
-					"canvasBorderAlpha": "0",
-					"usePlotGradientColor": "0",
-					"plotBorderAlpha": "10",
-					"placevaluesInside": "0",
-					"rotatevalues": "0",
-					"valueFontColor": "#0075c2",
-					"showXAxisLine": "1",
-					"xAxisLineColor": "#999999",
-					"divlineColor": "#999999",
-					"divLineDashed": "1",
-					"showAlternateHGridColor": "0",
-					"showPercentValues": "1",
-					"subcaptionFontBold": "0",
-					"subcaptionFontSize": "14",
-					"toolTipBorderColor": "#FFFFFF",
-					"toolTipBgAlpha": "80"
+                                "caption": "Grafica Activación / Siebel",
+                                "subCaption": "Pendientes",
+                                "xAxisName": "Pedidos Por Producto",
+                                "yAxisName": "Pendientes",
+                                "numberPrefix": "",
+                                "paletteColors": "#0075c2",
+                                "bgColor": "#ffffff",
+                                "borderAlpha": "20",
+                                "canvasBorderAlpha": "0",
+                                "usePlotGradientColor": "0",
+                                "plotBorderAlpha": "10",
+                                "placevaluesInside": "0",
+                                "rotatevalues": "0",
+                                "valueFontColor": "#0075c2",
+                                "showXAxisLine": "1",
+                                "xAxisLineColor": "#999999",
+                                "divlineColor": "#999999",
+                                "divLineDashed": "1",
+                                "showAlternateHGridColor": "0",
+                                "subcaptionFontBold": "0",
+                                "subcaptionFontSize": "14"
+                            },
+                                data: data.data[0]
 
-				},
-				
-				data: data.data
+                        };
+                        var date1 = new Date();
+                        var year    = date1.getFullYear();
+                        var month   = $scope.doubleDigit(date1.getMonth()+1);
+                        var day     = $scope.doubleDigit(date1.getDate());
+                        var hour    = $scope.doubleDigit(date1.getHours());
+                        var minute  = $scope.doubleDigit(date1.getMinutes());
+                        var seconds = $scope.doubleDigit(date1.getSeconds());
 
-			};
+                        $scope.lastUpdate=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
+                        $scope.totalAD= data.data[1];
+						$scope.listaPendientesSiebel=data.data[0];
 
+                        return data.data;
+             });
 
-			var date1 = new Date();
-			var year = date1.getFullYear();
-			var month = $scope.doubleDigit(date1.getMonth() + 1);
-			var day = $scope.doubleDigit(date1.getDate());
-			var hour = $scope.doubleDigit(date1.getHours());
-			var minute = $scope.doubleDigit(date1.getMinutes());
-			var seconds = $scope.doubleDigit(date1.getSeconds());
-
-			$scope.lastUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-
-			return data.data;
-		});
-		//$scope.actualizarGraficaActivacionMes();
-
-		services.logVista($cookieStore.get('logedUser').login, "Dashboard grafica activacion");
-
-	};
+    };
 
 		//-----------------fin seguimiento fin		   
 
