@@ -11718,22 +11718,25 @@ $scope.csvActivacioncolas = function () {
 
 
 		   //---------------------seguimiento
-   $scope.myDataSourceActivacion = {
-		chart: {
-			startingangle: "120",
-			showlabels: "1",
-			showlegend: "1",
-			enablemultislicing: "0",
-			paletteColors: "#008ee4",
-			slicingdistance: "15",
-			formatNumberScale: "0",
-			showpercentvalues: "1",
-			showpercentintooltip: "0",
-			plottooltext: "Age group : $label Total visit : $datavalue"
-		},
-		data: []
+  
+  $scope.myDataSourceActivacion = {
+                        chart: {
+                        caption: "Grafica General",
+                        subcaption: "Pendientes A y D",
+                        startingangle: "120",
+                        showlabels: "0",
+                        showlegend: "1",
+                        enablemultislicing: "0",
+                        slicingdistance: "15",
+                        formatNumberScale: "0",
+                        showpercentvalues: "1",
+                        showpercentintooltip: "0",
+                        plottooltext: "Age group : $label Total visit : $datavalue",
+                        theme: "fint"
+                        },
+                        data: []
 
-	};
+        };//--------------------------------
 
 
 	$scope.actualizarGraficaActivacion = function () {
@@ -11769,6 +11772,7 @@ $scope.csvActivacioncolas = function () {
 					"toolTipBgAlpha": "80"
 
 				},
+				
 				data: data.data
 
 			};

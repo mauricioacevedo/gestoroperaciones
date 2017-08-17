@@ -5303,6 +5303,7 @@ class API extends REST {
             $this->response('',406);
         }
 
+
         $query= " SELECT PRODUCTO as label, COUNT(*) as value ".
             " FROM  gestor_pendientes_activacion_siebel ".
             " WHERE (ESTADO='in_progress') ".
