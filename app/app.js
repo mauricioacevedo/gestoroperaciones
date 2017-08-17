@@ -11746,8 +11746,8 @@ $scope.csvActivacioncolas = function () {
 
 			$scope.myDataSourceActivacion = {
 				chart: {
-					"xAxisName": "Mes",
-					"yAxisName": "TMA",
+					"xAxisName": "Asesor",
+					"yAxisName": "Seguimiento",
 					"numberPrefix": "",
 					"bgColor": "#ffffff",
 					"borderAlpha": "20",
@@ -11788,7 +11788,7 @@ $scope.csvActivacioncolas = function () {
 		});
 		//$scope.actualizarGraficaActivacionMes();
 
-		services.logVista($cookieStore.get('logedUser').login, "Dashboard grafica activacion mes");
+		services.logVista($cookieStore.get('logedUser').login, "Dashboard grafica activacion");
 
 	};
 
@@ -16066,7 +16066,7 @@ app.controller('gestionAsignacionesSiebelCtrl', function ($scope, $rootScope, $l
 
 
 
-app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, services, fileUpload) {
+app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
 	$scope.header = 'Buscador Nodos CMTS';
 	$scope.footer = 'Gerencia Alistamiento';
 	$scope.nods = [];
@@ -16092,21 +16092,6 @@ app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $locat
 
 	$scope.closeToMe = function (po) {
 		$scope.nods = [];
-	};
-
-
-    $scope.uploadFile = function () {
-		$scope.user = $rootScope.logedUser.login;
-
-		var file = $scope.myFile;
-		console.log('file is');
-		console.dir(file);
-
-
-		var uploadUrl = 'services/cargar_datos';
-		 console.log ($scope.user);
-		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
-
 	};
 
 	$scope.buscarCmts = function (nnodo) {
@@ -17270,12 +17255,6 @@ app.config(['$routeProvider',
 		.when('/cmts/', {
 				title: 'Cmts',
 				templateUrl: 'partials/buscarcmts.html',
-				controller: 'mymodalcontroller',
-				reloadOnSearch: false
-		})
-        .when('/cmts2/', {
-				title: 'Cmts',
-				templateUrl: 'partials/buscarcmts2.html',
 				controller: 'mymodalcontroller',
 				reloadOnSearch: false
 		})
