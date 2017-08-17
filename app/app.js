@@ -11719,10 +11719,10 @@ $scope.csvActivacioncolas = function () {
 
 		   //---------------------seguimiento
   
-  /*$scope.myDataSourceActivacion = {
+  $scope.myDataSourceActivacion = {
                         chart: {
-                        caption: "Grafica General",
-                        subcaption: "Pendientes A y D",
+                        caption: "Grafica Activación",
+                        subcaption: "Seguimiento",
                         startingangle: "120",
                         showlabels: "0",
                         showlegend: "1",
@@ -11738,7 +11738,7 @@ $scope.csvActivacioncolas = function () {
 
         };//--------------------------------
 
-*/
+
 	$scope.actualizarGraficaActivacion = function () {
 		var data1 = services.getactivacionGraficaseguimiento().then(function (data) {
 			//var nombremes=data.data[0];
