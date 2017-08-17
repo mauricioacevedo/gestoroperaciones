@@ -11920,6 +11920,7 @@ $scope.setActiveTab = function (tabToSet) {
 	$scope.activeTabs = tabToSet;
 	//$scope.ProductividadPorHora();
 	$scope.actualizarGraficaAD();
+	$scope.actualizarGraficaActivacion();
 };
 // ----------------------------------------------------Opciones de Tabs para las Graficas 
 	//----------Funcion para determinar el color del pendiente --------------------------
