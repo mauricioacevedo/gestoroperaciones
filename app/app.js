@@ -17257,6 +17257,12 @@ app.config(['$routeProvider',
 				controller: 'mymodalcontroller',
 				reloadOnSearch: false
 		})
+        .when('/cmts2/', {
+				title: 'Cmts',
+				templateUrl: 'partials/buscarcmts2.html',
+				controller: 'mymodalcontroller',
+				reloadOnSearch: false
+		})
 		.when('/distancia/', {
 				title: 'Distancia',
 				templateUrl: 'partials/calculo-distancia.html',
