@@ -11720,6 +11720,8 @@ class API extends REST {
         }
         list($end, $end_h, $end_v) = $rslt;
 
+        $sqltruncate="truncate table gestor_cmts_por_archivo ";
+        $r = $this->mysqli->query($sqltruncate) or die($this->mysqli->error.__LINE__);
 
         //empieza  lectura vertical
         for($v=$start_v; $v<=$end_v; $v++){
@@ -11729,13 +11731,13 @@ class API extends REST {
                         //VERIFICO QUE EL ENCABEZADO SEA EL QUE ESTOY ESPERANDO.....
                         $vars="";
                         $header="CMTS_CD,ND_CD,PUERTOS,BW TOTAL,MAX CAP BW x Cluster,% Ocupacion,BW Disponible,";
-                        for($h=$start_h; ord($h)<=ord($end_h); pp($h)){
-                                $cellValue = get_cell($h.$v, $objPHPExcel);
+                        for($h=$start_h; ord($h)<=ord($end_h); $this->pp($h)){
+                                $cellValue = $this->get_cell($h.$v, $objPHPExcel);
                                 if($h=="H") break;//esto controla si por alguna razon hay columnas vacias mas alla del limite....
 
                                 $vars=$vars."$cellValue,";
                         }
-                        echo "HEADER: $vars";
+                        //echo "HEADER: $vars";
                         if($header==$vars){
                                 echo "ARCHIVO CORRECTO!!!!";
                         }else{
@@ -11746,8 +11748,8 @@ class API extends REST {
                 }
                 $vars="";
                 $sep="";
-                for($h=$start_h; ord($h)<=ord($end_h); pp($h)){
-                        $cellValue = get_cell($h.$v, $objPHPExcel);
+                for($h=$start_h; ord($h)<=ord($end_h); $this->pp($h)){
+                        $cellValue = $this->get_cell($h.$v, $objPHPExcel);
 
                         if($h=="H") break;
 
