@@ -1556,6 +1556,7 @@ app.controller('popupsCtrl', function ($scope, $rootScope, $location, $routePara
     var w = $window.innerWidth;
     var urls = {
           urlNodoHfc: $window.location.pathname+'/#/cmts/'
+        , urlNodoHfc2: $window.location.pathname+'/#/cmts2/'
 		, urlNodoGpon: $window.location.pathname+'/#/gpon/'
 		, urlDistancia: $window.location.pathname+'/#/distancia/'
 		, urlTips: $window.location.pathname+'/#/tips/'
@@ -1564,7 +1565,7 @@ app.controller('popupsCtrl', function ($scope, $rootScope, $location, $routePara
 
     $scope.btnFunctions = {
         BuscaNodo: function () {
-            $scope.winBuscaNodo = $window.open(urls.urlNodoHfc, 'Buscar Nodo HFC','width=730,height=560,menubar=0,toolbar=0');
+            $scope.winBuscaNodo = $window.open(urls.urlNodoHfc2, 'Buscar Nodo HFC','width=730,height=560,menubar=0,toolbar=0');
            // console.log('h: '+h+' - '+'w: '+w);
 		}
         , BuscaGPON: function () {
