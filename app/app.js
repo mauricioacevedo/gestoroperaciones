@@ -16090,6 +16090,20 @@ app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $locat
 		return num;
 	};
 
+    $scope.uploadFile = function () {
+		$scope.user = $rootScope.logedUser.login;
+
+		var file = $scope.myFile;
+		console.log('file is');
+		console.dir(file);
+
+
+		var uploadUrl = 'services/cargar_datos_cmts';
+		 console.log ($scope.user);
+		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
+
+	};
+
 	$scope.closeToMe = function (po) {
 		$scope.nods = [];
 	};
