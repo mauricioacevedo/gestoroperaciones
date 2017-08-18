@@ -1,15 +1,10 @@
-var app = angular.module('myApp', ['base64', 'ngRoute', 'ngCookies', 'ng-fusioncharts', 'ngAnimate', 'ui.bootstrap', 'ui.tinymce', 'ui.select', 'ngSanitize', 'ui.calendar', 'angularFileUpload', 'cgNotify', 'firebase', 'angular-smilies', 'angularjs-datetime-picker','xeditable','angularMoment']);
+var app = angular.module('myApp', ['base64', 'ngRoute', 'ngCookies', 'ng-fusioncharts', 'ngAnimate', 'ui.bootstrap', 'ui.tinymce', 'ui.select', 'ngSanitize', 'ui.calendar', 'angularFileUpload', 'cgNotify', 'firebase', 'angular-smilies', 'angularjs-datetime-picker','xeditable']);
 //Los " Myapp " solapas de parámetros a un elemento HTML en el que se ejecutará la aplicación .
 //Ahora puede agregar controladores , directivas , filtros y más, para su aplicación AngularJS .
 //El módulo ngRoute proporciona enrutamiento y deeplinking Servicios y directivas para aplicaciones angulares .
 //El módulo ngCookies proporciona un contenedor conveniente para la lectura y la escritura del navegador cookies.
 //FusionCharts suite XT incluye una amplia gama de gráficos, indicadores y mapas que se pueden utilizar para trazar todo tipo de datos estáticos y en tiempo real .
-app.run(function(amMoment) {
-    amMoment.changeLocale('es',null);
-    //moment.updateLocale('es', null);
-    //console.log("Espa");
 
-});
 app.service('idPermisos', function ($http, $q) {
     var self = this;
     self.getIds = function () {
@@ -70,34 +65,6 @@ app.service('fileUpload', ['$http', '$cookieStore', function ($http, $cookieStor
 	}
 }]);
 
-app.service('fileUpload1', ['$http', '$cookieStore', function ($http, $cookieStore) {
-	this.uploadFileToUrl = function (file, uploadUrl) {
-		var fd = new FormData();
-		var user = $cookieStore.get('logedUser').login;
-		file['user'] = user + '6666666';
-		fd.append('user', user);
-		fd.append('fileUpload', file);
-		$http.post('services/cargar_datos_activacion', fd, {
-				withCredentials: false,
-				transformRequest: angular.identity,
-				headers: {
-					'Content-Type': undefined
-				},
-				params: {
-					'user': user
-				},
-				responseType: "arraybuffer"
-			})
-			.success(function () {
-				alert('El archivo a sido subido correctamente');
-			})
-			.error(function () {
-				alert('Ha habido un error al subir el archivo');
-			});
-	}
-}]);
-
-
 app.service('fileUpload2', ['$http', function ($http) {
 	this.uploadFileToUrl = function (file, uploadUrl) {
 		var fd = new FormData();
@@ -133,35 +100,7 @@ app.directive('fileModel', ['$parse', function ($parse) {
 	};
 }]);
 
-
-
 //---cargar aqrchivo agendamiento-----------------------------------
-
-app.factory('socket', function ($rootScope) {
-    //var socket = io.connect('http://10.65.65.88:3000');
-    socket = io.connect('http://10.100.82.125:4000');
-    return {
-        on: function (eventName, callback) {
-            socket.on(eventName, function () {
-                var args = arguments;
-                $rootScope.$apply(function () {
-                    callback.apply(socket, args);
-                });
-            });
-        },
-        emit: function (eventName, data, callback) {
-            socket.emit(eventName, data, function () {
-                var args = arguments;
-                $rootScope.$apply(function () {
-                    if (callback) {
-                        callback.apply(socket, args);
-                    }
-                });
-            })
-        }
-    };
-});
-
 
 app.factory("services", ['$http', '$timeout', function ($http) {
 	var serviceBase = 'services/';
@@ -228,8 +167,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	obj.getBuscarPedidoAgendamientoRegistro1 = function (bpedido, page) {
 		return $http.get(serviceBase + 'buscarPedidoAgendamientoRegistro1?bpedido=' + bpedido + '&page=' + page); // buscar pedido agendamiento
 	};
-	obj.getCsvPendientesAgendamientoInsta = function (login) {
-		return $http.get(serviceBase + 'csvPendientesAgendamientoInsta?login=' + login); //csv exportar datos pendientes agendamiento
+	obj.getCsvPendientesAgendamiento = function (login) {
+		return $http.get(serviceBase + 'csvPendientesAgendamiento?login=' + login); //csv exportar datos pendientes agendamiento
 	};
 	obj.getCsvPendientesAgendamientoPredictiva = function (login) {
 		return $http.get(serviceBase + 'csvPendientesAgendamientoPredictiva?login=' + login); // exportar agendamiento predictiva
@@ -237,20 +176,16 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	obj.getCsvAGENToday = function (login) {
 		return $http.get(serviceBase + 'csvAGENToday?login=' + login); //exportar pendientes de la tabla FNX_ORDENES_TRABAJOS
 	};
-	obj.getCsvPendientesAgenRepa = function (login) {
-		return $http.get(serviceBase + 'csvPendientesAgenRepa?login=' + login); // pendientes agendamiento de siete dias
+	obj.getCsvPendientesAgenSiete = function (login) {
+		return $http.get(serviceBase + 'csvPendientesAgenSiete?login=' + login); // pendientes agendamiento de siete dias
 	};
 	obj.getCsvMalosAgendamiento = function (login) {
 		return $http.get(serviceBase + 'csvMalosAgendamiento?login=' + login); // exportar datos status malos de agendamiento
 	};
-	obj.getCsvMalosAgendamientoReparaciones = function (login) {
-		return $http.get(serviceBase + 'csvMalosAgendamientoReparaciones?login=' + login); // exportar datos status malos de agendamiento
-	};
-
 	obj.getCsvAgendamiento = function (login) {
 		return $http.get(serviceBase + 'csvAgendamiento?login=' + login); // exportar todos los pendientes de agendamiento
 	};
-	obj.getCsvHistoricosAgendamiento = function (login, fechaIni, fechaFin) { //exportar historico agendamiento
+	obj.getCsvHistoricosAgendamiento = function (login, fechaIni, fechaFin) { //exportar historico agendamiento todo
 		return $http.get(serviceBase + 'csvHistoricosAgendamiento?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
 	};
 	obj.getCsvHistoricosAgendamientoEdatel = function (login, fechaIni, fechaFin) { // exportar historicos solo edatel
@@ -268,13 +203,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'demePedidoAgendamiento?userID=' + user + '&departamento=' + departamento + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&zona=' + zona + '&microzona=' + microzona + '&proceso=' + proceso + '&tipo_trabajo='+tipo_trabajo);
 	};
 
-	obj.demePedidoAgendamientomalo = function (user, pedido_actual, plaza, username,proceso) {
-		return $http.get(serviceBase + 'demePedidoAgendamientomalo?userID=' + user + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&proceso=' + proceso);
+	obj.demePedidoAgendamientomalo = function (user, pedido_actual, plaza, username) {
+		return $http.get(serviceBase + 'demePedidoAgendamientomalo?userID=' + user + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username);
 	};
-
-	obj.gestionPendientesInstaMalos=function (datosPendientes, datosGestion){
-    return $http.post(serviceBase + 'servicesgestionPendientesInstaMalos',{'datosPendientes':datosPendientes,"datosGestion":datosGestion});
-    };
 
 	obj.getDepartamentosPendientesReagendamiento = function () {
 		return $http.get(serviceBase + 'getDepartamentosPendientesReagendamiento'); //pendientes por departamento agendamiento
@@ -403,15 +334,6 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	//Activacion-----------------------------------------------------------------------------------
 
 
-	
-	obj.getcausaRaiz = function () {
-     return $http.get(serviceBase + 'causaRaiz');
-        };  
-
-	obj.getResponsablePendiente = function (causaraiz) {
-     return $http.get(serviceBase + 'ResponsablePendiente?causaraiz=' + causaraiz);
-        };  	
-
     obj.getGestorTansacciones = function () {
 		return $http.get(serviceBase + 'gestorTransacciones');
 	};
@@ -488,15 +410,6 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'csvActivacion?login=' + login);
 	};
 
-	obj.getCsvActivacioncolas = function (login) { //exportar activacion
-		return $http.get(serviceBase + 'csvActivacioncolas?login=' + login);
-	};
-
-	obj.getCsvAmarillas = function (login) { //exportar activacion
-		return $http.get(serviceBase + 'csvAmarillas?login=' + login);
-	};
-
-
 	obj.getCsvActivacionSiebel = function (login) { //exportar activacion siebel
 		return $http.get(serviceBase + 'csvActivacionSiebel?login=' + login);
 	};
@@ -528,20 +441,12 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'pendientesGraficaAD');
 	};
 
-	obj.getactivacionGraficaseguimiento = function () { // grafica pendientes activacion
-		return $http.get(serviceBase + 'activacionGraficaseguimiento');
-	};
-
 	obj.getPendientesSiebelGraficaAD = function () { //pendientes siebel grafica
 		return $http.get(serviceBase + 'PendientesSiebelGraficaAD');
 	};
 
 	obj.getpedidosPorPedidoActivacion = function (pedido) { //pedido por pedido activacion
 		return $http.get(serviceBase + 'pedidosPorPedidoActivacion?pedido=' + pedido);
-	};
-
-	obj.getpedidosPorPedidoAmarillas = function (pedido) { //pedido por pedido activacion
-		return $http.get(serviceBase + 'pedidosPorPedidoAmarillas?pedido=' + pedido);
 	};
 
     obj.getpedidosPorPedidoActivacionDom = function (pedido) { //pedido por pedido activacion
@@ -553,18 +458,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'demePedidoActivacion?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion   + '&tabla=' + tabla  + '&producto=' + producto  +'&username=' + username );
 	};
 
-	
-	obj.demePedidoAmarillas = function (user, pedido,transaccion,tabla, username) { //deme pedido activacion	
-		console.log("transaccion=" + transaccion + "tabla=" + tabla);
-		return $http.get(serviceBase + 'demePedidoAmarillas?pedidoID=' + pedido + '&userID=' + user + '&transaccion=' + transaccion + '&tabla=' + tabla +'&username=' + username );
-	};
 
 	obj.getBuscarpedidoactivacion = function (pedido,tabla, user) { //buscar pedido activacion suspecore
 		return $http.get(serviceBase + 'buscarpedidoactivacion?pedidoID=' + pedido  + '&tabla=' + tabla  + '&userID=' + user);
-	};
-
-		obj.getBuscarpedidoamarillas = function (pedido,tabla, user) { //buscar pedido activacion suspecore
-		return $http.get(serviceBase + 'buscarpedidoamarillas?pedidoID=' + pedido  + '&tabla=' + tabla  + '&userID=' + user);
 	};
 
 	obj.insertTransaccionsiebelactivacion = function (pedido) { //insertar pedidos siebel activacion
@@ -574,19 +470,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return data;
 	};
 
-	obj.insertTransaccionsiebelamarillas = function (pedido) { //insertar pedidos siebel activacion
-		var data = $http.post(serviceBase + 'insertTransaccionsiebelamarillas ', {
-			"pedido": pedido
-		});
-		return data;
-	};
-
 	obj.getPedidosUserActivacion = function (userID) { //pedidos por user activacion
 		return $http.get(serviceBase + 'pedidosPorUserActivacion?userID=' + userID);
-	};
-
-	obj.getPedidosUserAmarillas = function (userID) { //pedidos por user activacion
-		return $http.get(serviceBase + 'pedidosPorUserAmarillas?userID=' + userID);
 	};
 
 	obj.listar = function () {
@@ -601,9 +486,6 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'gettransaccion?transaccion=' + transaccion);
 	};
 
-	obj.getPedidosGestorUserActivacion = function (grupo) {
-		return $http.get(serviceBase + 'PedidosGestorUserActivacion?grupo=' + grupo);
-	};
 
 	//------------------------------------------------------fin_Activacion
 
@@ -1091,37 +973,34 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		//return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
 		return $http.post(serviceBase + 'opcionesGestionAsignaciones', opciones);
 	};
-    obj.getMunicipiosAsignacionesSiebel = function (conceptoSelected, fuente) {
-		//return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
-        var opciones={concepto: conceptoSelected, fuente: fuente};
-		return $http.post(serviceBase + 'municipiosAsignacionesSiebel', opciones);
-	};
 	obj.getHistoricoPedido = function (pedido) {
 		return $http.post(serviceBase + 'listaHistoricoPedidos', {
 			pedido: pedido
 		});
 	};
 
+    obj.getHistoricoPedidoactivacion = function (pedido) {
+		return $http.post(serviceBase + 'listaHistoricoPedidosactivacion', {
+			pedido: pedido
+		});
+	};
 	obj.getProductividadAsignacionesPorHora = function (fecha) {
 		return $http.post(serviceBase + 'productivdadAsignacionesPorHora', {
 			fecha: fecha
 		});
 	};
-    obj.putPrioridadPedidos = function (pedido_id, prioridad, usuario_id, multiple) {
+    obj.putPrioridadPedidos = function (pedido_id, prioridad, usuario_id) {
         return $http.post(serviceBase + 'otorgarPrioridadAbsoluta', {
             pedido_id: pedido_id,
             prioridad: prioridad,
-            usuario_id: usuario_id,
-            multiple: multiple
-
+            usuario_id: usuario_id
         });
     };
-    obj.putPrioridadPedidosAgen = function (pedido_id, prioridad, usuario_id, multiple) {
+    obj.putPrioridadPedidosAgen = function (pedido_id, prioridad, usuario_id) {
         return $http.post(serviceBase + 'otorgarPrioridadAbsolutaAgen', {
             pedido_id: pedido_id,
             prioridad: prioridad,
-            usuario_id: usuario_id,
-            multiple: multiple
+            usuario_id: usuario_id
         });
     };
     obj.buscarPedidoAuditoriafenix = function (pedido){
@@ -1185,18 +1064,14 @@ function ($q, $rootScope, $log) {
 
 // Controlador de logueo-------------------------------------------------------
 
-app.controller('login', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $q, $timeout, $http, $firebase, $firebaseObject, $firebaseArray, services, socket, notify) {
+app.controller('login', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, $http, $firebase, $firebaseObject, $firebaseArray, services) {
 
 	$rootScope.loginexito 		= 	false;
     $rootScope.shownavs 		= 	false;
-    $scope.lform 				= {};
-
 
 	var footer, header;
 	footer = document.getElementById('footerazo');
 	header = document.getElementById('headerazo');
-    $scope.pic = 'images/avatar_2x.png';
-
 
     $http.get('./services/loginNombreIp').then(
     	function (res) {
@@ -1204,39 +1079,12 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
     		$scope.userDomain 	= res.data[1];
     		$scope.autoNombre 	= res.data[2][0].NOMBRE;
     		$scope.autoFecha    = res.data[2][0].FECHA;
-            $scope.autoHora    	= res.data[2][0].HORA;
-            $scope.msgLogin     = $scope.autoNombre;
-			$scope.userId 		= res.data[2][0].USUARIO_ID;
+            $scope.msgLogin     = 'Bienvenido '+$scope.autoNombre
     }, function (res) {
     	$scope.msgLogin = res.data;
     });
 
-    $timeout( function(){
-        $http.get('./services/getLdapUserInfo?userbusqueda='+$scope.userId).then(
-            function (data){
-
-                if(data.status!== 201){
-                    if(data.data[0].PICTURE!==''){
-                        $scope.pic = 'data:image/jpeg;base64,'+data.data[0].PICTURE;
-                    }else{
-                        $scope.pic = 'images/avatar_2x.png';
-                    }
-
-
-                    //console.log(data.data[0]);
-
-                }else{
-                    $scope.pic = 'images/avatar_2x.png';
-                }
-            },
-            function errorCallback(res){
-                $rootScope.errorDatos = res.data;
-            }
-        );
-    }, 3000 );
-
-
-	if ($cookieStore.get('logedUser') !== undefined) {
+	if ($cookieStore.get('logedUser') != undefined) {
 		//hay alguien logeado
 		var id_user = $cookieStore.get('logedUser').id;
 		document.getElementById('logout').className = "btn btn-md btn-danger";
@@ -1287,7 +1135,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 	var currIndex = 0;
 
 	$scope.addSlide = function () {
-		var newWidth = slides.length + 1;
+		var newWidth = 0 + slides.length + 1;
 		slides.push({
 			image: './images/reglas/' + newWidth + '.jpg',
 			//text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
@@ -1366,7 +1214,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
 
 			$rootScope.loginexito 		= 	true;
-            $scope.error 				= 	null;
+            $rootScope.shownavs 		= 	true;
 
 			$timeout(function () {
 				var id_user = data['id'];
@@ -1396,7 +1244,6 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 				} else {
 					$location.path('/general/' + id_user);
 				}
-                $rootScope.shownavs 		= 	true;
 
 			}, 1000);
 
@@ -1473,115 +1320,6 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
 //------------------------------------------------------- Controlador de logueo
 
-app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $q, $timeout, $interval, $http, $window, socket, notify) {
-    /**
-    * Controlador para Enviar notificaciones a el mundo.
-    * */
-
-    $scope.playing = false;
-    $scope.audio = document.createElement('audio');
-    $scope.audio.src = './sounds/chatio.mp3';
-    $scope.template = '';
-    var urlNode = "http://10.100.82.125:4000";
-
-
-    $scope.play = function() {
-        $scope.audio.play();
-        $scope.playing = true;
-    };
-
-    $scope.abrirMsgNode = function () {
-        $scope.winMsgNode = $window.open(urlNode,'Enviar Mensajes Masivos','width=630,height=460,menubar=0,toolbar=0');
-        console.log("Abrir ventana mensajes rdy");
-    };
-
-
-    socket.on("broad", function (data) {
-    	$scope.play();
-        $scope.tituloviejo = $rootScope.title;
-       	$rootScope.title = "Nuevo Mensaje!";
-
-        $scope.blinkMsg = $interval(function (i) {
-            $rootScope.title = i % 2 ? 'Nuevo Mensaje!' : $scope.tituloviejo;
-        }, 1000);
-
-        var messageTemplate = '<span>'+ data.usuario +': ' + data.mensaje + '<br><br>'+
-            '<p class="text-left"><a href="" class="btn btn-primary btn-sm" ng-click="clickedLink()">Cerrar</a> </p></span>';
-
-    	notify({
-			//message: data.usuario+': '+data.mensaje,
-            messageTemplate: messageTemplate,
-            classes: data.tipo,
-            scope:$scope,
-            templateUrl: $scope.template,
-            duration: '0',
-            position: 'right'
-
-        });
-    });
-
-
-
-    $scope.clickedLink = function(){
-        console.log("Cerre notify");
-        notify.closeAll();
-        $rootScope.title = $scope.tituloviejo;
-        $interval.cancel($scope.blinkMsg);
-    };
-
-    socket.on('broadcast',function(data){
-    	//console.log($scope.winMsgNode);
-    	if(typeof($scope.winMsgNode) === 'undefined' || $scope.winMsgNode.closed){
-            $scope.nodeClients = data.description;
-		}else{
-            $scope.nodeClients = data.description-1;
-		}
-
-    });
-
-
-    $scope.$on('$destroy', function(){
-        $interval.cancel($scope.blinkMsg);
-    });
-
-
-});
-app.controller('popupsCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $q, $timeout, $interval, $http, $window, notify) {
-    /**
-     * Controlador para Abrir Popups con herramientas
-     * */
-    var h = $window.innerHeight;
-    var w = $window.innerWidth;
-    var urls = {
-          urlNodoHfc: $window.location.pathname+'/#/cmts/'
-		, urlNodoGpon: $window.location.pathname+'/#/gpon/'
-		, urlDistancia: $window.location.pathname+'/#/distancia/'
-		, urlTips: $window.location.pathname+'/#/tips/'
-        , urlEdatel: $window.location.pathname+'/#/distriedatel/'
-    };
-
-    $scope.btnFunctions = {
-        BuscaNodo: function () {
-            $scope.winBuscaNodo = $window.open(urls.urlNodoHfc, 'Buscar Nodo HFC','width=730,height=560,menubar=0,toolbar=0');
-           // console.log('h: '+h+' - '+'w: '+w);
-		}
-        , BuscaGPON: function () {
-            $scope.winBuscaGPON = $window.open(urls.urlNodoGpon, 'Buscar Capacidad Gpon','width=830,height=660,menubar=0,toolbar=0');
-        }
-        , abrirCalculoDistancia: function () {
-            $scope.winabrirCalculoDistancia = $window.open(urls.urlDistancia, 'Buscar Capacidad REDCO','width=1100,height=560,menubar=0,toolbar=0');
-        }
-        , abrirTips: function () {
-            $scope.winabrirTips = $window.open(urls.urlTips, 'Buscar Tips','width=830,height=560,menubar=0,toolbar=0');
-        }
-		, BuscaRedEdatel: function () {
-            $scope.winBuscaRedEdatel = $window.open(urls.urlEdatel, 'Buscar Capacidad Edatel','width=830,height=560,menubar=0,toolbar=0');
-        }
-    };
-
-
-
-});
 //-----------------------Dashboard graficas y seguimiento------------------
 
 app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) { //graficas
@@ -1672,7 +1410,6 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $location, $routeP
 		"$destroy",
 		function (event) {
 			clearInterval($scope.intervalFeed);
-			clearInterval($scope.intervalLightKPIS);
 		}
 	);
 
@@ -3067,7 +2804,7 @@ app.controller('DocuActivacion', function ($scope, $rootScope, $http, $location,
 /**
  * Indicadores Asignaciones
  * */
-app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, services, notify) {
+app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, services) {
 
 
 	var userID = $cookieStore.get('logedUser').login;
@@ -3488,8 +3225,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		});
 	};
 
-	
-
 
 	$scope.actualizarGrafica = function () {
 		//TOMAR MUESTRA
@@ -3624,7 +3359,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			$scope.listado_plazas_bogota = data.data[1];
 			$scope.listado_conceptosas = data.data[2];
 			$scope.listado_conceptosasn = angular.copy(data.data[2]);
-            $scope.listado_conceptosasnNUEVO = angular.copy(data.data[5]);
 			$scope.listado_conceptosin = data.data[3];
 			$scope.listado_conceptosfc = data.data[4];
 
@@ -3655,15 +3389,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			$scope.listado_conceptosasn.total1324 = 0;
 			$scope.listado_conceptosasn.total2548 = 0;
 			$scope.listado_conceptosasn.totalmas48 = 0;
-
-            $scope.listado_conceptosasnNUEVO.totales = 0;
-			$scope.listado_conceptosasnNUEVO.total02 = 0;
-			$scope.listado_conceptosasnNUEVO.total34 = 0;
-			$scope.listado_conceptosasnNUEVO.total56 = 0;
-			$scope.listado_conceptosasnNUEVO.total712 = 0;
-			$scope.listado_conceptosasnNUEVO.total1324 = 0;
-			$scope.listado_conceptosasnNUEVO.total2548 = 0;
-			$scope.listado_conceptosasnNUEVO.totalmas48 = 0;
 
 			$scope.listado_conceptosas.totales = 0;
 			$scope.listado_conceptosas.total02 = 0;
@@ -3890,93 +3615,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		isFirstDisabled: false
 	};
 
-    $scope.alarmados = {};
-	$scope.calcularTiempo = function () {
-        var type;
-        var d = new Date();
-        var month = d.getMonth()+1;
-        var day = d.getDate();
-        var output = d.getFullYear() + '-' + (month<10 ? '0' : '') + month + '-' + (day<10 ? '0' : '') + day;
-		var ahora = $rootScope.fechaProceso();
-		var horaLimite = output + ' 18:00:00';
-        var diferencia = Math.abs(Date.parse(horaLimite) - Date.parse(ahora)) / 36e5;
-
-		//console.log('ahora: '+ ahora);
-        //console.log('Limite: '+ horaLimite);
-       // console.log('Diferencia: '+ diferencia);
-
-
-        $scope.dynamic = 11-(Math.round(diferencia * 1000)/1000);
-
-        //console.log($scope.dynamic);
-
-        if ($scope.dynamic >0 && $scope.dynamic < 6) {
-            type = 'success';
-        } else if ($scope.dynamic >= 6 && $scope.dynamic < 8) {
-            type = 'warning';
-        } else if ($scope.dynamic > 8) {
-            type = 'danger';
-        }
-        $scope.type = type;
-
-        $scope.timediff = (Math.round(diferencia * 1000)/1000);
-
-        $http.get('./services/alarmadosProactivos').then(
-            function (res) {
-                $rootScope.errorDatos = null;
-                $scope.alarmados.alarmados = res.data[1];
-                $scope.alarmados.historico = res.data[2];
-                $scope.alarmados.recuperados = res.data[3];
-                $scope.alarmados.fechacita = res.data[4];
-            }, function (res) {
-                $rootScope.errorDatos = 'Error: '+res.status;
-            }
-        );
-
-
-
-    };
-
-	$scope.organizarPedidos = function (param) {
-        var pedidos = param.pedidos;
-        pedidos = pedidos.replace(/(?:\r\n|\r|\n)/g, ','); // Reemplaza los saltos de linea.
-        pedidos = pedidos.replace(/,\s*$/, ""); // Reemplaza la ultima coma si existe.
-        var count = ((pedidos.match(/,/g) || []).length)+1;
-
-        $scope.priorzar.pedidos = pedidos;
-        $scope.priorzar.counter = count;
-    };
-
-	$scope.priorizar = function (param) {
-        var pedidos = param.pedidos;
-        services.putPrioridadPedidos(pedidos, true, userID, true).then(
-            function(data) {
-                notify({
-                    message: data.data[0],
-                    duration: '4000',
-                    classes: 'btn-primary',
-                    position: 'right'
-                });
-                //console.log(data);
-            }
-        );
-    };
-
-    $scope.csvAlarmadosProactivos = function (){
-        $http.get('./services/csvAlarmadosProactivos').then(function(data){
-            //console.log(data.data[0]);
-            window.location.href="tmp/"+data.data[0];
-            return data.data;
-        });
-    };
-
-    $scope.csvAlarmadosHoy = function (){
-        $http.get('./services/csvAlarmadosHistorico').then(function(data){
-            //console.log(data.data[0]);
-            window.location.href="tmp/"+data.data[0];
-            return data.data;
-        });
-    };
 
 	//------PRUEBAS API OPENFIRE -----------------------------
 
@@ -4077,23 +3715,12 @@ $scope.ProductividadPorHora = function (fecha){
 $scope.actualizarGrafica();
 $scope.topProductivos();
 
-    $scope.calcularPendientesSiebelFnx = function (){
-        $http.get('./services/pendientesSiebelFenix').then(
-        	function(data){
-        		$scope.objTabla = data.data[0];
-        		$scope.objTablaFcarga = $scope.objTabla[0].FECHA_CARGA;
-
-        }, function(res){
-                $rootScope.errorDatos = res.data[0];
-			});
-    };
-
 });//--------------- fin Controlador indicadores Asignaciones -----------------------
 
 
 //------------controlador usuarios -------------------
 
-app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services) {
+app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
 
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
@@ -4213,10 +3840,6 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 		$scope.editaInfo = data;
 		$scope.TituloModal = "Editar Usuario con el ID:";
 		$scope.UsuarioNuevo = false;
-        //console.log(editaInfo);
-        $scope.cargoLabel = null;
-        $scope.msgLdap = null;
-        $scope.pic = 'images/avatar_2x.png';
 		//$scope.editaInfo.CARGO_ID=data.CARGO_ID;
 	};
 	//Modal para Crear Usuario Nuevo
@@ -4227,9 +3850,6 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 		$scope.UsuarioNom = '';
 		$scope.TituloModal = "Crear Usuario Nuevo.";
 		$scope.UsuarioNuevo = true;
-        $scope.cargoLabel = null;
-        $scope.msgLdap = null;
-        $scope.pic = 'images/avatar_2x.png';
 	};
 	//Modal para borrar usuarios.
 	$scope.borrarModal = function (data) {
@@ -4265,6 +3885,8 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 
 	//Editar Usuario Servicio
 	$scope.editarUsuario = function (editaInfo) {
+
+		//console.log(editaInfo);
 
 		services.editUsuario(editaInfo).then(
 
@@ -4405,6 +4027,7 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 
 	};
 
+
 	$scope.abrirsuk = function () {
 
 		var msg = {
@@ -4418,45 +4041,6 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 		};
 
 
-	};
-
-	$scope.buscarIdLdap = function (userid) {
-        $rootScope.errorDatos = null;
-		$http.get('./services/getLdapUserInfo?userbusqueda='+userid).then(
-			function (data){
-
-				if(data.status!=201){
-					$scope.msgLdap = "Usuario encontrado";
-                    $scope.editaInfo = {
-                        USUARIO_ID: data.data[0].USUARIO_ID,
-                        USUARIO_NOMBRE: data.data[0].USUARIO_NOMBRE,
-                        CEDULA_ID: data.data[0].CEDULA_ID,
-                        CORREO_USUARIO: data.data[0].CORREO_USUARIO,
-                        ESTADO: 'ACTIVO'
-                    };
-                    $scope.cargoLabel = data.data[0].CARGO;
-                    if(data.data[0].PICTURE!==''){
-                        $scope.pic = 'data:image/jpeg;base64,'+data.data[0].PICTURE;
-					}else{
-                        $scope.pic = 'images/avatar_2x.png';
-					}
-
-
-                    //console.log(data.data[0]);
-
-				}else{
-
-                    $scope.msgLdap = data.data[0];
-                    $scope.cargoLabel = null;
-                    $scope.pic = null;
-				}
-			},
-			function errorCallback(res){
-                $rootScope.errorDatos = res.data;
-                $scope.cargoLabel = null;
-                $scope.msgLdap = $rootScope.errorDatos;
-			}
-		)
 	}
 
 
@@ -4685,7 +4269,7 @@ app.controller('AlarmasActivacionCtrl', function ($scope, $rootScope, $location,
 });
 //-----------------------------fin alarmas activacion--------------------
 
-app.controller('tipsCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $window, services) {
+app.controller('tipsCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
 
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
@@ -4744,8 +4328,8 @@ app.controller('tipsCtrl', function ($scope, $rootScope, $location, $routeParams
 
 	$scope.AbreTips = function (id) {
 
-		var link = $window.location.pathname+'/#/tips/visualizacionTip/' + id;
-		$scope.wAbreTipId = $window.open(link, 'Visualizar Tip', 'toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650');
+		var link = "#/tips/visualizacionTip/" + id;
+		window.open(window.location.pathname + link, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650");
 
 	};
 
@@ -4794,15 +4378,42 @@ app.controller('unicoTipCtrl', function ($scope, $rootScope, $location, $routePa
 	var original = transtip.data;
 	original._id = tipID;
 	$scope.visualizarTip = angular.copy(original);
-
+	console.log($scope.visualizarTip);
 
 	line = "";
 	line += "<div>";
 	line += $scope.visualizarTip.USER_POST;
 	line += "</div></br></br></br>";
+	console.log(line);
 	document.getElementById("poster").innerHTML = line;
 
+	/* document.getElementById("btnNuevo").style.visibility = "hidden";
+                document.getElementById("btnNuevo").style.display = "none";
+                document.getElementById("btnEditar").style.visibility = "visible";
+                document.getElementById("btnEditar").style.display = "inline";
 
+        $scope.editar = function(guardarEdicion){
+
+                //var x = document.getElementById("miAreaTexto").text;
+                var x = tinymce.get('miAreaTexto').getContent();
+                guardarEdicion.USER_POST=x;
+                var datetime = document.getElementById("datetimepicker1").value;
+                guardarEdicion.POST_TIME=datetime;
+                console.log(guardarEdicion.USER_POST);
+
+
+                if (guardarEdicion.USUARIO_ID.USUARIO_ID!=undefined ){
+                    guardarEdicion.USUARIO_ID=guardarEdicion.USUARIO_ID.USUARIO_ID;
+                }
+
+                services.actualizarTip(guardarEdicion).then(function(data){
+                    return data.data;
+                });
+
+                $location.path('/admontips');
+
+
+        };*/
 
 });
 
@@ -4938,9 +4549,9 @@ app.controller('editTipsCtrl', function ($scope, $rootScope, $location, $routePa
 		//var x = document.getElementById("miAreaTexto").text;
 		var x = tinymce.get('miAreaTexto').getContent();
 		guardarEdicion.USER_POST = x;
-		//var datetime = document.getElementById("datetimepicker1").value;
-		//guardarEdicion.POST_TIME = datetime;
-		//console.log(guardarEdicion.USER_POST);
+		var datetime = document.getElementById("datetimepicker1").value;
+		guardarEdicion.POST_TIME = datetime;
+		console.log(guardarEdicion.USER_POST);
 
 
 		if (guardarEdicion.USUARIO_ID.USUARIO_ID != undefined) {
@@ -5005,19 +4616,18 @@ app.controller('nuevoTipsCtrl', function ($scope, $rootScope, $location, $routeP
 
 
 	$scope.insertarTip = function (nuevoTip) {
-        console.log(nuevoTip);
 
 		//var x = document.getElementById("miAreaTexto").text;
 		var x = tinymce.get('miAreaTexto').getContent();
 		nuevoTip.USER_POST = x;
-		//var datetime = document.getElementById("datetimepicker1").value;
-		//nuevoTip.POST_TIME = datetime;
+		var datetime = document.getElementById("datetimepicker1").value;
+		nuevoTip.POST_TIME = datetime;
 
 
 		if (nuevoTip.USUARIO_ID.USUARIO_ID != undefined) {
 			nuevoTip.USUARIO_ID = nuevoTip.USUARIO_ID.USUARIO_ID;
 		}
-
+		console.log(nuevoTip);
 		services.insertarTip(nuevoTip).then(function (data) {
 			return data.data;
 		});
@@ -5027,7 +4637,7 @@ app.controller('nuevoTipsCtrl', function ($scope, $rootScope, $location, $routeP
 
 });
 //--------------ingreso de NCA--------------------
-app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services) {
+app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
 	document.getElementById('logout').className = "btn btn-md btn-danger";
@@ -5185,46 +4795,10 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 		$scope.transaccion.USUARIO = userID;
 		$scope.transaccion.USERNAME = $rootScope.logedUser.name;
 
-        $scope.InfoGestion = {
-            pedido: transaccion.OFERTA,
-            fuente: 'SIEBEL',
-            actividad: 'ESTUDIO',
-            fecha_fin: $scope.transaccion.FECHA_FIN,
-            user: $rootScope.logedUser.login,
-            ESTADO_ID: transaccion.ESTADO_FINAL,
-            OBSERVACIONES_PROCESO: transaccion.OBSERVACION,
-            estado: transaccion.ESTADO_FINAL,
-            duracion: $scope.transaccion.DURACION,
-            fecha_estado: transaccion.FECHA+' 00:00:00',
-            fecha_inicio: $scope.transaccion.FECHA_FIN,
-            concepto_final: transaccion.ESTADO_FINAL,
-            CONCEPTO_ID: transaccion.ESTADO,
-            CONCEPTO_ANTERIOR: transaccion.ESTADO,
-            source: 'MANUAL',
-            PEDIDO_ID: transaccion.OFERTA,
-            SUBPEDIDO_ID: '1',
-            MUNICIPIO_ID: transaccion.MUNICIPIO_ID.MUNICIPIO,
-            motivo_malo: transaccion.OBSERVACION,
-            idllamada: '',
-            nuevopedido: '',
-            horaLlamar: '',
-            INCIDENTE: transaccion.INCIDENTE,
-            DEPARTAMENTO: transaccion.MUNICIPIO_ID.DEPARTAMENTO,
-            TIPO_TRABAJO: transaccion.TRANSACCION,
-            TECNOLOGIA_ID: ''
-        };
-
-        services.putGestionAsignaciones($scope.InfoGestion).then(function (data) {
-                $location.path('/nca/');
-                return data.data;
-            }
-        )
-
-		/*services.insertTransaccionNCA($scope.transaccion).then(function (data) {
+		services.insertTransaccionNCA($scope.transaccion).then(function (data) {
 			$location.path('/nca/');
 			return data.data;
-		}); */
-
+		});
 	};
 
 	$scope.listado_transacciones = [];
@@ -5289,17 +4863,6 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 		});
 
 	};
-
-	$scope.objMunicipios = function () {
-        $http.get('./services/objMunicipios').then(
-            function (res) {
-                $scope.lstMunicipios = res.data[0];
-
-            }
-        )
-    };
-
-    $scope.objMunicipios();
 
 
 });
@@ -5612,6 +5175,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     var divi = document.getElementById("logoutdiv");
     divi.style.visibility = "visible";
     divi.style.position = "relative";
+    //$rootScope.iconcepto="TODO";
     $scope.checho = "-1";
     $rootScope.errorDatos=null;
     $rootScope.getConceptosGestor();
@@ -5786,7 +5350,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         var login = $rootScope.logedUser.login;
         services.getCsvPendientes(login, concep).then(function (data) {
             //console.log(data.data[0]);
-           window.location.href = "tmp/" + data.data[0];
+            window.location.href = "tmp/" + data.data[0];
             return data.data;
         });
     };
@@ -5833,30 +5397,17 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         //alert("hola");
         $scope.calcularPendientes($routeParams.conceptoid);
     }
-    idPermisos.getIds().then(
-        function (data) {
-            $scope.idPermisos = data;
-        }, function(){
-            $scope.errorDatos = "Error en permisos";
-        });
-    /*
-    $scope.idPermisos = idPermisos.getIds().then(
-        function(data){
-            $scope.idPermisos=data;
-    }, function(data){
-            console.log(data);
-        });
-    console.log($scope.idPermisos); */
+
+    $scope.idPermisos = idPermisos.getIds();
     //$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
     $scope.habilitarPrioridad = function (pedinfo){
 //        console.log(pedinfo);
-        services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.RADICADO_TEMPORAL,userID, false).then(
+        services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.RADICADO_TEMPORAL,userID).then(
             function(data) {
                 $scope.data.RADICADO_TEMPORAL=pedinfo.PRIORIDAD;
                 notify({
                     message: data.data[0],
                     duration: '1000',
-                    classes: 'btn-primary',
                     position: 'right'
                 });
                 //console.log(data);
@@ -5870,34 +5421,9 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         {value: 'CERRADO_PETEC', text: 'CERRADO_PETEC'}
     ];
 
-    $scope.obsStatuses = [
-        {value: 'AUTOCONSUMOS', text: 'AUTOCONSUMOS'},
-        {value: 'CABEZA DEL PAQUETE EN PETEC', text: 'CABEZA DEL PAQUETE EN PETEC'},
-        {value: 'CONSTRUCCION - PENDIENTE', text: 'CONSTRUCCION - PENDIENTE'},
-        {value: 'EQURED EN PETEC', text: 'EQURED EN PETEC'},
-        {value: 'NO APLICA ASIGNACIONES', text: 'NO APLICA ASIGNACIONES'},
-        {value: 'NO APLICA RECONFIGURACION', text: 'NO APLICA RECONFIGURACION'},
-        {value: 'NO CARGO COMPONENTES', text: 'NO CARGO COMPONENTES'},
-        {value: 'NO REQUIERE ASIGNACION MANUAL', text: 'NO REQUIERE ASIGNACION MANUAL'},
-        {value: 'PEDIDO NO SE DEJA GESTIONAR', text: 'PEDIDO NO SE DEJA GESTIONAR'},
-        {value: 'PENDIENTE ACCESO', text: 'PENDIENTE ACCESO'},
-        {value: 'PENDIENTE B2B', text: 'PENDIENTE B2B'},
-        {value: 'SE ENVIA CR', text: 'SE ENVIA CR'},
-        {value: 'SERHFC EN PETEC', text: 'SERHFC EN PETEC'},
-        {value: 'TELEV EN PETEC', text: 'TELEV EN PETEC'},
-		{value: 'PENDIENTE CUMPLIR PEDIDO DE RETIRO', text: 'PENDIENTE CUMPLIR PEDIDO DE RETIRO'},
-        {value: 'PENDIENTE ADECUACION CIRCUITO', text: 'PENDIENTE ADECUACION CIRCUITO'}
-    ];
-
-    $scope.updateStatus = function(data, updobs) {
+    $scope.updateStatus = function(data) {
     	//console.log(data);
-        return $http.post('services/actualizarSatusPedidosAsignacion', {
-        	id: data.ID,
-			pedido: data.PEDIDO_ID,
-			status:data.STATUS,
-			obs:data.OBS,
-			usuario:userID,
-			updateobs:updobs});
+        return $http.post('services/actualizarSatusPedidosAsignacion', {id: data.ID, pedido: data.PEDIDO_ID, status:data.STATUS, usuario:userID});
     };
 
     //$scope.listarPedidosAuditados();
@@ -6025,7 +5551,7 @@ app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $
         });
 
         var link = "#/tips/visualizacionTip/"+id;
-        $scope.wAbreTipId = $window.open($window.location.pathname + link, 'Visualizar Tip', 'toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650');
+        window.open(window.location.pathname+ link, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650");
 
     };
 
@@ -6555,7 +6081,7 @@ $scope.actualizarLightKPIS();
 //-----------------------------ASIGNACIONES--------------------------------
 
 
-app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, $window, services) {
+app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, services) {
 
 	//var userID = ($routeParams.userID) ? parseInt($routeParams.userID) : 0;
 	//
@@ -6575,7 +6101,6 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 	$scope.pedidoinfo = 'Pedido';
     $scope.listaOpcionesGestion = [];						// Arreglo con listado de Opciones para la Gestion.
     $scope.accRdy = false;
-    $scope.deme_pedidos = [{PEDIDO_ID:" NUEVO "}];
 
 	var pedidos = services.getPedidosUser(userID).then(function (data) {
 		$scope.pedidos = data.data[0];
@@ -6667,7 +6192,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		});
 
 		var link = "#/tips/visualizacionTip/" + id;
-        $scope.wAbreTipId = $window.open($window.location.pathname + link, 'Visualizar Tip', 'toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650');
+		window.open(window.location.pathname + link, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650");
 
 	};
 
@@ -6687,8 +6212,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		//document.getElementById("mostrarTIP").style.display = "none";
 
 		var link = "#/vecinos/" + pagina;
-        $scope.wAbreVecinos = $window.open($window.location.pathname + link, 'Visualizar Tip', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=70, right=100, width=1200, height=600');
-		//window.open(window.location.pathname + link, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=70, right=100, width=1200, height=600");
+		window.open(window.location.pathname + link, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=70, right=100, width=1200, height=600");
 
 	};
 
@@ -6925,13 +6449,13 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.pedidoinfo = 'Pedido';
 
 		//$scope.pedidoinfo='';
-		var kami = services.buscarPedido(bpedido, iplaza.MUNICIPIO_ID, $scope.pedido1, $rootScope.logedUser.login, $rootScope.logedUser.name).then(function (data) {
+		var kami = services.buscarPedido(bpedido, iplaza, $scope.pedido1, $rootScope.logedUser.login, $rootScope.logedUser.name).then(function (data) {
 			$scope.peds = data.data;
 			//console.log(data.status);
 			var dat = data.status;
 			//alert("'"+data.status+"'");
 			if (dat == 204) {
-				//document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Plaza";
+				document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Plaza";
 				$scope.error = "No hay Registros. Intente Cambiando de Plaza";
 			} else {
 
@@ -6947,7 +6471,6 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
-                $scope.isEstratoNull($scope.peds);
 				//$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
 
 				//alert("El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR);
@@ -7214,10 +6737,6 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.busy = "";
 		$scope.pedido1 = pedido1;
 
-        if(angular.equals($scope.iplaza,{})){
-            $scope.iplaza.MUNICIPIO_ID ="TODOS";
-        }
-
 
 		$scope.error = "";
 
@@ -7225,7 +6744,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-sm btn-success disabled";
 
-		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '').then(function (data) {
+		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '').then(function (data) {
 			$scope.peds = data.data;
 			//console.log("este es el municipio" + $scope.peds[0].MUNICIPIO_ID);
 			//$scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
@@ -7247,11 +6766,19 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				if ($scope.peds[0].STATUS == "PENDI_PETEC" && $scope.peds[0].ASESOR != "") {
 					$scope.busy = $scope.peds[0].ASESOR;
 					$scope.error = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
+					//alert("El pedido "+$scope.pedido1+" esta ocupado por "+$scope.peds[0].ASESOR);
+					//$scope.popup='done';
+					//}
 				}
 
 				$scope.baby($scope.pedido1);
-                $scope.isEstratoNull($scope.peds);
-
+				//console.log("este es el municipio" + $scope.peds[0].MUNICIPIO_ID);
+				/*$scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
+				buscar = /ANTCOL/;
+				$scope.validaMunicipio = buscar.test($scope.MUNICIPIO);*/
+				//console.log("esta es la validacion " + $scope.validaMunicipio);
+				//$rootScope.pagina_servicio_vecinos = $scope.peds[0].PAGINA_SERVICIO;
+				//console.log("esto es lo que retorna" + $scope.validaMunicipio + " y la pagina " + $scope.peds[0].PAGINA_SERVICIO);
 			}
 			var demePedidoButton = document.getElementById("iniciar");
 			demePedidoButton.removeAttribute("disabled");
@@ -7289,46 +6816,6 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
         $scope.accRdy = true;
         //$scope.programar=false;
     };
-
-
-    $scope.isEstratoNull = function (obj) {
-        $scope.error = null;
-        var eletofind = ['ACCESP','TO','TOIP','INSIP','INSHFC'];
-
-        angular.forEach(obj, function(value, key){
-           // console.log(key + ': ' + value);
-            if(eletofind.indexOf(value.TIPO_ELEMENTO_ID)>-1){
-                if(value.ESTRATOMALO==='1'){
-                    $scope.error = "Pedido con estrato o página MALA, por favor verifique bien antes de aprobar.";
-                }
-			}
-        });
-        return $scope.error;
-    };
-
-    $scope.listarMunicipiosAsignacionesSiebel = function (concepto, fuente) {
-        services.getMunicipiosAsignacionesSiebel(concepto, fuente).then(
-            function (data) {
-                $scope.listadoMunicipios=data.data;
-                return data.data;
-
-            },
-            function errorCallback(res) {
-                //console.log(status);
-                $rootScope.errorDatos = res.data[0];
-
-            }
-        );
-    };
-
-    $scope.checkMunicipiosAsignaciones = function () {
-        $rootScope.errorDatos = null;
-        if(!angular.equals($scope.iconcepto, {})){
-            $scope.listarMunicipiosAsignacionesSiebel($scope.iconcepto, 'FENIX_NAL');
-        }
-
-    };
-    $scope.checkMunicipiosAsignaciones();
 
 });//--------------------fin asignacion-----------------------------
 
@@ -7662,7 +7149,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 
 
 		var uploadUrl = 'services/cargar_datos';
-		 console.log ($scope.user);
+		// console.log ($scope.user);
 		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
 
 	};
@@ -7675,7 +7162,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 			//Logic to delete the item
 			services.eliminarfile1(file).then(function (data) {
 				if (data.data == 'OK') {
-					//document.getElementById("warning").innerHTML = "Archivo " + file + " eliminado correctamente.";
+					document.getElementById("warning").innerHTML = "Archivo " + file + " eliminado correctamente.";
 					$scope.error = "Archivo " + file + " eliminado correctamente.";
 				}
 				services.listar1().then(function (data) {
@@ -7705,84 +7192,6 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 
 });
 //----------------------------------fin subir archivo--------------------
-
-
-//-------------------------------cargar datos subir archivo activacion----------------------
-app.controller('cargar_datos_activacionCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services, fileUpload1) {
-
-	var userID = $cookieStore.get('logedUser').login;
-	$rootScope.logedUser = $cookieStore.get('logedUser');
-	document.getElementById('logout').className = "btn btn-md btn-danger";
-	var divi = document.getElementById("logoutdiv");
-	divi.style.visibility = "visible";
-	divi.style.position = "relative";
-	$rootScope.iconcepto = "TODO";
-	$rootScope.actualView = "usuarios";
-
-	//console.log ($rootScope.logedUser)
-	$scope.usert = {};
-	$scope.usert.EQUIPO_ID = "MANUAL";
-	$scope.usert.ID = "";
-
-
-	services.listar1().then(function (data) {
-		$scope.listadodocu1 = data.data[0];
-		console.log($scope.listadodocu1);
-		return data.data;
-	});
-	// FILTERS
-	$scope.uploadFile = function () {
-		$scope.user = $rootScope.logedUser.login;
-
-		var file = $scope.myFile;
-		console.log('file is');
-		console.dir(file);
-
-
-		var uploadUrl = 'services/cargar_datos_activacion';
-		// console.log ($scope.user);
-		fileUpload1.uploadFileToUrl(file, uploadUrl, $scope.user);
-
-	};
-
-
-	$scope.eliminarfi = function (file) {
-		//console.log(data.data);
-		var result = confirm("Esta seguro que desea eliminar el archivo " + file + "?");
-		if (result) {
-			//Logic to delete the item
-			services.eliminarfile1(file).then(function (data) {
-				if (data.data == 'OK') {
-					//document.getElementById("warning").innerHTML = "Archivo " + file + " eliminado correctamente.";
-					$scope.error = "Archivo " + file + " eliminado correctamente.";
-				}
-				services.listar1().then(function (data) {
-					$scope.listadodocu1 = data.data[0];
-					//console.log($scope.listadodocu);
-					return data.data;
-				});
-			});
-		}
-	};
-
-
-	$scope.doubleDigit = function (num) {
-
-		if (num < 0) {
-			num = 0;
-		}
-
-		if (num <= 9) {
-			return "0" + num;
-		}
-		return num;
-	};
-
-
-
-
-});
-//----------------------------------fin subir archivo activacion--------------------
 
 
 app.controller('Pedidos_MicrozonasCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
@@ -8468,9 +7877,6 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 			$scope.listado_pendientes = data.data[0];
 			$scope.data1.totalItems = data.data[1];
 			$scope.data.totalItems2 = data.data[2];
-			$scope.data.totalItems3 = data.data[3];
-			$scope.data.totalItems4 = data.data[4];
-			$scope.data.totalItems5 = data.data[5];
 			//$scope.data1.concepto=sconcept;
 			return data.data;
 		});
@@ -8546,9 +7952,9 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 		}
 	};
 
-	$scope.csvPendientesAgendamientoInsta = function (concep) { //exportar pendientes agendas
+	$scope.csvPendientesAgendamiento = function (concep) { //exportar pendientes agendas
 		var login = $rootScope.logedUser.login;
-		services.getCsvPendientesAgendamientoInsta(login).then(function (data) {
+		services.getCsvPendientesAgendamiento(login).then(function (data) {
 			console.log(data.data[0]);
 			window.location.href = "tmp/" + data.data[0];
 			return data.data;
@@ -8564,9 +7970,9 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 		});
 	};
 
-	$scope.csvPendientesAgenRepa = function (concep) {
+	$scope.csvPendientesAgenSiete = function (concep) {
 		var login = $rootScope.logedUser.login;
-		services.getCsvPendientesAgenRepa(login).then(function (data) {
+		services.getCsvPendientesAgenSiete(login).then(function (data) {
 			console.log(data.data[0]);
 			window.location.href = "tmp/" + data.data[0];
 			return data.data;
@@ -8576,16 +7982,6 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 	$scope.csvMalosAgendamiento = function () { //exportar status malo en agendamiento
 		var login = $rootScope.logedUser.login;
 		services.getCsvMalosAgendamiento(login).then(function (data) {
-			console.log(data.data[0]);
-			window.location.href = "tmp/" + data.data[0];
-			return data.data;
-		});
-
-	};
-
-	$scope.csvMalosAgendamientoRepa = function () { //exportar status malo en agendamiento
-		var login = $rootScope.logedUser.login;
-		services.getCsvMalosAgendamientoReparaciones(login).then(function (data) {
 			console.log(data.data[0]);
 			window.location.href = "tmp/" + data.data[0];
 			return data.data;
@@ -8645,13 +8041,12 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 
     $scope.habilitarPrioridad = function (pedinfo){
 //        console.log(pedinfo);
-        services.putPrioridadPedidosAgen(pedinfo.PEDIDO_ID, pedinfo.RADICADO,userID, false).then(
+        services.putPrioridadPedidosAgen(pedinfo.PEDIDO_ID, pedinfo.RADICADO,userID).then(
             function(data) {
                 $scope.data.RADICADO=pedinfo.PRIORIDAD;
                 notify({
                     message: data.data[0],
                     duration: '1000',
-                    classes: 'btn-primary',
                     position: 'right'
                 });
                 //console.log(data);
@@ -9168,139 +8563,9 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 
 
 	var pedidos = services.getPedidosUserReagendamiento(userID).then(function (data) {
-		$scope.pedidos = data.data[0];
+		$scope.pedidos = data.data;
 		return data.data;
 	});
-
-		$scope.manual = function () {
-		$scope.peds = {};
-		$scope.error = "";
-		$scope.pedido1 = "";
-		$scope.mpedido = {};
-		$scope.bpedido = '';
-		$scope.busy = "";
-		$scope.historico_pedido = [];
-		$scope.mpedido.active = 1;
-		//$scope.mpedido.PROGRAMACION="";
-
-		$scope.timeInit = new Date().getTime();
-		var date1 = new Date();
-		var year = date1.getFullYear();
-		var month = $scope.doubleDigit(date1.getMonth() + 1);
-		var day = $scope.doubleDigit(date1.getDate());
-		var hour = $scope.doubleDigit(date1.getHours());
-		var minute = $scope.doubleDigit(date1.getMinutes());
-		var seconds = $scope.doubleDigit(date1.getSeconds());
-
-		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-		
-
-	};
-
-
-
-	$scope.msavePedidomalo = function () { //validacion datos para ingreso manual
-
-		$scope.pedido = {};
-		$scope.error = "";
-		angular.copy($scope.mpedido, $scope.pedido);
-
-		if ($scope.mpedido.PEDIDO_ID == "" || $scope.mpedido.PEDIDO_ID == {} || $scope.mpedido.PEDIDO_ID === undefined) {
-			alert("Pedido vacio.");
-			return;
-		}
-		if ($scope.pedido.NOVEDAD === undefined) {
-			alert('Por favor diligenciar la NOVEDAD.');
-			return;
-		}
-
-		$scope.pedido.ASESOR = $rootScope.logedUser.login;
-		$scope.pedido.ASESORNAME = $rootScope.logedUser.name;
-		$scope.pedido.DURACION = new Date().getTime() - $scope.timeInit;
-
-
-		$scope.pedido.ACTIVIDAD_GESTOR = "REAGENDAMIENTO";
-		$scope.pedido.FUENTE = $scope.mpedido.FUENTE;
-		$scope.pedido.OBSERVACION_GESTOR = $scope.mpedido.OBSERVACION_GESTOR;
-		$scope.pedido.proceso = $scope.mpedido.proceso;
-		//$scope.pedido.PROGRAMACION=$scope.mpedido.PROGRAMACION;
-		// $scope.pedido.ACTIVIDADES="INSTA";
-
-		if (document.getElementById('programacion') == null) {
-			$scope.pedido.PROGRAMACION = "";
-
-			console.log($scope.pedido.PROGRAMACION);
-		} else {
-			$scope.pedido.PROGRAMACION = document.getElementById('programacion').value;
-
-		}
-
-		//console.log($scope.pedido.ACTIVIDAD_GESTOR);
-
-		if ($scope.pedido.NOVEDAD != 'AGENDADO' && $scope.pedido.NOVEDAD != 'YA ESTA AGENDADO' && $scope.pedido.NOVEDAD != 'AGENDADO MANUAL' && $scope.pedido.NOVEDAD != 'AGENDADO_FUTURO' && $scope.pedido.NOVEDAD != 'YA ESTA AGENDADO-USUARIO') {
-			$scope.pedido.FECHA_CITA_REAGENDA = '';
-			$scope.pedido.JORNADA_CITA = '';
-
-			//console.log($scope.pedido.PROGRAMACION);
-
-
-		} else {
-			$scope.pedido.PROGRAMACION = '';
-		}
-
-
-		var date1 = new Date();
-		var year = date1.getFullYear();
-		var month = $scope.doubleDigit(date1.getMonth() + 1);
-		var day = $scope.doubleDigit(date1.getDate());
-		var hour = $scope.doubleDigit(date1.getHours());
-		var minute = $scope.doubleDigit(date1.getMinutes());
-		var seconds = $scope.doubleDigit(date1.getSeconds());
-		
-		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-
-		services.insertMPedidomalo($scope.pedido).then(function (status) {
-			
-
-			if ($scope.pedidos == "") {
-				$scope.pedidos = new Array();
-			}
-			$scope.pedidos = $scope.pedidos.concat(angular.copy($scope.pedido));
-			if ($scope.historico_pedido == "") {
-				$scope.historico_pedido = new Array();
-			}
-
-			$scope.baby($scope.pedido.PEDIDO_ID);
-			$scope.pedido1 = $scope.pedido.PEDIDO_ID;
-
-			$scope.timeInit = new Date().getTime();
-			date1 = new Date();
-			year = date1.getFullYear();
-			month = $scope.doubleDigit(date1.getMonth() + 1);
-			day = $scope.doubleDigit(date1.getDate());
-			hour = $scope.doubleDigit(date1.getHours());
-			minute = $scope.doubleDigit(date1.getMinutes());
-			seconds = $scope.doubleDigit(date1.getSeconds());
-
-			$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-
-
-			$scope.pedido = {};
-			$scope.peds = {};
-			$scope.pedido1 = "";
-			$scope.mpedido = {};
-			$scope.bpedido = '';
-			$scope.proceso = '';
-			$scope.historico_pedido = [];
-
-			$scope.mpedido.active = 1;
-			$scope.busy = "";
-			$scope.mpedido.active = 0;
-			$scope.pedidoinfo = 'Pedido';
-		});
-
-
-	};
 
 
 	$rootScope.logout = function () {
@@ -9610,7 +8875,7 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			var dat = data.status;
 
 			if (dat == 204) {
-				//document.getElementById("warning").innerHTML = "No hay Registros";
+				document.getElementById("warning").innerHTML = "No hay Registros";
 				$scope.error = "No hay Registros";
 				$scope.historico_pedido = {};
                 $scope.peds = {};
@@ -10074,17 +9339,17 @@ app.controller('AgendamientoCtrl', function ($scope, $rootScope, $location, $rou
 			}
 		}
 
-	//	if ($scope.pedido.NOVEDAD == 'AGENDADO' || $scope.pedido.NOVEDAD == 'PENDIENTE POR OTRO CONCEPTO' || $scope.pedido.NOVEDAD == 'NO DESEA EL SERVICIO' || $scope.pedido.NOVEDAD == 'YA ESTA CUMPLIDO') {
+		if ($scope.pedido.NOVEDAD == 'AGENDADO' || $scope.pedido.NOVEDAD == 'PENDIENTE POR OTRO CONCEPTO' || $scope.pedido.NOVEDAD == 'NO DESEA EL SERVICIO' || $scope.pedido.NOVEDAD == 'YA ESTA CUMPLIDO') {
 			//console.log($scope.pedido.NOVEDAD)
-	//		var regexp = /^([0-9]{2,20})$/;
+			var regexp = /^([0-9]{2,20})$/;
 
-	//		if (regexp.test($scope.pedido.IDLLAMADA) == false || $scope.pedido.IDLLAMADA == undefined) {
-	//			alert('id llamada esta mal gestionado y/o esta vacio');
+			if (regexp.test($scope.pedido.IDLLAMADA) == false || $scope.pedido.IDLLAMADA == undefined) {
+				alert('id llamada esta mal gestionado y/o esta vacio');
 
-	//			return;
+				return;
 
-	//		}
-	//	}
+			}
+		}
 
         if ($scope.proceso == 'REPARACION' &&  parseInt($scope.pedido.TIEMPO_TOTAL) >= 10 && parseInt($scope.pedido.TODAY_TRIES) >= 3 ) {
 
@@ -10359,8 +9624,7 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 	divi.style.visibility = "visible";
 	divi.style.position = "relative";
 	$scope.lastUpdate = "";
-	$scope.gestion_Pendientes={};
-	$scope.gestion_Pendientes.Gestion=false;
+
 
 	$scope.peds = {};
 
@@ -10376,7 +9640,6 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 	$scope.zonas = {};
 	$scope.microzonas = {};
 	$scope.departamento = "";
-	$scope.proceso = "INSTALACION";
 
 
 	$scope.ordenamientoDemepedido = '';
@@ -10385,11 +9648,9 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 
 
 	var pedidos = services.getPedidosUserReagendamiento(userID).then(function (data) {
-		$scope.pedidos = data.data[0];
-		//console.log($scope.pedidos);
+		$scope.pedidos = data.data;
 		return data.data;
 	});
-
 
 
 	$rootScope.logout = function () {
@@ -10405,19 +9666,17 @@ app.controller('AuditoriaCtrl', function ($scope, $rootScope, $location, $routeP
 
 
 
- 
-$scope.getDepartamentos = function () {
-
+	$scope.getDepartamentos = function () {
 		$scope.departamentos = {};
 		$scope.microzonas = {};
-		services.getDepartamentosPendientesReagendamiento($scope.proceso).then(function (data) {
+		services.getDepartamentosPendientesReagendamiento().then(function (data) {
 			$scope.departamentos = data.data;
-			//console.log($scope.proceso);
+			//console.log($scope.departamentos);
 
 			return data.data;
 		});
 	};
-	
+
 	$scope.getDepartamentos();
 
 
@@ -10656,8 +9915,11 @@ $scope.getDepartamentos = function () {
 		var minute = $scope.doubleDigit(date1.getMinutes());
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
+
 		console.log($scope.pedido);
 		console.log($scope.mpedido);
+
+
 
 		services.insertMPedidomalo($scope.pedido).then(function (status) {
 
@@ -10697,19 +9959,6 @@ $scope.getDepartamentos = function () {
 			$scope.mpedido.active = 0;
 			$scope.pedidoinfo = 'Pedido';
 		});
-
-		
-		if	($scope.gestion_Pendientes.Gestion==true){
-					services.gestionPendientesInstaMalos($scope.gestion_Pendientes, $scope.pedido).then(function (data) {
-						console.log(data.data[0]);
-						return data.data;
-				});
-			}
-
-			$scope.gestion_Pendientes.Gestion == false;
-			$scope.gestion_Pendientes = {};
-
-
 	};
 
 
@@ -10725,7 +9974,7 @@ $scope.getDepartamentos = function () {
 			var dat = data.status;
 
 			if (dat == 204) {
-			//	document.getElementById("warning").innerHTML = "No hay Registros";
+				document.getElementById("warning").innerHTML = "No hay Registros";
 				$scope.error = "No hay Registros";
 				$scope.historico_pedido = {};
 			} else {
@@ -10765,14 +10014,14 @@ $scope.getDepartamentos = function () {
 		$scope.peds = {};
 		$scope.mpedido = {};
 		$scope.busy = "";
-		//$scope.error = "";
+		$scope.error = "";
 		var kami = services.buscarPedidoAgendamiento(bpedido, $scope.pedido1, $rootScope.logedUser.login, $rootScope.logedUser.name).then(function (data) {
 			$scope.peds = data.data;
 			console.log($scope.peds);
 			var dat = data.status;
 
 			if (dat == 204) {
-			//	document.getElementById("warning").innerHTML = "No hay Registros";
+				document.getElementById("warning").innerHTML = "No hay Registros";
 				$scope.error = "No hay Registros";
 			} else {
 				document.getElementById("warning").innerHTML = "";
@@ -10906,10 +10155,6 @@ $scope.getDepartamentos = function () {
 
 	////////////////////////////////////////////////////////////////
 
-	$scope.setProceso = function(proceso){
-        $scope.proceso=proceso;
-    };
-
 
 	$scope.start = function (pedido) {
 		var pedido1 = '';
@@ -10932,7 +10177,7 @@ $scope.getDepartamentos = function () {
 
 
 
-		var kami = services.demePedidoAgendamientomalo($rootScope.logedUser.login, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, $scope.proceso).then(function (data) {
+		var kami = services.demePedidoAgendamientomalo($rootScope.logedUser.login, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '').then(function (data) {
 			$scope.peds = data.data;
 			console.log(data.data);
 			if (data.data == '' || data.data == 'No hay registros!') {
@@ -11061,7 +10306,7 @@ $scope.getDepartamentos = function () {
 		services.insertPedidoAuditoria($scope.pedido).then(function (status) {
 			$scope.pedido.fecha = status.data['data'];
 			$scope.pedido.concepto_final = status.data['msg'];
-			//console.log($scope.pedidos);
+
 			if ($scope.pedido.concepto_final == "El pedido NO ha cambiado de concepto en Fenix!!!" || $scope.pedido.concepto_final == "ERROR!") {
 				alert($scope.pedido.concepto_final);
 
@@ -11078,7 +10323,7 @@ $scope.getDepartamentos = function () {
 					$scope.pedidos = "";
 				} else {
 					console.log("EL PEDIDO QUEDO ASI: ");
-					console.log($scope.pedidos);
+					console.log($scope.pedido);
 					$scope.historico_pedido = $scope.historico_pedido.concat(angular.copy($scope.pedido));
 					$scope.peds.splice(index, 1);
 					if ($scope.pedidos == "") {
@@ -11108,54 +10353,11 @@ $scope.getDepartamentos = function () {
 			return status;
 		});
 
-			if	($scope.gestion_Pendientes.Gestion==true){
-					services.gestionPendientesInstaMalos($scope.gestion_Pendientes, $scope.pedido).then(function (data) {
-						console.log(data.data[0]);
-						return data.data;
-				});
-			}
-
-			$scope.gestion_Pendientes.Gestion == false;
-			$scope.gestion_Pendientes = {};
-			$scope.Mostraresponsable=false;
-			$scope.Mostraresponsable2=false;
-			$scope.Listaresponsable={};
 	}; //FIN SAVEPEDIDO
 
 
-$scope.listadoCausasRaiz={};
-$scope.Mostraresponsable=false;
-$scope.Mostraresponsable2=false;
 
-				$scope.causaRaiz = function () {
-					services.getcausaRaiz().then(function (data) {
-							$scope.listadoCausasRaiz=data.data[0];
-							$scope.Listaresponsable={};
-							return data.data;
-					});
-				}
-
-				$scope.responsablePendiInsta = function () {
-					services.getResponsablePendiente($scope.gestion_Pendientes.causaraiz).then(function (data) {
-							if($scope.gestion_Pendientes.causaraiz == "Pendiente Siebel"){
-								$scope.Listaresponsable=data.data[0];
-								$scope.Mostraresponsable=true;
-								$scope.Mostraresponsable2=false;
-							}else{
-								$scope.gestion_Pendientes.responsable=data.data[0][0].responsables;
-								$scope.Mostraresponsable=false;
-								$scope.Mostraresponsable2=true;
-							}
-							return data.data;
-					});
-				}
-
-		
-
-$scope.causaRaiz();
 });
-
-
 
 
 app.controller('Tabla_agendamientoCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services, $compile) {
@@ -11406,15 +10608,13 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                    // console.log(data);
                        $scope.listadoactivacion=data.data[0];
                        $scope.data.totalItems=data.data[1];
-                       // $scope.data.totalItems2=data.data[2];
-                      //  $scope.data.totalItems3=data.data[3];
-                      //  $scope.data.totalItems4=data.data[4];
-                       // $scope.data.totalItems5=data.data[5];
-                      //  $scope.data.totalItems6=data.data[6];
-					//	$scope.data.totalItems7=data.data[7];
-					//	$scope.data.totalItems8=data.data[8];
+                        $scope.data.totalItems2=data.data[2];
+                        $scope.data.totalItems3=data.data[3];
+                        $scope.data.totalItems4=data.data[4];
+                        $scope.data.totalItems5=data.data[5];
+                        $scope.data.totalItems6=data.data[6];
 
-                    console.log(data.data[1]);
+                    //console.log($scope.data.totalItems2);
                     return data.data;
                });
 
@@ -11451,36 +10651,6 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
     };
 
-	$scope.grupo = {};
-	$scope.topProductivos = function () {
-		//console.log($scope.grupo);
-
-		services.getPedidosGestorUserActivacion($scope.grupo.Cuartil).then(
-
-
-			function (data) {
-
-				$scope.listaProductivos = data.data[0];
-				$scope.grupo.Cuartil = data.data[1];
-				$scope.grupo.fecha = data.data[2];
-				//console.log($scope.listaProductivos);
-
-				return data.data;
-
-
-			},
-			function errorCallback(response, status) {
-				//console.log(status);
-				$rootScope.errorDatos = "Ops, probelemas";
-
-
-
-			}
-		);
-
-
-	};
-
     $scope.csvActivacion = function () {
 		var login = $rootScope.logedUser.login;
 		services.getCsvActivacion(login).then(function (data) {
@@ -11489,24 +10659,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 			return data.data;
 		});
 	};
-$scope.csvActivacioncolas = function () {
-		var login = $rootScope.logedUser.login;
-		services.getCsvActivacioncolas(login).then(function (data) {
 
-			window.location.href = "tmp/" + data.data[0];
-			return data.data;
-		});
-	};
-
-
-	$scope.csvAmarillas = function () {
-		var login = $rootScope.logedUser.login;
-		services.getCsvAmarillas(login).then(function (data) {
-
-			window.location.href = "tmp/" + data.data[0];
-			return data.data;
-		});
-	};
 
      $scope.csvActivacionSiebel  = function (){
                 var login=$rootScope.logedUser.login;
@@ -11616,7 +10769,6 @@ $scope.csvActivacioncolas = function () {
            };
 
 
-
         $scope.actualizarPendientesPorConceptoColaActivacion  = function (){
                  var data1=services.pendientesPorConceptoColaActivacion().then(function(data){
 
@@ -11715,83 +10867,6 @@ $scope.csvActivacioncolas = function () {
 
 
            };
-
-
-		   //---------------------seguimiento
-  
-  $scope.myDataSourceActivacion = {
-                        chart: {
-                        caption: "Grafica Activación",
-                        subcaption: "Seguimiento",
-                        startingangle: "120",
-                        showlabels: "0",
-                        showlegend: "1",
-                        enablemultislicing: "0",
-                        slicingdistance: "15",
-                        formatNumberScale: "0",
-                        showpercentvalues: "1",
-                        showpercentintooltip: "0",
-                        plottooltext: "Age group : $label Total visit : $datavalue",
-                        theme: "fint"
-                        },
-                        data: []
-
-        };//--------------------------------
-
-
-	$scope.actualizarGraficaActivacion = function () {
-		var data1 = services.getactivacionGraficaseguimiento().then(function (data) {
-			//var nombremes=data.data[0];
-			//var tmaa=data.data[1];
-			//console.log(nombremes);
-			//var p14=data.data[2];
-			//var p99=data.data[3];
-			//EL CHECHE2
-			$scope.myDataSourceActivacion = {
-				chart: {
-                                "caption": "Grafica Activación ",
-                                "subCaption": "Seguimiento",
-                                "xAxisName": "Asesor",
-                                "yAxisName": "Gestionado",
-                                "numberPrefix": "",
-                                "paletteColors": "#0075c2",
-                                "bgColor": "#ffffff",
-                                "borderAlpha": "20",
-                                "canvasBorderAlpha": "0",
-                                "usePlotGradientColor": "0",
-                                "plotBorderAlpha": "10",
-                                "placevaluesInside": "0",
-                                "rotatevalues": "0",
-                                "valueFontColor": "#0075c2",
-                                "showXAxisLine": "1",
-                                "xAxisLineColor": "#999999",
-                                "divlineColor": "#999999",
-                                "divLineDashed": "1",
-                                "showAlternateHGridColor": "0",
-                                "subcaptionFontBold": "0",
-                                "subcaptionFontSize": "14"
-                            },
-                                data: data.data[0]
-
-                        };
-                        var date1 = new Date();
-                        var year    = date1.getFullYear();
-                        var month   = $scope.doubleDigit(date1.getMonth()+1);
-                        var day     = $scope.doubleDigit(date1.getDate());
-                        var hour    = $scope.doubleDigit(date1.getHours());
-                        var minute  = $scope.doubleDigit(date1.getMinutes());
-                        var seconds = $scope.doubleDigit(date1.getSeconds());
-
-                        $scope.lastUpdate=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
-                        $scope.totalAD= data.data[1];
-						$scope.listaPendientesSiebel=data.data[0];
-
-                        return data.data;
-             });
-
-    };
-
-		//-----------------fin seguimiento fin		   
 
 
           $scope.listadoactivacion2  = function (){
@@ -11914,15 +10989,7 @@ $scope.csvActivacioncolas = function () {
                         data: []
 
         };
-// Opciones de Tabs para las Graficas ----------------------------------------------------
-$scope.activeTabs = 1;
-$scope.setActiveTab = function (tabToSet) {
-	$scope.activeTabs = tabToSet;
-	//$scope.ProductividadPorHora();
-	$scope.actualizarGraficaAD();
-	$scope.actualizarGraficaActivacion();
-};
-// ----------------------------------------------------Opciones de Tabs para las Graficas 
+
 	//----------Funcion para determinar el color del pendiente --------------------------
 var colorDanger="#E83720";
 var colorWaring="#E8A820";
@@ -12060,9 +11127,6 @@ $scope.set_color_Cuartil = function (value) {
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_ACTIVACION") {
 				$scope.ordenamientoDemepedidoActivacion = valor;
 			}
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_AMARILLAS") {
-				$scope.ordenamientoDemepedidoamarillas = valor;
-			}
 
 			$scope.buscarParametro(parametro);
 			return data.data;
@@ -12082,11 +11146,6 @@ $scope.set_color_Cuartil = function (value) {
 				$scope.ordenamientoDemepedidoactivacion = data.data['VALOR'];
 				$scope.ordenamientoDemepedidoUpdateactivacion = data.data['ULTIMA_ACTUALIZACION'];
 			}
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_AMARILLAS") {
-				$scope.UsuarioParametroamarillas = data.data['USUARIO_ID'];
-				$scope.ordenamientoDemepedidoamarillas = data.data['VALOR'];
-				$scope.ordenamientoDemepedidoUpdateamarillas = data.data['ULTIMA_ACTUALIZACION'];
-			}
 
 			return data.data;
 		});
@@ -12104,19 +11163,9 @@ $scope.set_color_Cuartil = function (value) {
 
 		return data.data;
 	});
-	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_AMARILLAS').then(function (data) {
-
-		$scope.ordenamientoDemepedidoamarillas= data.data['VALOR'];
-		//$scope.ordenamientoDemepedidoNuevo=data.data['VALOR'];
-		$scope.ordenamientoDemepedidoUpdateamarillas = data.data['ULTIMA_ACTUALIZACION'];
-		$scope.UsuarioParametroamarillas = data.data['USUARIO_ID'];
-		return data.data;
-	});
 
 /* FUNCION PARA ACTUALIZAR LOS PARAMETROS DEL SISTEMA */
-$scope.actualizarPendientesPorConceptoColaActivacion();
-$scope.actualizarGraficaAD();
-$scope.topProductivos();
+
 });
 
 
@@ -12148,9 +11197,10 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	};
 
 
+
 	//  ---------------------------------fin logueo-------------------------------------------
 
-   
+
 	// ------------------------Variables ---------------------------------
 	$scope.pedidos = [];
 	$scope.pedidosUnicos = '';
@@ -12162,20 +11212,19 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 	$scope.accRdy = false;
 	$scope.FECHA_GESTION = null;
 	$scope.FECHA_CREACION = null;
-	$scope.fecha_inicio = null;
-	$scope.fecha_fin = null;
+    $scope.FECHA_INICIO = null;
+	$scope.FECHA_FIN = null;
 	$scope.transaccion = 'Suspender';
     $scope.tabla = 'ACTIVADOR_SUSPECORE';
     $scope.listaOpcionesGestion = [];
     $scope.producto = 'BA';
 
-	
+
+
 	var pedidos = services.getPedidosUserActivacion(userID).then(function (data) {
 		$scope.pedidos = data.data[0];
-	//	$scope.pedidosUnicos = data.data[1];
-	//	console.log($scope.pedidos);
+		$scope.pedidosUnicos = data.data[1];
 		return data.data;
-		
 	});
 
 	var original = $scope.pedidos;
@@ -12217,19 +11266,15 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		var pedido1 = '';
 		$scope.popup = '';
 		$rootScope.errorDatos = null;
-		//$scope.InfoPedido = [];
-		$scope.InfoPedido = {};
-		//$scope.InfoGestion = [];
+		$scope.InfoPedido = [];
 		$scope.FECHA_CREACION = null;
-        //$scope.fecha_inicio = null;
+        $scope.fecha_inicio = null;
 		$scope.accRdy = false;
 		$scope.InfoGestion = {};
 		$scope.pedidoIsGuardado = false;
-        $scope.InfoPedido.NUMERO_CR = '';
-		$scope.InfoPedido.OBSERVACION = '';
-		
 
-	//console.log($scope.InfoGestion);		
+
+
 
 
 		if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
@@ -12254,18 +11299,16 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 			$scope.peds = data.data;
 			console.log($scope.peds);
-			//$scope.TIEMPO_TOTAL = $scope.peds[0].TIEMPO_TOTAL;
             //console.log($scope.peds[0].PEDIDO);
 
 			if (data.data == '') {
 
-			//	document.getElementById("warning").innerHTML = "No hay Registros.";
+				document.getElementById("warning").innerHTML = "No hay Registros.";
 				$rootScope.errorDatos = "No hay Registros.";
-				$scope.pedidoIsActive = false;
 
 			} else {
 
-			//	document.getElementById("warning").innerHTML = "";
+				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO;
 				$scope.pedidoIsActive = true;
@@ -12277,11 +11320,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 					$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
 
 				}
-				if ($scope.peds[0].TIEMPO_TOTAL >= 10 ) {
 
-					$rootScope.errorDatos = "El pedido tiene mucho tiempo en el sistema " + $scope.peds[0].TIEMPO_TOTAL;
-
-				}
 				$scope.baby($scope.pedido1);
 
 
@@ -12290,7 +11329,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 					grupo: $scope.peds[0].GRUPO,
 					actividad: $scope.peds[0].ACTIVIDAD
                 };
-              //  console.log(data.data);
+                console.log(data.data);
 
                $scope.listarOpcionesAsginacion(opciones);
 
@@ -12299,9 +11338,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			demePedidoButton.removeAttribute("disabled");
 			demePedidoButton.className = "btn btn-success btn-DemePedido-xs";
 			return data.data;
-		
-
-
 		});
 
         $scope.timeInit = new Date().getTime();
@@ -12314,7 +11350,7 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
 		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-		console.log($scope.fecha_inicio);
+
 	};
 
 	// -------------------------------------------------------------- fin DemePedido activacion
@@ -12327,21 +11363,19 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 		var pedido1 = '';
 		$scope.popup = '';
-		$rootScope.errorDatos = null;
-		//$scope.InfoPedido = [];
-		$scope.InfoPedido = {};
+		$rootScope.errorDatos = "";
+		$scope.InfoPedido = [];
         $scope.fecha_inicio = null;
 		$scope.FECHA_CREACION = null;
 		$scope.accRdy = false;
 		$scope.InfoGestion = {};
-		//$scope.InfoGestion = [];
 		$scope.pedidoIsGuardado = false;
 		$scope.pedidoActual = pedidoinfo;
 		$scope.buscar = buscar;
         //$scope.peds={};
        // $scope.pedidoIsActive=false;
 
-		//console.log($scope.InfoGestion);
+
 
 		var kami = services.getBuscarpedidoactivacion(buscar,$scope.tabla, $rootScope.logedUser.login).then(
 
@@ -12374,26 +11408,17 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 						$scope.pedidoIsActive = false;
 
 					} else {
-							
+
 						if ($scope.ocupado == true) {
 							$scope.busy = $scope.peds[0].ASESOR;
 							$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.busy;
 							return;
 
 						}
-						var opciones= {
-                  	  	fuente: $scope.peds[0].FUENTE,
-						grupo: $scope.peds[0].GRUPO,
-						actividad: $scope.peds[0].ACTIVIDAD
-               		 };
-
-              		 $scope.listarOpcionesAsginacion(opciones);
-
 						$rootScope.errorDatos = null;
 						$scope.pedidoIsActive = true;
-						
 
-                       // console.log($scope.peds);
+                        console.log($scope.peds);
 						return data.data;
 					}
 				}
@@ -12424,18 +11449,17 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
         $scope.FECHA_GESTION = year + "-" + month + "-" + day;
        $scope.duracion =  $scope.doubleDigit(date1.getHours()-19)+":"+ $scope.doubleDigit(date1.getMinutes())+":"+ $scope.doubleDigit(date1.getSeconds());
-	   $scope.TIEMPO_TOTAL = $scope.TIEMPO_TOTAL + " DIAS";
-	   
+        $scope.OBSERVACION = $scope.peds[0].OBSERVACION;
+        var varObsesGuardar = InfoPedido.OBSERVACIONES_PROCESO;
 
-
-        if (InfoPedido.tipificacion === undefined || InfoPedido.tipificacion == "") {
+        if ($scope.tipificacion === undefined || $scope.tipificacion == "") {
 			alert('Por favor diligenciar campo tipificacion.');
 			return;
 		}
 
 		$scope.InfoGestion = {
 			ID:gestion.ID,
-			ORDER_SEQ_ID: gestion.ORDER_SEQ_ID,
+			ORDER_SEQ_ID: $scope.peds[0].ORDER_SEQ_ID,
 			PEDIDO: gestion.PEDIDO,
 			REFERENCE_NUMBER: gestion.REFERENCE_NUMBER,
 			ESTADO: gestion.ESTADO,
@@ -12444,10 +11468,6 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 			FECHA_EXCEPCION: gestion.FECHA_EXCEPCION,
 			PRODUCTO: gestion.PRODUCTO,
 			IDSERVICIORAIZ:gestion.IDSERVICIORAIZ,
-			DESCRIPCIONEXCEPCIONACT:gestion.DESCRIPCIONEXCEPCIONACT,
-			MOTIVOEXCEPCIONACT:gestion.MOTIVOEXCEPCIONACT,
-			VALOR_ERROR:gestion.VALOR_ERROR,
-			MOTIVO_ERROR:gestion.MOTIVO_ERROR,
 			TRANSACCION: gestion.TRANSACCION,
 			ASESOR: $rootScope.logedUser.login,
 			FECHA_GESTION: $scope.FECHA_GESTION,
@@ -12456,20 +11476,15 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
             FUENTE: gestion.FUENTE,
             ACTIVIDAD: gestion.ACTIVIDAD,
             USUARIO: $rootScope.logedUser.login,
-            NUMERO_CR: InfoPedido.NUMERO_CR,
-			NUMERO_PSR:InfoPedido.NUMERO_PSR,
-			OBSERVACION: InfoPedido.OBSERVACION,
-			PSR: InfoPedido.PSR,
-			TIEMPO_TOTAL: $scope.TIEMPO_TOTAL,
             DURACION: $scope.duracion,
 			STATUS: gestion.STATUS,
-			TIPIFICACION: InfoPedido.tipificacion,
+			TIPIFICACION: $scope.tipificacion,
             TABLA: $scope.tabla,
 		};
 
 console.log($scope.InfoGestion);
-console.log($scope.fecha_inicio);
-    
+        
+		//console.log($scope.tipificacion);
 
 		services.insertTransaccionsiebelactivacion($scope.InfoGestion).then(
 
@@ -12484,7 +11499,6 @@ console.log($scope.fecha_inicio);
                 $scope.fecha_fin = null;
 				$scope.accRdy = false;
 				$scope.InfoGestion = {};
-				//$scope.InfoGestion = [];
 				$scope.pedidoOcupado = false;
                 $scope.guardando = false;
 				$scope.pedidoIsActive = false;
@@ -12550,418 +11564,7 @@ console.log($scope.fecha_inicio);
 });
 
 
-app.controller('amarillasactivacionCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, services) {
 
-
-	// -------------------------------mirar logueo ---------------------------------
-
-	$rootScope.logedUser = $cookieStore.get('logedUser');
-	var userID = $cookieStore.get('logedUser').login;
-	document.getElementById('logout').className = "btn btn-md btn-danger";
-	var divi = document.getElementById("logoutdiv");
-	divi.style.visibility = "visible";
-	divi.style.position = "relative";
-
-
-	$rootScope.logout = function () {
-		services.logout(userID);
-		$cookieStore.remove('logedUser');
-		$rootScope.logedUser = undefined;
-		$scope.pedidos = {};
-		clearInterval($scope.intervalLightKPIS);
-		document.getElementById('logout').className = "btn btn-md btn-danger hide";
-		var divi = document.getElementById("logoutdiv");
-		divi.style.position = "absolute";
-		divi.style.visibility = "hidden";
-		$location.path('/');
-	};
-
-
-	//  ---------------------------------fin logueo-------------------------------------------
-
-   
-	// ------------------------Variables ---------------------------------
-	$scope.pedidos = [];
-	$scope.pedidosUnicos = '';
-	$scope.historico_pedido = [];
-	$rootScope.actualView = "/amarillas";
-	$scope.popup = '';
-	$scope.pedidoinfo = '';
-	$rootScope.errorDatos = null;
-	$scope.accRdy = false;
-	$scope.FECHA_GESTION = null;
-	$scope.FECHA_CREACION = null;
-	$scope.fecha_inicio = null;
-	$scope.fecha_fin = null;
-    $scope.listaOpcionesGestion = [];
-	$scope.transaccion = 'Nuevo';
-	$scope.tabla = 'AMARILLAS';
-  
-
-	
-	var pedidos = services.getPedidosUserActivacion(userID).then(function (data) {
-		$scope.pedidos = data.data[0];
-	//	$scope.pedidosUnicos = data.data[1];
-	//	console.log($scope.pedidos);
-		return data.data;
-		
-	});
-
-	var original = $scope.pedidos;
-	var originalUnico = $scope.pedidosUnicos;
-
-	$scope.peds = {};
-	$scope.timeInit = 0;
-	$scope.pedidos = angular.copy(original);
-
-	$scope.pedidoIsActive = false;
-
-   $scope.setTransaccion = function(transaccion){
-        $scope.transaccion=transaccion;
-    };
-
-	// ---------------------------------fin Variables----------------------------
-
-
-	// ------------------------DemePedido activacion --------------------------------------------------------------
-	$scope.baby = function (pedido) {
-		console.log(pedido);
-		services.getpedidosPorPedidoAmarillas(pedido).then(function (data) {
-			//console.log(data.data);
-			$scope.historico_pedido = data.data;
-			//  console.log($scope.historico_pedido);
-			return data.data;
-		});
-	};
-
-	$scope.start = function (pedido) {
-
-		var pedido1 = '';
-		$scope.popup = '';
-		$rootScope.errorDatos = null;
-		//$scope.InfoPedido = [];
-		$scope.InfoPedido = {};
-		//$scope.InfoGestion = [];
-		$scope.FECHA_CREACION = null;
-        $scope.fecha_inicio = null;
-		$scope.accRdy = false;
-		$scope.InfoGestion = {};
-		$scope.pedidoIsGuardado = false;
-
-		
-
-	//console.log($scope.InfoGestion);		
-
-
-		if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
-			pedido1 = $scope.peds[0].PEDIDO;
-
-
-		}
-		$scope.peds = {};
-		$scope.mpedido = {};
-		$scope.bpedido = '';
-		$scope.busy = "";
-		$scope.pedido1 = pedido1;
-		$scope.error = "";
-
-
-		var demePedidoButton = document.getElementById("iniciar");
-		demePedidoButton.setAttribute("disabled", "disabled");
-		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
-
-		var kami = services.demePedidoAmarillas($rootScope.logedUser.login, $scope.pedido1,$scope.transaccion,$scope.tabla, $rootScope.logedUser.name).then(function (data) {
-
-			$scope.peds = data.data;
-			console.log($scope.peds);
-			//$scope.TIEMPO_TOTAL = $scope.peds[0].TIEMPO_TOTAL;
-            //console.log($scope.peds[0].PEDIDO);
-
-			if (data.data == '') {
-
-			//	document.getElementById("warning").innerHTML = "No hay Registros.";
-				$rootScope.errorDatos = "No hay Registros.";
-				$scope.pedidoIsActive = false;
-
-			} else {
-
-			//	document.getElementById("warning").innerHTML = "";
-				$scope.pedido1 = $scope.peds[0].PEDIDO;
-				$scope.pedidoinfo = $scope.peds[0].PEDIDO;
-				$scope.pedidoIsActive = true;
-				$rootScope.errorDatos = null;
-
-
-				if ($scope.peds[0].STATUS == "PENDI_ACTI" && $scope.peds[0].ASESOR != "") {
-					$scope.busy = $scope.peds[0].ASESOR;
-					$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.peds[0].ASESOR;
-
-				}
-				
-				$scope.baby($scope.pedido1);
-
-
-                var opciones= {
-                    fuente: $scope.peds[0].FUENTE,
-					grupo: $scope.peds[0].GRUPO,
-					actividad: $scope.peds[0].ACTIVIDAD
-                };
-              //  console.log(data.data);
-
-               $scope.listarOpcionesAsginacion(opciones);
-
-			}
-			var demePedidoButton = document.getElementById("iniciar");
-			demePedidoButton.removeAttribute("disabled");
-			demePedidoButton.className = "btn btn-success btn-DemePedido-xs";
-			return data.data;
-		
-
-
-		});
-
-        $scope.timeInit = new Date().getTime();
-		var date1 = new Date();
-		var year = date1.getFullYear();
-		var month = $scope.doubleDigit(date1.getMonth() + 1);
-		var day = $scope.doubleDigit(date1.getDate());
-		var hour = $scope.doubleDigit(date1.getHours());
-		var minute = $scope.doubleDigit(date1.getMinutes());
-		var seconds = $scope.doubleDigit(date1.getSeconds());
-
-		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-		
-	};
-
-	// -------------------------------------------------------------- fin DemePedido activacion
-
-
-
-	// ------------------------------BuscarPedido ----------------------------------------
-
-	$scope.buscarPedido = function (buscar, pedidoinfo) {
-
-		var pedido1 = '';
-		$scope.popup = '';
-		$rootScope.errorDatos = null;
-		//$scope.InfoPedido = [];
-		$scope.InfoPedido = {};
-        $scope.fecha_inicio = null;
-		$scope.FECHA_CREACION = null;
-		$scope.accRdy = false;
-		$scope.InfoGestion = {};
-		//$scope.InfoGestion = [];
-		$scope.pedidoIsGuardado = false;
-		$scope.pedidoActual = pedidoinfo;
-		$scope.buscar = buscar;
-        //$scope.peds={};
-       // $scope.pedidoIsActive=false;
-
-		//console.log($scope.InfoGestion);
-
-		var kami = services.getBuscarpedidoamarillas(buscar,$scope.tabla, $rootScope.logedUser.login).then(
-
-			function (data) {
-
-
-				if (data.data == '') {
-
-					$rootScope.errorDatos = "No hay Registros.";
-					$scope.peds = {};
-					$scope.mpedido = {};
-					$scope.busy = "";
-					$scope.pedidoIsActive = false;
-
-				} else {
-
-					$scope.peds = data.data[1];
-					$scope.ocupado = data.data[0];
-					$scope.pedido1 = $scope.peds[0].PEDIDO;
-					$scope.pedidoinfo = $scope.peds[0].PEDIDO;
-
-					var dat = data.status;
-					//alert("'"+data.status+"'");
-					if (dat == 204) {
-						document.getElementById("warning").innerHTML = "No hay Registros.";
-						$rootScope.errorDatos = "No hay Registros.";
-						$scope.peds = {};
-						$scope.mpedido = {};
-						$scope.busy = "";
-						$scope.pedidoIsActive = false;
-
-					} else {
-							
-						if ($scope.ocupado == true) {
-							$scope.busy = $scope.peds[0].ASESOR;
-							$rootScope.errorDatos = "El pedido " + $scope.pedido1 + " esta ocupado por " + $scope.busy;
-							return;
-
-						}
-						var opciones= {
-                  	  	fuente: $scope.peds[0].FUENTE,
-						grupo: $scope.peds[0].GRUPO,
-						actividad: $scope.peds[0].ACTIVIDAD
-               		 };
-
-              		 $scope.listarOpcionesAsginacion(opciones);
-
-						$rootScope.errorDatos = null;
-						$scope.pedidoIsActive = true;
-
-                       // console.log($scope.peds);
-						return data.data;
-					}
-				}
-			});
-
-
-	};
-
-	// -----------------------------BuscarPedido--------------------------------------
-
-
-
-	//------------------------------ GuardarPedido ------------------------------
-
-
-
-	$scope.guardar = function (InfoPedido, gestion, status) {
-
-          $scope.timeInit = new Date().getTime();
-		var date1 = new Date();
-		var year = date1.getFullYear();
-		var month = $scope.doubleDigit(date1.getMonth() + 1);
-		var day = $scope.doubleDigit(date1.getDate());
-		var hour = $scope.doubleDigit(date1.getHours());
-		var minute = $scope.doubleDigit(date1.getMinutes());
-		var seconds = $scope.doubleDigit(date1.getSeconds());
-
-		$scope.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-        $scope.FECHA_GESTION = year + "-" + month + "-" + day;
-       $scope.duracion =  $scope.doubleDigit(date1.getHours()-19)+":"+ $scope.doubleDigit(date1.getMinutes())+":"+ $scope.doubleDigit(date1.getSeconds());
-	   $scope.TIEMPO_TOTAL = $scope.TIEMPO_TOTAL + " DIAS";
-	   
-
-
-        if (InfoPedido.tipificacion === undefined || InfoPedido.tipificacion == "") {
-			alert('Por favor diligenciar campo tipificacion.');
-			return;
-		}
-
-		$scope.InfoGestion = {
-			ID:gestion.ID,
-			ORDER_SEQ_ID: gestion.ORDER_SEQ_ID,
-			PEDIDO: gestion.PEDIDO,
-			REFERENCE_NUMBER: gestion.REFERENCE_NUMBER,
-			ESTADO: gestion.ESTADO,
-			FECHA_CREACION: gestion.FECHA_CREACION,
-			TAREA_EXCEPCION: gestion.TAREA_EXCEPCION,
-			FECHA_EXCEPCION: gestion.FECHA_EXCEPCION,
-			PRODUCTO: gestion.PRODUCTO,
-			//IDSERVICIORAIZ:gestion.IDSERVICIORAIZ,
-		//	DESCRIPCIONEXCEPCIONACT:gestion.DESCRIPCIONEXCEPCIONACT,
-			MOTIVOEXCEPCIONACT:gestion.MOTIVOEXCEPCIONACT,
-			VALOR_ERROR:gestion.VALOR_ERROR,
-		//	MOTIVO_ERROR:gestion.MOTIVO_ERROR,
-			TRANSACCION: gestion.TRANSACCION,
-			ASESOR: $rootScope.logedUser.login,
-			FECHA_GESTION: $scope.FECHA_GESTION,
-            FECHA_INICIO: $scope.fecha_inicio,
-            FECHA_FIN: $scope.fecha_fin,
-            FUENTE: gestion.FUENTE,
-            ACTIVIDAD: gestion.ACTIVIDAD,
-            USUARIO: $rootScope.logedUser.login,
-            NUMERO_CR: InfoPedido.NUMERO_CR,
-			NUMERO_PSR:InfoPedido.NUMERO_PSR,
-			OBSERVACION: InfoPedido.OBSERVACION,
-			PSR: InfoPedido.PSR,	
-			//TIEMPO_TOTAL: $scope.TIEMPO_TOTAL,
-            DURACION: $scope.duracion,
-			STATUS: gestion.STATUS,
-			TIPIFICACION: InfoPedido.tipificacion,
-            TABLA: $scope.tabla,
-		};
-
-console.log($scope.InfoGestion);
-    
-
-		services.insertTransaccionsiebelamarillas($scope.InfoGestion).then(
-
-
-			function (data) {
-
-				$scope.pedidoIsGuardado = true;
-				$rootScope.errorDatos = null;
-				$scope.InfoPedido = [];
-				$scope.FECHA_EXCEPCION = null;
-                $scope.fecha_inicio = null;
-                $scope.fecha_fin = null;
-				$scope.accRdy = false;
-				$scope.InfoGestion = {};
-				//$scope.InfoGestion = [];
-				$scope.pedidoOcupado = false;
-                $scope.guardando = false;
-				$scope.pedidoIsActive = false;
-				$scope.peds = {};
-				$scope.mpedido = {};
-				$scope.bpedido = '';
-				$scope.busy = "";
-				$scope.error = "";
-                $scope.info	= {};
-                $scope.tipificacion = "";
-				$scope.buscar = null;
-
-				return data.data;
-
-//console.log($scope.InfoPedido);
-			},
-
-
-			function errorCallback(response, status) {
-				//console.log(status);
-				$rootScope.errorDatos = "No se pudo guardar";
-
-			}
-		);
-
-
-	};
-
-	// ----------------------------- GuardarPedido------------------------------
-
-	//------------declaracion doubleDigit
-	$scope.doubleDigit = function (num) {
-
-		if (num < 0) {
-			num = 0;
-		}
-
-		if (num <= 9) {
-			return "0" + num;
-		}
-		return num;
-	};
-
-	//------------declaracion doubleDigit
-
- // Cargar Opciones para la gestion --------------------------------
-    $scope.listarOpcionesAsginacion = function (opciones) {
-        services.getOpcionesGestionAsignaciones(opciones).then(
-            function (data) {
-
-                $scope.listaOpcionesGestion=data.data;
-                return data.data;
-
-            },
-            function errorCallback(response, status) {
-                //console.log(status);
-                $rootScope.errorDatos = 'Error, revisar opciones '+status;
-
-            }
-        );
-    };
-
-});
 
 
 app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, services) {
@@ -13048,12 +11651,8 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
 			return data.data;
 		});
 
-
-
-
-
 		var link = "#/tips/visualizacionTip/" + id;
-        $scope.wAbreTipId = $window.open($window.location.pathname + link, 'Visualizar Tip', 'toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650');
+		window.open(window.location.pathname + link, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650");
 
 	}; //Termina Código de TIPS
 
@@ -14818,6 +13417,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 				}
 			});
 
+
 	};
 
 	// --------------------------------------------------------------- BuscarPedido
@@ -15073,7 +13673,6 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.data					= {};						// Objeto de datos.
 	$scope.iconcepto			= {};						// Objeto de datos que contiene Grupo, Concepto y Fuente.
 	$scope.ifuente				= {};						// Objeto con la fuente para hacer las busquedas.
-    $scope.iplaza               = {};
 	$scope.listaOpcionesGestion = [];						// Arreglo con listado de Opciones para la Gestion.
 	$scope.info					= {};						// Objeto con Info del pedido en gestion.
     $scope.auditoria			= {};
@@ -15082,21 +13681,13 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.programar			= false;					// Habilitar el campo programación.
 	$scope.accRdy				= false; 					// Habilitar el boton de Guardar.
     $scope.pedidoIsActive 		= false;
-    $scope.imunicipio           = {};
-    $scope.listadoMunicipios    =[];
-	//var varDondeGuardar 		= '';
-	//var varEstadoGuardar		= '';
-	//var varObsesGuardar			= '';
-	//var estadoFinal				= '';
+	var varDondeGuardar 		= '';
+	var varEstadoGuardar		= '';
+	var varObsesGuardar			= '';
+	var estadoFinal				= '';
 
     $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
-	//$scope.idPermisos = idPermisos.getIds();
-    idPermisos.getIds().then(
-        function (data) {
-            $scope.idPermisos = data;
-        }, function(){
-            $scope.errorDatos = "Error en permisos";
-        });
+	$scope.idPermisos = idPermisos.getIds();
 
 	//$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG','JCASTAMU', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
     $scope.idConceptos=['O-13', 'O-15', 'O-106'];
@@ -15164,7 +13755,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				$scope.data.totalItems=data.data[1];
 				return data.data;
 		});
-    };
+        };
 
 		//$scope.PedidosPorUser();
 
@@ -15320,13 +13911,13 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         $scope.pedidoIsGuardado 	= false;
         $scope.programar			= false;
         $scope.pedidoIsActive		= false;
-        $scope.habilitaCr			= true;
+        $scope.habilitaCr			= false;
         $scope.buscar				= '';
         //$scope.estadoGuardo			= false;
 
-        /*if($scope.iconcepto.FUENTE=='SIEBEL'){
+        if($scope.iconcepto.FUENTE=='SIEBEL'){
             $scope.habilitaCr			= true;
-        }*/
+        }
 
 
         if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
@@ -15340,43 +13931,35 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         $scope.busy = "";
         $scope.pedido1 = pedido1;
         $rootScope.error = "";
+        $scope.iplaza = 'TODOS';
         $scope.fuente = $scope.iconcepto.FUENTE;
         $scope.InfoPedido.SOURCE = 'AUTO';
         $scope.InfoPedido.FUENTE = $scope.fuente;
 
-        //console.log($scope.iplaza);
-
-        if(angular.equals($scope.iplaza,{})){
-            $scope.iplaza.MUNICIPIO_ID ="TODOS";
-        }
-
+        //console.log($scope.iconcepto);
 
         var demePedidoButton = document.getElementById("iniciar");
         demePedidoButton.setAttribute("disabled", "disabled");
         demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-        var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE).then(function (data) {
+        var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE).then(function (data) {
 
             $scope.peds = data.data;
 
-            //console.log(data.data);
+            //console.log($scope.peds);
 
             if (data.data == '') {
 
-               // document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Concepto.";
+                document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de Concepto.";
                 $rootScope.errorDatos = "No hay Registros. Intente Cambiando de Concepto.";
-                //console.log(data);
-            } else if(data.data=="Limite de pedidos alcanzado!"){
-                $rootScope.errorDatos = "LIMITE DE PEDIDOS ALCANZADO!. Para hacer un reset cierre las demas instancias del gestor y haga una busqueda sin pedido.";
-            }else {
+            } else {
 
-               // document.getElementById("warning").innerHTML = "";
+                document.getElementById("warning").innerHTML = "";
                 $scope.pedido1 = $scope.peds[0].PEDIDO_ID;
                 $scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
                 $scope.fechaprogramacion=$scope.peds[0].PROGRAMACION;
                 $scope.prioridadPedido=$scope.peds[0].PRIORIDAD;
                 $scope.info.CONCEPTO_ID=$scope.peds[0].CONCEPTO_ID;
-                $scope.info.PEDIDO_CRM=$scope.peds[0].PEDIDO_CRM;
                 $scope.pedidoIsActive = true;
                 $rootScope.errorDatos = null;
                 $scope.fecha_inicio = $rootScope.fechaProceso();
@@ -15438,7 +14021,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			$scope.habilitaCr			= true;
 			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
 		}else{
-			$scope.habilitaCr			= true;
+			$scope.habilitaCr			= false;
 			var kami = services.buscarPedidoReconfiguracion(buscar, iplaza,$scope.pedidoActual, $rootScope.logedUser.login);
 		}
 
@@ -15689,7 +14272,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     $scope.removeNuevaNovedad = function() {
         var lastItem = $scope.auditorias.length-1;
-        if(lastItem!==0){
+        if(lastItem!=0){
             $scope.auditorias.splice(lastItem);
         }
 
@@ -15764,7 +14347,6 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 notify({
                     message: 'Pedido Auditado!',
                     duration: '1000',
-                    classes: 'btn-primary',
                     position: 'right'
                 });
 
@@ -15836,14 +14418,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 horaLlamar: InfoPedido.PROGRAMACION,
                 INCIDENTE: InfoPedido.INCIDENTE,
                 TRANSACCION: gestion.DESC_TIPO_TRABAJO,
-                DEPARTAMENTO: gestion.DEPARTAMENTO,
-                TIPO_TRABAJO: gestion.TIPO_TRABAJO,
-                TECNOLOGIA_ID: gestion.TECNOLOGIA_ID,
                 FECHA: gestion.FECHA_ESTADO,
                 ID: gestion.ID
             };
-
-        //$scope.municipio= $scope.iplaza.MUNICIPIO_ID;
 
         services.putGestionAsignaciones($scope.InfoGestion).then(
         	function (data) {
@@ -15862,7 +14439,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 $scope.bpedido 					= '';
                 $scope.busy 					= "";
                 $scope.error 					= "";
-                //$scope.iplaza 					= [{MUNICIPIO_ID: $scope.municipio}];
+                $scope.iplaza 					= 'TODOS';
                 $scope.buscar 					= null;
                 $scope.info						= {};
                 $scope.habilitaSiebel			= false;
@@ -15874,18 +14451,13 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 					notify({
 						message: 'Pedido Programado para el día: '+fechaprogramacion,
 						duration: '3000',
-                        classes: 'btn-primary',
 						position: 'right'
 					});
 				}
 
-                $scope.checkMunicipiosAsignaciones();
-               // $scope.listadoMunicipios.MUNICIPIO_ID=gestion.MUNICIPIO_ID;
-                //console.log($scope.listadoMunicipios.MUNICIPIO_ID);
             }, function (err) {
-                $rootScope.errorDatos 			= err.data[0];
+                $rootScope.errorDatos 			= err;
                 $scope.guardando 				= false;
-                //$scope.checkMunicipiosAsignaciones();
 
             }
 		)
@@ -15944,123 +14516,16 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 return data.data;
 
             },
-            function errorCallback(response) {
+            function errorCallback(response, status) {
                 //console.log(status);
-                $rootScope.errorDatos = 'Error, revisar opciones '+response.status;
+                $rootScope.errorDatos = 'Error, revisar opciones '+status;
 
             }
         );
     };
 
-      // Cargar Opciones para la gestion --------------------------------
-    $scope.listarMunicipiosAsignacionesSiebel = function (concepto, fuente) {
-        services.getMunicipiosAsignacionesSiebel(concepto, fuente).then(
-            function (data) {
-                $scope.listadoMunicipios=data.data;
-                $scope.iplaza = {'MUNICIPIO_ID':$scope.municipio};
-                //console.log($scope.municipio);
-                console.log($scope.iplaza );
-                return data.data;
-
-            },
-            function errorCallback(res) {
-                //console.log(status);
-                $rootScope.errorDatos = res.data[0];
-
-            }
-        );
-    };
-
-    $scope.condicionMunicipiosShow = function () {
-
-        return ($scope.iconcepto.FUENTE=='SIEBEL' & ( $scope.iconcepto.CONCEPTO_ID=='COBERTURA' | $scope.iconcepto.CONCEPTO_ID=='DISPONIBILIDAD' | $scope.iconcepto.CONCEPTO_ID=='CONSTRUCCION' | $scope.iconcepto.CONCEPTO_ID=='DISENO' ));
-    };
-
-    $scope.checkMunicipiosAsignaciones = function () {
-        $rootScope.errorDatos = null;
-        /*
-        if($scope.iconcepto.FUENTE=='SIEBEL' & ( $scope.iconcepto.CONCEPTO_ID=='COBERTURA' | $scope.iconcepto.CONCEPTO_ID=='DISPONIBILIDAD' | $scope.iconcepto.CONCEPTO_ID=='CONSTRUCCION' | $scope.iconcepto.CONCEPTO_ID=='DISENO' )){
-
-            $scope.listarMunicipiosAsignacionesSiebel($scope.iconcepto.CONCEPTO_ID);
-        } */
-        //console.log($scope.iconcepto);
-        if(!angular.equals($scope.iconcepto, {})){
-            $scope.listarMunicipiosAsignacionesSiebel($scope.iconcepto.CONCEPTO_ID, $scope.iconcepto.FUENTE);
-        }
-
-    };
-
-    $scope.checkMunicipiosAsignaciones();
-    $scope.actualizarLightKPIS();
-
 });
 // -----------------------------------------------Controlador para Gestion de Reconfiguracion Asignaciones
-
-
-// Controlador para Gestion General de los procesos de Asignaciones SIEBEL -----------------------------------------------
-app.controller('gestionAsignacionesSiebelCtrl', function ($scope, $rootScope, $location, $route, $routeParams, $cookies, $cookieStore, $timeout, notify, services, idPermisos) {
-	// Basura del logueo ---------------------------------
-		$rootScope.logedUser = $cookieStore.get('logedUser');
-        var userID = $cookieStore.get('logedUser').login;
-        document.getElementById('logout').className = "btn btn-md btn-danger";
-        var divi = document.getElementById("logoutdiv");
-        divi.style.visibility = "visible";
-        divi.style.position = "relative";
-
-
-        $rootScope.logout = function() {
-            services.logout(userID);
-            $cookieStore.remove('logedUser');
-            $rootScope.logedUser = undefined;
-            $scope.pedidos = {};
-            clearInterval($scope.intervalLightKPIS);
-            document.getElementById('logout').className = "btn btn-md btn-danger hide";
-            var divi = document.getElementById("logoutdiv");
-            divi.style.position = "absolute";
-            divi.style.visibility = "hidden";
-            $location.path('/');
-        }; //  ---------------------------------Basura del logueo
-
-    // Inicio de Variables ---------------------------------------------------------------------------------
-	$scope.tools				= true;						// Herramientas de gestion habilitadas.
-	$scope.pedidosUnicos		= '';						// Pedidos Unicos, cantidad.
-	$rootScope.actualView		= 'Gestion Asignaciones';	// Vista Actual, sirve para los KPIS.
-	$scope.intervalLightKPIS	= '';
-	$scope.pedidoinfo			= '';
-	$rootScope.errorDatos		= null; 					// Mensajes de Error.
-	$scope.fecha_inicio 		= null; 					// Fecha Inicial de la gestion.
-	$scope.fecha_fin 			= null; 					// Fecha Final de la gestion.
-	$scope.pedidos				= [];						// Arreglo de pedidos.
-	$scope.data					= {};						// Objeto de datos.
-	$scope.iconcepto			= {};						// Objeto de datos que contiene Grupo, Concepto y Fuente.
-	$scope.ifuente				= {};						// Objeto con la fuente para hacer las busquedas.
-	$scope.listaOpcionesGestion = [];						// Arreglo con listado de Opciones para la Gestion.
-	$scope.info					= {};						// Objeto con Info del pedido en gestion.
-    $scope.auditoria			= {};
-	//$scope.estadoGuardo			= false;					// Habilita el guardado en la tabla de siebel.
-	$scope.habilitaCr			= false;					// Habilita el campo CR.
-	$scope.programar			= false;					// Habilitar el campo programación.
-	$scope.accRdy				= false; 					// Habilitar el boton de Guardar.
-    $scope.pedidoIsActive 		= false;
-    $scope.deme_pedidos = [{PEDIDO_ID:"NUEVO"}];
-    $scope.tab = 1;
-    $rootScope.listadoConceptos =
-	[{"ID":"16","CONCEPTO_ID":"COBERTURA","GRUPO":"ASIGNACIONES","ACTIVIDAD":"ESTUDIO","FUENTE":"SIEBEL","ESTADO":"1"},{"ID":"17","CONCEPTO_ID":"CONSTRUCCION","GRUPO":"ASIGNACIONES","ACTIVIDAD":"ESTUDIO","FUENTE":"SIEBEL","ESTADO":"1"},{"ID":"18","CONCEPTO_ID":"DISENO","GRUPO":"ASIGNACIONES","ACTIVIDAD":"ESTUDIO","FUENTE":"SIEBEL","ESTADO":"1"},{"ID":"19","CONCEPTO_ID":"DISPONIBILIDAD","GRUPO":"ASIGNACIONES","ACTIVIDAD":"ESTUDIO","FUENTE":"SIEBEL","ESTADO":"1"}];
-
-
-
-	$scope.setTab = function (newTab) {
-		$scope.tab = newTab;
-	};
-
-	$scope.isSet = function (tabNum) {
-		return $scope.tab === tabNum;
-	};
-    //$scope.actualizarLightKPIS();
-
-});
-// -----------------------------------------------Controlador para Gestion de Reconfiguracion Asignaciones
-//ENDEND
 
 
 
@@ -16184,6 +14649,7 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 
 
 
+
 	// Chat Firebase ---------------------------------------------------
 
 	//var userRef = listRef.push();
@@ -16261,11 +14727,11 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 		});
 
 
+
 		mensajes.on('child_added', function (newMessageSnapshot) {
-            $scope.newMessage = null;
+
 			$scope.newMessage = newMessageSnapshot.val();
-
-
+			//console.log($scope.newMessage);
 		});
 
 
@@ -16363,197 +14829,7 @@ app.controller('feedCtrl', function ($scope, $rootScope, $location, $routeParams
 
 
 });//--------------- fin Controlador Feed  -----------------------
-app.controller('taskCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, $timeout, $filter, notify, services) {
-/**
- * Controlador para Gestionar los requerimientos del Grupo
- * */
-$rootScope.actualView 	    = 	    "Task";
-$rootScope.errorDatos 	    = 	    null;
-$scope.task                 =       {};
-$scope.taskform 			= 		{};
-$scope.task.grupos          =       [];
-$scope.task.tipos           =       [];
-$scope.task.estados 		=		[];
-$scope.task.prioridad 		=		[];
-$scope.task.crud            =       {};
-$scope.task.cerrados        =       {};
-$scope.task.filter          =       {};
-var userID                  =       $cookieStore.get('logedUser').login;
-$rootScope.logedUser        =       $cookieStore.get('logedUser');
 
-document.getElementById('logout').className = "btn btn-md btn-danger";
-var divi = document.getElementById("logoutdiv");
-divi.style.visibility = "visible";
-divi.style.position = "relative";
-
-$scope.task.estados = ['ACTIVO','CERRADO','PAUSA'];
-$scope.task.prioridad = ['ALTA','MEDIA','BAJA'];
-
-$scope.getTaskOptions = function () {
-
-    $http.get('./services/taskgrupos').then(
-        function (res) {
-            $rootScope.errorDatos = null;
-            $scope.task.grupos = res.data;
-        }, function (res) {
-            $rootScope.errorDatos = 'Error: '+res.status;
-        }
-    );
-
-    $http.get('./services/tasktipos').then(
-        function (res) {
-            $rootScope.errorDatos = null;
-            $scope.task.tipos = res.data;
-        }, function (res) {
-            $rootScope.errorDatos = 'Error: '+res.status;
-        }
-    );
-
-    $scope.taskoptions = true ;
-    return $scope.taskoptions
-};
-
-$scope.getTaskCrud = function () {
-        $http.get('./services/taskCrud').then(
-            function (res) {
-                $rootScope.errorDatos = null;
-                $scope.task.crud = {};
-                $scope.task.crud = res.data[0];
-                $scope.task.cerrados = res.data[1];
-                $scope.getTaskOptions();
-
-            }, function (res) {
-                $rootScope.errorDatos = 'Error: '+res.status;
-            }
-        );
-    };
-
-$scope.updateUsers = function (username) {
-    if(username.length>=1){
-        $scope.task.crud = $filter('filter')($scope.task.crud, {USUARIO_GEST: username});
-    }else{
-        $scope.getTaskCrud();
-    }
-};
-
-$scope.getTaskCrud();
-
-
-
-
-
-
-$scope.estiloflag = function (rank) {
-        //console.log(rank);
-        var normal      =       "#24b5e8";
-        var medio       =       "#e85504";
-        var alto        =       "#e80f2d";
-
-        if(rank==='BAJA'){
-           $scope.colorflag =  {
-               color:normal
-           }
-        }
-        if(rank==='MEDIA'){
-            $scope.colorflag =  {
-                color:medio
-            }
-        }
-        if(rank==='ALTA'){
-            $scope.colorflag =  {
-                color:alto
-            }
-        }
-        return  $scope.colorflag;
-    };
-
-$scope.updateStatus = function(data, index) {
-    $scope.fechaModifica = $rootScope.fechaProceso();
-
-    if(data.ESTADO=='CERRADO'){
-        $scope.task.crud[index].PROGRESO=100;
-        $scope.taskIsDone = true;
-    }
-    if(data.PROGRESO==100){
-        data.ESTADO='CERRADO';
-        $scope.task.crud[index].ESTADO='CERRADO';
-        $scope.taskIsDone = true;
-
-    }
-
-    $http.post('services/updateTaskAdmin', {
-        id: data.IDTAREA,
-        tipo:data.TIPO,
-        categoria: data.CATEGORIA,
-        grupo: data.GRUPO,
-        representante: data.REPRESENTANTE,
-        estado: data.ESTADO,
-        progreso:data.PROGRESO,
-        fecha:$scope.fechaModifica,
-        usuario:userID,
-        taskIsDone:$scope.taskIsDone
-    }).then(
-    	function (res) {
-            notify({
-                message: res.data[0],
-                duration: '3000',
-                classes: 'btn-primary',
-                position: 'right'
-            });
-            $scope.getTaskCrud();
-            $rootScope.getTaskbyUser();
-
-		}, function (err) {
-            $rootScope.errorDatos = 'Error: ' + err.status + ', Msg: ' +err.data[0];
-		}
-	);
-};
-
-$scope.newTask = function () {
-    $scope.taskform = {};
-
-    services.getListadoUsuarios().then(function (data) {
-        $scope.task.usuarios = data.data[0];
-        $scope.taskform = {
-        	FECHA_INICIO: $rootScope.fechaProceso(),
-            USUARIO_CREA: userID,
-            USUARIO_GEST:userID,
-            TIPO: 'NUEVO',
-            CATEGORIA: '',
-            GRUPO: '',
-            REPRESENTANTE: '',
-            OBSERVACIONES: '',
-            ESTADO: 'ACTIVO',
-            PROGRESO: 10
-        };
-
-    });
-
-};
-
-$scope.saveTask = function (newtask) {
-    $http.post('services/putTaskAdmin', {
-        newtask:newtask
-    }).then(
-        function (res) {
-            notify({
-                message: res.data[0],
-                duration: '3000',
-                classes: 'btn-primary',
-                position: 'right'
-            });
-            $scope.taskform = {};
-            $scope.getTaskCrud();
-            $rootScope.getTaskbyUser();
-
-        }, function (err) {
-            $rootScope.errorDatos = 'Error: ' + err.status + ', Msg: ' +err.data[0];
-        }
-    );
-};
-
-
-});//--------------- fin Controlador Task  -----------------------
 
 app.directive('modal', function () {
 	return {
@@ -16924,7 +15200,7 @@ app.config([
     '$compileProvider',
     function ($compileProvider)
 	{
-		$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|ftp|mailto|blob):|data:image\//);
+		$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|sip|file):/);
 		// Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
     }
 ]);
@@ -16997,13 +15273,7 @@ app.config(['$routeProvider',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
-		.when('/tx/asignaciones/siebel_tabs/', {
-			title: "Gestion Asignaciones Siebel",
-			templateUrl: 'partials/transacciones/gestion_asignaciones_siebel_tabs.html',
-			controller: 'gestionAsignacionesSiebelCtrl',
-            //grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
-            //cargos: ['1','2','3','4','5','6','7','8','9']
-		})
+
 
 		.when('/nca/', {
 			title: 'NCA',
@@ -17189,10 +15459,10 @@ app.config(['$routeProvider',
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
 
-        .when('/amarillas', {
-			title: 'Amarillas Activacion',
-			templateUrl: 'partials/amarillas.html',
-			controller: 'amarillasactivacionCtrl',
+        .when('/demepedidodom', {
+			title: 'DemePedido Activacion Dom',
+			templateUrl: 'partials/demepedidodom.html',
+			controller: 'siebelActivacionCtrl',
             grupos: ['ACTIVACION','SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
@@ -17260,21 +15530,10 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/chat/chatio.html',
                 controller: 'chatioCtrl'
 		})
-        .when('/taskadmin/', {
-            title: 'Tareas Gerencia',
-            templateUrl: 'partials/administracion/task.html',
-            controller: 'taskCtrl'
-        })
 		// HERRAMIENTAS ------------------------------------------
 		.when('/cmts/', {
 				title: 'Cmts',
 				templateUrl: 'partials/buscarcmts.html',
-				controller: 'mymodalcontroller',
-				reloadOnSearch: false
-		})
-        .when('/cmts2/', {
-				title: 'Cmts',
-				templateUrl: 'partials/buscarcmts2.html',
 				controller: 'mymodalcontroller',
 				reloadOnSearch: false
 		})
@@ -17322,12 +15581,6 @@ app.config(['$routeProvider',
 			title: 'codigo_resultado',
 			templateUrl: 'partials/codigo_resultado.html',
 			controller: 'cargar_datosCtrl'
-		})
-
-		.when('/cargar_activacion/', {
-			title: 'importar_activacion',
-			templateUrl: 'partials/importar_activacion.html',
-			controller: 'cargar_datos_activacionCtrl'
 		})
 		.when('/cupos-agendamiento/', {
 			title: 'Ocupacion',
@@ -17400,7 +15653,7 @@ app.config(['$routeProvider',
 }]);
 //--------------------FIN AGENDAMIENTO------------------------
 
-app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $http, $firebase, services) {
+app.run(['$rootScope', 'firebase', 'services', function ($rootScope, $firebase, services) {
 
 	$rootScope.gestor = {};
 
@@ -17415,19 +15668,6 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
 		)
 
 	};
-
-    $rootScope.getTaskbyUser = function () {
-        $http.get('./services/taskCrudUser').then(
-            function (data) {
-                $rootScope.taskbyUserCount = data.data.length;
-                //console.log($rootScope.taskbyUserCount);
-                return data.data;
-            }
-
-        )
-
-    };
-
 
 
 	$rootScope.cargos = [
@@ -17556,13 +15796,29 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 		notify({
 			message: 'Copiado',
 			duration: '1000',
-            classes: 'btn-primary',
 			position: 'right'
 		});
 		input.remove();
 	};
 
+	// BtnTools Buscadores Ventanas --------------------------------------------------------------------------------
+	$rootScope.BuscaNodo = function () {
+		window.open(window.location.pathname + "#/cmts/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=500, width=700, height=600");
+	};
+	$rootScope.BuscaGPON = function () {
+		window.open(window.location.pathname + "#/gpon/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=50, width=1100, height=450");
+	};
+	$rootScope.abrirCalculoDistancia = function () {
+		window.open(window.location.pathname + "#/distancia/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=1200px, height=600");
+	};
+	$rootScope.abrirTips = function () {
+		window.open(window.location.pathname + "#/tips/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
+	};
 
+	$rootScope.BuscaRedEdatel = function (localidad) {
+		window.open(window.location.pathname + "#/distriedatel/", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=20, width=800px, height=600");
+	};
+	// --------------------------------------------------------------------------------  BtnTools Buscadores Ventanas
 
 	$rootScope.ProgramadosModal = function () {
 		$rootScope.listaProgramados();
@@ -17632,7 +15888,6 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 	// --------------------------------------------------------------------------------------Modal Historico Pedido
 
-
 });
 app.run(function(editableOptions, editableThemes) {
     editableThemes.bs3.inputClass = 'input-xs';
@@ -17651,7 +15906,6 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 			var galleta = $cookieStore.get('logedUser');
 			var userID = $cookieStore.get('logedUser').login;
             $rootScope.shownavs 		= 	true;
-            $rootScope.getTaskbyUser();
 			//var root = firebase.database().ref(); // hace refencia a la tabla donde se almacenan los datos
 			//var messageRef = $firebaseArray(root.child('messages'));
 			//var mensajes = root.child('messages');
@@ -17681,24 +15935,6 @@ app.run(['$location', '$rootScope', '$cookies', '$cookieStore', '$firebase', '$f
 		$rootScope.title = current.$$route.title;
 
 	});
-
-
-}]);
-
-app.run(['$location', '$rootScope','$cookies', '$cookieStore','services','socket', function($location, $rootScope,  $cookies, $cookieStore, services, socket ) {
-
-
-    $rootScope.logout = function() {
-        services.logout($rootScope.logedUser.login);
-        $cookieStore.remove('logedUser');
-        $rootScope.logedUser = undefined;
-        document.getElementById('logout').className = "btn btn-md btn-danger hide";
-        var divi = document.getElementById("logoutdiv");
-        divi.style.position = "absolute";
-        divi.style.visibility = "hidden";
-        $location.path('/');
-    }; //  ---------------------------------Basura del logueo
-
 
 
 }]);
