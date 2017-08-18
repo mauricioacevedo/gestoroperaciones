@@ -50,7 +50,8 @@ app.service('fileUpload', ['$http', '$cookieStore', function ($http, $cookieStor
 		file['user'] = user + '6666666';
 		fd.append('user', user);
 		fd.append('fileUpload', file);
-		$http.post('services/cargar_datos', fd, {
+		//$http.post('services/cargar_datos', fd, {
+        $http.post(uploadUrl, fd, {
 				withCredentials: false,
 				transformRequest: angular.identity,
 				headers: {
