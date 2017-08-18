@@ -16068,7 +16068,7 @@ app.controller('gestionAsignacionesSiebelCtrl', function ($scope, $rootScope, $l
 
 
 
-app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
+app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, services,fileUpload) {
 	$scope.header = 'Buscador Nodos CMTS';
 	$scope.footer = 'Gerencia Alistamiento';
 	$scope.nods = [];
