@@ -11661,13 +11661,7 @@ class API extends REST {
         $TAMANO =$_FILES["fileUpload"]["size"];
 
         $usas = $this->_request['user'];
-        //$PEDIDO_ID='';
-        //$cliente_id='';
-        //$ACCESO='';
-        //$ESTADO='';
-        //$FECHA_INGRESO='';
         $today = date("Y-m-d");
-
 
         $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','CARGA DATOS CMTS')";
         // echo  $sqlupload;
@@ -11726,169 +11720,45 @@ class API extends REST {
         }
         list($end, $end_h, $end_v) = $rslt;
 
+
         //empieza  lectura vertical
-        $table = "<table  border='1'>";
         for($v=$start_v; $v<=$end_v; $v++){
             //empieza lectura horizontal
 
-            if ($v==1) continue;
-            $table .= "<tr>";
-            //$filas= $start_h + 1;
+                if ($v==1) {
+                        //VERIFICO QUE EL ENCABEZADO SEA EL QUE ESTOY ESPERANDO.....
+                        $vars="";
+                        $header="CMTS_CD,ND_CD,PUERTOS,BW TOTAL,MAX CAP BW x Cluster,% Ocupacion,BW Disponible,";
+                        for($h=$start_h; ord($h)<=ord($end_h); pp($h)){
+                                $cellValue = get_cell($h.$v, $objPHPExcel);
+                                if($h=="H") break;//esto controla si por alguna razon hay columnas vacias mas alla del limite....
 
-
-            for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
-                $cellValue = $this->get_cell($h.$v, $objPHPExcel);
-
-
-
-                $table .= "<td>";
-                $guardar .=" '$cellValue',";
-                //echo $cellValue;
-                if($cellValue!== null){
-                    $table .= $cellValue;
+                                $vars=$vars."$cellValue,";
+                        }
+                        echo "HEADER: $vars";
+                        if($header==$vars){
+                                echo "ARCHIVO CORRECTO!!!!";
+                        }else{
+                                echo "ARCHIVO NO CORRESPONDE AL ESPERADO: SE ESPERA \[$header\] Y SE OBTUVO: \[$vars\]";
+                                return;
+                        }
+                        continue;
                 }
-                if($h=="L"){
-                    $PEDIDO_ID=$cellValue;
+                $vars="";
+                $sep="";
+                for($h=$start_h; ord($h)<=ord($end_h); pp($h)){
+                        $cellValue = get_cell($h.$v, $objPHPExcel);
+
+                        if($h=="H") break;
+
+                        $vars=$vars."$sep'$cellValue'";
+                        $sep=",";
                 }
-                if($h=="J"){
-                    $cliente_id=$cellValue;
-                }
-                if($h=="Z"){
-                    $ACCESO=$cellValue;
-                }
-                if($h=="Y"){
-                    $FUENTE=$cellValue;
-                }
-                if($h=="G"){
-                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
-                    $FECHA_FIN = gmdate("Y-m-d 00:00:00",$timestamp);//fecha formateada+
-                    $table .= "<td>";
-                }
+            $INSERT="INSERT INTO gestor_cmts_por_archivo (CMTS_CD,ND_CD,PUERTOS,BW_TOTAL,MAX_CAP_BWxCLUSTER,PORCENTAJE_OCUPACION,BW_DISPONIBLE) VALUES ($vars)";
+            $r = $this->mysqli->query($INSERT) or die($this->mysqli->error.__LINE__);
+                //echo "\n";
 
-                if($h=="I"){
-                    $NOVEDAD=strtoupper($cellValue);
-                    //$NOVEDAD=strtoupper($NOVEDAD);
-
-                }
-                if($h=="E"){
-                    $OBSERVACION_GESTOR=strtoupper($cellValue);
-
-
-                }
-
-            }
-
-            $guardar=rtrim($guardar,',');
-
-
-
-            if ($tname1  = "bodega_datos.xlsx"){
-
-
-                $sqlbodega_datos="insert into portalbd.gestor_bodega_bodega_datos (CAMPANAID,LANZAMIENTO,IDLLAMADA1,TELEFONO,MENSAJE,ACCION,FECHA,IDLLAMADA2,ESTADO,CEDULA,DETALLE,PEDIDO,CODIGO_RESULTADO,FECHA_AGENDA,JORNADA_AGENDA,CAUSA,MUNICIPIO,ZONA,TIPO_TRANSACCION,NOMBRE_CLIENTE,DEPARTAMENTO,EMAIL,FECHA_ENVIO,HORA_ENVIO,INTERFAZ,ACCESO) values ($guardar) ";
-                //echo  $sqlbodega_datos;
-                $r = $this->mysqli->query($sqlbodega_datos) or die($this->mysqli->error.__LINE__);
-                // echo  $guardar2;
-                $sqldatos="insert into portalbd.gestor_historicos_reagendamiento (PEDIDO_ID,CLIENTE_ID,ACCESO,FUENTE,FECHA_FIN,ASESOR,NOVEDAD,OBSERVACION_GESTOR) values ('$PEDIDO_ID','$cliente_id','$ACCESO','$FUENTE','$FECHA_FIN','$usas','$NOVEDAD','$OBSERVACION_GESTOR')";
-                //echo  $sqldatos;
-                $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
-
-
-
-            }
-
-
-            $guardar="";
-            $PEDIDO_ID="";
-            $cliente_id="";
-            $ACCESO="";
-            $FUENTE="";
-            $FECHA_FIN="";
-            $NOVEDAD="";
-            $NOMBRE_ARCHIVO="";
-            $TAMANO="";
-            $VISTA="";
-            $tname1="";
-
-
-
-            $table .= "</tr>";
-        }
-
-        for($v=$start_v; $v<=$end_v; $v++){
-            //empieza lectura horizontal
-
-            if ($v==1) continue;
-            $table .= "<tr>";
-            //$filas= $start_h + 1;
-
-
-            for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
-                $cellValue = $this->get_cell($h.$v, $objPHPExcel);
-
-                $table .= "<td>";
-                $guardar .=" '$cellValue',";
-
-                if($cellValue !== null){
-                    $table .= $cellValue;
-                }
-
-            }
-
-            $guardar=rtrim($guardar,',');
-            //var_dump($guardar);
-            //echo $tname1;
-            if ($tname1 <> "" && $tname1 <>"bodega_datos.xlsx"){
-
-
-
-
-                $che=explode(",",$guardar);//validacion de datos que carguen pedidos diferentes y omita los repetidos
-                $pedido=$che[0];
-
-                //echo var_dump($che);
-
-                //$this->response('okidokie',200);
-
-                $pend=" SELECT PEDIDO_ID ".
-                    " FROM portalbd.gestor_pendientes_reagendamiento ".
-                    " WHERE PEDIDO_ID=$pedido and STATUS IN ('MALO','PENDI_AGEN')";
-                // echo $pend;
-                $rst = $this->mysqli->query($pend);
-
-
-                if ($rst->num_rows > 0){
-                    continue;
-                }
-
-                $sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID,CONCEPTOS,CLIENTE_ID,NOMBRE_USUARIO,DEPARTAMENTO,SUBZONA_ID,DIRECCION_ENVIO,FUENTE,PROCESO,CELULAR_AVISAR,TELEFONO_AVISAR,IDENTIFICADOR_ID,FECHA_INGRESO,MICROZONA,OBSERVACION_FENIX,TECNOLOGIA_ID) values ($guardar) ";
-                // echo($sqlemail);
-                $r = $this->mysqli->query($sqlemail) or die($this->mysqli->error.__LINE__);
-
-                $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','PENDIENTES REAGENDAMIENTO')";
-                //echo  $sqlupload;
-                $r = $this->mysqli->query($sqlupload) or die($this->mysqli->error.__LINE__);
-
-            }
-
-
-
-            $guardar="";
-            $PEDIDO_ID="";
-            $cliente_id="";
-            $ACCESO="";
-            $FUENTE="";
-            $FECHA_FIN="";
-            $NOVEDAD="";
-            $NOMBRE_ARCHIVO="";
-            $TAMANO="";
-            $VISTA="";
-            $FECHA_INGRESO="";
-
-
-            $table .= "</tr>";
-        }
-
+        }//end FORME
 
         $this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
 
