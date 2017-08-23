@@ -61,6 +61,7 @@
 		<td><span ng-class="{'DISPONIBLE':'label label-success','NO DISPONIBLE':'label label-danger'}[service.PLAN_20MB]">{{service.PLAN_20MB}}</span></td>
         <td><span ng-class="{'DISPONIBLE':'label label-success','NO DISPONIBLE':'label label-danger'}[service.PLAN_30MB]">{{service.PLAN_30MB}}</span></td>
         <td><span ng-class="{'DISPONIBLE':'label label-success','NO DISPONIBLE':'label label-danger'}[service.PLAN_50MB]">{{service.PLAN_50MB}}</span></td>
+        <td><span class="badge">{{service.PORCENTAJE_OCUPACION*100}}%</span></td>
 	</tr>
 	</table>
                 <!--td><button id="iniciar" type="button" class="btn btn-md btn-success" onclick="javascript:activar();">Iniciar</a></td-->
