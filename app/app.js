@@ -939,6 +939,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	obj.buscarCmts = function (nnodo) { //buscar cmts
 		return $http.get(serviceBase + 'buscarcmts?nodo_id=' + nnodo + '');
 	};
+    obj.buscarCmts2 = function (nnodo) { //buscar cmts
+		return $http.get(serviceBase + 'buscarcmts2?nodo_id=' + nnodo + '');
+	};
 
 	obj.getServicesGPON = function (olt, tarjeta, puerto) { // servicio para gpon
 		return $http.get(serviceBase + 'getServicesGPON?OLT=' + olt + '&TARJETA=' + tarjeta + '&PUERTO=' + puerto + ' ');
@@ -16111,12 +16114,12 @@ app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $locat
 		$scope.nods = [];
 	};
 
-	$scope.buscarCmts = function (nnodo) {
+	$scope.buscarCmts2 = function (nnodo) {
 
 		$scope.error = "";
-		var kami = services.buscarCmts(nnodo, $scope.nodo_id).then(function (data) {
-			$scope.nods = data.data[1];
-			$scope.nodshfc = data.data[0];
+		var kami = services.buscarCmts2(nnodo, $scope.nodo_id).then(function (data) {
+			$scope.nods = data.data[0];
+			//$scope.nodshfc = data.data[0];
 			if (data.data == '') {
 				document.getElementById("warning").innerHTML = "Este nodo no existe.";
 			} else {

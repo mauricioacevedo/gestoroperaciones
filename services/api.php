@@ -10237,7 +10237,53 @@ class API extends REST {
         $this->response(json_encode($return), 200);
         //$this->response('nothing',204);        // If no records "No Content" status
 
+    }
 
+    private function buscarcmts2()
+    {
+
+        if($this->get_request_method() != "GET")
+        {
+            $this->response('',406);
+        }
+        $nodo = $this->_request['nodo_id'];
+        $today = date("Y-m-d");
+
+
+        //consulta nodo en fenix
+
+        //$result0=$this->buscarNodoHFCFenix($nodo);
+
+        //var_dump($result0);
+
+        $query="SELECT CMTS_CD,ND_CD,PORCENTAJE_OCUPACION, ".
+                "CASE ".
+                "WHEN  PORCENTAJE_OCUPACION < 0.78 THEN 'DISPONIBLE' ELSE 'NO DISPONIBLE' END AS PLAN_15MB ".
+                ",CASE ".
+                "WHEN  PORCENTAJE_OCUPACION < 0.78 THEN 'DISPONIBLE' ELSE 'NO DISPONIBLE' END AS PLAN_20MB ".
+                ",CASE ".
+                "WHEN  PORCENTAJE_OCUPACION < 0.75 THEN 'DISPONIBLE' ELSE 'NO DISPONIBLE' END AS PLAN_30MB ".
+                ",CASE ".
+                "WHEN  PORCENTAJE_OCUPACION < 0.68 THEN 'DISPONIBLE' ELSE 'NO DISPONIBLE' END AS PLAN_50MB ".
+                " FROM portalbd.gestor_cmts_por_archivo ".
+                " WHERE ND_CD like '%$nodo%' limit 100";
+
+        //$this->response($query1,200);
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+
+        if($r->num_rows > 0)
+        {
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                $result[] = $row;
+            }
+            //$this->response(json_encode($result), 200); // send user details
+        }
+
+        $return =array($result);
+        $this->response(json_encode($return), 200);
+        //$this->response('nothing',204);        // If no records "No Content" status
 
     }
 
@@ -11677,6 +11723,8 @@ class API extends REST {
         } else {
 
             echo "Ha habido un error al subir el archivo.";
+           $this->response(json_encode(array("msg"=>"ERROR: HA HABIDO UN ERROR AL SUBIR EL ARCHIVO.","data" => $today)),200);
+           return;
         }
 
         //var_dump($_FILES);
@@ -11694,6 +11742,7 @@ class API extends REST {
         }else{
             // Extension no valida
             echo "Extension no valida.";
+            $this->response(json_encode(array("msg"=>"ERROR: EXTENSION NO VALIDA, SE REQUIERE UN ARCHIVO EXCEL.","data" => $today)),200);
             exit();
         }
 
@@ -11712,10 +11761,12 @@ class API extends REST {
         list($start, $end) = explode(':', $dim);
 
         if(!preg_match('#([A-Z]+)([0-9]+)#', $start, $rslt)){
+            $this->response(json_encode(array("msg"=>"ERROR: OCURRIO UN ERROR CON LOS CAMPOS DEL ARCHIVO EXCEL.","data" => $today)),200);
             return false;
         }
         list($start, $start_h, $start_v) = $rslt;
         if(!preg_match('#([A-Z]+)([0-9]+)#', $end, $rslt)){
+            $this->response(json_encode(array("msg"=>"ERROR: OCURRIO UN ERROR CON LOS CAMPOS DEL ARCHIVO EXCEL.","data" => $today)),200);
             return false;
         }
         list($end, $end_h, $end_v) = $rslt;
@@ -11742,6 +11793,7 @@ class API extends REST {
                                 echo "ARCHIVO CORRECTO!!!!";
                         }else{
                                 echo "ARCHIVO NO CORRESPONDE AL ESPERADO: SE ESPERA \[$header\] Y SE OBTUVO: \[$vars\]";
+                                $this->response(json_encode(array("msg"=>"ERROR: ARCHIVO NO CORRESPONDE AL ESPERADO: SE ESPERA \[$header\] Y SE OBTUVO: \[$vars\] ".,"data" => $today)),200);
                                 return;
                         }
                         continue;
