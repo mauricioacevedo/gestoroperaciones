@@ -11793,7 +11793,7 @@ class API extends REST {
                                 echo "ARCHIVO CORRECTO!!!!";
                         }else{
                                 echo "ARCHIVO NO CORRESPONDE AL ESPERADO: SE ESPERA \[$header\] Y SE OBTUVO: \[$vars\]";
-                                $this->response(json_encode(array("msg"=>"ERROR: ARCHIVO NO CORRESPONDE AL ESPERADO: SE ESPERA \[$header\] Y SE OBTUVO: \[$vars\] ".,"data" => $today)),200);
+                                $this->response(json_encode(array("msg"=>"ERROR: ARCHIVO NO CORRESPONDE AL ESPERADO: SE ESPERA \[$header\] Y SE OBTUVO: \[$vars\] ","data" => $today)),200);
                                 return;
                         }
                         continue;
