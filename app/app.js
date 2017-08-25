@@ -16145,8 +16145,8 @@ app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $locat
 
 		$scope.error = "";
 		var kami = services.buscarCmts(nnodo, $scope.nodo_id).then(function (data) {
-			$scope.nods = data.data[0];
-			//$scope.nodshfc = data.data[0];
+			$scope.nods = data.data[1];
+			$scope.nodshfc = data.data[0];
 			if (data.data == '') {
 				document.getElementById("warning").innerHTML = "Este nodo no existe.";
 			} else {
