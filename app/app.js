@@ -16141,6 +16141,33 @@ app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $locat
 
 	};
 
+    $scope.buscarCmts = function (nnodo) {
+
+		$scope.error = "";
+		var kami = services.buscarCmts(nnodo, $scope.nodo_id).then(function (data) {
+			$scope.nods = data.data[0];
+			//$scope.nodshfc = data.data[0];
+			if (data.data == '') {
+				document.getElementById("warning").innerHTML = "Este nodo no existe.";
+			} else {
+				document.getElementById("warning").innerHTML = "";
+			}
+			return data.data;
+		});
+
+		$scope.timeInit = new Date().getTime();
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+	};
+
 });
 
 //Controlador de prueba CHAT
