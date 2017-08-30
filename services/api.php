@@ -4413,6 +4413,7 @@ class API extends REST {
             "        when DESC_TIPO_TRABAJO='MODIFICACION,NA NUEVO' then 'CAMBI,NUEVO' ".
             "        when TIPO_TRABAJO='CAMBIO' then 'CAMBI' ".
             "        when TIPO_TRABAJO='NUEVO,RETIR' then 'NUEVO' ".
+            "        when TIPO_TRABAJO='8' then 'NUEVO' ".
             "        when TIPO_TRABAJO='CAMBI,NUEVO,RETIR' then 'CAMBI,NUEVO' ".
             "        when TIPO_TRABAJO='CAMBIO,VENTA' then 'CAMBI,NUEVO' ".
             "        else TIPO_TRABAJO ".
