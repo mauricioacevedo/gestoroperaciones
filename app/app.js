@@ -533,9 +533,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	obj.getactivacionGraficaseguimiento = function () { // grafica pendientes activacion
 		return $http.get(serviceBase + 'activacionGraficaseguimiento');
 	};
-    obj.getactivacionGraficatotales = function () { // grafica pendientes activacion
-		return $http.get(serviceBase + 'activacionGraficatotales');
-	};
+
 
 
 	obj.getPendientesSiebelGraficaAD = function () { //pendientes siebel grafica
@@ -11804,81 +11802,7 @@ $scope.csvActivacioncolas = function () {
 
 		//-----------------fin seguimiento fin
 
-      //---------------------seguimiento
 
-  $scope.myDataSourceActivacion = {
-                        chart: {
-                        caption: "Grafica Activación",
-                        subcaption: "Seguimiento",
-                        startingangle: "120",
-                        showlabels: "0",
-                        showlegend: "1",
-                        enablemultislicing: "0",
-                        slicingdistance: "15",
-                        formatNumberScale: "0",
-                        showpercentvalues: "1",
-                        showpercentintooltip: "0",
-                        plottooltext: "Age group : $label Total visit : $datavalue",
-                        theme: "fint"
-                        },
-                        data: []
-
-        };//--------------------------------
-
-
-	$scope.actualizarGraficaActivacion = function () {
-		var data1 = services.getactivacionGraficatotales().then(function (data) {
-			//var nombremes=data.data[0];
-			//var tmaa=data.data[1];
-			//console.log(nombremes);
-			//var p14=data.data[2];
-			//var p99=data.data[3];
-			//EL CHECHE2
-			$scope.myDataSourceActivacion = {
-				chart: {
-                                "caption": "Grafica Activación ",
-                                "subCaption": "Seguimiento",
-                                "xAxisName": "Asesor",
-                                "yAxisName": "Gestionado",
-                                "numberPrefix": "",
-                                "paletteColors": "#0075c2",
-                                "bgColor": "#ffffff",
-                                "borderAlpha": "20",
-                                "canvasBorderAlpha": "0",
-                                "usePlotGradientColor": "0",
-                                "plotBorderAlpha": "10",
-                                "placevaluesInside": "0",
-                                "rotatevalues": "0",
-                                "valueFontColor": "#0075c2",
-                                "showXAxisLine": "1",
-                                "xAxisLineColor": "#999999",
-                                "divlineColor": "#999999",
-                                "divLineDashed": "1",
-                                "showAlternateHGridColor": "0",
-                                "subcaptionFontBold": "0",
-                                "subcaptionFontSize": "14"
-                            },
-                                data: data.data[0]
-
-                        };
-                        var date1 = new Date();
-                        var year    = date1.getFullYear();
-                        var month   = $scope.doubleDigit(date1.getMonth()+1);
-                        var day     = $scope.doubleDigit(date1.getDate());
-                        var hour    = $scope.doubleDigit(date1.getHours());
-                        var minute  = $scope.doubleDigit(date1.getMinutes());
-                        var seconds = $scope.doubleDigit(date1.getSeconds());
-
-                        $scope.lastUpdate=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
-                        $scope.totalAD= data.data[1];
-						$scope.listaPendientesSiebel=data.data[0];
-
-                        return data.data;
-             });
-
-    };
-
-		//-----------------fin seguimiento fin
 
 
 
