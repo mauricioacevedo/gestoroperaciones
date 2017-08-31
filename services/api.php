@@ -4413,6 +4413,7 @@ class API extends REST {
             "        when DESC_TIPO_TRABAJO='MODIFICACION,NA NUEVO' then 'CAMBI,NUEVO' ".
             "        when TIPO_TRABAJO='CAMBIO' then 'CAMBI' ".
             "        when TIPO_TRABAJO='NUEVO,RETIR' then 'NUEVO' ".
+            "        when TIPO_TRABAJO='8' then 'NUEVO' ".
             "        when TIPO_TRABAJO='CAMBI,NUEVO,RETIR' then 'CAMBI,NUEVO' ".
             "        when TIPO_TRABAJO='CAMBIO,VENTA' then 'CAMBI,NUEVO' ".
             "        else TIPO_TRABAJO ".
@@ -4423,7 +4424,7 @@ class API extends REST {
             "    FROM portalbd.informe_petec_pendientesm ".
             "    where 1=1 ".
             "    and STATUS in ('PENDI_PETEC','MALO') ".
-            "    and fuente in ('FENIX_NAL','FENIX_BOG','SIEBEL') ".
+            "    and fuente in ('FENIX_NAL','FENIX_BOG','SIEBEL','EDATEL') ".
             "    and CONCEPTO_ID NOT IN ('OT-C11','OT-C08','OT-T01','OT-T04','OT-T05') )C1 ".
             "    GROUP BY C1.PEDIDO_ID, C1.CONCEPTO_ID ) C2 ".
             "    WHERE C2.TIPO_TRABAJO='NUEVO' ".
