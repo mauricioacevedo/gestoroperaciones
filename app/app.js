@@ -16333,6 +16333,7 @@ app.controller('chatioCtrl', function ($scope, $route, $rootScope, $location, $r
 	};
 
 	$scope.listado();
+    //
 
 	// --------------------------------------------------- Chat Firebase
 
