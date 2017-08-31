@@ -277,10 +277,6 @@
                                                                                    ng-click="setActiveTab(2);ProductividadPorHora();"
                                                                                    data-toggle="tab"><i class="fa fa-bar-chart"
                                                                                                         aria-hidden="true"></i> Seguimiento</a></li>
-                                     <li ng-class="{'active' : activeTabs == 3}"><a href=""
-                                                                                   ng-click="setActiveTab(2);ProductividadPorHora();"
-                                                                                   data-toggle="tab"><i class="fa fa-bar-chart"
-                                                                                                        aria-hidden="true"></i> Seguimiento</a></li>
                                    
                                 </ul>
                             </span>
@@ -310,18 +306,7 @@
 								</div><!--Fusioncharts-->
 
                                 </div>
-                                 <div ng-class="{'tab-pane fade in active': activeTabs === 3, 'tab-pane' : activeTabs !== 3}"
-                                     id="tab1default">
 
-                                      <div fusioncharts
-									type= "column2d"
-									renderAt= "chart-container"
-									width= "500"
-									height= "300"
-									datasource="{{myDataSourceActivacion}}">
-								</div><!--Fusioncharts-->
-
-                                </div>
                                
                             </div>
                         </div>
