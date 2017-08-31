@@ -17675,6 +17675,8 @@ app.run(function ($rootScope, $compile, $window, notify, services) {
 
 
 });
+
+//copia buena del app.js
 app.run(function(editableOptions, editableThemes) {
     editableThemes.bs3.inputClass = 'input-xs';
     editableThemes.bs3.buttonsClass = 'btn-xs';
