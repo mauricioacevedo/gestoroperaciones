@@ -7045,16 +7045,7 @@ class API extends REST {
             }
         }
 
-        $query=" SELECT COUNT(*) FROM gestor_activacion_pendientes_activador_suspecore where status IN ('PENDI_ACTI','MALO') ";
 
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $counter2=0;
-        if($rr->num_rows > 0){
-            $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter2 = $row['counter'];
-            }
-        }
         // echo $query;
         $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION,TRANSACCION ".
             " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,TABLA ".
