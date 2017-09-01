@@ -11412,7 +11412,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
                 services.getListadoActivacion(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
 
-                    console.log(data);
+                  //  console.log(data);
                        $scope.listadoactivacion=data.data[0];
                        $scope.totalItems=data.data[1];
                         $scope.data.totalItems2=data.data[2];
@@ -11423,7 +11423,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 						$scope.data.totalItems7=data.data[7];
 
                     console.log(data.data[1]);
-                    console.log($scope.totalItems);
+                   // console.log($scope.totalItems);
                     return data.data;
                });
 
