@@ -11423,7 +11423,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 						$scope.data.totalItems7=data.data[7];
 
                     console.log(data.data[1]);
-                    console.log($scope.data.totalItems);
+                    console.log($scope.data.totalItems2);
                     return data.data;
                });
 
