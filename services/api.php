@@ -7246,7 +7246,7 @@ class API extends REST {
             ",estado,fecha_creacion,tarea_excepcion ".
             ",fecha_excepcion,producto,idservicioraiz,transaccion ".
             $tabla.
-            " where pedido like '$pedido%' order by fecha_excepcion desc limit 10 ";
+            " where pedido like '$pedido%' order by fecha_excepcion desc   10 ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
