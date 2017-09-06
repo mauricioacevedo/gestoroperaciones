@@ -11416,7 +11416,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                        $scope.listadoactivacion=data.data[0];
                        $scope.totalItems=data.data[1];
                       $scope.totalItems2=data.data[2];
-                        $scopetotalItems3=data.data[3];
+                      $scope.totalItems3=data.data[3];
                         //$scope.data.totalItems4=data.data[4];
                         //$scope.data.totalItems5=data.data[5];
                         //$scope.data.totalItems6=data.data[6];
