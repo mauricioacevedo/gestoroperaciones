@@ -7065,6 +7065,17 @@ class API extends REST {
                 $counter2 = $row['counter'];
             }
         }
+         $query=" SELECT COUNT(*) as counter FROM  informe_activacion_pendientesm  WHERE  STATUS ='PENDI_ACTIVACION' ";
+
+
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter3=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter3 = $row['counter'];
+            }
+        }
 
         $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION,TRANSACCION ".
             " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,TABLA ".
@@ -7088,7 +7099,7 @@ class API extends REST {
                 // var_dump($result);
             }
 
-            $this->response($this->json(array($result,$counter,$counter1,$counter2)), 200); // send user details
+            $this->response($this->json(array($result,$counter,$counter1,$counter2,$counter3)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
