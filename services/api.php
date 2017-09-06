@@ -7054,6 +7054,17 @@ class API extends REST {
                 $counter1 = $row['counter'];
             }
         }
+        $query="SELECT  COUNT(*) as counter from gestor_activacion_pendientes_activador_dom where status in ('PENDI_ACTI','MALO')";
+
+
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter2=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter2 = $row['counter'];
+            }
+        }
 
         $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION,TRANSACCION ".
             " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,TABLA ".
@@ -7077,7 +7088,7 @@ class API extends REST {
                 // var_dump($result);
             }
 
-            $this->response($this->json(array($result,$counter,$counter1)), 200); // send user details
+            $this->response($this->json(array($result,$counter,$counter1,$counter2)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
