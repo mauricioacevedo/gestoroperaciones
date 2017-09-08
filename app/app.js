@@ -141,7 +141,7 @@ app.directive('fileModel', ['$parse', function ($parse) {
 
 app.factory('socket', function ($rootScope) {
     //var socket = io.connect('http://10.65.65.88:3000');
-    socket = io.connect('http://10.100.82.125:4000');
+    socket = io.connect('http://10.100.82.125:4000', {'reconnection': false});
     return {
         on: function (eventName, callback) {
             socket.on(eventName, function () {
