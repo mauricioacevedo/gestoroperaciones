@@ -193,7 +193,7 @@
                                 <tr>
                                     <th>Exporte</th>
                                     <th>Accion</th>
-                                    <!--th>Totales</th-->
+                                    <th>Totales</th>
                                     
 
 
@@ -203,9 +203,9 @@
                                     <td>
 								<button class="btn btn-success btn-xs" ng-click="csvActivacionSiebel();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
 							</td>
-                                <!--td width="10%" align="left">
-                                    <b>{{ranks.length}} </b>
-                                 </td-->
+                                <td width="10%" align="left">
+                                    <b>{{totalItems2}} </b>
+                                 </td>
                                     
                                 </tr>
                                   <tr>
@@ -213,42 +213,41 @@
                                     <td>
 								<button class="btn btn-success btn-xs" ng-click="csvActivacionSiebeldom();"  ng-class="{'disabled': tbl_fechacita.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
 							</td>
-                                <!--td width="10%" align="left">
-                                    <b>{{ranks.length}} </b>
-                                 </td-->
+                                 <td width="10%" align="left">
+                                    <b>{{totalItems3}} </b>
+                                 </td>
                                     
                                 </tr>
                               
-
-                                  <tr>
-                                    <td>Seguimiento Activacion Fenix</td>
-                                   <td>
-								<button class="btn btn-success btn-xs" ng-click="csvListadoActivacion();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
-							</td>
-                                      
-                                </tr>
 
                                 <tr>
                                     <td> Fenix</td>
                                    <td>
 								<button class="btn btn-success btn-xs" ng-click="csvActivacion();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
 							</td>
-                                      
+                                 <td width="10%" align="left">
+                                    <b>{{totalItems4}} </b>
+                                 </td>
                                 </tr>
-								 <tr>
-                                    <td> Fenix colas</td>
-                                   <td>
-								<button class="btn btn-success btn-xs" ng-click="csvActivacioncolas();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
-							</td>
-                                      
-                                </tr>
+
 
 								 <tr>
                                     <td> Amarillas</td>
                                    <td>
 								<button class="btn btn-success btn-xs" ng-click="csvAmarillas();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
 							</td>
-                                       
+                                 <td width="10%" align="left">
+                                    <b>{{totalItems5}} </b>
+                                 </td>
+                                </tr>
+                                 <tr>
+                                    <td> Fenix colas</td>
+                                   <td>
+								<button class="btn btn-success btn-xs" ng-click="csvActivacioncolas();"  ng-class="{'disabled': listadoactivacion.length==0}"><span class="glyphicon glyphicon-download-alt"></span>Exportar</button>
+							</td>
+                                  <td width="10%" align="left">
+                                    <b>{{0}} </b>
+                                 </td>
                                 </tr>
                             </table>
                         </div>
