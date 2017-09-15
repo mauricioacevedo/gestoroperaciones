@@ -8494,9 +8494,9 @@ class API extends REST {
 
 
         if($concepto=="PETEC"){
-            if($plaza=="BOG-COBRE"){
-                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') ";
-            }else {
+        //    if($plaza=="BOG-COBRE"){
+          //      $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') ";
+            //}else {
 
                 if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
                     
