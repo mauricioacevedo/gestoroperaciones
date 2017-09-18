@@ -8500,7 +8500,7 @@ class API extends REST {
 
                 if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
                     
-                    $plaza2="AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA not in ('BOGOTA')";
+                    $plaza2="AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA not in ('BOGOTA'))";
                     // $plaza2="AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA not in ('BOGOTA'))";
                     
                 }else{
