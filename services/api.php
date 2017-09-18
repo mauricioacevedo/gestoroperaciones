@@ -8500,7 +8500,7 @@ class API extends REST {
 
                 if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
                     
-                    $plaza2="AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA not in ('BOGOTA'))";
+                    $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA not in ('BOGOTA')) ";
                     // $plaza2="AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA not in ('BOGOTA'))";
                     
                 }else{
@@ -8680,10 +8680,13 @@ class API extends REST {
         }
 
 
-        //echo "Mi parametro: $parametroBusqueda";
-
+         /**
+        * 15-09-2017 MAURICIO: SE MODIFICA LA CONSULTA PORQUE LA CONDICION DE PRIORIDAD NUEVOS PRIMERO NO FUNCIONA....
+        */
+        $CONDICION_NUEVOS_PRIMERO="";
         if($parametroBusqueda=="NUEVOS_PRIMERO"){
-            $parametroBusqueda="RADICADO_TEMPORAL";
+            $parametroBusqueda="FECHA_INGRESO";
+            $CONDICION_NUEVOS_PRIMERO=" AND b.TIPO_TRABAJO LIKE '%NUEVO%' ";
         }
 
         $query1="select b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_CITA ".
@@ -8692,11 +8695,13 @@ class API extends REST {
             " from informe_petec_pendientesm b ".
             " where b.STATUS='$STATUS'  ".
             " and b.ASESOR ='' ".
+            $CONDICION_NUEVOS_PRIMERO.
             $concepto.
             $plaza.
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             " order by b.$parametroBusqueda ASC";
+
 
 
 
