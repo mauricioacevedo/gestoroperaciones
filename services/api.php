@@ -8405,7 +8405,6 @@ class API extends REST {
         $prioridad      =   $this->_request['prioridad'];
 
 
-
         $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
             sleep(1);
@@ -8491,8 +8490,6 @@ class API extends REST {
 		   } */
 
 
-
-
         if($concepto=="PETEC"){
             if($plaza=="BOG-COBRE"){
                 $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') ";
@@ -8500,8 +8497,7 @@ class API extends REST {
 
                 if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
                     
-                    $plaza2="AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA not in ('BOGOTA'))";
-                    // $plaza2="AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA not in ('BOGOTA'))";
+                    $plaza2="AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA not in ('BOGOTA'))"; //Obtener un registro de todos los municipios los de bogota 
                     
                 }else{
                     $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
@@ -8557,7 +8553,7 @@ class API extends REST {
             }
         }
         else if($concepto=="COORP"){
-            $concepto=" and b.CONCEPTO_ID in ('PETEC','15') and (b.TIPO_ELEMENTO_ID IN ('E2MB','P2MB','INSTIP','CNTXIP','SEDECX','PLANT','PLP','PTLAN','MTLAN', 'PMULT','EPCM','PPCM','PBRI','PPRI','INSTIP','TV','TP','PBRI','BDID','TDID','BDIDE1','TDIDE1','BDODE1','TDODE1','SLL','TC','SLLBRI','TCBRI','SLLE1','TCE1','SLLPRI','TCPRI','SEDEIP','CONECT','ACCESO','SEDECX') )";
+            $concepto=" and b.CONCEPTO_ID in ('PETEC','15') and (b.TIPO_ELEMENTO_ID IN ('E2MB','P2MB','INSTIP','CNTXIP','SEDECX','PLANT','PLP','PTLAN','MTLAN', 'PMULT','EPCM','PPCM','PBRI','PPRI','TV','TP','BDID','TDID','BDIDE1','TDIDE1','BDODE1','TDODE1','SLL','TC','SLLBRI','TCBRI','SLLE1','TCE1','SLLPRI','TCPRI','SEDEIP','CONECT','ACCESO') )";
 
 
         }else if($fuente=="SIEBEL"||$fuente=="EDATEL"){
