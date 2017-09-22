@@ -8497,7 +8497,7 @@ class API extends REST {
 
                 if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
                     
-                    $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID = 'ANTIOQUIA')";
+                    $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE'))";
                     //Obtener un registro de cualquier plaza menos los de bogota
                     
                 }else{
@@ -8667,7 +8667,7 @@ class API extends REST {
         }
 
         if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
-            $plaza="";
+            $plaza="AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE'))";
         }else{
             //$plaza=" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
             $plaza=" AND b.MUNICIPIO_ID IN ('$plaza') ";
