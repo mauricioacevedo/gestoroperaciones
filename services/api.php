@@ -8497,7 +8497,7 @@ class API extends REST {
 
                 if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
                     
-                    $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.NOMBRE_DEPARTAMENTO = 'ANTIOQUIA')";
+                    $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID = 'ANTIOQUIA')";
                     //Obtener un registro de cualquier plaza menos los de bogota
                     
                 }else{
@@ -8535,6 +8535,8 @@ class API extends REST {
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
                     " ORDER BY FECHA_ESTADO ASC ";
+
+                echo $sqlllamadas;
 
                 $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
