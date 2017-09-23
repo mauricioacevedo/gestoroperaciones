@@ -8639,7 +8639,7 @@ class API extends REST {
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
                     " ORDER BY FECHA_ESTADO ASC ";
-                echo $sqlllamadas;
+                //echo $sqlllamadas;
 
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
