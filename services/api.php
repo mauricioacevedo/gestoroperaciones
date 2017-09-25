@@ -8576,8 +8576,8 @@ class API extends REST {
                 " AND CONCEPTO_ID = '$concepto' ".
                 " AND STATUS='PENDI_PETEC' ".
                 $plaza2.
-                " ORDER BY FECHA_ESTADO ASC ";
-
+                " ORDER BY FECHA_INGRESO ASC ";
+            echo $sqlllamadas;
             $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
             if($rr->num_rows > 0){//recorro los registros de la consulta para
@@ -8712,16 +8712,18 @@ class API extends REST {
 
                     $pedidos_ignorados.=$row['PEDIDO_ID'].",";
 
+
+
                     //la idea es que este codigo permita optimizar el pedido entregado
                     //la idea es entregar de primero los pedidos con agenda para mañana cuando el parametro es fecha cita
-                    if($parametroBusqueda=='FECHA_CITA'){
+                    /*if($parametroBusqueda=='FECHA_CITA'){
                         $today = date("Y-m-d");
                         $date = $row[FECHA_CITA];
 
                         if($today>=$date){
                             continue;
                         }
-                    }
+                    }*/
 
                     $rta=$this->pedidoOcupadoFenix($row);
                     //echo $rta;
@@ -8765,7 +8767,7 @@ class API extends REST {
                     "  $concepto ".
                     $plaza.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-                    " order by b.VIEWS,b.FECHA_ESTADO ASC";
+                    " order by b.VIEWS,b.FECHA_INGRESO ASC";
                 //echo $query1;
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
