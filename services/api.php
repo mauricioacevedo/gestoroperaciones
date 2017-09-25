@@ -8534,7 +8534,7 @@ class API extends REST {
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
-                    " ORDER BY RADICADO_TEMPORAL ASC ";
+                    " ORDER BY RADICADO_TEMPORAL,FECHA_INGRESO ASC ";
 
                 //echo $sqlllamadas;
 
@@ -8581,7 +8581,7 @@ class API extends REST {
                 " AND CONCEPTO_ID = '$concepto' ".
                 " AND STATUS='PENDI_PETEC' ".
                 $plaza2.
-                " ORDER BY RADICADO_TEMPORAL ASC ";
+                " ORDER BY RADICADO_TEMPORAL,FECHA_INGRESO ASC ";
             //echo $sqlllamadas;
             $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
