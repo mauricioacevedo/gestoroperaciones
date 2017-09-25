@@ -8560,7 +8560,12 @@ class API extends REST {
 
 
         }else if($fuente=="SIEBEL"||$fuente=="EDATEL"){
-            $plaza2=" AND MUNICIPIO_ID='$plaza' ";
+
+            if($plaza2=='TODOS'){
+                $plaza2="";
+            }else{
+                $plaza2=" AND MUNICIPIO_ID='$plaza' ";
+            }
             $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ASGINGACIONES_SIEBEL');
             $sqlllamadas=   "SELECT PEDIDO_ID, ".
                 " SUBPEDIDO_ID, ".
