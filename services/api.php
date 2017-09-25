@@ -8536,7 +8536,7 @@ class API extends REST {
                     $plaza2.
                     " ORDER BY FECHA_ESTADO ASC ";
 
-
+                echo $sqlllamadas;
 
                 $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
@@ -8561,7 +8561,7 @@ class API extends REST {
 
         }else if($fuente=="SIEBEL"||$fuente=="EDATEL"){
 
-            if($plaza2=='TODOS'){
+            if($plaza=='TODOS'){
                 $plaza2="";
             }else{
                 $plaza2=" AND MUNICIPIO_ID='$plaza' ";
@@ -8582,7 +8582,7 @@ class API extends REST {
                 " AND STATUS='PENDI_PETEC' ".
                 $plaza2.
                 " ORDER BY FECHA_INGRESO ASC ";
-            echo $sqlllamadas;
+            //echo $sqlllamadas;
             $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
             if($rr->num_rows > 0){//recorro los registros de la consulta para
@@ -8635,6 +8635,7 @@ class API extends REST {
             if($mypedido==""){
                 //2017-02-03 Mauricio: se agrega funcionalidad para buscar por arbol en concepto 14
                 //HAGO LA CONSULTA DE PRIORIDAD POR ARBOL
+
                 $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA ".
                     " FROM  informe_petec_pendientesm ".
                     " WHERE ".
