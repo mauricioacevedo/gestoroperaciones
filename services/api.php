@@ -8536,7 +8536,7 @@ class API extends REST {
                     $plaza2.
                     " ORDER BY RADICADO_TEMPORAL,FECHA_INGRESO ASC ";
 
-                //echo $sqlllamadas;
+                echo $sqlllamadas;
 
                 $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
