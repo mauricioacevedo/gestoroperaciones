@@ -5684,7 +5684,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     };
 
     $rootScope.logout = function () {
-        services.logout($rootScope.logedUser.login);
+        if($rootScope.logedUser != undefined) services.logout($rootScope.logedUser.login);
         $cookieStore.remove('logedUser');
         $rootScope.logedUser = undefined;
         $scope.pedidos = {};
