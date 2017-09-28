@@ -5088,7 +5088,7 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 
 		if (transaccionNCA.MUNICIPIO_ID == undefined || transaccionNCA.MUNICIPIO_ID == "") {
 			alert("Municipio sin informacion.");
-            console.log(transaccion.MUNICIPIO_ID );
+            //console.log(transaccion.MUNICIPIO_ID );
 			return;
 		}
 
