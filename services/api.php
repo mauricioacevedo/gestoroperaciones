@@ -1,7 +1,7 @@
 <?php
 
-//error_reporting(E_ALL);
-//ini_set('display_errors', '1');
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
 
 require_once("Rest.inc.php");
@@ -9193,11 +9193,11 @@ class API extends REST {
             echo json_encode($result);
             $this->response('', 200); // send user details
         }else{
-            $this->response(json_encode('No hay registros!'),204);
+            $this->response(json_encode('No hay registros!'),200);
         }
         unlink($filename);
 
-        $this->response('nothing',204);        // If no records "No Content" status
+        $this->response('nothing',200);        // If no records "No Content" status
     }
 
 
