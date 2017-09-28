@@ -1,7 +1,7 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
 
 
 require_once("Rest.inc.php");
@@ -9048,7 +9048,7 @@ class API extends REST {
             "  $MOTIVO_ERROR ".
             " order by b.$parametroBusqueda  ASC";
 
-       // echo $query1;
+        echo $query1;
         if($mypedido==""){
 
             $rr = $this->mysqli->query($query1);
@@ -9136,7 +9136,7 @@ class API extends REST {
             " group by b.pedido ";
 
 
-    // echo $query1;
+     echo $query1;
         $r = $this->mysqli->query($query1);
 
         if($r->num_rows > 0){
@@ -9193,11 +9193,11 @@ class API extends REST {
             echo json_encode($result);
             $this->response('', 200); // send user details
         }else{
-            $this->response(json_encode('No hay registros!'),200);
+            $this->response(json_encode('No hay registros!'),204);
         }
         unlink($filename);
 
-        $this->response('nothing',200);        // If no records "No Content" status
+        $this->response('nothing',204);        // If no records "No Content" status
     }
 
 
