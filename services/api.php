@@ -8504,6 +8504,7 @@ class API extends REST {
                 }else{
                     //DEVOLVER CAMBIO
                     //$plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
+                    $plaza2=" AND b.MUNICIPIO_ID IN ('$plaza') ";
                 }
 
                 $plaza2="";
@@ -8678,7 +8679,9 @@ class API extends REST {
         }
 
         if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
-            $plaza="AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
+            //28-09-2017 MAURICIO: DEVOLVER ESTA CONDICION CUANDO VUELVA EL RESPALDO
+           // $plaza="AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
+            $plaza="";
         }else{
             //$plaza=" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
             $plaza=" AND b.MUNICIPIO_ID IN ('$plaza') ";
