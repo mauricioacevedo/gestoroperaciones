@@ -8948,11 +8948,11 @@ class API extends REST {
             $this->response('', 200); // send user details
         }else{//i have pretty heavy problems over here...
             //$this->response('SYSTEM PANIC!',200);
-            $this->response('No hay registros!',204);
+            $this->response('No hay registros!',200);
         }
         unlink($filename);
 
-        $this->response('nothing',204);        // If no records "No Content" status
+        $this->response('nothing',200);        // If no records "No Content" status
     }
 
 
@@ -10589,6 +10589,7 @@ class API extends REST {
         }
 
     }
+
 
 
 //-----------------------insertactivacion----------------
