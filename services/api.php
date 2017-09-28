@@ -8496,13 +8496,17 @@ class API extends REST {
             }else {
 
                 if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
-                    
-                $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
+
+                //28-09-2017 MAURICIO: DEVOLVER ESTE CAMBIO CUANDO RETORNEN EL RESPALDO DE LA BASE DE DATOS.
+                //$plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
                     //Obtener un registro de cualquier plaza menos los de bogota
                     
                 }else{
-                    $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
+                    //DEVOLVER CAMBIO
+                    //$plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
                 }
+
+                $plaza2="";
 
                 /*
                  * Prioridad vieja, Deshabilitada para que priorice, nuevos, hogares y/o Arbol
