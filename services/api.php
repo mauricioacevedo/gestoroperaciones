@@ -8589,6 +8589,7 @@ class API extends REST {
                 $plaza2.
                 " ORDER BY RADICADO_TEMPORAL,FECHA_INGRESO ASC ";
             //echo $sqlllamadas;
+
             $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
             if($rr->num_rows > 0){//recorro los registros de la consulta para
@@ -8680,6 +8681,7 @@ class API extends REST {
 
         if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
             $plaza="AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
+            //este
 
         }else{
             //$plaza=" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
@@ -8946,11 +8948,11 @@ class API extends REST {
             $this->response('', 200); // send user details
         }else{//i have pretty heavy problems over here...
             //$this->response('SYSTEM PANIC!',200);
-            $this->response('No hay registros!',204);
+            $this->response('No hay registros!',200);
         }
         unlink($filename);
 
-        $this->response('nothing',204);        // If no records "No Content" status
+        $this->response('nothing',200);        // If no records "No Content" status
     }
 
 
@@ -10587,6 +10589,7 @@ class API extends REST {
         }
 
     }
+
 
 
 //-----------------------insertactivacion----------------
