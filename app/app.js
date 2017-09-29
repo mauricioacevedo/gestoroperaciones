@@ -17054,6 +17054,18 @@ app.config(['$routeProvider',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
+
+      //*******************MICHAEL********************************
+      .when('/kpis/infraestructura', {
+			title: 'KPIS',
+			templateUrl: 'partials/kpis.html',
+			controller: 'NCACtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
+		})
+      //**********************************************************
+
+
 		.when('/nca/transaccion', {
 			title: 'NCA',
 			templateUrl: 'partials/transaccion-nca.html',
