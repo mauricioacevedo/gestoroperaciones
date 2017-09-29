@@ -5315,7 +5315,7 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 
 });
 
-//************************************************MICHAEL**********************************************
+//************************************************MICHAEL KPIS**********************************************
 
 app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services) {
 	var userID = $cookieStore.get('logedUser').login;
@@ -5325,7 +5325,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 	divi.style.visibility = "visible";
 	divi.style.position = "relative";
 	$rootScope.iconcepto = "TODO";
-	$rootScope.actualView = "nca";
+	$rootScope.actualView = "kpis";
 
 
 	$scope.doubleDigit = function (num) {
