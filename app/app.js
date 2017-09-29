@@ -5315,7 +5315,7 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 
 });
 
-//************************************************MICHAEL KPIS**********************************************
+//************************************************MICHAEL KPIS INFRA**********************************************
 
 app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services) {
 	var userID = $cookieStore.get('logedUser').login;
@@ -17339,7 +17339,7 @@ app.config(['$routeProvider',
 		})
 
       //*******************MICHAEL********************************
-      .when('/kpis/infraestructura', {
+      .when('/kpis/', {
 			title: 'KPIS',
 			templateUrl: 'partials/kpis.html',
 			controller: 'KPISCtrl',
