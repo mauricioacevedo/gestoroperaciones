@@ -4,8 +4,8 @@
 </ol>
 <div class="row" ng-controller="TabController">
     <ul class="nav nav-pills">
-        <li ng-class="{ active: isSet(2) }">
-                <a href ng-click="setTab(2)">Formas NCA</a>
+        <li ng-class="{ active: isSet(1) }">
+                <a href ng-click="setTab(1)">Formas KPIS</a>
         </li>
     </ul>
 
@@ -14,7 +14,7 @@
                 <div ng-show="isSet(1)">
                     <div class="row">
                         <div class="col-lg-8">
-                            <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i> Registros KPIS<small> Historicos</small></h2>
+                            <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i>Registros Infraestructura<small> Historicos</small></h2>
 
                         </div>
 						<div class="col-lg-4">
@@ -30,8 +30,18 @@
 			         <label class=" input col-sm-3">Seleccione Fecha:</label>
                                 <div class="input-daterange col-sm-7" id="datepicker">
                                     <div class="input-group">
+
+                                        <input type="text"  name="Negocio" id="Negocio" class="form-control" placeholder="Seleccione" value="" ng-model="data.Negocio">
+
+                                         <select name="Negocio">
+                                               <option value="UNE" selected="selected">UNE</option>
+                                               <option value="EDATEL">EDATEL</option>
+                                               <option value="ETP">ETP</option>
+                                         </select>
+
                                         <span class="input-group-addon">Desde</span>
                                         <input type="text" class="form-control" style="min-width: 90px" id="fromDate" name="fromDate" ng-model="data.fechaIni" />
+
                                         <span class="input-group-addon">Hasta</span>
                                         <input type="text" class="form-control" style="min-width: 90px" id="toDate" name="toDate" ng-model="data.fechaFin" />
                                         <span class="input-group-btn">
@@ -40,7 +50,7 @@
                                         </span>
                                     </div>
                                 </div>
-		</div>
+                    </div>
 
 			<div class="row">
 				<ul class="nav nav-list">
