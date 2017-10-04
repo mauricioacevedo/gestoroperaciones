@@ -5315,6 +5315,289 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 
 });
 
+//************************************************MICHAEL KPIS INFRA**********************************************
+
+app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services) {
+	var userID = $cookieStore.get('logedUser').login;
+	$rootScope.logedUser = $cookieStore.get('logedUser');
+	document.getElementById('logout').className = "btn btn-md btn-danger";
+	var divi = document.getElementById("logoutdiv");
+	divi.style.visibility = "visible";
+	divi.style.position = "relative";
+	$rootScope.iconcepto = "TODO";
+	$rootScope.actualView = "kpis";
+
+
+	$scope.doubleDigit = function (num) {
+
+		if (num < 0) {
+			num = 0;
+		}
+
+		if (num <= 9) {
+			return "0" + num;
+		}
+		return num;
+	};
+
+	$rootScope.logout = function () {
+		services.logout($rootScope.logedUser.login);
+		$cookieStore.remove('logedUser');
+		$rootScope.logedUser = undefined;
+		$scope.pedidos = {};
+		document.getElementById('logout').className = "btn btn-md btn-danger hide";
+		var divi = document.getElementById("logoutdiv");
+		divi.style.position = "absolute";
+		divi.style.visibility = "hidden";
+		$location.path('/');
+	};
+
+	$scope.nuevoRegistroNCA = function () {
+		$rootScope.transaccion = {};
+		$rootScope.transaccion.ID = '';
+		$location.path('/nca/transaccion');
+
+	};
+
+
+	$scope.editTransaccionNCA = function (transaccionNCA) {
+
+		if (transaccionNCA.OFERTA == undefined || transaccionNCA.OFERTA == "") {
+			alert("Oferta sin informacion.");
+			return;
+		}
+
+		if (transaccionNCA.MUNICIPIO_ID == undefined || transaccionNCA.MUNICIPIO_ID == "") {
+			alert("Municipio sin informacion.");
+            //console.log(transaccion.MUNICIPIO_ID );
+			return;
+		}
+
+		if (transaccionNCA.TRANSACCION == undefined || transaccionNCA.TRANSACCION == "") {
+			alert("Transaccion sin informacion.");
+			return;
+		}
+
+		if (transaccionNCA.ESTADO == undefined || transaccionNCA.ESTADO == "") {
+			alert("Estado sin informacion.");
+			return;
+		}
+
+		if (transaccionNCA.FECHA == undefined || transaccionNCA.FECHA == "") {
+			alert("Fecha sin informacion.");
+			return;
+		}
+
+		if (transaccionNCA.ESTADO_FINAL == undefined || transaccionNCA.ESTADO_FINAL == "") {
+			alert("Estado final sin informacion.");
+			return;
+		}
+		if (transaccionNCA.OBSERVACION == undefined || transaccionNCA.OBSERVACION == "") {
+			alert("Observacion sin informacion.");
+			return;
+		}
+
+		services.editTransaccionNCA(transaccionNCA).then(function (data) {
+			$location.path('/nca/');
+			return data.data;
+		});
+	};
+
+	$scope.getTransaccionNCA = function (ncaID) {
+		//$scope.transaccion={};
+
+		services.getTransaccionNCA(ncaID).then(function (data) {
+			//console.log(ncaID);
+			$rootScope.transaccion = data.data[0];
+			//console.log($scope.transaccion);
+			//console.log(data);
+			$location.path('/nca/transaccion');
+			return data.data;
+		});
+
+	};
+
+
+	$scope.saveTransaccion = function (transaccion) {
+		console.log(transaccion);
+
+		if (transaccion.OFERTA == undefined || transaccion.OFERTA == "") {
+			alert("Oferta sin informacion.");
+			return;
+		}
+
+		if (transaccion.MUNICIPIO_ID == undefined || transaccion.MUNICIPIO_ID == "") {
+			alert("Municipio sin informacion.");
+
+			return;
+		}
+
+		if (transaccion.TRANSACCION == undefined || transaccion.TRANSACCION == "") {
+			alert("Transaccion sin informacion.");
+			return;
+		}
+
+		if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
+			alert("Estado sin informacion.");
+			return;
+		}
+
+		if (transaccion.FECHA == undefined || transaccion.FECHA == "") {
+			alert("Fecha sin informacion.");
+			return;
+		}
+
+		if (transaccion.ESTADO_FINAL == undefined || transaccion.ESTADO_FINAL == "") {
+			alert("Estado final sin informacion.");
+			return;
+		}
+		if (transaccion.OBSERVACION == undefined || transaccion.OBSERVACION == "") {
+			alert("Observacion sin informacion.");
+			return;
+		}
+
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+		$scope.transaccion.FECHA_FIN = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+		$scope.transaccion.FECHA_INICIO = $scope.FECHA_INICIO;
+
+		$scope.transaccion.DURACION = $scope.transaccion.FECHA_FIN - $scope.FECHA_INICIO;
+		$scope.transaccion.FECHA_INICIO = $scope.FECHA_INICIO;
+
+		//$scope.timeInit=new Date().getTime();
+		var df = new Date($scope.transaccion.DURACION);
+		$scope.transaccion.DURACION = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
+
+		$scope.transaccion.USUARIO = userID;
+		$scope.transaccion.USERNAME = $rootScope.logedUser.name;
+
+        $scope.InfoGestion = {
+            pedido: transaccion.OFERTA,
+            fuente: 'SIEBEL',
+            actividad: 'ESTUDIO',
+            fecha_fin: $scope.transaccion.FECHA_FIN,
+            user: $rootScope.logedUser.login,
+            ESTADO_ID: transaccion.ESTADO_FINAL,
+            OBSERVACIONES_PROCESO: transaccion.OBSERVACION,
+            estado: transaccion.ESTADO_FINAL,
+            duracion: $scope.transaccion.DURACION,
+            fecha_estado: transaccion.FECHA+' 00:00:00',
+            fecha_inicio: $scope.transaccion.FECHA_FIN,
+            concepto_final: transaccion.ESTADO_FINAL,
+            CONCEPTO_ID: transaccion.ESTADO,
+            CONCEPTO_ANTERIOR: transaccion.ESTADO,
+            source: 'MANUAL',
+            PEDIDO_ID: transaccion.OFERTA,
+            SUBPEDIDO_ID: '1',
+            MUNICIPIO_ID: transaccion.MUNICIPIO_ID.MUNICIPIO,
+            motivo_malo: transaccion.OBSERVACION,
+            idllamada: '',
+            nuevopedido: '',
+            horaLlamar: '',
+            INCIDENTE: transaccion.INCIDENTE,
+            DEPARTAMENTO: transaccion.MUNICIPIO_ID.DEPARTAMENTO,
+            TIPO_TRABAJO: transaccion.TRANSACCION,
+            TECNOLOGIA_ID: ''
+        };
+
+        services.putGestionAsignaciones($scope.InfoGestion).then(function (data) {
+                $location.path('/nca/');
+                return data.data;
+            }
+        )
+
+		/*services.insertTransaccionNCA($scope.transaccion).then(function (data) {
+			$location.path('/nca/');
+			return data.data;
+		}); */
+
+	};
+
+	$scope.listado_transacciones = [];
+	$scope.data = {
+		maxSize: 5,
+		currentPage: 1,
+		numPerPage: 100,
+		totalItems: 0,
+		fechaIni: "",
+		fechaFin: ""
+	};
+
+	var date1 = new Date();
+	var year = date1.getFullYear();
+	var month = $scope.doubleDigit(date1.getMonth() + 1);
+	var day = $scope.doubleDigit(date1.getDate());
+
+	var fecha_inicio = year + "-" + month + "-" + day;
+	var fecha_fin = year + "-" + month + "-" + day;
+
+	$scope.data.fechaIni = fecha_inicio;
+	$scope.data.fechaFin = fecha_fin;
+
+	//services.getListadotransaccionesNCA(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
+	var pathy = $location.path();
+
+	if (pathy == "/nca/") { //esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
+		services.getListadoTransaccionesNCA(fecha_inicio, fecha_fin, $scope.data.currentPage).then(function (data) {
+			$scope.listado_transacciones = data.data[0];
+			$scope.data.totalItems = data.data[1];
+			return data.data;
+		});
+	}
+
+	if (pathy == "/nca/transaccion") {
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+		$scope.FECHA_INICIO = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+		$scope.transaccion.FECHA = year + "-" + month + "-" + day;
+	}
+
+	$scope.pageChanged = function () {
+		services.getListadoTransaccionesNCA($scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage).then(function (data) {
+			$scope.listado_transacciones = data.data[0];
+			$scope.data.totalItems = data.data[1];
+			return data.data;
+		});
+
+	};
+
+	$scope.csvNCA = function () {
+		var login = $rootScope.logedUser.login;
+		services.getCsvNCA(login, $scope.data.fechaIni, $scope.data.fechaFin).then(function (data) {
+			//console.log(data.data[0]);
+			window.location.href = "tmp/" + data.data[0];
+			return data.data;
+		});
+
+	};
+
+	$scope.objMunicipios = function () {
+        $http.get('./services/objMunicipios').then(
+            function (res) {
+                $scope.lstMunicipios = res.data[0];
+
+            }
+        )
+    };
+
+    $scope.objMunicipios();
+
+
+});
+//********************************************************************************************************************************
+
+
 //------------------------actividades de Activacion-----------------------------------------
 app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, services) {
 	var userID = $cookieStore.get('logedUser').login;
@@ -17054,6 +17337,18 @@ app.config(['$routeProvider',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
+
+      //*******************MICHAEL********************************
+      .when('/kpis/', {
+			title: 'KPIS',
+			templateUrl: 'partials/kpis.html',
+			controller: 'KPISCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
+		})
+      //**********************************************************
+
+
 		.when('/nca/transaccion', {
 			title: 'NCA',
 			templateUrl: 'partials/transaccion-nca.html',
