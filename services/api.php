@@ -8719,7 +8719,7 @@ class API extends REST {
         if($mypedido==""){
 
             $rr = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
-            echo $query1;
+
             $mypedidoresult=array();
             $pedidos_ignorados="";
             if($rr->num_rows > 0){//recorro los registros de la consulta para
