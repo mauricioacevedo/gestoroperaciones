@@ -8707,14 +8707,14 @@ class API extends REST {
             " from informe_petec_pendientesm b ".
             " where b.STATUS='$STATUS'  ".
             " and b.ASESOR ='' ".
-            $concepto.
+            $concepto." ".
             $plaza.
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             " order by b.$parametroBusqueda ASC";
 
 
-        echo $query1;
+       // echo $query1;
 
         if($mypedido==""){
 
