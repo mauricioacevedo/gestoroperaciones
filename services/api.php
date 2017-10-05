@@ -8680,7 +8680,12 @@ class API extends REST {
         }
 
         if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
-            $plaza="AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
+
+            if($fuente=='SIEBEL'){
+                $plaza="";
+            }else{
+                $plaza=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
+            }
             //este
 
         }else{
