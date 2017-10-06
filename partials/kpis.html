@@ -32,18 +32,52 @@
 
                 <div class="col-lg-6">
                     <div class="row">
-                            <div class="form-group">
-                                <label for="txtActividad">
-                                    ANS Actividad
+
+                           <div class="form-group">
+                                <label for="txtNegocio">
+                                    Negocio
                                 </label>
-                                <input type="text" id="txtActividad" name="txtActividad" placeholder="Ejm: etc" class="form-control">
+                                <select ng-model="transaccion.TRANSACCION" class="form-control" style="">
+                                        <option value='' disabled>---SELECCIONE---</option>
+                                        <option value='Edatel'>Edatel</option>
+                                        <option value='UNE'>UNE</option>
+                                        <option value='ETP'>ETP</option>
+                                </select>
                             </div>
 
                             <div class="form-group">
-                                <label for="txtCorreo">
+                                <label for="txtFechaSoli">
+                                    Fecha Solicitud
+                                </label>
+                                <input type="date" id="txtFechaSoli" name="txtFechaSoli" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtItems">
+                                    Item
+                                </label>
+                                <select ng-model="transaccion.TRANSACCION" class="form-control" style="">
+                                        <option value='' disabled>---SELECCIONE---</option>
+                                        <option value='Targetas'>Targetas</option>
+                                        <option value='Ampliaciones'>Ampliaciones</option>
+                                        <option value='Proyectos'>Proyectos</option>
+                                        <option value='Zona de Influencia'>Zona de Influencia</option>
+                                        <option value='Equipos'>Equipos</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtANSActividad">
+                                    ANS Actividad
+                                </label>
+                                <input type="text" id="txtANSActividad" name="txtANSActividad" placeholder="Ejm: etc" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtSistemaInfo">
                                     Sistema de Informacion
                                 </label>
-                                    <select ng-model="transaccion.TRANSACCION" class="form-control" style="width: auto;">
+                                    <select ng-model="transaccion.TRANSACCION" class="form-control" style="">
                                         <option value='' disabled>---SELECCIONE---</option>
                                         <option value='Open Smartflex(Edatel)'>Open Smartflex(Edatel)</option>
                                         <option value='Siebel'>Siebel</option>
@@ -56,13 +90,19 @@
                                 <label for="txtResultadoCarga">
                                     Resultado Carga
                                 </label>
-                                    <select ng-model="transaccion.TRANSACCION" class="form-control" style="width: auto;">
+                                    <select ng-model="transaccion.TRANSACCION" class="form-control" style="">
                                         <option value='' disabled>---SELECCIONE---</option>
                                         <option value='Procesado'>Procesado</option>
                                         <option value='No Procesado'>No Procesado</option>
                                         <option value='Parcial'>Parcial</option>
                                     </select>
                             </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6" >
+                        <div class="row2">
 
                             <div class="form-group">
                                 <label for="txtProcesados">
@@ -71,11 +111,6 @@
                                 <input type="number" id="txtProcesados" name="txtProcesados" placeholder="Ejm: 69" class="form-control">
                             </div>
 
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6" >
-                        <div class="row2">
                             <div class="form-group">
                                 <label for="txtInconsistentes">
                                     Cantidad Items Inconsistentes
@@ -83,12 +118,11 @@
                                 <input type="number" id="txtInconsistentes" name="txtInconsistentes" placeholder="Ejm: 69" class="form-control">
                             </div>
 
-
                             <div class="form-group">
                                 <label for="txtObservaciones">
                                     Observaciones
                                 </label>
-                                <select ng-model="transaccion.TRANSACCION" class="form-control" style="width: auto;">
+                                <select ng-model="transaccion.TRANSACCION" class="form-control" style="">
                                         <option value='' disabled>---SELECCIONE---</option>
                                         <option value='Error de Sistema'>Error de Sistema</option>
                                         <option value='Datos Errados'>Datos Errados</option>
@@ -97,26 +131,29 @@
                              </div>
 
                              <div class="form-group">
-                                <label for="txtPeso">
+                                <label for="txtFecha">
                                     Fecha Procesado
                                 </label>
-                                <input type="date" id="txtPeso" name="txtPeso" placeholder="Ejm: 69" class="form-control">
+                                <input type="date" id="txtFecha" name="txtFecha" placeholder="Ejm: 69" class="form-control">
                               </div>
 
                                 <div class="form-group">
                                     <label for="txtResponsable">
                                      Usuario Responsable
                                     </label>
-                                    <select ng-model="transaccion.TRANSACCION" class="form-control" style="width: auto;">
+                                    <select ng-model="transaccion.TRANSACCION" class="form-control" style="">
                                         <option value='' disabled>---SELECCIONE---</option>
                                         <option value='Lina'>Lina</option>
                                         <option value='Fredy'>Fredy</option>
                                         <option value='Luis Fernando'>Luis Fernando</option>
                                     </select>
 
-                                        <button ng-show="transaccion.ID==''" ng-click="saveTransaccion(transaccion)" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
+                                    <div class="controls">
+                                        <button ng-show="transaccion.ID==''" ng-click="saveTransaccion(transaccion)" class="btn btn-success  btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
                                         <button class="btn btn-success btn-sm" ng-show="transaccion.ID!=''" ng-click="editTransaccionNCA(transaccion);"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
-                                        <a href="./#/nca/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</a>
+                                        <!-- <a href="./#/nca/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</a>
+                                        -->
+                                    </div>
                                 </div>
                         </div>
                     </div>
