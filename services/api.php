@@ -10622,7 +10622,7 @@ class API extends REST {
 
         echo var_dump ($transaccion);
 
-        $column_names = array('Negocio','FechaSolici','Item','AnsActividad','SistemaInfo','ResultadoCarga','ItemsProcesados','ItemsInconsistentes','Observaciones','FechaProcesado','Responsable');
+        $column_names = array('txtNegocio','FechaSolici','Item','AnsActividad','SistemaInfo','ResultadoCarga','ItemsProcesados','ItemsInconsistentes','Observaciones','FechaProcesado','Responsable');
 
         $keys = array_keys($transaccion);
         $columns = '';
