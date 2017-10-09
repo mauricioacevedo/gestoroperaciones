@@ -5511,7 +5511,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
             TECNOLOGIA_ID: ''
         };
 
-        services.SalvarGestionInfraestructura($scope.saveTransaccion).then(function (data) {
+        services.SalvarGestionInfraestructura(transaccion).then(function (data) {
                 //$location.path('/kpis/');
                 return data.data;
             }
