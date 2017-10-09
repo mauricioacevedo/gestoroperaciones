@@ -5442,8 +5442,8 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 			return;
 		}
 
-		if (transaccion.txtSistemaInfo == undefined || transaccion.txtSistemaInfo == "") {
-			alert("SistemaIndormacion sin informacion.");
+		if (transaccion.txtSistemInfo == undefined || transaccion.txtSistemInfo == "") {
+			alert("Sistema de Informacion sin Datos.");
 			return;
 		}
 
