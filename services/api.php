@@ -10618,10 +10618,9 @@ class API extends REST {
         $transaccion = json_decode(file_get_contents("php://input"),true);
 
         $transaccion = $transaccion['transaccion'];
-        echo $transaccion;
 
         $column_names = array('NEGOCIO','FECHASOLOCI','ITEM','ANSACTIVIDAD','SISTEMAINFO','RESULTADOCARGA','ITEMSPROCESADOS','ITEMSINCOSISTENTES','OBSERVACIONES','FECHAPROCESADO','RESPONSABLE');
-        $keys = array_keys($transaccion);
+        /*$keys = array_keys($transaccion);
         $columns = '';
         $values = '';
 
@@ -10645,7 +10644,8 @@ class API extends REST {
             $columns = $columns.$desired_key.',';
             $values = $values."'".$transaccion[$desired_key]."',";
         }
-        $today = date("Y-m-d H:i:s");
+        $today = date("Y-m-d H:i:s");*/
+
         $query = "INSERT INTO  tbl_KpisInfraestructura (".trim($columns,',').") VALUES(".trim($values,',').")";
         //echo $query;
         if(!empty($transaccion)){
