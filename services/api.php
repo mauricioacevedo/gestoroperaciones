@@ -10630,7 +10630,7 @@ class API extends REST {
         $useri=$transaccion['USUARIO'];
         $username=$transaccion['USERNAME'];
 
-        $oferta=$transaccion['OFERTA'];
+        $Negocio=$transaccion['txtNegocio'];
         $estado_final=$transaccion['ESTADO_FINAL'];
         $ID=$transaccion['ID'];
 
