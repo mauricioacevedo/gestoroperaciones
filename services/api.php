@@ -10618,7 +10618,7 @@ class API extends REST {
         $transaccion = json_decode(file_get_contents("php://input"),true);
            echo var_dump ($transaccion);
 
-        $transaccion = $transaccion['transaccion'];
+        $transaccion = $transaccion['gestion'];
 
 
         $column_names = array('Negocio','FechaSolici','Item','AnsActividad','SistemaInfo','ResultadoCarga','ItemsProcesados','ItemsInconsistentes','Observaciones','FechaProcesado','Responsable');
