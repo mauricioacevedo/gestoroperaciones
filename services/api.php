@@ -1,7 +1,7 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
 
 
 require_once("Rest.inc.php");
@@ -10616,9 +10616,10 @@ class API extends REST {
         $grupoGalleta   =   $galleta['GRUPO'];
 
         $transaccion = json_decode(file_get_contents("php://input"),true);
+           echo $transaccion;
 
         $transaccion = $transaccion['transaccion'];
-        echo $transaccion;
+
 
         $column_names = array('Negocio','FechaSolici','Item','AnsActividad','SistemaInfo','ResultadoCarga','ItemsProcesados','ItemsInconsistentes','Observaciones','FechaProcesado','Responsable');
 
