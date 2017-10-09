@@ -10507,6 +10507,7 @@ class API extends REST {
         $error = array('status' => "Failed", "msg" => "Invalid User Name or password ($login) - ($password)");
         $this->response($this->json($error), 400);
     }
+
     private function insertTransaccionNCA(){
 
         if($this->get_request_method() != "POST"){
@@ -10597,6 +10598,98 @@ class API extends REST {
     }
 
 
+    //***********************************Michael KPIS Infraestructura *****************************
+    private function insertTransaccionKPIS(){
+
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+        $transaccion = json_decode(file_get_contents("php://input"),true);
+
+        $transaccion = $transaccion['transaccion'];
+        $column_names = array('Negocio','FechaSolici','Item','AnsActividad','SistemaInfo','ResultadoCarga','ItemsProcesados','ItemsInconsistentes','Observaciones','FechaProcesado','Responsable');
+        $keys = array_keys($transaccion);
+        $columns = '';
+        $values = '';
+
+        $useri=$transaccion['USUARIO'];
+        $username=$transaccion['USERNAME'];
+
+        $oferta=$transaccion['OFERTA'];
+        $estado_final=$transaccion['ESTADO_FINAL'];
+        $ID=$transaccion['ID'];
+        $STATUS=$transaccion['STATUS'];
+
+        foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
+            if($desired_key=='ID'||$desired_key=='STATUS'){
+                continue;
+            }
+            if(!in_array($desired_key, $keys)) {
+                $$desired_key = '';
+            }else{
+                $$desired_key = $transaccion[$desired_key];
+            }
+            $columns = $columns.$desired_key.',';
+            $values = $values."'".$transaccion[$desired_key]."',";
+        }
+        $today = date("Y-m-d H:i:s");
+        $query = "INSERT INTO  tbl_KpisInfraestructura (".trim($columns,',').") VALUES(".trim($values,',').")";
+        //echo $query;
+        if(!empty($transaccion)){
+            //echo $query;
+            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+            //$sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$today', STATUS='$STATUS', ASESOR='' WHERE ID=$ID ";
+            //$rUpdate = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
+
+
+            // SQL Feed----------------------------------
+            /*$sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$useri')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'$oferta' ".
+                ",'GUARDO PEDIDO NCA' ".
+                ",'$estado_final' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);*/
+
+            // ---------------------------------- SQL Feed
+            //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$useri','$username','NCA','$estado_final','OFERTA: $oferta','NCA') ";
+            //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+            $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
+
+        }else{
+            $this->response('',200);        //"No Content" status
+            //$this->response("$query",200);        //"No Content" status
+        }
+
+    }
+//**********************************************************************************************************************
 
 //-----------------------insertactivacion----------------
 

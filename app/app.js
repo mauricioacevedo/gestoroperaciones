@@ -5421,38 +5421,59 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 	$scope.saveTransaccion = function (transaccion) {
 		console.log(transaccion);
 
-		if (transaccion.OFERTA == undefined || transaccion.OFERTA == "") {
-			alert("Oferta sin informacion.");
+		if (transaccion.txtNegocio == undefined || transaccion.txtNegocio == "") {
+			alert("Negocio sin informacion.");
 			return;
 		}
 
-		if (transaccion.MUNICIPIO_ID == undefined || transaccion.MUNICIPIO_ID == "") {
-			alert("Municipio sin informacion.");
+		if (transaccion.txtFechaSoli == undefined || transaccion.txtFechaSoli == "") {
+			alert("FechaSolicitud sin informacion.");
 
 			return;
 		}
 
-		if (transaccion.TRANSACCION == undefined || transaccion.TRANSACCION == "") {
-			alert("Transaccion sin informacion.");
+		if (transaccion.txtItems == undefined || transaccion.txtItems == "") {
+			alert("Items sin informacion.");
 			return;
 		}
 
-		if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
-			alert("Estado sin informacion.");
+		if (transaccion.txtANSActividad == undefined || transaccion.txtANSActividad == "") {
+			alert("Actividad sin informacion.");
 			return;
 		}
 
-		if (transaccion.FECHA == undefined || transaccion.FECHA == "") {
-			alert("Fecha sin informacion.");
+		if (transaccion.txtSistemaInfo == undefined || transaccion.txtSistemaInfo == "") {
+			alert("SistemaIndormacion sin informacion.");
 			return;
 		}
 
-		if (transaccion.ESTADO_FINAL == undefined || transaccion.ESTADO_FINAL == "") {
-			alert("Estado final sin informacion.");
+		if (transaccion.txtResultadoCarga == undefined || transaccion.txtResultadoCarga == "") {
+			alert("Resultado Carga sin informacion.");
 			return;
 		}
-		if (transaccion.OBSERVACION == undefined || transaccion.OBSERVACION == "") {
-			alert("Observacion sin informacion.");
+
+        if (transaccion.txtProcesados == undefined || transaccion.txtProcesados == "") {
+			alert("Items Procesados sin informacion.");
+			return;
+		}
+
+        if (transaccion.txtInconsistentes == undefined || transaccion.txtInconsistentes == "") {
+			alert("Items Inconsistentes sin informacion.");
+			return;
+		}
+
+        if (transaccion.txtProcesados == undefined || transaccion.txtProcesados == "") {
+			alert("Items Procesados sin informacion.");
+			return;
+		}
+
+        if (transaccion.txtObservaciones == undefined || transaccion.txtObservaciones == "") {
+			alert("Observaciones sin informacion.");
+			return;
+		}
+
+        if (transaccion.txtFechaProce == undefined || transaccion.txtFechaProce == "") {
+			alert("Fecha Procesados sin informacion.");
 			return;
 		}
 
