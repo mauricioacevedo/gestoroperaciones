@@ -10619,8 +10619,9 @@ class API extends REST {
 
         $transaccion = $transaccion['transaccion'];
 
-        $column_names = array('NEGOCIO','FECHASOLOCI','ITEM','ANSACTIVIDAD','SISTEMAINFO','RESULTADOCARGA','ITEMSPROCESADOS','ITEMSINCOSISTENTES','OBSERVACIONES','FECHAPROCESADO','RESPONSABLE');
-        /*$keys = array_keys($transaccion);
+        $column_names = array('Negocio','FechaSolici','Item','AnsActividad','SistemaInfo','ResultadoCarga','ItemsProcesados','ItemsInconsistentes','Observaciones','FechaProcesado','Responsable');
+
+        $keys = array_keys($transaccion);
         $columns = '';
         $values = '';
 
@@ -10630,10 +10631,10 @@ class API extends REST {
         $oferta=$transaccion['OFERTA'];
         $estado_final=$transaccion['ESTADO_FINAL'];
         $ID=$transaccion['ID'];
-        $STATUS=$transaccion['STATUS'];
+
 
         foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
-            if($desired_key=='ID'||$desired_key=='STATUS'){
+            if($desired_key=='ID'){
                 continue;
             }
             if(!in_array($desired_key, $keys)) {
@@ -10644,7 +10645,7 @@ class API extends REST {
             $columns = $columns.$desired_key.',';
             $values = $values."'".$transaccion[$desired_key]."',";
         }
-        $today = date("Y-m-d H:i:s");*/
+        $today = date("Y-m-d H:i:s");
 
         $query = "INSERT INTO  tbl_KpisInfraestructura (".trim($columns,',').") VALUES(".trim($values,',').")";
         //echo $query;
