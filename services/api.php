@@ -10618,6 +10618,7 @@ class API extends REST {
         $transaccion = json_decode(file_get_contents("php://input"),true);
 
         $transaccion = $transaccion['transaccion'];
+        echo $transaccion;
 
         $column_names = array('Negocio','FechaSolici','Item','AnsActividad','SistemaInfo','ResultadoCarga','ItemsProcesados','ItemsInconsistentes','Observaciones','FechaProcesado','Responsable');
 
