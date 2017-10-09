@@ -10616,7 +10616,7 @@ class API extends REST {
         $grupoGalleta   =   $galleta['GRUPO'];
 
         $transaccion = json_decode(file_get_contents("php://input"),true);
-           echo $transaccion;
+           echo var_dump ($transaccion);
 
         $transaccion = $transaccion['transaccion'];
 
@@ -10630,7 +10630,7 @@ class API extends REST {
         $useri=$transaccion['USUARIO'];
         $username=$transaccion['USERNAME'];
 
-        $Negocio=$transaccion['txtNegocio'];
+        $Negocio=$transaccion['Negocio'];
         $estado_final=$transaccion['ESTADO_FINAL'];
         $ID=$transaccion['ID'];
 
@@ -10649,7 +10649,7 @@ class API extends REST {
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = "INSERT INTO  tbl_KpisInfraestructura (".trim($columns,',').") VALUES(".trim($values,',').")";
+        $query = " INSERT INTO  tbl_KpisInfraestructura (".trim($columns,',').") VALUES(".trim($values,',').")";
         echo $query;
         if(!empty($transaccion)){
             //echo $query;
