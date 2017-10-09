@@ -10616,10 +10616,11 @@ class API extends REST {
         $grupoGalleta   =   $galleta['GRUPO'];
 
         $transaccion = json_decode(file_get_contents("php://input"),true);
-           echo var_dump ($transaccion);
+
 
         $transaccion = $transaccion['gestion'];
 
+        echo var_dump ($transaccion);
 
         $column_names = array('Negocio','FechaSolici','Item','AnsActividad','SistemaInfo','ResultadoCarga','ItemsProcesados','ItemsInconsistentes','Observaciones','FechaProcesado','Responsable');
 
