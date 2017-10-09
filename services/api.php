@@ -10648,7 +10648,7 @@ class API extends REST {
         $today = date("Y-m-d H:i:s");
 
         $query = "INSERT INTO  tbl_KpisInfraestructura (".trim($columns,',').") VALUES(".trim($values,',').")";
-        //echo $query;
+        echo $query;
         if(!empty($transaccion)){
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
