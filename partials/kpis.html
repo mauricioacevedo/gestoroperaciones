@@ -33,7 +33,7 @@
                 <div class="col-lg-6">
                     <div class="row">
 
-                           <div class="form-group-Negocio">
+                           <div class="form-group">
                                 <label for="txtNegocio">
                                     Negocio
                                 </label>
@@ -56,7 +56,7 @@
                                 <label for="txtItems">
                                     Item
                                 </label>
-                                <select ng-model="transaccion.TRANSACCION" class="form-control" style="">
+                                <select ng-model="transaccion.TRANSACCION" class="form-control" style="" name="txtItems">
                                         <option value='' disabled>---SELECCIONE---</option>
                                         <option value='Targetas'>Targetas</option>
                                         <option value='Ampliaciones'>Ampliaciones</option>
@@ -152,7 +152,8 @@
 
                                 <div class="form-group">
                                     <div class="controls">
-                                        <button ng-show="transaccion.ID==''" ng-click="saveTransaccion(transaccion)" class="btn btn-success  btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
+                                       <!-- <button ng-show="transaccion.ID==''" ng-click="saveTransaccion(transaccion)" class="btn btn-success  btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
+                                        -->
 
                                         <button class="btn btn-success btn-sm" ng-show="transaccion.ID!=''" ng-click="editTransaccionNCA(transaccion);"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
                                         <!-- <a href="./#/nca/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</a>
