@@ -5427,7 +5427,8 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
 
 	$scope.saveTransaccion = function (transaccion) {
-		console.log(transaccion);
+
+        console.log(transaccion);
 
 		if (transaccion.txtNegocio == undefined || transaccion.txtNegocio == "") {
 			alert("Negocio sin informacion.");
@@ -5436,7 +5437,6 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
 		if (transaccion.txtFechaSoli == undefined || transaccion.txtFechaSoli == "") {
 			alert("FechaSolicitud sin informacion.");
-
 			return;
 		}
 
