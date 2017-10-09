@@ -1139,6 +1139,13 @@ app.factory("services", ['$http', '$timeout', function ($http) {
             gestion: gestion
         });
     };
+
+    obj.SalvarGestionInfraestructura = function (gestion) {
+        return $http.post(serviceBase + 'insertTransaccionKPIS', {
+            gestion: gestion
+        });
+    };
+
     obj.buscarListarPedidoAuditoriaGestor = function (pedido, fechaini, fechafin) {
         return $http.get(serviceBase + 'listarBuscarPedidoAuditoriaAsignaciones?pedido=' + pedido + '&fechaini=' + fechaini + '&fechafin=' + fechafin);
     };
@@ -5527,8 +5534,8 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
             TECNOLOGIA_ID: ''*/
         //};
 
-        services.putGestionAsignaciones($scope.saveTransaccion).then(function (data) {
-                $location.path('/kpis/');
+        services.SalvarGestionInfraestructura($scope.saveTransaccion).then(function (data) {
+                //$location.path('/kpis/');
                 return data.data;
             }
         )
