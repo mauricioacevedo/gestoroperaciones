@@ -5477,7 +5477,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 			return;
 		}
 
-		var date1 = new Date();
+		/*var date1 = new Date();
 		var year = date1.getFullYear();
 		var month = $scope.doubleDigit(date1.getMonth() + 1);
 		var day = $scope.doubleDigit(date1.getDate());
@@ -5490,9 +5490,9 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
 		$scope.transaccion.DURACION = $scope.transaccion.FECHA_FIN - $scope.FECHA_INICIO;
 		$scope.transaccion.FECHA_INICIO = $scope.FECHA_INICIO;
-
+*/
 		//$scope.timeInit=new Date().getTime();
-		var df = new Date($scope.transaccion.DURACION);
+		/*var df = new Date($scope.transaccion.DURACION);
 		$scope.transaccion.DURACION = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
 
 		$scope.transaccion.USUARIO = userID;
@@ -5524,7 +5524,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
             INCIDENTE: transaccion.INCIDENTE,
             DEPARTAMENTO: transaccion.MUNICIPIO_ID.DEPARTAMENTO,
             TIPO_TRABAJO: transaccion.TRANSACCION,
-            TECNOLOGIA_ID: ''
+            TECNOLOGIA_ID: ''*/
         };
 
         services.putGestionAsignaciones($scope.InfoGestion).then(function (data) {
