@@ -5527,7 +5527,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
             TECNOLOGIA_ID: ''*/
         };
 
-        services.putGestionAsignaciones($scope.InfoGestion).then(function (data) {
+        services.putGestionAsignaciones($scope.saveTransaccion).then(function (data) {
                 $location.path('/nca/');
                 return data.data;
             }
