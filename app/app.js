@@ -5525,7 +5525,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
             DEPARTAMENTO: transaccion.MUNICIPIO_ID.DEPARTAMENTO,
             TIPO_TRABAJO: transaccion.TRANSACCION,
             TECNOLOGIA_ID: ''*/
-        };
+        //};
 
         services.putGestionAsignaciones($scope.saveTransaccion).then(function (data) {
                 $location.path('/nca/');
