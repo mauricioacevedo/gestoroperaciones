@@ -5500,11 +5500,11 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 		$scope.transaccion.FECHA_INICIO = $scope.FECHA_INICIO;
 */
 		//$scope.timeInit=new Date().getTime();
-		var df = new Date($scope.transaccion.DURACION);
-		$scope.transaccion.DURACION = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
-
-		$scope.transaccion.USUARIO = userID;
-		$scope.transaccion.USERNAME = $rootScope.logedUser.name;
+//		var df = new Date($scope.transaccion.DURACION);
+//		$scope.transaccion.DURACION = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
+//
+//		$scope.transaccion.USUARIO = userID;
+//		$scope.transaccion.USERNAME = $rootScope.logedUser.name;
 
         $scope.InfoGestion = {
             txtNegocio: transaccion.txtNegocio,
