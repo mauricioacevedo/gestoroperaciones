@@ -1140,6 +1140,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         });
     };
 
+    //***********************************MICHAEL*************************************
     obj.SalvarGestionInfraestructura = function (gestion) {
         return $http.post(serviceBase + 'insertTransaccionKPIS', {
             gestion: gestion
@@ -5499,40 +5500,16 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 		$scope.transaccion.FECHA_INICIO = $scope.FECHA_INICIO;
 */
 		//$scope.timeInit=new Date().getTime();
-		/*var df = new Date($scope.transaccion.DURACION);
+		var df = new Date($scope.transaccion.DURACION);
 		$scope.transaccion.DURACION = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
 
 		$scope.transaccion.USUARIO = userID;
 		$scope.transaccion.USERNAME = $rootScope.logedUser.name;
 
         $scope.InfoGestion = {
-            pedido: transaccion.OFERTA,
-            fuente: 'SIEBEL',
-            actividad: 'ESTUDIO',
-            fecha_fin: $scope.transaccion.FECHA_FIN,
-            user: $rootScope.logedUser.login,
-            ESTADO_ID: transaccion.ESTADO_FINAL,
-            OBSERVACIONES_PROCESO: transaccion.OBSERVACION,
-            estado: transaccion.ESTADO_FINAL,
-            duracion: $scope.transaccion.DURACION,
-            fecha_estado: transaccion.FECHA+' 00:00:00',
-            fecha_inicio: $scope.transaccion.FECHA_FIN,
-            concepto_final: transaccion.ESTADO_FINAL,
-            CONCEPTO_ID: transaccion.ESTADO,
-            CONCEPTO_ANTERIOR: transaccion.ESTADO,
-            source: 'MANUAL',
-            PEDIDO_ID: transaccion.OFERTA,
-            SUBPEDIDO_ID: '1',
-            MUNICIPIO_ID: transaccion.MUNICIPIO_ID.MUNICIPIO,
-            motivo_malo: transaccion.OBSERVACION,
-            idllamada: '',
-            nuevopedido: '',
-            horaLlamar: '',
-            INCIDENTE: transaccion.INCIDENTE,
-            DEPARTAMENTO: transaccion.MUNICIPIO_ID.DEPARTAMENTO,
-            TIPO_TRABAJO: transaccion.TRANSACCION,
-            TECNOLOGIA_ID: ''*/
-        //};
+            txtNegocio: transaccion.txtNegocio,
+            TECNOLOGIA_ID: ''
+        };
 
         services.SalvarGestionInfraestructura($scope.saveTransaccion).then(function (data) {
                 //$location.path('/kpis/');
