@@ -8577,6 +8577,7 @@ class API extends REST {
                 " SUBPEDIDO_ID, ".
                 " SOLICITUD_ID, ".
                 " FECHA_ESTADO, ".
+                " FECHA_INGRESO, ".
                 " FECHA_CITA ".
                 " FROM  informe_petec_pendientesm ".
                 " WHERE 1=1 ".
