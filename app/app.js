@@ -708,7 +708,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoTransaccionesNCA?fechaInicio=' + fecha_inicio + '&fechaFin=' + fecha_fin + '&page=' + page);
 	};
 
-    obj.getListadoTransaccionesKPIS = function (fecha_inicio, fecha_fin, page) {
+    obj.getListadoTransaccionesKPIS = function () {
 		return $http.get(serviceBase + 'listadoTransaccionesKPIS');
 	};
 
