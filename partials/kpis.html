@@ -188,26 +188,34 @@
 
                     <table class="table small table-striped table-hover table-bordered table-condensed" width="100%">
                             <thead>
-                                    <th width="10%">ANS Actividad</th>
-                                    <th width="10%">Sistema</th>
-                                    <th width="10%">Resultado Carga</th>
-                                    <th width="10%">Procesados</th>
-                                    <th width="10%">Inconsistentes</th>
-                                    <th width="10%">Observaciones</th>
-                                    <th width="10%">Fecha</th>
-                                    <th width="10%">Responsable</th>
+
+                                    <th width="9%">Negocio</th>
+                                    <th width="9%">FechaSoloci</th>
+                                    <th width="9%">Item</th>
+                                    <th width="9%">ANS Actividad</th>
+                                    <th width="9%">Sistema</th>
+                                    <th width="9%">Resultado Carga</th>
+                                    <th width="9%">Procesados</th>
+                                    <th width="9%">Inconsistentes</th>
+                                    <th width="9%">Observaciones</th>
+                                    <th width="9%">FechaProce</th>
+                                    <th width="9%">Responsable</th>
                                     <th ng-hide="true" width="4%">Acciones</th>
                             </thead>
                             <tbody>
                                     <tr ng-repeat="data in listado_transacciones| orderBy:'FECHA_FIN':true ">
-                                    <td>{{data.pedido_id}}</td>
-                                    <td>{{data.user}}</td>
-                                    <td>{{data.municipio_id}}</td>
-                                    <td>{{data.TIPO_TRABAJO}}</td>
-                                    <td>{{data.fecha_fin}}</td>
-                                    <td>{{data.concepto_final}}</td>
-                                    <td>{{data.OBSERVACIONES_PROCESO}}</td>
-                                    <td ng-hide="true" align="center"><button class="btn btn-success btn-xs" value="edit!" ng-click="getTransaccionNCA(data.ID);"><i class="fa fa-pencil fa-lg"></i></button></td>
+                                    <td>{{data.NEGOCIO}}</td>
+                                    <td>{{data.FECHASOLICI}}</td>
+                                    <td>{{data.ITEMS}}</td>
+                                    <td>{{data.ANSACTIVIDAD}}</td>
+                                    <td>{{data.SISTEMAINFO}}</td>
+                                    <td>{{data.RESULTADOCARGA}}</td>
+                                    <td>{{data.ITEMSPROCESADO}}</td>
+                                    <td>{{data.ITEMSINCONSISTENTES}}</td>
+                                    <td>{{data.OBSERVACIONES}}</td>
+                                    <td>{{data.FECHAPROCESADO}}</td>
+                                    <td>{{data.RESPONSABLE}}</td>
+                                    <td ng-hide="true" align="center"><button class="btn btn-success btn-xs" value="edit!" ng-click="getTransaccionKPIS();"><i class="fa fa-pencil fa-lg"></i></button></td>
                             </tr>
                             </tbody>
                     </table>
