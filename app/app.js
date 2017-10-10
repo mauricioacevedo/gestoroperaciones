@@ -708,6 +708,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoTransaccionesNCA?fechaInicio=' + fecha_inicio + '&fechaFin=' + fecha_fin + '&page=' + page);
 	};
 
+    obj.getListadoTransaccionesKPIS = function (fecha_inicio, fecha_fin, page) {
+		return $http.get(serviceBase + 'listadoTransaccionesKPIS');
+	};
+
 	obj.getListadoUsuarios = function () {
 		return $http.get(serviceBase + 'listadoUsuarios');
 	};
@@ -5374,8 +5378,9 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
 	};
 
+    //*******************************EDITAR KPIS***********************************
 
-	$scope.editTransaccionNCA = function (transaccionNCA) {
+    /*	$scope.editTransaccionNCA = function (transaccionNCA) {
 
 		if (transaccionNCA.OFERTA == undefined || transaccionNCA.OFERTA == "") {
 			alert("Oferta sin informacion.");
@@ -5416,7 +5421,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 			$location.path('/nca/');
 			return data.data;
 		});
-	};
+	};*/
 
 	$scope.getTransaccionKPIS = function () {
 		//$scope.transaccion={};
