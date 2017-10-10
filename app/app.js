@@ -5556,7 +5556,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 	}
 
 	$scope.pageChanged = function () {
-		services.getListadoTransaccionesNCA($scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage).then(function (data) {
+		services.getListadoTransaccionesKPIS($scope.data.currentPage).then(function (data) {
 			$scope.listado_transacciones = data.data[0];
 			$scope.data.totalItems = data.data[1];
 			return data.data;
