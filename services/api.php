@@ -7169,7 +7169,7 @@ class API extends REST {
         }
         $pedido = $this->_request['pedido'];
         $today = date("Y-m-d");
-        $query="SELECT id, pedido, fuente, actividad, fecha_estado,fecha_inicio,fecha_fin, estado,INCIDENTE,duracion,user,concepto_final from pedidos where pedido like '$pedido%' order by fecha_fin desc limit 10";
+        $query="SELECT id, pedido, fuente, actividad, fecha_estado,fecha_ingreso, fecha_inicio,fecha_fin, estado,INCIDENTE,duracion,user,concepto_final from pedidos where pedido like '$pedido%' order by fecha_fin desc limit 10";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
