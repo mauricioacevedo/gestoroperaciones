@@ -5413,15 +5413,15 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 		});
 	};
 
-	$scope.getTransaccionNCA = function (ncaID) {
+	$scope.getTransaccionKPIS = function () {
 		//$scope.transaccion={};
 
-		services.getTransaccionNCA(ncaID).then(function (data) {
+		services.getTransaccionNCA().then(function (data) {
 			//console.log(ncaID);
 			$rootScope.transaccion = data.data[0];
 			//console.log($scope.transaccion);
 			//console.log(data);
-			$location.path('/nca/transaccion');
+			$location.path('/kpis/transaccion');
 			return data.data;
 		});
 
@@ -5487,26 +5487,6 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 			return;
 		}
 
-		/*var date1 = new Date();
-		var year = date1.getFullYear();
-		var month = $scope.doubleDigit(date1.getMonth() + 1);
-		var day = $scope.doubleDigit(date1.getDate());
-		var hour = $scope.doubleDigit(date1.getHours());
-		var minute = $scope.doubleDigit(date1.getMinutes());
-		var seconds = $scope.doubleDigit(date1.getSeconds());
-
-		$scope.transaccion.FECHA_FIN = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-		$scope.transaccion.FECHA_INICIO = $scope.FECHA_INICIO;
-
-		$scope.transaccion.DURACION = $scope.transaccion.FECHA_FIN - $scope.FECHA_INICIO;
-		$scope.transaccion.FECHA_INICIO = $scope.FECHA_INICIO;
-*/
-		//$scope.timeInit=new Date().getTime();
-//		var df = new Date($scope.transaccion.DURACION);
-//		$scope.transaccion.DURACION = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
-//
-//		$scope.transaccion.USUARIO = userID;
-//		$scope.transaccion.USERNAME = $rootScope.logedUser.name;
 
         $scope.InfoGestion = {
             txtNegocio: transaccion.txtNegocio,
