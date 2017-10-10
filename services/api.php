@@ -11141,6 +11141,35 @@ class API extends REST {
 
     }
 
+    //************************************Michael*******************************************
+    private function getTransaccionKPIS(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        //$nca = $this->_request['ncaID'];
+
+
+        $query="select * from tbl_KpisInfraestructura order by ID desc";
+
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            $ids="";
+            $sep="";
+            $transaccion='';
+            if($row = $r->fetch_assoc()){
+                $transaccion = $row;
+            }
+            //$transaccion["PASSWORD"]="";
+            $this->response($this->json(array($transaccion,"OK")), 200); // send user details
+        }
+
+        $this->response('',204);
+
+    }
+    //***************************************************************************************
+
     private function getTransaccionActividades(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
