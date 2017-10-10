@@ -11429,6 +11429,47 @@ class API extends REST {
 
     }
 
+    //*****************************************MICHAEL LISTADO TRANSACCIONES*****************************
+    private function listadoTransaccionesKPIS(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        /*$page = $this->_request['page'];
+
+        if($page=="undefined"){
+            $page="0";
+        }else{
+            $page=$page-1;
+        }
+        $page=$page*100;*/
+
+        //counter
+        $query="SELECT count(*) as counter from tbl_KpisInfraestructura ";
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter = $row['counter'];
+            }
+        }
+
+
+        $query="SELECT * FROM tbl_KpisInfraestructura ";
+        //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                $result[] = $row;
+            }
+            $this->response($this->json(array($result,$counter)), 200); // send user details
+        }
+        $this->response('',204);        // If no records "No Content" status
+
+    }
+
 
     private function listadoTransaccionesActividades(){
         if($this->get_request_method() != "GET"){
