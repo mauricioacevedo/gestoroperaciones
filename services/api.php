@@ -8783,7 +8783,7 @@ class API extends REST {
                 }
                 //2.traigo solo los pedidos mas viejos en la base de datos...
             } else {
-                $query1="select b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO, b.FECHA_CITA, b.TIPO_ELEMENTO_ID ".
+                $query1="select b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO, b.FECHA_CITA, b.TIPO_ELEMENTO_ID ".
                     " from informe_petec_pendientesm b ".
                     " where b.STATUS='$STATUS'  and b.ASESOR ='' ".
                     "  $concepto ".
