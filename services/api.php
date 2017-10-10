@@ -7169,7 +7169,7 @@ class API extends REST {
         }
         $pedido = $this->_request['pedido'];
         $today = date("Y-m-d");
-        $query="SELECT id, pedido, fuente, actividad, fecha_estado,fecha_ingreso, fecha_inicio,fecha_fin, estado,INCIDENTE,duracion,user,concepto_final from pedidos where pedido like '$pedido%' order by fecha_fin desc limit 10";
+        $query="SELECT id, pedido, fuente, actividad, fecha_estado,fecha_inicio,fecha_fin, estado,INCIDENTE,duracion,user,concepto_final from pedidos where pedido like '$pedido%' order by fecha_fin desc limit 10";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -8529,6 +8529,7 @@ class API extends REST {
                     " SUBPEDIDO_ID, ".
                     " SOLICITUD_ID, ".
                     " FECHA_ESTADO, ".
+                    " FECHA_INGRESO, ".
                     " FECHA_CITA ".
                     " FROM  informe_petec_pendientesm ".
                     " WHERE 1=1 ".
@@ -8707,7 +8708,7 @@ class API extends REST {
             $parametroBusqueda="RADICADO_TEMPORAL";
         }
 
-        $query1="select b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_CITA ".
+        $query1="select b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO,b.FECHA_CITA ".
             ",(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO_ID=a.pedido_id ".
             " AND a.fecha BETWEEN  '$today 00:00:00' AND  '$today 23:59:59' limit 1) as BEENHERE ".
             " from informe_petec_pendientesm b ".
