@@ -5535,15 +5535,15 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 	//services.getListadotransaccionesNCA(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
 	var pathy = $location.path();
 
-	if (pathy == "/nca/") { //esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
-		services.getListadoTransaccionesNCA(fecha_inicio, fecha_fin, $scope.data.currentPage).then(function (data) {
+	if (pathy == "/kpis/") { //esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
+		services.getListadoTransaccionesKPIS($scope.data.currentPage).then(function (data) {
 			$scope.listado_transacciones = data.data[0];
 			$scope.data.totalItems = data.data[1];
 			return data.data;
 		});
 	}
 
-	if (pathy == "/nca/transaccion") {
+	if (pathy == "/kpis/transaccion") {
 		var date1 = new Date();
 		var year = date1.getFullYear();
 		var month = $scope.doubleDigit(date1.getMonth() + 1);
