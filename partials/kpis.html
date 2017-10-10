@@ -203,7 +203,7 @@
                                     <th ng-hide="true" width="4%">Acciones</th>
                             </thead>
                             <tbody>
-                                    <tr ng-repeat="data in listado_transacciones| orderBy:'FECHA_FIN':true ">
+                                    <tr ng-repeat="data in listado_transacciones| orderBy:'FECHAPROCESADO':true ">
                                     <td>{{data.NEGOCIO}}</td>
                                     <td>{{data.FECHASOLICI}}</td>
                                     <td>{{data.ITEMS}}</td>
