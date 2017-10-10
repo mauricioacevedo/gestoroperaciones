@@ -746,6 +746,11 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'getTransaccionNCA?ncaID=' + ncaID);
 	};
 
+    //******************************Michael*****************************************
+    obj.getTransaccionKPIS = function () {
+		return $http.get(serviceBase + 'getTransaccionKPIS');
+	};
+    //******************************************************************************
 
 
 	obj.getListadoConceptos = function () {
