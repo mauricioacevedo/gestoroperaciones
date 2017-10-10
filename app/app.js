@@ -5426,7 +5426,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 			$rootScope.transaccion = data.data[0];
 			//console.log($scope.transaccion);
 			//console.log(data);
-			$location.path('/kpis/transaccion');
+			$location.path('/kpis/');
 			return data.data;
 		});
 
