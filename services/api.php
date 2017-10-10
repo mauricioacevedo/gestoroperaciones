@@ -8873,6 +8873,7 @@ class API extends REST {
             " b.ACTIVIDAD, ".
             " b.CONCEPTO_ID, ".
             " b.FECHA_ESTADO, ".
+            " b.FECHA_INGRESO, ".
             " b.USUARIO_BLOQUEO_FENIX, ".
             " b.TIPO_TRABAJO, ".
             " b.DESC_TIPO_TRABAJO,	".
