@@ -5416,7 +5416,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 	$scope.getTransaccionKPIS = function () {
 		//$scope.transaccion={};
 
-		services.getTransaccionNCA().then(function (data) {
+		services.getTransaccionKPIS().then(function (data) {
 			//console.log(ncaID);
 			$rootScope.transaccion = data.data[0];
 			//console.log($scope.transaccion);
