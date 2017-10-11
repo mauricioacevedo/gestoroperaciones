@@ -750,7 +750,13 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'getTransaccionNCA?ncaID=' + ncaID);
 	};
 
-    //******************************Michael*****************************************
+    //******************************MICHAEL CRUD KPIS*****************************************
+    obj.SalvarGestionInfraestructura = function (gestion) {
+        return $http.post(serviceBase + 'insertTransaccionKPIS', {
+            gestion: gestion
+        });
+    };
+
     obj.getTransaccionKPIS = function () {
 		return $http.get(serviceBase + 'getTransaccionKPIS');
 	};
@@ -758,6 +764,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
     obj.buscarRegistroKPIS = function (bregistro) { //buscar pedido asignacion
 		return $http.get(serviceBase + 'buscarRegistroKPIS?bregistro=' + bregistro);
 	};
+
+
     //******************************************************************************
 
 
@@ -1154,15 +1162,6 @@ app.factory("services", ['$http', '$timeout', function ($http) {
             gestion: gestion
         });
     };
-
-    //***********************************MICHAEL*************************************
-    obj.SalvarGestionInfraestructura = function (gestion) {
-        return $http.post(serviceBase + 'insertTransaccionKPIS', {
-            gestion: gestion
-        });
-    };
-
-    //*******************************************************************************
 
     obj.buscarListarPedidoAuditoriaGestor = function (pedido, fechaini, fechafin) {
         return $http.get(serviceBase + 'listarBuscarPedidoAuditoriaAsignaciones?pedido=' + pedido + '&fechaini=' + fechaini + '&fechafin=' + fechafin);
@@ -5340,7 +5339,7 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 
 });
 
-//************************************************MICHAEL KPIS INFRA**********************************************
+//**********************************MICHAEL CONTROLADOR CRUD KPIS INFRAESTRUCTURA************************************
 
 app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services) {
 	var userID = $cookieStore.get('logedUser').login;
@@ -5732,9 +5731,6 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 		}
 
 
-
-
-
 		services.editTransaccionActividades(transaccionA).then(function (data) {
 			$location.path('/actividades/');
 			return data.data;
@@ -5758,13 +5754,13 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 	};
 
 
-	$scope.saveTransaccion1 = function (transaccion) {
-		// console.log(transaccion.TIPO_TRABAJO);
+	/*$scope.saveTransaccion1 = function (transaccion) {
+		 console.log(transaccion.TIPO_TRABAJO);
 
-		//  if(transaccion.PEDIDO_ID==undefined || transaccion.PEDIDO_ID==""){
-		//       alert("Fecha sin informacion.");
-		//     return;
-		//    }
+		  if(transaccion.PEDIDO_ID==undefined || transaccion.PEDIDO_ID==""){
+		       alert("Fecha sin informacion.");
+		    return;
+		    }
 		if (transaccion.FECHA == undefined || transaccion.FECHA == "") {
 			alert("Fecha sin informacion.");
 			return;
@@ -5820,7 +5816,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 			$location.path('/actividades/');
 			return data.data;
 		});
-	};
+	};*/
 
 	$scope.listado_transaccionesActividades = [];
 	$scope.data = {
