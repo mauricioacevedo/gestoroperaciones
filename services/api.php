@@ -10700,7 +10700,7 @@ class API extends REST {
     }
 
     private function buscarRegistroKPIS(){//pendientes
-        if($this->get_request_method() != "POST"){
+        if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
         $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
@@ -10717,7 +10717,7 @@ class API extends REST {
 
         //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
 
-        $query=" select * from tbl_KpisInfraestructura where ID = '$bregistro'";
+        $query="select * from tbl_KpisInfraestructura where ID = '$bregistro'";
         echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
