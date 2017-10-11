@@ -756,7 +756,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	};
 
     obj.buscarRegistroKPIS = function (bregistro) { //buscar pedido asignacion
-		return $http.get(serviceBase + 'buscarRegistroKPIS?ID=' + bregistro);
+		return $http.get(serviceBase + 'buscarRegistroKPIS?bregistro=' + bregistro);
 	};
     //******************************************************************************
 
