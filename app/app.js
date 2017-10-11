@@ -5522,6 +5522,19 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
 	};
 
+        $scope.buscarRegistroKPIS = function(bregistro) {
+
+                //console.log(bpedido);
+                var kami=services.buscarRegistroKPIS(bregistro,$rootScope.logedUser.name).then(function(data){
+                        $scope.peds = data.data;
+                        console.log(data.data);
+                        var dat=data.status;
+
+                        return data.data;
+                });
+
+        };
+
 	$scope.listado_transacciones = [];
 	$scope.data = {
 		maxSize: 5,
@@ -6493,6 +6506,8 @@ $(document).click(  function (e) {
                 $scope.fecha_inicio=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
 
         };
+
+
 
         $scope.msavePedido = function() {
                 console.log($scope.mpedido);
