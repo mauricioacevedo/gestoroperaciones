@@ -10659,37 +10659,6 @@ class API extends REST {
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
-            //$sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$today', STATUS='$STATUS', ASESOR='' WHERE ID=$ID ";
-            //$rUpdate = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
-
-
-            // SQL Feed----------------------------------
-            /*$sql_log=   "insert into portalbd.activity_feed ( ".
-                " USER ".
-                ", USER_NAME ".
-                ", GRUPO ".
-                ", STATUS ".
-                ", PEDIDO_OFERTA ".
-                ", ACCION ".
-                ", CONCEPTO_ID ".
-                ", IP_HOST ".
-                ", CP_HOST ".
-                ") values( ".
-                " UPPER('$useri')".
-                ", UPPER('$nombreGalleta')".
-                ", UPPER('$grupoGalleta')".
-                ",'OK' ".
-                ",'$oferta' ".
-                ",'GUARDO PEDIDO NCA' ".
-                ",'$estado_final' ".
-                ",'$usuarioIp' ".
-                ",'$usuarioPc')";
-
-            $rlog = $this->mysqli->query($sql_log);*/
-
-            // ---------------------------------- SQL Feed
-            //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$useri','$username','NCA','$estado_final','OFERTA: $oferta','NCA') ";
-            //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
             $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
 
         }else{
