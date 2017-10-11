@@ -754,6 +754,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
     obj.getTransaccionKPIS = function () {
 		return $http.get(serviceBase + 'getTransaccionKPIS');
 	};
+
+    obj.buscarRegistroKPIS = function (bregistro) { //buscar pedido asignacion
+		return $http.get(serviceBase + 'buscarRegistroKPIS?ID=' + bregistro);
+	};
     //******************************************************************************
 
 
@@ -1157,6 +1161,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
             gestion: gestion
         });
     };
+
+    //*******************************************************************************
 
     obj.buscarListarPedidoAuditoriaGestor = function (pedido, fechaini, fechafin) {
         return $http.get(serviceBase + 'listarBuscarPedidoAuditoriaAsignaciones?pedido=' + pedido + '&fechaini=' + fechaini + '&fechafin=' + fechafin);
