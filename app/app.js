@@ -5525,7 +5525,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
         $scope.buscarRegistroKPIS = function(bregistro) {
 
                 console.log(bregistro);
-                var kami=services.buscarRegistroKPIS(bregistro,$rootScope.logedUser.name).then(function(data){
+                        services.buscarRegistroKPIS(bregistro).then(function(data){
                         $scope.peds = data.data;
                         console.log(data.data);
                         var dat=data.status;
