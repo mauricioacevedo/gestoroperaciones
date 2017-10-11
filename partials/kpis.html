@@ -18,6 +18,26 @@
 
                         </div>
 
+                                 <div class="col-lg-3 col-xs-4">
+
+                                        <form class="form-inline" role="form">
+
+                                                <div class="form-group btn-group">
+
+                                                    <input type="text" size="13px" class="form-control btn-group btn btn-sm btn-default"
+                                                           onClick="this.setSelectionRange(0, this.value.length)"
+                                                           title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top"
+                                                           placeholder="Buscador de Pedido" ng-model="bpedido">
+                                                    <button type="button" class="form-control btn btn-sm btn-primary" title="Buscar Pedido"
+                                                            data-toggle="tooltip" data-placement="top" ng-click="buscarPedido(bpedido,iplaza);">
+                                                        <i class="fa fa-search" aria-hidden="true"></i></button>
+
+                                                </div>
+
+                                            </form>
+
+                                    </div>
+
                         <!--
                               <div class="col-lg-4">
                                 <h2 class="page-header">
@@ -189,7 +209,7 @@
                     <table class="table small table-striped table-hover table-bordered table-condensed" width="100%">
                             <thead>
 
-                                    <th width="9%">Negocio</th>
+                                    <th width="7%">Negocio</th>
                                     <th width="9%">FechaSoloci</th>
                                     <th width="9%">Item</th>
                                     <th width="9%">ANS Actividad</th>
