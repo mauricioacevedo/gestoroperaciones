@@ -176,7 +176,7 @@
 
                                         <button class="btn btn-success  btn-sm" ng-show="transaccion.ID!=''" ng-click="saveTransaccion(transaccion);" ><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
 
-                                        <button class="btn btn-success btn-sm" ng-show="transaccion.ID!=''" ng-click="editTransaccionNCA(transaccion);"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
+                                        <button class="btn btn-success btn-sm" ng-show="transaccion.ID!=''" ng-click="editTransaccionNCA(transaccion);"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
 
 
                                         <!-- <a href="./#/nca/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</a>
@@ -209,7 +209,6 @@
 
                     <table class="table small table-striped table-hover table-bordered table-condensed" width="100%">
                             <thead>
-                                    <th width="5%">ID</th>
                                     <th width="7%">Negocio</th>
                                     <th width="9%">FechaSoloci</th>
                                     <th width="9%">Item</th>
@@ -225,7 +224,6 @@
                             </thead>
                             <tbody>
                                     <tr ng-repeat="data in listado_transacciones| orderBy:'ID':true ">
-                                    <td>{{data.ID}}</td>
                                     <td>{{data.NEGOCIO}}</td>
                                     <td>{{data.FECHASOLICI}}</td>
                                     <td>{{data.ITEMS}}</td>
