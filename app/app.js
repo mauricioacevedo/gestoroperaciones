@@ -5529,8 +5529,8 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
 
 
-                        return data.data;
-                            console.log(data.data);
+                        return data.result;
+                            console.log(data.result);
                 });
 
         };
