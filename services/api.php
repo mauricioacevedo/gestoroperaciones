@@ -10717,7 +10717,7 @@ class API extends REST {
 
         //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
 
-        $query=" select * from tbl_KpisInfraestructura where ID = '$bpedido'";
+        $query=" select * from tbl_KpisInfraestructura where ID = '$bregistro'";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
