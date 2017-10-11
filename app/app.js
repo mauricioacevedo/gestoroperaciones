@@ -5526,7 +5526,11 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
                 console.log(bregistro);
                         services.buscarRegistroKPIS(bregistro).then(function(data){
+
+
+
                         return data.data;
+                            console.log(data);
                 });
 
         };
