@@ -10712,7 +10712,7 @@ class API extends REST {
         $usuarioGalleta =   $galleta['login'];
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
-        $bregistro = $this->_request['bregistro'];
+        $bregistro = $this->_request['ID'];
 
 
         //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
