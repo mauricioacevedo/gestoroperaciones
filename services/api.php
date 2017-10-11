@@ -10712,13 +10712,13 @@ class API extends REST {
         $usuarioGalleta =   $galleta['login'];
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
-        $bregistro = $this->_request['ID'];
+        $bregistro = $this->_request['bregistro'];
 
 
         //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
 
         $query="select * from tbl_KpisInfraestructura where ID = '$bregistro'";
-        echo $query;
+        //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -10729,8 +10729,10 @@ class API extends REST {
 
             // ---------------------------------- SQL Feed
             $this->response($this->json(array($result)), 200); // send user details
+
+
         }
-        $this->response('',200);        // If no records "No Content" status
+        $this->response('',204);        // If no records "No Content" status
     }
 
 
