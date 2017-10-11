@@ -10699,7 +10699,7 @@ class API extends REST {
 
     }
 
-    private function buscarRegistroKPIS(bregistro){//pendientes
+    private function buscarRegistroKPIS($bregistro){//pendientes
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
