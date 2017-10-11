@@ -10698,9 +10698,47 @@ class API extends REST {
         }
 
     }
+
+    private function buscarRegistroKPIS(){//pendientes
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+        $bregistro = $this->_request['bregistro'];
+
+
+        //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
+
+        $query=" select * from tbl_KpisInfraestructura where ID = '$bpedido'";
+        //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                $result[] = $row;
+            }
+
+            // ---------------------------------- SQL Feed
+            $this->response($this->json(array($result)), 200); // send user details
+        }
+        $this->response('',204);        // If no records "No Content" status
+    }
+
+
 //**********************************************************************************************************************
 
-//-----------------------insertactivacion----------------
+
+
+    //-----------------------insertactivacion----------------
 
     private function insertTransaccionsiebelactivacion(){
 
