@@ -224,7 +224,7 @@
                                     <th ng-hide="true" width="4%">Acciones</th>
                             </thead>
                             <tbody>
-                                    <tr ng-repeat="data in listado_transacciones| orderBy:'FECHAPROCESADO':true ">
+                                    <tr ng-repeat="data in listado_transacciones| orderBy:'ID':true ">
                                     <td>{{data.ID}}</td>
                                     <td>{{data.NEGOCIO}}</td>
                                     <td>{{data.FECHASOLICI}}</td>
