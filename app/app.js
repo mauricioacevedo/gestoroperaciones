@@ -5384,51 +5384,6 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
 	};
 
-    //*******************************EDITAR KPIS***********************************
-
-    /*	$scope.editTransaccionNCA = function (transaccionNCA) {
-
-		if (transaccionNCA.OFERTA == undefined || transaccionNCA.OFERTA == "") {
-			alert("Oferta sin informacion.");
-			return;
-		}
-
-		if (transaccionNCA.MUNICIPIO_ID == undefined || transaccionNCA.MUNICIPIO_ID == "") {
-			alert("Municipio sin informacion.");
-            //console.log(transaccion.MUNICIPIO_ID );
-			return;
-		}
-
-		if (transaccionNCA.TRANSACCION == undefined || transaccionNCA.TRANSACCION == "") {
-			alert("Transaccion sin informacion.");
-			return;
-		}
-
-		if (transaccionNCA.ESTADO == undefined || transaccionNCA.ESTADO == "") {
-			alert("Estado sin informacion.");
-			return;
-		}
-
-		if (transaccionNCA.FECHA == undefined || transaccionNCA.FECHA == "") {
-			alert("Fecha sin informacion.");
-			return;
-		}
-
-		if (transaccionNCA.ESTADO_FINAL == undefined || transaccionNCA.ESTADO_FINAL == "") {
-			alert("Estado final sin informacion.");
-			return;
-		}
-		if (transaccionNCA.OBSERVACION == undefined || transaccionNCA.OBSERVACION == "") {
-			alert("Observacion sin informacion.");
-			return;
-		}
-
-		services.editTransaccionNCA(transaccionNCA).then(function (data) {
-			$location.path('/nca/');
-			return data.data;
-		});
-	};*/
-
 	$scope.getTransaccionKPIS = function () {
 		//$scope.transaccion={};
 
@@ -5443,7 +5398,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
 	};
 
-
+    //***********************************MICHAEL GUARDAR REGISTRO KPIS*********************************
 	$scope.saveTransaccion = function (transaccion) {
 
         console.log(transaccion);
@@ -5515,27 +5470,100 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
             }
         )
 
-		/*services.insertTransaccionNCA($scope.transaccion).then(function (data) {
-			$location.path('/nca/');
-			return data.data;
-		}); */
+	};
+
+    //*******************************MICHAEL EDITAR REGISTRO KPIS *********************************
+    $scope.EditTransaccionKPIS = function (transaccion) {
+
+        console.log(transaccion);
+
+		if (transaccion.NEGOCIO == undefined || transaccion.NEGOCIO == "") {
+			alert("Negocio sin informacion.");
+			return;
+		}
+
+		if (transaccion.FECHASOLICI == undefined || transaccion.FECHASOLICI == "") {
+			alert("FechaSolicitud sin informacion.");
+			return;
+		}
+
+		if (transaccion.ITEMS == undefined || transaccion.ITEMS == "") {
+			alert("Items sin informacion.");
+			return;
+		}
+
+		if (transaccion.ANSACTIVIDAD == undefined || transaccion.ANSACTIVIDAD == "") {
+			alert("Actividad sin informacion.");
+			return;
+		}
+
+		if (transaccion.SISTEMAINFO == undefined || transaccion.SISTEMAINFO == "") {
+			alert("Sistema de Informacion sin Datos.");
+			return;
+		}
+
+		if (transaccion.RESULTADOCARGA == undefined || transaccion.RESULTADOCARGA == "") {
+			alert("Resultado Carga sin informacion.");
+			return;
+		}
+
+        if (transaccion.ITEMSPROCESADO == undefined || transaccion.ITEMSPROCESADO == "") {
+			alert("Items Procesados sin informacion.");
+			return;
+		}
+
+        if (transaccion.ITEMSINCONSISTENTES == undefined || transaccion.ITEMSINCONSISTENTES == "") {
+			alert("Items Inconsistentes sin informacion.");
+			return;
+		}
+
+        if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
+			alert("Items Procesados sin informacion.");
+			return;
+		}
+
+        if (transaccion.FECHAPROCESADO == undefined || transaccion.FECHAPROCESADO == "") {
+			alert("Observaciones sin informacion.");
+			return;
+		}
+
+        if (transaccion.RESPONSABLE == undefined || transaccion.RESPONSABLE == "") {
+			alert("Fecha Procesados sin informacion.");
+			return;
+		}
+
+
+        $scope.InfoGestion = {
+            txtNegocio: transaccion.txtNegocio,
+            TECNOLOGIA_ID: ''
+        };
+
+        services.SalvarGestionInfraestructura(transaccion).then(function (data) {
+                $location.path('/kpis/');
+                return data.data;
+            }
+        )
 
 	};
 
-        $scope.buscarRegistroKPIS = function(bregistro) {
+    //******************************************************************************************
 
-                console.log(bregistro);
-                        services.buscarRegistroKPIS(bregistro).then(function(data){
+    $scope.buscarRegistroKPIS = function(bregistro) {
+
+        console.log(bregistro);
+        services.buscarRegistroKPIS(bregistro).then(function(data){
+
+                        //traigo los datos que voy a mostrar
+
+            return data.data;
+            console.log(data.data);
+
+        });
+
+    };
 
 
-
-                        return data.result;
-                            console.log(data.result);
-                });
-
-        };
-
-	$scope.listado_transacciones = [];
+    $scope.listado_transacciones = [];
 	$scope.data = {
 		maxSize: 5,
 		currentPage: 1,
