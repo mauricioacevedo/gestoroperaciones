@@ -10686,7 +10686,6 @@ class API extends REST {
 
         $transaccion = json_decode(file_get_contents("php://input"),true);
 
-
         $transaccion = $transaccion['gestion'];
 
         echo var_dump ($transaccion);
@@ -10700,9 +10699,17 @@ class API extends REST {
         $useri=$transaccion['USUARIO'];
         $username=$transaccion['USERNAME'];
 
-        $Negocio=$transaccion['Negocio'];
-        $estado_final=$transaccion['ESTADO_FINAL'];
-        $ID=$transaccion['ID'];
+        $NEGOCIO=$transaccion['NEGOCIO'];
+        $FECHASOLICI=$transaccion['FECHASOLICI'];
+        $ITEMS=$transaccion['ITEMS'];
+        $ANSACTIVIDAD=$transaccion['ANSACTIVIDAD'];
+        $SISTEMAINFO=$transaccion['SISTEMAINFO'];
+        $RESULTADOCARGA=$transaccion['RESULTADOCARGA'];
+        $ITEMSPROCESADO=$transaccion['ITEMSPROCESADO'];
+        $ITEMSINCONSISTENTES=$transaccion['ITEMSINCONSISTENTES'];
+        $OBSERVACIONES=$transaccion['OBSERVACIONES'];
+        $FECHAPROCESADO=$transaccion['FECHAPROCESADO'];
+        $RESPONSABLE=$transaccion['RESPONSABLE'];
 
 
         foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
@@ -10719,7 +10726,7 @@ class API extends REST {
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " UPDATE tbl_KpisInfraestructura (".trim($columns,',').") SET (".trim($values,',')." where ID = 1 )";
+        $query = " UPDATE tbl_KpisInfraestructura set NEGOCIO = '$NEGOCIO', FECHASOLICI = '$FECHASOLICI', ITEMS = '$ITEMS', ANSACTIVIDAD = '$ANSACTIVIDAD', SISTEMAINFO = '$SISTEMAINFO', RESULTADOCARGA = '$RESULTADOCARGA', ITEMSPROCESADO = '$ITEMSPROCESADO', ITEMSINCONSISTENTES = '$ITEMSINCONSISTENTES', OBSERVACIONES = '$OBSERVACIONES', FECHAPROCESADO = '$FECHAPROCESADO',RESPONSABLE = '$RESPONSABLE' where ID = 1 ";
         echo $query;
 
         if(!empty($transaccion)){
