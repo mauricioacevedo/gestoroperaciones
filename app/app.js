@@ -757,7 +757,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         });
     };
 
-    obj.ActualizarGestionInfraestructura = function (gestion) {
+    obj.EditarGestionInfraestructura = function (gestion) {
         return $http.post(serviceBase + 'ActualizarTransaccionKPIS', {
             gestion: gestion
         });
@@ -5543,7 +5543,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
             TECNOLOGIA_ID: ''
         };
 
-        services.ActualizarGestionInfraestructura(transaccion).then(function (data) {
+        services.EditarGestionInfraestructura(transaccion).then(function (data) {
                 $location.path('/kpis/');
                 return data.data;
             }
