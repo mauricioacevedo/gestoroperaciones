@@ -10719,8 +10719,9 @@ class API extends REST {
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " UPDATE tbl_KpisInfraestructura (".trim($columns,',').") SET (".trim($values,',').")";
-        //echo $query;
+        $query = " UPDATE tbl_KpisInfraestructura (".trim($columns,',').") SET (".trim($values,',')." where ID = 1 )";
+        echo $query;
+
         if(!empty($transaccion)){
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
