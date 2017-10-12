@@ -16318,7 +16318,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     $scope.condicionMunicipiosShow = function () {
 
-        return ($scope.iconcepto.FUENTE=='SIEBEL' & ( $scope.iconcepto.CONCEPTO_ID=='COBERTURA' | $scope.iconcepto.CONCEPTO_ID=='DISPONIBILIDAD' | $scope.iconcepto.CONCEPTO_ID=='CONSTRUCCION' | $scope.iconcepto.CONCEPTO_ID=='DISENO' | $scope.iconcepto.CONCEPTO_ID == 'EDATEL' ));
+        return ($scope.iconcepto.FUENTE=='SIEBEL' | $scope.iconcepto.FUENTE=='EDATEL' & ( $scope.iconcepto.CONCEPTO_ID=='COBERTURA' | $scope.iconcepto.CONCEPTO_ID=='DISPONIBILIDAD' | $scope.iconcepto.CONCEPTO_ID=='CONSTRUCCION' | $scope.iconcepto.CONCEPTO_ID=='DISENO' | $scope.iconcepto.CONCEPTO_ID =='EDATEL' ));
     };
 
     $scope.checkMunicipiosAsignaciones = function () {
