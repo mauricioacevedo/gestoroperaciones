@@ -16793,58 +16793,6 @@ class API extends REST {
 
     }
 
-    private function municipiosAsignacionesEDATEL(){
-
-        if($this->get_request_method() != "POST"){
-            $this->response('',406);
-        }
-
-        $params 	= json_decode(file_get_contents('php://input'),true);
-        $concepto 	= $params['concepto'];
-        $fuente     = $params['fuente'];
-        $today		= date("Y-m-d");
-
-        if($fuente=='FENIX_NAL'){
-            $paramFuente = " o.FUENTE in ('EDATEL')";
-        }else{
-            $paramFuente = " o.FUENTE='$fuente'";
-        }
-
-        $filtros= " and o.STATUS ='PENDI_PETEC' and $paramFuente AND o.CONCEPTO_ID='$concepto' ".
-                    " GROUP BY o.MUNICIPIO_ID ORDER BY COUNT(*) DESC ";
-
-        $query=	" SELECT ".
-            "	o.MUNICIPIO_ID ".
-            ",	COUNT(*) AS COUNTER ".
-            "	FROM portalbd.informe_petec_pendientesm o ".
-            "	where 1=1 ".
-            " 	$filtros ";
-
-        //echo $query;
-
-        $rst = $this->mysqli->query($query);
-
-        if ($rst->num_rows > 0){
-
-            $resultado=array();
-            $resultado[]=array("MUNICIPIO_ID"=>"TODOS","COUNTER"=>"TODOS");
-            while($row=$rst->fetch_assoc()){
-
-                //$row['nombre']=utf8_encode($row['nombre']);
-                $resultado[]=$row;
-
-
-            }
-            $this->response($this->json($resultado), 201);
-
-
-        }else{
-            $error="Error. Este concepto no tiene pendientes";
-            $this->response($this->json(array($error)), 400);
-        }
-
-    }
-
     // ------------------------------------------------------------------------ Parametros Acciones Nuevo
 
 

@@ -1133,12 +1133,6 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.post(serviceBase + 'municipiosAsignacionesSiebel', opciones);
 	};
 
-     obj.getMunicipiosAsignacionesEDATEL = function (conceptoSelected, fuente) {
-		//return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
-        var opciones={concepto: conceptoSelected, fuente: fuente};
-		return $http.post(serviceBase + 'municipiosAsignacionesEDATEL', opciones);
-	};
-
 	obj.getHistoricoPedido = function (pedido) {
 		return $http.post(serviceBase + 'listaHistoricoPedidos', {
 			pedido: pedido
