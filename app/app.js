@@ -1132,6 +1132,13 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         var opciones={concepto: conceptoSelected, fuente: fuente};
 		return $http.post(serviceBase + 'municipiosAsignacionesSiebel', opciones);
 	};
+
+     obj.getMunicipiosAsignacionesEDATEL = function (conceptoSelected, fuente) {
+		//return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
+        var opciones={concepto: conceptoSelected, fuente: fuente};
+		return $http.post(serviceBase + 'municipiosAsignacionesEDATEL', opciones);
+	};
+
 	obj.getHistoricoPedido = function (pedido) {
 		return $http.post(serviceBase + 'listaHistoricoPedidos', {
 			pedido: pedido
@@ -7650,6 +7657,21 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
     $scope.listarMunicipiosAsignacionesSiebel = function (concepto, fuente) {
         services.getMunicipiosAsignacionesSiebel(concepto, fuente).then(
+            function (data) {
+                $scope.listadoMunicipios=data.data;
+                return data.data;
+
+            },
+            function errorCallback(res) {
+                //console.log(status);
+                $rootScope.errorDatos = res.data[0];
+
+            }
+        );
+    };
+
+       $scope.listarMunicipiosAsignacionesEDATEL = function (concepto, fuente) {
+        services.getMunicipiosAsignacionesEDATEL(concepto, fuente).then(
             function (data) {
                 $scope.listadoMunicipios=data.data;
                 return data.data;
