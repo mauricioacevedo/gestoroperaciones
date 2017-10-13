@@ -1449,14 +1449,9 @@ class API extends REST {
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
 
-
-
-
-
         $pedido = json_decode(file_get_contents("php://input"),true);
-        $pedidoid = $pedido['pedido'];
 
-        echo($pedidoid);
+        $pedidoid = $pedido['pedido'];
 
         $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','concepto_final');
         $keys = array_keys($pedido);
@@ -1479,7 +1474,7 @@ class API extends REST {
         //$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
         if(!empty($pedido)){
             //$concepto_final=$this->updateFenix($pedido);
-            $query = "INSERT INTO pedidos(".trim($columns,',').",source) VALUES(".trim($values,',').",'MANUAL')";
+            $query = "INSERT INTO pedidos(".trim($columns,',').",source, pedido_id) VALUES(".trim($values,',').",'MANUAL', '$pedidoid')";
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
             //hago la actualizacion en fenix
@@ -10631,7 +10626,7 @@ class API extends REST {
 
         $transaccion = $transaccion['gestion'];
 
-        echo var_dump ($transaccion);
+        //echo var_dump ($transaccion);
 
         $column_names = array('NEGOCIO','FECHASOLICI','ITEMS','ANSACTIVIDAD','SISTEMAINFO','RESULTADOCARGA','ITEMSPROCESADO','ITEMSINCONSISTENTES','OBSERVACIONES','FECHAPROCESADO','RESPONSABLE');
 
@@ -10696,7 +10691,7 @@ class API extends REST {
 
         $transaccion = $transaccion['gestion'];
 
-        echo var_dump ($transaccion);
+        //fecho var_dump ($transaccion);
 
         $column_names = array('NEGOCIO','FECHASOLICI','ITEMS','ANSACTIVIDAD','SISTEMAINFO','RESULTADOCARGA','ITEMSPROCESADO','ITEMSINCONSISTENTES','OBSERVACIONES','FECHAPROCESADO','RESPONSABLE');
 
@@ -12677,7 +12672,7 @@ class API extends REST {
         //$usas =$_FILES["file"]["user"];
         //$pedido = json_decode(file_get_contents("php://input"),true);
         $usas = $this->_request['user'];
-        echo var_dump($usas);
+        //echo var_dump($usas);
         //echo var_dump($_FILES );
         //$this->response(json_encode(""),200);
         $PEDIDO_ID='';
@@ -14901,7 +14896,7 @@ class API extends REST {
         $transaccion = json_decode(file_get_contents("php://input"),true);
 
         $transaccion = $transaccion['transaccion'];
-        var_dump($transaccion);
+        //var_dump($transaccion);
         $column_names = array('FECHA_GESTION','PEDIDO_ID','TIPO_ELEMENTO_ID','USUARIO_ID_GESTION','USUARIO_NOMBRE','ANALISIS','CONCEPTO_ACTUAL','CONCEPTO_FINAL','OBSERVACIONES','USUARIO_ID','FECHA_INICIO','FECHA_FIN','PUNTAJE');
 
 
