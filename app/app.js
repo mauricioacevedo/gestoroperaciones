@@ -6581,6 +6581,7 @@ $(document).click(  function (e) {
 
                 $scope.baby($scope.pedido.pedido);
                 $scope.pedido1=$scope.pedido.pedido;
+                $scope.pedido2=$scope.pedido.pedido;
 
                 $scope.timeInit=new Date().getTime();
                 date1 = new Date();
@@ -7354,6 +7355,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.pedido.actividad = "ESTUDIO";
 		$scope.pedido.concepto_final = $scope.mpedido.concepto;
 		$scope.pedido.fecha_inicio = $scope.fecha_inicio;
+        console.log("WT");
 
 		var date1 = new Date();
 		var year = date1.getFullYear();
