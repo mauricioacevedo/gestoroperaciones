@@ -7355,7 +7355,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.pedido.actividad = "ESTUDIO";
 		$scope.pedido.concepto_final = $scope.mpedido.concepto;
 		$scope.pedido.fecha_inicio = $scope.fecha_inicio;
-        console.log("WT");
+
 
 		var date1 = new Date();
 		var year = date1.getFullYear();
