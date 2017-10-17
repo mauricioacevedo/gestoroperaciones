@@ -5764,10 +5764,10 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.saveTransaccion1 = function (transaccion) {
 		// console.log(transaccion.TIPO_TRABAJO);
 
-		  if(transaccion.PEDIDO_ID==undefined || transaccion.PEDIDO_ID==""){
+		/*  if(transaccion.PEDIDO_ID==undefined || transaccion.PEDIDO_ID==""){
 		       alert("Fecha sin informacion.");
 		    return;
-		    }
+		    }*/
 		if (transaccion.FECHA == undefined || transaccion.FECHA == "") {
 			alert("Fecha sin informacion.");
 			return;
