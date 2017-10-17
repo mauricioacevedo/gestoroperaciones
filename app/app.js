@@ -5809,7 +5809,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 		var hour = $scope.doubleDigit(date1.getHours());
 		var minute = $scope.doubleDigit(date1.getMinutes());
 		var seconds = $scope.doubleDigit(date1.getSeconds());
-
+        $scope.transaccion.FECHA=year+"-"+month+"-"+day;
 		$scope.transaccion.FECHA_FIN = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 		$scope.transaccion.FECHA_INICIO = $scope.FECHA_INICIO;
 
