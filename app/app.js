@@ -5844,7 +5844,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 	var fecha_fin = year + "-" + month + "-" + day;
 	$scope.data.fechaIni = fecha_inicio;
 	$scope.data.fechaFin = fecha_fin;
-	//$scope.transaccionA.FECHA=year+"-"+month+"-"+day;
+	$scope.transaccionA.FECHA=year+"-"+month+"-"+day;
 
 
 
