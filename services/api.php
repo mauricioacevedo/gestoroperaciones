@@ -6878,7 +6878,7 @@ class API extends REST {
             ", a.PEDIDO_ID, a.PEDIDO, a.SUBPEDIDO_ID, a.SOLICITUD_ID ".
             ", a.TIPO_ELEMENTO_ID, a.PRODUCTO, a.UEN_CALCULADA ".
             ", a.ESTRATO, a.MUNICIPIO_ID, a.DIRECCION_SERVICIO, a.PAGINA_SERVICIO ".
-            ", cast(my_sec_to_time(timestampdiff(second,FECHA_ESTADO,current_timestamp()))AS CHAR(255)) as TIEMPO_COLA ".
+            ", cast(my_sec_to_time(timestampdiff(second,FECHA_INGRESO,current_timestamp()))AS CHAR(255)) as TIEMPO_COLA ".
             ", a.FUENTE, a.CONCEPTO_ID, a.FECHA_ESTADO, a.FECHA_CITA, a.STATUS, a.PROGRAMACION ".
             ", case when a.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ARBOL' else a.RADICADO_TEMPORAL end as RADICADO_TEMPORAL ".
             ", if(a.RADICADO_TEMPORAL='ARBOL','true','false') as PRIORIDAD ".
@@ -6987,7 +6987,7 @@ class API extends REST {
             " a.ACTIVIDADES, ".
             " a.MICROZONA, ".
             " a.SUBZONA_ID, ".
-            " cast(my_sec_to_time(timestampdiff(second,if(a.FECHA_ESTADO='0000-00-00 00:00:00',FECHA_CARGA,a.FECHA_ESTADO),current_timestamp()))AS CHAR(255)) as TIEMPO_COLA, ".
+            " cast(my_sec_to_time(timestampdiff(second,if(a.FECHA_ESTADO='0000-00-00 00:00:00',FECHA_CARGA,a.FECHA_INGRESO),current_timestamp()))AS CHAR(255)) as TIEMPO_COLA, ".
             " a.FUENTE, ".
             " if(a.FECHA_ESTADO='0000-00-00 00:00:00',FECHA_CARGA,a.FECHA_ESTADO) as FECHA_ESTADO,  ".
             " a.FECHA_CITA_FENIX, ".
