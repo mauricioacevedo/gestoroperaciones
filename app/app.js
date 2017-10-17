@@ -5762,7 +5762,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 
 
 	$scope.saveTransaccion1 = function (transaccion) {
-		 console.log(transaccion.TIPO_TRABAJO);
+		// console.log(transaccion.TIPO_TRABAJO);
 
 		  if(transaccion.PEDIDO_ID==undefined || transaccion.PEDIDO_ID==""){
 		       alert("Fecha sin informacion.");
