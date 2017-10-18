@@ -5397,7 +5397,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 			$rootScope.transaccion = data.data[0];
 			//console.log($scope.transaccion);
 			//console.log(data);
-			$location.path('/kpis/transaccion');
+			$location.path('/kpis/');
 			return data.data;
 		});
 
@@ -17400,7 +17400,9 @@ app.config(['$routeProvider',
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
 
+
       //*******************MICHAEL********************************
+
       .when('/kpis/', {
 			title: 'KPIS',
 			templateUrl: 'partials/kpis.html',
