@@ -5465,7 +5465,6 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 		}
 
 
-
         $scope.InfoGestion = {
             txtNegocio: transaccion.txtNegocio,
             TECNOLOGIA_ID: ''
@@ -5474,16 +5473,9 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
          services.SalvarGestionInfraestructura(transaccion).then(function (data) {
                 $location.path('/kpis/');
                 return data.data;
+                $scope.getTransaccionKPIS();
             }
         )
-
-                //******************************Michael
-        services.putGestionKPIS($scope.InfoGestion).then(function (data) {
-                $location.path('/kpis/');
-                return data.data;
-            }
-        )
-        //******************************************
 
 	};
 
