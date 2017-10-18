@@ -5475,7 +5475,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
                 return data.data;
             }
         )
-         $location.path('/kpis/');
+        location.reload();
 	};
 
     //*******************************MICHAEL EDITAR REGISTRO KPIS *********************************
