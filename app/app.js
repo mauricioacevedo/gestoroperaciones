@@ -5473,7 +5473,6 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
          services.SalvarGestionInfraestructura(transaccion).then(function (data) {
                 $location.path('/kpis/');
                 return data.data;
-                location.reload();
             }
         )
 
@@ -5548,6 +5547,8 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
         services.EditarGestionInfraestructura(transaccion).then(function (data) {
                 $location.path('/kpis/');
                 return data.data;
+                $scope.pageChanged();
+
             }
         )
 
