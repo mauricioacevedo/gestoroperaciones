@@ -5261,6 +5261,7 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
             }
         )
 
+
 		/*services.insertTransaccionNCA($scope.transaccion).then(function (data) {
 			$location.path('/nca/');
 			return data.data;
@@ -5464,16 +5465,25 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 		}
 
 
+
         $scope.InfoGestion = {
             txtNegocio: transaccion.txtNegocio,
             TECNOLOGIA_ID: ''
         };
 
          services.SalvarGestionInfraestructura(transaccion).then(function (data) {
-                $location.path('/kpis');
+                $location.path('/kpis/');
                 return data.data;
             }
         )
+
+                //******************************Michael
+        services.putGestionKPIS($scope.InfoGestion).then(function (data) {
+                $location.path('/kpis/');
+                return data.data;
+            }
+        )
+        //******************************************
 
 	};
 
