@@ -17412,7 +17412,7 @@ app.config(['$routeProvider',
       .when('/kpis/transaccion', {
 			title: 'NCA',
 			templateUrl: 'partials/transaccion-kpis.html',
-			controller: 'NCACtrl',
+			controller: 'KPISCtrl',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
