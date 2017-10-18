@@ -5483,7 +5483,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
     //*******************************MICHAEL EDITAR REGISTRO KPIS *********************************
     $scope.EditTransaccionKPIS = function (transaccion) {
 
-        console.log(transaccion);
+        //console.log(transaccion);
 
 		if (transaccion.NEGOCIO == undefined || transaccion.NEGOCIO == "") {
 			alert("Negocio sin informacion.");
