@@ -5385,7 +5385,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 	$scope.nuevoRegistroKPIS = function () {
 		$rootScope.transaccion = {};
 		$rootScope.transaccion.ID = '';
-		$location.path('/transaccion');
+		$location.path('/kpis/transaccion');
 
 	};
 
@@ -5397,7 +5397,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 			$rootScope.transaccion = data.data[0];
 			//console.log($scope.transaccion);
 			//console.log(data);
-			$location.path('/kpis/');
+			$location.path('/kpis/transaccion');
 			return data.data;
 		});
 
