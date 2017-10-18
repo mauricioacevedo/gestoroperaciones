@@ -5385,7 +5385,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 	$scope.nuevoRegistroKPIS = function () {
 		$rootScope.transaccion = {};
 		$rootScope.transaccion.ID = '';
-		$location.path('/transaccion-nca/');
+		$location.path('/transaccion');
 
 	};
 
@@ -17391,16 +17391,6 @@ app.config(['$routeProvider',
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
 
-      //*******************MICHAEL********************************
-      .when('/kpis/', {
-			title: 'KPIS',
-			templateUrl: 'partials/kpis.html',
-			controller: 'KPISCtrl',
-            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
-            cargos: ['1','2','3','4','5','6','7','8','9']
-		})
-      //**********************************************************
-
 
 		.when('/nca/transaccion', {
 			title: 'NCA',
@@ -17409,6 +17399,28 @@ app.config(['$routeProvider',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
+
+      //*******************MICHAEL********************************
+      .when('/kpis/', {
+			title: 'KPIS',
+			templateUrl: 'partials/kpis.html',
+			controller: 'KPISCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
+		})
+
+      .when('/kpis/transaccion', {
+			title: 'NCA',
+			templateUrl: 'partials/transaccion-kpis.html',
+			controller: 'NCACtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
+		})
+
+      //**********************************************************
+
+
+
 
 		.when('/admontips/nuevoTip', {
 			title: 'Nuevo Tip',
