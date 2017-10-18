@@ -5472,10 +5472,11 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
          services.SalvarGestionInfraestructura(transaccion).then(function (data) {
                 $location.path('/kpis/');
-                $scope.getTransaccionKPIS();
                 return data.data;
             }
         )
+
+        $scope.getTransaccionKPIS();
 
 	};
 
