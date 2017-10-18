@@ -5980,8 +5980,8 @@ class API extends REST {
             " a.MUNICIPIO_ID, ".
             " a.PAGINA_SERVICIO, ".
             " a.DIRECCION_SERVICIO, ".
-            " CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA, ".
-            " hour(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO))) as TIEMPO_HORAS, ".
+            " CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_INGRESO)) AS CHAR(255)) as TIEMPO_COLA, ".
+            " hour(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_INGRESO))) as TIEMPO_HORAS, ".
             " a.FUENTE, ".
             " a.CONCEPTO_ID, ".
             " a.FECHA_ESTADO, ".
