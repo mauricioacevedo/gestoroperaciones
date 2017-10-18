@@ -5470,12 +5470,12 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
             TECNOLOGIA_ID: ''
         };
 
-        services.SalvarGestionInfraestructura(transaccion).then(function (data) {
+         services.SalvarGestionInfraestructura(transaccion).then(function (data) {
                 $location.path('/kpis/');
                 return data.data;
             }
         )
-
+         $location.path('/kpis/');
 	};
 
     //*******************************MICHAEL EDITAR REGISTRO KPIS *********************************
@@ -5559,7 +5559,8 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
         console.log(bregistro);
         services.buscarRegistroKPIS(bregistro).then(function(data){
 
-                        //traigo los datos que voy a mostrar
+            //traigo los datos que voy a mostrar
+            //document.getElementById('txtProcesados').value =
 
             return data.data;
             console.log(data.data);
