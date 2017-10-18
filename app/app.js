@@ -5106,7 +5106,6 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 		$rootScope.transaccion = {};
 		$rootScope.transaccion.ID = '';
 		$location.path('/nca/transaccion');
-
 	};
 
 
@@ -5383,10 +5382,10 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 		$location.path('/');
 	};
 
-	$scope.nuevoRegistroNCA = function () {
+	$scope.nuevoRegistroKPIS = function () {
 		$rootScope.transaccion = {};
 		$rootScope.transaccion.ID = '';
-		$location.path('/nca/transaccion');
+		$location.path('/kpis/transaccion-kpis.html');
 
 	};
 
@@ -17410,6 +17409,7 @@ app.config(['$routeProvider',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
+
 		.when('/admontips/nuevoTip', {
 			title: 'Nuevo Tip',
 			templateUrl: 'partials/editTips.html',
