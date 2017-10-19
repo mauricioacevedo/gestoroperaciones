@@ -953,7 +953,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'demePedido?userID=' + user + '&concepto=' + concepto + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&prioridad=' + prioridad + '&fuente=' + fuente);
 	};
 
-    //***************************************MICHAEL EDATEL **********************************************
+    //***************************************MICHAEL EDATEL LLAMADO A LOS SERVICIOS **********************************************
 
     obj.demePedidoEdatel = function (user, concepto, pedido_actual, plaza, username, prioridad, fuente) { //deme pedido asignacion
 		return $http.get(serviceBase + 'demePedidoEdatel?userID=' + user + '&concepto=' + concepto + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&prioridad=' + prioridad + '&fuente=' + fuente);
@@ -968,6 +968,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         var opciones={concepto: conceptoSelected, fuente: fuente};
 		return $http.post(serviceBase + 'municipiosAsignacionesEdatel', opciones);
 	};
+
 
     //******************************************************************************************************
 
@@ -1150,6 +1151,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         var opciones={concepto: conceptoSelected, fuente: fuente};
 		return $http.post(serviceBase + 'municipiosAsignacionesSiebel', opciones);
 	};
+
 
 	obj.getHistoricoPedido = function (pedido) {
 		return $http.post(serviceBase + 'listaHistoricoPedidos', {
@@ -8478,6 +8480,8 @@ app.controller('EdatelPedidosCtrl', function ($scope, $rootScope, $location, $ro
             }
         );
     };
+
+
 
     $scope.checkMunicipiosAsignacionesEdatel = function () {
         $rootScope.errorDatos = null;
@@ -17142,7 +17146,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         $scope.listarMunicipiosAsignacionesEdatel = function (concepto, fuente) {
         services.getMunicipiosAsignacionesEdatel(concepto, fuente).then(
             function (data) {
-                $scope.listadoMunicipiosEdatel=data.data;
+                $scope.listadoMunicipios=data.data;
                 $scope.iplaza = {'MUNICIPIO_ID':$scope.municipio};
                 //console.log($scope.municipio);
                 console.log($scope.iplaza );
