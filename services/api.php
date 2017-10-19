@@ -5951,7 +5951,7 @@ class API extends REST {
 
     }
 
-    private function csvPendientescsvPendientes(){
+    private function csvPendientes(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
