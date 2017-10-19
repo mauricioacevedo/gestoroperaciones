@@ -17377,6 +17377,17 @@ app.config(['$routeProvider',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
         })
+
+        //**********************Michael Edatel************************
+        .when('/edatel-pedidos/', {
+            title: 'DemePedidoEdatel',
+            templateUrl: 'partials/edatel-pedidos.html',
+            controller: 'AsignacionesCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
+        })
+        //************************************************************
+
 		.when('/reconfiguracion/', {
 			title: 'Reconfiguracion',
 			templateUrl: 'partials/reconfiguracion.html',
