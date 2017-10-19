@@ -17143,7 +17143,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         services.getMunicipiosAsignacionesEdatel(concepto, fuente).then(
             function (data) {
                 $scope.listadoMunicipiosEdatel=data.data;
-                $scope.iplaza = {'LOCALIDAD':$scope.LOCALIDAD};
+                $scope.iplaza = {'MUNICIPIO_ID':$scope.municipio};
                 //console.log($scope.municipio);
                 console.log($scope.iplaza );
                 return data.data;
