@@ -8735,7 +8735,7 @@ class API extends REST {
             " order by b.$parametroBusqueda ASC";
 
 
-        echo $query1;
+//        echo $query1;
 
         if($mypedido==""){
 
