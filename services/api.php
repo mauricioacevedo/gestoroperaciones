@@ -8713,10 +8713,14 @@ class API extends REST {
         if($parametroBusqueda=="NUEVOS_PRIMERO"){
             $parametroBusqueda="RADICADO_TEMPORAL";
         }
+        $pos = strrpos($concepto, "14");
+        if ($pos === false) {} // note: three equal signs
 
-        if ($concepto == "14"){
+        else{
             $parametroBusqueda = "FECHA_ESTADO";
         }
+
+
 
         $query1="select b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO,b.FECHA_CITA ".
             ",(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO_ID=a.pedido_id ".
