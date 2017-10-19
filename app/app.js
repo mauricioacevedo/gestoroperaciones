@@ -17139,6 +17139,25 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         );
     };
 
+        $scope.listarMunicipiosAsignacionesEdatel = function (concepto, fuente) {
+        services.getMunicipiosAsignacionesEdatel(concepto, fuente).then(
+            function (data) {
+                $scope.listadoMunicipiosEdatel=data.data;
+                $scope.iplaza = {'LOCALIDAD':$scope.LOCALIDAD};
+                //console.log($scope.municipio);
+                console.log($scope.iplaza );
+                return data.data;
+
+            },
+            function errorCallback(res) {
+                //console.log(status);
+                $rootScope.errorDatos = res.data[0];
+
+            }
+        );
+    };
+
+
     $scope.condicionMunicipiosShow = function () {
 
         return ($scope.iconcepto.FUENTE=='SIEBEL' | $scope.iconcepto.FUENTE=='EDATEL' | $scope.iconcepto.FUENTE=='FENIX_NAL'  & ( $scope.iconcepto.CONCEPTO_ID=='COBERTURA' | $scope.iconcepto.CONCEPTO_ID=='DISPONIBILIDAD' | $scope.iconcepto.CONCEPTO_ID=='CONSTRUCCION' | $scope.iconcepto.CONCEPTO_ID=='DISENO' | $scope.iconcepto.CONCEPTO_ID =='12-EDATEL' | $scope.iconcepto.CONCEPTO_ID=='14' | $scope.iconcepto.CONCEPTO_ID=='99' ));
