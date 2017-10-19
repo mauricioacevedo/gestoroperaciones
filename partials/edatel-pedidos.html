@@ -69,7 +69,7 @@
                     <select id="conceptos" ng-model="iconcepto"
                             class="form-control" style="width: 100px"
 
-                            ng-change="GenerarOpcionesGestion(); checkMunicipiosAsignaciones()">
+                        ng-change="GenerarOpcionesGestion(); checkMunicipiosAsignacionesEdatel()">
                         <option value='PETEC'>PETEC</option>
                         <option value='15'>15</option>
                         <option value='19'>19</option>
@@ -86,7 +86,7 @@
                     <select id="Plaza" class="form-control"
                             style="width: 150px"
                             ng-model="iplaza"
-                            ng-options="d.MUNICIPIO_ID +'('+d.COUNTER+')'+ ''  for d in listadoMunicipios "
+                            ng-options="d.LOCALIDAD +'('+d.COUNTER+')'+ ''  for d in listadoMunicipios "
                     >
                         <option value="" disabled>--Seleccione Municipio--</option>
                     </select>
