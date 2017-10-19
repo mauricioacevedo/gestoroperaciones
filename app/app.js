@@ -1146,10 +1146,17 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		//return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
 		return $http.post(serviceBase + 'opcionesGestionAsignaciones', opciones);
 	};
+
     obj.getMunicipiosAsignacionesSiebel = function (conceptoSelected, fuente) {
 		//return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
         var opciones={concepto: conceptoSelected, fuente: fuente};
 		return $http.post(serviceBase + 'municipiosAsignacionesSiebel', opciones);
+	};
+
+    obj.getMunicipiosAsignacionesEdatel = function (conceptoSelected, fuente) {
+		//return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
+        var opciones={concepto: conceptoSelected, fuente: fuente};
+		return $http.post(serviceBase + 'municipiosAsignacionesEdatel', opciones);
 	};
 
 
@@ -6934,9 +6941,8 @@ $scope.intervalLightKPIS = setInterval(function(){
 $scope.actualizarLightKPIS();
 });
 
-//-----------------------------ASIGNACIONES--------------------------------
 
-
+//*************************Michael Controlador Edatel********************************
 app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, $window, services) {
 
 	//var userID = ($routeParams.userID) ? parseInt($routeParams.userID) : 0;
@@ -7704,19 +7710,31 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
         );
     };
 
-    $scope.checkMunicipiosAsignaciones = function () {
+      $scope.listarMunicipiosAsignacionesEdatel = function (concepto, fuente) {
+        services.getMunicipiosAsignacionesEdatel(concepto, fuente).then(
+            function (data) {
+                $scope.listadoMunicipios=data.data;
+                return data.data;
+
+            },
+            function errorCallback(res) {
+                //console.log(status);
+                $rootScope.errorDatos = res.data[0];
+
+            }
+        );
+    };
+
+    $scope.checkMunicipiosEdatel = function () {
         $rootScope.errorDatos = null;
         if(!angular.equals($scope.iconcepto, {})){
-            $scope.listarMunicipiosAsignacionesSiebel($scope.iconcepto, 'FENIX_NAL');
+            $scope.listarMunicipiosAsignacionesEdatel($scope.iconcepto, 'FENIX_NAL');
         }
 
     };
-    $scope.checkMunicipiosAsignaciones();
+    $scope.checkMunicipiosEdatel();
 
 });
-
-//*************************Michael Controlador Edatel********************************
-
 
 
 //***********************************************************************************
