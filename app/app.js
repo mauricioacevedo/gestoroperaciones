@@ -8467,7 +8467,7 @@ app.controller('EdatelPedidosCtrl', function ($scope, $rootScope, $location, $ro
     $scope.listarMunicipiosAsignacionesEdatel = function (concepto, fuente) {
         services.getMunicipiosAsignacionesEdatel(concepto, fuente).then(
             function (data) {
-                $scope.listadoMunicipios=data.data;
+                $scope.listadoMunicipiosEdatel=data.data;
                 return data.data;
             },
 
