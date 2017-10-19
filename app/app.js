@@ -5533,7 +5533,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 			return;
 		}
 
-        if (transaccion.ITEMSINCONSISTENTES == -1) {
+        if (transaccion.ITEMSINCONSISTENTES == "-1") {
 			alert("Items Inconsistentes sin informacion.");
 			return;
 		}
