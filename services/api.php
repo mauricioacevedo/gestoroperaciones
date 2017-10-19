@@ -5980,8 +5980,9 @@ class API extends REST {
             " a.MUNICIPIO_ID, ".
             " a.PAGINA_SERVICIO, ".
             " a.DIRECCION_SERVICIO, ".
-            " CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_INGRESO)) AS CHAR(255)) as TIEMPO_COLA, ".
-            " hour(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_INGRESO))) as TIEMPO_HORAS, ".
+            " CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA, ".
+            " CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_INGRESO)) AS CHAR(255)) as TIEMPO_INGRESO, ".
+            //" hour(TIMEDIFF(CURRENT_TIMESTAMP(),(a.FECHA_INGRESO))) as TIEMPO_HORAS, ".
             " a.FUENTE, ".
             " a.CONCEPTO_ID, ".
             " a.FECHA_ESTADO, ".
@@ -5999,7 +6000,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','PEDIDO','SUBPEDIDO_ID','SOLICITUD_ID','PROGRAMACION','TIPO_TRABAJO','TIPO_ELEMENTO_ID','PRODUCTO','UEN_CALCULADA','ESTRATO','MUNICIPIO_ID','PAGINA_SERVICIO','DIRECCION_SERVICIO','TIEMPO_COLA','TIEMPO_HORAS','FUENTE','CONCEPTO_ID','FECHA_ESTADO','FECHA_INGRESO','FECHA_CITA','STATUS','MOTIVO_MALO','INCIDENTE','RADICADO_TEMPORAL','PEDIDOFNX', 'CONCEPTO_CRM'));
+            fputcsv($fp, array('PEDIDO_ID','PEDIDO','SUBPEDIDO_ID','SOLICITUD_ID','PROGRAMACION','TIPO_TRABAJO','TIPO_ELEMENTO_ID','PRODUCTO','UEN_CALCULADA','ESTRATO','MUNICIPIO_ID','PAGINA_SERVICIO','DIRECCION_SERVICIO','TIEMPO_COLA','TIEMPO_INGRESO','FUENTE','CONCEPTO_ID','FECHA_ESTADO','FECHA_INGRESO','FECHA_CITA','STATUS','MOTIVO_MALO','INCIDENTE','RADICADO_TEMPORAL','PEDIDOFNX', 'CONCEPTO_CRM'));
             while($row = $r->fetch_assoc()){
                 $pedidoCrm = $row['PEDIDO_ID'];
                 $objRtaFenix = $this->conceptoPedidoSiebelFenix ($pedidoCrm);
