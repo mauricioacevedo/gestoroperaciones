@@ -9461,13 +9461,8 @@ private function demePedidoEdatel(){
         $fuente     = $params['fuente'];
         $today		= date("Y-m-d");
 
-   /*     if($fuente=='FENIX_NAL'){
-            $paramFuente = " o.FUENTE in ('FENIX_NAL','FENIX_BOG')";
-        }else{
-            $paramFuente = " o.FUENTE='$fuente'";
-        }*/
 
-        $filtros= " and o.STATUS ='PENDIENTE' and $paramFuente AND o.CONCEPTO_ID='$concepto' ".
+        $filtros= " and o.STATUS ='PENDIENTE' ".
                     " GROUP BY o.LOCALIDAD ORDER BY COUNT(*) DESC ";
 
         $query=	" SELECT ".
@@ -9477,7 +9472,7 @@ private function demePedidoEdatel(){
             "	where 1=1 ".
             " 	$filtros ";
 
-        //echo $query;
+        echo $query;
 
         $rst = $this->mysqli->query($query);
 
@@ -9486,8 +9481,6 @@ private function demePedidoEdatel(){
             $resultado=array();
             $resultado[]=array("LOCALIDAD"=>"TODOS","COUNTER"=>"TODOS");
             while($row=$rst->fetch_assoc()){
-
-                //$row['nombre']=utf8_encode($row['nombre']);
                 $resultado[]=$row;
 
 
@@ -9495,7 +9488,8 @@ private function demePedidoEdatel(){
             $this->response($this->json($resultado), 201);
 
 
-        }else{
+        }
+        else{
             $error="Error. Este concepto no tiene pendientes";
             $this->response($this->json(array($error)), 400);
         }
