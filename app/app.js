@@ -5478,7 +5478,6 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
         $scope.getTransaccionKPIS = function () {
 		//$scope.transaccion={};
-
 		services.getTransaccionKPIS().then(function (data) {
 			//console.log(ncaID);
 			$rootScope.transaccion = data.data[0];
@@ -5534,7 +5533,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 			return;
 		}
 
-        if (transaccion.ITEMSINCONSISTENTES == undefined || transaccion.ITEMSINCONSISTENTES == "") {
+        if (transaccion.ITEMSINCONSISTENTES == -1) {
 			alert("Items Inconsistentes sin informacion.");
 			return;
 		}
