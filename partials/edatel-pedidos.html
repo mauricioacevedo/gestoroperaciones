@@ -69,9 +69,10 @@
                     <select id="conceptos" ng-model="iconcepto"
                             class="form-control" style="width: 100px"
 
-                        ng-change="GenerarOpcionesGestion(); checkMunicipiosEdatel()">
-                        <option value='PETEC'>PETEC</option>
-                        <option value='15'>15</option>
+                        ng-change="checkMunicipiosEdatel()">
+                        <!--ng-change="GenerarOpcionesGestion(); checkMunicipiosEdatel()">-->
+                        <option value='PENDIENTE'>PENDIENTE</option>
+                        <!--<option value='15'>15</option>
                         <option value='19'>19</option>
                         <option value='PEOPP'>PEOPP</option>
                         <option value='PUMED'>PUMED</option>
@@ -80,8 +81,9 @@
                         <option disabled>───────</option>
                         <option value='EQURED'>EQURED</option>
                         <option value='STBOX'>STBOX</option>
-
+-->
                     </select>
+
                     <label for="Plaza">Plaza:</label>
                     <select id="Plaza" class="form-control"
                             style="width: 150px"
