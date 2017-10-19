@@ -8714,6 +8714,10 @@ class API extends REST {
             $parametroBusqueda="RADICADO_TEMPORAL";
         }
 
+        if ($concepto == "14"){
+            $parametroBusqueda = "FECHA_ESTADO";
+        }
+
         $query1="select b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO,b.FECHA_CITA ".
             ",(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO_ID=a.pedido_id ".
             " AND a.fecha BETWEEN  '$today 00:00:00' AND  '$today 23:59:59' limit 1) as BEENHERE ".
@@ -8847,61 +8851,6 @@ class API extends REST {
         $fecha_visto= date("Y-m-d H:i:s");
         //de una lo ocupo cucho cucho!!!!
 
-        if($concepto == '14'){
-            $query1="SELECT b.ID, ".
-            " b.ID as PARENTID, ".
-            " b.PEDIDO_ID, ".
-            " b.SUBPEDIDO_ID, ".
-            " b.SOLICITUD_ID, ".
-            " b.TIPO_ELEMENTO_ID, ".
-            " b.PRODUCTO, ".
-            " b.PRODUCTO_ID,	".
-            " b.UEN_CALCULADA, ".
-            " b.ESTRATO, ".
-            "  CASE ".
-            "	 WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.UEN_CALCULADA IN ('HG','E3') AND b.ESTRATO='0' THEN TRUE ".
-            "    WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.UEN_CALCULADA IN ('HG','E3') AND b.ESTRATO='' THEN TRUE ".
-            "    WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.UEN_CALCULADA IN ('HG','E3') AND b.PAGINA_SERVICIO='' THEN TRUE ".
-            "    ELSE FALSE ".
-            "    END AS ESTRATOMALO, ".
-            " b.MUNICIPIO_ID, ".
-            " b.DEPARTAMENTO, ".
-            " b.DIRECCION_SERVICIO, ".
-            " b.PAGINA_SERVICIO, ".
-            " b.TECNOLOGIA_ID,	".
-            " CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(b.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,	".
-            " b.FUENTE, ".
-            " b.GRUPO, ".
-            " b.ACTIVIDAD, ".
-            " b.CONCEPTO_ID, ".
-            " b.FECHA_ESTADO, ".
-            " b.FECHA_INGRESO, ".
-            " b.USUARIO_BLOQUEO_FENIX, ".
-            " b.TIPO_TRABAJO, ".
-            " b.DESC_TIPO_TRABAJO,	".
-            " b.CONCEPTO_ANTERIOR, ".
-            " b.FECHA_CITA, ".
-            " b.CANTIDAD_EQU, ".
-            " b.EQUIPOS, ".
-            " b.CONCEPTOS_EQU, ".
-            " b.TIPO_EQUIPOS,	".
-            " b.EXTENSIONES,  ".
-            " b.OBSERVACIONES,  ".
-            " b.EJECUTIVO_ID, ".
-            " b.CANAL_ID, ".
-            " b.VEL_IDEN, ".
-            " b.VEL_SOLI, ".
-            " b.IDENTIFICADOR_ID, ".
-            " b.CELULAR_AVISAR, ".
-            " b.TELEFONO_AVISAR,	".
-            " b.PROGRAMACION, ".
-            " case when b.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ALTA' else 'NORMAL' end as PRIORIDAD, 	".
-            " b.APROVISIONADOR, ".
-            " b.PEDIDO_CRM ".
-            " from informe_petec_pendientesm b 	".
-            " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto ";
-
-        }
 
         if($ATENCION_INMEDIATA=="1") $concepto="";
 
