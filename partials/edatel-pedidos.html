@@ -1,0 +1,599 @@
+<ol class="breadcrumb">
+    <li><a href="./#/">Asignaciones</a></li>
+    <li class="active">Asignación</li>
+</ol>
+
+<div class="row"><!--Row Herramientas-->
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-lg-3 col-xs-3">
+            </div>
+            <div class="col-lg-6 col-xs-6">
+                <div class="col-lg-6 col-xs-6">
+                    <div class="form-group">
+                        <div class="input-group merged">
+
+                            <input type="text" class="form-control  sm" title="Ingrese palabra a buscar"
+                                   data-toggle="tooltip" data-placement="top" ng-model="nuevoBuscarTip"
+                                   ng-change="muestraBusquedaTip(nuevoBuscarTip);" placeholder="Buscador de Tips"><span
+                                class="input-group-addon"><i class="fa fa-arrow-circle-left fa-fw"></i></span>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-xs-6" ng-controller="popupsCtrl">
+                    <button type="button" ng-click="btnFunctions.BuscaNodo()" class="btn btn-primary btn-circle-sm "
+                            title="Buscar capacidad HFC" data-toggle="tooltip" data-placement="top"><i
+                            class="fa fa-television"></i></button>
+                    <button type="button" ng-click="btnFunctions.abrirCalculoDistancia()"
+                            class="btn btn-primary btn-circle-sm" title="Buscar capacidad REDCO" data-toggle="tooltip"
+                            data-placement="top"><i class="fa fa-tty"></i></button>
+                    <button type="button" ng-click="btnFunctions.BuscaGPON()" class="btn btn-primary btn-circle-sm"
+                            title="Buscar capacidad GPON" data-toggle="tooltip" data-placement="top"><i
+                            class="fa fa-google-plus"></i></button>
+
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-3">
+            </div>
+        </div><!--panel body-->
+    </div><!--panel-->
+
+    <div class="row" id="mostrarTIP"><!--Row Buscador de TIPS -->
+        <div class="col-lg-12 col-xs-12">
+            <div class="pull-left">
+                <table class="table small table-striped table-hover table-bordered table-condensed" width="100%">
+                    <tbody>
+                    <tr ng-repeat="data in listadoTips|filter:nuevoBuscarTip">
+                        <td><a class="Tips" ng-click="AbreTips(data.ID)">{{data.TITULO}}</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div><!--Row Buscador de TIPS -->
+
+</div><!--Row Herramientas-->
+
+
+<div class="row"><!--Row DemePedido -->
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="row"><!--Row Concepto Plaza - Buscador Tips -->
+
+                <div class="col-lg-5 col-xs-5 form-inline">
+                    <label for="conceptos">Concepto:</label>
+                    <select id="conceptos" ng-model="iconcepto"
+                            class="form-control" style="width: 100px"
+
+                            ng-change="GenerarOpcionesGestion(); checkMunicipiosAsignaciones()">
+                        <option value='PETEC'>PETEC</option>
+                        <option value='15'>15</option>
+                        <option value='19'>19</option>
+                        <option value='PEOPP'>PEOPP</option>
+                        <option value='PUMED'>PUMED</option>
+                        <option disabled>───────</option>
+                        <option value='COORP'>COORP</option>
+                        <option disabled>───────</option>
+                        <option value='EQURED'>EQURED</option>
+                        <option value='STBOX'>STBOX</option>
+
+                    </select>
+                    <label for="Plaza">Plaza:</label>
+                    <select id="Plaza" class="form-control"
+                            style="width: 150px"
+                            ng-model="iplaza"
+                            ng-options="d.MUNICIPIO_ID +'('+d.COUNTER+')'+ ''  for d in listadoMunicipios "
+                    >
+                        <option value="" disabled>--Seleccione Municipio--</option>
+                    </select>
+
+
+
+                </div>
+
+                <div class="col-lg-3 col-xs-3">
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-default" title="Click para copiar"
+                                data-toggle="tooltip" data-placement="top" ng-click="executeCopy(pedidoinfo);">
+                            {{pedidoinfo}}
+                        </button>
+                        <button id="iniciar" type="button" class="btn-group btn btn-sm btn-success"
+                                ng-click="start(pedido);">DemePedido
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3 col-xs-4">
+
+                    <form class="form-inline" role="form">
+
+                        <div class="form-group btn-group">
+
+                            <input type="text" size="13px" class="form-control btn-group btn btn-sm btn-default"
+                                   onClick="this.setSelectionRange(0, this.value.length)"
+                                   title="Escriba pedido a Buscar" data-toggle="tooltip" data-placement="top"
+                                   placeholder="Buscador de Pedido" ng-model="bpedido">
+                            <button type="button" class="form-control btn btn-sm btn-primary" title="Buscar Pedido"
+                                    data-toggle="tooltip" data-placement="top" ng-click="buscarPedido(bpedido,iplaza);">
+                                <i class="fa fa-search" aria-hidden="true"></i></button>
+                            <button id="manual" type="button" class="form-control btn btn-sm btn-warning"
+                                    title="Ingrese Pedido Manual" data-toggle="tooltip" data-placement="top"
+                                    ng-click="manual();"><i class="fa fa-user-times" aria-hidden="true"></i></button>
+                            <button id="programados" type="button" class="form-control btn btn-sm btn-warning"
+                                    data-toggle="modal" data-target="#PedidosProgramados" data-backdrop="static"
+                                    ng-click="ProgramadosModal()"><i class="fa fa-calendar-check-o" aria-hidden="true"
+                                                                     data-toggle="tooltip" data-placement="top"
+                                                                     title="Programados/Malos"></i></button>
+                        </div>
+
+
+                    </form>
+
+                </div>
+                <div class="col-lg-1 col-xs-1">
+                    <div class="loading-spiner-holder" data-loading>
+                        <div class="loading-spiner"><img title="Esperando respuesta" data-toggle="tooltip"
+                                                         data-placement="top" src="images/loader.gif"/></div>
+                    </div>
+                </div>
+
+            </div><!--Row Concepto Plaza - Buscador Tips -->
+
+
+        </div><!--Panel Heading -->
+        <div class="panel-body">
+
+            <div class="row"><!--Row Deme Pedido -->
+
+                <div ng-show="error" class="alert alert-danger "><!--Muestra error cuando no hay pedidos -->
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{error}}
+                </div><!--Muestra error cuando no hay pedidos -->
+
+                <div class="col-lg-12 col-xs-12">
+
+                    <div class="row">
+                        <div class="container" ng-hide="pedidoinfo!='Pedido'">
+                            <div class="jumbotron">
+                                <center><h3> Presione <strong>DemePedido</strong> para obtener un pedido del Concepto y
+                                    Plaza seleccionada.</h3></center>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row"><!--Pedido Manual -->
+
+                        <table class="table small table-striped table-hover table-bordered table-condensed" width="300"
+                               style="width: auto !important;" ng-show="mpedido.active==1">
+                            <thead>
+                            <th>Pedido</th>
+                            <th>Fuente de Informacion</th>
+                            <th>Concepto Final</th>
+                            <th>Estado</th>
+                            <th>&nbsp;</th>
+                            </thead>
+                            <tr>
+                                <td><input id='ipedido' ng-model="mpedido.pedido" type="text" class="form-control"
+                                           placeholder="Pedido"/></td>
+                                <td>
+                                    <select ng-model="mpedido.fuente" class="form-control">
+                                        <option value='FENIX BOGOTA'>FENIX BOGOTA</option>
+                                        <option value='NCA'>NCA</option>
+                                        <option value='BACKOFFICE'>BACKOFFICE</option>
+                                        <option value='FENIX_NAL'>FENIX_NAL</option>
+                                        FENIX_NAL
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control col-xs-8" aria-label=""
+                                           ng-model="mpedido.concepto">
+                                </td>
+                                <td>
+                                    <select class="form-control" ng-model="mpedido.estado">
+                                        <option value='PORDE'>PORDE</option>
+                                        <option value='PENDIENTE'>PENDIENTE</option>
+                                        <option value='ANULADO'>ANULADO</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <button id="mguardar" type="button" class="btn btn-sm btn-success"
+                                            ng-click="msavePedido();"><span id="mloader"></span>&nbsp; Guardar
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div><!--Pedido Manual -->
+                    <div class="row">
+                        <form name="pedidoForm" ng-submit="savePedido(pedido,userID)" novalidate>
+
+                            <table class="table small table-striped table-hover table-bordered table-condensed"
+                                   ng-show="peds.length>0">
+                                <thead>
+                                <th>Pedido</th>
+                                <th>Sub-Sol</th>
+                                <th>Producto</th>
+                                <th>Información</th>
+                                <th>Tiempo</th>
+                                <th>Concepto</th>
+                                <th>Info Equipos</th>
+                                <!--th>Seguimiento</th-->
+                                <th>Estado</th>
+                                <th ng-show="service.estado=='MALO'">Motivo</th>
+                                </thead>
+
+                                <tr ng-repeat="service in peds track by $index">
+                                    <td>{{service.PEDIDO_ID}}</td>
+                                    <td>{{service.SUBPEDIDO_ID}}-{{service.SOLICITUD_ID}}</td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col col-lg-2">
+
+                                                <button type="button" class="btn btn-primary btn-circle-sm "><i
+                                                        ng-class="{INTER:'fa fa-globe', IPTV:'fa fa-television', TELEV:'fa fa-television',TO:'fa fa-phone-square',IDBA:'fa fa-globe'}[service.PRODUCTO_ID]"></i>
+                                                </button>
+                                            </div>
+                                            <div class="col col-lg-10">
+                                                {{service.PRODUCTO}}<br>
+                                                <b>Elemento ID:</b> {{service.TIPO_ELEMENTO_ID}}<br>
+                                                <div ng-show="service.TIPO_TRABAJO=='CAMBI'">
+                                                    <b>Identificador:</b>
+                                                    <button type="button" title="ClickToCopy"
+                                                            class="btn btn-xs btn-default"
+                                                            ng-click="executeCopy([service.IDENTIFICADOR_ID]);">
+                                                        {{service.IDENTIFICADOR_ID || 'SIN ID'}}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <b>Fecha Cita:</b> {{service.FECHA_CITA}}<br>
+                                        <b>Tipo Trabajo:</b> {{service.TIPO_TRABAJO}}<br>
+                                        <b>Desc Trabajo:</b> {{service.DESC_TIPO_TRABAJO}}<br>
+                                        <div ng-show="service.TIPO_ELEMENTO_ID=='ACCESP'">
+                                            <b>Vel. Actual:</b> <span
+                                                class="label label-warning">{{service.VEL_IDEN}}</span>
+                                            <b>Vel. Nueva:</b> <span
+                                                class="label label-primary">{{service.VEL_SOLI}}</span><br>
+                                        </div>
+                                        <b>Direccion:</b> {{service.DIRECCION_SERVICIO}}<br>
+
+                                        <!-- <b>Pagina:</b>{{service.PAGINA_SERVICIO}}<br>-->
+                                        <b>Pagina: </b><a class="Tips" ng-show="validaMunicipio($index)" ng-href=""
+                                                          ng-click="AbreVecinos(service.PAGINA_SERVICIO)"
+                                                          title="Buscar vecinos por página">{{service.PAGINA_SERVICIO}}</a>
+                                        <spam ng-show="validaMunicipio($index)==false">{{service.PAGINA_SERVICIO}}
+                                        </spam>
+                                        <br>
+
+
+                                        <b>Estrato:</b>{{service.ESTRATO==''?'Vacio':service.ESTRATO}}<br>
+                                        <b>Municipio ID:</b> {{service.MUNICIPIO_ID}}<br>
+                                        <b>UEN:</b> {{service.UEN_CALCULADA}}<br>
+                                        <b>Pedido CRM:</b> {{service.PEDIDO_CRM}}
+                                    </td>
+
+                                    <!--td>{{service.PRODUCTO}}</td-->
+                                    <td><font color='red'>{{service.TIEMPO_COLA}}</font></td>
+                                    <td><font color='red'>{{service.CONCEPTO_ID}}</font></td>
+                                    <td>
+                                        <div ng-show="service.TIPO_ELEMENTO_ID=='INSHFC'||service.TIPO_ELEMENTO_ID=='INSTA' || service.TIPO_ELEMENTO_ID=='INSIP'">
+                                            <b>Número de Equipos: </b><font
+                                                color='red'>{{service.CANTIDAD_EQU}}</font><br>
+                                            <b>Equipos: </b><font color='red'>{{service.EQUIPOS}}</font><br>
+                                            <b>Conceptos Equipos: </b><font color='red'>{{service.CONCEPTOS_EQU}}</font><br>
+                                            <b>Tipo Equipos: </b><font color='red'>{{service.TIPO_EQUIPOS}}</font><br>
+                                            <b>Extensiones: </b><font color='red'>{{service.EXTENSIONES}}</font><br>
+                                            <b>
+                                                <button type="button" class="btn btn-info btn-xs" onclick="BuscaNodo()">
+                                                    Verificar Nodo
+                                                </button>
+
+                                        </div>
+                                    </td>
+
+                                    <td>
+
+                                        <!--select ng-show="isAuthorized(service.CONCEPTO_ID);" class= "form-control" ng-model="service.estado">
+                                                  <option value='PORDE'>PORDE</option>
+                                                  <option value='PENDIENTE'>PENDIENTE</option>
+                                                  <option value='ANULADO'>ANULADO</option>
+                                                  <option value='MALO'>MALO</option>
+                                          </select-->
+                                        <select
+                                                class="form-control btn-xs"
+                                                name="estado"
+                                                ng-model="service.estado"
+                                                ng-show="isAuthorized(service.CONCEPTO_ID)"
+                                        >
+                                            <option value="" disabled>--Seleccione--</option>
+                                            <option
+                                                    ng-repeat="d in listaOpcionesGestion | unique:'ESTADO_ID'"
+
+                                                    value="{{d.ESTADO_ID}}">
+                                                {{d.ESTADO_ID}}
+                                            </option>
+                                        </select>
+                                        <br>
+
+                                        <select
+                                                class="form-control btn-xs"
+                                                name="obs"
+                                                ng-model="service.motivo_malo"
+                                                ng-change="onChangeAccion()"
+                                        >
+                                            <option value="" disabled>--Seleccione--</option>
+                                            <option
+                                                    ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'"
+
+                                                    value="{{d.OBSERVACION_ID}}">
+                                                {{d.OBSERVACION_ID}}
+                                            </option>
+                                        </select>
+
+                                        <!--select class= "form-control" ng-model="service.motivo_malo">
+                                            <option value="TELEV EN PETEC">TELEV EN PETEC</option>
+                                            <option value="CABEZA DEL PAQUETE EN PETEC">CABEZA DEL PAQUETE EN PETEC</option>
+                                            <option value="PEDIDO NO SE DEJA GESTIONAR">PEDIDO NO SE DEJA GESTIONAR</option>
+                                            <option value="EQURED EN PETEC">EQURED EN PETEC</option>
+                                            <option value="NO REQUIERE ASIGNACION MANUAL">NO REQUIERE ASIGNACION MANUAL</option>
+                                            <option value="NO CARGO COMPONENTES">NO CARGO COMPONENTES</option>
+                                            <option value="NO ASIGNACIONES">NO ASIGNACIONES</option>
+                                            <option disabled>───────</option>
+                                            <option value="PENDIENTE ACCESO">PENDIENTE ACCESO</option>
+
+
+                                        </select-->
+                                    </td>
+
+                                    <td>
+                                        <button ng-show="isAuthorized(service.CONCEPTO_ID);" id="mybutt{{$index}}"
+                                                type="button" class="btn btn-sm btn-success"
+                                                ng-click="savePedido($index)"><span id="class{{$index}}"></span>&nbsp;
+                                            Guardar
+                                        </button>
+                                    </td>
+
+                                </tr>
+                            </table>
+                            <!--td><button id="iniciar" type="button" class="btn btn-sm btn-success" onclick="javascript:activar();">Iniciar</a></td-->
+                            <div id="warning" ng-model="warnin"></div>
+
+
+                        </form>
+
+                    </div>
+
+
+                </div>
+
+
+            </div><!-- Row Deme Pedido -->
+        </div><!--Panel body -->
+
+
+    </div><!--Panel -->
+</div><!--Row DemePedido -->
+
+<br>
+
+<div class="row"><!--Divisor -->
+    <hr>
+</div><!--Divisor -->
+
+<div class="row" ng-controller="TabController">
+    <!--div class="col-md-2"-->
+    <ul class="nav nav-pills">
+        <li ng-class="{ active: isSet(2) }">
+            <a href ng-click="setTab(2)">Historico</a>
+        </li>
+        <li ng-class="{ active: isSet(1) }">
+            <a href ng-click="setTab(1)">Personal</a>
+        </li>
+    </ul>
+
+
+    <div class="jumbotron">
+        <div ng-show="isSet(2)">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i> Historico
+                        <small>Pedido</small>
+                    </h2>
+                    <hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;">
+                    <br>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table small table-striped table-hover table-bordered table-condensed">
+                    <thead>
+                    <th>Usuario</th>
+                    <th>Fuente</th>
+                    <th>Concepto</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                    <th>Duracion</th>
+                    <!--th>Opciones</th-->
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="data in historico_pedido track by $index| orderBy:'fecha_fin':true ">
+                        <td>{{data.user}}</td>
+                        <td>{{data.fuente}}</td>
+                        <td>{{data.concepto_final}}</td>
+                        <td>{{data.estado}}</td>
+                        <td>{{data.fecha_fin}}</td>
+                        <td>{{data.duracion}}</td>
+                        <!--td>Opciones</td-->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div ng-show="isSet(1)">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i> Registros <br>
+                        <button type="button" class="btn btn-xs btn-info">Transacciones: <span class="badge">{{pedidos.length}}</span>
+                        </button>
+                        |
+                        <button type="button" class="btn btn-xs btn-info" title="Click para actualizar!"
+                                data-toggle="tooltip" data-placement="right" ng-click="pedunicos();">Pedidos: <span
+                                class="badge">{{pedidosUnicos}}</span></button>
+                    </h2>
+                    <hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;">
+                    <br>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="fixed-panel">
+                    <table class="table small table-striped table-hover table-bordered table-condensed">
+                        <thead>
+                        <th>Pedido</th>
+                        <th>Fuente</th>
+                        <th>Concepto</th>
+                        <th>Estado</th>
+                        <th>Fecha</th>
+                        <th>Duracion</th>
+                        <!--th>Opciones</th-->
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="data in pedidos| orderBy:'fecha_fin':true ">
+                            <td>{{data.pedido}}</td>
+                            <td>{{data.fuente}}</td>
+                            <td>{{data.concepto_final}}</td>
+                            <td>{{data.estado}}</td>
+                            <td>{{data.fecha_fin}}</td>
+                            <td>{{data.duracion}}</td>
+                            <!--td>Opciones</td-->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<!-- Modal Historico Pedidos-->
+<div id="PedidosProgramados" class="modal fade " role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{TituloModal}} <span class="label label-info">{{logedUser.login}} </span></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row"><!--Row Programados por USER -->
+                    <div class="col-md-12">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <b><i class="fa fa-bars" aria-hidden="true"></i> Pedidos Malos </b>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <div class="col-md-1 col-xs-1 ">
+                                        <div data-ng-if="loading">
+                                            <img title="Esperando respuesta" tooltip data-placement="top"
+                                                 src="images/loader.gif"/>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                            <div class="panel-body fixed-panel">
+                                <table class="table small table-striped table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <th>Pedido</th>
+                                        <th>Fecha Cita</th>
+                                        <th>Estado</th>
+                                        <th>Motivo</th>
+                                        <th>Programación</th>
+                                        <th>Agenda</th>
+                                        <th>Municipio</th>
+                                        <th>Fecha Gestión</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="histo in ListadoPrograUser as progra" class="animated bounceInRight">
+                                        <td>
+                                            <button type="button" class="btn btn-xs btn-warning"
+                                                    ng-click="executeCopy(histo.PEDIDO_ID)">
+                                                {{histo.PEDIDO_ID}}
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <span class="small">{{histo.FECHA_CITA}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="small">{{histo.STATUS}}</span>
+                                        </td>
+                                        <td>
+                                            <span ng-class="small">{{histo.MOTIVO_MALO}}</span>
+                                        </td>
+                                        <td>
+                                            <span ng-class="small">{{histo.PROGRAMACION}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="small"
+                                                  ng-class="{'ALARMADO':'label label-warning','GESTIONAR':'label label-danger','SIN CITA':'label label-info'}[histo.MENSAJE]">{{histo.MENSAJE}}</span>
+                                        </td>
+                                        <td>
+                                            <span ng-class="small">{{histo.MUNICIPIO_ID}}</span>
+                                        </td>
+                                        <td>
+                                            <span ng-class="small">{{histo.FECHA_GESTION}}</span>
+                                        </td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <div class="panel-footer clearfix">
+                                <div class="col-md-6">
+                                    <ul class="nav navbar-nav navbar-left">
+                                        <li>Registros: <span class="badge badge-default">{{progra.length}} {{errorMalos}}</span>
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+
+
+                                <div class="col-md-6">
+
+                                </div>
+                            </div>
+                        </div><!--Panel -->
+                    </div>
+                </div><!--Row 1 Pedidos Programados -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div><!-- Modal Programados-->
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+
+<script language='javascript'>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>
