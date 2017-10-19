@@ -953,6 +953,23 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'demePedido?userID=' + user + '&concepto=' + concepto + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&prioridad=' + prioridad + '&fuente=' + fuente);
 	};
 
+    //***************************************MICHAEL EDATEL **********************************************
+    obj.demePedidoEdatel = function (user, concepto, pedido_actual, plaza, username, prioridad, fuente) { //deme pedido asignacion
+		return $http.get(serviceBase + 'demePedidoEdatel?userID=' + user + '&concepto=' + concepto + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&prioridad=' + prioridad + '&fuente=' + fuente);
+	};
+
+    obj.getPedidosPorPedidoEdatel = function (pedido) { //ingreso de pedido por pedido tabla pedidos
+		return $http.get(serviceBase + 'pedidosPorPedido?pedido=' + pedido);
+	};
+
+     obj.getMunicipiosAsignacionesEdatel = function (conceptoSelected, fuente) {
+		//return $http.get(serviceBase + 'opcionesGestionAsignaciones?opciones=' + opciones);
+        var opciones={concepto: conceptoSelected, fuente: fuente};
+		return $http.post(serviceBase + 'municipiosAsignacionesEdatel', opciones);
+	};
+
+    //******************************************************************************************************
+
 	obj.demePedidoReconfiguracion = function (user, concepto, pedido_actual, plaza) { //deme pedido reconfiguracion
 
 		return $http.get(serviceBase + 'demePedidoReconfiguracion?userID=' + user + '&concepto=' + concepto + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza);
