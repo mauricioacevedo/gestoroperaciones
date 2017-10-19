@@ -9472,7 +9472,7 @@ private function demePedidoEdatel(){
             "	where 1=1 ".
             " 	$filtros ";
 
-        echo $query;
+        //echo $query;
 
         $rst = $this->mysqli->query($query);
 
