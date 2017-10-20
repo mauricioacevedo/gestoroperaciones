@@ -9021,10 +9021,11 @@ private function demePedidoEdatel(){
                     " ORDER BY ID ASC ";
 
                 //echo $sqlllamadas;
+                echo $plaza2;
 
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
-                 echo $plaza2;
+
 
                 if($rra->num_rows > 0){//recorro los registros de la consulta para
                     while($row = $rra->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
