@@ -6943,12 +6943,10 @@ $scope.actualizarLightKPIS();
 });
 
 
+
 //*************************Michael Controlador Edatel********************************
 app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, $window, services) {
 
-	//var userID = ($routeParams.userID) ? parseInt($routeParams.userID) : 0;
-	//
-	//alert('entro al controlador');
 	var userID = $cookieStore.get('logedUser').login;
 	document.getElementById('logout').className = "btn btn-md btn-danger";
 	var divi = document.getElementById("logoutdiv");
@@ -7042,45 +7040,6 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 	};
 
 
-
-	$scope.AbreTips = function (id) {
-
-		$scope.nuevoBuscarTip = "";
-
-		document.getElementById("mostrarTIP").style.visibility = "hidden";
-		document.getElementById("mostrarTIP").style.display = "none";
-
-		services.getListadoTips().then(function (data) {
-			$scope.listadoTips = data.data[0];
-			return data.data;
-		});
-
-		var link = "#/tips/visualizacionTip/" + id;
-        $scope.wAbreTipId = $window.open($window.location.pathname + link, 'Visualizar Tip', 'toolbar=yes, scrollbars=yes, resizable=yes, top=150, left=300, width=900, height=650');
-
-	};
-
-	$scope.pedunicos = function () {
-		var pedunic = services.getPedidosUser(userID).then(function (data) {
-			$scope.pedidosUnicos = data.data[1];
-			return data.data;
-		});
-	};
-
-
-	$scope.AbreVecinos = function (pagina) {
-
-		//$scope.nuevoBuscarTip="";
-
-		//document.getElementById("mostrarTIP").style.visibility = "hidden";
-		//document.getElementById("mostrarTIP").style.display = "none";
-
-		var link = "#/vecinos/" + pagina;
-        $scope.wAbreVecinos = $window.open($window.location.pathname + link, 'Visualizar Tip', 'toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=70, right=100, width=1200, height=600');
-		//window.open(window.location.pathname + link, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=70, right=100, width=1200, height=600");
-
-	};
-
 	//Funcion para copyclipboard
 	$scope.executeCopy = function executeCopy(text) {
 		var input = document.createElement('textarea');
@@ -7092,44 +7051,6 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 		input.remove();
 	};
 
-	$scope.isAuthorized = function (concept) {
-
-		var CargoID = parseInt($rootScope.logedUser.CARGO_ID);
-
-		if (CargoID > 5 ) {
-
-			if (concept == "PEXPQ") return false;
-			if (concept == "PSERV") return false;
-			if (concept == "ORDEN") return false;
-			if (concept == "PXSLN") return false;
-			if (concept == "PFACT") return false;
-			if (concept == "CUMPL") return false;
-			if (concept == "PORDE") return false;
-			if (concept == "FACTU") return false;
-
-		}
-
-
-
-		/* codigo viejo
-
-		if(concept=="PEXPQ") return false;
-		if(concept=="PSERV") return false;
-		if(concept=="ORDEN" && CargoID > 5) return false;
-		if(concept=="PXSLN") return false;
-        if(concept=="PFACT") return false;
-        if(concept=="CUMPL") return false;
-        //alert("concepto:"+concept+ " cargo: "+CargoID );
-        if(concept=="PORDE" && CargoID > 5) return false; */
-
-		//para controlar campos cuando el pedido esta ocupado por alguien mas....
-		if ($scope.busy != "") {
-            //alert($scope.busy);
-            return false;
-
-        }
-		return true;
-	};
 
 	$rootScope.logout = function () {
 		services.logout($rootScope.logedUser.login);
@@ -14413,7 +14334,9 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		};
 
 		$scope.listarOpcionesAsginacion(opciones);
-	};//-------------------------------------------------------------------------------------------------------
+	};
+
+    //-------------------------------------------------------------------------------------------------------
 
     $scope.listarOpcionesAsginacion = function (opciones) {
 
