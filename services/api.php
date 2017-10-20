@@ -9021,7 +9021,7 @@ private function demePedidoEdatel(){
                     " ORDER BY ID ASC ";
 
                 //echo $sqlllamadas;
-                echo $plaza2;
+                echo var_dump($plaza2;)
 
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
