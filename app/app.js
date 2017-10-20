@@ -6944,7 +6944,7 @@ $scope.actualizarLightKPIS();
 
 
 //*************************Michael Controlador Edatel********************************
-app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, $window, services) {
+app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $timeout, $window, services) {
 
 	//var userID = ($routeParams.userID) ? parseInt($routeParams.userID) : 0;
 	//
