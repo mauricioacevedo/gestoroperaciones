@@ -5516,6 +5516,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
 	   };
 
+        $scope.getTransaccionKPIS();
         $location.path('/kpis/');
 
 	};
