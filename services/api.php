@@ -9061,25 +9061,6 @@ private function demePedidoEdatel(){
                 $ids=$ids.$sep.$row['ID'];
                 $sep=",";
             }
-        }
-
-
-
-
-        if($r->num_rows > 0){
-            $result = array();
-            $ids="";
-            $sep="";
-            while($row = $r->fetch_assoc()){
-                $observaciones = $this->quitar_tildes(utf8_encode($row['OBSERVACIONES']));
-                $direccion = $this->quitar_tildes(utf8_encode($row['DIRECCION_SERVICIO']));
-                $row['OBSERVACIONES'] = $observaciones;
-                $row['DIRECCION_SERVICIO'] = $direccion;
-                $row['PROGRAMACION']= $fechaprogramacion ;
-                $result[] = $row;
-                $ids=$ids.$sep.$row['ID'];
-                $sep=",";
-            }
 
             //$sqlupdate="update informe_petec_pendientesm set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
             //$x = $this->mysqli->query($sqlupdate);
