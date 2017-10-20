@@ -9017,19 +9017,20 @@ private function demePedidoEdatel(){
                     " AND ASESOR='ND' ".
                     //" AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDIENTE' ".
-                    $plaza2.
+                    //$plaza2.
                     " ORDER BY ID ASC ";
 
                 //echo $sqlllamadas;
 
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
+                 echo $sqlllamadas;
+
                 if($rra->num_rows > 0){//recorro los registros de la consulta para
                     while($row = $rra->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
                         $result[] = $row;
                         $mypedido=$row['PEDIDO_ID'];
                         $mypedidoresult=$rta;
-                        $ATENCION_INMEDIATA="1";
                         break;
                     }
                 }
