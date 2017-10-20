@@ -7589,21 +7589,6 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
         return $scope.error;
     };
 
-    $scope.listarMunicipiosAsignacionesSiebel = function (concepto, fuente) {
-        services.getMunicipiosAsignacionesSiebel(concepto, fuente).then(
-            function (data) {
-                $scope.listadoMunicipios=data.data;
-                return data.data;
-
-            },
-            function errorCallback(res) {
-                //console.log(status);
-                $rootScope.errorDatos = res.data[0];
-
-            }
-        );
-    };
-
       $scope.listarMunicipiosAsignacionesEdatel = function (concepto, fuente) {
         services.getMunicipiosAsignacionesEdatel(concepto, fuente).then(
             function (data) {
