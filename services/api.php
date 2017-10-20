@@ -9030,8 +9030,8 @@ private function demePedidoEdatel(){
                 if($rra->num_rows > 0){//recorro los registros de la consulta para
                     while($row = $rra->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
                         $result[] = $row;
-                        //$mypedido=$row['ID'];
-                        echo var_dump($mypedido);
+                        $mypedido=$row['ID'];
+                        //echo var_dump($mypedido);
                         $mypedidoresult=$rta;
                         break;
                     }
