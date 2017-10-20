@@ -955,11 +955,11 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
     //***************************************MICHAEL EDATEL LLAMADO A LOS SERVICIOS **********************************************
 
-    /*obj.demePedidoEdatel = function (user, concepto, pedido_actual, plaza, username, prioridad, fuente) { //deme pedido asignacion
+    obj.demePedidoEdatel = function (user, concepto, pedido_actual, plaza, username, prioridad, fuente) { //deme pedido asignacion
 		return $http.get(serviceBase + 'demePedidoEdatel?userID=' + user + '&concepto=' + concepto + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&prioridad=' + prioridad + '&fuente=' + fuente);
 	};
 
-    obj.getPedidosPorPedidoEdatel = function (pedido) { //ingreso de pedido por pedido tabla pedidos
+/*    obj.getPedidosPorPedidoEdatel = function (pedido) { //ingreso de pedido por pedido tabla pedidos
 		return $http.get(serviceBase + 'pedidosPorPedido?pedido=' + pedido);
 	};
 
