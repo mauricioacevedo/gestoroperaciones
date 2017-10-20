@@ -18109,6 +18109,14 @@ app.config(['$routeProvider',
 
         //**********************Michael Edatel************************
 
+        .when('/asignacion/:userID', {
+            title: 'Asignacion',
+            templateUrl: 'partials/edatel-pedidos.html',
+            controller: 'AsignacionesEdatelCtrl',
+			grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
+        })
+
         .when('/edatel-pedidos/', {
             title: 'DemePedidoEdatel',
             templateUrl: 'partials/edatel-pedidos.html',
