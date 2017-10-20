@@ -9013,7 +9013,7 @@ private function demePedidoEdatel(){
 
                 $sqlllamadas="SELECT * ".
                     " FROM  portalbd.pendientes_edatel ".
-                    " WHERE ".
+                    " WHERE TIPO_TRANSACCION = 'GEOREFERENCIA' ".
                     " AND ASESOR='ND' ".
                     //" AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDIENTE' ".
