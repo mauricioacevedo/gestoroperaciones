@@ -9019,7 +9019,8 @@ private function demePedidoEdatel(){
                     " AND STATUS='PENDIENTE' ".
                     $plaza2.
                     " ORDER BY ID ASC ";
-                echo $sqlllamadas;
+
+                //echo $sqlllamadas;
 
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
