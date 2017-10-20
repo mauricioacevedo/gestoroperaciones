@@ -1,7 +1,7 @@
 <?php
 
-//error_reporting(E_ALL);
-//ini_set('display_errors', '1');
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
 
 require_once("Rest.inc.php");
@@ -9035,12 +9035,6 @@ private function demePedidoEdatel(){
         }else{
             $uphold="2";
         }
-
-        //14B2B
-        $llamadaReconfiguracion="0";
-
-        $ATENCION_INMEDIATA="";
-        $mypedido="";
 
         //2016-08-05: MAURICIO
         //SE UTILIZA ESTA VARIABLE PARA PARAMETRIZAR EL STATUS
