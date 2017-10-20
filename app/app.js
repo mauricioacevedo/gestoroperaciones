@@ -6955,7 +6955,7 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 	$scope.pedidos = [];
 	$scope.pedidosUnicos = '';
 	$scope.historico_pedido = [];
-	$rootScope.actualView = "asignaciones";
+	$rootScope.actualView = "edatel-pedidos";
 	$scope.iconcepto = "PETEC";
 	$scope.popup = '';
 	$scope.intervalLightKPIS = '';
@@ -6981,16 +6981,6 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 
 
 	//oculta los tips para que no se visualicen al inicio.
-	document.getElementById("mostrarTIP").style.visibility = "hidden";
-	document.getElementById("mostrarTIP").style.display = "none";
-	$scope.listadoTips = {};
-
-	//trae los tips para visualizarlo
-	services.getListadoTips().then(function (data) {
-		$scope.listadoTips = data.data[0];
-		return data.data;
-	});
-
 	$scope.GenerarOpcionesGestion = function () {
 		var opciones= {
 			fuente: 'FENIX_NAL',
@@ -7020,24 +7010,6 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 	};
 
     $scope.GenerarOpcionesGestion();
-
-	//funcion que muestra los tip cuando se digita su busqueda.
-	$scope.muestraBusquedaTip = function (texto) {
-
-		if (texto.length == 0 || texto == '') {
-			document.getElementById("mostrarTIP").style.visibility = "hidden";
-			document.getElementById("mostrarTIP").style.display = "none";
-
-			services.getListadoTips().then(function (data) {
-				$scope.listadoTips = data.data[0];
-				return data.data;
-			});
-		}
-		if (texto.length >= 3) {
-			document.getElementById("mostrarTIP").style.visibility = "visible";
-			document.getElementById("mostrarTIP").style.display = "inline";
-		}
-	};
 
 
 	//Funcion para copyclipboard
