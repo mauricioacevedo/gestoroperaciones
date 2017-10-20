@@ -9017,11 +9017,11 @@ private function demePedidoEdatel(){
                     " AND ASESOR='ND' ".
                     //" AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDIENTE' ".
-                    $plaza2.
+                    //$plaza2.
                     " ORDER BY ID ASC ";
 
                 //echo $sqlllamadas;
-                echo var_dump($plaza2);
+                //echo var_dump($plaza2);
 
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
