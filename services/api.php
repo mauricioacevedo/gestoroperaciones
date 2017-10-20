@@ -9039,32 +9039,30 @@ private function demePedidoEdatel(){
 
             }
 
-/*
-        $query1="select b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO,b.FECHA_CITA ".
-            ",(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO_ID=a.pedido_id ".
-            " AND a.fecha BETWEEN  '$today 00:00:00' AND  '$today 23:59:59' limit 1) as BEENHERE ".
-            " from informe_petec_pendientesm b ".
-            " where b.STATUS='$STATUS'  ".
-            " and b.ASESOR ='' ".
-            $concepto." ".
-            $plaza.
-            //" and b.CONCEPTO_ID='$concepto' ".
-            //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-            " order by b.$parametroBusqueda ASC";*/
+
+        $query1="select * from pendientes_edatel where ID = '$mypedido' and b.STATUS='PENDIENTE'";
 
 
-       // echo $query1;
+        //"SELECT b.ID,b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.TIPO_ELEMENTO_ID,b.PRODUCTO,b.UEN_CALCULADA,b.ESTRATO,b.MUNICIPIO_ID,b.DIRECCION_SERVICIO,b.PAGINA_SERVICIO,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(b.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,b.FUENTE,b.CONCEPTO_ID,b.FECHA_ESTADO,b.USUARIO_BLOQUEO_FENIX,b.TIPO_TRABAJO,b.CONCEPTO_ANTERIOR,b.FECHA_CITA,b.CANTIDAD_EQU,b.EQUIPOS,b.CONCEPTOS_EQU,b.TIPO_EQUIPOS,b.EXTENSIONES, b.OBSERVACIONES,  b.EJECUTIVO_ID, b.CANAL_ID from informe_petec_pendientesm b where b.PEDIDO_ID = '$mypedido' and b.STATUS='PENDI_PETEC' $concepto ";
 
-/*
-        if($mypedido==''){
-            $SQL_UPDATE="update vistas_pedidos a set a.user='$user-CICLO' where a.user='$user' AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59'";
-            $xS = $this->mysqli->query($SQL_UPDATE);
+        $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
-            $pedds=explode(",", $pedidos_ignorados);
-            if(count($pedds)>0){
-                $mypedido=$pedds[0];
+        if($r->num_rows > 0){
+            $result = array();
+            $ids="";
+            $sep="";
+            while($row = $r->fetch_assoc()){
+                $observaciones = $this->quitar_tildes(utf8_encode($row['OBSERVACIONES']));
+                $direccion = $this->quitar_tildes(utf8_encode($row['DIRECCION_SERVICIO']));
+                $row['OBSERVACIONES'] = $observaciones;
+                $row['DIRECCION_SERVICIO'] = $direccion;
+                $row['PROGRAMACION']= $fechaprogramacion ;
+                $result[] = $row;
+                $ids=$ids.$sep.$row['ID'];
+                $sep=",";
             }
-        }
+
+
 
 
         if($r->num_rows > 0){
@@ -9084,7 +9082,7 @@ private function demePedidoEdatel(){
 
             //$sqlupdate="update informe_petec_pendientesm set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
             //$x = $this->mysqli->query($sqlupdate);
-            $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
+            $INSERTLOG="insert /**/into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
             $x = $this->mysqli->query($INSERTLOG);
 
             // SQL Feed----------------------------------
@@ -9118,7 +9116,7 @@ private function demePedidoEdatel(){
         }else{//i have pretty heavy problems over here...
             //$this->response('SYSTEM PANIC!',200);
             $this->response('No hay registros!',200);
-        }*/
+        }
         unlink($filename);
 
         $this->response('nothing',200);        // If no records "No Content" status
