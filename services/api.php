@@ -9005,189 +9005,21 @@ private function demePedidoEdatel(){
         $username       =   $this->_request['username'];
         $prioridad      =   $this->_request['prioridad'];
 
-
-        $filename = '../tmp/control-threads.txt';
-        if(file_exists($filename)){
-            sleep(1);
-        }else{
-            $file = fopen($filename, 'w') or die("can't create file");
-            fclose($file);
-        }
-
-
-        $user=strtoupper($user);
-        //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
-        $pedido_actual = $this->_request['pedido_actual'];
-        //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
-
-        $sqlupdate="update informe_petec_pendientesm set ASESOR='' where ASESOR='$user'";
-        //echo $sqlupdate;
-        $xxx = $this->mysqli->query($sqlupdate);
-
-        $user=strtoupper($user);
-        $today = date("Y-m-d");
-
-        //1.consulto  lo que tenga fecha cita de mañana
-        $hora=date("G");
-        $uphold="1";
-        if($hora<11){
-            $uphold="1";
-        }else{
-            $uphold="2";
-        }
-
-        //2016-08-05: MAURICIO
-        //SE UTILIZA ESTA VARIABLE PARA PARAMETRIZAR EL STATUS
-
-        $STATUS="PENDI_PETEC";
-
-        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
-
-
-        if($concepto=="PETEC"){
-            if($plaza=="BOG-COBRE"){
-                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') ";
-            }else {
-
-                if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
-
-
-                $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
-                    //Obtener un registro de cualquier plaza menos los de bogota
-
-                }else{
-
-                    $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
-                    //$plaza2=" AND b.MUNICIPIO_ID IN ('$plaza') ";
-                }
-
-                $sqlllamadas=   "SELECT PEDIDO_ID, ".
-                    " SUBPEDIDO_ID, ".
-                    " SOLICITUD_ID, ".
-                    " FECHA_ESTADO, ".
-                    " FECHA_INGRESO, ".
-                    " FECHA_CITA ".
-                    " FROM  informe_petec_pendientesm ".
-                    " WHERE 1=1 ".
-                    " and RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM','MIG','REPARMIG','MIGGPON')  ".
-                    " AND ASESOR='' ".
-                    " AND CONCEPTO_ID = '$concepto' ".
-                    " AND STATUS='PENDI_PETEC' ".
-                    $plaza2.
-                    " ORDER BY RADICADO_TEMPORAL DESC ";
-
-                //echo $sqlllamadas;
-
-                $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
-
-                if($rr->num_rows > 0){//recorro los registros de la consulta para
-                    while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
-                        $result[] = $row;
-                        $mypedido=$row['PEDIDO_ID'];
-                        $mypedidoresult=$rta;
-                        $ATENCION_INMEDIATA="1";
-                        break;
-                    }
-                }
-
-
-                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA','INSTIP','STBOX','EQURED') ";
-
-            }
-        }
-        else if($concepto=="COORP"){
-            $concepto=" and b.CONCEPTO_ID in ('PETEC','15') and (b.TIPO_ELEMENTO_ID IN ('E2MB','P2MB','INSTIP','CNTXIP','SEDECX','PLANT','PLP','PTLAN','MTLAN', 'PMULT','EPCM','PPCM','PBRI','PPRI','TV','TP','BDID','TDID','BDIDE1','TDIDE1','BDODE1','TDODE1','SLL','TC','SLLBRI','TCBRI','SLLE1','TCE1','SLLPRI','TCPRI','SEDEIP','CONECT','ACCESO') )";
-
-
-        }else if($fuente=="SIEBEL"||$fuente=="EDATEL"){
-
-            if($plaza=='TODOS'){
-                $plaza2="";
-            }else{
-                $plaza2=" AND MUNICIPIO_ID='$plaza' ";
-            }
-            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ASGINGACIONES_SIEBEL');
-            $sqlllamadas=   "SELECT PEDIDO_ID, ".
-                " SUBPEDIDO_ID, ".
-                " SOLICITUD_ID, ".
-                " FECHA_ESTADO, ".
-                " FECHA_INGRESO, ".
-                " FECHA_CITA ".
-                " FROM  informe_petec_pendientesm ".
-                " WHERE 1=1 ".
-                //" and (TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
-                //" AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
-                " and RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM','MIG','REPARMIG','MIGGPON','GPON','AAA')  ".
-                " AND ASESOR='' ".
-                " AND CONCEPTO_ID = '$concepto' ".
-                " AND STATUS='PENDI_PETEC' ".
-                $plaza2.
-                " ORDER BY FECHA_INGRESO ASC ";
-            //echo $sqlllamadas;
-
-            $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
-
-            if($rr->num_rows > 0){//recorro los registros de la consulta para
-                while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
-                    $result[] = $row;
-                    $mypedido=$row['PEDIDO_ID'];
-                    $mypedidoresult=$rta;
-                    $ATENCION_INMEDIATA="1";
-                    break;
-                }
-            }
-
-
-            $concepto=" and b.CONCEPTO_ID in ('$concepto')";
-        }else if($concepto=="STBOX"){
-            $concepto=" and b.CONCEPTO_ID in ('PETEC','15') and (b.TIPO_ELEMENTO_ID IN ('STBOX') )";
-
-
-        }else if($concepto=="EQURED"){
-
-            $concepto=" and b.CONCEPTO_ID in ('PETEC') and (b.RADICADO_TEMPORAL = 'EQURED' )";
-
-        }else if($concepto=="14" || $concepto=="99" || $concepto=="O-101"){
-
-            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION');
-            //reviso si hay llamadas que se deben hacer y las entrego de primeras
-            $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA, PROGRAMACION ".
-                " FROM  informe_petec_pendientesm ".
-                " WHERE ".
-                " TIMEDIFF( NOW() , PROGRAMACION ) /3600 >0 ".
-                " AND ASESOR='' ".
-                " AND CONCEPTO_ID = '$concepto' ".
-                " AND STATUS='PENDI_PETEC' ".
-                " ORDER BY  TIMEDIFF( NOW() , PROGRAMACION ) /3600 DESC ";
-
-            $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
-
-            if($rr->num_rows > 0){//recorro los registros de la consulta para
-                while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
-                    $result[] = $row;
-                    $mypedido=$row['PEDIDO_ID'];
-                    $fechaprogramacion = $row['PROGRAMACION'];
-                    $mypedidoresult=$rta;
-                    break;
-                }
-            }
-
             //echo $mypedido;
 
             if($mypedido==""){
                 //2017-02-03 Mauricio: se agrega funcionalidad para buscar por arbol en concepto 14
                 //HAGO LA CONSULTA DE PRIORIDAD POR ARBOL
 
-                $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA ".
-                    " FROM  informe_petec_pendientesm ".
+                $sqlllamadas="SELECT * ".
+                    " FROM  portalbd.pendientes_edatel ".
                     " WHERE ".
-                    " RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM') ".
-                    " AND ASESOR='' ".
-                    " AND CONCEPTO_ID = '$concepto' ".
-                    " AND STATUS='PENDI_PETEC' ".
+                    " AND ASESOR='ND' ".
+                    //" AND CONCEPTO_ID = '$concepto' ".
+                    " AND STATUS='PENDIENTE' ".
                     $plaza2.
-                    " ORDER BY FECHA_ESTADO ASC ";
-                //echo $sqlllamadas;
+                    " ORDER BY ID ASC ";
+                echo $sqlllamadas;
 
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
@@ -9202,44 +9034,7 @@ private function demePedidoEdatel(){
                 }
 
             }
-            //$concepto=" and b.CONCEPTO_ID='$concepto' and b.TIPO_ELEMENTO_ID IN('ACCESP','INSIP','INSHFC','TO','TOIP','STBOX') and b.UEN_CALCULADA ='HG' AND b.PROGRAMACION='' ";
-            $concepto=" and b.CONCEPTO_ID='$concepto' AND b.PROGRAMACION='' ";
-        }else if($concepto=="RENUM"){
-            $concepto=" and b.CONCEPTO_ID='14' ";
-            $STATUS="PENDI_RENUMS";
-        }else if($concepto=="14B2B"){
-            $concepto=" and b.CONCEPTO_ID='$concepto' and ( b.UEN_CALCULADA !='HG' ) ";
-        }else{
-            //$concepto=" and b.CONCEPTO_ID='$concepto' and b.TIPO_ELEMENTO_ID IN('ACCESP','INSIP','INSHFC','TO','TOIP','STBOX','EQURED')";
-            $concepto=" and b.CONCEPTO_ID='$concepto' ";
-        }
 
-        if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
-
-            if($fuente=='SIEBEL'){
-                $plaza="";
-            }else{
-                $plaza=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
-            }
-            //este
-
-        }else{
-            //$plaza=" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
-            $plaza=" AND b.MUNICIPIO_ID IN ('$plaza') ";
-        }
-
-        //$parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
-
-        if($prioridad!=''){
-            $parametroBusqueda=$prioridad;
-        }
-
-
-        //echo "Mi parametro: $parametroBusqueda";
-
-        if($parametroBusqueda=="NUEVOS_PRIMERO"){
-            $parametroBusqueda="RADICADO_TEMPORAL";
-        }
 
         $query1="select b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO,b.FECHA_CITA ".
             ",(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO_ID=a.pedido_id ".
@@ -9256,63 +9051,6 @@ private function demePedidoEdatel(){
 
        // echo $query1;
 
-        if($mypedido==""){
-
-            $rr = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
-
-            $mypedidoresult=array();
-            $pedidos_ignorados="";
-            if($rr->num_rows > 0){//recorro los registros de la consulta para
-                while($row = $rr->fetch_assoc()){
-                    $result[] = $row;
-
-                    $pedidos_ignorados.=$row['PEDIDO_ID'].",";
-
-                    $rta=$this->pedidoOcupadoFenix($row);
-                    //echo $rta;
-                    if($rta=="No rows!!!!"){
-
-                        $mypedido=$row['PEDIDO_ID'];
-                        $mypedidoresult=$rta;
-                        break;
-                    }
-
-                }
-                //2.traigo solo los pedidos mas viejos en la base de datos...
-            } else {
-                $query1="select b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO, b.FECHA_CITA, b.TIPO_ELEMENTO_ID ".
-                    " from informe_petec_pendientesm b ".
-                    " where b.STATUS='$STATUS'  and b.ASESOR ='' ".
-                    "  $concepto ".
-                    $plaza.
-                    //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-                    " order by b.FECHA_INGRESO ASC";
-                //echo $query1;
-                $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
-                $mypedido="";
-                $mypedidoresult=array();
-                if($r->num_rows > 0){//recorro los registros de la consulta para
-                    while($row = $r->fetch_assoc()){
-                        $result[] = $row;
-
-                        $rta=$this->pedidoOcupadoFenix($row);
-                        //var_dump($rta);
-
-                        if($rta=="No rows!!!!"){//me sirve, salgo del ciclo y busco este pedido...
-                            //echo "el pedido es: ".$row['PEDIDO_ID'];
-
-                            $mypedido=$row['PEDIDO_ID'];
-                            $mypedidoresult=$rta;
-                            break;
-                        }
-
-                    }
-
-                }
-
-            }//end if
-
-        }//end mypedido if
 
         if($mypedido==''){
             $SQL_UPDATE="update vistas_pedidos a set a.user='$user-CICLO' where a.user='$user' AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59'";
@@ -9323,69 +9061,7 @@ private function demePedidoEdatel(){
                 $mypedido=$pedds[0];
             }
         }
-        $fecha_visto= date("Y-m-d H:i:s");
-        //de una lo ocupo cucho cucho!!!!
 
-        if($ATENCION_INMEDIATA=="1") $concepto="";
-
-        $sqlupdate="update informe_petec_pendientesm set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO_ID = '$mypedido' and (STATUS='PENDI_PETEC'||STATUS='BUSCADO_PETEC' || STATUS='PENDI_RENUMS')";
-        $x = $this->mysqli->query($sqlupdate);
-
-        $query1="SELECT b.ID, ".
-            " b.ID as PARENTID, ".
-            " b.PEDIDO_ID, ".
-            " b.SUBPEDIDO_ID, ".
-            " b.SOLICITUD_ID, ".
-            " b.TIPO_ELEMENTO_ID, ".
-            " b.PRODUCTO, ".
-            " b.PRODUCTO_ID,	".
-            " b.UEN_CALCULADA, ".
-            " b.ESTRATO, ".
-            "  CASE ".
-            "	 WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.UEN_CALCULADA IN ('HG','E3') AND b.ESTRATO='0' THEN TRUE ".
-            "    WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.UEN_CALCULADA IN ('HG','E3') AND b.ESTRATO='' THEN TRUE ".
-            "    WHEN b.DESC_TIPO_TRABAJO='NUEVO-Identificador' AND b.TIPO_ELEMENTO_ID!='EQURED' AND b.UEN_CALCULADA IN ('HG','E3') AND b.PAGINA_SERVICIO='' THEN TRUE ".
-            "    ELSE FALSE ".
-            "    END AS ESTRATOMALO, ".
-            " b.MUNICIPIO_ID, ".
-            " b.DEPARTAMENTO, ".
-            " b.DIRECCION_SERVICIO, ".
-            " b.PAGINA_SERVICIO, ".
-            " b.TECNOLOGIA_ID,	".
-            " CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(b.FECHA_INGRESO)) AS CHAR(255)) as TIEMPO_COLA,	".
-            " b.FUENTE, ".
-            " b.GRUPO, ".
-            " b.ACTIVIDAD, ".
-            " b.CONCEPTO_ID, ".
-            " b.FECHA_ESTADO, ".
-            " b.FECHA_INGRESO, ".
-            " b.USUARIO_BLOQUEO_FENIX, ".
-            " b.TIPO_TRABAJO, ".
-            " b.DESC_TIPO_TRABAJO,	".
-            " b.CONCEPTO_ANTERIOR, ".
-            " b.FECHA_CITA, ".
-            " b.CANTIDAD_EQU, ".
-            " b.EQUIPOS, ".
-            " b.CONCEPTOS_EQU, ".
-            " b.TIPO_EQUIPOS,	".
-            " b.EXTENSIONES,  ".
-            " b.OBSERVACIONES,  ".
-            " b.EJECUTIVO_ID, ".
-            " b.CANAL_ID, ".
-            " b.VEL_IDEN, ".
-            " b.VEL_SOLI, ".
-            " b.IDENTIFICADOR_ID, ".
-            " b.CELULAR_AVISAR, ".
-            " b.TELEFONO_AVISAR,	".
-            " b.PROGRAMACION, ".
-            " case when b.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ALTA' else 'NORMAL' end as PRIORIDAD, 	".
-            " b.APROVISIONADOR, ".
-            " b.PEDIDO_CRM ".
-            " from informe_petec_pendientesm b 	".
-            " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto ";
-
-
-        $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
             $result = array();
