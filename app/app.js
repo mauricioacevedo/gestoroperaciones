@@ -5471,10 +5471,10 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 			return;
 		}
 
-        if (transaccion.ITEMSINCONSISTENTES == "") {
+       /* if (transaccion.ITEMSINCONSISTENTES == "") {
 			alert("Items Inconsistentes sin informacion.");
 			return;
-		}
+		}*/
 
         if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
 			alert("Items Procesados sin informacion.");
