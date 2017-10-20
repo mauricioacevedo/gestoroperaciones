@@ -65,23 +65,31 @@
             <div class="row"><!--Row Concepto Plaza - Buscador Tips -->
 
                 <div class="col-lg-5 col-xs-5 form-inline">
-                    <!--<label for="conceptos">Concepto:</label>
+                    <label for="conceptos">TipoTransaccion:</label>
                     <select id="conceptos" ng-model="iconcepto"
                             class="form-control" style="width: 100px"
 
-                        ng-change="GenerarOpcionesGestion(); checkMunicipiosEdatel()">
-                        <option value='PENDIENTE'>PENDIENTE</option>
-                        <option value='15'>15</option>
-                        <option value='19'>19</option>
-                        <option value='PEOPP'>PEOPP</option>
-                        <option value='PUMED'>PUMED</option>
-                        <option disabled>───────</option>
+                        ng-change="checkMunicipiosEdatel()">
+                        <option value='GEOREFERENCIA'>GEOREFERENCIA</option>
+                        <option value='DSLAN'>DSLAN</option>
+                        <option value='ORDEN_VOZ'>ORDEN_VOZ</option>
+                        <option value='ORD_VERIF_PAR_IPTV'>VERIF_PAR_IPTV</option>
+                        <option value='RECONEXIONES_ADSL'>RECONEXIONES_ADSL</option>
+                        <option value='ADICION_STB'>ADICION_STB</option>
+                        <option value='REPORTE_ACTI_BA'>REPORTE_ACTI_BA</option>
+                        <option value='REPORTE_RETIROS'>REPORTE_RETIROS</option>
+                        <option value='REPORTE_VALID_TV'>REPORTE_VALID_TV</option>
+                        <option value='RETIROS'>RETIROS</option>
+                        <option value='SUSPENCIONES'>SUSPENCIONES</option>
+                        <option value='SUSPENSIONES_VOZ'>SUSPENSIONES_VOZ</option>
+                        <option value='TRASLADO_GPONE'>TRANSLADOS-GPONE</option>
+                        <!--<option disabled>───────</option>
                         <option value='COORP'>COORP</option>
                         <option disabled>───────</option>
                         <option value='EQURED'>EQURED</option>
-                        <option value='STBOX'>STBOX</option>
+                        <option value='STBOX'>STBOX</option>-->
 
-                    </select>-->
+                    </select>
 
                     <label for="Plaza">Plaza:</label>
                     <select id="Plaza" class="form-control"
@@ -92,22 +100,20 @@
                         <option value="" disabled>--Seleccione Municipio--</option>
                     </select>
 
-                         <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-default" title="Click para copiar"
-                                data-toggle="tooltip" data-placement="top" ng-click="executeCopy(pedidoinfo);">
-                            {{pedidoinfo}}
-                        </button>
-                        <button id="iniciar" type="button" class="btn-group btn btn-sm btn-success"
-                                ng-click="start(pedido);">DemePedido
-                        </button>
 
-                    </div>
 
                 </div>
 
                 <div class="col-lg-3 col-xs-3">
-
-
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-default" title="Click para copiar"
+                        data-toggle="tooltip" data-placement="top" ng-click="executeCopy(pedidoinfo);">
+                        {{pedidoinfo}}
+                        </button>
+                        <button id="iniciar" type="button" class="btn-group btn btn-sm btn-success"
+                                ng-click="start(pedido);">DemePedido
+                        </button>
+                    </div>
 
                 </div>
 
