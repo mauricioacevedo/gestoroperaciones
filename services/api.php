@@ -9061,6 +9061,7 @@ private function demePedidoEdatel(){
                 $ids=$ids.$sep.$row['ID'];
                 $sep=",";
             }
+        }
 
 
 
@@ -9121,6 +9122,7 @@ private function demePedidoEdatel(){
 
         $this->response('nothing',200);        // If no records "No Content" status
     }
+
 
     private function municipiosAsignacionesEdatel(){
 
