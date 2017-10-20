@@ -9030,7 +9030,7 @@ private function demePedidoEdatel(){
                 if($rra->num_rows > 0){//recorro los registros de la consulta para
                     while($row = $rra->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
                         $result[] = $row;
-                        $mypedido=$row['ID'];
+                        //$mypedido=$row['ID'];
                         echo var_dump($mypedido);
                         $mypedidoresult=$rta;
                         break;
@@ -9055,7 +9055,7 @@ private function demePedidoEdatel(){
 
        // echo $query1;
 
-
+/*
         if($mypedido==''){
             $SQL_UPDATE="update vistas_pedidos a set a.user='$user-CICLO' where a.user='$user' AND a.fecha BETWEEN '$today 00:00:00' AND '$today 23:59:59'";
             $xS = $this->mysqli->query($SQL_UPDATE);
@@ -9118,7 +9118,7 @@ private function demePedidoEdatel(){
         }else{//i have pretty heavy problems over here...
             //$this->response('SYSTEM PANIC!',200);
             $this->response('No hay registros!',200);
-        }
+        }*/
         unlink($filename);
 
         $this->response('nothing',200);        // If no records "No Content" status
