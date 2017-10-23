@@ -5238,6 +5238,7 @@ class API extends REST {
 
     }
 
+
 //--------------------fin grafica con pendientes informe_petec_pendientesm---------asignaciones--------------
 
 //----------------------grafica pendientes informe_activacion_pendientesm -------activacion------------
@@ -9005,39 +9006,37 @@ private function demePedidoEdatel(){
         $username       =   $this->_request['username'];
         $prioridad      =   $this->_request['prioridad'];
 
-            //echo $mypedido;
-
-            if($mypedido==""){
-                //2017-02-03 Mauricio: se agrega funcionalidad para buscar por arbol en concepto 14
-                //HAGO LA CONSULTA DE PRIORIDAD POR ARBOL
-
-                $sqlllamadas="SELECT * ".
-                    " FROM  portalbd.pendientes_edatel ".
-                    " WHERE TIPO_TRANSACCION = 'GEOREFERENCIA' ".
-                    " AND ASESOR='ND' ".
-                    //" AND CONCEPTO_ID = '$concepto' ".
-                    " AND STATUS='PENDIENTE' ".
-                    //$plaza2.
-                    " ORDER BY ID ASC ";
-
-                //echo $sqlllamadas;
-                //echo var_dump($plaza2);
-
-                $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
+        echo "concepto: $concepto, plaza: $plaza\n\n";
 
 
 
-                if($rra->num_rows > 0){//recorro los registros de la consulta para
-                    while($row = $rra->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
-                        $result[] = $row;
-                        $mypedido=$row['ID'];
-                        //echo var_dump($mypedido);
-                        $mypedidoresult=$rta;
-                        break;
-                    }
-                }
+        $sqlllamadas="SELECT * ".
+            " FROM  portalbd.pendientes_edatel ".
+            " WHERE TIPO_TRANSACCION = 'GEOREFERENCIA' ".
+            " AND ASESOR='ND' ".
+            //" AND CONCEPTO_ID = '$concepto' ".
+            " AND STATUS='PENDIENTE' ".
+            //$plaza2.
+            " ORDER BY ID ASC ";
 
+        //echo $sqlllamadas;
+        //echo var_dump($plaza2);
+
+        $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
+
+
+
+        if($rra->num_rows > 0){//recorro los registros de la consulta para
+            while($row = $rra->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
+                $result[] = $row;
+                $mypedido=$row['ID'];
+                //echo var_dump($mypedido);
+                $mypedidoresult=$rta;
+                break;
             }
+        }
+
+
 
 
         $query1="select * from pendientes_edatel where ID = '193' and STATUS='PENDIENTE'";
