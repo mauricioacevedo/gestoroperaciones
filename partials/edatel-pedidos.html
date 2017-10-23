@@ -227,7 +227,7 @@
                                 <th>Información</th>
                                 <th>Tiempo</th>
                                 <th>Status</th>
-                                <th>Opciónes</th>
+
                                 <!--<th>Info Equipos</th>-->
                                 <!--th>Seguimiento</th-->
                                 <!--<th>Estado</th>-->
@@ -249,49 +249,10 @@
                                     <td><font color='red'>{{service.TIEMPO_COLA}}</font></td>
                                     <td><font color='red'>{{service.STATUS}}</font></td>
                                     <td><font color='red'>{{service.CONCEPTO_ID}}</font></td>
-<!--
+
+                                    <thead>
+                                        <th>Opciónes</th>
                                     <td>
-                                        <div ng-show="service.TIPO_ELEMENTO_ID=='INSHFC'||service.TIPO_ELEMENTO_ID=='INSTA' || service.TIPO_ELEMENTO_ID=='INSIP'">
-                                            <b>Número de Equipos: </b><font
-                                                color='red'>{{service.CANTIDAD_EQU}}</font><br>
-                                            <b>Equipos: </b><font color='red'>{{service.EQUIPOS}}</font><br>
-                                            <b>Conceptos Equipos: </b><font color='red'>{{service.CONCEPTOS_EQU}}</font><br>
-                                            <b>Tipo Equipos: </b><font color='red'>{{service.TIPO_EQUIPOS}}</font><br>
-                                            <b>Extensiones: </b><font color='red'>{{service.EXTENSIONES}}</font><br>
-                                            <b>
-                                                <button type="button" class="btn btn-info btn-xs" onclick="BuscaNodo()">
-                                                    Verificar Nodo
-                                                </button>
-
-                                        </div>
-                                    </td>
--->
-
-                                    <td>
-
-                                        <!--select ng-show="isAuthorized(service.CONCEPTO_ID);" class= "form-control" ng-model="service.estado">
-                                                  <option value='PORDE'>PORDE</option>
-                                                  <option value='PENDIENTE'>PENDIENTE</option>
-                                                  <option value='ANULADO'>ANULADO</option>
-                                                  <option value='MALO'>MALO</option>
-                                          </select-->
-                                <!--        <select
-                                                class="form-control btn-xs"
-                                                name="estado"
-                                                ng-model="service.estado"
-                                                ng-show="isAuthorized(service.CONCEPTO_ID)"
-                                        >
-                                            <option value="" disabled>--Seleccione--</option>
-                                            <option
-                                                    ng-repeat="d in listaOpcionesGestion | unique:'ESTADO_ID'"
-
-                                                    value="{{d.ESTADO_ID}}">
-                                                {{d.ESTADO_ID}}
-                                            </option>
-                                        </select>
-                                        <br>-->
-
-
                                         <select ng-model="service.motivo_malo" class="form-control" style="" name="obs">
                                             <option value='' disabled>---SELECCIONE---</option>
                                             <option value='CERRADO'>CERRADO</option>
@@ -332,6 +293,7 @@
 
                                         </select-->
                                     </td>
+                                        </thead>
 
                                     <td>
                                         <button ng-show="isAuthorized(service.CONCEPTO_ID);" id="mybutt{{$index}}"
