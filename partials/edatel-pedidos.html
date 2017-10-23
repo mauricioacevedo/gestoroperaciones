@@ -226,8 +226,8 @@
                                 <th>Solicitud</th>
                                 <th>Información</th>
                                 <th>Tiempo</th>
-                                <th>Concepto</th>
-                                <th>Info Equipos</th>
+                                <th>Status</th>
+                                <!--<th>Info Equipos</th>-->
                                 <!--th>Seguimiento</th-->
                                 <th>Estado</th>
                                 <th ng-show="service.estado=='MALO'">Motivo</th>
@@ -246,6 +246,7 @@
 
                                     <!--td>{{service.PRODUCTO}}</td-->
                                     <td><font color='red'>{{service.TIEMPO_COLA}}</font></td>
+                                    <td><font color='red'>{{service.STATUS}}</font></td>
                                     <td><font color='red'>{{service.CONCEPTO_ID}}</font></td>
                                     <td>
                                         <div ng-show="service.TIPO_ELEMENTO_ID=='INSHFC'||service.TIPO_ELEMENTO_ID=='INSTA' || service.TIPO_ELEMENTO_ID=='INSIP'">
