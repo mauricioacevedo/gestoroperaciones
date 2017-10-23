@@ -2565,6 +2565,9 @@ class API extends REST {
 
         $today = date("Y-m-d H:i:s");
         $query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
+
+        echo var_dump($query);
+
         if(!empty($pedido)){
 
             //verifico que si el pedido existe en la tabla de bloqueados para no dejar guardar
