@@ -2499,7 +2499,7 @@ class API extends REST {
         $pedido = json_decode(file_get_contents("php://input"),true);
         //2015-09-28: se retira seguimiento....
         //$column_names = array('pedido', 'fuente', 'actividad','estado','motivo', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','caracteristica','motivo_malo');
-        $column_names = array(
+   /*     $column_names = array(
         'pedido'
         ,'fuente'
         ,'actividad'
@@ -2522,7 +2522,7 @@ class API extends REST {
         $keys = array_keys($pedido);
         $columns = '';
         $values = '';
-        $fecha_estado='';
+        $fecha_estado='';*/
 
         $SOLICITUD=$pedido['pedido']['SOLICITUD'];
         $COD_LOCALIDAD=$pedido['pedido']['COD_LOCALIDAD'];
@@ -2532,7 +2532,7 @@ class API extends REST {
         $FECHA_CARGA=$pedido['pedido']['FECHA_CARGA'];
         $Duracion=pedido['pedido']['duracion'];
 
-        echo var_dump($SOLICITUD);
+        //echo var_dump($SOLICITUD);
 
         //$fecha_estado=$pedido['pedido']['FECHA_ESTADO'];
         //$iddd=$pedido['pedido']['ID'];
