@@ -7374,8 +7374,11 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
              //console.log($scope.SOLICITUD);
 
 
-		$scope.pedido.ESTADO_ID = $scope.pedido.estado;
-		$scope.pedido.OBSERVACIONES_PROCESO = $scope.pedido.motivo_malo;
+        $scope.pedido.SOLICITUD = $scope.pedido.SOLICITUD;
+		$scope.pedido.FECHA_CARGA = $scope.pedido.FECHA_CARGA;
+
+        console.log($scope.pedido.SOLICITUD);
+
 		$scope.pedido.user = $rootScope.logedUser.login;
 		$scope.pedido.username = $rootScope.logedUser.name;
 		$scope.pedido.duracion = new Date().getTime() - $scope.timeInit;
