@@ -2523,19 +2523,26 @@ class API extends REST {
         $columns = '';
         $values = '';
         $fecha_estado='';
-        $fecha_estado=$pedido['pedido']['FECHA_ESTADO'];
-        $iddd=$pedido['pedido']['ID'];
 
-        $estadum=$pedido['pedido']['estado'];
-        $estadoid=$pedido['pedido']['estado'];
+        $SOLICITUD=$pedido['pedido']['SOLICITUD'];
+        $COD_LOCALIDAD=$pedido['pedido']['COD_LOCALIDAD'];
+        $LOCALIDAD=$pedido['pedido']['LOCALIDAD'];
+        $GEOREFERENCIA=$pedido['pedido']['GEOREFERENCIA'];
+        $REDSUGERIDA=$pedido['pedido']['REDSUGERIDA'];
+        $FECHA_CARGA=$pedido['pedido']['FECHA_CARGA'];
+
+
+        //$fecha_estado=$pedido['pedido']['FECHA_ESTADO'];
+        //$iddd=$pedido['pedido']['ID'];
+
         $useri=$pedido['pedido']['user'];
         $username=$pedido['pedido']['username'];
 
         $fuente=$pedido['pedido']['fuente'];
 
-        $PEDIDO_IDi=$pedido['pedido']['PEDIDO_ID'];
-        $SUBPEDIDO_IDi=$pedido['pedido']['SUBPEDIDO_ID'];
-        $SOLICITUD_IDi=$pedido['pedido']['SOLICITUD_ID'];
+        //$PEDIDO_IDi=$pedido['pedido']['PEDIDO_ID'];
+        //$SUBPEDIDO_IDi=$pedido['pedido']['SUBPEDIDO_ID'];
+        //$SOLICITUD_IDi=$pedido['pedido']['SOLICITUD_ID'];
 
         $CONCEPT=$pedido['pedido']['CONCEPTO_ID'];
         $concepto_anterior=$pedido['pedido']['CONCEPTO_ANTERIOR'];
