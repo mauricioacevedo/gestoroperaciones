@@ -6657,6 +6657,7 @@ $(document).click(  function (e) {
 
 
         $scope.savePedido = function(index) {
+                console.log('Ingreso2');
                 var loader = document.getElementById("class"+index);
                 loader.className='glyphicon glyphicon-refresh fa-spin';
 
