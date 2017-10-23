@@ -7368,7 +7368,6 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 		//if($scope.pedido.estado===undefined||$scope.pedido.accion===undefined){
 		if ($scope.pedido.SOLICITUD === undefined) {
 
-
 			alert('Por favor diligenciar todos los campos.');
 			return;
 		}
@@ -7446,7 +7445,7 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 					//console.log($scope.pedidos);
 					$scope.pedidos = $scope.pedidos.concat(angular.copy($scope.pedido));
 
-					$scope.pedunicos();
+					//$scope.pedunicos();
 
 					
 					$scope.pedido = [];
