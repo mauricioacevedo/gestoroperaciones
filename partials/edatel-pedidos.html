@@ -227,11 +227,6 @@
                                 <th>Información</th>
                                 <th>Tiempo</th>
                                 <th>Status</th>
-
-                                <!--<th>Info Equipos</th>-->
-                                <!--th>Seguimiento</th-->
-                                <!--<th>Estado</th>-->
-                                <!--<th ng-show="service.estado=='MALO'">Motivo</th>-->
                                 </thead>
 
                                 <tr ng-repeat="service in peds track by $index">
@@ -262,7 +257,7 @@
                                             Guardar
                                         </button>
 
-                                    </td>
+                                     </td>
 
                                     <td>
                                         <button ng-show="isAuthorized(service.CONCEPTO_ID);" id="mybutt{{$index}}"
