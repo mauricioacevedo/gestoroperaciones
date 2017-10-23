@@ -2497,32 +2497,6 @@ class API extends REST {
         $grupoGalleta   =   $galleta['GRUPO'];
 
         $pedido = json_decode(file_get_contents("php://input"),true);
-        //2015-09-28: se retira seguimiento....
-        //$column_names = array('pedido', 'fuente', 'actividad','estado','motivo', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','caracteristica','motivo_malo');
-   /*     $column_names = array(
-        'pedido'
-        ,'fuente'
-        ,'actividad'
-        ,'ESTADO_ID'
-        ,'OBSERVACIONES_PROCESO'
-        ,'estado'
-        ,'user'
-        ,'duracion'
-        ,'fecha_inicio'
-        ,'fecha_fin'
-        ,'PEDIDO_ID'
-        ,'SUBPEDIDO_ID'
-        ,'SOLICITUD_ID'
-        ,'MUNICIPIO_ID'
-        ,'CONCEPTO_ANTERIOR'
-        ,'motivo_malo'
-        ,'DEPARTAMENTO'
-        ,'TIPO_TRABAJO'
-        ,'TECNOLOGIA_ID');
-        $keys = array_keys($pedido);
-        $columns = '';
-        $values = '';
-        $fecha_estado='';*/
 
         $SOLICITUD=$pedido['pedido']['SOLICITUD'];
         $COD_LOCALIDAD=$pedido['pedido']['COD_LOCALIDAD'];
@@ -2531,35 +2505,12 @@ class API extends REST {
         $REDSUGERIDA=$pedido['pedido']['REDSUGERIDA'];
         $FECHA_CARGA=$pedido['pedido']['FECHA_CARGA'];
         $Duracion=pedido['pedido']['duracion'];
-
-        //echo var_dump($SOLICITUD);
-
-        //$fecha_estado=$pedido['pedido']['FECHA_ESTADO'];
-        //$iddd=$pedido['pedido']['ID'];
-
         $useri=$pedido['pedido']['user'];
         $username=$pedido['pedido']['username'];
+        //echo var_dump($SOLICITUD);
 
-        //$fuente=$pedido['pedido']['fuente'];
-
-        $CONCEPT=$pedido['pedido']['CONCEPTO_ID'];
-        $concepto_anterior=$pedido['pedido']['CONCEPTO_ANTERIOR'];
         //echo "estado: $estado";
         $sourcee=$pedido['pedido']['source'];
-
-     /*   if($sourcee==""){
-            $sourcee="AUTO";
-        }
-
-        foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
-            if(!in_array($desired_key, $keys)) {
-                $$desired_key = '';
-            }else{
-                $$desired_key = $pedido[$desired_key];
-            }
-            $columns = $columns.$desired_key.',';
-            $values = $values."'".$pedido[$desired_key]."',";
-        }*/
 
         $today = date("Y-m-d H:i:s");
         $query = "INSERT INTO pedidos (pedido,municipio_id, ".
@@ -2573,11 +2524,11 @@ class API extends REST {
 
             $this->response(json_encode(array("msg"=>"$concepto_final","data" => $today,"con_fenix"=> $concepto_fen)),200);
 
-        //else{
+        else{
 
-            //$this->response('',204);        //"No Content" status
+        $this->response('',204);        //"No Content" status
             //$this->response("$query",200);        //"No Content" status
-        //}
+        }
 
     }
 
