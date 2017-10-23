@@ -2564,7 +2564,7 @@ class API extends REST {
         }
 
         $today = date("Y-m-d H:i:s");
-        $query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
+        $query = "INSERT INTO pedidos(".trim($columns,',').") VALUES(".trim($values,',').")";
 
         echo var_dump($query);
 
