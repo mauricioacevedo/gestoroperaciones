@@ -7360,11 +7360,12 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 
 		//if($scope.pedido.estado===undefined||$scope.pedido.accion===undefined){
 		if ($scope.pedido.SOLICITUD === undefined) {
+
+            console.log($scope.SOLICITUD);
 			alert('Por favor diligenciar todos los campos.');
 			return;
 		}
 
-		console.log($scope.SOLICITUD);
 
 
 		$scope.pedido.ESTADO_ID = $scope.pedido.estado;
