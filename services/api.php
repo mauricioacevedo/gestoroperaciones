@@ -2482,6 +2482,7 @@ class API extends REST {
     }
 
     private function insertPedidoEdatel(){
+
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
@@ -2515,7 +2516,7 @@ class API extends REST {
         $today = date("Y-m-d H:i:s");
         $query = "INSERT INTO pedidos (pedido,municipio_id, ".
             " DEPARTAMENTO,fuente,ACCION,FECHA_INICIO,user,duracion) ".
-            " values ".
+            " values ( ".
             " '$SOLICITUD','$COD_LOCALIDAD','$LOCALIDAD', ".
             " '$GEOREFERENCIA','$REDSUGERIDA','$FECHA_CARGA','$useri','$Duracion') ";
 
