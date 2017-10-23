@@ -236,7 +236,7 @@
                                 </thead>
 
                                 <tr ng-repeat="service in peds track by $index">
-                                    <td>{{service.PEDIDO_ID}}</td>
+                                    <td>{{service.SOLICITUD}}</td>
                                     <td>{{service.SUBPEDIDO_ID}}-{{service.SOLICITUD_ID}}</td>
                                     <td>
                                         <div class="row">
@@ -261,8 +261,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <b>Fecha Cita:</b> {{service.FECHA_CITA}}<br>
-                                        <b>Tipo Trabajo:</b> {{service.TIPO_TRABAJO}}<br>
+                                        <b>Fecha Carga:</b> {{service.FECHA_CARGA}}<br>
+                                        <b>Tipo Trabajo:</b> {{service.DIRCOMPLETA}}<br>
                                         <b>Desc Trabajo:</b> {{service.DESC_TIPO_TRABAJO}}<br>
                                         <div ng-show="service.TIPO_ELEMENTO_ID=='ACCESP'">
                                             <b>Vel. Actual:</b> <span
