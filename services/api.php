@@ -2531,6 +2531,7 @@ class API extends REST {
         $REDSUGERIDA=$pedido['pedido']['REDSUGERIDA'];
         $FECHA_CARGA=$pedido['pedido']['FECHA_CARGA'];
 
+        echo var_dump($SOLICITUD);
 
         //$fecha_estado=$pedido['pedido']['FECHA_ESTADO'];
         //$iddd=$pedido['pedido']['ID'];
