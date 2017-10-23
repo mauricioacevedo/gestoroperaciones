@@ -6657,7 +6657,7 @@ $(document).click(  function (e) {
 
 
         $scope.savePedido = function(index) {
-
+                conle.log('Ingreso');
                 var loader = document.getElementById("class"+index);
                 loader.className='glyphicon glyphicon-refresh fa-spin';
 
@@ -7346,7 +7346,7 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 	$scope.savePedido = function (index) {
         //console.log(index);
 
-        conle.log('Ingreso');
+
         var loader = document.getElementById("class" + index);
 
 		loader.className = 'glyphicon glyphicon-refresh fa-spin';
