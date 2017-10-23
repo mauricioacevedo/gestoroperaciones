@@ -2571,9 +2571,10 @@ class API extends REST {
         //echo var_dump($query);
 
 
-        $this->response(json_encode(array("msg"=>"$concepto_final","data" => $today,"con_fenix"=> $concepto_fen)),200);
+
 
         else{
+            $this->response(json_encode(array("msg"=>"$concepto_final","data" => $today,"con_fenix"=> $concepto_fen)),200);
             $this->response('',204);        //"No Content" status
             //$this->response("$query",200);        //"No Content" status
         }
