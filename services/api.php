@@ -2483,7 +2483,7 @@ class API extends REST {
 
     private function insertPedidoEdatel(){
 
-        if($this->get_request_method() != "POST"){
+        /*if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
 
@@ -2519,8 +2519,9 @@ class API extends REST {
 
             $this->response(json_encode(array("msg"=>"$concepto_final","data" => $today,"con_fenix"=> $concepto_fen)),200);
 
-            $this->response('',204);
-
+        else{
+        $this->response('',204);
+        }*/
 
     }
 
