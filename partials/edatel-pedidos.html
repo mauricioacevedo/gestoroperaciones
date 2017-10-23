@@ -288,7 +288,14 @@
                                         </select>
                                         <br>
 
-                                        <select
+
+                                        <select ng-model="service.motivo_malo" class="form-control" style="" name="obs">
+                                            <option value='' disabled>---SELECCIONE---</option>
+                                            <option value='CERRADO'>CERRADO</option>
+                                            <option value='PENDIENTE'>PENDIENTE</option>
+                                        </select>
+
+                                        <!--<select
                                                 class="form-control btn-xs"
                                                 name="obs"
                                                 ng-model="service.motivo_malo"
@@ -301,7 +308,7 @@
                                                     value="{{d.OBSERVACION_ID}}">
                                                 {{d.OBSERVACION_ID}}
                                             </option>
-                                        </select>
+                                        </select>-->
 
                                         <!--select class= "form-control" ng-model="service.motivo_malo">
                                             <option value="TELEV EN PETEC">TELEV EN PETEC</option>
