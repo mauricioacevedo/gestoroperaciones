@@ -9044,7 +9044,7 @@ private function demePedidoEdatel(){
 
 
         $query1="select * ".
-        ",CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(m.FECHA_CARGA)) AS CHAR(255)) as TIEMPO_COLA ".
+        ",CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_CARGA)) AS CHAR(255)) as TIEMPO_COLA ".
         " from pendientes_edatel where ID = '$mypedido' and STATUS='PENDIENTE'";
 
 
