@@ -7357,7 +7357,8 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 		//$scope.pedido=$scope.peds[index];
 		angular.copy($scope.peds[index], $scope.pedido);
 
-		console.log($scope.pedido);
+
+        console.log($scope.pedido);
 
 		//if($scope.pedido.estado===undefined||$scope.pedido.accion===undefined){
 		if ($scope.pedido.estado === undefined) {
