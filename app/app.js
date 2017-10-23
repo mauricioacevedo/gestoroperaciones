@@ -1009,6 +1009,13 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return data;
 	};
 
+    obj.insertPedidoEdatel = function (pedido) { //insertar pedido
+		var data = $http.post(serviceBase + 'insertPedidoEdatel', {
+			"pedido": pedido
+		});
+		return data;
+	};
+
 	obj.insertPedidoReconfiguracion = function (pedido) {
 		var data = $http.post(serviceBase + 'insertPedidoReconfiguracion', {
 			"pedido": pedido
@@ -7361,11 +7368,11 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 		//if($scope.pedido.estado===undefined||$scope.pedido.accion===undefined){
 		if ($scope.pedido.SOLICITUD === undefined) {
 
-            console.log($scope.SOLICITUD);
+
 			alert('Por favor diligenciar todos los campos.');
 			return;
 		}
-
+             //console.log($scope.SOLICITUD);
 
 
 		$scope.pedido.ESTADO_ID = $scope.pedido.estado;
@@ -14789,7 +14796,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 		var dat = new Date();
 		//$scope.pedido.statusfinal="hoho";
-		services.insertPedido($scope.pedido).then(function (status) {
+
+        services.insertPedido($scope.pedido).then(function (status) {
 			$scope.pedido.fecha = status.data['data'];
 			$scope.pedido.concepto_final = status.data['msg'];
 			$scope.pedido.con_fenix = status.data['con_fenix'];

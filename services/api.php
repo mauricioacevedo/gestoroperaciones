@@ -2500,13 +2500,13 @@ class API extends REST {
         //2015-09-28: se retira seguimiento....
         //$column_names = array('pedido', 'fuente', 'actividad','estado','motivo', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','caracteristica','motivo_malo');
         $column_names = array(
-            'pedido'
-        , 'fuente'
-        , 'actividad'
+        'pedido'
+        ,'fuente'
+        ,'actividad'
         ,'ESTADO_ID'
-        , 'OBSERVACIONES_PROCESO'
-        , 'estado'
-        , 'user'
+        ,'OBSERVACIONES_PROCESO'
+        ,'estado'
+        ,'user'
         ,'duracion'
         ,'fecha_inicio'
         ,'fecha_fin'
@@ -2541,6 +2541,7 @@ class API extends REST {
         $concepto_anterior=$pedido['pedido']['CONCEPTO_ANTERIOR'];
         //echo "estado: $estado";
         $sourcee=$pedido['pedido']['source'];
+
         if($sourcee==""){
             $sourcee="AUTO";
         }
