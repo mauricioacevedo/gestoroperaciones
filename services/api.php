@@ -8746,6 +8746,8 @@ class API extends REST {
                     $plaza2.
                     " ORDER BY FECHA_ESTADO ASC "; */
 
+
+                /** 23-10-2017: SE MODIFICA LA FORMA DE ENTREGAR PEDIDOS, SE RETIRAN LAS PRIORIDADES DEFINIDDAS.
                 $sqlllamadas=   "SELECT PEDIDO_ID, ".
                     " SUBPEDIDO_ID, ".
                     " SOLICITUD_ID, ".
@@ -8780,6 +8782,7 @@ class API extends REST {
 
 
                 $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA','INSTIP','STBOX','EQURED') ";
+                */
 
             }
         }
