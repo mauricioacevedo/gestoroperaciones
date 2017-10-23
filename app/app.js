@@ -6657,7 +6657,6 @@ $(document).click(  function (e) {
 
 
         $scope.savePedido = function(index) {
-                console.log('Ingreso2');
                 var loader = document.getElementById("class"+index);
                 loader.className='glyphicon glyphicon-refresh fa-spin';
 
@@ -7345,8 +7344,6 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 
 	$scope.savePedido = function (index) {
         //console.log(index);
-
-        console.log('Ingreso');
         var loader = document.getElementById("class" + index);
 
 		loader.className = 'glyphicon glyphicon-refresh fa-spin';
@@ -7359,14 +7356,16 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 		angular.copy($scope.peds[index], $scope.pedido);
 
 
-        console.log($scope.pedido);
+        //console.log($scope.pedido);
 
 		//if($scope.pedido.estado===undefined||$scope.pedido.accion===undefined){
-		if ($scope.pedido.estado === undefined) {
+		if ($scope.pedido.SOLICITUD === undefined) {
 			alert('Por favor diligenciar todos los campos.');
 			return;
 		}
-		//console.log($scope.pedido);
+
+		console.log($scope.SOLICITUD);
+
 		$scope.pedido.ESTADO_ID = $scope.pedido.estado;
 		$scope.pedido.OBSERVACIONES_PROCESO = $scope.pedido.motivo_malo;
 		$scope.pedido.user = $rootScope.logedUser.login;
