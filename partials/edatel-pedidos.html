@@ -250,10 +250,6 @@
                                     <td><font color='red'>{{service.STATUS}}</font></td>
                                     <td><font color='red'>{{service.CONCEPTO_ID}}</font></td>
 
-                                    <thead>
-                                        <th>Opciónes</th>
-                                    </thead>
-
                                     <td>
                                         <select ng-model="service.motivo_malo" class="form-control" style="" name="obs">
                                             <option value='' disabled>---SELECCIONE---</option>
@@ -266,34 +262,6 @@
                                             Guardar
                                         </button>
 
-                                        <!--<select
-                                                class="form-control btn-xs"
-                                                name="obs"
-                                                ng-model="service.motivo_malo"
-                                                ng-change="onChangeAccion()"
-                                        >
-                                            <option value="" disabled>--Seleccione--</option>
-                                            <option
-                                                    ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'"
-
-                                                    value="{{d.OBSERVACION_ID}}">
-                                                {{d.OBSERVACION_ID}}
-                                            </option>
-                                        </select>-->
-
-                                        <!--select class= "form-control" ng-model="service.motivo_malo">
-                                            <option value="TELEV EN PETEC">TELEV EN PETEC</option>
-                                            <option value="CABEZA DEL PAQUETE EN PETEC">CABEZA DEL PAQUETE EN PETEC</option>
-                                            <option value="PEDIDO NO SE DEJA GESTIONAR">PEDIDO NO SE DEJA GESTIONAR</option>
-                                            <option value="EQURED EN PETEC">EQURED EN PETEC</option>
-                                            <option value="NO REQUIERE ASIGNACION MANUAL">NO REQUIERE ASIGNACION MANUAL</option>
-                                            <option value="NO CARGO COMPONENTES">NO CARGO COMPONENTES</option>
-                                            <option value="NO ASIGNACIONES">NO ASIGNACIONES</option>
-                                            <option disabled>───────</option>
-                                            <option value="PENDIENTE ACCESO">PENDIENTE ACCESO</option>
-
-
-                                        </select-->
                                     </td>
 
                                     <td>
