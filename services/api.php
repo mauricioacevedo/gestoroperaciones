@@ -2547,7 +2547,7 @@ class API extends REST {
         //echo "estado: $estado";
         $sourcee=$pedido['pedido']['source'];
 
-        if($sourcee==""){
+     /*   if($sourcee==""){
             $sourcee="AUTO";
         }
 
@@ -2559,7 +2559,7 @@ class API extends REST {
             }
             $columns = $columns.$desired_key.',';
             $values = $values."'".$pedido[$desired_key]."',";
-        }
+        }*/
 
         $today = date("Y-m-d H:i:s");
         $query = "INSERT INTO pedidos (pedido,municipio_id, ".
