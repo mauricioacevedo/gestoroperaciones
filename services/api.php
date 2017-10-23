@@ -2481,6 +2481,219 @@ class API extends REST {
 
     }
 
+    private function insertPedidoEdatel(){
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+        $pedido = json_decode(file_get_contents("php://input"),true);
+        //2015-09-28: se retira seguimiento....
+        //$column_names = array('pedido', 'fuente', 'actividad','estado','motivo', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','caracteristica','motivo_malo');
+        $column_names = array(
+            'pedido'
+        , 'fuente'
+        , 'actividad'
+        ,'ESTADO_ID'
+        , 'OBSERVACIONES_PROCESO'
+        , 'estado'
+        , 'user'
+        ,'duracion'
+        ,'fecha_inicio'
+        ,'fecha_fin'
+        ,'PEDIDO_ID'
+        ,'SUBPEDIDO_ID'
+        ,'SOLICITUD_ID'
+        ,'MUNICIPIO_ID'
+        ,'CONCEPTO_ANTERIOR'
+        ,'motivo_malo'
+        ,'DEPARTAMENTO'
+        ,'TIPO_TRABAJO'
+        ,'TECNOLOGIA_ID');
+        $keys = array_keys($pedido);
+        $columns = '';
+        $values = '';
+        $fecha_estado='';
+        $fecha_estado=$pedido['pedido']['FECHA_ESTADO'];
+        $iddd=$pedido['pedido']['ID'];
+
+        $estadum=$pedido['pedido']['estado'];
+        $estadoid=$pedido['pedido']['estado'];
+        $useri=$pedido['pedido']['user'];
+        $username=$pedido['pedido']['username'];
+
+        $fuente=$pedido['pedido']['fuente'];
+
+        $PEDIDO_IDi=$pedido['pedido']['PEDIDO_ID'];
+        $SUBPEDIDO_IDi=$pedido['pedido']['SUBPEDIDO_ID'];
+        $SOLICITUD_IDi=$pedido['pedido']['SOLICITUD_ID'];
+
+        $CONCEPT=$pedido['pedido']['CONCEPTO_ID'];
+        $concepto_anterior=$pedido['pedido']['CONCEPTO_ANTERIOR'];
+        //echo "estado: $estado";
+        $sourcee=$pedido['pedido']['source'];
+        if($sourcee==""){
+            $sourcee="AUTO";
+        }
+
+        foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
+            if(!in_array($desired_key, $keys)) {
+                $$desired_key = '';
+            }else{
+                $$desired_key = $pedido[$desired_key];
+            }
+            $columns = $columns.$desired_key.',';
+            $values = $values."'".$pedido[$desired_key]."',";
+        }
+
+        $today = date("Y-m-d H:i:s");
+        $query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
+        if(!empty($pedido)){
+
+            //verifico que si el pedido existe en la tabla de bloqueados para no dejar guardar
+            $queryBloqueo="SELECT PEDIDO_ID FROM gestor_pedidos_desbloqueados WHERE PEDIDO_ID='$PEDIDO_IDi' AND ASESOR='$useri' AND TIMEDIFF(NOW( ) ,FECHA_DESBLOQUEO) <  '01:00:00' ";
+            //echo ($queryBloqueo);
+            $blo = $this->mysqli->query($queryBloqueo) or die($this->mysqli->error.__LINE__);
+            if($blo->num_rows > 0){
+                $this->response(json_encode(array("msg"=>"El pedido bloqueado por Usuario por mas de una hora, ".
+                    "fue liberado por el sistema, usuario no podra gestionarlo hasta despues de una hora!!!")),200);
+            }
+
+            $fuente=$pedido['fuente'];
+
+            if($fuente=='FENIX_NAL' && $CONCEPT=='PETEC'){
+                $concepto_final=$this->updateFenix($pedido);
+                $estado=$pedido['pedido']['estado'];
+                //echo "estado: '$estadum'";
+                //var_dump($concepto_final);
+                if($concepto_final=="NO CAMBIO CONCEPTO" && $estadum!="MALO"){
+                    $this->response(json_encode(array("msg"=>"El pedido NO ha cambiado de concepto en Fenix!!!")),200);
+                }
+
+                if($concepto_final=="No rows!!!!" && $estadum!="MALO"){//INDICA QUE NO SE ENCONTRO INFORMACION EN FENIX CON ESTE USUARIO Y PEDIDO
+                    //DO SOMETHING
+                    $this->response(json_encode(array("msg"=>"ERROR!","text"=>"No rows!!!!")),200);
+                }
+            }
+
+            if($fuente=='FENIX_BOG'){
+                $concepto_final=$this->updateFenixBogota($pedido);
+                //$estado=$pedido['pedido']['estado'];
+                //echo "estado: '$estadum'";
+                //var_dump($concepto_final);
+                if($concepto_final=="NO CAMBIO CONCEPTO" && $estadum!="MALO"){
+                    $this->response(json_encode(array("msg"=>"El pedido NO ha cambiado de concepto en Fenix!!!")),200);
+                }
+
+                if($concepto_final=="No rows!!!!" && $estadum!="MALO"){//INDICA QUE NO SE ENCONTRO INFORMACION EN FENIX CON ESTE USUARIO Y PEDIDO
+                    //DO SOMETHING
+                    $this->response(json_encode(array("msg"=>"ERROR!","text"=>"No rows!!!!")),200);
+                }
+            }
+
+            if($estadum=="MALO"){
+                $concepto_final=$concepto_anterior;
+                $query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado,concepto_final,source) VALUES(".trim($values,',').",'$fecha_estado','$concepto_final','$sourcee')";
+                $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+                $sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$today',STATUS='$estadum',ASESOR='' WHERE ID=$iddd "; $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
+                //hago la actualizacion en fenix
+                //activity feed.
+                // SQL Feed----------------------------------
+                $sql_log=   "insert into portalbd.activity_feed ( ".
+                    " USER ".
+                    ", USER_NAME ".
+                    ", GRUPO ".
+                    ", STATUS ".
+                    ", PEDIDO_OFERTA ".
+                    ", ACCION ".
+                    ", CONCEPTO_ID ".
+                    ", IP_HOST ".
+                    ", CP_HOST ".
+                    ") values( ".
+                    " UPPER('$useri')".
+                    ", UPPER('$nombreGalleta')".
+                    ", UPPER('$grupoGalleta')".
+                    ",'$estadum' ".
+                    ",'$PEDIDO_IDi' ".
+                    ",'GUARDO PEDIDO MALO' ".
+                    ",'$concepto_final' ".
+                    ",'$usuarioIp' ".
+                    ",'$usuarioPc')";
+
+                $rlog = $this->mysqli->query($sql_log);
+
+                $this->response(json_encode(array("msg"=>"$concepto_final","data" => $today)),200);
+
+            }else{
+                //var_dump($concepto_final);
+
+                if($concepto_final['FECHA_FINAL']==''){
+                    $concepto_final['FECHA_FINAL']=$today;
+                }
+
+                if($concepto_final['CONCEPTO_ID']==''){
+                    $concepto_final['CONCEPTO_ID']=$CONCEPT;
+                }
+
+                $query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado,concepto_final,source,concepto_anterior_fenix,fecha_estado_fenix) VALUES(".trim($values,',').",'$fecha_estado','".$concepto_final['CONCEPTO_ID']."','$sourcee','".$concepto_final['CONCEPTO_ID_ANTERIOR_FENIX']."','".$concepto_final['FECHA_FINAL']."')";
+                $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+                $concepto_fen=$concepto_final['CONCEPTO_ID'];
+                //cierro el registro en la tabla de automatizacion asignaciones
+                $sqlupdate="update informe_petec_pendientesm set FECHA_FINAL='$today',CONCEPTO_ID='".$concepto_final['CONCEPTO_ID']."',STATUS='CERRADO_PETEC', ASESOR='' WHERE ID=$iddd ";
+
+                $rr = $this->mysqli->query($sqlupdate) or die($this->mysqli->error.__LINE__);
+
+                // SQL Feed----------------------------------
+                $sql_log=   "insert into portalbd.activity_feed ( ".
+                    " USER ".
+                    ", USER_NAME ".
+                    ", GRUPO ".
+                    ", STATUS ".
+                    ", PEDIDO_OFERTA ".
+                    ", ACCION ".
+                    ", CONCEPTO_ID ".
+                    ", IP_HOST ".
+                    ", CP_HOST ".
+                    ") values( ".
+                    " UPPER('$useri')".
+                    ", UPPER('$nombreGalleta')".
+                    ", UPPER('$grupoGalleta')".
+                    ",'$estadum' ".
+                    ",'$PEDIDO_IDi' ".
+                    ",'ASIGNO PEDIDO' ".
+                    ",'$estadum' ".
+                    ",'$usuarioIp' ".
+                    ",'$usuarioPc')";
+
+                $rlog = $this->mysqli->query($sql_log);
+                // ---------------------------------- SQL Feed
+                //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta) values ('$useri','$username','ASIGNACIONES','$concepto_final','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi') ";
+                //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','ASIGNACIONES','$estadum','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi','ESTUDIO','$concepto_final') ";
+                //echo $sqlfeed;
+                //$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+                //hago la actualizacion en fenix
+                $this->response(json_encode(array("msg"=>"$concepto_final","data" => $today,"con_fenix"=> $concepto_fen)),200);
+
+            }
+
+
+
+        }else{
+            $this->response('',204);        //"No Content" status
+            //$this->response("$query",200);        //"No Content" status
+        }
+
+    }
+
     //Funcion para actualizar Concepto y Fecha estado en PEDIDOS en pendientesm
     //2015-09-17 - Se modifica query para que traiga Concepto y fecha de Novedades - CGONZGO
 

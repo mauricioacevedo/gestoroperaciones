@@ -7348,8 +7348,6 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 
 		var loader = document.getElementById("class" + index);
 
-
-
 		loader.className = 'glyphicon glyphicon-refresh fa-spin';
 
 		$scope.pedido = {};
@@ -7359,7 +7357,7 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 		//$scope.pedido=$scope.peds[index];
 		angular.copy($scope.peds[index], $scope.pedido);
 
-		console.log($scope.pedido);
+		//console.log($scope.pedido);
 
 		//if($scope.pedido.estado===undefined||$scope.pedido.accion===undefined){
 		if ($scope.pedido.estado === undefined) {
@@ -7397,19 +7395,11 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 
 		var dat = new Date();
 		//$scope.pedido.statusfinal="hoho";
-		services.insertPedido($scope.pedido).then(function (status) {
+		services.insertPedidoEdatel($scope.pedido).then(function (status) {
 			$scope.pedido.fecha = status.data['data'];
 			$scope.pedido.concepto_final = status.data['msg'];
 			$scope.pedido.con_fenix = status.data['con_fenix'];
 
-
-			/* if($scope.pedido.concepto_final=="El pedido bloqueado por Usuario por mas de una hora, fue liberado por el sistema, usuario no podra gestionarlo hasta despues de una hora!!!"){
-			     $scope.error=$scope.pedido.concepto_final;
-			         //$scope.peds.splice(index,1);
-			         $scope.peds=[];
-			         $scope.pedido={};
-			         $scope.pedidos="";
-			 }*/
 
 			if ($scope.pedido.concepto_final == "El pedido NO ha cambiado de concepto en Fenix!!!" || $scope.pedido.concepto_final == "ERROR!") {
 				alert($scope.pedido.concepto_final);
