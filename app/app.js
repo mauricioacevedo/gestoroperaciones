@@ -7366,6 +7366,7 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 
 		console.log($scope.SOLICITUD);
 
+
 		$scope.pedido.ESTADO_ID = $scope.pedido.estado;
 		$scope.pedido.OBSERVACIONES_PROCESO = $scope.pedido.motivo_malo;
 		$scope.pedido.user = $rootScope.logedUser.login;
