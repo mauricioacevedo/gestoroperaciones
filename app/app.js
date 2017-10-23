@@ -7363,7 +7363,7 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 		angular.copy($scope.peds[index], $scope.pedido);
 
 
-        console.log($scope.pedido);
+        //console.log($scope.pedido);
 
 		//if($scope.pedido.estado===undefined||$scope.pedido.accion===undefined){
 		if ($scope.pedido.SOLICITUD === undefined) {
@@ -7375,9 +7375,14 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 
 
         $scope.pedido.SOLICITUD = $scope.pedido.SOLICITUD;
-		$scope.pedido.FECHA_CARGA = $scope.pedido.FECHA_CARGA;
+        $scope.pedido.COD_LOCALIDAD = $scope.pedido.COD_LOCALIDAD;
+        $scope.pedido.LOCALIDAD = $scope.pedido.LOCALIDAD;
+        $scope.pedido.DIRCOMPLETA =  $scope.pedido.DIRCOMPLETA;
+        $scope.pedido.GEOREFERENCIA = $scope.pedido.GEOREFERENCIA;
+        $scope.pedido.REDSUGERIDA = $scope.pedido.REDSUGERIDA;
+        $scope.pedido.FECHA_CARGA = $scope.pedido.FECHA_CARGA;
 
-        console.log($scope.pedido.SOLICITUD);
+        //console.log($scope.pedido.SOLICITUD);
 
 		$scope.pedido.user = $rootScope.logedUser.login;
 		$scope.pedido.username = $rootScope.logedUser.name;
