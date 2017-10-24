@@ -2519,18 +2519,18 @@ class API extends REST {
         $today = date("Y-m-d H:i:s");
         $query = "INSERT INTO pedidos (pedido, fuente, actividad, estado,".
             " fecha_estado, concepto_anterior, concepto_final, source, pedido_id ,municipio_id, ".
-            " DEPARTAMENTO, fuente, ACCION, FECHA_INICIO ,user , duracion) ".
+            " DEPARTAMENTO, ACCION, FECHA_INICIO ,user , duracion) ".
             " values ( ".
             " '$SOLICITUD','$FUENTE','$ACTIVIDAD','$ESTADO','$FECHA_CARGA','$TIPO_TRANSACCION','$TIPO_TRANSACCION','$SOURCE','$SOLICITUD','$COD_LOCALIDAD','$LOCALIDAD', ".
             " '$GEOREFERENCIA','$REDSUGERIDA','$FECHA_CARGA','$useri','$Duracion') ";
 
 
-        echo var_dump($query);
+        //echo var_dump($query);
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
            if($rr->num_rows > 0){
-                $queryUpdate = "update pendientes_edatel set STATUS = '$ESTADO' where SOLICITUD = '$SOLICITUD' ";
+                $queryUpdate = "update pendientes_edatel set STATUS = '$ESTADO', ASESOR= '$useri' where SOLICITUD = '$SOLICITUD' ";
                 $update = $this->mysqli->query($queryUpdate) or die($this->mysqli->error.__LINE__);
             }
 
