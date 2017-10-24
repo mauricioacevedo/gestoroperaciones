@@ -7379,7 +7379,7 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
         $scope.pedido.FECHA_CARGA = $scope.pedido.FECHA_CARGA;
         $scope.pedido.motivo_malo = $scope.pedido.motivo_malo;
 
-        console.log($scope.pedido.motivo_malo);
+        //console.log($scope.pedido.motivo_malo);
 
 		$scope.pedido.user = $rootScope.logedUser.login;
 		$scope.pedido.username = $rootScope.logedUser.name;

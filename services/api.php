@@ -2507,19 +2507,21 @@ class API extends REST {
         $REDSUGERIDA=$pedido['pedido']['REDSUGERIDA'];
         $FECHA_CARGA=$pedido['pedido']['FECHA_CARGA'];
         $Duracion=$pedido['pedido']['duracion'];
+        $ESTADO=$pedido['pedido']['motivo_malo'];
         $useri=$pedido['pedido']['user'];
         $username=$pedido['pedido']['username'];
-        //echo var_dump($SOLICITUD);
+        echo var_dump($ESTADO);
 
         $today = date("Y-m-d H:i:s");
-        $query = "INSERT INTO pedidos (pedido, municipio_id, ".
+        $query = "INSERT INTO pedidos (pedido, estado ,municipio_id, ".
             " DEPARTAMENTO, fuente, ACCION, FECHA_INICIO ,user , duracion) ".
             " values ( ".
             " '$SOLICITUD','$COD_LOCALIDAD','$LOCALIDAD', ".
             " '$GEOREFERENCIA','$REDSUGERIDA','$FECHA_CARGA','$useri','$Duracion') ";
 
-        //$this->response(json_encode(array("msg"=>"$concepto_final","data" => $today,"con_fenix"=> $concepto_fen)),200);
-        echo var_dump($query);
+
+        //echo var_dump($query);
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         $this->response(json_encode(array("msg"=>"OK","pedido" => $pedido)),200);
 
