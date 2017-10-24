@@ -7387,13 +7387,14 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 		$scope.timeInit = new Date().getTime();
 		var df = new Date($scope.pedido.duracion);
 		$scope.pedido.duracion = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
-		$scope.pedido.pedido = $scope.peds[index].PEDIDO_ID + $scope.peds[index].SUBPEDIDO_ID + $scope.peds[index].SOLICITUD_ID;
-		$scope.pedido1 = $scope.peds[index].PEDIDO_ID; //esta variable es para saber cual es el pedido actual en el sistema, esto con el fin de liberarlo cuando se quiera trabajar otro pedido
+		//$scope.pedido.pedido = $scope.peds[index].PEDIDO_ID + $scope.peds[index].SUBPEDIDO_ID + $scope.peds[index].SOLICITUD_ID;
+		//$scope.pedido1 = $scope.peds[index].PEDIDO_ID; //esta variable es para saber cual es el pedido actual en el sistema, esto con el fin de liberarlo cuando se quiera trabajar otro pedido
 		//pedido.pedido_id=
 		//pedido.estado=$scope.peds[index].estado;
 		//pedido.observacion=$scope.peds[index].observacion;
-		$scope.pedido.actividad = "ESTUDIO";
-		$scope.pedido.fuente = $scope.peds[index].FUENTE;
+
+        //$scope.pedido.actividad = "ESTUDIO";
+		//$scope.pedido.fuente = $scope.peds[index].FUENTE;
 		$scope.pedido.fecha_inicio = $scope.fecha_inicio;
 
 		var date1 = new Date();
@@ -7407,17 +7408,17 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 		$scope.pedido.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
 		var dat = new Date();
-		//$scope.pedido.statusfinal="hoho";
+
 		services.insertPedidoEdatel($scope.pedido).then(function (status) {
 		/*	$scope.pedido.fecha = status.data['data'];
 			$scope.pedido.concepto_final = status.data['msg'];
 			$scope.pedido.con_fenix = status.data['con_fenix'];*/
 
 
-		/*	loader.className = '';
+			loader.className = '';
 			if ($scope.peds.length == 0) {
 				$scope.pedidoinfo = 'Pedido';
-			}*/
+			}
 
 			return status;
 		});
