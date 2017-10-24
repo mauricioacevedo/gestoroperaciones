@@ -2520,7 +2520,7 @@ class API extends REST {
         $query = "INSERT INTO pedidos (pedido, fuente, actividad, estado,".
                                     " fecha_estado, concepto_anterior, concepto_final,".
                                     " source, pedido_id ,municipio_id, ".
-                                    " DEPARTAMENTO,REDSUGERIDA,FECHACARGA, user, duracion) ".
+                                    " DEPARTAMENTO,ACCION,FECHACARGA, user, duracion) ".
                                     " values ( ".
             " '$SOLICITUD','$FUENTE','$ACTIVIDAD','$ESTADO','$FECHA_CARGA','$TIPO_TRANSACCION','$TIPO_TRANSACCION','$SOURCE','$SOLICITUD','$COD_LOCALIDAD','$LOCALIDAD', ".
             " '$REDSUGERIDA','$FECHA_CARGA','$useri','$Duracion') ";
