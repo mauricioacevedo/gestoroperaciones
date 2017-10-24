@@ -2484,7 +2484,7 @@ class API extends REST {
 
     private function insertPedidoEdatel(){
 
-/*        if($this->get_request_method() != "POST"){
+        if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
 
@@ -2509,7 +2509,7 @@ class API extends REST {
         $Duracion=pedido['pedido']['duracion'];
         $useri=$pedido['pedido']['user'];
         $username=$pedido['pedido']['username'];
-        echo var_dump($SOLICITUD);
+        //echo var_dump($SOLICITUD);
 
         $today = date("Y-m-d H:i:s");
         $query = "INSERT INTO pedidos (pedido,municipio_id, ".
@@ -2518,12 +2518,13 @@ class API extends REST {
             " '$SOLICITUD','$COD_LOCALIDAD','$LOCALIDAD', ".
             " '$GEOREFERENCIA','$REDSUGERIDA','$FECHA_CARGA','$useri','$Duracion') ";
 
-        $this->response(json_encode(array("msg"=>"$concepto_final","data" => $today,"con_fenix"=> $concepto_fen)),200);
+        $this->response(json_encode(array("msg"=>"OK","pedido" => $pedido)),200);
+        //$this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
 
 
         else{
         $this->response('',204);
-        }*/
+        }
 
     }
 
