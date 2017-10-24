@@ -2523,7 +2523,7 @@ class API extends REST {
         //echo var_dump($query);
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
-        $this->response(json_encode(array("msg"=>"OK","pedido" => $pedido)),200);
+        $this->response(json_encode(array("msg"=>"OK","pedido" => $pedido['pedido']['SOLICITUD'])),200);
 
         //$this->response('',204);
 

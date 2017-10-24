@@ -7422,8 +7422,8 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 			if ($scope.peds.length == 0) {
 				$scope.pedidoinfo = 'Pedido';
 			}
-
-            $location.path('/edatel-pedidos/');
+            $scope.peds.splice(index, 1);
+            //$location.path('/edatel-pedidos/');
 			return status;
 
 		});
