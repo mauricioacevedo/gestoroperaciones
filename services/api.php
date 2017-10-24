@@ -2525,7 +2525,7 @@ class API extends REST {
             " '$GEOREFERENCIA','$REDSUGERIDA','$FECHA_CARGA','$useri','$Duracion') ";
 
 
-        //echo var_dump($query);
+        echo var_dump($query);
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
