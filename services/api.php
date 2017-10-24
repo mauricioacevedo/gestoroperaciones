@@ -2520,8 +2520,8 @@ class API extends REST {
 
         //$this->response(json_encode(array("msg"=>"$concepto_final","data" => $today,"con_fenix"=> $concepto_fen)),200);
 
-        $this->response(json_encode(array("msg"=>"El pedido bloqueado por Usuario por mas de una hora, ".
-                    "fue liberado por el sistema, usuario no podra gestionarlo hasta despues de una hora!!!")),200);
+        //$this->response(json_encode(array("msg"=>"El pedido bloqueado por Usuario por mas de una hora, ".
+          //          "fue liberado por el sistema, usuario no podra gestionarlo hasta despues de una hora!!!")),200);
 
 
 
