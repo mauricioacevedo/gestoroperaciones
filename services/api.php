@@ -2519,7 +2519,7 @@ class API extends REST {
             " '$GEOREFERENCIA','$REDSUGERIDA','$FECHA_CARGA','$useri','$Duracion') ";
 
         //$this->response(json_encode(array("msg"=>"$concepto_final","data" => $today,"con_fenix"=> $concepto_fen)),200);
-        //echo var_dump($query);
+        echo var_dump($query);
 
         $this->response(json_encode(array("msg"=>"OK","pedido" => $pedido)),200);
 
