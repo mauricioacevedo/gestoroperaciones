@@ -7015,7 +7015,7 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 		);
 	};
 
-    $scope.GenerarOpcionesGestion();
+    //$scope.GenerarOpcionesGestion();
 
 
 	//Funcion para copyclipboard
@@ -7409,9 +7409,9 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 		var dat = new Date();
 		//$scope.pedido.statusfinal="hoho";
 		services.insertPedidoEdatel($scope.pedido).then(function (status) {
-			$scope.pedido.fecha = status.data['data'];
+		/*	$scope.pedido.fecha = status.data['data'];
 			$scope.pedido.concepto_final = status.data['msg'];
-			$scope.pedido.con_fenix = status.data['con_fenix'];
+			$scope.pedido.con_fenix = status.data['con_fenix'];*/
 
 
 		/*	loader.className = '';
