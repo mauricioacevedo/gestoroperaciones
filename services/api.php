@@ -2501,11 +2501,15 @@ class API extends REST {
         $pedido = json_decode(file_get_contents("php://input"),true);
 
         $SOLICITUD=$pedido['pedido']['SOLICITUD'];
+        $FUENTE = 'EDATEL';
+        $ACTIVIDAD = 'TRANSACCION';
+        $SOURCE = 'AUTO';
         $COD_LOCALIDAD=$pedido['pedido']['COD_LOCALIDAD'];
         $LOCALIDAD=$pedido['pedido']['LOCALIDAD'];
         $GEOREFERENCIA=$pedido['pedido']['GEOREFERENCIA'];
         $REDSUGERIDA=$pedido['pedido']['REDSUGERIDA'];
         $FECHA_CARGA=$pedido['pedido']['FECHA_CARGA'];
+        $TIPO_TRANSACCION=$pedido['pedido']['TIPO_TRANSACCION'];
         $Duracion=$pedido['pedido']['duracion'];
         $ESTADO=$pedido['pedido']['motivo_malo'];
         $useri=$pedido['pedido']['user'];
@@ -2513,10 +2517,10 @@ class API extends REST {
         //echo var_dump($ESTADO);
 
         $today = date("Y-m-d H:i:s");
-        $query = "INSERT INTO pedidos (pedido, estado ,municipio_id, ".
+        $query = "INSERT INTO pedidos (pedido, fuente, actividad, estado, fecha_estado, concepto_anterior, concepto_final, source, pedido_id ,municipio_id ".
             " DEPARTAMENTO, fuente, ACCION, FECHA_INICIO ,user , duracion) ".
             " values ( ".
-            " '$SOLICITUD','$ESTADO','$COD_LOCALIDAD','$LOCALIDAD', ".
+            " '$SOLICITUD','$FUENTE','$ACTIVIDAD','$ESTADO','$FECHA_CARGA','$TIPO_TRANSACCION','$TIPO_TRANSACCION','$SOURCE','$SOLICITUD','$COD_LOCALIDAD','$LOCALIDAD', ".
             " '$GEOREFERENCIA','$REDSUGERIDA','$FECHA_CARGA','$useri','$Duracion') ";
 
 
