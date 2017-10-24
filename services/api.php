@@ -2509,7 +2509,7 @@ class API extends REST {
         $Duracion=$pedido['pedido']['duracion'];
         $useri=$pedido['pedido']['user'];
         $username=$pedido['pedido']['username'];
-        echo var_dump($SOLICITUD);
+        //echo var_dump($SOLICITUD);
 
         $today = date("Y-m-d H:i:s");
         $query = "INSERT INTO pedidos (pedido,municipio_id, ".
