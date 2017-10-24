@@ -2533,7 +2533,7 @@ class API extends REST {
            if($rr->num_rows > 0){
                 $queryUpdate = "update pendientes_edatel set STATUS = '$ESTADO', ASESOR= '$useri' where SOLICITUD = '$SOLICITUD'";
                 $update = $this->mysqli->query($queryUpdate) or die($this->mysqli->error.__LINE__);
-                echo var_dump($update);
+                //echo var_dump($update);
             }
 
         $this->response(json_encode(array("msg"=>"OK","pedido" => $pedido['pedido']['SOLICITUD'])),200);
