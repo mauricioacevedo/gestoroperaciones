@@ -8551,7 +8551,7 @@ class API extends REST {
             if($plaza=="BOG-COBRE"){
                 $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') ";
             }else {
-
+                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') ";
                 if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
 
 
@@ -8621,6 +8621,7 @@ class API extends REST {
                 */
 
             }
+
         }
         else if($concepto=="COORP"){
             $concepto=" and b.CONCEPTO_ID in ('PETEC','15') and (b.TIPO_ELEMENTO_ID IN ('E2MB','P2MB','INSTIP','CNTXIP','SEDECX','PLANT','PLP','PTLAN','MTLAN', 'PMULT','EPCM','PPCM','PBRI','PPRI','TV','TP','BDID','TDID','BDIDE1','TDIDE1','BDODE1','TDODE1','SLL','TC','SLLBRI','TCBRI','SLLE1','TCE1','SLLPRI','TCPRI','SEDEIP','CONECT','ACCESO') )";
@@ -8789,7 +8790,7 @@ class API extends REST {
             " order by b.$parametroBusqueda ASC";
 
 
-//        echo $query1;
+        //echo $query1;
 
         if($mypedido==""){
 
