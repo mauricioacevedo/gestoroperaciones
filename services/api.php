@@ -2517,13 +2517,13 @@ class API extends REST {
         //echo var_dump($ESTADO);
 
         $today = date("Y-m-d H:i:s");
-        $query = "INSERT INTO pedidos (pedido, fuente, actividad, estado,".
+        $query = "INSERT INTO pedidos (pedido, fuente, actividad, estado, duracion, ".
                                     " fecha_estado, concepto_anterior, concepto_final,".
                                     " source, pedido_id, subpedido_id, solicitud_id ,municipio_id, ".
-                                    " DEPARTAMENTO,ACCION, user, duracion) ".
+                                    " DEPARTAMENTO,ACCION, user ) ".
                                     " values ( ".
-            " '$SOLICITUD','$FUENTE','$ACTIVIDAD','$ESTADO','$FECHA_CARGA','$TIPO_TRANSACCION','$TIPO_TRANSACCION','$SOURCE','$SOLICITUD','$SOLICITUD','$SOLICITUD','$COD_LOCALIDAD','$LOCALIDAD', ".
-            " '$REDSUGERIDA','$useri','$Duracion') ";
+            " '$SOLICITUD','$FUENTE','$ACTIVIDAD','$ESTADO','$Duracion','$FECHA_CARGA','$TIPO_TRANSACCION','$TIPO_TRANSACCION','$SOURCE','$SOLICITUD','$SOLICITUD','$SOLICITUD','$COD_LOCALIDAD','$LOCALIDAD', ".
+            " '$REDSUGERIDA','$useri') ";
 
 
         echo var_dump($query);
@@ -2531,8 +2531,8 @@ class API extends REST {
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
            if($rr->num_rows > 0){
-                $queryUpdate = "update pendientes_edatel set STATUS = '$ESTADO', ASESOR= '$useri' where SOLICITUD = '$SOLICITUD'";
-                $update = $this->mysqli->query($queryUpdate) or die($this->mysqli->error.__LINE__);
+                $queryupdate = "update pendientes_edatel set STATUS = '$ESTADO', ASESOR= '$useri' where SOLICITUD = '$SOLICITUD'";
+                $update = $this->mysqli->query($queryupdate) or die($this->mysqli->error.__LINE__);
                 //echo var_dump($update);
             }
 
