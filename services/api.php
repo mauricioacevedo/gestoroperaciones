@@ -2484,7 +2484,7 @@ class API extends REST {
 
     private function insertPedidoEdatel(){
 
-        if($this->get_request_method() != "POST"){
+/*        if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
 
@@ -2518,16 +2518,12 @@ class API extends REST {
             " '$SOLICITUD','$COD_LOCALIDAD','$LOCALIDAD', ".
             " '$GEOREFERENCIA','$REDSUGERIDA','$FECHA_CARGA','$useri','$Duracion') ";
 
-        //$this->response(json_encode(array("msg"=>"$concepto_final","data" => $today,"con_fenix"=> $concepto_fen)),200);
-
-        //$this->response(json_encode(array("msg"=>"El pedido bloqueado por Usuario por mas de una hora, ".
-          //          "fue liberado por el sistema, usuario no podra gestionarlo hasta despues de una hora!!!")),200);
-
+        $this->response(json_encode(array("msg"=>"$concepto_final","data" => $today,"con_fenix"=> $concepto_fen)),200);
 
 
         else{
         $this->response('',204);
-        }
+        }*/
 
     }
 
