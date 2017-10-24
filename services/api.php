@@ -2510,13 +2510,13 @@ class API extends REST {
         $ESTADO=$pedido['pedido']['motivo_malo'];
         $useri=$pedido['pedido']['user'];
         $username=$pedido['pedido']['username'];
-        echo var_dump($ESTADO);
+        //echo var_dump($ESTADO);
 
         $today = date("Y-m-d H:i:s");
         $query = "INSERT INTO pedidos (pedido, estado ,municipio_id, ".
             " DEPARTAMENTO, fuente, ACCION, FECHA_INICIO ,user , duracion) ".
             " values ( ".
-            " '$SOLICITUD','$COD_LOCALIDAD','$LOCALIDAD', ".
+            " '$SOLICITUD','$ESTADO','$COD_LOCALIDAD','$LOCALIDAD', ".
             " '$GEOREFERENCIA','$REDSUGERIDA','$FECHA_CARGA','$useri','$Duracion') ";
 
 
