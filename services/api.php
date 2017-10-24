@@ -2506,7 +2506,7 @@ class API extends REST {
         $GEOREFERENCIA=$pedido['pedido']['GEOREFERENCIA'];
         $REDSUGERIDA=$pedido['pedido']['REDSUGERIDA'];
         $FECHA_CARGA=$pedido['pedido']['FECHA_CARGA'];
-        $Duracion=pedido['pedido']['duracion'];
+        $Duracion=$pedido['pedido']['duracion'];
         $useri=$pedido['pedido']['user'];
         $username=$pedido['pedido']['username'];
         echo var_dump($SOLICITUD);
