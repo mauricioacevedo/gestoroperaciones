@@ -7387,6 +7387,7 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 		$scope.timeInit = new Date().getTime();
 		var df = new Date($scope.pedido.duracion);
 		$scope.pedido.duracion = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
+
 		//$scope.pedido.pedido = $scope.peds[index].PEDIDO_ID + $scope.peds[index].SUBPEDIDO_ID + $scope.peds[index].SOLICITUD_ID;
 		//$scope.pedido1 = $scope.peds[index].PEDIDO_ID; //esta variable es para saber cual es el pedido actual en el sistema, esto con el fin de liberarlo cuando se quiera trabajar otro pedido
 		//pedido.pedido_id=
@@ -7395,6 +7396,7 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 
         //$scope.pedido.actividad = "ESTUDIO";
 		//$scope.pedido.fuente = $scope.peds[index].FUENTE;
+
 		$scope.pedido.fecha_inicio = $scope.fecha_inicio;
 
 		var date1 = new Date();
@@ -7410,9 +7412,9 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 		var dat = new Date();
 
 		services.insertPedidoEdatel($scope.pedido).then(function (status) {
-		/*	$scope.pedido.fecha = status.data['data'];
+			$scope.pedido.fecha = status.data['data'];
 			$scope.pedido.concepto_final = status.data['msg'];
-			$scope.pedido.con_fenix = status.data['con_fenix'];*/
+			$scope.pedido.con_fenix = status.data['con_fenix'];
 
 
 			loader.className = '';
