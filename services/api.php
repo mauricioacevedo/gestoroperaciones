@@ -2531,7 +2531,7 @@ class API extends REST {
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
            if($rr->num_rows > 0){
-                $queryUpdate = "update pendientes_edatel set STATUS = '$ESTADO', ASESOR= '$useri' where SOLICITUD = '$SOLICITUD' ";
+                $queryUpdate = "update pendientes_edatel set STATUS = '$ESTADO', ASESOR= '$useri' where SOLICITUD = '$SOLICITUD'";
                 $update = $this->mysqli->query($queryUpdate) or die($this->mysqli->error.__LINE__);
             }
 
