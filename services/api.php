@@ -2522,7 +2522,7 @@ class API extends REST {
         $this->response(json_encode(array("msg"=>"OK","pedido" => $pedido)),200);
 
 
-        $this->response('',204);
+        //$this->response('',204);
 
 
     }
