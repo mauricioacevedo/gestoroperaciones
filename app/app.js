@@ -5441,7 +5441,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
     //***********************************MICHAEL GUARDAR REGISTRO KPIS*********************************
 	$scope.saveTransaccion = function (transaccion) {
 
-        console.log(transaccion);
+        //console.log(transaccion);
 
 		if (transaccion.NEGOCIO == undefined || transaccion.NEGOCIO == "") {
 			alert("Negocio sin informacion.");
@@ -7352,16 +7352,12 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 	$scope.savePedido = function (index) {
         //console.log(index);
         var loader = document.getElementById("class" + index);
-
 		loader.className = 'glyphicon glyphicon-refresh fa-spin';
-
 		$scope.pedido = {};
-
 		$scope.error = "";
 
 		//$scope.pedido=$scope.peds[index];
 		angular.copy($scope.peds[index], $scope.pedido);
-
 
         //console.log($scope.pedido);
 
@@ -7418,64 +7414,10 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 			$scope.pedido.con_fenix = status.data['con_fenix'];
 
 
-			if ($scope.pedido.concepto_final == "El pedido NO ha cambiado de concepto en Fenix!!!" || $scope.pedido.concepto_final == "ERROR!") {
-				alert($scope.pedido.concepto_final);
-
-
-				$scope.pedido.fecha = "";
-				$scope.pedido.concepto_final = "";
-			} else {
-
-				if ($scope.pedido.concepto_final == "El pedido bloqueado por Usuario por mas de una hora, fue liberado por el sistema, usuario no podra gestionarlo hasta despues de una hora!!!") {
-					$scope.error = $scope.pedido.concepto_final;
-					//$scope.peds.splice(index,1);
-					$scope.peds = [];
-					$scope.pedido = {};
-					$scope.pedidos = [];
-				} else {
-					
-					if ($scope.historico_pedido == "") {
-						$scope.historico_pedido = new Array();
-					}
-					
-					$scope.historico_pedido = $scope.historico_pedido.concat(angular.copy($scope.pedido));
-					//console.log($scope.historico_pedido);
-					$scope.peds.splice(index, 1);
-					
-
-					$scope.pedido.concepto_final = $scope.pedido.con_fenix;
-					if ($scope.pedidos == "" || $scope.pedidos == undefined ) {
-						$scope.pedidos = new Array();
-					}
-					//$scope.pedidos = $scope.pedido.extend($scope.pedido);
-					//$scope.pedidos = $scope.pedido.concat($scope.pedido);
-
-					//console.log($scope.pedidos);
-					$scope.pedidos = $scope.pedidos.concat(angular.copy($scope.pedido));
-
-					//$scope.pedunicos();
-
-					
-					$scope.pedido = [];
-					$scope.busy = "";
-					$scope.timeInit = new Date().getTime();
-					date1 = new Date();
-					year = date1.getFullYear();
-					month = $scope.doubleDigit(date1.getMonth() + 1);
-					day = $scope.doubleDigit(date1.getDate());
-					hour = $scope.doubleDigit(date1.getHours());
-					minute = $scope.doubleDigit(date1.getMinutes());
-					seconds = $scope.doubleDigit(date1.getSeconds());
-
-					$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-					$scope.popup = '';
-				}
-
-			}
-			loader.className = '';
+		/*	loader.className = '';
 			if ($scope.peds.length == 0) {
 				$scope.pedidoinfo = 'Pedido';
-			}
+			}*/
 
 			return status;
 		});
