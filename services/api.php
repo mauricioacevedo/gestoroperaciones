@@ -2512,16 +2512,16 @@ class API extends REST {
         //echo var_dump($SOLICITUD);
 
         $today = date("Y-m-d H:i:s");
-        $query = "INSERT INTO pedidos (pedido,municipio_id, ".
-            " DEPARTAMENTO,fuente,ACCION,FECHA_INICIO,user,duracion) ".
+        $query = "INSERT INTO pedidos (pedido, municipio_id, ".
+            " DEPARTAMENTO, fuente, ACCION, FECHA_INICIO ,user , duracion) ".
             " values ( ".
             " '$SOLICITUD','$COD_LOCALIDAD','$LOCALIDAD', ".
             " '$GEOREFERENCIA','$REDSUGERIDA','$FECHA_CARGA','$useri','$Duracion') ";
 
         //$this->response(json_encode(array("msg"=>"$concepto_final","data" => $today,"con_fenix"=> $concepto_fen)),200);
-        echo var_dump($query);
-        $this->response(json_encode(array("msg"=>"OK","pedido" => $pedido)),200);
+        //echo var_dump($query);
 
+        $this->response(json_encode(array("msg"=>"OK","pedido" => $pedido)),200);
 
         //$this->response('',204);
 
