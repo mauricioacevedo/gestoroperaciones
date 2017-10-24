@@ -2521,9 +2521,9 @@ class API extends REST {
         //$this->response(json_encode(array("msg"=>"$concepto_final","data" => $today,"con_fenix"=> $concepto_fen)),200);
         $this->response(json_encode(array("msg"=>"OK","pedido" => $pedido)),200);
 
-        else{
+
         $this->response('',204);
-        }
+
 
     }
 
