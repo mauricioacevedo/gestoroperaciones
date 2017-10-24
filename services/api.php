@@ -2526,7 +2526,7 @@ class API extends REST {
             " '$REDSUGERIDA','$useri') ";
 
 
-        echo var_dump($query);
+        //echo var_dump($query);
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
