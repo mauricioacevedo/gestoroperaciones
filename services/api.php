@@ -8778,7 +8778,7 @@ class API extends REST {
         //echo "Mi parametro: $parametroBusqueda";
 
         if($parametroBusqueda=="NUEVOS_PRIMERO"){
-            $parametroBusqueda="RADICADO_TEMPORAL";
+            $parametroBusqueda="RADICADO_TEMPORAL,b.FECHA_INGRESO";
         }
         $pos = strrpos($concepto, "14");
         if ($pos === false) {} // note: three equal signs
