@@ -8563,7 +8563,7 @@ class API extends REST {
             if($plaza=="BOG-COBRE"){
                 $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') ";
             }else {
-                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') ";
+                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA','INSTIP','STBOX','EQURED') ";
                 if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
 
 
