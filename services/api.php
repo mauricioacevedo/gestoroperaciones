@@ -9069,7 +9069,7 @@ private function demePedidoEdatel(){
 
         $user           =   $this->_request['userID'];
         $concepto       =   $this->_request['concepto'];
-        $localidad          =   $this->_request['plaza'];
+        $localidad      =   $this->_request['plaza'];
         $fuente         =   $this->_request['fuente'];
         $username       =   $this->_request['username'];
         $prioridad      =   $this->_request['prioridad'];
@@ -9106,6 +9106,8 @@ private function demePedidoEdatel(){
                 $mypedidoresult=$rta;
                 break;
             }
+
+
         }
 
 
@@ -9192,7 +9194,7 @@ private function demePedidoEdatel(){
             "	o.LOCALIDAD ".
             ",	COUNT(*) AS COUNTER ".
             "	FROM portalbd.pendientes_edatel o ".
-            "	where 1=1 ".
+            "	where 1=1 and o.TIPO_TRANSACCION = 'GEOREFERENCIA' ".
             " 	$filtros ";
 
         //echo $query;
