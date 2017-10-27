@@ -2526,7 +2526,7 @@ class API extends REST {
             " '$REDSUGERIDA','$useri') ";
 
 
-        //echo var_dump($query);
+        echo var_dump($query);
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -2535,6 +2535,7 @@ class API extends REST {
                 $update = $this->mysqli->query($queryupdate) or die($this->mysqli->error.__LINE__);
                 //echo var_dump($update);
             }
+        echo var_dump($rr);
 
         $this->response(json_encode(array("msg"=>"OK","pedido" => $pedido['pedido']['SOLICITUD'])),200);
 
