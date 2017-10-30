@@ -7518,6 +7518,8 @@ class API extends REST {
                     " WHERE a.PEDIDO_ID='$pedido' and a.CONCEPTO_ID NOT IN ('14','99') ".
                     " and (a.STATUS='PENDI_PETEC' or a.STATUS='BUSCADO_PETEC' or a.STATUS='MALO')) kai on a.id=kai.id2 ";
 
+                echo var_dump($query1);
+
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $busy="";
 
