@@ -7513,9 +7513,9 @@ class API extends REST {
                     " a.PEDIDO_CRM, ".
                     " a.TELEFONO_AVISAR from informe_petec_pendientesm a ".
                     " JOIN (SELECT distinct(a.pedido) as pedido2,(select b.id from informe_petec_pendientesm b ".
-                    " where b.pedido=a.pedido order by id desc limit 1 ) as id2 ".
+                    " where b.pedido=a.pedido order by id asc limit 1 ) as id2 ".
                     " FROM `informe_petec_pendientesm` a ".
-                    " WHERE a.PEDIDO_ID='$pedido' and a.CONCEPTO_ID NOT IN ('14','99') and a.CLIENTE_ID is not null ".
+                    " WHERE a.PEDIDO_ID='$pedido' and a.CONCEPTO_ID NOT IN ('14','99') ".
                     " and (a.STATUS='PENDI_PETEC' or a.STATUS='BUSCADO_PETEC' or a.STATUS='MALO')) kai on a.id=kai.id2 ";
 
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
