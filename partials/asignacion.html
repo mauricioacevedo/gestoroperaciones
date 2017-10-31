@@ -190,14 +190,22 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control col-xs-8" aria-label=""
-                                           ng-model="mpedido.concepto">
+                                 <!--   <input type="text" class="form-control col-xs-8" aria-label=""
+                                           ng-model="mpedido.concepto">-->
+                                    <select class="form-control" ng-model="mpedido.estado">
+                                        <option value='CERRADO'>CERRADO</option>
+                                        <option value='ENRRUTADO'>ENRRUTADO</option>
+                                        <option value='MALO'>MALO</option>
+                                        <option value='PEDIDO DUPLICADO'>PEDIDO DUPLICADO</option>
+                                    </select>
                                 </td>
                                 <td>
                                     <select class="form-control" ng-model="mpedido.estado">
-                                        <option value='PORDE'>PORDE</option>
-                                        <option value='PENDIENTE'>PENDIENTE</option>
+                                        <option value='GESTIONADO'>GESTIONADO</option>
                                         <option value='ANULADO'>ANULADO</option>
+                                        <option value='GESTIONADO SUPER FORMA'>GESTIONADO SUPER FORMA</option>
+                                        <option value='PEDIDO DUPLICADO'>PEDIDO DUPLICADO</option>
+                                        <option value='PENDIENTE'>PENDIENTE</option>
                                     </select>
                                 </td>
                                 <td>
