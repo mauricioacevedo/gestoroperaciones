@@ -192,77 +192,23 @@
                                 <td>
                                  <!--   <input type="text" class="form-control col-xs-8" aria-label=""
                                            ng-model="mpedido.concepto">-->
-                                  <!--  <select class="form-control" ng-model="mpedido.concepto">
+
+                                  <select class="form-control" ng-model="mpedido.concepto">
                                         <option value='CERRADO'>CERRADO</option>
                                         <option value='ENRRUTADO'>ENRRUTADO</option>
                                         <option value='MALO'>MALO</option>
-                                    </select>-->
-                                    <select class="form-control btn-xs ng-valid ng-touched ng-dirty ng-valid-parse" name="estado" ng-model="service.estado" ng-show="isAuthorized(service.CONCEPTO_ID)">
-                                            <option value="" disabled="">--Seleccione--</option>
-                                            <!-- ngRepeat: d in listaOpcionesGestion | unique:'ESTADO_ID' --><option ng-repeat="d in listaOpcionesGestion | unique:'ESTADO_ID'" value="CERRADO" class="ng-binding ng-scope">
-                                                CERRADO
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | unique:'ESTADO_ID' --><option ng-repeat="d in listaOpcionesGestion | unique:'ESTADO_ID'" value="ENRUTADO" class="ng-binding ng-scope">
-                                                ENRUTADO
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | unique:'ESTADO_ID' --><option ng-repeat="d in listaOpcionesGestion | unique:'ESTADO_ID'" value="MALO" class="ng-binding ng-scope">
-                                                MALO
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | unique:'ESTADO_ID' --><option ng-repeat="d in listaOpcionesGestion | unique:'ESTADO_ID'" value="RECONFINGURAR" class="ng-binding ng-scope">
-                                                RECONFINGURAR
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | unique:'ESTADO_ID' -->
-                                        </select>
+                                    </select>
+
                                 </td>
                                 <td>
-                                    <select class="form-control btn-xs ng-pristine ng-valid ng-touched" name="obs" ng-model="service.motivo_malo" ng-change="onChangeAccion()">
-                                            <option value="" disabled="">--Seleccione--</option>
-                                            <!-- ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="NO SE LE PUEDE BRINDAR TO" class="ng-binding ng-scope">
-                                                NO SE LE PUEDE BRINDAR TO
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="NO SE LE PUEDE BRINDAR BA" class="ng-binding ng-scope">
-                                                NO SE LE PUEDE BRINDAR BA
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="NO SE LE PUEDE BRINDAR TV " class="ng-binding ng-scope">
-                                                NO SE LE PUEDE BRINDAR TV
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="NO HAY RED HFC" class="ng-binding ng-scope">
-                                                NO HAY RED HFC
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="SECTOR ATENDIDO CON HFC " class="ng-binding ng-scope">
-                                                SECTOR ATENDIDO CON HFC
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="NODO DIGITAL" class="ng-binding ng-scope">
-                                                NODO DIGITAL
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="ADICION DE DECOS" class="ng-binding ng-scope">
-                                                ADICION DE DECOS
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="CAMBIO DE VELOCIDAD" class="ng-binding ng-scope">
-                                                CAMBIO DE VELOCIDAD
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="PAR DEDICADO" class="ng-binding ng-scope">
-                                                PAR DEDICADO
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="TRASLADO LINEAL" class="ng-binding ng-scope">
-                                                TRASLADO LINEAL
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="TRASLADO RETIRO Y NUEVO" class="ng-binding ng-scope">
-                                                TRASLADO RETIRO Y NUEVO
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="NO SE PUEDE MANTENER EL IDENTIFICADOR" class="ng-binding ng-scope">
-                                                NO SE PUEDE MANTENER EL IDENTIFICADOR
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="ERROR DE AUTOMATICO" class="ng-binding ng-scope">
-                                                ERROR DE AUTOMATICO
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="TOIP+BA+ACCESP  NODO UNIDRECCIONAL" class="ng-binding ng-scope">
-                                                TOIP+BA+ACCESP  NODO UNIDRECCIONAL
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="ADIN COPADO" class="ng-binding ng-scope">
-                                                ADIN COPADO
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="DISPONIBILIDAD" class="ng-binding ng-scope">
-                                                DISPONIBILIDAD
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="MAL INGRESO" class="ng-binding ng-scope">
-                                                MAL INGRESO
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="NO HAY RED GPON" class="ng-binding ng-scope">
-                                                NO HAY RED GPON
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="PEDIDO DEBE INGRESAR POR SIEBEL 8.1" class="ng-binding ng-scope">
-                                                PEDIDO DEBE INGRESAR POR SIEBEL 8.1
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' --><option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'" value="MALA ASIGNACION" class="ng-binding ng-scope">
-                                                MALA ASIGNACION
-                                            </option><!-- end ngRepeat: d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID' -->
-                                        </select>
-                                    <!--<select class="form-control" ng-model="mpedido.estado">
+                                    <select class="form-control" ng-model="mpedido.estado">
                                         <option value='GESTIONADO'>GESTIONADO</option>
                                         <option value='ANULADO'>ANULADO</option>
                                         <option value='GESTIONADO SUPER FORMA'>GESTIONADO SUPER FORMA</option>
                                         <option value='PEDIDO DUPLICADO'>PEDIDO DUPLICADO</option>
                                         <option value='PENDIENTE'>PENDIENTE</option>
                                         <option value='PEDIDO NO SE DEJA GESTIONAR'>PEDIDO NO SE DEJA GESTIONAR</option>
-                                    </select>-->
+                                    </select>
                                 </td>
                                 <td>
                                     <button id="mguardar" type="button" class="btn btn-sm btn-success"
