@@ -1452,12 +1452,9 @@ class API extends REST {
         $pedido = json_decode(file_get_contents("php://input"),true);
 
         $observacion = $pedido['observacion'];
-
-        $pedidoid = $pedido['pedido'];
-
-
         echo var_dump($observacion);
 
+        $pedidoid = $pedido['pedido'];
         $pedidoid = $pedidoid['pedido'];
 
         $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','concepto_final');
