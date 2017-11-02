@@ -1460,6 +1460,8 @@ class API extends REST {
         $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','concepto_final');
         $keys = array_keys($pedido);
 
+        echo var_dump ($pedido);
+
         $columns = '';
         $values = '';
         $fecha_estado='';
