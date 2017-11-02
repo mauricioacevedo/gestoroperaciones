@@ -8951,7 +8951,8 @@ class API extends REST {
             " b.DIRECCION_SERVICIO, ".
             " b.PAGINA_SERVICIO, ".
             " b.TECNOLOGIA_ID,	".
-            " CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(b.FECHA_INGRESO)) AS CHAR(255)) as TIEMPO_COLA,	".
+            " CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(b.FECHA_CARGA)) AS CHAR(255)) as TIEMPO_COLA, ".
+            " CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(b.FECHA_INGRESO)) AS CHAR(255)) as TIEMPO_INGRESO,	".
             " b.FUENTE, ".
             " b.GRUPO, ".
             " b.ACTIVIDAD, ".
