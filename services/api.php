@@ -1453,8 +1453,8 @@ class API extends REST {
 
         $pedidoid = $pedido['pedido'];
 
-        $observacion = $pedido['observacion'];
-        echo var_dump($observacion);
+        //$observacion = $pedido['observacion'];
+        echo var_dump($pedido);
 
         $pedidoid = $pedidoid['pedido'];
 
