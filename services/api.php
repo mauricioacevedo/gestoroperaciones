@@ -1479,7 +1479,7 @@ class API extends REST {
         //$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
         if(!empty($pedido)){
             //$concepto_final=$this->updateFenix($pedido);
-            $query = "INSERT INTO pedidos(".trim($columns,',').",source, pedido_id) VALUES(".trim($values,',').",'MANUAL', '$pedidoid')";
+            $query = "INSERT INTO pedidos(".trim($columns,',').",source,OBSERVACIONES_PROCESO, pedido_id) VALUES(".trim($values,',').",'MANUAL', '$observaciones', '$pedidoid')";
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
             //hago la actualizacion en fenix
