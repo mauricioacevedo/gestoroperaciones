@@ -175,6 +175,7 @@
                             <th>Fuente de Informacion</th>
                             <th>Concepto Final</th>
                             <th>Estado</th>
+                            <th>Observacion</th>
                             <th>&nbsp;</th>
                             </thead>
                             <tr>
@@ -190,8 +191,6 @@
                                     </select>
                                 </td>
                                 <td>
-                                 <!--   <input type="text" class="form-control col-xs-8" aria-label=""
-                                           ng-model="mpedido.concepto">-->
 
                                   <select class="form-control" ng-model="mpedido.concepto">
                                         <option value='CERRADO'>CERRADO</option>
@@ -211,6 +210,12 @@
                                     </select>
                                 </td>
                                 <td>
+                                   <input type="text" class="form-control col-xs-8" aria-label=""
+                                           ng-model="mpedido.observacion">
+                                </td>
+
+                                <td>
+
                                     <button id="mguardar" type="button" class="btn btn-sm btn-success"
                                             ng-click="msavePedido();"><span id="mloader"></span>&nbsp; Guardar
                                     </button>
