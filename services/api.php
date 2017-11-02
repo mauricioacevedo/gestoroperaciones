@@ -1451,16 +1451,13 @@ class API extends REST {
 
         $pedido = json_decode(file_get_contents("php://input"),true);
 
-         echo var_dump($pedido);
-
         $pedidoid = $pedido['pedido'];
-        $observacion = $pedido['OBSERVACIONES_PROCESO'];
+
+        echo var_dump($pedido);
+
         $pedidoid = $pedidoid['pedido'];
 
-
-
-
-        $column_names = array('pedido', 'fuente', 'actividad','estado','OBSERVACIONES_PROCESO', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','concepto_final');
+        $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','concepto_final');
         $keys = array_keys($pedido);
 
         $columns = '';
