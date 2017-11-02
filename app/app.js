@@ -7298,6 +7298,7 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 		$scope.pedido.duracion = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
 		$scope.pedido.actividad = "ESTUDIO";
 		$scope.pedido.concepto_final = $scope.mpedido.concepto;
+        $scope.pedido.observacion = $scope.mpedido.observacion;
 		$scope.pedido.fecha_inicio = $scope.fecha_inicio;
 
 
