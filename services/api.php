@@ -11800,7 +11800,7 @@ private function demePedidoEdatel(){
         }
 
 
-        $query="SELECT * FROM tbl_KpisInfraestructura ";
+        $query="select * from tbl_KpisInfraestructura order by ID desc limit 50; ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
