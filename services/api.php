@@ -1453,6 +1453,9 @@ class API extends REST {
 
         $pedidoid = $pedido['pedido'];
         $pedidoid = $pedidoid['pedido'];
+        $observacion = $pedido['observacion'];
+
+        echo var_dump($observacion);
 
         $column_names = array('pedido', 'fuente', 'actividad','estado','OBSERVACIONES_PROCESO', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','concepto_final');
         $keys = array_keys($pedido);
