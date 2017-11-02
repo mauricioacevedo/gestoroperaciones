@@ -1452,6 +1452,7 @@ class API extends REST {
         $pedido = json_decode(file_get_contents("php://input"),true);
 
         $observacion = $pedido['observacion'];
+
         $pedidoid = $pedido['pedido'];
 
 
