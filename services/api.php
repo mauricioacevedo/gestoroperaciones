@@ -1460,7 +1460,7 @@ class API extends REST {
         $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','concepto_final');
         $keys = array_keys($pedido);
 
-        //echo var_dump ($pedido);
+        //echo var_dump ($pedido);guardarPedidoGestionguardarPedidoGestion
 
         $columns = '';
         $values = '';
@@ -8293,7 +8293,7 @@ class API extends REST {
         }
         return "No rows!!!!";
     }
-    /*
+
 		private function demePedidoReconfiguracion(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
@@ -8329,7 +8329,7 @@ class API extends REST {
 			}
 		}
 
-*/
+
     /**
      * @uses  updateParametro()
      */
