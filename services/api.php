@@ -8694,7 +8694,7 @@ class API extends REST {
 
             $concepto=" and b.CONCEPTO_ID in ('PETEC') and (b.RADICADO_TEMPORAL = 'EQURED' )";
 
-        }else if($concepto=="14" || $concepto=="99" || $concepto=="O-101"){
+        }else if($concepto=="14" || $concepto=="99" || $concepto=="O-101" || $concepto == "OT-C08"){
 
             $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION');
             //reviso si hay llamadas que se deben hacer y las entrego de primeras

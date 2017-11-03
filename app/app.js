@@ -16676,7 +16676,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 
 	//Case para saber donde guardar ----------------------------------------------
-	$scope.dondeGuardar=function (str) {
+/*	$scope.dondeGuardar=function (str) {
 		console.log(str);
 			switch (str) {
 				case 'FENIX_NAL': 
@@ -16699,7 +16699,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 		}
 		return ($scope.estadoGuardo);
-	};// ----------------------------------------------Case para saber donde guardar
+	};*/// ----------------------------------------------Case para saber donde guardar
 
 	$scope.csvHistoricosReconfiguracion = function (){
                 //var login=$rootScope.logedUser.login;
