@@ -16554,7 +16554,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		}else{
             var varDondeGuardar 	= InfoPedido.FUENTE;
 		} */
-/*
+
         var varDondeGuardar     = gestion.FUENTE;
         var varEstadoGuardar	= InfoPedido.ESTADO_PROCESO;
         var varObsesGuardar		= InfoPedido.OBSERVACIONES_PROCESO;
@@ -16699,7 +16699,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 		}
 		return ($scope.estadoGuardo);
-	};// ----------------------------------------------Case para saber donde guardar */
+	};// ----------------------------------------------Case para saber donde guardar
 
 	$scope.csvHistoricosReconfiguracion = function (){
                 //var login=$rootScope.logedUser.login;
