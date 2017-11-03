@@ -8294,7 +8294,7 @@ class API extends REST {
         return "No rows!!!!";
     }
 
-		private function demePedidoReconfiguracion(){
+	/*	private function demePedidoReconfiguracion(){
                         if($this->get_request_method() != "GET"){
                                 $this->response('',406);
                         }
@@ -8327,7 +8327,7 @@ class API extends REST {
 
 				$this->demePedido();
 			}
-		}
+		}*/
 
 
     /**
