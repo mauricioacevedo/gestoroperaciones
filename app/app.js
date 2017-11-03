@@ -16555,8 +16555,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
             var varDondeGuardar 	= InfoPedido.FUENTE;
 		} */
 
-        var varDondeGuardar     = gestion.FUENTE;
-        var varEstadoGuardar	= InfoPedido.ESTADO_PROCESO;
+       /* var varDondeGuardar     = gestion.FUENTE;*/
+ /*       var varEstadoGuardar	= InfoPedido.ESTADO_PROCESO;
         var varObsesGuardar		= InfoPedido.OBSERVACIONES_PROCESO;
 
 
@@ -16610,8 +16610,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			OBSERVACION: InfoPedido.OBSERVACIONES_PROCESO,
 			USUARIO: $rootScope.logedUser.login,
 			STATUS: $scope.stautsGo
-		};
-		} else if (varDondeGuardar=='EDATEL') {
+		};*/
+/*		} else if (varDondeGuardar=='EDATEL') {
 			$scope.InfoGestion = {
 			pedido: gestion.PEDIDO_ID,
 			fuente: varDondeGuardar,
@@ -16638,14 +16638,14 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			INCIDENTE: InfoPedido.INCIDENTE,
 			ID: gestion.ID
 		};
-		}
+		}*/
 
 		 //console.log($scope.InfoGestion);
-		$scope.dondeGuardar(varDondeGuardar);
+	/*	$scope.dondeGuardar(varDondeGuardar);*/
 
 		//console.log($scope.estadoGuardo);
 
-		if($scope.estadoGuardo){
+/*		if($scope.estadoGuardo){
 			$scope.pedidoIsGuardado			= true;
 			$rootScope.errorDatos 			= null;
 			$scope.InfoPedido 				= [];
@@ -16672,7 +16672,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		}
 
 
-	}; //  -------------------------------------------------------------- GuardarPedido
+	};*/ //  -------------------------------------------------------------- GuardarPedido
 
 
 	//Case para saber donde guardar ----------------------------------------------
