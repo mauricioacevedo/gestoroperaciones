@@ -16836,7 +16836,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         var varEstadoGuardar = InfoPedido.ESTADO_PROCESO;
         var varObsesGuardar = InfoPedido.OBSERVACIONES_PROCESO;
 
-		if(InfoPedido.PROGRAMACION==undefined){
+		if(InfoPedido.PROGRAMACION==""){
             InfoPedido.PROGRAMACION='SIN';
 		}
 
