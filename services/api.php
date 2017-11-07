@@ -8697,7 +8697,7 @@ class API extends REST {
 
 
         }
-        echo var_dump("Michael".$concepto);
+        echo var_dump($concepto);
         else if($concepto=="14" || $concepto=="99" || $concepto=="O-101" || $concepto=="OT-C08" ){
             echo var_dump("INGRESO");
 
