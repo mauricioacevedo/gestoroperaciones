@@ -8648,59 +8648,10 @@ class API extends REST {
             $concepto=" and b.CONCEPTO_ID in ('PETEC') and (b.TIPO_ELEMENTO_ID IN ('E2MB','P2MB','INSTIP','CNTXIP','SEDECX','PLANT','PLP','PTLAN','MTLAN', 'PMULT','EPCM','PPCM','PBRI','PPRI','TV','TP','BDID','TDID','BDIDE1','TDIDE1','BDODE1','TDODE1','SLL','TC','SLLBRI','TCBRI','SLLE1','TCE1','SLLPRI','TCPRI','SEDEIP','CONECT','ACCESO') )";
 
 
-        }else if($fuente=="SIEBEL"||$fuente=="EDATEL"){
-            echo var_dump($concepto);
-
-
-            if($plaza=='TODOS'){
-                $plaza2="";
-            }else{
-                $plaza2=" AND MUNICIPIO_ID='$plaza' ";
-            }
-            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ASGINGACIONES_SIEBEL');
-            $sqlllamadas=   "SELECT PEDIDO_ID, ".
-                " SUBPEDIDO_ID, ".
-                " SOLICITUD_ID, ".
-                " FECHA_ESTADO, ".
-                " FECHA_INGRESO, ".
-                " FECHA_CITA ".
-                " FROM  informe_petec_pendientesm ".
-                " WHERE 1=1 ".
-                //" and (TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
-                //" AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
-                " and RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM','MIG','REPARMIG','MIGGPON','GPON','AAA')  ".
-                " AND ASESOR='' ".
-                " AND CONCEPTO_ID = '$concepto' ".
-                " AND STATUS='PENDI_PETEC' ".
-                $plaza2.
-                " ORDER BY FECHA_INGRESO ASC ";
-            //echo $sqlllamadas;
-
-            $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
-
-            if($rr->num_rows > 0){//recorro los registros de la consulta para
-                while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
-                    $result[] = $row;
-                    $mypedido=$row['PEDIDO_ID'];
-                    $mypedidoresult=$rta;
-                    $ATENCION_INMEDIATA="1";
-                    break;
-                }
-            }
-
-
-            $concepto=" and b.CONCEPTO_ID in ('$concepto')";
-        }else if($concepto=="STBOX"){
-            $concepto=" and b.CONCEPTO_ID in ('PETEC','15') and (b.TIPO_ELEMENTO_ID IN ('STBOX') )";
-
-
-        }else if($concepto=="EQURED"){
-
-            $concepto=" and b.CONCEPTO_ID in ('PETEC') and (b.RADICADO_TEMPORAL = 'EQURED' )";
-
         }
+
         else if($concepto=="14" || $concepto=="99" || $concepto=="O-101" || $concepto=="OT-C08" ){
-            //echo var_dump("INGRESO");
+            echo var_dump("INGRESO");
 
             $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION');
             //reviso si hay llamadas que se deben hacer y las entrego de primeras
@@ -8757,7 +8708,58 @@ class API extends REST {
             }
             //$concepto=" and b.CONCEPTO_ID='$concepto' and b.TIPO_ELEMENTO_ID IN('ACCESP','INSIP','INSHFC','TO','TOIP','STBOX') and b.UEN_CALCULADA ='HG' AND b.PROGRAMACION='' ";
             $concepto=" and b.CONCEPTO_ID='$concepto' AND b.PROGRAMACION='' ";
-        }else if($concepto=="RENUM"){
+        }
+
+        else if($fuente=="SIEBEL"||$fuente=="EDATEL"){
+
+            if($plaza=='TODOS'){
+                $plaza2="";
+            }else{
+                $plaza2=" AND MUNICIPIO_ID='$plaza' ";
+            }
+            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ASGINGACIONES_SIEBEL');
+            $sqlllamadas=   "SELECT PEDIDO_ID, ".
+                " SUBPEDIDO_ID, ".
+                " SOLICITUD_ID, ".
+                " FECHA_ESTADO, ".
+                " FECHA_INGRESO, ".
+                " FECHA_CITA ".
+                " FROM  informe_petec_pendientesm ".
+                " WHERE 1=1 ".
+                //" and (TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
+                //" AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
+                " and RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM','MIG','REPARMIG','MIGGPON','GPON','AAA')  ".
+                " AND ASESOR='' ".
+                " AND CONCEPTO_ID = '$concepto' ".
+                " AND STATUS='PENDI_PETEC' ".
+                $plaza2.
+                " ORDER BY FECHA_INGRESO ASC ";
+            //echo $sqlllamadas;
+
+            $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
+
+            if($rr->num_rows > 0){//recorro los registros de la consulta para
+                while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
+                    $result[] = $row;
+                    $mypedido=$row['PEDIDO_ID'];
+                    $mypedidoresult=$rta;
+                    $ATENCION_INMEDIATA="1";
+                    break;
+                }
+            }
+
+
+            $concepto=" and b.CONCEPTO_ID in ('$concepto')";
+        }else if($concepto=="STBOX"){
+            $concepto=" and b.CONCEPTO_ID in ('PETEC','15') and (b.TIPO_ELEMENTO_ID IN ('STBOX') )";
+
+
+        }else if($concepto=="EQURED"){
+
+            $concepto=" and b.CONCEPTO_ID in ('PETEC') and (b.RADICADO_TEMPORAL = 'EQURED' )";
+
+        }
+        else if($concepto=="RENUM"){
             $concepto=" and b.CONCEPTO_ID='14' ";
             $STATUS="PENDI_RENUMS";
         }else if($concepto=="14B2B"){
