@@ -8684,7 +8684,7 @@ class API extends REST {
                     break;
                 }
             }
-            echo var_dump("Michael".$concepto);
+            //echo var_dump("Michael".$concepto);
 
             $concepto=" and b.CONCEPTO_ID in ('$concepto')";
         }else if($concepto=="STBOX"){
