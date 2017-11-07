@@ -8684,7 +8684,7 @@ class API extends REST {
                     break;
                 }
             }
-            //echo var_dump("Michael".$concepto);
+            //echo var_dump("Michael ".$concepto);
 
             $concepto=" and b.CONCEPTO_ID in ('$concepto')";
         }else if($concepto=="STBOX"){
@@ -8695,10 +8695,8 @@ class API extends REST {
 
             $concepto=" and b.CONCEPTO_ID in ('PETEC') and (b.RADICADO_TEMPORAL = 'EQURED' )";
 
-
         }
-        //echo var_dump($concepto);
-        else if($concepto=="14" || $concepto=="99" || $concepto=="O-101" || $concepto=="OT-C08" ){
+        else if($concepto=="14" || $concepto=="99" || $concepto=="O-101" || $concepto=="OT-C08 | SIEBEL" ){
             echo var_dump("INGRESO");
 
             $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION');
