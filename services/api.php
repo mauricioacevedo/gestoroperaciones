@@ -8480,7 +8480,7 @@ class API extends REST {
         $username       =   $this->_request['username'];
         $prioridad      =   $this->_request['prioridad'];
 
-        echo var_dump($concepto);
+        //echo var_dump($concepto);
 
         $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
