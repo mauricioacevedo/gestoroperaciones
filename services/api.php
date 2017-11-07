@@ -8649,6 +8649,8 @@ class API extends REST {
 
 
         }else if($fuente=="SIEBEL"||$fuente=="EDATEL"){
+            echo var_dump($concepto);
+
 
             if($plaza=='TODOS'){
                 $plaza2="";
@@ -8698,7 +8700,7 @@ class API extends REST {
 
         }
         else if($concepto=="14" || $concepto=="99" || $concepto=="O-101" || $concepto=="OT-C08" ){
-            echo var_dump("INGRESO");
+            //echo var_dump("INGRESO");
 
             $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION');
             //reviso si hay llamadas que se deben hacer y las entrego de primeras
