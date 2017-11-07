@@ -8562,7 +8562,7 @@ class API extends REST {
 
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
 
-        echo var_dump("Michael ".$concepto);
+        //echo var_dump("Michael ".$concepto);
         /* if($fuente="SIEBEL"){
 			   $concepto=" and b.CONCEPTO_ID='$concepto'";
 		   } */
@@ -8651,7 +8651,7 @@ class API extends REST {
         }
 
         else if($concepto=="14" || $concepto=="99" || $concepto=="O-101" || $concepto=="OT-C08" ){
-            echo var_dump("INGRESO");
+            //echo var_dump("INGRESO");
 
             $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION');
             //reviso si hay llamadas que se deben hacer y las entrego de primeras
