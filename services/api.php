@@ -8702,7 +8702,7 @@ class API extends REST {
                         $mypedidoresult=$rta;
                         $ATENCION_INMEDIATA="1";
                         break;
-                        echo ("INGRESO");
+                        //echo ("INGRESO");
                     }
                 }
 
