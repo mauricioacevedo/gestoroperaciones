@@ -8995,7 +8995,7 @@ class API extends REST {
             " b.APROVISIONADOR, ".
             " b.PEDIDO_CRM ".
             " from informe_petec_pendientesm b 	".
-            " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto ";
+            " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto order by b.FECHA_INGRESO asc";
 
             echo var_dump($query1);
 
