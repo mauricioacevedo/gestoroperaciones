@@ -8673,6 +8673,7 @@ class API extends REST {
                     $fechaprogramacion = $row['PROGRAMACION'];
                     $mypedidoresult=$rta;
                     break;
+                    echo var_dump("INGRESO3");
                 }
             }
 
@@ -8701,6 +8702,7 @@ class API extends REST {
                         $mypedido=$row['PEDIDO_ID'];
                         $mypedidoresult=$rta;
                         $ATENCION_INMEDIATA="1";
+                        echo var_dump("INGRESO4");
                         break;
                     }
                 }
@@ -8744,6 +8746,7 @@ class API extends REST {
                     $mypedido=$row['PEDIDO_ID'];
                     $mypedidoresult=$rta;
                     $ATENCION_INMEDIATA="1";
+                    echo var_dump("INGRESO5");
                     break;
                 }
             }
@@ -8903,7 +8906,9 @@ class API extends REST {
 
                             $mypedido=$row['PEDIDO_ID'];
                             $mypedidoresult=$rta;
+                            echo var_dump("INGRESO2");
                             break;
+
                         }
 
                         /*
@@ -8997,7 +9002,7 @@ class API extends REST {
             " from informe_petec_pendientesm b 	".
             " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto order by b.FECHA_INGRESO asc";
 
-            echo var_dump($query1);
+            echo var_dump("INGRESO1");
 
         //"SELECT b.ID,b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.TIPO_ELEMENTO_ID,b.PRODUCTO,b.UEN_CALCULADA,b.ESTRATO,b.MUNICIPIO_ID,b.DIRECCION_SERVICIO,b.PAGINA_SERVICIO,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(b.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,b.FUENTE,b.CONCEPTO_ID,b.FECHA_ESTADO,b.USUARIO_BLOQUEO_FENIX,b.TIPO_TRABAJO,b.CONCEPTO_ANTERIOR,b.FECHA_CITA,b.CANTIDAD_EQU,b.EQUIPOS,b.CONCEPTOS_EQU,b.TIPO_EQUIPOS,b.EXTENSIONES, b.OBSERVACIONES,  b.EJECUTIVO_ID, b.CANAL_ID from informe_petec_pendientesm b where b.PEDIDO_ID = '$mypedido' and b.STATUS='PENDI_PETEC' $concepto ";
 
