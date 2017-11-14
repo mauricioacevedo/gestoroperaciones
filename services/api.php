@@ -8790,7 +8790,7 @@ class API extends REST {
         }
 
 
-        echo "Mi parametro: $parametroBusqueda";
+        //echo "Mi parametro: $parametroBusqueda";
 
         if($parametroBusqueda=="NUEVOS_PRIMERO"){
             $parametroBusqueda="FECHA_INGRESO,b.RADICADO_TEMPORAL ";
