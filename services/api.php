@@ -8690,8 +8690,8 @@ class API extends REST {
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
-                    " ORDER BY FECHA_INGRESO ASC ";
-                echo ("INGRESO");
+                    " ORDER BY FECHA_ESTADO ASC ";
+
 
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
@@ -8702,6 +8702,7 @@ class API extends REST {
                         $mypedidoresult=$rta;
                         $ATENCION_INMEDIATA="1";
                         break;
+                        echo ("INGRESO");
                     }
                 }
 
