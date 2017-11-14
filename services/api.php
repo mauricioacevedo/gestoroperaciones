@@ -8790,7 +8790,7 @@ class API extends REST {
         }
 
 
-        //echo "Mi parametro: $parametroBusqueda";
+        echo "Mi parametro: $parametroBusqueda";
 
         if($parametroBusqueda=="NUEVOS_PRIMERO"){
             $parametroBusqueda="FECHA_INGRESO,b.RADICADO_TEMPORAL ";
@@ -8997,7 +8997,7 @@ class API extends REST {
             " b.APROVISIONADOR, ".
             " b.PEDIDO_CRM ".
             " from informe_petec_pendientesm b 	".
-            " where b.STATUS='$STATUS' $concepto order by b.FECHA_INGRESO asc";
+            " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto order by b.FECHA_INGRESO asc";
 
 
 
