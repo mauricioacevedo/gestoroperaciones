@@ -8861,6 +8861,7 @@ class API extends REST {
 
                         $mypedido=$row['PEDIDO_ID'];
                         $mypedidoresult=$rta;
+                        echo var_dump("INGRESO6");
                         break;
                     }
 
