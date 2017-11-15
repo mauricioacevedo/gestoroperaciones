@@ -8735,7 +8735,7 @@ class API extends REST {
                 " AND STATUS='PENDI_PETEC' ".
                 $plaza2.
                 " ORDER BY FECHA_INGRESO ASC ";
-                echo ("INGRESO1".$parametroBusqueda);
+
 
             $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
@@ -8745,7 +8745,6 @@ class API extends REST {
                     $mypedido=$row['PEDIDO_ID'];
                     $mypedidoresult=$rta;
                     $ATENCION_INMEDIATA="1";
-                    echo ("INGRESO2".$parametroBusqueda);
                     break;
                 }
             }
@@ -8817,6 +8816,7 @@ class API extends REST {
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             " order by b.$parametroBusqueda ASC";
+            echo var_dump ("INGRESO1".$parametroBusqueda);
 
 
         //echo $query1;
