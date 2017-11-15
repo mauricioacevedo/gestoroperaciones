@@ -8817,6 +8817,7 @@ class API extends REST {
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             " order by b.$parametroBusqueda ASC";
             echo var_dump ("INGRESO1".$parametroBusqueda);
+            echo var_dump ("INGRESO2" .$query1);
 
 
         //echo $query1;
