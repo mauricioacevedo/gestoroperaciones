@@ -8815,10 +8815,11 @@ class API extends REST {
             $plaza.
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-            " order by b.$parametroBusqueda ASC";
+            " where b.TIPO_TRABAJO not in ('NUEVO') order by b.$parametroBusqueda ASC";
 
 
-        //echo $query1;
+
+            echo $query1;
 
         if($mypedido==""){
 
@@ -8889,11 +8890,6 @@ class API extends REST {
                     $plaza.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
                     " order by b.FECHA_INGRESO ASC";
-
-                 echo var_dump ("INGRESO1".$parametroBusqueda);
-                echo var_dump ("INGRESO2" .$query1);
-            echo var_dump ("INGRESO2" .$STATUS);
-            echo var_dump ("INGRESO2" .$concepto);
 
                 //echo $query1;
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
