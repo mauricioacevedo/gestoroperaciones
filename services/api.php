@@ -8810,7 +8810,7 @@ class API extends REST {
             " from informe_petec_pendientesm b ".
             " where b.STATUS='$STATUS'  ".
             " and b.ASESOR ='' ".
-            " and b.TIPO_TRABAJO not in ('NUEVO') ".
+            //" and b.TIPO_TRABAJO not in ('NUEVO') ".
             $concepto." ".
             $plaza.
             //" and b.CONCEPTO_ID='$concepto' ".
