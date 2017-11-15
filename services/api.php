@@ -8820,7 +8820,7 @@ class API extends REST {
 
 
 
-            echo $query1;
+            //echo $query1;
 
         if($mypedido==""){
 
