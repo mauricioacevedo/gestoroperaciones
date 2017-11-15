@@ -8818,7 +8818,8 @@ class API extends REST {
             " order by b.$parametroBusqueda ASC";
             echo var_dump ("INGRESO1".$parametroBusqueda);
             echo var_dump ("INGRESO2" .$query1);
-
+            echo var_dump ("INGRESO2" .$STATUS);
+            echo var_dump ("INGRESO2" .$concepto);
 
         //echo $query1;
 
