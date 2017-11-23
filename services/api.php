@@ -17037,11 +17037,19 @@ private function demePedidoEdatel(){
         $filtros= " and o.STATUS ='PENDI_PETEC' and $paramFuente AND o.CONCEPTO_ID='$concepto' ".
                     " GROUP BY o.MUNICIPIO_ID ORDER BY COUNT(*) DESC ";
 
+        if ($concepto == "12-EDATEL")
+        {
+            $municipios = "where 1 = 1";
+        }
+        else{
+            $municipios = "MUNICIPIO_ID like 'BOG%' ";
+        }
+
         $query=	" SELECT ".
             "	o.MUNICIPIO_ID ".
             ",	COUNT(*) AS COUNTER ".
             "	FROM portalbd.informe_petec_pendientesm o ".
-            "	where MUNICIPIO_ID like 'BOG%' ".
+            "	where $municipios ".
                 //where 1 = 1 ".
             " 	$filtros ";
 
