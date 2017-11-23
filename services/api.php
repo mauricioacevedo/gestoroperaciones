@@ -17053,7 +17053,7 @@ private function demePedidoEdatel(){
                 //where 1 = 1 ".
             " 	$filtros ";
 
-        echo var_dump($query);
+        //echo var_dump($query);
 
         //echo $query;
 
