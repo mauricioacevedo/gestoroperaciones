@@ -17045,6 +17045,8 @@ private function demePedidoEdatel(){
                 //where 1 = 1 ".
             " 	$filtros ";
 
+        echo var_dump($concepto);
+
         //echo $query;
 
         $rst = $this->mysqli->query($query);
