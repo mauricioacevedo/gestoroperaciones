@@ -17039,7 +17039,7 @@ private function demePedidoEdatel(){
 
         if ($concepto == "12-EDATEL")
         {
-            $municipios = "where 1 = 1";
+            $municipios = "1 = 1";
         }
         else{
             $municipios = "MUNICIPIO_ID like 'BOG%' ";
