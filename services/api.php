@@ -17039,7 +17039,8 @@ private function demePedidoEdatel(){
 
         if ($concepto == "12-EDATEL")
         {
-            $municipios = "1 = 1";
+            //$municipios = "1 = 1";
+            $municipios = "MUNICIPIO_ID IN ('GUATAPE','CIUDAD BOLIVAR','AMAGA','SANTAFE DE ANTIOQUIA','FREDONIA','VENECIA','SANTA BARBARA','ANDES','PEÑOL','SONSON','LA PINTADA','TAMASIS','JARDIN','URRAO','JERICO','APARTADO')";
         }
         else{
             $municipios = "MUNICIPIO_ID like 'BOG%' ";
