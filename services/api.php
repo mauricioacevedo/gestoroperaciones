@@ -17063,7 +17063,8 @@ private function demePedidoEdatel(){
         if ($rst->num_rows > 0){
 
             $resultado=array();
-            $resultado[]=array("MUNICIPIO_ID"=>"TODOS","COUNTER"=>"TODOS");
+            //$resultado[]=array("MUNICIPIO_ID"=>"TODOS","COUNTER"=>"TODOS");
+            $resultado[]=array("MUNICIPIO_ID"=>"TODOS");
             while($row=$rst->fetch_assoc()){
 
                 //$row['nombre']=utf8_encode($row['nombre']);
