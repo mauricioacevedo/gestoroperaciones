@@ -14864,7 +14864,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
         if ($scope.iplaza == "BOGOTA"){
             $scope.iplaza={};
-            $scope.iplaza.MUNICIPIO_ID ="BOGOTA";
+            $scope.iplaza.MUNICIPIO_ID ="BOGCUNCOL";
         }
 
 
