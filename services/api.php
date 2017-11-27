@@ -17043,15 +17043,15 @@ private function demePedidoEdatel(){
             $municipios = "MUNICIPIO_ID IN ('GUATAPE','CIUDAD BOLIVAR','AMAGA','SANTAFE DE ANTIOQUIA','FREDONIA','VENECIA','SANTA BARBARA','ANDES','PEÑOL','SONSON','LA PINTADA','TAMASIS','JARDIN','URRAO','JERICO','APARTADO')";
         }
         else{
-            $municipios = "MUNICIPIO_ID like 'BOG%' ";
+            $municipios = "MUNICIPIO_ID like 'BOG%' and MUNICIPIO_ID in ('MEDANTCOL') ";
         }
 
         $query=	" SELECT ".
             "	o.MUNICIPIO_ID ".
             ",	COUNT(*) AS COUNTER ".
             "	FROM portalbd.informe_petec_pendientesm o ".
-            //"	where $municipios ".
-                "where 1 = 1 ".
+            "	where $municipios ".
+            //    "where 1 = 1 ".
             " 	$filtros ";
 
         //echo var_dump($query);
