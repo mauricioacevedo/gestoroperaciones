@@ -17050,8 +17050,8 @@ private function demePedidoEdatel(){
             "	o.MUNICIPIO_ID ".
             ",	COUNT(*) AS COUNTER ".
             "	FROM portalbd.informe_petec_pendientesm o ".
-            "	where $municipios ".
-                //where 1 = 1 ".
+            //"	where $municipios ".
+                "where 1 = 1 ".
             " 	$filtros ";
 
         //echo var_dump($query);
