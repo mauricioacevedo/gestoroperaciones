@@ -14872,8 +14872,9 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
             $scope.iplaza.MUNICIPIO_ID ="TODOS";
         }
 
-        alert("$scope" + $scope.iplaza.MUNICIPIO_ID +" iplzaa: "+ $scope.iplaza);
-		$scope.error = "";
+        //alert("$scope" + $scope.iplaza.MUNICIPIO_ID +" iplzaa: "+ $scope.iplaza);
+
+        $scope.error = "";
 
 		var demePedidoButton = document.getElementById("iniciar");
 		demePedidoButton.setAttribute("disabled", "disabled");
