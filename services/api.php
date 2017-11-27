@@ -17026,7 +17026,7 @@ private function demePedidoEdatel(){
         $params 	= json_decode(file_get_contents('php://input'),true);
         $concepto 	= $params['concepto'];
         $fuente     = $params['fuente'];
-        echo var_dump ($params);
+        //echo var_dump ($params);
         $today		= date("Y-m-d");
 
         if($fuente=='FENIX_NAL'){
