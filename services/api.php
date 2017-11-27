@@ -17044,7 +17044,7 @@ private function demePedidoEdatel(){
             $municipios = "MUNICIPIO_ID IN ('GUATAPE','CIUDAD BOLIVAR','AMAGA','SANTAFE DE ANTIOQUIA','FREDONIA','VENECIA','SANTA BARBARA','ANDES','PEÑOL','SONSON','LA PINTADA','TAMASIS','JARDIN','URRAO','JERICO','APARTADO')";
         }
         else{
-            $municipios = "MUNICIPIO_ID = 'MEDANTCOL' or MUNICIPIO_ID = 'BOGCUNCOL' ";
+            $municipios = "MUNICIPIO_ID in ('MEDANTCOL','BOGCUNCOL') ";
             //like 'BOG%' and MUNICIPIO_ID
         }
 
