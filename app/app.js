@@ -14858,10 +14858,12 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 
         if ($scope.iplaza == "TODOS"){
+            $scope.iplaza={};
             $scope.iplaza.MUNICIPIO_ID ="TODOS";
         }
 
         if ($scope.iplaza == "BOGOTA"){
+            $scope.iplaza={};
             $scope.iplaza.MUNICIPIO_ID ="BOGOTA";
         }
 
