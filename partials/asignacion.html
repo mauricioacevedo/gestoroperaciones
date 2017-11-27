@@ -88,16 +88,15 @@
                             ng-model="iplaza"
                             ng-options="d.MUNICIPIO_ID +'('+d.COUNTER+')'+ ''  for d in listadoMunicipios "
                     >-->
-                    <form id="municipios">
+
                     <select id="Plaza" class="form-control"
-                            name="Plazas"
                             style="width: 150px"
                             ng-model="iplaza">
                         <option value="" disabled>--Seleccione Municipio--</option>
                         <option value="TODOS" selected>TODOS</option>
                         <option value="BOGCUNCOL" >BOGOTA</option>
                     </select>
-                    </form>
+
 
                     <!--
                     <div ng-show="error" class="alert alert-danger ">Muestra error cuando no hay pedidos
