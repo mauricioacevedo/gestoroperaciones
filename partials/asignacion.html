@@ -83,12 +83,15 @@
 
                     </select>
                     <label for="Plaza">Plaza:</label>
-                    <select id="Plaza" class="form-control"
+                    <!--<select id="Plaza" class="form-control"
                             style="width: 150px"
                             ng-model="iplaza"
                             ng-options="d.MUNICIPIO_ID +'('+d.COUNTER+')'+ ''  for d in listadoMunicipios "
-                    >
+                    >-->
+                    <select>
                         <option value="" disabled>--Seleccione Municipio--</option>
+                        <option value="" >TODOS</option>
+                        <option value="" >BOGOTA</option>
                     </select>
 
                     </div>
