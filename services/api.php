@@ -8481,7 +8481,7 @@ class API extends REST {
         $prioridad      =   $this->_request['prioridad'];
 
 
-        echo var_dump($galleta);
+        echo var_dump($concepto);
 
         $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
