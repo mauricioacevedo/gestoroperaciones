@@ -14862,10 +14862,6 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
             $scope.iplaza.MUNICIPIO_ID ="TODOS";
         }
 
-         if ($scope.iplaza == "undefined"){
-            $scope.iplaza={};
-            $scope.iplaza.MUNICIPIO_ID ="TODOS";
-        }
 
         if ($scope.iplaza == "BOGCUNCOL"){
             $scope.iplaza={};
