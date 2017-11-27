@@ -14856,6 +14856,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.busy = "";
 		$scope.pedido1 = pedido1;
 
+        alert("plaza; " + $scope.iplaza);
+
         if(angular.equals($scope.iplaza,{})){
             $scope.iplaza.MUNICIPIO_ID ="TODOS";
         }
