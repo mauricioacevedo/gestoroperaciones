@@ -14856,8 +14856,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.busy = "";
 		$scope.pedido1 = pedido1;
 
-        console.log("iplaza" + $scope.iplaza );
-    /*    if ($scope.iplaza == "TODOS"){
+        //console.log("iplaza" + $scope.iplaza );
+        if ($scope.iplaza == "TODOS"){
             $scope.iplaza={};
             $scope.iplaza.MUNICIPIO_ID ="TODOS";
         }
@@ -14871,7 +14871,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
         if(angular.equals($scope.iplaza,{})){
             $scope.iplaza.MUNICIPIO_ID ="TODOS";
-        }*/
+        }
 
         //alert("$scope" + $scope.iplaza.MUNICIPIO_ID +" iplzaa: "+ $scope.iplaza);
 
@@ -14881,7 +14881,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-sm btn-success disabled";
 
-		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '').then(function (data) {
+		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '').then(function (data) {
 			$scope.peds = data.data;
 			//console.log("este es el municipio" + $scope.peds[0].MUNICIPIO_ID);
 			//$scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
