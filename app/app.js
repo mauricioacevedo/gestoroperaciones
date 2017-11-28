@@ -712,6 +712,11 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoTransaccionesKPIS');
 	};
 
+    obj.getListadoTransaccionesPNI = function () {
+		return $http.get(serviceBase + 'listadoTransaccionesPNI');
+	};
+
+
 	obj.getListadoUsuarios = function () {
 		return $http.get(serviceBase + 'listadoUsuarios');
 	};
@@ -18516,7 +18521,7 @@ app.config(['$routeProvider',
 		})
 
       .when('/pni/transaccion', {
-			title: 'NCA',
+			title: 'PNI',
 			templateUrl: 'partials/transaccion-pni.html',
 			controller: 'PNICtrl',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
