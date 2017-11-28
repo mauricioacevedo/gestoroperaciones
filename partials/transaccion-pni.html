@@ -83,19 +83,6 @@
                                 <input type="text" ng-model ="transaccion.Insumo" id="txtInsumo" name="txtInsumo" placeholder="INGRESAR" class="form-control">
                             </div>
 
-
-                            <div class="form-group">
-                                <label for="Negocio">
-                                    Solucion:
-                                </label>
-                                <select ng-model="transaccion.Solucion" class="form-control" style="" >
-                                        <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='Correcion limites y Poligonos'>CORRECION LIMITES Y POLIGONOS</option>
-                                        <option value='Ajuste digitacion de red (desplazamientos)'>AJUSTE DIGITACION DE RED (DESPLAZAMIENTOS)</option>
-                                        <option value='Carga Proactiva'>CARGA PROACTIVA</option>
-                                </select>
-                            </div>
-
                        <!--     <div class="form-group">
                                 <label for="Items">
                                     Item
@@ -146,7 +133,20 @@
                     <div class="col-lg-6" >
                         <div class="row2">
 
+
                             <div class="form-group">
+                                <label for="Negocio">
+                                    Solucion:
+                                </label>
+                                <select ng-model="transaccion.Solucion" class="form-control" style="" >
+                                        <option value='' disabled>---SELECCIONE---</option>
+                                        <option value='Correcion limites y Poligonos'>CORRECION LIMITES Y POLIGONOS</option>
+                                        <option value='Ajuste digitacion de red (desplazamientos)'>AJUSTE DIGITACION DE RED (DESPLAZAMIENTOS)</option>
+                                        <option value='Carga Proactiva'>CARGA PROACTIVA</option>
+                                </select>
+                            </div>
+
+                     <!--       <div class="form-group">
                                 <label for="ResultadoCarga">
                                     Resultado Carga
                                 </label>
@@ -156,14 +156,14 @@
                                         <option value='No Procesado'>NO PROCESADO</option>
                                         <option value='Parcial'>PARCIAL</option>
                                     </select>
-                            </div>
+                            </div>-->
 
-                            <div class="form-group">
+                        <!--    <div class="form-group">
                                 <label for="ANSActividad">
                                     ANS Actividad
                                 </label>
                                 <input type="datetime-local" ng-model="transaccion.ANSACTIVIDAD" id="txtANSActividad" name="txtANSActividad" placeholder="Ejm: 24 horas" class="form-control">
-                            </div>
+                            </div>-->
 
 
                          <!--   <div class="form-group">
