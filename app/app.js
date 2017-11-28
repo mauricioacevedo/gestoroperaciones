@@ -708,6 +708,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoTransaccionesNCA?fechaInicio=' + fecha_inicio + '&fechaFin=' + fecha_fin + '&page=' + page);
 	};
 
+    //******************************************MICHAEL KPIS******************************************
     obj.getListadoTransaccionesKPIS = function () {
 		return $http.get(serviceBase + 'listadoTransaccionesKPIS');
 	};
@@ -716,6 +717,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoTransaccionesPNI');
 	};
 
+    //************************************************************************************************
 
 	obj.getListadoUsuarios = function () {
 		return $http.get(serviceBase + 'listadoUsuarios');
