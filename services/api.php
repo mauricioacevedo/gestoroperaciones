@@ -18055,11 +18055,15 @@ private function demePedidoEdatel(){
         $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo','fecha_estado','concepto_final','source','fecha_cita','DEPARTAMENTO','TIPO_TRABAJO','TECNOLOGIA_ID');
         $keys = array_keys($gestion['gestion']);
 
-        echo var_dump ($programado);
+        //echo var_dump ($programado);
+        if ($programacion == false)
+        {
+            $programacion = "SIN";
+        }
         if($usuario='undefined' || $usuario=''){$usuario = $usuarioGalleta;}
         if($programacion!=="SIN"){$programado = true;}
         if($estado=='MALO'){$malo = true;}
-        echo var_dump ($programado);
+        //echo var_dump ($programado);
 
         if($malo){
             $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='$estado',ASESOR='' WHERE ID=$idpedido";
