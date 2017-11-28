@@ -14856,8 +14856,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.busy = "";
 		$scope.pedido1 = pedido1;
 
-
-        if ($scope.iplaza == "TODOS"){
+        console.log("iplaza" + $scope.iplaza );
+    /*    if ($scope.iplaza == "TODOS"){
             $scope.iplaza={};
             $scope.iplaza.MUNICIPIO_ID ="TODOS";
         }
@@ -14871,7 +14871,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
         if(angular.equals($scope.iplaza,{})){
             $scope.iplaza.MUNICIPIO_ID ="TODOS";
-        }
+        }*/
 
         //alert("$scope" + $scope.iplaza.MUNICIPIO_ID +" iplzaa: "+ $scope.iplaza);
 
