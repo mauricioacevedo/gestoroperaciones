@@ -5488,10 +5488,10 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 			return;
 		}
 
-        if (transaccion.FECHAPROCESADO == undefined || transaccion.FECHAPROCESADO == "") {
+       /* if (transaccion.FECHAPROCESADO == undefined || transaccion.FECHAPROCESADO == "") {
 			alert("Observaciones sin informacion.");
 			return;
-		}
+		}*/
 
         if (transaccion.RESPONSABLE == undefined || transaccion.RESPONSABLE == "") {
 			alert("Fecha Procesados sin informacion.");
