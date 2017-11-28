@@ -70,6 +70,13 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="FechaSoli">
+                                    Fecha Solicitud
+                                </label>
+                                <input type="date" ng-model="transaccion.FECHASOLICI" name="transaccion.txtFechaSoli" class="form-control">
+                            </div>
+
+                            <div class="form-group">
                                 <label for="Procesados">
                                     Insumo:
                                 </label>
@@ -83,20 +90,13 @@
                                 </label>
                                 <select ng-model="transaccion.Solucion" class="form-control" style="" >
                                         <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='Correcion limites y Poligonos'>Correcion limites y Poligonos</option>
-                                        <option value='Ajuste digitacion de red (desplazamientos)'>Ajuste digitacion de red (desplazamientos)</option>
-                                        <option value='Carga Proactiva'>Carga Proactiva</option>
+                                        <option value='Correcion limites y Poligonos'>CORRECION LIMITES Y POLIGONOS</option>
+                                        <option value='Ajuste digitacion de red (desplazamientos)'>AJUSTE DIGITACION DE RED (desplazamientos)</option>
+                                        <option value='Carga Proactiva'>CARGA PROACTIVA</option>
                                 </select>
                             </div>
 
-                            <div class="form-group">
-                                <label for="FechaSoli">
-                                    Fecha Solicitud
-                                </label>
-                                <input type="date" ng-model="transaccion.FECHASOLICI" name="transaccion.txtFechaSoli" class="form-control">
-                            </div>
-
-                            <div class="form-group">
+                       <!--     <div class="form-group">
                                 <label for="Items">
                                     Item
                                 </label>
@@ -115,7 +115,7 @@
                                         <option value='CASOS SSO'>CASOS SSO</option>
                                         <option value='SOPORTE RED'>SOPORTE RED</option>
                                 </select>
-                            </div>
+                            </div>-->
 
                             <div class="form-group">
                                 <label for="ANSActividad">
@@ -124,7 +124,7 @@
                                 <input type="datetime-local" ng-model="transaccion.ANSACTIVIDAD" id="txtANSActividad" name="txtANSActividad" placeholder="Ejm: 24 horas" class="form-control">
                             </div>
 
-                            <div class="form-group">
+                     <!--       <div class="form-group">
                                 <label for="SistemaInfo">
                                     Sistema de Informacion
                                 </label>
@@ -143,7 +143,7 @@
                                         <option value='Otras Areas'>OTRAS AREAS</option>
                                         <option value='Visitas Terreno'>VISITAS TERRENO</option>
                                     </select>
-                            </div>
+                            </div>-->
 
                             <div class="form-group">
                                 <label for="ResultadoCarga">
@@ -170,50 +170,6 @@
                                 </label>
                                 <input type="number" min="0" ng-model="transaccion.ITEMSINCONSISTENTES" id="txtInconsistentes" name="txtInconsistentes" placeholder="Ejm: 69" class="form-control">
                             </div>
-
-                            <div class="form-group">
-                                <label for="Observaciones">
-                                    Observaciones
-                                </label>
-                                <select ng-model="transaccion.OBSERVACIONES" class="form-control" style="" name="txtObservaciones">
-                                        <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='ACTUALIZACION CAMBIO'>Actualizacion Cambio Tecnologia</option>
-                                        <option value='ACTUALIZACION O CARGA DE COORDENADAS (X;Y)'>Actualización y/o Carga de Coordenadas (X;Y)</option>
-                                        <option value='ACTUALIZACION RED INCONSISTENTE'>Actualizacion Red Inconsistente</option>
-                                        <option value='ACTUALIZACION MIGRACION'>Actualizacion Por Migracion</option>
-                                        <option value='ACTUALIZACION CAMBIO PUNTOS RED'>Actualizacion Por Cambio de Puntos de Red</option>
-                                        <option value='ACTUALIZACIOES DB SMARTFLEX'>Actualizaciones DB Smartflex</option>
-                                        <option value='PERMISOS - APLICACIONES'>Permisos - Aplicaciones</option>
-                                        <option value='DESCRIPCION DE DIRECCIONES IP'>Descripcion de Direcciones IP</option>
-                                        <option value='RED xDSL'>Red xDSL</option>
-                                        <option value='RED PE'>Red PE</option>
-                                        <option value='RED PI'>Red PI</option>
-                                        <option value='RED GPON'>Red Gpon</option>
-                                        <option value='RED RITEL'>Red Ritel</option>
-                                        <option value='RED TV COAXIAL'>Red tv Coaxial</option>
-                                        <option value='ARMARIO OPTICO'>Armario Optico</option>
-                                        <option value='ERROR SISTEMA'>Error de Sistema</option>
-                                        <option value='DATOS ERRADOS'>Datos Errados</option>
-                                        <option value='SISTEMA NO DISPONIBLE'>Sistema No Disponible</option>
-                                        <option value='MIGRACION CAMBIO TECNOLOGIA'>Migracion Cambio Tecnologia</option>
-                                        <option value='MIGRACION OPTIMIZACION'>Migracion Optimizacion</option>
-                                        <option value='INVENTARIO RED PE'>Inventario Red PE</option>
-                                        <option value='INVENTARIO RED PI'>Inventario Red PI</option>
-                                        <option value='INVENTARIO RED xDLS'>Inventario Red xDLS</option>
-                                        <option value='INVENTARIO RED GPON'>Inventario RED Gpon</option>
-                                        <option value='ESTUDIOS TECNICOS-DESPACHO'>Estudios Tecnicos-Despacho</option>
-                                        <option value='CLIENTES RED PI-PE-DSLAM-GPON'>Clientes Red PI-PE-DSLAM-GPON</option>
-                                        <option value='SETTOPBOX'>SetTopBox</option>
-                                        <option value='UMTS'>UMTS</option>
-                                        <option value='CPE'>CPE</option>
-                                        <option value='RTR'>RTR</option>
-                                        <option value='SWITCH'>Switch</option>
-                                        <option value='TRANSEIVER'>Transeiver</option>
-                                        <option value='ONT'>ONT</option>
-                                        <option value='DIRECCIONES IP'>Direcciones IP</option>
-                                        <option value='NINGUNA'>Ninguna</option>
-                                    </select>
-                             </div>
 
                              <!--<div class="form-group">
                                 <label for="FechaProcesado">
