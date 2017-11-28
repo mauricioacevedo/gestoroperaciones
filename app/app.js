@@ -5734,7 +5734,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 	divi.style.visibility = "visible";
 	divi.style.position = "relative";
 	$rootScope.iconcepto = "TODO";
-	$rootScope.actualView = "kpis";
+	$rootScope.actualView = "pni";
 
 
 	$scope.doubleDigit = function (num) {
