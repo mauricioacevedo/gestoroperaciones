@@ -774,6 +774,30 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
     //******************************************************************************
 
+     //******************************MICHAEL CRUD PNI*****************************************
+    obj.SalvarGestionInfraestructura = function (gestion) {
+        return $http.post(serviceBase + 'insertTransaccionPNI', {
+            gestion: gestion
+        });
+    };
+
+    obj.EditarGestionInfraestructura = function (gestion) {
+        return $http.post(serviceBase + 'ActualizarTransaccionPNI', {
+            gestion: gestion
+        });
+    };
+
+    obj.getTransaccionPNI = function () {
+		return $http.get(serviceBase + 'getTransaccionPNI');
+	};
+
+    obj.buscarRegistroPNI = function (bregistro) { //buscar pedido asignacion
+		return $http.get(serviceBase + 'buscarRegistroPNI?bregistro=' + bregistro);
+	};
+
+
+    //******************************************************************************
+
 
 	obj.getListadoConceptos = function () {
 		return $http.get(serviceBase + 'getConceptos');
@@ -5668,6 +5692,326 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
 	$scope.pageChanged = function () {
 		services.getListadoTransaccionesKPIS($scope.data.currentPage).then(function (data) {
+			$scope.listado_transacciones = data.data[0];
+			$scope.data.totalItems = data.data[1];
+			return data.data;
+		});
+
+	};
+
+	$scope.csvNCA = function () {
+		var login = $rootScope.logedUser.login;
+		services.getCsvNCA(login, $scope.data.fechaIni, $scope.data.fechaFin).then(function (data) {
+			//console.log(data.data[0]);
+			window.location.href = "tmp/" + data.data[0];
+			return data.data;
+		});
+
+	};
+
+	$scope.objMunicipios = function () {
+        $http.get('./services/objMunicipios').then(
+            function (res) {
+                $scope.lstMunicipios = res.data[0];
+
+            }
+        )
+    };
+
+    $scope.objMunicipios();
+
+
+});
+//********************************************************************************************************************************
+
+//**********************************MICHAEL CONTROLADOR PNI************************************
+
+app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services) {
+	var userID = $cookieStore.get('logedUser').login;
+	$rootScope.logedUser = $cookieStore.get('logedUser');
+	document.getElementById('logout').className = "btn btn-md btn-danger";
+	var divi = document.getElementById("logoutdiv");
+	divi.style.visibility = "visible";
+	divi.style.position = "relative";
+	$rootScope.iconcepto = "TODO";
+	$rootScope.actualView = "kpis";
+
+
+	$scope.doubleDigit = function (num) {
+
+		if (num < 0) {
+			num = 0;
+		}
+
+		if (num <= 9) {
+			return "0" + num;
+		}
+		return num;
+	};
+
+	$rootScope.logout = function () {
+		services.logout($rootScope.logedUser.login);
+		$cookieStore.remove('logedUser');
+		$rootScope.logedUser = undefined;
+		$scope.pedidos = {};
+		document.getElementById('logout').className = "btn btn-md btn-danger hide";
+		var divi = document.getElementById("logoutdiv");
+		divi.style.position = "absolute";
+		divi.style.visibility = "hidden";
+		$location.path('/');
+	};
+
+	$scope.nuevoRegistroPNI = function () {
+		$rootScope.transaccion = {};
+		$rootScope.transaccion.ID = '';
+		$location.path('/pni/transaccion');
+
+	};
+
+	$scope.getTransaccionPNI = function () {
+		//$scope.transaccion={};
+
+		services.getTransaccionPNI().then(function (data) {
+			//console.log(ncaID);
+			$rootScope.transaccion = data.data[0];
+			//console.log($scope.transaccion);
+			//console.log(data);
+			$location.path('/pni/');
+			return data.data;
+		});
+
+	};
+
+    //***********************************MICHAEL GUARDAR REGISTRO KPIS*********************************
+	$scope.saveTransaccion = function (transaccion) {
+
+        //console.log(transaccion);
+
+		if (transaccion.NEGOCIO == undefined || transaccion.NEGOCIO == "") {
+			alert("Negocio sin informacion.");
+			return;
+		}
+
+		if (transaccion.FECHASOLICI == undefined || transaccion.FECHASOLICI == "") {
+			alert("FechaSolicitud sin informacion.");
+			return;
+		}
+
+		if (transaccion.ITEMS == undefined || transaccion.ITEMS == "") {
+			alert("Items sin informacion.");
+			return;
+		}
+
+		if (transaccion.ANSACTIVIDAD == undefined || transaccion.ANSACTIVIDAD == "") {
+			alert("Actividad sin informacion.");
+			return;
+		}
+
+		if (transaccion.SISTEMAINFO == undefined || transaccion.SISTEMAINFO == "") {
+			alert("Sistema de Informacion sin Datos.");
+			return;
+		}
+
+		if (transaccion.RESULTADOCARGA == undefined || transaccion.RESULTADOCARGA == "") {
+			alert("Resultado Carga sin informacion.");
+			return;
+		}
+
+        if (transaccion.ITEMSPROCESADO == undefined || transaccion.ITEMSPROCESADO == "") {
+			alert("Items Procesados sin informacion.");
+			return;
+		}
+
+       /* if (transaccion.ITEMSINCONSISTENTES == "") {
+			alert("Items Inconsistentes sin informacion.");
+			return;
+		}*/
+
+        if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
+			alert("Items Procesados sin informacion.");
+			return;
+		}
+
+       /* if (transaccion.FECHAPROCESADO == undefined || transaccion.FECHAPROCESADO == "") {
+			alert("Observaciones sin informacion.");
+			return;
+		}*/
+
+        if (transaccion.RESPONSABLE == undefined || transaccion.RESPONSABLE == "") {
+			alert("Fecha Procesados sin informacion.");
+			return;
+		}
+
+
+        $scope.InfoGestion = {
+            txtNegocio: transaccion.txtNegocio,
+            TECNOLOGIA_ID: ''
+        };
+
+         services.SalvarGestionInfraestructura(transaccion).then(function (data) {
+                $location.path('/pni/');
+                return data.data;
+            }
+        )
+
+        $scope.getTransaccionPNI = function () {
+		//$scope.transaccion={};
+		services.getTransaccionPNI().then(function (data) {
+			//console.log(ncaID);
+			$rootScope.transaccion = data.data[0];
+			//console.log($scope.transaccion);
+			//console.log(data);
+			$location.path('/pni/');
+			return data.data;
+        });
+
+	   };
+
+        $scope.pageChanged();
+        $location.path('/pni/');
+
+	};
+
+    //*******************************MICHAEL EDITAR REGISTRO KPIS *********************************
+    $scope.EditTransaccionPNI = function (transaccion) {
+
+        //console.log(transaccion);
+
+		if (transaccion.NEGOCIO == undefined || transaccion.NEGOCIO == "") {
+			alert("Negocio sin informacion.");
+			return;
+		}
+
+		if (transaccion.FECHASOLICI == undefined || transaccion.FECHASOLICI == "") {
+			alert("FechaSolicitud sin informacion.");
+			return;
+		}
+
+		if (transaccion.ITEMS == undefined || transaccion.ITEMS == "") {
+			alert("Items sin informacion.");
+			return;
+		}
+
+		if (transaccion.ANSACTIVIDAD == undefined || transaccion.ANSACTIVIDAD == "") {
+			alert("Actividad sin informacion.");
+			return;
+		}
+
+		if (transaccion.SISTEMAINFO == undefined || transaccion.SISTEMAINFO == "") {
+			alert("Sistema de Informacion sin Datos.");
+			return;
+		}
+
+		if (transaccion.RESULTADOCARGA == undefined || transaccion.RESULTADOCARGA == "") {
+			alert("Resultado Carga sin informacion.");
+			return;
+		}
+
+        if (transaccion.ITEMSPROCESADO == undefined || transaccion.ITEMSPROCESADO == "") {
+			alert("Items Procesados sin informacion.");
+			return;
+		}
+
+//        if (transaccion.ITEMSINCONSISTENTES == "-1") {
+//			alert("Items Inconsistentes sin informacion.");
+//			return;
+//		}
+
+        if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
+			alert("Items Procesados sin informacion.");
+			return;
+		}
+
+        if (transaccion.FECHAPROCESADO == undefined || transaccion.FECHAPROCESADO == "") {
+			alert("Observaciones sin informacion.");
+			return;
+		}
+
+        if (transaccion.RESPONSABLE == undefined || transaccion.RESPONSABLE == "") {
+			alert("Fecha Procesados sin informacion.");
+			return;
+		}
+
+
+        $scope.InfoGestion = {
+            txtNegocio: transaccion.txtNegocio,
+            TECNOLOGIA_ID: ''
+        };
+
+        services.EditarGestionInfraestructura(transaccion).then(function (data) {
+                $location.path('/pni/');
+                return data.data;
+                $scope.pageChanged();
+
+            }
+        )
+
+	};
+
+    //******************************************************************************************
+
+    $scope.buscarRegistroPNI = function(bregistro) {
+
+        console.log(bregistro);
+        services.buscarRegistroPNI(bregistro).then(function(data){
+
+            //traigo los datos que voy a mostrar
+            //document.getElementById('txtProcesados').value =
+
+            return data.data;
+            console.log(data.data);
+
+        });
+
+    };
+
+
+    $scope.listado_transacciones = [];
+	$scope.data = {
+		maxSize: 5,
+		currentPage: 1,
+		numPerPage: 100,
+		totalItems: 0,
+		fechaIni: "",
+		fechaFin: ""
+	};
+
+	var date1 = new Date();
+	var year = date1.getFullYear();
+	var month = $scope.doubleDigit(date1.getMonth() + 1);
+	var day = $scope.doubleDigit(date1.getDate());
+
+	var fecha_inicio = year + "-" + month + "-" + day;
+	var fecha_fin = year + "-" + month + "-" + day;
+
+	$scope.data.fechaIni = fecha_inicio;
+	$scope.data.fechaFin = fecha_fin;
+
+	//services.getListadotransaccionesNCA(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
+	var pathy = $location.path();
+
+	if (pathy == "/pni/") { //esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
+		services.getListadoTransaccionesPNI($scope.data.currentPage).then(function (data) {
+			$scope.listado_transacciones = data.data[0];
+			$scope.data.totalItems = data.data[1];
+			return data.data;
+		});
+	}
+
+	if (pathy == "/pni/transaccion") {
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+		$scope.FECHA_INICIO = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+		$scope.transaccion.FECHA = year + "-" + month + "-" + day;
+	}
+
+	$scope.pageChanged = function () {
+		services.getListadoTransaccionesPNI($scope.data.currentPage).then(function (data) {
 			$scope.listado_transacciones = data.data[0];
 			$scope.data.totalItems = data.data[1];
 			return data.data;
@@ -18141,7 +18485,7 @@ app.config(['$routeProvider',
 		})
 
 
-      //*******************MICHAEL********************************
+      //*******************MICHAEL KPIS********************************
 
       .when('/kpis/', {
 			title: 'KPIS',
@@ -18155,6 +18499,26 @@ app.config(['$routeProvider',
 			title: 'NCA',
 			templateUrl: 'partials/transaccion-kpis.html',
 			controller: 'KPISCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
+		})
+
+      //**********************************************************
+
+      //*******************MICHAEL PNI********************************
+
+      .when('/pni/', {
+			title: 'PNI',
+			templateUrl: 'partials/pni.html',
+			controller: 'PNICtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
+		})
+
+      .when('/pni/transaccion', {
+			title: 'NCA',
+			templateUrl: 'partials/transaccion-pni.html',
+			controller: 'PNICtrl',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
