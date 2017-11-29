@@ -5799,7 +5799,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 			return;
 		}
 
-		if (transaccion.ENVIO == undefined || transaccion.ENVIO == "") {
+		if (transaccion.USUARIOENVIO == undefined || transaccion.USUARIOENVIO == "") {
 			alert("Usuario Envio: Sin Informacion");
 			return;
 		}
