@@ -11083,7 +11083,7 @@ private function demePedidoEdatel(){
 
         //echo var_dump ($transaccion);
 
-        $column_names = array('ENVIADO','USUARIOENVIO','FECHASOLICITUD','INSUMO','SOLUCION','RESPONSABLE');
+        $column_names = array('ENVIADO','USUARIOENVIO','FECHASOLICITUD','INSUMO','SOLUCION');
 
         $keys = array_keys($transaccion);
         $columns = '';
@@ -11111,7 +11111,8 @@ private function demePedidoEdatel(){
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " INSERT INTO  tbl_RegistrosPNI (".trim($columns,',').") VALUES(".trim($values,',').")";
+        $query = " INSERT INTO  tbl_RegistrosPNI (".trim($columns,',').",RESPONSABLE) VALUES(".trim($values,',').",'$usuarioGalleta')";
+
         //echo $query;
         if(!empty($transaccion)){
             //echo $query;
