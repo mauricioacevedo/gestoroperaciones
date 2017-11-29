@@ -5819,11 +5819,6 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 			return;
 		}
 
-		if (transaccion.RESPONSABLE == undefined || transaccion.RESPONSABLE == "") {
-			alert("Responsable: Sin Informacion");
-			return;
-		}
-
 
         $scope.InfoGestion = {
             txtNegocio: transaccion.txtNegocio,
