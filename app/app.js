@@ -5794,58 +5794,33 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 
         //console.log(transaccion);
 
-		if (transaccion.NEGOCIO == undefined || transaccion.NEGOCIO == "") {
-			alert("Negocio sin informacion.");
+		if (transaccion.ENVIADO == undefined || transaccion.ENVIADO == "") {
+			alert("Enviado de: sin Informacion");
 			return;
 		}
 
-		if (transaccion.FECHASOLICI == undefined || transaccion.FECHASOLICI == "") {
-			alert("FechaSolicitud sin informacion.");
+		if (transaccion.USUARIOENVIO == undefined || transaccion.USUARIOENVIO == "") {
+			alert("Usuario Envio: Sin Informacion");
 			return;
 		}
 
-		if (transaccion.ITEMS == undefined || transaccion.ITEMS == "") {
-			alert("Items sin informacion.");
+		if (transaccion.FECHASOLICITUD == undefined || transaccion.FECHASOLICITUD == "") {
+			alert("Fecha Solicitud: Sin Informacion");
 			return;
 		}
 
-		if (transaccion.ANSACTIVIDAD == undefined || transaccion.ANSACTIVIDAD == "") {
-			alert("Actividad sin informacion.");
+		if (transaccion.INSUMO == undefined || transaccion.INSUMO == "") {
+			alert("Insumo: Sin Informacion");
 			return;
 		}
 
-		if (transaccion.SISTEMAINFO == undefined || transaccion.SISTEMAINFO == "") {
-			alert("Sistema de Informacion sin Datos.");
+		if (transaccion.SOLUCION == undefined || transaccion.SOLUCION == "") {
+			alert("Solucion: Sin Informacion");
 			return;
 		}
 
-		if (transaccion.RESULTADOCARGA == undefined || transaccion.RESULTADOCARGA == "") {
-			alert("Resultado Carga sin informacion.");
-			return;
-		}
-
-        if (transaccion.ITEMSPROCESADO == undefined || transaccion.ITEMSPROCESADO == "") {
-			alert("Items Procesados sin informacion.");
-			return;
-		}
-
-       /* if (transaccion.ITEMSINCONSISTENTES == "") {
-			alert("Items Inconsistentes sin informacion.");
-			return;
-		}*/
-
-        if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
-			alert("Items Procesados sin informacion.");
-			return;
-		}
-
-       /* if (transaccion.FECHAPROCESADO == undefined || transaccion.FECHAPROCESADO == "") {
-			alert("Observaciones sin informacion.");
-			return;
-		}*/
-
-        if (transaccion.RESPONSABLE == undefined || transaccion.RESPONSABLE == "") {
-			alert("Fecha Procesados sin informacion.");
+		if (transaccion.RESPONSABLE == undefined || transaccion.RESPONSABLE == "") {
+			alert("Responsable: Sin Informacion");
 			return;
 		}
 

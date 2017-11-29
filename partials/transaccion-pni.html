@@ -53,7 +53,7 @@
                                 <label for="Negocio">
                                     Enviado de:
                                 </label>
-                                <select ng-model="transaccion.Envia" class="form-control" style="" >
+                                <select ng-model="transaccion.ENVIADO" class="form-control" style="" >
                                         <option value='' disabled>---SELECCIONE---</option>
                                         <option value='ASIGNACIONES'>ASIGNACIONES</option>
                                         <option value='DESPACHO'>DESPACHO</option>
@@ -66,66 +66,22 @@
                                 <label for="Procesados">
                                     Usuario Envio:
                                 </label>
-                                <input type="text" ng-model ="transaccion.Envio" id="txtEnvio" name="txtEnvio" placeholder="JBEDOGOM" class="form-control">
+                                <input type="text" ng-model ="transaccion.ENVIO" id="txtEnvio" name="txtEnvio" placeholder="JBEDOGOM" class="form-control">
                             </div>
 
                             <div class="form-group">
                                 <label for="FechaSoli">
                                     Fecha Solicitud
                                 </label>
-                                <input type="date" ng-model="transaccion.FECHASOLICI" name="transaccion.txtFechaSoli" class="form-control">
+                                <input type="date" ng-model="transaccion.FECHASOLICITUD" name="transaccion.txtFechaSoli" class="form-control">
                             </div>
 
                             <div class="form-group">
                                 <label for="Procesados">
                                     Insumo:
                                 </label>
-                                <input type="text" ng-model ="transaccion.Insumo" id="txtInsumo" name="txtInsumo" placeholder="INGRESAR" class="form-control">
+                                <input type="text" ng-model ="transaccion.INSUMO" id="txtInsumo" name="txtInsumo" placeholder="INGRESAR" class="form-control">
                             </div>
-
-                       <!--     <div class="form-group">
-                                <label for="Items">
-                                    Item
-                                </label>
-                                <select ng-model="transaccion.ITEMS" class="form-control" style="" name="txtItems">
-                                        <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='REUNIONES - CAPACITACIONES'>REUNIONES - CAPACITACIONES</option>
-                                        <option value='TARJETAS DSLAM'>TARJETAS DSLAM</option>
-                                        <option value='ACTUALIZACION'>ACTUALIZACIONES</option>
-                                        <option value='TARJETAS Cx'>TARJETAS Cx</option>
-                                        <option value='AMPLIACIONES'>AMPLIACIONES</option>
-                                        <option value='RETIROS'>RETIROS</option>
-                                        <option value='PROYECTOS'>PROYECTOS</option>
-                                        <option value='ZONA DE INFLUENCIA'>ZONA DE INFLUENCIA</option>
-                                        <option value='EQUIPOS TERMINALES'>EQUIPOS TERMINALES</option>
-                                        <option value='REPORTES DB'>REPORTES (DB,QUERYS,NODOS)</option>
-                                        <option value='CASOS SSO'>CASOS SSO</option>
-                                        <option value='SOPORTE RED'>SOPORTE RED</option>
-                                </select>
-                            </div>-->
-
-
-
-                     <!--       <div class="form-group">
-                                <label for="SistemaInfo">
-                                    Sistema de Informacion
-                                </label>
-                                    <select ng-model="transaccion.SISTEMAINFO" class="form-control" style="" name="txtSistemaInfo">
-                                        <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='Open Smartflex(Edatel)'>OPEN SMARTFLEX(EDATEL)</option>
-                                        <option value='Siebel'>SIEBEL</option>
-                                        <option value='Fenix'>FENIX</option>
-                                        <option value='Open Smartflex(ETP)'>OPEN SMARTFLEX(ETP)</option>
-                                        <option value='Elite'>ELITE</option>
-                                        <option value='Intraway'>INTRAWAY</option>
-                                        <option value='Catalogo de Servicios'>CATALOGO DE SERVICIOS</option>
-                                        <option value='Grupp Primario'>GRUPO PRIMARIO</option>
-                                        <option value='Vicepresidencia'>VICEPRESIDENCIA</option>
-                                        <option value='Gerencia'>GERENCIA</option>
-                                        <option value='Otras Areas'>OTRAS AREAS</option>
-                                        <option value='Visitas Terreno'>VISITAS TERRENO</option>
-                                    </select>
-                            </div>-->
 
                         </div>
                     </div>
@@ -138,47 +94,13 @@
                                 <label for="Negocio">
                                     Solucion:
                                 </label>
-                                <select ng-model="transaccion.Solucion" class="form-control" style="" >
+                                <select ng-model="transaccion.SOLUCION" class="form-control" style="" >
                                         <option value='' disabled>---SELECCIONE---</option>
                                         <option value='Correcion limites y Poligonos'>CORRECCION LIMITES Y POLIGONOS</option>
                                         <option value='Ajuste digitacion de red (desplazamientos)'>AJUSTE DIGITACION DE RED (DESPLAZAMIENTOS)</option>
                                         <option value='Carga Proactiva'>CARGA PROACTIVA</option>
                                 </select>
                             </div>
-
-                     <!--       <div class="form-group">
-                                <label for="ResultadoCarga">
-                                    Resultado Carga
-                                </label>
-                                    <select ng-model="transaccion.RESULTADOCARGA" class="form-control" style="" name="txtResultadoCarga">
-                                        <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='Procesado'>PROCESADO</option>
-                                        <option value='No Procesado'>NO PROCESADO</option>
-                                        <option value='Parcial'>PARCIAL</option>
-                                    </select>
-                            </div>-->
-
-                        <!--    <div class="form-group">
-                                <label for="ANSActividad">
-                                    ANS Actividad
-                                </label>
-                                <input type="datetime-local" ng-model="transaccion.ANSACTIVIDAD" id="txtANSActividad" name="txtANSActividad" placeholder="Ejm: 24 horas" class="form-control">
-                            </div>-->
-
-
-                         <!--   <div class="form-group">
-                                <label for="Inconsistentes">
-                                    Cantidad Items Inconsistentes
-                                </label>
-                                <input type="number" min="0" ng-model="transaccion.ITEMSINCONSISTENTES" id="txtInconsistentes" name="txtInconsistentes" placeholder="Ejm: 69" class="form-control">
-                            </div>-->
-
-                             <!--<div class="form-group">
-                                <label for="FechaProcesado">
-                                    Fecha Procesado
-                                </label>
-                                <input type="date" ng-model="transaccion.FECHAPROCESADO" id="txtFechaProce" name="txtFechaProce" placeholder="Ejm: 69" class="form-control">
-                              </div>-->
 
                                 <div class="form-group">
                                     <label for="Responsable">
@@ -192,8 +114,6 @@
                                         <option value='CARLOS MARIO'>CARLOS MARIO</option>
                                         <option value='ERIKA JANNETH'>ERIKA JANNETH</option>
                                         <option value='JAIME ALBERTO'>JAIME ALBERTO</option>
-
-
                                     </select>
                                 </div>
 
