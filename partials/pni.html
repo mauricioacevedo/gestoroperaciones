@@ -220,11 +220,11 @@
                             </thead>
                             <tbody>
                                     <tr ng-repeat="data in listado_transacciones| orderBy:'ID':true ">
-                                    <td>{{data.Enviado}}</td>
-                                    <td>{{data.FechaSolicitud}}</td>
-                                    <td>{{data.Insumo}}</td>
-                                    <td>{{data.Solucion}}</td>
-                                    <td>{{data.Responsable}}</td>
+                                    <td>{{data.ENVIADO}}</td>
+                                    <td>{{data.FECHASOLICITUD}}</td>
+                                    <td>{{data.INSUMO}}</td>
+                                    <td>{{data.SOLUCION}}</td>
+                                    <td>{{data.RESPONSABLE}}</td>
                                     <td ng-hide="true" align="center"><button class="btn btn-success btn-xs" value="edit!" ng-click="getTransaccionPNI();"><i class="fa fa-pencil fa-lg"></i></button></td>
                             </tr>
                             </tbody>
