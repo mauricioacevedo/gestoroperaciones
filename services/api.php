@@ -2286,7 +2286,7 @@ class API extends REST {
         //2015-09-28: se retira seguimiento....
         //$column_names = array('pedido', 'fuente', 'actividad','estado','motivo', 'user','duracion','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','caracteristica','motivo_malo');
         $column_names = array(
-            'pedido'
+          'pedido'
         , 'fuente'
         , 'actividad'
         ,'ESTADO_ID'
@@ -11058,6 +11058,181 @@ private function demePedidoEdatel(){
 //**********************************************************************************************************************
 
 
+    //*****************************************Michael PNI REGISTROS *********************************
+    private function insertTransaccionPNI(){
+
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+        $transaccion = json_decode(file_get_contents("php://input"),true);
+
+
+        $transaccion = $transaccion['gestion'];
+
+        //echo var_dump ($transaccion);
+
+        $column_names = array('Enviado','UsuarioEnvio','FechaSolicitud','Insumo','Solucion','Responsable');
+
+        $keys = array_keys($transaccion);
+        $columns = '';
+        $values = '';
+
+        $useri=$transaccion['USUARIO'];
+        $username=$transaccion['USERNAME'];
+
+        $Negocio=$transaccion['Negocio'];
+        $estado_final=$transaccion['ESTADO_FINAL'];
+        $ID=$transaccion['ID'];
+
+
+        foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
+            if($desired_key=='ID'){
+                continue;
+            }
+            if(!in_array($desired_key, $keys)) {
+                $$desired_key = '';
+            }else{
+                $$desired_key = $transaccion[$desired_key];
+            }
+            $columns = $columns.$desired_key.',';
+            $values = $values."'".$transaccion[$desired_key]."',";
+        }
+        $today = date("Y-m-d H:i:s");
+
+        $query = " INSERT INTO  tbl_RegistrosPNI (".trim($columns,',').") VALUES(".trim($values,',').")";
+        echo $query;
+        if(!empty($transaccion)){
+            //echo $query;
+            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+            $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
+
+        }else{
+            $this->response('',200);        //"No Content" status
+            //$this->response("$query",200);        //"No Content" status
+        }
+
+    }
+
+    private function ActualizarTransaccionPNI(){
+
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+        $transaccion = json_decode(file_get_contents("php://input"),true);
+
+        $transaccion = $transaccion['gestion'];
+
+        //fecho var_dump ($transaccion);
+
+        $column_names = array('Enviado','UsuarioEnvio','FechaSolicitud','Insumo','Solucion','Responsable');
+
+        $keys = array_keys($transaccion);
+        $columns = '';
+        $values = '';
+
+        $useri=$transaccion['USUARIO'];
+        $username=$transaccion['USERNAME'];
+
+        $Enviado=$transaccion['Enviado'];
+        $UsuarioEnvio=$transaccion['UsuarioEnvio'];
+        $FechaSolicitud=$transaccion['FechaSolicitud'];
+        $Insumo=$transaccion['Insumo'];
+        $Solucion=$transaccion['Solucion'];
+        $Responsable=$transaccion['Responsable'];
+
+
+        foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
+            if($desired_key=='ID'){
+                continue;
+            }
+            if(!in_array($desired_key, $keys)) {
+                $$desired_key = '';
+            }else{
+                $$desired_key = $transaccion[$desired_key];
+            }
+            $columns = $columns.$desired_key.',';
+            $values = $values."'".$transaccion[$desired_key]."',";
+        }
+        $today = date("Y-m-d H:i:s");
+
+        $query = " UPDATE tbl_RegistrosPNI set Enviado = '$Enviado', UsuarioEnvio = '$UsuarioEnvio', FechaSolicitud = '$FechaSolicitud', Insumo = '$Insumo', Solucion = '$Solucion', Responsable = '$Responsable' where ID = 1 ";
+        echo $query;
+
+        if(!empty($transaccion)){
+            //echo $query;
+            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+            $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
+
+        }else{
+            $this->response('',200);        //"No Content" status
+            //$this->response("$query",200);        //"No Content" status
+        }
+
+    }
+
+    private function buscarRegistroKPIS(){//pendientes
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+        $bregistro = $this->_request['bregistro'];
+
+
+        //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
+
+        $query="select * from tbl_RegistrosPNI where ID = '$bregistro'";
+        //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                $result[] = $row;
+            }
+
+            // ---------------------------------- SQL Feed
+            $this->response($this->json(array($result)), 200); // send user details
+
+
+        }
+        $this->response('',204);        // If no records "No Content" status
+    }
+
+
+//**********************************************************************************************************************
+
 
     //-----------------------insertactivacion----------------
 
@@ -11503,7 +11678,7 @@ private function demePedidoEdatel(){
 
     }
 
-    //************************************Michael*******************************************
+    //************************************Michael KPIS*******************************************
     private function getTransaccionKPIS(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -11791,7 +11966,7 @@ private function demePedidoEdatel(){
 
     }
 
-    //*****************************************MICHAEL LISTADO TRANSACCIONES*****************************
+    //*****************************************MICHAEL LISTADO TRANSACCIONES KPIS*****************************
     private function listadoTransaccionesKPIS(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -11832,45 +12007,47 @@ private function demePedidoEdatel(){
 
     }
 
-//    private function listadoTransaccionesPNI(){
-//        if($this->get_request_method() != "GET"){
-//            $this->response('',406);
-//        }
-//        $page = $this->_request['page'];
-//
-//        if($page=="undefined"){
-//            $page="0";
-//        }else{
-//            $page=$page-1;
-//        }
-//        $page=$page*100;
-//
-//        //counter
-//        $query="SELECT count(*) as counter from tbl_RegistrosPNI ";
-//        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-//        $counter=0;
-//        if($rr->num_rows > 0){
-//            $result = array();
-//            if($row = $rr->fetch_assoc()){
-//                $counter = $row['counter'];
-//            }
-//        }
-//
-//
-//        $query="select * from tbl_RegistrosPNI order by ID desc limit 50; ";
-//        //echo $query;
-//        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-//
-//        if($r->num_rows > 0){
-//            $result = array();
-//            while($row = $r->fetch_assoc()){
-//                $result[] = $row;
-//            }
-//            $this->response($this->json(array($result,$counter)), 200); // send user details
-//        }
-//        $this->response('',204);        // If no records "No Content" status
-//
-//    }
+
+    //*****************************************MICHAEL LISTADO TRANSACCIONES PNI*****************************
+    private function listadoTransaccionesPNI(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $page = $this->_request['page'];
+
+        if($page=="undefined"){
+            $page="0";
+        }else{
+            $page=$page-1;
+        }
+        $page=$page*100;
+
+        //counter
+        $query="SELECT count(*) as counter from tbl_RegistrosPNI ";
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter = $row['counter'];
+            }
+        }
+
+
+        $query="select * from tbl_RegistrosPNI order by ID desc limit 50; ";
+        //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                $result[] = $row;
+            }
+            $this->response($this->json(array($result,$counter)), 200); // send user details
+        }
+        $this->response('',204);        // If no records "No Content" status
+
+    }
 
 
     private function listadoTransaccionesActividades(){
