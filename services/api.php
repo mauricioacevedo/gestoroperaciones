@@ -11111,7 +11111,7 @@ private function demePedidoEdatel(){
         $today = date("Y-m-d H:i:s");
 
         $query = " INSERT INTO  tbl_RegistrosPNI (".trim($columns,',').") VALUES(".trim($values,',').")";
-        echo $query;
+        //echo $query;
         if(!empty($transaccion)){
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -11194,7 +11194,7 @@ private function demePedidoEdatel(){
 
     }
 
-    private function buscarRegistroKPIS(){//pendientes
+    private function buscarRegistroPNI(){//pendientes
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
@@ -12000,16 +12000,7 @@ private function demePedidoEdatel(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
-        /*$page = $this->_request['page'];
 
-        if($page=="undefined"){
-            $page="0";
-        }else{
-            $page=$page-1;
-        }
-        $page=$page*100;*/
-
-        //counter
         $query="SELECT count(*) as counter from tbl_KpisInfraestructura ";
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter=0;
