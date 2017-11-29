@@ -11082,7 +11082,7 @@ private function demePedidoEdatel(){
 
         //echo var_dump ($transaccion);
 
-        $column_names = array('Enviado','UsuarioEnvio','FechaSolicitud','Insumo','Solucion','Responsable');
+        $column_names = array('ENVIADO','USUARIOENVIO','FECHASOLICITUD','INSUMO','SOLUCION','RESPONSABLE');
 
         $keys = array_keys($transaccion);
         $columns = '';
@@ -11091,7 +11091,7 @@ private function demePedidoEdatel(){
         $useri=$transaccion['USUARIO'];
         $username=$transaccion['USERNAME'];
 
-        $Negocio=$transaccion['Negocio'];
+        $ENVIADO=$transaccion['ENVIADO'];
         $estado_final=$transaccion['ESTADO_FINAL'];
         $ID=$transaccion['ID'];
 
@@ -11147,7 +11147,7 @@ private function demePedidoEdatel(){
 
         //fecho var_dump ($transaccion);
 
-        $column_names = array('Enviado','UsuarioEnvio','FechaSolicitud','Insumo','Solucion','Responsable');
+        $column_names = array('ENVIADO','USUARIOENVIO','FECHASOLICITUD','INSUMO','SOLUCION','RESPONSABLE');
 
         $keys = array_keys($transaccion);
         $columns = '';
@@ -11156,12 +11156,12 @@ private function demePedidoEdatel(){
         $useri=$transaccion['USUARIO'];
         $username=$transaccion['USERNAME'];
 
-        $Enviado=$transaccion['Enviado'];
-        $UsuarioEnvio=$transaccion['UsuarioEnvio'];
-        $FechaSolicitud=$transaccion['FechaSolicitud'];
-        $Insumo=$transaccion['Insumo'];
-        $Solucion=$transaccion['Solucion'];
-        $Responsable=$transaccion['Responsable'];
+        $ENVIADO=$transaccion['ENVIADO'];
+        $USUARIOENVIO=$transaccion['USUARIOENVIO'];
+        $FECHASOLICITUD=$transaccion['FECHASOLICITUD'];
+        $INSUMO=$transaccion['INSUMO'];
+        $SOLUCION=$transaccion['SOLUCION'];
+        $RESPONSABLE=$transaccion['RESPONSABLE'];
 
 
         foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
@@ -11178,8 +11178,8 @@ private function demePedidoEdatel(){
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " UPDATE tbl_RegistrosPNI set Enviado = '$Enviado', UsuarioEnvio = '$UsuarioEnvio', FechaSolicitud = '$FechaSolicitud', Insumo = '$Insumo', Solucion = '$Solucion', Responsable = '$Responsable' where ID = 1 ";
-        echo $query;
+        $query = " UPDATE tbl_RegistrosPNI set ENVIADO = '$ENVIADO', USUARIOENVIO = '$USUARIOENVIO', FECHASOLICITUD = '$FECHASOLICITUD', INSUMO = '$INSUMO', SOLUCION = '$SOLUCION', RESPONSABLE = '$RESPONSABLE' where ID = 1 ";
+        //echo $query;
 
         if(!empty($transaccion)){
             //echo $query;
@@ -11687,6 +11687,35 @@ private function demePedidoEdatel(){
 
 
         $query="select * from tbl_KpisInfraestructura order by ID desc";
+
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            $ids="";
+            $sep="";
+            $transaccion='';
+            if($row = $r->fetch_assoc()){
+                $transaccion = $row;
+            }
+            //$transaccion["PASSWORD"]="";
+            $this->response($this->json(array($transaccion,"OK")), 200); // send user details
+        }
+
+        $this->response('',204);
+
+    }
+    //***************************************************************************************
+
+       //************************************Michael PNI*******************************************
+    private function getTransaccionPNI(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        //$nca = $this->_request['ncaID'];
+
+
+        $query="select * from tbl_RegistrosPNI order by ID desc";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
