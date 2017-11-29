@@ -11077,6 +11077,7 @@ private function demePedidoEdatel(){
 
         $transaccion = json_decode(file_get_contents("php://input"),true);
 
+        echo var_dump($usuarioGalleta);
 
         $transaccion = $transaccion['gestion'];
 
