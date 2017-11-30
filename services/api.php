@@ -8780,7 +8780,7 @@ class API extends REST {
                     $plaza="";
                 }
                 $plaza=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
-                echo var_dump ($concepto);
+                //echo var_dump ($concepto);
             }
 
         }else{
@@ -8821,7 +8821,8 @@ class API extends REST {
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             "order by b.$parametroBusqueda ASC";
 
-            //echo $query1;
+            echo var_dump ($concepto);
+        //echo $query1;
 
         if($mypedido==""){
 
