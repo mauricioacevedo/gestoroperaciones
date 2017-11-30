@@ -8770,18 +8770,19 @@ class API extends REST {
             $concepto=" and b.CONCEPTO_ID='$concepto' ";
         }
 
+        echo var_dump($concepto);
         if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
 
             if($fuente=='SIEBEL'){
                 $plaza="";
-            }else{
-                if ($concepto == "O-13")
-                {
-                    $plaza="";
-                }
-                $plaza=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
-                //echo var_dump ($concepto);
             }
+            if ($concepto == "O-13")
+                {
+                  $plaza="";
+                }
+            else{
+                $plaza=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
+                }
 
         }else{
             //$plaza=" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
@@ -8793,9 +8794,6 @@ class API extends REST {
         if($prioridad!=''){
             $parametroBusqueda=$prioridad;
         }
-
-
-        //echo "Mi parametro: $parametroBusqueda";
 
         if($parametroBusqueda=="NUEVOS_PRIMERO"){
             $parametroBusqueda="FECHA_INGRESO,b.RADICADO_TEMPORAL ";
