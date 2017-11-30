@@ -8770,13 +8770,13 @@ class API extends REST {
             $concepto=" and b.CONCEPTO_ID='$concepto' ";
         }
 
-        echo var_dump($concepto);
+        //echo var_dump($concepto);
         if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
 
             if($fuente=='SIEBEL'){
                 $plaza="";
             }
-            if ($concepto == "O-13")
+            if ($fuente == "FENIX_NAL")
                 {
                   $plaza="";
                 }
