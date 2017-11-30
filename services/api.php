@@ -8820,7 +8820,7 @@ class API extends REST {
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             "order by b.$parametroBusqueda ASC";
-
+            echo var_dump ($concepto);
             echo var_dump ($query1);
         //echo $query1;
 
