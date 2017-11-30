@@ -8775,6 +8775,10 @@ class API extends REST {
             if($fuente=='SIEBEL'){
                 $plaza="";
             }else{
+                if ($concepto == "O-13")
+                {
+                    $plaza="";
+                }
                 $plaza=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
             }
             //este
