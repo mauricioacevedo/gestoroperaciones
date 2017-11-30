@@ -759,9 +759,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
     //******************************MICHAEL CRUD KPIS*****************************************
     obj.SalvarGestionInfraestructura = function (gestion) {
-        return $http.post(serviceBase + 'insertTransaccionKPIS', {
-            gestion: gestion
-        });
+        return $http.post(serviceBase + 'insertTransaccionKPIS', {gestion: gestion});
     };
 
     obj.EditarGestionInfraestructura = function (gestion) {
@@ -782,9 +780,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
     //******************************************************************************
 
      //******************************MICHAEL CRUD PNI*****************************************
-    obj.SalvarGestionInfraestructura = function (gestion) {
+    obj.SalvarGestionInfraestructura = function (gestion,fechainicio) {
         return $http.post(serviceBase + 'insertTransaccionPNI', {
-            gestion: gestion
+            gestion: gestion, fechainicio:fechainicio
         });
     };
 
@@ -5782,8 +5780,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 		var minute = $scope.doubleDigit(date1.getMinutes());
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
-        $scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-
+        $rootScope.fecha_inicionuevoRegistroPNI = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
         console.log($scope.fecha_inicio);
 
 	};
@@ -5838,7 +5835,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
             TECNOLOGIA_ID: ''
         };
 
-         services.SalvarGestionInfraestructura(transaccion).then(function (data) {
+         services.SalvarGestionInfraestructura(transaccion,$rootScope.fecha_inicionuevoRegistroPNI).then(function (data) {
                 $location.path('/pni/');
                 return data.data;
             }

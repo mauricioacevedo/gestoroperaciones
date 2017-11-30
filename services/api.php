@@ -11080,11 +11080,12 @@ private function demePedidoEdatel(){
 
         $transaccion = json_decode(file_get_contents("php://input"),true);
 
-        echo var_dump($usuarioGalleta);
+        //echo var_dump($usuarioGalleta);
 
         $transaccion = $transaccion['gestion'];
+        $fechaini = $transaccion['fechainicio'];
 
-        //echo var_dump ($transaccion);
+        echo var_dump ("Fecha".$fechaini);
 
         $column_names = array('ENVIADO','USUARIOENVIO','FECHASOLICITUD','INSUMO','SOLUCION');
 
