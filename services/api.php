@@ -8778,7 +8778,7 @@ class API extends REST {
             }
             if ($fuente == "FENIX_NAL")
                 {
-                  $plaza="";
+                  $plaza="AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID IN ('BOGCUNCOL'))";
                 }
             else{
                 $plaza=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
