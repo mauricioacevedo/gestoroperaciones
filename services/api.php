@@ -11078,7 +11078,7 @@ private function demePedidoEdatel(){
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
 
-        $transaccion = json_decode(file_get_contents("php://input"),true);a
+        $transaccion = json_decode(file_get_contents("php://input"),true);
         $fecha = json_decode(file_get_contents("php://input"),true);
         //echo var_dump($usuarioGalleta);
 
