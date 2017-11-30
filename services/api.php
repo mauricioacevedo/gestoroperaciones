@@ -11078,12 +11078,12 @@ private function demePedidoEdatel(){
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
 
-        $transaccion = json_decode(file_get_contents("php://input"),true);
-
+        $transaccion = json_decode(file_get_contents("php://input"),true);a
+        $fecha = json_decode(file_get_contents("php://input"),true);
         //echo var_dump($usuarioGalleta);
 
         $transaccion = $transaccion['gestion'];
-        $fechaini = $transaccion['fechainicio'];
+        $fechaini = $fecha['fechainicio'];
 
         echo ("Fecha".$fechaini);
 
