@@ -7004,8 +7004,8 @@ $(document).click(  function (e) {
 
                 $scope.timeInit=new Date().getTime();
                 var df=new Date($scope.pedido.duracion);
-            $scope.pedido.duracion= $scope.doubleDigit(df.getHours()-19)+":"+ $scope.doubleDigit(df.getMinutes())+":"+$scope.doubleDigit(df.getSeconds());
-            $scope.pedido.pedido=$scope.peds[index].PEDIDO_ID+$scope.peds[index].SUBPEDIDO_ID+$scope.peds[index].SOLICITUD_ID;
+                $scope.pedido.duracion= $scope.doubleDigit(df.getHours()-19)+":"+ $scope.doubleDigit(df.getMinutes())+":"+$scope.doubleDigit(df.getSeconds());
+                $scope.pedido.pedido=$scope.peds[index].PEDIDO_ID+$scope.peds[index].SUBPEDIDO_ID+$scope.peds[index].SOLICITUD_ID;
                 $scope.pedido1=$scope.peds[index].PEDIDO_ID;
 
                 $scope.pedido.actividad="RECONFIGURACION";
@@ -17364,7 +17364,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     $scope.condicionMunicipiosShow = function () {
 
-        return ($scope.iconcepto.FUENTE=='SIEBEL' | $scope.iconcepto.FUENTE=='EDATEL' | $scope.iconcepto.FUENTE=='FENIX_NAL'  & ( $scope.iconcepto.CONCEPTO_ID=='COBERTURA' | $scope.iconcepto.CONCEPTO_ID=='DISPONIBILIDAD' | $scope.iconcepto.CONCEPTO_ID=='CONSTRUCCION' | $scope.iconcepto.CONCEPTO_ID=='DISENO' | $scope.iconcepto.CONCEPTO_ID =='12-EDATEL' | $scope.iconcepto.CONCEPTO_ID=='14' | $scope.iconcepto.CONCEPTO_ID=='99' ));
+       //Se mostrara los municipios unicamente para edatel
+        return ($scope.iconcepto.FUENTE=='EDATEL' & ($scope.iconcepto.CONCEPTO_ID =='12-EDATEL'));
+
+       /* return ($scope.iconcepto.FUENTE=='SIEBEL' | $scope.iconcepto.FUENTE=='EDATEL' | $scope.iconcepto.FUENTE=='FENIX_NAL'  & ( $scope.iconcepto.CONCEPTO_ID=='COBERTURA' | $scope.iconcepto.CONCEPTO_ID=='DISPONIBILIDAD' | $scope.iconcepto.CONCEPTO_ID=='CONSTRUCCION' | $scope.iconcepto.CONCEPTO_ID=='DISENO' | $scope.iconcepto.CONCEPTO_ID =='12-EDATEL' | $scope.iconcepto.CONCEPTO_ID=='14' | $scope.iconcepto.CONCEPTO_ID=='99' ));*/
     };
 
     $scope.checkMunicipiosAsignaciones = function () {
