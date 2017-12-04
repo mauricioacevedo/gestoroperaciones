@@ -11871,7 +11871,7 @@ private function demePedidoEdatel(){
         $filename="NCA-$login-$today.csv";
         $query=" SELECT ".
             "pedido_id AS OFERTA,MUNICIPIO_ID, TIPO_TRABAJO,ESTADO,FECHA_INICIO,FECHA_FIN,concepto_final as ESTADO_FINAL,
-		     DURACION,INCIDENTE,OBSERVACIONES_PROCESO, INCIDENTE, user AS USUARIO ".
+		     DURACION,INCIDENTE,OBSERVACIONES_PROCESO, user AS USUARIO ".
             " from pedidos where ".
             " FECHA_FIN between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' and fuente ='SIEBEL' ";
 
@@ -11880,7 +11880,7 @@ private function demePedidoEdatel(){
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('OFERTA','MUNICIPIO_ID','TIPO_TRABAJO','ESTADO','FECHA_INICIO','FECHA_FIN','DURACION','INCIDENTE','OBSERVACIONES_PROCESO','INCIDENTE','USUARIO','USUARIO'));
+            fputcsv($fp, array('OFERTA','MUNICIPIO_ID','TIPO_TRABAJO','ESTADO','FECHA_INICIO','FECHA_FIN','ESTADO_FINAL','DURACION','INCIDENTE','OBSERVACIONES_PROCESO','USUARIO'));
             while($row = $r->fetch_assoc()){
                 //$result[] = $row;
                 fputcsv($fp, $row);
