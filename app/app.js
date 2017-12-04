@@ -6025,7 +6025,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
         )
     };
 
-    $scope.objMunicipios();
+    //$scope.objMunicipios();
 
 
 });

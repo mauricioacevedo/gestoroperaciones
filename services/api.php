@@ -11870,9 +11870,10 @@ private function demePedidoEdatel(){
         $today = date("Y-m-d h:i:s");
         $filename="NCA-$login-$today.csv";
         $query=" SELECT ".
-            " OFERTA,MUNICIPIO_ID,TRANSACCION,ESTADO,FECHA,DURACION,INCIDENTE,FECHA_INICIO,FECHA_FIN,ESTADO_FINAL,OBSERVACION,USUARIO ".
-            " from transacciones_nca where ".
-            " FECHA_FIN between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' ";
+            "pedido_id AS OFERTA,user AS USUARIO, MUNICIPIO_ID,TIPO_TRABAJO,FECHA_FIN as FECHA,concepto_final as CONC,
+		      ESTADO,DURACION,INCIDENTE,FECHA_INICIO,OBSERVACIONES_PROCESO, INCIDENTE ".
+            " from pedidos where ".
+            " FECHA_FIN between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' and fuente ='SIEBEL' ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
