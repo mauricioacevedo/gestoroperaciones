@@ -780,13 +780,13 @@ app.factory("services", ['$http', '$timeout', function ($http) {
     //******************************************************************************
 
      //******************************MICHAEL CRUD PNI*****************************************
-    obj.SalvarGestionInfraestructura = function (gestion,fechainicio) {
+    obj.SalvarGestionPNI = function (gestion,fechainicio) {
         return $http.post(serviceBase + 'insertTransaccionPNI', {
             gestion: gestion, fechainicio:fechainicio
         });
     };
 
-    obj.EditarGestionInfraestructura = function (gestion) {
+    obj.EditarGestionPNI = function (gestion) {
         return $http.post(serviceBase + 'ActualizarTransaccionPNI', {
             gestion: gestion
         });
@@ -5835,7 +5835,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
             TECNOLOGIA_ID: ''
         };
 
-         services.SalvarGestionInfraestructura(transaccion,$rootScope.fecha_inicionuevoRegistroPNI).then(function (data) {
+         services.SalvarGestionPNI(transaccion,$rootScope.fecha_inicionuevoRegistroPNI).then(function (data) {
                 $location.path('/pni/');
                 return data.data;
             }
@@ -5925,7 +5925,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
             TECNOLOGIA_ID: ''
         };
 
-        services.EditarGestionInfraestructura(transaccion).then(function (data) {
+        services.EditarGestionPNI(transaccion).then(function (data) {
                 $location.path('/pni/');
                 return data.data;
                 $scope.pageChanged();
