@@ -872,6 +872,11 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'csvPNI?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
 	};
 
+    //EXPOTE KPIS
+    obj.getCsvKPIS = function (login, fechaIni, fechaFin) { //exportar NCA
+		return $http.get(serviceBase + 'csvKPIS?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
+	};
+
 	obj.getCsvPendientes = function (login, concepto) { //exportar pendientes
 		return $http.get(serviceBase + 'csvPendientes?login=' + login + '&concepto=' + concepto);
 	};
