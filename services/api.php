@@ -11939,7 +11939,7 @@ private function demePedidoEdatel(){
         $query=" SELECT ".
             "ENVIADO, USUARIOENVIO, FECHASOLICITUD, INSUMO, SOLUCION, RESPONSABLE,
 	         FECHAINI, FECHAFIN,  CAST(TIMEDIFF(FECHAFIN, FECHAINI)
-	         AS CHAR (255)) AS ANSACTIVIDAD where ".
+	         AS CHAR (255)) AS ANSACTIVIDAD FROM tbl_RegistrosPNI where ".
             " FECHA_FIN between '$fechaIni 00:00:00' and '$fechaFin 23:59:59'";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
