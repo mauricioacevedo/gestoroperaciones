@@ -11935,12 +11935,12 @@ private function demePedidoEdatel(){
         $fechaFin = $this->_request['fechaFin'];
 
         $today = date("Y-m-d h:i:s");
-        $filename="NCA-$login-$today.csv";
+        $filename="PNI-$login-$today.csv";
         $query=" SELECT ".
             "ENVIADO, USUARIOENVIO, FECHASOLICITUD, INSUMO, SOLUCION, RESPONSABLE,
 	         FECHAINI, FECHAFIN,  CAST(TIMEDIFF(FECHAFIN, FECHAINI)
 	         AS CHAR (255)) AS ANSACTIVIDAD FROM tbl_RegistrosPNI where ".
-            " FECHA_FIN between '$fechaIni 00:00:00' and '$fechaFin 23:59:59'";
+            " FECHAFIN between '$fechaIni 00:00:00' and '$fechaFin 23:59:59'";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
