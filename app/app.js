@@ -862,8 +862,14 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'BuscarDatos?usuario=' + usuario);
 	};
 
-	obj.getCsvNCA = function (login, fechaIni, fechaFin) { //exportar NCA
+	//EXPORTE NCA
+    obj.getCsvNCA = function (login, fechaIni, fechaFin) { //exportar NCA
 		return $http.get(serviceBase + 'csvNCA?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
+	};
+
+    //EXPORTE PNI
+    obj.getCsvPNI = function (login, fechaIni, fechaFin) { //exportar NCA
+		return $http.get(serviceBase + 'csvPNI?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
 	};
 
 	obj.getCsvPendientes = function (login, concepto) { //exportar pendientes
@@ -5704,9 +5710,9 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
 	};
 
-	$scope.csvNCA = function () {
+	$scope.csvKPIS = function () {
 		var login = $rootScope.logedUser.login;
-		services.getCsvNCA(login, $scope.data.fechaIni, $scope.data.fechaFin).then(function (data) {
+		services.getCsvKPIS(login, $scope.data.fechaIni, $scope.data.fechaFin).then(function (data) {
 			//console.log(data.data[0]);
 			window.location.href = "tmp/" + data.data[0];
 			return data.data;
@@ -6006,9 +6012,9 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 
 	};
 
-	$scope.csvNCA = function () {
+	$scope.csvPNI = function () {
 		var login = $rootScope.logedUser.login;
-		services.getCsvNCA(login, $scope.data.fechaIni, $scope.data.fechaFin).then(function (data) {
+		services.getCsvPNI(login, $scope.data.fechaIni, $scope.data.fechaFin).then(function (data) {
 			//console.log(data.data[0]);
 			window.location.href = "tmp/" + data.data[0];
 			return data.data;
