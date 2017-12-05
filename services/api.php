@@ -8786,7 +8786,8 @@ class API extends REST {
 
         }else{
             //$plaza=" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
-            $plaza=" AND b.MUNICIPIO_ID IN ('$plaza') ";
+            //$plaza=" AND b.MUNICIPIO_ID IN ('$plaza') ";
+            $plaza="";
         }
 
         //$parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
