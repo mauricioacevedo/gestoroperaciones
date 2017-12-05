@@ -84,6 +84,17 @@
                                 <input type="text" name="fechaSolicitud" id="fechaSolicitud" value="" max="23:59:59" min="00:00:00"  class="datetimepicker" onclick="">
                              </div>
 
+                          <div class='col-sm-6'>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                          </div>
+
                             <div class="form-group">
                                 <label for="DireccionesCorre">
                                    Direcciones Corregidas
@@ -218,14 +229,14 @@
   <br>
 </div>
 
-<script>
+<!--<script>
 $('#fechaSolicitud').datetimepicker({
      format: 'yyyy-mm-dd',
      timeFormat: 'hh:mm:00',
      todayBtn: "linked",
      autoclose: true
  });
-</script>
+</script>-->
 
 <script language='javascript'>
   $(function () {
@@ -252,6 +263,12 @@ $(document).ready(function(){
     });
 
 });
+</script>
+
+<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
 </script>
 
 <!--<script type="text/javascript">
