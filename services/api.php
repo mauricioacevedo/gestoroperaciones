@@ -8793,10 +8793,10 @@ class API extends REST {
                   $plaza="";
                 }
 
-            else{
+            else if{
                 $plaza=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
                 }
-        }else{
+        }else if ($plaza=="TODOS"){
             //$plaza=" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
             //$plaza=" AND b.MUNICIPIO_ID IN ('$plaza') ";
             $plaza="AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID IN ('BOG-COBRE','BOGCUNCOL'))";
