@@ -8567,6 +8567,10 @@ class API extends REST {
 			   $concepto=" and b.CONCEPTO_ID='$concepto'";
 		   } */
 
+        if ($concepto == "OT-T01")
+        {
+            $plaza = "";
+        }
 
         if($concepto=="PETEC"){
             if($plaza=="BOG-COBRE"){
