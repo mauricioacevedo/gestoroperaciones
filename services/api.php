@@ -8586,7 +8586,7 @@ class API extends REST {
 
                 echo var_dump ($plaza);
 
-                if ($plaza == "BOGOTA")
+                if ($plaza == "BOGOTA" || $plaza == "BOGCUNCOL")
                 {
 
                     $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID IN ('BOG-COBRE','BOGCUNCOL')) ";
