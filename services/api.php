@@ -12197,7 +12197,7 @@ private function demePedidoEdatel(){
         $query="SELECT ENVIADO, USUARIOENVIO, FECHASOLICITUD, INSUMO , SOLUCION, RESPONSABLE,
                 CAST(TIMEDIFF(FECHAFIN, FECHAINI)
                 AS CHAR (255)) AS ANSACTIVIDAD,
-                CAST(TIMEDIFF(FECHASOLICITUD, FECHAFIN)
+                CAST(TIMEDIFF(FECHAFIN,FECHASOLICITUD)
 	            AS CHAR (255)) AS ANSSOLUCION
                 FROM tbl_RegistrosPNI order by ID desc limit 50; ";
         //echo $query;
