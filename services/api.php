@@ -8821,7 +8821,8 @@ class API extends REST {
             "order by b.$parametroBusqueda ASC";
             //echo var_dump ($concepto);
             //echo var_dump ($query1);
-        //echo $query1;
+
+        echo var_dump($query1);
 
         if($mypedido==""){
 
