@@ -8584,6 +8584,8 @@ class API extends REST {
                     
                 }
 
+                echo var_dump ($plaza);
+
                 if ($plaza == "BOGOTA")
                 {
 
