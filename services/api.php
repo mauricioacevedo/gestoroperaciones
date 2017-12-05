@@ -8788,12 +8788,12 @@ class API extends REST {
                 $plaza="";
             }
 
-            else if ($fuente == "FENIX_NAL")
+            else ($fuente == "FENIX_NAL")
                 {
                   $plaza="";
                 }
 
-            else if{
+            else {
                 $plaza=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
                 }
         }else {
