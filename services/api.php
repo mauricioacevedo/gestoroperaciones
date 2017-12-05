@@ -8579,14 +8579,16 @@ class API extends REST {
             }else {
                 $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA','INSTIP','STBOX','EQURED') ";
                 if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
-
-
                 $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
                     //Obtener un registro de cualquier plaza menos los de bogota
                     
-                }else{
+                }
 
-                    $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
+                if ($plaza == "BOGOTA")
+                {
+
+                    $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL')) ";
+                    //$plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
                     //$plaza2=" AND b.MUNICIPIO_ID IN ('$plaza') ";
                 }
 
