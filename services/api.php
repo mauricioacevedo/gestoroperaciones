@@ -8567,7 +8567,7 @@ class API extends REST {
 			   $concepto=" and b.CONCEPTO_ID='$concepto'";
 		   } */
 
-        if ($concepto == "OT-T01" || $concepto == "COBERTURA" || $concepto == "CONSTRUCCION" )
+        if ($concepto == "OT-T01" || $concepto == "COBERTURA" || $concepto == "CONSTRUCCION" || $concepto == "OT-T04")
         {
             $plaza = "";
         }
