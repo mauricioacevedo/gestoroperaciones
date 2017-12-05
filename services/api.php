@@ -8747,7 +8747,6 @@ class API extends REST {
                 " ORDER BY FECHA_INGRESO ASC ";
 
 
-
             $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
             if($rr->num_rows > 0){//recorro los registros de la consulta para
@@ -8788,7 +8787,7 @@ class API extends REST {
                 $plaza="";
             }
 
-            else ($fuente == "FENIX_NAL")
+            else
                 {
                   $plaza="";
                 }
