@@ -8703,9 +8703,6 @@ class API extends REST {
                     $plaza2.
                     " ORDER BY FECHA_ESTADO ASC ";
 
-                echo var_dump ($sqlllamadas);
-
-
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
                 if($rra->num_rows > 0){//recorro los registros de la consulta para
@@ -8749,6 +8746,7 @@ class API extends REST {
                 $plaza2.
                 " ORDER BY FECHA_INGRESO ASC ";
 
+            echo var_dump ($sqlllamadas);
 
             $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
