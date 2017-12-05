@@ -8589,7 +8589,7 @@ class API extends REST {
                 if ($plaza == "BOGOTA" || $plaza == "BOGCUNCOL")
                 {
 
-                    $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID IN ('BOG-COBRE','BOGCUNCOL')) ";
+                    $plaza=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID IN ('BOG-COBRE','BOGCUNCOL','BOGOTA')) ";
                     //$plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
                     //$plaza2=" AND b.MUNICIPIO_ID IN ('$plaza') ";
                 }
