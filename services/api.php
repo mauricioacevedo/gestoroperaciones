@@ -8806,6 +8806,8 @@ class API extends REST {
             $parametroBusqueda = "FECHA_ESTADO";
         }
 
+        echo var_dump ($concepto);
+
 
         $query1="select b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO,b.FECHA_CITA ".
             ",(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO_ID=a.pedido_id ".
