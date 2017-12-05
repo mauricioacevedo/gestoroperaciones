@@ -8810,8 +8810,8 @@ class API extends REST {
             $parametroBusqueda = "FECHA_ESTADO";
         }
 
-        echo var_dump ($concepto);
-        echo var_dump ($plaza);
+        //echo var_dump ($concepto);
+        //echo var_dump ($plaza);
 
 
         $query1="select b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO,b.FECHA_CITA ".
@@ -8829,7 +8829,7 @@ class API extends REST {
             //echo var_dump ($concepto);
             //echo var_dump ($query1);
 
-        echo var_dump($query1);
+        //echo var_dump($query1);
 
         if($mypedido==""){
 
