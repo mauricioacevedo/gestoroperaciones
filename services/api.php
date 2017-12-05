@@ -8703,6 +8703,8 @@ class API extends REST {
                     $plaza2.
                     " ORDER BY FECHA_ESTADO ASC ";
 
+                echo var_dump ($sqlllamadas);
+
 
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
