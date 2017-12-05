@@ -267,7 +267,10 @@ $(document).ready(function(){
 
 <script type="text/javascript">
             $(function () {
-                $('#datetimepicker1').datetimepicker();
+                $('#datetimepicker1').datetimepicker({
+                    format: 'yyyy-mm-dd',
+                    timeFormat: 'hh:mm:00'
+                });
             });
 </script>
 
