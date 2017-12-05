@@ -8787,7 +8787,7 @@ class API extends REST {
                 $plaza="";
             }
 
-            else
+            if ($fuente == "FENIX_NAL")
                 {
                   $plaza="";
                 }
