@@ -8746,7 +8746,7 @@ class API extends REST {
                 $plaza2.
                 " ORDER BY FECHA_INGRESO ASC ";
 
-            echo var_dump ($sqlllamadas);
+
 
             $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
@@ -8836,7 +8836,7 @@ class API extends REST {
             //echo var_dump ($concepto);
             //echo var_dump ($query1);
 
-        //echo var_dump($query1);
+        echo var_dump($query1);
 
         if($mypedido==""){
 
