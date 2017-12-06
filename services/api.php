@@ -11150,7 +11150,7 @@ private function demePedidoEdatel(){
         //echo $query;
         if(!empty($transaccion)){
             //echo $query;
-            $r = $this->mysqli->query(utf8_encode($query)) or die($this->mysqli->error.__LINE__);
+            $r = $this->mysqli->query(utf8_decode($query)) or die($this->mysqli->error.__LINE__);
 
             $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
 
