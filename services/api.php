@@ -8575,9 +8575,9 @@ class API extends REST {
 
         if ($concepto =="12-EDATEL")
         {
-            $plaza = " and MUNICIPIO_ID ='$plaza' ";
+            $plaza = " and a.MUNICIPIO_ID ='$plaza' ";
         }
-        echo var_dump($plaza);
+        //echo var_dump($plaza);
 
         if($concepto=="PETEC"){
             if($plaza=="BOG-COBRE"){
