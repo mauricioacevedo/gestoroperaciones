@@ -13585,14 +13585,14 @@ private function demePedidoEdatel(){
 
                     }
 
-      $sql= "insert into tbl_CargasPNI ('NOMBREARCHIVO','ORIGEN','DEPTO','COD_DEPTO', ".
+    /*  $sql= "insert into tbl_CargasPNI ('NOMBREARCHIVO','ORIGEN','DEPTO','COD_DEPTO', ".
                                             " 'MPIO','COD_MPIO','DIRECCION','ESTRATO','PAG_SERV', ".
                                             " 'ESTADO_CONCEPTO','PEDIDO','UEN','CX','CY','RESPONSABLE') ".
                                             "  values  ".
          " ('$ORIGEN','$DEPTO','$COD_DEPTO','$MPIO','$COD_MPIO','$DIRECCION', ".
           " '$ESTRATO','$PAG_SERV','$ESTADO_CONCEPTO','$PEDIDO','$UEN','$CX','$CY','$CY')";
 
-        $rst = mysql_query ($sql);
+        $rst = mysql_query ($sql);*/
 
   }
                             //obtenemos la cantidad de equipos Registrados
