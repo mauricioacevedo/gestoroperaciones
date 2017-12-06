@@ -13434,6 +13434,8 @@ private function demePedidoEdatel(){
                   $tname1 = basename( $_FILES["file"]["name"]);
 
                     echo var_dump ($target_file);
+                    echo var_dump ($tname1);
+
 
                         //$target_file = basename($_FILES["file"]["name"]);
                         $uploadOk = 1;
