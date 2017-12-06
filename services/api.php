@@ -8825,11 +8825,11 @@ class API extends REST {
 
         if ($concepto =="12-EDATEL")
         {
-            $plaza = " and MUNICIPIO_ID = '$plaza' ";
+            $plaza = "and MUNICIPIO_ID = '$plaza' ";
         }
 
 
-        echo var_dump ($concepto);
+        //echo var_dump ($concepto);
         echo var_dump ($plaza);
 
         $query1="select b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO,b.FECHA_CITA ".
