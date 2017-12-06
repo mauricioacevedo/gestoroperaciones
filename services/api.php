@@ -13418,7 +13418,7 @@ private function demePedidoEdatel(){
 
         require_once '../librerias/importar_excel/reader/Classes/PHPExcel/IOFactory.php';
         $pedido=json_decode(file_get_contents("php://input"),true);
-        //ini_set('display_errors', '1');
+        ini_set('display_errors', '1');
 
         //ini_set('memory_limit','-1');
         //ini_set('max_execution_time', 1000);
