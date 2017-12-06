@@ -13571,15 +13571,15 @@ private function demePedidoEdatel(){
                         $PEDIDO=$cellValue;
                         }
 
-                        if($h=="J"){
+                        if($h=="K"){
                         $UEN=$cellValue;
                         }
 
-                        if($h=="J"){
+                        if($h=="L"){
                         $CX=$cellValue;
                         }
 
-                        if($h=="J"){
+                        if($h=="M"){
                         $CY=$cellValue;
                         }
 
