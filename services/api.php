@@ -13433,8 +13433,8 @@ private function demePedidoEdatel(){
                   $fecha= date("Y-m-d H:i:s");
                   $tname1 = basename( $_FILES["file"]["name"]);
 
-                    echo var_dump ($target_file);
-                    echo var_dump ($tname1);
+                    echo $target_file;
+                    echo $tname1;
 
 
                         //$target_file = basename($_FILES["file"]["name"]);
