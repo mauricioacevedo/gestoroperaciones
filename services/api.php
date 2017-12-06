@@ -11965,7 +11965,8 @@ private function demePedidoEdatel(){
         $today = date("Y-m-d h:i:s");
         $filename="PNI-$login-$today.csv";
         $query=" SELECT ".
-            "ENVIADO, USUARIOENVIO, FECHASOLICITUD, INSUMO, SOLUCION, RESPONSABLE, OBSERVACION,
+            "ENVIADO, USUARIOENVIO, FECHASOLICITUD, INSUMO, SOLUCION, CAST(TIMEDIFF(FECHAFIN,FECHASOLICITUD)
+	         AS CHAR (255)) AS ANSSOLUCION ,OBSERVACION, DIRECCIONES_CORREGIDAS, RESPONSABLE, OBSERVACION,
 	         FECHAINI, FECHAFIN,  CAST(TIMEDIFF(FECHAFIN, FECHAINI)
 	         AS CHAR (255)) AS ANSACTIVIDAD FROM tbl_RegistrosPNI where ".
             " FECHAFIN between '$fechaIni 00:00:00' and '$fechaFin 23:59:59'";
@@ -11975,7 +11976,7 @@ private function demePedidoEdatel(){
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('ENVIADO','USUARIOENVIO','FECHASOLICITUD','INSUMO','SOLUCION','RESPONSABLE','OBSERVACION','FECHAINI','FECHAFIN','ANSACTIVIDAD'));
+            fputcsv($fp, array('ENVIADO','USUARIOENVIO','FECHASOLICITUD','INSUMO','SOLUCION','ANSSOLUCION','OBSERVACION','DIRECCIONES_CORREGIDAS','RESPONSABLE','FECHAINI','FECHAFIN','ANSACTIVIDAD'));
             while($row = $r->fetch_assoc()){
                 //$result[] = $row;
                 fputcsv($fp, $row);
