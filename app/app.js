@@ -5761,7 +5761,8 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
 //**********************************MICHAEL CONTROLADOR PNI************************************
 
-app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services) {
+app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services,             fileUploadPNI)
+    {
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
 	document.getElementById('logout').className = "btn btn-md btn-danger";
