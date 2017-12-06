@@ -13425,10 +13425,10 @@ private function demePedidoEdatel(){
 
                   $target_dir = "../uploads";
                //   echo "$target_dir";
-                  $target_file = $target_dir . basename($_FILES["fileUpload"]["name"]);
+                  $target_file = $target_dir . basename($_FILES["file"]["name"]);
                         //$name     = $_FILES['file']['name'];
-                  $tname    = $_FILES['fileUpload']['tmp_name'];
-                  $type     = $_FILES['fileUpload']['type'];
+                  $tname    = $_FILES['file']['tmp_name'];
+                  $type     = $_FILES['file']['type'];
 
                   $fecha= date("Y-m-d H:i:s");
                   $tname1 = basename( $_FILES["fileUpload"]["name"]);
@@ -13446,8 +13446,8 @@ private function demePedidoEdatel(){
                         // if everything is ok, try to upload file
                         } else {
 
-                           if (move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $target_file)){
-                                echo "El archivo ". basename( $_FILES["fileUpload"]["name"]). " se ha subido";
+                           if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)){
+                                echo "El archivo ". basename( $_FILES["file"]["name"]). " se ha subido";
 
                             } else {
 
@@ -13456,7 +13456,7 @@ private function demePedidoEdatel(){
                             }
                         }
 
-                        $tname1 = basename( $_FILES["fileUpload"]["name"]);
+                        $tname1 = basename( $_FILES["file"]["name"]);
 
                   if($type == 'application/vnd.ms-excel')
                   {
