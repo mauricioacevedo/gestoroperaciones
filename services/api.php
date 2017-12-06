@@ -8574,6 +8574,10 @@ class API extends REST {
         }
 
 
+        if ($concepto =="12-EDATEL")
+        {
+            $plaza = "and MUNICIPIO_ID = '$plaza' ";
+        }
 
         //echo var_dump($plaza);
 
@@ -8823,10 +8827,6 @@ class API extends REST {
         }
 
 
-        if ($concepto =="12-EDATEL")
-        {
-            $plaza = "and MUNICIPIO_ID = '$plaza' ";
-        }
 
 
         //echo var_dump ($concepto);
