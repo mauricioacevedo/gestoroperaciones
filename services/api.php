@@ -11146,7 +11146,7 @@ private function demePedidoEdatel(){
         $query = " INSERT INTO  tbl_RegistrosPNI (".trim($columns,',').",RESPONSABLE, FECHAINI) VALUES(".trim($values,',').",'$usuarioGalleta','$fechaini')";
 
         /*$query = " INSERT INTO  tbl_RegistrosPNI (".trim($columns,',').",RESPONSABLE, FECHAINI) VALUES(".trim($values,',').",'$usuarioGalleta','$fechaini')";
-*/
+        */
         //echo $query;
         if(!empty($transaccion)){
             //echo $query;
@@ -13401,6 +13401,78 @@ private function demePedidoEdatel(){
 
     }
 
+    private function UploadFilePNI(){
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+        require_once '../librerias/importar_excel/reader/Classes/PHPExcel/IOFactory.php';
+        $pedido=json_decode(file_get_contents("php://input"),true);
+        //ini_set('display_errors', '1');
+        $target_dir = "../uploads/";
+        $target_file = $target_dir . basename($_FILES["file"]["name"]);
+        //$name     = $_FILES['fileUpload']['name'];
+        $tname    = $_FILES['file']['tmp_name'];
+        $type     = $_FILES['file']['type'];
+        move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
+        echo $target_file;
+        $NOMBRE_ARCHIVO=$_FILES["file"]["name"];
+        $TAMANO =$_FILES["file"]["size"];
+        //$usas =$_FILES["file"]["user"];
+        //$pedido = json_decode(file_get_contents("php://input"),true);
+        $usuario = $this->_request['user'];
+        //echo var_dump($usas);
+        //echo var_dump($_FILES );
+        //$this->response(json_encode(""),200);
+        $PEDIDO_ID='';
+        $cliente_id='';
+        $ACCESO='';
+        $ESTADO='';
+
+
+        $sqlupload="insert into tbl_CargasPNI (NOMBRE_ARCHIVO,ORIGEN,DEPTO,COD_DEPTO,MPIO,COD_MPIO,DIRECCION,ESTRATO,
+        PAG_SERV,ESTADO_CONCEPTO,PEDIDO,UEN,CX,CY,RESPONSABLE,FECHA_CARGA) values ('$usuario','$NOMBRE_ARCHIVO','$TAMANO','PENDIENTES')";
+        //echo  $user;
+        $r = $this->mysqli->query($sqlupload) or die($this->mysqli->error.__LINE__);
+
+        // SQL Feed----------------------------------
+        $sql_log=   "insert into portalbd.activity_feed ( ".
+            " USER ".
+            ", USER_NAME ".
+            ", GRUPO ".
+            ", STATUS ".
+            ", PEDIDO_OFERTA ".
+            ", ACCION ".
+            ", CONCEPTO_ID ".
+            ", IP_HOST ".
+            ", CP_HOST ".
+            ") values( ".
+            " UPPER('$usuarioGalleta')".
+            ", UPPER('$nombreGalleta')".
+            ", UPPER('$grupoGalleta')".
+            ",'OK' ".
+            ",'SIN PEDIDO' ".
+            ",'SUBIO ARCHIVO' ".
+            ",'ARCHIVO SUBIDO' ".
+            ",'$usuarioIp' ".
+            ",'$usuarioPc')";
+
+        $rlog = $this->mysqli->query($sql_log);
+        // ---------------------------------- SQL Feed
+        //$sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$usas','','','','','PENDIENTES')";
+        //$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+
+
+    }
 
 
     //------------------fin prueba

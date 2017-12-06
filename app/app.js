@@ -118,6 +118,25 @@ app.service('fileUpload2', ['$http', function ($http) {
 	}
 }]);
 
+//UploadPNI
+app.service('fileUploadPNI', ['$http', function ($http) {
+	this.uploadFileToUrl = function (file, uploadUrl) {
+		var fd = new FormData();
+		fd.append('fileUploadPNI', file);
+		$http.post('services/cargar_datosPNI', fd, {
+				transformRequest: angular.identity,
+				headers: {
+					'Content-Type': undefined
+			}
+		})
+			.success(function () {
+
+
+			})
+			.error(function () {});
+	}
+}]);
+
 
 app.directive('fileModel', ['$parse', function ($parse) {
 	return {
@@ -6027,7 +6046,21 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 
 	};
 
-	$scope.objMunicipios = function () {
+
+    $scope.uploadFilePNI = function () {
+		$scope.user = $rootScope.logedUser.login;
+
+		var file = $scope.myFile;
+		console.log('file is');
+		console.dir(file);
+
+		var uploadUrl = 'services/cargar_datosPNI';
+        console.log ($scope.user);
+		fileUploadPNI.uploadFileToUrl(file, uploadUrl, $scope.user);
+	};
+
+
+    $scope.objMunicipios = function () {
         $http.get('./services/objMunicipios').then(
             function (res) {
                 $scope.lstMunicipios = res.data[0];
