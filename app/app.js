@@ -122,7 +122,7 @@ app.service('fileUpload2', ['$http', function ($http) {
 app.service('fileUploadPNI', ['$http', function ($http) {
 	this.uploadFileToUrl = function (file, uploadUrl) {
 		var fd = new FormData();
-		fd.append('fileUploadPNI', file);
+		fd.append('fileUpload', file);
 		$http.post('services/cargar_datosPNI', fd, {
 				transformRequest: angular.identity,
 				headers: {
