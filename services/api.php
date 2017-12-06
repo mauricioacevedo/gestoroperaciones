@@ -8573,6 +8573,10 @@ class API extends REST {
             $plaza = "";
         }
 
+        if ($concepto =="12-EDATEL")
+        {
+            $plaza = "AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID IN ('GUATAPE','CIUDAD BOLIVAR','AMAGA','SANTAFE DE ANTIOQUIA','FREDONIA','VENECIA','SANTA BARBARA','ANDES','PEÑOL','SONSON','LA PINTADA','TAMASIS','JARDIN','URRAO','JERICO','APARTADO'))";
+        }
 
         if($concepto=="PETEC"){
             if($plaza=="BOG-COBRE"){
