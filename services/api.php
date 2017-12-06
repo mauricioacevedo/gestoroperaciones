@@ -8830,7 +8830,7 @@ class API extends REST {
 
 
         //echo var_dump ($concepto);
-        echo var_dump ($plaza);
+        //echo var_dump ($plaza);
 
         $query1="select b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO,b.FECHA_CITA ".
             ",(SELECT a.user FROM vistas_pedidos  a where a.user='$user' AND b.PEDIDO_ID=a.pedido_id ".
@@ -8847,8 +8847,8 @@ class API extends REST {
             //echo var_dump ($concepto);
             //echo var_dump ($query1);
 
-        echo var_dump($query1);
-        echo var_dump ($plaza);
+        //echo var_dump($query1);
+        //echo var_dump ($plaza);
 
         if($mypedido==""){
 
