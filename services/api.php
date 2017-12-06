@@ -13401,6 +13401,7 @@ private function demePedidoEdatel(){
 
     }
 
+
     private function UploadFilePNI(){
         if($this->get_request_method() != "POST"){
             $this->response('',406);
@@ -13418,61 +13419,211 @@ private function demePedidoEdatel(){
         require_once '../librerias/importar_excel/reader/Classes/PHPExcel/IOFactory.php';
         $pedido=json_decode(file_get_contents("php://input"),true);
         //ini_set('display_errors', '1');
-        $target_dir = "../uploads/";
-        $target_file = $target_dir . basename($_FILES["file"]["name"]);
-        //$name     = $_FILES['fileUpload']['name'];
-        $tname    = $_FILES['file']['tmp_name'];
-        $type     = $_FILES['file']['type'];
-        move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
-        echo $target_file;
-        $NOMBRE_ARCHIVO=$_FILES["file"]["name"];
-        $TAMANO =$_FILES["file"]["size"];
-        //$usas =$_FILES["file"]["user"];
-        //$pedido = json_decode(file_get_contents("php://input"),true);
-        $usuario = $this->_request['user'];
-        //echo var_dump($usas);
-        //echo var_dump($_FILES );
-        //$this->response(json_encode(""),200);
-        $PEDIDO_ID='';
-        $cliente_id='';
-        $ACCESO='';
-        $ESTADO='';
+
+        ini_set('memory_limit','-1');
+        ini_set('max_execution_time', 1000);
+
+                  $target_dir = "../uploads";
+               //   echo "$target_dir";
+                  $target_file = $target_dir . basename($_FILES["file"]["name"]);
+                        //$name     = $_FILES['file']['name'];
+                  $tname    = $_FILES['file']['tmp_name'];
+                  $type     = $_FILES['file']['type'];
+
+                  $fecha= date("Y-m-d H:i:s");
+                  $tname1 = basename( $_FILES["file"]["name"]);
+
+                        //$target_file = basename($_FILES["file"]["name"]);
+                        $uploadOk = 1;
+                        // Check if $uploadOk is set to 0 by an error
+                        if ($uploadOk == 0) {
+                            echo  "Lo sentimos , el archivo no se ha subido.";
+                            return;
+                        // if everything is ok, try to upload file
+                        } else {
+
+                           if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)){
+                                echo "El archivo ". basename( $_FILES["file"]["name"]). " se ha subido";
+
+                            } else {
+
+                                echo "Ha habido un error al subir el archivo.";
+                                return;
+                            }
+                        }
+
+                        $tname1 = basename( $_FILES["file"]["name"]);
+
+                  if($type == 'application/vnd.ms-excel')
+                  {
+                      // Extension excel 97
+                      $ext = 'xls';
+                  }
+                  else if($type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+                  {
+                      // Extension excel 2007 y 2010
+                      $ext = 'xlsx';
+                  }else{
+                      // Extension no valida
+                      echo -1;
+                      exit();
+                  }
+
+                  $xlsx = 'Excel2007';
+                  $xls  = 'Excel5';
+
+                  //creando el lector
+                  $objReader = PHPExcel_IOFactory::createReader($$ext);
+
+                  //cargamos el archivo
+                  $objPHPExcel = $objReader->load($target_file);
+
+                  $objPHPExcel->setActiveSheetIndex(0);
+                  $worksheet = $objPHPExcel->getSheetByName('CARGA EQUIPOS');
+                  $dim = $objPHPExcel->getActiveSheet()->calculateWorksheetDimension();
+
+                  // list coloca en array $start y $end Lista Coloca en array $ inicio y final $
+                  list($start, $end) = explode(':', $dim);
+
+                  if(!preg_match('#([A-M]+)([0-9]+)#', $start, $rslt)){
+                      return false;
+                  }
+                  list($start, $start_h, $start_v) = $rslt;
+                  if(!preg_match('#([A-M]+)([0-9]+)#', $end, $rslt)){
+                      return false;
+                  }
+                  list($end, $end_h, $end_v) = $rslt;
+
+                  //empieza  lectura vertical
+                  $table = "<table  border='1'>";
+
+                  //Ejecutamos la primera Carga
+                  $sqlCarga = "insert into ArchivosCargados (NombreArch) values ('$tname1')";
+                  //echo $target_file;
+
+                  $rstCar = mysql_query($sqlCarga);
+
+                  //obtenemos el id Del Ultimo Archivo Cargado
+                  /*$sqlUltimoid = "select max(Id) from ArchivosCargados";
+                  $rst2 = mysql_query ($sqlUltimoid);
+                  if ($row = mysql_fetch_row($rst2)) {
+                      $Carga = trim($row[0]);
+                       echo "Ultimo".$id;
+                      }*/
+
+                  // //obtenemos la cantidad de registros Cargados con Exito
+                  // $sqlCount = "SELECT count(*) FROM tbl_EquiposNCA WHERE NroCarga IN (SELECT max(NroCarga)FROM tbl_EquiposNCA)";
+                  // $rst3 = mysql_query ($sqlCount);
+                  // if ($row = mysql_fetch_row($rst3)) {
+                  //     $NroCargados = trim($row[0]);
+                  //     echo "ArchivosCargados Con Exito".$NroCargados;
+                  //     }
+
+                  $contador = 0;
+                  for($v=$start_v; $v<=$end_v; $v++){
+                      //empieza lectura horizontal
+                      if ($v<=2) continue;
+                      $table .= "<tr>";
+
+                  for($h=$start_h; ord($h)<=ord($end_h); pp($h))
+                  {
+                        $cellValue =  getCell($h.$v, $objPHPExcel);
+                        $table .= "<td>";
+                        $guardar .=" '$cellValue',";
+                        // echo $cellValue;
+                        if($cellValue !== null){
+                            $table .= $cellValue;
+                         }
+
+                        if($h=="A"){
+                        $ORIGEN=$cellValue;
+                        }
+                        if($h=="B"){
+                        $DEPTO=$cellValue;
+                        }
+                        if($h=="C"){
+                        $COD_DEPTO=$cellValue;
+                        }
+                        if($h=="D"){
+                        $MPIO=$cellValue;
+                        }
+                        if($h=="E"){
+                        $COD_MPIO=$cellValue;
+                        }
+
+                        if($h=="F"){
+                        $DIRECCION=$cellValue;
+                        }
+
+                        if($h=="G"){
+                        $ESTRATO=$cellValue;
+                        }
+
+                        if($h=="H"){
+                        $PAG_SERV=$cellValue;
+                        }
+
+                        if($h=="I"){
+                        $ESTADO_CONCETO=$cellValue;
+                        }
+
+                        if($h=="J"){
+                        $PEDIDO=$cellValue;
+                        }
+
+                        if($h=="J"){
+                        $UEN=$cellValue;
+                        }
+
+                        if($h=="J"){
+                        $CX=$cellValue;
+                        }
+
+                        if($h=="J"){
+                        $CY=$cellValue;
+                        }
+
+                    }
+
+      $sql= "insert into tbl_CargasPNI ". "('NOMBREARCHIVO','ORIGEN','DEPTO','COD_DEPTO',".
+                                            " 'MPIO','COD_MPIO','DIRECCION','ESTRATO','PAG_SERV', ".
+                                            " 'ESTADO_CONCEPTO','PEDIDO','UEN','CX','CY','RESPONSABLE')".
+                                            "  values  "."('$ORIGEN','$DEPTO','$COD_DEPTO','$MPIO','$COD_MPIO','$DIRECCION','$ESTRATO','$PAG_SERV','$ESTADO_CONCEPTO','$PEDIDO','$UEN','$CX','$CY','$CY')";
 
 
-        $sqlupload="insert into tbl_CargasPNI (NOMBRE_ARCHIVO,ORIGEN,DEPTO,COD_DEPTO,MPIO,COD_MPIO,DIRECCION,ESTRATO,
-        PAG_SERV,ESTADO_CONCEPTO,PEDIDO,UEN,CX,CY,RESPONSABLE,FECHA_CARGA) values ('$usuario','$NOMBRE_ARCHIVO','$TAMANO','PENDIENTES')";
-        //echo  $user;
-        $r = $this->mysqli->query($sqlupload) or die($this->mysqli->error.__LINE__);
 
-        // SQL Feed----------------------------------
-        $sql_log=   "insert into portalbd.activity_feed ( ".
-            " USER ".
-            ", USER_NAME ".
-            ", GRUPO ".
-            ", STATUS ".
-            ", PEDIDO_OFERTA ".
-            ", ACCION ".
-            ", CONCEPTO_ID ".
-            ", IP_HOST ".
-            ", CP_HOST ".
-            ") values( ".
-            " UPPER('$usuarioGalleta')".
-            ", UPPER('$nombreGalleta')".
-            ", UPPER('$grupoGalleta')".
-            ",'OK' ".
-            ",'SIN PEDIDO' ".
-            ",'SUBIO ARCHIVO' ".
-            ",'ARCHIVO SUBIDO' ".
-            ",'$usuarioIp' ".
-            ",'$usuarioPc')";
+        $rst = mysql_query ($sql);
 
-        $rlog = $this->mysqli->query($sql_log);
-        // ---------------------------------- SQL Feed
-        //$sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$usas','','','','','PENDIENTES')";
-        //$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+  }
+                            //obtenemos la cantidad de equipos Registrados
+                          /*  $sqlCount = "select count(*) from tbl_EquiposNCA where NroCarga = '$Carga'";
+                                  $rst3 = mysql_query ($sqlCount);
+                                    if ($row = mysql_fetch_row($rst3)) {
+                                         $NroCarga = trim($row[0]);
+                                         echo "Archivos Cargados Con Exito \n".$NroCarga;}*/
 
+                            //obtenemos la cantidad de equipos Duplicados
+                            /*$sqlCount2 = "select count(*) from tbl_Segui_NCA where NroCarga = '$Carga' ";
+                                  $rst4 = mysql_query ($sqlCount2);
+                                    if ($row1 = mysql_fetch_row($rst4)) {
+                                        $Duplicados = trim($row1[0]);
+                                        echo "\n <br> Archivos Duplicados \n".$Duplicados;}*/
 
-    }
+}
+
+function getCell($cell, $objPHPExcel){
+                //select one cell seleccionar una célda
+                $objCell = ($objPHPExcel->getActiveSheet()->getCell($cell));
+                //get cell value obtener valor de la celda
+                return $objCell->getvalue();
+            }
+
+function pp(&$var){
+                $var = chr(ord($var)+1);
+                return true;
+            }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     //------------------fin prueba
