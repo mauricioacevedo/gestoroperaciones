@@ -8575,8 +8575,9 @@ class API extends REST {
 
         if ($concepto =="12-EDATEL")
         {
-            $plaza = "AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID IN ('GUATAPE','CIUDAD BOLIVAR','AMAGA','SANTAFE DE ANTIOQUIA','FREDONIA','VENECIA','SANTA BARBARA','ANDES','PEÑOL','SONSON','LA PINTADA','TAMASIS','JARDIN','URRAO','JERICO','APARTADO'))";
+            $plaza = "and MUNICIPIO_ID ='$plaza'";
         }
+        echo var_dump($plaza);
 
         if($concepto=="PETEC"){
             if($plaza=="BOG-COBRE"){
