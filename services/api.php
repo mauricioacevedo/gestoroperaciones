@@ -8573,11 +8573,11 @@ class API extends REST {
             $plaza = "";
         }
 
-        if ($concepto =="12-EDATEL")
+        /*if ($concepto =="12-EDATEL")
         {
             $plaza = " and MUNICIPIO_ID = '$plaza' ";
         }
-        //echo var_dump($plaza);
+        echo var_dump($plaza);*/
 
         if($concepto=="PETEC"){
             if($plaza=="BOG-COBRE"){
