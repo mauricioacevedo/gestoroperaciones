@@ -13609,19 +13609,20 @@ private function demePedidoEdatel(){
                                         $Duplicados = trim($row1[0]);
                                         echo "\n <br> Archivos Duplicados \n".$Duplicados;}*/
 
-}
-
-public function getCell($cell, $objPHPExcel){
+function getCell($cell, $objPHPExcel){
                 //select one cell seleccionar una célda
                 $objCell = ($objPHPExcel->getActiveSheet()->getCell($cell));
                 //get cell value obtener valor de la celda
                 return $objCell->getvalue();
             }
 
-public function pp(&$var){
+function pp(&$var){
                 $var = chr(ord($var)+1);
                 return true;
             }
+
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
