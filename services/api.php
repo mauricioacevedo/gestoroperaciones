@@ -11143,14 +11143,14 @@ private function demePedidoEdatel(){
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " INSERT INTO  tbl_RegistrosPNI (".trim($columns,',').",RESPONSABLE, FECHAINI) VALUES(".utf8_encode(trim($values),',').",'$usuarioGalleta','$fechaini')";
+        $query = " INSERT INTO  tbl_RegistrosPNI (".trim($columns,',').",RESPONSABLE, FECHAINI) VALUES(".trim($values,',').",'$usuarioGalleta','$fechaini')";
 
         /*$query = " INSERT INTO  tbl_RegistrosPNI (".trim($columns,',').",RESPONSABLE, FECHAINI) VALUES(".trim($values,',').",'$usuarioGalleta','$fechaini')";
 */
         //echo $query;
         if(!empty($transaccion)){
             //echo $query;
-            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+            $r = $this->mysqli->query(utf8_encode($query)) or die($this->mysqli->error.__LINE__);
 
             $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
 
