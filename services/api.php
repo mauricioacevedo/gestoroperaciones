@@ -8725,7 +8725,8 @@ class API extends REST {
             $concepto=" and b.CONCEPTO_ID='$concepto' AND b.PROGRAMACION='' ";
         }
 
-        else if($fuente=="SIEBEL"||$fuente=="EDATEL"){
+        //else if($fuente=="SIEBEL"||$fuente=="EDATEL"){
+        else if($fuente=="SIEBEL"){
 
             if($plaza=='TODOS'){
                 $plaza2="";
