@@ -8836,7 +8836,7 @@ class API extends REST {
             //echo var_dump ($concepto);
             //echo var_dump ($query1);
 
-        //echo var_dump($query1);
+        echo var_dump($query1);
 
         if($mypedido==""){
 
