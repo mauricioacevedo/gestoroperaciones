@@ -6057,8 +6057,8 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
      $scope.uploadFilePNI = function(){
              var file = $scope.myFile;
 
-         console.log("archivo" + file);
-          /*      $scope.user=$rootScope.logedUser.login;
+         console.log("archivo: " + $scope.myFile);
+          /*    $scope.user=$rootScope.logedUser.login;
                 $scope.name = '';
 
             var uploadUrl = 'services/cargar_datosPNI';
