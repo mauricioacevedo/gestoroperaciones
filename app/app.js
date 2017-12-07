@@ -17592,7 +17592,7 @@ app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $locat
 
 
 		var uploadUrl = 'services/cargar_datos_cmts';
-		 console.log ($scope.user);
+	//	 console.log ($scope.user);
 		fileUpload.uploadFileToUrl(file, uploadUrl);
 
 	};
