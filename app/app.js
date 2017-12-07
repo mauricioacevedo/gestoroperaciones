@@ -5785,6 +5785,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 	divi.style.position = "relative";
 	$rootScope.iconcepto = "TODO";
 	$rootScope.actualView = "pni";
+    $scope.user = "";
 
 
 	$scope.doubleDigit = function (num) {
@@ -6079,7 +6080,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 		console.log('file is');
 		console.dir(file);
 		var uploadUrl = 'services/cargar_datosPNI';
-		 console.log ($scope.user);
+        console.log ($scope.user);
 		fileUpload.uploadFileToUrl(file, uploadUrl, "JBEDOGOM");
 
 	};
