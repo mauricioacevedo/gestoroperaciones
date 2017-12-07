@@ -73,7 +73,7 @@ app.service('fileUpload', ['$http', '$cookieStore', function ($http, $cookieStor
 }]);
 
 //importe PNI
-app.service('fileUploadPNI', ['$http', '$cookieStore', function ($http, $cookieStore) {
+app.service('fileUpload', ['$http', '$cookieStore', function ($http, $cookieStore) {
 	this.uploadFileToUrl = function (file, uploadUrl) {
 		var fd = new FormData();
 		var user = $cookieStore.get('logedUser').login;
@@ -6079,8 +6079,6 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 		var file = $scope.myFile;
 		console.log('file is');
 		console.dir(file);
-
-
 		var uploadUrl = 'services/cargar_datosPNI';
 		 console.log ($scope.user);
 		fileUpload.uploadFileToUrl(file, uploadUrl, "JBEDOGOM");
