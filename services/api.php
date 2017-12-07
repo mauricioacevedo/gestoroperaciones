@@ -13423,13 +13423,14 @@ private function demePedidoEdatel(){
         //ini_set('memory_limit','-1');
         //ini_set('max_execution_time', 1000);
 
-                  $target_dir = "../uploads/";
-               //   echo "$target_dir";
-                  $target_file = $target_dir . basename($_FILES["file"]["name"]);
-                        //$name     = $_FILES['file']['name'];
-                  $tname    = $_FILES['file']['tmp_name'];
-                  $type     = $_FILES['file']['type'];
+                    $target_dir = "../uploads/";
+                    $target_file = $target_dir . basename($_FILES["fileUpload"]["name"]);
 
+                 $tname    = $_FILES['fileUpload']['tmp_name'];
+                  $type     = $_FILES['fileUpload']['type'];
+
+
+                $usuarioGalleta = $this->_request['user'];
                   $fecha= date("Y-m-d H:i:s");
                   $tname1 = basename( $_FILES["fileUpload"]["name"]);
 
@@ -13445,17 +13446,17 @@ private function demePedidoEdatel(){
                         // if everything is ok, try to upload file
                         } else {
 
-                           if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)){
-                                echo "El archivo ". basename( $_FILES["file"]["name"]). " se ha subido";
+                            if (move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $target_file)){
+                                echo "El archivo ". basename( $_FILES["fileUpload"]["name"]). " se ha subido";
 
                             } else {
 
                                 echo "Ha habido un error al subir el archivo.";
-                                return;
+
                             }
                         }
 
-                        $tname1 = basename( $_FILES["file"]["name"]);
+                        $tname1 = basename( $_FILES["fileUpload"]["name"]);
 
                   if($type == 'application/vnd.ms-excel')
                   {
