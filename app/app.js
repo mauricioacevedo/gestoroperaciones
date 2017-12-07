@@ -124,7 +124,7 @@ app.service('cargar_datosPNI', ['$http','$cookieStore', function ($http,$cookieS
 
                var fd = new FormData();
                var user=login;
-               file['user']=user+'6666666';
+               file['user']=user;
 
               fd.append('user',user);
               //fd.append('tipocarga',tipocarga);
@@ -142,10 +142,6 @@ app.service('cargar_datosPNI', ['$http','$cookieStore', function ($http,$cookieS
 
             }
          }]);
-
-
-
-
 
 
 app.directive('fileModel', ['$parse', function ($parse) {

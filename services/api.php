@@ -13430,7 +13430,7 @@ private function demePedidoEdatel(){
                   $type     = $_FILES['fileUpload']['type'];
 
 
-                $usuarioGalleta = $this->_request['user'];
+               // $usuarioGalleta = $this->_request['user'];
                   $fecha= date("Y-m-d H:i:s");
                   $tname1 = basename( $_FILES["fileUpload"]["name"]);
 
