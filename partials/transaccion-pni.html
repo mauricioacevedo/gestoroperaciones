@@ -99,7 +99,7 @@
                                 </label>
                                 <br>
                                 <input type="text" name="fechaSolicitud" id="fechaSolicitud" class="form-control"
-                                    ng-model="transaccion.FECHASOLICITUD" datetime-picker>
+                                    ng-model="transaccion.FECHASOLICITUD" datetime-picker date-format="yyyy-MM-dd">
                              </div>
 
 
@@ -251,7 +251,7 @@
 </div>
 
 <script>
-$('#fechaSolicitud').datetimepicker({
+$('#fechaSolicitud1').datetimepicker({
     timeFormat: 'hh:mm:ss',
     /* format: 'yyyy-mm-dd h:m:s',
      locale: 'es',
