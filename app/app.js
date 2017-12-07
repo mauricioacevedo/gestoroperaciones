@@ -119,25 +119,33 @@ app.service('fileUpload2', ['$http', function ($http) {
 }]);
 
 //UploadPNI
-app.service('fileUploadPNI', ['$http', function ($http) {
-	this.uploadFileToUrl = function (file, uploadUrl, user) {
-		var fd = new FormData();
-        var login = user;
-        fd.append('login', login);
-		fd.append('fileUpload', file);
-		$http.post('services/cargar_datosPNI', fd, {
-				transformRequest: angular.identity,
-				headers: {
-					'Content-Type': undefined
-			}
-		})
-			.success(function () {
+app.service('cargar_datosPNI', ['$http','$cookieStore', function ($http,$cookieStore) {
+            this.uploadFileToUrl = function(file, uploadUrl, login){
+
+               var fd = new FormData();
+               var user=login;
+               file['user']=user+'6666666';
+
+              fd.append('user',user);
+              //fd.append('tipocarga',tipocarga);
+
+               //console.log (file['size']);
+               fd.append('fileUpload', file);
+
+                $http.post('services/cargar_datosPNI', fd, {
+          withCredentials: false,
+                  transformRequest: angular.identity,
+                  headers: {'Content-Type': undefined},
+          params: {'user':user},
+          responseType: "arraybuffer"
+               })
+
+            }
+         }]);
 
 
-			})
-			.error(function () {});
-	}
-}]);
+
+
 
 
 app.directive('fileModel', ['$parse', function ($parse) {
@@ -5763,7 +5771,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
 //**********************************MICHAEL CONTROLADOR PNI************************************
 
-app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services, fileUploadPNI)
+app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services, cargar_datosPNI)
     {
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
@@ -6050,17 +6058,17 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 	};
 
 
-    $scope.uploadFilePNI = function () {
-		$scope.user = $rootScope.logedUser.login;
 
-		var file = $scope.myFile;
-		console.log('file is');
-		console.dir(file);
+     $scope.uploadFilePNI = function(){
+             var file = $scope.myFile;
+                $scope.user=$rootScope.logedUser.login;
+                $scope.name = '';
 
-		var uploadUrl = 'services/cargar_datosPNI';
-        console.log ($scope.user);
-		fileUploadPNI.uploadFileToUrl(file, uploadUrl, $scope.user);
-	};
+            var uploadUrl = 'services/cargar_datosPNI';
+               cargar_datosPNI.uploadFileToUrl(file, uploadUrl, $scope.user);
+                $scope.msg="Se cargo el archivo: "+file.name;
+
+        };
 
 
     $scope.objMunicipios = function () {
@@ -8279,6 +8287,7 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 		console.log($scope.listadodocu1);
 		return data.data;
 	});
+
 	// FILTERS
 	$scope.uploadFile = function () {
 		$scope.user = $rootScope.logedUser.login;
