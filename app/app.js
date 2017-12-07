@@ -6074,7 +6074,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 
 	};
 
-    $scope.uploadFilePNI = function () {
+    $scope.uploadFile = function () {
 		$scope.user = $rootScope.logedUser.login;
 		var file = $scope.myFile;
 		console.log('file is');
@@ -8305,16 +8305,12 @@ app.controller('cargar_datosCtrl', function ($scope, $rootScope, $location, $rou
 	// FILTERS
 	$scope.uploadFile = function () {
 		$scope.user = $rootScope.logedUser.login;
-
 		var file = $scope.myFile;
 		console.log('file is');
 		console.dir(file);
-
-
 		var uploadUrl = 'services/cargar_datos';
 		 console.log ($scope.user);
 		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
-
 	};
 
 
@@ -18583,9 +18579,6 @@ app.config(['$routeProvider',
 		})
 
       //**********************************************************
-
-
-
 
 		.when('/admontips/nuevoTip', {
 			title: 'Nuevo Tip',
