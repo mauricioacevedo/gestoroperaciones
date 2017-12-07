@@ -6054,15 +6054,34 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 
 
 
-     $scope.uploadFilePNI = function(){
+    /* $scope.uploadFilePNI = function(){
              var file = $scope.myFile;
 
          console.log("archivo: " + $scope.myFile);
-          /*    $scope.user=$rootScope.logedUser.login;
+            $scope.user=$rootScope.logedUser.login;
                 $scope.name = '';
 
             var uploadUrl = 'services/cargar_datosPNI';
                cargar_datosPNI.uploadFileToUrl(file, uploadUrl, $scope.user);
+                $scope.msg="Se cargo el archivo: "+file.name;
+
+        };*/
+
+    $scope.uploadFile = function(){
+             $scope.carga_ok=true;
+             var file = $scope.myFile;
+
+         console.log("archivo: " + $scope.myFile);
+
+             /*   $scope.user=$rootScope.galletainfo.LOGIN;
+                $scope.name = '';
+            //   console.log('file is ');
+              // console.dir(file);
+               // console.dir($scope.tipoCarga);
+               $scope.delete_ok=false;
+
+            var uploadUrl = 'services/cargaGTC';
+               cargaGTC.uploadFileToUrl(file, uploadUrl, $scope.user);
                 $scope.msg="Se cargo el archivo: "+file.name;*/
 
         };
