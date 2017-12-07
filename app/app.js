@@ -128,9 +128,8 @@ app.service('cargar_datosPNI', ['$http','$cookieStore', function ($http,$cookieS
 
               fd.append('user',user);
               //fd.append('tipocarga',tipocarga);
-
-               //console.log (file['size']);
-               fd.append('fileUpload', file);
+              //console.log (file['size']);
+              fd.append('fileUpload', file);
 
                 $http.post('services/cargar_datosPNI', fd, {
           withCredentials: false,
@@ -6057,12 +6056,14 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 
      $scope.uploadFilePNI = function(){
              var file = $scope.myFile;
-                $scope.user=$rootScope.logedUser.login;
+
+         console.log("archivo" + file);
+          /*      $scope.user=$rootScope.logedUser.login;
                 $scope.name = '';
 
             var uploadUrl = 'services/cargar_datosPNI';
                cargar_datosPNI.uploadFileToUrl(file, uploadUrl, $scope.user);
-                $scope.msg="Se cargo el archivo: "+file.name;
+                $scope.msg="Se cargo el archivo: "+file.name;*/
 
         };
 
