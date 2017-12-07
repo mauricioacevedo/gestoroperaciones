@@ -6074,7 +6074,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 	};
 
     $scope.uploadFilePNI = function () {
-		$scope.user = $rootScope.logedUser.login;
+		//$scope.user = $rootScope.logedUser.login;
 
 		var file = $scope.myFile;
 		console.log('file is');
