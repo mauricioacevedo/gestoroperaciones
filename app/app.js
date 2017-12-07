@@ -72,6 +72,35 @@ app.service('fileUpload', ['$http', '$cookieStore', function ($http, $cookieStor
 	}
 }]);
 
+//importe PNI
+app.service('fileUploadPNI', ['$http', '$cookieStore', function ($http, $cookieStore) {
+	this.uploadFileToUrl = function (file, uploadUrl) {
+		var fd = new FormData();
+		var user = $cookieStore.get('logedUser').login;
+		file['user'] = user + '6666666';
+		fd.append('user', user);
+		fd.append('fileUpload', file);
+		//$http.post('services/cargar_datos', fd, {
+        $http.post(uploadUrl, fd, {
+				withCredentials: false,
+				transformRequest: angular.identity,
+				headers: {
+					'Content-Type': undefined
+				},
+				params: {
+					'user': user
+				},
+				responseType: "arraybuffer"
+			})
+			.success(function () {
+				alert('El archivo a sido subido correctamente');
+			})
+			.error(function () {
+				alert('Ha habido un error al subir el archivo');
+			});
+	}
+}]);
+
 app.service('fileUpload1', ['$http', '$cookieStore', function ($http, $cookieStore) {
 	this.uploadFileToUrl = function (file, uploadUrl) {
 		var fd = new FormData();
@@ -119,28 +148,6 @@ app.service('fileUpload2', ['$http', function ($http) {
 }]);
 
 //UploadPNI
-app.service('cargar_datosPNI', ['$http','$cookieStore', function ($http,$cookieStore) {
-            this.uploadFileToUrl = function(file, uploadUrl, login){
-
-               var fd = new FormData();
-               var user=login;
-               file['user']=user;
-
-              fd.append('user',user);
-              //fd.append('tipocarga',tipocarga);
-              //console.log (file['size']);
-              fd.append('fileUpload', file);
-
-                $http.post('services/cargar_datosPNI', fd, {
-          withCredentials: false,
-                  transformRequest: angular.identity,
-                  headers: {'Content-Type': undefined},
-          params: {'user':user},
-          responseType: "arraybuffer"
-               })
-
-            }
-         }]);
 
 
 app.directive('fileModel', ['$parse', function ($parse) {
@@ -6055,17 +6062,12 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 
     $scope.uploadFile = function () {
 		$scope.user = $rootScope.logedUser.login;
-
-		console.log("archivo: " + $scope.myFile);
-
         var file = $scope.myFile;
 		console.log('file is');
 		console.dir(file);
-
-
 		var uploadUrl = 'services/cargar_datos_cmts';
         console.log ($scope.user);
-		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
+		fileUploadPNI.uploadFileToUrl(file, uploadUrl, $scope.user);
 
 	};
 
