@@ -12033,7 +12033,7 @@ private function demePedidoEdatel(){
         $fechaFin = $this->_request['fechaFin'];
 
         $today = date("Y-m-d h:i:s");
-        $filename="PNI-$login-$today.csv";
+        $filename="KPI-$login-$today.csv";
         $query=" SELECT ".
             "ENVIADO, USUARIOENVIO, FECHASOLICITUD, INSUMO, SOLUCION, RESPONSABLE, OBSERVACION,
 	         FECHAINI, FECHAFIN,  CAST(TIMEDIFF(FECHAFIN, FECHAINI)
@@ -13004,8 +13004,6 @@ private function demePedidoEdatel(){
                 //echo  $sqldatos;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
 
-
-
             }
 
 
@@ -13404,9 +13402,11 @@ private function demePedidoEdatel(){
 
 
     private function cargar_datosPNI(){
+
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
+
         $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
         $usuarioPc      =   gethostbyaddr($usuarioIp);
         $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
