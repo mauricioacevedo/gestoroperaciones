@@ -6081,7 +6081,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 		console.dir(file);
 		var uploadUrl = 'services/cargar_datosPNI';
         console.log ($scope.user);
-		fileUpload.uploadFileToUrl(file, uploadUrl, "JBEDOGOM");
+		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
 
 	};
 
