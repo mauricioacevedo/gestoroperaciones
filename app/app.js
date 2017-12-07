@@ -5773,7 +5773,8 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
 //**********************************MICHAEL CONTROLADOR PNI************************************
 
-app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services, fileUploadPNI)
+app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http,
+                                   services, fileUploadPNI)
     {
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
@@ -5824,7 +5825,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
         $rootScope.fecha_inicionuevoRegistroPNI = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-        console.log($scope.fecha_inicio);
+        //console.log($scope.fecha_inicio);
 
 	};
 
@@ -6070,21 +6071,6 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 		fileUploadPNI.uploadFileToUrl(file, uploadUrl, $scope.user);
 
 	};
-
-
-    /* $scope.uploadFilePNI = function(){
-             var file = $scope.myFile;
-
-         console.log("archivo: " + $scope.myFile);
-            $scope.user=$rootScope.logedUser.login;
-                $scope.name = '';
-
-            var uploadUrl = 'services/cargar_datosPNI';
-               cargar_datosPNI.uploadFileToUrl(file, uploadUrl, $scope.user);
-                $scope.msg="Se cargo el archivo: "+file.name;
-
-        };*/
-
 
     $scope.objMunicipios = function () {
         $http.get('./services/objMunicipios').then(
