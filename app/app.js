@@ -73,7 +73,7 @@ app.service('fileUpload', ['$http', '$cookieStore', function ($http, $cookieStor
 }]);
 
 //importe PNI
-app.service('fileUploadPNI', ['$http', '$cookieStore', function ($http, $cookieStore) {
+/*app.service('fileUploadPNI', ['$http', '$cookieStore', function ($http, $cookieStore) {
 	this.uploadFileToUrl = function (file, uploadUrl) {
 		var fd = new FormData();
 		var user = $cookieStore.get('logedUser').login;
@@ -99,7 +99,7 @@ app.service('fileUploadPNI', ['$http', '$cookieStore', function ($http, $cookieS
 				alert('Ha habido un error al subir el archivo');
 			});
 	}
-}]);
+}]);*/
 
 app.service('fileUpload1', ['$http', '$cookieStore', function ($http, $cookieStore) {
 	this.uploadFileToUrl = function (file, uploadUrl) {
@@ -6063,7 +6063,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 	};
 
 
-    $scope.uploadFilePNI2 = function () {
+ /*   $scope.uploadFilePNI2 = function () {
 		$scope.user = $rootScope.logedUser.login;
         var file = $scope.myFile;
 		console.log('file is');
@@ -6072,7 +6072,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
         console.log ($scope.user);
 		fileUploadPNI.uploadFileToUrl(file, uploadUrl, $scope.user);
 
-	};
+	};*/
 
     $scope.uploadFile = function () {
 		$scope.user = $rootScope.logedUser.login;
