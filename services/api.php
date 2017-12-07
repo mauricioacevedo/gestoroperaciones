@@ -13598,7 +13598,7 @@ private function demePedidoEdatel(){
          " ('$ORIGEN','$DEPTO','$COD_DEPTO','$MPIO','$COD_MPIO','$DIRECCION', ".
           " '$ESTRATO','$PAG_SERV','$ESTADO_CONCEPTO','$PEDIDO','$UEN','$CX','$CY','$CY')";
 
-        echo var_dump($sql);
+        echo ($sql);
 
         $rst = mysql_query ($sql);
 
