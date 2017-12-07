@@ -79,7 +79,7 @@ app.service('fileUploadPNI', ['$http', '$cookieStore', function ($http, $cookieS
 		var user = $cookieStore.get('logedUser').login;
 		file['user'] = user + '6666666';
 		fd.append('user', user);
-		fd.append('fileUpload', file);
+		fd.append('fileUploadPNI', file);
 		//$http.post('services/cargar_datos', fd, {
         $http.post(uploadUrl, fd, {
 				withCredentials: false,
