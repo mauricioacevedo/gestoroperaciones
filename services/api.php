@@ -20248,19 +20248,20 @@ public function pp(&$var){
 
     }
 
-
-}
-
-    function get_cell($cell, $objPHPExcel){
+    private function get_cell($cell, $objPHPExcel){
         //select one cell seleccionar una célda
         $objCell = ($objPHPExcel->getActiveSheet()->getCell($cell));
         //get cell value obtener valor de la celda
         return $objCell->getvalue();
     }
-    function pp(&$var){
+    private function pp(&$var){
         $var = chr(ord($var)+1);
         return true;
     }
+
+}
+
+
 
 //cierre de la clase
 
