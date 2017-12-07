@@ -13402,7 +13402,7 @@ private function demePedidoEdatel(){
 
 
 
-    private function cargar_datosPNI(){
+    private function cargar_datospni(){
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }

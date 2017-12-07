@@ -101,7 +101,7 @@ app.service('fileUpload', ['$http', '$cookieStore', function ($http, $cookieStor
 	}
 }]);*/
 
-app.service('fileUploadPNI', ['$http', '$cookieStore', function ($http, $cookieStore) {
+/*app.service('fileUploadPNI', ['$http', '$cookieStore', function ($http, $cookieStore) {
 	this.uploadFileToUrl = function (file, uploadUrl) {
 		var fd = new FormData();
 		var user = $cookieStore.get('logedUser').login;
@@ -126,7 +126,7 @@ app.service('fileUploadPNI', ['$http', '$cookieStore', function ($http, $cookieS
 				alert('Ha habido un error al subir el archivo');
 			});
 	}
-}]);
+}]);*/
 
 
 app.service('fileUpload1', ['$http', '$cookieStore', function ($http, $cookieStore) {
@@ -5802,7 +5802,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 //**********************************MICHAEL CONTROLADOR PNI************************************
 
 app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http,
-                                   services, fileUploadPNI)
+                                   services, fileUpload)
 
     {
 	var userID = $cookieStore.get('logedUser').login;
@@ -6107,9 +6107,9 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 		var file = $scope.myFile;
 		console.log('file is');
 		console.dir(file);
-		var uploadUrl = 'services/cargar_datosPNI';
+		var uploadUrl = 'services/cargar_datospni';
         console.log ($scope.user);
-		fileUploadPNI.uploadFileToUrl(file, uploadUrl, $scope.user);
+		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
 
 	};
 
