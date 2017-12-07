@@ -36,17 +36,7 @@ class API extends REST {
         $this->dbConnect();					// Initiate Database connection
     }
 
-  /*  public function getCell($cell, $objPHPExcel){
-                //select one cell seleccionar una célda
-                $objCell = ($objPHPExcel->getActiveSheet()->getCell($cell));
-                //get cell value obtener valor de la celda
-                return $objCell->getvalue();
-            }
 
-    public function pp(&$var){
-                $var = chr(ord($var)+1);
-                return true;
-            }*/
 
     /*
 		 *  Connect to Database
@@ -13632,6 +13622,19 @@ private function demePedidoEdatel(){
 
 
 }
+
+public function getCell($cell, $objPHPExcel){
+                //select one cell seleccionar una célda
+                $objCell = ($objPHPExcel->getActiveSheet()->getCell($cell));
+                //get cell value obtener valor de la celda
+                return $objCell->getvalue();
+            }
+
+    public function pp(&$var){
+                $var = chr(ord($var)+1);
+                return true;
+            }
+
 
 /*public function getCell($cell, $objPHPExcel){
                 //select one cell seleccionar una célda
