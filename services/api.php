@@ -13529,7 +13529,7 @@ private function demePedidoEdatel(){
                   //$contador = 0;
                   for($v=$start_v; $v<=$end_v; $v++){
                       //empieza lectura horizontal
-                      if ($v<=1) continue;
+                      if ($v<=2) continue;
                       $table .= "<tr>";
 
                   for($h=$start_h; ord($h)<=ord($end_h); pp($h))
