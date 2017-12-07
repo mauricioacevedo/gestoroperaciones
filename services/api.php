@@ -20249,13 +20249,13 @@ public function pp(&$var){
 
     }
 
-     private function get_cell($cell, $objPHPExcel){
+     function get_cell($cell, $objPHPExcel){
         //select one cell seleccionar una célda
         $objCell = ($objPHPExcel->getActiveSheet()->getCell($cell));
         //get cell value obtener valor de la celda
         return $objCell->getvalue();
     }
-    private function pp(&$var){
+    function pp(&$var){
         $var = chr(ord($var)+1);
         return true;
     }
