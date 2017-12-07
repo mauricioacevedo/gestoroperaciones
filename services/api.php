@@ -13424,7 +13424,7 @@ private function demePedidoEdatel(){
         //ini_set('memory_limit','-1');
         //ini_set('max_execution_time', 1000);
 
-                $target_dir = "../uploads/";
+                $target_dir = "../uploads";
                 $target_file = $target_dir . basename($_FILES["fileUpload"]["name"]);
 
                 $tname    = $_FILES['fileUpload']['tmp_name'];
@@ -13597,6 +13597,8 @@ private function demePedidoEdatel(){
           " '$ESTRATO','$PAG_SERV','$ESTADO_CONCEPTO','$PEDIDO','$UEN','$CX','$CY','$CY')";
 
         $rst = mysql_query ($sql);
+
+        echo var_dump($sql);
 
   }
                             //obtenemos la cantidad de equipos Registrados
