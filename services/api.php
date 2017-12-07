@@ -11,18 +11,6 @@ require_once("Rest.inc.php");
 //include_once("/var/www/html/gestoroperaciones/connections.php");
 include_once("/var/www/html/gestoroperaciones/connections.php");
 
-public function getCell($cell, $objPHPExcel){
-                //select one cell seleccionar una célda
-                $objCell = ($objPHPExcel->getActiveSheet()->getCell($cell));
-                //get cell value obtener valor de la celda
-                return $objCell->getvalue();
-            }
-
-    public function pp(&$var){
-                $var = chr(ord($var)+1);
-                return true;
-            }
-
 date_default_timezone_set('America/Bogota');
 
 class API extends REST {
@@ -47,6 +35,18 @@ class API extends REST {
         parent::__construct();				// Init parent contructor
         $this->dbConnect();					// Initiate Database connection
     }
+
+    public function getCell($cell, $objPHPExcel){
+                //select one cell seleccionar una célda
+                $objCell = ($objPHPExcel->getActiveSheet()->getCell($cell));
+                //get cell value obtener valor de la celda
+                return $objCell->getvalue();
+            }
+
+    public function pp(&$var){
+                $var = chr(ord($var)+1);
+                return true;
+            }
 
     /*
 		 *  Connect to Database
