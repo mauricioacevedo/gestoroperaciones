@@ -24,7 +24,7 @@
                             <br>
                             <div class="fileUpload btn btn-primary">
                               <span class="glyphicon glyphicon-upload"></span> Seleccionar Archivo
-                              <input type="file" file-model = "myFile1" />
+                              <input type="file" file-model = "myFile" />
                             </div>
 
                              <button class="btn btn-success btn-md" value="cargar" id="cargar" ng-click="uploadFilePNI();"><span class="glyphicon glyphicon-cloud-upload"></span> Cargar</button>
@@ -32,15 +32,6 @@
 
                             <div ng-show="error" class="alert alert-danger">{{error}}</div>
                         </div>
-
-
-
-
-
-
-
-
-
 
 
 <!--
@@ -108,7 +99,7 @@
                                 </label>
                                 <br>
                                 <input type="text" name="fechaSolicitud" id="fechaSolicitud" class="form-control"
-                                    ng-model="transaccion.FECHASOLICITUD">
+                                    ng-model="transaccion.FECHASOLICITUD" datetime-picker>
                              </div>
 
 
