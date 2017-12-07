@@ -13597,6 +13597,7 @@ private function demePedidoEdatel(){
           " '$ESTRATO','$PAG_SERV','$ESTADO_CONCEPTO','$PEDIDO','$UEN','$CX','$CY','$CY')";
 
         echo var_dump($sql);
+
         $rst = mysql_query ($sql);
 
 
@@ -13616,19 +13617,21 @@ private function demePedidoEdatel(){
                                         $Duplicados = trim($row1[0]);
                                         echo "\n <br> Archivos Duplicados \n".$Duplicados;}*/
 
-function getCell($cell, $objPHPExcel){
+
+
+}
+
+public function getCell($cell, $objPHPExcel){
                 //select one cell seleccionar una célda
                 $objCell = ($objPHPExcel->getActiveSheet()->getCell($cell));
                 //get cell value obtener valor de la celda
                 return $objCell->getvalue();
             }
 
-function pp(&$var){
+public function pp(&$var){
                 $var = chr(ord($var)+1);
                 return true;
             }
-
-}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
