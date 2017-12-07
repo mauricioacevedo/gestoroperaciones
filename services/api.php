@@ -13484,7 +13484,7 @@ private function demePedidoEdatel(){
                   $objPHPExcel = $objReader->load($target_file);
 
                   $objPHPExcel->setActiveSheetIndex(0);
-                  $worksheet = $objPHPExcel->getSheetByName('CARGAS PNI');
+                  $worksheet = $objPHPExcel->getSheetByName('Hoja1');
                   $dim = $objPHPExcel->getActiveSheet()->calculateWorksheetDimension();
 
                   // list coloca en array $start y $end Lista Coloca en array $ inicio y final $
@@ -13523,10 +13523,10 @@ private function demePedidoEdatel(){
                   //     echo "ArchivosCargados Con Exito".$NroCargados;
                   //     }
 
-                  $contador = 0;
+                  //$contador = 0;
                   for($v=$start_v; $v<=$end_v; $v++){
                       //empieza lectura horizontal
-                      if ($v<=2) continue;
+                      if ($v<=1) continue;
                       $table .= "<tr>";
 
                   for($h=$start_h; ord($h)<=ord($end_h); pp($h))
@@ -13596,9 +13596,10 @@ private function demePedidoEdatel(){
          " ('$ORIGEN','$DEPTO','$COD_DEPTO','$MPIO','$COD_MPIO','$DIRECCION', ".
           " '$ESTRATO','$PAG_SERV','$ESTADO_CONCEPTO','$PEDIDO','$UEN','$CX','$CY','$CY')";
 
+        echo var_dump($sql);
         $rst = mysql_query ($sql);
 
-        echo var_dump($sql);
+
 
   }
                             //obtenemos la cantidad de equipos Registrados
