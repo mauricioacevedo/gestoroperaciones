@@ -13423,7 +13423,7 @@ private function demePedidoEdatel(){
         //ini_set('memory_limit','-1');
         //ini_set('max_execution_time', 1000);
 
-                  $target_dir = "../uploads";
+                  $target_dir = "../uploads/";
                //   echo "$target_dir";
                   $target_file = $target_dir . basename($_FILES["file"]["name"]);
                         //$name     = $_FILES['file']['name'];
@@ -13434,7 +13434,7 @@ private function demePedidoEdatel(){
                   $tname1 = basename( $_FILES["fileUpload"]["name"]);
 
                     echo $target_file;
-                    echo $tname1;
+                    echo var_dump($tname1);
 
 
                         //$target_file = basename($_FILES["file"]["name"]);
@@ -13483,17 +13483,17 @@ private function demePedidoEdatel(){
                   $objPHPExcel = $objReader->load($target_file);
 
                   $objPHPExcel->setActiveSheetIndex(0);
-                  $worksheet = $objPHPExcel->getSheetByName('CARGA EQUIPOS');
+                  $worksheet = $objPHPExcel->getSheetByName('CARGAS PNI');
                   $dim = $objPHPExcel->getActiveSheet()->calculateWorksheetDimension();
 
                   // list coloca en array $start y $end Lista Coloca en array $ inicio y final $
                   list($start, $end) = explode(':', $dim);
 
-                  if(!preg_match('#([A-M]+)([0-9]+)#', $start, $rslt)){
+                  if(!preg_match('#([A-Z]+)([0-9]+)#', $start, $rslt)){
                       return false;
                   }
                   list($start, $start_h, $start_v) = $rslt;
-                  if(!preg_match('#([A-M]+)([0-9]+)#', $end, $rslt)){
+                  if(!preg_match('#([A-Z]+)([0-9]+)#', $end, $rslt)){
                       return false;
                   }
                   list($end, $end_h, $end_v) = $rslt;
@@ -13502,10 +13502,9 @@ private function demePedidoEdatel(){
                   $table = "<table  border='1'>";
 
                   //Ejecutamos la primera Carga
-                  $sqlCarga = "insert into ArchivosCargados (NombreArch) values ('$tname1')";
+                  //$sqlCarga = "insert into ArchivosCargados (NombreArch) values ('$tname1')";
                   //echo $target_file;
-
-                  $rstCar = mysql_query($sqlCarga);
+                  //$rstCar = mysql_query($sqlCarga);
 
                   //obtenemos el id Del Ultimo Archivo Cargado
                   /*$sqlUltimoid = "select max(Id) from ArchivosCargados";
