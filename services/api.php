@@ -13529,7 +13529,7 @@ private function demePedidoEdatel(){
                   //$contador = 0;
                   for($v=$start_v; $v<=$end_v; $v++){
                       //empieza lectura horizontal
-                      if ($v<=2) continue;
+                      if ($v<=1) continue;
                       $table .= "<tr>";
 
                   for($h=$start_h; ord($h)<=ord($end_h); pp($h))
@@ -13842,13 +13842,13 @@ public function pp(&$var){
 
     }
 ////////////////////////////////////////////////////////
-    private  function get_cell($cell, $objPHPExcel){
+    public  function get_cell($cell, $objPHPExcel){
         //select one cell seleccionar una célda
         $objCell = ($objPHPExcel->getActiveSheet()->getCell($cell));
         //get cell value obtener valor de la celda
         return $objCell->getvalue();
     }
-    private function pp(&$var){
+    public function pp(&$var){
         $var = chr(ord($var)+1);
         return true;
     }
