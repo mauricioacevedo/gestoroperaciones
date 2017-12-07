@@ -17584,7 +17584,7 @@ app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $locat
 	};
 
     $scope.uploadFile = function () {
-		$scope.user = $rootScope.logedUser.login;
+		//$scope.user = $rootScope.logedUser.login;
 
 		var file = $scope.myFile;
 		console.log('file is');
@@ -17593,7 +17593,7 @@ app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $locat
 
 		var uploadUrl = 'services/cargar_datos_cmts';
 		 console.log ($scope.user);
-		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
+		fileUpload.uploadFileToUrl(file, uploadUrl);
 
 	};
 
