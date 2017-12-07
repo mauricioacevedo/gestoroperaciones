@@ -13406,264 +13406,224 @@ private function demePedidoEdatel(){
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
-        //$user = $this->_request['userID'];
+
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
         require_once '../librerias/importar_excel/reader/Classes/PHPExcel/IOFactory.php';
-
-
         $pedido=json_decode(file_get_contents("php://input"),true);
 
-        $target_dir = "../uploads/";
-        $target_file = $target_dir . basename($_FILES["fileUpload"]["name"]);
-        //$name     = $_FILES['fileUpload']['name'];
-        $tname    = $_FILES['fileUpload']['tmp_name'];
-        $type     = $_FILES['fileUpload']['type'];
-        $NOMBRE_ARCHIVO=$_FILES["fileUpload"]["name"];
-        $TAMANO =$_FILES["fileUpload"]["size"];
-        //$pedido = json_decode(file_get_contents("php://input"),true);
-        $usas = $this->_request['user'];
-        //echo var_dump($_FILES);
-        //echo var_dump($_FILES );
-        //$this->response(json_encode(""),200);
-        $PEDIDO_ID='';
-        $cliente_id='';
-        $ACCESO='';
-        $ESTADO='';
-        $FECHA_INGRESO='';
-        $today = date("Y-m-d");
+        //ini_set('display_errors', '1');
+        //ini_set('memory_limit','-1');
+        //ini_set('max_execution_time', 1000);
+
+                $target_dir = "../uploads/";
+                $target_file = $target_dir . basename($_FILES["fileUpload"]["name"]);
+
+                $tname    = $_FILES['fileUpload']['tmp_name'];
+                $type     = $_FILES['fileUpload']['type'];
 
 
-        $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','BODEGA DATOS')";
-        // echo  $sqlupload;
-        $r = $this->mysqli->query($sqlupload) or die($this->mysqli->error.__LINE__);
+               // $usuarioGalleta = $this->_request['user'];
+                  $fecha= date("Y-m-d H:i:s");
+                  $tname1 = basename( $_FILES["fileUpload"]["name"]);
 
-        $sqlfeed="insert into portalbd.activity_feed(user,user_name, grupo,status,pedido_oferta,accion) values ('$usas','','','','','BODEGA DATOS')";
-        //echo  $sqlfeed;
-        $rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+                    //echo var_dump($_FILES);
+                    //echo var_dump($tname1);
 
+                        //$target_file = basename($_FILES["file"]["name"]);
+                        $uploadOk = 1;
+                        // Check if $uploadOk is set to 0 by an error
+                        if ($uploadOk == 0) {
+                            echo  "Lo sentimos , el archivo no se ha subido.";
+                            return;
+                        // if everything is ok, try to upload file
+                        } else {
 
+                            if (move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $target_file)){
+                                echo "El archivo ". basename( $_FILES["fileUpload"]["name"]). " se ha subido";
 
-        //$target_file = basename($_FILES["fileUpload"]["name"]);
-        $uploadOk = 1;
-        // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk == 0) {
-            echo  "Lo sentimos , el archivo no se ha subido.";
-            // if everything is ok, try to upload file
-        } else {
+                            } else {
 
-            if (move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $target_file)){
-                echo "El archivo ". basename( $_FILES["fileUpload"]["name"]). " se ha subido.";
+                                echo "Ha habido un error al subir el archivo.";
 
-            } else {
+                            }
+                        }
 
-                echo "Ha habido un error al subir el archivo.";
-            }
-        }
-        //var_dump($_FILES);
-        $tname1 = basename( $_FILES["fileUpload"]["name"]);
+                        $tname1 = basename( $_FILES["fileUpload"]["name"]);
 
-        if($type == 'application/vnd.ms-excel')
-        {
-            // Extension excel 97
-            $ext = 'xls';
-        }
-        else if($type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-        {
-            // Extension excel 2007 y 2010
-            $ext = 'xlsx';
-        }else{
-            // Extension no valida
-            echo "Extension no valida.";
-            exit();
-        }
+                  if($type == 'application/vnd.ms-excel')
+                  {
+                      // Extension excel 97
+                      $ext = 'xls';
+                  }
+                  else if($type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+                  {
+                      // Extension excel 2007 y 2010
+                      $ext = 'xlsx';
+                  }else{
+                      // Extension no valida
+                      echo -1;
+                      exit();
+                  }
 
-        $xlsx = 'Excel2007';
-        $xls  = 'Excel5';
+                  $xlsx = 'Excel2007';
+                  $xls  = 'Excel5';
 
-        //creando el lector
-        $objReader = PHPExcel_IOFactory::createReader($$ext);
+                  //creando el lector
+                  $objReader = PHPExcel_IOFactory::createReader($$ext);
 
-        //cargamos el archivo
-        $objPHPExcel = $objReader->load($target_file);
+                  //cargamos el archivo
+                  $objPHPExcel = $objReader->load($target_file);
 
-        $dim = $objPHPExcel->getActiveSheet()->calculateWorksheetDimension();
+                  $objPHPExcel->setActiveSheetIndex(0);
+                  $worksheet = $objPHPExcel->getSheetByName('CARGAS PNI');
+                  $dim = $objPHPExcel->getActiveSheet()->calculateWorksheetDimension();
 
-        // list coloca en array $start y $end Lista Coloca en array $ inicio y final $
-        list($start, $end) = explode(':', $dim);
+                  // list coloca en array $start y $end Lista Coloca en array $ inicio y final $
+                  list($start, $end) = explode(':', $dim);
 
-        if(!preg_match('#([A-Z]+)([0-9]+)#', $start, $rslt)){
-            return false;
-        }
-        list($start, $start_h, $start_v) = $rslt;
-        if(!preg_match('#([A-Z]+)([0-9]+)#', $end, $rslt)){
-            return false;
-        }
-        list($end, $end_h, $end_v) = $rslt;
+                  if(!preg_match('#([A-Z]+)([0-9]+)#', $start, $rslt)){
+                      return false;
+                  }
+                  list($start, $start_h, $start_v) = $rslt;
+                  if(!preg_match('#([A-Z]+)([0-9]+)#', $end, $rslt)){
+                      return false;
+                  }
+                  list($end, $end_h, $end_v) = $rslt;
 
-        //empieza  lectura vertical
-        $table = "<table  border='1'>";
-        for($v=$start_v; $v<=$end_v; $v++){
-            //empieza lectura horizontal
+                  //empieza  lectura vertical
+                  $table = "<table  border='1'>";
 
-            if ($v==1) continue;
-            $table .= "<tr>";
-            //$filas= $start_h + 1;
+                  //Ejecutamos la primera Carga
+                  //$sqlCarga = "insert into ArchivosCargados (NombreArch) values ('$tname1')";
+                  //echo $target_file;
+                  //$rstCar = mysql_query($sqlCarga);
 
+                  //obtenemos el id Del Ultimo Archivo Cargado
+                  /*$sqlUltimoid = "select max(Id) from ArchivosCargados";
+                  $rst2 = mysql_query ($sqlUltimoid);
+                  if ($row = mysql_fetch_row($rst2)) {
+                      $Carga = trim($row[0]);
+                       echo "Ultimo".$id;
+                      }*/
 
-            for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
-                $cellValue = $this->get_cell($h.$v, $objPHPExcel);
+                  // //obtenemos la cantidad de registros Cargados con Exito
+                  // $sqlCount = "SELECT count(*) FROM tbl_EquiposNCA WHERE NroCarga IN (SELECT max(NroCarga)FROM tbl_EquiposNCA)";
+                  // $rst3 = mysql_query ($sqlCount);
+                  // if ($row = mysql_fetch_row($rst3)) {
+                  //     $NroCargados = trim($row[0]);
+                  //     echo "ArchivosCargados Con Exito".$NroCargados;
+                  //     }
 
+                  $contador = 0;
+                  for($v=$start_v; $v<=$end_v; $v++){
+                      //empieza lectura horizontal
+                      if ($v<=2) continue;
+                      $table .= "<tr>";
 
+                  for($h=$start_h; ord($h)<=ord($end_h); pp($h))
+                  {
+                        $cellValue =  getCell($h.$v, $objPHPExcel);
+                        $table .= "<td>";
+                        $guardar .=" '$cellValue',";
+                        // echo $cellValue;
+                        if($cellValue !== null){
+                            $table .= $cellValue;
+                         }
 
-                $table .= "<td>";
-                $guardar .=" '$cellValue',";
-                //echo $cellValue;
-                if($cellValue!== null){
-                    $table .= $cellValue;
-                }
-                if($h=="L"){
-                    $PEDIDO_ID=$cellValue;
-                }
-                if($h=="J"){
-                    $cliente_id=$cellValue;
-                }
-                if($h=="Z"){
-                    $ACCESO=$cellValue;
-                }
-                if($h=="Y"){
-                    $FUENTE=$cellValue;
-                }
-                if($h=="G"){
-                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue);//fecha larga
-                    $FECHA_FIN = gmdate("Y-m-d 00:00:00",$timestamp);//fecha formateada+
-                    $table .= "<td>";
-                }
+                        if($h=="A"){
+                        $ORIGEN=$cellValue;
+                        }
+                        if($h=="B"){
+                        $DEPTO=$cellValue;
+                        }
+                        if($h=="C"){
+                        $COD_DEPTO=$cellValue;
+                        }
+                        if($h=="D"){
+                        $MPIO=$cellValue;
+                        }
+                        if($h=="E"){
+                        $COD_MPIO=$cellValue;
+                        }
 
-                if($h=="I"){
-                    $NOVEDAD=strtoupper($cellValue);
-                    //$NOVEDAD=strtoupper($NOVEDAD);
+                        if($h=="F"){
+                        $DIRECCION=$cellValue;
+                        }
 
-                }
-                if($h=="E"){
-                    $OBSERVACION_GESTOR=strtoupper($cellValue);
+                        if($h=="G"){
+                        $ESTRATO=$cellValue;
+                        }
 
+                        if($h=="H"){
+                        $PAG_SERV=$cellValue;
+                        }
 
-                }
+                        if($h=="I"){
+                        $ESTADO_CONCETO=$cellValue;
+                        }
 
-            }
+                        if($h=="J"){
+                        $PEDIDO=$cellValue;
+                        }
 
-            $guardar=rtrim($guardar,',');
+                        if($h=="K"){
+                        $UEN=$cellValue;
+                        }
 
+                        if($h=="L"){
+                        $CX=$cellValue;
+                        }
 
+                        if($h=="M"){
+                        $CY=$cellValue;
+                        }
 
-            if ($tname1  = "bodega_datos.xlsx"){
+                    }
 
+    /*  $sql= "insert into tbl_CargasPNI ('NOMBREARCHIVO','ORIGEN','DEPTO','COD_DEPTO', ".
+                                            " 'MPIO','COD_MPIO','DIRECCION','ESTRATO','PAG_SERV', ".
+                                            " 'ESTADO_CONCEPTO','PEDIDO','UEN','CX','CY','RESPONSABLE') ".
+                                            "  values  ".
+         " ('$ORIGEN','$DEPTO','$COD_DEPTO','$MPIO','$COD_MPIO','$DIRECCION', ".
+          " '$ESTRATO','$PAG_SERV','$ESTADO_CONCEPTO','$PEDIDO','$UEN','$CX','$CY','$CY')";
 
-                $sqlbodega_datos="insert into portalbd.gestor_bodega_bodega_datos (CAMPANAID,LANZAMIENTO,IDLLAMADA1,TELEFONO,MENSAJE,ACCION,FECHA,IDLLAMADA2,ESTADO,CEDULA,DETALLE,PEDIDO,CODIGO_RESULTADO,FECHA_AGENDA,JORNADA_AGENDA,CAUSA,MUNICIPIO,ZONA,TIPO_TRANSACCION,NOMBRE_CLIENTE,DEPARTAMENTO,EMAIL,FECHA_ENVIO,HORA_ENVIO,INTERFAZ,ACCESO) values ($guardar) ";
-                //echo  $sqlbodega_datos;
-                $r = $this->mysqli->query($sqlbodega_datos) or die($this->mysqli->error.__LINE__);
-                // echo  $guardar2;
-                $sqldatos="insert into portalbd.gestor_historicos_reagendamiento (PEDIDO_ID,CLIENTE_ID,ACCESO,FUENTE,FECHA_FIN,ASESOR,NOVEDAD,OBSERVACION_GESTOR) values ('$PEDIDO_ID','$cliente_id','$ACCESO','$FUENTE','$FECHA_FIN','$usas','$NOVEDAD','$OBSERVACION_GESTOR')";
-                //echo  $sqldatos;
-                $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
+        $rst = mysql_query ($sql);*/
 
-            }
+  }
+                            //obtenemos la cantidad de equipos Registrados
+                          /*  $sqlCount = "select count(*) from tbl_EquiposNCA where NroCarga = '$Carga'";
+                                  $rst3 = mysql_query ($sqlCount);
+                                    if ($row = mysql_fetch_row($rst3)) {
+                                         $NroCarga = trim($row[0]);
+                                         echo "Archivos Cargados Con Exito \n".$NroCarga;}*/
 
+                            //obtenemos la cantidad de equipos Duplicados
+                            /*$sqlCount2 = "select count(*) from tbl_Segui_NCA where NroCarga = '$Carga' ";
+                                  $rst4 = mysql_query ($sqlCount2);
+                                    if ($row1 = mysql_fetch_row($rst4)) {
+                                        $Duplicados = trim($row1[0]);
+                                        echo "\n <br> Archivos Duplicados \n".$Duplicados;}*/
 
-            $guardar="";
-            $PEDIDO_ID="";
-            $cliente_id="";
-            $ACCESO="";
-            $FUENTE="";
-            $FECHA_FIN="";
-            $NOVEDAD="";
-            $NOMBRE_ARCHIVO="";
-            $TAMANO="";
-            $VISTA="";
-            $tname1="";
-
-
-
-            $table .= "</tr>";
-        }
-
-        for($v=$start_v; $v<=$end_v; $v++){
-            //empieza lectura horizontal
-
-            if ($v==1) continue;
-            $table .= "<tr>";
-            //$filas= $start_h + 1;
-
-
-            for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h)){
-                $cellValue = $this->get_cell($h.$v, $objPHPExcel);
-
-                $table .= "<td>";
-                $guardar .=" '$cellValue',";
-
-                if($cellValue !== null){
-                    $table .= $cellValue;
-                }
-
-            }
-
-            $guardar=rtrim($guardar,',');
-            //var_dump($guardar);
-            //echo $tname1;
-            if ($tname1 <> "" && $tname1 <>"bodega_datos.xlsx"){
-
-
-
-
-                $che=explode(",",$guardar);//validacion de datos que carguen pedidos diferentes y omita los repetidos
-                $pedido=$che[0];
-
-                //echo var_dump($che);
-
-                //$this->response('okidokie',200);
-
-                $pend=" SELECT PEDIDO_ID ".
-                    " FROM portalbd.gestor_pendientes_reagendamiento ".
-                    " WHERE PEDIDO_ID=$pedido and STATUS IN ('MALO','PENDI_AGEN')";
-                // echo $pend;
-                $rst = $this->mysqli->query($pend);
-
-
-                if ($rst->num_rows > 0){
-                    continue;
-                }
-
-                $sqlemail="insert into portalbd.gestor_pendientes_reagendamiento (PEDIDO_ID,CONCEPTOS,CLIENTE_ID,NOMBRE_USUARIO,DEPARTAMENTO,SUBZONA_ID,DIRECCION_ENVIO,FUENTE,PROCESO,CELULAR_AVISAR,TELEFONO_AVISAR,IDENTIFICADOR_ID,FECHA_INGRESO,MICROZONA,OBSERVACION_FENIX,TECNOLOGIA_ID) values ($guardar) ";
-                // echo($sqlemail);
-                $r = $this->mysqli->query($sqlemail) or die($this->mysqli->error.__LINE__);
-
-                $sqlupload="insert into portalbd.gestor_log_fileupload (ASESOR,NOMBRE_ARCHIVO,TAMANO,VISTA) values ('$usas','$NOMBRE_ARCHIVO','$TAMANO','PENDIENTES REAGENDAMIENTO')";
-                //echo  $sqlupload;
-                $r = $this->mysqli->query($sqlupload) or die($this->mysqli->error.__LINE__);
-
+/*function getCell($cell, $objPHPExcel){
+                //select one cell seleccionar una célda
+                $objCell = ($objPHPExcel->getActiveSheet()->getCell($cell));
+                //get cell value obtener valor de la celda
+                return $objCell->getvalue();
             }
 
-
-
-            $guardar="";
-            $PEDIDO_ID="";
-            $cliente_id="";
-            $ACCESO="";
-            $FUENTE="";
-            $FECHA_FIN="";
-            $NOVEDAD="";
-            $NOMBRE_ARCHIVO="";
-            $TAMANO="";
-            $VISTA="";
-            $FECHA_INGRESO="";
-
-
-            $table .= "</tr>";
-        }
-
-
-        $this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
-
-
+function pp(&$var){
+                $var = chr(ord($var)+1);
+                return true;
+            }*/
 
 
 }
