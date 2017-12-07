@@ -5775,6 +5775,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
 app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http,
                                    services, fileUploadPNI)
+
     {
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
