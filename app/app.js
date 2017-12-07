@@ -18598,7 +18598,7 @@ app.config(['$routeProvider',
       .when('/pni/transaccion', {
 			title: 'PNI',
 			templateUrl: 'partials/transaccion-pni.html',
-			controller: 'PNICtrl',
+			controller: 'mymodalcontroller',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
