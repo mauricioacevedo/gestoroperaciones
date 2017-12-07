@@ -13421,10 +13421,10 @@ private function demePedidoEdatel(){
         $pedido=json_decode(file_get_contents("php://input"),true);
 
         //ini_set('display_errors', '1');
-        //ini_set('memory_limit','-1');
-        //ini_set('max_execution_time', 1000);
+        ini_set('memory_limit','-1');
+        ini_set('max_execution_time', 1000);
 
-                $target_dir = "../uploads";
+                $target_dir = "../uploads/";
                 $target_file = $target_dir . basename($_FILES["fileUpload"]["name"]);
 
                 $tname    = $_FILES['fileUpload']['tmp_name'];
