@@ -17538,9 +17538,6 @@ app.controller('gestionAsignacionesSiebelCtrl', function ($scope, $rootScope, $l
 //ENDEND
 
 
-
-
-
 app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $location, $routeParams, $cookies, $cookieStore, services,fileUpload) {
 	$scope.header = 'Buscador Nodos CMTS';
 	$scope.footer = 'Gerencia Alistamiento';
@@ -17563,24 +17560,6 @@ app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $locat
 			return "0" + num;
 		}
 		return num;
-	};
-
-    $scope.nuevoRegistroPNI = function () {
-		$rootScope.transaccion = {};
-		$rootScope.transaccion.ID = '';
-		$location.path('/pni/transaccion');
-
-        $scope.timeInit = new Date().getTime();
-		var date1 = new Date();
-		var year = date1.getFullYear();
-		var month = $scope.doubleDigit(date1.getMonth() + 1);
-		var day = $scope.doubleDigit(date1.getDate());
-		var hour = $scope.doubleDigit(date1.getHours());
-		var minute = $scope.doubleDigit(date1.getMinutes());
-		var seconds = $scope.doubleDigit(date1.getSeconds());
-
-        $rootScope.fecha_inicionuevoRegistroPNI = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-        //console.log($scope.fecha_inicio);
 	};
 
     $scope.uploadFile = function () {
@@ -18590,7 +18569,7 @@ app.config(['$routeProvider',
 			title: 'PNI',
 			templateUrl: 'partials/pni.html',
 			//controller: 'PNICtrl',
-            controller: 'mymodalcontroller',
+            controller: 'PNICtrl',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
@@ -18598,7 +18577,7 @@ app.config(['$routeProvider',
       .when('/pni/transaccion', {
 			title: 'PNI',
 			templateUrl: 'partials/transaccion-pni.html',
-			controller: 'mymodalcontroller',
+			controller: 'PNICtrl',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
