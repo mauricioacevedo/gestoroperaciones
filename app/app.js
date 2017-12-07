@@ -18571,7 +18571,8 @@ app.config(['$routeProvider',
       .when('/pni/', {
 			title: 'PNI',
 			templateUrl: 'partials/pni.html',
-			controller: 'PNICtrl',
+			//controller: 'PNICtrl',
+            controller: 'mymodalcontroller',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
