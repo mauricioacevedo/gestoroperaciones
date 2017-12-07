@@ -5774,7 +5774,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 //**********************************MICHAEL CONTROLADOR PNI************************************
 
 app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http,
-                                   services, fileUploadPNI)
+                                   services, fileUpload)
 
     {
 	var userID = $cookieStore.get('logedUser').login;
@@ -6062,14 +6062,28 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 	};
 
 
-    $scope.uploadFilePNI = function () {
+    $scope.uploadFilePNI2 = function () {
 		$scope.user = $rootScope.logedUser.login;
         var file = $scope.myFile;
 		console.log('file is');
 		console.dir(file);
-		var uploadUrl = 'services/cargar_datos_cmts';
+		var uploadUrl = 'services/cargar_datosPNI';
         console.log ($scope.user);
 		fileUploadPNI.uploadFileToUrl(file, uploadUrl, $scope.user);
+
+	};
+
+    $scope.uploadFilePNI = function () {
+		$scope.user = $rootScope.logedUser.login;
+
+		var file = $scope.myFile;
+		console.log('file is');
+		console.dir(file);
+
+
+		var uploadUrl = 'services/cargar_datosPNI';
+		 console.log ($scope.user);
+		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
 
 	};
 
