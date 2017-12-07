@@ -17565,6 +17565,24 @@ app.controller('mymodalcontroller', function ($scope, $route, $rootScope, $locat
 		return num;
 	};
 
+    $scope.nuevoRegistroPNI = function () {
+		$rootScope.transaccion = {};
+		$rootScope.transaccion.ID = '';
+		$location.path('/pni/transaccion');
+
+        $scope.timeInit = new Date().getTime();
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+        $rootScope.fecha_inicionuevoRegistroPNI = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+        //console.log($scope.fecha_inicio);
+	};
+
     $scope.uploadFile = function () {
 		$scope.user = $rootScope.logedUser.login;
 
