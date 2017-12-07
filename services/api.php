@@ -13532,9 +13532,9 @@ private function demePedidoEdatel(){
                       if ($v<=1) continue;
                       $table .= "<tr>";
 
-                  for($h=$start_h; ord($h)<=ord($end_h); $this->pp($h))
+                  for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h))
                   {
-                        $cellValue =  $this->getCell($h.$v, $objPHPExcel);
+                        $cellValue = $this->getCell($h.$v, $objPHPExcel);
                         $table .= "<td>";
                         $guardar .=" '$cellValue',";
                         // echo $cellValue;
@@ -13596,10 +13596,10 @@ private function demePedidoEdatel(){
                                             " 'MPIO','COD_MPIO','DIRECCION','ESTRATO','PAG_SERV', ".
                                             " 'ESTADO_CONCEPTO','PEDIDO','UEN','CX','CY','RESPONSABLE') ".
                                             "  values  ".
-         " ('$ORIGEN','$DEPTO','$COD_DEPTO','$MPIO','$COD_MPIO','$DIRECCION', ".
-          " '$ESTRATO','$PAG_SERV','$ESTADO_CONCEPTO','$PEDIDO','$UEN','$CX','$CY','$CY')";
+         " ('$tname1','$ORIGEN','$DEPTO','$COD_DEPTO','$MPIO','$COD_MPIO','$DIRECCION', ".
+          " '$ESTRATO','$PAG_SERV','$ESTADO_CONCEPTO','$PEDIDO','$UEN','$CX','$CY','$CY','$usuarioGalleta')";
 
-        echo ($sql);
+        //echo ($sql);
 
         $rst = mysql_query ($sql);
 
