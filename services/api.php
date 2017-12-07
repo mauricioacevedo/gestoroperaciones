@@ -13402,6 +13402,7 @@ private function demePedidoEdatel(){
     }
 
 
+
     private function cargar_datosPNI(){
         if($this->get_request_method() != "POST"){
             $this->response('',406);
@@ -13423,11 +13424,11 @@ private function demePedidoEdatel(){
         //ini_set('memory_limit','-1');
         //ini_set('max_execution_time', 1000);
 
-                    $target_dir = "../uploads/";
-                    $target_file = $target_dir . basename($_FILES["fileUpload"]["name"]);
+                $target_dir = "../uploads/";
+                $target_file = $target_dir . basename($_FILES["fileUpload"]["name"]);
 
-                 $tname    = $_FILES['fileUpload']['tmp_name'];
-                  $type     = $_FILES['fileUpload']['type'];
+                $tname    = $_FILES['fileUpload']['tmp_name'];
+                $type     = $_FILES['fileUpload']['type'];
 
 
                // $usuarioGalleta = $this->_request['user'];
