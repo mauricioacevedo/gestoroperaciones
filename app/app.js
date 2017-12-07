@@ -5828,6 +5828,17 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 		return num;
 	};
 
+     $scope.uploadFile = function () {
+		$scope.user = $rootScope.logedUser.login;
+		var file = $scope.myFile;
+		console.log('file is');
+		console.dir(file);
+		var uploadUrl = 'services/cargar_datospni';
+        console.log ($scope.user);
+		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
+
+	};
+
 	$rootScope.logout = function () {
 		services.logout($rootScope.logedUser.login);
 		$cookieStore.remove('logedUser');
@@ -6102,16 +6113,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 
 	};*/
 
-    $scope.uploadFile = function () {
-		$scope.user = $rootScope.logedUser.login;
-		var file = $scope.myFile;
-		console.log('file is');
-		console.dir(file);
-		var uploadUrl = 'services/cargar_datospni';
-        console.log ($scope.user);
-		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
 
-	};
 
     $scope.objMunicipios = function () {
         $http.get('./services/objMunicipios').then(
