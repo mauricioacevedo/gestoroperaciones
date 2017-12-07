@@ -5766,7 +5766,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
 //**********************************MICHAEL CONTROLADOR PNI************************************
 
-app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services, cargar_datosPNI)
+app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services, fileUpload)
     {
 	var userID = $cookieStore.get('logedUser').login;
 	$rootScope.logedUser = $cookieStore.get('logedUser');
@@ -6053,6 +6053,22 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 	};
 
 
+    $scope.uploadFile = function () {
+		$scope.user = $rootScope.logedUser.login;
+
+		console.log("archivo: " + $scope.myFile);
+
+        var file = $scope.myFile;
+		console.log('file is');
+		console.dir(file);
+
+
+		var uploadUrl = 'services/cargar_datos_cmts';
+        console.log ($scope.user);
+		fileUpload.uploadFileToUrl(file, uploadUrl, $scope.user);
+
+	};
+
 
     /* $scope.uploadFilePNI = function(){
              var file = $scope.myFile;
@@ -6066,25 +6082,6 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
                 $scope.msg="Se cargo el archivo: "+file.name;
 
         };*/
-
-    $scope.uploadFile = function(){
-             $scope.carga_ok=true;
-             var file = $scope.myFile;
-
-         console.log("archivo: " + $scope.myFile);
-
-             /*   $scope.user=$rootScope.galletainfo.LOGIN;
-                $scope.name = '';
-            //   console.log('file is ');
-              // console.dir(file);
-               // console.dir($scope.tipoCarga);
-               $scope.delete_ok=false;
-
-            var uploadUrl = 'services/cargaGTC';
-               cargaGTC.uploadFileToUrl(file, uploadUrl, $scope.user);
-                $scope.msg="Se cargo el archivo: "+file.name;*/
-
-        };
 
 
     $scope.objMunicipios = function () {
