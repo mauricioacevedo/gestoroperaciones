@@ -5503,10 +5503,10 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 			return;
 		}
 
-		if (transaccion.ANSACTIVIDAD == undefined || transaccion.ANSACTIVIDAD == "") {
+	/*	if (transaccion.ANSACTIVIDAD == undefined || transaccion.ANSACTIVIDAD == "") {
 			alert("Actividad sin informacion.");
 			return;
-		}
+		}*/
 
 		if (transaccion.SISTEMAINFO == undefined || transaccion.SISTEMAINFO == "") {
 			alert("Sistema de Informacion sin Datos.");
