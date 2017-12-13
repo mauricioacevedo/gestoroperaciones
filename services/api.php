@@ -13454,9 +13454,8 @@ private function demePedidoEdatel(){
 
                             } else {
 
-                                //echo "Ha habido un error al subir el archivo.";
-
-
+                                echo "Ha habido un error al subir el archivo.";
+                                return;
                             }
                         }
 
