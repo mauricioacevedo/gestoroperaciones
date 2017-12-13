@@ -5476,7 +5476,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 		var minute = $scope.doubleDigit(date1.getMinutes());
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
-        $rootScope.fecha_inicionuevoRegistroPNI = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+        $rootScope.fecha_inicionuevoRegistroKPI = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 	};
 
 	$scope.getTransaccionKPIS = function () {
@@ -5559,7 +5559,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
             TECNOLOGIA_ID: ''
         };
 
-         services.SalvarGestionInfraestructura(transaccion).then(function (data) {
+         services.SalvarGestionInfraestructura(transaccion, $rootScope.fecha_inicionuevoRegistroKPI).then(function (data) {
                 $location.path('/kpis/');
                 return data.data;
             }
@@ -5840,7 +5840,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 
 	};
 
-    //***********************************MICHAEL GUARDAR REGISTRO KPIS*********************************
+    //***********************************MICHAEL GUARDAR REGISTRO PNI*********************************
 	$scope.saveTransaccion = function (transaccion) {
 
         //console.log(transaccion);
