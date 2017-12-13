@@ -13610,7 +13610,7 @@ private function demePedidoEdatel(){
 
         //$rst = $this->mysqli->query($sql);
         //$rst = mysql_query($sql);
-        $rst = $this->mysqli03->query($sql) or die($this->mysqli->error.__LINE__);
+        $rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
 
 
 
