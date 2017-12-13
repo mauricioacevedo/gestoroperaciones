@@ -13573,7 +13573,7 @@ private function demePedidoEdatel(){
                         }
 
                         if($h=="I"){
-                        $ESTADO_CONCETO=$cellValue;
+                        $ESTADO_CONCEPTO=$cellValue;
                         }
 
                         if($h=="J"){
