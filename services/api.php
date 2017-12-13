@@ -13594,10 +13594,10 @@ private function demePedidoEdatel(){
 
                     }
 
-      $sql= "insert into tbl_CargasPNI ('NOMBREARCHIVO','ORIGEN','DEPTO','COD_DEPTO', ".
-                                            " 'MPIO','COD_MPIO','DIRECCION','ESTRATO','PAG_SERV', ".
-                                            " 'ESTADO_CONCEPTO','PEDIDO','UEN','CX','CY','RESPONSABLE') ".
-                                            "  values  ".
+      $sql= "insert into tbl_CargasPNI (NOMBREARCHIVO,ORIGEN,DEPTO,COD_DEPTO, ".
+                                            " MPIO,COD_MPIO,DIRECCION,ESTRATO,PAG_SERV, ".
+                                            " ESTADO_CONCEPTO,PEDIDO,UEN,CX,CY,RESPONSABLE) ".
+                                            " values  ".
          " ('$tname1','$ORIGEN','$DEPTO','$COD_DEPTO','$MPIO','$COD_MPIO','$DIRECCION', ".
           " '$ESTRATO','$PAG_SERV','$ESTADO_CONCEPTO','$PEDIDO','$UEN','$CX','$CY','$CY','$usuarioGalleta')";
 
