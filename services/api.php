@@ -13599,7 +13599,7 @@ private function demePedidoEdatel(){
                                             " ESTADO_CONCEPTO,PEDIDO,UEN,CX,CY,RESPONSABLE) ".
                                             " values  ".
          " ('$tname1','$ORIGEN','$DEPTO','$COD_DEPTO','$MPIO','$COD_MPIO','$DIRECCION', ".
-          " '$ESTRATO','$PAG_SERV','$ESTADO_CONCEPTO','$PEDIDO','$UEN','$CX','$CY','$CY','$usuarioGalleta')";
+          " '$ESTRATO','$PAG_SERV','$ESTADO_CONCEPTO','$PEDIDO','$UEN','$CX','$CY','$usuarioGalleta')";
 
         echo var_dump($sql);
 
