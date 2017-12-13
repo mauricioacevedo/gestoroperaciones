@@ -10928,13 +10928,15 @@ private function demePedidoEdatel(){
         $grupoGalleta   =   $galleta['GRUPO'];
 
         $transaccion = json_decode(file_get_contents("php://input"),true);
+        $fecha = json_decode(file_get_contents("php://input"),true);
 
 
         $transaccion = $transaccion['gestion'];
+        $fechaini = $fecha['fechainicio'];
 
-        //echo var_dump ($transaccion);
+        //echo var_dump ($fechaini);
 
-        $column_names = array('NEGOCIO','FECHASOLICI','ITEMS','ANSACTIVIDAD','SISTEMAINFO','RESULTADOCARGA','ITEMSPROCESADO','ITEMSINCONSISTENTES','OBSERVACIONES','RESPONSABLE');
+        $column_names = array('NEGOCIO','FECHASOLICI','ITEMS','ANSACTIVIDAD','SISTEMAINFO','RESULTADOCARGA','ITEMSPROCESADO','ITEMSINCONSISTENTES','OBSERVACIONES');
 
         $keys = array_keys($transaccion);
         $columns = '';
@@ -10962,8 +10964,9 @@ private function demePedidoEdatel(){
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " INSERT INTO  tbl_KpisInfraestructura (".trim($columns,',').") VALUES(".trim($values,',').")";
-        echo $query;
+        $query = " INSERT INTO  tbl_KpisInfraestructura (".trim($columns,',').",RESPONSABLE,FECHAINI) VALUES(".trim($values,',').",'$usuarioGalleta','$fechaini')";
+
+        //echo $query;
         if(!empty($transaccion)){
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
