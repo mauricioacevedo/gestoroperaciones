@@ -13404,6 +13404,7 @@ private function demePedidoEdatel(){
 
 
 
+
     private function cargar_datospni(){
         if($this->get_request_method() != "POST"){
             $this->response('',406);
@@ -13600,7 +13601,7 @@ private function demePedidoEdatel(){
          " ('$tname1','$ORIGEN','$DEPTO','$COD_DEPTO','$MPIO','$COD_MPIO','$DIRECCION', ".
           " '$ESTRATO','$PAG_SERV','$ESTADO_CONCEPTO','$PEDIDO','$UEN','$CX','$CY','$CY','$usuarioGalleta')";
 
-        //echo ($sql);
+        echo var_dump($sql);
 
         $rst = mysql_query ($sql);
 
