@@ -5425,7 +5425,7 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 
 });
 
-//**********************************MICHAEL CONTROLADOR CRUD KPIS INFRAESTRUCTURA************************************
+//**********************************MICHAEL CONTROLADOR KPIS INFRAESTRUCTURA************************************
 
 app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services) {
 	var userID = $cookieStore.get('logedUser').login;
@@ -5467,6 +5467,16 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 		$rootScope.transaccion.ID = '';
 		$location.path('/kpis/transaccion');
 
+        $scope.timeInit = new Date().getTime();
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+        $rootScope.fecha_inicionuevoRegistroPNI = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 	};
 
 	$scope.getTransaccionKPIS = function () {
@@ -5538,10 +5548,10 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 			return;
 		}*/
 
-        if (transaccion.RESPONSABLE == undefined || transaccion.RESPONSABLE == "") {
+      /*  if (transaccion.RESPONSABLE == undefined || transaccion.RESPONSABLE == "") {
 			alert("Fecha Procesados sin informacion.");
 			return;
-		}
+		}*/
 
 
         $scope.InfoGestion = {
@@ -5890,7 +5900,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 
 	};
 
-    //*******************************MICHAEL EDITAR REGISTRO KPIS *********************************
+    //*******************************MICHAEL EDITAR REGISTRO PNI *********************************
     $scope.EditTransaccionPNI = function (transaccion) {
 
         //console.log(transaccion);
