@@ -10934,7 +10934,7 @@ private function demePedidoEdatel(){
         $transaccion = $transaccion['gestion'];
         $fechaini = $fecha['fechainicio'];
 
-        echo var_dump ($fecha);
+        echo var_dump ($transaccion);
 
         $column_names = array('NEGOCIO','FECHASOLICI','ITEMS','SISTEMAINFO','RESULTADOCARGA','ITEMSPROCESADO','ITEMSINCONSISTENTES','OBSERVACIONES');
 
@@ -10964,7 +10964,7 @@ private function demePedidoEdatel(){
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " INSERT INTO  tbl_KpisInfraestructura (".trim($columns,',').",RESPONSABLE,FECHAINI) VALUES(".trim($values,',').",'$usuarioGalleta','$fechaini')";
+        $query = " INSERT INTO tbl_KpisInfraestructura (".trim($columns,',').",RESPONSABLE,FECHAINI) VALUES(".trim($values,',').",'$usuarioGalleta','$fechaini')";
 
         //echo $query;
         if(!empty($transaccion)){
