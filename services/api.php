@@ -9141,7 +9141,8 @@ private function demePedidoEdatel(){
             " AND STATUS='PENDIENTE' ".
             $localidad.
             " ORDER BY FECHA_CARGA,ID ASC ";
-        echo var_dump($sqlllamadas);
+
+    //echo var_dump($sqlllamadas);
         //echo $sqlllamadas;
         //echo var_dump($plaza2);
 
