@@ -12190,7 +12190,7 @@ private function demePedidoEdatel(){
         $query="select NEGOCIO, FECHASOLICI, ITEMS, CAST(TIMEDIFF(FECHAFIN,FECHASOLICI)
 	            AS CHAR (255)) AS ANSSOLUCION, SISTEMAINFO, RESULTADOCARGA, ITEMSPROCESADO,
                 ITEMSINCONSISTENTES, OBSERVACIONES, RESPONSABLE,CAST(TIMEDIFF(FECHAFIN,FECHAINI)
-	            AS CHAR (255)) AS ANSACTIVIDAD from tbl_KpisInfraestructura order by ID desc limit 50; ";
+	            AS CHAR (255)) AS ANSACTIVIDAD, FECHAFIN from tbl_KpisInfraestructura order by ID desc limit 50; ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
