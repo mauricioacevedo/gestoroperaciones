@@ -9244,7 +9244,7 @@ private function demePedidoEdatel(){
         $query=	" SELECT ".
             "	o.LOCALIDAD ".
             ",	COUNT(*) AS COUNTER ".
-            "	FROM portalbd.pendientes_edatel o ".
+            "	FROM portalbd.pendientes_Georeferencia_edatel o ".
             "	where 1=1 and o.TIPO_TRANSACCION = 'GEOREFERENCIA' ".
             " 	$filtros ";
 
