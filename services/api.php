@@ -13608,8 +13608,8 @@ private function demePedidoEdatel(){
 
         //echo var_dump($sql);
 
-        $rst = $this->mysqli->query($sql);
-        //$rst = mysql_query ($sql);
+        //$rst = $this->mysqli->query($sql);
+        $rst = mysql_query ($sql);
 
 
 
