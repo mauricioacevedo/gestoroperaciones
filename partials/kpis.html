@@ -229,14 +229,15 @@
                                     <th width="7%">Negocio</th>
                                     <th width="9%">FechaSoloci</th>
                                     <th width="9%">Item</th>
-                                    <th width="9%">ANS Actividad</th>
+                                    <th width="9%">ANS Solucion</th>
                                     <th width="9%">Sistema</th>
                                     <th width="9%">Resultado</th>
                                     <th width="7%">Procesados</th>
                                     <th width="9%">Inconsistentes</th>
                                     <th width="9%">Observaciones</th>
-                                    <th width="9%">FechaProce</th>
+                                    <th width="9%">FechaProcesado</th>
                                     <th width="9%">Responsable</th>
+                                    <th width="9%">ANS Actividad</th>
                                     <th ng-hide="true" width="4%">Acciones</th>
                             </thead>
                             <tbody>
@@ -244,14 +245,15 @@
                                     <td>{{data.NEGOCIO}}</td>
                                     <td>{{data.FECHASOLICI}}</td>
                                     <td>{{data.ITEMS}}</td>
-                                    <td>{{data.ANSACTIVIDAD}}</td>
+                                    <td><font color='red'>{{data.ANSSOLUCION}}</font></td>
                                     <td>{{data.SISTEMAINFO}}</td>
                                     <td>{{data.RESULTADOCARGA}}</td>
                                     <td>{{data.ITEMSPROCESADO}}</td>
                                     <td>{{data.ITEMSINCONSISTENTES}}</td>
                                     <td>{{data.OBSERVACIONES}}</td>
-                                    <td>{{data.FECHAPROCESADO}}</td>
+                                    <td>{{data.FECHAFIN}}</td>
                                     <td>{{data.RESPONSABLE}}</td>
+                                    <td><font color='red'>{{data.ANSACTIVIDAD}}</font></td>
                                     <td ng-hide="true" align="center"><button class="btn btn-success btn-xs" value="edit!" ng-click="getTransaccionKPIS();"><i class="fa fa-pencil fa-lg"></i></button></td>
                             </tr>
                             </tbody>
