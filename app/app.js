@@ -5559,7 +5559,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
             TECNOLOGIA_ID: ''
         };
 
-         services.SalvarGestionInfraestructura(transaccion, $rootScope.fecha_inicionuevoRegistroKPI).then(function (data) {
+         services.SalvarGestionInfraestructura(transaccion,$rootScope.fecha_inicionuevoRegistroKPI).then(function (data) {
                 $location.path('/kpis/');
                 return data.data;
             }
