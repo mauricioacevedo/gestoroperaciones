@@ -10933,7 +10933,7 @@ private function demePedidoEdatel(){
         $transaccion = $transaccion['gestion'];
         $fechaini = $fecha['fechainicio'];
 
-        echo var_dump("Fecha".$fechaini);
+        echo("Fecha".$fechaini);
 
         $column_names = array('NEGOCIO','FECHASOLICI','ITEMS','SISTEMAINFO','RESULTADOCARGA','ITEMSPROCESADO','ITEMSINCONSISTENTES','OBSERVACIONES');
 
