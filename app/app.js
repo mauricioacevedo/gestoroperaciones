@@ -763,8 +763,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	};
 
     //******************************MICHAEL CRUD KPIS*****************************************
-    obj.SalvarGestionInfraestructura = function (gestion) {
-        return $http.post(serviceBase + 'insertTransaccionKPIS', {gestion: gestion});
+    obj.SalvarGestionInfraestructura = function (gestion,fechainicio) {
+        return $http.post(serviceBase + 'insertTransaccionKPIS', {
+            gestion: gestion, fechainicio:fechainicio
+        });
     };
 
     obj.EditarGestionInfraestructura = function (gestion) {
