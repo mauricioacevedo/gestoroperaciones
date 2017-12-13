@@ -13534,8 +13534,9 @@ private function demePedidoEdatel(){
 
                   for($h=$start_h; ord($h)<=ord($end_h);$this->pp($h))
                   {
+                       //get_cell
 
-                        $cellValue = $this->getCell($h.$v, $objPHPExcel);
+                        $cellValue = $this->get_cell($h.$v, $objPHPExcel);
                         $table .= "<td>";
                         $guardar .=" '$cellValue',";
                         // echo $cellValue;
@@ -20249,22 +20250,19 @@ public function pp(&$var){
 
     }
 
-     function get_cell($cell, $objPHPExcel){
+    function get_cell($cell, $objPHPExcel){
         //select one cell seleccionar una célda
         $objCell = ($objPHPExcel->getActiveSheet()->getCell($cell));
         //get cell value obtener valor de la celda
         return $objCell->getvalue();
     }
+
     function pp(&$var){
         $var = chr(ord($var)+1);
         return true;
     }
 
 }
-
-
-
-
 
 //cierre de la clase
 
