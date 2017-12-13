@@ -61,12 +61,21 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
+                          <!--  <div class="form-group">
                                 <label for="FechaSoli">
                                     Fecha Solicitud
                                 </label>
                                 <input type="date" ng-model="transaccion.FECHASOLICI" name="transaccion.txtFechaSoli" class="form-control">
-                            </div>
+                            </div>-->
+
+                            <div class="from-group" id="datetimepicker">
+                                <label for="fechaSolicitud">
+                                    Fecha Solicitud
+                                </label>
+                                <br>
+                                <input type="text" name="fechaSolicitud" id="fechaSolicitud" class="form-control"
+                                    ng-model="transaccion.FECHASOLICI" datetime-picker date-format="yyyy-MM-dd H:mm:00">
+                             </div>
 
                             <div class="form-group">
                                 <label for="Items">
