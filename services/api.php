@@ -9134,10 +9134,10 @@ private function demePedidoEdatel(){
         }
 
         $sqlllamadas="SELECT * ".
-            " FROM  portalbd.pendientes_edatel ".
-            " WHERE TIPO_TRANSACCION = 'GEOREFERENCIA' ".
+            " FROM  portalbd.pendientes_Georeferencia_edatel ".
+            " WHERE CONCEPTO = '$concepto' ".
             " AND ASESOR='ND' ".
-            " AND TIPO_TRANSACCION = '$concepto' ".
+            //" AND TIPO_TRANSACCION = '$concepto' ".
             " AND STATUS='PENDIENTE' ".
             $localidad.
             " ORDER BY FECHA_CARGA,ID ASC ";
@@ -9160,9 +9160,6 @@ private function demePedidoEdatel(){
 
 
         }
-
-
-
 
         $query1="select * ".
         ",CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_CARGA)) AS CHAR(255)) as TIEMPO_COLA ".
