@@ -5862,7 +5862,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 			return;
 		}
 
-        if (transaccion.DIRECCIONES_CORREGIDAS == undefined || transaccion.DIRECCIONES_CORREGIDAS == "") {
+        if (transaccion.DIRECCIONES_CORREGIDAS == "") {
 			alert("Direcciones Corregidas: Sin Informacion");
 			return;
 		}
