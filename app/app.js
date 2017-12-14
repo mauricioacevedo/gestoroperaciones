@@ -5990,7 +5990,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 	};
 
     $scope.EditarPNI = function () {
-        $location.path('partials/transaccion-pni.html');
+        //$location.path('partials/transaccion-pni.html');
         //$location.path('/pni/transaccion/' + id);
 
 	};
@@ -18611,13 +18611,15 @@ app.config(['$routeProvider',
 				}
 			}
 		})
-		.when('/admontips/', {
+
+        .when('/admontips/', {
 			title: 'Administración Tips',
 			templateUrl: 'partials/admontips.html',
 			controller: 'AdmonTipsCtrl',
             grupos: ['ASIGNACIONES','SUPER'],
             cargos: ['1','2','3','4','5']
 		})
+
 		.when('/admontips/edicionTip/:tipID', {
 			title: 'Edición Tips',
 			templateUrl: 'partials/editTips.html',
@@ -18631,6 +18633,7 @@ app.config(['$routeProvider',
 				}
 			}
 		})
+
 		.when('/registros/', {
 			title: 'Registros',
 			templateUrl: 'partials/registros.html',
