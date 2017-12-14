@@ -9134,14 +9134,15 @@ private function demePedidoEdatel(){
         }
 
         $sqlllamadas="SELECT * ".
-            " FROM  portalbd.pendientes_edatel ".
-            " WHERE TIPO_TRANSACCION = 'GEOREFERENCIA' ".
-            " AND ASESOR='ND' ".
-            " AND TIPO_TRANSACCION = '$concepto' ".
+            " FROM  portalbd.pendientes_Georeferencia_edatel ".
+            " WHERE CONCEPTO = '$concepto' ".
+            " AND ASESOR='NA' ".
+            //" AND TIPO_TRANSACCION = '$concepto' ".
             " AND STATUS='PENDIENTE' ".
             $localidad.
             " ORDER BY FECHA_CARGA,ID ASC ";
 
+    //echo var_dump($sqlllamadas);
         //echo $sqlllamadas;
         //echo var_dump($plaza2);
 
@@ -9161,12 +9162,9 @@ private function demePedidoEdatel(){
 
         }
 
-
-
-
         $query1="select * ".
         ",CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_CARGA)) AS CHAR(255)) as TIEMPO_COLA ".
-        " from pendientes_edatel where ID = '$mypedido' and STATUS='PENDIENTE'";
+        " from pendientes_Georeferencia_edatel where ID = '$mypedido' and STATUS='PENDIENTE'";
 
 
         //"SELECT b.ID,b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.TIPO_ELEMENTO_ID,b.PRODUCTO,b.UEN_CALCULADA,b.ESTRATO,b.MUNICIPIO_ID,b.DIRECCION_SERVICIO,b.PAGINA_SERVICIO,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(b.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,b.FUENTE,b.CONCEPTO_ID,b.FECHA_ESTADO,b.USUARIO_BLOQUEO_FENIX,b.TIPO_TRABAJO,b.CONCEPTO_ANTERIOR,b.FECHA_CITA,b.CANTIDAD_EQU,b.EQUIPOS,b.CONCEPTOS_EQU,b.TIPO_EQUIPOS,b.EXTENSIONES, b.OBSERVACIONES,  b.EJECUTIVO_ID, b.CANAL_ID from informe_petec_pendientesm b where b.PEDIDO_ID = '$mypedido' and b.STATUS='PENDI_PETEC' $concepto ";
@@ -9244,7 +9242,7 @@ private function demePedidoEdatel(){
         $query=	" SELECT ".
             "	o.LOCALIDAD ".
             ",	COUNT(*) AS COUNTER ".
-            "	FROM portalbd.pendientes_edatel o ".
+            "	FROM portalbd.pendientes_Georeferencia_edatel o ".
             "	where 1=1 and o.TIPO_TRANSACCION = 'GEOREFERENCIA' ".
             " 	$filtros ";
 
