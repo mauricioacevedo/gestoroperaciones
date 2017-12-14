@@ -5990,7 +5990,8 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 	};
 
     $scope.EditarPNI = function (id) {
-		$location.path('/pni/transaccion/' + id);
+		$location.path('/pni/transaccion');
+        //$location.path('/pni/transaccion/' + id);
 
 	};
 
