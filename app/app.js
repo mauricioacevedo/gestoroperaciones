@@ -5862,8 +5862,8 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 			return;
 		}
 
-		if (transaccion.INSUMO == undefined || transaccion.INSUMO == "") {
-			alert("Insumo: Sin Informacion");
+        if (transaccion.DIRECCIONES_CORREGIDAS == undefined || transaccion.DIRECCIONES_CORREGIDAS == "") {
+			alert("Direcciones Corregidas: Sin Informacion");
 			return;
 		}
 
@@ -5872,6 +5872,17 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 			return;
 		}
 
+
+		if (transaccion.INSUMO == undefined || transaccion.INSUMO == "") {
+			alert("Insumo: Sin Informacion");
+			return;
+		}
+
+
+		if (transaccion.OBSERVACION == undefined || transaccion.OBSERVACION == "") {
+			alert("Observacion: Sin Informacion");
+			return;
+		}
 
         $scope.InfoGestion = {
             txtNegocio: transaccion.txtNegocio,
