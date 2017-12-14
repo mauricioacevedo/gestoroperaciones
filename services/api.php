@@ -11949,7 +11949,7 @@ private function demePedidoEdatel(){
 
     }
 
-    private function csvPNI(){
+        private function csvPNI(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
@@ -13431,7 +13431,7 @@ private function demePedidoEdatel(){
         ini_set('memory_limit','-1');
         ini_set('max_execution_time', 1000);
 
-                $target_dir = "../uploads/";
+                $target_dir = "../uploadsPNI/";
                 $target_file = $target_dir . basename($_FILES["fileUpload"]["name"]);
 
                 $tname    = $_FILES['fileUpload']['tmp_name'];
