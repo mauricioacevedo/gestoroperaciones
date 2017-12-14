@@ -256,6 +256,14 @@
                                     <td><font color='red'>{{data.ANSSOLUCION}}</font></td>
                                     <td>{{data.RESPONSABLE}}</td>
                                     <td><font color='red'>{{data.ANSACTIVIDAD}}</font></td>
+                                    <td>
+                                        <button type="button" uib-tooltip="Editar: {{data.USUARIO_ID}}" tooltip-placement="left"
+                                            class="btn btn-default btn-circle-xss" ng-click="editarModal(data)"
+                                            data-toggle="modal" data-target="#editarModal" data-backdrop="static"
+                                            ng-disabled="loading">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
 
                                     <td ng-hide="true" align="center"><button class="btn btn-success btn-xs" value="edit!" ng-click="getTransaccionPNI();"><i class="fa fa-pencil fa-lg"></i></button></td>
                             </tr>
