@@ -5989,7 +5989,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 
 	};
 
-    $scope.EditarPNI = function (id) {
+    $scope.EditarPNI = function () {
         $scope.timeInit = new Date().getTime();
 		var date1 = new Date();
 		var year = date1.getFullYear();
