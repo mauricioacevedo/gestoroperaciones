@@ -12037,18 +12037,18 @@ private function demePedidoEdatel(){
         $today = date("Y-m-d h:i:s");
         $filename="KPI-$login-$today.csv";
         $query=" SELECT ".
-            "NEGOCIO, FECHASOLICI, ITEMS, SISTEMAINFO, RESULTADOCARGA, ITEMSPROCESADO, ITEMSINCONSISTENTES,
+            "NEGOCIO, FECHASOLICI,CAST(TIMEDIFF(FECHAFIN, FECHASOLICI)
+	         AS CHAR (255)) AS ANSSOLUCION, ITEMS, SISTEMAINFO, RESULTADOCARGA, ITEMSPROCESADO, ITEMSINCONSISTENTES,
 	         OBSERVACIONES, RESPONSABLE, CAST(TIMEDIFF(FECHAFIN, FECHAINI)
-	         AS CHAR (255)) AS ANSACTIVIDAD,CAST(TIMEDIFF(FECHAFIN, FECHASOLICI)
-	         AS CHAR (255)) AS ANSSOLUCION FROM tbl_KpisInfraestructura where ".
-            " FECHAFIN between '$fechaIni 00:00:00' and '$fechaFin 23:59:59'";
+	         AS CHAR (255)) AS ANSACTIVIDAD FROM tbl_KpisInfraestructura where ".
+            " FECHAFIN between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' order by ID DESC";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('NEGOCIO','FECHASOLICI','ITEMS','SISTEMAINFO','RESULTADOCARGA','ITEMSPROCESADO','ITEMSINCONSISTENTES','OBSERVACIONES','RESPONSABLE','ANSACTIVIUDAD','ANSSOLUCION'));
+            fputcsv($fp, array('NEGOCIO','FECHASOLICI','ANSSOLUCION','ITEMS','SISTEMAINFO','RESULTADOCARGA','ITEMSPROCESADO','ITEMSINCONSISTENTES','OBSERVACIONES','RESPONSABLE','ANSACTIVIDAD'));
             while($row = $r->fetch_assoc()){
                 //$result[] = $row;
                 fputcsv($fp, $row);
