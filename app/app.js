@@ -5989,6 +5989,20 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 
 	};
 
+    $scope.editarRegistro = function (data) {
+		$rootScope.errorDatos = null;
+		$scope.ID = transaccion.ID;
+		$scope.UsuarioNom = data.USUARIO_NOMBRE;
+		//$scope.editaInfo = data;
+		$scope.TituloModal = "Editar Registro con el ID:";
+		$scope.UsuarioNuevo = false;
+        //console.log(editaInfo);
+        $scope.cargoLabel = null;
+        $scope.msgLdap = null;
+        $scope.pic = 'images/avatar_2x.png';
+		//$scope.editaInfo.CARGO_ID=data.CARGO_ID;
+	};
+
     //******************************************************************************************
 
     $scope.buscarRegistroPNI = function(bregistro) {

@@ -244,7 +244,7 @@
                                     <th width="5%">ANS SOLUCION</th>
                                     <th width="5%">RESPONSABLE</th>
                                     <th width="5%">ANS ACTIVIDAD</th>
-                                    <th width="5%">OPCIONES</th>
+                                    <th width="3%">OPCIONES</th>
                                     <th ng-hide="true" width="4%">Acciones</th>
                             </thead>
                             <tbody>
@@ -259,7 +259,7 @@
                                     <td><font color='red'>{{data.ANSACTIVIDAD}}</font></td>
                                     <td>
                                         <button type="button" uib-tooltip="Editar: {{data.USUARIO_ID}}" tooltip-placement="left"
-                                            class="btn btn-default btn-circle-xss" ng-click="editarModal(data)"
+                                            class="btn btn-default btn-circle-xss" ng-click="editarRegistro(data)"
                                             data-toggle="modal" data-target="#editarModal" data-backdrop="static"
                                             ng-disabled="loading">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
