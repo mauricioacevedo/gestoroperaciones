@@ -5990,7 +5990,16 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 	};
 
     $scope.EditarPNI = function (id) {
-		$location.path('/pni/transaccion');
+        $scope.timeInit = new Date().getTime();
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+        $location.path('/pni/transaccion');
+        $rootScope.fecha_inicionuevoRegistroPNI = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
         //$location.path('/pni/transaccion/' + id);
 
 	};
