@@ -8570,7 +8570,7 @@ class API extends REST {
 		   } */
 
         if ($concepto == "OT-T01" || $concepto == "COBERTURA" || $concepto == "CONSTRUCCION" || $concepto == "OT-T04"
-            || $concepto == "OT-T05")
+            || $concepto == "OT-T05" || $concepto == "OT-C08")
         {
             $plaza = "";
         }
@@ -11949,7 +11949,7 @@ private function demePedidoEdatel(){
 
     }
 
-    private function csvPNI(){
+        private function csvPNI(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
@@ -12037,17 +12037,18 @@ private function demePedidoEdatel(){
         $today = date("Y-m-d h:i:s");
         $filename="KPI-$login-$today.csv";
         $query=" SELECT ".
-            "ENVIADO, USUARIOENVIO, FECHASOLICITUD, INSUMO, SOLUCION, RESPONSABLE, OBSERVACION,
-	         FECHAINI, FECHAFIN,  CAST(TIMEDIFF(FECHAFIN, FECHAINI)
-	         AS CHAR (255)) AS ANSACTIVIDAD FROM tbl_RegistrosPNI where ".
-            " FECHAFIN between '$fechaIni 00:00:00' and '$fechaFin 23:59:59'";
+            "NEGOCIO, FECHASOLICI,CAST(TIMEDIFF(FECHAFIN, FECHASOLICI)
+	         AS CHAR (255)) AS ANSSOLUCION, ITEMS, SISTEMAINFO, RESULTADOCARGA, ITEMSPROCESADO, ITEMSINCONSISTENTES,
+	         OBSERVACIONES, RESPONSABLE, CAST(TIMEDIFF(FECHAFIN, FECHAINI)
+	         AS CHAR (255)) AS ANSACTIVIDAD FROM tbl_KpisInfraestructura where ".
+            " FECHAFIN between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' order by ID DESC";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('ENVIADO','USUARIOENVIO','FECHASOLICITUD','INSUMO','SOLUCION','RESPONSABLE','OBSERVACION','FECHAINI','FECHAFIN','ANSACTIVIDAD'));
+            fputcsv($fp, array('NEGOCIO','FECHASOLICI','ANSSOLUCION','ITEMS','SISTEMAINFO','RESULTADOCARGA','ITEMSPROCESADO','ITEMSINCONSISTENTES','OBSERVACIONES','RESPONSABLE','ANSACTIVIDAD'));
             while($row = $r->fetch_assoc()){
                 //$result[] = $row;
                 fputcsv($fp, $row);
@@ -13430,7 +13431,7 @@ private function demePedidoEdatel(){
         ini_set('memory_limit','-1');
         ini_set('max_execution_time', 1000);
 
-                $target_dir = "../uploads/";
+                $target_dir = "../uploadsPNI/";
                 $target_file = $target_dir . basename($_FILES["fileUpload"]["name"]);
 
                 $tname    = $_FILES['fileUpload']['tmp_name'];

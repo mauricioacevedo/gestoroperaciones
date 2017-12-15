@@ -244,6 +244,7 @@
                                     <th width="5%">ANS SOLUCION</th>
                                     <th width="5%">RESPONSABLE</th>
                                     <th width="5%">ANS ACTIVIDAD</th>
+                                    <th width="3%">OPCIONES</th>
                                     <th ng-hide="true" width="4%">Acciones</th>
                             </thead>
                             <tbody>
@@ -256,6 +257,14 @@
                                     <td><font color='red'>{{data.ANSSOLUCION}}</font></td>
                                     <td>{{data.RESPONSABLE}}</td>
                                     <td><font color='red'>{{data.ANSACTIVIDAD}}</font></td>
+                                    <td align="center">
+                                            <div id="edi{{$index}}">
+                                            <button class="btn btn-success btn-xs" uib-tooltip="Editar" value="edit!" ng-click="EditarPNI(data.ID);"><i
+                                                    class="fa fa-pencil fa-lg"></i></button>
+                                            <!--<button class="btn btn-danger btn-xs" value="eliminar!"
+                                                    ng-click="eliminarTip(data.ID);"><i class="fa fa-trash fa-lg"></i></button>-->
+                                        </div>
+                                    </td>
 
                                     <td ng-hide="true" align="center"><button class="btn btn-success btn-xs" value="edit!" ng-click="getTransaccionPNI();"><i class="fa fa-pencil fa-lg"></i></button></td>
                             </tr>
