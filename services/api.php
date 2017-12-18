@@ -16716,6 +16716,47 @@ public function pp(&$var){
 
     }
 
+    /////////////////////////////////MICHAEL DISTRIBUCION GRUPO /////////////////////////////////////
+
+    private function DistribucionGrupo(){
+
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+
+        $today = date("Y-m-d");
+
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        $query=	"SELECT DISTINCT ASESOR,
+                 GRUPO,CONCEPTO_ID as Concepto
+                 FROM
+                 informe_petec_pendientesm
+                 WHERE
+                 ASESOR NOT IN ('')
+                 AND STATUS = 'PENDI_PETEC'
+                 group by ASESOR
+                 ORDER BY CONCEPTO_ID;";
+        //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+
+            while($row = $r->fetch_assoc()){
+
+                $result[] = $row;
+            }
+
+            $this->response($this->json(array($result,$grupo,$today)), 200); // send user details
+        }
+        $this->response('',204);        // If no records "No Content" status
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
     //------------------------Listado de Pedidos por Usuario dia actual
 
     //Listado de Pedidos por Usuario dia actual REAGENDAMIENTO----------------------------------------

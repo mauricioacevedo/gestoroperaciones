@@ -445,7 +445,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <button type="button" class="btn btn-default btn-circle-xs pull-right"
-                                            ng-click="topProductivos()" title="Actualizar" data-toggle="tooltip"
+                                            ng-click="distribucionGrupo()" title="Actualizar" data-toggle="tooltip"
                                             data-placement="left" ng-disabled="loading">
                                         <i class="fa fa-refresh" aria-hidden="true"></i>
                                     </button>
@@ -455,7 +455,7 @@
                         <div class="panel-heading nav navbar-default">
                             <ul class="list-group small">
 							<span class="small">
-							<a href="" ng-repeat="datar in listaProductivos as ranks"
+							<a href="" ng-repeat="datar in listaDistribucion as ranks"
                                popover popover-placement="left" uib-popover-html="'<b>Cuartil:</b> ' +{{datar.CUARTIL}}"  popover-trigger="'mouseenter'"
                                class="list-group-item animated slideInRight"
                                ng-style="set_color_Cuartil(parseInt(datar.CUARTIL))">{{datar.RANK}} - <span

@@ -1167,7 +1167,14 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'PedidosGestorUser?grupo=' + grupo);
 	};
 
-	obj.getListadoProgramados = function (usuario_id) {
+
+    //////////////////////////////MICHAEL DISTRIBUCION GRUPO////////////////////////
+    obj.getDistribucionGrupo = function () {
+		return $http.get(serviceBase + 'DistribucionGrupo');
+	};
+    ////////////////////////////////////////////////////////////////////////////////
+
+    obj.getListadoProgramados = function (usuario_id) {
 		return $http.post(serviceBase + 'listaProgramadosUser', {
 			usuario_id: usuario_id
 		});
@@ -4132,7 +4139,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 
 	$scope.grupo = {};
-	$scope.topProductivos = function () {
+
+    $scope.topProductivos = function () {
 		//console.log($scope.grupo);
 
 		services.getPedidosGestorUser($scope.grupo.Cuartil).then(
@@ -4160,6 +4168,33 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 
 	};
+
+
+    $scope.distribucionGrupo = function () {
+
+		services.getDistribucionGrupo().then(
+
+
+			function (data) {
+
+				$scope.listaProductivos = data.data[0];
+                    /*$scope.grupo.Cuartil = data.data[1];
+                    $scope.grupo.fecha = data.data[2];
+                    */
+				return data.data;
+
+
+			},
+			function errorCallback(response, status) {
+				$rootScope.errorDatos = "Ops, probelemas";
+
+			}
+		);
+
+
+	};
+
+
 // Opciones de Tabs para las Graficas ----------------------------------------------------
 $scope.activeTabs = 1;
 $scope.setActiveTab = function (tabToSet) {
