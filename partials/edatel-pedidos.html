@@ -218,6 +218,7 @@
                                 <th>Información</th>
                                 <th>Tiempo</th>
                                 <th>Status</th>
+                                <th>Observaciones</th>
                                 <th>Opciones</th>
                                 </thead>
 
@@ -236,13 +237,15 @@
                                     <td><font color='red'>{{service.TIEMPO_COLA}}</font></td>
                                     <td><font color='red'>{{service.STATUS}}</font></td>
 
+                                    <td><textarea name="textObs" rows"40"></textarea> </td>
+
 
                                     <td>
                                         <select ng-model="service.motivo_malo" class="form-control" style="" name="obs">
                                             <option value='' disabled>---SELECCIONE---</option>
-                                            <option value='CERRADO'>CERRADO</option>
+                                            <option value='GESTIONADO'>GESTIONADO</option>
                                             <option value='PENDIENTE'>PENDIENTE</option>
-                                            <option value='PENDI(RED)'>PENDI(RED)</option>
+
                                         </select>
                                         <br>
 
