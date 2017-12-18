@@ -445,18 +445,19 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <button type="button" class="btn btn-default btn-circle-xs pull-right"
-                                            ng-click="distribucionGrupo()" title="Actualizar" data-toggle="tooltip"
+                                            ng-click="distribucionGrupo();" title="Actualizar" data-toggle="tooltip"
                                             data-placement="left" ng-disabled="loading">
                                         <i class="fa fa-refresh" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
+
                         <div class="panel-heading nav navbar-default">
                             <ul class="list-group small">
 							<span class="small">
 							<a href="" ng-repeat="datar in listaDistribucion as ranks"
-                               popover popover-placement="left" uib-popover-html="'<b>Cuartil:</b> ' +{{datar.CUARTIL}}"  popover-trigger="'mouseenter'"
+                               popover popover-placement="left" popover-trigger="'mouseenter'"
                                class="list-group-item animated slideInRight"
                                ng-style="set_color_Cuartil(parseInt(datar.CUARTIL))">{{datar.RANK}} - <span
                                     ng-class="{'on':'label label-info','off':'label label-danger'}[datar.ESTADO]">{{datar.ESTADO}}</span> - {{datar.USUARIO_ID}}  <span
@@ -465,6 +466,7 @@
 							</span>
                             </ul>
                         </div>
+
                         <div class="panel-footer clearfix">
                             Usuarios: <span class="label label-success">{{ranks.length}}</span>
                             Gestionados: <span class="label label-success">{{ranks | sumarNum:'PEDIDOS'}}</span>
