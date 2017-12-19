@@ -4173,18 +4173,12 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
     $scope.distribucionGrupo = function () {
 
 		services.getDistribucionGrupo().then(
-
-
 			function (data) {
-
-				$scope.listaProductivos = data.data[0];
-                    /*$scope.grupo.Cuartil = data.data[1];
-                    $scope.grupo.fecha = data.data[2];
-                    */
+				$scope.listaDistriucionGrupo = data.data[0];
 				return data.data;
 
-
 			},
+
 			function errorCallback(response, status) {
 				$rootScope.errorDatos = "Ops, probelemas";
 
