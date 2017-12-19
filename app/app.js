@@ -17285,6 +17285,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         var varDondeGuardar = gestion.FUENTE;
         var varEstadoGuardar = InfoPedido.ESTADO_PROCESO;
         var varObsesGuardar = InfoPedido.OBSERVACIONES_PROCESO;
+        var varCONCEPTO_ID = InfoPedido.CONCEPTO_ID;
 
 		if(InfoPedido.PROGRAMACION==""){
             InfoPedido.PROGRAMACION='SIN';
@@ -17296,6 +17297,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 var estadoFinal = varObsesGuardar;
             }
 
+        if (varObsesGuardar == "PENDIENTE ADECUACION CIRCUITO")
+        {
+            InfoPedido.CONCEPTO_ID = "PENDIENTE ADECUACION CIRCUITO";
+        }
 
             $scope.InfoGestion = {
                 pedido: gestion.PEDIDO_ID,
