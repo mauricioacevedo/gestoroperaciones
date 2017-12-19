@@ -16726,17 +16726,15 @@ public function pp(&$var){
 
         $today = date("Y-m-d");
 
-        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-
-        $query=	"SELECT DISTINCT ASESOR,
-                 GRUPO,CONCEPTO_ID as Concepto
-                 FROM
-                 informe_petec_pendientesm
-                 WHERE
-                 ASESOR NOT IN ('')
-                 AND STATUS = 'PENDI_PETEC'
-                 group by ASESOR
-                 ORDER BY CONCEPTO_ID;";
+        $query=	"SELECT DISTINCT ASESOR, ".
+                 " GRUPO,CONCEPTO_ID as Concepto ".
+                 " FROM ".
+                 " informe_petec_pendientesm ".
+                 " WHERE ".
+                 " ASESOR NOT IN ('') ".
+                 " AND STATUS = 'PENDI_PETEC' ".
+                 " group by ASESOR ".
+                 " ORDER BY CONCEPTO_ID ";
 
         echo var_dump($query);
 
