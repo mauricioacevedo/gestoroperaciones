@@ -16736,7 +16736,7 @@ public function pp(&$var){
                  " group by ASESOR ".
                  " ORDER BY CONCEPTO_ID ";
 
-        echo var_dump($query);
+        //echo var_dump($query);
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
