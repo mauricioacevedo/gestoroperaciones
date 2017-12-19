@@ -460,17 +460,17 @@
                                                        ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading"
                                                        select-on-click capitalize/>
                                                 <button type="button" class="btn btn-default btn-circle-xs"
-                                                        ng-click="actualizarGrafica()" title="Actualizar"
+                                                        ng-click="distribucionGrupo()" title="Actualizar"
                                                         data-toggle="tooltip" data-placement="left"
                                                         ng-disabled="loading">
                                                     <i class="fa fa-refresh" aria-hidden="true"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-default btn-circle-xs"
+                                                <!--<button type="button" class="btn btn-default btn-circle-xs"
                                                         ng-click="csvPendientes(filtroInput)"
                                                         title="Exportar Pendientes" data-toggle="tooltip"
                                                         data-placement="left" ng-disabled="loading">
                                                     <i class="fa fa-cloud-download" aria-hidden="true"></i>
-                                                </button>
+                                                </button>-->
                                             </div>
                                         </li>
                                     </ul>
@@ -485,10 +485,11 @@
                                 <th>Concepto</th>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="datar in listado_conceptosasn | filter:filtroInput">
+                                <tr ng-repeat="datar in listaDistriucionGrupo | filter:filtroInput">
                                     <td>
                                         <span>
-                                        {{datar.CONCEPTO_ID}}
+                                        {{datar.ASESOR}}
+                                        {{data.ASESOR}}
                                         </span>
                                     </td>
                                     <td>
