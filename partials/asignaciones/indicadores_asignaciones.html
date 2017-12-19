@@ -484,6 +484,7 @@
                                 <th>Grupo</th>
                                 <th>Concepto</th>
                                 <th>Ingreso Pedido</th>
+                                <th>ANS Pedido</th>
                                 </thead>
                                 <tbody>
                                 <tr ng-repeat="datar in listaDistriucionGrupo | filter:filtroInput">
@@ -500,6 +501,9 @@
                                     </td>
                                     <td>
                                         {{datar.FECHA_INGRESO}}
+                                    </td>
+                                    <td>
+                                        <font color='red'>{{datar.ANSPEDIDO}}</font>
                                     </td>
 
                                     <!--<td ng-init="listado_conceptosasn.total02 = parseInt(listado_conceptosasn.total02) + parseInt(datar.Entre02)">

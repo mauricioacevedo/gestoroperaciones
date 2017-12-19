@@ -16728,7 +16728,8 @@ public function pp(&$var){
 
         $query=	"SELECT DISTINCT ASESOR, ".
                  " GRUPO,CONCEPTO_ID as CONCEPTO, ".
-                 " FECHA_INGRESO ".
+                 " FECHA_INGRESO, ".
+                 " CAST(TIMEDIFF(now(),FECHA_INGRESO) AS CHAR (255)) AS ANSPEDIDO ".
                  " FROM ".
                  " informe_petec_pendientesm ".
                  " WHERE ".
