@@ -16728,6 +16728,7 @@ public function pp(&$var){
 
         $query=	"SELECT DISTINCT ASESOR, ".
                  " GRUPO,CONCEPTO_ID as CONCEPTO ".
+                 " FECHA_INGRESO ".
                  " FROM ".
                  " informe_petec_pendientesm ".
                  " WHERE ".
