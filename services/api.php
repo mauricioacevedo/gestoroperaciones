@@ -16727,14 +16727,14 @@ public function pp(&$var){
         $today = date("Y-m-d");
 
         $query=	"SELECT DISTINCT ASESOR, ".
-                 " GRUPO,CONCEPTO_ID as Concepto ".
+                 " GRUPO,CONCEPTO_ID as CONCEPTO ".
                  " FROM ".
                  " informe_petec_pendientesm ".
                  " WHERE ".
                  " ASESOR NOT IN ('') ".
                  " AND STATUS = 'PENDI_PETEC' ".
                  " group by ASESOR ".
-                 " ORDER BY CONCEPTO_ID ";
+                 " ORDER BY CONCEPTO ";
 
         //echo var_dump($query);
 
