@@ -3655,6 +3655,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				data: data.data
 
 			};
+
 			var date1 = new Date();
 			var year = date1.getFullYear();
 			var month = $scope.doubleDigit(date1.getMonth() + 1);
@@ -3669,6 +3670,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		});
 		//para actualizar la tabla...
 		$scope.actualizarPendientesPorPlaza();
+        $scope.distribucionGrupo();
+
 
 		//$scope.actualizarGraficaAgendamiento();
 
