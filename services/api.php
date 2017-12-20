@@ -16746,7 +16746,7 @@ public function pp(&$var){
                  " WHERE ".
                  " pendi.ASESOR NOT IN ('') ".
                  " AND pendi.STATUS = 'PENDI_PETEC' ".
-                 " AND gesti.fecha_fin BETWEEN '$today 00:00:00' AND '$today 23:59:59'  "
+                 " AND gesti.fecha_fin BETWEEN '$today 00:00:00' AND '$today 23:59:59' ".
                  " group by ASESOR ".
                  " ORDER BY CONCEPTO ";
 
