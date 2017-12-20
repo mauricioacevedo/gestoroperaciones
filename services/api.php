@@ -1457,7 +1457,7 @@ class API extends REST {
         $pedidoid = $pedido1['pedido'];
         $observaciones = $pedido1['observacion'];
 
-        echo var_dump ($observaciones);
+        //echo ($observaciones);
 
         $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','concepto_final');
         $keys = array_keys($pedido);
@@ -2325,7 +2325,6 @@ class API extends REST {
         $estadoid=$pedido['pedido']['estado'];
         $useri=$pedido['pedido']['user'];
         $username=$pedido['pedido']['username'];
-
         $fuente=$pedido['pedido']['fuente'];
 
         $PEDIDO_IDi=$pedido['pedido']['PEDIDO_ID'];
@@ -2336,6 +2335,11 @@ class API extends REST {
         $concepto_anterior=$pedido['pedido']['CONCEPTO_ANTERIOR'];
         //echo "estado: $estado";
         $sourcee=$pedido['pedido']['source'];
+
+        $observacion=$pedido['pedido']['OBSERVACIONES_PROCESO'];
+
+        echo var_dump ($observacion);
+
         if($sourcee==""){
             $sourcee="AUTO";
         }
