@@ -2336,9 +2336,7 @@ class API extends REST {
         //echo "estado: $estado";
         $sourcee=$pedido['pedido']['source'];
 
-        $observacion=$pedido['pedido']['OBSERVACIONES_PROCESO'];
-
-        echo var_dump ($observacion);
+        //echo var_dump ($observacion);
 
         if($sourcee==""){
             $sourcee="AUTO";
