@@ -16738,12 +16738,14 @@ public function pp(&$var){
         $query=	"SELECT DISTINCT ASESOR, ".
                  " GRUPO,CONCEPTO_ID as CONCEPTO, ".
                  " FECHA_INGRESO, ".
-                 " CAST(TIMEDIFF(now(),FECHA_INGRESO) AS CHAR (255)) AS ANSPEDIDO ".
+                 " CAST(TIMEDIFF(now(),FECHA_INGRESO) AS CHAR (255)) AS ANSPEDIDO, ".
+                 " (select count(distinct gesti.pedido_id)) as Gestionados, ".
                  " FROM ".
-                 " informe_petec_pendientesm ".
+                 " informe_petec_pendientesm pendi inner join pedidos gesti on pendi.ASESOR = gesti.user ".
                  " WHERE ".
-                 " ASESOR NOT IN ('') ".
-                 " AND STATUS = 'PENDI_PETEC' ".
+                 " pendi.ASESOR NOT IN ('') ".
+                 " AND pendi.STATUS = 'PENDI_PETEC' ".
+                 " AND gesti.fecha_fin BETWEEN '$today 00:00:00' AND '$today 23:59:59'  "
                  " group by ASESOR ".
                  " ORDER BY CONCEPTO ";
 
