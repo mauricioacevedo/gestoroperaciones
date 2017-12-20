@@ -16727,6 +16727,7 @@ public function pp(&$var){
 
     /////////////////////////////////MICHAEL DISTRIBUCION GRUPO /////////////////////////////////////
 
+
     private function DistribucionGrupo(){
 
         if($this->get_request_method() != "GET"){
@@ -16739,7 +16740,7 @@ public function pp(&$var){
                  " GRUPO,CONCEPTO_ID as CONCEPTO, ".
                  " FECHA_INGRESO, ".
                  " CAST(TIMEDIFF(now(),FECHA_INGRESO) AS CHAR (255)) AS ANSPEDIDO, ".
-                 " (select count(distinct gesti.pedido_id)) as Gestionados, ".
+                 " (select count(distinct gesti.pedido_id)) as Gestionados ".
                  " FROM ".
                  " informe_petec_pendientesm pendi inner join pedidos gesti on pendi.ASESOR = gesti.user ".
                  " WHERE ".
