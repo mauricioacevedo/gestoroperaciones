@@ -1457,7 +1457,7 @@ class API extends REST {
         $pedidoid = $pedido1['pedido'];
         $observaciones = $pedido1['observacion'];
 
-        //echo var_dump ($observaciones);
+        var_dump ($observaciones);
 
         $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','concepto_final');
         $keys = array_keys($pedido);
@@ -1480,6 +1480,9 @@ class API extends REST {
             $values = $values."'".$pedido[$desired_key]."',";
         }
         $today = date("Y-m-d H:i:s");
+
+
+
         //$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
         if(!empty($pedido)){
             //$concepto_final=$this->updateFenix($pedido);
@@ -1510,6 +1513,10 @@ class API extends REST {
                 ",'$usuarioPc')";
 
             $rlog = $this->mysqli->query($sql_log);
+
+
+
+
             // ---------------------------------- SQL Feed
             $this->response(json_encode(array("msg"=>"N/A","data" => $today)),200);
 

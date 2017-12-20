@@ -17297,7 +17297,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 var estadoFinal = varObsesGuardar;
             }
 
-        console.log(varObsesGuardar);
+        //console.log(varObsesGuardar);
 
         if (varObsesGuardar == "PENDIENTE ADECUACION CIRCUITO")
         {
