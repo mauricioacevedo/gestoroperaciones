@@ -12046,7 +12046,7 @@ private function demePedidoEdatel(){
         $today = date("Y-m-d h:i:s");
         $filename="PNI-$login-$today.csv";
         $query=" SELECT ".
-            "NOMBREARCHIVO, ORIGEN, DEPTO, MPIO, COD_MPIO, DIRECCION, ESTRATO, PAG_SERV, ESTADO_CONCEPTO, PEDIDO,
+            "NOMBREARCHIVO, DEPTO, MPIO, COD_MPIO, DIRECCION, BLOQUE, ESTRATO, PAG_SERV, ESTADO_CONCEPTO, PEDIDO,
 	         UEN, CX, CY, RESPONSABLE, FECHA_CARGA
 	         FROM tbl_CargasPNI where ".
             " FECHA_CARGA between '$fechaIni 00:00:00' and '$fechaFin 23:59:59'";
