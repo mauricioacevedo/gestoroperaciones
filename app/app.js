@@ -17301,7 +17301,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
         if (varObsesGuardar == "PENDIENTE ADECUACION CIRCUITO")
         {
-            InfoPedido.CONCEPTO_ID = "PENDIENTE ADECUACION CIRCUITO";
+            gestion.CONCEPTO_ID = "PENDIENTE ADECUACION CIRCUITO";
         }
 
             $scope.InfoGestion = {
@@ -17336,7 +17336,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 ID: gestion.ID
             };
 
-            console.log("cambio concepto" + InfoPedido.CONCEPTO_ID);
+            console.log("cambio concepto" + gestion.CONCEPTO_ID);
 
         //$scope.municipio= $scope.iplaza.MUNICIPIO_ID;
 
