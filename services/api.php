@@ -18867,7 +18867,7 @@ public function pp(&$var){
             if($observacion == "PENDIENTE ADECUACION CIRCUITO ")
 
             {
-                //$estado = "ADECUAR CIRCUITO";
+                echo ("ingreso");
                 $queryReconf = "INSERT INTO informe_petec_pendientesm (".trim($columns,',').") VALUES(".trim($values,',').")";
                 $insertReconf = $this->mysqli->query($queryReconf);
             }
