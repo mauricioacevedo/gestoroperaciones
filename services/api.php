@@ -13625,61 +13625,57 @@ private function demePedidoEdatel(){
                          }
 
                         if($h=="A"){
-                        $ORIGEN=$cellValue;
-                        }
-                        if($h=="B"){
                         $DEPTO=$cellValue;
                         }
-                        if($h=="C"){
-                        $COD_DEPTO=$cellValue;
-                        }
-                        if($h=="D"){
+                        if($h=="B"){
                         $MPIO=$cellValue;
                         }
-                        if($h=="E"){
+                        if($h=="C"){
                         $COD_MPIO=$cellValue;
+                        }
+                        if($h=="D"){
+                        $DIRECCION=$cellValue;
+                        }
+                        if($h=="E"){
+                        $BLOQUE=$cellValue;
                         }
 
                         if($h=="F"){
-                        $DIRECCION=$cellValue;
-                        }
-
-                        if($h=="G"){
                         $ESTRATO=$cellValue;
                         }
 
-                        if($h=="H"){
+                        if($h=="G"){
                         $PAG_SERV=$cellValue;
                         }
 
-                        if($h=="I"){
+                        if($h=="H"){
                         $ESTADO_CONCEPTO=$cellValue;
                         }
 
-                        if($h=="J"){
+                        if($h=="I"){
                         $PEDIDO=$cellValue;
                         }
 
-                        if($h=="K"){
+                        if($h=="J"){
                         $UEN=$cellValue;
                         }
 
-                        if($h=="L"){
+                        if($h=="K"){
                         $CX=$cellValue;
                         }
 
-                        if($h=="M"){
+                        if($h=="L"){
                         $CY=$cellValue;
                         }
 
                     }
 
-      $sql= "insert into tbl_CargasPNI (NOMBREARCHIVO,ORIGEN,DEPTO,COD_DEPTO, ".
-                                            " MPIO,COD_MPIO,DIRECCION,ESTRATO,PAG_SERV, ".
+      $sql= "insert into tbl_CargasPNI (NOMBREARCHIVO,DEPTO, ".
+                                            " MPIO,COD_MPIO,DIRECCION,BLOQUE,ESTRATO,PAG_SERV, ".
                                             " ESTADO_CONCEPTO,PEDIDO,UEN,CX,CY,RESPONSABLE) ".
                                             " values  ".
-         " ('$tname1','$ORIGEN','$DEPTO','$COD_DEPTO','$MPIO','$COD_MPIO','$DIRECCION', ".
-          " '$ESTRATO','$PAG_SERV','$ESTADO_CONCEPTO','$PEDIDO','$UEN','$CX','$CY','$usuarioGalleta')";
+         " ('$tname1','$DEPTO','$MPIO','$COD_MPIO','$DIRECCION','$BLOQUE','$ESTRATO','$PAG_SERVI', ".
+          " '$ESTADO_CONCEPTO','$PEDIDO','$UEN','$CX','$CY','$usuarioGalleta')";
 
         //echo var_dump($sql);
 
