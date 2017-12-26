@@ -18868,8 +18868,11 @@ public function pp(&$var){
 
             {
                 //echo var_dump("ingreso ohoho siii");
-                $queryReconf = "INSERT INTO informe_petec_pendientesm (".trim($columns,',').") VALUES(".trim($values,',').")";
+                $queryReconf = "INSERT INTO informe_petec_pendientesm(".trim($columns,',').") VALUES(".trim($values,',').")";
+                echo var_dump ($queryReconf);
                 $insertReconf = $this->mysqli->query($queryReconf);
+
+
             }
 
             //Activiy Feed ------------------------------------------------------------------
