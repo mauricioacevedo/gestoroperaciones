@@ -17336,7 +17336,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 ID: gestion.ID
             };
 
-            console.log("cambio concepto" + gestion.CONCEPTO_ID);
+            //console.log("cambio concepto " + gestion.CONCEPTO_ID);
 
         //$scope.municipio= $scope.iplaza.MUNICIPIO_ID;
 
