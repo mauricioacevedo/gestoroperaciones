@@ -12045,6 +12045,7 @@ private function demePedidoEdatel(){
 
         $today = date("Y-m-d h:i:s");
         $filename="PNI-$login-$today.csv";
+
         $query=" SELECT ".
             "NOMBREARCHIVO, DEPTO, MPIO, COD_MPIO, DIRECCION, BLOQUE, ESTRATO, PAG_SERV, ESTADO_CONCEPTO, PEDIDO,
 	         UEN, CX, CY, RESPONSABLE, FECHA_CARGA
