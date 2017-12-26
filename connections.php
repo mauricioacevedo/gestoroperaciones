@@ -106,7 +106,7 @@ function getConnFenix(){
 
 function getConnFenixSTBY(){
         $host="10.100.67.64";
-        $user="macevedg";
+        $user="macevedggg";
         $pwd="mauricio1";
 
         putenv("NLS_LANG=LATIN AMERICAN SPANISH_AMERICA.WE8ISO8859P9");
