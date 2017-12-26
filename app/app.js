@@ -17297,7 +17297,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 var estadoFinal = varObsesGuardar;
             }
 
-        //console.log(varObsesGuardar);
+
 
         if (varObsesGuardar == "PENDIENTE ADECUACION CIRCUITO")
         {
@@ -17335,6 +17335,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 FECHA: gestion.FECHA_ESTADO,
                 ID: gestion.ID
             };
+                console.log(InfoPedido.CONCEPTO_ID);
 
         //$scope.municipio= $scope.iplaza.MUNICIPIO_ID;
 
