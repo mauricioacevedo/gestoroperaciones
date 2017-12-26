@@ -18862,9 +18862,9 @@ public function pp(&$var){
 
             //RECONFIGURACION MICHAEL
 
-            echo var_dump($observacion);
+            //echo var_dump($observacion);
 
-            if($observacion == "PENDIENTE ADECUACION CIRCUITO ")
+            if($observacion == "PENDIENTE ADECUACION CIRCUITO")
 
             {
                 echo var_dump("ingreso");
