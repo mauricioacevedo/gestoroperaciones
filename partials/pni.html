@@ -17,7 +17,7 @@
                             <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i>Historico Registros PNI<small> </small></h2>
 
                                   <div class="row">
-                                     <label class=" input col-sm-3">Exporte Historicos:</label>
+                                     <label class=" input col-sm-3">Seleccione Fecha:</label>
                                                 <div class="input-daterange col-sm-5" id="datepicker">
                                                     <div class="input-group">
                                                         <span class="input-group-addon">Desde</span>
@@ -26,8 +26,8 @@
                                                         <input type="text" class="form-control" style="min-width: 100px" id="toDate" name="toDate" ng-model="data.fechaFin" />
                                                         <span class="input-group-btn">
                                                               <!--  <button class="btn btn-primary btn-sm" value="actualizar!" ng-click="pageChanged();"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>-->
-                                                                <button class="btn btn-success btn-sm" value="exportar!" ng-click="csvPNI();"><span class="glyphicon glyphicon-download-alt"></span> Historicos</button>
-                                                                <button class="btn btn-danger btn-xs" value="exportar!" ng-click="csvCargasPNI();"><span class="glyphicon glyphicon-download-alt"></span> Cargas</button>
+                                                                <button class="btn btn-success btn-sm" value="exportar!" ng-click="csvPNI();"><span class="glyphicon glyphicon-download-alt" data-original-title="Exportar Historicos"></span> Historicos</button>
+                                                                <button class="btn btn-danger btn-xs" data-original-title="Exportar Cargas" value="exportar!" ng-click="csvCargasPNI();"><span class="glyphicon glyphicon-download-alt"></span> Cargas</button>
                                                         </span>
                                                     </div>
                                                 </div>
