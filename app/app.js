@@ -879,6 +879,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'csvPNI?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
 	};
 
+    obj.getCsvCargasPNI = function (login, fechaIni, fechaFin) { //exportar NCA
+		return $http.get(serviceBase + 'csvCargasPNI?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
+	};
+
     //EXPOTE KPIS
     obj.getCsvKPIS = function (login, fechaIni, fechaFin) { //exportar NCA
 		return $http.get(serviceBase + 'csvKPIS?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
@@ -6101,6 +6105,16 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 	$scope.csvPNI = function () {
 		var login = $rootScope.logedUser.login;
 		services.getCsvPNI(login, $scope.data.fechaIni, $scope.data.fechaFin).then(function (data) {
+			//console.log(data.data[0]);
+			window.location.href = "tmp/" + data.data[0];
+			return data.data;
+		});
+
+	};
+
+    $scope.csvCargasPNI = function () {
+		var login = $rootScope.logedUser.login;
+		services.getCsvCargasPNI(login, $scope.data.fechaIni, $scope.data.fechaFin).then(function (data) {
 			//console.log(data.data[0]);
 			window.location.href = "tmp/" + data.data[0];
 			return data.data;
