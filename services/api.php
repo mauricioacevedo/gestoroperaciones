@@ -18869,7 +18869,7 @@ public function pp(&$var){
             {
                 //$estado = "ADECUAR CIRCUITO";
                 $queryReconf = "INSERT INTO informe_petec_pendientesm (".trim($columns,',').") VALUES(".trim($values,',').")";
-                $insertGestion = $this->mysqli->query($queryReconf);
+                $insertReconf = $this->mysqli->query($queryReconf);
             }
 
             //Activiy Feed ------------------------------------------------------------------
