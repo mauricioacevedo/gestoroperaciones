@@ -18712,6 +18712,10 @@ public function pp(&$var){
         $idpedido       =   $gestion['gestion']['ID'];
         $crIncidente    =   $gestion['gestion']['INCIDENTE'];
 
+        $observacion    =   $gestion['gestion']['OBSERVACIONES_PROCESO'];
+
+
+
         $malo           =   false;
         $programado     =   false;
         $cerrar         =   true;
@@ -18855,6 +18859,15 @@ public function pp(&$var){
             $queryGestion = "INSERT INTO pedidos(".trim($columns,',').") VALUES(".trim($values,',').")";
 
             $insertGestion = $this->mysqli->query($queryGestion);
+
+            //RECONFIGURACION MICHAEL
+        /*    if($observacion == "PENDIENTE ADECUACION CIRCUITO ")
+
+            {
+                $estado = "ADECUAR CIRCUITO";
+                $queryReconf = "INSERT INTO informe_petec_pendientesm (".trim($columns,',').") VALUES(".trim($values,',').")";
+                $insertGestion = $this->mysqli->query($queryReconf);
+            }   */
 
             //Activiy Feed ------------------------------------------------------------------
             $sqlFeed =  "insert into portalbd.activity_feed ( ".
