@@ -18861,13 +18861,15 @@ public function pp(&$var){
             $insertGestion = $this->mysqli->query($queryGestion);
 
             //RECONFIGURACION MICHAEL
-        /*    if($observacion == "PENDIENTE ADECUACION CIRCUITO ")
+
+            echo var_dump($observacion);
+          /*  if($observacion == "PENDIENTE ADECUACION CIRCUITO ")
 
             {
                 $estado = "ADECUAR CIRCUITO";
                 $queryReconf = "INSERT INTO informe_petec_pendientesm (".trim($columns,',').") VALUES(".trim($values,',').")";
                 $insertGestion = $this->mysqli->query($queryReconf);
-            }   */
+            }  */
 
             //Activiy Feed ------------------------------------------------------------------
             $sqlFeed =  "insert into portalbd.activity_feed ( ".
