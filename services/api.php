@@ -18714,7 +18714,7 @@ public function pp(&$var){
 
         $observacion    =   $gestion['gestion']['OBSERVACIONES_PROCESO'];
 
-
+        echo var_dump ($gestion);
 
         $malo           =   false;
         $programado     =   false;
@@ -18868,9 +18868,28 @@ public function pp(&$var){
 
             {
                 //echo var_dump("ingreso ohoho siii");
-                $queryReconf = "INSERT INTO informe_petec_pendientesm(".trim($columns,',').") VALUES(".trim($values,',').")";
+            /*    $queryReconf = "INSERT INTO informe_petec_pendientesm (PEDIDO_ID, SUBPEDIDO_ID, SOLOCITUD_ID, TIPO_ELEMENTO, ".
+                                                                       " TIPO_TRABAJO, DESC_TIPO_TRABAJO, FECHA_INGRESO, ".
+                                                                       " FECHA_ESTADO, FECHA_FINAL, FECHA_CITA, PRODUCTO_ID, ".
+                                                                       " PRODUCTO, UEN_CALCULADA, ESTRATO, CONCEPTO_ID, ".
+                                                                       " TECNOLOGIA_ID, MUNICIPIO_ID, DEPARTAMENTO, ".
+                                                                    " DIRECCION_SERVICIO, PAGINA_SERVICIO,FECHA_INGRESO_SOLA, ".
+                                                                       " HORAINGRESO, FECHAESTADO_SOLA, HORAESTADO, ".
+                                                                       " DIANUM_ESTADO, DIANOM_ESTADO, RANGO_CARGA, FECHA_CARGA, ".
+                                                                       " DIA_CARGA, MESNOMBRE_CARGA, MESNUMERO_CARGA, ".
+                                                                       " SEMANA_CARGA, SEMANA_CARGA, SEMANA_ANO_CARGA, ".
+                                                                       " ANO_CARGA, FUENTE, GRUPO, ACTIVIDAD, STATUS, ".
+                                                                       " ESTADO_BLOQUEO, USUARIO_BLOQUEO_FENIX, ASESOR, ".
+                                                                    " FECHA_VISTO_ASESOR, ESTUDIOS, VIEWS, CONCEPTO_ANTERIOR, ".
+                                                                       " PROGRAMACION, MICROZONA, RADICADO_TEMPORAL, ".
+                                                                       " IDENTIFICADOR_ID, CANTIDAD_EQU, EQUIPOS, CONCEPTOS_EQU, ".
+                                                                    " TIPO_EQUIPOS, EXTENSIONES, OBSERVACIONES, EJECUTIVO_ID, ".
+                                                                    " CANAL_ID, VEL_IDEN, VEL_SOLI, CONCEPTO_ID_ANTERIOR_NOV, ".
+                                                                    " CELULAR_AVISAR, TELEFONO_AVISAR, CARACTERISTICAS, ".
+                                                                    " UP2DATE, CLIENTE_ID, APROVISIONADOR, PEDIDO_CRM ".
+                                                                    " ID, NOMBRE_CLIENTE) VALUES("")";
                 echo var_dump ($queryReconf);
-                $insertReconf = $this->mysqli->query($queryReconf);
+                $insertReconf = $this->mysqli->query($queryReconf);*/
 
 
             }
