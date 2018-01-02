@@ -14913,7 +14913,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
                            'RECONFIGURAR OFERTA (14)') {
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
-				} else if (concepto_id == 'O-101') {
+				} else if (concepto_id == 'O-101' || concepto_id == 'RECONFIGURAR OFERTA (14)')) {
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
 				} else {
