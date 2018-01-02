@@ -18931,6 +18931,10 @@ public function pp(&$var){
             if($observacion == "PENDIENTE ADECUACION CIRCUITO")
 
             {
+
+                $queryReconf = "update informe_petec_pendientesm set CONCEPTO_ID = '$observacion', STATUS = 'PENDI_PETEC'".
+                                " WHERE ID = '$idpedido'";
+
                 //echo var_dump("ingreso ohoho siii");
             /*    $queryReconf = "INSERT INTO informe_petec_pendientesm (PEDIDO_ID, SUBPEDIDO_ID, SOLOCITUD_ID, TIPO_ELEMENTO, ".
                                                                        " TIPO_TRABAJO, DESC_TIPO_TRABAJO, FECHA_INGRESO, ".
