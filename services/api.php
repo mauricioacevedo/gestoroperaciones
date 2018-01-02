@@ -18959,6 +18959,7 @@ public function pp(&$var){
                 echo var_dump ($queryReconf);
                 $insertReconf = $this->mysqli->query($queryReconf);*/
                 $insertReconf = $this->mysqli->query($queryReconf);
+                echo var_dump("ingreso ohoho siii");
             }
 
             //Activiy Feed ------------------------------------------------------------------
