@@ -18928,7 +18928,7 @@ public function pp(&$var){
 
             //echo var_dump($observacion);
 
-            if($observacion == "PENDIENTE ADECUACION CIRCUITO")
+            if($observacion == "RENCONFIGURAR OFERTA (14)")
 
             {
 
