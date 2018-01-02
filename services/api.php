@@ -18928,7 +18928,7 @@ public function pp(&$var){
 
             //echo var_dump($observacion);
 
-            if($observacion == "RENCONFIGURAR OFERTA (14)")
+            if($observacion == "RECONFIGURAR OFERTA (14)")
 
             {
 
