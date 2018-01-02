@@ -18958,8 +18958,7 @@ public function pp(&$var){
                                                                     " ID, NOMBRE_CLIENTE) VALUES("")";
                 echo var_dump ($queryReconf);
                 $insertReconf = $this->mysqli->query($queryReconf);*/
-
-
+                $insertReconf = $this->mysqli->query($queryReconf);
             }
 
             //Activiy Feed ------------------------------------------------------------------
