@@ -8579,7 +8579,7 @@ class API extends REST {
 		   } */
 
         if ($concepto == "OT-T01" || $concepto == "COBERTURA" || $concepto == "CONSTRUCCION" || $concepto == "OT-T04"
-            || $concepto == "OT-T05" || $concepto == "OT-C08" || $concepto == "RECONFIGURAR OFERTA (14)")
+            || $concepto == "OT-T05" || $concepto == "OT-C08" || $concepto == "RC-SIEBEL")
         {
             $plaza = "";
         }
