@@ -7331,7 +7331,7 @@ $scope.intervalLightKPIS = setInterval(function(){
                 }else if(concepto_id=='14'||concepto_id=='99'||concepto_id=='92'||concepto_id=='RC-SIEBEL'){
                         negocioReconfiguracion+="<tr><td><a href='./#/registros/"+concepto_id+"'>"+concepto_id+"</a></td><td>"+counter+"<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
                     $rootScope.totalNegocioReconfiguracion=parseInt($rootScope.totalNegocioReconfiguracion)+parseInt(counter);
-                                }else if(concepto_id=='O-101'||concepto_id=='RC-SIEBEL'){
+                                }else if(concepto_id=='O-101' || concepto_id=='RC-SIEBEL'){
                                     negocioReconfiguracion+="<tr><td><a href='./#/registros/"+concepto_id+"'>"+concepto_id+"</a></td><td>"+counter+"<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
                                     $rootScope.totalNegocioReconfiguracion=parseInt($rootScope.totalNegocioReconfiguracion)+parseInt(counter);
                                     }
@@ -13831,7 +13831,11 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
 				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL') {
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "</td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
-				} else {
+				} else if (concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL') {
+					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
+					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
+				}
+                else {
 					negocioOtros += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "</td></tr>";
 					$rootScope.totalNegocioOtros = parseInt($rootScope.totalNegocioOtros) + parseInt(counter);
 				}
