@@ -7442,6 +7442,7 @@ class API extends REST {
         $username = $this->_request['username'];
         //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
         $pedido_actual = $this->_request['pedido_actual'];
+        echo var_dump ($pedido_actual);
 
         //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
         $sqlupdate="update informe_petec_pendientesm set ASESOR='' where ASESOR='$user' ";
