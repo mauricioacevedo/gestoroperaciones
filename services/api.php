@@ -7557,11 +7557,11 @@ class API extends REST {
                     }
                     $sqlupdate="";
                     if($busy=="YES"){
-                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1, ASESOR='$user' where ID in ($ids) and STATUS = 'PENDI_PETEC'";
-                        echo var_dump("ingreso");
+                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1, ASESOR='$user' where ID in ($ids)";
                     }else{
                         $fecha_visto=date("Y-m-d H:i:s");
-                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where ID in ($ids)";
+                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where ID in ($ids)  and STATUS = 'PENDI_PETEC'";
+                        echo var_dump("ingreso");
                     }
 
                     $x = $this->mysqli->query($sqlupdate);
