@@ -7468,7 +7468,7 @@ class API extends REST {
 
         }else{
 
-            $sql="update informe_petec_pendientesm set status='CERRADO_PETEC' where PEDIDO_ID='$pedido' AND CONCEPTO_ID NOT IN ('14','99') and ASESOR = '' ";
+            $sql="update informe_petec_pendientesm set status='CERRADO_PETEC' where PEDIDO_ID='$pedido' AND CONCEPTO_ID NOT IN ('14','99','PETEC') and ASESOR = '' ";
 
             $r = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
 
