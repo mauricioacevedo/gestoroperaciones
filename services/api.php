@@ -7468,6 +7468,7 @@ class API extends REST {
 
         }else{
 
+            //CAMBIO BUSCAR PEDIDO MICHAEL
             $sql="update informe_petec_pendientesm set status='CERRADO_PETEC' where PEDIDO_ID='$pedido' AND CONCEPTO_ID NOT IN ('14','99','PETEC') and ASESOR = '' ";
 
             $r = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
@@ -7559,6 +7560,8 @@ class API extends REST {
                     if($busy=="YES"){
                         $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1, ASESOR='$user' where ID in ($ids)";
                     }else{
+                        //CAMBIO BUSCAR PEDIDO MICHAEL
+                        //$sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where ID in ($ids)";
                         $fecha_visto=date("Y-m-d H:i:s");
                         $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO_ID in ($pedido) and STATUS in ('PENDI_PETEC','MALO') ";
                         //echo var_dump($ids);
