@@ -7560,8 +7560,8 @@ class API extends REST {
                         $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1, ASESOR='$user' where ID in ($ids)";
                     }else{
                         $fecha_visto=date("Y-m-d H:i:s");
-                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where ID in ($ids)  and STATUS in ('PENDI_PETEC','MALO') ";
-                        echo var_dump($ids);
+                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO_ID in ($pedido) and STATUS in ('PENDI_PETEC','MALO') ";
+                        //echo var_dump($ids);
                     }
 
                     $x = $this->mysqli->query($sqlupdate);
