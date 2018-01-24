@@ -16807,17 +16807,17 @@ public function pp(&$var){
 
         $today = date("Y-m-d");
 
-        $query=	"SELECT DISTINCT pendi.ASESOR, ".
-                 " pendi.GRUPO,pendi.CONCEPTO_ID as CONCEPTO, ".
-                 " date_format(pendi.FECHA_INGRESO,'%Y-%m-%d') AS FECHA_INGRESO, ".
-                 " CAST(TIMEDIFF(now(),pendi.FECHA_INGRESO) AS CHAR (255)) AS ANSPEDIDO ".
+        $query=	"SELECT DISTINCT ASESOR, ".
+                 " GRUPO, CONCEPTO_ID as CONCEPTO, ".
+                 " date_format(FECHA_INGRESO,'%Y-%m-%d') AS FECHA_INGRESO, ".
+                 " CAST(TIMEDIFF(now(),FECHA_INGRESO) AS CHAR (255)) AS ANSPEDIDO ".
                  " FROM ".
-                 " informe_petec_pendientesm pendi ".
+                 " informe_petec_pendientesm ".
                  " WHERE ".
-                 " pendi.ASESOR NOT IN ('') ".
-                 " AND pendi.STATUS in ('PENDI_PETEC','CERRADO_PETEC')".
-                 " group by pendi.ASESOR ".
-                 " ORDER BY pendi.CONCEPTO ";
+                 " ASESOR NOT IN ('') ".
+                 " AND STATUS in ('PENDI_PETEC','CERRADO_PETEC')".
+                 " group by ASESOR ".
+                 " ORDER BY CONCEPTO ";
 
         //echo var_dump($query);
 
