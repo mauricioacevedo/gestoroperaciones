@@ -6091,7 +6091,7 @@ class API extends REST {
                 $objRtaFenix = $this->conceptoPedidoSiebelFenix ($pedidoCrm);
                 $row['PEDIDOFNX'] = $objRtaFenix['PEDIDOFNX'];
                 $row['CONCEPTO_CRM'] = $objRtaFenix['CONCEPTOS'];
-                $row['ZONA'] = $zonas[$row['MUNICIPIO_ID']];
+                $row['ZONA'] = $zonas[$row['MUNICIPIO_ID']][0];
 
                 $result[] = $row;
                 fputcsv($fp, $row);
