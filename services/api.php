@@ -8755,7 +8755,15 @@ class API extends REST {
             }else{
                 $plaza2=" AND MUNICIPIO_ID='$plaza' ";
             }
-            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ASGINGACIONES_SIEBEL');
+            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
+
+
+            if($parametroBusqueda=="NUEVOS_PRIMERO"){
+                $parametroBusqueda=" AND TIPO_TRABAJO='NA NUEVO' ";
+            }else{
+                $parametroBusqueda=" ";
+            }
+
             $sqlllamadas=   "SELECT PEDIDO_ID, ".
                 " SUBPEDIDO_ID, ".
                 " SOLICITUD_ID, ".
@@ -8765,6 +8773,7 @@ class API extends REST {
                 " FROM  informe_petec_pendientesm ".
                 " WHERE 1=1 ".
                 //" and (TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
+                $parametroBusqueda.
                 //" AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
                 " and RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM','MIG','REPARMIG','MIGGPON','GPON','AAA')  ".
                 " AND ASESOR='' ".
