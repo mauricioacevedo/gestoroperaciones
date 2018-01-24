@@ -8757,11 +8757,11 @@ class API extends REST {
             }
             $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
 
-
+            $tipo_trabajo="";
             if($parametroBusqueda=="NUEVOS_PRIMERO"){
-                $parametroBusqueda=" AND TIPO_TRABAJO='NA NUEVO' ";
+                $tipo_trabajo=" AND TIPO_TRABAJO='NA NUEVO' ";
             }else{
-                $parametroBusqueda=" ";
+                $tipo_trabajo=" ";
             }
 
             $sqlllamadas=   "SELECT PEDIDO_ID, ".
@@ -8773,7 +8773,7 @@ class API extends REST {
                 " FROM  informe_petec_pendientesm ".
                 " WHERE 1=1 ".
                 //" and (TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
-                $parametroBusqueda.
+                $tipo_trabajo.
                 //" AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
                 " and RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM','MIG','REPARMIG','MIGGPON','GPON','AAA')  ".
                 " AND ASESOR='' ".
