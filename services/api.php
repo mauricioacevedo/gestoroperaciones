@@ -6032,6 +6032,17 @@ class API extends REST {
 
     }
 
+    function searchForId($id) {
+
+        $array= array ( array("GIRANTCOL"=>"NOROCCIDENTE"), array("BARANTCOL"=>"NOROCCIDENTE"), array("MEDANTCOL"=>"NOROCCIDENTE"), array("LCEANTCOL"=>"NOROCCIDENTE"), array("COPANTCOL"=>"NOROCCIDENTE"), array("GUAANTCOL"=>"NOROCCIDENTE"), array("BELANTCOL"=>"NOROCCIDENTE"), array("CDVANTCOL"=>"NOROCCIDENTE"), array("MARANTCOL"=>"NOROCCIDENTE"), array("ITAGUI"=>"NOROCCIDENTE"), array("LESANTCOL"=>"NOROCCIDENTE"), array("CALANTCOL"=>"NOROCCIDENTE"), array("ITAANTCOL"=>"NOROCCIDENTE"), array("SABANTCOL"=>"NOROCCIDENTE"), array("EREANTCOL"=>"NOROCCIDENTE"), array("ENVANTCOL"=>"NOROCCIDENTE"), array("SANSAPCOL"=>"NORTE"), array("BUCSANCOL"=>"ORIENTE"), array("CALVALCOL"=>"SUR"), array("RIOANTCOL"=>"NOROCCIDENTE"), array("CALI"=>"SUR"), array("BARRANQUILLA"=>"NORTE"), array("BUCARAMANGA"=>"ORIENTE"), array("CARTAGENA"=>"NORTE"), array("BELLO"=>"NOROCCIDENTE"), array("COPACABANA"=>"NOROCCIDENTE"), array("CALDAS"=>"NOROCCIDENTE"), array("RIONEGRO"=>"NOROCCIDENTE"), array("EL CARMEN DE VIBORAL"=>"NOROCCIDENTE"), array("ENVIGADO"=>"NOROCCIDENTE"), array("RETIRO"=>"NOROCCIDENTE"), array("LA UNION"=>"NOROCCIDENTE"), array("LA ESTRELLA"=>"NOROCCIDENTE"), array("BARBOSA"=>"NOROCCIDENTE"), array("SABANETA"=>"NOROCCIDENTE"), array("BOGOTA"=>"CENTRO"), array("MEDELLIN"=>"NOROCCIDENTE"), array("VALLEDUPAR"=>"NORTE"), array("SOLEDAD"=>"NORTE"), array("GIRARDOTA"=>"NOROCCIDENTE"), array("MOSQUERA"=>"CENTRO"), array("MONTERIA"=>"NORTE"), array("FLORIDABLANCA"=>"ORIENTE"), array("BARRANCABERMEJA"=>"ORIENTE"), array("GUARNE"=>"NOROCCIDENTE"), array("LA CEJA"=>"NOROCCIDENTE"), array("TURBACO"=>"NORTE"), array("PIEDECUESTA"=>"ORIENTE"), array("CUCUTA"=>"ORIENTE"), array("VILLAVICENCIO"=>"CENTRO"), array("SINCELEJO"=>"NORTE"), array("SANTA MARTA"=>"NORTE"), array("MARINILLA"=>"NOROCCIDENTE"), array("GIRON"=>"ORIENTE"), array("PUERTO COLOMBIA"=>"NORTE"), array("POPAYAN"=>"SUR"), array("JAMUNDI"=>"SUR"), array("BOGCUNCOL"=>"CENTRO"), array("EL SANTUARIO"=>"NOROCCIDENTE"), array("PALMIRA"=>"SUR"), array("FUSAGASUGA"=>"CENTRO"), array("LUNANTCOL"=>"NOROCCIDENTE"), array("SANANTCOL"=>"NOROCCIDENTE"), array("GALAPA"=>"NORTE"), array("CAJICA"=>"CENTRO"), array("DUITAMA"=>"CENTRO"), array("FUNZA"=>"CENTRO"), array("CERETE"=>"NORTE"), array("SOACHA"=>"CENTRO"), array("MADRID"=>"CENTRO"), array("PASTO"=>"SUR"), array("MALAMBO"=>"NORTE"), array("SANTA ROSA DE OSOS"=>"NOROCCIDENTE"), array("BARATLCOL"=>"NORTE"), array("MANCALCOL"=>"SUR"), array("LA CALERA"=>"CENTRO"), array("RICCUNCOL"=>"CENTRO"), array("POLICARPA"=>"SUR"), array("TUNJA"=>"CENTRO"), array("MOSCUNCOL"=>"CENTRO"), array("LEBRIJA"=>"ORIENTE"), array("GINEBRA"=>"ORIENTE"), array("FLOSANCOL"=>"ORIENTE"), array("CARBOLCOL"=>"NORTE"), array("PEREIRA"=>"SUR"), array("VILLA DEL ROSARIO"=>"NORTE") );
+
+        foreach ($array as $key => $val) {
+            if($val[$id]!="") return $val[$id];
+        }
+        return null;
+    }
+
+
     private function csvPendientes(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -6047,7 +6058,8 @@ class API extends REST {
             $concepto="";
         }
 
-        $zonas= array ( array("GIRANTCOL","NOROCCIDENTE"), array("BARANTCOL","NOROCCIDENTE"), array("MEDANTCOL","NOROCCIDENTE"), array("LCEANTCOL","NOROCCIDENTE"), array("COPANTCOL","NOROCCIDENTE"), array("GUAANTCOL","NOROCCIDENTE"), array("BELANTCOL","NOROCCIDENTE"), array("CDVANTCOL","NOROCCIDENTE"), array("MARANTCOL","NOROCCIDENTE"), array("ITAGUI","NOROCCIDENTE"), array("LESANTCOL","NOROCCIDENTE"), array("CALANTCOL","NOROCCIDENTE"), array("ITAANTCOL","NOROCCIDENTE"), array("SABANTCOL","NOROCCIDENTE"), array("EREANTCOL","NOROCCIDENTE"), array("ENVANTCOL","NOROCCIDENTE"), array("SANSAPCOL","NORTE"), array("BUCSANCOL","ORIENTE"), array("CALVALCOL","SUR"), array("RIOANTCOL","NOROCCIDENTE"), array("CALI","SUR"), array("BARRANQUILLA","NORTE"), array("BUCARAMANGA","ORIENTE"), array("CARTAGENA","NORTE"), array("BELLO","NOROCCIDENTE"), array("COPACABANA","NOROCCIDENTE"), array("CALDAS","NOROCCIDENTE"), array("RIONEGRO","NOROCCIDENTE"), array("EL CARMEN DE VIBORAL","NOROCCIDENTE"), array("ENVIGADO","NOROCCIDENTE"), array("RETIRO","NOROCCIDENTE"), array("LA UNION","NOROCCIDENTE"), array("LA ESTRELLA","NOROCCIDENTE"), array("BARBOSA","NOROCCIDENTE"), array("SABANETA","NOROCCIDENTE"), array("BOGOTA","CENTRO"), array("MEDELLIN","NOROCCIDENTE"), array("VALLEDUPAR","NORTE"), array("SOLEDAD","NORTE"), array("GIRARDOTA","NOROCCIDENTE"), array("MOSQUERA","CENTRO"), array("MONTERIA","NORTE"), array("FLORIDABLANCA","ORIENTE"), array("BARRANCABERMEJA","ORIENTE"), array("GUARNE","NOROCCIDENTE"), array("LA CEJA","NOROCCIDENTE"), array("TURBACO","NORTE"), array("PIEDECUESTA","ORIENTE"), array("CUCUTA","ORIENTE"), array("VILLAVICENCIO","CENTRO"), array("SINCELEJO","NORTE"), array("SANTA MARTA","NORTE"), array("MARINILLA","NOROCCIDENTE"), array("GIRON","ORIENTE"), array("PUERTO COLOMBIA","NORTE"), array("POPAYAN","SUR"), array("JAMUNDI","SUR"), array("BOGCUNCOL","CENTRO"), array("EL SANTUARIO","NOROCCIDENTE"), array("PALMIRA","SUR"), array("FUSAGASUGA","CENTRO"), array("LUNANTCOL","NOROCCIDENTE"), array("SANANTCOL","NOROCCIDENTE"), array("GALAPA","NORTE"), array("CAJICA","CENTRO"), array("DUITAMA","CENTRO"), array("FUNZA","CENTRO"), array("CERETE","NORTE"), array("SOACHA","CENTRO"), array("MADRID","CENTRO"), array("PASTO","SUR"), array("MALAMBO","NORTE"), array("SANTA ROSA DE OSOS","NOROCCIDENTE"), array("BARATLCOL","NORTE"), array("MANCALCOL","SUR"), array("LA CALERA","CENTRO"), array("RICCUNCOL","CENTRO"), array("POLICARPA","SUR"), array("TUNJA","CENTRO"), array("MOSCUNCOL","CENTRO"), array("LEBRIJA","ORIENTE"), array("GINEBRA","ORIENTE"), array("FLOSANCOL","ORIENTE"), array("CARBOLCOL","NORTE"), array("PEREIRA","SUR"), array("VILLA DEL ROSARIO","NORTE") );
+
+
 
 
 
@@ -6091,7 +6103,7 @@ class API extends REST {
                 $objRtaFenix = $this->conceptoPedidoSiebelFenix ($pedidoCrm);
                 $row['PEDIDOFNX'] = $objRtaFenix['PEDIDOFNX'];
                 $row['CONCEPTO_CRM'] = $objRtaFenix['CONCEPTOS'];
-                $row['ZONA'] = $zonas[$row['MUNICIPIO_ID']][0];
+                $row['ZONA'] = $this->searchForId($row['MUNICIPIO_ID']);
 
                 $result[] = $row;
                 fputcsv($fp, $row);
