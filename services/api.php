@@ -7470,7 +7470,7 @@ class API extends REST {
         }else{
 
             //CAMBIO BUSCAR PEDIDO MICHAEL
-            $sql="update informe_petec_pendientesm set status='CERRADO_PETEC' where PEDIDO_ID='$pedido' AND CONCEPTO_ID NOT IN ('14','99','PETEC') and ASESOR = '' ";
+            $sql="update informe_petec_pendientesm set status='CERRADO_PETEC' where PEDIDO_ID='$pedido' AND CONCEPTO_ID NOT IN ('14','99') and ASESOR = '' ";
 
             $r = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
 
@@ -7564,7 +7564,8 @@ class API extends REST {
                         //CAMBIO BUSCAR PEDIDO MICHAEL
                         //$sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where ID in ($ids)";
                         $fecha_visto=date("Y-m-d H:i:s");
-                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO_ID in ($pedido) and STATUS in ('PENDI_PETEC','MALO') ";
+                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where ID in ($ids)";
+                        //$sqlupdate="update informe_petec_pendientesm set //VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO_ID in ($pedido) and STATUS in //('PENDI_PETEC','MALO') ";
                         //echo var_dump($ids);
                     }
 
@@ -16814,7 +16815,7 @@ public function pp(&$var){
                  " informe_petec_pendientesm pendi inner join pedidos gesti on pendi.ASESOR = gesti.user ".
                  " WHERE ".
                  " pendi.ASESOR NOT IN ('') ".
-                 " AND pendi.STATUS = 'PENDI_PETEC' ".
+                 " AND pendi.STATUS = 'PENDI_PETEC' or pendi.STATUS= 'CERRADO_PETEC' ".
                  " AND gesti.fecha_fin BETWEEN '$today 00:00:00' AND '$today 23:59:59' ".
                  " group by ASESOR ".
                  " ORDER BY CONCEPTO ";
