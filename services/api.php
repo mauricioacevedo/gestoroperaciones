@@ -16816,8 +16816,8 @@ public function pp(&$var){
                  " WHERE ".
                  " pendi.ASESOR NOT IN ('') ".
                  " AND pendi.STATUS in ('PENDI_PETEC','CERRADO_PETEC')".
-                 " group by ASESOR ".
-                 " ORDER BY CONCEPTO ";
+                 " group by pendi.ASESOR ".
+                 " ORDER BY pendi.CONCEPTO ";
 
         //echo var_dump($query);
 
