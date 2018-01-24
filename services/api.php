@@ -7445,6 +7445,7 @@ class API extends REST {
         //echo var_dump ($pedido_actual);
 
         //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
+
         $sqlupdate="update informe_petec_pendientesm set ASESOR='' where ASESOR='$user' ";
         $xxx = $this->mysqli->query($sqlupdate);
         //}
