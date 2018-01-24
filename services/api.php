@@ -16810,20 +16810,18 @@ public function pp(&$var){
         $query=	"SELECT DISTINCT ASESOR, ".
                  " GRUPO,CONCEPTO_ID as CONCEPTO, ".
                  " date_format(FECHA_INGRESO,'%Y-%m-%d') AS FECHA_INGRESO, ".
-                 " CAST(TIMEDIFF(now(),FECHA_INGRESO) AS CHAR (255)) AS ANSPEDIDO, ".
-                 " (select count(distinct gesti.pedido_id)) as Gestionados ".
+                 " CAST(TIMEDIFF(now(),FECHA_INGRESO) AS CHAR (255)) AS ANSPEDIDO ".
                  " FROM ".
-                 " informe_petec_pendientesm pendi inner join pedidos gesti on pendi.ASESOR = gesti.user ".
+                 " informe_petec_pendientesm pendi ".
                  " WHERE ".
                  " pendi.ASESOR NOT IN ('') ".
-                 " AND pendi.STATUS = 'PENDI_PETEC' or pendi.STATUS= 'CERRADO_PETEC' ".
-                 " AND gesti.fecha_fin BETWEEN '$today 00:00:00' AND '$today 23:59:59' ".
+                 " AND pendi.STATUS = 'PENDI_PETEC'".
                  " group by ASESOR ".
                  " ORDER BY CONCEPTO ";
 
         //echo var_dump($query);
 
-        //$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
             $result = array();
