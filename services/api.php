@@ -6058,11 +6058,6 @@ class API extends REST {
             $concepto="";
         }
 
-
-
-
-
-
         $filename="Pendientes-$login-$today.csv";
         $query="SELECT a.PEDIDO_ID,".
             " a.PEDIDO, ".
@@ -6070,7 +6065,7 @@ class API extends REST {
             " a.SUBPEDIDO_ID, ".
             " a.SOLICITUD_ID, ".
             " a.PROGRAMACION, ".
-            " a.TIPO_TRABAJO, ".
+            " if (a.TIPO_TRABAJO == 'NA NUEVO' || a.TIPO_TRABAJO == 'NUEVO') THEN NUEVO ELSE CAMBIO, ".
             " a.TIPO_ELEMENTO_ID, ".
             " a.PRODUCTO, ".
             " a.UEN_CALCULADA, ".
