@@ -6065,7 +6065,7 @@ class API extends REST {
             " a.SUBPEDIDO_ID, ".
             " a.SOLICITUD_ID, ".
             " a.PROGRAMACION, ".
-            " if (a.TIPO_TRABAJO == 'NA NUEVO' || a.TIPO_TRABAJO == 'NUEVO') THEN NUEVO ELSE CAMBIO, ".
+            " CASE WHEN (a.TIPO_TRABAJO IN ('NA NUEVO','NUEVO') THEN NUEVO ELSE CAMBIO END, ".
             " a.TIPO_ELEMENTO_ID, ".
             " a.PRODUCTO, ".
             " a.UEN_CALCULADA, ".
