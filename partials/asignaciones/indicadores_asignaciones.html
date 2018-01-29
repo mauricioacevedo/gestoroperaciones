@@ -431,6 +431,113 @@
                         </div>
                     </div>
                 </div-->
+
+                <!--/////////////////////////////////MICHAEL DISTRIBUCION GRUPO /////////////////////////////////////////////-->
+
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading nav navbar-default">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="nav navbar-nav navbar-left">
+                                        <b>Distribucion del Grupo</b>
+                                        <span style="color:red" class="pull-right"><i
+                                                class="fa fa-exclamation-triangle warning" aria-hidden="true"
+                                                ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <div class="col-md-1 col-xs-1 ">
+                                            <div data-ng-if="loading">
+                                                <img title="Esperando respuesta" data-toggle="tooltip"
+                                                     data-placement="top" src="img/loader.gif" height="16px" width="16px"/>
+                                            </div>
+                                        </div>
+                                        <li>
+                                            <div class="col-md-12 col-xs-6 ">
+                                              <!--  <input style="width:120px" class="btn btn-default btn-xs " type="text"
+                                                       ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading"
+                                                       select-on-click capitalize/>-->
+                                                <button type="button" class="btn btn-default btn-circle-xs"
+                                                        ng-click="distribucionGrupo()" title="Actualizar"
+                                                        data-toggle="tooltip" data-placement="left"
+                                                        ng-disabled="loading">
+                                                    <i class="fa fa-refresh" aria-hidden="true"></i>
+                                                </button>
+                                                <!--<button type="button" class="btn btn-default btn-circle-xs"
+                                                        ng-click="csvPendientes(filtroInput)"
+                                                        title="Exportar Pendientes" data-toggle="tooltip"
+                                                        data-placement="left" ng-disabled="loading">
+                                                    <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                                </button>-->
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table small table-striped table-hover table-bordered table-condensed">
+                                <thead>
+                                <th width="2%">Usuario</th>
+                                <th width="2%">Grupo</th>
+                                <th width="2%">Concepto</th>
+                                <th width="10%">Ingreso Pedido</th>
+                                <th width="7%">ANS Pedido</th>
+                                <!--<th>Lleva</th>-->
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="datar in listaDistriucionGrupo | filter:filtroInput">
+                                    <td>
+                                        {{datar.ASESOR}}
+                                    </td>
+                                    <td>
+                                        {{datar.GRUPO}}
+                                    </td>
+                                    <td>
+                                        {{datar.CONCEPTO}}
+                                    </td>
+                                    <td>
+                                        {{datar.FECHA_INGRESO}}
+                                    </td>
+                                    <td>
+                                        <font color='red'>{{datar.ANSPEDIDO}}</font>
+                                    </td>
+                                    <!--<td>
+                                        <font color='green'>{{datar.Gestionados}}</font>
+                                    </td>-->
+
+                                    <!--<td ng-init="listado_conceptosasn.total02 = parseInt(listado_conceptosasn.total02) + parseInt(datar.Entre02)">
+                                        {{datar.Entre02}}
+                                    </td>-->
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <!--<tr class="info">
+                                    <th>TOTALES</th>
+                                    <th>{{listado_conceptosasn.totales}}</th>
+                                    <th>{{listado_conceptosasn.total02}}</th>
+                                    <th>{{listado_conceptosasn.total34}}</th>
+                                    <th>{{listado_conceptosasn.total56}}</th>
+                                    <th>{{listado_conceptosasn.total712}}</th>
+                                    <th>{{listado_conceptosasn.total1324}}</th>
+                                    <th>{{listado_conceptosasn.total2548}}</th>
+                                    <th>{{listado_conceptosasn.totalmas48}}</th>
+                                </tr>-->
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="panel-footer clearfix">
+                            <div class="col-md-8">
+                                <ul class="nav navbar-nav navbar-left">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////-->
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading nav navbar-default">
@@ -491,6 +598,7 @@
                                 <tr ng-repeat="datar in listado_conceptosasn | filter:filtroInput">
                                     <td>
                                         <!--span ng-class="{'PETEC':'label label-success','14':'label label-warning','99':'label label-warning'}[data.CONCEPTO_ID]"-->
+                                        <span>
                                         {{datar.CONCEPTO_ID}}</span></td>
                                     <td ng-init="listado_conceptosasn.totales = parseInt(listado_conceptosasn.totales) + parseInt(datar.CANTIDAD)">
                                         {{datar.CANTIDAD}}

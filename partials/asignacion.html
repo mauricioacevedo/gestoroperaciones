@@ -185,6 +185,8 @@
                             <th>Concepto Final</th>
                             <th>Estado</th>
                             <th>Observacion</th>
+                            <th>Departamento</th>
+                            <th>Ciudad</th>
                             <th>&nbsp;</th>
                             </thead>
                             <tr>
@@ -220,8 +222,16 @@
                                     </select>
                                 </td>
                                 <td>
+                                   <textarea type="text" class="form-control col-xs-8" aria-label=""
+                                             ng-model="mpedido.observacion"></textarea>
+                                </td>
+                                 <td>
                                    <input type="text" class="form-control col-xs-8" aria-label=""
-                                           ng-model="mpedido.observacion">
+                                           ng-model="mpedido.departamento">
+                                </td>
+                                 <td>
+                                   <input type="text" class="form-control col-xs-8" aria-label=""
+                                           ng-model="mpedido.ciudad">
                                 </td>
 
                                 <td>

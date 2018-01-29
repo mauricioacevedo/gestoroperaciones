@@ -879,6 +879,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'csvPNI?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
 	};
 
+    obj.getCsvCargasPNI = function (login, fechaIni, fechaFin) { //exportar NCA
+		return $http.get(serviceBase + 'csvCargasPNI?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
+	};
+
     //EXPOTE KPIS
     obj.getCsvKPIS = function (login, fechaIni, fechaFin) { //exportar NCA
 		return $http.get(serviceBase + 'csvKPIS?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
@@ -1167,7 +1171,14 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'PedidosGestorUser?grupo=' + grupo);
 	};
 
-	obj.getListadoProgramados = function (usuario_id) {
+
+    //////////////////////////////MICHAEL DISTRIBUCION GRUPO////////////////////////
+    obj.getDistribucionGrupo = function () {
+		return $http.get(serviceBase + 'DistribucionGrupo');
+	};
+    ////////////////////////////////////////////////////////////////////////////////
+
+    obj.getListadoProgramados = function (usuario_id) {
 		return $http.post(serviceBase + 'listaProgramadosUser', {
 			usuario_id: usuario_id
 		});
@@ -3648,6 +3659,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				data: data.data
 
 			};
+
 			var date1 = new Date();
 			var year = date1.getFullYear();
 			var month = $scope.doubleDigit(date1.getMonth() + 1);
@@ -3662,6 +3674,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		});
 		//para actualizar la tabla...
 		$scope.actualizarPendientesPorPlaza();
+        $scope.distribucionGrupo();
+
 
 		//$scope.actualizarGraficaAgendamiento();
 
@@ -4132,7 +4146,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 
 	$scope.grupo = {};
-	$scope.topProductivos = function () {
+
+    $scope.topProductivos = function () {
 		//console.log($scope.grupo);
 
 		services.getPedidosGestorUser($scope.grupo.Cuartil).then(
@@ -4160,6 +4175,27 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 
 	};
+
+
+    $scope.distribucionGrupo = function () {
+
+		services.getDistribucionGrupo().then(
+			function (data) {
+				$scope.listaDistriucionGrupo = data.data[0];
+				return data.data;
+
+			},
+
+			function errorCallback(response, status) {
+				$rootScope.errorDatos = "Ops, probelemas";
+
+			}
+		);
+
+
+	};
+
+
 // Opciones de Tabs para las Graficas ----------------------------------------------------
 $scope.activeTabs = 1;
 $scope.setActiveTab = function (tabToSet) {
@@ -6076,6 +6112,16 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 
 	};
 
+    $scope.csvCargasPNI = function () {
+		var login = $rootScope.logedUser.login;
+		services.getCsvCargasPNI(login, $scope.data.fechaIni, $scope.data.fechaFin).then(function (data) {
+			//console.log(data.data[0]);
+			window.location.href = "tmp/" + data.data[0];
+			return data.data;
+		});
+
+	};
+
 
  /*   $scope.uploadFilePNI2 = function () {
 		$scope.user = $rootScope.logedUser.login;
@@ -7282,13 +7328,18 @@ $scope.intervalLightKPIS = setInterval(function(){
                 if(concepto_id=='PETEC'||concepto_id=='OKRED'||concepto_id=='PETEC-BOG'||concepto_id=='PEOPP'||concepto_id=='19'||concepto_id=='O-13'||concepto_id=='O-15'||concepto_id=='O-106'||concepto_id=='COBERTURA'||concepto_id=='CONSTRUCCION'||concepto_id=='DISENO'||concepto_id=='DISPONIBILIDAD'){
                     negocioAsingaciones+="<tr><td><a href='./#/registros/"+concepto_id+"'>"+concepto_id+"</a></td><td>"+counter+"<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
                     $rootScope.totalNegocioAsignaciones=parseInt($rootScope.totalNegocioAsignaciones)+parseInt(counter);
-                }else if(concepto_id=='14'||concepto_id=='99'||concepto_id=='92'){
+                }else if(concepto_id=='14'||concepto_id=='99'||concepto_id=='92'||concepto_id=='RC-SIEBEL'){
                         negocioReconfiguracion+="<tr><td><a href='./#/registros/"+concepto_id+"'>"+concepto_id+"</a></td><td>"+counter+"<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
                     $rootScope.totalNegocioReconfiguracion=parseInt($rootScope.totalNegocioReconfiguracion)+parseInt(counter);
-                                }else if(concepto_id=='O-101'){
+                                }else if(concepto_id=='O-101' || concepto_id=='RC-SIEBEL'){
                                     negocioReconfiguracion+="<tr><td><a href='./#/registros/"+concepto_id+"'>"+concepto_id+"</a></td><td>"+counter+"<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
                                     $rootScope.totalNegocioReconfiguracion=parseInt($rootScope.totalNegocioReconfiguracion)+parseInt(counter);
-                                    }else{
+                                    }
+                                    /*else if(concepto_id=='RECONFIGURAR OFERTA (14)'){
+                                    negocioReconfiguracion+="<tr><td><a href='./#/registros/"+concepto_id+"'>"+concepto_id+"</a></td><td>"+counter+"<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
+                                    $rootScope.totalNegocioReconfiguracion=parseInt($rootScope.totalNegocioReconfiguracion)+parseInt(counter);
+                                    }*/
+                                       else{
                                        negocioOtros+="<tr><td><a href='./#/registros/"+concepto_id+"'>"+concepto_id+"</a></td><td>"+counter+"<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
                                        $rootScope.totalNegocioOtros=parseInt($rootScope.totalNegocioOtros)+parseInt(counter);
                                     }
@@ -7509,10 +7560,10 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 				if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'PUMED' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD') {
 					negocioAsingaciones += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioAsignaciones = parseInt($rootScope.totalNegocioAsignaciones) + parseInt(counter);
-				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == '92') {
+				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == '92' || concepto_id == 'RC-SIEBEL') {
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
-				} else if (concepto_id == 'O-101') {
+				} else if (concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL') {
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
 				} else {
@@ -13777,10 +13828,14 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
 				if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106') {
 					negocioAsingaciones += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "</td></tr>";
 					$rootScope.totalNegocioAsignaciones = parseInt($rootScope.totalNegocioAsignaciones) + parseInt(counter);
-				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == 'O-101') {
+				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL') {
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "</td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
-				} else {
+				} else if (concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL') {
+					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
+					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
+				}
+                else {
 					negocioOtros += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "</td></tr>";
 					$rootScope.totalNegocioOtros = parseInt($rootScope.totalNegocioOtros) + parseInt(counter);
 				}
@@ -14858,10 +14913,11 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'PUMED' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD') {
 					negocioAsingaciones += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioAsignaciones = parseInt($rootScope.totalNegocioAsignaciones) + parseInt(counter);
-				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == '92') {
+				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == '92' || concepto_id
+                           == 'RC-SIEBEL') {
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
-				} else if (concepto_id == 'O-101') {
+				} else if (concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL') {
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
 				} else {
@@ -15551,10 +15607,10 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 				if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'PUMED' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD') {
 					negocioAsingaciones += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
 					$rootScope.totalNegocioAsignaciones = parseInt($rootScope.totalNegocioAsignaciones) + parseInt(counter);
-				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == '92') {
+				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == '92' || concepto_id == 'RC-SIEBEL') {
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
-				} else if (concepto_id == 'O-101') {
+				} else if (concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL') {
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
 				} else {
@@ -16057,10 +16113,10 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 				if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'PUMED' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD') {
 					negocioAsingaciones += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
 					$rootScope.totalNegocioAsignaciones = parseInt($rootScope.totalNegocioAsignaciones) + parseInt(counter);
-				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == '92') {
+				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == '92' || concepto_id == "RC-SIEBEL") {
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
-				} else if (concepto_id == 'O-101') {
+				} else if (concepto_id == 'O-101' || concepto_id == "RC-SIEBEL") {
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
 				} else {
@@ -16683,10 +16739,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'PUMED' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD') {
 					negocioAsingaciones += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioAsignaciones = parseInt($rootScope.totalNegocioAsignaciones) + parseInt(counter);
-				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == '92') {
+				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == '92' || concepto_id == "RC-SIEBEL") {
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
-				} else if (concepto_id == 'O-101') {
+				} else if (concepto_id == 'O-101' || concepto_id == "RC-SIEBEL") {
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
 				} else {
@@ -17253,6 +17309,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         var varDondeGuardar = gestion.FUENTE;
         var varEstadoGuardar = InfoPedido.ESTADO_PROCESO;
         var varObsesGuardar = InfoPedido.OBSERVACIONES_PROCESO;
+        var varCONCEPTO_ID = InfoPedido.CONCEPTO_ID;
 
 		if(InfoPedido.PROGRAMACION==""){
             InfoPedido.PROGRAMACION='SIN';
@@ -17264,6 +17321,12 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 var estadoFinal = varObsesGuardar;
             }
 
+
+
+        if (varObsesGuardar == "PENDIENTE ADECUACION CIRCUITO")
+        {
+            gestion.CONCEPTO_ID = "PENDIENTE ADECUACION CIRCUITO";
+        }
 
             $scope.InfoGestion = {
                 pedido: gestion.PEDIDO_ID,
@@ -17296,6 +17359,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 FECHA: gestion.FECHA_ESTADO,
                 ID: gestion.ID
             };
+
+            //console.log("cambio concepto " + gestion.CONCEPTO_ID);
 
         //$scope.municipio= $scope.iplaza.MUNICIPIO_ID;
 

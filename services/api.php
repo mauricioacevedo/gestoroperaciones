@@ -1456,8 +1456,10 @@ class API extends REST {
         $pedido1 = $pedido['pedido'];
         $pedidoid = $pedido1['pedido'];
         $observaciones = $pedido1['observacion'];
+        $departamento = $pedido1['departamento'];
+        $ciudad = $pedido1['ciudad'];
 
-        //echo var_dump ($observaciones);
+        //echo ($observaciones);
 
         $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','concepto_final');
         $keys = array_keys($pedido);
@@ -1480,10 +1482,13 @@ class API extends REST {
             $values = $values."'".$pedido[$desired_key]."',";
         }
         $today = date("Y-m-d H:i:s");
+
+
+
         //$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
         if(!empty($pedido)){
             //$concepto_final=$this->updateFenix($pedido);
-            $query = "INSERT INTO pedidos(".trim($columns,',').",source,OBSERVACIONES_PROCESO, pedido_id) VALUES(".trim($values,',').",'MANUAL', '$observaciones', '$pedidoid')";
+            $query = "INSERT INTO pedidos(".trim($columns,',').",source,OBSERVACIONES_PROCESO, pedido_id,DEPARTAMENTO, municipio_id) VALUES(".trim($values,',').",'MANUAL', '$observaciones', '$pedidoid','$departamento','$ciudad')";
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
             //hago la actualizacion en fenix
@@ -1510,6 +1515,10 @@ class API extends REST {
                 ",'$usuarioPc')";
 
             $rlog = $this->mysqli->query($sql_log);
+
+
+
+
             // ---------------------------------- SQL Feed
             $this->response(json_encode(array("msg"=>"N/A","data" => $today)),200);
 
@@ -2318,7 +2327,6 @@ class API extends REST {
         $estadoid=$pedido['pedido']['estado'];
         $useri=$pedido['pedido']['user'];
         $username=$pedido['pedido']['username'];
-
         $fuente=$pedido['pedido']['fuente'];
 
         $PEDIDO_IDi=$pedido['pedido']['PEDIDO_ID'];
@@ -2329,6 +2337,9 @@ class API extends REST {
         $concepto_anterior=$pedido['pedido']['CONCEPTO_ANTERIOR'];
         //echo "estado: $estado";
         $sourcee=$pedido['pedido']['source'];
+
+        //echo var_dump ($observacion);
+
         if($sourcee==""){
             $sourcee="AUTO";
         }
@@ -6023,6 +6034,22 @@ class API extends REST {
 
     }
 
+    function searchForId($id) {
+
+        $array= array (
+
+            array("GIRANTCOL"=>"NOROCCIDENTE"), array("BARANTCOL"=>"NOROCCIDENTE"), array("MEDANTCOL"=>"NOROCCIDENTE"), array("LCEANTCOL"=>"NOROCCIDENTE"), array("COPANTCOL"=>"NOROCCIDENTE"), array("GUAANTCOL"=>"NOROCCIDENTE"), array("BELANTCOL"=>"NOROCCIDENTE"), array("CDVANTCOL"=>"NOROCCIDENTE"), array("MARANTCOL"=>"NOROCCIDENTE"), array("ITAGUI"=>"NOROCCIDENTE"), array("LESANTCOL"=>"NOROCCIDENTE"), array("CALANTCOL"=>"NOROCCIDENTE"), array("ITAANTCOL"=>"NOROCCIDENTE"), array("SABANTCOL"=>"NOROCCIDENTE"), array("EREANTCOL"=>"NOROCCIDENTE"), array("ENVANTCOL"=>"NOROCCIDENTE"), array("SANSAPCOL"=>"NORTE"), array("BUCSANCOL"=>"ORIENTE"), array("CALVALCOL"=>"SUR"), array("RIOANTCOL"=>"NOROCCIDENTE"), array("CALI"=>"SUR"), array("BARRANQUILLA"=>"NORTE"), array("BUCARAMANGA"=>"ORIENTE"), array("CARTAGENA"=>"NORTE"), array("BELLO"=>"NOROCCIDENTE"), array("COPACABANA"=>"NOROCCIDENTE"), array("CALDAS"=>"NOROCCIDENTE"), array("RIONEGRO"=>"NOROCCIDENTE"), array("EL CARMEN DE VIBORAL"=>"NOROCCIDENTE"), array("ENVIGADO"=>"NOROCCIDENTE"), array("RETIRO"=>"NOROCCIDENTE"), array("LA UNION"=>"NOROCCIDENTE"), array("LA ESTRELLA"=>"NOROCCIDENTE"), array("BARBOSA"=>"NOROCCIDENTE"), array("SABANETA"=>"NOROCCIDENTE"), array("BOGOTA"=>"CENTRO"), array("MEDELLIN"=>"NOROCCIDENTE"), array("VALLEDUPAR"=>"NORTE"), array("SOLEDAD"=>"NORTE"), array("GIRARDOTA"=>"NOROCCIDENTE"), array("MOSQUERA"=>"CENTRO"), array("MONTERIA"=>"NORTE"), array("FLORIDABLANCA"=>"ORIENTE"), array("BARRANCABERMEJA"=>"ORIENTE"), array("GUARNE"=>"NOROCCIDENTE"), array("LA CEJA"=>"NOROCCIDENTE"), array("TURBACO"=>"NORTE"), array("PIEDECUESTA"=>"ORIENTE"), array("CUCUTA"=>"ORIENTE"), array("VILLAVICENCIO"=>"CENTRO"), array("SINCELEJO"=>"NORTE"), array("SANTA MARTA"=>"NORTE"), array("MARINILLA"=>"NOROCCIDENTE"), array("GIRON"=>"ORIENTE"), array("PUERTO COLOMBIA"=>"NORTE"), array("POPAYAN"=>"SUR"), array("JAMUNDI"=>"SUR"), array("BOGCUNCOL"=>"CENTRO"), array("EL SANTUARIO"=>"NOROCCIDENTE"), array("PALMIRA"=>"SUR"), array("FUSAGASUGA"=>"CENTRO"), array("LUNANTCOL"=>"NOROCCIDENTE"), array("SANANTCOL"=>"NOROCCIDENTE"), array("GALAPA"=>"NORTE"), array("CAJICA"=>"CENTRO"), array("DUITAMA"=>"CENTRO"), array("FUNZA"=>"CENTRO"), array("CERETE"=>"NORTE"), array("SOACHA"=>"CENTRO"), array("MADRID"=>"CENTRO"), array("PASTO"=>"SUR"), array("MALAMBO"=>"NORTE"), array("SANTA ROSA DE OSOS"=>"NOROCCIDENTE"), array("BARATLCOL"=>"NORTE"), array("MANCALCOL"=>"SUR"), array("LA CALERA"=>"CENTRO"), array("RICCUNCOL"=>"CENTRO"), array("POLICARPA"=>"SUR"), array("TUNJA"=>"CENTRO"), array("MOSCUNCOL"=>"CENTRO"), array("LEBRIJA"=>"ORIENTE"), array("GINEBRA"=>"ORIENTE"), array("FLOSANCOL"=>"ORIENTE"), array("CARBOLCOL"=>"NORTE"), array("PEREIRA"=>"SUR"), array("VILLA DEL ROSARIO"=>"NORTE"), array("ENVIGADO,MEDELLIN"=>"NOROCCIDENTE"),array("ITAGUI,MEDELLIN"=>"NOROCCIDENTE"),array("ARMENIA"=>"EJE CAFETERO"), array("TULUA"=>"SUR"),array("SAN JUAN NEPOMUCENO"=>"NORTE"),array("IBAGUE"=>"CENTRO"),array("SOGAMOSO"=>"CENTRO"),
+        array("SANTAFE DE ANTIOQUIA"=>"NOROCCIDENTE")
+
+          );
+
+        foreach ($array as $key => $val) {
+            if($val[$id]!="") return $val[$id];
+        }
+        return null;
+    }
+
+
     private function csvPendientes(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -6041,10 +6068,11 @@ class API extends REST {
         $filename="Pendientes-$login-$today.csv";
         $query="SELECT a.PEDIDO_ID,".
             " a.PEDIDO, ".
+            " a.PEDIDO_CRM, ".
             " a.SUBPEDIDO_ID, ".
             " a.SOLICITUD_ID, ".
             " a.PROGRAMACION, ".
-            " a.TIPO_TRABAJO, ".
+            " CASE WHEN a.TIPO_TRABAJO IN ('NA NUEVO','NUEVO') then 'NUEVO' ELSE 'CAMBIO' END AS TIPO_TRABAJO, ".
             " a.TIPO_ELEMENTO_ID, ".
             " a.PRODUCTO, ".
             " a.UEN_CALCULADA, ".
@@ -6072,12 +6100,13 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','PEDIDO','SUBPEDIDO_ID','SOLICITUD_ID','PROGRAMACION','TIPO_TRABAJO','TIPO_ELEMENTO_ID','PRODUCTO','UEN_CALCULADA','ESTRATO','MUNICIPIO_ID','PAGINA_SERVICIO','DIRECCION_SERVICIO','TIEMPO_COLA','TIEMPO_INGRESO','FUENTE','CONCEPTO_ID','FECHA_ESTADO','FECHA_INGRESO','FECHA_CITA','STATUS','MOTIVO_MALO','INCIDENTE','RADICADO_TEMPORAL','PEDIDOFNX', 'CONCEPTO_CRM'));
+            fputcsv($fp, array('PEDIDO_ID','PEDIDO','PEDIDO_CRM','SUBPEDIDO_ID','SOLICITUD_ID','PROGRAMACION','TIPO_TRABAJO','TIPO_ELEMENTO_ID','PRODUCTO','UEN_CALCULADA','ESTRATO','MUNICIPIO_ID','PAGINA_SERVICIO','DIRECCION_SERVICIO','TIEMPO_COLA','TIEMPO_INGRESO','FUENTE','CONCEPTO_ID','FECHA_ESTADO','FECHA_INGRESO','FECHA_CITA','STATUS','MOTIVO_MALO','INCIDENTE','RADICADO_TEMPORAL','PEDIDOFNX', 'CONCEPTO_CRM','ZONA'));
             while($row = $r->fetch_assoc()){
                 $pedidoCrm = $row['PEDIDO_ID'];
                 $objRtaFenix = $this->conceptoPedidoSiebelFenix ($pedidoCrm);
                 $row['PEDIDOFNX'] = $objRtaFenix['PEDIDOFNX'];
                 $row['CONCEPTO_CRM'] = $objRtaFenix['CONCEPTOS'];
+                $row['ZONA'] = $this->searchForId($row['MUNICIPIO_ID']);
 
                 $result[] = $row;
                 fputcsv($fp, $row);
@@ -7433,8 +7462,10 @@ class API extends REST {
         $username = $this->_request['username'];
         //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
         $pedido_actual = $this->_request['pedido_actual'];
+        //echo var_dump ($pedido_actual);
 
         //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
+
         $sqlupdate="update informe_petec_pendientesm set ASESOR='' where ASESOR='$user' ";
         $xxx = $this->mysqli->query($sqlupdate);
         //}
@@ -7459,6 +7490,7 @@ class API extends REST {
 
         }else{
 
+            //CAMBIO BUSCAR PEDIDO MICHAEL
             $sql="update informe_petec_pendientesm set status='CERRADO_PETEC' where PEDIDO_ID='$pedido' AND CONCEPTO_ID NOT IN ('14','99') and ASESOR = '' ";
 
             $r = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
@@ -7548,10 +7580,14 @@ class API extends REST {
                     }
                     $sqlupdate="";
                     if($busy=="YES"){
-                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1 where ID in ($ids)";
+                        $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1, ASESOR='$user' where ID in ($ids)";
                     }else{
+                        //CAMBIO BUSCAR PEDIDO MICHAEL
+                        //$sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where ID in ($ids)";
                         $fecha_visto=date("Y-m-d H:i:s");
                         $sqlupdate="update informe_petec_pendientesm set VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where ID in ($ids)";
+                        //$sqlupdate="update informe_petec_pendientesm set //VIEWS=VIEWS+1,ASESOR='$user',FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO_ID in ($pedido) and STATUS in //('PENDI_PETEC','MALO') ";
+                        //echo var_dump($ids);
                     }
 
                     $x = $this->mysqli->query($sqlupdate);
@@ -8570,7 +8606,7 @@ class API extends REST {
 		   } */
 
         if ($concepto == "OT-T01" || $concepto == "COBERTURA" || $concepto == "CONSTRUCCION" || $concepto == "OT-T04"
-            || $concepto == "OT-T05" || $concepto == "OT-C08")
+            || $concepto == "OT-T05" || $concepto == "OT-C08" || $concepto == "RC-SIEBEL")
         {
             $plaza = "";
         }
@@ -8739,7 +8775,15 @@ class API extends REST {
             }else{
                 $plaza2=" AND MUNICIPIO_ID='$plaza' ";
             }
-            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_ASGINGACIONES_SIEBEL');
+            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
+
+            $tipo_trabajo="";
+            if($parametroBusqueda=="NUEVOS_PRIMERO"){
+                $tipo_trabajo=" AND TIPO_TRABAJO='NA NUEVO' ";
+            }else{
+                $tipo_trabajo=" ";
+            }
+
             $sqlllamadas=   "SELECT PEDIDO_ID, ".
                 " SUBPEDIDO_ID, ".
                 " SOLICITUD_ID, ".
@@ -8749,6 +8793,7 @@ class API extends REST {
                 " FROM  informe_petec_pendientesm ".
                 " WHERE 1=1 ".
                 //" and (TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
+                $tipo_trabajo.
                 //" AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
                 " and RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM','MIG','REPARMIG','MIGGPON','GPON','AAA')  ".
                 " AND ASESOR='' ".
@@ -8849,7 +8894,7 @@ class API extends REST {
             //echo var_dump ($concepto);
             //echo var_dump ($query1);
 
-        //echo var_dump($query1);
+        // echo var_dump($query1);
         //echo var_dump ($plaza);
 
         if($mypedido==""){
@@ -12017,6 +12062,74 @@ private function demePedidoEdatel(){
 
     }
 
+    private function csvCargasPNI(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+        $login = $this->_request['login'];
+        $fechaIni = $this->_request['fechaIni'];
+        $fechaFin = $this->_request['fechaFin'];
+
+        $today = date("Y-m-d h:i:s");
+        $filename="PNI-$login-$today.csv";
+
+        $query=" SELECT ".
+            "NOMBREARCHIVO, DEPTO, MPIO, COD_MPIO, DIRECCION, BLOQUE, ESTRATO, PAG_SERV, ESTADO_CONCEPTO, PEDIDO,
+	         UEN, CX, CY, RESPONSABLE, FECHA_CARGA
+	         FROM tbl_CargasPNI where ".
+            " FECHA_CARGA between '$fechaIni 00:00:00' and '$fechaFin 23:59:59'";
+
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            $fp = fopen("../tmp/$filename", 'w');
+            fputcsv($fp, array('NOMBREARCHIVO','ORIGEN','DEPTO','MPIO','COD_MPIO','DIRECCION','ESTRATO','PAG_SERV','ESTADO_CONCEPTO','PEDIDO','UEN','CX','CY','RESPONSABLE','FECHA_CARGA'));
+            while($row = $r->fetch_assoc()){
+                //$result[] = $row;
+                fputcsv($fp, $row);
+            }
+            fclose($fp);
+            // SQL Feed----------------------------------
+            $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'SIN PEDIDO' ".
+                ",'EXPORTO HISTORICO SIEBEL' ".
+                ",'ARCHIVO EXPORTADO' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
+            // ---------------------------------- SQL Feed
+            $this->response($this->json(array($filename,$login)), 200); // send user details
+        }
+
+        $this->response('',204);        // If no records "No Content" status
+
+    }
+
     private function csvKPIS(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -13549,61 +13662,57 @@ private function demePedidoEdatel(){
                          }
 
                         if($h=="A"){
-                        $ORIGEN=$cellValue;
-                        }
-                        if($h=="B"){
                         $DEPTO=$cellValue;
                         }
-                        if($h=="C"){
-                        $COD_DEPTO=$cellValue;
-                        }
-                        if($h=="D"){
+                        if($h=="B"){
                         $MPIO=$cellValue;
                         }
-                        if($h=="E"){
+                        if($h=="C"){
                         $COD_MPIO=$cellValue;
+                        }
+                        if($h=="D"){
+                        $DIRECCION=$cellValue;
+                        }
+                        if($h=="E"){
+                        $BLOQUE=$cellValue;
                         }
 
                         if($h=="F"){
-                        $DIRECCION=$cellValue;
-                        }
-
-                        if($h=="G"){
                         $ESTRATO=$cellValue;
                         }
 
-                        if($h=="H"){
+                        if($h=="G"){
                         $PAG_SERV=$cellValue;
                         }
 
-                        if($h=="I"){
+                        if($h=="H"){
                         $ESTADO_CONCEPTO=$cellValue;
                         }
 
-                        if($h=="J"){
+                        if($h=="I"){
                         $PEDIDO=$cellValue;
                         }
 
-                        if($h=="K"){
+                        if($h=="J"){
                         $UEN=$cellValue;
                         }
 
-                        if($h=="L"){
+                        if($h=="K"){
                         $CX=$cellValue;
                         }
 
-                        if($h=="M"){
+                        if($h=="L"){
                         $CY=$cellValue;
                         }
 
                     }
 
-      $sql= "insert into tbl_CargasPNI (NOMBREARCHIVO,ORIGEN,DEPTO,COD_DEPTO, ".
-                                            " MPIO,COD_MPIO,DIRECCION,ESTRATO,PAG_SERV, ".
+      $sql= "insert into tbl_CargasPNI (NOMBREARCHIVO,DEPTO, ".
+                                            " MPIO,COD_MPIO,DIRECCION,BLOQUE,ESTRATO,PAG_SERV, ".
                                             " ESTADO_CONCEPTO,PEDIDO,UEN,CX,CY,RESPONSABLE) ".
                                             " values  ".
-         " ('$tname1','$ORIGEN','$DEPTO','$COD_DEPTO','$MPIO','$COD_MPIO','$DIRECCION', ".
-          " '$ESTRATO','$PAG_SERV','$ESTADO_CONCEPTO','$PEDIDO','$UEN','$CX','$CY','$usuarioGalleta')";
+         " ('$tname1','$DEPTO','$MPIO','$COD_MPIO','$DIRECCION','$BLOQUE','$ESTRATO','$PAG_SERVI', ".
+          " '$ESTADO_CONCEPTO','$PEDIDO','$UEN','$CX','$CY','$usuarioGalleta')";
 
         //echo var_dump($sql);
 
@@ -16716,6 +16825,50 @@ public function pp(&$var){
 
     }
 
+    /////////////////////////////////MICHAEL DISTRIBUCION GRUPO /////////////////////////////////////
+
+
+    private function DistribucionGrupo(){
+
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+
+        $today = date("Y-m-d");
+
+        $query=	"SELECT DISTINCT ASESOR, ".
+                 " GRUPO, CONCEPTO_ID as CONCEPTO, ".
+                 " date_format(FECHA_INGRESO,'%Y-%m-%d') AS FECHA_INGRESO, ".
+                 " CAST(TIMEDIFF(now(),FECHA_INGRESO) AS CHAR (255)) AS ANSPEDIDO ".
+                 " FROM ".
+                 " informe_petec_pendientesm ".
+                 " WHERE ".
+                 " ASESOR NOT IN ('') ".
+                 " AND STATUS in ('PENDI_PETEC','CERRADO_PETEC')".
+                 " group by ASESOR ".
+                 " ORDER BY CONCEPTO ";
+
+        //echo var_dump($query);
+
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+
+            while($row = $r->fetch_assoc()){
+
+                $result[] = $row;
+            }
+
+            $this->response($this->json(array($result,$grupo,$today)), 200); // send user details
+        }
+        $this->response('',204);        // If no records "No Content" status
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
     //------------------------Listado de Pedidos por Usuario dia actual
 
     //Listado de Pedidos por Usuario dia actual REAGENDAMIENTO----------------------------------------
@@ -18657,6 +18810,10 @@ public function pp(&$var){
         $idpedido       =   $gestion['gestion']['ID'];
         $crIncidente    =   $gestion['gestion']['INCIDENTE'];
 
+        $observacion    =   $gestion['gestion']['OBSERVACIONES_PROCESO'];
+
+        //echo var_dump ($gestion);
+
         $malo           =   false;
         $programado     =   false;
         $cerrar         =   true;
@@ -18800,6 +18957,44 @@ public function pp(&$var){
             $queryGestion = "INSERT INTO pedidos(".trim($columns,',').") VALUES(".trim($values,',').")";
 
             $insertGestion = $this->mysqli->query($queryGestion);
+
+            //RECONFIGURACION MICHAEL
+
+            //echo var_dump($observacion);
+
+            if($observacion == "RECONFIGURAR OFERTA (14)")
+
+            {
+
+                $queryReconf = "update informe_petec_pendientesm set CONCEPTO_ID = '$observacion', STATUS = 'PENDI_PETEC'".
+                                " WHERE ID = '$idpedido'";
+
+                //echo var_dump("ingreso ohoho siii");
+            /*    $queryReconf = "INSERT INTO informe_petec_pendientesm (PEDIDO_ID, SUBPEDIDO_ID, SOLOCITUD_ID, TIPO_ELEMENTO, ".
+                                                                       " TIPO_TRABAJO, DESC_TIPO_TRABAJO, FECHA_INGRESO, ".
+                                                                       " FECHA_ESTADO, FECHA_FINAL, FECHA_CITA, PRODUCTO_ID, ".
+                                                                       " PRODUCTO, UEN_CALCULADA, ESTRATO, CONCEPTO_ID, ".
+                                                                       " TECNOLOGIA_ID, MUNICIPIO_ID, DEPARTAMENTO, ".
+                                                                    " DIRECCION_SERVICIO, PAGINA_SERVICIO,FECHA_INGRESO_SOLA, ".
+                                                                       " HORAINGRESO, FECHAESTADO_SOLA, HORAESTADO, ".
+                                                                       " DIANUM_ESTADO, DIANOM_ESTADO, RANGO_CARGA, FECHA_CARGA, ".
+                                                                       " DIA_CARGA, MESNOMBRE_CARGA, MESNUMERO_CARGA, ".
+                                                                       " SEMANA_CARGA, SEMANA_CARGA, SEMANA_ANO_CARGA, ".
+                                                                       " ANO_CARGA, FUENTE, GRUPO, ACTIVIDAD, STATUS, ".
+                                                                       " ESTADO_BLOQUEO, USUARIO_BLOQUEO_FENIX, ASESOR, ".
+                                                                    " FECHA_VISTO_ASESOR, ESTUDIOS, VIEWS, CONCEPTO_ANTERIOR, ".
+                                                                       " PROGRAMACION, MICROZONA, RADICADO_TEMPORAL, ".
+                                                                       " IDENTIFICADOR_ID, CANTIDAD_EQU, EQUIPOS, CONCEPTOS_EQU, ".
+                                                                    " TIPO_EQUIPOS, EXTENSIONES, OBSERVACIONES, EJECUTIVO_ID, ".
+                                                                    " CANAL_ID, VEL_IDEN, VEL_SOLI, CONCEPTO_ID_ANTERIOR_NOV, ".
+                                                                    " CELULAR_AVISAR, TELEFONO_AVISAR, CARACTERISTICAS, ".
+                                                                    " UP2DATE, CLIENTE_ID, APROVISIONADOR, PEDIDO_CRM ".
+                                                                    " ID, NOMBRE_CLIENTE) VALUES("")";
+                echo var_dump ($queryReconf);
+                $insertReconf = $this->mysqli->query($queryReconf);*/
+                $insertReconf = $this->mysqli->query($queryReconf);
+                //echo var_dump("ingreso ohoho siii");
+            }
 
             //Activiy Feed ------------------------------------------------------------------
             $sqlFeed =  "insert into portalbd.activity_feed ( ".
