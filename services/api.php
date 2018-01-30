@@ -8747,7 +8747,7 @@ class API extends REST {
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
-                    " ORDER BY FECHA_ESTADO ASC ";
+                    " ORDER BY $parametroBusqueda ASC ";
 
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
