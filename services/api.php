@@ -6075,6 +6075,7 @@ class API extends REST {
             " CASE WHEN a.TIPO_TRABAJO IN ('NA NUEVO','NUEVO') then 'NUEVO' ELSE 'CAMBIO' END AS TIPO_TRABAJO, ".
             " a.TIPO_ELEMENTO_ID, ".
             " a.PRODUCTO, ".
+            " a.PRODUCTO_ID, ".
             " a.UEN_CALCULADA, ".
             " a.ESTRATO, ".
             " a.MUNICIPIO_ID, ".
@@ -6100,7 +6101,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','PEDIDO','PEDIDO_CRM','SUBPEDIDO_ID','SOLICITUD_ID','PROGRAMACION','TIPO_TRABAJO','TIPO_ELEMENTO_ID','PRODUCTO','UEN_CALCULADA','ESTRATO','MUNICIPIO_ID','PAGINA_SERVICIO','DIRECCION_SERVICIO','TIEMPO_COLA','TIEMPO_INGRESO','FUENTE','CONCEPTO_ID','FECHA_ESTADO','FECHA_INGRESO','FECHA_CITA','STATUS','MOTIVO_MALO','INCIDENTE','RADICADO_TEMPORAL','PEDIDOFNX', 'CONCEPTO_CRM','ZONA'));
+            fputcsv($fp, array('PEDIDO_ID','PEDIDO','PEDIDO_CRM','SUBPEDIDO_ID','SOLICITUD_ID','PROGRAMACION','TIPO_TRABAJO','TIPO_ELEMENTO_ID','PRODUCTO','PRODUCTO_ID','UEN_CALCULADA','ESTRATO','MUNICIPIO_ID','PAGINA_SERVICIO','DIRECCION_SERVICIO','TIEMPO_COLA','TIEMPO_INGRESO','FUENTE','CONCEPTO_ID','FECHA_ESTADO','FECHA_INGRESO','FECHA_CITA','STATUS','MOTIVO_MALO','INCIDENTE','RADICADO_TEMPORAL','PEDIDOFNX', 'CONCEPTO_CRM','ZONA'));
             while($row = $r->fetch_assoc()){
                 $pedidoCrm = $row['PEDIDO_ID'];
                 $objRtaFenix = $this->conceptoPedidoSiebelFenix ($pedidoCrm);
@@ -8747,7 +8748,7 @@ class API extends REST {
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
-                    " ORDER BY FECHA_ESTADO ASC ";
+                    " ORDER BY $parametroBusqueda ASC ";
 
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
