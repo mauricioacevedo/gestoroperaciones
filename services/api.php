@@ -1526,6 +1526,7 @@ class API extends REST {
                         " END ".
                         ") AS AGENTSCORE FROM pedidos where FECHA_FIN >= NOW() - INTERVAL 12 HOUR ".
                         " AND USER='$user'";
+            echo "SQL: $sqlScore";
             $r = $this->mysqli->query($sqlScore) or die($this->mysqli->error.__LINE__);
             $agentScore="-1";
             if($r->num_rows > 0){
