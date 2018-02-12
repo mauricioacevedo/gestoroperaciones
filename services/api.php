@@ -1459,6 +1459,8 @@ class API extends REST {
         $departamento = $pedido1['departamento'];
         $ciudad = $pedido1['ciudad'];
 
+        $user=$pedido1['user'];
+
         //echo ($observaciones);
 
         $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','concepto_final');
@@ -1516,11 +1518,28 @@ class API extends REST {
 
             $rlog = $this->mysqli->query($sql_log);
 
+            //SQL PRODUCTIVIDAD INTEGRADA..
+            $sqlScore="SELECT sum( ".
+                        "CASE ".
+                        "    WHEN FUENTE='SIEBEL' THEN 2 ".
+                        "    ELSE 1 ".
+                        " END ".
+                        ") AS AGENTSCORE FROM pedidos where FECHA_FIN >= NOW() - INTERVAL 12 HOUR ".
+                        " AND USER='$user'";
+            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+            $agentScore="-1";
+            if($r->num_rows > 0){
+                $result = array();
 
+                if($row = $r->fetch_assoc()){
+                    $agentScore = $row['AGENTSCORE'];
+
+                }
+        }
 
 
             // ---------------------------------- SQL Feed
-            $this->response(json_encode(array("msg"=>"N/A","data" => $today)),200);
+            $this->response(json_encode(array("msg"=>"N/A","data" => $today,"agent_score"=>$agentScore)),200);
 
         }else{
             $this->response('',204);        //"No Content" status

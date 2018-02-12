@@ -15122,7 +15122,11 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 		$scope.pedido.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 		//console.log($scope.pedido);
-		services.insertMPedido($scope.pedido);
+		services.insertMPedido($scope.pedido).then(function (status) {
+            $scope.agentScore=status.data['agent_score'];
+			return status;
+		});
+
 		if ($scope.pedidos == "") {
 			$scope.pedidos = new Array();
 		}
@@ -15216,7 +15220,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 			$scope.pedido.fecha = status.data['data'];
 			$scope.pedido.concepto_final = status.data['msg'];
 			$scope.pedido.con_fenix = status.data['con_fenix'];
-
+            $scope.agentScore=status.data['agent_score'];
 
 			/* if($scope.pedido.concepto_final=="El pedido bloqueado por Usuario por mas de una hora, fue liberado por el sistema, usuario no podra gestionarlo hasta despues de una hora!!!"){
 			     $scope.error=$scope.pedido.concepto_final;
