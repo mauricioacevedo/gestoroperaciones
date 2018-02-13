@@ -1576,7 +1576,6 @@ private function getAgentScore($user){
     }
 
     return $agentScore;
-
 }
 
 
@@ -4233,14 +4232,28 @@ private function getAgentScore($user){
             "     where status in ('PENDI_PETEC','MALO','PENDI_RENUMS') ) c1 ".
             "     group by c1.CONCEPTO_ID ";
 
+
+
+
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+
 
         if($r->num_rows > 0){
             $result = array();
             while($row = $r->fetch_assoc()){
                 $result[] = $row;
             }
-            $this->response($this->json(array($result,'')), 200); // send user details
+
+            $agentScore=$this->getAgentScore($usuarioGalleta);
+
+            $this->response($this->json(array($result,$agentScore)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
     }

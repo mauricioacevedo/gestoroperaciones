@@ -14864,7 +14864,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		services.getLightKPIS().then(function (data) {
 			$rootScope.oldlightkpi = $rootScope.lightkpi;
 			$rootScope.lightkpi = data.data[0];
-
+            $scope.agentScore=data.data[1];
 
 			if ($rootScope.oldlightkpi == "" || $rootScope.oldlightkpi == undefined) {
 				$rootScope.oldlightkpi = $rootScope.lightkpi;
