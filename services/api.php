@@ -1572,6 +1572,8 @@ private function getAgentScore($user){
         if($row = $r->fetch_assoc()){
             $agentScore = $row['AGENTSCORE'];
 
+        }else{
+            $agentScore = "0";
         }
     }
 
