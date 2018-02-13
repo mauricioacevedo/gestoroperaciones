@@ -1519,7 +1519,7 @@ class API extends REST {
             $rlog = $this->mysqli->query($sql_log);
 
             //SQL PRODUCTIVIDAD INTEGRADA..
-            $sqlScore="SELECT sum( ".
+            /*$sqlScore="SELECT sum( ".
                         "CASE ".
                         "    WHEN FUENTE='SIEBEL' THEN 2 ".
                         "    ELSE 1 ".
@@ -1536,8 +1536,9 @@ class API extends REST {
                     $agentScore = $row['AGENTSCORE'];
 
                 }
-        }
-
+            }
+            */
+            $agentScore=$this->getAgentScore($usuarioGalleta);
 
             // ---------------------------------- SQL Feed
             $this->response(json_encode(array("msg"=>"N/A","data" => $today,"agent_score"=>$agentScore)),200);
@@ -1551,6 +1552,34 @@ class API extends REST {
 //-------------------------------------fin insertar pedido ---------asignacion------
 
 //-------------insertar pedido reconfiguracion---------------asignacion------------
+
+
+private function getAgentScore($user){
+    $sqlScore="SELECT sum( ".
+            "CASE ".
+            "    WHEN FUENTE='SIEBEL' THEN 2 ".
+            "    ELSE 1 ".
+            " END ".
+            ") AS AGENTSCORE FROM pedidos where FECHA_FIN >= NOW() - INTERVAL 12 HOUR ".
+            " AND USER='$user'";
+
+    $r = $this->mysqli->query($sqlScore) or die($this->mysqli->error.__LINE__);
+    $agentScore="-1";
+
+    if($r->num_rows > 0){
+        $result = array();
+
+        if($row = $r->fetch_assoc()){
+            $agentScore = $row['AGENTSCORE'];
+
+        }
+    }
+
+    return $agentScore;
+
+}
+
+
 
     private function insertPedidoReconfiguracion(){
         if($this->get_request_method() != "POST"){
