@@ -1,3 +1,311 @@
 <ol class="breadcrumb">
   <li><a href="./#/">Asignaciones</a></li>
-    <li class="active">CR</li>
+  <li class="active">KPIS</li>
+</ol>
+<div class="row" ng-controller="TabController">
+    <ul class="nav nav-pills">
+        <li ng-class="{ active: isSet(1) }">
+                <a href ng-click="setTab(1)">Formas KPIS</a>
+        </li>
+    </ul>
+
+        <div class="col-md-16">
+            <div class="jumbotron">
+                <div ng-show="isSet(1)">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i>Historico Registros  Infraestructura<small> </small></h2>
+
+                              <div class="row">
+                                         <label class=" input col-sm-3">Seleccione Fecha:</label>
+                                                    <div class="input-daterange col-sm-5" id="datepicker">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">Desde</span>
+                                                            <input type="text" class="form-control" style="min-width: 100px" id="fromDate" name="fromDate" ng-model="data.fechaIni" />
+                                                            <span class="input-group-addon">Hasta</span>
+                                                            <input type="text" class="form-control" style="min-width: 100px" id="toDate" name="toDate" ng-model="data.fechaFin" />
+                                                            <span class="input-group-btn">
+                                                                   <!-- <button class="btn btn-primary btn-sm" value="actualizar!" ng-click="pageChanged();"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>-->
+                                                                    <button class="btn btn-success btn-sm" value="exportar!" ng-click="csvKPIS();"><span class="glyphicon glyphicon-download-alt"></span> Exportar</button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                              </div>
+                        </div>
+
+<!--
+                                 <div class="col-lg-4">
+
+                                        <form class="form-inline" role="form">
+
+                                                <div class="form-group btn-group">
+                                                    <br>
+                                                    <br>
+                                                    <input type="text" size="15px" class="form-control btn-group btn btn-sm btn-default"
+                                                           onClick="this.setSelectionRange(0, this.value.length)"
+                                                           title="Escriba registro a Buscar" data-toggle="tooltip" data-placement="top"
+                                                           placeholder="Buscador de Registros" ng-model="bregistro">
+                                                    <button type="button" class="form-control btn btn-sm btn-primary" title="Buscar Pedido"
+                                                            data-toggle="tooltip" data-placement="top" ng-click="buscarRegistroKPIS(bregistro);">
+                                                        <i class="fa fa-search" aria-hidden="true"></i></button>
+
+                                                </div>
+
+                                            </form>
+
+                                    </div>
+-->
+
+
+                              <div class="col-lg-4">
+                                <h2 class="page-header">
+                                <a class="btn btn-block btn-primary " ng-click="nuevoRegistroKPIS();"><span class="glyphicon glyphicon-plus-sign"></span> Nuevo Registro</a>
+                                </h2>
+                              </div>
+
+
+                    </div>
+					<div class="row"><hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
+                            <br></div>
+
+            <!--    <div class="col-lg-6">
+                    <div class="row">
+
+                           <div class="form-group">
+                                <label for="Negocio">
+                                    Negocio
+                                </label>
+                                <select ng-model="transaccion.NEGOCIO" class="form-control" style="" >
+                                        <option value='' disabled>---SELECCIONE---</option>
+                                        <option value='Edatel'>Edatel</option>
+                                        <option value='UNE'>UNE</option>
+                                        <option value='ETP'>ETP</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="FechaSoli">
+                                    Fecha Solicitud
+                                </label>
+                                <input type="date" ng-model="transaccion.FECHASOLICI" name="transaccion.txtFechaSoli" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Items">
+                                    Item
+                                </label>
+                                <select ng-model="transaccion.ITEMS" class="form-control" style="" name="txtItems">
+                                        <option value='' disabled>---SELECCIONE---</option>
+                                        <option value='Targetas'>Targetas</option>
+                                        <option value='Ampliaciones'>Ampliaciones</option>
+                                        <option value='Proyectos'>Proyectos</option>
+                                        <option value='Zona de Influencia'>Zona de Influencia</option>
+                                        <option value='Equipos'>Equipos</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ANSActividad">
+                                    ANS Actividad
+                                </label>
+                                <input type="text" ng-model="transaccion.ANSACTIVIDAD" id="txtANSActividad" name="txtANSActividad" placeholder="Ejm: etc" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="SistemaInfo">
+                                    Sistema de Informacion
+                                </label>
+                                    <select ng-model="transaccion.SISTEMAINFO" class="form-control" style="" name="txtSistemaInfo">
+                                        <option value='' disabled>---SELECCIONE---</option>
+                                        <option value='Open Smartflex(Edatel)'>Open Smartflex(Edatel)</option>
+                                        <option value='Siebel'>Siebel</option>
+                                        <option value='Fenix'>Fenix</option>
+                                        <option value='Open Smartflex(ETP)'>Open Smartflex(ETP)</option>
+                                    </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ResultadoCarga">
+                                    Resultado Carga
+                                </label>
+                                    <select ng-model="transaccion.RESULTADOCARGA" class="form-control" style="" name="txtResultadoCarga">
+                                        <option value='' disabled>---SELECCIONE---</option>
+                                        <option value='Procesado'>Procesado</option>
+                                        <option value='No Procesado'>No Procesado</option>
+                                        <option value='Parcial'>Parcial</option>
+                                    </select>
+                            </div>
+
+                        </div>
+                    </div>-->
+
+              <!--      <div class="col-lg-6" >
+                        <div class="row2">
+
+                            <div class="form-group">
+                                <label for="Procesados">
+                                    Cantidad Items Procesados.
+                                </label>
+                                <input type="number" ng-model ="transaccion.ITEMSPROCESADO" id="txtProcesados" name="txtProcesados" placeholder="Ejm: 69" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Inconsistentes">
+                                    Cantidad Items Inconsistentes
+                                </label>
+                                <input type="number" ng-model="transaccion.ITEMSINCONSISTENTES" id="txtInconsistentes" name="txtInconsistentes" placeholder="Ejm: 69" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Observaciones">
+                                    Observaciones
+                                </label>
+                                <select ng-model="transaccion.OBSERVACIONES" class="form-control" style="" name="txtObservaciones">
+                                        <option value='' disabled>---SELECCIONE---</option>
+                                        <option value='Error de Sistema'>Error de Sistema</option>
+                                        <option value='Datos Errados'>Datos Errados</option>
+                                        <option value='Sistema No Disponible'>Sistema No Disponible</option>
+                                    </select>
+                             </div>
+
+                             <div class="form-group">
+                                <label for="FechaProcesado">
+                                    Fecha Procesado
+                                </label>
+                                <input type="date" ng-model="transaccion.FECHAPROCESADO" id="txtFechaProce" name="txtFechaProce" placeholder="Ejm: 69" class="form-control">
+                              </div>
+
+                                <div class="form-group">
+                                    <label for="Responsable">
+                                     Usuario Responsable
+                                    </label>
+                                    <select ng-model="transaccion.RESPONSABLE" class="form-control" style="" name="txtResponsable">
+                                        <option value='' disabled>---SELECCIONE---</option>
+                                        <option value='Lina'>Lina</option>
+                                        <option value='Fredy'>Fredy</option>
+                                        <option value='Luis Fernando'>Luis Fernando</option>
+                                    </select>
+                                </div>
+
+                                <br>
+                                <div class="form-group">
+                                    <div class="controls">
+
+                                        <button class="btn btn-success  btn-sm" ng-show="transaccion.ID!=''" ng-click="saveTransaccion(transaccion);" ><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
+
+                                        <button class="btn btn-primary btn-sm" ng-show="transaccion.ID!=''" ng-click="EditTransaccionKPIS(transaccion);"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
+
+
+                                         <a href="./#/nca/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</a>
+
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+-->
+			<div class="row">
+				<ul class="nav nav-list">
+				  <li class="divider">.</li>
+				</ul>
+			 </div>
+                    <div class="row">
+		    <table align="center" width="100%">
+			<tr>
+		 	<td width="33%" align="left">
+				Total de Registros: <b>{{data.totalItems}} </b>
+			</td>
+			<td width="33%" align="center">
+
+                        </td>
+			<td width="33%" align="right">
+				<pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged()" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+			</td>
+			</tr>
+		    </table>
+
+                    <table class="table small table-striped table-hover table-bordered table-condensed" width="100%">
+                            <thead>
+                                    <th width="7%">Negocio</th>
+                                    <th width="9%">FechaSolocitud</th>
+                                    <th width="9%">FechaProcesado</th>
+                                    <th width="9%">ANS Solucion</th>
+                                    <th width="9%">Item</th>
+                                    <th width="9%">Sistema</th>
+                                    <th width="9%">Resultado</th>
+                                    <th width="7%">Procesados</th>
+                                    <th width="9%">Inconsistentes</th>
+                                    <th width="9%">Observaciones</th>
+                                    <th width="9%">Responsable</th>
+                                    <th width="9%">ANS Actividad</th>
+                                    <th ng-hide="true" width="4%">Acciones</th>
+                            </thead>
+                            <tbody>
+                                    <tr ng-repeat="data in listado_transacciones| orderBy:'ID':true ">
+                                    <td>{{data.NEGOCIO}}</td>
+                                    <td>{{data.FECHASOLICI}}</td>
+                                    <td>{{data.FECHAFIN}}</td>
+                                    <td><font color='red'>{{data.ANSSOLUCION}}</font></td>
+                                    <td>{{data.ITEMS}}</td>
+                                    <td>{{data.SISTEMAINFO}}</td>
+                                    <td>{{data.RESULTADOCARGA}}</td>
+                                    <td>{{data.ITEMSPROCESADO}}</td>
+                                    <td>{{data.ITEMSINCONSISTENTES}}</td>
+                                    <td>{{data.OBSERVACIONES}}</td>
+                                    <td>{{data.RESPONSABLE}}</td>
+                                    <td><font color='red'>{{data.ANSACTIVIDAD}}</font></td>
+                                    <td ng-hide="true" align="center"><button class="btn btn-success btn-xs" value="edit!" ng-click="getTransaccionKPIS();"><i class="fa fa-pencil fa-lg"></i></button></td>
+                            </tr>
+                            </tbody>
+                    </table>
+			<pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged()" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+<br>
+<div class="pull-right"><!--Flecha Arriba -->
+    <a href="#" class="scrollToTop"><i class="fa fa-chevron-circle-up fa-2x" data-toggle="tooltip" title="Volver arriba" data-placement="right"></i></a>
+</div>
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+
+<script>
+$('.input-daterange').datepicker({
+     format: 'yyyy-mm-dd',
+     todayBtn: "linked",
+     autoclose: true
+ });
+</script>
+<script language='javascript'>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+})
+</script>
+<!-- Flecha Arriba Estilo, dentro del head-->
+<script>
+$(document).ready(function(){
+
+    //Check to see if the window is top if not then display button
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 100) {
+            $('.scrollToTop').fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut();
+        }
+    });
+
+    //Click event to scroll to top
+    $('.scrollToTop').click(function(){
+        $('html, body').animate({scrollTop : 0},800);
+        return false;
+    });
+
+});
+</script>
