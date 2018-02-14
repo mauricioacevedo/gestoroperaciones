@@ -5795,7 +5795,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
 //*********************************JJ CONTROLADOR CR******************************************************************
 
-app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http,
+/*app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http,
                                     services, fileUpload)
 
     {
@@ -5819,9 +5819,9 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 			return "0" + num;
 		}
 		return num;
-
+    };
 };
-
+*/
 //**********************************MICHAEL CONTROLADOR PNI************************************
 
 app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http,
