@@ -5795,7 +5795,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
 //*********************************JJ CONTROLADOR CR******************************************************************
 
-/*app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http,
+app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http,
                                     services, fileUpload)
 
     {
@@ -5821,7 +5821,7 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 		return num;
     };
 };
-*/
+
 //**********************************MICHAEL CONTROLADOR PNI************************************
 
 app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http,
@@ -18672,6 +18672,17 @@ app.config(['$routeProvider',
 		})
 
       //**********************************************************
+
+    //********************JJ CR************************************
+
+        .when('/cr/',{
+
+            title: 'CR',
+            templateUrl: 'partials/cr.html',
+			controller: 'CRCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
+        })
 
       //*******************MICHAEL PNI********************************
 
