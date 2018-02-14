@@ -1564,7 +1564,7 @@ private function getAgentScore($user){
             " AND USER='$user'";
 
     $r = $this->mysqli->query($sqlScore) or die($this->mysqli->error.__LINE__);
-    $agentScore="-1";
+    $agentScore="0";
 
     if($r->num_rows > 0){
         $result = array();

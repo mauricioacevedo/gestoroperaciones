@@ -14710,6 +14710,16 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.listarOpcionesAsginacion(opciones);
 	};
 
+
+    $scope.getAgentColor = function(agentScore){
+
+        if(agentScore<80) return "red";
+
+        if(agentScore<115) return "yellow";
+
+        return "green";
+    };
+
     //-------------------------------------------------------------------------------------------------------
 
     $scope.listarOpcionesAsginacion = function (opciones) {
