@@ -1576,7 +1576,7 @@ private function getAgentScore($user){
             $agentScore = "0";
         }
     }
-
+    if($agentScore=="" || $agentScore=="null") $agentScore = "0";
     return $agentScore;
 }
 
