@@ -5793,6 +5793,35 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 });
 //********************************************************************************************************************************
 
+//*********************************JJ CONTROLADOR CR******************************************************************
+
+app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http,
+                                    services, fileUpload)
+
+    {
+    var userID = $cookieStore.get('logedUser').login;
+	$rootScope.logedUser = $cookieStore.get('logedUser');
+	document.getElementById('logout').className = "btn btn-md btn-danger";
+	var divi = document.getElementById("logoutdiv");
+	divi.style.visibility = "visible";
+	divi.style.position = "relative";
+	$rootScope.iconcepto = "TODO";
+	$rootScope.actualView = "cr";
+
+
+    $scope.doubleDigit = function (num) {
+
+		if (num < 0) {
+			num = 0;
+		}
+
+		if (num <= 9) {
+			return "0" + num;
+		}
+		return num;
+
+};
+
 //**********************************MICHAEL CONTROLADOR PNI************************************
 
 app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http,
