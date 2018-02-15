@@ -5518,7 +5518,14 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 	};
     //***************************************jj función Nuevo Registro CR*********************************
     $scope.nuevoRegistroCR = function () {
-
+     services.getTransaccionKPIS().then(function (data) {
+			//console.log(ncaID);
+			$rootScope.transaccion = data.data[0];
+			//console.log($scope.transaccion);
+			//console.log(data);
+			$location.path('/cr/');
+			return data.data;
+		});
     };
 
 	$scope.getTransaccionKPIS = function () {
