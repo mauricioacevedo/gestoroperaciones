@@ -5516,6 +5516,10 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 
         $rootScope.fecha_inicionuevoRegistroKPI = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 	};
+    //***************************************jj función Nuevo Registro CR*********************************
+    $scope.nuevoRegistroCR = function () {
+
+    };
 
 	$scope.getTransaccionKPIS = function () {
 		//$scope.transaccion={};
