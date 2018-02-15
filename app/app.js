@@ -5825,7 +5825,19 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
     };
 
-    $scope.nuevoRegistroKPIS = function () {
+    $rootScope.logout = function () {
+		services.logout($rootScope.logedUser.login);
+		$cookieStore.remove('logedUser');
+		$rootScope.logedUser = undefined;
+		$scope.pedidos = {};
+		document.getElementById('logout').className = "btn btn-md btn-danger hide";
+		var divi = document.getElementById("logoutdiv");
+		divi.style.position = "absolute";
+		divi.style.visibility = "hidden";
+		$location.path('/');
+	};
+
+    $scope.nuevoRegistroCR = function () {
 		$rootScope.transaccion = {};
 		$rootScope.transaccion.ID = '';
 		$location.path('/cr/transaccion');
