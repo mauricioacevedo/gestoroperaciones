@@ -14746,7 +14746,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
         if(agentScore<115) return "#f0ad4e";
 
-        return "#5cb85c";
+        return "#5cb85cy";
     };
 
     //-------------------------------------------------------------------------------------------------------

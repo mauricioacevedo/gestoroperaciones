@@ -1577,6 +1577,7 @@ private function getAgentScore($user){
         }
     }
     if($agentScore=="" || $agentScore=="null") $agentScore = "0";
+
     return $agentScore;
 }
 
@@ -2485,8 +2486,9 @@ private function getAgentScore($user){
 
                 //echo $sqlfeed;
                 //$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+                $agentScore=$this->getAgentScore($usuarioGalleta);
 
-                $this->response(json_encode(array("msg"=>"$concepto_final","data" => $today)),200);
+                $this->response(json_encode(array("msg"=>"$concepto_final","data" => $today,"agent_score"=>$agentScore)),200);
 
 
             }else{
@@ -2537,7 +2539,8 @@ private function getAgentScore($user){
                 //echo $sqlfeed;
                 //$rrr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
                 //hago la actualizacion en fenix
-                $this->response(json_encode(array("msg"=>"$concepto_final","data" => $today,"con_fenix"=> $concepto_fen)),200);
+                $agentScore=$this->getAgentScore($usuarioGalleta);
+                $this->response(json_encode(array("msg"=>"$concepto_final","data" => $today,"con_fenix"=> $concepto_fen, "agent_score"=>$agentScore)),200);
 
             }
 
