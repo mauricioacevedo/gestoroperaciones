@@ -97,8 +97,12 @@
 
                                      <label class="col-md-6">Cierre Incidente: </label>
                                       <input name="cierre" ng-model="transaccion.OFERTA" type= "text" class= "form-control" placeholder="INCIDENTE" required/>
-                                     <label class="col-md-6">Fecha de Cierre: </label>
-                                      <input name="fechacierre" tyep="text" placeholder="FECHA" required/>
+                                     <div class= "form-group"><!--Inicia Div de Fecha-->
+                                       <label class= "col-md-2">Fecha De Cierre: </label>
+            	                       <div class="input-daterange col-sm-2" id="datepicker">
+                                         <input type="text" class="form-control" style="min-width: 100px" id="toDate" name="toDate" ng-model="transaccion.FECHA"  placeholder= "Fecha" />
+                                       </div>
+                                     </div><!--Finaliza Div de Fecha-->
                             </div>
 
                     </div>
