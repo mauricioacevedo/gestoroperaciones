@@ -106,7 +106,14 @@
                                          <input type="text" class="form-control" style="min-width: 100px" id="toDate" name="toDate" ng-model="transaccion.FECHA"  placeholder= "Fecha" />
                                        </div>
                                      </div><!--Finaliza Div de Fecha-->
-
+                                   <div class= "form-group">
+                                     <label class="col-md-6">Cierre Incidente: </label>
+                                       <label class= "col-md-6">Estado: </label>
+                                       <select ng-model="transaccion.NEGOCIO" class="form-control" style="" >
+                                        <option value='' disabled>---SELECCIONE---</option>
+                                        <option value='EDATEL'>CERRADO</option>
+                                        </select>
+                                     </div>
                             </div>
 
                     </div>
