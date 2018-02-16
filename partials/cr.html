@@ -277,18 +277,13 @@
                             </thead>
                             <tbody>
                                     <tr ng-repeat="data in listado_transacciones| orderBy:'ID':true ">
-                                    <td>{{data.NEGOCIO}}</td>
-                                    <td>{{data.FECHASOLICI}}</td>
-                                    <td>{{data.FECHAFIN}}</td>
-                                    <td><font color='red'>{{data.ANSSOLUCION}}</font></td>
-                                    <td>{{data.ITEMS}}</td>
-                                    <td>{{data.SISTEMAINFO}}</td>
-                                    <td>{{data.RESULTADOCARGA}}</td>
-                                    <td>{{data.ITEMSPROCESADO}}</td>
-                                    <td>{{data.ITEMSINCONSISTENTES}}</td>
+                                    <td>{{data.SISTEMA}}</td>
+                                    <td>{{data.INCIDENTE}}</td>
+                                    <td>{{data.ESTADO}}</td>
+                                    <td><font color='red'>{{data.ANS}}</font></td>
+                                    <td>{{data.FECHA_SOLICITUD}}</td>
+                                    <td>{{data.FECHA_CIERRE}}</td>
                                     <td>{{data.OBSERVACIONES}}</td>
-                                    <td>{{data.RESPONSABLE}}</td>
-                                    <td><font color='red'>{{data.ANSACTIVIDAD}}</font></td>
                                     <td ng-hide="true" align="center"><button class="btn btn-success btn-xs" value="edit!" ng-click="getTransaccionKPIS();"><i class="fa fa-pencil fa-lg"></i></button></td>
                             </tr>
                             </tbody>
