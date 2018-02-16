@@ -61,7 +61,7 @@
                                 <h2 class="page-header">
                                 <a class="btn btn-block btn-primary " ng-click="nuevoRegistroCR();"><span class="glyphicon glyphicon-plus-sign"></span> Nuevo Registro</a>
                                 </h2>
-                                <label class= "col-md-4">Nuevo Incidente: </label>
+                                <label class= "col-md-6">Nuevo Incidente: </label>
                                 <div class="col-md-6">
                                   <input name="nuevo" ng-model="transaccion.OFERTA" type= "text" class= "form-control" placeholder="INCIDENTE" required/>
                                 </div>
@@ -81,7 +81,7 @@
                                    <div class="controls">
                                      <button ng-show="transaccion.ID==''" ng-click="saveTransaccion(transaccion)" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
                                         <button class="btn btn-success btn-sm" ng-show="transaccion.ID!=''" ng-click="editTransaccionNCA(transaccion);"><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
-                                       <a href="./#/nca/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</a>
+                                       <a href="./#/nca/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> Limpiar</a>
                                      </div>
                                 </div>
                               </div><!--Finaliza Div de Botones -->
