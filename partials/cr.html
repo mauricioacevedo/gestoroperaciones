@@ -100,12 +100,16 @@
                                         <option value='EDATEL'>CERRADO</option>
                                         </select>
                                   </div>
-                                  <div class= "form-group">
-                                      <div class="controls">
-                                        <button>
-                                        <input class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
+                                  <div class="col-md-6"><!--Inicia Div de Botones -->
+                                 <br>
+                                 <div class="control-group">
+                                   <div class="controls">
+                                     <button ng-show="transaccion.ID==''" ng-click="saveTransaccion(transaccion)" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
+                                        <button class="btn btn-success btn-sm" ng-show="transaccion.ID!=''" ng-click="editTransaccionNCA(transaccion);"><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
+                                       <a href="./#/nca/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> Limpiar</a>
                                      </div>
-                                  </div>
+                                </div>
+                              </div><!--Finaliza Div de Botones -->
                             </div>
 
                          <div class="row">
