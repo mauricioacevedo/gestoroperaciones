@@ -5517,6 +5517,8 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
         $rootScope.fecha_inicionuevoRegistroKPI = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 	};
 
+
+
 	$scope.getTransaccionKPIS = function () {
 		//$scope.transaccion={};
 
@@ -5819,7 +5821,39 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 			return "0" + num;
 		}
 		return num;
+
+
     };
+
+    $rootScope.logout = function () {
+		services.logout($rootScope.logedUser.login);
+		$cookieStore.remove('logedUser');
+		$rootScope.logedUser = undefined;
+		$scope.pedidos = {};
+		document.getElementById('logout').className = "btn btn-md btn-danger hide";
+		var divi = document.getElementById("logoutdiv");
+		divi.style.position = "absolute";
+		divi.style.visibility = "hidden";
+		$location.path('/');
+	};
+
+    $scope.nuevoRegistroCR = function () {
+		$rootScope.transaccion = {};
+		$rootScope.transaccion.ID = '';
+		$location.path('/cr/transaccion');
+
+        $scope.timeInit = new Date().getTime();
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+        $rootScope.fecha_inicionuevoRegistroKPI = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+	};
+
 });
 
 //**********************************MICHAEL CONTROLADOR PNI************************************
@@ -18679,6 +18713,15 @@ app.config(['$routeProvider',
 
             title: 'CR',
             templateUrl: 'partials/cr.html',
+			controller: 'CRCtrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
+        })
+
+        .when('/cr/transaccion',{
+
+            title: 'CR',
+            templateUrl: 'partials/transaccion-cr.html',
 			controller: 'CRCtrl',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
