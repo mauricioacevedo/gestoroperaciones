@@ -61,31 +61,8 @@
                                 <h2 class="page-header">
                                 <a class="btn btn-block btn-primary " ng-click="nuevoRegistroCR();"><span class="glyphicon glyphicon-plus-sign"></span> Nuevo Registro</a>
                                 </h2>
+                                <label class= "col-md-2">Oferta: </label>
 
-                                  <table class="table small table-striped table-hover table-bordered table-condensed" width="100%">
-                            <thead>
-                                    <th width="12%">Oferta</th>
-                                    <th width="7%">Usuario</th>
-                                    <th width="15%">Municipio</th>
-                                    <th width="10%">Transaccion</th>
-                                    <th width="8%">Fecha</th>
-                                    <th width="17%">Estado Final</th>
-                                    <th width="27%">Observacion</th>
-                                    <th ng-hide="true" width="4%">Acciones</th>
-                            </thead>
-                            <tbody>
-                                    <tr ng-repeat="data in listado_transacciones| orderBy:'FECHA_FIN':true ">
-                                    <td>{{data.pedido_id}}</td>
-                                    <td>{{data.user}}</td>
-                                    <td>{{data.municipio_id}}</td>
-                                    <td>{{data.TIPO_TRABAJO}}</td>
-                                    <td>{{data.fecha_fin}}</td>
-                                    <td>{{data.concepto_final}}</td>
-                                    <td>{{data.OBSERVACIONES_PROCESO}}</td>
-                                    <td ng-hide="true" align="center"><button class="btn btn-success btn-xs" value="edit!" ng-click="getTransaccionNCA(data.ID);"><i class="fa fa-pencil fa-lg"></i></button></td>
-                            </tr>
-                            </tbody>
-                    </table>
                               </div>
 
 
