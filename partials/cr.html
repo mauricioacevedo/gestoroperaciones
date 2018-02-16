@@ -96,15 +96,17 @@
                                 <h2 class="page-header">
                                 <a class="btn btn-block btn-primary " ng-click="nuevoRegistroCR();"><span class="glyphicon glyphicon-plus-sign"></span> Nuevo Registro</a>
                                 </h2>
-
+                                     <div class= "form-group">
                                      <label class="col-md-6">Cierre Incidente: </label>
                                       <input name="cierre" ng-model="transaccion.OFERTA" type= "text" class= "form-control" placeholder="INCIDENTE" required/>
+                                     </div>
                                      <div class= "form-group"><!--Inicia Div de Fecha-->
                                        <label class= "col-md-6">Fecha De Cierre: </label>
             	                       <div class="input-daterange col-md-6" id="datepicker">
                                          <input type="text" class="form-control" style="min-width: 100px" id="toDate" name="toDate" ng-model="transaccion.FECHA"  placeholder= "Fecha" />
                                        </div>
                                      </div><!--Finaliza Div de Fecha-->
+
                             </div>
 
                     </div>
