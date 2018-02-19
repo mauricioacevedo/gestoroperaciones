@@ -5899,7 +5899,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 	};
 
-});
+
 
 
  //***********************************jj GUARDAR REGISTRO CR*********************************
@@ -6162,7 +6162,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 
 
-
+});
 
 //**********************************MICHAEL CONTROLADOR PNI************************************
 
