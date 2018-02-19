@@ -722,6 +722,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoTransaccionesPNI');
 	};
 
+    obj.getListadoTransaccionesCR = function () {
+		return $http.get(serviceBase + 'listadoTransaccionesCR');
+	};
+
     //************************************************************************************************
 
 	obj.getListadoUsuarios = function () {
@@ -785,6 +789,27 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
 
     //******************************************************************************
+
+    //****************************JJ CRUD CR**************************************
+    obj.SalvarGestionCR = function (gestion,fechainicio) {
+        return $http.post(serviceBase + 'insertTransaccionCR', {
+            gestion: gestion, fechainicio:fechainicio
+        });
+    };
+
+    obj.EditarGestionCR = function (gestion) {
+        return $http.post(serviceBase + 'ActualizarTransaccionCR', {
+            gestion: gestion
+        });
+    };
+
+    obj.getTransaccionCR = function () {
+		return $http.get(serviceBase + 'getTransaccionCR');
+	};
+
+    obj.buscarRegistroCR = function (bregistro) { //buscar pedido asignacion
+		return $http.get(serviceBase + 'buscarRegistroCR?bregistro=' + bregistro);
+	};
 
      //******************************MICHAEL CRUD PNI*****************************************
     obj.SalvarGestionPNI = function (gestion,fechainicio) {
@@ -886,6 +911,12 @@ app.factory("services", ['$http', '$timeout', function ($http) {
     //EXPOTE KPIS
     obj.getCsvKPIS = function (login, fechaIni, fechaFin) { //exportar NCA
 		return $http.get(serviceBase + 'csvKPIS?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
+	};
+
+    //exporte CR
+
+    obj.getCsvCR = function (login, fechaIni, fechaFin) { //exportar NCA
+		return $http.get(serviceBase + 'csvCR?login=' + login + '&fechaIni=' + fechaIni + '&fechaFin=' + fechaFin);
 	};
 
 	obj.getCsvPendientes = function (login, concepto) { //exportar pendientes
