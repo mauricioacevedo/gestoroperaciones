@@ -5938,7 +5938,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 			return;
 		}*/
 
-		if (transaccion.FECHA_SOLICITUD == undefined || transaccion.FECHA_SOLICITUD == "") {
+		/*if (transaccion.FECHA_SOLICITUD == undefined || transaccion.FECHA_SOLICITUD == "") {
 			alert("Sistema de Informacion sin Datos.");
 			return;
 		}
@@ -5946,7 +5946,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		if (transaccion.FECHA_CIERRE == undefined || transaccion.FECHA_CIERRE == "") {
 			alert("Resultado Carga sin informacion.");
 			return;
-		}
+		}*/
 
 
 
@@ -5958,10 +5958,10 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 
 
-        if (transaccion.ANS == undefined || transaccion.ANS == "") {
+        /*if (transaccion.ANS == undefined || transaccion.ANS == "") {
 			alert("Items Procesados sin informacion.");
 			return;
-		}
+		}*/
        /* if (transaccion.FECHAPROCESADO == undefined || transaccion.FECHAPROCESADO == "") {
 			alert("Observaciones sin informacion.");
 			return;
