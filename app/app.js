@@ -5907,13 +5907,18 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
         //console.log(transaccion);
 
-		if (transaccion.SISTEMA == undefined || transaccion.SISTEMA == "") {
+		if (transaccion.INCIDENTE == undefined || transaccion.INCIDENTE == "") {
+			alert("FechaSolicitud sin informacion.");
+			return;
+		}
+
+        if (transaccion.SISTEMA == undefined || transaccion.SISTEMA == "") {
 			alert("Negocio sin informacion.");
 			return;
 		}
 
-		if (transaccion.INCIDENTE == undefined || transaccion.INCIDENTE == "") {
-			alert("FechaSolicitud sin informacion.");
+		if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
+			alert("Items Procesados sin informacion.");
 			return;
 		}
 
@@ -5944,10 +5949,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 			return;
 		}*/
 
-        if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
-			alert("Items Procesados sin informacion.");
-			return;
-		}
+
 
 
         if (transaccion.ANS == undefined || transaccion.ANS == "") {
