@@ -5903,26 +5903,26 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 
  //***********************************jj GUARDAR REGISTRO CR*********************************
-	$scope.saveTransaccion = function (transaccion) {
+	$scope.saveTransaccionCR = function (transaccionCR) {
 
         console.log(transaccion);
 
-		if (transaccion.INCIDENTE == undefined || transaccion.INCIDENTE == "") {
+		if (transaccionCR.INCIDENTE == undefined || transaccionCR.INCIDENTE == "") {
 			alert("FechaSolicitud sin informacion.");
 			return;
 		}
 
-        if (transaccion.SISTEMA == undefined || transaccion.SISTEMA == "") {
+        if (transaccionCR.SISTEMA == undefined || transaccionCR.SISTEMA == "") {
 			alert("Negocio sin informacion.");
 			return;
 		}
 
-		if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
+		if (transaccionCR.OBSERVACIONES == undefined || transaccionCR.OBSERVACIONES == "") {
 			alert("Items Procesados sin informacion.");
 			return;
 		}
 
-		if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
+		if (transaccionCR.ESTADO == undefined || transaccionCR.ESTADO == "") {
 			alert("Items sin informacion.");
 			return;
 		}
@@ -5932,12 +5932,12 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 			return;
 		}*/
 
-		if (transaccion.FECHA_SOLICITUD == undefined || transaccion.FECHA_SOLICITUD == "") {
+		if (transaccionCR.FECHA_SOLICITUD == undefined || transaccionCR.FECHA_SOLICITUD == "") {
 			alert("Sistema de Informacion sin Datos.");
 			return;
 		}
 
-		if (transaccion.FECHA_CIERRE == undefined || transaccion.FECHA_CIERRE == "") {
+		if (transaccionCR.FECHA_CIERRE == undefined || transaccionCR.FECHA_CIERRE == "") {
 			alert("Resultado Carga sin informacion.");
 			return;
 		}
@@ -5952,7 +5952,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 
 
-        if (transaccion.ANS == undefined || transaccion.ANS == "") {
+        if (transaccionCR.ANS == undefined || transaccionCR.ANS == "") {
 			alert("Items Procesados sin informacion.");
 			return;
 		}
@@ -5968,11 +5968,11 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 
         $scope.InfoGestion = {
-            txtNegocio: transaccion.txtNegocio,
+            txtNegocio: transaccionCR.txtNegocio,
             TECNOLOGIA_ID: ''
         };
 
-         services.SalvarGestionCR(transaccion,$rootScope.fecha_inicionuevoRegistroCR).then(function (data) {
+         services.SalvarGestionCR(transaccionCR,$rootScope.fecha_inicionuevoRegistroCR).then(function (data) {
                 $location.path('/cr/');
                 return data.data;
             }
@@ -5997,21 +5997,21 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 	};
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
-     $scope.EditTransaccionCR = function (transaccion) {
+     $scope.EditTransaccionCR = function (transaccionCR) {
 
         //console.log(transaccion);
 
-		if (transaccion.SISTEMA == undefined || transaccion.SISTEMA == "") {
+		if (transaccionCR.SISTEMA == undefined || transaccionCR.SISTEMA == "") {
 			alert("Negocio sin informacion.");
 			return;
 		}
 
-		if (transaccion.INCIDENTE == undefined || transaccion.INCIDENTE == "") {
+		if (transaccionCR.INCIDENTE == undefined || transaccionCR.INCIDENTE == "") {
 			alert("FechaSolicitud sin informacion.");
 			return;
 		}
 
-		if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
+		if (transaccionCR.ESTADO == undefined || transaccionCR.ESTADO == "") {
 			alert("Items sin informacion.");
 			return;
 		}
@@ -6021,23 +6021,23 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 //			return;
 //		}
 
-        if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
+        if (transaccionCR.OBSERVACIONES == undefined || v.OBSERVACIONES == "") {
 			alert("Items Procesados sin informacion.");
 			return;
 		}
 
 
-        if (transaccion.ANS == undefined || transaccion.ANS == "") {
+        if (transaccionCR.ANS == undefined || transaccionCR.ANS == "") {
 			alert("Items Procesados sin informacion.");
 			return;
 		}
 
         $scope.InfoGestion = {
-            txtNegocio: transaccion.txtNegocio,
+            txtNegocio: transaccionCR.txtNegocio,
             TECNOLOGIA_ID: ''
         };
 
-        services.EditarGestionCR(transaccion).then(function (data) {
+        services.EditarGestionCR(transaccionCR).then(function (data) {
                 $location.path('/cr/');
                 return data.data;
                 $scope.pageChanged();
@@ -6097,7 +6097,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		});
 	}
 
-	if (pathy == "/cr/transaccion") {
+	if (pathy == "/cr/") {
 		var date1 = new Date();
 		var year = date1.getFullYear();
 		var month = $scope.doubleDigit(date1.getMonth() + 1);
@@ -19007,14 +19007,7 @@ app.config(['$routeProvider',
             cargos: ['1','2','3','4','5','6','7','8','9']
         })
 
-        .when('/cr/',{
 
-            title: 'CR',
-            templateUrl: 'partials/cr.html',
-			controller: 'CRCtrl',
-            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
-            cargos: ['1','2','3','4','5','6','7','8','9']
-        })
 
       //*******************MICHAEL PNI********************************
 
