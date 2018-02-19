@@ -11228,7 +11228,7 @@ private function demePedidoEdatel(){
 
         echo("Fecha".$fechaini);
 
-        $column_names = array('SISTEMA','INCIDENTE','ESTADO','FECHA_SOLICITUD','FECHA_CIERRE','OBSERVACIONES');
+        $column_names = array('INCIDENTE','SISTEMA','OBSERVACIONES');
 
         $keys = array_keys($transaccion);
         $columns = '';
@@ -11237,7 +11237,7 @@ private function demePedidoEdatel(){
         $useri=$transaccion['USUARIO'];
         $username=$transaccion['USERNAME'];
 
-        $Negocio=$transaccion['SISTEMA'];
+        $INCIDENTE=$transaccion['INCIDENTE'];
         $estado_final=$transaccion['ESTADO'];
         $ID=$transaccion['ID'];
 
