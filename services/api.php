@@ -12464,7 +12464,7 @@ private function demePedidoEdatel(){
         $filename="CR-$login-$today.csv";
         $query=" SELECT ".
             "SISTEMA, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
-	         AS CHAR (255)) AS ANS, FECHA_SOLICITUD, FECHA_CIERRE
+	         AS CHAR (255)) AS ANS, FECHA_SOLICITUD, FECHA_CIERRE,
 	         OBSERVACIONES FROM tbl_cr where ".
             " FECHA_CIERRE between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' order by ID DESC";
 
