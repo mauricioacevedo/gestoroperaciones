@@ -44,7 +44,7 @@
                                  <br>
                                  <div class="control-group">
                                    <div class="controls">
-                                     <button class="btn btn-success  btn-sm" ng-click="saveTransaccion(transaccion);" ><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
+                                     <button class="btn btn-success btn-sm" ng-show="transaccion.ID==''" ng-click="saveTransaccion(transaccion);" ><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
                                         <!--<button class="btn btn-success btn-sm" ng-show="transaccion.INCIDENTE!=''" ng-click="saveTransaccionCR(transaccion);"><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>-->
                                        <a href="./#/cr/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> Limpiar</a>
                                      </div>
@@ -268,8 +268,8 @@
                                     <th width="9%">INCIDENTE</th>
                                     <th width="9%">ESTADO</th>
                                     <th width="9%">ANS</th>
-                                    <th width="9%">FECHA DE SOLICITUD</th>
-                                    <th width="9%">FECHA CIERRE</th>
+                                    <th width="9%">FECHA DE CIERRE</th>
+                                    <th width="9%">FECHA SOLICITUD</th>
                                     <th width="9%">OBSERVACIONES</th>
                                     <th width="9%">USUARIO</th>
                                     <th width="9%">ACCIONES</th>
