@@ -6163,6 +6163,8 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 });
 
+});
+
 //**********************************MICHAEL CONTROLADOR PNI************************************
 
 app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http,
