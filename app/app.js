@@ -5928,10 +5928,10 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 			return;
 		}
 
-		if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
+		/*if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
 			alert("Items sin informacion.");
 			return;
-		}
+		}*/
 
 	/*	if (transaccion.ANSACTIVIDAD == undefined || transaccion.ANSACTIVIDAD == "") {
 			alert("Actividad sin informacion.");
