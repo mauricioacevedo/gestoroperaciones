@@ -5885,7 +5885,21 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
         $rootScope.fecha_inicionuevoRegistroKPI = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 	};
 
-});
+    $scope.getTransaccionKPIS = function () {
+		//$scope.transaccion={};
+
+		services.getTransaccionKPIS().then(function (data) {
+			//console.log(ncaID);
+			$rootScope.transaccion = data.data[0];
+			//console.log($scope.transaccion);
+			//console.log(data);
+			$location.path('/kpis/');
+			return data.data;
+		});
+
+	};
+
+//});
 
 //**********************************MICHAEL CONTROLADOR PNI************************************
 
