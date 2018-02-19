@@ -5890,7 +5890,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 		services.getTransaccionCR().then(function (data) {
 			//console.log(ncaID);
-			$rootScope.transaccion = data.data[0];
+			$rootScope.transaccionCR = data.data[0];
 			//console.log($scope.transaccion);
 			//console.log(data);
 			$location.path('/cr/');
@@ -5982,7 +5982,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		//$scope.transaccion={};
 		services.getTransaccionCR().then(function (data) {
 			//console.log(ncaID);
-			$rootScope.transaccion = data.data[0];
+			$rootScope.transaccionCR = data.data[0];
 			//console.log($scope.transaccion);
 			//console.log(data);
 			$location.path('/cr/');
