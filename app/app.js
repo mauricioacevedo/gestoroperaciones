@@ -5905,7 +5905,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
  //***********************************jj GUARDAR REGISTRO CR*********************************
 	$scope.saveTransaccionCR = function (transaccion) {
 
-        //console.log(transaccion);
+        console.log(transaccion);
 
 		if (transaccion.INCIDENTE == undefined || transaccion.INCIDENTE == "") {
 			alert("FechaSolicitud sin informacion.");
