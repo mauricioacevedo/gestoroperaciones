@@ -5973,7 +5973,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
         };
 
          services.SalvarGestionCR(transaccion,$rootScope.fecha_inicionuevoRegistroCR).then(function (data) {
-                $location.path('/kpis/');
+                $location.path('/cr/');
                 return data.data;
             }
         )
