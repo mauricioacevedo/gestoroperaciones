@@ -12544,7 +12544,7 @@ private function demePedidoEdatel(){
         $query="select SISTEMA, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_SOLICITUD,FECHA_CIERRE)
 	            AS CHAR (255)) AS ANS,
                 OBSERVACIONES, CAST(TIMEDIFF(FECHA_SOLICITUD,FECHA_CIERRE)
-	            AS CHAR (255)) AS ANS, FECHAFIN from tbl_cr order by ID desc limit 50; ";
+	            AS CHAR (255)) AS ANS, FECHA_CIERRE from tbl_cr order by ID desc limit 50; ";
         echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
