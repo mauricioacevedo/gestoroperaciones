@@ -5903,7 +5903,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 
  //***********************************jj GUARDAR REGISTRO CR*********************************
-	$scope.saveTransaccionCR = function (transaccion) {
+	$scope.saveTransaccion = function (transaccion) {
 
         console.log(transaccion);
 
