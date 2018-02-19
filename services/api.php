@@ -12463,8 +12463,8 @@ private function demePedidoEdatel(){
         $today = date("Y-m-d h:i:s");
         $filename="CR-$login-$today.csv";
         $query=" SELECT ".
-            "SISTEMA, INCIDENTE,CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
-	         AS CHAR (255)) AS ANS, ESTADO,
+            "SISTEMA, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
+	         AS CHAR (255)) AS ANS, FECHA_SOLICITUD, FECHA_CIERRE
 	         OBSERVACIONES FROM tbl_cr where ".
             " FECHA_CIERRE between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' order by ID DESC";
 
@@ -12473,7 +12473,7 @@ private function demePedidoEdatel(){
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('SISTEMA','INCIDENTE','ESTADO','FECHA_SOLICITUD','FECHA_CIERRE','OBSERVACIONES','ANS'));
+            fputcsv($fp, array('SISTEMA','INCIDENTE','ESTADO','ANS', 'FECHA_SOLICITUD','FECHA_CIERRE','OBSERVACIONES'));
             while($row = $r->fetch_assoc()){
                 //$result[] = $row;
                 fputcsv($fp, $row);
@@ -12647,8 +12647,8 @@ private function demePedidoEdatel(){
 
 
         $query="select SISTEMA, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
-	            AS CHAR (255)) AS ANS,
-                OBSERVACIONES, FECHA_CIERRE from tbl_cr order by ID desc limit 50; ";
+	            AS CHAR (255)) AS ANS, FECHA_SOLICITUD, FECHA_CIERRE
+                OBSERVACIONES from tbl_cr order by ID desc limit 50; ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
