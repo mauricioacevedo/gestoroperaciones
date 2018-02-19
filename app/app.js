@@ -5885,7 +5885,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
         $rootScope.fecha_inicionuevoRegistroKPI = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 	};
 
-    $scope.getTransaccionKPIS = function () {
+    $scope.getTransaccionCR = function () {
 		//$scope.transaccion={};
 
 		services.getTransaccionKPIS().then(function (data) {
