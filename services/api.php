@@ -12465,8 +12465,7 @@ private function demePedidoEdatel(){
         $query=" SELECT ".
             "SISTEMA, INCIDENTE,CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
 	         AS CHAR (255)) AS ANS, ESTADO,
-	         OBSERVACIONES, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
-	         AS CHAR (255)) AS ANS FROM tbl_cr where ".
+	         OBSERVACIONES FROM tbl_cr where ".
             " FECHA_CIERRE between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' order by ID DESC";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -12631,7 +12630,7 @@ private function demePedidoEdatel(){
     }
 
     //****************************************JJ LISTADO TRANSACCIONES CR****************************
-     private function listadoTransaccionescr(){
+     private function listadoTransaccionesCR(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
@@ -12649,8 +12648,7 @@ private function demePedidoEdatel(){
 
         $query="select SISTEMA, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
 	            AS CHAR (255)) AS ANS,
-                OBSERVACIONES, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
-	            AS CHAR (255)) AS ANS, FECHA_CIERRE from tbl_cr order by ID desc limit 50; ";
+                OBSERVACIONES, FECHA_CIERRE from tbl_cr order by ID desc limit 50; ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
