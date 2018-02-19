@@ -5871,7 +5871,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
     $scope.nuevoRegistroCR = function () {
 		$rootScope.transaccion = {};
 		$rootScope.transaccion.ID = '';
-		$location.path('/cr/transaccion');
+		$location.path('/cr/');
 
         $scope.timeInit = new Date().getTime();
 		var date1 = new Date();
@@ -5882,18 +5882,18 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		var minute = $scope.doubleDigit(date1.getMinutes());
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
-        $rootScope.fecha_inicionuevoRegistroKPI = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+        $rootScope.fecha_inicionuevoRegistroCR = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 	};
 
     $scope.getTransaccionCR = function () {
 		//$scope.transaccion={};
 
-		services.getTransaccionKPIS().then(function (data) {
+		services.getTransaccionCR().then(function (data) {
 			//console.log(ncaID);
 			$rootScope.transaccion = data.data[0];
 			//console.log($scope.transaccion);
 			//console.log(data);
-			$location.path('/kpis/');
+			$location.path('/cr/');
 			return data.data;
 		});
 
