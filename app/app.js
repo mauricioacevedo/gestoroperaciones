@@ -5901,6 +5901,247 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 });
 
+
+ //***********************************jj GUARDAR REGISTRO CR*********************************
+	$scope.saveTransaccion = function (transaccion) {
+
+        //console.log(transaccion);
+
+		if (transaccion.SISTEMA == undefined || transaccion.SISTEMA == "") {
+			alert("Negocio sin informacion.");
+			return;
+		}
+
+		if (transaccion.INCIDENTE == undefined || transaccion.INCIDENTE == "") {
+			alert("FechaSolicitud sin informacion.");
+			return;
+		}
+
+		if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
+			alert("Items sin informacion.");
+			return;
+		}
+
+		if (transaccion.ANS == undefined || transaccion.ANS == "") {
+			alert("Actividad sin informacion.");
+			return;
+		}
+
+		if (transaccion.FECHA_SOLICITUD == undefined || transaccion.FECHA_SOLICITUD == "") {
+			alert("Sistema de Informacion sin Datos.");
+			return;
+		}
+
+		if (transaccion.FECHA_CIERRE == undefined || transaccion.FECHA_CIERRE == "") {
+			alert("Resultado Carga sin informacion.");
+			return;
+		}
+
+        if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
+			alert("Items Procesados sin informacion.");
+			return;
+		}
+
+       /* if (transaccion.FECHAPROCESADO == undefined || transaccion.FECHAPROCESADO == "") {
+			alert("Observaciones sin informacion.");
+			return;
+		}*/
+
+      /*  if (transaccion.RESPONSABLE == undefined || transaccion.RESPONSABLE == "") {
+			alert("Fecha Procesados sin informacion.");
+			return;
+		}*/
+
+
+        $scope.InfoGestion = {
+            txtNegocio: transaccion.txtNegocio,
+            TECNOLOGIA_ID: ''
+        };
+
+         services.SalvarGestionCR(transaccion,$rootScope.fecha_inicionuevoRegistroCR).then(function (data) {
+                $location.path('/cr/');
+                return data.data;
+            }
+        )
+
+        $scope.getTransaccionCR = function () {
+		//$scope.transaccion={};
+		services.getTransaccionCR().then(function (data) {
+			//console.log(ncaID);
+			$rootScope.transaccion = data.data[0];
+			//console.log($scope.transaccion);
+			//console.log(data);
+			$location.path('/cr/');
+			return data.data;
+        });
+
+	   };
+
+        $scope.pageChanged();
+        $location.path('/CR/');
+
+	};
+
+    //*******************************JJ EDITAR REGISTRO cr *********************************
+    $scope.EditTransaccionKPIS = function (transaccion) {
+
+        //console.log(transaccion);
+
+		if (transaccion.SISTEMA == undefined || transaccion.SISTEMA == "") {
+			alert("Negocio sin informacion.");
+			return;
+		}
+
+		if (transaccion.INCIDENTE == undefined || transaccion.INCIDENTE == "") {
+			alert("FechaSolicitud sin informacion.");
+			return;
+		}
+
+		if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
+			alert("Items sin informacion.");
+			return;
+		}
+
+		if (transaccion.ANS == undefined || transaccion.ANS == "") {
+			alert("Actividad sin informacion.");
+			return;
+		}
+
+		if (transaccion.FECHA_SOLICITUD == undefined || transaccion.FECHA_SOLICITUD == "") {
+			alert("Sistema de Informacion sin Datos.");
+			return;
+		}
+
+		if (transaccion.FECHA_CIERRE == undefined || transaccion.FECHA_CIERRE == "") {
+			alert("Resultado Carga sin informacion.");
+			return;
+		}
+
+        if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
+			alert("Items Procesados sin informacion.");
+			return;
+		}
+
+//        if (transaccion.ITEMSINCONSISTENTES == "-1") {
+//			alert("Items Inconsistentes sin informacion.");
+//			return;
+//		}
+
+
+
+
+
+
+        $scope.InfoGestion = {
+            txtNegocio: transaccion.txtNegocio,
+            TECNOLOGIA_ID: ''
+        };
+
+        services.EditarGestionCR(transaccion).then(function (data) {
+                $location.path('/cr/');
+                return data.data;
+                $scope.pageChanged();
+
+            }
+        )
+
+	};
+
+    //******************************************************************************************
+
+    $scope.buscarRegistroCR = function(bregistro) {
+
+        console.log(bregistro);
+        services.buscarRegistroCR(bregistro).then(function(data){
+
+            //traigo los datos que voy a mostrar
+            //document.getElementById('txtProcesados').value =
+
+            return data.data;
+            console.log(data.data);
+
+        });
+
+    };
+
+
+    $scope.listado_transacciones = [];
+	$scope.data = {
+		maxSize: 5,
+		currentPage: 1,
+		numPerPage: 100,
+		totalItems: 0,
+		fechaIni: "",
+		fechaFin: ""
+	};
+
+	var date1 = new Date();
+	var year = date1.getFullYear();
+	var month = $scope.doubleDigit(date1.getMonth() + 1);
+	var day = $scope.doubleDigit(date1.getDate());
+
+	var fecha_inicio = year + "-" + month + "-" + day;
+	var fecha_fin = year + "-" + month + "-" + day;
+
+	$scope.data.fechaIni = fecha_inicio;
+	$scope.data.fechaFin = fecha_fin;
+
+	//services.getListadotransaccionesNCA(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
+	var pathy = $location.path();
+
+	if (pathy == "/cr/") { //esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
+		services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {
+			$scope.listado_transacciones = data.data[0];
+			$scope.data.totalItems = data.data[1];
+			return data.data;
+		});
+	}
+
+	if (pathy == "/cr/transaccion") {
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+		$scope.FECHA_INICIO = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+		$scope.transaccion.FECHA = year + "-" + month + "-" + day;
+	}
+
+	$scope.pageChanged = function () {
+		services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {
+			$scope.listado_transacciones = data.data[0];
+			$scope.data.totalItems = data.data[1];
+			return data.data;
+		});
+
+	};
+
+	$scope.csvCR = function () {
+		var login = $rootScope.logedUser.login;
+		services.getCsvCR(login, $scope.data.fechaIni, $scope.data.fechaFin).then(function (data) {
+			//console.log(data.data[0]);
+			window.location.href = "tmp/" + data.data[0];
+			return data.data;
+		});
+
+	};
+
+	$scope.objMunicipios = function () {
+        $http.get('./services/objMunicipios').then(
+            function (res) {
+                $scope.lstMunicipios = res.data[0];
+
+            }
+        )
+    };
+
+    $scope.objMunicipios();
+
+
+});
+
 //**********************************MICHAEL CONTROLADOR PNI************************************
 
 app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http,
