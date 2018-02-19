@@ -11241,6 +11241,7 @@ private function demePedidoEdatel(){
         $estado_final=$transaccion['ESTADO'];
         $ID=$transaccion['ID'];
 
+    var_dump($transaccion);
 
         foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
             if($desired_key=='ID'){
