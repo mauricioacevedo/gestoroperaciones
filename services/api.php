@@ -12335,6 +12335,77 @@ private function demePedidoEdatel(){
     }
 
 
+    //************************************csv CR**********************************
+
+    private function csvCR(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+        $login = $this->_request['login'];
+        $fechaIni = $this->_request['fechaIni'];
+        $fechaFin = $this->_request['fechaFin'];
+
+        $today = date("Y-m-d h:i:s");
+        $filename="CR-$login-$today.csv";
+        $query=" SELECT ".
+            "SISTEMA, INCIDENTE,CAST(TIMEDIFF(FECHA_SOLICITUD, FECHA_CIERRE)
+	         AS CHAR (255)) AS ANS, ESTADO,
+	         OBSERVACIONES, CAST(TIMEDIFF(FECHA_SOLICITUD, FECHA_CIERRE)
+	         AS CHAR (255)) AS ANS FROM tbl_cr where ".
+            " FECHA_CIERRE between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' order by ID DESC";
+
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            $fp = fopen("../tmp/$filename", 'w');
+            fputcsv($fp, array('SISTEMA','INCIDENTE','ESTADO','FECHA_SOLICITUD','FECHA_CIERRE','OBSERVACIONES','ANS'));
+            while($row = $r->fetch_assoc()){
+                //$result[] = $row;
+                fputcsv($fp, $row);
+            }
+            fclose($fp);
+            // SQL Feed----------------------------------
+            $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'SIN PEDIDO' ".
+                ",'EXPORTO HISTORICO SIEBEL' ".
+                ",'ARCHIVO EXPORTADO' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
+            // ---------------------------------- SQL Feed
+            $this->response($this->json(array($filename,$login)), 200); // send user details
+        }
+
+        $this->response('',204);        // If no records "No Content" status
+
+    }
+
+
     private function csvactividades(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -12453,6 +12524,40 @@ private function demePedidoEdatel(){
 
     }
 
+    //****************************************JJ LISTADO TRANSACCIONES CR****************************
+     private function listadoTransaccionescr(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+
+        $query="SELECT count(*) as counter from tbl_cr ";
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter = $row['counter'];
+            }
+        }
+
+
+        $query="select SISTEMA, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_SOLICITUD,FECHA_CIERRE)
+	            AS CHAR (255)) AS ANS,
+                OBSERVACIONES, CAST(TIMEDIFF(FECHA_SOLICITUD,FECHA_CIERRE)
+	            AS CHAR (255)) AS ANS, FECHAFIN from tbl_cr order by ID desc limit 50; ";
+        //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                $result[] = $row;
+            }
+            $this->response($this->json(array($result,$counter)), 200); // send user details
+        }
+        $this->response('',204);        // If no records "No Content" status
+
+    }
 
     //*****************************************MICHAEL LISTADO TRANSACCIONES PNI*****************************
     private function listadoTransaccionesPNI(){
