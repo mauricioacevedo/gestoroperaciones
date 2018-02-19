@@ -11090,6 +11090,8 @@ private function demePedidoEdatel(){
 
     }
 
+
+
     private function ActualizarTransaccionKPIS(){
 
         if($this->get_request_method() != "POST"){
@@ -11200,7 +11202,73 @@ private function demePedidoEdatel(){
         $this->response('',204);        // If no records "No Content" status
     }
 
+//********************************JJ INSERT INCIDENTES***********************************************
 
+    private function actualizarTransaccionCR(){
+
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+        $transaccion = json_decode(file_get_contents("php://input"),true);
+
+        $transaccion = $transaccion['gestion'];
+
+        $column_names = array('SISTEMA','INCIDENTE','ESTADO','FECHA_SOLICITUD','FECHA_CIERRE','OBSERVACIONES');
+
+        $keys = array_keys($transaccion);
+        $columns = '';
+        $values = '';
+
+        $useri=$transaccion['USUARIO'];
+        $username=$transaccion['USERNAME'];
+
+        $NEGOCIO=$transaccion['SISTEMA'];
+        $FECHASOLICI=$transaccion['INCIDENTE'];
+        $ITEMS=$transaccion['ESTADO'];
+        $ANSACTIVIDAD=$transaccion['FECHA_SOLICITUD'];
+        $SISTEMAINFO=$transaccion['FECHA_CIERRE'];
+        $RESULTADOCARGA=$transaccion['OBSERVACIONES'];
+
+        foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
+            if($desired_key=='ID'){
+                continue;
+            }
+            if(!in_array($desired_key, $keys)) {
+                $$desired_key = '';
+            }else{
+                $$desired_key = $transaccion[$desired_key];
+            }
+            $columns = $columns.$desired_key.',';
+            $values = $values."'".$transaccion[$desired_key]."',";
+        }
+        $today = date("Y-m-d H:i:s");
+
+        $query = " UPDATE tbl_KpisInfraestructura set NEGOCIO = '$NEGOCIO', FECHASOLICI = '$FECHASOLICI', ITEMS = '$ITEMS', ANSACTIVIDAD = '$ANSACTIVIDAD', SISTEMAINFO = '$SISTEMAINFO', RESULTADOCARGA = '$RESULTADOCARGA', ITEMSPROCESADO = '$ITEMSPROCESADO', ITEMSINCONSISTENTES = '$ITEMSINCONSISTENTES', OBSERVACIONES = '$OBSERVACIONES', FECHAPROCESADO = '$FECHAPROCESADO',RESPONSABLE = '$RESPONSABLE' where ID = 1 ";
+        echo $query;
+
+        if(!empty($transaccion)){
+            //echo $query;
+            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+            $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
+
+        }else{
+            $this->response('',200);        //"No Content" status
+            //$this->response("$query",200);        //"No Content" status
+        }
+
+    }
 //**********************************************************************************************************************
 
 
