@@ -6161,9 +6161,8 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
     $scope.objMunicipios();
 
 
-});
 
-});
+
 
 //**********************************MICHAEL CONTROLADOR PNI************************************
 
