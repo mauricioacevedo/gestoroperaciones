@@ -11202,7 +11202,76 @@ private function demePedidoEdatel(){
         $this->response('',204);        // If no records "No Content" status
     }
 
-//********************************JJ INSERT INCIDENTES***********************************************
+//********************************JJ INSERT INCIDENTES CR***********************************************
+
+    private function insertTransaccionCR(){
+
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+        $transaccion = json_decode(file_get_contents("php://input"),true);
+        $fecha = json_decode(file_get_contents("php://input"),true);
+
+        $transaccion = $transaccion['gestion'];
+        $fechaini = $fecha['fechainicio'];
+
+        echo("Fecha".$fechaini);
+
+        $column_names = array('SISTEMA','INCIDENTE','ESTADO','FECHA_SOLICITUD','FECHA_CIERRE','OBSERVACIONES');
+
+        $keys = array_keys($transaccion);
+        $columns = '';
+        $values = '';
+
+        $useri=$transaccion['USUARIO'];
+        $username=$transaccion['USERNAME'];
+
+        $Negocio=$transaccion['SISTEMA'];
+        $estado_final=$transaccion['ESTADO'];
+        $ID=$transaccion['ID'];
+
+
+        foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
+            if($desired_key=='ID'){
+                continue;
+            }
+            if(!in_array($desired_key, $keys)) {
+                $$desired_key = '';
+            }else{
+                $$desired_key = $transaccion[$desired_key];
+            }
+            $columns = $columns.$desired_key.',';
+            $values = $values."'".$transaccion[$desired_key]."',";
+        }
+        $today = date("Y-m-d H:i:s");
+
+        $query = " INSERT INTO tbl_cr (".trim($columns,',').",USUARIO,FECHA_SOLICITUD) VALUES(".trim($values,',').",'$usuarioGalleta','$fechaini')";
+
+        //echo $query;
+        if(!empty($transaccion)){
+            //echo $query;
+            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+            $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
+
+        }else{
+            $this->response('',200);        //"No Content" status
+            //$this->response("$query",200);        //"No Content" status
+        }
+
+    }
+
 
     private function actualizarTransaccionCR(){
 
@@ -11254,7 +11323,7 @@ private function demePedidoEdatel(){
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " UPDATE tbl_KpisInfraestructura set NEGOCIO = '$NEGOCIO', FECHASOLICI = '$FECHASOLICI', ITEMS = '$ITEMS', ANSACTIVIDAD = '$ANSACTIVIDAD', SISTEMAINFO = '$SISTEMAINFO', RESULTADOCARGA = '$RESULTADOCARGA', ITEMSPROCESADO = '$ITEMSPROCESADO', ITEMSINCONSISTENTES = '$ITEMSINCONSISTENTES', OBSERVACIONES = '$OBSERVACIONES', FECHAPROCESADO = '$FECHAPROCESADO',RESPONSABLE = '$RESPONSABLE' where ID = 1 ";
+        $query = " UPDATE tbl_cr set SISTEMA = '$SISTEMA', INCIDENTE = '$INCIDENTE', ESTADO = '$ESTADO', ANS = '$ANS', FECHA_SOLICITUD = '$FECHA_SOLICITUD', FECHA_CIERRE = '$FECHA_CIERRE', OBSERVACIONES = '$OBSERVACIONES', USUARIO = '$USUARIO' where ID = 1 ";
         echo $query;
 
         if(!empty($transaccion)){
@@ -11268,6 +11337,43 @@ private function demePedidoEdatel(){
             //$this->response("$query",200);        //"No Content" status
         }
 
+    }
+
+
+    private function buscarRegistroCR(){//pendientes
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+        $bregistro = $this->_request['bregistro'];
+
+
+        //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
+
+        $query="select * from tbl_cr where ID = '$bregistro'";
+        //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                $result[] = $row;
+            }
+
+            // ---------------------------------- SQL Feed
+            $this->response($this->json(array($result)), 200); // send user details
+
+
+        }
+        $this->response('',204);        // If no records "No Content" status
     }
 //**********************************************************************************************************************
 
@@ -12357,9 +12463,9 @@ private function demePedidoEdatel(){
         $today = date("Y-m-d h:i:s");
         $filename="CR-$login-$today.csv";
         $query=" SELECT ".
-            "SISTEMA, INCIDENTE,CAST(TIMEDIFF(FECHA_SOLICITUD, FECHA_CIERRE)
+            "SISTEMA, INCIDENTE,CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
 	         AS CHAR (255)) AS ANS, ESTADO,
-	         OBSERVACIONES, CAST(TIMEDIFF(FECHA_SOLICITUD, FECHA_CIERRE)
+	         OBSERVACIONES, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
 	         AS CHAR (255)) AS ANS FROM tbl_cr where ".
             " FECHA_CIERRE between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' order by ID DESC";
 
@@ -12541,9 +12647,9 @@ private function demePedidoEdatel(){
         }
 
 
-        $query="select SISTEMA, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_SOLICITUD,FECHA_CIERRE)
+        $query="select SISTEMA, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
 	            AS CHAR (255)) AS ANS,
-                OBSERVACIONES, CAST(TIMEDIFF(FECHA_SOLICITUD,FECHA_CIERRE)
+                OBSERVACIONES, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
 	            AS CHAR (255)) AS ANS, FECHA_CIERRE from tbl_cr order by ID desc limit 50; ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
