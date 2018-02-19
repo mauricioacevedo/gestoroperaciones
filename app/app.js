@@ -19010,7 +19010,7 @@ app.config(['$routeProvider',
         .when('/cr/transaccion',{
 
             title: 'CR',
-            templateUrl: 'partials/transaccion-cr.html',
+            templateUrl: 'partials/cr.html',
 			controller: 'CRCtrl',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
