@@ -797,6 +797,12 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         });
     };
 
+     obj.insertTransaccionCR = function (gestion,fechainicio) {
+        return $http.post(serviceBase + 'insertTransaccionCR', {
+            gestion: gestion, fechainicio:fechainicio
+        });
+    };
+
     obj.EditarGestionCR = function (gestion) {
         return $http.post(serviceBase + 'ActualizarTransaccionCR', {
             gestion: gestion
