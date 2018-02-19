@@ -5907,17 +5907,17 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
         //console.log(transaccion);
 
-		if (transaccion.NEGOCIO == undefined || transaccion.NEGOCIO == "") {
+		if (transaccion.SISTEMA == undefined || transaccion.SISTEMA == "") {
 			alert("Negocio sin informacion.");
 			return;
 		}
 
-		if (transaccion.FECHASOLICI == undefined || transaccion.FECHASOLICI == "") {
+		if (transaccion.INCIDENTE == undefined || transaccion.INCIDENTE == "") {
 			alert("FechaSolicitud sin informacion.");
 			return;
 		}
 
-		if (transaccion.ITEMS == undefined || transaccion.ITEMS == "") {
+		if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
 			alert("Items sin informacion.");
 			return;
 		}
@@ -5927,20 +5927,17 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 			return;
 		}*/
 
-		if (transaccion.SISTEMAINFO == undefined || transaccion.SISTEMAINFO == "") {
+		if (transaccion.FECHA_SOLICITUD == undefined || transaccion.FECHA_SOLICITUD == "") {
 			alert("Sistema de Informacion sin Datos.");
 			return;
 		}
 
-		if (transaccion.RESULTADOCARGA == undefined || transaccion.RESULTADOCARGA == "") {
+		if (transaccion.FECHA_CIERRE == undefined || transaccion.FECHA_CIERRE == "") {
 			alert("Resultado Carga sin informacion.");
 			return;
 		}
 
-        if (transaccion.ITEMSPROCESADO == undefined || transaccion.ITEMSPROCESADO == "") {
-			alert("Items Procesados sin informacion.");
-			return;
-		}
+
 
        /* if (transaccion.ITEMSINCONSISTENTES == "") {
 			alert("Items Inconsistentes sin informacion.");
@@ -5952,6 +5949,11 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 			return;
 		}
 
+
+        if (transaccion.ANS == undefined || transaccion.ANS == "") {
+			alert("Items Procesados sin informacion.");
+			return;
+		}
        /* if (transaccion.FECHAPROCESADO == undefined || transaccion.FECHAPROCESADO == "") {
 			alert("Observaciones sin informacion.");
 			return;
@@ -5968,67 +5970,47 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
             TECNOLOGIA_ID: ''
         };
 
-         services.SalvarGestionInfraestructura(transaccion,$rootScope.fecha_inicionuevoRegistroKPI).then(function (data) {
+         services.SalvarGestionCR(transaccion,$rootScope.fecha_inicionuevoRegistroCR).then(function (data) {
                 $location.path('/kpis/');
                 return data.data;
             }
         )
 
-        $scope.getTransaccionKPIS = function () {
+        $scope.getTransaccionCR = function () {
 		//$scope.transaccion={};
-		services.getTransaccionKPIS().then(function (data) {
+		services.getTransaccionCR().then(function (data) {
 			//console.log(ncaID);
 			$rootScope.transaccion = data.data[0];
 			//console.log($scope.transaccion);
 			//console.log(data);
-			$location.path('/kpis/');
+			$location.path('/cr/');
 			return data.data;
         });
 
 	   };
 
         $scope.pageChanged();
-        $location.path('/kpis/');
+        $location.path('/cr/');
 
 	};
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
-     $scope.EditTransaccionKPIS = function (transaccion) {
+     $scope.EditTransaccionCR = function (transaccion) {
 
         //console.log(transaccion);
 
-		if (transaccion.NEGOCIO == undefined || transaccion.NEGOCIO == "") {
+		if (transaccion.SISTEMA == undefined || transaccion.SISTEMA == "") {
 			alert("Negocio sin informacion.");
 			return;
 		}
 
-		if (transaccion.FECHASOLICI == undefined || transaccion.FECHASOLICI == "") {
+		if (transaccion.INCIDENTE == undefined || transaccion.INCIDENTE == "") {
 			alert("FechaSolicitud sin informacion.");
 			return;
 		}
 
-		if (transaccion.ITEMS == undefined || transaccion.ITEMS == "") {
+		if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
 			alert("Items sin informacion.");
-			return;
-		}
-
-		if (transaccion.ANSACTIVIDAD == undefined || transaccion.ANSACTIVIDAD == "") {
-			alert("Actividad sin informacion.");
-			return;
-		}
-
-		if (transaccion.SISTEMAINFO == undefined || transaccion.SISTEMAINFO == "") {
-			alert("Sistema de Informacion sin Datos.");
-			return;
-		}
-
-		if (transaccion.RESULTADOCARGA == undefined || transaccion.RESULTADOCARGA == "") {
-			alert("Resultado Carga sin informacion.");
-			return;
-		}
-
-        if (transaccion.ITEMSPROCESADO == undefined || transaccion.ITEMSPROCESADO == "") {
-			alert("Items Procesados sin informacion.");
 			return;
 		}
 
@@ -6042,24 +6024,19 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 			return;
 		}
 
-        if (transaccion.FECHAPROCESADO == undefined || transaccion.FECHAPROCESADO == "") {
-			alert("Observaciones sin informacion.");
+
+        if (transaccion.ANS == undefined || transaccion.ANS == "") {
+			alert("Items Procesados sin informacion.");
 			return;
 		}
-
-        if (transaccion.RESPONSABLE == undefined || transaccion.RESPONSABLE == "") {
-			alert("Fecha Procesados sin informacion.");
-			return;
-		}
-
 
         $scope.InfoGestion = {
             txtNegocio: transaccion.txtNegocio,
             TECNOLOGIA_ID: ''
         };
 
-        services.EditarGestionInfraestructura(transaccion).then(function (data) {
-                $location.path('/kpis/');
+        services.EditarGestionCR(transaccion).then(function (data) {
+                $location.path('/cr/');
                 return data.data;
                 $scope.pageChanged();
 
@@ -6070,10 +6047,10 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
     //******************************************************************************************
 
-    $scope.buscarRegistroKPIS = function(bregistro) {
+    $scope.buscarRegistroCR = function(bregistro) {
 
         console.log(bregistro);
-        services.buscarRegistroKPIS(bregistro).then(function(data){
+        services.buscarRegistroCR(bregistro).then(function(data){
 
             //traigo los datos que voy a mostrar
             //document.getElementById('txtProcesados').value =
@@ -6110,15 +6087,15 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 	//services.getListadotransaccionesNCA(fecha_inicio,fecha_fin,$scope.data.currentPage).then(function(data){
 	var pathy = $location.path();
 
-	if (pathy == "/kpis/") { //esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
-		services.getListadoTransaccionesKPIS($scope.data.currentPage).then(function (data) {
+	if (pathy == "/cr/") { //esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
+		services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {
 			$scope.listado_transacciones = data.data[0];
 			$scope.data.totalItems = data.data[1];
 			return data.data;
 		});
 	}
 
-	if (pathy == "/kpis/transaccion") {
+	if (pathy == "/cr/transaccion") {
 		var date1 = new Date();
 		var year = date1.getFullYear();
 		var month = $scope.doubleDigit(date1.getMonth() + 1);
@@ -6131,7 +6108,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 	}
 
 	$scope.pageChanged = function () {
-		services.getListadoTransaccionesKPIS($scope.data.currentPage).then(function (data) {
+		services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {
 			$scope.listado_transacciones = data.data[0];
 			$scope.data.totalItems = data.data[1];
 			return data.data;
@@ -6139,9 +6116,9 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 	};
 
-	$scope.csvKPIS = function () {
+	$scope.csvCodigoResultado = function () {
 		var login = $rootScope.logedUser.login;
-		services.getCsvKPIS(login, $scope.data.fechaIni, $scope.data.fechaFin).then(function (data) {
+		services.getCsvCR(login, $scope.data.fechaIni, $scope.data.fechaFin).then(function (data) {
 			//console.log(data.data[0]);
 			window.location.href = "tmp/" + data.data[0];
 			return data.data;
