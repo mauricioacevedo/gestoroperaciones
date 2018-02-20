@@ -11263,7 +11263,6 @@ private function demePedidoEdatel(){
         $query = " INSERT INTO tbl_cr(INCIDENTE, SISTEMA, FECHA_SOLICITUD, OBSERVACIONES) VALUES ('$INCIDENTE', '$SISTEMA', '$FECHA_SOLICITUD', '$OBSERVACIONES') ";
 
         alert("El registro se ha guardado con éxito");
-			return;
         echo $query;
         if(!empty($transaccion)){
             //echo $query;
