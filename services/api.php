@@ -11240,6 +11240,7 @@ private function demePedidoEdatel(){
         $INCIDENTE=$transaccion['INCIDENTE'];
         $SISTEMA=$transaccion['SISTEMA'];
         $OBSERVACIONES=$transaccion['OBSERVACIONES'];
+        $FECHA_SOLICITUD=$transaccion['FECHA_SOLICITUD'];
         $estado_final=$transaccion['ESTADO'];
         $ID=$transaccion['ID'];
 
