@@ -12010,7 +12010,7 @@ private function demePedidoEdatel(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
-        $idcr= $this->_request['ID'];
+        $idcr= $this->_request['idcr'];
 
 
         $query="select * from tbl_cr where ID= $idcr";
