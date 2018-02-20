@@ -11259,9 +11259,9 @@ private function demePedidoEdatel(){
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " INSERT INTO tbl_cr('INCIDENTE', 'SISTEMA', 'OBSERVACIONES') VALUE ('$INCIDENTE', '$SISTEMA', '$OBSERVACIONES'') ";
+        $query = " INSERT INTO tbl_cr('INCIDENTE', 'SISTEMA', 'OBSERVACIONES') VALUE ('$INCIDENTE', '$SISTEMA', '$OBSERVACIONES') ";
 
-        //echo $query;
+        echo $query;
         if(!empty($transaccion)){
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -11327,7 +11327,7 @@ private function demePedidoEdatel(){
         $today = date("Y-m-d H:i:s");
 
         $query = " UPDATE tbl_cr set SISTEMA = '$SISTEMA', INCIDENTE = '$INCIDENTE', ESTADO = '$ESTADO', ANS = '$ANS', FECHA_SOLICITUD = '$FECHA_SOLICITUD', FECHA_CIERRE = '$FECHA_CIERRE', OBSERVACIONES = '$OBSERVACIONES', USUARIO = '$USUARIO' where ID = 1 ";
-        echo $query;
+        //echo $query;
 
         if(!empty($transaccion)){
             //echo $query;
