@@ -6004,7 +6004,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
         $scope.pageChanged();
         $location.path('/cr/');
-
+        $scope.listado_transacciones = [];
 	};
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
@@ -6062,7 +6062,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
         )
 
 	};
-    $scope.listado_transacciones = [];
+
     //******************************************************************************************
 
     $scope.buscarRegistroCR = function(bregistro) {
