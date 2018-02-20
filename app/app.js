@@ -5976,9 +5976,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 			return;
 		}*/
 
-         $scope.transaccion.USUARIO = userID;
 
-        console.log(userID);
 
         $scope.InfoGestion = {
             txtNegocio: transaccion.txtNegocio,
