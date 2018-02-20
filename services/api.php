@@ -11257,7 +11257,7 @@ private function demePedidoEdatel(){
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " INSERT INTO tbl_cr INTO portalbd.tbl_cr ('INCIDENTE', 'SISTEMA', 'OBERVACIONES') VALUE ($INCIDENTE, $SISTEMA, $OBSERVACIONES) ";
+        $query = " INSERT INTO tbl_cr INTO portalbd.tbl_cr ('INCIDENTE', 'SISTEMA', 'OBSERVACIONES') VALUE ($INCIDENTE, $SISTEMA, $OBSERVACIONES) ";
 
         //echo $query;
         if(!empty($transaccion)){
