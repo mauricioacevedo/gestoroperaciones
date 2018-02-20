@@ -12017,7 +12017,7 @@ private function demePedidoEdatel(){
         $idcr= $this->_request['idcr'];
 
 
-        $query="select * from tbl_cr where ID= $idcr";
+        $query="select * from tbl_cr where ID= $idcr order by ID desc";
          echo  $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
