@@ -11241,8 +11241,8 @@ private function demePedidoEdatel(){
         $SISTEMA=$transaccion['SISTEMA'];
         $OBSERVACIONES=$transaccion['OBSERVACIONES'];
         $FECHA_SOLICITUD=$transaccion['FECHA_SOLICITUD'];
-        $estado_final=$transaccion['ESTADO'];
-        $ID=$transaccion['ID'];
+
+        //$ID=$transaccion['ID'];
 
     var_dump($transaccion);
 
