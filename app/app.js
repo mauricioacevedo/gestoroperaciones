@@ -5877,7 +5877,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
     $scope.nuevoRegistroCR = function () {
 		$rootScope.transaccion = {};
 		$rootScope.transaccion.ID = '';
-		$location.path('/cr/');
+		$location.path('/cr/transaccion');
 
        // console.log ($rootScope.transaccion.ID);
         $scope.timeInit = new Date().getTime();
