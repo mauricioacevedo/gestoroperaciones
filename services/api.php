@@ -12004,6 +12004,38 @@ private function demePedidoEdatel(){
 
     }
 
+    //---------------------------------------------------------JUAN
+
+     private function getTransaccionCR(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $idcr= $this->_request['ID'];
+
+
+        $query="select * from tbl_cr where ID= $idcr";
+
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            $ids="";
+            $sep="";
+            $transaccion='';
+            if($row = $r->fetch_assoc()){
+                $transaccion = $row;
+            }
+            //$transaccion["PASSWORD"]="";
+            $this->response($this->json(array($transaccion,"OK")), 200); // send user details
+        }
+
+        $this->response('',204);
+
+    }
+
+    ///---------------------------------------------------FIN JUAN
+
+
     //************************************Michael KPIS*******************************************
     private function getTransaccionKPIS(){
         if($this->get_request_method() != "GET"){

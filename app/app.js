@@ -809,8 +809,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         });
     };
 
-    obj.getTransaccionCR = function (ID) {
-		return $http.get(serviceBase + 'getTransaccionCR?ID=' + ID);
+    obj.getTransaccionCR = function (idcr) {
+		return $http.get(serviceBase + 'getTransaccionCR?idcr=' + idcr);
 	};
 
     obj.buscarRegistroCR = function (bregistro) { //buscar pedido asignacion
