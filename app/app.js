@@ -5933,10 +5933,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 			return;
 		}
 
-        if (transaccion.USUARIO == undefined || transaccion.USUARIO == "") {
-			alert("Items Procesados sin informacion.");
-			return;
-		}
+
 
 		/*if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
 			alert("Items sin informacion.");
