@@ -12014,7 +12014,7 @@ private function demePedidoEdatel(){
 
 
         $query="select * from tbl_cr where ID= $idcr";
-
+         echo  $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
