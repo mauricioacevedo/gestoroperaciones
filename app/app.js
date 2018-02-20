@@ -809,8 +809,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         });
     };
 
-    obj.getTransaccionCR = function () {
-		return $http.get(serviceBase + 'getTransaccionCR');
+    obj.getTransaccionCR = function (ID) {
+		return $http.get(serviceBase + 'getTransaccionCR?ID=' + ID);
 	};
 
     obj.buscarRegistroCR = function (bregistro) { //buscar pedido asignacion
@@ -5898,7 +5898,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		services.getTransaccionCR().then(function (data) {
 			//console.log(ncaID);
 			$rootScope.transaccionCR = data.data[0];
-			console.log($scope.transaccionCR);
+			//console.log($scope.transaccionCR);
 			//console.log(data);
 			$location.path('/cr/');
 			return data.data;
