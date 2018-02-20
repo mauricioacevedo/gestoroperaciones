@@ -11263,7 +11263,7 @@ private function demePedidoEdatel(){
         $query = " INSERT INTO tbl_cr(INCIDENTE, SISTEMA, FECHA_SOLICITUD, OBSERVACIONES, USUARIO) VALUES ('$INCIDENTE', '$SISTEMA', '$FECHA_SOLICITUD', '$OBSERVACIONES', '$usuarioGalleta') ";
 
 
-        echo $query;
+        //echo $query;
         if(!empty($transaccion)){
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
