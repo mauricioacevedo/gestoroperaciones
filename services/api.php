@@ -11228,7 +11228,7 @@ private function demePedidoEdatel(){
 
         //echo("Fecha".$fechaini);
 
-        $column_names = array('ID','INCIDENTE','SISTEMA','OBSERVACIONES');
+        $column_names = array('INCIDENTE','SISTEMA','OBSERVACIONES');
 
         $keys = array_keys($transaccion);
         $columns = '';
@@ -11257,7 +11257,7 @@ private function demePedidoEdatel(){
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " INSERT INTO tbl_cr INTO portalbd.tbl_cr ('INCIDENTE', 'SISTEMA', 'OBERVACIONES') VALUE ($INCIDENTE, $SISTEMA, $OBSERVACIONES) WHERE ID = 1";
+        $query = " INSERT INTO tbl_cr INTO portalbd.tbl_cr ('INCIDENTE', 'SISTEMA', 'OBERVACIONES') VALUE ($INCIDENTE, $SISTEMA, $OBSERVACIONES) ";
 
         //echo $query;
         if(!empty($transaccion)){
