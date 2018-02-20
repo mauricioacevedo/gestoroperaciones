@@ -6012,7 +6012,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
         //console.log(transaccion);
 
-		if (transaccion.SISTEMA == undefined || transaccion.SISTEMA == "") {
+		/*if (transaccion.SISTEMA == undefined || transaccion.SISTEMA == "") {
 			alert("Negocio sin informacion.");
 			return;
 		}
@@ -6020,9 +6020,14 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		if (transaccion.INCIDENTE == undefined || transaccion.INCIDENTE == "") {
 			alert("FechaSolicitud sin informacion.");
 			return;
-		}
+		}*/
 
 		if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
+			alert("Items sin informacion.");
+			return;
+		}
+
+         if (transaccion.FECHA_CIERRE == undefined || transaccion.FECHA_CIERRE == "") {
 			alert("Items sin informacion.");
 			return;
 		}
@@ -6032,16 +6037,16 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 //			return;
 //		}
 
-        if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
+        /*if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
 			alert("Items Procesados sin informacion.");
 			return;
-		}
+		}*/
 
 
-        if (transaccion.ANS == undefined || transaccion.ANS == "") {
+        /*if (transaccion.ANS == undefined || transaccion.ANS == "") {
 			alert("Items Procesados sin informacion.");
 			return;
-		}
+		}*/
 
         $scope.InfoGestion = {
             txtNegocio: transaccion.txtNegocio,
