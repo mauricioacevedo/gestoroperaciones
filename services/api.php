@@ -11328,7 +11328,7 @@ private function demePedidoEdatel(){
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " UPDATE tbl_cr set SISTEMA = '$SISTEMA', INCIDENTE = '$INCIDENTE', ESTADO = '$ESTADO', ANS = '$ANS', FECHA_SOLICITUD = '$FECHA_SOLICITUD', FECHA_CIERRE = '$FECHA_CIERRE', OBSERVACIONES = '$OBSERVACIONES', USUARIO = '$USUARIO' where ID = 1 ";
+        $query = " UPDATE tbl_cr set SISTEMA = '$SISTEMA', INCIDENTE = '$INCIDENTE', ESTADO = '$ESTADO', ANS = '$ANS', FECHA_SOLICITUD = '$FECHA_SOLICITUD', FECHA_CIERRE = '$FECHA_CIERRE', OBSERVACIONES = '$OBSERVACIONES', USUARIO = '$usuarioGalleta' where ID = 1 ";
         //echo $query;
 
         if(!empty($transaccion)){
