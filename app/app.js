@@ -6124,7 +6124,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		$scope.FECHA_INICIO = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 		$scope.transaccion.FECHA = year + "-" + month + "-" + day;
 	}*/
-
+    $scope.listado_transacciones = [];
 	$scope.pageChanged = function () {
 		services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {
 			$scope.listado_transacciones = data.data[0];
