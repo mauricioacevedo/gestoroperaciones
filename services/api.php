@@ -11260,7 +11260,7 @@ private function demePedidoEdatel(){
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " INSERT INTO tbl_cr(INCIDENTE, SISTEMA, FECHA_SOLICITUD, OBSERVACIONES) VALUES ('$INCIDENTE', '$SISTEMA', '$FECHA_SOLICITUD', '$OBSERVACIONES') ";
+        $query = " INSERT INTO tbl_cr(INCIDENTE, SISTEMA, FECHA_SOLICITUD, OBSERVACIONES, USUARIO) VALUES ('$INCIDENTE', '$SISTEMA', '$FECHA_SOLICITUD', '$OBSERVACIONES', '$usuarioGalleta') ";
 
 
         echo $query;
