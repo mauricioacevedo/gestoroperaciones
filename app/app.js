@@ -5879,7 +5879,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		$rootScope.transaccion.ID = '';
 		$location.path('/cr/');
 
-        console.log ($rootScope.transaccion.ID);
+       // console.log ($rootScope.transaccion.ID);
         $scope.timeInit = new Date().getTime();
 		var date1 = new Date();
 		var year = date1.getFullYear();
@@ -5898,7 +5898,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		services.getTransaccionCR().then(function (data) {
 			//console.log(ncaID);
 			$rootScope.transaccionCR = data.data[0];
-			//console.log($scope.transaccion);
+			console.log($scope.transaccionCR);
 			//console.log(data);
 			$location.path('/cr/');
 			return data.data;
