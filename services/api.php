@@ -11238,6 +11238,8 @@ private function demePedidoEdatel(){
         $username=$transaccion['USERNAME'];
 
         $INCIDENTE=$transaccion['INCIDENTE'];
+        $SISTEMA=$transaccion['SISTEMA'];
+        $OBSERVACIONES=$transaccion['OBSERVACIONES'];
         $estado_final=$transaccion['ESTADO'];
         $ID=$transaccion['ID'];
 
