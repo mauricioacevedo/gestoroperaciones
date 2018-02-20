@@ -6103,7 +6103,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		});
 	}
 
-	if (pathy == "/cr/transaccion") {
+	/*if (pathy == "/cr/transaccion") {
 		var date1 = new Date();
 		var year = date1.getFullYear();
 		var month = $scope.doubleDigit(date1.getMonth() + 1);
@@ -6113,7 +6113,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 		$scope.FECHA_INICIO = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 		$scope.transaccion.FECHA = year + "-" + month + "-" + day;
-	}
+	}*/
 
 	$scope.pageChanged = function () {
 		services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {
@@ -6134,7 +6134,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 	};
 
-	$scope.objMunicipios = function () {
+	/*$scope.objMunicipios = function () {
         $http.get('./services/objMunicipios').then(
             function (res) {
                 $scope.lstMunicipios = res.data[0];
@@ -6143,7 +6143,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
         )
     };
 
-    $scope.objMunicipios();
+    $scope.objMunicipios();*/
 
 
 
