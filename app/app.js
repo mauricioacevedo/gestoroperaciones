@@ -6062,7 +6062,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
         )
 
 	};
-
+    $scope.listado_transacciones = [];
     //******************************************************************************************
 
     $scope.buscarRegistroCR = function(bregistro) {
@@ -6155,7 +6155,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
     $scope.objMunicipios();*/
 
-$scope.listado_transacciones = [];
+
 
 });
 
