@@ -5908,6 +5908,8 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 
 
+
+
  //***********************************jj GUARDAR REGISTRO CR*********************************
 	$scope.saveTransaccion = function (transaccion) {
 
@@ -6141,7 +6143,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 	};
 
-	/*$scope.objMunicipios = function () {
+	$scope.objMunicipios = function () {
         $http.get('./services/objMunicipios').then(
             function (res) {
                 $scope.lstMunicipios = res.data[0];
@@ -6150,7 +6152,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
         )
     };
 
-    $scope.objMunicipios();*/
+    $scope.objMunicipios();
 
 
 
