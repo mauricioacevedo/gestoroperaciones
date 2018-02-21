@@ -6027,10 +6027,10 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 			return;
 		}
 
-         if (transaccion.FECHA_CIERRE == undefined || transaccion.FECHA_CIERRE == "") {
+         /*if (transaccion.FECHA_CIERRE == undefined || transaccion.FECHA_CIERRE == "") {
 			alert("Items sin informacion.");
 			return;
-		}
+		}*/
 
 //        if (transaccion.ITEMSINCONSISTENTES == "-1") {
 //			alert("Items Inconsistentes sin informacion.");
