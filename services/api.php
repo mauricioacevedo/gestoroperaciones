@@ -11363,8 +11363,8 @@ private function demePedidoEdatel(){
 
         //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
 
-        $query="select * from tbl_cr where ID = 'bregistro'";
-        //echo $query;
+        $query="select * from tbl_cr where INCIDENTE='bregistro'";
+        echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
