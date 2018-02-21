@@ -11226,9 +11226,9 @@ private function demePedidoEdatel(){
         $transaccion = $transaccion['gestion'];
         $fechaini = $fecha['fechainicio'];
 
-        echo("Fecha".$fechaini);
+        //echo("Fecha".$fechaini);
 
-        $column_names = array('INCIDENTE','SISTEMA','OBSERVACIONES');
+        $column_names = array('INCIDENTE','SISTEMA','OBSERVACIONES','USUARIO');
 
         $keys = array_keys($transaccion);
         $columns = '';
@@ -11238,8 +11238,11 @@ private function demePedidoEdatel(){
         $username=$transaccion['USERNAME'];
 
         $INCIDENTE=$transaccion['INCIDENTE'];
-        $estado_final=$transaccion['ESTADO'];
-        $ID=$transaccion['ID'];
+        $SISTEMA=$transaccion['SISTEMA'];
+        $OBSERVACIONES=$transaccion['OBSERVACIONES'];
+        $FECHA_SOLICITUD=$transaccion['FECHA_SOLICITUD'];
+
+        //$ID=$transaccion['ID'];
 
     var_dump($transaccion);
 
@@ -11257,7 +11260,8 @@ private function demePedidoEdatel(){
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " INSERT INTO tbl_cr INTO portalbd.tbl_cr ('INCIDENTE', 'SISTEMA', 'OBERVACIONES') VALUE ($INCIDENTE, $SISTEMA, $OBSERVACIONES) WHERE ID = 1";
+        $query = " INSERT INTO tbl_cr(INCIDENTE, SISTEMA, FECHA_SOLICITUD, OBSERVACIONES, USUARIO) VALUES ('$INCIDENTE', '$SISTEMA', '$FECHA_SOLICITUD', '$OBSERVACIONES', '$usuarioGalleta') ";
+
 
         //echo $query;
         if(!empty($transaccion)){
@@ -11324,8 +11328,8 @@ private function demePedidoEdatel(){
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " UPDATE tbl_cr set SISTEMA = '$SISTEMA', INCIDENTE = '$INCIDENTE', ESTADO = '$ESTADO', ANS = '$ANS', FECHA_SOLICITUD = '$FECHA_SOLICITUD', FECHA_CIERRE = '$FECHA_CIERRE', OBSERVACIONES = '$OBSERVACIONES', USUARIO = '$USUARIO' where ID = 1 ";
-        echo $query;
+        $query = " UPDATE tbl_cr set SISTEMA = '$SISTEMA', INCIDENTE = '$INCIDENTE', ESTADO = '$ESTADO', ANS = '$ANS', FECHA_SOLICITUD = '$FECHA_SOLICITUD', FECHA_CIERRE = '$FECHA_CIERRE', OBSERVACIONES = '$OBSERVACIONES', USUARIO = '$usuarioGalleta' where ID = 1 ";
+        //echo $query;
 
         if(!empty($transaccion)){
             //echo $query;
@@ -11359,7 +11363,7 @@ private function demePedidoEdatel(){
 
         //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
 
-        $query="select * from tbl_cr where ID = '$bregistro'";
+        $query="select * from tbl_cr where INCIDENTE like '$bregistro%'";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -12003,6 +12007,38 @@ private function demePedidoEdatel(){
         $this->response('',204);
 
     }
+
+    //---------------------------------------------------------JUAN
+
+     private function getTransaccionCR(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $idcr= $this->_request['idcr'];
+
+
+        $query="select * from tbl_cr where ID= $idcr order by ID desc";
+         echo  $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            $ids="";
+            $sep="";
+            $transaccion='';
+            if($row = $r->fetch_assoc()){
+                $transaccion = $row;
+            }
+            //$transaccion["PASSWORD"]="";
+            $this->response($this->json(array($transaccion,"OK")), 200); // send user details
+        }
+
+        $this->response('',204);
+
+    }
+
+    ///---------------------------------------------------FIN JUAN
+
 
     //************************************Michael KPIS*******************************************
     private function getTransaccionKPIS(){
@@ -12649,7 +12685,7 @@ private function demePedidoEdatel(){
 
         $query="select SISTEMA, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
 	            AS CHAR (255)) AS ANS, FECHA_SOLICITUD, FECHA_CIERRE,
-                OBSERVACIONES from tbl_cr order by ID desc limit 50; ";
+                OBSERVACIONES, USUARIO from tbl_cr order by ID desc limit 50; ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 

@@ -13,14 +13,14 @@
             <div class="jumbotron">
                 <div ng-show="isSet(1)">
                     <div class="row">
-                        <div class="col-lg-8">
+                        <div class="col-md-3">
                             <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i>Historico Registros  CR<small> </small></h2>
                             <!-- INICIO REGISTRO INCIDENTE -->
                             <div class= "form-group">
-                            <label class= "col-md-6">Nuevo Incidente: </label>
+                            <label class= "col-md-2">Nuevo Incidente: </label>
 
 
-                                  <input name="nuevo" ng-model="transaccion.INCIDENTE" type= "text" class= "form-control" placeholder="INCIDENTE" required/>
+                                  <input maxlength="7" name="nuevo" ng-model="transaccion.INCIDENTE" type= "text" class="form-control" placeholder="INCIDENTE" required/>
 
                             </div>
                                <div class= "form-group">
@@ -28,25 +28,40 @@
 
                                 <select ng-model="transaccion.SISTEMA" class="form-control" style="" >
                                         <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='EDATEL'>SIEBEL</option>
-                                        <option value='UNE'>FENIX</option>
-                                        <option value='ETP'>PNI</option>
+                                        <option value='FENIX ORACLE'>FENIX ORACLE</option>
+                                        <option value='FENIX ATC'>FENIX ATC</option>
+                                        <option value='QUERY BUILDER'>QUERY BUILDER</option>
+                                        <option value='PNI'>PNI</option>
+                                        <option value='METASOLW(M6)'>METASOLW(M6)</option>
+                                        <option value='GTC'>GTC</option>
                                 </select>
 
+                                </div>
+                                <div class="from-group" id="datetimepicker">
+                                <label for="fechaSolicitud">
+                                    Fecha Solicitud
+                                </label>
+                                <br>
+                                <input type="text" name="fechaSolicitud" id="fechaSolicitud" class="form-control"
+                                    ng-model="transaccion.FECHA_SOLICITUD" datetime-picker date-format="yyyy-MM-dd H:mm:00">
                                 </div>
                                  <div>
                                 <label class= "col-md-4">Observaciones: </label>
 
                                 <input name="obs" ng-model="transaccion.OBSERVACIONES" type= "text" class= "form-control" placeholder="Observaciones" required/>
 
+
+
                                 </div>
                                 <div class="col-md-6"><!--Inicia Div de Botones -->
                                  <br>
-                                 <div class="control-group">
+                                 <div class="form-group">
                                    <div class="controls">
-                                     <button class="btn btn-success btn-sm" ng-show="transaccion.ID==''" ng-click="saveTransaccion(transaccion);" ><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
+                                     <button class="btn btn-success btn-sm" ng-click="saveTransaccion(transaccion);" ><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
+
+
                                         <!--<button class="btn btn-success btn-sm" ng-show="transaccion.INCIDENTE!=''" ng-click="saveTransaccionCR(transaccion);"><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>-->
-                                       <a href="./#/cr/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> Limpiar</a>
+
                                      </div>
                                 </div>
                               </div><!--Finaliza Div de Botones -->
@@ -54,38 +69,35 @@
 
                         </div>
 
-<!--
-                                 <div class="col-lg-4">
-
-                                        <form class="form-inline" role="form">
-
-                                                <div class="form-group btn-group">
-                                                    <br>
-                                                    <br>
-                                                    <input type="text" size="15px" class="form-control btn-group btn btn-sm btn-default"
-                                                           onClick="this.setSelectionRange(0, this.value.length)"
-                                                           title="Escriba registro a Buscar" data-toggle="tooltip" data-placement="top"
-                                                           placeholder="Buscador de Registros" ng-model="bregistro">
-                                                    <button type="button" class="form-control btn btn-sm btn-primary" title="Buscar Pedido"
-                                                            data-toggle="tooltip" data-placement="top" ng-click="buscarRegistroKPIS(bregistro);">
-                                                        <i class="fa fa-search" aria-hidden="true"></i></button>
-
-                                                </div>
-
-                                            </form>
-
-                                    </div>
--->
 
 
-                              <div class="col-lg-4">
-                                <h2 class="page-header">
-                                <a class="btn btn-block btn-primary " ng-click="nuevoRegistroCR();"><span class="glyphicon glyphicon-plus-sign"></span> Nuevo Registro</a>
-                                </h2>
 
-                            </div>
 
-                         <div class="row">
+                    </div>
+
+					<div class="row"><hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
+                            <br></div>
+
+
+
+
+
+             <div class="col-xs-3" >
+                    <input type="text" class="form-control"  class="col-xs-3" placeholder="Incidente a Buscar" ng-model="bregistro">
+                      <div>
+                        <button class="btn btn-success btn-sm" ng-click="buscarRegistroCR(bregistro);" ><span class="glyphicon glyphicon-plus-sign"></span> Buscar</button>
+                        </div>
+                    </div>
+
+			<div class="row">
+				<ul class="nav nav-list">
+				  <li class="divider">.</li>
+				</ul>
+			 </div>
+                    <div class="row">
+		    <table align="center" width="100%">
+			<tr>
+            <div class="row">
                                             <div class="input-daterange col-sm-5" id="datepicker">
                                                         <div class="input-group">
                                                             <span class="input-group-addon">Desde</span>
@@ -98,155 +110,7 @@
                                                             </span>
                                                         </div>
                                                     </div>
-                              </div>
-
-                    </div>
-					<div class="row"><hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
-                            <br></div>
-
-            <!--    <div class="col-lg-6">
-                    <div class="row">
-
-                           <div class="form-group">
-                                <label for="Negocio">
-                                    Negocio
-                                </label>
-                                <select ng-model="transaccion.NEGOCIO" class="form-control" style="" >
-                                        <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='Edatel'>Edatel</option>
-                                        <option value='UNE'>UNE</option>
-                                        <option value='ETP'>ETP</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="FechaSoli">
-                                    Fecha Solicitud
-                                </label>
-                                <input type="date" ng-model="transaccion.FECHASOLICI" name="transaccion.txtFechaSoli" class="form-control">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Items">
-                                    Item
-                                </label>
-                                <select ng-model="transaccion.ITEMS" class="form-control" style="" name="txtItems">
-                                        <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='Targetas'>Targetas</option>
-                                        <option value='Ampliaciones'>Ampliaciones</option>
-                                        <option value='Proyectos'>Proyectos</option>
-                                        <option value='Zona de Influencia'>Zona de Influencia</option>
-                                        <option value='Equipos'>Equipos</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="ANSActividad">
-                                    ANS Actividad
-                                </label>
-                                <input type="text" ng-model="transaccion.ANSACTIVIDAD" id="txtANSActividad" name="txtANSActividad" placeholder="Ejm: etc" class="form-control">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="SistemaInfo">
-                                    Sistema de Informacion
-                                </label>
-                                    <select ng-model="transaccion.SISTEMAINFO" class="form-control" style="" name="txtSistemaInfo">
-                                        <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='Open Smartflex(Edatel)'>Open Smartflex(Edatel)</option>
-                                        <option value='Siebel'>Siebel</option>
-                                        <option value='Fenix'>Fenix</option>
-                                        <option value='Open Smartflex(ETP)'>Open Smartflex(ETP)</option>
-                                    </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="ResultadoCarga">
-                                    Resultado Carga
-                                </label>
-                                    <select ng-model="transaccion.RESULTADOCARGA" class="form-control" style="" name="txtResultadoCarga">
-                                        <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='Procesado'>Procesado</option>
-                                        <option value='No Procesado'>No Procesado</option>
-                                        <option value='Parcial'>Parcial</option>
-                                    </select>
-                            </div>
-
-                        </div>
-                    </div>-->
-
-              <!--      <div class="col-lg-6" >
-                        <div class="row2">
-
-                            <div class="form-group">
-                                <label for="Procesados">
-                                    Cantidad Items Procesados.
-                                </label>
-                                <input type="number" ng-model ="transaccion.ITEMSPROCESADO" id="txtProcesados" name="txtProcesados" placeholder="Ejm: 69" class="form-control">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Inconsistentes">
-                                    Cantidad Items Inconsistentes
-                                </label>
-                                <input type="number" ng-model="transaccion.ITEMSINCONSISTENTES" id="txtInconsistentes" name="txtInconsistentes" placeholder="Ejm: 69" class="form-control">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Observaciones">
-                                    Observaciones
-                                </label>
-                                <select ng-model="transaccion.OBSERVACIONES" class="form-control" style="" name="txtObservaciones">
-                                        <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='Error de Sistema'>Error de Sistema</option>
-                                        <option value='Datos Errados'>Datos Errados</option>
-                                        <option value='Sistema No Disponible'>Sistema No Disponible</option>
-                                    </select>
-                             </div>
-
-                             <div class="form-group">
-                                <label for="FechaProcesado">
-                                    Fecha Procesado
-                                </label>
-                                <input type="date" ng-model="transaccion.FECHAPROCESADO" id="txtFechaProce" name="txtFechaProce" placeholder="Ejm: 69" class="form-control">
-                              </div>
-
-                                <div class="form-group">
-                                    <label for="Responsable">
-                                     Usuario Responsable
-                                    </label>
-                                    <select ng-model="transaccion.RESPONSABLE" class="form-control" style="" name="txtResponsable">
-                                        <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='Lina'>Lina</option>
-                                        <option value='Fredy'>Fredy</option>
-                                        <option value='Luis Fernando'>Luis Fernando</option>
-                                    </select>
-                                </div>
-
-                                <br>
-                                <div class="form-group">
-                                    <div class="controls">
-
-                                        <button class="btn btn-success  btn-sm" ng-show="transaccion.ID!=''" ng-click="saveTransaccion(transaccion);" ><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
-
-                                        <button class="btn btn-primary btn-sm" ng-show="transaccion.ID!=''" ng-click="EditTransaccionKPIS(transaccion);"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
-
-
-                                         <a href="./#/nca/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</a>
-
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
--->
-			<div class="row">
-				<ul class="nav nav-list">
-				  <li class="divider">.</li>
-				</ul>
-			 </div>
-                    <div class="row">
-		    <table align="center" width="100%">
-			<tr>
+            </div>
 		 	<td width="33%" align="left">
 				Total de Registros: <b>{{data.totalItems}} </b>
 			</td>
@@ -271,6 +135,7 @@
                                     <th width="9%">USUARIO</th>
                                     <th width="9%">ACCIONES</th>
 
+
                             </thead>
                             <tbody>
                                     <tr ng-repeat="data in listado_transacciones| orderBy:'ID':true ">
@@ -281,7 +146,43 @@
                                     <td>{{data.FECHA_SOLICITUD}}</td>
                                     <td>{{data.FECHA_CIERRE}}</td>
                                     <td>{{data.OBSERVACIONES}}</td>
-                                    <td ng-hide="true" align="center"><button class="btn btn-success btn-xs" value="edit!" ng-click="getTransaccionCR();"><i class="fa fa-pencil fa-lg"></i></button></td>
+                                    <td>{{data.USUARIO}}</td>
+                                    <!--<td align="center"><button class="btn btn-success btn-xs" value="edit!" ng-click="nuevoRegistroCR();"><i class="fa fa-pencil fa-lg"></i></button></td>-->
+                                    <td align="center" class='row center-block' style="visibility: hidden; display:none">
+                                      <div>
+                                        <button class="btn btn-success btn-xs" value="edit!"><i class="fa fa-pencil fa-lg"></i></button>
+                                      </div>
+
+                                        <div>
+                                        <button class="btn btn-success btn-xs" value="guardar!"><i class="fa fa-floppy-o fa-lg'"></i></button>
+                                        </div>
+
+                                        <div class='col-md-1 col-centered' id='cancel'>
+                                          <button class='btn btn-danger btn-xs' value='cancelar!'><i class='fa fa-times-circle fa-lg'></i></button>
+                                        </div>
+
+                                      </td>
+                                        <!--<td align="center"><select ng-model="transaccion.SISTEMA" class="form-control" style="" >
+                                        <option value='' disabled>---SELECCIONE ESTADO---</option>
+                                        <option value='FENIX ORACLE'>CERRADO</option>
+
+                                        </select>
+
+                                        </td>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             </tr>
                             </tbody>
                     </table>

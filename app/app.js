@@ -809,11 +809,11 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         });
     };
 
-    obj.getTransaccionCR = function () {
-		return $http.get(serviceBase + 'getTransaccionCR');
+    obj.getTransaccionCR = function (idcr) {
+		return $http.get(serviceBase + 'getTransaccionCR?idcr=' + idcr);
 	};
 
-    obj.buscarRegistroCR = function (bregistro) { //buscar pedido asignacion
+    obj.buscarRegistroCR = function (bregistro) { //buscar pedido cr
 		return $http.get(serviceBase + 'buscarRegistroCR?bregistro=' + bregistro);
 	};
 
@@ -5877,8 +5877,9 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
     $scope.nuevoRegistroCR = function () {
 		$rootScope.transaccion = {};
 		$rootScope.transaccion.ID = '';
-		$location.path('/cr/');
+		$location.path('/cr/transaccion');
 
+       // console.log ($rootScope.transaccion.ID);
         $scope.timeInit = new Date().getTime();
 		var date1 = new Date();
 		var year = date1.getFullYear();
@@ -5891,20 +5892,19 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
         $rootScope.fecha_inicionuevoRegistroCR = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 	};
 
-    $scope.getTransaccionCR = function () {
+    $scope.getTransaccionCR = function (idcr) {
 		//$scope.transaccion={};
 
-		services.getTransaccionCR().then(function (data) {
-			//console.log(ncaID);
+		services.getTransaccionCR(idcr).then(function (data) {
+			console.log(idcr);
 			$rootScope.transaccionCR = data.data[0];
-			//console.log($scope.transaccion);
+			//console.log($scope.transaccionCR);
 			//console.log(data);
 			$location.path('/cr/');
 			return data.data;
 		});
 
 	};
-
 
 
 
@@ -5923,10 +5923,17 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 			return;
 		}
 
+        if (transaccion.FECHA_SOLICITUD == undefined || transaccion.FECHA_SOLICITUD == "") {
+			alert("Sistema de Informacion sin Datos.");
+			return;
+		}
+
 		if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
 			alert("Items Procesados sin informacion.");
 			return;
 		}
+
+
 
 		/*if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
 			alert("Items sin informacion.");
@@ -5938,12 +5945,9 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 			return;
 		}*/
 
-		/*if (transaccion.FECHA_SOLICITUD == undefined || transaccion.FECHA_SOLICITUD == "") {
-			alert("Sistema de Informacion sin Datos.");
-			return;
-		}
 
-		if (transaccion.FECHA_CIERRE == undefined || transaccion.FECHA_CIERRE == "") {
+
+		/*if (transaccion.FECHA_CIERRE == undefined || transaccion.FECHA_CIERRE == "") {
 			alert("Resultado Carga sin informacion.");
 			return;
 		}*/
@@ -5973,6 +5977,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		}*/
 
 
+
         $scope.InfoGestion = {
             txtNegocio: transaccion.txtNegocio,
             TECNOLOGIA_ID: ''
@@ -5999,7 +6004,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
         $scope.pageChanged();
         $location.path('/cr/');
-
+        $scope.listado_transacciones = [];
 	};
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
@@ -6007,7 +6012,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
         //console.log(transaccion);
 
-		if (transaccion.SISTEMA == undefined || transaccion.SISTEMA == "") {
+		/*if (transaccion.SISTEMA == undefined || transaccion.SISTEMA == "") {
 			alert("Negocio sin informacion.");
 			return;
 		}
@@ -6015,28 +6020,33 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		if (transaccion.INCIDENTE == undefined || transaccion.INCIDENTE == "") {
 			alert("FechaSolicitud sin informacion.");
 			return;
-		}
+		}*/
 
 		if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
 			alert("Items sin informacion.");
 			return;
 		}
 
+         /*if (transaccion.FECHA_CIERRE == undefined || transaccion.FECHA_CIERRE == "") {
+			alert("Items sin informacion.");
+			return;
+		}*/
+
 //        if (transaccion.ITEMSINCONSISTENTES == "-1") {
 //			alert("Items Inconsistentes sin informacion.");
 //			return;
 //		}
 
-        if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
+        /*if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
 			alert("Items Procesados sin informacion.");
 			return;
-		}
+		}*/
 
 
-        if (transaccion.ANS == undefined || transaccion.ANS == "") {
+        /*if (transaccion.ANS == undefined || transaccion.ANS == "") {
 			alert("Items Procesados sin informacion.");
 			return;
-		}
+		}*/
 
         $scope.InfoGestion = {
             txtNegocio: transaccion.txtNegocio,
@@ -6059,10 +6069,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
         console.log(bregistro);
         services.buscarRegistroCR(bregistro).then(function(data){
-
-            //traigo los datos que voy a mostrar
-            //document.getElementById('txtProcesados').value =
-
+            $scope.listado_transacciones = data.data[0];
             return data.data;
             console.log(data.data);
 
@@ -6103,7 +6110,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		});
 	}
 
-	if (pathy == "/cr/transaccion") {
+	/*if (pathy == "/cr/transaccion") {
 		var date1 = new Date();
 		var year = date1.getFullYear();
 		var month = $scope.doubleDigit(date1.getMonth() + 1);
@@ -6113,7 +6120,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 		$scope.FECHA_INICIO = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 		$scope.transaccion.FECHA = year + "-" + month + "-" + day;
-	}
+	}*/
 
 	$scope.pageChanged = function () {
 		services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {
@@ -6134,7 +6141,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 	};
 
-	$scope.objMunicipios = function () {
+	/*$scope.objMunicipios = function () {
         $http.get('./services/objMunicipios').then(
             function (res) {
                 $scope.lstMunicipios = res.data[0];
@@ -6143,7 +6150,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
         )
     };
 
-    $scope.objMunicipios();
+    $scope.objMunicipios();*/
 
 
 
