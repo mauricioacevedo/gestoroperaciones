@@ -6069,10 +6069,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
         console.log(bregistro);
         services.buscarRegistroCR(bregistro).then(function(data){
-
-            //traigo los datos que voy a mostrar
-            //document.getElementById('txtProcesados').value =
-
+            $scope.listado_transacciones = data.data[0];
             return data.data;
             console.log(data.data);
 
