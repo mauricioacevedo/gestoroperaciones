@@ -11364,7 +11364,7 @@ private function demePedidoEdatel(){
         //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
 
         $query="select * from tbl_cr where INCIDENTE like '$bregistro%'";
-        echo $query;
+        //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
