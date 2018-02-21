@@ -19302,6 +19302,8 @@ public function pp(&$var){
 
             $queryGestion = "INSERT INTO pedidos(".trim($columns,',').") VALUES(".trim($values,',').")";
 
+            echo "INSERT: $queryGestion";
+
             $insertGestion = $this->mysqli->query($queryGestion);
 
             //RECONFIGURACION MICHAEL
