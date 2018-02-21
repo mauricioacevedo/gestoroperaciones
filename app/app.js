@@ -813,7 +813,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'getTransaccionCR?idcr=' + idcr);
 	};
 
-    obj.buscarRegistroCR = function (bregistro) { //buscar pedido asignacion
+    obj.buscarRegistroCR = function (bregistro) { //buscar pedido cr
 		return $http.get(serviceBase + 'buscarRegistroCR?bregistro=' + bregistro);
 	};
 
