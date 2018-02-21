@@ -149,20 +149,22 @@
                                     <td>{{data.USUARIO}}</td>
                                     <!--<td align="center"><button class="btn btn-success btn-xs" value="edit!" ng-click="nuevoRegistroCR();"><i class="fa fa-pencil fa-lg"></i></button></td>-->
                                     <td align="center">
-                                    <div class='row center-block' style="visibility: hidden; display:none">
-                                      <div>
-                                        <button class="btn btn-success btn-xs" value="edit!"><i class="fa fa-pencil fa-lg"></i></button>
+                                      <div id="edi{{$index}}">
+                                        <button class="btn btn-success btn-xs" value="edit!" ng-click="editAlarma($index, data.USUARIO_ID1, data.USUARIO_ID2);"><i class="fa fa-pencil fa-lg"></i></button>
                                       </div>
 
-                                        <div>
-                                        <button class="btn btn-success btn-xs" value="guardar!"><i class="fa fa-floppy-o fa-lg'"></i></button>
+                                    <div class='row center-block' id="divsave{{$index}}" style="visibility: hidden; display:none;">
+                                        <div class='col-md-1 col-centered' id='save{{$index}}'>
+                                          <button class='btn btn-primary btn-xs' value='guardar!' ng-click='guardarAlarma($index, data.COLA_ID);'><i class='fa fa-floppy-o fa-lg'></i></button>
                                         </div>
-
-                                        <div class='col-md-1 col-centered' id='cancel'>
-                                          <button class='btn btn-danger btn-xs' value='cancelar!'><i class='fa fa-times-circle fa-lg'></i></button>
+                                        <div class='col-md-1 col-centered' id='cancel{{$index}}'>
+                                          <button class='btn btn-danger btn-xs' value='cancelar!' ng-click='cancelarAlarma($index);'><i class='fa fa-times-circle fa-lg'></i></button>
                                         </div>
-                                      </div>
-                                      </td>
+                                  </div>
+                                      <!--<div id="save{{$index}}">
+                                        <button class="btn btn-primary btn-xs" value="guardar!" ng-click="guardarAlarma();"><i class="fa fa-floppy-o fa-lg"></i></button>
+                                      </div> -->
+                                    </td>
                                         <!--<td align="center"><select ng-model="transaccion.SISTEMA" class="form-control" style="" >
                                         <option value='' disabled>---SELECCIONE ESTADO---</option>
                                         <option value='FENIX ORACLE'>CERRADO</option>
