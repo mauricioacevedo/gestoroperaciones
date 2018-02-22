@@ -11298,7 +11298,7 @@ private function demePedidoEdatel(){
 
         $transaccion = $transaccion['gestion'];
 
-        $column_names = array('SISTEMA','INCIDENTE','ESTADO','FECHA_SOLICITUD','FECHA_CIERRE','OBSERVACIONES');
+        $column_names = array('ESTADO');
 
         $keys = array_keys($transaccion);
         $columns = '';
