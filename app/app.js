@@ -6080,7 +6080,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
      //alert("Está seguro de Cerrar el incidente? ");
      var rps=confirm("Está seguro de Cerrar el incidente? ");
 
-        if(rps=true){
+        if(rps=true)
 
             services.actualizarTransaccionCR().then(function(data)){
 
@@ -6089,7 +6089,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
             console.log(data.data);
           }
 
-        };
+
 
 
 
