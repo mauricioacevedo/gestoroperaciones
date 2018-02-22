@@ -11304,8 +11304,8 @@ private function demePedidoEdatel(){
         $columns = '';
         $values = '';
 
-        $useri=$INCIDENTE['USUARIO'];
-        $username=$INCIDENTE['USERNAME'];
+        $useri=$transaccion['USUARIO'];
+        $username=$transaccion['USERNAME'];
 
         $INCIDENTE=$INCIDENTE['INCIDENTE'];
         $ESTADO=$INCIDENTE['ESTADO'];
