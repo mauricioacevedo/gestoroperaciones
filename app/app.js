@@ -6051,7 +6051,7 @@ $scope.listado_transacciones = [];
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
      $scope.editTransaccionActividadescr = function (transaccioncr) {
-                                console.log(transaccioncr.ESTADO);
+                                console.log(transaccioncr);
                                // if(transaccionA.PEDIDO_ID==undefined || transaccionA.PEDIDO_ID==""){
                                //       alert("Fecha sin informacion.");
                                //     return;
