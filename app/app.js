@@ -6051,10 +6051,10 @@ $scope.listado_transacciones = [];
             $scope.listado_transacciones = data.data[0];
             return data.data;
             console.log(data.data);
-
+            console.log($scope.listado_transacciones);
           });
 
-$scope.listado_transacciones = [];
+
 
         };
 
