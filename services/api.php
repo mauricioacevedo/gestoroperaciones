@@ -11278,7 +11278,7 @@ private function demePedidoEdatel(){
     }
 
 //-------------------
-   /* private function editTransaccionActividades(){
+    private function editTransaccionActividades(){
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
@@ -11287,12 +11287,14 @@ private function demePedidoEdatel(){
         //echo var_dump($usuario);
 
         $transa = $transa['transaccioncr'];
+        $INCIDENTE = $transa['INCIDENTE'];
         $column_names = array('ESTADO');
         $keys = array_keys($transa);
         $columns = '';
         $values = '';
         $ESTADO=implode(",",$transa['ESTADO']);
         $transa['ESTADO']=$ESTADO;
+
         $UPDATE="";
         $SEP="";
         foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
@@ -11314,7 +11316,7 @@ private function demePedidoEdatel(){
         //}
 
 
-        $query = "UPDATE tbl_cr SET ESTADO ='CERRADO' WHERE INCIDENTE=".$transa['INCIDENTE'];
+        $query = "UPDATE tbl_cr SET ESTADO ='CERRADO' WHERE INCIDENTE=$INCIDENTE ";
         //echo $query;
 
         if(!empty($transa)){
@@ -11328,7 +11330,7 @@ private function demePedidoEdatel(){
 
     }
 
-*/
+
 //------------------------------
     private function cr(){
 
