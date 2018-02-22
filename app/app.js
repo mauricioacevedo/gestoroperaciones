@@ -6024,10 +6024,10 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 			return;
 		}*/
 
-		if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
+		/*if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
 			alert("Items sin informacion.");
 			return;
-		}
+		}*/
 
          /*if (transaccion.FECHA_CIERRE == undefined || transaccion.FECHA_CIERRE == "") {
 			alert("Items sin informacion.");
@@ -6067,6 +6067,14 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
         };
 
 	};
+
+
+    $scope.ActualizarRegistroCR = function(){
+
+
+        alert("Usuario Envio: Sin Informacion");
+
+    }
 
     //******************************************************************************************
 
