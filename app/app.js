@@ -6098,8 +6098,8 @@ $scope.listado_transacciones = [];
 
         /*$scope.InfoGestion = {
             txtNegocio: transaccion.txtNegocio,
-            TECNOLOGIA_ID: ''*/
-        };
+            TECNOLOGIA_ID: ''
+        };*/
 
          $scope.EditarGestionCR = function (transaccion) {
         services.EditarGestionCR(transaccion).then(function (data) {
