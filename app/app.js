@@ -6055,6 +6055,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
             TECNOLOGIA_ID: ''
         };
 
+         $scope.EditarGestionCR = function (transaccion) {
         services.EditarGestionCR(transaccion).then(function (data) {
                 $location.path('/cr/');
                 return data.data;
