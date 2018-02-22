@@ -6096,9 +6096,9 @@ $scope.listado_transacciones = [];
 			return;
 		}*/
 
-        $scope.InfoGestion = {
+        /*$scope.InfoGestion = {
             txtNegocio: transaccion.txtNegocio,
-            TECNOLOGIA_ID: ''
+            TECNOLOGIA_ID: ''*/
         };
 
          $scope.EditarGestionCR = function (transaccion) {
