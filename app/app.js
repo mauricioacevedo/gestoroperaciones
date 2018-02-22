@@ -799,7 +799,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
     obj.ActualizarRegistroCR = function(){
         return $http.post(serviceBase + 'actualizarTransaccionCR', {
-            gestion: gestion, fechainicio:fechainicio
+
         });
 
     };
@@ -812,7 +812,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
     obj.EditarGestionCR = function (gestion) {
         return $http.post(serviceBase + 'ActualizarTransaccionCR', {
-            gestion: gestion, fechainicio:fechainicio
+              gestion: gestion, fechainicio:fechainicio
         });
     };
 
