@@ -6087,7 +6087,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
             $scope.listado_transacciones = data.data[0];
             return data.data;
             console.log(data.data);
-          };
+          }
 
         };
 
