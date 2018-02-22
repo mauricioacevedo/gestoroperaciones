@@ -797,10 +797,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         });
     };
 
-    obj.ActualizarRegistroCR = function(INCIDENTE){
-        return $http.post(serviceBase + 'actualizarTransaccionCR', {
+    obj.ActualizarRegistroCR = function(data.INCIDENTE){
+        return $http.post(serviceBase + 'actualizarTransaccionCR?data.INCIDENTE=' + data.INCIDENTE){
 
-        });
+        };
 
     };
 
@@ -6076,13 +6076,13 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 	};
 
 
-    $scope.ActualizarRegistroCR = function(INCIDENTE){
+    $scope.ActualizarRegistroCR = function(data.INCIDENTE){
      //alert("Está seguro de Cerrar el incidente? ");
      var rps=confirm("Está seguro de Cerrar el incidente? ");
 
         if(rps=true){
 
-            services.ActualizarRegistroCR(INCIDENTE).then(function(data){
+            services.ActualizarRegistroCR(data.INCIDENTE).then(function(data){
 
             $scope.listado_transacciones = data.data[0];
             return data.data;
