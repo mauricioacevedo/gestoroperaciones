@@ -797,10 +797,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         });
     };
 
-    obj.ActualizarRegistroCR = function(gestion,fechainicio){
-        return $http.post(serviceBase + 'actualizarTransaccionCR',{
+    obj.ActualizarRegistroCR = function(bregistro){
+        return $http.post(serviceBase + 'actualizarTransaccionCR?bregistro=' + bregistro);
 
-        });
+
 
 
 
@@ -6039,14 +6039,14 @@ $scope.listado_transacciones = [];
 	};
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
-     $scope.EditTransaccionCR = function (transaccion) {
+     $scope.EditTransaccionCR = function (bregistro) {
 
 
          var rps=confirm("Está seguro de Cerrar el incidente? ");
 
         if(rps=true){
 
-            services.ActualizarRegistroCR().then(function(data){
+            services.ActualizarRegistroCR(bregistro).then(function(data){
 
             $scope.listado_transacciones = data.data[0];
             return data.data;

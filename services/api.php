@@ -11280,10 +11280,9 @@ private function demePedidoEdatel(){
 
     private function actualizarTransaccionCR(){
 
-        if($this->get_request_method() != "POST"){
+        if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
-
         $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
         $usuarioPc      =   gethostbyaddr($usuarioIp);
         $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
@@ -11293,52 +11292,27 @@ private function demePedidoEdatel(){
         $usuarioGalleta =   $galleta['login'];
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
-
-        $transaccion = json_decode(file_get_contents("php://input"),true);
-
-        //$transaccion = $transaccion['gestion'];
-
-        $column_names = array('ESTADO');
-
-        $keys = array_keys($INCIDENTE);
-        $columns = '';
-        $values = '';
-
-        $useri=$transaccion['USUARIO'];
-        $username=$transaccion['USERNAME'];
-
-        $INCIDENTE=$transaccion['INCIDENTE'];
-        $ESTADO=$transaccion['ESTADO'];
+        $bregistro = $this->_request['bregistro'];
 
 
-        foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
-            if($desired_key=='ID'){
-                continue;
-            }
-            if(!in_array($desired_key, $keys)) {
-                $$desired_key = '';
-            }else{
-                $$desired_key = $transaccion[$desired_key];
-            }
-            $columns = $columns.$desired_key.',';
-            $values = $values."'".$transaccion[$desired_key]."',";
-        }
-        $today = date("Y-m-d H:i:s");
+        //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
 
-        $query = " UPDATE tbl_cr set ESTADO = 'CERRADO' where INCIDENTE='$INCIDENTE' ";
+        $query="update tbl_cr set ESTADO ='CERRADO' where INCIDENTE like '$bregistro%'";
         //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
-        if(!empty($transaccion)){
-            //echo $query;
-            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                $result[] = $row;
+            }
 
-            $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
+            // ---------------------------------- SQL Feed
+            $this->response($this->json(array($result)), 200); // send user details
 
-        }else{
-            $this->response('',200);        //"No Content" status
-            //$this->response("$query",200);        //"No Content" status
+
         }
-
+        $this->response('',204);        // If no records "No Content" status
     }
 
 
