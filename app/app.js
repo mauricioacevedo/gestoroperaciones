@@ -798,7 +798,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
     };
 
     obj.ActualizarRegistroCR = function(data.INCIDENTE){
-        return $http.post(serviceBase + 'actualizarTransaccionCR?data.INCIDENTE=' + data.INCIDENTE);
+        return $http.post(serviceBase + 'actualizarTransaccionCR'),;
 
 
 
