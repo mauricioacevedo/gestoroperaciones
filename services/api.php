@@ -8223,7 +8223,7 @@ private function getAgentScore($user){
 
         $SEP="";
         $success="";
-        while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+        if ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
             $subinsert=$sqlinsert;
             $sep="";
             foreach ($row as $item) {
