@@ -6083,7 +6083,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
         //alert("Está seguro de Cerrar el incidente? ");
 
 
-        confirm("Press a button!");
+        confirm("Está seguro de Cerrar el incidente? ");
 
 
 
