@@ -11277,8 +11277,60 @@ private function demePedidoEdatel(){
 
     }
 
+//-------------------
+    private function editTransaccionActividades(){
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
 
-    private function actualizarTransaccionCR(){
+        $transa = json_decode(file_get_contents("php://input"),true);
+        //echo var_dump($usuario);
+
+        $transa = $transa['transaccioncr'];
+        $column_names = array('ESTADO');
+        $keys = array_keys($transa);
+        $columns = '';
+        $values = '';
+        $ESTADO=implode(",",$transa['ESTADO']);
+        $transa['ESTADO']=$ESTADO;
+        $UPDATE="";
+        $SEP="";
+        foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
+            if(!in_array($desired_key, $keys)) {
+                $$desired_key = '';
+            }else{
+                $$desired_key = $transa[$desired_key];
+            }
+            $columns = $columns.$desired_key.',';
+            $values = $values."'".$transa[$desired_key]."',";
+            $UPDATE=$UPDATE.$SEP.$desired_key." = '".strtoupper($transa[$desired_key])."' ";
+            $SEP=",";
+        }
+        $today = date("Y-m-d H:i:s");
+
+        $INCIDENTE="";
+        //if($transaccion['PASSWORD']!=""){
+        //  $passcode=" , PASSWORD=MD5('".$transaccion['PASSWORD']."')";
+        //}
+
+
+        $query = "UPDATE tbl_cr SET ESTADO ='CERRADO' WHERE INCIDENTE=".$transa['INCIDENTE'];
+        //echo $query;
+
+        if(!empty($transa)){
+            //echo $query;
+            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+            $this->response(json_encode(array("msg"=>"OK","transaccion" => $transa)),200);
+        }else{
+            $this->response('',200);        //"No Content" status
+            //$this->response("$query",200);        //"No Content" status
+        }
+
+    }
+
+
+//------------------------------
+    private function cr(){
 
         if($this->get_request_method() != "GET"){
             $this->response('',406);

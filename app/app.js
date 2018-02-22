@@ -479,6 +479,17 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return data;
 	};
 
+    //----------------------------
+
+    obj.editTransaccionActividadescr = function (transaccioncr) { // editar transaccion actividades
+		var data = $http.post(serviceBase + 'editTransaccionActividadescr', {
+			"transaccioncr": transaccioncr
+		});
+		return data;
+	};
+
+    //-----------------------
+
 	obj.getTransaccionActividades = function (actividadesID) { //transaccion actividades
 		return $http.get(serviceBase + 'getTransaccionActividades?actividadesID=' + actividadesID);
 	};
@@ -6039,72 +6050,26 @@ $scope.listado_transacciones = [];
 	};
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
-     $scope.EditTransaccionCR = function (bregistro) {
+     $scope.editTransaccionActividadescr = function (transaccioncr) {
+                               // console.log(transaccionA.FECHA);
+                               // if(transaccionA.PEDIDO_ID==undefined || transaccionA.PEDIDO_ID==""){
+                               //       alert("Fecha sin informacion.");
+                               //     return;
+                               //}
 
-
-         var rps=confirm("Está seguro de Cerrar el incidente? ");
-
-        if(rps=true){
-
-            services.ActualizarRegistroCR(bregistro).then(function(data){
-
-            $scope.listado_transacciones = data.data[0];
-            return data.data;
-            console.log(data.data);
-            console.log($scope.listado_transacciones);
-          });
+                               if (transaccioncr.FECHA == undefined || transaccioncr.FECHA == "") {
+                                               alert("Fecha sin informacion.");
+                                               return;
+                               }
 
 
 
-        };
 
-        //console.log(transaccion);
-
-		/*if (transaccion.SISTEMA == undefined || transaccion.SISTEMA == "") {
-			alert("Negocio sin informacion.");
-			return;
-		}
-
-		if (transaccion.INCIDENTE == undefined || transaccion.INCIDENTE == "") {
-			alert("FechaSolicitud sin informacion.");
-			return;
-		}*/
-
-		if (bregistro.ESTADO == undefined || bregistro.ESTADO == "") {
-			alert("Items sin informacion.");
-			return;
-		}
-
-         /*if (transaccion.FECHA_CIERRE == undefined || transaccion.FECHA_CIERRE == "") {
-			alert("Items sin informacion.");
-			return;
-		}*/
-
-//        if (transaccion.ITEMSINCONSISTENTES == "-1") {
-//			alert("Items Inconsistentes sin informacion.");
-//			return;
-//		}
-
-        /*if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
-			alert("Items Procesados sin informacion.");
-			return;
-		}*/
-
-
-        /*if (transaccion.ANS == undefined || transaccion.ANS == "") {
-			alert("Items Procesados sin informacion.");
-			return;
-		}*/
-
-        /*$scope.InfoGestion = {
-            txtNegocio: transaccion.txtNegocio,
-            TECNOLOGIA_ID: ''
-        };*/
-
-
-
-	};
-
+                               services.editTransaccionActividadescr(transaccioncr).then(function (data) {
+                                               $location.path('/cr/');
+                                               return data.data;
+                               });
+                };
 
 
 
