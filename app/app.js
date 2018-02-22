@@ -6039,7 +6039,7 @@ $scope.listado_transacciones = [];
 	};
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
-     $scope.EditTransaccionCR = function (bregistro) {
+     $scope.EditTransaccionCR = function (transaccion) {
 
 
          var rps=confirm("Está seguro de Cerrar el incidente? ");
