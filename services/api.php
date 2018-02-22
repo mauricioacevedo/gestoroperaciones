@@ -11307,8 +11307,8 @@ private function demePedidoEdatel(){
         $useri=$transaccion['USUARIO'];
         $username=$transaccion['USERNAME'];
 
-        $INCIDENTE=$INCIDENTE['INCIDENTE'];
-        $ESTADO=$INCIDENTE['ESTADO'];
+        $INCIDENTE=$transaccion['INCIDENTE'];
+        $ESTADO=$transaccion['ESTADO'];
 
 
         foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
@@ -11318,21 +11318,21 @@ private function demePedidoEdatel(){
             if(!in_array($desired_key, $keys)) {
                 $$desired_key = '';
             }else{
-                $$desired_key = $ESTADO[$desired_key];
+                $$desired_key = $transaccion[$desired_key];
             }
             $columns = $columns.$desired_key.',';
-            $values = $values."'".$INCIDENTE[$desired_key]."',";
+            $values = $values."'".$transaccion[$desired_key]."',";
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " UPDATE tbl_cr set ESTADO = 'CERRADO' where INCIDENTE='$INCIDENTE'' ";
+        $query = " UPDATE tbl_cr set ESTADO = 'CERRADO' where INCIDENTE='$INCIDENTE' ";
         //echo $query;
 
-        if(!empty($INCIDENTE)){
+        if(!empty($transaccion)){
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
-            $this->response(json_encode(array("msg"=>"OK","INCIDENTE" => $INCIDENTE)),200);
+            $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
 
         }else{
             $this->response('',200);        //"No Content" status
