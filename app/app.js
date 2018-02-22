@@ -6070,10 +6070,10 @@ $scope.listado_transacciones = [];
 			return;
 		}*/
 
-		/*if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
+		if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
 			alert("Items sin informacion.");
 			return;
-		}*/
+		}
 
          /*if (transaccion.FECHA_CIERRE == undefined || transaccion.FECHA_CIERRE == "") {
 			alert("Items sin informacion.");
