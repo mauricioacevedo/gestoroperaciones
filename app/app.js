@@ -6041,6 +6041,23 @@ $scope.listado_transacciones = [];
     //*******************************JJ EDITAR REGISTRO cr *********************************
      $scope.EditTransaccionCR = function (transaccion) {
 
+
+         var rps=confirm("Está seguro de Cerrar el incidente? ");
+
+        if(rps=true){
+
+            services.ActualizarRegistroCR().then(function(data){
+
+            $scope.listado_transacciones = data.data[0];
+            return data.data;
+            console.log(data.data);
+
+          });
+
+$scope.listado_transacciones = [];
+
+        };
+
         //console.log(transaccion);
 
 		/*if (transaccion.SISTEMA == undefined || transaccion.SISTEMA == "") {
