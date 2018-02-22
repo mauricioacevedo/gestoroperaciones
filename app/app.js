@@ -803,7 +803,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         });
     };
 
-    obj.EditarGestionCR = function (gestion) {
+    obj.EdittrnsaccionCR = function (gestion) {
         return $http.post(serviceBase + 'ActualizarTransaccionCR', {
             gestion: gestion, fechainicio:fechainicio
         });
