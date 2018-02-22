@@ -11351,7 +11351,7 @@ private function demePedidoEdatel(){
 
         //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
 
-        $query="update tbl_cr set ESTADO ='CERRADO' where INCIDENTE like '$bregistro%'";
+        $query="update tbl_cr set ESTADO ='CERRADO' where INCIDENTE like '$INCIDENTE%'";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
