@@ -6057,7 +6057,7 @@ $scope.listado_transacciones = [];
                                //     return;
                                //}
 
-                               if (transaccioncr.ESTADO == undefined || transaccioncr.ESTADO == "") {
+                               if (transaccioncr.INCIDENTE == undefined || transaccioncr.INCIDENTE == "") {
                                                alert("Fecha sin informacion.");
                                                return;
                                }
