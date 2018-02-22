@@ -11294,25 +11294,22 @@ private function demePedidoEdatel(){
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
 
-        $transaccion = json_decode(file_get_contents("php://input"),true);
+        $ESTADO = json_decode(file_get_contents("php://input"),true);
 
         //$transaccion = $transaccion['gestion'];
 
         $column_names = array('ESTADO');
 
-        $keys = array_keys($transaccion);
+        $keys = array_keys($INCIDENTE);
         $columns = '';
         $values = '';
 
-        $useri=$transaccion['USUARIO'];
-        $username=$transaccion['USERNAME'];
+        $useri=$INCIDENTE['USUARIO'];
+        $username=$INCIDENTE['USERNAME'];
 
-        $NEGOCIO=$transaccion['SISTEMA'];
-        $FECHASOLICI=$transaccion['INCIDENTE'];
-        $ITEMS=$transaccion['ESTADO'];
-        $ANSACTIVIDAD=$transaccion['FECHA_SOLICITUD'];
-        $SISTEMAINFO=$transaccion['FECHA_CIERRE'];
-        $RESULTADOCARGA=$transaccion['OBSERVACIONES'];
+        $INCIDENTE=$INCIDENTE['INCIDENTE'];
+        $ESTADO=$INCIDENTE['ESTADO'];
+
 
         foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
             if($desired_key=='ID'){
@@ -11321,21 +11318,21 @@ private function demePedidoEdatel(){
             if(!in_array($desired_key, $keys)) {
                 $$desired_key = '';
             }else{
-                $$desired_key = $transaccion[$desired_key];
+                $$desired_key = $ESTADO[$desired_key];
             }
             $columns = $columns.$desired_key.',';
-            $values = $values."'".$transaccion[$desired_key]."',";
+            $values = $values."'".$INCIDENTE[$desired_key]."',";
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " UPDATE tbl_cr set ESTADO = '$ESTADO' where INCIDENTE='$INCIDENTE'' ";
+        $query = " UPDATE tbl_cr set ESTADO = 'CERRADO' where INCIDENTE='$INCIDENTE'' ";
         //echo $query;
 
-        if(!empty($transaccion)){
+        if(!empty($INCIDENTE)){
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
-            $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
+            $this->response(json_encode(array("msg"=>"OK","INCIDENTE" => $INCIDENTE)),200);
 
         }else{
             $this->response('',200);        //"No Content" status
