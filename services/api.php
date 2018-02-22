@@ -11278,7 +11278,7 @@ private function demePedidoEdatel(){
     }
 
 //-------------------
-    private function editTransaccionActividades(){
+   /* private function editTransaccionActividades(){
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
@@ -11328,7 +11328,7 @@ private function demePedidoEdatel(){
 
     }
 
-
+*/
 //------------------------------
     private function cr(){
 
