@@ -148,30 +148,18 @@
                                     <td>{{data.OBSERVACIONES}}</td>
                                     <td>{{data.USUARIO}}</td>
                                     <!--<td align="center"><button class="btn btn-success btn-xs" value="edit!" ng-click="nuevoRegistroCR();"><i class="fa fa-pencil fa-lg"></i></button></td>-->
-                                    <td align="center">
-                                      <div id="edi{{$index}}">
-                                        <button class="btn btn-success btn-xs" value="edit!" ng-click="EditarGestionCR(transaccion);"><i class="fa fa-pencil fa-lg"></i></button>
-                                      </div>
 
-                                    <div class='row center-block' id="divsave{{$index}}" style="visibility: hidden; display:none;">
-                                        <div class='col-md-1 col-centered' id='save{{$index}}'>
-                                          <button class='btn btn-primary btn-xs' value='guardar!' ng-click='guardarAlarma($index, data.COLA_ID);'><i class='fa fa-floppy-o fa-lg'></i></button>
-                                        </div>
-                                        <div class='col-md-1 col-centered' id='cancel{{$index}}'>
-                                          <button class='btn btn-danger btn-xs' value='cancelar!' ng-click='cancelarAlarma($index);'><i class='fa fa-times-circle fa-lg'></i></button>
-                                        </div>
-                                  </div>
                                       <!--<div id="save{{$index}}">
                                         <button class="btn btn-primary btn-xs" value="guardar!" ng-click="guardarAlarma();"><i class="fa fa-floppy-o fa-lg"></i></button>
                                       </div> -->
-                                    </td>
-                                        <!--<td align="center"><select ng-model="transaccion.SISTEMA" class="form-control" style="" >
+
+                                        <td align="center"><select ng-model="transaccion.SISTEMA" class="form-control" style="" >
                                         <option value='' disabled>---SELECCIONE ESTADO---</option>
                                         <option value='FENIX ORACLE'>CERRADO</option>
 
                                         </select>
 
-                                        </td>-->
+                                        </td>
 
 
 
