@@ -6080,8 +6080,10 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 
 
-        alert("Está seguro de Cerrar el incidente? ");
+        //alert("Está seguro de Cerrar el incidente? ");
 
+
+        confirm("Press a button!");
 
 
 
