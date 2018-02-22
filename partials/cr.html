@@ -156,7 +156,15 @@
                                         <td align="center">
 
                                             <div>
-                                            <button class="btn btn-success btn-sm" ng-click="ActualizarRegistroCR();" ><span class="glyphicon glyphicon-plus-sign"></span> Cerrar</button>
+                                            <!--<button class="btn btn-success btn-sm" ng-click="ActualizarRegistroCR();" ><span class="glyphicon glyphicon-plus-sign"></span> Cerrar</button>-->
+
+                                            <button onclick="ActualizarRegistroCR();">Cerrar</button>
+
+                                             <script>
+                                             function myFunction() {
+                                             confirm("Está seguro de Cerrar el incidente : {{data.INCIDENTE}}");
+                                             }
+                                             </script>
                                             </div>
 
                                         </td>
