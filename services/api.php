@@ -11296,7 +11296,7 @@ private function demePedidoEdatel(){
 
         $transaccion = json_decode(file_get_contents("php://input"),true);
 
-        $transaccion = $transaccion['gestion'];
+        //$transaccion = $transaccion['gestion'];
 
         $column_names = array('ESTADO');
 
