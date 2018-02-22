@@ -6051,13 +6051,13 @@ $scope.listado_transacciones = [];
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
      $scope.editTransaccionActividadescr = function (transaccioncr) {
-                               // console.log(transaccionA.FECHA);
+                                console.log(transaccioncr.ESTADO);
                                // if(transaccionA.PEDIDO_ID==undefined || transaccionA.PEDIDO_ID==""){
                                //       alert("Fecha sin informacion.");
                                //     return;
                                //}
 
-                               if (transaccioncr.FECHA == undefined || transaccioncr.FECHA == "") {
+                               if (transaccioncr.ESTADO == undefined || transaccioncr.ESTADO == "") {
                                                alert("Fecha sin informacion.");
                                                return;
                                }
