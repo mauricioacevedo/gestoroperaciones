@@ -6046,7 +6046,7 @@ $scope.listado_transacciones = [];
 
         if(rps=true){
 
-            services.ActualizarRegistroCR(bregistro).then(function(data){
+            services.ActualizarRegistroCR(transaccion).then(function(data){
 
             $scope.listado_transacciones = data.data[0];
             return data.data;
