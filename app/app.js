@@ -6039,14 +6039,14 @@ $scope.listado_transacciones = [];
 	};
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
-     $scope.EditTransaccionCR = function (transaccion) {
+     $scope.EditTransaccionCR = function (bregistro) {
 
 
          var rps=confirm("Está seguro de Cerrar el incidente? ");
 
         if(rps=true){
 
-            services.ActualizarRegistroCR(transaccion).then(function(data){
+            services.ActualizarRegistroCR(bregistro).then(function(data){
 
             $scope.listado_transacciones = data.data[0];
             return data.data;
@@ -6070,7 +6070,7 @@ $scope.listado_transacciones = [];
 			return;
 		}*/
 
-		if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
+		if (bregistro.ESTADO == undefined || bregistro.ESTADO == "") {
 			alert("Items sin informacion.");
 			return;
 		}
@@ -6101,16 +6101,7 @@ $scope.listado_transacciones = [];
             TECNOLOGIA_ID: ''
         };*/
 
-         $scope.EditarGestionCR = function (transaccion) {
-        services.EditarGestionCR(transaccion).then(function (data) {
-                $location.path('/cr/');
-                return data.data;
-                $scope.pageChanged();
 
-            }
-        )
-
-        };
 
 	};
 
