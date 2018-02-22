@@ -6087,10 +6087,10 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
             $scope.listado_transacciones = data.data[0];
             return data.data;
             console.log(data.data);
-                $scope.listado_transacciones = [];
+
           });
 
-
+$scope.listado_transacciones = [];
 
         };
 
