@@ -797,6 +797,13 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         });
     };
 
+    obj.ActualizarRegistroCR = function(){
+        return $http.post(serviceBase + 'actualizarTransaccionCR', {
+            gestion: gestion, fechainicio:fechainicio
+        });
+
+    };
+
      obj.insertTransaccionCR = function (gestion,fechainicio) {
         return $http.post(serviceBase + 'insertTransaccionCR', {
             gestion: gestion, fechainicio:fechainicio
@@ -19035,6 +19042,9 @@ app.config(['$routeProvider',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
+
+
+
 
       //*******************MICHAEL PNI********************************
 
