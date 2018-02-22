@@ -6080,18 +6080,18 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
      //alert("Está seguro de Cerrar el incidente? ");
      var rps=confirm("Está seguro de Cerrar el incidente? ");
 
-        if(rps=true)
+        if(rps=true){
 
-            services.actualizarTransaccionCR().then(function(data)){
+            services.actualizarTransaccionCR().then(function(data){
 
             $scope.listado_transacciones = data.data[0];
             return data.data;
             console.log(data.data);
-          }
+          });
 
 
 
-
+        };
 
 
     };
