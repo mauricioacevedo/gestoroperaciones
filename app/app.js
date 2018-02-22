@@ -6082,7 +6082,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
         if(rps=true){
 
-            services.actualizarTransaccionCR().then(function(data){
+            services.ActualizarRegistroCR().then(function(data){
 
             $scope.listado_transacciones = data.data[0];
             return data.data;
