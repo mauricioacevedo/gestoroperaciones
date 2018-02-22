@@ -6050,7 +6050,7 @@ $scope.listado_transacciones = [];
 	};
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
-     $scope.editTransaccionActividadescr = function (transaccioncr) {
+     /*$scope.editTransaccionActividadescr = function (transaccioncr) {
                                // console.log(transaccionA.FECHA);
                                // if(transaccionA.PEDIDO_ID==undefined || transaccionA.PEDIDO_ID==""){
                                //       alert("Fecha sin informacion.");
@@ -6071,7 +6071,7 @@ $scope.listado_transacciones = [];
                                });
                 };
 
-
+*/
 
     //******************************************************************************************
 
