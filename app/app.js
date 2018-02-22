@@ -6077,13 +6077,20 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 
     $scope.ActualizarRegistroCR = function(){
+     //alert("Está seguro de Cerrar el incidente? ");
+     var rps=confirm("Está seguro de Cerrar el incidente? ");
 
+        if(rps=true){
 
+            services.actualizarTransaccionCR().then(function(data)){
 
-        //alert("Está seguro de Cerrar el incidente? ");
+            $scope.listado_transacciones = data.data[0];
+            return data.data;
+            console.log(data.data);
+          };
 
+        };
 
-        confirm("Está seguro de Cerrar el incidente? ");
 
 
 
