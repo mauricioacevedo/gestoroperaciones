@@ -11278,7 +11278,7 @@ private function demePedidoEdatel(){
     }
 
 //-------------------
-    private function editTransaccionActividadescr(){
+    /*private function editTransaccionActividadescr(){
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
@@ -11329,10 +11329,10 @@ private function demePedidoEdatel(){
         }
 
     }
-
+*/
 
 //------------------------------
-    private function cr(){
+    private function editTransaccionActividadescr(){
 
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -11346,7 +11346,7 @@ private function demePedidoEdatel(){
         $usuarioGalleta =   $galleta['login'];
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
-        $bregistro = $this->_request['bregistro'];
+        $transaccioncr = $this->_request['transaccioncr'];
 
 
         //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
