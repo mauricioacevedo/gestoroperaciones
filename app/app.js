@@ -6071,13 +6071,13 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
     $scope.ActualizarRegistroCR = function(){
 
-
-
+        <script>
+        function ActualizarRegistroCR(){
         confirm("Está seguro de Cerrar el incidente? ");
 
+         </script>
 
-
-
+        };
     };
 
     //******************************************************************************************
