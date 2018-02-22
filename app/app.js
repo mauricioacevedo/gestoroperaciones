@@ -5913,6 +5913,26 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 	};
 
+    $scope.ActualizarRegistroCR = function(data.INCIDENTE){
+     //alert("Está seguro de Cerrar el incidente? ");
+     var rps=confirm("Está seguro de Cerrar el incidente? ");
+
+        if(rps=true){
+
+            services.ActualizarRegistroCR(data.INCIDENTE).then(function(data){
+
+            $scope.listado_transacciones = data.data[0];
+            return data.data;
+            console.log(data.data);
+
+          });
+
+$scope.listado_transacciones = [];
+
+        };
+
+
+    };
 
 
 
@@ -6076,26 +6096,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 	};
 
 
-    $scope.ActualizarRegistroCR = function(data.INCIDENTE){
-     //alert("Está seguro de Cerrar el incidente? ");
-     var rps=confirm("Está seguro de Cerrar el incidente? ");
 
-        if(rps=true){
-
-            services.ActualizarRegistroCR(data.INCIDENTE).then(function(data){
-
-            $scope.listado_transacciones = data.data[0];
-            return data.data;
-            console.log(data.data);
-
-          });
-
-$scope.listado_transacciones = [];
-
-        };
-
-
-    };
 
     //******************************************************************************************
 
