@@ -6074,7 +6074,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
         alert("Usuario Envio: Sin Informacion");
 
-    }
+    };
 
     //******************************************************************************************
 
