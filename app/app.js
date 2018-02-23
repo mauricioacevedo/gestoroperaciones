@@ -479,6 +479,17 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return data;
 	};
 
+    //----------------------------
+
+    obj.editTransaccionActividadescr = function (transaccioncr) { // editar transaccion actividades
+		var data = $http.post(serviceBase + 'editTransaccionActividadescr', {
+			"transaccioncr": transaccioncr
+		});
+		return data;
+	};
+
+    //-----------------------
+
 	obj.getTransaccionActividades = function (actividadesID) { //transaccion actividades
 		return $http.get(serviceBase + 'getTransaccionActividades?actividadesID=' + actividadesID);
 	};
@@ -797,10 +808,12 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         });
     };
 
-    obj.ActualizarRegistroCR = function(INCIDENTE){
-        return $http.post(serviceBase + 'actualizarTransaccionCR', {
+    obj.ActualizarRegistroCR = function(bregistro){
+        return $http.post(serviceBase + 'actualizarTransaccionCR?bregistro=' + bregistro);
 
-        });
+
+
+
 
     };
 
@@ -5913,6 +5926,26 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 	};
 
+    $scope.ActualizarRegistroCR = function(){
+     //alert("Está seguro de Cerrar el incidente? ");
+     var rps=confirm("Está seguro de Cerrar el incidente? ");
+
+        if(rps=true){
+
+            services.ActualizarRegistroCR().then(function(data){
+
+            $scope.listado_transacciones = data.data[0];
+            return data.data;
+            console.log(data.data);
+
+          });
+
+$scope.listado_transacciones = [];
+
+        };
+
+
+    };
 
 
 
@@ -6017,85 +6050,28 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 	};
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
-     $scope.EditTransaccionCR = function (transaccion) {
+     $scope.editTransaccionActividadescr = function (transaccioncr) {
+                                console.log(transaccioncr);
+                               // if(transaccionA.PEDIDO_ID==undefined || transaccionA.PEDIDO_ID==""){
+                               //       alert("Fecha sin informacion.");
+                               //     return;
+                               //}
 
-        //console.log(transaccion);
-
-		/*if (transaccion.SISTEMA == undefined || transaccion.SISTEMA == "") {
-			alert("Negocio sin informacion.");
-			return;
-		}
-
-		if (transaccion.INCIDENTE == undefined || transaccion.INCIDENTE == "") {
-			alert("FechaSolicitud sin informacion.");
-			return;
-		}*/
-
-		/*if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
-			alert("Items sin informacion.");
-			return;
-		}*/
-
-         /*if (transaccion.FECHA_CIERRE == undefined || transaccion.FECHA_CIERRE == "") {
-			alert("Items sin informacion.");
-			return;
-		}*/
-
-//        if (transaccion.ITEMSINCONSISTENTES == "-1") {
-//			alert("Items Inconsistentes sin informacion.");
-//			return;
-//		}
-
-        /*if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
-			alert("Items Procesados sin informacion.");
-			return;
-		}*/
+                               if (transaccioncr.INCIDENTE == undefined || transaccioncr.INCIDENTE == "") {
+                                               alert("Fecha sin informacion.");
+                                               return;
+                               }
 
 
-        /*if (transaccion.ANS == undefined || transaccion.ANS == "") {
-			alert("Items Procesados sin informacion.");
-			return;
-		}*/
-
-        $scope.InfoGestion = {
-            txtNegocio: transaccion.txtNegocio,
-            TECNOLOGIA_ID: ''
-        };
-
-         $scope.EditarGestionCR = function (transaccion) {
-        services.EditarGestionCR(transaccion).then(function (data) {
-                $location.path('/cr/');
-                return data.data;
-                $scope.pageChanged();
-
-            }
-        )
-
-        };
-
-	};
 
 
-    $scope.ActualizarRegistroCR = function(INCIDENTE){
-     //alert("Está seguro de Cerrar el incidente? ");
-     var rps=confirm("Está seguro de Cerrar el incidente? ");
-
-        if(rps=true){
-
-            services.ActualizarRegistroCR(INCIDENTE).then(function(data){
-
-            $scope.listado_transacciones = data.data[0];
-            return data.data;
-            console.log(data.data);
-
-          });
-
-$scope.listado_transacciones = [];
-
-        };
+                               services.editTransaccionActividadescr(transaccioncr).then(function (data) {
+                                               $location.path('/cr/');
+                                               return data.data;
+                               });
+                };
 
 
-    };
 
     //******************************************************************************************
 

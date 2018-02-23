@@ -85,8 +85,15 @@
              <div class="col-xs-3" >
                     <input type="text" class="form-control"  class="col-xs-3" placeholder="Incidente a Buscar" ng-model="bregistro">
                       <div>
-                        <button class="btn btn-success btn-sm" ng-click="buscarRegistroCR(bregistro);" ><span class="glyphicon glyphicon-plus-sign"></span> Buscar</button>
+                        <button class="btn btn-success btn-sm" ng-model="transaccioncr.INCIDENTE" ng-click="buscarRegistroCR(bregistro);" ><span class="glyphicon glyphicon-plus-sign"></span> Buscar</button>
                         </div>
+                    <div>
+                      <button ng-click="editTransaccionActividadescr(transaccioncr);">Cerrar Incidente</button>
+
+
+
+                    </div>
+
                     </div>
 
 			<div class="row">
@@ -133,7 +140,7 @@
                                     <th width="9%">FECHA DE CIERRE</th>
                                     <th width="9%">OBSERVACIONES</th>
                                     <th width="9%">USUARIO</th>
-                                    <th width="9%">ACCIONES</th>
+
 
 
                             </thead>
@@ -153,21 +160,6 @@
                                         <button class="btn btn-primary btn-xs" value="guardar!" ng-click="guardarAlarma();"><i class="fa fa-floppy-o fa-lg"></i></button>
                                       </div> -->
 
-                                        <td align="center">
-
-                                            <div>
-                                            <!--<button class="btn btn-success btn-sm" ng-click="ActualizarRegistroCR();" ><span class="glyphicon glyphicon-plus-sign"></span> Cerrar</button>-->
-
-                                            <button ng-click="ActualizarRegistroCR(INCIDENTE);">Cerrar Incidente</button>
-
-
-
-
-
-
-                                            </div>
-
-                                        </td>
 
 
 
