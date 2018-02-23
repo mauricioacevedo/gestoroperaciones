@@ -6176,6 +6176,8 @@ private function getAgentScore($user){
                 $row['CONCEPTO_CRM'] = $objRtaFenix['CONCEPTOS'];
                 $row['ZONA'] = $this->searchForId($row['MUNICIPIO_ID']);
 
+                $row=str_replace("\n", "", $row);
+
                 $result[] = $row;
                 fputcsv($fp, $row);
             }
