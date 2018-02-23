@@ -6053,10 +6053,10 @@ $scope.listado_transacciones = [];
     //*******************************JJ EDITAR REGISTRO cr *********************************
      $scope.editTransaccionActividadescr = function (transaccioncr) {
                                 console.log(transaccioncr);
-                               // if(transaccionA.PEDIDO_ID==undefined || transaccionA.PEDIDO_ID==""){
-                               //       alert("Fecha sin informacion.");
-                               //     return;
-                               //}
+                                /*if(transaccionA.PEDIDO_ID==undefined || transaccionA.PEDIDO_ID==""){
+                                    alert("Fecha sin informacion.");
+                                  return;
+                               }*/
 
                                /*if (bregistro.INCIDENTE == undefined || bregistro.INCIDENTE == "") {
                                                alert("Fecha sin informacion.");
@@ -6066,7 +6066,7 @@ $scope.listado_transacciones = [];
 
 
 
-                               services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {
+            services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {
 			$scope.listado_transacciones = data.data[0];
 			$scope.data.totalItems = data.data[1];
 			return data.data;
