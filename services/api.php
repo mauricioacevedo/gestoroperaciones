@@ -11348,7 +11348,7 @@ private function demePedidoEdatel(){
         $grupoGalleta   =   $galleta['GRUPO'];
         $transaccioncr = $this->_request['transaccioncr'];
 
-       $column_names = array('INCIDENTE');
+       $column_names = array($trnsaccioncr);
 
         $keys = array_keys($transaccioncr);
         //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
