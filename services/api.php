@@ -11348,7 +11348,9 @@ private function demePedidoEdatel(){
         $grupoGalleta   =   $galleta['GRUPO'];
         $transaccioncr = $this->_request['transaccioncr'];
 
+       $column_names = array('INCIDENTE');
 
+        $keys = array_keys($transaccioncr);
         //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
 
         $query="update tbl_cr set ESTADO ='CERRADO' where INCIDENTE like '$transaccioncr%'";
