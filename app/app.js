@@ -6052,7 +6052,7 @@ $scope.listado_transacciones = [];
 	};
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
-     $scope.editTransaccionActividadescr = function (transaccioncr) {
+     $scope.editTransaccionActividadescr = function (bregistro) {
                                 console.log(transaccioncr);
                                // if(transaccionA.PEDIDO_ID==undefined || transaccionA.PEDIDO_ID==""){
                                //       alert("Fecha sin informacion.");
@@ -6067,7 +6067,7 @@ $scope.listado_transacciones = [];
 
 
 
-                               services.editTransaccionActividadescr(transaccioncr).then(function (data) {
+                               services.editTransaccionActividadescr(bregistro).then(function (data) {
                                                $location.path('/cr/');
                                                return data.data;
                                });
