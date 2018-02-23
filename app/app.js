@@ -6065,7 +6065,7 @@ $scope.listado_transacciones = [];
 
                                services.editTransaccionActividadescr(bregistro).then(function (data) {
                                                $location.path('/cr/');
-                                   console.log(data);
+                                   console.log(bregistro);
                                                return data.data;
 
                                });
