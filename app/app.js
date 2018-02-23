@@ -6059,7 +6059,7 @@ $scope.listado_transacciones = [];
                                //     return;
                                //}
 
-                               if (transaccioncr.INCIDENTE == undefined || transaccioncr.INCIDENTE == "") {
+                               if (bregistro.INCIDENTE == undefined || bregistro.INCIDENTE == "") {
                                                alert("Fecha sin informacion.");
                                                return;
                                }
