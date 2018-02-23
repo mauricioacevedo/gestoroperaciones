@@ -11345,7 +11345,7 @@ private function demePedidoEdatel(){
 
 
 //------------------------------
-    private function editTransaccionActividadescr(){
+   /* private function editTransaccionActividadescr(){
 
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -11382,7 +11382,7 @@ private function demePedidoEdatel(){
 
         }
         $this->response('',204);        // If no records "No Content" status
-    }
+    }*/
 
 
     private function buscarRegistroCR(){//pendientes
