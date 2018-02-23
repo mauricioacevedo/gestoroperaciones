@@ -835,6 +835,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
     obj.buscarRegistroCR = function (bregistro) { //buscar pedido cr
 		return $http.get(serviceBase + 'buscarRegistroCR?bregistro=' + bregistro);
+        return $http.get(serviceBase + 'editTransaccionActividadescr?bregistro=' + bregistro);
+
 	};
 
      //******************************MICHAEL CRUD PNI*****************************************
