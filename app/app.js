@@ -481,7 +481,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
     //----------------------------
 
-    obj.editTransaccionActividadescr = function (bregistro) { // editar transaccion actividades
+    obj.editTransaccionActividadescr = function (transaccioncr) { // editar transaccion actividades
 		var data = $http.post(serviceBase + 'editTransaccionActividadescr', {
 			"bregistro": bregistro
 		});
