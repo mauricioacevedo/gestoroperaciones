@@ -6055,17 +6055,19 @@ $scope.listado_transacciones = [];
                                //     return;
                                //}
 
-                               if (bregistro.INCIDENTE == undefined || bregistro.INCIDENTE == "") {
+                               /*if (bregistro.INCIDENTE == undefined || bregistro.INCIDENTE == "") {
                                                alert("Fecha sin informacion.");
                                                return;
-                               }
+                               }*/
 
 
 
 
                                services.editTransaccionActividadescr(bregistro).then(function (data) {
-                                               $location.path('/cr/');
-                                   console.log(bregistro);
+                                               //$location.path('/cr/');
+                                  $scope.listado_transacciones = data.data[0];
+                                 return data.data;
+                                 console.log(data.data);
                                                return data.data;
 
                                });
