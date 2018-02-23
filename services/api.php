@@ -11295,11 +11295,11 @@ private function demePedidoEdatel(){
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
 
-        $transaccion = json_decode(file_get_contents("php://input"),true);
+        $transaccioncr = json_decode(file_get_contents("php://input"),true);
 
         $transaccioncr = $transaccioncr['transaccioncr'];
 
-        var_dump ($transaccion);
+        var_dump ($transaccioncr);
 
         $column_names = array('transaccioncr');
 
