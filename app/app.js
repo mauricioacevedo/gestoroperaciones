@@ -6051,8 +6051,8 @@ $scope.listado_transacciones = [];
 	};
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
-     $scope.editTransaccionActividadescr = function (bregistro) {
-                                console.log(bregistro);
+     $scope.editTransaccionActividadescr = function (transaccioncr) {
+                                console.log(transaccioncr);
                                // if(transaccionA.PEDIDO_ID==undefined || transaccionA.PEDIDO_ID==""){
                                //       alert("Fecha sin informacion.");
                                //     return;
@@ -6066,15 +6066,12 @@ $scope.listado_transacciones = [];
 
 
 
-                               services.editTransaccionActividadescr(bregistro).then(function (data) {
-                                               //$location.path('/cr/');
-                                  $scope.listado_transacciones = data.data[0];
-                                 return data.data;
-                                 console.log(data.data);
-                                               return data.data;
-
-                               });
-                };
+                               services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {
+			$scope.listado_transacciones = data.data[0];
+			$scope.data.totalItems = data.data[1];
+			return data.data;
+		});
+    };
 
 
 
