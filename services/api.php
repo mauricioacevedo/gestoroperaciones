@@ -11299,7 +11299,7 @@ private function demePedidoEdatel(){
 
         $transaccioncr = $transaccioncr['transaccioncr'];
 
-        var_dump ($transaccioncr);
+        //var_dump ($transaccioncr);
 
         $column_names = array('transaccioncr');
 
