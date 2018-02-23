@@ -6134,10 +6134,7 @@ $scope.listado_transacciones = [];
 		$scope.transaccion.FECHA = year + "-" + month + "-" + day;
 	}*/
 
-    services.editTransaccionActividadescr(bregistro).then(function (data) {
-                                               $location.path('/cr/');
-                                               return data.data;
-                               });
+
 
 	$scope.pageChanged = function () {
 		services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {
