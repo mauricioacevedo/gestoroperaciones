@@ -481,9 +481,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
     //----------------------------
 
-    obj.editTransaccionActividadescr = function (transaccioncr) { // editar transaccion actividades
+    obj.editTransaccionActividadescr = function (bregistro) { // editar transaccion actividades
 		var data = $http.post(serviceBase + 'editTransaccionActividadescr', {
-			"transaccioncr": transaccioncr
+			"bregistro": bregistro
 		});
 		return data;
 	};
@@ -808,8 +808,11 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         });
     };
 
-    obj.ActualizarRegistroCR = function(bregistro){
-        return $http.post(serviceBase + 'actualizarTransaccionCR?bregistro=' + bregistro);
+    obj.ActualizarRegistroCR = function(transaccioncr){
+        return $http.post(serviceBase + 'editTransaccionActividadescr');{
+
+            transaccioncr: transaccioncr
+        };
 
 
 
@@ -823,11 +826,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         });
     };
 
-    obj.EditarGestionCR = function (gestion) {
-        return $http.post(serviceBase + 'ActualizarTransaccionCR', {
-              gestion: gestion, fechainicio:fechainicio
-        });
-    };
+
 
     obj.getTransaccionCR = function (idcr) {
 		return $http.get(serviceBase + 'getTransaccionCR?idcr=' + idcr);
@@ -835,6 +834,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
     obj.buscarRegistroCR = function (bregistro) { //buscar pedido cr
 		return $http.get(serviceBase + 'buscarRegistroCR?bregistro=' + bregistro);
+       // return $http.get(serviceBase + 'editTransaccionActividadescr?bregistro=' + bregistro);
+
 	};
 
      //******************************MICHAEL CRUD PNI*****************************************
@@ -5926,13 +5927,13 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 	};
 
-    $scope.ActualizarRegistroCR = function(){
+    $scope.ActualizarRegistroCR = function(transaccioncr){
      //alert("Está seguro de Cerrar el incidente? ");
      var rps=confirm("Está seguro de Cerrar el incidente? ");
 
         if(rps=true){
 
-            services.ActualizarRegistroCR().then(function(data){
+            services.ActualizarRegistroCR(transaccioncr).then(function(data){
 
             $scope.listado_transacciones = data.data[0];
             return data.data;
@@ -6057,19 +6058,20 @@ $scope.listado_transacciones = [];
                                //     return;
                                //}
 
-                               if (transaccioncr.INCIDENTE == undefined || transaccioncr.INCIDENTE == "") {
+                               /*if (bregistro.INCIDENTE == undefined || bregistro.INCIDENTE == "") {
                                                alert("Fecha sin informacion.");
                                                return;
-                               }
+                               }*/
 
 
 
 
-                               services.editTransaccionActividadescr(transaccioncr).then(function (data) {
-                                               $location.path('/cr/');
-                                               return data.data;
-                               });
-                };
+                               services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {
+			$scope.listado_transacciones = data.data[0];
+			$scope.data.totalItems = data.data[1];
+			return data.data;
+		});
+    };
 
 
 
@@ -6131,6 +6133,8 @@ $scope.listado_transacciones = [];
 		$scope.FECHA_INICIO = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 		$scope.transaccion.FECHA = year + "-" + month + "-" + day;
 	}*/
+
+
 
 	$scope.pageChanged = function () {
 		services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {

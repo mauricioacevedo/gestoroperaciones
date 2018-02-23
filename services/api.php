@@ -11350,10 +11350,12 @@ private function demePedidoEdatel(){
         $grupoGalleta   =   $galleta['GRUPO'];
         $transaccioncr = $this->_request['transaccioncr'];
 
+       $column_names = array($trnsaccioncr);
 
+        $keys = array_keys($transaccioncr);
         //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
 
-        $query="update tbl_cr set ESTADO ='CERRADO' where INCIDENTE like '$INCIDENTE%'";
+        $query="update tbl_cr set ESTADO ='CERRADO' where INCIDENTE like '$transaccioncr%'";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
