@@ -11346,7 +11346,7 @@ private function demePedidoEdatel(){
         $usuarioGalleta =   $galleta['login'];
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
-        $transaccioncr = $this->_request['transaccioncr'];
+        $transaccioncr = $this->_request['bregistro'];
 
 
         //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
