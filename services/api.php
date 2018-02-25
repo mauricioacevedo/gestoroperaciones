@@ -11280,61 +11280,72 @@ private function demePedidoEdatel(){
     }
 
 //-------------------
-    /*private function editTransaccionActividadescr(){
+    private function editTransaccionActividadescr(){
         if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
 
-        $transa = json_decode(file_get_contents("php://input"),true);
-        //echo var_dump($usuario);
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
 
-        $transa = $transa['transaccioncr'];
-        $INCIDENTE = $transa['INCIDENTE'];
-        $column_names = array('ESTADO');
-        $keys = array_keys($transa);
+        $transaccioncr = json_decode(file_get_contents("php://input"),true);
+
+        $transaccioncr = $transaccioncr['transaccioncr'];
+
+        //var_dump ($transaccioncr);
+
+        $column_names = array('transaccioncr');
+
+        $keys = array_keys($transaccioncr);
         $columns = '';
         $values = '';
-        $ESTADO=implode(",",$transa['ESTADO']);
-        $transa['ESTADO']=$ESTADO;
 
-        $UPDATE="";
-        $SEP="";
+        $useri=$transaccion['USUARIO'];
+        $username=$transaccion['USERNAME'];
+
+        $INCIDENTE=$transaccioncr['transaccioncr'];
+
+
+
         foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
+            if($desired_key=='ID'){
+                continue;
+            }
             if(!in_array($desired_key, $keys)) {
                 $$desired_key = '';
             }else{
-                $$desired_key = $transa[$desired_key];
+                $$desired_key = $transaccion[$desired_key];
             }
             $columns = $columns.$desired_key.',';
-            $values = $values."'".$transa[$desired_key]."',";
-            $UPDATE=$UPDATE.$SEP.$desired_key." = '".strtoupper($transa[$desired_key])."' ";
-            $SEP=",";
+            $values = $values."'".$transaccion[$desired_key]."',";
         }
         $today = date("Y-m-d H:i:s");
 
-        $INCIDENTE="";
-        //if($transaccion['PASSWORD']!=""){
-        //  $passcode=" , PASSWORD=MD5('".$transaccion['PASSWORD']."')";
-        //}
+        $query="update tbl_cr set ESTADO ='CERRADO' where INCIDENTE like '$transaccioncr%'";
 
-
-        $query = "UPDATE tbl_cr SET ESTADO ='CERRADO' WHERE INCIDENTE=$INCIDENTE ";
-        //echo $query;
-
-        if(!empty($transa)){
+        if(!empty($transaccioncr)){
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-            $this->response(json_encode(array("msg"=>"OK","transaccion" => $transa)),200);
+
+            $this->response(json_encode(array("msg"=>"OK","transaccioncr" => $transaccioncr)),200);
+
         }else{
             $this->response('',200);        //"No Content" status
             //$this->response("$query",200);        //"No Content" status
         }
 
     }
-*/
+
 
 //------------------------------
-    private function editTransaccionActividadescr(){
+   /* private function editTransaccionActividadescr(){
 
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -11371,7 +11382,7 @@ private function demePedidoEdatel(){
 
         }
         $this->response('',204);        // If no records "No Content" status
-    }
+    }*/
 
 
     private function buscarRegistroCR(){//pendientes
