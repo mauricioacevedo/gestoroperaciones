@@ -808,10 +808,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         });
     };
 
-    obj.ActualizarRegistroCR = function(transaccioncr){
+    obj.ActualizarRegistroCR = function(bregistro){
         return $http.post(serviceBase + 'editTransaccionActividadescr');{
 
-            transaccioncr: transaccioncr
+            bregistro: bregistro
         };
 
 
@@ -5927,13 +5927,14 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 	};
 
-    $scope.ActualizarRegistroCR = function(transaccioncr){
+    $scope.ActualizarRegistroCR = function(bregistro){
      //alert("Está seguro de Cerrar el incidente? ");
+    console.log(bregistro);
      var rps=confirm("Está seguro de Cerrar el incidente? ");
 
         if(rps=true){
 
-            services.ActualizarRegistroCR(transaccioncr).then(function(data){
+            services.ActualizarRegistroCR(bregistro).then(function(data){
 
             $scope.listado_transacciones = data.data[0];
             return data.data;
@@ -5941,13 +5942,14 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
           });
 
-$scope.listado_transacciones = [];
+
 
         };
 
 
     };
 
+$scope.listado_transacciones = [];
 
 
 
@@ -6051,8 +6053,8 @@ $scope.listado_transacciones = [];
 	};
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
-     $scope.editTransaccionActividadescr = function (transaccioncr) {
-                                console.log(transaccioncr);
+     $scope.editTransaccionActividadescr = function (bregistro) {
+                                console.log(bregistro);
                                 /*if(transaccionA.PEDIDO_ID==undefined || transaccionA.PEDIDO_ID==""){
                                     alert("Fecha sin informacion.");
                                   return;
