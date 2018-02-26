@@ -809,10 +809,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
     };
 
     obj.ActualizarRegistroCR = function(bregistro){
-        return $http.post(serviceBase + 'editTransaccionActividadescr');{
+        return $http.post(serviceBase + 'editTransaccionActividadescr?bregistro=' + bregistro);
 
-            bregistro: bregistro
-        };
+
+
 
 
 
