@@ -5948,7 +5948,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
         };
 
 
-        $scope.pageChanged();
+        //$scope.pageChanged();
         $location.path('/cr/');
         $scope.listado_transacciones = [];
 
