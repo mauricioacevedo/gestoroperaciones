@@ -6083,7 +6083,7 @@ $scope.listado_transacciones = [];
 
     //******************************save transaccion***********************************
 
-    $scope.saveTransaccion = function (transac) {
+    $scope.saveTrans = function (transac) {
         console.log(transac);
 
 
