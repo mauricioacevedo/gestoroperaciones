@@ -808,8 +808,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         });
     };
 
-    obj.ActualizarRegistroCR = function(bregistro,transac){
-        return $http.post(serviceBase + 'editTransaccionActividadescr?bregistro=' + bregistro + transac);
+    obj.ActualizarRegistroCR = function(bregistro){
+        return $http.post(serviceBase + 'editTransaccionActividadescr?bregistro=' + bregistro);
 
 
 
