@@ -6089,7 +6089,7 @@ $scope.listado_transacciones = [];
 
 
 
-    }
+    };
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
      $scope.editTransaccionActividadescr = function (bregistro) {
