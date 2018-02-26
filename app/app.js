@@ -832,7 +832,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'getTransaccionCR?idcr=' + idcr);
 	};
 
-    obj.buscarRegistroCR = function (bregistro) { //buscar pedido cr
+    obj.buscarRegistroCR = function (transac.bregistro) { //buscar pedido cr
 		return $http.get(serviceBase + 'buscarRegistroCR?bregistro=' + bregistro);
        // return $http.get(serviceBase + 'editTransaccionActividadescr?bregistro=' + bregistro);
 
@@ -5935,13 +5935,37 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
         if(rps=true){
 
-            services.ActualizarRegistroCR(bregistro).then(function(data){
+            /*services.ActualizarRegistroCR(bregistro).then(function(data){
 
             $scope.listado_transacciones = data.data[0];
             return data.data;
-            console.log(data.data);
+            console.log(data.data);*/
 
-          });
+            services.SalvarGestionCR(bregistro,$rootScope.fecha_inicionuevoRegistroCR).then(function (data) {
+                $location.path('/cr/');
+                return data.data;
+            }
+        )
+
+        $scope.getTransaccionCR = function () {
+		//$scope.transaccion={};
+		services.getTransaccionCR().then(function (data) {
+			//console.log(ncaID);
+			$rootScope.bregistro = data.data[0];
+			//console.log($scope.transaccion);
+			//console.log(data);
+			$location.path('/cr/');
+			return data.data;
+        });
+
+	   };
+
+        $scope.pageChanged();
+        $location.path('/cr/');
+        $scope.listado_transacciones = [];
+
+
+
 
 
 
@@ -6056,6 +6080,16 @@ $scope.listado_transacciones = [];
         $location.path('/cr/');
         $scope.listado_transacciones = [];
 	};
+
+    //******************************save transaccion***********************************
+
+    $scope.saveTransaccion = function (transac) {
+        console.log(transac);
+
+
+
+
+    }
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
      $scope.editTransaccionActividadescr = function (bregistro) {

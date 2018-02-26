@@ -85,22 +85,22 @@
              <div class="col-xs-3" >
 
                  <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i>Cierre de Incidentes<small> </small></h2>
-                    <input type="text" class="form-control"  class="col-xs-3" placeholder="Incidente a Cerrar" ng-model="bregistro">
+                    <input type="text" class="form-control"  class="col-xs-3" placeholder="Incidente a Cerrar" ng-model="transac.bregistro">
                       <div>
-                        <button class="btn btn-success btn-sm" ng-model="bregistro.INCIDENTE" ng-click="buscarRegistroCR(bregistro);" ><span class="glyphicon glyphicon-plus-sign"></span> Buscar</button>
+                        <button class="btn btn-success btn-sm" ng-model="transac.INCIDENTE" ng-click="buscarRegistroCR(transac.bregistro);" ><span class="glyphicon glyphicon-plus-sign"></span> Buscar</button>
                         </div>
 
-                    <!--<div class="from-group" id="datetimepicker">
+                    <div class="from-group" id="datetimepicker">
                                 <label for="fechaSolicitud">
                                     Fecha De Cierre
                                 </label>
                                 <br>
                                 <input type="text" name="fechacierre" id="fechaierre" class="form-control"
                                     ng-model="transac.FECHA_CIERRE" datetime-picker date-format="yyyy-MM-dd H:mm:00">
-                    </div>-->
+                    </div>
 
                     <div>
-                      <button ng-click="ActualizarRegistroCR(bregistro);">Cerrar Incidente</button>
+                      <button ng-click="ActualizarRegistroCR(transac);">Cerrar Incidente</button>
 
 
 

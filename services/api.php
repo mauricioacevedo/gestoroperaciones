@@ -11348,7 +11348,7 @@ private function demePedidoEdatel(){
 
         //echo("Fecha".$fechaini);
 
-        $column_names = array('INCIDENTE','SISTEMA','ESTADO','FECHA_SOLICITUD','FECHA_CIERRE','OBSERVACIONES','USUARIO');
+        $column_names = array('INCIDENTE','ESTADO','FECHA_CIERRE');
 
         $keys = array_keys($bregistro);
         $columns = '';
