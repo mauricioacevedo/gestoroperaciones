@@ -11302,6 +11302,7 @@ private function demePedidoEdatel(){
 
         //var_dump ($transaccioncr);
 
+
          $query="update tbl_cr set ESTADO ='CERRADO' where INCIDENTE like '$bregistro%'";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -11322,11 +11323,12 @@ private function demePedidoEdatel(){
 
 
 //------------------------------
-   /* private function editTransaccionActividadescr(){
+   private function editTransaccionActividadescr2(){
 
-        if($this->get_request_method() != "GET"){
+       if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
+
         $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
         $usuarioPc      =   gethostbyaddr($usuarioIp);
         $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
@@ -11336,30 +11338,63 @@ private function demePedidoEdatel(){
         $usuarioGalleta =   $galleta['login'];
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
-        $transaccioncr = $this->_request['transaccioncr'];
 
-       $column_names = array($trnsaccioncr);
+        $transaccion = json_decode(file_get_contents("php://input"),true);
+        $fecha = json_decode(file_get_contents("php://input"),true);
 
-        $keys = array_keys($transaccioncr);
-        //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
+        $transaccion = $transaccion['gestion'];
+        $fechaini = $fecha['fechainicio'];
 
-        $query="update tbl_cr set ESTADO ='CERRADO' where INCIDENTE like '$transaccioncr%'";
-        //echo $query;
-        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        //echo("Fecha".$fechaini);
 
-        if($r->num_rows > 0){
-            $result = array();
-            while($row = $r->fetch_assoc()){
-                $result[] = $row;
+        $column_names = array('INCIDENTE','SISTEMA','ESTADO','FECHA_SOLICITUD','FECHA_CIERRE','OBSERVACIONES','USUARIO');
+
+        $keys = array_keys($bregistro);
+        $columns = '';
+        $values = '';
+
+        $useri=$bregistro['USUARIO'];
+        $username=$bregistro['USERNAME'];
+
+        $INCIDENTE=$bregistro['INCIDENTE'];
+        $SISTEMA=$transaccion['SISTEMA'];
+        $OBSERVACIONES=$transaccion['OBSERVACIONES'];
+        $FECHA_SOLICITUD=$transaccion['FECHA_SOLICITUD'];
+
+        //$ID=$transaccion['ID'];
+
+    var_dump($transaccion);
+
+        foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
+            if($desired_key=='ID'){
+                continue;
             }
-
-            // ---------------------------------- SQL Feed
-            $this->response($this->json(array($result)), 200); // send user details
-
-
+            if(!in_array($desired_key, $keys)) {
+                $$desired_key = '';
+            }else{
+                $$desired_key = $transaccion[$desired_key];
+            }
+            $columns = $columns.$desired_key.',';
+            $values = $values."'".$transaccion[$desired_key]."',";
         }
-        $this->response('',204);        // If no records "No Content" status
-    }*/
+        $today = date("Y-m-d H:i:s");
+
+        $query = " INSERT INTO tbl_cr(INCIDENTE, SISTEMA, FECHA_SOLICITUD, OBSERVACIONES, USUARIO) VALUES ('$INCIDENTE', '$SISTEMA', '$FECHA_SOLICITUD', '$OBSERVACIONES', '$usuarioGalleta') ";
+
+
+        //echo $query;
+        if(!empty($transaccion)){
+            //echo $query;
+            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+            $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
+
+        }else{
+            $this->response('',200);        //"No Content" status
+            //$this->response("$query",200);        //"No Content" status
+        }
+
+    }
 
 
     private function buscarRegistroCR(){//pendientes
