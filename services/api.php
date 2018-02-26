@@ -11295,8 +11295,8 @@ private function demePedidoEdatel(){
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
         $bregistro = $this->_request['bregistro'];
-        $transac = $this->_request['transac'];
-        log.console(transac);
+        //$transac = $this->_request['transac'];
+
         //$bregistro = json_decode(file_get_contents("php://input"),true);
 
         //$transaccioncr = $transaccioncr['transaccioncr'];
