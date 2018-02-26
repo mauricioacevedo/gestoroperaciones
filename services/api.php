@@ -11295,6 +11295,7 @@ private function demePedidoEdatel(){
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
         $bregistro = $this->_request['bregistro'];
+        $transac = $this->_request['transac'];
 
         //$bregistro = json_decode(file_get_contents("php://input"),true);
 
@@ -11303,7 +11304,7 @@ private function demePedidoEdatel(){
         //var_dump ($transaccioncr);
 
 
-         $query="update tbl_cr set ESTADO ='CERRADO' where INCIDENTE like '$bregistro%'";
+         $query="update tbl_cr set ESTADO ='CERRADO', FECHA_CIERRE='$transac' where INCIDENTE like '$bregistro%'";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
