@@ -5927,7 +5927,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 	};
 
-    $scope.ActualizarRegistroCR = function(bregistro,transac){
+    $scope.ActualizarRegistroCR = function(bregistro){
      //alert("Está seguro de Cerrar el incidente? ");
     console.log(bregistro);
     console.log(transac);
@@ -5935,7 +5935,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
         if(rps=true){
 
-            services.ActualizarRegistroCR(bregistro,transac).then(function(data){
+            services.ActualizarRegistroCR(bregistro).then(function(data){
 
             $scope.listado_transacciones = data.data[0];
             return data.data;
