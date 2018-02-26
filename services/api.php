@@ -11304,7 +11304,7 @@ private function demePedidoEdatel(){
         //var_dump ($transaccioncr);
 
 
-         $query="update tbl_cr set ESTADO ='CERRADO', where INCIDENTE like '$bregistro%'";
+         $query="update tbl_cr set ESTADO ='CERRADO' where INCIDENTE like '$bregistro%'";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
