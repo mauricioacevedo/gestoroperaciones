@@ -5930,7 +5930,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
     $scope.ActualizarRegistroCR = function(bregistro){
      //alert("Está seguro de Cerrar el incidente? ");
     console.log(bregistro);
-    console.log(transac);
+
      var rps=confirm("Está seguro de Cerrar el incidente? ");
 
         if(rps=true){
