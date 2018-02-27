@@ -6114,7 +6114,7 @@ $scope.listado_transacciones = [];
      services.saveTrans(transac).then(function (data) {
 			console.log(transac);
 			$rootScope.transac = data.data[0];
-            console.log(transaccion);
+            console.log(transac);
 
             return data.data;
           $rootScope.transac = [];
