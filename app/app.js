@@ -6104,7 +6104,15 @@ $scope.listado_transacciones = [];
 			return;
 		}
 
-     services.saveTrans(transac);
+     services.saveTrans(transac).then(function (data) {
+			//console.log(ncaID);
+			$rootScope.transac = data.data[0];
+			//console.log($scope.transaccion);
+			//console.log(data);
+			$location.path('/cr/');
+			return data.data;
+		});
+
 
     };
 
