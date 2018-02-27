@@ -6111,7 +6111,9 @@ $scope.listado_transacciones = [];
 			//console.log($scope.transaccion);
 			//console.log(data);
             //$scope.pageChanged();
-			$location.path('/cr/');
+			//$location.path('/cr/');
+            $scope.transa=[];
+            console.log(socpe.transac);
 
 		});
 
