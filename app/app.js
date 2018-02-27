@@ -6122,7 +6122,7 @@ $scope.listado_transacciones = [];
 			//console.log(data);
             //$scope.pageChanged();
 			//$location.path('/cr/');
-
+            this.transac="";
 
 
 		});
@@ -6130,10 +6130,10 @@ $scope.listado_transacciones = [];
 	$scope.data = {
 		maxSize: 5,
         INCIDENTE:"",
-        FECHA_CIERRE:""*/
-        this.transac="";
+        FECHA_CIERRE:""
 
-	};
+
+	};*/
 
  };
 
