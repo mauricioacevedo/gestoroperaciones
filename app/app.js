@@ -809,12 +809,13 @@ app.factory("services", ['$http', '$timeout', function ($http) {
     };
 
 
-     obj.saveTrans = function (transc) {
-        return $http.post(serviceBase + 'editTransaccionActividadescr2');
+     obj.saveTrans = function (transac) {
+        return $http.post(serviceBase + 'editTransaccionActividadescr2',{
+           trasac: transac,
 
-        };
+        });
 
-
+     };
 
 
     obj.ActualizarRegistroCR = function(bregistro){
