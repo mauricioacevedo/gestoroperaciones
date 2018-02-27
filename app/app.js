@@ -6114,12 +6114,13 @@ $scope.listado_transacciones = [];
      services.saveTrans(transac).then(function (data) {
 			console.log(transac);
 			$rootScope.transac = data.data[0];
+            console.log(data);
             return data.data;
 			//console.log($scope.transaccion);
 			//console.log(data);
             //$scope.pageChanged();
 			//$location.path('/cr/');
-            this.reset();
+
             //console.log($scope.transac);
 
 		});
