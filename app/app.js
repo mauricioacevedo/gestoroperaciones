@@ -5925,7 +5925,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 			return data.data;
 		});
 
-	};
+    };
 
     $scope.ActualizarRegistroCR = function(bregistro){
      //alert("Está seguro de Cerrar el incidente? ");
@@ -5943,9 +5943,9 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
            /* services.SalvarGestionCR(bregistro,$rootScope.fecha_inicionuevoRegistroCR).then(function (data) {
                 $location.path('/cr/');
-                return data.data;*/
+                return data.data;
             }
-        )
+        )*/
 
         /*$scope.getTransaccionCR = function () {
 		//$scope.transaccion={};
@@ -5960,13 +5960,10 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 	   };
 
-        $scope.pageChanged();
-        $location.path('/cr/');
-        $scope.listado_transacciones = [];
 
 
 
-
+         };
 
 
         };
