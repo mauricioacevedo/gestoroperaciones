@@ -6094,7 +6094,12 @@ $scope.listado_transacciones = [];
         console.log(transac);
 
 
-    if (transac.INCIDENTE == undefined || transac.INCIDENTE == "") {
+
+    var rps=confirm("Está seguro de Cerrar el incidente? ");
+
+        if(rps=true){
+
+            if (transac.INCIDENTE == undefined || transac.INCIDENTE == "") {
 			alert("INCIDENTE sin informacion.");
 			return;
 		}
@@ -6103,6 +6108,8 @@ $scope.listado_transacciones = [];
 			alert("FECHA_CIERRE sin informacion.");
 			return;
 		}
+
+        };
 
      services.saveTrans(transac).then(function (data) {
 			console.log(transac);
