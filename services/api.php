@@ -11316,7 +11316,7 @@ private function demePedidoEdatel(){
         //  $passcode=" , PASSWORD=MD5('".$transaccion['PASSWORD']."')";
         //}
         $query = "UPDATE tbl_cr SET ESTADO='CERRADO' WHERE INCIDENTE='$transa''";
-        //echo $query;
+        echo $query;
 
         if(!empty($transa)){
             //echo $query;
