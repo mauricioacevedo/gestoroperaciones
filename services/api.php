@@ -11315,7 +11315,7 @@ private function demePedidoEdatel(){
         //if($transaccion['PASSWORD']!=""){
         //  $passcode=" , PASSWORD=MD5('".$transaccion['PASSWORD']."')";
         //}
-        $query = "UPDATE tbl_cr SET ESTADO='CERRADO' WHERE ID=".$transa['ID']";
+        $query = "UPDATE tbl_cr SET ESTADO='CERRADO' WHERE ID=".$transa['ID']"";
         //echo $query;
 
         if(!empty($transa)){
