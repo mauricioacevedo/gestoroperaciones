@@ -11293,6 +11293,7 @@ private function demePedidoEdatel(){
         $keys = array_keys($transa);
         $columns = '';
         $values = '';
+        $INCIDENTE=$transac['INCIDENTE'];
         $FECHA=$transac['FECHA_CIERRE'];
         //echo $transa;
         //$INCIDENTE=$transa['INCIDENTE'];
@@ -11317,7 +11318,7 @@ private function demePedidoEdatel(){
         //if($transaccion['PASSWORD']!=""){
         //  $passcode=" , PASSWORD=MD5('".$transaccion['PASSWORD']."')";
         //}
-        $query = "UPDATE tbl_cr SET ESTADO='CERRADO', FECHA_CIERRE='$FECHA'  WHERE INCIDENTE='$transa'";
+        $query = "UPDATE tbl_cr SET ESTADO='CERRADO', FECHA_CIERRE='$today''  WHERE INCIDENTE='$INCIDENTE'";
         echo $query;
         //echo $transa;
 
