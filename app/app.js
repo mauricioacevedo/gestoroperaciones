@@ -810,7 +810,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
 
      obj.saveTrans = function (transac) {
-        return $http.post(serviceBase + 'editTransaccionActividadescr2',{
+        return $http.post(serviceBase + 'editTransaccionActividadescr',{
            trasac: transac,
 
         });
