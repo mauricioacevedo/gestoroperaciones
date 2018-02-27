@@ -11293,8 +11293,8 @@ private function demePedidoEdatel(){
         $keys = array_keys($transa);
         $columns = '';
         $values = '';
-        $INCIDENTE=$transac['INCIDENTE'];
-        $FECHA=$transac['FECHA_CIERRE'];
+        $INCIDENTE=$transa['INCIDENTE'];
+        $FECHA=$transa['FECHA_CIERRE'];
         echo $FECHA;
         //$INCIDENTE=$transa['INCIDENTE'];
         //$TIPO_TRABAJO=implode(",",$transa['TIPO_TRABAJO']);
