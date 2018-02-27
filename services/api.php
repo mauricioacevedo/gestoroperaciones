@@ -11341,27 +11341,26 @@ private function demePedidoEdatel(){
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
 
-        $transaccion = json_decode(file_get_contents("php://input"),true);
+        $transac = json_decode(file_get_contents("php://input"),true);
         $fecha = json_decode(file_get_contents("php://input"),true);
 
-        $transaccion = $transaccion['gestion'];
-        $fechaini = $fecha['fechainicio'];
+        $transac = $transac['transac'];
+        //$fechaini = $fecha['fechainicio'];
 
         //echo("Fecha".$fechaini);
 
-        $column_names = array('INCIDENTE','ESTADO','FECHA_CIERRE');
+        $column_names = array('INCIDENTE','FECHA_CIERRE');
 
-        $keys = array_keys($bregistro);
+        $keys = array_keys($transac);
         $columns = '';
         $values = '';
 
-        $useri=$bregistro['USUARIO'];
-        $username=$bregistro['USERNAME'];
+        $useri=$transac['USUARIO'];
+        $username=$transac['USERNAME'];
 
-        $INCIDENTE=$bregistro['INCIDENTE'];
-        $SISTEMA=$transaccion['SISTEMA'];
-        $OBSERVACIONES=$transaccion['OBSERVACIONES'];
-        $FECHA_SOLICITUD=$transaccion['FECHA_SOLICITUD'];
+        $INCIDENTE=$transac['INCIDENTE'];
+
+        $FECHA_SOLICITUD=$transac['FECHA_CIERRE'];
 
         //$ID=$transaccion['ID'];
 
@@ -11374,22 +11373,22 @@ private function demePedidoEdatel(){
             if(!in_array($desired_key, $keys)) {
                 $$desired_key = '';
             }else{
-                $$desired_key = $transaccion[$desired_key];
+                $$desired_key = $transac[$desired_key];
             }
             $columns = $columns.$desired_key.',';
-            $values = $values."'".$transaccion[$desired_key]."',";
+            $values = $values."'".$transac[$desired_key]."',";
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " INSERT INTO tbl_cr(INCIDENTE, SISTEMA, FECHA_SOLICITUD, OBSERVACIONES, USUARIO) VALUES ('$INCIDENTE', '$SISTEMA', '$FECHA_SOLICITUD', '$OBSERVACIONES', '$usuarioGalleta') ";
+        $query="update tbl_cr set ESTADO ='CERRADO' where INCIDENTE='$transac'";
 
 
         //echo $query;
-        if(!empty($transaccion)){
+        if(!empty($transac)){
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
-            $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
+            $this->response(json_encode(array("msg"=>"OK","transac" => $transac)),200);
 
         }else{
             $this->response('',200);        //"No Content" status
