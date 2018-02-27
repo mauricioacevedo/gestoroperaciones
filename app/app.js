@@ -5947,7 +5947,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
             }
         )
 
-        $scope.getTransaccionCR = function () {
+        /*$scope.getTransaccionCR = function () {
 		//$scope.transaccion={};
 		services.getTransaccionCR().then(function (data) {
 			//console.log(ncaID);
@@ -5956,7 +5956,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 			//console.log(data);
 			$location.path('/cr/');
 			return data.data;
-        });
+        });*/
 
 	   };
 
