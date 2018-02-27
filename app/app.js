@@ -6112,7 +6112,7 @@ $scope.listado_transacciones = [];
 			//console.log(data);
             //$scope.pageChanged();
 			//$location.path('/cr/');
-            $scope.transa=[];
+            $scope.transac = [];
             console.log(socpe.transac);
 
 		});
