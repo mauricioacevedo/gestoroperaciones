@@ -11288,11 +11288,12 @@ private function demePedidoEdatel(){
         $transa = json_decode(file_get_contents("php://input"),true);
         //echo var_dump($usuario);
 
-        $transa = $transa['trasac'];
+        $transa = $transa['transac'];
         $column_names = array('INCIDENTE','FECHA_CIERRE');
         $keys = array_keys($transa);
         $columns = '';
         $values = '';
+        $FECHA=$transac['FECHA_CIERRE'];
         //echo $transa;
         //$INCIDENTE=$transa['INCIDENTE'];
         //$TIPO_TRABAJO=implode(",",$transa['TIPO_TRABAJO']);
@@ -11316,9 +11317,9 @@ private function demePedidoEdatel(){
         //if($transaccion['PASSWORD']!=""){
         //  $passcode=" , PASSWORD=MD5('".$transaccion['PASSWORD']."')";
         //}
-        $query = "UPDATE tbl_cr SET ESTADO='CERRADO' WHERE INCIDENTE='$transa'";
+        $query = "UPDATE tbl_cr SET ESTADO='CERRADO', FECHA_CIERRE='$FECHA'  WHERE INCIDENTE='$transa'";
         echo $query;
-        echo $transa;
+        //echo $transa;
 
 
         if(!empty($transa)){
