@@ -11360,7 +11360,7 @@ private function demePedidoEdatel(){
 
         $INCIDENTE=$transac['INCIDENTE'];
 
-        $FECHA_SOLICITUD=$transac['FECHA_CIERRE'];
+        $FECHA_CIERRE=$transac['FECHA_CIERRE'];
 
         //$ID=$transaccion['ID'];
 
@@ -11380,7 +11380,7 @@ private function demePedidoEdatel(){
         }
         $today = date("Y-m-d H:i:s");
 
-        $query="update tbl_cr set ESTADO ='CERRADO' where INCIDENTE='$transac'";
+        $query="update tbl_cr set ESTADO ='CERRADO', FECHA_CIERRE='$FECHA_CIERRE' where INCIDENTE='$transac'";
 
 
         //echo $query;
