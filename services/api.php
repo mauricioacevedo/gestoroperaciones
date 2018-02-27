@@ -11281,46 +11281,51 @@ private function demePedidoEdatel(){
 
 //-------------------
     private function editTransaccionActividadescr(){
-        if($this->get_request_method() != "POST"){
+       if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
 
-        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
-        $usuarioPc      =   gethostbyaddr($usuarioIp);
-        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
-        $galleta        =   stripslashes($_COOKIE['logedUser']);
-        $galleta        =   json_decode($galleta);
-        $galleta        =   json_decode(json_encode($galleta), True);
-        $usuarioGalleta =   $galleta['login'];
-        $nombreGalleta  =   $galleta['name'];
-        $grupoGalleta   =   $galleta['GRUPO'];
-        $transac = $this->_request['transac'];
-        log.console(transac);
-        //$transac = $this->_request['transac'];
+        $transa = json_decode(file_get_contents("php://input"),true);
+        //echo var_dump($usuario);
 
-        //$bregistro = json_decode(file_get_contents("php://input"),true);
-
-        //$transaccioncr = $transaccioncr['transaccioncr'];
-
-        //var_dump ($transaccioncr);
-
-
-         $query="update tbl_cr set ESTADO ='CERRADO' where INCIDENTE like '$transac'%";
-        //echo $query;
-        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-
-        if($r->num_rows > 0){
-            $result = array();
-            while($row = $r->fetch_assoc()){
-                $result[] = $row;
+        $transa = $transa['transac'];
+        $column_names = array('INCIDENTE','FECHA_CIERRE');
+        $keys = array_keys($transa);
+        $columns = '';
+        $values = '';
+        //$TIPO_TRABAJO=implode(",",$transa['TIPO_TRABAJO']);
+        //$transa['TIPO_TRABAJO']=$TIPO_TRABAJO;
+        $UPDATE="";
+        $SEP="";
+        foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
+            if(!in_array($desired_key, $keys)) {
+                $$desired_key = '';
+            }else{
+                $$desired_key = $transa[$desired_key];
             }
-
-            // ---------------------------------- SQL Feed
-            $this->response($this->json(array($result)), 200); // send user details
-
-
+            $columns = $columns.$desired_key.',';
+            $values = $values."'".$transa[$desired_key]."',";
+            $UPDATE=$UPDATE.$SEP.$desired_key." = '".strtoupper($transa[$desired_key])."' ";
+            $SEP=",";
         }
-        $this->response('',204);        // If no records "No Content" status
+        $today = date("Y-m-d H:i:s");
+
+        $passcode="";
+        //if($transaccion['PASSWORD']!=""){
+        //  $passcode=" , PASSWORD=MD5('".$transaccion['PASSWORD']."')";
+        //}
+        $query = "UPDATE tbl_cr SET $UPDATE $transa WHERE ID=".$transa['ID'];
+        //echo $query;
+
+        if(!empty($transa)){
+            //echo $query;
+            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+            $this->response(json_encode(array("msg"=>"OK","transaccion" => $transa)),200);
+        }else{
+            $this->response('',200);        //"No Content" status
+            //$this->response("$query",200);        //"No Content" status
+        }
+
     }
 
 
