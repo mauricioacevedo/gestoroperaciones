@@ -6127,10 +6127,7 @@ $scope.listado_transacciones = [];
 
 		});
 
-
-    };
-
-      $scope.transac = {};
+$scope.transac = {};
 	$scope.data = {
 		maxSize: 5,
 		currentPage: 1,
@@ -6140,7 +6137,10 @@ $scope.listado_transacciones = [];
 		fechaFin: ""
 
 	};
-        console.log($scope.transac);
+    console.log($scope.transac,$rootScope.transac);
+ };
+
+
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
      $scope.editTransaccionActividadescr = function (bregistro) {
