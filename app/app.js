@@ -6126,7 +6126,7 @@ $scope.listado_transacciones = [];
 
 
 		});
-$scope.saveTrans = [];
+$scope.transac = [];
 	$scope.data = {
 		maxSize: 5,
         INCIDENTE:"",
