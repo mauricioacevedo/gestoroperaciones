@@ -6130,14 +6130,10 @@ $scope.listado_transacciones = [];
 $scope.transac = {};
 	$scope.data = {
 		maxSize: 5,
-		currentPage: 1,
-		numPerPage: 100,
-		totalItems: 0,
-		fechaIni: "",
-		fechaFin: ""
+
 
 	};
-    console.log($scope.transac,$rootScope.transac);
+    console.log($scope.transac);
  };
 
 
