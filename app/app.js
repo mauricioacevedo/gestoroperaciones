@@ -6170,7 +6170,7 @@ $scope.listado_transacciones = [];
     };
 
 
-    $scope.listado_transacciones = [];
+    $scope.listado_transacciones = {};
 	$scope.data = {
 		maxSize: 5,
 		currentPage: 1,
