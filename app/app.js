@@ -5935,15 +5935,15 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
         if(rps=true){
 
-            /*services.ActualizarRegistroCR(bregistro).then(function(data){
+            services.ActualizarRegistroCR(bregistro).then(function(data){
 
             $scope.listado_transacciones = data.data[0];
             return data.data;
-            console.log(data.data);*/
+            console.log(data.data);
 
-            services.SalvarGestionCR(bregistro,$rootScope.fecha_inicionuevoRegistroCR).then(function (data) {
+           /* services.SalvarGestionCR(bregistro,$rootScope.fecha_inicionuevoRegistroCR).then(function (data) {
                 $location.path('/cr/');
-                return data.data;
+                return data.data;*/
             }
         )
 
