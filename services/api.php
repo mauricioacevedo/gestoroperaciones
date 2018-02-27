@@ -11327,77 +11327,13 @@ private function demePedidoEdatel(){
 //------------------------------
    private function editTransaccionActividadescr2(){
 
-       echo $transac;
+       //echo $transac;
 
-       if($this->get_request_method() != "POST"){
-            $this->response('',406);
-        }
+       alert("estas aca");
 
-        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
-        $usuarioPc      =   gethostbyaddr($usuarioIp);
-        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
-        $galleta        =   stripslashes($_COOKIE['logedUser']);
-        $galleta        =   json_decode($galleta);
-        $galleta        =   json_decode(json_encode($galleta), True);
-        $usuarioGalleta =   $galleta['login'];
-        $nombreGalleta  =   $galleta['name'];
-        $grupoGalleta   =   $galleta['GRUPO'];
+       $INCIDENTE=$transac['INCIDENTE'];
 
-        $transac = json_decode(file_get_contents("php://input"),true);
-        $fecha = json_decode(file_get_contents("php://input"),true);
-
-        $transac = $transac['transac'];
-        //$fechaini = $fecha['fechainicio'];
-
-        //echo("Fecha".$fechaini);
-
-        $column_names = array('INCIDENTE','FECHA_CIERRE');
-
-        $keys = array_keys($transac);
-        $columns = '';
-        $values = '';
-
-        $useri=$transac['USUARIO'];
-        $username=$transac['USERNAME'];
-
-        $INCIDENTE=$transac['INCIDENTE'];
-
-        $FECHA_CIERRE=$transac['FECHA_CIERRE'];
-
-        //$ID=$transaccion['ID'];
-
-    var_dump($transaccion);
-
-        foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
-            if($desired_key=='ID'){
-                continue;
-            }
-            if(!in_array($desired_key, $keys)) {
-                $$desired_key = '';
-            }else{
-                $$desired_key = $transac[$desired_key];
-            }
-            $columns = $columns.$desired_key.',';
-            $values = $values."'".$transac[$desired_key]."',";
-        }
-        $today = date("Y-m-d H:i:s");
-
-        $query="update tbl_cr set ESTADO ='CERRADO', FECHA_CIERRE='$FECHA_CIERRE' where INCIDENTE='$transac'";
-
-
-        //echo $query;
-        if(!empty($transac)){
-            //echo $query;
-            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-
-            $this->response(json_encode(array("msg"=>"OK","transac" => $transac)),200);
-
-        }else{
-            $this->response('',200);        //"No Content" status
-            //$this->response("$query",200);        //"No Content" status
-        }
-
-    }
+   }
 
 
     private function buscarRegistroCR(){//pendientes
