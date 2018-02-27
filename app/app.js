@@ -808,6 +808,15 @@ app.factory("services", ['$http', '$timeout', function ($http) {
         });
     };
 
+
+     obj.saveTrans = function (transc) {
+        return $http.post(serviceBase + 'insertTransaccionCR', {
+            transc: transc, fechainicio:fechainicio
+        });
+    };
+
+
+
     obj.ActualizarRegistroCR = function(bregistro){
         return $http.post(serviceBase + 'editTransaccionActividadescr?bregistro=' + bregistro);
 
@@ -6094,7 +6103,7 @@ $scope.listado_transacciones = [];
 			return;
 		}
 
-
+     services.saveTrans(transac);
 
     };
 
