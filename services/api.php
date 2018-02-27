@@ -11288,7 +11288,7 @@ private function demePedidoEdatel(){
         $transa = json_decode(file_get_contents("php://input"),true);
         //echo var_dump($usuario);
 
-        $transa = $transa['transac'];
+        $transa = $transa['trasac'];
         $column_names = array('INCIDENTE','FECHA_CIERRE');
         $keys = array_keys($transa);
         $columns = '';
