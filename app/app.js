@@ -6084,6 +6084,16 @@ $scope.listado_transacciones = [];
         console.log(transac);
 
 
+    if (transac.INCIDENTE == undefined || transac.INCIDENTE == "") {
+			alert("INCIDENTE sin informacion.");
+			return;
+		}
+
+        if (transac.FECHA_CIERRE == undefined || transac.FECHA_CIERRE == "") {
+			alert("FECHA_CIERRE sin informacion.");
+			return;
+		}
+
 
 
     };

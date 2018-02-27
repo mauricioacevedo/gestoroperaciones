@@ -100,22 +100,22 @@
 
 
 
-                                  <input maxlength="7" name="nuevo" ng-model="transac.INCIDENTE" type= "text" class="form-control" placeholder="INCIDENTE" required/>
+                                  <input maxlength="7" name="cierre" ng-model="transac.INCIDENTE" type= "text" class="form-control" placeholder="INCIDENTE A CERRAR" required/>
 
                             </div>
 
 
                     <div class="from-group" id="datetimepicker">
-                                <label for="fechaSolicitud">
+                                <label for="fechacierre">
                                     Fecha De Cierre
                                 </label>
                                 <br>
-                                <input type="text" name="fechacierre" id="fechaierre" class="form-control"
+                                <input type="text" name="fechacierre" id="fechacierre" class="form-control"
                                     ng-model="transac.FECHA_CIERRE" datetime-picker date-format="yyyy-MM-dd H:mm:00">
                     </div>
 
                     <div>
-                      <button ng-click="ActualizarRegistroCR(transac);">Cerrar Incidente</button>
+                      <button ng-click="saveTrans(transac);">Cerrar Incidente</button>
 
 
 
