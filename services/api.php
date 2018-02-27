@@ -11293,7 +11293,7 @@ private function demePedidoEdatel(){
         $keys = array_keys($transa);
         $columns = '';
         $values = '';
-        $INCIDENTE=$transa['INCIDENTE'];
+        //$INCIDENTE=$transa['INCIDENTE'];
         //$TIPO_TRABAJO=implode(",",$transa['TIPO_TRABAJO']);
         //$transa['TIPO_TRABAJO']=$TIPO_TRABAJO;
         $UPDATE="";
@@ -11315,7 +11315,7 @@ private function demePedidoEdatel(){
         //if($transaccion['PASSWORD']!=""){
         //  $passcode=" , PASSWORD=MD5('".$transaccion['PASSWORD']."')";
         //}
-        $query = "UPDATE tbl_cr SET ESTADO='CERRADO' WHERE ID=".$transa['ID']"";
+        $query = "UPDATE tbl_cr SET ESTADO='CERRADO' WHERE INCIDENTE='$transa''";
         //echo $query;
 
         if(!empty($transa)){
