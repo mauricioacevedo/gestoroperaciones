@@ -6126,16 +6126,16 @@ $scope.listado_transacciones = [];
 
 
 		});
-
-
- };
-$scope.transac = [];
+$scope.saveTrans = [];
 	$scope.data = {
 		maxSize: 5,
         INCIDENTE:"",
         FECHA_CIERRE:""
 
 	};
+
+ };
+
 
 
 
