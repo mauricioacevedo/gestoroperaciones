@@ -1555,13 +1555,20 @@ class API extends REST {
 
 
 private function getAgentScore($user){
-    $sqlScore="SELECT sum( ".
-            "CASE ".
-            "    WHEN FUENTE='SIEBEL' THEN 2 ".
-            "    ELSE 1 ".
-            " END ".
-            ") AS AGENTSCORE FROM pedidos where FECHA_FIN >= NOW() - INTERVAL 12 HOUR ".
-            " AND USER='$user'";
+    $sqlScore="SELECT  ".
+        "      sum(  ".
+        "                  CASE  ".
+        "                   WHEN FUENTE='SIEBEL' THEN 2 ".
+        "                    ELSE 1 ".
+        "                 END ".
+        "                ) AS AGENTSCORE ".
+        "    FROM  ".
+        "    ( ".
+        "    SELECT DISTINCT A.PEDIDO_ID ".
+        "    ,(SELECT B.FUENTE FROM pedidos B where A.PEDIDO_ID=B.PEDIDO_ID LIMIT 1) AS FUENTE ".
+        "    FROM pedidos A where A.FECHA_FIN BETWEEN '2018-02-27 00:00:00' AND '2018-02-27 23:59:59' ".
+        "    AND A.USER='$user' ) C ";
+
 
     $r = $this->mysqli->query($sqlScore) or die($this->mysqli->error.__LINE__);
     $agentScore="0";
