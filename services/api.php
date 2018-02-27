@@ -11293,7 +11293,7 @@ private function demePedidoEdatel(){
         $keys = array_keys($transa);
         $columns = '';
         $values = '';
-        echo $transa;
+        //echo $transa;
         //$INCIDENTE=$transa['INCIDENTE'];
         //$TIPO_TRABAJO=implode(",",$transa['TIPO_TRABAJO']);
         //$transa['TIPO_TRABAJO']=$TIPO_TRABAJO;
@@ -11318,6 +11318,7 @@ private function demePedidoEdatel(){
         //}
         $query = "UPDATE tbl_cr SET ESTADO='CERRADO' WHERE INCIDENTE='$transa'";
         echo $query;
+        echo $transa;
 
 
         if(!empty($transa)){
