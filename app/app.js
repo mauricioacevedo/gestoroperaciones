@@ -6117,7 +6117,7 @@ $scope.listado_transacciones = [];
             console.log(transac);
 
             return data.data;
-            $scope.transac = {};
+
 			//console.log($scope.transaccion);
 			//console.log(data);
             //$scope.pageChanged();
@@ -6127,16 +6127,15 @@ $scope.listado_transacciones = [];
 
 		});
 
+
+ };
 $scope.transac = [];
 	$scope.data = {
 		maxSize: 5,
         INCIDENTE:"",
         FECHA_CIERRE:""
 
-
 	};
-    console.log($scope.transac);
- };
 
 
 
