@@ -11327,6 +11327,8 @@ private function demePedidoEdatel(){
 //------------------------------
    private function editTransaccionActividadescr2(){
 
+       echo $transac;
+
        if($this->get_request_method() != "POST"){
             $this->response('',406);
         }
