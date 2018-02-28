@@ -11304,6 +11304,7 @@ private function demePedidoEdatel(){
         $columns = '';
         $values = '';
         $INCIDENTE=$transa['INCIDENTE'];
+        $INCIDENTE2=$bregistro['INCIDENTE'];
         $FECHA=$transa['FECHA_CIERRE'];
         //echo $FECHA;
         //$INCIDENTE=$transa['INCIDENTE'];
@@ -11328,15 +11329,15 @@ private function demePedidoEdatel(){
         //if($transaccion['PASSWORD']!=""){
         //  $passcode=" , PASSWORD=MD5('".$transaccion['PASSWORD']."')";
         //}
-        $query = "UPDATE tbl_cr SET ESTADO='CERRADO', FECHA_CIERRE='$FECHA'  WHERE INCIDENTE='$INCIDENTE'";
+        $query = "UPDATE tbl_cr SET ESTADO='CERRADO', FECHA_CIERRE='$today'  WHERE INCIDENTE='$INCIDENTE2'";
         //echo $query;
         //echo $transa;
 
 
-        if(!empty($transa)){
+        if(!empty($bregistro)){
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-            $this->response(json_encode(array("msg"=>"OK","transaccion" => $transa)),200);
+            $this->response(json_encode(array("msg"=>"OK","transaccion" => $bregistro)),200);
         }else{
             $this->response('',200);        //"No Content" status
             //$this->response("$query",200);        //"No Content" status
