@@ -6166,8 +6166,8 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
          };
 
-         alert("estas aca");
-         return;
+         /*alert("estas aca");
+         return;*/
 
 
     };
