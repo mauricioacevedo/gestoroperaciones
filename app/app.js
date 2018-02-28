@@ -5986,7 +5986,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
     };
 
 
-$scope.listado_transacciones = [];
+//$scope.listado_transacciones = [];
 
 
  //***********************************jj GUARDAR REGISTRO CR*********************************
@@ -6142,26 +6142,13 @@ $scope.listado_transacciones = [];
 
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
-     $scope.editTransaccionActividadescr = function (bregistro) {
-                                console.log(bregistro);
-                                /*if(transaccionA.PEDIDO_ID==undefined || transaccionA.PEDIDO_ID==""){
-                                    alert("Fecha sin informacion.");
-                                  return;
-                               }*/
+     $scope.editTransaccionActividadescr = function (index, ESTADO, FECHA_CIERRE) {
+         console.log(ESTADO);
 
-                               /*if (bregistro.INCIDENTE == undefined || bregistro.INCIDENTE == "") {
-                                               alert("Fecha sin informacion.");
-                                               return;
-                               }*/
+         alert("estas aca");
+         return;
 
 
-
-
-            services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {
-			$scope.listado_transacciones = data.data[0];
-			$scope.data.totalItems = data.data[1];
-			return data.data;
-		});
     };
 
 
