@@ -6117,12 +6117,13 @@ $scope.listado_transacciones = [];
             console.log(transac);
 
             return data.data;
+            value.transac("");
 
 			//console.log($scope.transaccion);
 			//console.log(data);
             //$scope.pageChanged();
 			//$location.path('/cr/');
-            this.transac="";
+
 
 
 		});
