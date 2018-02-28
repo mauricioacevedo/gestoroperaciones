@@ -6151,17 +6151,20 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
      $scope.editTransaccionActividadescr = function (index, ID, INCIDENTE, ESTADO, FECHA_CIERRE) {
-         console.log(index);
-         console.log(ESTADO);
-         console.log(FECHA_CIERRE);
+
          console.log(INCIDENTE);
 
-         services.editTransaccionActividadescr2(INCIDENTE).then(function(data){
+         var rps=confirm("Está seguro de Cerrar el incidente? ");
+
+         if(rps=true){
+            services.editTransaccionActividadescr2(INCIDENTE).then(function(data){
             $scope.listado_transacciones = data.data[0];
             return data.data;
             console.log(data.data);
 
         });
+
+         };
 
          alert("estas aca");
          return;
