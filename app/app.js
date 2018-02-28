@@ -6090,8 +6090,8 @@ $scope.listado_transacciones = [];
 
     //******************************save transaccion***********************************
 
-    $scope.saveTrans = function (transac) {
-        console.log(transac);
+    $scope.saveTrans = function (transac,bregistro) {
+        console.log(transac,bregistro);
 
 
 
@@ -6111,10 +6111,10 @@ $scope.listado_transacciones = [];
 
         };
 
-     services.saveTrans(transac).then(function (data) {
-			console.log(transac);
+     services.saveTrans(transac,bregistro).then(function (data) {
+			console.log(transac,bregistro);
 			$rootScope.transac = data.data[0];
-            console.log(transac);
+            console.log(transac,bregistro);
 
             return data.data;
             value.transac("");
