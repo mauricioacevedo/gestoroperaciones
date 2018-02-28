@@ -830,6 +830,14 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
     };
 
+
+    obj.editTransaccionActividadescr2 = function (INCIDENTE) { //listado alarmas activacion
+		return $http.get(serviceBase + 'editTransaccionActividadescr2?INCIDENTE=' + INCIDENTE);
+	};
+
+
+
+
      obj.insertTransaccionCR = function (gestion,fechainicio) {
         return $http.post(serviceBase + 'insertTransaccionCR', {
             gestion: gestion, fechainicio:fechainicio
@@ -5986,7 +5994,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
     };
 
 
-$scope.listado_transacciones = [];
+//$scope.listado_transacciones = [];
 
 
  //***********************************jj GUARDAR REGISTRO CR*********************************
@@ -6142,26 +6150,26 @@ $scope.listado_transacciones = [];
 
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
-     $scope.editTransaccionActividadescr = function (bregistro) {
-                                console.log(bregistro);
-                                /*if(transaccionA.PEDIDO_ID==undefined || transaccionA.PEDIDO_ID==""){
-                                    alert("Fecha sin informacion.");
-                                  return;
-                               }*/
+     $scope.editTransaccionActividadescr = function (index, ID, INCIDENTE, ESTADO, FECHA_CIERRE) {
 
-                               /*if (bregistro.INCIDENTE == undefined || bregistro.INCIDENTE == "") {
-                                               alert("Fecha sin informacion.");
-                                               return;
-                               }*/
+         console.log(INCIDENTE);
+
+         var rps=confirm("Está seguro de Cerrar el incidente? ");
+
+         if(rps=true){
+            services.editTransaccionActividadescr2(INCIDENTE).then(function(data){
+            $scope.listado_transacciones = data.data[0];
+            return data.data;
+            console.log(data.data);
+
+        });
+
+         };
+
+         /*alert("estas aca");
+         return;*/
 
 
-
-
-            services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {
-			$scope.listado_transacciones = data.data[0];
-			$scope.data.totalItems = data.data[1];
-			return data.data;
-		});
     };
 
 
