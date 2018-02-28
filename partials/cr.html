@@ -187,6 +187,7 @@
                             </thead>
                             <tbody>
                                     <tr ng-repeat="data in listado_transacciones| orderBy:'FECHA_SOLICITUD':DESC ">
+                                    <td>{{data.ID}}</td>
                                     <td>{{data.SISTEMA}}</td>
                                     <td>{{data.INCIDENTE}}</td>
                                     <td>{{data.ESTADO}}</td>
