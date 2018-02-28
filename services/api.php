@@ -11354,21 +11354,21 @@ private function demePedidoEdatel(){
        if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
-        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
-        $usuarioPc      =   gethostbyaddr($usuarioIp);
-        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
-        $galleta        =   stripslashes($_COOKIE['logedUser']);
-        $galleta        =   json_decode($galleta);
-        $galleta        =   json_decode(json_encode($galleta), True);
-        $usuarioGalleta =   $galleta['login'];
-        $nombreGalleta  =   $galleta['name'];
-        $grupoGalleta   =   $galleta['GRUPO'];
+        $INCIDENTE = $this->_request['INCIDENTE'];
+        //$FECHA_CIERRE = $this->_request['FECHA_CIERRE'];
+        //$COLA_ID = $this->_request['cola_id'];
+        $today = date("Y-m-d");
 
-       alert("estas aca");
+        $sql="UPDATE tbl_cr ".
+            " SET ESTADO='CERRADO', FECHA_CIERRE='$today'  where INCIDENTE='$INCIDENTE'";
 
-       $INCIDENTE=$transac['INCIDENTE'];
+        $rr = $this->mysqli->query($sql);
+
+        $this->response(json_encode(array("OK","PARAMETRO ACTUALIZADO")), 200);
 
    }
+
+
 
 
     private function buscarRegistroCR(){//pendientes

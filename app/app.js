@@ -830,6 +830,14 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
     };
 
+
+    obj.editTransaccionActividadescr2 = function (INCIDENTE) { //listado alarmas activacion
+		return $http.get(serviceBase + 'editTransaccionActividadescr2?responsable1=' + INCIDENTE);
+	};
+
+
+
+
      obj.insertTransaccionCR = function (gestion,fechainicio) {
         return $http.post(serviceBase + 'insertTransaccionCR', {
             gestion: gestion, fechainicio:fechainicio
@@ -6147,6 +6155,13 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
          console.log(ESTADO);
          console.log(FECHA_CIERRE);
          console.log(INCIDENTE);
+
+         services.editTransaccionActividadescr2(INCIDENTE).then(function(data){
+            $scope.listado_transacciones = data.data[0];
+            return data.data;
+            console.log(data.data);
+
+        });
 
          alert("estas aca");
          return;
