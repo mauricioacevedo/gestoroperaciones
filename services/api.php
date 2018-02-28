@@ -1555,6 +1555,9 @@ class API extends REST {
 
 
 private function getAgentScore($user){
+
+    $today = date("Y-m-d");
+
     $sqlScore="SELECT  ".
         "      sum(  ".
         "                  CASE  ".
@@ -1566,7 +1569,7 @@ private function getAgentScore($user){
         "    ( ".
         "    SELECT DISTINCT A.PEDIDO_ID ".
         "    ,(SELECT B.FUENTE FROM pedidos B where A.PEDIDO_ID=B.PEDIDO_ID LIMIT 1) AS FUENTE ".
-        "    FROM pedidos A where A.FECHA_FIN BETWEEN '2018-02-27 00:00:00' AND '2018-02-27 23:59:59' ".
+        "    FROM pedidos A where A.FECHA_FIN BETWEEN '$today 00:00:00' AND '$today 23:59:59' ".
         "    AND A.USER='$user' ) C ";
 
 
