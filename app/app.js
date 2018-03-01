@@ -6157,7 +6157,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
          console.log(INCIDENTE);
 
 
-         <input id="fecha" type="date" onclick="this.value = '1900-01-01';"/>
+        // <input id="fecha" type="date" onclick="this.value = '1900-01-01';"/>
 
 
 
