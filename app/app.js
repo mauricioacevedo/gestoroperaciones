@@ -6154,9 +6154,10 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
          console.log(INCIDENTE);
 
-         var rps=confirm("Está seguro de Cerrar el incidente? ");
+         //var rps=confirm("Está seguro de Cerrar el incidente? ");
+         var rps;
 
-         if(rps=true){
+         if(confirm("Está seguro de Cerrar el incidente? ")){
             services.editTransaccionActividadescr2(INCIDENTE).then(function(data){
             $scope.listado_transacciones = data.data[0];
             return data.data;
@@ -6169,9 +6170,9 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
          };
 
-             document.getElementById("edi{{$index}}").innerHTML = $scope.listado_transacciones = data.data[0];
+             document.getElementById("edi{{$index}}").innerHTML = rps;
 
-
+               $scope.listado_transacciones = data.data[0]
             return data.data;
 
 
