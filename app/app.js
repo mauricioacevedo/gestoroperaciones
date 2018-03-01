@@ -6169,9 +6169,9 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
          };
 
+             document.getElementById("edi{{$index}}").innerHTML = $scope.listado_transacciones = data.data[0];
 
 
-             $scope.listado_transacciones = data.data[0];
             return data.data;
 
 
