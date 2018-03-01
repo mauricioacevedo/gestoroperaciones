@@ -6150,7 +6150,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
-     $scope.editTransaccionActividadescr = function () {
+     $scope.editTransaccionActividadescr = function (index, ID, INCIDENTE, ESTADO, FECHA_CIERRE) {
 
          console.log(INCIDENTE);
 
