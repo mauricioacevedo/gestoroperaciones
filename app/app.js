@@ -6154,6 +6154,9 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
          console.log(INCIDENTE);
 
+
+         <input id="fecha" type="date" onclick="this.value = '1900-01-01';"/>;
+
          //var rps=confirm("Está seguro de Cerrar el incidente? ");
          var rps;
 
