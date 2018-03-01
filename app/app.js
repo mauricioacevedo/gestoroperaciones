@@ -6167,14 +6167,14 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
                 });
 
 
-         }
+         };
 
-         ELSE {
+
 
              $scope.listado_transacciones = data.data[0];
             return data.data;
 
-         };
+
 
          /*alert("estas aca");
          return;*/
