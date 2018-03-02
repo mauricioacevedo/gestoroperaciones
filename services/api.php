@@ -11348,14 +11348,14 @@ private function demePedidoEdatel(){
 
 //------------------------------
    private function editTransaccionActividadescr2(){
-       //echo FECHA_CIERRE;
+       //console.log(FECHA_CIERRE);
        //echo $transac;
 
        if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
         $INCIDENTE = $this->_request['INCIDENTE'];
-        $FECHA_CIERRE = 'FECHA_CIERRE';
+        $FECHA_CIERRE = FECHA_CIERRE;
         //$COLA_ID = $this->_request['cola_id'];
         $today = date("Y-m-d");
 
