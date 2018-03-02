@@ -197,15 +197,15 @@
                                     <td>{{data.OBSERVACIONES}}</td>
                                     <td>{{data.USUARIO}}</td>
                                     <td align="center">
-                                      <div id="edi{{$index}}">
-                                        <button class="btn btn-success btn-xs" value="edit!" ng-click="editTransaccionActividadescr($index, data.ID, data.INCIDENTE, data.ESTADO, data.FECHA_CIERRE);"><i class="fa fa-pencil fa-lg"></i></button>
-                                      </div>
 
                                          <div>
                                                              <span class="input-group-addon">FECHA CIERRE</span>
                                                             <input type="text" class="form-control" style="min-width: 100px" id="fromDate" name="fromDate" ng-model="data.fechaIni" datetime-picker date-format="yyyy-MM-dd H:mm:00"/>
 
                                         </div>
+                                        <div id="edi{{$index}}">
+                                        <button class="btn btn-success btn-xs" value="edit!" ng-click="editTransaccionActividadescr($index, data.ID, data.INCIDENTE, data.ESTADO, data.FECHA_CIERRE);"><i class="fa fa-pencil fa-lg"></i></button>
+                                      </div>
 
 
 
