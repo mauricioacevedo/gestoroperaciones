@@ -6150,21 +6150,41 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 
     //*******************************JJ EDITAR REGISTRO cr *********************************
+
+
      $scope.editTransaccionActividadescr = function (index, ID, INCIDENTE, ESTADO, FECHA_CIERRE) {
 
          console.log(INCIDENTE);
 
-         var rps=confirm("Está seguro de Cerrar el incidente? ");
 
-         if(rps=true){
+        //<input id="fecha" type="date" onclick="this.value = '1900-01-01';"/>
+
+
+
+
+
+         //var rps=confirm("Está seguro de Cerrar el incidente? ");
+         var rps;
+
+         if(confirm("Está seguro de Cerrar el incidente? ")){
             services.editTransaccionActividadescr2(INCIDENTE).then(function(data){
             $scope.listado_transacciones = data.data[0];
             return data.data;
             console.log(data.data);
 
-        });
+
+
+                });
+
 
          };
+
+             document.getElementById("edi{{$index}}").innerHTML = rps;
+
+               $scope.listado_transacciones = data.data[0]
+            return data.data;
+
+
 
          /*alert("estas aca");
          return;*/
