@@ -7807,10 +7807,6 @@ private function getAgentScore($user){
         $this->response('nothing',204);        // If no records "No Content" status
     }
 
-
-
-
-
     private function buscarPedidoReconfiguracion(){
 
         if($this->get_request_method() != "GET"){
@@ -20841,13 +20837,19 @@ public function pp(&$var){
             $this->response('Metodo no soportado',406);
         }
 
+        /* CONSULTA VIEJA
         $sql =  " SELECT m.ID ".
                 " , m.MUNICIPIO_ID ".
                 " , m.MUNICIPIO ".
                 " , m.DEPARTAMENTO ".
                 " , m.REGIONAL ".
                 " FROM portalbd.tbl_municipios m ";
+        */
 
+        $sql="select m.ID,m.MUNICIPIO_ID,m.MUNICIPIO_ID AS MUNICIPIO".
+            ",m.NOMBRE_DEPARTAMENTO AS DEPARTAMENTO".
+            ", m.REGION AS REGIONAL ".
+            " from tbl_plazas m ";
         $r = $this->mysqli->query($sql);
 
         if($r->num_rows > 0){
