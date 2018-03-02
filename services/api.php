@@ -11362,7 +11362,7 @@ private function demePedidoEdatel(){
         $sql="UPDATE tbl_cr ".
             " SET ESTADO='CERRADO', FECHA_CIERRE='$FECHA_CIERRE'  where INCIDENTE='$INCIDENTE'";
 
-       echo $sql;
+       //echo $sql;
         $rr = $this->mysqli->query($sql);
 
         $this->response(json_encode(array("OK","PARAMETRO ACTUALIZADO")), 200);
