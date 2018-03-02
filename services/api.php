@@ -11348,7 +11348,7 @@ private function demePedidoEdatel(){
 
 //------------------------------
    private function editTransaccionActividadescr2(){
-
+       echo FECHA_CIERRE;
        //echo $transac;
 
        if($this->get_request_method() != "GET"){
