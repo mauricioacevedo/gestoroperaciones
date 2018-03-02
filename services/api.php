@@ -11347,7 +11347,7 @@ private function demePedidoEdatel(){
 
 
 //------------------------------
-   private function editTransaccionActividadescr2(FECHA_CIERRE){
+   private function editTransaccionActividadescr2(){
        //console.log(FECHA_CIERRE);
        //echo $transac;
 
