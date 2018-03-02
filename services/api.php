@@ -11347,7 +11347,7 @@ private function demePedidoEdatel(){
 
 
 //------------------------------
-   private function editTransaccionActividadescr2(){
+   private function editTransaccionActividadescr2(FECHA_CIERRE){
        //console.log(FECHA_CIERRE);
        //echo $transac;
 
@@ -11355,7 +11355,7 @@ private function demePedidoEdatel(){
             $this->response('',406);
         }
         $INCIDENTE = $this->_request['INCIDENTE'];
-        $FECHA_CIERRE = FECHA_CIERRE;
+        $FECHA_CIERRE = $this->_request['FECHA_CIERRE'];
         //$COLA_ID = $this->_request['cola_id'];
         $today = date("Y-m-d");
 
