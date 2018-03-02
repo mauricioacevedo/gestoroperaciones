@@ -20851,7 +20851,7 @@ public function pp(&$var){
                 " FROM portalbd.tbl_municipios m ";
         */
 
-        $sql="select m.ID,m.MUNICIPIO_ID,m.MUNICIPIO_ID AS MUNICIPIO".
+        $sql="select m.ID,m.MUNICIPIO_ID,m.NOMBRE_MUNICIPIO AS MUNICIPIO".
             ",m.NOMBRE_DEPARTAMENTO AS DEPARTAMENTO".
             ", m.REGION AS REGIONAL ".
             " from tbl_plazas m ";
