@@ -831,8 +831,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
     };
 
 
-    obj.editTransaccionActividadescr2 = function (INCIDENTE) { //listado alarmas activacion
+    obj.editTransaccionActividadescr2 = function (INCIDENTE,FECHA_CIERRE) { //listado alarmas activacion
 		return $http.get(serviceBase + 'editTransaccionActividadescr2?INCIDENTE=' + INCIDENTE);
+        return $http.get(serviceBase + 'editTransaccionActividadescr2?INCIDENTE=' + FEHA_CIERRE);
 	};
 
 
