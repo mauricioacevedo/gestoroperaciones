@@ -6156,7 +6156,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
      $scope.editTransaccionActividadescr = function (index, ID, INCIDENTE, ESTADO, FECHA_CIERRE) {
 
          console.log(FECHA_CIERRE);
-         console.log($scope.editTransaccionActividadescr);
+
 
 
         //<input id="fecha" type="date" onclick="this.value = '1900-01-01';"/>
