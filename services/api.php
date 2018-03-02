@@ -11390,7 +11390,12 @@ private function demePedidoEdatel(){
 
         //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
 
-        $query="select * from tbl_cr where INCIDENTE like '$bregistro%'";
+        $query=" SELECT ".
+            "SISTEMA, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
+	         AS CHAR (255)) AS ANS, FECHA_SOLICITUD, FECHA_CIERRE,
+	         OBSERVACIONES FROM tbl_cr where INCIDENTE like '$bregistro%'";
+
+        //$query="select * from tbl_cr where INCIDENTE like '$bregistro%'";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
