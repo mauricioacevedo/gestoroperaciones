@@ -11344,21 +11344,21 @@ private function demePedidoEdatel(){
 
 //------------------------------
    private function editTransaccionActividadescr2(){
-
+       //console.log(FECHA_CIERRE);
        //echo $transac;
 
        if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
         $INCIDENTE = $this->_request['INCIDENTE'];
-        //$FECHA_CIERRE = $this->_request['FECHA_CIERRE'];
+        $FECHA_CIERRE = $this->_request['FECHA_CIERRE'];
         //$COLA_ID = $this->_request['cola_id'];
         $today = date("Y-m-d");
 
         $sql="UPDATE tbl_cr ".
-            " SET ESTADO='CERRADO', FECHA_CIERRE='$today'  where INCIDENTE='$INCIDENTE'";
+            " SET ESTADO='CERRADO', FECHA_CIERRE='$FECHA_CIERRE'  where INCIDENTE='$INCIDENTE'";
 
-       echo $sql;
+       //echo $sql;
         $rr = $this->mysqli->query($sql);
 
         $this->response(json_encode(array("OK","PARAMETRO ACTUALIZADO")), 200);
@@ -11386,7 +11386,12 @@ private function demePedidoEdatel(){
 
         //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
 
-        $query="select * from tbl_cr where INCIDENTE like '$bregistro%'";
+        $query=" SELECT ".
+            "SISTEMA, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
+	         AS CHAR (255)) AS ANS, FECHA_SOLICITUD, FECHA_CIERRE,
+	         OBSERVACIONES FROM tbl_cr where INCIDENTE like '$bregistro%'";
+
+        //$query="select * from tbl_cr where INCIDENTE like '$bregistro%'";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 

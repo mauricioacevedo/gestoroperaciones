@@ -831,8 +831,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
     };
 
 
-    obj.editTransaccionActividadescr2 = function (INCIDENTE) { //listado alarmas activacion
-		return $http.get(serviceBase + 'editTransaccionActividadescr2?INCIDENTE=' + INCIDENTE);
+    obj.editTransaccionActividadescr2 = function (INCIDENTE,FECHA_CIERRE) { //listado alarmas activacion
+        console.log(FECHA_CIERRE);
+		return $http.get(serviceBase + 'editTransaccionActividadescr2?INCIDENTE=' + INCIDENTE + '&FECHA_CIERRE=' + FECHA_CIERRE);
+
 	};
 
 
@@ -6154,7 +6156,8 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
      $scope.editTransaccionActividadescr = function (index, ID, INCIDENTE, ESTADO, FECHA_CIERRE) {
 
-         console.log(INCIDENTE);
+         console.log(FECHA_CIERRE);
+
 
 
         //<input id="fecha" type="date" onclick="this.value = '1900-01-01';"/>
@@ -6167,7 +6170,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
          var rps;
 
          if(confirm("Está seguro de Cerrar el incidente? ")){
-            services.editTransaccionActividadescr2(INCIDENTE).then(function(data){
+            services.editTransaccionActividadescr2(INCIDENTE,FECHA_CIERRE).then(function(data){
             $scope.listado_transacciones = data.data[0];
             return data.data;
             console.log(data.data);
@@ -6181,7 +6184,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
              document.getElementById("edi{{$index}}").innerHTML = rps;
 
-               $scope.listado_transacciones = data.data[0]
+            $scope.listado_transacciones = data.data[0]
             return data.data;
 
 
