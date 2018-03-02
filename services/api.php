@@ -8210,7 +8210,7 @@ private function getAgentScore($user){
             " GROUP BY C1.PEDIDO_ID ) IDTV ".
             " WHERE ".
             "       SOL.PEDIDO_ID='$pedido_id' ".
-            "       and SOL.TIPO_ELEMENTO_ID IN ('BDID', 'TDID','BDIDE1', 'TDIDE1', 'BDODE1', 'TDODE1', 'TO', 'TOIP','INSHFC', 'INSIP', 'INSTIP', 'SEDEIP', 'P2MB', '3PLAY', 'CNTXIP', 'ACCESP', 'PLANT', 'PLP', 'PTLAN', 'PMULT', 'PPCM', 'PBRI', 'PPRI', 'INSTA', 'TP', 'PBRI','SLL', 'TC', 'SLLBRI', 'TCBRI', 'SLLPRI', 'TCPRI','SEDEIP','SEDECX','EQURED','STBOX','ACCESO','DECO') ".
+            "       and SOL.TIPO_ELEMENTO_ID IN ('BDID', 'TDID','BDIDE1', 'TDIDE1', 'BDODE1', 'TDODE1', 'TO', 'TOIP','INSHFC', 'INSIP', 'INSTIP', 'SEDEIP', 'P2MB', '3PLAY', 'CNTXIP', 'ACCESP', 'PLANT', 'PLP', 'PTLAN', 'PMULT', 'PPCM', 'PBRI', 'PPRI', 'INSTA', 'TP', 'PBRI','SLL', 'TC', 'SLLBRI', 'TCBRI', 'SLLPRI', 'TCPRI','SEDEIP','SEDECX','STBOX','ACCESO','DECO') ".
             "       	AND SOL.CONCEPTO_ID = 'PETEC' ".
             "       AND SOL.SUBPEDIDO_ID=FNX_SUBPEDIDOS.SUBPEDIDO_ID  ".
             "       AND SOL.PEDIDO_ID=FNX_SUBPEDIDOS.PEDIDO_ID  ".
