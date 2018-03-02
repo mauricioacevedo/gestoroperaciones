@@ -6167,7 +6167,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
          var rps;
 
          if(confirm("Está seguro de Cerrar el incidente? ")){
-            services.editTransaccionActividadescr2(INCIDENTE).then(function(data){
+            services.editTransaccionActividadescr2(INCIDENTE,FECHA_CIERRE).then(function(data){
             $scope.listado_transacciones = data.data[0];
             return data.data;
             console.log(data.data);

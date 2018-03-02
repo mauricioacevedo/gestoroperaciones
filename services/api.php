@@ -11355,12 +11355,12 @@ private function demePedidoEdatel(){
             $this->response('',406);
         }
         $INCIDENTE = $this->_request['INCIDENTE'];
-        //$FECHA_CIERRE = $this->_request['FECHA_CIERRE'];
+        $FECHA_CIERRE = $this->_request['FECHA_CIERRE'];
         //$COLA_ID = $this->_request['cola_id'];
         $today = date("Y-m-d");
 
         $sql="UPDATE tbl_cr ".
-            " SET ESTADO='CERRADO', FECHA_CIERRE='$today'  where INCIDENTE='$INCIDENTE'";
+            " SET ESTADO='CERRADO', FECHA_CIERRE='$FECHA_CIERRE'  where INCIDENTE='$INCIDENTE'";
 
        echo $sql;
         $rr = $this->mysqli->query($sql);
