@@ -20854,7 +20854,8 @@ public function pp(&$var){
         $sql="select m.ID,m.MUNICIPIO_ID,m.NOMBRE_MUNICIPIO AS MUNICIPIO".
             ",m.NOMBRE_DEPARTAMENTO AS DEPARTAMENTO".
             ", m.REGION AS REGIONAL ".
-            " from tbl_plazas m ";
+            " from tbl_plazas m where m.NOMBRE_MUNICIPIO NOT LIKE 'Z-%' ";
+
         $r = $this->mysqli->query($sql);
 
         if($r->num_rows > 0){
