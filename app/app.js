@@ -6158,6 +6158,11 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
          console.log(FECHA_CIERRE);
 
+         if (FECHA_CIERRE == undefined || FECHA_CIERRE == "") {
+			alert("Debe Ingresar Fecha de Cierre");
+			return;
+		}
+
 
 
         //<input id="fecha" type="date" onclick="this.value = '1900-01-01';"/>
