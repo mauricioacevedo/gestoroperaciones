@@ -209,10 +209,11 @@
 
 
                                                              <!--<span class="input-group-addon">CERRAR INCIDENTE</span>-->
+                                        <div class="form-group btn-group">
                                                             <span class="input-group-addon"> <button class="btn btn-success btn-xs" value="edit!" ng-click="editTransaccionActividadescr($index, data.ID, data.INCIDENTE, data.ESTADO, FECHA_CIERRE);"><i class="fa fa-pencil fa-lg"></i></button></span>
                                                             <input type="text" class="form-control" style="min-width: 10px" id="fromDate" name="fromDate" placeholder="Seleccione Fecha" ng-model="FECHA_CIERRE" datetime-picker date-format="yyyy-MM-dd H:mm:00"/>
 
-
+                                        </div>
                                         <div id="edi{{$index}}">
                                         <button class="btn btn-success btn-xs" value="edit!" ng-click="editTransaccionActividadescr($index, data.ID, data.INCIDENTE, data.ESTADO, FECHA_CIERRE);"><i class="fa fa-pencil fa-lg"></i></button>
                                       </div>
