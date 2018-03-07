@@ -6005,22 +6005,22 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
         console.log(transaccion);
 
 		if (transaccion.INCIDENTE == undefined || transaccion.INCIDENTE == "") {
-			alert("FechaSolicitud sin informacion.");
+			alert("Incidente sin informacion.");
 			return;
 		}
 
         if (transaccion.SISTEMA == undefined || transaccion.SISTEMA == "") {
-			alert("Negocio sin informacion.");
+			alert("Selecciona un tipo de Sistema");
 			return;
 		}
 
         if (transaccion.FECHA_SOLICITUD == undefined || transaccion.FECHA_SOLICITUD == "") {
-			alert("Sistema de Informacion sin Datos.");
+			alert("Selecciona fecha de Solicitud");
 			return;
 		}
 
 		if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
-			alert("Items Procesados sin informacion.");
+			alert("Observaciones sin datos");
 			return;
 		}
 
