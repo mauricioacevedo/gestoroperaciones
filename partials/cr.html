@@ -22,6 +22,18 @@
 
                                   <input maxlength="7" name="nuevo" ng-model="transaccion.INCIDENTE" type= "text" class="form-control" placeholder="INCIDENTE" required/>-->
 
+                            <div class= "form-group">
+                                <label class= "col-md-4">Tipo Incidente: </label>
+
+                                <select ng-model="transaccion.TIPO" class="form-control" style="" >
+                                        <option value='' disabled>---SELECCIONE---</option>
+                                        <option value='TT'>TT</option>
+                                        <option value='CR'>CR</option>
+
+                                </select>
+
+                                </div>
+
                                 <div class="input-group">
                                                             <span class="input-group-addon">Nuevo Incidente...</span>
                                                             <input type="text" class="form-control" style="min-width: 100px" id="fromDate" placeholder="INCIDENTE" name="nuevo" ng-model="transaccion.INCIDENTE" maxlength="9"/>
