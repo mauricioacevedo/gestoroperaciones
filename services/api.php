@@ -11296,10 +11296,11 @@ private function demePedidoEdatel(){
         //echo var_dump($usuario);
 
         $transa = $transa['transac'];
-        $column_names = array('INCIDENTE','FECHA_CIERRE');
+        $column_names = array('TIPO_INCIDENTE','INCIDENTE','FECHA_CIERRE');
         $keys = array_keys($transa);
         $columns = '';
         $values = '';
+        $TIPO_INCIDENTE=$transa['TIPO_INCIDENTE'];
         $INCIDENTE=$transa['INCIDENTE'];
         $INCIDENTE2=$bregistro['INCIDENTE'];
         $FECHA=$transa['FECHA_CIERRE'];
