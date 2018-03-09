@@ -11236,7 +11236,7 @@ private function demePedidoEdatel(){
 
         //echo("Fecha".$fechaini);
 
-        $column_names = array('INCIDENTE','SISTEMA','OBSERVACIONES','USUARIO');
+        $column_names = array('TIPO_INCIDENTE','INCIDENTE','SISTEMA','OBSERVACIONES','USUARIO');
 
         $keys = array_keys($transaccion);
         $columns = '';
@@ -11245,6 +11245,7 @@ private function demePedidoEdatel(){
         $useri=$transaccion['USUARIO'];
         $username=$transaccion['USERNAME'];
 
+        $TIPO_INCIDENTE=$transaccion['TIPO_INCIDENTE'];
         $INCIDENTE=$transaccion['INCIDENTE'];
         $SISTEMA=$transaccion['SISTEMA'];
         $OBSERVACIONES=$transaccion['OBSERVACIONES'];
@@ -11268,7 +11269,7 @@ private function demePedidoEdatel(){
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " INSERT INTO tbl_cr(INCIDENTE, SISTEMA, FECHA_SOLICITUD, OBSERVACIONES, USUARIO) VALUES ('$INCIDENTE', '$SISTEMA', '$FECHA_SOLICITUD', '$OBSERVACIONES', '$usuarioGalleta') ";
+        $query = " INSERT INTO tbl_cr(TIPO_INCIDENTE, INCIDENTE, SISTEMA, FECHA_SOLICITUD, OBSERVACIONES, USUARIO) VALUES ('$TIPO_INCIDENTE', '$INCIDENTE', '$SISTEMA', '$FECHA_SOLICITUD', '$OBSERVACIONES', '$usuarioGalleta') ";
 
 
         //echo $query;
@@ -11387,7 +11388,7 @@ private function demePedidoEdatel(){
         //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
 
         $query=" SELECT ".
-            "SISTEMA, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
+            "SISTEMA, TIPO_INCIDENTE, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
 	         AS CHAR (255)) AS ANS, FECHA_SOLICITUD, FECHA_CIERRE,
 	         OBSERVACIONES FROM tbl_cr where INCIDENTE like '$bregistro%'";
 
@@ -12528,7 +12529,7 @@ private function demePedidoEdatel(){
         $today = date("Y-m-d h:i:s");
         $filename="CR-$login-$today.csv";
         $query=" SELECT ".
-            "SISTEMA, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
+            "SISTEMA, TIPO_INCIDENTE, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
 	         AS CHAR (255)) AS ANS, FECHA_SOLICITUD, FECHA_CIERRE,
 	         OBSERVACIONES FROM tbl_cr where ".
             " FECHA_CIERRE between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' order by ID DESC";
@@ -12538,7 +12539,7 @@ private function demePedidoEdatel(){
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('SISTEMA','INCIDENTE','ESTADO','ANS', 'FECHA_SOLICITUD','FECHA_CIERRE','OBSERVACIONES'));
+            fputcsv($fp, array('SISTEMA','TIPO_INCIDENTE','INCIDENTE','ESTADO','ANS', 'FECHA_SOLICITUD','FECHA_CIERRE','OBSERVACIONES'));
             while($row = $r->fetch_assoc()){
                 //$result[] = $row;
                 fputcsv($fp, $row);
@@ -12711,7 +12712,7 @@ private function demePedidoEdatel(){
         }
 
 
-        $query="select SISTEMA, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
+        $query="select SISTEMA, TIPO_INCIDENTE, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
 	            AS CHAR (255)) AS ANS, FECHA_SOLICITUD, FECHA_CIERRE,
                 OBSERVACIONES, USUARIO from tbl_cr order by FECHA_SOLICITUD desc limit 300; ";
         //echo $query;

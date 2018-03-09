@@ -6004,6 +6004,11 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
         console.log(transaccion);
 
+        if (transaccion.TIPO_INCIDENTE == undefined || transaccion.TIPO_INCIDENTE == "") {
+			alert("Tipo Incidente sin informacion.");
+			return;
+		}
+
 		if (transaccion.INCIDENTE == undefined || transaccion.INCIDENTE == "") {
 			alert("Incidente sin informacion.");
 			return;
