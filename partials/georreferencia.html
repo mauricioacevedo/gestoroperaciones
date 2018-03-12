@@ -1,0 +1,59 @@
+<ol class="breadcrumb">
+    <li><a href="./#/">Edatel</a></li>
+    <li class="active">Edatel</li>
+</ol>
+
+<div class="row"><!--Row Herramientas-->
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-lg-3 col-xs-3">
+            </div>
+            <div class="col-lg-6 col-xs-6">
+                <div class="col-lg-6 col-xs-6">
+                    <div class="form-group">
+                        <div class="input-group merged">
+
+                            <input type="text" class="form-control  sm" title="Ingrese palabra a buscar"
+                                   data-toggle="tooltip" data-placement="top" ng-model="nuevoBuscarTip"
+                                   ng-change="muestraBusquedaTip(nuevoBuscarTip);" placeholder="Buscador de Tips"><span
+                                class="input-group-addon"><i class="fa fa-arrow-circle-left fa-fw"></i></span>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-xs-6" ng-controller="popupsCtrl">
+                    <button type="button" ng-click="btnFunctions.BuscaNodo()" class="btn btn-primary btn-circle-sm "
+                            title="Buscar capacidad HFC" data-toggle="tooltip" data-placement="top"><i
+                            class="fa fa-television"></i></button>
+                    <button type="button" ng-click="btnFunctions.abrirCalculoDistancia()"
+                            class="btn btn-primary btn-circle-sm" title="Buscar capacidad REDCO" data-toggle="tooltip"
+                            data-placement="top"><i class="fa fa-tty"></i></button>
+                    <button type="button" ng-click="btnFunctions.BuscaGPON()" class="btn btn-primary btn-circle-sm"
+                            title="Buscar capacidad GPON" data-toggle="tooltip" data-placement="top"><i
+                            class="fa fa-google-plus"></i></button>
+
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-3">
+            </div>
+        </div><!--panel body-->
+    </div><!--panel-->
+
+    <div class="row" id="mostrarTIP"><!--Row Buscador de TIPS -->
+        <div class="col-lg-12 col-xs-12">
+            <div class="pull-left">
+                <table class="table small table-striped table-hover table-bordered table-condensed" width="100%">
+                    <tbody>
+                    <tr ng-repeat="data in listadoTips|filter:nuevoBuscarTip">
+                        <td><a class="Tips" ng-click="AbreTips(data.ID)">{{data.TITULO}}</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div><!--Row Buscador de TIPS -->
+
+</div><!--Row Herramientas-->
