@@ -7095,6 +7095,9 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
 
     $scope.cutString = function (str, howMuch) {
+
+        if(str === undefined || str=='') return str;
+
         if (str.length > howMuch) {
             return (str.slice(0, howMuch) + ".. ");
         } else {
@@ -9701,6 +9704,7 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 
 
 	$scope.cutString = function (str, howMuch) {
+        if(str === undefined || str=='') return str;
 		if (str.length > howMuch) {
 			return (str.slice(0, howMuch) + ".. ");
 		} else {
