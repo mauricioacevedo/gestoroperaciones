@@ -5880,6 +5880,40 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
                                     services, fileUpload)
 
     {
+    var userID = $cookieStore.get('logedUser').login;
+	$rootScope.logedUser = $cookieStore.get('logedUser');
+	document.getElementById('logout').className = "btn btn-md btn-danger";
+	var divi = document.getElementById("logoutdiv");
+	divi.style.visibility = "visible";
+	divi.style.position = "relative";
+	$rootScope.iconcepto = "TODO";
+	$rootScope.actualView = "georreferencia";
+
+    $scope.doubleDigit = function (num) {
+
+		if (num < 0) {
+			num = 0;
+		}
+
+		if (num <= 9) {
+			return "0" + num;
+		}
+		return num;
+
+
+    };
+
+    $rootScope.logout = function () {
+		services.logout($rootScope.logedUser.login);
+		$cookieStore.remove('logedUser');
+		$rootScope.logedUser = undefined;
+		$scope.pedidos = {};
+		document.getElementById('logout').className = "btn btn-md btn-danger hide";
+		var divi = document.getElementById("logoutdiv");
+		divi.style.position = "absolute";
+		divi.style.visibility = "hidden";
+		$location.path('/');
+	};
 
 });
 
