@@ -19170,6 +19170,16 @@ app.config(['$routeProvider',
 		})
 
 
+      //*********************jj georreferencia***********************
+
+        .when('/georreferencia/',{
+
+            title: 'GEORREFERENCIA',
+            templateUrl: 'partials/georreferencia.html',
+			controller: 'georreftrl',
+            grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
+        })
 
 
       //*******************MICHAEL PNI********************************
