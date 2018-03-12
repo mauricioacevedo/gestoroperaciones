@@ -5873,6 +5873,16 @@ app.controller('KPISCtrl', function ($scope, $rootScope, $location, $routeParams
 });
 //********************************************************************************************************************************
 
+
+//********************************jj controlardor georreferencia************************************************
+
+app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http,
+                                    services, fileUpload)
+
+    {
+
+});
+
 //*********************************JJ CONTROLADOR CR******************************************************************
 
 app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http,
@@ -19176,7 +19186,7 @@ app.config(['$routeProvider',
 
             title: 'GEORREFERENCIA',
             templateUrl: 'partials/georreferencia.html',
-			controller: 'georreftrl',
+			controller: 'GEORREFCtrl',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION', 'SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
         })
