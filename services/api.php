@@ -6150,6 +6150,7 @@ private function getAgentScore($user){
             " a.SOLICITUD_ID, ".
             " a.PROGRAMACION, ".
             " CASE WHEN a.TIPO_TRABAJO IN ('NA NUEVO','NUEVO') then 'NUEVO' ELSE 'CAMBIO' END AS TIPO_TRABAJO, ".
+            " a.TIPO_TRABAJO AS TIPO_TRABAJO_ORIGINAL, ".
             " a.TIPO_ELEMENTO_ID, ".
             " a.PRODUCTO, ".
             " a.PRODUCTO_ID, ".
