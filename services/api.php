@@ -8856,7 +8856,7 @@ private function getAgentScore($user){
 
             $tipo_trabajo="";
             if($parametroBusqueda=="NUEVOS_PRIMERO"){
-                $tipo_trabajo=" AND TIPO_TRABAJO='NA NUEVO' ";
+                $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%')";
             }else{
                 $tipo_trabajo=" ";
             }
@@ -8950,7 +8950,13 @@ private function getAgentScore($user){
             $parametroBusqueda = "FECHA_ESTADO";
         }
 
+        $parametroBusqueda2= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
 
+        if($parametroBusqueda2=="NUEVOS_PRIMERO"){
+            $tipo_trabajo=" AND (b.TIPO_TRABAJO='NA NUEVO' or b.TIPO_TRABAJO LIKE '%TRASL%' OR b.TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%') ";
+        }else{
+            $tipo_trabajo="";
+        }
 
 
         //echo var_dump ($concepto);
@@ -8962,12 +8968,12 @@ private function getAgentScore($user){
             " from informe_petec_pendientesm b ".
             " where b.STATUS='$STATUS'  ".
             " and b.ASESOR ='' ".
-            //" and b.TIPO_TRABAJO not in ('NUEVO') ".
+            $tipo_trabajo.
             $concepto." ".
             $plaza.
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-            "order by b.$parametroBusqueda ASC";
+            " order by b.$parametroBusqueda ASC";
             //echo var_dump ($concepto);
             //echo var_dump ($query1);
 
