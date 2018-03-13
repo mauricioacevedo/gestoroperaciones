@@ -5915,6 +5915,35 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 		$location.path('/');
 	};
 
+
+    $scope.saveTransaccion = function (transaccion) {
+
+        console.log(transaccion);
+
+        if (transaccion.SOLICITUD == undefined || transaccion.SOLICITUD == "") {
+			alert("La Solicitud sin informacion.");
+			return;
+		}
+
+		if (transaccion.LOCALIDAD == undefined || transaccion.LOCALIDAD == "") {
+			alert("lOCALIDAD sin informacion.");
+			return;
+		}
+
+        if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
+			alert("Selecciona un tipo de Sistema");
+			return;
+		}
+
+
+		if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
+			alert("Observaciones sin datos");
+			return;
+		}
+
+	};
+
+
 });
 
 //*********************************JJ CONTROLADOR CR******************************************************************
