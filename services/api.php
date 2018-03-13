@@ -6143,6 +6143,7 @@ private function getAgentScore($user){
         }
 
         $filename="Pendientes-$login-$today.csv";
+
         $query="SELECT a.PEDIDO_ID,".
             " a.PEDIDO, ".
             " a.PEDIDO_CRM, ".
@@ -6166,6 +6167,7 @@ private function getAgentScore($user){
             " a.CONCEPTO_ID, ".
             " a.FECHA_ESTADO, ".
             " a.FECHA_INGRESO, ".
+            " a.FECHA_CARGA, ".
             " a.FECHA_CITA, ".
             " a.STATUS, ".
             " ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin') as OBS, ".
@@ -6179,7 +6181,7 @@ private function getAgentScore($user){
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','PEDIDO','PEDIDO_CRM','SUBPEDIDO_ID','SOLICITUD_ID','PROGRAMACION','TIPO_TRABAJO','TIPO_ELEMENTO_ID','PRODUCTO','PRODUCTO_ID','UEN_CALCULADA','ESTRATO','MUNICIPIO_ID','PAGINA_SERVICIO','DIRECCION_SERVICIO','TIEMPO_COLA','TIEMPO_INGRESO','FUENTE','CONCEPTO_ID','FECHA_ESTADO','FECHA_INGRESO','FECHA_CITA','STATUS','MOTIVO_MALO','INCIDENTE','RADICADO_TEMPORAL','PEDIDOFNX', 'CONCEPTO_CRM','ZONA'));
+            fputcsv($fp, array('PEDIDO_ID','PEDIDO','PEDIDO_CRM','SUBPEDIDO_ID','SOLICITUD_ID','PROGRAMACION','TIPO_TRABAJO','TIPO_TRABAJO_ORIGINAL','TIPO_ELEMENTO_ID','PRODUCTO','PRODUCTO_ID','UEN_CALCULADA','ESTRATO','MUNICIPIO_ID','PAGINA_SERVICIO','DIRECCION_SERVICIO','TIEMPO_COLA','TIEMPO_INGRESO','FUENTE','CONCEPTO_ID','FECHA_ESTADO','FECHA_INGRESO','FECHA_CARGA','FECHA_CITA','STATUS','MOTIVO_MALO','INCIDENTE','RADICADO_TEMPORAL','PEDIDOFNX', 'CONCEPTO_CRM','ZONA'));
             while($row = $r->fetch_assoc()){
                 $pedidoCrm = $row['PEDIDO_ID'];
                 $objRtaFenix = $this->conceptoPedidoSiebelFenix ($pedidoCrm);
