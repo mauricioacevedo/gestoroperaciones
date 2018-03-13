@@ -75,18 +75,25 @@
 
 
 
-                    <label for="Plaza">Localidad:</label>
-                    <select id="Plaza" class="form-control"
-                            style="width: 150px"
-                            ng-model="iplaza"
-                            ng-options="d.LOCALIDAD +'('+d.COUNTER+')'+ ''  for d in listadoMunicipios"
-                    >
-                        <option value="" disabled>--Seleccione Municipio--</option>
-                    </select>
-
-
+                         <div class= "form-group"><Inicia Div de Municipio></Inicia>
+                         <label class= "col-md-2">Municipio: </label>
+                         <div class="col-md-4">
+					      <ui-select ng-model="transaccion.MUNICIPIO_ID" style="width:200px;" append-to-body="true">
+						      <ui-select-match placeholder="MUNICIPIO">
+							   {{transaccion.MUNICIPIO_ID.MUNICIPIO}}
+						      </ui-select-match>
+						     <ui-select-choices repeat="g  in  lstMunicipios | filter: $select.search track by $index">
+							<div ng-bind-html="g.MUNICIPIO | highlight: $select.search"></div>
+							<small ng-bind-html="g.DEPARTAMENTO | highlight: $select.search"></small>
+						</ui-select-choices>
+					       </ui-select>
 
                 </div>
+            </div><!--Finaliza Div de Municipio-->
+
+
+
+    </div>
 
                 <div class="col-lg-3 col-xs-3">
                     <div class="btn-group">
