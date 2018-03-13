@@ -64,14 +64,8 @@
             <div class="row"><!--Row Concepto Plaza - Buscador Tips -->
 
                 <div class="col-lg-5 col-xs-5 form-inline">
-                    <label for="conceptos">Solicitud:</label>
-                    <select id="conceptos" ng-model="iconcepto"
-
-                            class="form-control" style="width: 100px" ng-change="checkMunicipiosEdatel()">
-                        <option value="" disabled>--Seleccione--</option>
-                        <option value='SIN_GEOREFERENCIA'>SIN GEOREFERENCIA</option>
-                        <option value='CON_GEOREFERENCIA'>CON GEOREFERENCIA</option>
-                        <option value='CON_REDSUGERIDA'>CON RED SUGERIDA</option>
+                    <label for="solicitud">Solicitud:</label>
+                    <input type="text" class="form-control" style="min-width: 100px" id="fromDate" placeholder="SOLICITUD" name="SOLICITUD" ng-model="transaccion.SOLICITUD"/>
 
                         <!--<option disabled>───────</option>
                         <option value='COORP'>COORP</option>
@@ -79,7 +73,7 @@
                         <option value='EQURED'>EQURED</option>
                         <option value='STBOX'>STBOX</option>-->
 
-                    </select>
+
 
                     <label for="Plaza">Localidad:</label>
                     <select id="Plaza" class="form-control"
