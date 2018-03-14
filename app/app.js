@@ -5953,8 +5953,8 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
             function (data) {
                 $scope.buscarLocalidadGeo = data.data[0];
 
-            }
-        )
+            });
+
     };
 
     $scope.buscarLocalidadGeo();
