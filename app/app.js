@@ -5950,8 +5950,8 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 
     $scope.objMunicipios = function () {
         $http.get('./services/objMunicipios').then(
-            function (res) {
-                $scope.lstMunicipios = res.data[0];
+            function (data) {
+                $scope.lstMunicipios = data.data[0];
 
             }
         )
