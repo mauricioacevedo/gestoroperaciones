@@ -5948,7 +5948,7 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 
 	};
 
-    $scope.objMunicipios = function () {
+    $scope.buscarLocalidadGeo = function () {
         $http.get('./services/buscarLocalidadGeo').then(
             function (data) {
                 $scope.buscarLocalidadGeo = data.data[0];
@@ -5957,7 +5957,7 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
         )
     };
 
-    $scope.objMunicipios();
+    $scope.buscarLocalidadGeo();
 
 
 });
