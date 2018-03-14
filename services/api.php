@@ -4526,9 +4526,7 @@ private function getAgentScore($user){
             "        WHEN PP.STATUS='MALO' THEN 'MALO' ".
             "        else PP.CONCEPTO_ID  ".
             "      end as CONCEPTO_ID ".
-            //" , HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) AS RANGO_PENDIENTE ".
-            //2018-03-14: Monica me pide cambiar el informe para que se calcule con fecha ingreso
-            " , HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_INGRESO))) AS RANGO_PENDIENTE ".
+            " , HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) AS RANGO_PENDIENTE ".
             " FROM portalbd.informe_petec_pendientesm PP ".
             " WHERE PP.STATUS IN ('PENDI_PETEC','MALO') ) C1  ".
             " GROUP BY C1.PEDIDO_ID ) C2 ".
@@ -4586,7 +4584,7 @@ private function getAgentScore($user){
             "        end as TIPO_TRABAJO ".
             "    , FUENTE ".
             "    , RADICADO_TEMPORAL ".
-            "    , HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_INGRESO))) AS RANGO_PENDIENTE  ".
+            "    , HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO))) AS RANGO_PENDIENTE  ".
             "    FROM portalbd.informe_petec_pendientesm ".
             "    where 1=1 ".
             "    and STATUS in ('PENDI_PETEC','MALO') ".
