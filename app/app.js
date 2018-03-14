@@ -5949,7 +5949,7 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 	};
 
     $scope.buscarLocalidadGeo = function () {
-        services.buscarLocalidadGeo.then(function (data) {
+        services.buscarLocalidadGeo().then(function (data) {
                 $scope.buscarLocalidadGeo = data.data[0];
 
             }
