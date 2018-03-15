@@ -11422,7 +11422,7 @@ private function demePedidoEdatel(){
 //**********************************************************************************************************************
 
 //*******************************************jj georreferencia*********************************
-   private function buscarLocalidadGeo(){//pendientes
+   private function ListLocalidadGeo(){//pendientes
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
