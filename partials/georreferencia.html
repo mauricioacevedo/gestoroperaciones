@@ -267,8 +267,8 @@
 						        <ui-select-match placeholder="LOCALIDAD">
 							    {{transaccion.LOCALIDAD}}
 						        </ui-select-match>
-						        <ui-select-choices repeat="data in ListLocalidadGeo | filter: $select.search track by $index">
-							    <div ng-bind-html="data.LOCALIDAD | highlight: $select.search"></div>
+						        <ui-select-choices repeat="res in ListLocalidadGeo | filter: $select.search track by $index">
+							    <div ng-bind-html="res.LOCALIDAD | highlight: $select.search"></div>
 
 						        </ui-select-choices>
 					            </ui-select>
