@@ -739,7 +739,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
     obj.getLocalidadGeo = function () {
 
-      return  $http.get(serviceBase + 'ListLocalidadGeo');
+      return  $http.get(serviceBase + 'ListLocalidadGeo'+LOCALIDAD);
     };
 
     //************************************************************************************************
@@ -5961,8 +5961,8 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 
 
     $scope.ListarLocalidadGeo = function () {
-        services.getLocalidadGeo(LOCALIDAD).then(
-            console.log(DATA.LOCALIDAD)
+        services.getLocalidadGeo().then(
+            console.log(getLocalidadGeo);
         );
     };
 
