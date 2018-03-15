@@ -276,7 +276,7 @@
 					           </ui-select>
 
                                 <select ng-model="transaccion.LOCALIDAD" class="form-control" style="">
-                                <option value="0">--Seleccione Localidad--</option>
+                                <option value="" dissable>--Seleccione Localidad--</option>
                                 <option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true |           unique:'OBSERVACION_ID'"
 
                                         value="{{d.OBSERVACION_ID}}">
