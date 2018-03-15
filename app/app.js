@@ -5953,7 +5953,7 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 
     };
 
-    $scope.ListLocalidadGeo();
+    $scope.getListLocalidadGeo();
 
 
 });
