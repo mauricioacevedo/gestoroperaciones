@@ -263,15 +263,17 @@
                                 <input type="text" class="form-control" style="width: 100px" id="fromDate" placeholder="SOLICITUD" name="SOLICITUD" ng-model="transaccion.SOLICITUD"/>
                             </td>
 
-                            <td><ui-select ng-model="transaccion.LOCALIDAD" style="width:200px" append-to-body="true">
-						        <ui-select-match placeholder="LOCALIDAD">
-							    {{transaccion.LOCALIDAD}}
-						        </ui-select-match>
-						        <ui-select-choices repeat="data in getListLocalidadGeo | filter: $select.search track by $index">
-							    <div ng-bind-html="data.LOCALIDAD | highlight: $select.search"></div>
+                            <td>
 
+					             <ui-select ng-model="transaccion.MUNICIPIO_ID" style="width:200px;" append-to-body="true">
+						         <ui-select-match placeholder="MUNICIPIO">
+							     {{transaccion.MUNICIPIO_ID.MUNICIPIO}}
+						        </ui-select-match>
+						         <ui-select-choices repeat="g  in  lstMunicipios | filter: $select.search track by $index">
+							     <div ng-bind-html="g.MUNICIPIO | highlight: $select.search"></div>
+							    <small ng-bind-html="g.DEPARTAMENTO | highlight: $select.search"></small>
 						        </ui-select-choices>
-					            </ui-select>
+					           </ui-select>
                             </td>
 
                             <td>

@@ -5948,19 +5948,16 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 
 	};
 
-    $scope.ListLocalidadGeo = function () {
-		//$scope.transaccion={};
+    $scope.objMunicipios = function () {
+        $http.get('./services/objMunicipios').then(
+            function (res) {
+                $scope.lstMunicipios = res.data[0];
 
-		services.getListLocalidadGeo().then(function (data) {
-
-			$rootScope.getListLocalidadGeo = data.data[0];
-			//console.log($scope.transaccionCR);
-			//console.log(data);
-
-			return data.data;
-		});
-
+            }
+        )
     };
+
+    $scope.objMunicipios();
 
 
 });
