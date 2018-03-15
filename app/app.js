@@ -5948,12 +5948,12 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 
 	};
 
-    $scope.ListLocalidadGeo = function () {
-    $scope.ListLocalidadGeo();
+    $scope.getListLocalidadGeo = function () {
+    console.log(getListLocalidadGeo);
 
     };
-    console.log(ListLocalidadGeo);
 
+    $scope.ListLocalidadGeo();
 
 
 });
