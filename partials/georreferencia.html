@@ -277,6 +277,8 @@
 
                                 <select ng-model="transaccion.LOCALIDAD" class="form-control" style="">
                                 <option value="0">--Seleccione Localidad--</option>
+                                <option gn-repeat ="data.LOCALIDAD in ListLocalidadGeo " value="{{data.LOCALIDAD}}">
+                                {{data.LOCALIDAD}}</option>
 
                                 </select>
 

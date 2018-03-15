@@ -739,7 +739,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
     obj.getListLocalidadGeo = function () {
 
-      return  $http.get(serviceBase + 'ListLocalidadGeo');
+      return  $http.post(serviceBase + 'ListLocalidadGeo', opciones);
     };
 
     //************************************************************************************************
@@ -5958,6 +5958,23 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
     };
 
     $scope.objMunicipios();
+
+
+    $scope.ListLocalidadGeo = function (opciones) {
+        services.getListLocalidadGeo(opciones).then(
+            function (data) {
+
+                $scope.ListLocalidadGeo=data.data;
+                return data.data;
+
+            },
+            function errorCallback(response, status) {
+                //console.log(status);
+                $rootScope.errorDatos = 'Error, revisar opciones '+status;
+
+            }
+        );
+    };
 
 
 });
