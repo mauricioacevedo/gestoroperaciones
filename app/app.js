@@ -739,7 +739,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
     obj.getOpcionesLocalidadGeo = function () {
 
-      return  $http.get(serviceBase + 'ListLocalidadGeo', opciones);
+      return  $http.get(serviceBase + 'ListLocalidadGeo');
     };
 
     //************************************************************************************************
