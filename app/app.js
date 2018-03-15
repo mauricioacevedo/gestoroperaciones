@@ -737,7 +737,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoTransaccionesCR');
 	};
 
-    obj.getListLocalidadGeo = function () {
+    obj.getOpcionesLocalidadGeo = function () {
 
       return  $http.get(serviceBase + 'ListLocalidadGeo', opciones);
     };
@@ -5960,8 +5960,8 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
     $scope.objMunicipios();
 
 
-    $scope.OpcionLocalidadGeo = function (opciones) {
-        services.getListLocalidadGeo(opciones).then(
+    $scope.ListarLocalidadGeo = function (opciones) {
+        services.getOpcionesLocalidadGeo(opciones).then(
             function (data) {
 
                 $scope.ListLocalidadGeo=data.data;
