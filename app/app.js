@@ -5961,22 +5961,13 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 
 
     $scope.ListarLocalidadGeo = function () {
-        services.getLocalidadGeo().then(
-            function (data) {
-				//console.log(data);
-				$scope.listadoLocalidad = data.data[0];
-				//console.log($scope.listadoLocalidad[1]);
-				return data.data;
-
-
-			},
-			function errorCallback(response, status) {
-				//console.log(status);
-				$rootScope.errorDatos = "Sin localidades";
-
-			}
+        services.getLocalidadGeo(LOCALIDAD).then(
+            console.log(LOCALIDAD);
         );
     };
+
+
+
 
 
 });
