@@ -737,7 +737,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoTransaccionesCR');
 	};
 
-    obj.getOpcionesLocalidadGeo = function () {
+    obj.getLocalidadGeo = function () {
 
       return  $http.get(serviceBase + 'ListLocalidadGeo');
     };
@@ -5960,19 +5960,21 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
     $scope.objMunicipios();
 
 
-    $scope.ListarLocalidadGeo = function (opciones) {
-        services.getOpcionesLocalidadGeo(opciones).then(
+    $scope.ListarLocalidadGeo = function () {
+        services.getLocalidadGeo().then(
             function (data) {
+				//console.log(data);
+				$scope.listadoLocalidad = data.data[0];
+				//console.log($scope.listadoLocalidad[1]);
+				return data.data;
 
-                $scope.ListLocalidadGeo=data.data;
-                return data.data;
 
-            },
-            function errorCallback(response, status) {
-                //console.log(status);
-                $rootScope.errorDatos = 'Error, revisar opciones '+status;
+			},
+			function errorCallback(response, status) {
+				//console.log(status);
+				$rootScope.errorDatos = "Sin localidades";
 
-            }
+			}
         );
     };
 

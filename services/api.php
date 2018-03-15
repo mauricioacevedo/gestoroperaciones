@@ -11454,7 +11454,7 @@ private function demePedidoEdatel(){
             // ---------------------------------- SQL Feed
             $this->response($this->json(array($result)), 200); // send user details
 
-          echo $result;
+
         }
         $this->response('',204);        // If no records "No Content" status
     }
