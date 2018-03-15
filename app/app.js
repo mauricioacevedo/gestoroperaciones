@@ -5957,7 +5957,7 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
         )
     };
 
-    $scope.buscarLocalidadGeo();
+    $scope.ListLocalidadGeo();
 
 
 });
