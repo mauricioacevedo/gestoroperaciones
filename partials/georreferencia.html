@@ -277,8 +277,10 @@
 
                                 <select ng-model="transaccion.LOCALIDAD" class="form-control" style="">
                                 <option value="0">--Seleccione Localidad--</option>
-                                <option gn-repeat ="data.LOCALIDAD in OpcionLocalidadGeo " value="{{data.LOCALIDAD}}">
-                                {{data.LOCALIDAD}}</option>
+                                <option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true |           unique:'OBSERVACION_ID'"
+
+                                        value="{{d.OBSERVACION_ID}}">
+                                        {{d.OBSERVACION_ID}}</option>
 
                                 </select>
 
