@@ -265,7 +265,7 @@
 
                             <td><ui-select ng-model="transaccion.LOCALIDAD" style="width:200px" append-to-body="true">
 						        <ui-select-match placeholder="LOCALIDAD">
-							    {{transaccion.LOCALIDAD}}
+							    {{transaccion.LOCALIDAD.LOCALIDAD}}
 						        </ui-select-match>
 						        <ui-select-choices repeat="data in buscarLocalidadGeo | filter: $select.search track by $index">
 							    <div ng-bind-html="data.LOCALIDAD | highlight: $select.search"></div>
