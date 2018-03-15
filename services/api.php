@@ -8210,7 +8210,7 @@ private function getAgentScore($user){
             " WHERE ".
             "       SOL.PEDIDO_ID='$pedido_id' ".
             "       and SOL.TIPO_ELEMENTO_ID IN ('BDID', 'TDID','BDIDE1', 'TDIDE1', 'BDODE1', 'TDODE1', 'TO', 'TOIP','INSHFC', 'INSIP', 'INSTIP', 'SEDEIP', 'P2MB', '3PLAY', 'CNTXIP', 'ACCESP', 'PLANT', 'PLP', 'PTLAN', 'PMULT', 'PPCM', 'PBRI', 'PPRI', 'INSTA', 'TP', 'PBRI','SLL', 'TC', 'SLLBRI', 'TCBRI', 'SLLPRI', 'TCPRI','SEDEIP','SEDECX','STBOX','ACCESO','DECO','EQURED') ".
-            "       AND SOL.CONCEPTO_ID IN ('PETEC','PSIEB', 'PUMED', 'PRESI', 'PECBA', '19', 'O-106', 'O-13', 'O-15','65','15') ".
+            "       AND SOL.CONCEPTO_ID IN ('PETEC','PSIEB', 'PUMED', 'PRESI', 'PECBA', '19', 'O-106', 'O-13', 'O-15','65') ".
             "       AND SOL.SUBPEDIDO_ID=FNX_SUBPEDIDOS.SUBPEDIDO_ID  ".
             "       AND SOL.PEDIDO_ID=FNX_SUBPEDIDOS.PEDIDO_ID  ".
             "       AND SOL.PEDIDO_ID=FNX_PEDIDOS.PEDIDO_ID  ".
