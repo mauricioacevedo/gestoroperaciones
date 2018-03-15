@@ -737,6 +737,11 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoTransaccionesCR');
 	};
 
+    obj.buscarLocalidadGeo = function () {
+
+      return  $http.get(serviceBase + 'buscarLocalidadGeo');
+    };
+
     //************************************************************************************************
 
 	obj.getListadoUsuarios = function () {
@@ -5942,6 +5947,16 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 		}
 
 	};
+
+    $scope.buscarLocalidadGeo = function () {
+        services.buscarLocalidadGeo().then(function (data) {
+                $scope.buscarLocalidadGeo = data.data[0];
+
+            }
+        )
+    };
+
+    $scope.buscarLocalidadGeo();
 
 
 });

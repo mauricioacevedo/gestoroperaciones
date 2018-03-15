@@ -11421,7 +11421,48 @@ private function demePedidoEdatel(){
     }
 //**********************************************************************************************************************
 
+//*******************************************jj georreferencia*********************************
+   private function buscarLocalidadGeo(){//pendientes
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
 
+
+
+        //$in_stmt = "'".str_replace(" ", "','", $bpedido)."'";
+
+        $query=" SELECT LOCALIDAD FROM tbl_cr";
+
+        //$query="select * from tbl_cr where INCIDENTE like '$bregistro%'";
+        //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                $result[] = $row;
+            }
+
+            // ---------------------------------- SQL Feed
+            $this->response($this->json(array($result)), 200); // send user details
+
+
+        }
+        $this->response('',204);        // If no records "No Content" status
+    }
+
+
+
+//*********************************************fin georreferencia***********************
     //*****************************************Michael PNI REGISTROS *********************************
     private function insertTransaccionPNI(){
 
