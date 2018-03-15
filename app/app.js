@@ -5960,9 +5960,9 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
     $scope.objMunicipios();
 
 
-    $scope.ListarLocalidadGeo = function () {
-        services.getLocalidadGeo().then(
-            console.log(data);
+    $scope.ListarLocalidadGeo = function (localidad) {
+        services.getLocalidadGeo(localidad).then(
+            console.log(localidad);
         );
     };
 
