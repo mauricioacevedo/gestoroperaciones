@@ -5951,23 +5951,7 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 	};
 
 
-    $scope.ListarLocalidadGeo = function (localidad) {
 
-        console.log(localidad);
-        services.getLocalidadGeo(localidad).then(
-            function (data) {
-
-                $scope.ListaLocalidadGeo=data.data;
-                return data.data;
-
-            },
-            function errorCallback(response, status) {
-                //console.log(status);
-                $rootScope.errorDatos = 'Error, revisar opciones '+localidad;
-
-            }
-        );
-    };
 
 
 
