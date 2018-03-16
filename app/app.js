@@ -5952,7 +5952,7 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 
 
 
-$scope.listarLocalidadesGeo = function () {
+$scope.ListaLocalidadesGeo = function () {
 
 
         services.getListLocalidadesGeo().then(
