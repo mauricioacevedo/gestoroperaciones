@@ -5958,8 +5958,9 @@ $scope.listarLocalidadesGeo = function () {
         services.getListLocalidadesGeo().then(
             function (data) {
 
-                $scope.ListaLocalidadesGeo=data.data;
-            console.log(data.data);
+                //$scope.ListaLocalidadesGeo=data.data;
+                $scope.ListaLocalidadesGeo = data.data[0];
+            console.log($scope.ListaLocalidadesGeo);
 
                 return data.data;
 
