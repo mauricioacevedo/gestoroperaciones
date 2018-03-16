@@ -275,14 +275,36 @@
 						        </ui-select-choices>
 					           </ui-select>
 
-                                <select ng-model="transaccion.LOCALIDAD" class="form-control" style="">
-                                <option value="" dissable>--Seleccione Localidad--</option>
-                                <option ng-repeat="data in LocalidadGeo | filter:{LOCALIDAD: service.LOCALIDAD}:true |           unique:'LOCALIDAD'"
+                                <select
+                                                class="form-control btn-xs"
+                                                name="estado"
+                                                ng-model="service.estado"
+                                                ng-show="isAuthorized(service.CONCEPTO_ID)"
+                                        >
+                                            <option value="" disabled>--Seleccione--</option>
+                                            <option
+                                                    ng-repeat="d in listaOpcionesGestion | unique:'ESTADO_ID'"
 
-                                        value="{{data.LOCALIDAD}}">
-                                        {{data.LOCALIDAD}}</option>
+                                                    value="{{d.ESTADO_ID}}">
+                                                {{d.ESTADO_ID}}
+                                            </option>
+                                        </select>
+                                        <br>
 
-                                </select>
+                                        <select
+                                                class="form-control btn-xs"
+                                                name="obs"
+                                                ng-model="service.motivo_malo"
+                                                ng-change="onChangeAccion()"
+                                        >
+                                            <option value="" disabled>--Seleccione--</option>
+                                            <option
+                                                    ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'"
+
+                                                    value="{{d.OBSERVACION_ID}}">
+                                                {{d.OBSERVACION_ID}}
+                                            </option>
+                                        </select>
 
 
 
