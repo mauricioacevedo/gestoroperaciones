@@ -737,7 +737,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoTransaccionesCR');
 	};
 
-    obj.getLocalidadGeo = function () {
+    obj.getLocalidadGeo = function (localidad) {
 
       return  $http.get(serviceBase + 'ListLocalidadGeo'+LOCALIDAD);
     };
@@ -5951,8 +5951,10 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 	};
 
 
-    $scope.ListarLocalidadGeo = function () {
-        services.getLocalidadesEdatel().then(
+    $scope.ListarLocalidadGeo = function (localidad) {
+
+        console.log(localidad);
+        services.getLocalidadGeo(localidad).then(
             function (data) {
 
                 $scope.ListaLocalidadGeo=data.data;
@@ -5961,7 +5963,7 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
             },
             function errorCallback(response, status) {
                 //console.log(status);
-                $rootScope.errorDatos = 'Error, revisar opciones '+status;
+                $rootScope.errorDatos = 'Error, revisar opciones '+localidad;
 
             }
         );
