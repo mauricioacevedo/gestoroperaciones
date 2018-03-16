@@ -5953,10 +5953,10 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 
 
 
-    $scope.getListLocalidadGeo () = function(){
+    $scope.getLocalidadGeo () = function(){
     services.getLocalidadGeo().then(function(data) {
 
-      $rootScope.ListLocalidadGeo = data.data[0];
+      $rootScope.LocalidadGeo = data.data[0];
 			//console.log($scope.transaccionCR);
 			//console.log(data);
 			$location.path('/georreferencia/');
