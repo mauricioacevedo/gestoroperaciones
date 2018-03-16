@@ -11430,7 +11430,7 @@ private function demePedidoEdatel(){
 
 //*******************************************jj georreferencia*********************************
    private function ListLocalidadGeo(){//pendientes
-        if($this->get_request_method() != "POST"){
+        if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
         $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
