@@ -5921,6 +5921,8 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 	};
 
 
+    $scope.ListaLocalidadGeo = [];
+
     $scope.saveTransaccion = function (transaccion) {
 
         console.log(transaccion);
@@ -5948,16 +5950,22 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 
 	};
 
-    $scope.objMunicipios = function () {
-        $http.get('./services/objMunicipios').then(
-            function (res) {
-                $scope.lstMunicipios = res.data[0];
+
+    $scope.ListarLocalidadGeo = function () {
+        services.getLocalidadesEdatel().then(
+            function (data) {
+
+                $scope.ListaLocalidadGeo=data.data;
+                return data.data;
+
+            },
+            function errorCallback(response, status) {
+                //console.log(status);
+                $rootScope.errorDatos = 'Error, revisar opciones '+status;
 
             }
-        )
+        );
     };
-
-    $scope.objMunicipios();
 
 
 

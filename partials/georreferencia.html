@@ -277,10 +277,10 @@
 
                                 <select ng-model="transaccion.LOCALIDAD" class="form-control" style="">
                                 <option value="" dissable>--Seleccione Localidad--</option>
-                                <option ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true |           unique:'OBSERVACION_ID'"
+                                <option ng-repeat="d in ListaLocalidadGeo | filter:{LOCALIDAD: service.LOCALIDAD}:true |           unique:'LOCALIDAD'"
 
-                                        value="{{d.ESTADO_ID}}">
-                                        {{d.ESTADO_ID}}</option>
+                                        value="{{d.LOCALIDAD}}">
+                                        {{d.LOCALIDAD}}</option>
 
                                 </select>
 
