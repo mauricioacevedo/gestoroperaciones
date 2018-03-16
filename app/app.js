@@ -5953,18 +5953,7 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 
 
 
-    $scope.LocalidadGeo = function(){
-    services.getLocalidadGeo().then(function(data) {
 
-      $rootScope.LocalidadGeo = data.data[0];
-			//console.log($scope.transaccionCR);
-			//console.log(data);
-			$location.path('/georreferencia/');
-			return data.data;
-
-    });
-
-    };
 
 
 
