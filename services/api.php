@@ -19430,6 +19430,13 @@ public function pp(&$var){
 
             $insertGestion = $this->mysqli->query($queryGestion);
 
+
+            $insertIngresos="insert into informe_petec_pendientesm (PEDIDO_ID,PEDIDO,MUNICIPIO_ID,TIPO_ELEMENTO_ID,TIPO_TRABAJO,DESC_TIPO_TRABAJO,FECHA_INGRESO,FECHA_CITA,PRODUCTO_ID,PRODUCTO,CONCEPTO_ID,CONCEPTO_ANTERIOR,DIRECCION_SERVICIO,PAGINA_SERVICIO,TECNOLOGIA_ID,FUENTE,FECHA_ESTADO,UEN_CALCULADA,ESTRATO,FECHA_CARGA,ESTADO_BLOQUEO,USUARIO_BLOQUEO_FENIX,ACTIVIDAD,GRUPO,CLIENTE_ID,DEPARTAMENTO,STATUS)
+ values ('".$gestion['gestion']['pedido']."','".$gestion['gestion']['pedido']."','".$gestion['gestion']['MUNICIPIO_ID']."','NULL','NULL','NULL','".$gestion['gestion']['fecha_inicio']."','9999-01-01','NULL','NULL','".$gestion['gestion']['CONCEPTO_ANTERIOR']."','".$gestion['gestion']['CONCEPTO_ANTERIOR']."','NULL','NULL','NULL','".$gestion['gestion']['fuente']."','".$gestion['gestion']['fecha_inicio']."','HG','NULL','".$gestion['gestion']['fecha_inicio']."','N','','".$gestion['gestion']['actividad']."','ASIGNACIONES', 'NULL','".$gestion['gestion']['DEPARTAMENTO']."','CERRADO_PETEC')";
+
+
+            echo $insertIngresos;
+
             //RECONFIGURACION MICHAEL
 
             //echo var_dump($observacion);
