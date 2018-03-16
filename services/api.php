@@ -11448,7 +11448,7 @@ private function demePedidoEdatel(){
 
 
 
-        $query=" SELECT LOCALIDAD FROM tbl_georreferenciados";
+        $query="SELECT * FROM tbl_georreferenciados";
 
          echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
