@@ -737,9 +737,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoTransaccionesCR');
 	};
 
-    obj.getLocalidadGeo = function (localidad) {
+    obj.getLocalidadGeo = function (LOCALIDAD) {
 
-      return  $http.get(serviceBase + 'ListLocalidadGeo'+LOCALIDAD);
+      return  $http.get(serviceBase + 'ListLocalidadGeo' + LOCALIDAD);
     };
 
     //************************************************************************************************
@@ -5951,7 +5951,11 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 	};
 
 
+    services.getLocalidadGeo(LOCALIDAD).then(function(data)) {
 
+
+
+    };
 
 
 
