@@ -279,23 +279,6 @@
                                                 {{d.ESTADO_ID}}
                                             </option>
                                         </select>
-                                        <br>
-
-                                        <select
-                                                class="form-control btn-xs"
-                                                name="obs"
-                                                ng-model="service.motivo_malo"
-                                                ng-change="onChangeAccion()"
-                                        >
-                                            <option value="" disabled>--Seleccione--</option>
-                                            <option
-                                                    ng-repeat="d in listaOpcionesGestion | filter:{ESTADO_ID: service.estado}:true | unique:'OBSERVACION_ID'"
-
-                                                    value="{{d.OBSERVACION_ID}}">
-                                                {{d.OBSERVACION_ID}}
-                                            </option>
-                                        </select>
-
 
 
                             </td>
