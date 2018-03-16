@@ -5921,27 +5921,7 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 	};
 
 
-$scope.ListaLocalidadesGeo = function () {
 
-        services.getListLocalidadesGeo().then(
-            function (data) {
-
-                //$scope.ListaLocalidadesGeo=data.data;
-                $scope.listarLocalidadesGeo = data.data[0];
-            console.log($scope.listarLocalidadesGeo);
-
-                return data.data;
-
-
-
-            },
-            function errorCallback(response, status) {
-                //console.log(status);
-                $rootScope.errorDatos = 'Error, revisar opciones '+status;
-
-            }
-        );
-    };
 
     $scope.saveTransaccion = function (transaccion) {
 
@@ -5971,7 +5951,27 @@ $scope.ListaLocalidadesGeo = function () {
 	};
 
 
+$scope.ListaLocalidadesGeo = function () {
 
+        services.getListLocalidadesGeo().then(
+            function (data) {
+
+                //$scope.ListaLocalidadesGeo=data.data;
+                $scope.listarLocalidadesGeo = data.data[0];
+            console.log($scope.listarLocalidadesGeo);
+
+                return data.data;
+
+
+
+            },
+            function errorCallback(response, status) {
+                //console.log(status);
+                $rootScope.errorDatos = 'Error, revisar opciones '+status;
+
+            }
+        );
+    };
 
 
 
