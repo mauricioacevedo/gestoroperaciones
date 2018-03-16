@@ -5959,8 +5959,8 @@ $scope.listarLocalidadesGeo = function () {
             function (data) {
 
                 //$scope.ListaLocalidadesGeo=data.data;
-                $scope.ListaLocalidadesGeo = data.data[0];
-            console.log($scope.ListaLocalidadesGeo);
+                $scope.listarLocalidadesGeo = data.data[0];
+            console.log($scope.listarLocalidadesGeo);
 
                 return data.data;
 
