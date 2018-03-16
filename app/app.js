@@ -5921,7 +5921,6 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 	};
 
 
-CHCHCHCHCHCHCHCNICOALSSSS
 
     $scope.saveTransaccion = function (transaccion) {
 
