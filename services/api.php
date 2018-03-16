@@ -1494,11 +1494,12 @@ class API extends REST {
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
-            $sqlInsertIngresos="insert into informe_petec_pendientesm (PEDIDO_ID, PEDIDO, MUNICIPIO_ID ,TIPO_ELEMENTO_ID, TIPO_TRABAJO, DESC_TIPO_TRABAJO, FECHA_INGRESO, FECHA_CITA, PRODUCTO_ID, PRODUCTO, CONCEPTO_ID, CONCEPTO_ANTERIOR, DIRECCION_SERVICIO, PAGINA_SERVICIO, TECNOLOGIA_ID, FUENTE, FECHA_ESTADO, UEN_CALCULADA, ESTRATO, FECHA_CARGA, ESTADO_BLOQUEO, USUARIO_BLOQUEO_FENIX, ACTIVIDAD, GRUPO, CLIENTE_ID, DEPARTAMENTO)
-            values ('".$pedido1['pedido']."','".$pedido1['pedido']."','".$pedido1['ciudad']."','NULL','NULL','NULL','".$pedido1['fecha_inicio']."','9999-01-01','NULL','NULL','MANUAL','MANUAL','NULL','NULL','NULL','".$pedido1['fuente']."','".$pedido1['fecha_inicio']."','HG','NULL','".$pedido1['fecha_inicio']."','N','','".$pedido1['actividad']."','ASIGNACIONES', 'NULL','".$pedido1['departamento']."')";
+            $sqlInsertIngresos="insert into informe_petec_pendientesm (PEDIDO_ID, PEDIDO, MUNICIPIO_ID ,TIPO_ELEMENTO_ID, TIPO_TRABAJO, DESC_TIPO_TRABAJO, FECHA_INGRESO, FECHA_CITA, PRODUCTO_ID, PRODUCTO, CONCEPTO_ID, CONCEPTO_ANTERIOR, DIRECCION_SERVICIO, PAGINA_SERVICIO, TECNOLOGIA_ID, FUENTE, FECHA_ESTADO, UEN_CALCULADA, ESTRATO, FECHA_CARGA, ESTADO_BLOQUEO, USUARIO_BLOQUEO_FENIX, ACTIVIDAD, GRUPO, CLIENTE_ID, DEPARTAMENTO,STATUS,OBSERVACIONES)
+            values ('".$pedido1['pedido']."','".$pedido1['pedido']."','".$pedido1['ciudad']."','NULL','NULL','NULL','".$pedido1['fecha_inicio']."','9999-01-01','NULL','NULL','MANUAL','MANUAL','NULL','NULL','NULL','".$pedido1['fuente']."','".$pedido1['fecha_inicio']."','HG','NULL','".$pedido1['fecha_inicio']."','N','','".$pedido1['actividad']."','ASIGNACIONES', 'NULL','".$pedido1['departamento']."','CERRADO_PETEC', '".$pedido1['observacion']."')";
 
-            echo $sqlInsertIngresos;
-
+            //echo $sqlInsertIngresos;
+            $r = $this->mysqli->query($sqlInsertIngresos) or die($this->mysqli->error.__LINE__);
+            //Fix insertMPedido: se agregan campos y se habilita para insertar.
             //hago la actualizacion en fenix
             // SQL Feed----------------------------------
             $sql_log=   "insert into portalbd.activity_feed ( ".
