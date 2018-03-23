@@ -5950,7 +5950,7 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 	};
 
 
-$scope.ListaLocalidadesGeo = function (DATA.LOCALIDAD) {
+$scope.ListaLocalidadesGeo = function (LOCALIDAD) {
 
 
 
