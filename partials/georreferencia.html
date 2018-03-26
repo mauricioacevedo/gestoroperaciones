@@ -265,7 +265,7 @@
 
                             <td>
 
-                                <select ng-model="transaccion.{{DATA.LOCALIDAD}}" class="form-control" style="">
+                                <select ng-model="transaccion.{{DATA.LOCALIDAD[0]}}" class="form-control" style="">
                                             <option value='' disabled>--Seleccione--</option>
                                             <option ng-repeat="data in ListaLocalidadesGeo"
                                             value="{{data.LOCALIDAD[0]}}"> {{data.LOCALIDAD[0]}}</option>
