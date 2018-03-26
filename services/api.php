@@ -11446,7 +11446,7 @@ private function demePedidoEdatel(){
 
 
 
-$column_names = array('LOCALIDA');
+$column_names = array('LOCALIDAD');
         $query="SELECT LOCALIDAD FROM tbl_georreferenciados";
 
          echo $query;
