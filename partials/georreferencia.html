@@ -267,8 +267,8 @@
 
                                 <select ng-model="transaccion.{{DATA.LOCALIDAD}}" class="form-control" style="">
                                             <option value='' disabled>--Seleccione--</option>
-                                            <option ng-repeat="ListaLocalidadesGeo | filter:{LOCALIDAD: service.localidad}:true | unique:'LOCALIDAD'"
-                                            value="{{LOCALIDAD}}"> {{LOCALIDAD}}</option>
+                                            <option ng-repeat="data in ListaLocalidadesGeo"
+                                            value="{{data.LOCALIDAD}}"> {{data.LOCALIDAD}}</option>
 
                                 </select>
 
