@@ -265,11 +265,27 @@
 
                             <td>
 
-                                <select ng-model="transaccion.{{DATA.LOCALIDAD[0]}}" class="form-control" style="">
+                                <!--<select ng-model="transaccion.{{DATA.LOCALIDAD[0]}}" class="form-control" style="">
                                             <option value='' disabled>--Seleccione--</option>
                                             <option ng-repeat="data in ListaLocalidadesGeo"
                                             value="{{data.LOCALIDAD[0]}}"> {{data.LOCALIDAD[0]}}</option>
 
+                                </select>-->
+
+
+                                <select
+                                                class="form-control btn-xs"
+                                                name="obs"
+                                                ng-model="service.localidad"
+                                                ng-change="onChangeAccion()"
+                                        >
+                                            <option value="" disabled>--Seleccione--</option>
+                                            <option
+                                                    ng-repeat="d in ListaLocalidadesGeo | filter:{LOCALIDAD: service.LOCALIDAD}:true "
+
+                                                    value="{{data.LOCALIDAD}}">
+                                                {{data.LOCALIDAD}}
+                                            </option>
                                 </select>
 
 
