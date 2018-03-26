@@ -11441,7 +11441,7 @@ private function demePedidoEdatel(){
         $usuarioGalleta =   $galleta['login'];
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
-
+        $LOCALIDAD = $this->_request['LOCALIDAD'];
 
 
 
