@@ -5967,18 +5967,9 @@ console.log($scope.ListaLocalidadGeo);
 
     };
 
+$scope.ListaLocalidadesGeo();
 
-$scope.buscarRegistroCR = function(bregistro) {
 
-        console.log(bregistro);
-        services.buscarRegistroCR(bregistro).then(function(data){
-            $scope.listado_transacciones = data.data[0];
-            return data.data;
-            console.log(data.data);
-
-        });
-
-    };
 
 
 
