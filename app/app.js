@@ -5950,17 +5950,35 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 	};
 
 
-$scope.ListaLocalidadesGeo = function (LOCALIDAD) {
+$scope.ListaLocalidadesGeo = function () {
 
 
 
 console.log($scope.getListLocalidadesGeo);
 console.log($scope.ListaLocalidadGeo);
 
+
+    services.getListLocalidadesGeo(LOCALIDAD).then(function(data){
+            $scope.ListaLocalidadesGeo = data.data[0];
+            return data.data;
+            console.log(data.data);
+
+        });
+
     };
 
 
+$scope.buscarRegistroCR = function(bregistro) {
 
+        console.log(bregistro);
+        services.buscarRegistroCR(bregistro).then(function(data){
+            $scope.listado_transacciones = data.data[0];
+            return data.data;
+            console.log(data.data);
+
+        });
+
+    };
 
 
 
