@@ -11450,6 +11450,7 @@ $column_names = array('LOCALIDAD');
         $query="SELECT LOCALIDAD FROM tbl_georreferenciados";
 
          echo $query;
+       echo $column_names;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
