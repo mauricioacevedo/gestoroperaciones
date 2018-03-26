@@ -5969,23 +5969,6 @@ console.log($scope.ListaLocalidadesGeo);
 
 
 
-     $scope.listarOpcionesAsginacion = function (opciones) {
-
-		services.getOpcionesGestionAsignaciones(opciones).then(
-			function (data) {
-
-				$scope.listaOpcionesGestion=data.data;
-				//console.log($scope.listaOpcionesGestion);
-				return data.data;
-
-			},
-			function errorCallback(response, status) {
-				//console.log(status);
-				$rootScope.errorDatos = "Error, revisar opciones";
-
-			}
-		);
-	};
 
 
 
