@@ -5960,7 +5960,7 @@ services.getListLocalidadesGeo().then(function (data) {
 
 
     return data.data;
-    console.log(data.data);
+    console.log(data.LOCALIDAD);
 
     });
 
