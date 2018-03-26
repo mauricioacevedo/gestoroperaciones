@@ -5960,7 +5960,7 @@ services.getListLocalidadesGeo().then(function (data) {
 
 
     console.log($rootScope.ListaLocalidadesGeo);
-    console.log(data.data);
+    console.log(data.data[0]);
     return data.data;
 
 
