@@ -5960,7 +5960,7 @@ services.getListLocalidadesGeo().then(function (data) {
 
     });
 
-
+$scope.ListLocalidadesGeo();
 
 
 
