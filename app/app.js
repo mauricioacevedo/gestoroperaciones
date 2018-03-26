@@ -5957,7 +5957,7 @@ $scope.ListaLocalidadesGeo = function () {
 services.getListLocalidadesGeo().then(function (data) {
 
     $rootScope.ListaLocalidadesGeo = data.data[0];
-    console.log($scope.ListaLocalidadesGeo);
+
 
     return data.data;
     console.log(data.data);
