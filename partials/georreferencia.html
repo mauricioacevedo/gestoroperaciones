@@ -281,7 +281,7 @@
                                         >
                                             <option value="" disabled>--Seleccione--</option>
                                             <option
-                                                    ng-repeat="d in ListaLocalidadesGeo | filter:{LOCALIDAD: data.LOCALIDAD}:true "
+                                                    ng-repeat="data in ListaLocalidadesGeo"
 
                                                     value="{{data.LOCALIDAD}}">
                                                 {{data.LOCALIDAD}}
