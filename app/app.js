@@ -5956,10 +5956,10 @@ $scope.ListaLocalidadesGeo = function () {
 
 services.getListLocalidadesGeo().then(function (data) {
 
-    $Scope.ListaLocalidadesGeo = data.data[0];
+    $scope.ListaLocalidadesGeo = data.data[0];
 
 
-    console.log($Scope.ListaLocalidadesGeo);
+    console.log($scope.ListaLocalidadesGeo);
     return data.data;
 
 
