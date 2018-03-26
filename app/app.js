@@ -5950,17 +5950,17 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 	};
 
 
-$scope.ListLocalidadesGeo = function () {
+$scope.ListaLocalidadesGeo = function () {
 
 services.getListLocalidadesGeo().then(function (data) {
 
-    $rootScope.ListLocalidadesGeo = data.data[0];
+    $rootScope.ListaLocalidadesGeo = data.data[0];
     console.log($scope.ListLocalidadesGeo);
     return data.data;
 
     });
 
-$scope.ListLocalidadesGeo();
+$scope.ListaLocalidadesGeo();
 
 
 
