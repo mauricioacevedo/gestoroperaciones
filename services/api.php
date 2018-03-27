@@ -12757,7 +12757,7 @@ private function demePedidoEdatel(){
             $this->response('',406);
         }
 
-        $query="SELECT count(*) as counter from tbl_cr ";
+        $query="SELECT count(*) as counter from tbl_cr where ESTADO = 'ABIERTO' ";
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter=0;
         if($rr->num_rows > 0){
