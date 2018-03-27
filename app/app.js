@@ -6364,7 +6364,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {
 			$scope.listado_transacciones = data.data[0];
 			$scope.data.totalItems = data.data[1];
-            $scope.data.totalItems2 = data.data[1];
+            $scope.data.totalItems2 = data.data[2];
 			return data.data;
 		});
 	}
@@ -6387,7 +6387,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {
 			$scope.listado_transacciones = data.data[0];
 			$scope.data.totalItems = data.data[1];
-            $scope.data.totalItems2 = data.data[1];
+            $scope.data.totalItems2 = data.data[2];
 			return data.data;
 		});
 
