@@ -12768,11 +12768,11 @@ private function demePedidoEdatel(){
         }
 
         $query="SELECT count(*) as cerrados from tbl_cr where ESTADO = 'CERRADO' ";
-        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $r2 = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter2=0;
-        if($rr->num_rows > 0){
+        if($r2->num_rows > 0){
             $result = array();
-            if($row = $rr->fetch_assoc()){
+            if($row = $r2->fetch_assoc()){
                 $counter2 = $row['cerrados'];
             }
         }
