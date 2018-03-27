@@ -6341,6 +6341,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		currentPage: 1,
 		numPerPage: 100,
 		totalItems: 0,
+        totalItems2: 0,
 		fechaIni: "",
 		fechaFin: ""
 	};

@@ -12767,6 +12767,16 @@ private function demePedidoEdatel(){
             }
         }
 
+        $query="SELECT count(*) as cerrados from tbl_cr where ESTADO = 'CERRADO' ";
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter = $row['cerrados'];
+            }
+        }
+
         $query="select SISTEMA, TIPO_INCIDENTE, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
 	            AS CHAR (255)) AS ANS, FECHA_SOLICITUD, FECHA_CIERRE,
                 OBSERVACIONES, USUARIO from tbl_cr where ESTADO not in ('CERRADO') order by FECHA_SOLICITUD desc limit 300; ";
