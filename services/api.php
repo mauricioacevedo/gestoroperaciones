@@ -12777,6 +12777,8 @@ private function demePedidoEdatel(){
             }
         }
 
+        echo var_dump($counter2);
+
         $query="select SISTEMA, TIPO_INCIDENTE, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
 	            AS CHAR (255)) AS ANS, FECHA_SOLICITUD, FECHA_CIERRE,
                 OBSERVACIONES, USUARIO from tbl_cr where ESTADO not in ('CERRADO') order by FECHA_SOLICITUD desc limit 300; ";
