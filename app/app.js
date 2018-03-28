@@ -5937,13 +5937,13 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 		}
 
         if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
-			alert("Selecciona un tipo de Sistema");
+			alert("Selecciona el estado");
 			return;
 		}
 
 
 		if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
-			alert("Observaciones sin datos");
+			alert("Ingresa Observaciones");
 			return;
 		}
 
