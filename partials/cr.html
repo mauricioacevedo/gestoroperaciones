@@ -22,8 +22,6 @@
 
                            <div class= "form-group">
 
-
-
                                   <input maxlength="7" name="cierre" ng-model="transac.INCIDENTE" type= "text" class="form-control" placeholder="INCIDENTE A CERRAR" required/>
 
                             </div>
@@ -41,13 +39,9 @@
                     <div>
                       <button ng-click="saveTrans(transac);">Cerrar Incidente</button>
 
-
-
                     </div>
 
                     </div>--> <!-- terminar div de buscar incidente-->
-
-
 
                     </div><!-- terminar div de registrar incidente-->
 
@@ -56,77 +50,79 @@
         <br></div>-->
 
 
-
-
-
-
-
                     <div class="row"><hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
-                            <br></div>
+                            <br>
+                    </div>
 
 
-
-			<div class="row">
-				<ul class="nav nav-list">
-				  <li class="divider">.</li>
-				</ul>
-			 </div>
                     <div class="row">
-		    <table align="center" width="100%">
-			<tr>
-            <div class="row">
-                                            <div class="input-daterange col-lg-5" id="datepicker">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">Desde</span>
-                                                            <input type="text" class="form-control" style="min-width: 100px" id="fromDate" name="fromDate" ng-model="data.fechaIni" />
-                                                            <span class="input-group-addon">Hasta</span>
-                                                            <input type="text" class="form-control" style="min-width: 100px" id="toDate" name="toDate" ng-model="data.fechaFin" />
-                                                            <span class="input-group-btn">
-                                                                   <button class="btn btn-primary btn-sm" value="actualizar!" ng-click="pageChanged();"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
-                                                                    <button class="btn btn-success btn-sm" value="exportar!" ng-click="csvCR();"><span class="glyphicon glyphicon-download-alt"></span> Exportar</button>
+                        <ul class="nav nav-list">
+                          <li class="divider">.</li>
+                        </ul>
+                     </div>
+
+                    <div class="row">
+
+                        <table align="center" width="100%">
+
+                            <tr>
+
+                                <div class="row">
+
+                                    <div class="input-daterange col-lg-5" id="datepicker">
+
+                                        <div class="input-group">
+
+                                            <span class="input-group-addon">Desde</span>
+
+                                            <input type="text" class="form-control" style="min-width: 100px" id="fromDate" name="fromDate" ng-model="data.fechaIni" />
+
+                                            <span class="input-group-addon">Hasta</span>
+
+                                            <input type="text" class="form-control" style="min-width: 100px" id="toDate" name="toDate" ng-model="data.fechaFin" />
+
+                                            <span class="input-group-btn">
+
+                                                <button class="btn btn-primary btn-sm" value="actualizar!" ng-click="pageChanged();"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
+
+                                                <button class="btn btn-success btn-sm" value="exportar!" ng-click="csvCR();"><span class="glyphicon glyphicon-download-alt"></span> Exportar</button>
+
+                                            </span>
 
 
+                                        </div>
 
+                                    </div>
 
-                                                            </span>
+                                </div>
 
+                            <br>
+                            <div class="col-lg-5" id="Incidente" >
 
-                                                        </div>
+                                <input type="text" class="form-control" placeholder="Incidente a Buscar" ng-model="bregistro">
 
+                                <button class="btn btn-success btn-sm" ng-model="transac.INCIDENTE" ng-click="buscarRegistroCR(bregistro);" ><span class="fa fa-search"></span> Buscar</button>
 
-                                                    </div>
+                            </div>
 
+                            <br>
 
-            </div>
-
-
-
-                                                <br>
-                                                <div class="col-lg-5" id="Incidente" >
-
-                                                                <input type="text" class="form-control" placeholder="Incidente a Buscar" ng-model="bregistro">
-
-                                                                <button class="btn btn-success btn-sm" ng-model="transac.INCIDENTE" ng-click="buscarRegistroCR(bregistro);" ><span class="fa fa-search"></span> Buscar</button>
-                                                     </div>
-
-                                            <br>
-
-
-		 	<td width="33%" align="left">
-                <br>
-				CR Abiertos: <b>{{data.totalItems}} </b>
-			</td>
+                            <td width="33%" align="left">
+                                <br>
+                                CR Abiertos: <b>{{data.totalItems}} </b>
+                            </td>
 
            <!-- <td width="33%" align="left">
 				CR Finalizados: <b>{{data.totalItems}} </b>
 			</td>-->
 
-			<td width="33%" align="center">
+			                 <td width="33%" align="center">
 
-                        </td>
-			<td width="33%" align="right">
-				<pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged()" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
-			</td>
+                             </td>
+
+                            <td width="33%" align="right">
+                                <pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged()" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+                            </td>
 			</tr>
 		    </table>
 
