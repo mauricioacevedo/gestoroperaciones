@@ -69,11 +69,18 @@
 
                             <div class="from-group" id="datetimepicker">
                                 <label for="fechaSolicitud">
-                                    Fecha Solicitud
+                                    Sistema:
                                 </label>
-                                <br>
-                                <input type="text" name="fechaSolicitud" id="fechaSolicitud" class="form-control"
-                                    ng-model="transaccion.FECHASOLICITUD" datetime-picker date-format="yyyy-MM-dd H:mm:00">
+                                <select ng-model="transaccion.SISTEMA" class="form-control" style="" >
+                                        <option value='' disabled>---SELECCIONE---</option>
+                                        <option value='SIEBEL'>SIEBEL</option>
+                                        <option value='FENIX ORACLE'>FENIX ORACLE</option>
+                                        <option value='FENIX ATC'>FENIX ATC</option>
+                                        <option value='QUERY BUILDER'>QUERY BUILDER</option>
+                                        <option value='PNI'>PNI</option>
+                                        <option value='METASOLW(M6)'>METASOLW(M6)</option>
+                                        <option value='GTC'>GTC</option>
+                                </select>
                              </div>
 
 
