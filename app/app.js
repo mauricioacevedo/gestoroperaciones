@@ -6393,7 +6393,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 	};
 
-	$scope.csvCodigoResultado = function () {
+	$scope.csvCR = function () {
 		var login = $rootScope.logedUser.login;
 		services.getCsvCR(login, $scope.data.fechaIni, $scope.data.fechaFin).then(function (data) {
 			//console.log(data.data[0]);
@@ -6402,9 +6402,6 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		});
 
 	};
-
-
-
 
 
 });
