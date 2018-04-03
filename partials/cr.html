@@ -12,83 +12,8 @@
         <div class="col-md-16">
             <div class="jumbotron">
                 <div ng-show="isSet(1)">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i>Registros De Incidentes<small> </small></h2>
+                <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i>Historico CR Pendientes<small> </small></h2>
                             <!-- INICIO REGISTRO INCIDENTE -->
-                            <!--<div class= "form-group">
-                            <label class= "col-md-6">Nuevo Incidente: </label>
-
-
-                                  <input maxlength="7" name="nuevo" ng-model="transaccion.INCIDENTE" type= "text" class="form-control" placeholder="INCIDENTE" required/>-->
-
-                            <div class= "form-group">
-                                <label class= "col-md-4">Tipo Incidente: </label>
-
-                                <select ng-model="transaccion.TIPO_INCIDENTE" class="form-control" style="" >
-                                        <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='TT'>TT</option>
-                                        <option value='CR'>CR</option>
-
-                                </select>
-
-                                </div>
-
-                                <div class="input-group">
-                                                            <span class="input-group-addon">Nuevo Incidente...</span>
-                                                            <input type="text" class="form-control" style="min-width: 100px" id="fromDate" placeholder="INCIDENTE" name="nuevo" ng-model="transaccion.INCIDENTE" maxlength="7"/>
-
-
-
-                                    </div>
-
-                                <div class= "form-group">
-                                <label class= "col-md-4">Sistema: </label>
-
-                                <select ng-model="transaccion.SISTEMA" class="form-control" style="" >
-                                        <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='SIEBEL'>SIEBEL</option>
-                                        <option value='FENIX ORACLE'>FENIX ORACLE</option>
-                                        <option value='FENIX ATC'>FENIX ATC</option>
-                                        <option value='QUERY BUILDER'>QUERY BUILDER</option>
-                                        <option value='PNI'>PNI</option>
-                                        <option value='METASOLW(M6)'>METASOLW(M6)</option>
-                                        <option value='GTC'>GTC</option>
-                                </select>
-
-                                </div>
-
-
-                               <div class="input-group" class="input-daterange col-sm-5">
-                                 <span class="input-group-addon">Fecha de Solicitud</span>
-                                                            <input type="text" class="form-control" style="min-width: 100px" id="fechaSolicitud" name="fromDate" placeholder="Seleccione Fecha" ng-model="transaccion.FECHA_SOLICITUD" datetime-picker date-format="yyyy-MM-dd H:mm:00" />
-
-
-                                   </div>
-
-
-                                 <div class="input-group">
-
-
-                                     <span class="input-group-addon" class="col-lg-4" >Observaciones......</span>
-                                                            <input type="text" class="form-control" style="min-width: 150px" id="fromDate" placeholder="Observaciones" name="obs" ng-model="transaccion.OBSERVACIONES" />
-
-                                </div>
-                                <div class="col-md-6"><!--Inicia Div de Botones -->
-                                 <br>
-                                 <div class="form-group">
-                                   <div class="controls">
-                                     <button class="btn btn-success btn-sm" onclick="location.reload();" ng-click="saveTransaccion(transaccion);" ><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
-
-
-                                        <!--<button class="btn btn-success btn-sm" ng-show="transaccion.INCIDENTE!=''" ng-click="saveTransaccionCR(transaccion);"><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>-->
-
-                                     </div>
-                                </div>
-                              </div><!--Finaliza Div de Botones -->
-
-                          </div>
-                        </div>
 
                 <!--<div class="col-xs-3" >
 
@@ -96,8 +21,6 @@
 
 
                            <div class= "form-group">
-
-
 
                                   <input maxlength="7" name="cierre" ng-model="transac.INCIDENTE" type= "text" class="form-control" placeholder="INCIDENTE A CERRAR" required/>
 
@@ -116,77 +39,90 @@
                     <div>
                       <button ng-click="saveTrans(transac);">Cerrar Incidente</button>
 
-
-
                     </div>
 
                     </div>--> <!-- terminar div de buscar incidente-->
 
-
-
                     </div><!-- terminar div de registrar incidente-->
 
-    <div class="row"><hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
+    <!--<div class="row"><hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
 
-        <br></div>
-
-
-
-
-
+        <br></div>-->
 
 
                     <div class="row"><hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
-                            <br></div>
+                            <br>
+                    </div>
 
 
-
-			<div class="row">
-				<ul class="nav nav-list">
-				  <li class="divider">.</li>
-				</ul>
-			 </div>
                     <div class="row">
-		    <table align="center" width="100%">
-			<tr>
-            <div class="row">
-                                            <div class="input-daterange col-sm-5" id="datepicker">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">Desde</span>
-                                                            <input type="text" class="form-control" style="min-width: 100px" id="fromDate" name="fromDate" ng-model="data.fechaIni" />
-                                                            <span class="input-group-addon">Hasta</span>
-                                                            <input type="text" class="form-control" style="min-width: 100px" id="toDate" name="toDate" ng-model="data.fechaFin" />
-                                                            <span class="input-group-btn">
-                                                                   <button class="btn btn-primary btn-sm" value="actualizar!" ng-click="pageChanged();"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
-                                                                    <button class="btn btn-success btn-sm" value="exportar!" ng-click="csvCR();"><span class="glyphicon glyphicon-download-alt"></span> Exportar</button>
+                        <ul class="nav nav-list">
+                          <li class="divider">.</li>
+                        </ul>
+                     </div>
+
+                    <div class="row">
+
+                        <table align="center" width="100%">
+
+                            <tr>
+
+                                <div class="row">
+
+                                    <div class="input-daterange col-lg-5" id="datepicker">
+
+                                        <div class="input-group">
+
+                                            <span class="input-group-addon">Desde</span>
+
+                                            <input type="text" class="form-control" style="min-width: 100px" id="fromDate" name="fromDate" ng-model="data.fechaIni" />
+
+                                            <span class="input-group-addon">Hasta</span>
+
+                                            <input type="text" class="form-control" style="min-width: 100px" id="toDate" name="toDate" ng-model="data.fechaFin" />
+
+                                            <span class="input-group-btn">
+
+                                                <button class="btn btn-primary btn-sm" value="actualizar!" ng-click="pageChanged();"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
+
+                                                <button class="btn btn-success btn-sm" value="exportar!" ng-click="csvCR();"><span class="glyphicon glyphicon-download-alt"></span> Exportar</button>
+
+                                            </span>
 
 
+                                        </div>
 
+                                    </div>
 
-                                                            </span>
+                                </div>
 
+                            <br>
+                            <div class="col-lg-5" id="Incidente" >
 
-                                                        </div>
+                                <input type="text" class="form-control" placeholder="Incidente a Buscar" ng-model="bregistro">
 
+                                <button class="btn btn-success btn-sm" ng-model="transac.INCIDENTE" ng-click="buscarRegistroCR(bregistro);" ><span class="fa fa-search"></span> Buscar</button>
 
-                                                    </div>
-            </div>
+                            </div>
 
-                                                                <input type="text" class="form-control"  class="col-xs-3" placeholder="Incidente a Buscar" ng-model="bregistro">
+                            <br>
 
+                            <td width="33%" align="left">
+                                <br>
+                                CR Abiertos: <b>{{data.totalItems}} </b>
+                            </td>
 
+           <!-- <td width="33%" align="left">
+				CR Finalizados: <b>{{data.totalItems}} </b>
+			</td>-->
 
-                                                                <button class="btn btn-success btn-sm" ng-model="transac.INCIDENTE" ng-click="buscarRegistroCR(bregistro);" ><span class="glyphicon glyphicon-plus-sign"></span> Buscar</button>
+			                 <td width="33%" align="center">
 
-		 	<td width="33%" align="left">
-				Total de Registros: <b>{{data.totalItems}} </b>
-			</td>
-			<td width="33%" align="center">
+                             </td>
 
-                        </td>
-			<td width="33%" align="right">
-				<pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged()" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
-			</td>
+                            <td width="33%" align="right">
+                                <pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged()" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+                            </td>
 			</tr>
 		    </table>
 

@@ -11449,10 +11449,9 @@ private function demePedidoEdatel(){
 
 
 
-
         $query="SELECT LOCALIDAD FROM tbl_georreferenciados";
 
-         echo $query;
+       //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -12761,7 +12760,7 @@ private function demePedidoEdatel(){
             $this->response('',406);
         }
 
-        $query="SELECT count(*) as counter from tbl_cr ";
+        $query="SELECT count(*) as counter from tbl_cr where ESTADO = 'ABIERTO' ";
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter=0;
         if($rr->num_rows > 0){
@@ -12771,10 +12770,21 @@ private function demePedidoEdatel(){
             }
         }
 
+        $query2="SELECT count(*) as cerrados from tbl_cr where ESTADO = 'CERRADO' ";
+        $r2 = $this->mysqli->query($query2) or die($this->mysqli->error.__LINE__);
+        $counter2=0;
+        if($r2->num_rows > 0){
+            $result = array();
+            if($row = $r2->fetch_assoc()){
+                $counter2 = $row['cerrados'];
+            }
+        }
+
+        //echo var_dump($counter2);
 
         $query="select SISTEMA, TIPO_INCIDENTE, INCIDENTE, ESTADO, CAST(TIMEDIFF(FECHA_CIERRE,FECHA_SOLICITUD)
 	            AS CHAR (255)) AS ANS, FECHA_SOLICITUD, FECHA_CIERRE,
-                OBSERVACIONES, USUARIO from tbl_cr order by FECHA_SOLICITUD desc limit 300; ";
+                OBSERVACIONES, USUARIO from tbl_cr where ESTADO not in ('CERRADO') order by FECHA_SOLICITUD desc limit 300; ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 

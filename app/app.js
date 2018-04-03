@@ -5937,27 +5937,46 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 		}
 
         if (transaccion.ESTADO == undefined || transaccion.ESTADO == "") {
-			alert("Selecciona un tipo de Sistema");
+			alert("Selecciona el estado");
 			return;
 		}
 
 
 		if (transaccion.OBSERVACIONES == undefined || transaccion.OBSERVACIONES == "") {
-			alert("Observaciones sin datos");
+			alert("Ingresa Observaciones");
 			return;
 		}
 
 	};
 
 
-$scope.ListaLocalidadesGeo = function (LOCALIDAD) {
+$scope.ListaLocalidadesGeo = function () {
 
 
 
-console.log($scope.getListLocalidadesGeo);
-console.log($scope.ListaLocalidadGeo);
+services.getListLocalidadesGeo().then(function (data) {
 
-    };
+    $scope.ListaLocalidadesGeo = data.data[0];
+
+
+    console.log($scope.ListaLocalidadesGeo);
+    console.log(data.data[0]);
+
+    return data.data;
+
+
+    });
+
+};
+
+$scope.ListaLocalidadesGeo();
+
+
+
+
+
+
+
 
 
 
@@ -6322,6 +6341,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		currentPage: 1,
 		numPerPage: 100,
 		totalItems: 0,
+        totalItems2: 0,
 		fechaIni: "",
 		fechaFin: ""
 	};
@@ -6344,6 +6364,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {
 			$scope.listado_transacciones = data.data[0];
 			$scope.data.totalItems = data.data[1];
+            $scope.data.totalItems2 = data.data[2];
 			return data.data;
 		});
 	}
@@ -6366,6 +6387,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		services.getListadoTransaccionesCR($scope.data.currentPage).then(function (data) {
 			$scope.listado_transacciones = data.data[0];
 			$scope.data.totalItems = data.data[1];
+            $scope.data.totalItems2 = data.data[2];
 			return data.data;
 		});
 
