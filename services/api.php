@@ -4269,6 +4269,7 @@ private function getAgentScore($user){
         if($r->num_rows > 0){
             $result = array();
             while($row = $r->fetch_assoc()){
+                $row['CONCEPTO_ID']=utf8_encode($row['CONCEPTO_ID']);
                 $result[] = $row;
             }
 
@@ -4545,6 +4546,7 @@ private function getAgentScore($user){
 
             while($row = $rr->fetch_assoc()){
                 //$row['label']="Concepto ".$row['label'];
+                $row['CONCEPTO_ID']=utf8_encode($row['CONCEPTO_ID']);
                 $queryConceptos[] = $row;
             }
         }
@@ -4607,6 +4609,7 @@ private function getAgentScore($user){
 
             while($row = $rr->fetch_assoc()){
                 //$row['label']="Concepto ".$row['label'];
+                $row['CONCEPTO_ID']=utf8_encode($row['CONCEPTO_ID']);
                 $queryConceptosNUEVO[] = $row;
             }
         }
