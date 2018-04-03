@@ -1,84 +1,218 @@
 <ol class="breadcrumb">
   <li><a href="./#/">Asignaciones</a></li>
   <li class="active">CR</li>
-
 </ol>
-
-
-
 <div class="row">
-        <ul class="nav nav-pills">
-            <li>
-                    <a>Formas CR</a>
-            </li>
-        </ul>
+    <ul class="nav nav-pills">
+        <li>
+                <a>Formas CR</a>
+        </li>
+    </ul>
 
         <div class="col-md-16">
-            <div class="row">
-                        <div class="col-md-6">
-                            <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i>Nuevo CR<small> </small></h2>
+            <div class="jumbotron">
+                <div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i>Registros CR<small> </small></h2>
 
-                            <div class= "form-group">
-                                <label class= "col-md-4">Tipo Incidente: </label>
+                                <div ng-show="error" class="alert alert-danger">{{error}}</div>
 
-                                <select ng-model="transaccion.TIPO_INCIDENTE" class="form-control" style="" >
+                        </div>
+
+                                 <div class="col-lg-4">
+                                    <br>
+                                    <div class="fileUpload btn btn-primary">
+                                      <span class="glyphicon glyphicon-upload"></span> Seleccionar Archivo
+                                      <input type="file" class='upload' file-model="myFile" />
+                                   </div>
+                                         <button class="btn btn-success btn-md" value="cargar" id="cargar" ng-click="uploadFile();"><span class="glyphicon glyphicon-cloud-upload"></span> Cargar</button>
+                                         <div class="loading-spiner-holder" data-loading ><div class="loading-spiner"><img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="images/loader.gif" /></div></div>
+                                    <div ng-show="error" class="alert alert-danger">{{error}}</div>
+
+                                 </div>
+
+
+                    </div>
+					<div class="row"><hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
+                            <br></div>
+
+                <div class="col-lg-6">
+                    <div class="row">
+
+                           <div class="form-group">
+                                <label for="Negocio">
+                                    Enviado de:
+                                </label>
+                                <select ng-model="transaccion.ENVIADO" class="form-control" style="" >
                                         <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='TT'>TT</option>
-                                        <option value='CR'>CR</option>
-
+                                        <option value='ASIGNACIONES'>ASIGNACIONES</option>
+                                        <option value='DESPACHO'>DESPACHO</option>
+                                        <option value='BRUTAL FORCE'>BRUTAL FORCE</option>
+                                        <option value='PROACTIVIDAD'>PROACTIVIDAD</option>
+                                        <option value='DATA CLEAN'>DATA CLEAN</option>
                                 </select>
-
                             </div>
 
-                                <div class="input-group">
-                                    <span class="input-group-addon">Nuevo Incidente...</span>
-                                    <input type="text" class="form-control" style="min-width: 100px" id="fromDate" placeholder="INCIDENTE" name="nuevo" ng-model="transaccion.INCIDENTE" maxlength="7"/>
+                            <div class="form-group">
+                                <label for="Procesados">
+                                    Usuario Envio:
+                                </label>
+                                <input type="text" ng-model ="transaccion.USUARIOENVIO" id="txtEnvio" name="txtEnvio" placeholder="JBEDOGOM" class="form-control">
+                            </div>
+
+                            <!--<div class="form-group">
+                                <label for="FechaSoli">
+                                    Fecha Solicitud
+                                </label>
+                                <input type="datetime-local" ng-model="transaccion.FECHASOLICITUD" name="transaccion.txtFechaSoli" class="form-control">
+                            </div>-->
+
+
+                            <div class="from-group" id="datetimepicker">
+                                <label for="fechaSolicitud">
+                                    Fecha Solicitud
+                                </label>
+                                <br>
+                                <input type="text" name="fechaSolicitud" id="fechaSolicitud" class="form-control"
+                                    ng-model="transaccion.FECHASOLICITUD" datetime-picker date-format="yyyy-MM-dd H:mm:00">
+                             </div>
+
+
+                          <!--  <div class="form-group">
+                                <label for="fechaSolicitud">
+                                    Fecha Solicitud
+                                </label>
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type='text' class="form-control" ng-model="transaccion.FECHASOLICITUD" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
                                 </div>
-
-                                <div class= "form-group">
-                                    <label class= "col-md-4">Sistema: </label>
-
-                                    <select ng-model="transaccion.SISTEMA" class="form-control" style="" >
-                                            <option value='' disabled>---SELECCIONE---</option>
-                                            <option value='SIEBEL'>SIEBEL</option>
-                                            <option value='FENIX ORACLE'>FENIX ORACLE</option>
-                                            <option value='FENIX ATC'>FENIX ATC</option>
-                                            <option value='QUERY BUILDER'>QUERY BUILDER</option>
-                                            <option value='PNI'>PNI</option>
-                                            <option value='METASOLW(M6)'>METASOLW(M6)</option>
-                                            <option value='GTC'>GTC</option>
-                                    </select>
-                                </div>
+                            </div>-->
 
 
-                               <div class="input-group" class="input-daterange col-sm-5">
-                                 <span class="input-group-addon">Fecha de Solicitud</span>
-                                                            <input type="text" class="form-control" style="min-width: 100px" id="fechaSolicitud" name="fromDate" placeholder="Seleccione Fecha" ng-model="transaccion.FECHA_SOLICITUD" datetime-picker date-format="yyyy-MM-dd H:mm:00" />
+                            <div class="form-group">
+                                <label for="DireccionesCorre">
+                                   Direcciones Corregidas
+                                </label>
+                                <input type="number" min="0" ng-model="transaccion.DIRECCIONES_CORREGIDAS" name="transaccion.Direcciones"
+                                placeholder="Numero Direcciones Corregidas" class="form-control">
+                             </div>
 
-                                </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6" >
+                        <div class="row2">
 
 
-                                <div class="input-group">
+                            <div class="form-group">
+                                <label for="Negocio">
+                                    Solucion:
+                                </label>
+                                <select ng-model="transaccion.SOLUCION" class="form-control" style="" >
+                                        <option value='' disabled>---SELECCIONE---</option>
+                                        <option value='Correcion limites y Poligonos'>CORRECCION LIMITES Y POLIGONOS</option>
+                                        <option value='Ajuste digitacion de red (desplazamientos)'>AJUSTE DIGITACION DE RED (DESPLAZAMIENTOS)</option>
+                                        <option value='Carga Proactiva'>CARGA PROACTIVA</option>
+                                </select>
+                            </div>
 
-                                    <span class="input-group-addon" class="col-lg-4" >Observaciones......</span>
-                                    <input type="text" class="form-control" style="min-width: 150px" id="fromDate" placeholder="Observaciones" name="obs" ng-model="transaccion.OBSERVACIONES" />
+                            <div class="form-group">
+                                <label for="Procesados">
+                                    Insumo:
+                                </label>
+                                <input type="text" ng-model ="transaccion.INSUMO" id="txtInsumo" name="txtInsumo" placeholder="INGRESAR" class="form-control">
+                            </div>
 
-                                </div>
+                            <div class="form-group">
+                                <label for="Observacion">
+                                    Observacion:
+                                </label>
+                                <input type="text" ng-model ="transaccion.OBSERVACION" id="txtObservacion" name="txtObservacion" placeholder="Ingrese Observacion" class="form-control">
+                            </div>
 
-                                <div class="col-md-6"><!--Inicia Div de Botones -->
-                                 <br>
-                                    <div class="form-group">
-                                        <div class="controls">
-                                             <button class="btn btn-success btn-sm" onclick="location.reload();" ng-click="saveTransaccion(transaccion);" ><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
-                                        </div>
+                                <br>
+                                <div class="form-group">
+                                    <div class="controls">
+
+                                        <button class="btn btn-success  btn-sm" ng-click="saveTransaccion(transaccion);" ><span class="glyphicon glyphicon-plus-sign"></span> Guardar</button>
+
+                                         <a href="./#/pni/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</a>
+
+                                        <!--<button class="btn btn-primary btn-sm" ng-click="EditTransaccionKPIS(transaccion);"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>-->
+
+
+                                        <!-- <a href="./#/nca/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</a>
+                                        -->
                                     </div>
-                                </div><!--Finaliza Div de Botones -->
-                          </div>
-                </div>
+                                </div>
+                        </div>
+                    </div>
+
+			<div class="row">
+				<ul class="nav nav-list">
+				  <li class="divider">.</li>
+				</ul>
+			 </div>
+
+<!--
+                    <div class="row">
+		    <table align="center" width="100%">
+			<tr>
+		 	<td width="33%" align="left">
+				Total de Registros: <b>{{data.totalItems}} </b>
+			</td>
+			<td width="33%" align="center">
+
+                        </td>
+			<td width="33%" align="right">
+				<pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged()" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+			</td>
+			</tr>
+		    </table>
+
+                    <table class="table small table-striped table-hover table-bordered table-condensed" width="100%">
+                            <thead>
+                                    <th width="7%">Negocio</th>
+                                    <th width="9%">FechaSoloci</th>
+                                    <th width="9%">Item</th>
+                                    <th width="9%">ANS Actividad</th>
+                                    <th width="9%">Sistema</th>
+                                    <th width="9%">Resultado</th>
+                                    <th width="7%">Procesados</th>
+                                    <th width="9%">Inconsistentes</th>
+                                    <th width="9%">Observaciones</th>
+                                    <th width="9%">FechaProce</th>
+                                    <th width="9%">Responsable</th>
+                                    <th ng-hide="true" width="4%">Acciones</th>
+                            </thead>
+                            <tbody>
+                                    <tr ng-repeat="data in listado_transacciones| orderBy:'ID':true ">
+                                    <td>{{data.NEGOCIO}}</td>
+                                    <td>{{data.FECHASOLICI}}</td>
+                                    <td>{{data.ITEMS}}</td>
+                                    <td>{{data.ANSACTIVIDAD}}</td>
+                                    <td>{{data.SISTEMAINFO}}</td>
+                                    <td>{{data.RESULTADOCARGA}}</td>
+                                    <td>{{data.ITEMSPROCESADO}}</td>
+                                    <td>{{data.ITEMSINCONSISTENTES}}</td>
+                                    <td>{{data.OBSERVACIONES}}</td>
+                                    <td>{{data.FECHAPROCESADO}}</td>
+                                    <td>{{data.RESPONSABLE}}</td>
+                                    <td ng-hide="true" align="center"><button class="btn btn-success btn-xs" value="edit!" ng-click="getTransaccionKPIS();"><i class="fa fa-pencil fa-lg"></i></button></td>
+                            </tr>
+                            </tbody>
+                    </table>
+			<pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged()" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
+                    </div>
+-->
+
+                  </div>
+            </div>
         </div>
-
-</div>
-
+    </div>
 <br>
 <div class="pull-right"><!--Flecha Arriba -->
     <a href="#" class="scrollToTop"><i class="fa fa-chevron-circle-up fa-2x" data-toggle="tooltip" title="Volver arriba" data-placement="right"></i></a>
