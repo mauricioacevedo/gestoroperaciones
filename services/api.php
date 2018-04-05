@@ -19370,10 +19370,11 @@ public function pp(&$var){
         }
 
         if ($observacion == "RC-SIEBEL"){
-            $sqlupdate = "update informe_petec_pendientesm set CONCEPTO_ID = '$observacion' where PEDIDO_ID = '$idpedido' ";
+            $sqlupdate = "update informe_petec_pendientesm set CONCEPTO_ID = '$observacion', STATUS = 'PENDI_PETEC' ".
+                " where PEDIDO_ID = '$idpedido'  ";
+            $cerrar = false;
         }
 
-        echo var_dump($observacion);
 
         if($cerrar){
             $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='CERRADO_PETEC',ASESOR='' WHERE ID=$idpedido ";
