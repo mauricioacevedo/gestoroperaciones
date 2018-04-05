@@ -19369,12 +19369,6 @@ public function pp(&$var){
 
         }
 
-        if ($observacion == "RC-SIEBEL"){
-            $sqlupdate = "update informe_petec_pendientesm set CONCEPTO_ID = '$observacion', STATUS = 'PENDI_PETEC' ".
-                " where PEDIDO_ID = '$idpedido'  ";
-            $cerrar = false;
-        }
-
 
         if($cerrar){
             $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='CERRADO_PETEC',ASESOR='' WHERE ID=$idpedido ";
@@ -19466,7 +19460,7 @@ public function pp(&$var){
 
             //echo var_dump($observacion);
 
-            if($observacion == "RECONFIGURAR OFERTA (14)")
+            if($observacion == "RC-SIEBEL")
 
             {
 
@@ -19499,6 +19493,8 @@ public function pp(&$var){
                 $insertReconf = $this->mysqli->query($queryReconf);
                 //echo var_dump("ingreso ohoho siii");
             }
+
+
 
             //Activiy Feed ------------------------------------------------------------------
             $sqlFeed =  "insert into portalbd.activity_feed ( ".
