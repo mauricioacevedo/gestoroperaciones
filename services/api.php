@@ -1485,7 +1485,11 @@ class API extends REST {
         }
         $today = date("Y-m-d H:i:s");
 
-
+        if ($observaciones == "RC-SIEBEL"){
+            $queryRC = "update informe_petec_pendientesm set CONCEPTO_ID = '$observaciones' where PEDIDO_ID = '$pedidoid' ";
+            $r = $this->mysqli->query($queryRC) or die($this->mysqli->error.__LINE__);
+            $this->response(json_encode(array("msg"=>"N/A","data" => $today,"agent_score"=>$agentScore)),200);
+        }
 
         //$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
         if(!empty($pedido)){
