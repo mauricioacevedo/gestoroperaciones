@@ -124,6 +124,15 @@
                                             <option value="NUEVOS_PRIMERO">NUEVOS PRIMERO</option>
 
                                         </select>
+
+                                        <select class="btn btn-default btn-xs grupo-select" id="sel1"
+                                                ng-model="ordenamientoDemepedidoNuevo" style="width:auto;">
+                                            <!--option value="FECHA_CITA">FECHA CITA</option-->
+                                            <option value="ORDEN_DESC">DESC</option>
+                                            <!--option value="FECHA_INGRESO">FECHA INGRESO</option-->
+                                            <option value="ORDEN_ASC">ASC</option>
+
+                                        </select>
                                         <button class="btn btn-success btn-xs"
                                                 ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO',ordenamientoDemepedidoNuevo);">
                                             <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
