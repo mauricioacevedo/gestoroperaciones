@@ -3401,7 +3401,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION').then(function (data) {
 
 		$scope.ordenamientoDemepedidoReconfiguracion = data.data['VALOR'];
-        $scope.prioridadDemepedidoNuevoR = data.data['VALOR'];
+        $scope.ordenEntregapedidoR = data.data['VALOR'];
 		//$scope.ordenamientoDemepedidoNuevo=data.data['VALOR'];
 		$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
 		$scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
