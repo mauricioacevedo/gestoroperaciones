@@ -125,7 +125,7 @@
 
                                         </select>
 
-                                        <select class="btn btn-default btn-xs grupo-select" id="sel1"
+                                        <select class="btn btn-default btn-xs grupo-select" id="sel2"
                                                 ng-model="ordenamientoDemepedidoNuevo" style="width:auto;">
                                             <!--option value="FECHA_CITA">FECHA CITA</option-->
                                             <option value="ORDEN_DESC">DESC</option>
@@ -154,6 +154,16 @@
                                             <option value="FECHA_ESTADO">FECHA ESTADO</option>
                                             <!--option value="FECHA_INGRESO">FECHA INGRESO</option-->
                                         </select>
+
+                                         <select class="btn btn-default btn-xs grupo-select" id="demerec2"
+                                                ng-model="ordenamientoDemepedidoReconfiguracion" style="width:auto;">
+                                            <!--option value="FECHA_CITA">FECHA CITA</option-->
+                                            <option value="ORDEN_DESC">DESC</option>
+                                            <!--option value="FECHA_INGRESO">FECHA INGRESO</option-->
+                                            <option value="ORDEN_ASC">ASC</option>
+
+                                        </select>
+
                                         <button class="btn btn-success btn-xs"
                                                 ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION',ordenamientoDemepedidoReconfiguracion);">
                                             <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
