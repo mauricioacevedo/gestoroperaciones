@@ -8537,7 +8537,7 @@ private function getAgentScore($user){
         $sql="SELECT * FROM gestor_parametros ".
             " WHERE VARIABLE='$param' limit 1";
 
-        echo var_dump($param);
+        //echo var_dump($param);
 
         $rr = $this->mysqli->query($sql);
         if($rr->num_rows > 0){
