@@ -3375,7 +3375,9 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
 			}
 
+
             console.log($scope.ordenEntregaPedido);
+
 
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION") {
 				$scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
