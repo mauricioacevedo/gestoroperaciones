@@ -3351,11 +3351,11 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO" || parametro == "ORDEN ENTREGA PEDIDO") {
 				$scope.ordenamientoDemepedido = valor;
-                $scope.prioridadDemepedidoNuevo = valor;
+                //$scope.prioridadDemepedidoNuevo = valor;
 			}
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION" || parametro == "ORDEN ENTREGA DEMEPEDIDO") {
+			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION" || parametro == "ORDEN ENTREGA PEDIDO") {
 				$scope.ordenamientoDemepedidoReconfiguracion = valor;
-                $scope.prioridadDemepedidoNuevoR = valor;
+                //$scope.prioridadDemepedidoNuevoR = valor;
 			}
 			$scope.buscarParametro(parametro);
 			return data.data;
