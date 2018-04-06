@@ -3370,7 +3370,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO" || parametro == "ORDEN ENTREGA PEDIDO") {
 				$scope.UsuarioParametro = data.data['USUARIO_ID'];
 				$scope.ordenamientoDemepedido = data.data['VALOR'];
-                $scope.prioridadDemepedidoNuevo = data.data['VALOR'];
+                $scope.prioridadDemepedidoNuevo = data.data['ORDEN'];
 				$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
 			}
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION") {
@@ -3389,7 +3389,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 		$scope.ordenamientoDemepedido = data.data['VALOR'];
 		$scope.ordenamientoDemepedidoNuevo = data.data['VALOR'];
-        $scope.prioridadDemepedidoNuevo = data.data['VALOR'];
+        $scope.prioridadDemepedidoNuevo = data.data['ORDEN'];
 		$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
 		$scope.UsuarioParametro = data.data['USUARIO_ID'];
 		return data.data;
