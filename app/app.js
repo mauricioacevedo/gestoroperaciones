@@ -3367,7 +3367,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.buscarParametro = function (parametro) {
 
 		services.buscarParametro(parametro).then(function (data) {
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
+			if (parametro == "FECHA_ORDEN_DEMEPEDIDO" || parametro == 'ORDEN ENTREGA DEMEPEDIDO') {
 				$scope.UsuarioParametro = data.data['USUARIO_ID'];
 				$scope.ordenamientoDemepedido = data.data['VALOR'];
 				$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
