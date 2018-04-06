@@ -3349,11 +3349,13 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			var seconds = $scope.doubleDigit(date1.getSeconds());
 			$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
+			if (parametro == "FECHA_ORDEN_DEMEPEDIDO" || parametro == 'ORDEN ENTREGA DEMEPEDIDO') {
 				$scope.ordenamientoDemepedido = valor;
+                $scope.prioridadDemepedidoNuevo = valor;
 			}
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION") {
+			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION" || parametro == 'ORDEN ENTREGA DEMEPEDIDO') {
 				$scope.ordenamientoDemepedidoReconfiguracion = valor;
+                $scope.prioridadDemepedidoNuevoR = valor;
 			}
 			$scope.buscarParametro(parametro);
 			return data.data;
