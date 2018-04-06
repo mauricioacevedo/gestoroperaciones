@@ -3349,11 +3349,11 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			var seconds = $scope.doubleDigit(date1.getSeconds());
 			$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO" || parametro == 'ORDEN ENTREGA PEDIDO') {
+			if (parametro == "FECHA_ORDEN_DEMEPEDIDO" || parametro == "ORDEN ENTREGA PEDIDO") {
 				$scope.ordenamientoDemepedido = valor;
                 $scope.prioridadDemepedidoNuevo = valor;
 			}
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION" || parametro == 'ORDEN ENTREGA DEMEPEDIDO') {
+			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION" || parametro == "ORDEN ENTREGA DEMEPEDIDO") {
 				$scope.ordenamientoDemepedidoReconfiguracion = valor;
                 $scope.prioridadDemepedidoNuevoR = valor;
 			}
@@ -3367,7 +3367,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.buscarParametro = function (parametro) {
 
 		services.buscarParametro(parametro).then(function (data) {
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO" || parametro == 'ORDEN ENTREGA PEDIDO') {
+			if (parametro == "FECHA_ORDEN_DEMEPEDIDO" || parametro == "ORDEN ENTREGA PEDIDO") {
 				$scope.UsuarioParametro = data.data['USUARIO_ID'];
 				$scope.ordenamientoDemepedido = data.data['VALOR'];
                 $scope.prioridadDemepedidoNuevo = data.data['VALOR'];
