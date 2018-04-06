@@ -3395,6 +3395,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		return data.data;
 	});
 
+    console.log(scope.ordenEntregaPedido);
+
 
 	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION').then(function (data) {
 
