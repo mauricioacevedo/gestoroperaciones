@@ -3380,7 +3380,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				$scope.ordenamientoDemepedido = data.data['VALOR'];
                 //$scope.ordenEntregaPedido = data.data['VALOR'];
 				$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
-                console.log($scope.UsuarioParametro);
 			}
 
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION") {
