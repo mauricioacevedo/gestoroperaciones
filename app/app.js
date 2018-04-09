@@ -3298,7 +3298,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.listado_tme = [];
 	$scope.lastUpdate = "";
 	$scope.ordenamientoDemepedido = '';
-    $rootScope.ordenEntregaPedido = '';
+    $scope.ordenEntregaPedido = '';
     $scope.ordenEntregapedidoR = '';
 	$scope.ordenamientoDemepedidoReconfiguracion = '';
 	$scope.ordenamientoDemepedidoUpdate = '';
