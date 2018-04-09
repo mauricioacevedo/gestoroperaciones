@@ -3353,9 +3353,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
 				$scope.ordenamientoDemepedidoNuevo = valor;
                 $scope.ordenEntregaPedido = valor;
-
-
-                //$scope.prioridadDemepedidoNuevo = valor;
 			}
 
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION") {
@@ -3363,7 +3360,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                 //$scope.prioridadDemepedidoNuevoR = valor;
 			}
 
-            console.log($scope.ordenEntregaPedido);
 			$scope.buscarParametro(parametro);
 			return data.data;
 		});
