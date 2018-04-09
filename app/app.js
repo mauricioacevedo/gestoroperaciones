@@ -3360,10 +3360,10 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                 //$scope.prioridadDemepedidoNuevoR = valor;
 			}
 
-            if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
+         /*   if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
 				$scope.ordenEntregaPedido = valor;
 
-			}
+			}*/
 
 			$scope.buscarParametro(parametro);
 			return data.data;
