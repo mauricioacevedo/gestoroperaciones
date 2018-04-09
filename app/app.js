@@ -3380,7 +3380,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				$scope.ordenamientoDemepedido = data.data['VALOR'];
                 //$scope.ordenEntregaPedido = data.data['VALOR'];
 				$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
-                console.log($scope.ordenamientoDemepedido);
+                console.log($scope.UsuarioParametro);
 			}
 
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION") {
@@ -3413,7 +3413,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
     services.buscarParametro('ORDEN_ENTREGA_PEDIDO').then(function (data) {
         $scope.ordenEntregaPedido = data.data['VALOR'];
-        console.log($scope.ordenEntregaPedido);
+        //lo entrega bien
+        //console.log($scope.ordenEntregaPedido);
 		return data.data;
 	});
 
