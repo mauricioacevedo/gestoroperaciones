@@ -3392,6 +3392,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				$scope.ordenEntregaPedido = data.data['VALOR'];
 			}
 
+
             console.log($scope.ordenEntregaPedido);
 			return data.data;
 		});
