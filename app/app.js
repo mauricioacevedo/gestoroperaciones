@@ -3402,7 +3402,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 		$scope.ordenamientoDemepedido = data.data['VALOR'];
 		$scope.ordenamientoDemepedidoNuevo = data.data['VALOR'];
-        $scope.ordenEntregaPedido = data.data['VALOR'];
+        $scope.ordenEntregaPedidos = data.data['VALOR'];
 		$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
 		$scope.UsuarioParametro = data.data['USUARIO_ID'];
         //console.log($scope.ordenEntregaPedido);
