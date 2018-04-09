@@ -3384,7 +3384,11 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
 			}
 
-            //console.log($scope.ordenEntregaPedido);
+            if (parametro == "ORDEN_ENTREGA_PEDIDO") {
+				$scope.ordenEntregaPedido = data.data['VALOR'];
+			}
+
+            console.log($scope.ordenEntregaPedido);
 			return data.data;
 		});
 
@@ -3399,6 +3403,12 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
 		$scope.UsuarioParametro = data.data['USUARIO_ID'];
 
+        console.log($scope.ordenEntregaPedido);
+		return data.data;
+	});
+
+    services.buscarParametro('ORDEN_ENTREGA_PEDIDO').then(function (data) {
+        $scope.ordenEntregaPedido = data.data['VALOR'];
         console.log($scope.ordenEntregaPedido);
 		return data.data;
 	});
