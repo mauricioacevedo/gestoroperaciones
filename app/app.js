@@ -3350,8 +3350,10 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			var seconds = $scope.doubleDigit(date1.getSeconds());
 			$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
+			if (parametro == "FECHA_ORDEN_DEMEPEDIDO" || parametro == "ORDEN_ENTREGA_PEDIDO") {
 				$scope.ordenamientoDemepedidoNuevo = valor;
+                $scope.ordenEntregaPedido = valor;
+
 			}
 
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION") {
