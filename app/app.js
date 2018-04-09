@@ -3383,8 +3383,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                 $scope.prioridadDemepedidoNuevoR = data.data['VALOR'];
 				$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
 			}
-             //console.log($scope.ordenEntregaPedido);
 
+            console.log($scope.ordenEntregaPedido);
 			return data.data;
 		});
 
