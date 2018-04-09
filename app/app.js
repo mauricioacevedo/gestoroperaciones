@@ -3393,7 +3393,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			}
 
 
-            console.log($scope.ordenEntregaPedido);
+            //console.log($scope.ordenEntregaPedido);
 			return data.data;
 		});
 
@@ -3413,7 +3413,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
     services.buscarParametro('ORDEN_ENTREGA_PEDIDO').then(function (data) {
         $scope.ordenEntregaPedido = data.data['VALOR'];
-        //console.log($scope.ordenEntregaPedido);
+        console.log($scope.ordenEntregaPedido);
 		return data.data;
 	});
 
