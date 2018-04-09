@@ -3354,7 +3354,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				$scope.ordenamientoDemepedidoNuevo = valor;
                 $scope.ordenEntregaPedido = valor;
 
-                console.log($scope.ordenEntregaPedido);
+
                 //$scope.prioridadDemepedidoNuevo = valor;
 			}
 
@@ -3363,6 +3363,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                 //$scope.prioridadDemepedidoNuevoR = valor;
 			}
 
+            console.log($scope.ordenEntregaPedido);
 			$scope.buscarParametro(parametro);
 			return data.data;
 		});
