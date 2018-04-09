@@ -3361,6 +3361,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
             if (parametro == "ORDEN_ENTREGA_PEDIDO") {
 				$scope.ordenEntregaPedido = valor;
+                console.log(valor);
                 //$scope.prioridadDemepedidoNuevoR = valor;
 			}
 
@@ -3411,7 +3412,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
     services.buscarParametro('ORDEN_ENTREGA_PEDIDO').then(function (data) {
         $scope.ordenEntregaPedido = data.data['VALOR'];
-        console.log($scope.ordenEntregaPedido);
+
 		return data.data;
 	});
 
