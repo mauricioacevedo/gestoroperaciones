@@ -3352,6 +3352,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
 				$scope.ordenamientoDemepedidoNuevo = valor;
+                $scope.ordenEntregaPedido = valor1;
 
 			}
 
@@ -3406,7 +3407,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         $scope.ordenEntregaPedido = data.data['ORDEN'];
 		$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
 		$scope.UsuarioParametro = data.data['USUARIO_ID'];
-        console.log($scope.ordenEntregaPedido);
+        //console.log($scope.ordenEntregaPedido);
 		return data.data;
 	});
 
