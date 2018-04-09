@@ -3386,9 +3386,10 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				$scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
 				$scope.ordenamientoDemepedidoReconfiguracion = data.data['VALOR'];
                 $scope.prioridadDemepedidoNuevoR = data.data['VALOR'];
-                $scope.ordenEntregapedidoR = = data.data['ORDEN'];
+                $scope.ordenEntregapedidoR = data.data['ORDEN'];
 				$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
 			}
+
 
            /*if (parametro == "ORDEN_ENTREGA_PEDIDO") {
 				$scope.ordenEntregaPedidos = data.data['VALOR'];
