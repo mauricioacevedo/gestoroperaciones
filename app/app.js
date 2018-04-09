@@ -3298,7 +3298,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.listado_tme = [];
 	$scope.lastUpdate = "";
 	$scope.ordenamientoDemepedido = '';
-    $scope.ordenEntregaPedido = 'ASC';
+    $scope.ordenEntregaPedido = '';
+    $scope.ordenEntregapedidoR = '';
 	$scope.ordenamientoDemepedidoReconfiguracion = '';
 	$scope.ordenamientoDemepedidoUpdate = '';
     $rootScope.errorDatos = null;
@@ -3385,6 +3386,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				$scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
 				$scope.ordenamientoDemepedidoReconfiguracion = data.data['VALOR'];
                 $scope.prioridadDemepedidoNuevoR = data.data['VALOR'];
+                $scope.ordenEntregapedidoR = = data.data['ORDEN'];
 				$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
 			}
 
@@ -3419,7 +3421,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION').then(function (data) {
 
 		$scope.ordenamientoDemepedidoReconfiguracion = data.data['VALOR'];
-        $scope.ordenEntregapedidoR = data.data['VALOR'];
+        $scope.ordenEntregapedidoR = data.data['ORDEN'];
 		//$scope.ordenamientoDemepedidoNuevo=data.data['VALOR'];
 		$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
 		$scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
