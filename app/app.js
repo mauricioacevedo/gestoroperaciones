@@ -3353,13 +3353,13 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
 				$scope.ordenamientoDemepedidoNuevo = valor;
-                $scope.ordenEntregaPedido = orden;
+                $scope.ordenEntregaPedido = valor;
 
 			}
 
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION") {
 				$scope.ordenamientoDemepedidoReconfiguracion = valor;
-                $scope.ordenEntregapedidoR = orden;
+                $scope.ordenEntregapedidoR = valor;
 			}
 
           /* if (parametro == "ORDEN_ENTREGA_PEDIDO") {
