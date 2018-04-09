@@ -3360,6 +3360,13 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                 //$scope.prioridadDemepedidoNuevoR = valor;
 			}
 
+            if (parametro == "ORDEN_ENTREGA_PEDIDO") {
+				$scope.ordenEntregaPedido = valor;
+                //$scope.prioridadDemepedidoNuevoR = valor;
+			}
+
+
+
 			$scope.buscarParametro(parametro);
 			return data.data;
 		});
