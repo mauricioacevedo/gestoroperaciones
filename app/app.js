@@ -3352,9 +3352,12 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
 				$scope.ordenamientoDemepedidoNuevo = valor;
-                $scope.ordenEntregaPedido = valor1;
+                $scope.ordenEntregaPedido = valor;
+
+                console.log($scope.ordenEntregaPedido);
                 //$scope.prioridadDemepedidoNuevo = valor;
 			}
+
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION") {
 				$scope.ordenamientoDemepedidoReconfiguracion = valor;
                 //$scope.prioridadDemepedidoNuevoR = valor;
