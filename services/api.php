@@ -8482,7 +8482,7 @@ private function getAgentScore($user){
         $orden = $this->_request['ordenEntregaPedido'];
 
         $sql="UPDATE gestor_parametros ".
-            " SET VALOR='$value', ORDEN='$orden' ,USUARIO_ID='$user' where VARIABLE='$param'";
+            " SET VALOR='$value',USUARIO_ID='$user', ORDEN='$orden' where VARIABLE='$param'";
         $rr = $this->mysqli->query($sql);
 
         // SQL Feed----------------------------------
