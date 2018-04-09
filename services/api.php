@@ -8515,7 +8515,7 @@ private function getAgentScore($user){
 
     private function buscarParametroFechaDemePedido($param){
 
-        $sql="SELECT VALOR FROM gestor_parametros ".
+        $sql="SELECT * FROM gestor_parametros ".
             " WHERE VARIABLE='$param' limit 1";
 
         $rr = $this->mysqli->query($sql);
