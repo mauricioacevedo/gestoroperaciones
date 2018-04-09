@@ -3339,7 +3339,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 
 	/* FUNCION PARA ACTUALIZAR LOS PARAMETROS DEL SISTEMA */
-	$scope.updateParametro = function (parametro, valor) {
+	$scope.updateParametro = function (parametro, valor, ordenamientoDemepedido) {
 
 		services.updateParametro(parametro, valor, ordenamientoDemepedido , $rootScope.logedUser.login).then(function (data) {
 			var date1 = new Date();
