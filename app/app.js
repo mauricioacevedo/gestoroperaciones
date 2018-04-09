@@ -3339,9 +3339,9 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 
 	/* FUNCION PARA ACTUALIZAR LOS PARAMETROS DEL SISTEMA */
-	$scope.updateParametro = function (parametro, valor, ordenamiento) {
+	$scope.updateParametro = function (parametro, valor, $rootScope.ordenamiento) {
 
-		services.updateParametro(parametro, valor, $rootScope.logedUser.login, ordenamiento).then(function (data) {
+		services.updateParametro(parametro, valor, $rootScope.logedUser.login, $rootScope.ordenamiento).then(function (data) {
 			var date1 = new Date();
 			var year = date1.getFullYear();
 			var month = $scope.doubleDigit(date1.getMonth() + 1);
