@@ -8474,12 +8474,12 @@ private function getAgentScore($user){
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
 
-        echo var_dump($galleta);
+        //echo var_dump($galleta);
 
         $param = $this->_request['parametro'];
         $value = $this->_request['valor'];
         $user = $this->_request['user'];
-        $orden = $this->_request['ordenEntregaPedido'];
+        $orden = $this->_request['ORDEN'];
 
         $sql="UPDATE gestor_parametros ".
             " SET VALOR='$value', USUARIO_ID='$user', ORDEN='$orden' where VARIABLE='$param'";
