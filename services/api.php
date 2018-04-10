@@ -8480,6 +8480,8 @@ private function getAgentScore($user){
         $value = $this->_request['valor'];
         $user = $this->_request['user'];
         $orden = $this->_request['ordenEntregaPedido'];
+        echo var_dump($orden);
+
 
         $sql="UPDATE gestor_parametros ".
             " SET VALOR='$value',USUARIO_ID='$user', ORDEN='$orden' where VARIABLE='$param'";
