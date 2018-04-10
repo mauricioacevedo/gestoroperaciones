@@ -3299,7 +3299,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.lastUpdate = "";
 	$scope.ordenamientoDemepedido = '';
     $scope.ordenEntregaPedido = '';
-    $scope.ordenEntregapedidoR = '';
+    $scope.ordenEntregaPedidoR = '';
 	$scope.ordenamientoDemepedidoReconfiguracion = '';
 	$scope.ordenamientoDemepedidoUpdate = '';
     $rootScope.errorDatos = null;
