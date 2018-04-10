@@ -8898,7 +8898,7 @@ private function getAgentScore($user){
                 $plaza2.
                 " ORDER BY FECHA_INGRESO ASC ";
 
-            echo var_dump($sqlllamadas);
+
 
 
             $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
