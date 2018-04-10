@@ -8845,6 +8845,8 @@ private function getAgentScore($user){
                     $plaza2.
                     " ORDER BY $parametroBusqueda ASC ";
 
+                echo $sqlllamadas;
+
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
                 if($rra->num_rows > 0){//recorro los registros de la consulta para
