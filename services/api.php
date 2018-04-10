@@ -8845,7 +8845,7 @@ private function getAgentScore($user){
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
-                    " ORDER BY $parametroBusqueda, $parametroOrdenRecon ";
+                    " ORDER BY $parametroBusqueda $parametroOrdenRecon ";
 
                 echo $sqlllamadas;
 
