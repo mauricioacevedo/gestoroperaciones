@@ -8691,6 +8691,8 @@ private function getAgentScore($user){
         $STATUS="PENDI_PETEC";
 
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
+        $parametroOrdenRecon= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO_R');
+        $parametroOrdenAsig= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
 
         //echo var_dump("Michael ".$concepto);
         /* if($fuente="SIEBEL"){
@@ -8843,9 +8845,9 @@ private function getAgentScore($user){
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
-                    " ORDER BY $parametroBusqueda $parametroOrden ";
+                    " ORDER BY $parametroBusqueda $parametroOrdenRecon ";
 
-                echo $sqlllamadas;
+                //echo $sqlllamadas;
 
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
@@ -8996,7 +8998,7 @@ private function getAgentScore($user){
             $plaza.
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-            " order by b.$parametroBusqueda ASC";
+            " order by b.$parametroBusqueda b.$parametroOrdenAsig";
             //echo var_dump ($concepto);
             //echo var_dump ($query1);
 
