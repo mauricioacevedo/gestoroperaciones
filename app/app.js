@@ -3282,7 +3282,7 @@ app.controller('DocuActivacion', function ($scope, $rootScope, $http, $location,
 /**
  * Indicadores Asignaciones
  * */
-app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, services, notify) {
+app.controller('IndicadoresCtrlF', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, $base64, services, notify) {
 
 
 	var userID = $cookieStore.get('logedUser').login;
@@ -15571,7 +15571,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				var counter = $rootScope.lightkpi[i].COUNTER;
 				var concepto_id = $rootScope.lightkpi[i].CONCEPTO_ID;
 
-				if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'PUMED' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD') {
+				if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'PUMED' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD' || concepto_id == 'RECONFIGURACION EN OFERTA' || concepto_id == 'VERIFICAR DISPONIBILIDAD' || concepto_id == 'PENDIENTE PROVISION' || concepto_id == 'RECONFIGURAR POR COBERTURA' || concepto_id == 'FACTIBILIDAD MANUAL' || concepto_id == 'VERIFICAR ASIGNACION' || concepto_id == 'CONSERVAR NUMERO') {
 					negocioAsingaciones += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioAsignaciones = parseInt($rootScope.totalNegocioAsignaciones) + parseInt(counter);
 				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == '92' || concepto_id
