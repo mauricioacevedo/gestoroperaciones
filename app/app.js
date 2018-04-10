@@ -3361,14 +3361,14 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                 //$scope.ordenEntregapedidoR = orden;
 			}
 
-          /*  if (parametro == "ORDEN_ENTREGA_PEDIDO") {
+           if (parametro == "ORDEN_ENTREGA_PEDIDO") {
 				$scope.ordenEntregaPedido = valor  ;
 
-            }*/
+            }
 
-           /*  if (parametro == "ORDEN_ENTREGA_PEDIDO_R") {
+            if (parametro == "ORDEN_ENTREGA_PEDIDO_R") {
 				$scope.ordenEntregaPedidoR = valor;
-            }*/
+            }
 
 			$scope.buscarParametro(parametro);
 			return data.data;
