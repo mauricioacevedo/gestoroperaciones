@@ -3374,7 +3374,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			return data.data;
 		});
 
-			if (parametro == "ORDEN_ENTREGA_PEDIDO") {
+			if (parametro == "ORDEN_ENTREGA_PEDIDO")
+            {
 				parametro = 'FECHA_ORDEN_DEMEPEDIDO';
                 valor = $scope.ordenamientoDemepedidoNuevo;
 				services.updateParametro(parametro, valor, $rootScope.logedUser.login).then(function (data) {
@@ -3387,13 +3388,9 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				var seconds = $scope.doubleDigit(date1.getSeconds());
 
 				$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-				console.log($scope.ordenamientoDemepedido);
-			}
-            $scope.buscarParametro(parametro);
-			return data.data;
-		});
-
-    };
+				//console.log($scope.ordenamientoDemepedido);
+		          });
+            }
 
 
 	$scope.buscarParametro = function (parametro) {
