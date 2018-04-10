@@ -3374,12 +3374,11 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			return data.data;
 		});
 
-
-	   services.updateParametro(parametro, valor, $rootScope.logedUser.login).then(function (data) {
 			if (parametro == "ORDEN_ENTREGA_PEDIDO") {
 				parametro = 'FECHA_ORDEN_DEMEPEDIDO';
                 valor = $scope.ordenamientoDemepedidoNuevo;
-				var date1 = new Date();
+				services.updateParametro(parametro, valor, $rootScope.logedUser.login).then(function (data) {
+                var date1 = new Date();
 				var year = date1.getFullYear();
 				var month = $scope.doubleDigit(date1.getMonth() + 1);
 				var day = $scope.doubleDigit(date1.getDate());
