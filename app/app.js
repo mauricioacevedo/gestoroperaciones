@@ -15574,7 +15574,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'PUMED' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD' || concepto_id == 'RECONFIGURACION EN OFERTA' || concepto_id == 'VERIFICAR DISPONIBILIDAD' || concepto_id == 'PENDIENTE PROVISION' || concepto_id == 'RECONFIGURAR POR COBERTURA' || concepto_id == 'FACTIBILIDAD MANUAL' || concepto_id == 'VERIFICAR ASIGNACION' || concepto_id == 'CONSERVAR NUMERO') {
                     var conceptosFenix= ['PETEC','OKRED','PETEC-BOG','PEOPP','19','O-13','O-15','O-106','PUMED'];
                     var pedido_oferta='';
-                    if(conceptosFenix.indexOf(concepto_id)) pedido_oferta='Pedidos';
+                    if(conceptosFenix.indexOf(concepto_id)>-1) pedido_oferta='Pedidos';
                     else pedido_oferta='Ofertas';
 					negocioAsingaciones += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; "+pedido_oferta+"</strong></i></font></td></tr>";
 					$rootScope.totalNegocioAsignaciones = parseInt($rootScope.totalNegocioAsignaciones) + parseInt(counter);
@@ -15582,7 +15582,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
                            == 'RC-SIEBEL') {
                     var conceptosFenix= [ '14','99','92'];
                     var pedido_oferta='';
-                    if(conceptosFenix.indexOf(concepto_id)) pedido_oferta='Pedidos';
+                    if(conceptosFenix.indexOf(concepto_id) > -1) pedido_oferta='Pedidos';
                     else pedido_oferta='Ofertas';
 
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; "+pedido_oferta+"</strong></i></font></td></tr>";
@@ -15590,7 +15590,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				} else if (concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL') {
                     var conceptosFenix= [ 'O-101'];
                     var pedido_oferta='';
-                    if(conceptosFenix.indexOf(concepto_id)) pedido_oferta='Pedidos';
+                    if(conceptosFenix.indexOf(concepto_id) > -1) pedido_oferta='Pedidos';
                     else pedido_oferta='Ofertas';
 
 
