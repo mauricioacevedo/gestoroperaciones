@@ -3362,7 +3362,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			}
 
             if (parametro == "ORDEN_ENTREGA_PEDIDO") {
-				$scope.ordenEntregaPedido = valor;
+				valor = $scope.ordenEntregaPedido ;
+                console.log(valor);
             }
 
              if (parametro == "ORDEN_ENTREGA_PEDIDO_R") {
