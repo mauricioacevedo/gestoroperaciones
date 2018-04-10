@@ -8845,7 +8845,7 @@ private function getAgentScore($user){
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
-                    " ORDER BY $parametroBusqueda $parametroOrdenRecon ";
+                    " ORDER BY $parametroBusqueda, $parametroOrdenRecon ";
 
                 //echo $sqlllamadas;
 
@@ -8998,7 +8998,7 @@ private function getAgentScore($user){
             $plaza.
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-            " order by b.$parametroBusqueda b.$parametroOrdenAsig";
+            " order by b.$parametroBusqueda, b.$parametroOrdenAsig";
             //echo var_dump ($concepto);
             //echo var_dump ($query1);
 
