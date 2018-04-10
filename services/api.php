@@ -8805,7 +8805,7 @@ private function getAgentScore($user){
             $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION');
             $parametroOrden= $this->buscarParametroOrdenDemePedido('ORDEN_ENTREGA_PEDIDO_R');
 
-            echo var_dump($parametroOrden);
+            echo ($parametroOrden);
 
             //reviso si hay llamadas que se deben hacer y las entrego de primeras
             $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA, PROGRAMACION ".
