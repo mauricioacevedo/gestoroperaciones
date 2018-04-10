@@ -3377,6 +3377,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	   services.updateParametro(parametro, valor, $rootScope.logedUser.login).then(function (data) {
 			if ( parametro == "FECHA_ORDEN_DEMEPEDIDO" || parametro == "ORDEN_ENTREGA_PEDIDO") {
 				$scope.ordenEntregaPedido = valor;
+                $scope.ordenamientoDemepedidoNuevo = valor;
+
 				var date1 = new Date();
 				var year = date1.getFullYear();
 				var month = $scope.doubleDigit(date1.getMonth() + 1);
