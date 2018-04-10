@@ -3391,6 +3391,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				//console.log($scope.ordenamientoDemepedido);
 		          });
             }
+    };
 
 
 	$scope.buscarParametro = function (parametro) {
