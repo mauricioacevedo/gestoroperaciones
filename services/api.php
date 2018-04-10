@@ -8803,7 +8803,7 @@ private function getAgentScore($user){
             //echo var_dump("INGRESO");
 
             $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION');
-            /*$parametroOrden= $this->buscarParametroOrdenDemePedido('ORDEN_ENTREGA_PEDIDO_R');*/
+            $parametroOrden= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO_R');
 
 
 
