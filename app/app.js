@@ -3361,20 +3361,37 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                 //$scope.ordenEntregapedidoR = orden;
 			}
 
-            if (parametro == "ORDEN_ENTREGA_PEDIDO") {
+          /*  if (parametro == "ORDEN_ENTREGA_PEDIDO") {
 				$scope.ordenEntregaPedido = valor  ;
 
-            }
+            }*/
 
-             if (parametro == "ORDEN_ENTREGA_PEDIDO_R") {
+           /*  if (parametro == "ORDEN_ENTREGA_PEDIDO_R") {
 				$scope.ordenEntregaPedidoR = valor;
-            }
+            }*/
 
 			$scope.buscarParametro(parametro);
 			return data.data;
 		});
 
-	};
+	   services.updateParametro(parametro, valor, $rootScope.logedUser.login).then(function (data) {
+			if (parametro == "ORDEN_ENTREGA_PEDIDO") {
+				$scope.ordenEntregaPedido = valor;
+				var date1 = new Date();
+				var year = date1.getFullYear();
+				var month = $scope.doubleDigit(date1.getMonth() + 1);
+				var day = $scope.doubleDigit(date1.getDate());
+				var hour = $scope.doubleDigit(date1.getHours());
+				var minute = $scope.doubleDigit(date1.getMinutes());
+				var seconds = $scope.doubleDigit(date1.getSeconds());
+
+				$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+				console.log($scope.ordenamientoDemepedido);
+			}
+			return data.data;
+		});
+
+    };
 
 
 	$scope.buscarParametro = function (parametro) {
@@ -3383,7 +3400,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
 				$scope.UsuarioParametro = data.data['USUARIO_ID'];
 				$scope.ordenamientoDemepedido = data.data['VALOR'];
-                //$scope.ordenEntregaPedido = data.data['ORDEN'];
 				$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
 			}
 
