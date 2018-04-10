@@ -15621,7 +15621,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				var counter = $rootScope.lightkpi[i].COUNTER;
 				var concepto_id = $rootScope.lightkpi[i].CONCEPTO_ID;
 
-				if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'PUMED' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD' || concepto_id == 'RECONFIGURACION EN OFERTA' || concepto_id == 'VERIFICAR DISPONIBILIDAD' || concepto_id == 'PENDIENTE PROVISION' || concepto_id == 'RECONFIGURAR POR COBERTURA' || concepto_id == 'FACTIBILIDAD MANUAL' || concepto_id == 'VERIFICAR ASIGNACION' || concepto_id == 'CONSERVAR NUMERO') {
+				if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'PUMED' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD'  || concepto_id == 'VERIFICAR DISPONIBILIDAD' || concepto_id == 'PENDIENTE PROVISION' || concepto_id == 'FACTIBILIDAD MANUAL' || concepto_id == 'VERIFICAR ASIGNACION' || concepto_id == 'CONSERVAR NUMERO') {
                     var conceptosFenix= ['PETEC','OKRED','PETEC-BOG','PEOPP','19','O-13','O-15','O-106','PUMED'];
                     var pedido_oferta='';
                     if(conceptosFenix.indexOf(concepto_id)>-1) pedido_oferta='Pedidos';
@@ -15637,7 +15637,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; "+pedido_oferta+"</strong></i></font></td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
-				} else if (concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL') {
+				} else if (concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL' || concepto_id == 'RECONFIGURACION EN OFERTA' ||        concepto_id == 'RECONFIGURAR POR COBERTURA' ) {
                     var conceptosFenix= [ 'O-101'];
                     var pedido_oferta='';
                     if(conceptosFenix.indexOf(concepto_id) > -1) pedido_oferta='Pedidos';
@@ -17485,7 +17485,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         var counter = $rootScope.lightkpi[i].COUNTER;
         var concepto_id = $rootScope.lightkpi[i].CONCEPTO_ID;
 
-        if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'PUMED' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD' || concepto_id == 'RECONFIGURACION EN OFERTA' || concepto_id == 'VERIFICAR DISPONIBILIDAD' || concepto_id == 'PENDIENTE PROVISION' || concepto_id == 'RECONFIGURAR POR COBERTURA' || concepto_id == 'FACTIBILIDAD MANUAL' || concepto_id == 'VERIFICAR ASIGNACION' || concepto_id == 'CONSERVAR NUMERO') {
+        if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'PUMED' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD' || concepto_id == 'VERIFICAR DISPONIBILIDAD' || concepto_id == 'PENDIENTE PROVISION' || concepto_id == 'FACTIBILIDAD MANUAL' || concepto_id == 'VERIFICAR ASIGNACION' || concepto_id == 'CONSERVAR NUMERO') {
                     var conceptosFenix= ['PETEC','OKRED','PETEC-BOG','PEOPP','19','O-13','O-15','O-106','PUMED'];
                     var pedido_oferta='';
                     if(conceptosFenix.indexOf(concepto_id)>-1) pedido_oferta='Pedidos';
@@ -17501,7 +17501,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
           negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; "+pedido_oferta+"</strong></i></font></td></tr>";
           $rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
-        } else if (concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL') {
+        } else if (concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL' || concepto_id == 'RECONFIGURAR POR COBERTURA' ||           concepto_id == 'RECONFIGURACION EN OFERTA' ) {
                     var conceptosFenix= [ 'O-101'];
                     var pedido_oferta='';
                     if(conceptosFenix.indexOf(concepto_id) > -1) pedido_oferta='Pedidos';
