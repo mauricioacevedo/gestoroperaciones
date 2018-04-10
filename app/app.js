@@ -3365,6 +3365,10 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				$scope.ordenEntregaPedido = valor;
             }
 
+             if (parametro == "ORDEN_ENTREGA_PEDIDO_R") {
+				$scope.ordenEntregaPedidoR = valor;
+            }
+
 			$scope.buscarParametro(parametro);
 			return data.data;
 		});
@@ -3378,7 +3382,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
 				$scope.UsuarioParametro = data.data['USUARIO_ID'];
 				$scope.ordenamientoDemepedido = data.data['VALOR'];
-                $scope.ordenEntregaPedido = data.data['ORDEN'];
+                //$scope.ordenEntregaPedido = data.data['ORDEN'];
 				$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
 			}
 
@@ -3386,13 +3390,17 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				$scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
 				$scope.ordenamientoDemepedidoReconfiguracion = data.data['VALOR'];
                 $scope.prioridadDemepedidoNuevoR = data.data['VALOR'];
-                $scope.ordenEntregapedidoR = data.data['ORDEN'];
+                //$scope.ordenEntregapedidoR = data.data['ORDEN'];
 				$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
 			}
 
 
            if (parametro == "ORDEN_ENTREGA_PEDIDO") {
 				$scope.ordenEntregaPedido = data.data['VALOR'];
+			}
+
+            if (parametro == "ORDEN_ENTREGA_PEDIDO_R") {
+				$scope.ordenEntregaPedidoR = data.data['VALOR'];
 			}
 
 			return data.data;
@@ -3419,10 +3427,17 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		return data.data;
 	});
 
+    services.buscarParametro('ORDEN_ENTREGA_PEDIDO_R').then(function (data) {
+        $scope.ordenEntregaPedidoR = data.data['VALOR'];
+        //lo entrega bien
+        //console.log($scope.ordenEntregaPedido);
+		return data.data;
+	});
+
 	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION').then(function (data) {
 
 		$scope.ordenamientoDemepedidoReconfiguracion = data.data['VALOR'];
-        $scope.ordenEntregapedidoR = data.data['ORDEN'];
+        //$scope.ordenEntregapedidoR = data.data['ORDEN'];
 		//$scope.ordenamientoDemepedidoNuevo=data.data['VALOR'];
 		$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
 		$scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
