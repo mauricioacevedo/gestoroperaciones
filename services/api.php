@@ -8843,9 +8843,7 @@ private function getAgentScore($user){
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
-                    " ORDER BY $parametroBusqueda $parametroOrden ";
-
-                echo var_dump($sqlllamadas);
+                    " ORDER BY $parametroBusqueda ASC ";
 
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
@@ -8899,6 +8897,8 @@ private function getAgentScore($user){
                 " AND STATUS='PENDI_PETEC' ".
                 $plaza2.
                 " ORDER BY FECHA_INGRESO ASC ";
+
+            echo var_dump($sqlllamadas);
 
 
             $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
