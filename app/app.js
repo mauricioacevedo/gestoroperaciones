@@ -1084,7 +1084,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		if (concepto == "Bello") {
 			muni = "&municipio=BELANTCOL";
 		} */
-        console.log("LA ZONA: " + zona);
+        //console.log("LA ZONA: " + zona);
 		return $http.get(serviceBase + 'demePedido?userID=' + user + '&concepto=' + concepto + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&prioridad=' + prioridad + '&fuente=' + fuente + '&zona=' + zona);
 	};
 
