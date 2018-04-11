@@ -16077,7 +16077,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		demePedidoButton.className = "btn btn-sm btn-success disabled";
 
 		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', 'FENIX_NAL',$scope.izona).then(function (data) {
-			$scope.peds = data.data;
+
 			//console.log("este es el municipio" + $scope.peds[0].MUNICIPIO_ID);
 			//$scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
 			//buscar = /ANTCOL/;
@@ -16085,10 +16085,13 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 			//console.log("esta es la validacion " + $scope.validaMunicipio);
 			//$rootScope.pagina_servicio_vecinos = $scope.peds[0].PAGINA_SERVICIO;
 			//console.log("esto es lo que retorna" + $rootScope.pagina_servicio_vecinos);
+
 			if (data.data == '' || data.data=='No hay registros!') {
 				document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de zona, plaza o concepto.";
 				$scope.error = "No hay Registros. Intente Cambiando de zona, plaza o concepto.";
+
 			} else {
+                $scope.peds = data.data;
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
