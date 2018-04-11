@@ -9193,11 +9193,12 @@ private function getAgentScore($user){
             " b.CELULAR_AVISAR, ".
             " b.TELEFONO_AVISAR,	".
             " b.PROGRAMACION, ".
+            " b.ZONA, ".
             " case when b.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ALTA' else 'NORMAL' end as PRIORIDAD, 	".
             " b.APROVISIONADOR, ".
             " b.PEDIDO_CRM ".
             " from informe_petec_pendientesm b 	".
-            " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto order by b.FECHA_INGRESO asc";
+            " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto order by b.FECHA_ESTADO asc";
 
 
 
