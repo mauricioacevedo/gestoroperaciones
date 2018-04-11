@@ -16076,6 +16076,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-sm btn-success disabled";
 
+        console.log("debug zona: "+$scope.izona);
+
 		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', $scope.izona).then(function (data) {
 			$scope.peds = data.data;
 			//console.log("este es el municipio" + $scope.peds[0].MUNICIPIO_ID);
