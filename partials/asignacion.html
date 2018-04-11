@@ -69,6 +69,23 @@
             <div class="row"><!--Row Concepto Plaza - Buscador Tips -->
 
                 <div class="col-lg-5 col-xs-5 form-inline">
+                      <label for="Plaza">Zona:</label>
+                      <select id="Zona" class="form-control"
+                            style="width: 150px"
+                            ng-model="izona">
+                        <option value="" disabled>--Seleccione Zona--</option>
+                        <option value="TODOS"> TODOS</option>
+                        <option value="NOROCCIDENTE"> NOROCCIDENTE</option>
+                        <option value="CENTRO"> CENTRO</option>
+                        <option value="NORTE"> NORTE</option>
+                        <option value="SUR"> SUR</option>
+                        <option value="ORIENTE"> ORIENTE</option>
+                        <option value="EJE CAFETERO"> EJE CAFETERO</option>
+                        <option value="ISLAS"> ISLAS</option>
+                        <option value="VACIO"> VACIO</option>
+                    </select>
+
+
                     <label for="conceptos">Concepto:</label>
                     <select id="conceptos" ng-model="iconcepto"
                             class="form-control" style="width: 100px"
@@ -85,7 +102,7 @@
                         <option value='STBOX'>STBOX</option>
 
                     </select>
-                    <label for="Plaza">Plaza:</label>
+                    <!--label for="Plaza">Plaza:</label-->
                       <select id="Plaza" class="form-control"
                             style="width: 150px"
                             ng-model="iplaza">
