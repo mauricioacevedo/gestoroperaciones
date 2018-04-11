@@ -9258,7 +9258,7 @@ private function getAgentScore($user){
             $this->response('', 200); // send user details
         }else{//i have pretty heavy problems over here...
             //$this->response('SYSTEM PANIC!',200);
-            $this->response('No hay registros!',200);
+            $this->response(json_encode('No hay registros!'),200);
         }
         unlink($filename);
 
