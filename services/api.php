@@ -7072,7 +7072,7 @@ private function getAgentScore($user){
             ", a.PEDIDO_ID, a.PEDIDO, a.SUBPEDIDO_ID, a.SOLICITUD_ID ".
             ", a.TIPO_ELEMENTO_ID, a.PRODUCTO, a.UEN_CALCULADA ".
             ", a.ESTRATO, a.MUNICIPIO_ID, a.DIRECCION_SERVICIO, a.PAGINA_SERVICIO ".
-            ", cast(my_sec_to_time(timestampdiff(second,FECHA_INGRESO,current_timestamp()))AS CHAR(255)) as TIEMPO_COLA ".
+            ", cast(my_sec_to_time(timestampdiff(second,FECHA_ESTADO,current_timestamp()))AS CHAR(255)) as TIEMPO_COLA ".
             ", a.FUENTE, a.CONCEPTO_ID, a.FECHA_ESTADO, a.FECHA_CITA, a.STATUS, a.PROGRAMACION ".
             ", case when a.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ARBOL' else a.RADICADO_TEMPORAL end as RADICADO_TEMPORAL ".
             ", if(a.RADICADO_TEMPORAL='ARBOL','true','false') as PRIORIDAD ".
@@ -18398,6 +18398,8 @@ public function pp(&$var){
         $grupo 	    = $params['grupo'];
         $actividad  = $params['actividad'];
         $today		= date("Y-m-d");
+
+
 
         //var_dump($fuente);
         /* if($fuente=='SIEBEL'){
