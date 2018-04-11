@@ -1078,13 +1078,13 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'getZonasParametrizacionSiebel?departamento=' + dep);
 	};
 
-	obj.demePedido = function (user, concepto, pedido_actual, plaza, username, prioridad, fuente) { //deme pedido asignacion
+	obj.demePedido = function (user, concepto, pedido_actual, plaza, username, prioridad, fuente,zona) { //deme pedido asignacion
 		/*
 		var muni = "";
 		if (concepto == "Bello") {
 			muni = "&municipio=BELANTCOL";
 		} */
-		return $http.get(serviceBase + 'demePedido?userID=' + user + '&concepto=' + concepto + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&prioridad=' + prioridad + '&fuente=' + fuente);
+		return $http.get(serviceBase + 'demePedido?userID=' + user + '&concepto=' + concepto + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&prioridad=' + prioridad + '&fuente=' + fuente + '&zona=' + zona);
 	};
 
     //***************************************MICHAEL EDATEL LLAMADO A LOS SERVICIOS **********************************************
@@ -7485,6 +7485,7 @@ app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $
         $rootScope.actualView="reconfiguraciones";
         $scope.iconcepto="14";
 		$scope.iplaza="TODOS";
+        $scope.izona="TODOS";
         $scope.popup='';
         $scope.cargando='';
         $scope.pedidoinfo='Pedido';
@@ -7928,7 +7929,7 @@ $(document).click(  function (e) {
 			$scope.prioridad='FECHA_CITA';
 		}
 
-                var kami=services.demePedido($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,$scope.prioridad).then(function(data){
+                var kami=services.demePedido($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,$scope.prioridad,$scope.izona).then(function(data){
                         $scope.peds = data.data;
                         //console.log(data.data);
                         if(data.data==''){
@@ -14384,6 +14385,7 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
 	$scope.verificarMalo = 0;
 	$scope.intervalLightKPIS = '';
 	$scope.pedidoinfo = 'Pedido';
+    $scope.izona="TODOS";
 	$timeout = '';
 
 
@@ -14917,7 +14919,7 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
 		demePedidoButton.className = "btn btn-sm btn-success disabled";
 
 
-		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '').then(function (data) {
+		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '',$scope.izona).then(function (data) {
 			$scope.peds = data.data;
 			if (data.data == '') {
 				document.getElementById("warning").innerHTML = "No hay Registros";
@@ -15370,6 +15372,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
     $scope.accRdy = false;
     $scope.deme_pedidos = [{PEDIDO_ID:" NUEVO "}];
     $scope.agentScore="-1";
+    $scope.izona="TODOS";
 
 	var pedidos = services.getPedidosUser(userID).then(function (data) {
 		$scope.pedidos = data.data[0];
@@ -16070,7 +16073,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-sm btn-success disabled";
 
-		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '').then(function (data) {
+		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '',$scope.izona).then(function (data) {
 			$scope.peds = data.data;
 			//console.log("este es el municipio" + $scope.peds[0].MUNICIPIO_ID);
 			//$scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
@@ -16225,6 +16228,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 	$scope.fecha_inicio = null;
 	$scope.fecha_fin = null;
 	$scope.actividadGestion="ESTUDIO";
+    $scope.izona="TODOS";
 
 	// Cargar Opciones para la gestion --------------------------------
 	var opciones={
@@ -16448,7 +16452,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '', $scope.fuente).then(function (data) {
+		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '', $scope.fuente,$scope.izona).then(function (data) {
 
 			$scope.peds = data.data;
 
@@ -16735,6 +16739,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 	$scope.fecha_inicio = null;
 	$scope.fecha_fin = null;
 	$scope.eda = {};
+    $scope.izona="TODOS";
 
 	// Cargar Opciones para la gestion --------------------------------
 	var opciones={
@@ -16953,7 +16958,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '', $scope.fuente).then(function (data) {
+		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '', $scope.fuente,$scope.izona).then(function (data) {
 
 			$scope.peds = data.data;
 
@@ -17604,7 +17609,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
             $scope.habilitaCr			= true;
         }*/
 
-        console.log("ZONA: "+$scope.izona);
+        //console.log("ZONA: "+$scope.izona);
 
 
         if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
@@ -17633,7 +17638,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         demePedidoButton.setAttribute("disabled", "disabled");
         demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-        var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE).then(function (data) {
+        var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE,$scope.izona).then(function (data) {
 
             $scope.peds = data.data;
 

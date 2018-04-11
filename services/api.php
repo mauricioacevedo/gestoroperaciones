@@ -8609,8 +8609,10 @@ private function getAgentScore($user){
         $fuente         =   $this->_request['fuente'];
         $username       =   $this->_request['username'];
         $prioridad      =   $this->_request['prioridad'];
-
+        $zona           =   $this->_request['zona'];
         //echo var_dump($plaza);
+        if($zona==""||$zona=="null"||$zona=="undefined") $zona="TODOS";
+
 
         $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
@@ -8875,11 +8877,21 @@ private function getAgentScore($user){
             }else{
                 $plaza2=" AND MUNICIPIO_ID='$plaza' ";
             }
-            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
 
+            if($zona=='TODOS'){
+                $zona2="";
+            }else{
+                $zona2=" AND ZONA='$zona' ";
+            }
+
+            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
+            $parametroOrden= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
+
+            $parametroBusqueda2=$parametroBusqueda;
             $tipo_trabajo="";
             if($parametroBusqueda=="NUEVOS_PRIMERO"){
                 $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%')";
+                $parametroBusqueda2="FECHA_ESTADO";
             }else{
                 $tipo_trabajo=" ";
             }
@@ -8900,7 +8912,8 @@ private function getAgentScore($user){
                 " AND CONCEPTO_ID = '$concepto' ".
                 " AND STATUS='PENDI_PETEC' ".
                 $plaza2.
-                " ORDER BY FECHA_INGRESO ASC ";
+                $zona2.
+                " ORDER BY $parametroBusqueda2 $parametroOrden ";
 
 
 
@@ -8961,26 +8974,23 @@ private function getAgentScore($user){
 
         //$parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
 
-        if($prioridad!=''){
-            $parametroBusqueda=$prioridad;
-        }
 
-        if($parametroBusqueda=="NUEVOS_PRIMERO"){
-            $parametroBusqueda="FECHA_INGRESO,b.RADICADO_TEMPORAL ";
-        }
-        $pos = strrpos($concepto, "14");
-        if ($pos === false) {} // note: three equal signs
+        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
+        $parametroOrden= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
 
-        else{
-            $parametroBusqueda = "FECHA_ESTADO";
-        }
-
-        $parametroBusqueda2= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
+        $parametroBusqueda2=$parametroBusqueda;
 
         if($parametroBusqueda2=="NUEVOS_PRIMERO"){
             $tipo_trabajo=" AND (b.TIPO_TRABAJO='NA NUEVO' or b.TIPO_TRABAJO LIKE '%TRASL%' OR b.TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%') ";
+            $parametroBusqueda2="FECHA_ESTADO";
         }else{
             $tipo_trabajo="";
+        }
+
+        if($zona=='TODOS'){
+            $zona2="";
+        }else{
+            $zona2=" AND b.ZONA='$zona' ";
         }
 
 
@@ -8996,9 +9006,10 @@ private function getAgentScore($user){
             $tipo_trabajo.
             $concepto." ".
             $plaza.
+            $zona2.
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-            " order by b.$parametroBusqueda $parametroOrdenAsig ";
+            " order by b.$parametroBusqueda $parametroOrden ";
             //echo var_dump ($concepto);
             //echo var_dump ($query1);
 
@@ -9072,8 +9083,9 @@ private function getAgentScore($user){
                     " where b.STATUS='$STATUS'  and b.ASESOR ='' ".
                     "  $concepto ".
                     $plaza.
+                    $zona2.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-                    " order by b.FECHA_INGRESO ASC";
+                    " order by b.$parametroBusqueda $parametroOrden";
 
                 //echo $query1;
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
