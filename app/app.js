@@ -16037,6 +16037,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.popup = '';
 		$scope.error = "";
 
+        console.log($scope.izona);
+
 		if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
 			//alert($scope.peds[0].PEDIDO_ID);
 			pedido1 = $scope.peds[0].PEDIDO_ID;
