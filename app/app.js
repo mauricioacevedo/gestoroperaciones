@@ -16085,9 +16085,9 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 			//console.log("esta es la validacion " + $scope.validaMunicipio);
 			//$rootScope.pagina_servicio_vecinos = $scope.peds[0].PAGINA_SERVICIO;
 			//console.log("esto es lo que retorna" + $rootScope.pagina_servicio_vecinos);
-			if (data.data == '') {
-				document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de plaza.";
-				$scope.error = "No hay Registros. Intente Cambiando de plaza.";
+			if (data.data == '' || data.data=='No hay registros!') {
+				document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de zona, plaza o concepto.";
+				$scope.error = "No hay Registros. Intente Cambiando de zona, plaza o concepto.";
 			} else {
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
