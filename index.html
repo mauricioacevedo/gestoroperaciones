@@ -377,11 +377,12 @@
 <div class="container-fluid"
      ng-hide="actualView=='gpon' || actualView=='tip' || actualView=='vecinos' ||  !logedUser || logedUser.GRUPO=='AGENDAMIENTO'||actualView=='dashboard' ||actualView=='indicadores' || actualView=='tips' || actualView=='Task'">
 
-    <div class="col-sm-3"></div>
-    <div class="col-sm-2"><!--Cuadro Asignaciones -->
+
+
+    <div class="col-sm-3"><!--Cuadro Asignaciones -->
         <div class="row no-gutter">
             <button data-toggle="collapse" data-target="#nasignaciones" class="btn btn-default btn-md"
-                    style="height:40px;width:200px;"><i class="fa fa-sort-desc"
+                    style="height:40px;width:300px;"><i class="fa fa-sort-desc"
                                                         style="color:blue; vertical-align: middle;"></i> <span>Asignaciones: </span><strong>{{totalNegocioAsignaciones}}</strong>
                 <i class="{{nasignacionesstyle.ICON}}" style="color:{{nasignacionesstyle.STYLE}};"></i></button>
         </div>
@@ -391,10 +392,10 @@
 
     </div><!--Cuadro Asignaciones -->
 
-    <div class="col-sm-2"><!--Cuadro Reconfiguraciones -->
+    <div class="col-sm-3"><!--Cuadro Reconfiguraciones -->
         <div class="row no-gutter">
             <button data-toggle="collapse" data-target="#nreconfiguracion" class="btn btn-default btn-md"
-                    style="height:40px;width:200px"><i class="fa fa-sort-desc" style="color:blue"></i> Reconfigurar:
+                    style="height:40px;width:300px"><i class="fa fa-sort-desc" style="color:blue"></i> Reconfigurar:
                 <strong>{{totalNegocioReconfiguracion}}</strong> <i class="{{nreconfiguracionstyle.ICON}}"
                                                                     style="color:{{nreconfiguracionstyle.STYLE}};"></i>
             </button>
@@ -405,10 +406,10 @@
 
     </div><!--Cuadro Reconfiguraciones -->
 
-    <div class="col-sm-2"><!--Cuadro Otros -->
+    <div class="col-sm-3"><!--Cuadro Otros -->
         <div class="row no-gutter">
             <button data-toggle="collapse" data-target="#notros" class="btn btn-default btn-md"
-                    style="height:40px;width:200px"><i class="fa fa-sort-desc" style="color:blue"></i> Otros: <strong>{{totalNegocioOtros}}</strong>
+                    style="height:40px;width:300px"><i class="fa fa-sort-desc" style="color:blue"></i> Otros: <strong>{{totalNegocioOtros}}</strong>
                 <i class="{{notrosstyle.ICON}}" style="color:{{notrosstyle.STYLE}};"></i></button>
         </div>
         <div class="row no-gutter">
