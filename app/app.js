@@ -6013,7 +6013,7 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 
 
 
-    $scope.saveTransaccion = function (transaccion) {
+    $scope.saveTransaccionGeo = function (transaccion) {
 
         console.log(transaccion);
 
