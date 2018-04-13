@@ -11546,7 +11546,7 @@ private function demePedidoEdatel(){
 
         /*$query = " INSERT INTO  tbl_RegistrosPNI (".trim($columns,',').",RESPONSABLE, FECHAINI) VALUES(".trim($values,',').",'$usuarioGalleta','$fechaini')";
         */
-        //echo $query;
+        echo $query;
         if(!empty($transaccion)){
             //echo $query;
             $r = $this->mysqli->query(utf8_decode($query)) or die($this->mysqli->error.__LINE__);
