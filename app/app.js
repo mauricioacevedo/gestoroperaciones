@@ -6064,9 +6064,7 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 
 	   };
 
-        $scope.pageChanged();
-        $location.path('/georreferencia/');
-        $scope.listado_transacciones = [];
+
 
 	};
 
