@@ -11524,8 +11524,8 @@ private function demePedidoEdatel(){
         $username=$transaccion['USERNAME'];
 
         $SOLICITUD=$transaccion['$SOLICITUD'];
-        LOCALIDAD=$transaccion['LOCALIDAD'];
-        ESTADO=$transaccion['ESTADO'];
+        $LOCALIDAD=$transaccion['LOCALIDAD'];
+        $ESTADO=$transaccion['ESTADO'];
         $OBSERVACIONES=$transaccion['OBSERVACIONES'];
 
 
@@ -11547,7 +11547,7 @@ private function demePedidoEdatel(){
         }
         $today = date("Y-m-d H:i:s");
 
-       $query = " INSERT INTO  pedidos(".trim($columns,',').") VALUES(".trim($values,',').")";
+       $query = " INSERT INTO pedidos('SOLICITUD','LOCALIDAD','ESTADO','OBSERVACIONES') VALUES ('$SOLICITUD', '$LOCALIDAD', '$ESTADO', '$OBSERVACIONES') ";
 
 
         echo $query;
