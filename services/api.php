@@ -11523,10 +11523,15 @@ private function demePedidoEdatel(){
         $useri=$transaccion['USUARIO'];
         $username=$transaccion['USERNAME'];
 
-       $ENVIADO=$transaccion['ENVIADO'];
-        $estado_final=$transaccion['ESTADO_FINAL'];
-        $ID=$transaccion['ID'];
+        $SOLICITUD=$transaccion['$SOLICITUD'];
+        LOCALIDAD=$transaccion['LOCALIDAD'];
+        ESTADO=$transaccion['ESTADO'];
+        $OBSERVACIONES=$transaccion['OBSERVACIONES'];
 
+
+        //$ID=$transaccion['ID'];
+
+    var_dump($transaccion);
 
         foreach($column_names as $desired_key){ // Check the customer received. If blank insert blank into the array.
             if($desired_key=='ID'){
@@ -11542,14 +11547,13 @@ private function demePedidoEdatel(){
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " INSERT INTO  pedidos (".trim($columns,',').",SOLICITUD, LOCAIDAD, ESTADO, OBSERVACIONES) VALUES(".trim($values,',').",'$usuarioGalleta','$fechaini')";
+        $query = " INSERT INTO tbl_cr('SOLICITUD','LOCALIDAD','ESTADO','OBSERVACIONES') VALUES ('$SOLICITUD', '$LOCALIDAD', '$ESTADO', '$OBSERVACIONES', '$OBSERVACIONES') ";
 
-        /*$query = " INSERT INTO  tbl_RegistrosPNI (".trim($columns,',').",RESPONSABLE, FECHAINI) VALUES(".trim($values,',').",'$usuarioGalleta','$fechaini')";
-        */
+
         echo $query;
         if(!empty($transaccion)){
             //echo $query;
-            $r = $this->mysqli->query(utf8_decode($query)) or die($this->mysqli->error.__LINE__);
+            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
             $this->response(json_encode(array("msg"=>"OK","transaccion" => $transaccion)),200);
 
@@ -11557,6 +11561,7 @@ private function demePedidoEdatel(){
             $this->response('',200);        //"No Content" status
             //$this->response("$query",200);        //"No Content" status
         }
+
     }
 
 
