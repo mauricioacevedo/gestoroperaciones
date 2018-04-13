@@ -863,6 +863,15 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
 	};
 
+    //**********************************georreferencia*****************************
+
+     obj.SalvarGestionGeo = function (gestion,fechainicio) {
+        return $http.post(serviceBase + 'insertTransaccionGeo', {
+            gestion: gestion, fechainicio:fechainicio
+        });
+    };
+
+
      //******************************MICHAEL CRUD PNI*****************************************
     obj.SalvarGestionPNI = function (gestion,fechainicio) {
         return $http.post(serviceBase + 'insertTransaccionPNI', {
@@ -5947,6 +5956,36 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 			return;
 		}
 
+        console.log(transaccion);
+
+        $scope.InfoGestion = {
+            txtNegocio: transaccion.txtNegocio,
+            TECNOLOGIA_ID: ''
+        };
+
+         services.SalvarGestionGeo(transaccion,$rootScope.fecha_inicionuevoRegistroCR).then(function (data) {
+                $location.path('/georreferencia/');
+                return data.data;
+            }
+        )
+
+        $scope.getTransaccionGeo = function () {
+		//$scope.transaccion={};
+		services.getTransaccionGeo().then(function (data) {
+			//console.log(ncaID);
+			$rootScope.transaccion = data.data[0];
+			//console.log($scope.transaccion);
+			//console.log(data);
+			$location.path('/georreferencia/');
+			return data.data;
+        });
+
+	   };
+
+        $scope.pageChanged();
+        $location.path('/georreferencia/');
+        $scope.listado_transacciones = [];
+
 	};
 
 
@@ -6496,6 +6535,7 @@ app.controller('PNICtrl', function ($scope, $rootScope, $location, $routeParams,
 
     //***********************************MICHAEL GUARDAR REGISTRO PNI*********************************
 	$scope.saveTransaccion = function (transaccion) {
+
 
         //console.log(transaccion);
 
