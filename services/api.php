@@ -11496,7 +11496,7 @@ private function demePedidoEdatel(){
     }
 
 
-    private function InserTransaccionGeo(){//pendientes
+    private function InsertTransaccionGeo(){//pendientes
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
