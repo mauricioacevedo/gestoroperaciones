@@ -11547,7 +11547,7 @@ private function demePedidoEdatel(){
         }
         $today = date("Y-m-d H:i:s");
 
-        $query = " INSERT INTO pedidos('SOLICITUD','LOCALIDAD','ESTADO','OBSERVACIONES') VALUES ('$SOLICITUD', '$LOCALIDAD', '$ESTADO', '$OBSERVACIONES', '$OBSERVACIONES') ";
+       $query = " INSERT INTO  pedidos (".trim($columns,',').") VALUES(".trim($values,',').")";
 
 
         echo $query;
