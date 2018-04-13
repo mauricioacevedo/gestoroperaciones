@@ -2,44 +2,35 @@
   <li><a href="./#/">Asignaciones</a></li>
   <li class="active">CR</li>
 </ol>
-<div class="row" ng-controller="TabController">
+<div class="row">
     <ul class="nav nav-pills">
-        <li ng-class="{ active: isSet(1) }">
-                <a href ng-click="setTab(1)">Formas CR</a>
+        <li>
+                <a>Formas CR</a>
         </li>
     </ul>
 
         <div class="col-md-16">
             <div class="jumbotron">
-                <div ng-show="isSet(1)">
+                <div>
                     <div class="row">
                         <div class="col-lg-8">
-                            <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i>Editar Incidente<small> </small></h2>
+                            <h2 class="page-header"><i class="fa fa-list" aria-hidden="true"></i>Nuevo Registro CR<small> </small></h2>
+
+                                <div ng-show="error" class="alert alert-danger">{{error}}</div>
 
                         </div>
 
-<!--
-                                 <div class="col-lg-4">
+                               <!--  <div class="col-lg-4">
+                                    <br>
+                                    <div class="fileUpload btn btn-primary">
+                                      <span class="glyphicon glyphicon-upload"></span> Seleccionar Archivo
+                                      <input type="file" class='upload' file-model="myFile" />
+                                   </div>
+                                         <button class="btn btn-success btn-md" value="cargar" id="cargar" ng-click="uploadFile();"><span class="glyphicon glyphicon-cloud-upload"></span> Cargar</button>
+                                         <div class="loading-spiner-holder" data-loading ><div class="loading-spiner"><img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="images/loader.gif" /></div></div>
+                                    <div ng-show="error" class="alert alert-danger">{{error}}</div>
 
-                                        <form class="form-inline" role="form">
-
-                                                <div class="form-group btn-group">
-                                                    <br>
-                                                    <br>
-                                                    <input type="text" size="15px" class="form-control btn-group btn btn-sm btn-default"
-                                                           onClick="this.setSelectionRange(0, this.value.length)"
-                                                           title="Escriba registro a Buscar" data-toggle="tooltip" data-placement="top"
-                                                           placeholder="Buscador de Registros" ng-model="bregistro">
-                                                    <button type="button" class="form-control btn btn-sm btn-primary" title="Buscar Pedido"
-                                                            data-toggle="tooltip" data-placement="top" ng-click="buscarRegistroKPIS(bregistro);">
-                                                        <i class="fa fa-search" aria-hidden="true"></i></button>
-
-                                                </div>
-
-                                            </form>
-
-                                    </div>
--->
+                                 </div>-->
 
 
                     </div>
@@ -51,92 +42,39 @@
 
                            <div class="form-group">
                                 <label for="Negocio">
-                                    Negocio
+                                    Tipo Incidente:
                                 </label>
-                                <select ng-model="transaccion.NEGOCIO" class="form-control" style="" >
+                                <select ng-model="transaccion.TIPO_INCIDENTE" class="form-control" style="" >
                                         <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='EDATEL'>EDATEL</option>
-                                        <option value='UNE'>UNE</option>
-                                        <option value='ETP'>ETP</option>
+                                        <option value='TT'>TT</option>
+                                        <option value='CR'>CR</option>
                                 </select>
+
                             </div>
 
-                          <!--  <div class="form-group">
-                                <label for="FechaSoli">
-                                    Fecha Solicitud
+                            <div class="form-group">
+                                <label for="Procesados">
+                                    Descripcion:
                                 </label>
-                                <input type="date" ng-model="transaccion.FECHASOLICI" name="transaccion.txtFechaSoli" class="form-control">
-                            </div>-->
+                                <input type="text" class="form-control" id="fromDate" placeholder="INCIDENTE" name="nuevo" ng-model="transaccion.INCIDENTE"/>
+                            </div>
 
-                            <div class="from-group" id="datetimepicker">
+                            <div class="from-group">
                                 <label for="fechaSolicitud">
-                                    Fecha Solicitud
+                                    Sistema:
                                 </label>
-                                <br>
-                                <input type="text" name="fechaSolicitud" id="fechaSolicitud" class="form-control"
-                                    ng-model="transaccion.FECHASOLICI" datetime-picker date-format="yyyy-MM-dd H:mm:00">
-                             </div>
 
-                            <div class="form-group">
-                                <label for="Items">
-                                    Item
-                                </label>
-                                <select ng-model="transaccion.ITEMS" class="form-control" style="" name="txtItems">
+                                <select ng-model="transaccion.SISTEMA" class="form-control" style="" >
                                         <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='REUNIONES - CAPACITACIONES'>REUNIONES - CAPACITACIONES</option>
-                                        <option value='TARJETAS DSLAM'>TARJETAS DSLAM</option>
-                                        <option value='ACTUALIZACION'>ACTUALIZACIONES</option>
-                                        <option value='TARJETAS Cx'>TARJETAS Cx</option>
-                                        <option value='AMPLIACIONES'>AMPLIACIONES</option>
-                                        <option value='RETIROS'>RETIROS</option>
-                                        <option value='PROYECTOS'>PROYECTOS</option>
-                                        <option value='ZONA DE INFLUENCIA'>ZONA DE INFLUENCIA</option>
-                                        <option value='EQUIPOS TERMINALES'>EQUIPOS TERMINALES</option>
-                                        <option value='REPORTES DB'>REPORTES (DB,QUERYS,NODOS)</option>
-                                        <option value='CASOS SSO'>CASOS SSO</option>
-                                        <option value='SOPORTE RED'>SOPORTE RED</option>
+                                        <option value='SIEBEL'>SIEBEL</option>
+                                        <option value='FENIX ORACLE'>FENIX ORACLE</option>
+                                        <option value='FENIX ATC'>FENIX ATC</option>
+                                        <option value='QUERY BUILDER'>QUERY BUILDER</option>
+                                        <option value='PNI'>PNI</option>
+                                        <option value='METASOLW(M6)'>METASOLW(M6)</option>
+                                        <option value='GTC'>GTC</option>
                                 </select>
-                            </div>
-
-                            <!--<div class="form-group">
-                                <label for="ANSActividad">
-                                    ANS Actividad
-                                </label>
-                                <input type="datetime-local" ng-model="transaccion.ANSACTIVIDAD" id="txtANSActividad" name="txtANSActividad" placeholder="Ejm: 24 horas" class="form-control">
-                            </div>-->
-
-                            <div class="form-group">
-                                <label for="SistemaInfo">
-                                    Sistema de Informacion
-                                </label>
-                                    <select ng-model="transaccion.SISTEMAINFO" class="form-control" style="" name="txtSistemaInfo">
-                                        <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='Open Smartflex(Edatel)'>OPEN SMARTFLEX(EDATEL)</option>
-                                        <option value='Siebel'>SIEBEL</option>
-                                        <option value='Fenix'>FENIX</option>
-                                        <option value='Open Smartflex(ETP)'>OPEN SMARTFLEX(ETP)</option>
-                                        <option value='Elite'>ELITE</option>
-                                        <option value='Intraway'>INTRAWAY</option>
-                                        <option value='Catalogo de Servicios'>CATALOGO DE SERVICIOS</option>
-                                        <option value='Grupp Primario'>GRUPO PRIMARIO</option>
-                                        <option value='Vicepresidencia'>VICEPRESIDENCIA</option>
-                                        <option value='Gerencia'>GERENCIA</option>
-                                        <option value='Otras Areas'>OTRAS AREAS</option>
-                                        <option value='Visitas Terreno'>VISITAS TERRENO</option>
-                                    </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="ResultadoCarga">
-                                    Resultado Carga
-                                </label>
-                                    <select ng-model="transaccion.RESULTADOCARGA" class="form-control" style="" name="txtResultadoCarga">
-                                        <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='Procesado'>PROCESADO</option>
-                                        <option value='No Procesado'>NO PROCESADO</option>
-                                        <option value='Parcial'>PARCIAL</option>
-                                    </select>
-                            </div>
+                             </div>
 
                         </div>
                     </div>
@@ -144,82 +82,20 @@
                     <div class="col-lg-6" >
                         <div class="row2">
 
+
+                            <div class="form-group">
+                                <label for="FechaSolicitud">
+                                    Fecha Solicitud:
+                                </label>
+                                <input type="text" class="form-control" style="min-width: 100px" id="fechaSolicitud" name="fromDate" placeholder="Seleccione Fecha" ng-model="transaccion.FECHA_SOLICITUD" datetime-picker date-format="yyyy-MM-dd H:mm:00" />
+                            </div>
+
                             <div class="form-group">
                                 <label for="Procesados">
-                                    Cantidad Items Procesados.
+                                    Observaciones:
                                 </label>
-                                <input type="number" min="0" ng-model ="transaccion.ITEMSPROCESADO" id="txtProcesados" name="txtProcesados" placeholder="Ejm: 69" class="form-control">
+                                <input type="text" class="form-control" style="min-width: 150px" id="fromDate" placeholder="Observaciones" name="obs" ng-model="transaccion.OBSERVACIONES" />
                             </div>
-
-                            <div class="form-group">
-                                <label for="Inconsistentes">
-                                    Cantidad Items Inconsistentes
-                                </label>
-                                <input type="number" min="0" ng-model="transaccion.ITEMSINCONSISTENTES" id="txtInconsistentes" name="txtInconsistentes" placeholder="Ejm: 69" class="form-control">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Observaciones">
-                                    Observaciones
-                                </label>
-                                <select ng-model="transaccion.OBSERVACIONES" class="form-control" style="" name="txtObservaciones">
-                                        <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='ACTUALIZACION CAMBIO'>Actualizacion Cambio Tecnologia</option>
-                                        <option value='ACTUALIZACION O CARGA DE COORDENADAS (X;Y)'>Actualización y/o Carga de Coordenadas (X;Y)</option>
-                                        <option value='ACTUALIZACION RED INCONSISTENTE'>Actualizacion Red Inconsistente</option>
-                                        <option value='ACTUALIZACION MIGRACION'>Actualizacion Por Migracion</option>
-                                        <option value='ACTUALIZACION CAMBIO PUNTOS RED'>Actualizacion Por Cambio de Puntos de Red</option>
-                                        <option value='ACTUALIZACIOES DB SMARTFLEX'>Actualizaciones DB Smartflex</option>
-                                        <option value='PERMISOS - APLICACIONES'>Permisos - Aplicaciones</option>
-                                        <option value='DESCRIPCION DE DIRECCIONES IP'>Descripcion de Direcciones IP</option>
-                                        <option value='RED xDSL'>Red xDSL</option>
-                                        <option value='RED PE'>Red PE</option>
-                                        <option value='RED PI'>Red PI</option>
-                                        <option value='RED GPON'>Red Gpon</option>
-                                        <option value='RED RITEL'>Red Ritel</option>
-                                        <option value='RED TV COAXIAL'>Red tv Coaxial</option>
-                                        <option value='ARMARIO OPTICO'>Armario Optico</option>
-                                        <option value='ERROR SISTEMA'>Error de Sistema</option>
-                                        <option value='DATOS ERRADOS'>Datos Errados</option>
-                                        <option value='SISTEMA NO DISPONIBLE'>Sistema No Disponible</option>
-                                        <option value='MIGRACION CAMBIO TECNOLOGIA'>Migracion Cambio Tecnologia</option>
-                                        <option value='MIGRACION OPTIMIZACION'>Migracion Optimizacion</option>
-                                        <option value='INVENTARIO RED PE'>Inventario Red PE</option>
-                                        <option value='INVENTARIO RED PI'>Inventario Red PI</option>
-                                        <option value='INVENTARIO RED xDLS'>Inventario Red xDLS</option>
-                                        <option value='INVENTARIO RED GPON'>Inventario RED Gpon</option>
-                                        <option value='ESTUDIOS TECNICOS-DESPACHO'>Estudios Tecnicos-Despacho</option>
-                                        <option value='CLIENTES RED PI-PE-DSLAM-GPON'>Clientes Red PI-PE-DSLAM-GPON</option>
-                                        <option value='SETTOPBOX'>SetTopBox</option>
-                                        <option value='UMTS'>UMTS</option>
-                                        <option value='CPE'>CPE</option>
-                                        <option value='RTR'>RTR</option>
-                                        <option value='SWITCH'>Switch</option>
-                                        <option value='TRANSEIVER'>Transeiver</option>
-                                        <option value='ONT'>ONT</option>
-                                        <option value='DIRECCIONES IP'>Direcciones IP</option>
-                                        <option value='NINGUNA'>Ninguna</option>
-                                    </select>
-                             </div>
-
-                             <!--<div class="form-group">
-                                <label for="FechaProcesado">
-                                    Fecha Procesado
-                                </label>
-                                <input type="date" ng-model="transaccion.FECHAPROCESADO" id="txtFechaProce" name="txtFechaProce" placeholder="Ejm: 69" class="form-control">
-                              </div>-->
-
-                             <!--   <div class="form-group">
-                                    <label for="Responsable">
-                                     Usuario Responsable
-                                    </label>
-                                    <select ng-model="transaccion.RESPONSABLE" class="form-control" style="" name="txtResponsable">
-                                        <option value='' disabled>---SELECCIONE---</option>
-                                        <option value='Lina'>LINA</option>
-                                        <option value='Fredy'>FREDY</option>
-                                        <option value='Luis Fernando'>LUIS FERNANDO</option>
-                                    </select>
-                                </div>-->
 
                                 <br>
                                 <div class="form-group">
@@ -229,11 +105,6 @@
 
                                          <a href="./#/cr/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</a>
 
-                                        <!--<button class="btn btn-primary btn-sm" ng-click="EditTransaccionKPIS(transaccion);"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>-->
-
-
-                                        <!-- <a href="./#/nca/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</a>
-                                        -->
                                     </div>
                                 </div>
                         </div>
@@ -244,58 +115,6 @@
 				  <li class="divider">.</li>
 				</ul>
 			 </div>
-
-<!--
-                    <div class="row">
-		    <table align="center" width="100%">
-			<tr>
-		 	<td width="33%" align="left">
-				Total de Registros: <b>{{data.totalItems}} </b>
-			</td>
-			<td width="33%" align="center">
-
-                        </td>
-			<td width="33%" align="right">
-				<pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged()" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
-			</td>
-			</tr>
-		    </table>
-
-                    <table class="table small table-striped table-hover table-bordered table-condensed" width="100%">
-                            <thead>
-                                    <th width="7%">Negocio</th>
-                                    <th width="9%">FechaSoloci</th>
-                                    <th width="9%">Item</th>
-                                    <th width="9%">ANS Actividad</th>
-                                    <th width="9%">Sistema</th>
-                                    <th width="9%">Resultado</th>
-                                    <th width="7%">Procesados</th>
-                                    <th width="9%">Inconsistentes</th>
-                                    <th width="9%">Observaciones</th>
-                                    <th width="9%">FechaProce</th>
-                                    <th width="9%">Responsable</th>
-                                    <th ng-hide="true" width="4%">Acciones</th>
-                            </thead>
-                            <tbody>
-                                    <tr ng-repeat="data in listado_transacciones| orderBy:'ID':true ">
-                                    <td>{{data.NEGOCIO}}</td>
-                                    <td>{{data.FECHASOLICI}}</td>
-                                    <td>{{data.ITEMS}}</td>
-                                    <td>{{data.ANSACTIVIDAD}}</td>
-                                    <td>{{data.SISTEMAINFO}}</td>
-                                    <td>{{data.RESULTADOCARGA}}</td>
-                                    <td>{{data.ITEMSPROCESADO}}</td>
-                                    <td>{{data.ITEMSINCONSISTENTES}}</td>
-                                    <td>{{data.OBSERVACIONES}}</td>
-                                    <td>{{data.FECHAPROCESADO}}</td>
-                                    <td>{{data.RESPONSABLE}}</td>
-                                    <td ng-hide="true" align="center"><button class="btn btn-success btn-xs" value="edit!" ng-click="getTransaccionKPIS();"><i class="fa fa-pencil fa-lg"></i></button></td>
-                            </tr>
-                            </tbody>
-                    </table>
-			<pagination total-items="data.totalItems" ng-model="data.currentPage" ng-change="pageChanged()" items-per-page="100" num-pages="smallnumPages" class="pagination-sm" max-size="6"></pagination>
-                    </div>
--->
 
                   </div>
             </div>
@@ -315,12 +134,16 @@
 </div>
 
 <script>
-$('.input-daterange').datepicker({
-     format: 'yyyy-mm-dd',
-     todayBtn: "linked",
+$('#fechaSolicitud1').datetimepicker({
+    timeFormat: 'hh:mm:ss',
+    /* format: 'yyyy-mm-dd h:m:s',
+     locale: 'es',
+     ,
+     todayBtn: "linked",*/
      autoclose: true
  });
 </script>
+
 <script language='javascript'>
   $(function () {
   $('[data-toggle="tooltip"]').tooltip();

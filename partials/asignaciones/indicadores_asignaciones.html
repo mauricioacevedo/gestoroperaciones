@@ -118,15 +118,22 @@
                                     <td>
                                         <select class="btn btn-default btn-xs grupo-select" id="sel1"
                                                 ng-model="ordenamientoDemepedidoNuevo" style="width:auto;">
-                                            <!--option value="FECHA_CITA">FECHA CITA</option-->
                                             <option value="FECHA_ESTADO">FECHA ESTADO</option>
-                                            <!--option value="FECHA_INGRESO">FECHA INGRESO</option-->
                                             <option value="NUEVOS_PRIMERO">NUEVOS PRIMERO</option>
-
                                         </select>
-                                        <button class="btn btn-success btn-xs"
-                                                ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO',ordenamientoDemepedidoNuevo);">
+
+                                        <select class="btn btn-default btn-xs grupo-select" id="sel1"
+                                                ng-model="ordenEntregaPedido" style="width:auto;">
+                                            <option value="DESC">DESC</option>
+                                            <option value="ASC">ASC</option>
+                                        </select>
+<!--                                        FECHA_ORDEN_DEMEPEDIDO-->
+<!--                                        ordenamientoDemepedidoNuevo-->
+                                        <br>
+                                        <button class="btn btn-success btn-xs" title="Guardar"
+                                                ng-click="updateParametro('ORDEN_ENTREGA_PEDIDO',ordenEntregaPedido);">
                                             <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+
                                         <button type="button" class="btn btn-default btn-circle-xs"
                                                 ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO')" title="Actualizar"
                                                 data-toggle="tooltip" data-placement="left" ng-disabled="loading">
@@ -145,7 +152,19 @@
                                             <option value="FECHA_ESTADO">FECHA ESTADO</option>
                                             <!--option value="FECHA_INGRESO">FECHA INGRESO</option-->
                                         </select>
-                                        <button class="btn btn-success btn-xs"
+
+                                         <select class="btn btn-default btn-xs grupo-select" id="demerec2"
+                                                ng-model="ordenEntregaPedidoR" style="width:auto;">
+                                            <!--option value="FECHA_CITA">FECHA CITA</option-->
+                                            <option value="DESC">DESC</option>
+                                            <!--option value="FECHA_INGRESO">FECHA INGRESO</option-->
+                                            <option value="ASC">ASC</option>
+
+                                        </select>
+
+
+                                        <br>
+                                        <button class="btn btn-success btn-xs" title="Guardar"
                                                 ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION',ordenamientoDemepedidoReconfiguracion);">
                                             <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                                         <button type="button" class="btn btn-default btn-circle-xs"

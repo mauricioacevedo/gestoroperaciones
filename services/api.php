@@ -4269,6 +4269,7 @@ private function getAgentScore($user){
         if($r->num_rows > 0){
             $result = array();
             while($row = $r->fetch_assoc()){
+                $row['CONCEPTO_ID']=utf8_encode($row['CONCEPTO_ID']);
                 $result[] = $row;
             }
 
@@ -4545,6 +4546,7 @@ private function getAgentScore($user){
 
             while($row = $rr->fetch_assoc()){
                 //$row['label']="Concepto ".$row['label'];
+                $row['CONCEPTO_ID']=utf8_encode($row['CONCEPTO_ID']);
                 $queryConceptos[] = $row;
             }
         }
@@ -4607,6 +4609,7 @@ private function getAgentScore($user){
 
             while($row = $rr->fetch_assoc()){
                 //$row['label']="Concepto ".$row['label'];
+                $row['CONCEPTO_ID']=utf8_encode($row['CONCEPTO_ID']);
                 $queryConceptosNUEVO[] = $row;
             }
         }
@@ -7069,7 +7072,7 @@ private function getAgentScore($user){
             ", a.PEDIDO_ID, a.PEDIDO, a.SUBPEDIDO_ID, a.SOLICITUD_ID ".
             ", a.TIPO_ELEMENTO_ID, a.PRODUCTO, a.UEN_CALCULADA ".
             ", a.ESTRATO, a.MUNICIPIO_ID, a.DIRECCION_SERVICIO, a.PAGINA_SERVICIO ".
-            ", cast(my_sec_to_time(timestampdiff(second,FECHA_INGRESO,current_timestamp()))AS CHAR(255)) as TIEMPO_COLA ".
+            ", cast(my_sec_to_time(timestampdiff(second,FECHA_ESTADO,current_timestamp()))AS CHAR(255)) as TIEMPO_COLA ".
             ", a.FUENTE, a.CONCEPTO_ID, a.FECHA_ESTADO, a.FECHA_CITA, a.STATUS, a.PROGRAMACION ".
             ", case when a.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ARBOL' else a.RADICADO_TEMPORAL end as RADICADO_TEMPORAL ".
             ", if(a.RADICADO_TEMPORAL='ARBOL','true','false') as PRIORIDAD ".
@@ -8471,12 +8474,15 @@ private function getAgentScore($user){
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
 
+        //echo var_dump(get_request_method);
+
         $param = $this->_request['parametro'];
         $value = $this->_request['valor'];
         $user = $this->_request['user'];
 
+
         $sql="UPDATE gestor_parametros ".
-            " SET VALOR='$value', USUARIO_ID='$user' where VARIABLE='$param'";
+            " SET VALOR='$value',USUARIO_ID='$user' where VARIABLE='$param'";
         $rr = $this->mysqli->query($sql);
 
         // SQL Feed----------------------------------
@@ -8512,7 +8518,7 @@ private function getAgentScore($user){
 
     private function buscarParametroFechaDemePedido($param){
 
-        $sql="SELECT VALOR FROM gestor_parametros ".
+        $sql="SELECT * FROM gestor_parametros ".
             " WHERE VARIABLE='$param' limit 1";
 
         $rr = $this->mysqli->query($sql);
@@ -8533,7 +8539,8 @@ private function getAgentScore($user){
 
         $sql="SELECT * FROM gestor_parametros ".
             " WHERE VARIABLE='$param' limit 1";
-        //  echo $sql;
+
+        //echo var_dump($param);
 
         $rr = $this->mysqli->query($sql);
         if($rr->num_rows > 0){
@@ -8602,8 +8609,10 @@ private function getAgentScore($user){
         $fuente         =   $this->_request['fuente'];
         $username       =   $this->_request['username'];
         $prioridad      =   $this->_request['prioridad'];
-
+        $zona           =   $this->_request['zona'];
         //echo var_dump($plaza);
+        if($zona==""||$zona=="null"||$zona=="undefined") $zona="TODOS";
+
 
         $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
@@ -8684,6 +8693,8 @@ private function getAgentScore($user){
         $STATUS="PENDI_PETEC";
 
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
+        $parametroOrdenRecon= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO_R');
+        $parametroOrdenAsig= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
 
         //echo var_dump("Michael ".$concepto);
         /* if($fuente="SIEBEL"){
@@ -8796,6 +8807,10 @@ private function getAgentScore($user){
             //echo var_dump("INGRESO");
 
             $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION');
+            $parametroOrden= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO_R');
+
+
+
             //reviso si hay llamadas que se deben hacer y las entrego de primeras
             $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA, PROGRAMACION ".
                 " FROM  informe_petec_pendientesm ".
@@ -8832,7 +8847,9 @@ private function getAgentScore($user){
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
-                    " ORDER BY $parametroBusqueda ASC ";
+                    " ORDER BY $parametroBusqueda $parametroOrdenRecon ";
+
+                //echo $sqlllamadas;
 
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
@@ -8860,11 +8877,21 @@ private function getAgentScore($user){
             }else{
                 $plaza2=" AND MUNICIPIO_ID='$plaza' ";
             }
-            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
 
+            if($zona=='TODOS'){
+                $zona2="";
+            }else{
+                $zona2=" AND ZONA='$zona' ";
+            }
+
+            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
+            $parametroOrden= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
+
+            $parametroBusqueda2=$parametroBusqueda;
             $tipo_trabajo="";
             if($parametroBusqueda=="NUEVOS_PRIMERO"){
                 $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%')";
+                $parametroBusqueda2="FECHA_ESTADO";
             }else{
                 $tipo_trabajo=" ";
             }
@@ -8885,7 +8912,10 @@ private function getAgentScore($user){
                 " AND CONCEPTO_ID = '$concepto' ".
                 " AND STATUS='PENDI_PETEC' ".
                 $plaza2.
-                " ORDER BY FECHA_INGRESO ASC ";
+                $zona2.
+                " ORDER BY $parametroBusqueda2 $parametroOrden ";
+
+
 
 
             $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
@@ -8944,26 +8974,23 @@ private function getAgentScore($user){
 
         //$parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
 
-        if($prioridad!=''){
-            $parametroBusqueda=$prioridad;
-        }
 
-        if($parametroBusqueda=="NUEVOS_PRIMERO"){
-            $parametroBusqueda="FECHA_INGRESO,b.RADICADO_TEMPORAL ";
-        }
-        $pos = strrpos($concepto, "14");
-        if ($pos === false) {} // note: three equal signs
+        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
+        $parametroOrden= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
 
-        else{
-            $parametroBusqueda = "FECHA_ESTADO";
-        }
-
-        $parametroBusqueda2= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
+        $parametroBusqueda2=$parametroBusqueda;
 
         if($parametroBusqueda2=="NUEVOS_PRIMERO"){
             $tipo_trabajo=" AND (b.TIPO_TRABAJO='NA NUEVO' or b.TIPO_TRABAJO LIKE '%TRASL%' OR b.TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%') ";
+            $parametroBusqueda2="FECHA_ESTADO";
         }else{
             $tipo_trabajo="";
+        }
+
+        if($zona=='TODOS'){
+            $zona2="";
+        }else{
+            $zona2=" AND b.ZONA='$zona' ";
         }
 
 
@@ -8979,9 +9006,10 @@ private function getAgentScore($user){
             $tipo_trabajo.
             $concepto." ".
             $plaza.
+            $zona2.
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-            " order by b.$parametroBusqueda ASC";
+            " order by b.$parametroBusqueda $parametroOrden ";
             //echo var_dump ($concepto);
             //echo var_dump ($query1);
 
@@ -9055,8 +9083,9 @@ private function getAgentScore($user){
                     " where b.STATUS='$STATUS'  and b.ASESOR ='' ".
                     "  $concepto ".
                     $plaza.
+                    $zona2.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-                    " order by b.FECHA_INGRESO ASC";
+                    " order by b.$parametroBusqueda $parametroOrden";
 
                 //echo $query1;
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
@@ -9164,11 +9193,12 @@ private function getAgentScore($user){
             " b.CELULAR_AVISAR, ".
             " b.TELEFONO_AVISAR,	".
             " b.PROGRAMACION, ".
+            " b.ZONA, ".
             " case when b.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ALTA' else 'NORMAL' end as PRIORIDAD, 	".
             " b.APROVISIONADOR, ".
             " b.PEDIDO_CRM ".
             " from informe_petec_pendientesm b 	".
-            " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto order by b.FECHA_INGRESO asc";
+            " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto order by b.FECHA_ESTADO asc";
 
 
 
@@ -9228,7 +9258,7 @@ private function getAgentScore($user){
             $this->response('', 200); // send user details
         }else{//i have pretty heavy problems over here...
             //$this->response('SYSTEM PANIC!',200);
-            $this->response('No hay registros!',200);
+            $this->response(json_encode('No hay registros!'),200);
         }
         unlink($filename);
 
@@ -18382,6 +18412,8 @@ public function pp(&$var){
         $actividad  = $params['actividad'];
         $today		= date("Y-m-d");
 
+
+
         //var_dump($fuente);
         /* if($fuente=='SIEBEL'){
             $grupo      =   "ASIGNACIONES";
@@ -19365,11 +19397,15 @@ public function pp(&$var){
             $cerrar = false;
 
         }
+
+
         if($cerrar){
             $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='CERRADO_PETEC',ASESOR='' WHERE ID=$idpedido ";
             $varFeed = "GUARDO PEDIDO";
 
         }
+
+
 
         $rUpdate = $this->mysqli->query($sqlupdate);
 
@@ -19453,7 +19489,7 @@ public function pp(&$var){
 
             //echo var_dump($observacion);
 
-            if($observacion == "RECONFIGURAR OFERTA (14)")
+            if($observacion == "RC-SIEBEL")
 
             {
 
@@ -19486,6 +19522,8 @@ public function pp(&$var){
                 $insertReconf = $this->mysqli->query($queryReconf);
                 //echo var_dump("ingreso ohoho siii");
             }
+
+
 
             //Activiy Feed ------------------------------------------------------------------
             $sqlFeed =  "insert into portalbd.activity_feed ( ".

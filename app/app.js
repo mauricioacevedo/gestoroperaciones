@@ -1087,13 +1087,14 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'getZonasParametrizacionSiebel?departamento=' + dep);
 	};
 
-	obj.demePedido = function (user, concepto, pedido_actual, plaza, username, prioridad, fuente) { //deme pedido asignacion
+	obj.demePedido = function (user, concepto, pedido_actual, plaza, username, prioridad, fuente,zona) { //deme pedido asignacion
 		/*
 		var muni = "";
 		if (concepto == "Bello") {
 			muni = "&municipio=BELANTCOL";
 		} */
-		return $http.get(serviceBase + 'demePedido?userID=' + user + '&concepto=' + concepto + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&prioridad=' + prioridad + '&fuente=' + fuente);
+        //console.log("LA ZONA: " + zona);
+		return $http.get(serviceBase + 'demePedido?userID=' + user + '&concepto=' + concepto + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&prioridad=' + prioridad + '&fuente=' + fuente + '&zona=' + zona);
 	};
 
     //***************************************MICHAEL EDATEL LLAMADO A LOS SERVICIOS **********************************************
@@ -3307,6 +3308,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.listado_tme = [];
 	$scope.lastUpdate = "";
 	$scope.ordenamientoDemepedido = '';
+    $scope.ordenEntregaPedido = '';
+    $scope.ordenEntregaPedidoR = '';
 	$scope.ordenamientoDemepedidoReconfiguracion = '';
 	$scope.ordenamientoDemepedidoUpdate = '';
     $rootScope.errorDatos = null;
@@ -3359,16 +3362,66 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
-				$scope.ordenamientoDemepedido = valor;
+				$scope.ordenamientoDemepedidoNuevo = valor;
+                //$scope.ordenEntregaPedido = ordenEntregaPedido;
 			}
+
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION") {
 				$scope.ordenamientoDemepedidoReconfiguracion = valor;
+                //$scope.ordenEntregapedidoR = orden;
 			}
+
+           if (parametro == "ORDEN_ENTREGA_PEDIDO") {
+				$scope.ordenEntregaPedido = valor  ;
+
+            }
+
+            if (parametro == "ORDEN_ENTREGA_PEDIDO_R") {
+				$scope.ordenEntregaPedidoR = valor;
+            }
+
 			$scope.buscarParametro(parametro);
 			return data.data;
 		});
 
-	};
+			if (parametro == "ORDEN_ENTREGA_PEDIDO")
+            {
+				parametro = 'FECHA_ORDEN_DEMEPEDIDO';
+                valor = $scope.ordenamientoDemepedidoNuevo;
+				services.updateParametro(parametro, valor, $rootScope.logedUser.login).then(function (data) {
+                var date1 = new Date();
+				var year = date1.getFullYear();
+				var month = $scope.doubleDigit(date1.getMonth() + 1);
+				var day = $scope.doubleDigit(date1.getDate());
+				var hour = $scope.doubleDigit(date1.getHours());
+				var minute = $scope.doubleDigit(date1.getMinutes());
+				var seconds = $scope.doubleDigit(date1.getSeconds());
+
+				$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+				//console.log($scope.ordenamientoDemepedido);
+		          });
+            }
+
+            if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION")
+            {
+				parametro = 'ORDEN_ENTREGA_PEDIDO_R';
+                valor = $scope.ordenEntregaPedidoR;
+				services.updateParametro(parametro, valor, $rootScope.logedUser.login).then(function (data) {
+                var date1 = new Date();
+				var year = date1.getFullYear();
+				var month = $scope.doubleDigit(date1.getMonth() + 1);
+				var day = $scope.doubleDigit(date1.getDate());
+				var hour = $scope.doubleDigit(date1.getHours());
+				var minute = $scope.doubleDigit(date1.getMinutes());
+				var seconds = $scope.doubleDigit(date1.getSeconds());
+
+				$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+				//console.log($scope.ordenamientoDemepedido);
+		          });
+            }
+
+
+    };
 
 
 	$scope.buscarParametro = function (parametro) {
@@ -3379,11 +3432,24 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				$scope.ordenamientoDemepedido = data.data['VALOR'];
 				$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
 			}
+
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION") {
 				$scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
 				$scope.ordenamientoDemepedidoReconfiguracion = data.data['VALOR'];
+                $scope.prioridadDemepedidoNuevoR = data.data['VALOR'];
+                //$scope.ordenEntregapedidoR = data.data['ORDEN'];
 				$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
 			}
+
+
+           if (parametro == "ORDEN_ENTREGA_PEDIDO") {
+				$scope.ordenEntregaPedido = data.data['VALOR'];
+			}
+
+            if (parametro == "ORDEN_ENTREGA_PEDIDO_R") {
+				$scope.ordenEntregaPedidoR = data.data['VALOR'];
+			}
+
 			return data.data;
 		});
 
@@ -3394,15 +3460,31 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 		$scope.ordenamientoDemepedido = data.data['VALOR'];
 		$scope.ordenamientoDemepedidoNuevo = data.data['VALOR'];
+        //$scope.ordenEntregaPedido = data.data['ORDEN'];
 		$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
 		$scope.UsuarioParametro = data.data['USUARIO_ID'];
+        //console.log($scope.ordenEntregaPedido);
 		return data.data;
 	});
 
+    services.buscarParametro('ORDEN_ENTREGA_PEDIDO').then(function (data) {
+        $scope.ordenEntregaPedido = data.data['VALOR'];
+        //lo entrega bien
+        //console.log($scope.ordenEntregaPedido);
+		return data.data;
+	});
+
+    services.buscarParametro('ORDEN_ENTREGA_PEDIDO_R').then(function (data) {
+        $scope.ordenEntregaPedidoR = data.data['VALOR'];
+        //lo entrega bien
+        //console.log($scope.ordenEntregaPedido);
+		return data.data;
+	});
 
 	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION').then(function (data) {
 
 		$scope.ordenamientoDemepedidoReconfiguracion = data.data['VALOR'];
+        //$scope.ordenEntregapedidoR = data.data['ORDEN'];
 		//$scope.ordenamientoDemepedidoNuevo=data.data['VALOR'];
 		$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
 		$scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
@@ -6432,7 +6514,7 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 
 	};
 
-	$scope.csvCodigoResultado = function () {
+	$scope.csvCR = function () {
 		var login = $rootScope.logedUser.login;
 		services.getCsvCR(login, $scope.data.fechaIni, $scope.data.fechaFin).then(function (data) {
 			//console.log(data.data[0]);
@@ -6441,9 +6523,6 @@ app.controller('CRCtrl', function ($scope, $rootScope, $location, $routeParams, 
 		});
 
 	};
-
-
-
 
 
 });
@@ -7447,6 +7526,7 @@ app.controller('ReconfiguracionCtrl', function ($scope, $rootScope, $location, $
         $rootScope.actualView="reconfiguraciones";
         $scope.iconcepto="14";
 		$scope.iplaza="TODOS";
+        $scope.izona="TODOS";
         $scope.popup='';
         $scope.cargando='';
         $scope.pedidoinfo='Pedido';
@@ -7890,7 +7970,7 @@ $(document).click(  function (e) {
 			$scope.prioridad='FECHA_CITA';
 		}
 
-                var kami=services.demePedido($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,$scope.prioridad).then(function(data){
+                var kami=services.demePedido($rootScope.logedUser.login,$scope.iconcepto,$scope.pedido1,$scope.iplaza,$rootScope.logedUser.name,$scope.prioridad,$scope.izona).then(function(data){
                         $scope.peds = data.data;
                         //console.log(data.data);
                         if(data.data==''){
@@ -14346,6 +14426,7 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
 	$scope.verificarMalo = 0;
 	$scope.intervalLightKPIS = '';
 	$scope.pedidoinfo = 'Pedido';
+    $scope.izona="TODOS";
 	$timeout = '';
 
 
@@ -14879,7 +14960,7 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
 		demePedidoButton.className = "btn btn-sm btn-success disabled";
 
 
-		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '').then(function (data) {
+		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '',$scope.izona).then(function (data) {
 			$scope.peds = data.data;
 			if (data.data == '') {
 				document.getElementById("warning").innerHTML = "No hay Registros";
@@ -15332,6 +15413,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
     $scope.accRdy = false;
     $scope.deme_pedidos = [{PEDIDO_ID:" NUEVO "}];
     $scope.agentScore="-1";
+    $scope.izona="TODOS";
 
 	var pedidos = services.getPedidosUser(userID).then(function (data) {
 		$scope.pedidos = data.data[0];
@@ -15583,15 +15665,30 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				var counter = $rootScope.lightkpi[i].COUNTER;
 				var concepto_id = $rootScope.lightkpi[i].CONCEPTO_ID;
 
-				if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'PUMED' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD') {
-					negocioAsingaciones += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
+				if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'PUMED' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD'  || concepto_id == 'VERIFICAR DISPONIBILIDAD' || concepto_id == 'PENDIENTE PROVISION' || concepto_id == 'FACTIBILIDAD MANUAL' || concepto_id == 'VERIFICAR ASIGNACION' || concepto_id == 'CONSERVAR NUMERO' || concepto_id == 'RECONFIGURAR POR COBERTURA' || concepto_id == 'RESPUESTA DISEÑO') {
+                    var conceptosFenix= ['PETEC','OKRED','PETEC-BOG','PEOPP','19','O-13','O-15','O-106','PUMED'];
+                    var pedido_oferta='';
+                    if(conceptosFenix.indexOf(concepto_id)>-1) pedido_oferta='Pedidos';
+                    else pedido_oferta='Ofertas';
+					negocioAsingaciones += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; "+pedido_oferta+"</strong></i></font></td></tr>";
 					$rootScope.totalNegocioAsignaciones = parseInt($rootScope.totalNegocioAsignaciones) + parseInt(counter);
 				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == '92' || concepto_id
                            == 'RC-SIEBEL') {
-					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
+                    var conceptosFenix= [ '14','99','92'];
+                    var pedido_oferta='';
+                    if(conceptosFenix.indexOf(concepto_id) > -1) pedido_oferta='Pedidos';
+                    else pedido_oferta='Ofertas';
+
+					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; "+pedido_oferta+"</strong></i></font></td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
-				} else if (concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL') {
-					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
+				} else if (concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL' || concepto_id == 'RECONFIGURACION EN OFERTA'  ) {
+                    var conceptosFenix= [ 'O-101'];
+                    var pedido_oferta='';
+                    if(conceptosFenix.indexOf(concepto_id) > -1) pedido_oferta='Pedidos';
+                    else pedido_oferta='Ofertas';
+
+
+					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; "+pedido_oferta+"</strong></i></font></td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
 				} else {
 					negocioOtros += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
@@ -15981,6 +16078,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.popup = '';
 		$scope.error = "";
 
+        //1console.log($scope.izona);
+
 		if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
 			//alert($scope.peds[0].PEDIDO_ID);
 			pedido1 = $scope.peds[0].PEDIDO_ID;
@@ -16017,8 +16116,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-sm btn-success disabled";
 
-		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '').then(function (data) {
-			$scope.peds = data.data;
+		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', 'FENIX_NAL',$scope.izona).then(function (data) {
+
 			//console.log("este es el municipio" + $scope.peds[0].MUNICIPIO_ID);
 			//$scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
 			//buscar = /ANTCOL/;
@@ -16026,10 +16125,13 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 			//console.log("esta es la validacion " + $scope.validaMunicipio);
 			//$rootScope.pagina_servicio_vecinos = $scope.peds[0].PAGINA_SERVICIO;
 			//console.log("esto es lo que retorna" + $rootScope.pagina_servicio_vecinos);
-			if (data.data == '') {
-				document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de plaza.";
-				$scope.error = "No hay Registros. Intente Cambiando de plaza.";
+
+			if (data.data == '' || data.data=='No hay registros!') {
+				document.getElementById("warning").innerHTML = "No hay Registros. Intente Cambiando de zona, plaza o concepto.";
+				$scope.error = "No hay Registros. Intente Cambiando de zona, plaza o concepto.";
+
 			} else {
+                $scope.peds = data.data;
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
@@ -16172,6 +16274,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 	$scope.fecha_inicio = null;
 	$scope.fecha_fin = null;
 	$scope.actividadGestion="ESTUDIO";
+    $scope.izona="TODOS";
 
 	// Cargar Opciones para la gestion --------------------------------
 	var opciones={
@@ -16395,7 +16498,7 @@ app.controller('siebelAsignacionesCtrl', function ($scope, $rootScope, $location
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '', $scope.fuente).then(function (data) {
+		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '', $scope.fuente,$scope.izona).then(function (data) {
 
 			$scope.peds = data.data;
 
@@ -16682,6 +16785,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 	$scope.fecha_inicio = null;
 	$scope.fecha_fin = null;
 	$scope.eda = {};
+    $scope.izona="TODOS";
 
 	// Cargar Opciones para la gestion --------------------------------
 	var opciones={
@@ -16900,7 +17004,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '', $scope.fuente).then(function (data) {
+		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza, $rootScope.logedUser.name, '', $scope.fuente,$scope.izona).then(function (data) {
 
 			$scope.peds = data.data;
 
@@ -17261,6 +17365,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	$scope.iconcepto			= {};						// Objeto de datos que contiene Grupo, Concepto y Fuente.
 	$scope.ifuente				= {};						// Objeto con la fuente para hacer las busquedas.
     $scope.iplaza               = {};
+    $scope.izona                = 'TODOS';
 	$scope.listaOpcionesGestion = [];						// Arreglo con listado de Opciones para la Gestion.
 	$scope.info					= {};						// Objeto con Info del pedido en gestion.
     $scope.auditoria			= {};
@@ -17408,8 +17513,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			$rootScope.totalNegocioReconfiguracion = 0;
 			$rootScope.totalNegocioOtros = 0;
 
-
-			for (var i = 0; i < arrayLength; i++) {
+            //OLD LIGHT KPIS
+			/*for (var i = 0; i < arrayLength; i++) {
 				var counter = $rootScope.lightkpi[i].COUNTER;
 				var concepto_id = $rootScope.lightkpi[i].CONCEPTO_ID;
 
@@ -17426,7 +17531,42 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 					negocioOtros += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioOtros = parseInt($rootScope.totalNegocioOtros) + parseInt(counter);
 				}
-			}
+			}*/
+        //NEW
+       for (var i = 0; i < arrayLength; i++) {
+        var counter = $rootScope.lightkpi[i].COUNTER;
+        var concepto_id = $rootScope.lightkpi[i].CONCEPTO_ID;
+
+        if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'PUMED' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD' || concepto_id == 'VERIFICAR DISPONIBILIDAD' || concepto_id == 'PENDIENTE PROVISION' || concepto_id == 'FACTIBILIDAD MANUAL' || concepto_id == 'VERIFICAR ASIGNACION' || concepto_id == 'CONSERVAR NUMERO' || concepto_id == 'RECONFIGURAR POR COBERTURA' || concepto_id == 'RESPUESTA DISEÑO') {
+                    var conceptosFenix= ['PETEC','OKRED','PETEC-BOG','PEOPP','19','O-13','O-15','O-106','PUMED'];
+                    var pedido_oferta='';
+                    if(conceptosFenix.indexOf(concepto_id)>-1) pedido_oferta='Pedidos';
+                    else pedido_oferta='Ofertas';
+          negocioAsingaciones += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; "+pedido_oferta+"</strong></i></font></td></tr>";
+          $rootScope.totalNegocioAsignaciones = parseInt($rootScope.totalNegocioAsignaciones) + parseInt(counter);
+        } else if (concepto_id == '14' || concepto_id == '99' || concepto_id == '92' || concepto_id
+                           == 'RC-SIEBEL') {
+                    var conceptosFenix= [ '14','99','92'];
+                    var pedido_oferta='';
+                    if(conceptosFenix.indexOf(concepto_id) > -1) pedido_oferta='Pedidos';
+                    else pedido_oferta='Ofertas';
+
+          negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; "+pedido_oferta+"</strong></i></font></td></tr>";
+          $rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
+        } else if (concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL'  || concepto_id == 'RECONFIGURACION EN OFERTA' ) {
+                    var conceptosFenix= [ 'O-101'];
+                    var pedido_oferta='';
+                    if(conceptosFenix.indexOf(concepto_id) > -1) pedido_oferta='Pedidos';
+                    else pedido_oferta='Ofertas';
+
+
+          negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; "+pedido_oferta+"</strong></i></font></td></tr>";
+          $rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
+        } else {
+          negocioOtros += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
+          $rootScope.totalNegocioOtros = parseInt($rootScope.totalNegocioOtros) + parseInt(counter);
+        }
+      }
 
 			$rootScope.nasignacionesstyle = {};
 			$rootScope.nreconfiguracionstyle = {};
@@ -17515,6 +17655,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
             $scope.habilitaCr			= true;
         }*/
 
+        //console.log("ZONA: "+$scope.izona);
+
 
         if (JSON.stringify($scope.peds) !== '{}' && $scope.peds.length > 0) {
             //alert($scope.peds[0].PEDIDO_ID);
@@ -17542,7 +17684,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         demePedidoButton.setAttribute("disabled", "disabled");
         demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-        var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE).then(function (data) {
+        var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE,$scope.izona).then(function (data) {
 
             $scope.peds = data.data;
 
