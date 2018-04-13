@@ -6045,7 +6045,7 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
             TECNOLOGIA_ID: ''
         };
 
-         services.SalvarGestionGeo(transaccion,$rootScope.fecha_inicionuevoRegistroCR).then(function (data) {
+         services.SalvarGestionGeo(transaccion).then(function (data) {
                 $location.path('/georreferencia/');
                 return data.data;
             }
