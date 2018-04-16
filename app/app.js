@@ -188,6 +188,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'gestorConceptos');
 	};
 
+    obj.getGestorZonas = function () {
+		return $http.get(serviceBase + 'gestorZonas');
+	};
+
 	obj.expCsvUsuarios = function () {
 		return $http.post(serviceBase + 'csvUsuarios');
 	};
@@ -900,6 +904,11 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	obj.getListadoConceptos = function () {
 		return $http.get(serviceBase + 'getConceptos');
 	};
+
+    	obj.getListadoZonas = function () {
+		return $http.get(serviceBase + 'getZonas');
+	};
+
 
 	obj.getListadoTransaccionesORD = function (fecha_inicio, fecha_fin, page) {
 		return $http.get(serviceBase + 'listadoTransaccionesORD?fechaInicio=' + fecha_inicio + '&fechaFin=' + fecha_fin + '&page=' + page);
@@ -17380,7 +17389,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	//var estadoFinal				= '';
 
     $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
-	//$scope.idPermisos = idPermisos.getIds();
+	$rootScope.getZonasGestor();
+    //$scope.idPermisos = idPermisos.getIds();
     idPermisos.getIds().then(
         function (data) {
             $scope.idPermisos = data;
@@ -19898,6 +19908,18 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
 		)
 
 	};
+
+    $rootScope.getZonasGestor = function () {
+		services.getGestorZonas().then(
+			function (data) {
+				$rootScope.listadoZonas = data.data;
+				return data.data;
+			}
+
+		)
+
+	};
+
 
     $rootScope.getTaskbyUser = function () {
         $http.get('./services/taskCrudUser').then(
