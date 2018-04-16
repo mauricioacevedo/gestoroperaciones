@@ -2402,6 +2402,7 @@ private function getAgentScore($user){
 
         $CONCEPT=$pedido['pedido']['CONCEPTO_ID'];
         $concepto_anterior=$pedido['pedido']['CONCEPTO_ANTERIOR'];
+        $motivoMalo=$pedido['pedido']['motivo_malo'];
         //echo "estado: $estado";
         $sourcee=$pedido['pedido']['source'];
 
@@ -2496,6 +2497,21 @@ private function getAgentScore($user){
                     ",'$usuarioPc')";
 
                 $rlog = $this->mysqli->query($sql_log);
+
+
+                //query para ingresar los pedidos que son marcados como malos en un nueva tabla
+                $sql_PedidosMalos = "insert into tbl_PedidosMalos ( ".
+                    " PEDIDO_ID ".
+                    ", ASESOR ".
+                    ", MOTIVO_MALO ".
+                    ") values( ".
+                    " UPPER('$PEDIDO_IDi')".
+                    ", UPPER('$nombreGalleta')".
+                    ", UPPER('$motivoMalo')";
+
+                $rstMalos = $this->mysqli->query($sql_PedidosMalos) or die($this->mysqli->error.__LINE__);
+
+
                 // ---------------------------------- SQL Feed
                 //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta) values ('$useri','$username','ASIGNACIONES','$concepto_final','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi') ";
                 //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','ASIGNACIONES','$estadum','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi','ESTUDIO','$concepto_final') ";
