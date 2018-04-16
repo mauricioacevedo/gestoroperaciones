@@ -42,7 +42,7 @@
                                         style="width: 200px"
                                         ng-model="izona"
                                         ng-options="d.ZONA+' | '+d.TOTAL for d in listadoZonas "
-                                        ng-change=""
+                                        ng-change="gestorZonas()"
                                         >
                                     <option value="" disabled>--Seleccione Zona--</option>
                                 </select>
