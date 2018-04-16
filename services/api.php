@@ -1546,7 +1546,7 @@ class API extends REST {
             }
             */
 
-            echo ("ingreso");
+
 
             $agentScore=$this->getAgentScore($usuarioGalleta);
 
@@ -2248,6 +2248,8 @@ private function getAgentScore($user){
                 ",'$usuarioPc')";
 
             $rlog = $this->mysqli->query($sql_log);
+
+            echo ("ingreso");
             // ---------------------------------- SQL Feed
             $this->response(json_encode(array("msg"=>"N/A","data" => $today)),200);
 
