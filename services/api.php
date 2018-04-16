@@ -1545,6 +1545,9 @@ class API extends REST {
                 }
             }
             */
+
+            echo ("ingreso");
+
             $agentScore=$this->getAgentScore($usuarioGalleta);
 
             // ---------------------------------- SQL Feed
