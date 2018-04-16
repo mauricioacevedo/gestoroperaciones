@@ -41,7 +41,7 @@
                                   <select class="btn btn-default btn-xs grupo-select"
                                         style="width: 200px"
                                         ng-model="izona"
-                                        ng-options="ZONA+' | '+TOTAL group by ZONA for in listadoZonas"
+                                        ng-options="d.ZONA+' | '+d.TOTAL group by d.ZONA for d in listadoZonas"
                                         ng-change="checkMunicipiosAsignaciones()"
                                         >
                                     <option value="" disabled>--Seleccione Concepto--</option>
