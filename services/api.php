@@ -2504,10 +2504,14 @@ private function getAgentScore($user){
                     " PEDIDO_ID ".
                     ", ASESOR ".
                     ", MOTIVO_MALO ".
+                    ", CONCEPTO ".
                     ") values( ".
                     " '$PEDIDO_IDi' ".
                     ", '$useri' ".
-                    ", '$motivoMalo') ";
+                    ", '$motivoMalo' ".
+                    ", '$concepto_anterior') ";
+
+
 
                 //echo ("ingreso");
 
