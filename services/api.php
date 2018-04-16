@@ -1551,7 +1551,7 @@ class API extends REST {
             $agentScore=$this->getAgentScore($usuarioGalleta);
 
             // ---------------------------------- SQL Feed
-            echo ("ingresooooooo");
+            //echo ("ingresooooooo");
             $this->response(json_encode(array("msg"=>"N/A","data" => $today,"agent_score"=>$agentScore)),200);
 
         }else{
@@ -19444,6 +19444,8 @@ public function pp(&$var){
         if ($this->get_request_method () != "POST") {
             $this->response ('', 406);
         }
+
+        echo ("INGRESOOOO");
 
         $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
         $usuarioPc      =   gethostbyaddr ($usuarioIp);
