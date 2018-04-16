@@ -1551,6 +1551,7 @@ class API extends REST {
             $agentScore=$this->getAgentScore($usuarioGalleta);
 
             // ---------------------------------- SQL Feed
+            echo var_dump("ingreso");
             $this->response(json_encode(array("msg"=>"N/A","data" => $today,"agent_score"=>$agentScore)),200);
 
         }else{
@@ -2249,7 +2250,7 @@ private function getAgentScore($user){
 
             $rlog = $this->mysqli->query($sql_log);
 
-            echo ("ingreso");
+
             // ---------------------------------- SQL Feed
             $this->response(json_encode(array("msg"=>"N/A","data" => $today)),200);
 
