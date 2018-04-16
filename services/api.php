@@ -19445,7 +19445,7 @@ public function pp(&$var){
             $this->response ('', 406);
         }
 
-        echo ("INGRESOOOO");
+        //echo ("INGRESOOOO");
 
         $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
         $usuarioPc      =   gethostbyaddr ($usuarioIp);
@@ -19537,6 +19537,23 @@ public function pp(&$var){
             $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='$estado',ASESOR='' WHERE ID=$idpedido";
             $varFeed = "GUARDO PEDIDO MALO";
             $cerrar = false;
+
+            //query para ingresar los pedidos que son marcados como malos en un nueva tabla
+                $sql_PedidosMalos = "insert into tbl_PedidosMalos ( ".
+                    " PEDIDO_ID ".
+                    ", ASESOR ".
+                    ", MOTIVO_MALO ".
+                    ", CONCEPTO ".
+                    ") values( ".
+                    " '$pedido' ".
+                    ", '$usuario' ".
+                    ", '$observacion' ".
+                    ", '$conceptoId') ";
+
+                //echo ("ingreso");
+
+                $rstMalos = $this->mysqli->query($sql_PedidosMalos) or die($this->mysqli->error.__LINE__);
+
         }
         if($programado){
 
