@@ -2508,7 +2508,7 @@ private function getAgentScore($user){
                     " UPPER('$PEDIDO_IDi')".
                     ", UPPER('$nombreGalleta')".
                     ", UPPER('$motivoMalo')";
-                echo "ingreso";
+                echo ("ingreso");
 
                 $rstMalos = $this->mysqli->query($sql_PedidosMalos) or die($this->mysqli->error.__LINE__);
 
