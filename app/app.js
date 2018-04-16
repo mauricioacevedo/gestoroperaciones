@@ -18400,7 +18400,7 @@ app.controller('gestionAsignacionesSiebelCtrl', function ($scope, $rootScope, $l
 	$scope.fecha_fin 			= null; 					// Fecha Final de la gestion.
 	$scope.pedidos				= [];						// Arreglo de pedidos.
 	$scope.data					= {};						// Objeto de datos.
-	$scope.iconcepto			= {};						// Objeto de datos que contiene Grupo, Concepto y Fuente.
+	$scope.iconcepto			= [];						// Objeto de datos que contiene Grupo, Concepto y Fuente.
 	$scope.ifuente				= {};						// Objeto con la fuente para hacer las busquedas.
 	$scope.listaOpcionesGestion = [];						// Arreglo con listado de Opciones para la Gestion.
 	$scope.info					= {};						// Objeto con Info del pedido en gestion.
