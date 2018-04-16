@@ -1636,6 +1636,7 @@ private function getAgentScore($user){
         $SOLICITUD_IDi=$pedido['pedido']['SOLICITUD_ID'];
 
         $concepto_anterior=$pedido['pedido']['CONCEPTO_ANTERIOR'];
+        $motivoMalo=$pedido['pedido']['motivo_malo'];
 
 
         $sourcee=$pedido['pedido']['source'];
@@ -1696,6 +1697,23 @@ private function getAgentScore($user){
 
                 $rlog = $this->mysqli->query($sql_log);
                 // ---------------------------------- SQL Feed
+
+                //SQL PedidosMAlos
+                $sql_PedidosMalos = "insert into tbl_PedidosMalos ( ".
+                    " PEDIDO_ID ".
+                    ", ASESOR ".
+                    ", MOTIVO_MALO ".
+                    ", CONCEPTO ".
+                    ") values( ".
+                    " '$PEDIDO_IDi' ".
+                    ", '$useri' ".
+                    ", '$motivoMalo' ".
+                    ", '$concepto_anterior') ";
+
+                //echo ("ingreso");
+
+                $rstMalos = $this->mysqli->query($sql_PedidosMalos) or die($this->mysqli->error.__LINE__);
+
                 //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','RECONFIGURACION','$estadum','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi','ESTUDIO','$concepto_final') ";
                 //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
                 //hago la actualizacion en fenix
@@ -2359,6 +2377,7 @@ private function getAgentScore($user){
         $usuarioGalleta =   $galleta['login'];
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
+        $fechaini = $this->_request['fechaInicio'];
 
         $pedido = json_decode(file_get_contents("php://input"),true);
         //2015-09-28: se retira seguimiento....
