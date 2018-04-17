@@ -15191,6 +15191,141 @@ public function pp(&$var){
 
     }
 
+    //--------------------------FUNCIONES GESTION PEDIDOSMALOS----------------
+
+    private function csvPedidosMalos(){
+
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+
+
+
+
+        $params = json_decode(file_get_contents('php://input'),true);
+        $usuarioIp=$_SERVER['REMOTE_ADDR'];
+        $usuarioPc=gethostbyaddr($usuarioIp);
+        $galleta=json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta=stripslashes($_COOKIE['logedUser']);
+        $galleta= json_decode($galleta);
+        $galleta = json_decode(json_encode($galleta), True);
+        $usuarioid=$galleta['USUARIO_ID'];
+
+        //echo
+
+        $today = date("Y-m-d");
+        $ano=date("Y");
+
+        $filename="PEDIDOSMALOS_$today.csv";
+
+
+        $query= " select pendiMalos.PEDIDO_ID,gestiMalos.user, gestiMalos.concepto_anterior, ".
+                " gestiMalos.estado, gestiMalos.motivo_malo, gestiMalos.fecha_fin, ".
+                " CAST(TIMEDIFF(NOW(),gestiMalos.fecha_estado) AS CHAR (255)) AS ANSSOLUCION ".
+                " from informe_petec_pendientesm pendiMalos ".
+                " inner join pedidos gestiMalos ".
+                " on pendiMalos.STATUS = gestiMalos.ESTADO_ID AND pendiMalos.PEDIDO_ID = gestiMalos.pedido_id ".
+                " where pendiMalos.STATUS = ('MALO') order by gestiMalos.fecha_fin desc ";
+        //echo $query;
+
+        $rst = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($rst->num_rows > 0){
+
+            /*Insert en log
+								$sql_log="insert into emtelco.re_logoperaciones (USUARIO_ID, TIPO_ACTIVIDAD, DESCRIPCION, IDENTIFICADOR, IP, PC) values(UPPER('$usuarioid'),'EXPORTE','EXPORTO CSV_USUARIOS','LOGIN: $usuarioid','$usuarioIp','$usuarioPc')";
+
+								$rlog = $this->connemtel->query($sql_log) or die($this->connemtel->error.__LINE__);
+								//Insert en log*/
+
+            $result = array();
+            $fp = fopen("../tmp/$filename", 'w');
+            //echo $fp;
+            $columnas=array( 'PEDIDO_ID',
+                'USUARIO',
+                'CONCEPTO_ANTERIOR',
+                'ESTADO',
+                'MOTIVO_MALO',
+                'FECHA_FIN',
+                'ANS'
+
+            );
+
+            fputcsv($fp, $columnas,',');
+            //$carlitos=0;
+            while($row = $rst->fetch_assoc()){
+
+                //$row['OBSERVACIONES']=utf8_decode($row['OBSERVACIONES']);
+                //$result[] = $row;
+                fputcsv($fp, $row);
+                //if($carlitos==0){var_dump($row);$carlitos=1;};
+            }
+
+            fclose($fp);
+
+            $this->response($this->json(array($filename)), 200);
+
+
+        }
+
+
+        $this->response('',203);
+    }
+
+
+    private function borrarPedidoMalo(){
+
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+        $params = json_decode(file_get_contents('php://input'),true);
+        $id=$params['id'];
+
+
+
+        $sql = "delete from portalbd.informe_petec_pendientesm where ID=$id ";
+
+        $rst = $this->mysqli->query($sql);
+
+        // SQL Feed----------------------------------
+        $sql_log=   "insert into portalbd.activity_feed ( ".
+            " USER ".
+            ", USER_NAME ".
+            ", GRUPO ".
+            ", STATUS ".
+            ", PEDIDO_OFERTA ".
+            ", ACCION ".
+            ", CONCEPTO_ID ".
+            ", IP_HOST ".
+            ", CP_HOST ".
+            ") values( ".
+            " UPPER('$usuarioGalleta')".
+            ", UPPER('$nombreGalleta')".
+            ", UPPER('$grupoGalleta')".
+            ",'OK' ".
+            ",'SIN PEDIDO' ".
+            ",'BORRO USUARIO' ".
+            ",'USUARIO BORRADO' ".
+            ",'$usuarioIp' ".
+            ",'$usuarioPc')";
+
+        $rlog = $this->mysqli->query($sql_log);
+        // ---------------------------------- SQL Feed
+        $error="Pedido borrado";
+        $this->response($this->json($error), 200);
+
+
+    }
+
     private function listadoPedidosMalos(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -15232,6 +15367,9 @@ public function pp(&$var){
         $this->response('',204);        // If no records "No Content" status
 
     }
+
+    //--------------------------FIN FUNCIONES GESTION PEDIDOSMALOS----------------
+
 
     //Funcion para traer datos del Activity Feed.
     private function getFeed(){
@@ -18170,88 +18308,7 @@ public function pp(&$var){
     }//----------------------------------------------- Historico de Pedidos
 
 
-    //--------------------EXPORTE PEDIDOS MALOS---------------------------
-    private function csvPedidosMalos(){
 
-        if($this->get_request_method() != "POST"){
-            $this->response('',406);
-        }
-
-
-
-
-        $params = json_decode(file_get_contents('php://input'),true);
-        $usuarioIp=$_SERVER['REMOTE_ADDR'];
-        $usuarioPc=gethostbyaddr($usuarioIp);
-        $galleta=json_decode(stripslashes($_COOKIE['logedUser']),true);
-        $galleta=stripslashes($_COOKIE['logedUser']);
-        $galleta= json_decode($galleta);
-        $galleta = json_decode(json_encode($galleta), True);
-        $usuarioid=$galleta['USUARIO_ID'];
-
-        //echo
-
-        $today = date("Y-m-d");
-        $ano=date("Y");
-
-        $filename="PEDIDOSMALOS_$today.csv";
-
-
-        $query= " select pendiMalos.PEDIDO_ID,gestiMalos.user, gestiMalos.concepto_anterior, ".
-                " gestiMalos.estado, gestiMalos.motivo_malo, gestiMalos.fecha_fin, ".
-                " CAST(TIMEDIFF(NOW(),gestiMalos.fecha_estado) AS CHAR (255)) AS ANSSOLUCION ".
-                " from informe_petec_pendientesm pendiMalos ".
-                " inner join pedidos gestiMalos ".
-                " on pendiMalos.STATUS = gestiMalos.ESTADO_ID AND pendiMalos.PEDIDO_ID = gestiMalos.pedido_id ".
-                " where pendiMalos.STATUS = ('MALO') order by gestiMalos.fecha_fin desc ";
-        //echo $query;
-
-        $rst = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-
-        if($rst->num_rows > 0){
-
-            /*Insert en log
-								$sql_log="insert into emtelco.re_logoperaciones (USUARIO_ID, TIPO_ACTIVIDAD, DESCRIPCION, IDENTIFICADOR, IP, PC) values(UPPER('$usuarioid'),'EXPORTE','EXPORTO CSV_USUARIOS','LOGIN: $usuarioid','$usuarioIp','$usuarioPc')";
-
-								$rlog = $this->connemtel->query($sql_log) or die($this->connemtel->error.__LINE__);
-								//Insert en log*/
-
-            $result = array();
-            $fp = fopen("../tmp/$filename", 'w');
-            //echo $fp;
-            $columnas=array( 'PEDIDO_ID',
-                'USUARIO',
-                'CONCEPTO_ANTERIOR',
-                'ESTADO',
-                'MOTIVO_MALO',
-                'FECHA_FIN',
-                'ANS'
-
-            );
-
-            fputcsv($fp, $columnas,',');
-            //$carlitos=0;
-            while($row = $rst->fetch_assoc()){
-
-                //$row['OBSERVACIONES']=utf8_decode($row['OBSERVACIONES']);
-                //$result[] = $row;
-                fputcsv($fp, $row);
-                //if($carlitos==0){var_dump($row);$carlitos=1;};
-            }
-
-            fclose($fp);
-
-            $this->response($this->json(array($filename)), 200);
-
-
-        }
-
-
-        $this->response('',203);        // If no records "No Content" status
-
-    }
-
-    //--------------------EXPORTE PEDIDOS MALOS FIN---------------------------
 
     private function csvUsuarios(){
 
@@ -18500,7 +18557,8 @@ public function pp(&$var){
         $this->response($this->json($error), 200);
 
 
-    }//Funcion para listar la productividad del grupo
+    }
+    //Funcion para listar la productividad del grupo
 
 //Funcion para Editar novedades
     private function editarUsuario(){

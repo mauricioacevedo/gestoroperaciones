@@ -4960,9 +4960,9 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 	$scope.borrarModal = function (data) {
 		$rootScope.errorDatos = null;
 		$scope.idUsuario = data.ID;
-		$scope.UsuarioNom = data.USUARIO_NOMBRE;
+		//$scope.UsuarioNom = data.USUARIO_NOMBRE;
 		// console.log(data);
-		console.log("ID a borrar: " + $scope.idUsuario);
+		console.log("PEDIDO a borrar: " + $scope.idUsuario);
 	};
 
 
@@ -4972,12 +4972,11 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 			function (data) {
 				$scope.listadoUsuariosGeop();
 				$rootScope.errorDatos = null;
-
-
 			},
-			function errorCallback(response) {
 
-				$rootScope.errorDatos = "No se borro";
+            function errorCallback(response) {
+
+				$rootScope.errorDatos = "Error no se pudo borrar";
 
 				//console.log($rootScope.errorDatos);
 
