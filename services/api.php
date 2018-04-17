@@ -18222,10 +18222,11 @@ public function pp(&$var){
             $columnas=array( 'PEDIDO_ID',
                 'USUARIO',
                 'CONCEPTO_ANTERIOR',
+                'ESTADO',
                 'MOTIVO_MALO',
                 'FECHA_FIN',
-                'ANS',
-                'ESTADO'
+                'ANS'
+
             );
 
             fputcsv($fp, $columnas,',');
