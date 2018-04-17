@@ -15191,6 +15191,47 @@ public function pp(&$var){
 
     }
 
+    private function listadoPedidosMalos(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        //counter
+
+        $query="SELECT count(*) as counter from tbl_usuarios";
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter = $row['counter'];
+            }
+        }
+
+
+        $query=	"select pendiMalos.PEDIDO_ID,gestiMalos.user, gestiMalos.concepto_anterior, ".
+                " gestiMalos.estado, gestiMalos.motivo_malo, gestiMalos.fecha_fin ".
+                " from informe_petec_pendientesm pendiMalos ".
+                " inner join pedidos gestiMalos ".
+                " on pendiMalos.STATUS = gestiMalos.ESTADO_ID AND pendiMalos.PEDIDO_ID = gestiMalos.pedido_id ".
+                " where pendiMalos.STATUS = ('MALO' ";
+        //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                //$result[] = $row;
+                //echo "name: ".utf8_encode($row['USUARIO_NOMBRE'])."\n ";
+               /* $row['USUARIO_NOMBRE']=utf8_encode($row['USUARIO_NOMBRE']);
+                $row['INTERVENTOR']=utf8_encode($row['INTERVENTOR']);*/
+                $result[] = $row;
+            }
+            $this->response($this->json(array($result,$counter)), 200); // send user details
+        }
+        $this->response('',204);        // If no records "No Content" status
+
+    }
+
     //Funcion para traer datos del Activity Feed.
     private function getFeed(){
         if($this->get_request_method() != "GET"){

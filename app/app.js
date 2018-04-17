@@ -752,6 +752,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoUsuarios');
 	};
 
+    obj.getListadoPedidosMalos = function () {
+		return $http.get(serviceBase + 'listadoPedidosMalos');
+	};
+
 	obj.updateParametro = function (parametro, valor, user) {
 		return $http.get(serviceBase + 'updateParametro?parametro=' + parametro + '&valor=' + valor + '&user=' + user);
 	};
@@ -4863,7 +4867,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 	//Obtener listado de usuarios del GEOP
 	$scope.listadoUsuariosGeop = function (usuario_id) {
 		$rootScope.errorDatos = null;
-		services.getListadoUsuarios(usuario_id).then(
+		services.getListadoPedidosMalos(usuario_id).then(
 
 			function (data) {
 				$errorDatos = null;
