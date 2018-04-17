@@ -5106,9 +5106,12 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 	};
 
 
-	$scope.csvUsuarios = function (filtroInput) {
 
-		services.expCsvUsuarios().then(
+
+
+    $scope.csvPedidosMalos = function (filtroInput) {
+
+		services.expCsvPedidosMalos().then(
 
 			function (data) {
 
