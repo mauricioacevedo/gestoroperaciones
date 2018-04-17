@@ -19726,6 +19726,15 @@ app.config(['$routeProvider',
             grupos: ['SUPER'],
             cargos: ['1']
 		})
+
+      .when('/Malos/', {
+			title: 'Gestion Pedidos Malos',
+			templateUrl: 'partials/administracion/listado_malos.html',
+			controller: 'PedidosMalosCtrl',
+            grupos: ['SUPER'],
+            cargos: ['1']
+		})
+
 		.when('/users/usuario', {
 			title: 'SignUP',
 			templateUrl: 'partials/singup.html',
