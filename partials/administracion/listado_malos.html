@@ -73,11 +73,11 @@
                     <table class="table small table-striped table-condensed">
                         <thead>
                         <tr>
-                            <th>
+                          <!--  <th>
                                 <a href="" ng-click="sortType = 'ID'; sortReverse = !sortReverse">ID <span
                                         ng-show="sortType== 'ID' && !sortReverse" class="fa fa-caret-down"></span><span
                                         ng-show="sortType == 'ID' && sortReverse" class="fa fa-caret-up"></span></a>
-                            </th>
+                            </th>-->
                             <th>
                                 <a href="" ng-click="sortType = 'USUARIO_ID'; sortReverse = !sortReverse">PEDIDO
                                     <span ng-show="sortType == 'USUARIO_ID' && !sortReverse"
@@ -113,12 +113,12 @@
                         <tbody>
                         <tr ng-repeat="data in listaPedidosMalos | orderBy:sortType:sortReverse | filter:filtroInput as results"
                             class="animated bounceInRight">
-                            <td><span class="small">{{data.ID}}</span></td>
+                            <!--<td><span class="small">{{data.ID}}</span></td>-->
                             <td><span class="small">{{data.PEDIDO_ID}}</span></td>
                             <td><span class="small">{{data.user}}</span></td>
                             <td><span class="small">{{data.concepto_anterior}}</span></td>
-                            <td><span class="small">{{data.estado}}</span></td>
                             <td><span class="small">{{data.motivo_malo}}</span></td>
+                            <td><span class="small">{{data.estado}}</span></td>
                             <td><span class="small">{{data.CARGO_ID}} - {{data.NOMBRE_CARGO}}</span></td>
                             <td><span class="small"
                                       ng-class="{'ACTIVO': 'label label-success','INACTIVO': 'label label-default'}[data.ESTADO]">{{data.ESTADO}}</span>
