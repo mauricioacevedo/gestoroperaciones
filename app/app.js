@@ -4872,7 +4872,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
 			function (data) {
 				$errorDatos = null;
-				$scope.listaUsuarios = data.data[0];
+				$scope.listaPedidosMalos = data.data[0];
 
 				// console.log($scope.listaUsuarios);
 				$scope.cantidad = data.data.length;

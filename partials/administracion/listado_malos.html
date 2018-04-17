@@ -111,7 +111,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="data in listaUsuarios  | orderBy:sortType:sortReverse | filter:filtroInput as results"
+                        <tr ng-repeat="data in listaPedidosMalos | orderBy:sortType:sortReverse | filter:filtroInput as results"
                             class="animated bounceInRight">
                             <td><span class="small">{{data.ID}}</span></td>
                             <td><span class="small">{{data.PEDIDO_ID}}</span></td>
