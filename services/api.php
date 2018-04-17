@@ -18199,7 +18199,7 @@ public function pp(&$var){
 
         $query= " select pendiMalos.PEDIDO_ID,gestiMalos.user, gestiMalos.concepto_anterior, ".
                 " gestiMalos.estado, gestiMalos.motivo_malo, gestiMalos.fecha_fin, ".
-                " CAST(TIMEDIFF(gestiMalos.fecha_fin,NOW()) AS CHAR (255)) AS ANSSOLUCION "
+                " CAST(TIMEDIFF(gestiMalos.fecha_fin,NOW()) AS CHAR (255)) AS ANSSOLUCION ".
                 " from informe_petec_pendientesm pendiMalos ".
                 " inner join pedidos gestiMalos ".
                 " on pendiMalos.STATUS = gestiMalos.ESTADO_ID AND pendiMalos.PEDIDO_ID = gestiMalos.pedido_id ".
