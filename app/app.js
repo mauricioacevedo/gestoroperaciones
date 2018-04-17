@@ -195,6 +195,12 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	obj.expCsvUsuarios = function () {
 		return $http.post(serviceBase + 'csvUsuarios');
 	};
+
+    obj.expCsvPedidosMalos = function () {
+		return $http.post(serviceBase + 'csvPedidosMalos');
+	};
+
+
 	//Crud de Usuarios-----------------------------------------------------------------------------------------
 	obj.putUsuarioNuevo = function (editaInfo) {
 		return $http.post(serviceBase + 'crearUsuario', {
@@ -4898,7 +4904,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 	//Exportes: Inicio
 	$scope.csvPedidosMalos = function (filtroInput) {
 
-		services.expCsvUsuarios().then(
+		services.expCsvPedidosMalos().then(
 
 			function (data) {
 

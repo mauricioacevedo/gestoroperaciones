@@ -18197,13 +18197,13 @@ public function pp(&$var){
         $filename="PEDIDOSMALOS_$today.csv";
 
 
-        /*$query= " select pendiMalos.PEDIDO_ID,gestiMalos.user, gestiMalos.concepto_anterior, ".
+        $query= " select pendiMalos.PEDIDO_ID,gestiMalos.user, gestiMalos.concepto_anterior, ".
                 " gestiMalos.estado, gestiMalos.motivo_malo, gestiMalos.fecha_fin, ".
                 " CAST(TIMEDIFF(gestiMalos.fecha_fin,NOW()) AS CHAR (255)) AS ANSSOLUCION "
                 " from informe_petec_pendientesm pendiMalos ".
                 " inner join pedidos gestiMalos ".
                 " on pendiMalos.STATUS = gestiMalos.ESTADO_ID AND pendiMalos.PEDIDO_ID = gestiMalos.pedido_id ".
-                " where pendiMalos.STATUS = ('MALO') order by gestiMalos.fecha_fin desc ";*/
+                " where pendiMalos.STATUS = ('MALO') order by gestiMalos.fecha_fin desc ";
         //echo $query;
 
         $rst = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
