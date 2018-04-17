@@ -4891,7 +4891,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 			},
 			function errorCallback(response) {
 
-				$rootScope.errorDatos = "Usuario no existe.";
+				$rootScope.errorDatos = "Pedido no existe.";
 
 				// console.log($rootScope.errorDatos);
 
