@@ -4866,7 +4866,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
 
 	//Obtener listado de usuarios del GEOP
-	$scope.listadoUsuariosGeop = function (usuario_id) {
+	$scope.listadoPedidosMalos = function (usuario_id) {
 		$rootScope.errorDatos = null;
 		services.getListadoPedidosMalos(usuario_id).then(
 
@@ -4893,10 +4893,10 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
 
 	};
-	$scope.listadoUsuariosGeop();
+	$scope.listadoPedidosMalos();
 
 	//Exportes: Inicio
-	$scope.csvUsuarios = function (filtroInput) {
+	$scope.csvPedidosMalos = function (filtroInput) {
 
 		services.expCsvUsuarios().then(
 
