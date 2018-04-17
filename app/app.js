@@ -4497,7 +4497,8 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 
 			function (data) {
 				$errorDatos = null;
-				$scope.listaUsuarios = data.data[0];
+
+                $scope.listaUsuarios = data.data[0];
 
 				// console.log($scope.listaUsuarios);
 				$scope.cantidad = data.data.length;
