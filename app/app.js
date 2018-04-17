@@ -19730,7 +19730,7 @@ app.config(['$routeProvider',
       .when('/Malos/', {
 			title: 'Gestion Pedidos Malos',
 			templateUrl: 'partials/administracion/listado_malos.html',
-			controller: 'PedidosMalosCtrl',
+			controller: 'UsersCtrl',
             grupos: ['SUPER'],
             cargos: ['1']
 		})
