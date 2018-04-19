@@ -18740,7 +18740,9 @@ public function pp(&$var){
         $grupo 	    = $params['grupo'];
         $actividad  = $params['actividad'];
         $today		= date("Y-m-d");
-        echo var_dump($params);
+        $parametroBusqueda= $this->demePedido('concepto');
+        echo var_dump ($parametroBusqueda);
+
 
 
 
