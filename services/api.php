@@ -18741,7 +18741,7 @@ public function pp(&$var){
         $actividad  = $params['actividad'];
         $today		= date("Y-m-d");
         $parametroBusqueda= $this->demePedido('concepto');
-        echo var_dump ($parametroBusqueda);
+        echo $parametroBusqueda;
 
 
 
