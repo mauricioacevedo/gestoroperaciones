@@ -18740,8 +18740,10 @@ public function pp(&$var){
         $grupo 	    = $params['grupo'];
         $actividad  = $params['actividad'];
         $today		= date("Y-m-d");
-        $parametroBusqueda= $this->demePedido('concepto');
-        echo $parametroBusqueda;
+
+        //$parametroBusqueda= $this->demePedido('concepto');
+        //$concepto = $this->_request['concepto'];
+        //echo $parametroBusqueda;
 
 
 
