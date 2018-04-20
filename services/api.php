@@ -15289,6 +15289,7 @@ public function pp(&$var){
         $grupoGalleta   =   $galleta['GRUPO'];
         $params = json_decode(file_get_contents('php://input'),true);
         $id=$params['id'];
+        echo $params;
 
 
 
