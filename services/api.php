@@ -1703,7 +1703,7 @@ private function getAgentScore($user){
                 // ---------------------------------- SQL Feed
 
                 //SQL PedidosMAlos
-                $sql_PedidosMalos = "insert into tbl_PedidosMalos ( ".
+                $sql_PedidosMalos = "insert into tbl_PedidosIgnorados ( ".
                     " PEDIDO_ID ".
                     ", ASESOR ".
                     ", MOTIVO_MALO ".
@@ -2525,7 +2525,7 @@ private function getAgentScore($user){
 
 
                 //query para ingresar los pedidos que son marcados como malos en un nueva tabla
-                $sql_PedidosMalos = "insert into tbl_PedidosMalos ( ".
+                $sql_PedidosMalos = "insert into tbl_PedidosIgnorados ( ".
                     " PEDIDO_ID ".
                     ", ASESOR ".
                     ", MOTIVO_MALO ".
@@ -19733,7 +19733,7 @@ public function pp(&$var){
 
             //query para ingresar los pedidos que son marcados como malos en un nueva tabla
                 $sql_
-                    = "insert into tbl_PedidosMalos ( ".
+                    = "insert into tbl_PedidosIgnorados ( ".
                     " PEDIDO_ID ".
                     ", ASESOR ".
                     ", MOTIVO_MALO ".
