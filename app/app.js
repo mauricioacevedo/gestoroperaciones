@@ -4833,7 +4833,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 	divi.style.visibility = "visible";
 	divi.style.position = "relative";
 	$rootScope.iconcepto = "TODO";
-	$rootScope.actualView = "usuarios";
+	$rootScope.actualView = "PedidosMalos";
 
 	$scope.usert = {};
 	$scope.usert.EQUIPO_ID = "MANUAL";
