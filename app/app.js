@@ -4965,10 +4965,10 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 	//Modal para borrar usuarios.
 	$scope.borrarModal = function (data) {
 		$rootScope.errorDatos = null;
-		$scope.idUsuario = data.ID;
+		$scope.PEDIDO_ID = data.PEDIDO_ID;
 		//$scope.UsuarioNom = data.USUARIO_NOMBRE;
 		// console.log(data);
-		console.log("PEDIDO a borrar: " + $scope.idUsuario);
+		console.log("PEDIDO a borrar: " + $scope.PEDIDO_ID);
 	};
 
 
