@@ -762,6 +762,12 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoPedidosMalos');
 	};
 
+    obj.ignorarPedido = function (id) {
+		return $http.post(serviceBase + 'ignorarPedido', {
+			"id": id
+		});
+	};
+
 	obj.updateParametro = function (parametro, valor, user) {
 		return $http.get(serviceBase + 'updateParametro?parametro=' + parametro + '&valor=' + valor + '&user=' + user);
 	};
@@ -4966,11 +4972,11 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 	};
 
 
-	$scope.borrarUsuario = function (id) {
+	$scope.ignorarPedido = function (id) {
 		$scope.idBorrar = id;
-		services.deleteUsuario($scope.idBorrar).then(
+		services.ignorarPedido($scope.idBorrar).then(
 			function (data) {
-				$scope.listadoUsuariosGeop();
+				$scope.listadoPedidosMalos();
 				$rootScope.errorDatos = null;
 			},
 
