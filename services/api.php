@@ -15273,7 +15273,7 @@ public function pp(&$var){
     }
 
 
-    private function borrarPedidoMalo(){
+    private function ignorarPedido(){
 
         if($this->get_request_method() != "POST"){
             $this->response('',406);
@@ -15292,7 +15292,7 @@ public function pp(&$var){
 
 
 
-        $sql = "delete from portalbd.informe_petec_pendientesm where ID=$id ";
+        $sql = "update from portalbd.informe_petec_pendientesm set CONCEPTO_ID = 'IGNORADO'  where PEDIDO_ID=$id ";
 
         $rst = $this->mysqli->query($sql);
 
@@ -19727,7 +19727,8 @@ public function pp(&$var){
             $cerrar = false;
 
             //query para ingresar los pedidos que son marcados como malos en un nueva tabla
-                $sql_PedidosMalos = "insert into tbl_PedidosMalos ( ".
+                $sql_
+                    = "insert into tbl_PedidosMalos ( ".
                     " PEDIDO_ID ".
                     ", ASESOR ".
                     ", MOTIVO_MALO ".
