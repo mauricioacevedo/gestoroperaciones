@@ -15353,7 +15353,8 @@ public function pp(&$var){
                 " from informe_petec_pendientesm pendiMalos ".
                 " inner join pedidos gestiMalos ".
                 " on pendiMalos.STATUS = gestiMalos.ESTADO_ID AND pendiMalos.PEDIDO_ID = gestiMalos.pedido_id ".
-                " where pendiMalos.STATUS = ('MALO') order by gestiMalos.fecha_fin desc";
+                " where pendiMalos.STATUS = ('MALO') and pendiMalos.CONCEPTO_ID not in ('IGNORADO') ".
+                " order by gestiMalos.fecha_fin desc";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
