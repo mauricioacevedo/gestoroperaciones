@@ -15288,12 +15288,13 @@ public function pp(&$var){
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
         $params = json_decode(file_get_contents('php://input'),true);
-        $id=$params['PEDIDO_ID'];
-        echo var_dump($params);
+        $Pedido=$params['PEDIDO_ID'];
+
+        echo var_dump($Pedido);
 
 
 
-        $sql = "update from portalbd.informe_petec_pendientesm set CONCEPTO_ID = 'IGNORADO'  where PEDIDO_ID=$id ";
+        $sql = "update from portalbd.informe_petec_pendientesm set CONCEPTO_ID = 'IGNORADO'  where PEDIDO_ID=$Pedido ";
 
 
         //$rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__)
