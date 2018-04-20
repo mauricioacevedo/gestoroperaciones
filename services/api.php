@@ -15297,7 +15297,7 @@ public function pp(&$var){
         $rst = $this->mysqli->query($sql);
 
         // SQL Feed----------------------------------
-        $sql_log=   "insert into portalbd.activity_feed ( ".
+/*        $sql_log=   "insert into portalbd.activity_feed ( ".
             " USER ".
             ", USER_NAME ".
             ", GRUPO ".
@@ -15318,9 +15318,9 @@ public function pp(&$var){
             ",'$usuarioIp' ".
             ",'$usuarioPc')";
 
-        $rlog = $this->mysqli->query($sql_log);
+        $rlog = $this->mysqli->query($sql_log);*/
         // ---------------------------------- SQL Feed
-        $error="Pedido borrado";
+        $error="Pedido Ignorado";
         $this->response($this->json($error), 200);
 
 
