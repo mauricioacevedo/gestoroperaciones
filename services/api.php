@@ -15294,7 +15294,7 @@ public function pp(&$var){
 
 
 
-        $sql = "update from portalbd.informe_petec_pendientesm set CONCEPTO_ID = 'IGNORADO'  where PEDIDO_ID=$Pedido ";
+        $sql = "update informe_petec_pendientesm set CONCEPTO_ID = 'IGNORADO'  where PEDIDO_ID=$Pedido ";
 
 
         //$rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__)
