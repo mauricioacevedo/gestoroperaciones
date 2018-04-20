@@ -15295,11 +15295,11 @@ public function pp(&$var){
         $sql = "update from portalbd.informe_petec_pendientesm set CONCEPTO_ID = 'IGNORADO'  where PEDIDO_ID=$id ";
 
 
-        $rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__)
-        //$rst = $this->mysqli->query($sql);
+        //$rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__)
+        $rst = $this->mysqli->query($sql);
 
         // SQL Feed----------------------------------
-        $sql_log=   "insert into portalbd.activity_feed ( ".
+      /*  $sql_log=   "insert into portalbd.activity_feed ( ".
             " USER ".
             ", USER_NAME ".
             ", GRUPO ".
@@ -15320,7 +15320,7 @@ public function pp(&$var){
             ",'$usuarioIp' ".
             ",'$usuarioPc')";
 
-        $rlog = $this->mysqli->query($sql_log);
+        $rlog = $this->mysqli->query($sql_log);*/
         // ---------------------------------- SQL Feed
         $error="Pedido Ignorado";
         $this->response($this->json($error), 200);
