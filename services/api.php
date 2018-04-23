@@ -8885,6 +8885,19 @@ private function getAgentScore($user){
             if($mypedido==""){
                 //2017-02-03 Mauricio: se agrega funcionalidad para buscar por arbol en concepto 14
                 //HAGO LA CONSULTA DE PRIORIDAD POR ARBOL
+                    $parametroBusquedaRec= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION');
+                    $parametroOrdenRec= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO_R');
+
+                    $parametroBusquedaRec2=$parametroBusquedaRec;
+                    $tipo_trabajo="";
+                    if($parametroBusquedaRec=="NUEVOS_PRIMERO"){
+                        $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO LIKE '%NUEVO%' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%')";
+                        $parametroBusquedaRec2="FECHA_ESTADO";
+                    }else{
+                        $tipo_trabajo=" ";
+                    }
+
+
 
                 $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA ".
                     " FROM  informe_petec_pendientesm ".
@@ -8893,8 +8906,9 @@ private function getAgentScore($user){
                     " AND ASESOR='' ".
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
+                    $tipo_trabajo.
                     $plaza2.
-                    " ORDER BY $parametroBusqueda $parametroOrdenRecon ";
+                    " ORDER BY $parametroBusquedaRec2 $parametroOrdenRec ";
 
                 //echo $sqlllamadas;
 
@@ -8937,7 +8951,7 @@ private function getAgentScore($user){
             $parametroBusqueda2=$parametroBusqueda;
             $tipo_trabajo="";
             if($parametroBusqueda=="NUEVOS_PRIMERO"){
-                $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%')";
+                $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%')";
                 $parametroBusqueda2="FECHA_ESTADO";
             }else{
                 $tipo_trabajo=" ";
@@ -9028,7 +9042,7 @@ private function getAgentScore($user){
         $parametroBusqueda2=$parametroBusqueda;
 
         if($parametroBusqueda2=="NUEVOS_PRIMERO"){
-            $tipo_trabajo=" AND (b.TIPO_TRABAJO='NA NUEVO' or b.TIPO_TRABAJO LIKE '%TRASL%' OR b.TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%') ";
+            $tipo_trabajo=" AND (b.TIPO_TRABAJO='NA NUEVO' or b.TIPO_TRABAJO='NUEVO' or b.TIPO_TRABAJO='NA Nuevo'  or b.TIPO_TRABAJO LIKE '%TRASL%' OR b.TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%') ";
             $parametroBusqueda2="FECHA_ESTADO";
         }else{
             $tipo_trabajo="";
@@ -9056,7 +9070,7 @@ private function getAgentScore($user){
             $zona2.
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-            " order by b.$parametroBusqueda $parametroOrden ";
+            " order by b.$parametroBusqueda2 $parametroOrden ";
             //echo var_dump ($concepto);
             //echo var_dump ($query1);
 
@@ -9132,7 +9146,7 @@ private function getAgentScore($user){
                     $plaza.
                     $zona2.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-                    " order by b.$parametroBusqueda $parametroOrden";
+                    " order by b.$parametroBusqueda2 $parametroOrden";
 
                 //echo $query1;
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
