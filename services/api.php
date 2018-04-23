@@ -9132,7 +9132,7 @@ private function getAgentScore($user){
                     $plaza.
                     $zona2.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-                    " order by b.$parametroBusqueda $parametroOrden";
+                    " order by b.$parametroBusqueda2 $parametroOrden";
 
                 //echo $query1;
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
