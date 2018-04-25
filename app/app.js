@@ -4930,6 +4930,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 	$scope.borrarModal = function (data,index) {
 		$rootScope.errorDatos = null;
 		$scope.PEDIDO_ID = data.PEDIDO_ID;
+        $scope.indexborrar = index;
 		//$scope.UsuarioNom = data.USUARIO_NOMBRE;
 		// console.log(data);
 		console.log("PEDIDO a Ignorar: " + $scope.PEDIDO_ID);
