@@ -151,7 +151,7 @@
                                 </button>-->
                                 <button type="button" uib-tooltip="Ignorar: {{$index}}" tooltip-placement="top"
                                         class="btn btn-default btn-circle-xss" ng-click="borrarModal(data)"
-                                        data-toggle="modal" data-target="#eliminaUsuario" data-backdrop="static"
+                                        data-toggle="modal" data-target="#eliminaPedido" data-backdrop="static"
                                         ng-disabled="loading">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                 </button>
@@ -477,7 +477,7 @@
 
 </div>
 <!-- Modal Eliminar Novedad-->
-<div id="eliminaUsuario" class="modal fade " role="dialog">
+<div id="eliminaPedido" class="modal fade " role="dialog">
     <div class="modal-dialog modal-md">
 
         <!-- Modal content-->
@@ -510,7 +510,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" ng-click="ignorarPedido(PEDIDO_ID)" data-dismiss="modal">
+                <button type="button" class="btn btn-success" ng-click="ignorarPedido($index)" data-dismiss="modal">
                     Ignorar
                 </button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
