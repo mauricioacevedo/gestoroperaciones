@@ -4944,7 +4944,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
         $scope.PEDIDO_ID=$scope.listaPedidosMalos[index].PEDIDO_ID;
 
-        //console.log($scope.PEDIDO_ID);
+        console.log($scope.PEDIDO_ID);
         //$scope.pedido.pedido=$scope.listaPedidosMalos[index].PEDIDO_ID;
 
        /* $scope.pedido.pedido=$scope.listaPedidosMalos[index].PEDIDO_ID+$scope.listaPedidosMalos[index].ANSSOLUCION+$scope.listaPedidosMalos[index].estado;
