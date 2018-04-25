@@ -4936,10 +4936,10 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 	};
 
 
-	$scope.ignorarPedido = function (index) {
+	$scope.ignorarPedido = function (PEDIDO_ID) {
 		angular.copy($scope.listaPedidosMalos[index], $scope.PEDIDO_ID);
-        $scope.pedido.pedido=$scope.listaPedidosMalos[index].PEDIDO_ID+$scope.listaPedidosMalos[index].ANSSOLUCION+$scope.listaPedidosMalos[index].estado;
-        //$scope.PEDIDO_ID = PEDIDO_ID;
+        /*$scope.pedido.pedido=$scope.listaPedidosMalos[index].PEDIDO_ID+$scope.listaPedidosMalos[index].ANSSOLUCION+$scope.listaPedidosMalos[index].estado;*/
+        $scope.PEDIDO_ID = PEDIDO_ID;
         //$scope.PEDIDO_ID = PEDIDO_ID;
 
 		services.ignorarPedido($scope.PEDIDO_ID).then(
