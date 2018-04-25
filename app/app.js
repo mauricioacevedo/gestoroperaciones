@@ -4943,8 +4943,8 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
         angular.copy($scope.listaPedidosMalos[index], $scope.PEDIDO_ID);
 
         $scope.PEDIDO_ID=$scope.listaPedidosMalos[index].PEDIDO_ID;
+        console.log($scope.PEDIDO_ID);
 
-        //console.log($scope.PEDIDO_ID);
         //$scope.pedido.pedido=$scope.listaPedidosMalos[index].PEDIDO_ID;
 
        /* $scope.pedido.pedido=$scope.listaPedidosMalos[index].PEDIDO_ID+$scope.listaPedidosMalos[index].ANSSOLUCION+$scope.listaPedidosMalos[index].estado;
@@ -4955,6 +4955,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
 		services.ignorarPedido($scope.PEDIDO_ID).then(
 			function (data) {
+                console.log($scope.PEDIDO_ID);
 				$scope.listadoPedidosMalos();
 				$rootScope.errorDatos = null;
 			},
