@@ -150,7 +150,7 @@
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </button>-->
                                 <button type="button" uib-tooltip="Ignorar: {{$index}}" tooltip-placement="top"
-                                        class="btn btn-default btn-circle-xss" ng-click="borrarModal(data)"
+                                        class="btn btn-default btn-circle-xss" ng-click="borrarModal(data,$index)"
                                         data-toggle="modal" data-target="#eliminaPedido" data-backdrop="static"
                                         ng-disabled="loading">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
@@ -500,7 +500,7 @@
                             ¿Seguro que quiere Ignorar este pedido?
                             <br>
                             <h4><span class="label label-info">
-                               PEDIDO: {{PEDIDO_ID}}
+                               PEDIDO: {{PEDIDO_ID}} : {{indexborrar}}
                             </span>
                             </h4>
                         </div>

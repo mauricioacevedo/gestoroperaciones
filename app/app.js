@@ -4927,7 +4927,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
 
 	//moral borrar pedido
-	$scope.borrarModal = function (data) {
+	$scope.borrarModal = function (data,index) {
 		$rootScope.errorDatos = null;
 		$scope.PEDIDO_ID = data.PEDIDO_ID;
 		//$scope.UsuarioNom = data.USUARIO_NOMBRE;
@@ -4937,7 +4937,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
 
 	$scope.ignorarPedido = function (index) {
-        var loader = document.getElementById("class"+index);
+        //var loader = document.getElementById("class"+index);
 
         //$scope.listaPedidosMalos={};
         //console.log($scope.listaPedidosMalos);
