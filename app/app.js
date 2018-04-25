@@ -4939,7 +4939,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 	$scope.ignorarPedido = function (index) {
         var loader = document.getElementById("class"+index);
 
-        $scope.listaPedidosMalos={};
+        //$scope.listaPedidosMalos={};
         //console.log($scope.listaPedidosMalos);
         $scope.info = $scope.listaPedidosMalos[index];
         console.log($scope.listaPedidosMalos);
