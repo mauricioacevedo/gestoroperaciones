@@ -19748,8 +19748,7 @@ public function pp(&$var){
             $cerrar = false;
 
             //query para ingresar los pedidos que son marcados como malos en un nueva tabla
-                $sql_
-                    = "insert into tbl_PedidosIgnorados ( ".
+                $sql_PedidosMalos= "insert into tbl_PedidosIgnorados ( ".
                     " PEDIDO_ID ".
                     ", ASESOR ".
                     ", MOTIVO_MALO ".
