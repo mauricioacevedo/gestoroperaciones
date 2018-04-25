@@ -762,7 +762,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoPedidosMalos');
 	};
 
-    obj.ignorarPedido = function (index) {
+    obj.ignorarPedido = function (PEDIDO_ID) {
 		return $http.post(serviceBase + 'ignorarPedido', {
 			"PEDIDO_ID": PEDIDO_ID
 		});
