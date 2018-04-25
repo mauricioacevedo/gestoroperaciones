@@ -4941,8 +4941,10 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
         $scope.listaPedidosMalos={}
         angular.copy($scope.listaPedidosMalos[index], $scope.PEDIDO_ID);
-         /*$scope.pedido.pedido=$scope.listaPedidosMalos[index].PEDIDO_ID+$scope.listaPedidosMalos[index].ANSSOLUCION+$scope.listaPedidosMalos[index].estado;*/
+        $scope.pedido.pedido=$scope.listaPedidosMalos[index].PEDIDO_ID;
 
+       /* $scope.pedido.pedido=$scope.listaPedidosMalos[index].PEDIDO_ID+$scope.listaPedidosMalos[index].ANSSOLUCION+$scope.listaPedidosMalos[index].estado;
+*/
 
         $scope.PEDIDO_ID = PEDIDO_ID;
         //$scope.PEDIDO_ID = PEDIDO_ID;
