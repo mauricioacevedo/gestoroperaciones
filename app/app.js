@@ -4937,7 +4937,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
 
 	$scope.ignorarPedido = function (index) {
-        var loader = document.getElementById("class"+index);
+        //var loader = document.getElementById("class"+index);
 
         $scope.listaPedidosMalos={}
         angular.copy($scope.listaPedidosMalos[index], $scope.PEDIDO_ID);
