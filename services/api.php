@@ -15305,9 +15305,10 @@ public function pp(&$var){
 
         $Pedido=$params['PEDIDO_ID'];
 
+        $login = $this->_request['PEDIDO_ID'];
         $ANS=$params['pedido']['ANSSOLUCION'];
 
-        echo var_dump($ANS);
+        echo var_dump($login);
 
 
 
@@ -15317,8 +15318,8 @@ public function pp(&$var){
         //$rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__)
         //$rst = $this->mysqli->query($sql);
 
-        $sqlIgnorar = "update tbl_PedidosIgnorados set ESTADO = 'IGNORADO' where PEDIDO_ID=$Pedido ";
-        $rstIgnorar = $this->mysqli->query($sqlIgnorar);
+        //$sqlIgnorar = "update tbl_PedidosIgnorados set ESTADO = 'IGNORADO' where PEDIDO_ID=$Pedido ";
+        //$rstIgnorar = $this->mysqli->query($sqlIgnorar);
         // SQL Feed----------------------------------
       /*  $sql_log=   "insert into portalbd.activity_feed ( ".
             " USER ".
