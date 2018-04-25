@@ -4832,12 +4832,13 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 	var divi = document.getElementById("logoutdiv");
 	divi.style.visibility = "visible";
 	divi.style.position = "relative";
-	$rootScope.iconcepto = "TODO";
 	$rootScope.actualView = "PedidosMalos";
+    //$rootScope.iconcepto = "TODO";
 
-	$scope.usert = {};
+
+/*	$scope.usert = {};
 	$scope.usert.EQUIPO_ID = "MANUAL";
-	$scope.usert.ID = "";
+	$scope.usert.ID = "";*/
 
 	$scope.doubleDigit = function (num) {
 
@@ -4863,24 +4864,14 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 		$location.path('/');
 	};
 
-
-
 	$rootScope.errorDatos = null;
 	$scope.fechiniExpoIO = "";
 	$scope.fechafiniExpoIO = "";
 
-
-	$scope.usuarioFill = function (usuario_id) {
-		$scope.filtroInput = usuario_id;
-
-
-	};
-
-
-	//Obtener listado de usuarios del GEOP
-	$scope.listadoPedidosMalos = function (usuario_id) {
+	//Obtener listado de pedidosmalos
+	$scope.listadoPedidosMalos = function (pedido_id) {
 		$rootScope.errorDatos = null;
-		services.getListadoPedidosMalos(usuario_id).then(
+		services.getListadoPedidosMalos(pedido_id).then(
 
 			function (data) {
 				$errorDatos = null;
@@ -4888,7 +4879,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
 				// console.log($scope.listaUsuarios);
 				$scope.cantidad = data.data.length;
-				$scope.sortType = 'USUARIO_ID'; // set the default sort type
+				$scope.sortType = 'PEDIDO_ID'; // set the default sort type
 				$scope.sortReverse = false; // set the default sort order
 				$scope.csvUsers = false;
 				$scope.fechiniExpoIO = '';
@@ -4935,34 +4926,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
 
 
-	//modales
-	//Modal para editar usuarios
-	$scope.editarModal = function (data) {
-		$rootScope.errorDatos = null;
-		$scope.idUsuario = data.ID;
-		$scope.UsuarioNom = data.USUARIO_NOMBRE;
-		$scope.editaInfo = data;
-		$scope.TituloModal = "Editar Usuario con el ID:";
-		$scope.UsuarioNuevo = false;
-        //console.log(editaInfo);
-        $scope.cargoLabel = null;
-        $scope.msgLdap = null;
-        $scope.pic = 'images/avatar_2x.png';
-		//$scope.editaInfo.CARGO_ID=data.CARGO_ID;
-	};
-	//Modal para Crear Usuario Nuevo
-	$scope.crearUsuarioModal = function () {
-		$scope.editaInfo = {};
-		$rootScope.errorDatos = null;
-		$scope.idUsuario = '';
-		$scope.UsuarioNom = '';
-		$scope.TituloModal = "Crear Usuario Nuevo.";
-		$scope.UsuarioNuevo = true;
-        $scope.cargoLabel = null;
-        $scope.msgLdap = null;
-        $scope.pic = 'images/avatar_2x.png';
-	};
-	//Modal para borrar usuarios.
+	//moral borrar pedido
 	$scope.borrarModal = function (data) {
 		$rootScope.errorDatos = null;
 		$scope.PEDIDO_ID = data.PEDIDO_ID;
@@ -4974,6 +4938,8 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
 	$scope.ignorarPedido = function (PEDIDO_ID) {
 		$scope.PEDIDO_ID = PEDIDO_ID;
+        //$scope.PEDIDO_ID = PEDIDO_ID;
+
 		services.ignorarPedido($scope.PEDIDO_ID).then(
 			function (data) {
 				$scope.listadoPedidosMalos();
@@ -4994,13 +4960,13 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 	}; //Borrar Usuario
 
 	//Editar Usuario Servicio
-	$scope.editarUsuario = function (editaInfo) {
+	$scope.editarPedido = function (editaInfo) {
 
-		services.editUsuario(editaInfo).then(
+		services.editPedido(editaInfo).then(
 
 			function (data) {
 
-				$scope.listadoUsuariosGeop();
+				$scope.listadoPedidosMalos();
 				$rootScope.errorDatos = null;
 
 
@@ -5021,7 +4987,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
 			function (data) {
 
-				$scope.listadoUsuariosGeop();
+				$scope.listadoPedidosMalos();
 				$rootScope.errorDatos = null;
 
 				//console.log(novedades);
