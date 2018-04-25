@@ -4638,7 +4638,7 @@ private function getAgentScore($user){
             "        when TIPO_TRABAJO='CAMBIO,VENTA' then 'CAMBI,NUEVO' ".
             */
 
-            " WHEN UPPER(TIPO_TRABAJO) like '%NUEVO%' OR UPPER(TIPO_TRABAJO) LIKE '%TRASL%' OR UPPER(TIPO_TRABAJO)='CAMBIO DE DOMICILIO' THEN NUEVO ".
+            " WHEN UPPER(TIPO_TRABAJO) like '%NUEVO%' OR UPPER(TIPO_TRABAJO) LIKE '%TRASL%' OR UPPER(TIPO_TRABAJO)='CAMBIO DE DOMICILIO' THEN 'NUEVO' ".
             " else 'CAMBIO' ".
             "        end as TIPO_TRABAJO ".
             "    , FUENTE ".
