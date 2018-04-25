@@ -15304,7 +15304,7 @@ public function pp(&$var){
         $params = json_decode(file_get_contents('php://input'),true);
         $Pedido=$params['PEDIDO_ID'];
 
-        //echo var_dump($Pedido);
+        echo var_dump($params);
 
 
 
