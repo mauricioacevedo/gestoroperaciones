@@ -15302,20 +15302,23 @@ public function pp(&$var){
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
         $params = json_decode(file_get_contents('php://input'),true);
+
         $Pedido=$params['PEDIDO_ID'];
 
-        echo var_dump($galleta);
+        $ANS=$params['pedido']['ANSSOLUCION'];
+
+        echo var_dump($ANS);
 
 
 
-        $sql = "update informe_petec_pendientesm set STATUS = 'CERRADO_PETEC' where PEDIDO_ID=$Pedido ";
+        //$sql = "update informe_petec_pendientesm set STATUS = 'CERRADO_PETEC' where PEDIDO_ID=$Pedido ";
 
 
         //$rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__)
-        $rst = $this->mysqli->query($sql);
+        //$rst = $this->mysqli->query($sql);
 
-        $sqlIgnorar = "update tbl_PedidosIgnorados set ESTADO = 'IGNORADO' where PEDIDO_ID=$Pedido ";
-        $rstIgnorar = $this->mysqli->query($sqlIgnorar);
+        //$sqlIgnorar = "update tbl_PedidosIgnorados set ESTADO = 'IGNORADO' where PEDIDO_ID=$Pedido ";
+        //$rstIgnorar = $this->mysqli->query($sqlIgnorar);
         // SQL Feed----------------------------------
       /*  $sql_log=   "insert into portalbd.activity_feed ( ".
             " USER ".
