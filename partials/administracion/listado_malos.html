@@ -125,7 +125,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="data in listaPedidosMalos | filter:filtroInput as results"
+                        <!--<tr ng-repeat="data in listaPedidosMalos | filter:filtroInput as results"
+                            class="animated bounceInRight">-->
+                            <tr ng-repeat="data in listaPedidosMalos track by $index | filter:filtroInput as results"
                             class="animated bounceInRight">
                             <!--<td><span class="small">{{data.ID}}</span></td>-->
                             <td><span class="small">{{data.PEDIDO_ID}}</span></td>
@@ -146,7 +148,7 @@
                                         ng-disabled="loading">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </button>-->
-                                <button type="button" uib-tooltip="Ignorar: {{data.PEDIDO_ID}}" tooltip-placement="top"
+                                <button type="button" uib-tooltip="Ignorar: {{$index}}" tooltip-placement="top"
                                         class="btn btn-default btn-circle-xss" ng-click="borrarModal(data)"
                                         data-toggle="modal" data-target="#eliminaUsuario" data-backdrop="static"
                                         ng-disabled="loading">
