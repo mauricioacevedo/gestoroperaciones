@@ -4628,6 +4628,7 @@ private function getAgentScore($user){
             "        ELSE CONCEPTO_ID ".
             "     END AS CONCEPTO_ID ".
             "    , CASE ".
+            /*
             "    	when DESC_TIPO_TRABAJO='NA NUEVO' then 'NUEVO' ".
             "        when DESC_TIPO_TRABAJO='MODIFICACION,NA NUEVO' then 'CAMBI,NUEVO' ".
             "        when TIPO_TRABAJO='CAMBIO' then 'CAMBI' ".
@@ -4635,7 +4636,10 @@ private function getAgentScore($user){
             "        when TIPO_TRABAJO='8' then 'NUEVO' ".
             "        when TIPO_TRABAJO='CAMBI,NUEVO,RETIR' then 'CAMBI,NUEVO' ".
             "        when TIPO_TRABAJO='CAMBIO,VENTA' then 'CAMBI,NUEVO' ".
-            "        else TIPO_TRABAJO ".
+            */
+
+            " WHEN UPPER(TIPO_TRABAJO) like '%NUEVO%' OR UPPER(TIPO_TRABAJO) LIKE '%TRASL%' OR UPPER(TIPO_TRABAJO)='CAMBIO DE DOMICILIO' THEN NUEVO ".
+            " else 'CAMBIO' ".
             "        end as TIPO_TRABAJO ".
             "    , FUENTE ".
             "    , RADICADO_TEMPORAL ".
