@@ -4940,11 +4940,11 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
         var loader = document.getElementById("class"+index);
 
         $scope.listaPedidosMalos={};
-        console.log($scope.listaPedidosMalos);
+        //console.log($scope.listaPedidosMalos);
+        $scope.info = $scope.listaPedidosMalos[index];
+        //angular.copy($scope.listaPedidosMalos[index], $scope.PEDIDO_ID);
 
-        angular.copy($scope.listaPedidosMalos[index], $scope.PEDIDO_ID);
-
-        $scope.PEDIDO_ID=$scope.listaPedidosMalos[index].PEDIDO_ID;
+        //$scope.PEDIDO_ID=$scope.listaPedidosMalos[index].PEDIDO_ID;
 
 
         //$scope.pedido.pedido=$scope.listaPedidosMalos[index].PEDIDO_ID;
