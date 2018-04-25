@@ -4936,8 +4936,9 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 	};
 
 
-	$scope.ignorarPedido = function (PEDIDO_ID) {
-		$scope.PEDIDO_ID = PEDIDO_ID;
+	$scope.ignorarPedido = function (index) {
+		angular.copy($scope.listaPedidosMalos[index], $scope.PEDIDO_ID);
+        //$scope.PEDIDO_ID = PEDIDO_ID;
         //$scope.PEDIDO_ID = PEDIDO_ID;
 
 		services.ignorarPedido($scope.PEDIDO_ID).then(
