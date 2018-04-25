@@ -4932,7 +4932,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 		$scope.PEDIDO_ID = data.PEDIDO_ID;
 		//$scope.UsuarioNom = data.USUARIO_NOMBRE;
 		// console.log(data);
-		console.log("PEDIDO a borrar: " + $scope.PEDIDO_ID);
+		console.log("PEDIDO a Ignorar: " + $scope.PEDIDO_ID);
 	};
 
 
@@ -4949,7 +4949,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
             function errorCallback(response) {
 
-				$rootScope.errorDatos = "Error no se pudo borrar";
+				$rootScope.errorDatos = "Error no se pudo Ignorar";
 
 				//console.log($rootScope.errorDatos);
 
