@@ -4940,6 +4940,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
         var loader = document.getElementById("class"+index);
 
         //$scope.listaPedidosMalos={}
+
         angular.copy($scope.listaPedidosMalos[index], $scope.PEDIDO_ID);
 
         $scope.PEDIDO_ID=$scope.listaPedidosMalos[index].PEDIDO_ID;
