@@ -15308,7 +15308,7 @@ public function pp(&$var){
         $login = $this->_request['PEDIDO_ID'];
         $ANS=$params['pedido']['ANSSOLUCION'];
 
-        echo var_dump($login);
+        echo var_dump($Pedido);
 
 
 
