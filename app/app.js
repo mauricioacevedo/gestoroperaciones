@@ -4944,7 +4944,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
          /*$scope.pedido.pedido=$scope.listaPedidosMalos[index].PEDIDO_ID+$scope.listaPedidosMalos[index].ANSSOLUCION+$scope.listaPedidosMalos[index].estado;*/
 
 
-        //$scope.PEDIDO_ID = PEDIDO_ID;
+        PEDIDO_ID = $scope.PEDIDO_ID;
         //$scope.PEDIDO_ID = PEDIDO_ID;
 
 		services.ignorarPedido($scope.PEDIDO_ID).then(
