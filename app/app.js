@@ -762,7 +762,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoPedidosMalos');
 	};
 
-    obj.ignorarPedido = function (PEDIDO_ID) {
+    obj.ignorarPedido = function (PEDIDO_ID,index) {
 		return $http.post(serviceBase + 'ignorarPedido', {
 			"PEDIDO_ID": PEDIDO_ID
 		});
@@ -4945,7 +4945,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
         $scope.info = $scope.listaPedidosMalos[index];
         //console.log($scope.listaPedidosMalos);
         angular.copy($scope.listaPedidosMalos[index], $scope.ANSSOLUCION);
-        console.log($scope.ANSSOLUCION);
+        //console.log($scope.ANSSOLUCION);
         //console.log(index);
 
 
