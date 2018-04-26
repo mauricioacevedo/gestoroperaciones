@@ -4946,7 +4946,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
         //console.log($scope.listaPedidosMalos);
         //angular.copy($scope.listaPedidosMalos[index], $scope.PEDIDO_ID);
         //console.log(index);
-        $scope.ANS = $scope.listaPedidosMalos[index].ANS;
+        $scope.ANS = $scope.listaPedidosMalos[index].ANSSOLUCION;
         console.log($scope.ANS);
 
 
