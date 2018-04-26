@@ -15374,7 +15374,7 @@ public function pp(&$var){
             }
         }
 
-        $queryIgnorados= " select count(*) as ignorados tbl_PedidosIgnorados";
+        $queryIgnorados= " select count(*) as ignorados from tbl_PedidosIgnorados";
         $rr = $this->mysqli->query($queryIgnorados) or die($this->mysqli->error.__LINE__);
         $counter=0;
         if($rr->num_rows > 0){
