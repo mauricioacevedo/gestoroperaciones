@@ -4884,7 +4884,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
                            var TotalMalos = $scope.cantidad.length;
 
                            for (var i = 0; i < TotalMalos; i++){
-                           $scope.TotalMalos=+$scope.TotalMalos + +$scope.cantidad[i].TotalMalos;
+                           $scope.TotalMalos=+$scope.TotalMalos + +$scope.cantidad[i].counter;
                            }
                         }
                 //console.log($scope.cantidad);
