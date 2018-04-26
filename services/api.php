@@ -15374,6 +15374,18 @@ public function pp(&$var){
             }
         }
 
+        $queryIgnorados= " select count(*) as ignorados tbl_PedidosIgnorados";
+        $rr = $this->mysqli->query($queryIgnorados) or die($this->mysqli->error.__LINE__);
+        $counter=0;
+        if($rr->num_rows > 0){
+            $result2 = array();
+            while($row = $rr->fetch_assoc()){
+                //$counter = $row['counter'];
+                //$counter[] = $row;
+                $result2[] = $row;
+            }
+        }
+
 
         $query=	"select pendiMalos.PEDIDO_ID,gestiMalos.user, gestiMalos.concepto_anterior, ".
                 " gestiMalos.estado, gestiMalos.motivo_malo, gestiMalos.fecha_fin, ".
@@ -15395,7 +15407,7 @@ public function pp(&$var){
                 $row['INTERVENTOR']=utf8_encode($row['INTERVENTOR']);*/
                 $result[] = $row;
             }
-            $this->response($this->json(array($result,$result1)), 200); // send user details
+            $this->response($this->json(array($result,$result1,$result2)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
