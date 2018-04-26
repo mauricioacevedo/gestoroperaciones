@@ -15316,12 +15316,8 @@ public function pp(&$var){
 
         //echo var_dump($params);
 
-
-
-        //$sql = "update informe_petec_pendientesm set STATUS = 'CERRADO_PETEC' where PEDIDO_ID=$Pedido ";
-        //$rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__)
-
-        //$rst = $this->mysqli->query($sql);
+        $sql = "update informe_petec_pendientesm set STATUS = 'CERRADO_PETEC' where PEDIDO_ID=$Pedido ";
+        $rst = $this->mysqli->query($sql);
 
         $sqlIgnorar = "insert into tbl_PedidosIgnorados (PEDIDO_ID,ASESOR) values ('$Pedido','$usuarioGalleta') ";
         $rstIgnorar = $this->mysqli->query($sqlIgnorar);
@@ -15379,7 +15375,8 @@ public function pp(&$var){
                 " from informe_petec_pendientesm pendiMalos ".
                 " inner join pedidos gestiMalos ".
                 " on pendiMalos.STATUS = gestiMalos.ESTADO_ID AND pendiMalos.PEDIDO_ID = gestiMalos.pedido_id ".
-                " where pendiMalos.STATUS = ('MALO') and pendiMalos.CONCEPTO_ID not in ('IGNORADO') ".
+                " where pendiMalos.STATUS = ('MALO') ".
+                " inner join tbl_PedidosIgnorados igno on pendiMalos. ".
                 " order by gestiMalos.fecha_fin desc";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
