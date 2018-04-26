@@ -4877,7 +4877,17 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 				$errorDatos = null;
 				$scope.listaPedidosMalos = data.data[0];
 				$scope.cantidad = data.data[1];
-                console.log($scope.cantidad);
+
+                if ($scope.cantidad !== null){
+                           $scope.TotalMalos=0;
+                           //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
+                           var TotalMalos = $scope.cantidad.length;
+
+                           for (var i = 0; i < TotalMalos; i++){
+                           $scope.TotalMalos=+$scope.TotalMalos + +$scope.cantidad[i].TotalMalos;
+                           }
+                        }
+                //console.log($scope.cantidad);
                 //$scope.cantidad = data.data.length;
 				$scope.sortType = 'PEDIDO_ID'; // set the default sort type
 				$scope.sortReverse = false; // set the default sort order
