@@ -1703,7 +1703,7 @@ private function getAgentScore($user){
                 // ---------------------------------- SQL Feed
 
                 //SQL PedidosMAlos
-                $sql_PedidosMalos = "insert into tbl_PedidosIgnorados ( ".
+                /*$sql_PedidosMalos = "insert into tbl_PedidosIgnorados ( ".
                     " PEDIDO_ID ".
                     ", ASESOR ".
                     ", MOTIVO_MALO ".
@@ -1712,11 +1712,11 @@ private function getAgentScore($user){
                     " '$PEDIDO_IDi' ".
                     ", '$useri' ".
                     ", '$motivoMalo' ".
-                    ", '$concepto_anterior') ";
+                    ", '$concepto_anterior') ";*/
 
                 //echo ("ingreso");
 
-                $rstMalos = $this->mysqli->query($sql_PedidosMalos) or die($this->mysqli->error.__LINE__);
+                /*$rstMalos = $this->mysqli->query($sql_PedidosMalos) or die($this->mysqli->error.__LINE__);*/
 
                 //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$useri','$username','RECONFIGURACION','$estadum','PEDIDO: $PEDIDO_IDi-$SUBPEDIDO_IDi$SOLICITUD_IDi','ESTUDIO','$concepto_final') ";
                 //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
@@ -19758,7 +19758,7 @@ public function pp(&$var){
             $cerrar = false;
 
             //query para ingresar los pedidos que son marcados como malos en un nueva tabla
-                $sql_PedidosMalos= "insert into tbl_PedidosIgnorados ( ".
+                /*$sql_PedidosMalos= "insert into tbl_PedidosIgnorados ( ".
                     " PEDIDO_ID ".
                     ", ASESOR ".
                     ", MOTIVO_MALO ".
@@ -19767,11 +19767,11 @@ public function pp(&$var){
                     " '$pedido' ".
                     ", '$usuario' ".
                     ", '$observacion' ".
-                    ", '$conceptoId') ";
+                    ", '$conceptoId') ";*/
 
                 //echo ("ingreso");
 
-                $rstMalos = $this->mysqli->query($sql_PedidosMalos) or die($this->mysqli->error.__LINE__);
+                /*$rstMalos = $this->mysqli->query($sql_PedidosMalos) or die($this->mysqli->error.__LINE__);*/
 
         }
         if($programado){
