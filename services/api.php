@@ -15358,7 +15358,7 @@ public function pp(&$var){
         }
         //counter
 
-        $query= " select count(*) from informe_petec_pendientesm pendiMalos ".
+        $query= " select count(*) as counter from informe_petec_pendientesm pendiMalos ".
                 " inner join pedidos gestiMalos ".
                 " on pendiMalos.STATUS = gestiMalos.ESTADO_ID AND pendiMalos.PEDIDO_ID = gestiMalos.pedido_id ".
                 " where pendiMalos.STATUS = ('MALO') ";
