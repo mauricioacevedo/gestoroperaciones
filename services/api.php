@@ -15325,6 +15325,7 @@ public function pp(&$var){
 
         $sqlIgnorar = "insert tbl_PedidosIgnorados (PEDIDO_ID,ASESOR) values ($Pedido,$usuarioGalleta) ";
         $rstIgnorar = $this->mysqli->query($sqlIgnorar);
+        echo var_dump($sqlIgnorar);
         // SQL Feed----------------------------------
       /*  $sql_log=   "insert into portalbd.activity_feed ( ".
             " USER ".
