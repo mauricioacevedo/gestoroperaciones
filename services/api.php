@@ -15366,11 +15366,11 @@ public function pp(&$var){
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter=0;
         if($rr->num_rows > 0){
-            $result = array();
+            $result1 = array();
             while($row = $rr->fetch_assoc()){
                 //$counter = $row['counter'];
                 //$counter[] = $row;
-                $result[] = $row;
+                $result1[] = $row;
             }
         }
 
@@ -15395,7 +15395,7 @@ public function pp(&$var){
                 $row['INTERVENTOR']=utf8_encode($row['INTERVENTOR']);*/
                 $result[] = $row;
             }
-            $this->response($this->json(array($result,$counter)), 200); // send user details
+            $this->response($this->json(array($result,$result1)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
