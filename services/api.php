@@ -15369,7 +15369,8 @@ public function pp(&$var){
             $result = array();
             while($row = $rr->fetch_assoc()){
                 //$counter = $row['counter'];
-                $counter[] = $row;
+                //$counter[] = $row;
+                $result[] = $row;
             }
         }
 
