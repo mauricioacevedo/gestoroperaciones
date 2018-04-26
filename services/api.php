@@ -15361,8 +15361,7 @@ public function pp(&$var){
         $query= " select count(*) from informe_petec_pendientesm pendiMalos ".
                 " inner join pedidos gestiMalos ".
                 " on pendiMalos.STATUS = gestiMalos.ESTADO_ID AND pendiMalos.PEDIDO_ID = gestiMalos.pedido_id ".
-                " where pendiMalos.STATUS = ('MALO') ".
-                " order by gestiMalos.fecha_fin desc";
+                " where pendiMalos.STATUS = ('MALO') ";
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter=0;
