@@ -15358,7 +15358,12 @@ public function pp(&$var){
         }
         //counter
 
-        $query="SELECT count(*) as counter from tbl_usuarios";
+        $query= " select count(*) from informe_petec_pendientesm pendiMalos ".
+                " inner join pedidos gestiMalos ".
+                " on pendiMalos.STATUS = gestiMalos.ESTADO_ID AND pendiMalos.PEDIDO_ID = gestiMalos.pedido_id ".
+                " where pendiMalos.STATUS = ('MALO') ".
+                " order by gestiMalos.fecha_fin desc";
+
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter=0;
         if($rr->num_rows > 0){
