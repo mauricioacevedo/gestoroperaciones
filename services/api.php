@@ -15376,7 +15376,6 @@ public function pp(&$var){
                 " inner join pedidos gestiMalos ".
                 " on pendiMalos.STATUS = gestiMalos.ESTADO_ID AND pendiMalos.PEDIDO_ID = gestiMalos.pedido_id ".
                 " where pendiMalos.STATUS = ('MALO') ".
-                " inner join tbl_PedidosIgnorados igno on pendiMalos. ".
                 " order by gestiMalos.fecha_fin desc";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
