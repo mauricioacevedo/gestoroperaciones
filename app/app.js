@@ -200,6 +200,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.post(serviceBase + 'csvPedidosMalos');
 	};
 
+    obj.expCsvPedidosIgnorados = function () {
+		return $http.post(serviceBase + 'csvPedidosIgnorados');
+	};
+
 
 	//Crud de Usuarios-----------------------------------------------------------------------------------------
 	obj.putUsuarioNuevo = function (editaInfo) {
