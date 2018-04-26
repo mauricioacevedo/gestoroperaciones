@@ -15367,8 +15367,9 @@ public function pp(&$var){
         $counter=0;
         if($rr->num_rows > 0){
             $result = array();
-            if($row = $rr->fetch_assoc()){
-                $counter = $row['counter'];
+            while($row = $rr->fetch_assoc()){
+                //$counter = $row['counter'];
+                $counter[] = $row;
             }
         }
 
