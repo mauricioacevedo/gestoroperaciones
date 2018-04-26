@@ -2525,7 +2525,7 @@ private function getAgentScore($user){
 
 
                 //query para ingresar los pedidos que son marcados como malos en un nueva tabla
-                $sql_PedidosMalos = "insert into tbl_PedidosIgnorados ( ".
+                /*$sql_PedidosMalos = "insert into tbl_PedidosIgnorados ( ".
                     " PEDIDO_ID ".
                     ", ASESOR ".
                     ", MOTIVO_MALO ".
@@ -2534,13 +2534,13 @@ private function getAgentScore($user){
                     " '$PEDIDO_IDi' ".
                     ", '$useri' ".
                     ", '$motivoMalo' ".
-                    ", '$concepto_anterior') ";
+                    ", '$concepto_anterior') ";*/
 
 
 
                 //echo ("ingreso");
 
-                $rstMalos = $this->mysqli->query($sql_PedidosMalos) or die($this->mysqli->error.__LINE__);
+                /*$rstMalos = $this->mysqli->query($sql_PedidosMalos) or die($this->mysqli->error.__LINE__);*/
 
 
                 // ---------------------------------- SQL Feed
