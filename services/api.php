@@ -15292,6 +15292,79 @@ public function pp(&$var){
         $this->response('',203);
     }
 
+    private function csvPedidosIgnorados(){
+
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+
+
+        $params = json_decode(file_get_contents('php://input'),true);
+        $usuarioIp=$_SERVER['REMOTE_ADDR'];
+        $usuarioPc=gethostbyaddr($usuarioIp);
+        $galleta=json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta=stripslashes($_COOKIE['logedUser']);
+        $galleta= json_decode($galleta);
+        $galleta = json_decode(json_encode($galleta), True);
+        $usuarioid=$galleta['USUARIO_ID'];
+
+        //echo
+
+        $today = date("Y-m-d");
+        $ano=date("Y");
+
+        $filename="PEDIDOSIGNORADOS_$today.csv";
+
+
+        $query= "select A.pedido_id as PEDIDO, A.user as GESTIONO , A.estado as ESTADO, ".
+        " A.motivo_malo as MOTIVO, B.ASESOR as IGNORO, ".
+        " B.FECHA_ANULO as FECHA ".
+        " from pedidos A inner join tbl_PedidosIgnorados B on A.pedido_id = B.PEDIDO_ID ".
+        " where A.estado = 'MALO' ";
+        //echo $query;
+
+        $rst = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($rst->num_rows > 0){
+
+            /*Insert en log
+								$sql_log="insert into emtelco.re_logoperaciones (USUARIO_ID, TIPO_ACTIVIDAD, DESCRIPCION, IDENTIFICADOR, IP, PC) values(UPPER('$usuarioid'),'EXPORTE','EXPORTO CSV_USUARIOS','LOGIN: $usuarioid','$usuarioIp','$usuarioPc')";
+
+								$rlog = $this->connemtel->query($sql_log) or die($this->connemtel->error.__LINE__);
+								//Insert en log*/
+
+            $result = array();
+            $fp = fopen("../tmp/$filename", 'w');
+            //echo $fp;
+            $columnas=array( 'PEDIDO',
+                'GESTIONO',
+                'ESTADO',
+                'MOTIVO',
+                'IGNORO',
+                'FECHA'
+            );
+
+            fputcsv($fp, $columnas,',');
+            //$carlitos=0;
+            while($row = $rst->fetch_assoc()){
+
+                //$row['OBSERVACIONES']=utf8_decode($row['OBSERVACIONES']);
+                //$result[] = $row;
+                fputcsv($fp, $row);
+                //if($carlitos==0){var_dump($row);$carlitos=1;};
+            }
+
+            fclose($fp);
+
+            $this->response($this->json(array($filename)), 200);
+
+
+        }
+
+
+        $this->response('',203);
+    }
+
 
     private function ignorarPedido(){
 

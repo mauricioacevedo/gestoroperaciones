@@ -4943,6 +4943,30 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 		);
 
 	};
+
+    $scope.csvPedidosIgnorados = function (filtroInput) {
+
+		services.expCsvPedidosIgnorados().then(
+
+			function (data) {
+
+				//console.log(data.data[0]);
+				window.location.href = "tmp/" + data.data[0];
+				$scope.csvUsers = true;
+				return data.data;
+
+			},
+			function errorCallback(response) {
+
+				$rootScope.errorDatos = "No hay datos.";
+				$scope.csvUsers = false;
+
+				//console.log($rootScope.errorDatos);
+
+			}
+		);
+
+	};
 	//Exportes: Fin
 
 
