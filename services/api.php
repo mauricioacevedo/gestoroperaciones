@@ -15314,18 +15314,17 @@ public function pp(&$var){
         $login = $this->_request['PEDIDO_ID'];
         $ANS=$params['pedido']['ANSSOLUCION'];
 
-        echo var_dump($params);
+        //echo var_dump($params);
 
 
 
         //$sql = "update informe_petec_pendientesm set STATUS = 'CERRADO_PETEC' where PEDIDO_ID=$Pedido ";
-
-
         //$rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__)
+
         //$rst = $this->mysqli->query($sql);
 
-        //$sqlIgnorar = "update tbl_PedidosIgnorados set ESTADO = 'IGNORADO' where PEDIDO_ID=$Pedido ";
-        //$rstIgnorar = $this->mysqli->query($sqlIgnorar);
+        $sqlIgnorar = "insert tbl_PedidosIgnorados (PEDIDO_ID,ASESOR) values ($Pedido,$usuarioGalleta) ";
+        $rstIgnorar = $this->mysqli->query($sqlIgnorar);
         // SQL Feed----------------------------------
       /*  $sql_log=   "insert into portalbd.activity_feed ( ".
             " USER ".
