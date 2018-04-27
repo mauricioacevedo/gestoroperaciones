@@ -18861,17 +18861,23 @@ public function pp(&$var){
         $grupo 	    = $params['grupo'];
         $actividad  = $params['actividad'];
         $concep     = $params['concepto'];
-        echo var_dump($concep);
+        //echo var_dump($concep);
 
+        if ($concep == "RC-SIEBEL")
+        {
+           $fuente 	= "FENIX_NAL";
+           $grupo = "RECONFIGURACION";
+           $actividad ="RECONFIGURACION";
+        }
 
         $today		= date("Y-m-d");
 
-        $parametroBusqueda= $this->demePedido('concepto');
+        /*$parametroBusqueda= $this->demePedido('concepto');
         $concepto = $this->_request['concepto'];
 
         echo var_dump($parametroBusqueda);
         echo var_dump($concepto);
-
+*/
 
 
 
