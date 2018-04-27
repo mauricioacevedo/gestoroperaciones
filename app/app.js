@@ -8632,7 +8632,8 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 			function (data) {
 
 				$scope.listaOpcionesGestion=data.data;
-				console.log($scope.listaOpcionesGestion);
+
+                console.log($scope.listaOpcionesGestion);
 				return data.data;
 
 			},
