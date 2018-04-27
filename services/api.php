@@ -18849,7 +18849,7 @@ public function pp(&$var){
     // ------------------------------------------------------------------------ Parametros Acciones Nuevo
 
 
-    private function opcionesGestionAsignaciones(){
+        private function opcionesGestionAsignaciones(){
 
 
         if($this->get_request_method() != "POST"){
@@ -18860,12 +18860,16 @@ public function pp(&$var){
         $fuente 	= $params['fuente'];
         $grupo 	    = $params['grupo'];
         $actividad  = $params['actividad'];
+        $concep     = $params['CONCEPTO_ID'];
+        echo var_dump($concep);
+
+
         $today		= date("Y-m-d");
 
         $parametroBusqueda= $this->demePedido('concepto');
         $concepto = $this->_request['concepto'];
-        echo var_dump($parametroBusqueda);
-        echo var_dump($concepto);
+
+        //echo var_dump($concepto);
 
 
 
