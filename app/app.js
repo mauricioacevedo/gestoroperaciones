@@ -18156,10 +18156,13 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 var opciones= {
                     fuente: $scope.peds[0].FUENTE,
                     grupo: $scope.peds[0].GRUPO,
-                    actividad: $scope.peds[0].ACTIVIDAD
+                    actividad: $scope.peds[0].ACTIVIDAD,
+                    concepto: $scope.peds[0].CONCEPTO_ID
+
                 };
 
-                //console.log(opciones);
+                console.log(opciones);
+
                 $scope.listarOpcionesAsginacion(opciones);
                 $scope.baby($scope.pedido1);
 
