@@ -18125,7 +18125,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
             $scope.peds = data.data;
 
-            console.log($scope.peds);
+            //console.log($scope.peds);
 
             if (data.data == '') {
 
@@ -18161,7 +18161,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
                 };
 
-                console.log(opciones);
+                //console.log(opciones);
 
                 $scope.listarOpcionesAsginacion(opciones);
                 $scope.baby($scope.pedido1);
