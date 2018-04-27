@@ -18863,7 +18863,7 @@ public function pp(&$var){
         $concep     = $params['concepto'];
         //echo var_dump($concep);
 
-        if ($concep == "RC-SIEBEL")
+        if ($concep == "RC-SIEBEL" || $concep == "RECONFIGURACION EN OFERTA")
         {
            $fuente 	= "FENIX_NAL";
            $grupo = "RECONFIGURACION";
