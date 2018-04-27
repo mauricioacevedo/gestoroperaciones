@@ -18859,9 +18859,10 @@ public function pp(&$var){
         $actividad  = $params['actividad'];
         $today		= date("Y-m-d");
 
-        //$parametroBusqueda= $this->demePedido('concepto');
-        //$concepto = $this->_request['concepto'];
-        //echo $parametroBusqueda;
+        $parametroBusqueda= $this->demePedido('concepto');
+        $concepto = $this->_request['concepto'];
+        echo $parametroBusqueda;
+        echo $concepto;
 
 
 
