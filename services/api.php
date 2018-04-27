@@ -18869,7 +18869,8 @@ public function pp(&$var){
         $parametroBusqueda= $this->demePedido('concepto');
         $concepto = $this->_request['concepto'];
 
-        //echo var_dump($concepto);
+        echo var_dump($parametroBusqueda);
+        echo var_dump($concepto);
 
 
 
