@@ -18860,8 +18860,8 @@ public function pp(&$var){
         $fuente 	= $params['fuente'];
         $grupo 	    = $params['grupo'];
         $actividad  = $params['actividad'];
-        $concep     = $params['CONCEPTO_ID'];
-        echo var_dump($params);
+        $concep     = $params['concepto'];
+        echo var_dump($concep);
 
 
         $today		= date("Y-m-d");
