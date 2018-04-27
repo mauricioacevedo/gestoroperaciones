@@ -15882,6 +15882,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 			fuente: 'FENIX_NAL',
 			grupo: 'ASIGNACIONES',
             actividad: 'ESTUDIO'
+            //concepto: 'RC-SIEBEL'
 		};
 
 		$scope.listarOpcionesAsginacion(opciones);
@@ -18124,7 +18125,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
             $scope.peds = data.data;
 
-            //console.log(data.data);
+            console.log($scope.peds);
 
             if (data.data == '') {
 
