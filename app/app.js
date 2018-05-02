@@ -18203,7 +18203,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 		
 
-		if($scope.ifuente.FUENTE=='SIEBEL' || $scope.ifuente.FUENTE=='EDATEL'){
+		if(($scope.ifuente.FUENTE=='SIEBEL' || $scope.ifuente.FUENTE=='EDATEL') && $scope.iconcepto!='RECONFIGURACION EN OFERTA'&& $scope.iconcepto!='RC-SIEBEL'){
 			$scope.habilitaCr			= true;
 			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
 		}else{
@@ -18240,7 +18240,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 									var opciones= {
 										fuente: $scope.peds[0].FUENTE,
 										grupo: $scope.peds[0].GRUPO,
-										actividad: $scope.peds[0].ACTIVIDAD
+										actividad: $scope.peds[0].ACTIVIDAD,
+                                        concepto: $scope.peds[0].CONCEPTO_ID
 									};
 
 									//$scope.baby($scope.pedido1);
