@@ -1725,6 +1725,126 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
 //------------------------------------------------------- Controlador de logueo
 
+//------------------------------------CONTROLADOR DE DESCANSOS-------------------------------------
+
+app.controller('pausasCtrl', function ($scope, $http, $rootScope, $location, $route, $routeParams, $cookies, $notification, $timeout, $uibModal, services)
+{
+
+//$rootScope.estadoAsesor       =       'activo';
+    $scope.fechaIniciaPausa = null;
+    $scope.tituloModalPausa = null;
+
+    if ($cookies.get('usuariosalistamiento') !== undefined) {
+        $rootScope.galletainfo = JSON.parse($cookies.get("usuariosalistamiento"));
+        var usuarioId = $rootScope.galletainfo.LOGIN;
+    }
+//console.log($rootScope.galletainfo);
+    $scope.abrirModalPausas = function (param) {
+
+        $scope.fechaIniciaPausa = $rootScope.fechaProceso();
+        var usuarioId = $rootScope.galletainfo.LOGIN;
+        var tipoPausa = param;
+
+
+        services.iniciarPausa(usuarioId, tipoPausa, $scope.fechaIniciaPausa).then(
+            function (data) {
+                return data.data;
+            }
+            , function errorCallback(response) {
+                $scope.errorDatos = 'Error al intentar iniciar una pausa. '+response.data[0];
+
+            }
+        );
+
+        $rootScope.estadoAsesor = param;
+
+        var modalInstance = $uibModal.open({
+            animation: true,
+            backdrop: 'static',
+            keyboard: false,
+            size: 'md',
+            templateUrl: 'partial/modalpausas.html',
+            controller: function ($scope, $uibModalInstance) {
+                $scope.tituloModalPausa = param;
+                $scope.fechaIniciaPausa = $rootScope.fechaProceso();
+                $scope.desactivarPausa = function () {
+
+                    $scope.fechaFinPausa = $rootScope.fechaProceso();
+                    var usuarioId = $rootScope.galletainfo.LOGIN;
+
+                    services.finalizarPausa(usuarioId, $scope.fechaFinPausa).then(
+                        function (data) {
+                            $uibModalInstance.dismiss('cancel');
+                            $rootScope.estadoAsesor = 'activo';
+                            console.log($rootScope.estadoAsesor);
+                            return data.data;
+                        }, function errorCallback(response) {
+                            $scope.errorDatos = 'Error al intentar iniciar una pausa. '+response.data[0];
+
+                        }
+                    );
+                }
+            }
+        });
+
+    };
+
+    $scope.checkPausaAsesor = function (usuarioId) {
+
+        services.checkPausaAsesor(usuarioId).then(
+            function (data) {
+                $rootScope.estadoAsesor = data.data[0];
+
+                if ($rootScope.estadoAsesor === 'descanso' || $rootScope.estadoAsesor === 'reunion') {
+                    // $('#ModalDescansos').modal('show'); //Sirve con bootstrap
+                    var modalInstance = $uibModal.open({
+                        animation: true,
+                        backdrop: 'static',
+                        keyboard: false,
+                        size: 'md',
+                        templateUrl: 'partial/modalpausas.html',
+                        controller: function ($scope, $uibModalInstance) {
+                            $scope.tituloModalPausa = $rootScope.estadoAsesor;
+                            $scope.fechaIniciaPausa = $rootScope.fechaProceso();
+                            $scope.desactivarPausa = function () {
+                                $scope.fechaFinPausa = $rootScope.fechaProceso();
+                                var usuarioId = $rootScope.galletainfo.LOGIN;
+
+                                services.finalizarPausa(usuarioId, $scope.fechaFinPausa).then(
+                                    function (data) {
+
+                                        //console.log(data.data);
+                                        $uibModalInstance.dismiss('cancel');
+                                        $rootScope.estadoAsesor = data.data[0];
+
+                                        return data.data;
+                                    }, function errorCallback(response) {
+                                        $scope.errorDatos = 'Error al intentar iniciar una pausa. '+response.data;
+
+                                    }
+                                );
+
+                            }
+                        }
+                    });
+
+                }
+                return data.data;
+            }
+            , function errorCallback(response) {
+                $scope.errorDatos = 'Error al intentar iniciar una pausa. '+response.data;
+
+            }
+        );
+
+    };
+
+  $scope.checkPausaAsesor(usuarioId);
+});
+
+
+//------------------------------------FIN CONTROLADOR DE DESCANSOS----------------------------------
+
 app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $q, $timeout, $interval, $http, $window, socket, notify) {
     /**
     * Controlador para Enviar notificaciones a el mundo.
@@ -18203,7 +18323,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 		
 
-		if(($scope.ifuente.FUENTE=='SIEBEL' || $scope.ifuente.FUENTE=='EDATEL') && $scope.iconcepto!='RECONFIGURACION EN OFERTA'&& $scope.iconcepto!='RC-SIEBEL'){
+		if($scope.ifuente.FUENTE=='SIEBEL' || $scope.ifuente.FUENTE=='EDATEL'){
 			$scope.habilitaCr			= true;
 			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
 		}else{
@@ -18240,8 +18360,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 									var opciones= {
 										fuente: $scope.peds[0].FUENTE,
 										grupo: $scope.peds[0].GRUPO,
-										actividad: $scope.peds[0].ACTIVIDAD,
-                                        concepto: $scope.peds[0].CONCEPTO_ID
+										actividad: $scope.peds[0].ACTIVIDAD
 									};
 
 									//$scope.baby($scope.pedido1);
