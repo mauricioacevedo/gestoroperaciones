@@ -19893,6 +19893,11 @@ public function pp(&$var){
 
         }
 
+        if($observacion == "PENDIENTE"){
+            $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='PENDI_PETEC',ASESOR='' WHERE ID=$idpedido ";
+            $varFeed = "GUARDO PEDIDO";
+        }
+
 
 
         $rUpdate = $this->mysqli->query($sqlupdate);
