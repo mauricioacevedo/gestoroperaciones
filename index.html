@@ -186,7 +186,7 @@
                             <li role="separator" class="divider"></li>
                             <li class="menu-item dropdown dropdown-submenu">
                                 <a href="" title="" class="dropdown-toggle" data-toggle="dropdown"><i
-                                        class="fa fa fa-circle-o DemePedidoBlue"></i> Listados</a></a>
+                                        class="fa fa fa-circle-o DemePedidoBlue"></i> Listados</a>
                                 <ul class="dropdown-menu">
                                     <li class="menu-item"><a href=".#/pendientesAgendamiento/"> Pendientes</a></li>
                                     <li class="menu-item"><a href=".#/registros-agendamiento/"> Historico</a></li>
@@ -342,10 +342,20 @@
 
                                 </div>
                                 <div class="divider"></div>
-                                    <div class="form-inline text-right" data-ng-controller="pausasCtrl">
-                                                    <button type="button" class="btn btn-xs btn-warning" ng-click="abrirModalPausas('descanso')">
-                                                            <i class="fa fa-user-circle-o fa" aria-hidden="true"></i> Descanso
-                                                    </button>
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="form-inline text-right" data-ng-controller="pausasCtrl">
+                                                 <!--  <button type="button" class="btn btn-xs btn-warning"
+                                                        ng-click="abrirModalPausas('descanso'),obtenercumplmientoTurnos()">
+                                                        <i class="fa fa-user-circle-o fa" aria-hidden="true"></i> Descanso
+                                                  </button> -->
+                                                  <button type="button" class="btn btn-xs btn-warning"
+                                                        ng-click="abrirModalPausas('descanso')">
+                                                        <i class="fa fa-user-circle-o fa" aria-hidden="true"></i> Descanso
+                                                  </button>
+                                                 <button type="button" class="btn btn-xs btn-danger" ng-click="logout()">Salir <i class="fa fa-sign-out" aria-hidden="true"></i></button>
+                                        </div>
+                                      </div>
                                     </div>
 
                             </li>
