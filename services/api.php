@@ -19893,7 +19893,7 @@ public function pp(&$var){
 
         }
 
-        if($observacion == "PENDIENTE"){
+        if($observacion == "RED UNIDIRECCIONAL"){
             $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='PENDI_PETEC',ASESOR='' WHERE ID=$idpedido ";
             $varFeed = "GUARDO PEDIDO";
         }
