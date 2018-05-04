@@ -3433,9 +3433,6 @@ app.controller('DocuActivacion', function ($scope, $rootScope, $http, $location,
 	console.info('uploader', uploader);
 });
 
-
-
-
 //**********************************fin Upload*******************************
 
 /**
@@ -4463,9 +4460,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			console.log(response);
 
 		})};//------PRUEBAS API OPENFIRE -----------------------------
-
-
-
 
 
 	$scope.grupo = {};
@@ -6645,18 +6639,6 @@ services.getListLocalidadesGeo().then(function (data) {
 };
 
 $scope.ListaLocalidadesGeo();
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 });
