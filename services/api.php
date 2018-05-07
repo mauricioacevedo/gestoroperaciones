@@ -1451,6 +1451,7 @@ class API extends REST {
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
 
+        echo "ingreso";
         $pedido = json_decode(file_get_contents("php://input"),true);
 
         $pedido1 = $pedido['pedido'];
@@ -1499,6 +1500,11 @@ class API extends REST {
 
             //echo $sqlInsertIngresos;/
             $r = $this->mysqli->query($sqlInsertIngresos) or die($this->mysqli->error.__LINE__);
+
+            $sqlCerrarManuales = "update informe_petec_pendientesm set STATUS = 'CERRADO_PETEC' where PEDIDO_ID = '$pedido1' ".
+            " and STATUS = 'PENDI_PETEC' ";
+            $r = $this->mysqli->query($sqlCerrarManuales) or die($this->mysqli->error.__LINE__);
+
             //Fix insertMPedido: se agregan campos y se habilita para insertar.
             //hago la actualizacion en fenix
             // SQL Feed----------------------------------
