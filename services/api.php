@@ -1460,7 +1460,7 @@ class API extends REST {
         $departamento = $pedido1['departamento'];
         $ciudad = $pedido1['ciudad'];
 
-        echo $pedido1;
+        echo $pedido;
         $concepto = $pedido1['concepto'];
         $estado = $pedido1['estado'];
 
