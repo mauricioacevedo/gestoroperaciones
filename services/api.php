@@ -15395,7 +15395,7 @@ public function pp(&$var){
 
         //echo var_dump($params);
 
-        $sql = "update informe_petec_pendientesm set STATUS = 'CERRADO_PETEC' where PEDIDO_ID=$Pedido ";
+        $sql = "update informe_petec_pendientesm set STATUS = 'CERRADO_PETEC' where STATUS = ('MALO') AND PEDIDO_ID=$Pedido ";
         $rst = $this->mysqli->query($sql);
 
         $sqlIgnorar = "insert into tbl_PedidosIgnorados (PEDIDO_ID,ASESOR) values ('$Pedido','$usuarioGalleta') ";
