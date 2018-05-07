@@ -1463,8 +1463,8 @@ class API extends REST {
         //echo $pedido;
         $concepto = $pedido1['concepto'];
         $estado = $pedido1['estado'];
-        echo $concepto;
-        echo $estado;
+        //echo $concepto;
+        //echo $estado;
 
         $user=$pedido1['user'];
 
@@ -1507,14 +1507,11 @@ class API extends REST {
             //echo $sqlInsertIngresos;/
             $r = $this->mysqli->query($sqlInsertIngresos) or die($this->mysqli->error.__LINE__);
 
-            if ($concepto == "CERRADO" && $estado=="GESTIONADO"){
+            else if ($concepto == "CERRADO" && $estado=="GESTIONADO"){
                 $sqlCerrarManuales = "update informe_petec_pendientesm set STATUS = 'CERRADO_PETEC' where PEDIDO_ID = '$pedidoid' ".
                 " and STATUS = 'PENDI_PETEC' ";
                 $r = $this->mysqli->query($sqlCerrarManuales) or die($this->mysqli->error.__LINE__);
                 echo "ingreso";
-                echo $concepto;
-                echo $estado;
-
             }
             //echo $sqlCerrarManuales;
 
