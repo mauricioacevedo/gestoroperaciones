@@ -1464,11 +1464,17 @@ class API extends REST {
         $concepto = $pedido1['concepto'];
         $estado = $pedido1['estado'];
         //echo $concepto;
-        //echo $estado;
+        echo $estado;
 
         $user=$pedido1['user'];
 
         //echo ($observaciones);
+        if ($estado == "GESTIONADO"){
+                $sqlCerrarManuales = "update informe_petec_pendientesm set STATUS = 'CERRADO_PETEC' where PEDIDO_ID = '$pedidoid' ".
+                " and STATUS = 'PENDI_PETEC' ";
+                $r = $this->mysqli->query($sqlCerrarManuales) or die($this->mysqli->error.__LINE__);
+                echo "ingreso";
+        }
 
         $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','concepto_final');
         $keys = array_keys($pedido);
@@ -1492,14 +1498,7 @@ class API extends REST {
         }
         $today = date("Y-m-d H:i:s");
 
-        echo $estado;
-
-        if ($estado == "GESTIONADO"){
-                $sqlCerrarManuales = "update informe_petec_pendientesm set STATUS = 'CERRADO_PETEC' where PEDIDO_ID = '$pedidoid' ".
-                " and STATUS = 'PENDI_PETEC' ";
-                $r = $this->mysqli->query($sqlCerrarManuales) or die($this->mysqli->error.__LINE__);
-                echo "ingreso";
-        }
+        //echo $estado;
 
         //$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
         if(!empty($pedido)){
