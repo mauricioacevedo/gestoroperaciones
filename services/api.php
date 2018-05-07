@@ -1451,7 +1451,7 @@ class API extends REST {
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
 
-        echo "ingreso";
+        //echo "ingreso";
         $pedido = json_decode(file_get_contents("php://input"),true);
 
         $pedido1 = $pedido['pedido'];
