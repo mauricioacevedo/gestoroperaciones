@@ -15321,8 +15321,8 @@ public function pp(&$var){
         $filename="PEDIDOSIGNORADOS_$today.csv";
 
 
-        $query= "select A.pedido_id as PEDIDO, A.user as GESTIONO , A.estado as ESTADO, ".
-        " A.motivo_malo as MOTIVO, B.ASESOR as IGNORO, ".
+        $query= "select distinct A.pedido_id as PEDIDO, A.user as GESTIONO , A.estado as ESTADO, ".
+        " A.fecha_fin ,A.motivo_malo as MOTIVO, B.ASESOR as IGNORO, ".
         " B.FECHA_ANULO as FECHA ".
         " from pedidos A inner join tbl_PedidosIgnorados B on A.pedido_id = B.PEDIDO_ID ".
         " where A.estado = 'MALO' ";
@@ -15344,9 +15344,10 @@ public function pp(&$var){
             $columnas=array( 'PEDIDO',
                 'GESTIONO',
                 'ESTADO',
+                'FECHA GESTION',
                 'MOTIVO',
                 'IGNORO',
-                'FECHA'
+                'FECHA IGNORO'
             );
 
             fputcsv($fp, $columnas,',');
