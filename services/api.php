@@ -1493,6 +1493,7 @@ class API extends REST {
         $today = date("Y-m-d H:i:s");
 
         echo $estado;
+
         if ($estado == "GESTIONADO"){
                 $sqlCerrarManuales = "update informe_petec_pendientesm set STATUS = 'CERRADO_PETEC' where PEDIDO_ID = '$pedidoid' ".
                 " and STATUS = 'PENDI_PETEC' ";
