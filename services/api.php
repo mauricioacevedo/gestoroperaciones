@@ -1566,7 +1566,7 @@ class API extends REST {
             //$this->response(json_encode(array("msg"=>"N/A","data" => $today,"agent_score"=>$agentScore)),200);
 
         }
-        else if ($estado == "GESTIONADO"){
+        if ($estado == "GESTIONADO"){
                 $sqlCerrarManuales = "update informe_petec_pendientesm set STATUS = 'CERRADO_PETEC' where PEDIDO_ID = '$pedidoid' ".
                 " and STATUS = 'PENDI_PETEC' ";
                 $r = $this->mysqli->query($sqlCerrarManuales) or die($this->mysqli->error.__LINE__);
