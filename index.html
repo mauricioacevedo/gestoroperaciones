@@ -270,7 +270,7 @@
                     </li><!-- Documentacion -->
                     <!-- Administracion -->
                     <li class="dropdown"
-                        ng-show="logedUser.CARGO_ID<='5' && (logedUser.GRUPO=='ASIGNACIONES' || logedUser.GRUPO=='SUPER' || logedUser.USUARIO_ID=='eyepesa')">
+                        ng-show="logedUser.CARGO_ID<='5' && (logedUser.GRUPO=='ASIGNACIONES' || logedUser.GRUPO=='SUPER' || logedUser.USUARIO_ID=='EYEPESA')">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">Administracion <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -278,7 +278,7 @@
                                     class="fa fa-tachometer DemePedidoBlue"></span> Dashboard</a></li>
                             <li ng-show="logedUser.CARGO_ID=='1'"><a href=".#/users/"><span
                                     class="fa fa-users DemePedidoBlue"></span> Usuarios</a></li>
-                            <li ng-show="logedUser.CARGO_ID=='1'"><a href=".#/Malos/"><span
+                            <li ng-show="logedUser.CARGO_ID=='1' || logedUser.USUARIO_ID=='EYEPESA'"><a href=".#/Malos/"><span
                                     class="fa fa-cogs DemePedidoBlue"></span> Pedidos Malos</a></li>
                             <li ng-show="logedUser.CARGO_ID<='5'"><a href=".#/admontips/"><span
                                     class="fa fa-file-code-o DemePedidoBlue"></span> Tips</a></li>
