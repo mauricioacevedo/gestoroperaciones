@@ -1560,7 +1560,7 @@ class API extends REST {
 
 
             $agentScore=$this->getAgentScore($usuarioGalleta);
-
+            $this->response(json_encode(array("msg"=>"N/A","data" => $today,"agent_score"=>$agentScore)),200);
             // ---------------------------------- SQL Feed
             //echo ("ingresooooooo");
             //$this->response(json_encode(array("msg"=>"N/A","data" => $today,"agent_score"=>$agentScore)),200);
@@ -1572,8 +1572,8 @@ class API extends REST {
                 $r = $this->mysqli->query($sqlCerrarManuales) or die($this->mysqli->error.__LINE__);
                 echo "ingreso";
             }
-        $this->response(json_encode(array("msg"=>"N/A","data" => $today,"agent_score"=>$agentScore)),200);
-        else{
+
+        else {
             $this->response('',204);        //"No Content" status
             //$this->response("$query",200);        //"No Content" status
         }
