@@ -1464,12 +1464,12 @@ class API extends REST {
         $concepto = $pedido1['concepto'];
         $estado = $pedido1['estado'];
         //echo $concepto;
-        echo $estado;
+        //echo $estado;
 
         $user=$pedido1['user'];
 
         //echo ($observaciones);
-        if ($estado == "GESTIONADO"){
+        if ($concepto=="CERRADO" && $estado == "GESTIONADO"){
                 $sqlCerrarManuales = "update informe_petec_pendientesm set STATUS = 'CERRADO_PETEC' where PEDIDO_ID = '$pedidoid' ".
                 " and STATUS = 'PENDI_PETEC' ";
                 $r = $this->mysqli->query($sqlCerrarManuales) or die($this->mysqli->error.__LINE__);
