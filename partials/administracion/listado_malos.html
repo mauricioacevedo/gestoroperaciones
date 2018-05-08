@@ -35,7 +35,7 @@
                                 <ul class="nav navbar-nav navbar-right">
                                     <li class="nav navbar-nav"
                                         ng-class="csvPedidosMalos==false?'animated bounceOutRight':'animated bounceInRight'"
-                                        ng-show="csvPedidosMalos==true">
+                                        ng-show="{{TotalMalos}} > 0">
                                         <span class="label label-primary">Se exportaron: {{TotalMalos}} Registros</span>&nbsp;
 
                                     </li>
