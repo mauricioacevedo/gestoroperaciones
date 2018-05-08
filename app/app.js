@@ -4924,35 +4924,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 	$scope.listadoPedidosMalos();
 
 	//Exportes: Inicio
-	$scope.csvPedidosMalos = function (filtroInput) {
-
-		services.expCsvPedidosMalos().then(
-
-			function (data) {
-
-				//console.log(data.data[0]);
-				window.location.href = "tmp/" + data.data[0];
-				$scope.csvPedidosMalos = true;
-				return data.data;
-
-			},
-			function errorCallback(response) {
-
-				$rootScope.errorDatos = "No hay datos.";
-				$scope.csvPedidosMalos = false;
-
-				//console.log($rootScope.errorDatos);
-
-			}
-		);
-
-	};
-
-
-
-
-/*
-    $scope.csvPedidosMalos = function (filtroInput) {
+/*	$scope.csvPedidosMalos = function (filtroInput) {
 
 		services.expCsvPedidosMalos().then(
 
@@ -4975,6 +4947,34 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 		);
 
 	};*/
+
+
+
+
+
+    $scope.csvPedidosMalos = function (filtroInput) {
+
+		services.expCsvPedidosMalos().then(
+
+			function (data) {
+
+				//console.log(data.data[0]);
+				window.location.href = "tmp/" + data.data[0];
+				$scope.csvPedidosMalos = true;
+				return data.data;
+
+			},
+			function errorCallback(response) {
+
+				$rootScope.errorDatos = "No hay datos.";
+				$scope.csvPedidosMalos = false;
+
+				//console.log($rootScope.errorDatos);
+
+			}
+		);
+
+	};
 
     $scope.csvPedidosIgnorados = function (filtroInput) {
 
