@@ -58,23 +58,6 @@
                                                 ng-disabled="loading">
                                             <i class="fa fa-cloud-download" aria-hidden="true"></i>
                                         </button>
-                                        <!--<button type="button" uib-tooltip="Exportar Ignorados" tooltip-placement="top"
-                                                class="btn btn-danger btn-circle-xs" ng-click="csvPedidosIgnorados()"
-                                                ng-disabled="loading">
-                                            <i class="fa fa-cloud-download" aria-hidden="true"></i>
-                                        </button>-->
-
-                                    </li>
-                                </ul>
-
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li class="nav navbar-nav"
-                                        ng-class="csvUsers==false?'animated bounceOutRight':'animated bounceInRight'"
-                                        ng-show="csvUsers==true">
-                                        <span class="label label-primary">Se exportaron: {{TotalIgnorados}} Registros</span>&nbsp;
-
-                                    </li>
-                                    <li>
                                         <button type="button" uib-tooltip="Exportar Ignorados" tooltip-placement="top"
                                                 class="btn btn-danger btn-circle-xs" ng-click="csvPedidosIgnorados()"
                                                 ng-disabled="loading">
@@ -83,6 +66,8 @@
 
                                     </li>
                                 </ul>
+
+
 
                             </div>
                         </div>
