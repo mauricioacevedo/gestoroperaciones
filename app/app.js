@@ -1725,126 +1725,6 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 
 //------------------------------------------------------- Controlador de logueo
 
-//------------------------------------CONTROLADOR DE DESCANSOS-------------------------------------
-
-app.controller('pausasCtrl', function ($scope, $http, $rootScope, $location, $route, $routeParams, $cookies, $notification, $timeout, $uibModal, services)
-{
-
-//$rootScope.estadoAsesor       =       'activo';
-    $scope.fechaIniciaPausa = null;
-    $scope.tituloModalPausa = null;
-
-    if ($cookies.get('usuariosalistamiento') !== undefined) {
-        $rootScope.galletainfo = JSON.parse($cookies.get("usuariosalistamiento"));
-        var usuarioId = $rootScope.galletainfo.LOGIN;
-    }
-//console.log($rootScope.galletainfo);
-    $scope.abrirModalPausas = function (param) {
-
-        $scope.fechaIniciaPausa = $rootScope.fechaProceso();
-        var usuarioId = $rootScope.galletainfo.LOGIN;
-        var tipoPausa = param;
-
-
-        services.iniciarPausa(usuarioId, tipoPausa, $scope.fechaIniciaPausa).then(
-            function (data) {
-                return data.data;
-            }
-            , function errorCallback(response) {
-                $scope.errorDatos = 'Error al intentar iniciar una pausa. '+response.data[0];
-
-            }
-        );
-
-        $rootScope.estadoAsesor = param;
-
-        var modalInstance = $uibModal.open({
-            animation: true,
-            backdrop: 'static',
-            keyboard: false,
-            size: 'md',
-            templateUrl: 'partial/modalpausas.html',
-            controller: function ($scope, $uibModalInstance) {
-                $scope.tituloModalPausa = param;
-                $scope.fechaIniciaPausa = $rootScope.fechaProceso();
-                $scope.desactivarPausa = function () {
-
-                    $scope.fechaFinPausa = $rootScope.fechaProceso();
-                    var usuarioId = $rootScope.galletainfo.LOGIN;
-
-                    services.finalizarPausa(usuarioId, $scope.fechaFinPausa).then(
-                        function (data) {
-                            $uibModalInstance.dismiss('cancel');
-                            $rootScope.estadoAsesor = 'activo';
-                            console.log($rootScope.estadoAsesor);
-                            return data.data;
-                        }, function errorCallback(response) {
-                            $scope.errorDatos = 'Error al intentar iniciar una pausa. '+response.data[0];
-
-                        }
-                    );
-                }
-            }
-        });
-
-    };
-
-    $scope.checkPausaAsesor = function (usuarioId) {
-
-        services.checkPausaAsesor(usuarioId).then(
-            function (data) {
-                $rootScope.estadoAsesor = data.data[0];
-
-                if ($rootScope.estadoAsesor === 'descanso' || $rootScope.estadoAsesor === 'reunion') {
-                    // $('#ModalDescansos').modal('show'); //Sirve con bootstrap
-                    var modalInstance = $uibModal.open({
-                        animation: true,
-                        backdrop: 'static',
-                        keyboard: false,
-                        size: 'md',
-                        templateUrl: 'partial/modalpausas.html',
-                        controller: function ($scope, $uibModalInstance) {
-                            $scope.tituloModalPausa = $rootScope.estadoAsesor;
-                            $scope.fechaIniciaPausa = $rootScope.fechaProceso();
-                            $scope.desactivarPausa = function () {
-                                $scope.fechaFinPausa = $rootScope.fechaProceso();
-                                var usuarioId = $rootScope.galletainfo.LOGIN;
-
-                                services.finalizarPausa(usuarioId, $scope.fechaFinPausa).then(
-                                    function (data) {
-
-                                        //console.log(data.data);
-                                        $uibModalInstance.dismiss('cancel');
-                                        $rootScope.estadoAsesor = data.data[0];
-
-                                        return data.data;
-                                    }, function errorCallback(response) {
-                                        $scope.errorDatos = 'Error al intentar iniciar una pausa. '+response.data;
-
-                                    }
-                                );
-
-                            }
-                        }
-                    });
-
-                }
-                return data.data;
-            }
-            , function errorCallback(response) {
-                $scope.errorDatos = 'Error al intentar iniciar una pausa. '+response.data;
-
-            }
-        );
-
-    };
-
-  $scope.checkPausaAsesor(usuarioId);
-});
-
-
-//------------------------------------FIN CONTROLADOR DE DESCANSOS----------------------------------
-
 app.controller('pushNotificationsCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $q, $timeout, $interval, $http, $window, socket, notify) {
     /**
     * Controlador para Enviar notificaciones a el mundo.
@@ -3433,6 +3313,9 @@ app.controller('DocuActivacion', function ($scope, $rootScope, $http, $location,
 	console.info('uploader', uploader);
 });
 
+
+
+
 //**********************************fin Upload*******************************
 
 /**
@@ -4462,6 +4345,9 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		})};//------PRUEBAS API OPENFIRE -----------------------------
 
 
+
+
+
 	$scope.grupo = {};
 
     $scope.topProductivos = function () {
@@ -5017,7 +4903,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
                            }
                         }
                 //console.log($scope.cantidad);
-                $scope.cantidad = data.data.length;
+                //$scope.cantidad = data.data.length;
 				$scope.sortType = 'PEDIDO_ID'; // set the default sort type
 				$scope.sortReverse = false; // set the default sort order
 				$scope.csvUsers = false;
@@ -5090,23 +4976,22 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
 
 	//moral borrar pedido
-	$scope.IgnorarModal = function (data) {
+	$scope.IgnorarModal = function (data,index) {
 		$rootScope.errorDatos = null;
 		$scope.PEDIDO_ID = data.PEDIDO_ID;
-        //$scope.indexborrar = index;
+        $scope.indexborrar = index;
 		//$scope.UsuarioNom = data.USUARIO_NOMBRE;
 		// console.log(data);
 		console.log("PEDIDO a Ignorar: " + $scope.PEDIDO_ID);
 	};
 
 
-	$scope.ignorarPedido = function (PEDIDO_ID) {
+	$scope.ignorarPedido = function (index) {
         //var loader = document.getElementById("class"+index);
 
         //$scope.listaPedidosMalos={};
         //console.log($scope.listaPedidosMalos);
-        //$scope.info = $scope.listaPedidosMalos[index];
-        //$scope.info = $scope.listaPedidosMalos[index];
+        $scope.info = $scope.listaPedidosMalos[index];
         //console.log($scope.listaPedidosMalos);
         //angular.copy($scope.listaPedidosMalos[index], $scope.ANSSOLUCION);
         //console.log($scope.ANSSOLUCION);
@@ -6640,6 +6525,18 @@ services.getListLocalidadesGeo().then(function (data) {
 };
 
 $scope.ListaLocalidadesGeo();
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 });
@@ -18306,7 +18203,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 		
 
-		if($scope.ifuente.FUENTE=='SIEBEL' || $scope.ifuente.FUENTE=='EDATEL'){
+		if(($scope.ifuente.FUENTE=='SIEBEL' || $scope.ifuente.FUENTE=='EDATEL') && $scope.iconcepto!='RECONFIGURACION EN OFERTA'&& $scope.iconcepto!='RC-SIEBEL'){
 			$scope.habilitaCr			= true;
 			var kami = services.getBuscarOfertaSiebelAsignaciones(buscar, $scope.pedidoActual, $rootScope.logedUser.login);
 		}else{
@@ -18343,7 +18240,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 									var opciones= {
 										fuente: $scope.peds[0].FUENTE,
 										grupo: $scope.peds[0].GRUPO,
-										actividad: $scope.peds[0].ACTIVIDAD
+										actividad: $scope.peds[0].ACTIVIDAD,
+										concepto: $scope.peds[0].CONCEPTO_ID
 									};
 
 									//$scope.baby($scope.pedido1);
