@@ -5017,7 +5017,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
                            }
                         }
                 //console.log($scope.cantidad);
-                //$scope.cantidad = data.data.length;
+                $scope.cantidad = data.data.length;
 				$scope.sortType = 'PEDIDO_ID'; // set the default sort type
 				$scope.sortReverse = false; // set the default sort order
 				$scope.csvUsers = false;
@@ -5105,7 +5105,8 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
         //$scope.listaPedidosMalos={};
         //console.log($scope.listaPedidosMalos);
-        $scope.info = $scope.listaPedidosMalos[index];
+        //$scope.info = $scope.listaPedidosMalos[index];
+        //$scope.info = $scope.listaPedidosMalos[index];
         //console.log($scope.listaPedidosMalos);
         //angular.copy($scope.listaPedidosMalos[index], $scope.ANSSOLUCION);
         //console.log($scope.ANSSOLUCION);
