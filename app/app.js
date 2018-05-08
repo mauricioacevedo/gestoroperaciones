@@ -5010,7 +5010,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
                 if ($scope.cantidadIgnorados !== null){
                            $scope.TotalIgnorados=0;
                            //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
-                           var TotalIgnorados = $scope.cantidadIgnorados;
+                           var TotalIgnorados = $scope.cantidadIgnorados.length;
 
                            for (var i = 0; i < TotalIgnorados; i++){
                            $scope.TotalIgnorados=+$scope.TotalIgnorados + +$scope.cantidadIgnorados[i].ignorados;
