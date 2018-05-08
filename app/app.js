@@ -5090,17 +5090,17 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
 
 	//moral borrar pedido
-	$scope.IgnorarModal = function (data,index) {
+	$scope.IgnorarModal = function (data) {
 		$rootScope.errorDatos = null;
 		$scope.PEDIDO_ID = data.PEDIDO_ID;
-        $scope.indexborrar = index;
+        //$scope.indexborrar = index;
 		//$scope.UsuarioNom = data.USUARIO_NOMBRE;
 		// console.log(data);
 		console.log("PEDIDO a Ignorar: " + $scope.PEDIDO_ID);
 	};
 
 
-	$scope.ignorarPedido = function (index) {
+	$scope.ignorarPedido = function (PEDIDO_ID) {
         //var loader = document.getElementById("class"+index);
 
         //$scope.listaPedidosMalos={};
