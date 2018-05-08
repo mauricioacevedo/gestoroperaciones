@@ -132,7 +132,7 @@
                         <tbody>
                         <!--<tr ng-repeat="data in listaPedidosMalos | filter:filtroInput as results"
                             class="animated bounceInRight">-->
-                            <tr ng-repeat="data in listaPedidosMalos track by $index"
+                            <tr ng-repeat="data in listaPedidosMalos"
                             class="animated bounceInRight">
 
 
@@ -155,8 +155,8 @@
                                         ng-disabled="loading">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </button>-->
-                                <button type="button" uib-tooltip="Ignorar: {{$index}}" tooltip-placement="top"
-                                        class="btn btn-default btn-circle-xss" ng-click="IgnorarModal(data,$index)"
+                                <button type="button" uib-tooltip="Ignorar: {{data.PEDIDO_ID}}" tooltip-placement="top"
+                                        class="btn btn-default btn-circle-xss" ng-click="IgnorarModal(data)"
                                         data-toggle="modal" data-target="#eliminaPedido" data-backdrop="static"
                                         ng-disabled="loading">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
@@ -522,7 +522,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" ng-click="ignorarPedido($indexborrar)" data-dismiss="modal">
+                <button type="button" class="btn btn-success" ng-click="ignorarPedido(PEDIDO_ID)" data-dismiss="modal">
                     Ignorar
                 </button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
