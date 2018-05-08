@@ -4899,7 +4899,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
                            var TotalMalos = $scope.cantidadIgnorados.length;
 
                            for (var i = 0; i < TotalIgnorados; i++){
-                           $scope.TotalIgnorados=+$scope.TotalMalos + +$scope.cantidadIgnorados[i].ignorados;
+                           $scope.TotalMalos=+$scope.TotalMalos + +$scope.cantidadIgnorados[i].ignorados;
                            }
                         }
                 //console.log($scope.cantidad);
