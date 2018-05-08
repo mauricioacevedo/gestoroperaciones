@@ -4932,14 +4932,14 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
 				//console.log(data.data[0]);
 				window.location.href = "tmp/" + data.data[0];
-				$scope.csvUsers = true;
+				$scope.csvPedidosMalos = true;
 				return data.data;
 
 			},
 			function errorCallback(response) {
 
 				$rootScope.errorDatos = "No hay datos.";
-				$scope.csvUsers = false;
+				$scope.csvPedidosMalos = false;
 
 				//console.log($rootScope.errorDatos);
 
@@ -4952,18 +4952,19 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 
 		services.expCsvPedidosIgnorados().then(
 
-			function (data) {
+
+            function (data) {
 
 				//console.log(data.data[0]);
 				window.location.href = "tmp/" + data.data[0];
-				$scope.csvUsers = true;
+				$scope.csvPedidosIgnorados = true;
 				return data.data;
 
 			},
 			function errorCallback(response) {
 
 				$rootScope.errorDatos = "No hay datos.";
-				$scope.csvUsers = false;
+				$scope.csvPedidosIgnorados = false;
 
 				//console.log($rootScope.errorDatos);
 
