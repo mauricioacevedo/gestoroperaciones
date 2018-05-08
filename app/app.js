@@ -4906,7 +4906,7 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
                 //$scope.cantidad = data.data.length;
 				$scope.sortType = 'PEDIDO_ID'; // set the default sort type
 				$scope.sortReverse = false; // set the default sort order
-				$scope.csvUsers = false;
+				$scope.csvPedidosMalos = false;
 				$scope.fechiniExpoIO = '';
 
 				return data.data;
@@ -4947,6 +4947,34 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 		);
 
 	};
+
+
+
+
+/*
+    $scope.csvPedidosMalos = function (filtroInput) {
+
+		services.expCsvPedidosMalos().then(
+
+			function (data) {
+
+				//console.log(data.data[0]);
+				window.location.href = "tmp/" + data.data[0];
+				$scope.csvPedidosMalos = true;
+				return data.data;
+
+			},
+			function errorCallback(response) {
+
+				$rootScope.errorDatos = "No hay datos.";
+				$scope.csvPedidosMalos = false;
+
+				//console.log($rootScope.errorDatos);
+
+			}
+		);
+
+	};*/
 
     $scope.csvPedidosIgnorados = function (filtroInput) {
 
@@ -5145,33 +5173,6 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
 		window.location.href = link;
 	};
 
-
-
-
-
-    $scope.csvPedidosMalos = function (filtroInput) {
-
-		services.expCsvPedidosMalos().then(
-
-			function (data) {
-
-				//console.log(data.data[0]);
-				window.location.href = "tmp/" + data.data[0];
-				$scope.csvUsers = true;
-				return data.data;
-
-			},
-			function errorCallback(response) {
-
-				$rootScope.errorDatos = "No hay datos.";
-				$scope.csvUsers = false;
-
-				//console.log($rootScope.errorDatos);
-
-			}
-		);
-
-	};
 
 	$scope.abrirsuk = function () {
 
