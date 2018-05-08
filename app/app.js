@@ -4894,12 +4894,12 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
                         }
 
                 if ($scope.cantidadIgnorados !== null){
-                           $scope.TotalMalos=0;
+                           $scope.TotalIgnorados=0;
                            //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
-                           var TotalMalos = $scope.cantidadIgnorados.length;
+                           var TotalIgnorados = $scope.cantidadIgnorados.length;
 
                            for (var i = 0; i < TotalIgnorados; i++){
-                           $scope.TotalMalos=+$scope.TotalMalos + +$scope.cantidadIgnorados[i].ignorados;
+                           $scope.TotalIgnorados=+$scope.TotalIgnorados + +$scope.cantidadIgnorados[i].ignorados;
                            }
                         }
                 //console.log($scope.cantidad);
