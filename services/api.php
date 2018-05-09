@@ -19915,6 +19915,13 @@ public function pp(&$var){
 
         }
 
+        $rUpdate = $this->mysqli->query($sqlupdate);
+
+        if (!$rUpdate) {
+            $mysqlerror = $this->mysqli->error;
+            $guardar = false;
+        }
+
         if($estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED UNIDIRECCIONAL")
            {
                 $queryReconf = "update informe_petec_pendientesm set STATUS='PENDI_PETEC', ASESOR='' ".
@@ -19924,14 +19931,6 @@ public function pp(&$var){
                 //$varFeed = "GUARDO PEDIDO";
                 echo "ingreso";
             }
-
-
-        $rUpdate = $this->mysqli->query($sqlupdate);
-
-        if (!$rUpdate) {
-            $mysqlerror = $this->mysqli->error;
-            $guardar = false;
-        }
 
         if($fuente==="SIEBEL"){// Si el pedido viene de siebel
             $sqlNca =   " INSERT INTO portalbd.transacciones_nca ( ".
