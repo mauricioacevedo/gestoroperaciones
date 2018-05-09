@@ -20011,7 +20011,7 @@ public function pp(&$var){
                 //echo var_dump("ingreso");
             }
 
-            else if($estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED UNIDIRECCIONAL")
+            /*if($estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED UNIDIRECCIONAL")
             {
                 $queryReconf = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor' ".
                 ", STATUS='PENDI_PETEC', ASESOR='' ".
@@ -20020,7 +20020,7 @@ public function pp(&$var){
                 $insertReconf = $this->mysqli->query($queryReconf);
                 //$varFeed = "GUARDO PEDIDO";
                 echo "ingreso"
-            }
+            }*/
 
 
 
