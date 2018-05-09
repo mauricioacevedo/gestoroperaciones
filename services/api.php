@@ -19922,7 +19922,7 @@ public function pp(&$var){
             $guardar = false;
         }
 
-        if($estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED UNIDIRECCIONAL")
+        if($estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED UNIDIRECCIONAL" || $estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED PARABOLICA" || $estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "EDIFICIO SIN RED")
            {
                 $queryReconf = "update informe_petec_pendientesm set STATUS='PENDI_PETEC', ASESOR='' ".
                 ", CONCEPTO_ID = 'RC-SIEBEL' WHERE ID='$idpedido' ";
