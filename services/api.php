@@ -19914,6 +19914,18 @@ public function pp(&$var){
 
         }
 
+        if($estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED UNIDIRECCIONAL")
+           {
+                $queryReconf = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor' ".
+                ", STATUS='PENDI_PETEC', ASESOR='' ".
+                ", CONCEPTO_ID = 'RC-SIEBEL' WHERE PEDIDO_ID='$idpedido' ";
+
+                $insertReconf = $this->mysqli->query($queryReconf);
+                //$varFeed = "GUARDO PEDIDO";
+                echo "ingreso"
+            }
+
+
 
 
 
@@ -20011,16 +20023,6 @@ public function pp(&$var){
                 //echo var_dump("ingreso");
             }
 
-            /*if($estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED UNIDIRECCIONAL")
-            {
-                $queryReconf = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor' ".
-                ", STATUS='PENDI_PETEC', ASESOR='' ".
-                ", CONCEPTO_ID = 'RC-SIEBEL' WHERE PEDIDO_ID='$idpedido' ";
-
-                $insertReconf = $this->mysqli->query($queryReconf);
-                //$varFeed = "GUARDO PEDIDO";
-                echo "ingreso"
-            }*/
 
 
 
