@@ -20016,6 +20016,7 @@ public function pp(&$var){
                 " || $estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "EDIFICIO SIN RED")
                 {
                     $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='PENDI_PETEC',ASESOR='', CONCEPTO_ID = 'RC-SIEBEL'  WHERE PEDIDO_ID=$idpedido and STATUS='PENDI_PETEC' ";
+                    $insertReconf = $this->mysqli->query($sqlupdate);
                     $varFeed = "GUARDO PEDIDO";
                     echo "ingreso"
                 }
