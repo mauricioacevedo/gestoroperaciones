@@ -20011,15 +20011,16 @@ public function pp(&$var){
                 //echo var_dump("ingreso");
             }
 
-                if($estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED UNIDIRECCIONAL")
-                {
-                    $sqlupdate = " update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor' ".
-                    ", STATUS='PENDI_PETEC' , ASESOR='' ".
-                    ", CONCEPTO_ID = 'RC-SIEBEL' WHERE PEDIDO_ID='$idpedido' and STATUS='PENDI_PETEC' ";
-                    $insertReconf = $this->mysqli->query($sqlupdate);
-                    $varFeed = "GUARDO PEDIDO";
-                    echo "ingreso"
-                }
+            if($estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED UNIDIRECCIONAL")
+            {
+                $queryReconf = " update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor' ".
+                ", STATUS='PENDI_PETEC' , ASESOR='' ".
+                ", CONCEPTO_ID = 'RC-SIEBEL' WHERE PEDIDO_ID='$idpedido' and STATUS='PENDI_PETEC' ";
+
+                $insertReconf = $this->mysqli->query($queryReconf);
+                //$varFeed = "GUARDO PEDIDO";
+                echo "ingreso"
+            }
 
 
 
