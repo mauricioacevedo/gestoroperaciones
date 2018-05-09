@@ -20008,7 +20008,7 @@ public function pp(&$var){
             {
 
                 $queryReconf = "update informe_petec_pendientesm set CONCEPTO_ID = '$observacion', STATUS = 'PENDI_PETEC'".
-                                " WHERE PEDIDO_ID = '$idpedido'";
+                                " WHERE PEDIDO_ID = '$idpedido' AND STATUS = 'PENDI_PETEC'";
 
                 //echo var_dump("ingreso ohoho siii");
             /*    $queryReconf = "INSERT INTO informe_petec_pendientesm (PEDIDO_ID, SUBPEDIDO_ID, SOLOCITUD_ID, TIPO_ELEMENTO, ".
