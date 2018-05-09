@@ -19899,17 +19899,6 @@ public function pp(&$var){
                 /*$rstMalos = $this->mysqli->query($sql_PedidosMalos) or die($this->mysqli->error.__LINE__);*/
 
         }
-        echo var_dump ($estado);
-        echo var_dump ($observacion);
-        if($estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED UNIDIRECCIONAL")
-           {
-                $queryReconf = "update informe_petec_pendientesm set STATUS='PENDI_PETEC', ASESOR='' ".
-                ", CONCEPTO_ID = 'RC-SIEBEL' WHERE PEDIDO_ID='$idpedido' and STATUS = 'PENDI_PETEC' ";
-
-                $insertReconf = $this->mysqli->query($queryReconf);
-                //$varFeed = "GUARDO PEDIDO";
-                echo "ingreso";
-            }
 
         if($programado){
 
@@ -19925,6 +19914,16 @@ public function pp(&$var){
             $varFeed = "GUARDO PEDIDO";
 
         }
+
+        if($estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED UNIDIRECCIONAL")
+           {
+                $queryReconf = "update informe_petec_pendientesm set STATUS='PENDI_PETEC', ASESOR='' ".
+                ", CONCEPTO_ID = 'RC-SIEBEL' WHERE PEDIDO_ID='$idpedido' and STATUS = 'PENDI_PETEC' ";
+
+                $insertReconf = $this->mysqli->query($queryReconf);
+                //$varFeed = "GUARDO PEDIDO";
+                echo "ingreso";
+            }
 
 
         $rUpdate = $this->mysqli->query($sqlupdate);
