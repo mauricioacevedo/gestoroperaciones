@@ -19929,7 +19929,7 @@ public function pp(&$var){
 
                 $insertReconf = $this->mysqli->query($queryReconf);
                 //$varFeed = "GUARDO PEDIDO";
-                echo "ingreso";
+                echo $queryReconf;
             }
 
         if($fuente==="SIEBEL"){// Si el pedido viene de siebel
