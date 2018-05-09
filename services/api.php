@@ -19915,7 +19915,7 @@ public function pp(&$var){
         }
 
         if($estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED UNIDIRECCIONAL" || $estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED PARABOLICA" || $estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "EDIFICIO SIN RED"){
-            $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='PENDI_PETEC',ASESOR='', CONCEPTO_ID = 'RC-SIEBEL'  WHERE ID=$idpedido ";
+            $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='PENDI_PETEC',ASESOR='', CONCEPTO_ID = 'RC-SIEBEL'  WHERE PEDIDO_ID=$idpedido ";
             $varFeed = "GUARDO PEDIDO";
         }
 
