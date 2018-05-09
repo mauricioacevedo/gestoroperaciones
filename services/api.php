@@ -20009,7 +20009,9 @@ public function pp(&$var){
                 //echo var_dump("ingreso");
             }
 
-            if($estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED UNIDIRECCIONAL")
+            if($estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED UNIDIRECCIONAL"
+               || $estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED PARABOLICA"
+               || $estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "EDIFICIO SIN RED" )
            {
                 $queryReconf = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor' ".
                 ", STATUS='PENDI_PETEC', ASESOR='' ".
