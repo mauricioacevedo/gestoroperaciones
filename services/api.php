@@ -19914,11 +19914,6 @@ public function pp(&$var){
 
         }
 
-        if($estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED UNIDIRECCIONAL" || $estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED PARABOLICA" || $estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "EDIFICIO SIN RED"){
-            $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='PENDI_PETEC',ASESOR='', CONCEPTO_ID = 'RC-SIEBEL'  WHERE PEDIDO_ID=$idpedido ";
-            $varFeed = "GUARDO PEDIDO";
-            echo "ingreso";
-        }
 
 
 
@@ -20011,32 +20006,20 @@ public function pp(&$var){
                 $queryReconf = "update informe_petec_pendientesm set CONCEPTO_ID = '$observacion', STATUS = 'PENDI_PETEC'".
                                 " WHERE PEDIDO_ID = '$idpedido' AND STATUS = 'PENDI_PETEC'";
 
-                //echo var_dump("ingreso ohoho siii");
-            /*    $queryReconf = "INSERT INTO informe_petec_pendientesm (PEDIDO_ID, SUBPEDIDO_ID, SOLOCITUD_ID, TIPO_ELEMENTO, ".
-                                                                       " TIPO_TRABAJO, DESC_TIPO_TRABAJO, FECHA_INGRESO, ".
-                                                                       " FECHA_ESTADO, FECHA_FINAL, FECHA_CITA, PRODUCTO_ID, ".
-                                                                       " PRODUCTO, UEN_CALCULADA, ESTRATO, CONCEPTO_ID, ".
-                                                                       " TECNOLOGIA_ID, MUNICIPIO_ID, DEPARTAMENTO, ".
-                                                                    " DIRECCION_SERVICIO, PAGINA_SERVICIO,FECHA_INGRESO_SOLA, ".
-                                                                       " HORAINGRESO, FECHAESTADO_SOLA, HORAESTADO, ".
-                                                                       " DIANUM_ESTADO, DIANOM_ESTADO, RANGO_CARGA, FECHA_CARGA, ".
-                                                                       " DIA_CARGA, MESNOMBRE_CARGA, MESNUMERO_CARGA, ".
-                                                                       " SEMANA_CARGA, SEMANA_CARGA, SEMANA_ANO_CARGA, ".
-                                                                       " ANO_CARGA, FUENTE, GRUPO, ACTIVIDAD, STATUS, ".
-                                                                       " ESTADO_BLOQUEO, USUARIO_BLOQUEO_FENIX, ASESOR, ".
-                                                                    " FECHA_VISTO_ASESOR, ESTUDIOS, VIEWS, CONCEPTO_ANTERIOR, ".
-                                                                       " PROGRAMACION, MICROZONA, RADICADO_TEMPORAL, ".
-                                                                       " IDENTIFICADOR_ID, CANTIDAD_EQU, EQUIPOS, CONCEPTOS_EQU, ".
-                                                                    " TIPO_EQUIPOS, EXTENSIONES, OBSERVACIONES, EJECUTIVO_ID, ".
-                                                                    " CANAL_ID, VEL_IDEN, VEL_SOLI, CONCEPTO_ID_ANTERIOR_NOV, ".
-                                                                    " CELULAR_AVISAR, TELEFONO_AVISAR, CARACTERISTICAS, ".
-                                                                    " UP2DATE, CLIENTE_ID, APROVISIONADOR, PEDIDO_CRM ".
-                                                                    " ID, NOMBRE_CLIENTE) VALUES("")";
-                echo var_dump ($queryReconf);
-                $insertReconf = $this->mysqli->query($queryReconf);*/
+
                 $insertReconf = $this->mysqli->query($queryReconf);
-                //echo var_dump("ingreso ohoho siii");
+                //echo var_dump("ingreso");
             }
+
+                if($estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED UNIDIRECCIONAL" ".
+                " || $estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED PARABOLICA" ".
+                " || $estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "EDIFICIO SIN RED")
+                {
+                    $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='PENDI_PETEC',ASESOR='', CONCEPTO_ID = 'RC-SIEBEL'  WHERE PEDIDO_ID=$idpedido and STATUS='PENDI_PETEC' ";
+                    $varFeed = "GUARDO PEDIDO";
+                    echo "ingreso"
+                }
+
 
 
 
