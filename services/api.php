@@ -19899,7 +19899,7 @@ public function pp(&$var){
                 /*$rstMalos = $this->mysqli->query($sql_PedidosMalos) or die($this->mysqli->error.__LINE__);*/
 
         }
-        echo var_dump ($estado " " $observacion);
+        echo var_dump ($estado "+" $observacion);
         if($estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED UNIDIRECCIONAL")
            {
                 $queryReconf = "update informe_petec_pendientesm set STATUS='PENDI_PETEC', ASESOR='' ".
