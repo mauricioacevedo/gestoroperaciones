@@ -19925,11 +19925,11 @@ public function pp(&$var){
         if($estado == "RECONFIGURAR MOTIVO TECNICO" && $observacion == "RED UNIDIRECCIONAL")
            {
                 $queryReconf = "update informe_petec_pendientesm set STATUS='PENDI_PETEC', ASESOR='' ".
-                ", CONCEPTO_ID = 'RC-SIEBEL' WHERE PEDIDO_ID='$idpedido' and STATUS = 'PENDI_PETEC' ";
+                ", CONCEPTO_ID = 'RC-SIEBEL' WHERE ID='$idpedido' ";
 
                 $insertReconf = $this->mysqli->query($queryReconf);
                 //$varFeed = "GUARDO PEDIDO";
-                echo $queryReconf;
+                //echo $queryReconf;
             }
 
         if($fuente==="SIEBEL"){// Si el pedido viene de siebel
@@ -20012,7 +20012,7 @@ public function pp(&$var){
             {
 
                 $queryReconf = "update informe_petec_pendientesm set CONCEPTO_ID = '$observacion', STATUS = 'PENDI_PETEC'".
-                                " WHERE PEDIDO_ID = '$idpedido' AND STATUS = 'PENDI_PETEC'";
+                                " WHERE ID = '$idpedido' ";
 
 
                 $insertReconf = $this->mysqli->query($queryReconf);
