@@ -7627,7 +7627,7 @@ private function getAgentScore($user){
         $grupoGalleta   =   $galleta['GRUPO'];
 
         $pedido = $this->_request['pedidoID'];
-        $pedidoid = $this->_request['ID'];
+        $pedidoid = $this->_request['pedidoid'];
         $plaza = $this->_request ['plaza'];
         $user = $this->_request['userID'];
         $username = $this->_request['username'];
