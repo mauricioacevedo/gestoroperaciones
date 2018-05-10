@@ -7627,17 +7627,18 @@ private function getAgentScore($user){
         $grupoGalleta   =   $galleta['GRUPO'];
 
         $pedido = $this->_request['pedidoID'];
-        $pedidoid = $this->_request['pedidoid'];
         $plaza = $this->_request ['plaza'];
         $user = $this->_request['userID'];
         $username = $this->_request['username'];
         //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
         $pedido_actual = $this->_request['pedido_actual'];
 
-        /*echo var_dump ($pedido_actual);
+        $pedidoid = $this->_request['pedidoid'];
+        $pedidoid1 = $this->_request['ID'];
+
         echo var_dump ($pedidoid);
-        echo var_dump ($pedido);
-*/
+        echo var_dump ($pedidoid1);
+
         //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
 
         $sqlupdate="update informe_petec_pendientesm set ASESOR='' where ASESOR='$user' ";
