@@ -7633,7 +7633,8 @@ private function getAgentScore($user){
         $username = $this->_request['username'];
         //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
         $pedido_actual = $this->_request['pedido_actual'];
-        echo var_dump ($pedidoID);
+
+        echo var_dump (pedidoid);
 
         //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
 
