@@ -1151,15 +1151,11 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	};
 
 	//aca no nos importaria el concepto, sin embargo deberia traerlo para actualizarlo?
-	obj.buscarPedido = function (pedido, plaza, pedidoid, user, username) { //buscar pedido asignacion
-		return $http.get(serviceBase + 'buscarPedido?pedidoID=' + pedido + '&plaza=' + plaza + '&pedidoid=' + ID + '&userID=' + user + '&username=' + username);
-	};
 
-    //copia
-   /* obj.buscarPedido = function (pedido, plaza, pedido_actual, user, username) { //buscar pedido asignacion
+    obj.buscarPedido = function (pedido, plaza, pedido_actual, user, username) { //buscar pedido asignacion
 		return $http.get(serviceBase + 'buscarPedido?pedidoID=' + pedido + '&plaza=' + plaza + '&pedido_actual=' + pedido_actual + '&userID=' + user + '&username=' + username);
 	};
-*/
+
 
 	obj.buscarPedidoReconfiguracion = function (pedido, plaza, pedido_actual, user, username) { // buscar pedido reconfiguracion
 		return $http.get(serviceBase + 'buscarPedidoReconfiguracion?pedidoID=' + pedido + '&plaza=' + plaza + '&pedido_actual=' + pedido_actual + '&userID=' + user + '&username=' + username);
@@ -16238,7 +16234,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		//$scope.pedidoinfo='';
 		var kami = services.buscarPedido(bpedido, iplaza.MUNICIPIO_ID, $scope.pedido1, $rootScope.logedUser.login, $rootScope.logedUser.name).then(function (data) {
 			$scope.peds = data.data;
-			console.log($scope.peds);
+			//console.log($scope.peds);
 			var dat = data.status;
 			//alert("'"+data.status+"'");
 			if (dat == 204) {
