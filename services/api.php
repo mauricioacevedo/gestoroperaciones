@@ -7632,12 +7632,12 @@ private function getAgentScore($user){
         $user = $this->_request['userID'];
         $username = $this->_request['username'];
         //si el actual usuario tenia un pedido "agarrado, hay que liberarlo"
-        $pedido_actual = $this->_request['ID'];
+        $pedido_actual = $this->_request['pedido_actual'];
 
-        echo var_dump ($pedido_actual);
+        /*echo var_dump ($pedido_actual);
         echo var_dump ($pedidoid);
         echo var_dump ($pedido);
-
+*/
         //if($pedido_actual!=''){//en este caso tenia pedido antes, estaba trabajando uno, debo actualizarlo para dejarlo libre
 
         $sqlupdate="update informe_petec_pendientesm set ASESOR='' where ASESOR='$user' ";
