@@ -16233,7 +16233,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		//$scope.pedidoinfo='';
 		var kami = services.buscarPedido(bpedido, iplaza.MUNICIPIO_ID, $scope.pedido1, $rootScope.logedUser.login, $rootScope.logedUser.name).then(function (data) {
 			$scope.peds = data.data;
-			//console.log(data.status);
+			console.log($scope.peds);
 			var dat = data.status;
 			//alert("'"+data.status+"'");
 			if (dat == 204) {
