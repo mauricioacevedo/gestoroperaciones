@@ -1151,10 +1151,15 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	};
 
 	//aca no nos importaria el concepto, sin embargo deberia traerlo para actualizarlo?
-	obj.buscarPedido = function (pedido, plaza, pedido_actual, user, username) { //buscar pedido asignacion
-		return $http.get(serviceBase + 'buscarPedido?pedidoID=' + pedido + '&plaza=' + plaza + '&pedido_actual=' + pedido_actual + '&userID=' + user + '&username=' + username);
+	obj.buscarPedido = function (pedido, plaza, pedidoid, user, username) { //buscar pedido asignacion
+		return $http.get(serviceBase + 'buscarPedido?pedidoID=' + pedido + '&plaza=' + plaza + '&pedidoid=' + pedidoid + '&userID=' + user + '&username=' + username);
 	};
 
+    //copia
+   /* obj.buscarPedido = function (pedido, plaza, pedido_actual, user, username) { //buscar pedido asignacion
+		return $http.get(serviceBase + 'buscarPedido?pedidoID=' + pedido + '&plaza=' + plaza + '&pedido_actual=' + pedido_actual + '&userID=' + user + '&username=' + username);
+	};
+*/
 
 	obj.buscarPedidoReconfiguracion = function (pedido, plaza, pedido_actual, user, username) { // buscar pedido reconfiguracion
 		return $http.get(serviceBase + 'buscarPedidoReconfiguracion?pedidoID=' + pedido + '&plaza=' + plaza + '&pedido_actual=' + pedido_actual + '&userID=' + user + '&username=' + username);
