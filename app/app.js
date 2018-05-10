@@ -1152,7 +1152,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
 	//aca no nos importaria el concepto, sin embargo deberia traerlo para actualizarlo?
 	obj.buscarPedido = function (pedido, plaza, pedidoid, user, username) { //buscar pedido asignacion
-		return $http.get(serviceBase + 'buscarPedido?pedidoID=' + pedido + '&plaza=' + plaza + '&ID=' + pedidoid + '&userID=' + user + '&username=' + username);
+		return $http.get(serviceBase + 'buscarPedido?pedidoID=' + pedido + '&plaza=' + plaza + '&pedidoid=' + ID + '&userID=' + user + '&username=' + username);
 	};
 
     //copia
