@@ -16253,6 +16253,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
                 $scope.pedidoid = $scope.peds[0].ID;
+                console.log($scope.pedidoid);
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
                 $scope.isEstratoNull($scope.peds);
 				//$scope.pedidoinfo=$scope.peds[0].PEDIDO_ID;
