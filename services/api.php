@@ -7666,9 +7666,9 @@ private function getAgentScore($user){
         }else{
 
             //CAMBIO BUSCAR PEDIDO MICHAEL
-         /*   $sql="update informe_petec_pendientesm set status='CERRADO_PETEC' where PEDIDO_ID='$pedido' AND CONCEPTO_ID NOT IN ('14','99') and ASESOR = '' ";
+            $sql="update informe_petec_pendientesm set status='CERRADO_PETEC' where PEDIDO_ID='$pedido' AND CONCEPTO_ID NOT IN ('14','99') and ASESOR = '' ";
 
-            $r = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);*/
+            $r = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
 
             if ($plaza=="BOG-COBRE"){//pregunta si se debe buscar en fenix Bogotá o se debe buscar en fenix nacional por medio de la plaza.
                 //echo "Esta Entrando por aca para llamar a fenix Bogotá";
