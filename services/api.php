@@ -633,7 +633,7 @@ class API extends REST {
             "   WHERE b.PEDIDO_ID =  a.PEDIDO_ID) )AS INTENTOS_CONTACTO ".
             " from gestor_historicos_reagendamiento a ".
             "  where fecha_fin between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' ".
-            "	and fuente='EDATEL' ";
+            "	and fuente='POBLACIONES' ";
 
 
 
@@ -2655,7 +2655,7 @@ private function getAgentScore($user){
         $pedido = json_decode(file_get_contents("php://input"),true);
 
         $SOLICITUD=$pedido['pedido']['SOLICITUD'];
-        $FUENTE = 'EDATEL';
+        $FUENTE = 'POBLACIONES';
         $ACTIVIDAD = 'TRANSACCION';
         $SOURCE = 'AUTO';
         $COD_LOCALIDAD=$pedido['pedido']['COD_LOCALIDAD'];
@@ -3191,11 +3191,11 @@ private function getAgentScore($user){
                 " and ASESOR =''  and (FECHA_CITA_FENIX <=CURDATE() OR FECHA_CITA_FENIX='9999-00-00')  and (MIGRACION='NO' or MIGRACION='' or MIGRACION is null ) ".
                 " GROUP BY 1 ORDER BY 1 ASC ";
 
-        }else if($dep=="EDATEL"){
+        }else if($dep=="POBLACIONES"){
             $sql=" SELECT DISTINCT SUBZONA_ID ".
                 " FROM gestor_pendientes_reagendamiento ".
                 " WHERE STATUS =  'PENDI_AGEN' ".
-                " AND DEPARTAMENTO =  'EDATEL' ".
+                " AND DEPARTAMENTO =  'POBLACIONES' ".
                 " and ASESOR ='' ".
                 //" and (FECHA_CITA_FENIX <=CURDATE() OR FECHA_CITA_FENIX='9999-00-00') ".
                 " and (MIGRACION='NO' or MIGRACION='' or MIGRACION is null ) ".
@@ -4667,7 +4667,7 @@ private function getAgentScore($user){
             "    FROM portalbd.informe_petec_pendientesm ".
             "    where 1=1 ".
             "    and STATUS in ('PENDI_PETEC','MALO') ".
-            "    and fuente in ('FENIX_NAL','FENIX_BOG','SIEBEL','EDATEL') ".
+            "    and fuente in ('FENIX_NAL','FENIX_BOG','SIEBEL','POBLACIONES') ".
             //"    and CONCEPTO_ID NOT IN ('OT-C11','OT-C08','OT-T01','OT-T04','OT-T05') )C1 ".
             //2018-04-27 Monica pide dejar que se muestren todos los conceptos nuevos.
             "     )C1 ".
@@ -7983,7 +7983,7 @@ private function getAgentScore($user){
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
         $busy="";
         $cReconfiguracion=array('14', '99', 'O-101');
-        $cEdatel=array('12-EDATEL');
+        $cEdatel=array('12-POBLACIONES');
         $cAsignaciones=array('PETEC','OKRED','PUMED','O-106','O-13','O-15','PEOPP','19');
 
         if($r->num_rows > 0){
@@ -8791,7 +8791,7 @@ private function getAgentScore($user){
         }
 
 
-        if ($concepto =="12-EDATEL")
+        if ($concepto =="12-POBLACIONES")
         {
             $plaza = "and MUNICIPIO_ID = '$plaza' ";
         }
@@ -10035,11 +10035,11 @@ private function demePedidoEdatel(){
             $departamento="";
         }   else if ($departamento=="DTH" ){
             $departamento=" and b.TECNOLOGIA_ID='".utf8_decode($departamento)."' and b.PROCESO='$proceso' ";
-        } else if ($departamento=="EDATEL"){
+        } else if ($departamento=="POBLACIONES"){
             if($proceso==""||$proceso=="TODO"){
-                $departamento=" and b.DEPARTAMENTO='EDATEL' ";
+                $departamento=" and b.DEPARTAMENTO='POBLACIONES' ";
             }else{
-                $departamento=" and b.DEPARTAMENTO='EDATEL' and b.PROCESO='$proceso' ";
+                $departamento=" and b.DEPARTAMENTO='POBLACIONES' and b.PROCESO='$proceso' ";
             }
 
         } else{
@@ -18828,7 +18828,7 @@ public function pp(&$var){
         $filtros= " and o.STATUS ='PENDI_PETEC' and $paramFuente AND o.CONCEPTO_ID='$concepto' ".
                     " GROUP BY o.MUNICIPIO_ID ORDER BY COUNT(*) DESC ";
 
-        if ($concepto == "12-EDATEL")
+        if ($concepto == "12-POBLACIONES")
         {
             //$municipios = "1 = 1";
             $municipios = "MUNICIPIO_ID IN ('GUATAPE','CIUDAD BOLIVAR','AMAGA','SANTAFE DE ANTIOQUIA','FREDONIA','VENECIA','SANTA BARBARA','ANDES','PEÑOL','SONSON','LA PINTADA','TAMASIS','JARDIN','URRAO','JERICO','APARTADO')";
