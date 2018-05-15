@@ -19937,6 +19937,30 @@ public function pp(&$var){
                 //echo $queryReconf;
             }
 
+        if($estado == "ANULADO" && $observacion == "MOTIVO EMPRESA" || $estado == "ANULADO" && $observacion == "MOTIVO CLIENTE")
+         {
+            $queryReconf = "update informe_petec_pendientesm set STATUS='CERRADO_PETEC', ASESOR='' ".
+                " WHERE ID='$idpedido' AND STATUS = 'PENDI_PETEC' ";
+
+                $insertReconf = $this->mysqli->query($queryReconf);
+         }
+
+        if ($estado == "SOLUCIONADO" && $observacion == "SOLUCIONADO CON CLIENTE" || $estado == "SOLUCIONADO" && $observacion == "SOLUCIONADO SIN CLIENTE"){
+
+            $queryReconf = "update informe_petec_pendientesm set STATUS='CERRADO_PETEC', ASESOR='' ".
+                " WHERE ID='$idpedido' AND STATUS = 'PENDI_PETEC' ";
+
+                $insertReconf = $this->mysqli->query($queryReconf);
+        }
+
+        if ($estado == "AUDITORIA" && $observacion == "MALA ASIGNACION")
+        {
+                $queryReconf = "update informe_petec_pendientesm set STATUS='CERRADO_PETEC', ASESOR='' ".
+                " WHERE ID='$idpedido' AND STATUS = 'PENDI_PETEC' ";
+                $insertReconf = $this->mysqli->query($queryReconf);
+        }
+
+
         if($fuente==="SIEBEL"){// Si el pedido viene de siebel
             $sqlNca =   " INSERT INTO portalbd.transacciones_nca ( ".
                 " OFERTA, ".
