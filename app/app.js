@@ -8506,7 +8506,7 @@ $scope.intervalLightKPIS = setInterval(function(){
                 }else if(concepto_id=='14'||concepto_id=='99'||concepto_id=='92'||concepto_id=='RC-SIEBEL'){
                         negocioReconfiguracion+="<tr><td><a href='./#/registros/"+concepto_id+"'>"+concepto_id+"</a></td><td>"+counter+"<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
                     $rootScope.totalNegocioReconfiguracion=parseInt($rootScope.totalNegocioReconfiguracion)+parseInt(counter);
-                                }else if(concepto_id=='O-101' || concepto_id=='RC-SIEBEL'){
+                                }else if(concepto_id=='O-101' || concepto_id=='RC-SIEBEL' || concepto_id=='OT-C08' || concepto_id=='OT-C11' ){
                                     negocioReconfiguracion+="<tr><td><a href='./#/registros/"+concepto_id+"'>"+concepto_id+"</a></td><td>"+counter+"<font color='DarkGray'><strong><i>&nbsp;&nbsp; Servicios</strong></i></font></td></tr>";
                                     $rootScope.totalNegocioReconfiguracion=parseInt($rootScope.totalNegocioReconfiguracion)+parseInt(counter);
                                     }
@@ -8736,10 +8736,10 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 				if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'PUMED' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD') {
 					negocioAsingaciones += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioAsignaciones = parseInt($rootScope.totalNegocioAsignaciones) + parseInt(counter);
-				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == '92' || concepto_id == 'RC-SIEBEL') {
+				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == '92' || concepto_id == 'RC-SIEBEL' || concepto_id == 'OT-C08' || concepto_id == 'OT-C11') {
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
-				} else if (concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL') {
+				} else if (concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL' || concepto_id == 'OT-C08' || concepto_id == 'OT-C11') {
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
 				} else {
@@ -15006,10 +15006,10 @@ app.controller('PordenesCtrl', function ($scope, $rootScope, $location, $routePa
 				if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106') {
 					negocioAsingaciones += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "</td></tr>";
 					$rootScope.totalNegocioAsignaciones = parseInt($rootScope.totalNegocioAsignaciones) + parseInt(counter);
-				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL') {
+				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL' || concepto_id == 'OT-C08' || concepto_id == 'OT-C11') {
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "</td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
-				} else if (concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL') {
+				} else if (concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL' || concepto_id == 'OT-C08' || concepto_id == 'OT-C11') {
 					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
 					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
 				}
