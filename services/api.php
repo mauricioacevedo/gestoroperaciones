@@ -17801,7 +17801,7 @@ public function pp(&$var){
                  " ASESOR NOT IN ('') ".
                  " AND STATUS in ('PENDI_PETEC','CERRADO_PETEC')".
                  " group by ASESOR ".
-                 " ORDER BY CONCEPTO ";
+                 " ORDER BY ANSPEDIDO DESC ";
 
         //echo var_dump($query);
 
