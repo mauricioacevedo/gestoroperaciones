@@ -20361,9 +20361,7 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
 				$rootScope.listadoZonas = data.data;
 				return data.data;
 			}
-
 		)
-
 	};
 
 

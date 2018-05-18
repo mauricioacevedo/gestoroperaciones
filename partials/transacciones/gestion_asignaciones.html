@@ -22,7 +22,7 @@
 
                             <li>
 
-                                <i class="fa fa-globe" aria-hidden="true"> </i>&nbsp;
+                                <!--<i class="fa fa-globe" aria-hidden="true"> </i>&nbsp;
                                 <select class="btn btn-default btn-xs grupo-select"
                                         style="width: 200px"
                                         ng-model="izona"
@@ -37,6 +37,14 @@
                                     <option value="EJE CAFETERO"> EJE CAFETERO</option>
                                     <option value="ISLAS"> ISLAS</option>
                                     <option value="VACIO"> VACIO</option>
+                                </select>-->
+                            <select class="btn btn-default btn-xs grupo-select"
+                                        style="width: 200px"
+                                        ng-model="izona"
+                                        ng-options="d.ZONA+' | '+d.TOTAL group by d.ZONA for d in listadoZonas"
+                                        ng-change=""
+                                        >
+                                    <option value="" disabled>--Seleccione Zona--</option>
                                 </select>
 
                             </li>
@@ -59,7 +67,7 @@
                                         style="width: 200px"
                                         ng-model="iplaza"
                                         ng-options="d.MUNICIPIO_ID +'('+d.COUNTER+')'+ ''  for d in listadoMunicipios track by d.MUNICIPIO_ID"
-                                        ng-show="condicionMunicipiosShow()"
+                                        ng-show=""
                                         >
                                     <option value="" disabled>--Seleccione Municipio--</option>
                                 </select>
