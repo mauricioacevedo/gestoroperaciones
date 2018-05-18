@@ -17767,7 +17767,7 @@ app.controller('edatelCtrl', function ($scope, $rootScope, $location, $routePara
 // -----------------------------------------------Controlador para Gestion de Edatel
 
 // Controlador para Gestion General de los procesos de Asignaciones -----------------------------------------------
-app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $location, $route, $routeParams, $cookies, $cookieStore, $timeout, notify, services, idPermisos) {
+app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $location, $route, $routeParams, $cookies, $cookieStore, $timeout, notify, services, idPermisos,listadoZonas) {
 
 	// Basura del logueo ---------------------------------
 		$rootScope.logedUser = $cookieStore.get('logedUser');
@@ -20359,10 +20359,10 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
 		services.getGestorZonas().then(
 			function (data) {
 				$rootScope.listadoZonas = data.data;
-                console.log($rootScope.listadoZonas);
 
-             /*   console.log(listadoZonas);
-                if ($scope.listadoZonas !== null){
+                //console.log($rootScope.listadoZonas);
+
+              /*  if ($scope.listadoZonas !== null){
                            $scope.Zona="";
                            $scope.totalestadofinal = $scope.TotalEstadosFinales.length;
                            var Zona = $scope.cantidadMalos.length;
@@ -20370,8 +20370,8 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
                            for (var i = 0; i < TotalMalos; i++){
                            $scope.TotalMalos=+$scope.TotalMalos + +$scope.cantidadMalos[i].counter;
                            }
-                }
-*/
+                }*/
+
 
 				return data.data;
 			}
