@@ -30,7 +30,7 @@
                                     <option value="" disabled>--Seleccione Zona--</option>
                                     <option value="TODOS"> TODOS</option>
                                     <option value="NOROCCIDENTE"> NOROCCIDENTE</option>
-                                    <option value="CENTRO"> CENTRO</option>
+                                    <option value="CENTRO"> CENTRO </option>
                                     <option value="NORTE"> NORTE</option>
                                     <option value="SUR"> SUR</option>
                                     <option value="ORIENTE"> ORIENTE</option>
@@ -38,11 +38,11 @@
                                     <option value="ISLAS"> ISLAS</option>
                                     <option value="VACIO"> VACIO</option>
                                 </select>-->
-                            <select class="btn btn-default btn-xs grupo-select"
+                                <select class="btn btn-default btn-xs grupo-select"
                                         style="width: 200px"
                                         ng-model="izona"
                                         ng-options="d.ZONA+' | '+d.TOTAL for d in listadoZonas"
-                                        ng-change=""
+                                        ng-change="gestorConceptos()"
                                         >
                                     <option value="" disabled>--Seleccione Zona--</option>
                                 </select>
