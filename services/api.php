@@ -18241,7 +18241,7 @@ public function pp(&$var){
         }
 
 
-        $query=	" SELECT CONCEPTO_ID FROM portalbd.gestor_conceptos ";
+        $query=	" SELECT * FROM portalbd.gestor_conceptos ";
 
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
