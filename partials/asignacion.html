@@ -72,7 +72,8 @@
 
                 <div class="col-lg-6 col-xs-5 form-inline">
                       <label for="Plaza">Zona:</label>
-                      <select id="Zona" class="form-control"
+
+                    <!--<select id="Zona" class="form-control"
                             style="width: 150px"
                             ng-model="izona">
                         <option value="" disabled>--Seleccione Zona--</option>
@@ -85,7 +86,21 @@
                         <option value="EJE CAFETERO"> EJE CAFETERO</option>
                         <option value="ISLAS"> ISLAS</option>
                         <option value="VACIO"> VACIO</option>
-                    </select>
+                    </select>-->
+
+                      <select id="Plaza" class="form-control"
+                            style="width: 150px"
+                            ng-model="izona"
+                            ng-options="d.MUNICIPIO_ID +'('+d.COUNTER+')'+ ''  for d in listadoMunicipios "
+                       >
+
+
+
+                    <!--
+                    <div ng-show="error" class="alert alert-danger ">Muestra error cuando no hay pedidos
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i> iplaza
+                    </div>
+                    -->
 
 
                     <label for="conceptos">Concepto:</label>
@@ -112,19 +127,7 @@
                         <option value="TODOS" selected>TODOS</option>
                         <option value="BOGCUNCOL">BOGOTA</option>
                     </select>
-                    <!--<select id="Plaza" class="form-control"
-                            style="width: 150px"
-                            ng-model="iplaza"
-                            ng-options="d.MUNICIPIO_ID +'('+d.COUNTER+')'+ ''  for d in listadoMunicipios "
-                    >-->
 
-
-
-                    <!--
-                    <div ng-show="error" class="alert alert-danger ">Muestra error cuando no hay pedidos
-                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i> iplaza
-                    </div>
-                    -->
                     </div>
 
                 <div class="col-lg-3 col-xs-3">
