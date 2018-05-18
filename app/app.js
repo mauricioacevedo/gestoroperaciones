@@ -925,8 +925,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'getConceptos');
 	};
 
-    	obj.getListadoZonas = function () {
-		return $http.get(serviceBase + 'getZonas');
+    	obj.getListadoZonas = function (conceptoid) {
+		return $http.get(serviceBase + 'getZonas?conceptoid=' + conceptoid);
 	};
 
 
@@ -18781,7 +18781,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
     $scope.condicionMunicipiosShow = function () {
 
        //Se mostrara los municipios unicamente para edatel
-        return ($scope.iconcepto.FUENTE=='EDATEL' & ($scope.iconcepto.CONCEPTO_ID =='12-EDATEL'));
+        return ($scope.iconcepto.FUENTE=='POBLACIONES' & ($scope.iconcepto.CONCEPTO_ID =='12-POBLACIONES'));
 
        /* return ($scope.iconcepto.FUENTE=='SIEBEL' | $scope.iconcepto.FUENTE=='EDATEL' | $scope.iconcepto.FUENTE=='FENIX_NAL'  & ( $scope.iconcepto.CONCEPTO_ID=='COBERTURA' | $scope.iconcepto.CONCEPTO_ID=='DISPONIBILIDAD' | $scope.iconcepto.CONCEPTO_ID=='CONSTRUCCION' | $scope.iconcepto.CONCEPTO_ID=='DISENO' | $scope.iconcepto.CONCEPTO_ID =='12-EDATEL' | $scope.iconcepto.CONCEPTO_ID=='14' | $scope.iconcepto.CONCEPTO_ID=='99' ));*/
     };
