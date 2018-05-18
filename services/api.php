@@ -8695,7 +8695,7 @@ private function getAgentScore($user){
         $zona           =   $this->_request['zona'];
         $ejemplo        =   $this->_request['ZONA'];
 
-        echo $ejemplo;
+        echo var_dump($ejemplo);
 
         //echo var_dump($plaza);
         if($zona==""||$zona=="null"||$zona=="undefined") $zona="TODOS";
