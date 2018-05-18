@@ -17824,7 +17824,6 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
     $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
 	$rootScope.getZonasGestor();
 
-    console.log($rootScope.getZonasGestor);
     //$scope.idPermisos = idPermisos.getIds();
     idPermisos.getIds().then(
         function (data) {
@@ -20366,7 +20365,7 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
 			function (data) {
 				$rootScope.listadoZonas = data.data;
 
-                //console.log($rootScope.listadoZonas);
+                console.log($rootScope.listadoZonas);
 
 				return data.data;
 			}
