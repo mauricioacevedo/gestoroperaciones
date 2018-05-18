@@ -20358,7 +20358,7 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
     $rootScope.getZonasGestor = function () {
 		services.getGestorZonas().then(
 			function (data) {
-				$rootScope.listadoZonas = data.data[0];
+				$rootScope.listadoZonas = data.data;
 
              /*   console.log(listadoZonas);
                 if ($scope.listadoZonas !== null){
