@@ -18269,7 +18269,7 @@ public function pp(&$var){
 
 
         $query=	" select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
-            "where STATUS = 'PENDI_PETEC' and ZONA not in ('NULL') group by ZONA ";
+            "where STATUS = 'PENDI_PETEC' and ZONA not in ('NULL') group by ZONA order by TOTAL desc ";
 
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
