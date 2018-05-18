@@ -18126,7 +18126,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         demePedidoButton.setAttribute("disabled", "disabled");
         demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
-        console.log($scope.izona);
+        //console.log($scope.izona);
 
         var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE,$scope.izona).then(function (data) {
 
