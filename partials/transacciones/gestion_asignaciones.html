@@ -38,26 +38,27 @@
                                     <option value="ISLAS"> ISLAS</option>
                                     <option value="VACIO"> VACIO</option>
                                 </select>-->
-                                <select class="btn btn-default btn-xs grupo-select"
-                                        style="width: 200px"
-                                        ng-model="izona"
-                                        ng-options="d.ZONA+' | '+d.TOTAL for d in listadoZonas"
-                                        ng-change="getConceptosGestor()"
-                                        >
-                                    <option value="" disabled>--Seleccione Zona--</option>
-                                </select>
-
-                            </li>
-
-                            <li >
-                                <!--i class="fa fa-globe" aria-hidden="true"> </i-->&nbsp;
-                                <select class="btn btn-default btn-xs grupo-select"
+                            <select class="btn btn-default btn-xs grupo-select"
                                         style="width: 200px"
                                         ng-model="iconcepto"
                                         ng-options="d.CONCEPTO_ID+' | '+d.FUENTE group by d.GRUPO for d in listadoConceptos | filter:{ESTADO: '1',} track by d.ID "
                                         ng-change="checkMunicipiosAsignaciones()"
                                         >
                                     <option value="" disabled>--Seleccione Concepto--</option>
+                                </select>
+
+                            </li>
+
+                            <li >
+                                <!--i class="fa fa-globe" aria-hidden="true"> </i-->&nbsp;
+
+                                 <select class="btn btn-default btn-xs grupo-select"
+                                        style="width: 200px"
+                                        ng-model="izona"
+                                        ng-options="d.ZONA+' | '+d.TOTAL for d in listadoZonas"
+                                        ng-change="getConceptosGestor()"
+                                        >
+                                    <option value="" disabled>--Seleccione Zona--</option>
                                 </select>
                             </li>
                             <li>
