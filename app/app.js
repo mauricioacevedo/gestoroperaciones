@@ -20359,18 +20359,18 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
 		services.getGestorZonas().then(
 			function (data) {
 				$rootScope.listadoZonas = data.data[0];
-                console.log(listadoZonas);
 
+             /*   console.log(listadoZonas);
                 if ($scope.listadoZonas !== null){
-                           /*$scope.Zona="";
-                           //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
+                           $scope.Zona="";
+                           $scope.totalestadofinal = $scope.TotalEstadosFinales.length;
                            var Zona = $scope.cantidadMalos.length;
 
                            for (var i = 0; i < TotalMalos; i++){
                            $scope.TotalMalos=+$scope.TotalMalos + +$scope.cantidadMalos[i].counter;
-                           }*/
+                           }
                 }
-
+*/
 
 				return data.data;
 			}
