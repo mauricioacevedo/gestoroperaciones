@@ -18125,7 +18125,11 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         demePedidoButton.setAttribute("disabled", "disabled");
         demePedidoButton.className = "btn btn-success btn-DemePedido-xs disabled";
 
+
+
         var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE,$scope.izona).then(function (data) {
+
+        /*var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE,$scope.izona).then(function (data) {*/
 
             $scope.peds = data.data;
 
@@ -20361,17 +20365,6 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
 				$rootScope.listadoZonas = data.data;
 
                 //console.log($rootScope.listadoZonas);
-
-              /*  if ($scope.listadoZonas !== null){
-                           $scope.Zona="";
-                           $scope.totalestadofinal = $scope.TotalEstadosFinales.length;
-                           var Zona = $scope.cantidadMalos.length;
-
-                           for (var i = 0; i < TotalMalos; i++){
-                           $scope.TotalMalos=+$scope.TotalMalos + +$scope.cantidadMalos[i].counter;
-                           }
-                }*/
-
 
 				return data.data;
 			}
