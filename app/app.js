@@ -188,7 +188,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'gestorConceptos');
 	};
 
-    obj.getGestorZonas = function (wwww) {
+    obj.getGestorZonas = function (www) {
 		return $http.get(serviceBase + 'gestorZonas?www=' + www);
 	};
 
