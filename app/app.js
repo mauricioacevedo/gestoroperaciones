@@ -20360,8 +20360,8 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
 
 	};
 
-    $rootScope.getZonasGestor = function () {
-		services.getGestorZonas(conceptozona).then(
+    $rootScope.getZonasGestor = function (conceptozona) {
+		services.getGestorZonas().then(
 			function (data) {
 				$rootScope.listadoZonas = data.data;
 
