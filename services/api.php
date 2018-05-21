@@ -18270,12 +18270,17 @@ public function pp(&$var){
             $this->response('',406);
         }
 
-        $galleta        =   json_decode(stripslashes($_COOKIE['iconcepto']),true);
+        /*$galleta        =   json_decode(stripslashes($_COOKIE['iconcepto']),true);
         $galleta        =   stripslashes($_COOKIE['iconcepto']);
         $galleta        =   json_decode($galleta);
         $galleta        =   json_decode(json_encode($galleta), True);
-        $concepto =   $galleta['CONCEPTO_ID'];
-        //echo $concepto;
+        $concepto =   $galleta['CONCEPTO_ID'];*/
+
+        $pedido = json_decode(file_get_contents("php://input"),true);
+        $concepto=$pedido['iconcepto']['CONCEPTO_ID'];
+
+
+        echo var_dump($concepto);
 
       /*  $concepto = $this->_request['iconcepto'];
         $iconceto = $concepto.$this->_request['CONCEPTO_ID'];
