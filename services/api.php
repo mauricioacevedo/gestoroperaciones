@@ -18274,7 +18274,7 @@ public function pp(&$var){
         $fecha_estado=$pedido['pedido']['FECHA_ESTADO'];
         $iddd=$pedido['pedido']['CONCEPTO_ID'];
 
-        var_dump($pedido);
+        echo var_dump($pedido);
         echo "concepto: $iddd";
 
 
