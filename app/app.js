@@ -17824,6 +17824,38 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
     $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
 	$rootScope.getZonasGestor();
 
+    $rootScope.getZonasGestor = function (iconcepto) {
+        services.getGestorZonas(iconcepto).then(
+			function (data) {
+
+            //var idconceptos = document.getElementById("iconcepto");
+            //var conceptozona = idconceptos.options[idconceptos.selectedIndex].value;
+
+            //$rootScope.www = conceptozona;
+                //var option = idconcepto.getElementsByTagName("option");
+            //console.log($rootScope.www);
+
+            //console.log(conceptozona);
+/*
+        if (conceptozona == "10")
+        {
+            conceptozona = "99";
+
+            //$rootScope.getZonasGestor($rootScope.www);
+            //$rootScope.getZonasGestor($rootScope.www);
+            //console.log($rootScope.getZonasGestor);
+
+        }*/
+
+				$rootScope.listadoZonas = data.data;
+
+                //console.log($rootScope.listadoZonas);
+
+				return data.data;
+			}
+		)
+	};
+
     //$scope.idPermisos = idPermisos.getIds();
     idPermisos.getIds().then(
         function (data) {
