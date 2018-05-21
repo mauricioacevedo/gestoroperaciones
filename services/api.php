@@ -15353,7 +15353,7 @@ public function pp(&$var){
         " A.fecha_fin ,A.motivo_malo as MOTIVO, B.ASESOR as IGNORO, ".
         " B.FECHA_ANULO as FECHA ".
         " from pedidos A inner join tbl_PedidosIgnorados B on A.pedido_id = B.PEDIDO_ID ".
-        " where A.estado = 'MALO' ";
+        " where A.estado = 'MALO' group by A.pedido_id ";
         //echo $query;
 
         $rst = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -15417,7 +15417,6 @@ public function pp(&$var){
         $params = json_decode(file_get_contents('php://input'),true);
 
         $Pedido=$params['PEDIDO_ID'];
-
         $login = $this->_request['PEDIDO_ID'];
         //$ANS=$params['pedido']['ANSSOLUCION'];
 
@@ -15481,7 +15480,7 @@ public function pp(&$var){
             }
         }
 
-        $queryIgnorados= " select count(*) as ignorados from tbl_PedidosIgnorados";
+        $queryIgnorados= " select count(distinct PEDIDO_ID) as ignorados from tbl_PedidosIgnorados";
         $rr = $this->mysqli->query($queryIgnorados) or die($this->mysqli->error.__LINE__);
         $counter=0;
         if($rr->num_rows > 0){
