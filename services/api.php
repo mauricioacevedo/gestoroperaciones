@@ -18270,11 +18270,13 @@ public function pp(&$var){
             $this->response('',406);
         }
 
-        $pedido = json_decode(file_get_contents("php://input"),true);
+        //$pedido = json_decode(file_get_contents("php://input"),true);
         $iddd=$pedido['pedido']['CONCEPTO_ID'];
 
-        var_dump($pedido);
-        echo "concepto: $iddd";
+        $concepto =   $this->_request['concepto'];
+
+        var_dump($this->_request);
+        echo "concepto: $concepto";
 
 
 
