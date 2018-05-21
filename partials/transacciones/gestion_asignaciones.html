@@ -45,7 +45,7 @@
                                         ng-model="iconcepto"
                                         id="concepto"
                                         ng-options="d.CONCEPTO_ID+' | '+d.FUENTE group by d.GRUPO for d in listadoConceptos | filter:{ESTADO: '1',} track by d.ID "
-                                        ng-change="getZonasGestor(concepto);"
+                                        ng-change="getZonasGestor(iconcepto);"
                                         >
                                     <option value="" disabled>--Seleccione Concepto--</option>
                                 </select>
