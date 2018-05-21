@@ -20371,7 +20371,7 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
                 //var option = idconcepto.getElementsByTagName("option");
             //console.log($rootScope.www);
 
-            console.log(conceptozona);
+            //console.log(conceptozona);
 
         if (conceptozona == "10")
         {
