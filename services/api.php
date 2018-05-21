@@ -18270,9 +18270,13 @@ public function pp(&$var){
             $this->response('',406);
         }
 
-       /* $pedido = json_decode(file_get_contents("php://input"),true);
+        $pedido = json_decode(file_get_contents("php://input"),true);
         $fecha_estado=$pedido['pedido']['FECHA_ESTADO'];
-        $iddd=$pedido['pedido']['ID'];*/
+        $iddd=$pedido['pedido']['CONCEPTO_ID'];
+
+        var_dump($pedido);
+        echo "concepto: $iddd";
+
 
 
         $query=	" select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
