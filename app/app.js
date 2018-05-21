@@ -17822,7 +17822,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	//var estadoFinal				= '';
 
     $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
-	$rootScope.getZonasGestor();
+	//$rootScope.getZonasGestor();
 
     $rootScope.getZonasGestor = function (iconcepto) {
         services.getGestorZonas().then(
