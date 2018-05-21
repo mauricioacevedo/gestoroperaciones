@@ -20363,33 +20363,48 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
     $rootScope.getZonasGestor = function (conceptozona) {
 		services.getGestorZonas().then(
 			function (data) {
+
+            var idconcepto = document.getElementById("concepto");
+            var conceptozona = idconcepto.options[idconcepto.selectedIndex].value;
+
+                //var option = idconcepto.getElementsByTagName("option");
+                //console.log(concepto);
+                //console.log(option);
+
+        if (conceptozona == "10")
+        {
+            conceptozona = "99";
+            $rootScope.getZonasGestor(conceptozona);
+            //console.log($rootScope.getZonasGestor);
+
+        }
+
+
 				$rootScope.listadoZonas = data.data;
 
                 //console.log($rootScope.listadoZonas);
 
 				return data.data;
 			}
-
-
 		)
 	};
 
-    $rootScope.obtenerConcepto = function() {
-        var idconcepto = document.getElementById("concepto");
-        var conceptozona = idconcepto.options[idconcepto.selectedIndex].value;
-        //var option = idconcepto.getElementsByTagName("option");
-        //console.log(concepto);
-        //console.log(option);
+    /*$rootScope.obtenerConcepto = function() {
+            var idconcepto = document.getElementById("concepto");
+            var conceptozona = idconcepto.options[idconcepto.selectedIndex].value;
+
+                //var option = idconcepto.getElementsByTagName("option");
+                //console.log(concepto);
+                //console.log(option);
 
         if (conceptozona == "10")
         {
             conceptozona = "99";
             $rootScope.getZonasGestor(conceptozona);
-            console.log($rootScope.getZonasGestor);
+            //console.log($rootScope.getZonasGestor);
 
         }
-
-    }
+    }*/
 
 
 
