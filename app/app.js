@@ -17828,7 +17828,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         services.getGestorZonas(iconcepto).then(
 			function (data) {
 
-            //var idconceptos = document.getElementById("iconcepto");
+
+            var idconceptos = document.getElementById("iconcepto");
+            console.log(idconceptos);
             //var conceptozona = idconceptos.options[idconceptos.selectedIndex].value;
             //$rootScope.www = conceptozona;
                 //var option = idconcepto.getElementsByTagName("option");
