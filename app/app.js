@@ -188,8 +188,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'gestorConceptos');
 	};
 
-    obj.getGestorZonas = function (www) {
-		return $http.get(serviceBase + 'gestorZonas?www=' + www);
+    obj.getGestorZonas = function (concepto) {
+		return $http.get(serviceBase + 'gestorZonas?concepto=' + concepto);
 	};
 
 	obj.expCsvUsuarios = function () {
@@ -20360,7 +20360,7 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
 
 	};
 
-    $rootScope.getZonasGestor = function (www) {
+    $rootScope.getZonasGestor = function (concepto) {
 		services.getGestorZonas().then(
 			function (data) {
 
@@ -20375,7 +20375,7 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
         if (conceptozona == "10")
         {
             conceptozona = "99";
-            //$rootScope.getZonasGestor(conceptozona);
+            $rootScope.getZonasGestor($rootScope.www);
             //console.log($rootScope.getZonasGestor);
 
         }
