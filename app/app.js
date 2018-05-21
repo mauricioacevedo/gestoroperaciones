@@ -17826,7 +17826,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     $rootScope.getZonasGestor = function (concepto) {
 
-        var concepto = $scope.iconcepto.CONCEPTO_ID,
+        var concepto = $scope.iconcepto.CONCEPTO_ID;
 
         services.getGestorZonas(concepto).then(
 			function (data) {
