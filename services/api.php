@@ -18275,7 +18275,7 @@ public function pp(&$var){
         $galleta        =   json_decode($galleta);
         $galleta        =   json_decode(json_encode($galleta), True);
         $concepto =   $galleta['CONCEPTO_ID'];
-        echo $concepto;
+        //echo $concepto;
 
       /*  $concepto = $this->_request['iconcepto'];
         $iconceto = $concepto.$this->_request['CONCEPTO_ID'];
