@@ -20360,11 +20360,10 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
 
 	};
 
+    var idconcepto = document.getElementById("concepto");
+    var concepto = idconcepto.options[idconcepto.selectedIndex].value;
+
     $rootScope.getZonasGestor = function (concepto) {
-
-		var idconcepto = document.getElementById("concepto");
-        var concepto = idconcepto.options[idconcepto.selectedIndex].value;
-
         services.getGestorZonas(concepto).then(
 			function (data) {
 
