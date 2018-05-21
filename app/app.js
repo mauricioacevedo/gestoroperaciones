@@ -17830,8 +17830,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 
             //var idconceptos = document.getElementById("iconcepto");
-            $concepto=['iconcepto']['CONCEPTO_ID'];
-            console.log($concepto);
+            iconcepto: $scope.iconcepto.CONCEPTO_ID,
+            console.log(iconcepto);
             //var conceptozona = idconceptos.options[idconceptos.selectedIndex].value;
             //$rootScope.www = conceptozona;
                 //var option = idconcepto.getElementsByTagName("option");
@@ -17848,6 +17848,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
             //console.log($rootScope.getZonasGestor);
 
         }*/
+
 
 				$rootScope.listadoZonas = data.data;
 
