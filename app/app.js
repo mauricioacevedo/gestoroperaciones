@@ -20381,11 +20381,11 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
         //console.log(concepto);
         //console.log(option);
 
-        if (concepto=="10")
+        if (concepto ==="10")
         {
             concepto = "99";
-            getGestorZonas(concepto);
-            console.log(getGestorZonas);
+            //getGestorZonas(concepto);
+            console.log("ingreso");
 
         }
 
