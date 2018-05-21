@@ -18509,7 +18509,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				$scope.regToPush	=	parseInt($scope.infoFenix.CANTIDADUSERS);
 
             }, function errorCallback(response) {
-        		console.log(response);
+        		//comentariado
+                //console.log(response);
         		$scope.msgAuditoria=response.data;
 
             }
