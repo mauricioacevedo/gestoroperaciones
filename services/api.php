@@ -18270,9 +18270,16 @@ public function pp(&$var){
             $this->response('',406);
         }
 
-        $concepto = $this->_request['iconcepto'];
+        $galleta        =   json_decode(stripslashes($_COOKIE['iconcepto']),true);
+        $galleta        =   stripslashes($_COOKIE['iconcepto']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $concepto =   $galleta['CONCEPTO_ID'];
+        echo $concepto;
+
+      /*  $concepto = $this->_request['iconcepto'];
         $iconceto = $concepto.$this->_request['CONCEPTO_ID'];
-        echo var_dump($iconceto);
+        echo var_dump($iconceto);*/
 
         $query=	" select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
             "where STATUS = 'PENDI_PETEC' and ZONA not in ('NULL') AND CONCEPTO_ID = '14' group by ZONA order by TOTAL desc ";
