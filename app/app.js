@@ -20372,7 +20372,7 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
             //console.log($rootScope.www);
 
             //console.log(conceptozona);
-
+/*
         if (conceptozona == "10")
         {
             conceptozona = "99";
@@ -20381,7 +20381,7 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
             //$rootScope.getZonasGestor($rootScope.www);
             //console.log($rootScope.getZonasGestor);
 
-        }
+        }*/
 
 
 				$rootScope.listadoZonas = data.data;
