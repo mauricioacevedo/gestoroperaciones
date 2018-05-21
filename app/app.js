@@ -18764,7 +18764,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 $scope.listadoMunicipios=data.data;
                 $scope.iplaza = {'MUNICIPIO_ID':$scope.municipio};
                 //console.log($scope.municipio);
-                console.log($scope.iplaza );
+                //comentariado
+                //console.log($scope.iplaza );
                 return data.data;
 
             },
