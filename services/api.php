@@ -18270,7 +18270,7 @@ public function pp(&$var){
             $this->response('',406);
         }
 
-        $concepto = $this->_request['concepto'];
+        $concepto = $this->_request['iconcepto'];
         echo var_dump($concepto);
 
         $query=	" select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
