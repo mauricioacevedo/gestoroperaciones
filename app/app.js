@@ -20377,8 +20377,6 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
     $rootScope.obtenerConcepto = function() {
         var idconcepto = document.getElementById("concepto");
         var conceptozona = idconcepto.options[idconcepto.selectedIndex].value;
-        $rootScope.zonasss = conceptozona;
-        console.log(zonasss);
         //var option = idconcepto.getElementsByTagName("option");
         //console.log(concepto);
         //console.log(option);
@@ -20387,7 +20385,7 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
         {
             conceptozona = "99";
             $rootScope.getZonasGestor(conceptozona);
-            console.log("ingreso");
+            console.log($rootScope.getZonasGestor);
 
         }
 
