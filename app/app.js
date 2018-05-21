@@ -20377,7 +20377,7 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
     $rootScope.obtenerConcepto = function() {
         var idconcepto = document.getElementById("concepto");
         var concepto = idconcepto.options[idconcepto.selectedIndex].value;
-        var option = document.getElementsByTagName("option");
+        var option = idconcepto.getElementsByTagName("option");
         console.log(concepto);
         console.log(option);
 
