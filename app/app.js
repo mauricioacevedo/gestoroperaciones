@@ -20368,13 +20368,13 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
             var conceptozona = idconcepto.options[idconcepto.selectedIndex].value;
 
                 //var option = idconcepto.getElementsByTagName("option");
-                //console.log(concepto);
+                console.log(conceptozona);
                 //console.log(option);
 
         if (conceptozona == "10")
         {
             conceptozona = "99";
-            $rootScope.getZonasGestor(conceptozona);
+            //$rootScope.getZonasGestor(conceptozona);
             //console.log($rootScope.getZonasGestor);
 
         }
