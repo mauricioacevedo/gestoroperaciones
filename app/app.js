@@ -17822,15 +17822,15 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	//var estadoFinal				= '';
 
     $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
-	//$rootScope.getZonasGestor();
+	/*$rootScope.getZonasGestor();*/
 
     $rootScope.getZonasGestor = function (iconcepto) {
-        services.getGestorZonas().then(
+        services.getGestorZonas(iconcepto).then(
 			function (data) {
 
 
             //var idconceptos = document.getElementById("iconcepto");
-            console.log(iconcepto);
+            console.log(data.data);
             //var conceptozona = idconceptos.options[idconceptos.selectedIndex].value;
             //$rootScope.www = conceptozona;
                 //var option = idconcepto.getElementsByTagName("option");
