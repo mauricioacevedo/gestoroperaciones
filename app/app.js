@@ -20384,7 +20384,7 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
         if (conceptozona == "10")
         {
             conceptozona = "99";
-            getGestorZonas(conceptozona);
+            //getGestorZonas(conceptozona);
             console.log("ingreso");
 
         }
