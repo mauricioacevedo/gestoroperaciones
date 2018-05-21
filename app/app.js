@@ -20375,8 +20375,9 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
 	};
 
     $rootScope.obtenerConcepto = function() {
-        var idconcepto = document.getElementById("zona");
+        var idconcepto = document.getElementById("concepto");
         var concepto = idconcepto.options[idconcepto.selectedIndex].value;
+        //var concepto =
         console.log(concepto);
     }
 

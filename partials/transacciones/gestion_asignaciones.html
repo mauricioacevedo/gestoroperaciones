@@ -43,6 +43,7 @@
                                 <select class="btn btn-default btn-xs grupo-select"
                                         style="width: 200px"
                                         ng-model="iconcepto"
+                                        id="concepto"
                                         ng-options="d.CONCEPTO_ID+' | '+d.FUENTE group by d.GRUPO for d in listadoConceptos | filter:{ESTADO: '1',} track by d.ID "
                                         ng-change="obtenerConcepto();"
                                         >
