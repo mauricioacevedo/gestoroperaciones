@@ -18287,7 +18287,7 @@ public function pp(&$var){
         $iconceto = $iconceto['CONCEPTO_ID'];
         echo var_dump($iconceto);*/
 
-        $concepto = $this->_request['concepto'];
+        $concepto = $this->_request['iconcepto']['CONCEPTO_ID'];
         echo var_dump($concepto);
 
 
