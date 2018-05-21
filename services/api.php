@@ -18271,17 +18271,12 @@ public function pp(&$var){
         }
 
         //$pedido = json_decode(file_get_contents("php://input"),true);
-        $iddd=$pedido['pedido']['CONCEPTO_ID'];
+        //$iddd=$pedido['pedido']['CONCEPTO_ID'];
 
         $concepto =   $this->_request['concepto'];
 
-        var_dump($this->_request);
-        echo "concepto: $concepto";
-
-
-
         $query=	" select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
-            "where STATUS = 'PENDI_PETEC' and ZONA not in ('NULL') AND CONCEPTO_ID = '14' group by ZONA order by TOTAL desc ";
+            "where STATUS = 'PENDI_PETEC' and ZONA not in ('NULL') AND CONCEPTO_ID = '$concepto' group by ZONA order by TOTAL desc ";
 
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
