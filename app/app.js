@@ -20365,7 +20365,7 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
 			function (data) {
 				$rootScope.listadoZonas = data.data;
 
-                console.log($rootScope.listadoZonas);
+                //console.log($rootScope.listadoZonas);
 
 				return data.data;
 			}
@@ -20373,6 +20373,13 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
 
 		)
 	};
+
+    $rootScope.optenerConcepto = function() {
+        var idconcepto = document.getElementById("zona");
+        var concepto = idconcepto.options[idconcepto.selectedIndex].value;
+        console.log(concepto);
+    }
+
 
 
     $rootScope.getTaskbyUser = function () {

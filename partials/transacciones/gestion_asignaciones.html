@@ -44,7 +44,7 @@
                                         style="width: 200px"
                                         ng-model="iconcepto"
                                         ng-options="d.CONCEPTO_ID+' | '+d.FUENTE group by d.GRUPO for d in listadoConceptos | filter:{ESTADO: '1',} track by d.ID "
-                                        ng-change="getZonasGestor()"
+                                        ng-change="obtenerConcepto();"
                                         >
                                     <option value="" disabled>--Seleccione Concepto--</option>
                                 </select>
@@ -57,6 +57,7 @@
                                  <select class="btn btn-default btn-xs grupo-select"
                                         style="width: 200px"
                                         ng-model="izona"
+                                        id="zona"
                                         ng-options="d.ZONA+' | '+d.TOTAL for d in listadoZonas"
                                         ng-change=""
                                         >
@@ -677,3 +678,10 @@
     <li><a href="">Asignaciones</a></li>
     <li class="active">{{title}} </li>
 </ol>
+
+<!--<script language='javascript'>
+    function obtenerConcepto() {
+        var idconcepto = document.getElementById("zona");
+        var concepto = idconcepto.options[idconcepto.selectedIndex].value;
+    }
+</script>-->
