@@ -188,8 +188,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'gestorConceptos');
 	};
 
-    obj.getGestorZonas = function (iconcepto) {
-		return $http.get(serviceBase + 'gestorZonas?iconcepto=' + iconcepto);
+    obj.getGestorZonas = function (concepto) {
+		return $http.get(serviceBase + 'gestorZonas?concepto=' + concepto);
 	};
 
 	obj.expCsvUsuarios = function () {
@@ -17824,8 +17824,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
     $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
 	/*$rootScope.getZonasGestor();*/
 
-    $rootScope.getZonasGestor = function (iconcepto) {
-        services.getGestorZonas(iconcepto).then(
+    $rootScope.getZonasGestor = function (concepto) {
+        services.getGestorZonas(concepto).then(
 			function (data) {
 
 
