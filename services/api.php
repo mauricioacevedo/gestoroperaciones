@@ -18271,10 +18271,9 @@ public function pp(&$var){
         }
 
         $pedido = json_decode(file_get_contents("php://input"),true);
-        $fecha_estado=$pedido['pedido']['FECHA_ESTADO'];
         $iddd=$pedido['pedido']['CONCEPTO_ID'];
 
-        echo var_dump($pedido);
+        var_dump($pedido);
         echo "concepto: $iddd";
 
 
