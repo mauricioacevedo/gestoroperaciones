@@ -20379,7 +20379,7 @@ app.run(['$rootScope', '$http','firebase', 'services', function ($rootScope, $ht
         var concepto = idconcepto.options[idconcepto.selectedIndex].value;
         //var option = idconcepto.getElementsByTagName("option");
         //console.log(concepto);
-        console.log(option);
+        //console.log(option);
 
         if (concepto=="10")
         {
