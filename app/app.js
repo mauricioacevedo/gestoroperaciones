@@ -17831,31 +17831,6 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         services.getGestorZonas(concepto).then(
 			function (data) {
 
-
-            //var idconceptos = document.getElementById("iconcepto");
-
-            //concepto = $scope.iconcepto.CONCEPTO_ID,
-            //console.log(concepto);
-
-            //$rootScope.getZonasGestor(concepto);
-            //var conceptozona = idconceptos.options[idconceptos.selectedIndex].value;
-            //$rootScope.www = conceptozona;
-                //var option = idconcepto.getElementsByTagName("option");
-            //console.log($rootScope.www);
-
-            //console.log(conceptozona);
-/*
-        if (conceptozona == "10")
-        {
-            conceptozona = "99";
-
-            //$rootScope.getZonasGestor($rootScope.www);
-            //$rootScope.getZonasGestor($rootScope.www);
-            //console.log($rootScope.getZonasGestor);
-
-        }*/
-
-
 				$rootScope.listadoZonas = data.data;
 
                 //console.log($rootScope.listadoZonas);
