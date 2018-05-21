@@ -18287,8 +18287,8 @@ public function pp(&$var){
         $iconceto = $iconceto['CONCEPTO_ID'];
         echo var_dump($iconceto);*/
 
-        //$concepto = $this->_request['iconcepto'];
-        //echo var_dump($concepto);
+        $concepto = $this->_request['concepto'];
+        echo var_dump($concepto);
 
 
         $query=	" select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
