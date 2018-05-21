@@ -18270,8 +18270,9 @@ public function pp(&$var){
             $this->response('',406);
         }
 
-        $concepto = $this->_request['CONCEPTO_ID'];
-        echo var_dump($concepto);
+        $concepto = $this->_request['iconcepto'];
+        $iconceto = $concepto.$this->_request['CONCEPTO_ID'];
+        echo var_dump($iconceto);
 
         $query=	" select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
             "where STATUS = 'PENDI_PETEC' and ZONA not in ('NULL') AND CONCEPTO_ID = '14' group by ZONA order by TOTAL desc ";
