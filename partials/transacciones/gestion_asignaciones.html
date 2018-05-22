@@ -61,6 +61,7 @@
                                         id="zona"
                                         ng-options="d.ZONA+' | '+d.TOTAL for d in listadoZonas"
                                         ng-change=""
+                                        ng-show="errorDatos == 'Pendientes'"
                                         >
                                     <option value="" disabled>--Seleccione Zona--</option>
                                 </select>
