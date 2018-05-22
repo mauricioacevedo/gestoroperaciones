@@ -17840,6 +17840,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                     $rootScope.errorDatos = "Este concepto no tiene pendientes";
                 }*/
                 return data.data;
+                $rootScope.errorDatos = "Pendientes";
 			},
             function(){
                 $rootScope.errorDatos = "Este concepto no tiene pendientes";
