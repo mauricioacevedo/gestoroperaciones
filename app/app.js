@@ -17839,8 +17839,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
             /*    if (data.data == ""){
                     $rootScope.errorDatos = "Este concepto no tiene pendientes";
                 }*/
-                return data.data;
                 $rootScope.errorDatos = "Pendientes";
+                return data.data;
+
 			},
             function(){
                 $rootScope.errorDatos = "Este concepto no tiene pendientes";
