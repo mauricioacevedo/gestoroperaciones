@@ -17834,7 +17834,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				$rootScope.listadoZonas = data.data;
 
                 //console.log($rootScope.listadoZonas);
-                $rootScope.errorDatos == "Datos";
+                $rootScope.errorDatos = "Datos";
 				return data.data;
 			}
 		)
