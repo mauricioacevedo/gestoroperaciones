@@ -17838,6 +17838,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 
                 if ($rootScope.listadoZonas < 0){
+                    console.log($rootScope.listadoZonas);
                     return data.data;
                 }
                 $rootScope.errorDatos = "Este concepto no tiene pendientes";
