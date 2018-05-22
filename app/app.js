@@ -18716,7 +18716,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 $scope.listaAuditados = data.data[0];
 
             }, function (err) {
-                $rootScope.errorDatos = 'Error: ' + err.status + ', Msg: ' +err.data;
+                //comentariado michael
+                //$rootScope.errorDatos = 'Error: ' + err.status + ', Msg: ' +err.data;
                 $scope.listaAuditados = {};
             }
         )
