@@ -18723,7 +18723,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         )
     };
 
-    $scope.listarPedidosAuditados();
+    //comentariado michael
+    //$scope.listarPedidosAuditados();
 
     $scope.csvAsuditoria = function (buscar) {
         if(Object.keys($scope.auditoria).length === 0){
