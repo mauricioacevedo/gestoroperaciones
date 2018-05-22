@@ -17835,11 +17835,11 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 //$rootScope.errorDatos = "Datos";
                 //console.log($rootScope.listadoZonas);
                 //$rootScope.errorDatos = "null";
+                return data.data;
 
+                if (data.data < 0){
+                    console.log(data.data);
 
-                if ($rootScope.listadoZonas < 0){
-                    console.log($rootScope.listadoZonas);
-                    return data.data;
                 }
                 $rootScope.errorDatos = "Este concepto no tiene pendientes";
 			}
