@@ -18094,6 +18094,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
 	$scope.start = function (pedido) {
 
+        $rootScope.getZonasGestor();
         var pedido1 				= '';
         $scope.popup 				= '';
         $rootScope.errorDatos 		= null;
