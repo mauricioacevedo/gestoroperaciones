@@ -18148,7 +18148,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         var zona = $scope.izona.ZONA;
         console.log(zona);
 
-        var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE,$scope.izona).then(function (data) {
+        var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE, zona).then(function (data) {
 
         /*var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto.CONCEPTO_ID, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', $scope.iconcepto.FUENTE,$scope.izona).then(function (data) {*/
 
