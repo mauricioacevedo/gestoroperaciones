@@ -17845,7 +17845,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			},
             function(){
                 $rootScope.errorDatos = "Este concepto no tiene pendientes";
-                $rootScope.getZonasGestor();
+                var combo = document.getElementById("zona");
+                combo.Items.Clear();
             }
 		)
 	};
