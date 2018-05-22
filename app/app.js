@@ -17834,7 +17834,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				$rootScope.listadoZonas = data.data;
 
                 //console.log($rootScope.listadoZonas);
-
+                $rootScope.errorDatos == "Datos";
 				return data.data;
 			}
 		)
@@ -18246,7 +18246,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 			function (data) {
 
 				$scope.peds = data.data;
-                        console.log($scope.peds);
+                        //console.log($scope.peds);
                         var dat=data.status;
                         if(dat==204){
                                 //document.getElementById("warning").innerHTML="No hay Registros";
