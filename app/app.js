@@ -17837,7 +17837,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 //$rootScope.errorDatos = "null";
                 return data.data;
 
-                if (data.data < 0){
+                if (data.data > 0){
                     console.log(data.data);
 
                 }
