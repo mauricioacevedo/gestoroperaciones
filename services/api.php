@@ -8694,7 +8694,7 @@ private function getAgentScore($user){
         $prioridad      =   $this->_request['prioridad'];
 
         $zona           =   $this->_request['zona'];
-        echo "zona = $zona";
+        //echo "zona = $zona";
 
 
 
@@ -8951,6 +8951,8 @@ private function getAgentScore($user){
                     $plaza2.
                     " ORDER BY $parametroBusquedaRec2 $parametroOrdenRec ";
 
+                echo "ingreso 5: $sqlllamadas ";
+
                 //echo $sqlllamadas;
 
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
@@ -9016,6 +9018,8 @@ private function getAgentScore($user){
                 $plaza2.
                 $zona2.
                 " ORDER BY $parametroBusqueda2 $parametroOrden ";
+
+                echo "ingreso 4: $sqlllamadas= ";
 
 
 
@@ -9114,7 +9118,7 @@ private function getAgentScore($user){
             " order by b.$parametroBusqueda2 $parametroOrden ";
             //echo var_dump ($concepto);
             //echo var_dump ($query1);
-
+        echo "ingreso 3: $query1";
         // echo var_dump($query1);
         //echo var_dump ($plaza);
 
@@ -9189,7 +9193,7 @@ private function getAgentScore($user){
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
                     " order by b.$parametroBusqueda2 $parametroOrden";
 
-                //echo $query1;
+                echo "ingreso 2: $query1";
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
                 $mypedidoresult=array();
@@ -9302,7 +9306,7 @@ private function getAgentScore($user){
             " from informe_petec_pendientesm b 	".
             " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto order by b.FECHA_ESTADO asc";
 
-
+            echo "ingreso 1: $query1";
 
         //"SELECT b.ID,b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.TIPO_ELEMENTO_ID,b.PRODUCTO,b.UEN_CALCULADA,b.ESTRATO,b.MUNICIPIO_ID,b.DIRECCION_SERVICIO,b.PAGINA_SERVICIO,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(b.FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_COLA,b.FUENTE,b.CONCEPTO_ID,b.FECHA_ESTADO,b.USUARIO_BLOQUEO_FENIX,b.TIPO_TRABAJO,b.CONCEPTO_ANTERIOR,b.FECHA_CITA,b.CANTIDAD_EQU,b.EQUIPOS,b.CONCEPTOS_EQU,b.TIPO_EQUIPOS,b.EXTENSIONES, b.OBSERVACIONES,  b.EJECUTIVO_ID, b.CANAL_ID from informe_petec_pendientesm b where b.PEDIDO_ID = '$mypedido' and b.STATUS='PENDI_PETEC' $concepto ";
 
