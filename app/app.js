@@ -18210,6 +18210,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
             var demePedidoButton = document.getElementById("iniciar");
             demePedidoButton.removeAttribute("disabled");
             demePedidoButton.className = "btn btn-success btn-DemePedido-xs";
+            $rootScope.errorDatos= "Pendientes";
             return data.data;
         });
 
