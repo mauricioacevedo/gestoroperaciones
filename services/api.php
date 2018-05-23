@@ -9118,7 +9118,9 @@ private function getAgentScore($user){
             " order by b.$parametroBusqueda2 $parametroOrden ";
             //echo var_dump ($concepto);
             //echo var_dump ($query1);
-        echo "ingreso 3: $query1";
+
+        //echo "ingreso 3: $query1";
+
         // echo var_dump($query1);
         //echo var_dump ($plaza);
 
