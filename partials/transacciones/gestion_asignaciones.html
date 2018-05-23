@@ -182,12 +182,16 @@
                                             <li class="list-group-item small" ><b>TIEMPO EN COLA:</b> {{service.TIEMPO_COLA}} </li>
                                             <li class="list-group-item small" ><b>FECHA INGRESO:</b> {{service.FECHA_INGRESO}} </li>
                                             <li class="list-group-item small" ><b>TIEMPO INGRESO:</b> {{service.TIEMPO_INGRESO}} </li>
+
                                             <li class="list-group-item small" ng-show="{{service.PRODUCTO}} == 'Servicio de Internet' " ><b>VELOCIDAD ACTUAL:</b><span class="btn btn-xs btn-info">{{service.VEL_IDEN}} <b>MG</b> </span>
                                             </li>
+
                                             <li class="list-group-item small" ng-show="{{service.PRODUCTO}} == 'Servicio de Internet' " ><b>VELOCIDAD SOLICITADA:</b><span class="btn btn-xs btn-info">{{service.VEL_SOLI}} <b>MG</b> </span>
                                             </li>
-                                            <li class="list-group-item small" ng-show="{{service.PRODUCTO}} == 'Servicio de Internet' " ><b>ACP INTERNET:</b><span class="btn btn-xs btn-info" ng-click="executeCopy({{service.IDENTIFICADOR_ID}})">{{service.IDENTIFICADOR_ID}}</span>
-                                            </li>
+
+                                            <li class="list-group-item small" ><b>ACP INTERNET: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy({{service.PEDIDO_ID}})">
+                                                {{service.PEDIDO_ID}}
+                                            </button> </li>
                                              <!--<li class="list-group-item small" ><b>PEDIDO: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.PEDIDO_ID)">
                                                 {{service.PEDIDO_ID}}
                                             </button> </li>-->
