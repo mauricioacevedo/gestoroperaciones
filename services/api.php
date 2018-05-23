@@ -8694,7 +8694,7 @@ private function getAgentScore($user){
         $prioridad      =   $this->_request['prioridad'];
 
         $zona           =   $this->_request['zona'];
-        //echo "zona = $zona";
+        echo "zona = $zona";
 
 
 
