@@ -183,14 +183,14 @@
                                             <li class="list-group-item small" ><b>FECHA INGRESO:</b> {{service.FECHA_INGRESO}} </li>
                                             <li class="list-group-item small" ><b>TIEMPO INGRESO:</b> {{service.TIEMPO_INGRESO}} </li>
 
-                                            <li class="list-group-item small" ng-show="{{service.PRODUCTO}} == 'Servicio de Internet' " ><b>VELOCIDAD ACTUAL:</b><span class="btn btn-xs btn-info">{{service.VEL_IDEN || SIN DATOS}} <b>MG</b> </span>
+                                            <li class="list-group-item small" ng-show="{{service.PRODUCTO}} == 'Servicio de Internet' " ><b>VELOCIDAD ACTUAL:</b><span class="btn btn-xs btn-info">{{service.VEL_IDEN || 'SIN DATOS'}} <b>MG</b> </span>
                                             </li>
 
-                                            <li class="list-group-item small" ng-show="{{service.PRODUCTO}} == 'Servicio de Internet' " ><b>VELOCIDAD SOLICITADA:</b><span class="btn btn-xs btn-info">{{service.VEL_SOLI || SIN DATOS}} <b>MG</b> </span>
+                                            <li class="list-group-item small" ng-show="{{service.PRODUCTO}} == 'Servicio de Internet' " ><b>VELOCIDAD SOLICITADA:</b><span class="btn btn-xs btn-info">{{service.VEL_SOLI || 'SIN DATOS'}} <b>MG</b> </span>
                                             </li>
 
                                             <li class="list-group-item small" ><b>ACP INTERNET: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.IDENTIFICADOR_ID)">
-                                                {{service.IDENTIFICADOR_ID || SIN DATOS}}
+                                                {{service.IDENTIFICADOR_ID || 'SIN DATOS'}}
                                             </button> </li>
                                              <!--<li class="list-group-item small" ><b>PEDIDO: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.PEDIDO_ID)">
                                                 {{service.PEDIDO_ID}}
