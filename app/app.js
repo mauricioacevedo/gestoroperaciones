@@ -18701,6 +18701,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 				}
 
                 $scope.checkMunicipiosAsignaciones();
+                $rootScope.errorDatos = "Pendientes";
                // $scope.listadoMunicipios.MUNICIPIO_ID=gestion.MUNICIPIO_ID;
                 //console.log($scope.listadoMunicipios.MUNICIPIO_ID);
             }, function (err) {
