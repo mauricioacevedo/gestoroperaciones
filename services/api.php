@@ -8951,7 +8951,7 @@ private function getAgentScore($user){
                     $plaza2.
                     " ORDER BY $parametroBusquedaRec2 $parametroOrdenRec ";
 
-                echo "ingreso 5: $sqlllamadas ";
+                //echo "ingreso 5: $sqlllamadas ";
 
                 //echo $sqlllamadas;
 
@@ -9019,7 +9019,7 @@ private function getAgentScore($user){
                 $zona2.
                 " ORDER BY $parametroBusqueda2 $parametroOrden ";
 
-                echo "ingreso 4: $sqlllamadas= ";
+                //echo "ingreso 4: $sqlllamadas ";
 
 
 
@@ -9193,7 +9193,7 @@ private function getAgentScore($user){
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
                     " order by b.$parametroBusqueda2 $parametroOrden";
 
-                echo "ingreso 2: $query1";
+                //echo "ingreso 2: $query1";
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
                 $mypedidoresult=array();
