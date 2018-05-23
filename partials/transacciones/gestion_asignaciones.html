@@ -175,8 +175,9 @@
                                             <li class="list-group-item small" ><b>TIPO TX:</b> {{service.DESC_TIPO_TRABAJO}} </li>
                                             <li class="list-group-item small" ><b>PRODUCTO:</b> {{service.PRODUCTO}} </li>
 
-                                            <li class="list-group-item small" ng-show="{{service.PRODUCTO}} == 'Servicio de Internet' " ><b>VELOCIDAD ACTUAL:</b><span class="btn btn-xs btn-info">{{service.VEL_IDEN || 'SIN DATOS'}} </span>
-                                            </li>
+                                            <li class="list-group-item small" ><b>VELOCIDAD ACTUAL: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.IDENTIFICADOR_ID)">
+                                                {{service.VEL_IDEN || 'SIN DATOS'}}
+                                            </button> </li>
 
                                             <li class="list-group-item small" ng-show="{{service.PRODUCTO}} == 'Servicio de Internet' " ><b>VELOCIDAD SOLICITADA:</b><span class="btn btn-xs btn-info">{{service.VEL_SOLI || 'SIN DATOS'}} <b>MG</b> </span>
                                             </li>
