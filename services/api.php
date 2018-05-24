@@ -18260,7 +18260,7 @@ public function pp(&$var){
         }
         else
         {
-            $grupo = "in ('ASIGNACIONES','EDATEL') ";
+            $grupo = "in ('ASIGNACIONES','POBLACIONES') ";
             $query=	" SELECT * FROM portalbd.gestor_conceptos where GRUPO $grupo ";
         }
         //echo "grupo: $grupoGalleta";
