@@ -18247,6 +18247,16 @@ public function pp(&$var){
             $this->response('',406);
         }
 
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+
+        $grupoGalleta   =   $galleta['GRUPO'];
+        echo "grupo: $grupoGalleta";
+
+
+        //$grupo
 
         $query=	" SELECT * FROM portalbd.gestor_conceptos ";
 
