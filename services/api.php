@@ -18256,18 +18256,18 @@ public function pp(&$var){
 
         if ($grupo == "RECONFIGURACION")
         {
-            $query=	" SELECT * FROM portalbd.gestor_conceptos where GRUPO = '$grupoGalleta' ";
+            $query=	" SELECT * FROM portalbd.gestor_conceptos where GRUPO = '$grupo' ";
         }
         else
         {
             $grupo = "in ('ASIGNACIONES','EDATEL') ";
-            $query=	" SELECT * FROM portalbd.gestor_conceptos where GRUPO $grupoGalleta ";
+            $query=	" SELECT * FROM portalbd.gestor_conceptos where GRUPO $grupo ";
         }
         //echo "grupo: $grupoGalleta";
 
         //$query=	" SELECT * FROM portalbd.gestor_conceptos where GRUPO = '$grupoGalleta' ";
 
-        echo "consulta = $query";
+        //echo "consulta = $query";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
 
