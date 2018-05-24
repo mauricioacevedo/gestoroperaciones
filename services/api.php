@@ -18267,8 +18267,9 @@ public function pp(&$var){
 
         //$query=	" SELECT * FROM portalbd.gestor_conceptos where GRUPO = '$grupoGalleta' ";
 
-        //echo $query;
+        echo "consulta = $query";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
 
         if($r->num_rows > 0){
             $result = array();
