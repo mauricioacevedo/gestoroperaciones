@@ -18252,13 +18252,20 @@ public function pp(&$var){
         $galleta        =   json_decode($galleta);
         $galleta        =   json_decode(json_encode($galleta), True);
 
-        $grupoGalleta   =   $galleta['GRUPO'];
-        echo "grupo: $grupoGalleta";
+        $grupo   =   $galleta['GRUPO'];
 
+        if ($grupo == "RECONFIGURACION")
+        {
+            $query=	" SELECT * FROM portalbd.gestor_conceptos where GRUPO = '$grupoGalleta' ";
+        }
+        else
+        {
+            $grupo = "in ('ASIGNACIONES','EDATEL') ";
+            $query=	" SELECT * FROM portalbd.gestor_conceptos where GRUPO $grupoGalleta ";
+        }
+        //echo "grupo: $grupoGalleta";
 
-        //$grupo
-
-        $query=	" SELECT * FROM portalbd.gestor_conceptos ";
+        //$query=	" SELECT * FROM portalbd.gestor_conceptos where GRUPO = '$grupoGalleta' ";
 
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
