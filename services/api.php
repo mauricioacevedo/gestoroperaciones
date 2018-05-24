@@ -18247,10 +18247,10 @@ public function pp(&$var){
             $this->response('',406);
         }
 
-        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
-        $galleta        =   stripslashes($_COOKIE['logedUser']);
-        $galleta        =   json_decode($galleta);
-        $galleta        =   json_decode(json_encode($galleta), True);
+        $datosUsuario    =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $datosUsuario    =   stripslashes($_COOKIE['logedUser']);
+        $datosUsuario    =   json_decode($datosUsuario);
+        $datosUsuario    =   json_decode(json_encode($datosUsuario), True);
 
         $grupo   =   $galleta['GRUPO'];
 
