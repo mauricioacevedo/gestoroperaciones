@@ -18263,11 +18263,7 @@ public function pp(&$var){
             $grupo = "in ('ASIGNACIONES','POBLACIONES') ";
             $query=	" SELECT * FROM portalbd.gestor_conceptos where GRUPO $grupo ";
         }
-        //echo "grupo: $grupoGalleta";
 
-        //$query=	" SELECT * FROM portalbd.gestor_conceptos where GRUPO = '$grupoGalleta' ";
-
-        //echo "consulta = $query";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
 
