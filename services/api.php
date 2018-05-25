@@ -20066,6 +20066,7 @@ public function pp(&$var){
 
             if($observacion == "RC-SIEBEL")
 
+
             {
 
                 $queryReconf = "update informe_petec_pendientesm set CONCEPTO_ID = 'RC-SIEBEL', STATUS = 'PENDI_PETEC'".
