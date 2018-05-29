@@ -4334,12 +4334,9 @@ private function getAgentScore($user){
         if($rpendientes->num_rows > 0){
             $result1 = array();
             while($row = $rPendientes->fetch_assoc()){
-                //$row['P_Bogota']=utf8_encode($row['P_Bogota']);
+                $row['PEDIDO_ID']=utf8_encode($row['P_Bogota']);
                 $result1[] = $row;
-            }
-
-
-
+            }}
 
         $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
         $galleta        =   stripslashes($_COOKIE['logedUser']);
@@ -4362,7 +4359,7 @@ private function getAgentScore($user){
 
             $this->response($this->json(array($result,$result1,$agentScore)), 200); // send user details
             }
-        }
+
         $this->response('',204);        // If no records "No Content" status
     }
 //----------------------KPIS maestro tabla informe_petec_pendientesm ------------------------asignaciones----
