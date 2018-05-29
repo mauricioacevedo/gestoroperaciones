@@ -4337,7 +4337,7 @@ private function getAgentScore($user){
                 $row['PEDIDO_ID']=utf8_decode($row['PEDIDO_ID']);
                 $result1[] = $row;
             }
-        $this->response($this->json(array($result,$agentScore,$result1)), 200);
+        //$this->response($this->json(array($result,$agentScore,$result1)), 200);
         }
 
 
