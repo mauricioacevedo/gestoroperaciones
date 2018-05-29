@@ -8686,21 +8686,6 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 		services.getLightKPIS().then(function (data) {
 			$rootScope.oldlightkpi = $rootScope.lightkpi;
 			$rootScope.lightkpi = data.data[0];
-            $rootScope.PendiBogota = data.data[2];
-
-              if ($rootScope.PendiBogota !== null){
-                           $rootScope.P_Bogota=0;
-                           //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
-                           var PendientesBogota = $rootScope.PendiBogota.length;
-
-                           for (var i = 0; i < PendientesBogota; i++){
-                           $rootScope.P_Bogota=+$rootScope.P_Bogota + +$rootScope.PendiBogota[i].Bogota;
-                           }
-                        }
-            console.log("Total" + $rootScope.P_Bogota);
-            console.log("Total" + PendientesBogota);
-
-
 
 			if ($rootScope.oldlightkpi == "" || $rootScope.oldlightkpi == undefined) {
 				$rootScope.oldlightkpi = $rootScope.lightkpi;
@@ -16071,6 +16056,20 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 			$rootScope.oldlightkpi = $rootScope.lightkpi;
 			$rootScope.lightkpi = data.data[0];
             $scope.agentScore=data.data[1];
+
+            $scope.PendiBogota = data.data[2];
+
+              if ($scope.PendiBogota !== null){
+                           $scope.P_Bogota=0;
+                           //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
+                           var PendientesBogota = $scope.PendiBogota.length;
+
+                           for (var i = 0; i < PendientesBogota; i++){
+                           $scope.P_Bogota=+$scope.P_Bogota + +$scope.PendiBogota[i].Bogota;
+                           }
+                        }
+            //console.log("Total" + $rootScope.P_Bogota);
+            //console.log("Total" + PendientesBogota);
 
 			if ($rootScope.oldlightkpi == "" || $rootScope.oldlightkpi == undefined) {
 				$rootScope.oldlightkpi = $rootScope.lightkpi;
