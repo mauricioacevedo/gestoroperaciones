@@ -4331,12 +4331,12 @@ private function getAgentScore($user){
         //$rpendientes = mysqli->query($query1);
         $rpendientes = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
-        if($rpendientes->num_rows > 0){
+     /*   if($rpendientes->num_rows > 0){
             $result1 = array();
             while($row = $rPendientes->fetch_assoc()){
                 $row['PEDIDO_ID']=utf8_encode($row['P_Bogota']);
                 $result1[] = $row;
-            }}
+            }}*/
         //echo var_dump($result1);
 
         $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
