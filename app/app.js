@@ -15857,7 +15857,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		return data.data;
 	});
 
-    console.log(userID);
+    $rootScope.lOGIN = userID;
+    console.log(LOGIN);
 
 	var original = $scope.pedidos;
 	var originalUnico = $scope.pedidosUnicos;
