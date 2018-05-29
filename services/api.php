@@ -9249,7 +9249,7 @@ private function getAgentScore($user){
 
 
         if($ATENCION_INMEDIATA=="1") $concepto="";
-
+        echo "Ingreso";
         $sqlupdate="update informe_petec_pendientesm set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO_ID = '$mypedido' and (STATUS='PENDI_PETEC'||STATUS='BUSCADO_PETEC' || STATUS='PENDI_RENUMS')";
         $x = $this->mysqli->query($sqlupdate);
 
