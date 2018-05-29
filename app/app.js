@@ -8686,6 +8686,17 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 		services.getLightKPIS().then(function (data) {
 			$rootScope.oldlightkpi = $rootScope.lightkpi;
 			$rootScope.lightkpi = data.data[0];
+            $scope.PendiBogota = data.data[1];
+
+              if ($scope.PendiBogota !== null){
+                           $scope.P_Bogota=0;
+                           //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
+                           var PendientesBogota = $scope.PendiBogota.length;
+
+                           for (var i = 0; i < PendientesBogota; i++){
+                           $scope.P_Bogota=+$scope.P_Bogota + +$scope.PendiBogota[i].Bogota;
+                           }
+                        }
 
 
 			if ($rootScope.oldlightkpi == "" || $rootScope.oldlightkpi == undefined) {
