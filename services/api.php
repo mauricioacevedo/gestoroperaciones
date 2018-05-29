@@ -4340,9 +4340,23 @@ private function getAgentScore($user){
                 $result[] = $row;
             }
 
+        $queryPendi_Bogota = " select count(distinct PEDIDO_ID) as P_Bogota from informe_petec_pendientesm ".
+            " where MUNICIPIO_ID IN ('BOG-COBRE','BOGCUNCOL') and STATUS = 'PENDI_PETEC' ";
+
+        $rPendientes = $this->mysqli->query($queryPendi_Bogota) or die($this->mysqli->error.__LINE__);
+
+        if($rPendientes->num_rows > 0){
+            $resultPendientesBogota = array();
+            while($row = $rPendientes->fetch_assoc()){
+                $row['PEDIDO_ID']=utf8_encode($row['PEDIDO_ID']);
+                $resultPendientesBogota[] = $row;
+            }
+
+
+
             $agentScore=$this->getAgentScore($usuarioGalleta);
 
-            $this->response($this->json(array($result,$agentScore)), 200); // send user details
+            $this->response($this->json(array($result,$agentScore,$resultPendientesBogota)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
     }
