@@ -4348,7 +4348,7 @@ private function getAgentScore($user){
         if($rPendientes->num_rows > 0){
             $resultPendientesBogota = array();
             while($row = $rPendientes->fetch_assoc()){
-                $row['PEDIDO_ID']=utf8_encode($row['PEDIDO_ID']);
+                //$row['P_Bogota']=utf8_encode($row['P_Bogota']);
                 $resultPendientesBogota[] = $row;
             }
 
