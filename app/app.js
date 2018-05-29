@@ -8697,7 +8697,7 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
                            $scope.P_Bogota=+$scope.P_Bogota + +$scope.PendiBogota[i].Bogota;
                            }
                         }
-            console.log("Total" $scope.P_Bogota);
+            console.log("Total" + $scope.P_Bogota);
 
 
 
