@@ -8688,16 +8688,17 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 			$rootScope.lightkpi = data.data[0];
             $rootScope.PendiBogota = data.data[2];
 
-              if ($scope.PendiBogota !== null){
-                           $scope.P_Bogota=0;
+              if ($rootScope.PendiBogota !== null){
+                           $rootScope.P_Bogota=0;
                            //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
-                           var PendientesBogota = $scope.PendiBogota.length;
+                           var PendientesBogota = $rootScope.PendiBogota.length;
 
                            for (var i = 0; i < PendientesBogota; i++){
-                           $scope.P_Bogota=+$scope.P_Bogota + +$scope.PendiBogota[i].Bogota;
+                           $rootScope.P_Bogota=+$rootScope.P_Bogota + +$rootScope.PendiBogota[i].Bogota;
                            }
                         }
-            console.log("Total" + P_Bogota);
+            console.log("Total" + $rootScope.P_Bogota);
+            console.log("Total" + PendientesBogota);
 
 
 
