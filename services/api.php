@@ -4328,16 +4328,18 @@ private function getAgentScore($user){
         $query1= " select count(distinct PEDIDO_ID) as Bogota from informe_petec_pendientesm ".
                  " where MUNICIPIO_ID IN('BOG-COBRE','BOGCUNCOL') and STATUS = 'PENDI_PETEC' ";
 
-        //$rpendientes = mysqli->query($query1);
         $rpendientes = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
-     /*   if($rpendientes->num_rows > 0){
+
+        if($rpendientes->num_rows > 0){
             $result1 = array();
-            while($row = $rPendientes->fetch_assoc()){
-                $row['PEDIDO_ID']=utf8_encode($row['P_Bogota']);
+            while($row = $rpendientes->fetch_assoc()){
+                $row['PEDIDO_ID']=utf8_decode($row['PEDIDO_ID']);
                 $result1[] = $row;
-            }}*/
-        //echo var_dump($result1);
+            }
+        $this->response($this->json(array($result,$agentScore,$result1)), 200);
+        }
+
 
         $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
         $galleta        =   stripslashes($_COOKIE['logedUser']);
@@ -4358,7 +4360,7 @@ private function getAgentScore($user){
 
             $agentScore=$this->getAgentScore($usuarioGalleta);
 
-            $this->response($this->json(array($result,$agentScore,$rpendientes)), 200); // send user details
+            $this->response($this->json(array($result,$agentScore,$result1)), 200); // send user details
             }
 
         $this->response('',204);        // If no records "No Content" status
