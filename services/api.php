@@ -4323,19 +4323,18 @@ private function getAgentScore($user){
 
 
 
-        /*$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
-        $queryPendiBogota= "select count(distinct PEDIDO_ID) as P_Bogota from informe_petec_pendientesm ".
-            " where MUNICIPIO_ID IN ('BOG-COBRE','BOGCUNCOL') and STATUS = 'PENDI_PETEC' ";
+        $query1= " select count(distinct PEDIDO_ID) as P_Bogota from informe_petec_pendientesm where MUNICIPIO_ID IN('BOG-COBRE','BOGCUNCOL') and STATUS = 'PENDI_PETEC' ";
 
-        $rPendientes = $this->mysqli->query($queryPendiBogota);
+        $rpendientes = $this->mysqli->query($query1);
 
-        if($rPendientes->num_rows > 0){
-            $resultPendientesBogota = array();
+        if($rpendientes->num_rows > 0){
+            $result1 = array();
             while($row = $rPendientes->fetch_assoc()){
                 //$row['P_Bogota']=utf8_encode($row['P_Bogota']);
-                $resultPendientesBogota[] = $row;
-            }*/
+                $result1[] = $row;
+            }
 
 
 
@@ -4358,7 +4357,7 @@ private function getAgentScore($user){
 
             $agentScore=$this->getAgentScore($usuarioGalleta);
 
-            $this->response($this->json(array($result,$agentScore,$resultPendientesBogota)), 200); // send user details
+            $this->response($this->json(array($result,$agentScore,$result1)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
     }
