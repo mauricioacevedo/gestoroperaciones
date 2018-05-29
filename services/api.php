@@ -4323,7 +4323,20 @@ private function getAgentScore($user){
 
 
 
-        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        /*$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        $queryPendiBogota= "select count(distinct PEDIDO_ID) as P_Bogota from informe_petec_pendientesm ".
+            " where MUNICIPIO_ID IN ('BOG-COBRE','BOGCUNCOL') and STATUS = 'PENDI_PETEC' ";
+
+        $rPendientes = $this->mysqli->query($queryPendiBogota);
+
+        if($rPendientes->num_rows > 0){
+            $resultPendientesBogota = array();
+            while($row = $rPendientes->fetch_assoc()){
+                //$row['P_Bogota']=utf8_encode($row['P_Bogota']);
+                $resultPendientesBogota[] = $row;
+            }*/
+
 
 
         $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
@@ -4340,17 +4353,6 @@ private function getAgentScore($user){
                 $result[] = $row;
             }
 
-        $queryPendiBogota= "select count(distinct PEDIDO_ID) as P_Bogota from informe_petec_pendientesm ".
-            " where MUNICIPIO_ID IN ('BOG-COBRE','BOGCUNCOL') and STATUS = 'PENDI_PETEC' ";
-
-        $rPendientes = $this->mysqli->query($queryPendiBogota);
-
-        if($rPendientes->num_rows > 0){
-            $resultPendientesBogota = array();
-            while($row = $rPendientes->fetch_assoc()){
-                //$row['P_Bogota']=utf8_encode($row['P_Bogota']);
-                $resultPendientesBogota[] = $row;
-            }
 
 
 
