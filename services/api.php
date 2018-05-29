@@ -4337,7 +4337,7 @@ private function getAgentScore($user){
                 //$row['P_Bogota']=utf8_encode($row['P_Bogota']);
                 $result1[] = $row;
             }
-        }
+
 
 
 
@@ -4361,6 +4361,7 @@ private function getAgentScore($user){
             $agentScore=$this->getAgentScore($usuarioGalleta);
 
             $this->response($this->json(array($result,$result1,$agentScore)), 200); // send user details
+            }
         }
         $this->response('',204);        // If no records "No Content" status
     }
