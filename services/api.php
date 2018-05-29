@@ -4337,6 +4337,7 @@ private function getAgentScore($user){
                 $row['PEDIDO_ID']=utf8_encode($row['P_Bogota']);
                 $result1[] = $row;
             }}
+        echo var_dump($result1);
 
         $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
         $galleta        =   stripslashes($_COOKIE['logedUser']);
