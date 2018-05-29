@@ -8686,7 +8686,7 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
 		services.getLightKPIS().then(function (data) {
 			$rootScope.oldlightkpi = $rootScope.lightkpi;
 			$rootScope.lightkpi = data.data[0];
-            $scope.PendiBogota = data.data[1];
+            $scope.PendiBogota = data.data[2];
 
               if ($scope.PendiBogota !== null){
                            $scope.P_Bogota=0;
@@ -8697,7 +8697,7 @@ app.controller('AsignacionesEdatelCtrl', function ($scope, $rootScope, $location
                            $scope.P_Bogota=+$scope.P_Bogota + +$scope.PendiBogota[i].Bogota;
                            }
                         }
-            console.log("Total" + $scope.P_Bogota);
+            //console.log("Total" + $scope.P_Bogota);
 
 
 
