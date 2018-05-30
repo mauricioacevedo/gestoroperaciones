@@ -18272,9 +18272,9 @@ public function pp(&$var){
         $datosUsuario    =   json_decode($datosUsuario);
         $datosUsuario    =   json_decode(json_encode($datosUsuario), True);
 
-        $grupo   =   $galleta['GRUPO'];
+        $grupo   =   $datosUsuario['GRUPO'];
 
-        echo var_dump ($grupo) ;
+        //echo var_dump ($grupo) ;
 
         if ($grupo == "RECONFIGURACION")
         {
