@@ -18274,11 +18274,13 @@ public function pp(&$var){
 
         $grupo   =   $galleta['GRUPO'];
 
+        echo "$grupo" ;
+
         if ($grupo == "RECONFIGURACION")
         {
             $query=	" SELECT * FROM portalbd.gestor_conceptos where GRUPO = '$grupo' ";
         }
-        echo "Grupo: $grupo" ;
+
         else
         {
             $grupo = "in ('ASIGNACIONES','POBLACIONES','RECONFIGURACION') ";
