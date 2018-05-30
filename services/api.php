@@ -18280,7 +18280,7 @@ public function pp(&$var){
         }
         else
         {
-            $grupo = "in ('ASIGNACIONES','POBLACIONES') ";
+            $grupo = "in ('ASIGNACIONES','POBLACIONES','RECONFIGURACION') ";
             $query=	" SELECT * FROM portalbd.gestor_conceptos where GRUPO $grupo ";
         }
 
