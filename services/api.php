@@ -18278,7 +18278,8 @@ public function pp(&$var){
         {
             $query=	" SELECT * FROM portalbd.gestor_conceptos where GRUPO = '$grupo' ";
         }
-        else
+        echo "Grupo" $grupo;
+        else if ($grupo <> 'RECONFIGURACION')
         {
             $grupo = "in ('ASIGNACIONES','POBLACIONES','RECONFIGURACION') ";
             $query=	" SELECT * FROM portalbd.gestor_conceptos where GRUPO $grupo ";
