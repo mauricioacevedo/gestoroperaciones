@@ -18274,7 +18274,7 @@ public function pp(&$var){
 
         $grupo   =   $galleta['GRUPO'];
 
-        echo "$grupo" ;
+        echo var_dump ($grupo) ;
 
         if ($grupo == "RECONFIGURACION")
         {
