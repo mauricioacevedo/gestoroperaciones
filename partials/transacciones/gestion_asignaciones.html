@@ -220,15 +220,17 @@
                                         <form name="seguimiento_form" id="seguimiento_form">
                                             <div class="form-group " ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
                                                 <label for="estado" class="control-label">Estado Gestión:</label>
-                                                    <td><span class="small">
-                                                            <a href="#"
-                                                               editable-select=""
-                                                               e-ng-options="SI || NO"
-                                                               onaftersave=""
-                                                               title="Editar"
-                                                            >
+                                                         <td ng-show="">
+                                                            <span class="small">
+                                                                <input type="checkbox" class="flipswitch"
+                                                                       ng-model="data.RADICADO_TEMPORAL"
+                                                                       name="prioridad"
+                                                                       id="prioridad"
+                                                                       ng-true-value="'ARBOL'"
+                                                                       ng-change="habilitarPrioridad(data)">
+                                                            </span>
 
-                                                            </a></span></td>
+                                                        </td>
                                                 <select id="estado"
                                                         class= "form-control btn-xs"
                                                         name="estado"
