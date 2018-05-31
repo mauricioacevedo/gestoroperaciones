@@ -220,17 +220,7 @@
                                         <form name="seguimiento_form" id="seguimiento_form">
                                             <div class="form-group " ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
                                                 <label for="estado" class="control-label">Estado Gestión:</label>
-                                                         <td ng-show="">
-                                                            <span class="small">
-                                                                <input type="checkbox" class="flipswitch"
-                                                                       ng-model="data.RADICADO_TEMPORAL"
-                                                                       name="prioridad"
-                                                                       id="prioridad"
-                                                                       ng-true-value="'ARBOL'"
-                                                                       ng-change="habilitarPrioridad(data)">
-                                                            </span>
 
-                                                        </td>
                                                 <select id="estado"
                                                         class= "form-control btn-xs"
                                                         name="estado"
@@ -247,6 +237,20 @@
                                                     </option>
                                                 </select>
 
+                                            </div>
+                                            <div>
+                                            <label for="MalaAsignacion" class="control-label">Mala Asignacion ?</label>
+                                            <td ng-show="">
+                                                            <span class="small">
+                                                                <input type="checkbox" class="flipswitch"
+                                                                       ng-model="InfoPedido.ESTADO_PROCESO"
+                                                                       name="MalaAsignacion"
+                                                                       id="MalaAsignacion"
+                                                                       ng-true-value="'SI'"
+                                                                       ng-change="">
+                                                            </span>
+
+                                                        </td>
                                             </div>
                                             <div class="form-group " ng-show="InfoPedido.ESTADO_PROCESO" ng-class="{ 'has-error' : seguimiento_form.obs.$pristine && seguimiento_form.obs.$invalid}">
                                                 <label for="obs" class="control-label">Observación Gestión:</label>
