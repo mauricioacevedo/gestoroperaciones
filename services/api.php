@@ -18342,10 +18342,6 @@ public function pp(&$var){
         //$pedido = json_decode(file_get_contents("php://input"),true);
         //$iddd=$pedido['pedido']['CONCEPTO_ID'];
 
-
-
-
-
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
