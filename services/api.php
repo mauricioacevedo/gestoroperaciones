@@ -18333,10 +18333,10 @@ public function pp(&$var){
         }
         else
         {
-        $query=	" select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
-                " where STATUS = 'PENDI_PETEC' and ZONA not in ('NULL') AND CONCEPTO_ID = '$concepto' ".
-                " and MUNICIPIO_ID not in ('BOG-COBRE','BOGCUNCOL') ".
-                " group by ZONA order by TOTAL desc ";
+            $query=	" select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
+                    " where STATUS = 'PENDI_PETEC' and ZONA not in ('NULL') AND CONCEPTO_ID = '$concepto' ".
+                    " and MUNICIPIO_ID not in ('BOG-COBRE','BOGCUNCOL') ".
+                    " group by ZONA order by TOTAL desc ";
         }
 
         //$pedido = json_decode(file_get_contents("php://input"),true);
