@@ -18335,6 +18335,7 @@ public function pp(&$var){
         {
         $query=	" select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
                 " where STATUS = 'PENDI_PETEC' and ZONA not in ('NULL') AND CONCEPTO_ID = '$concepto' ".
+                " and ZONA not in ('BOG-COBRE','BOGCUNCOL') ".
                 " group by ZONA order by TOTAL desc ";
         }
 
