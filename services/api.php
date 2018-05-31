@@ -18326,7 +18326,7 @@ public function pp(&$var){
         if ($Login == "JBEDOGOM")
         {
             $query = " select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
-                " where STATUS = 'PENDI_PETEC' and ZONA not in ('NULL') AND CONCEPTO_ID = '$concepto' ".
+                " where STATUS = 'PENDI_PETEC' AND CONCEPTO_ID = '$concepto' ".
                 " and MUNICIPIO_ID IN('BOG-COBRE','BOGCUNCOL') ".
                 " group by ZONA order by TOTAL desc ";
         }
