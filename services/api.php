@@ -19891,6 +19891,7 @@ public function pp(&$var){
 
         $observacion    =   $gestion['gestion']['OBSERVACIONES_PROCESO'];
         $MalaAsignacion =   $gestion['gestion']['MalaAsignacion'];
+        echo var_dump($MalaAsignacion);
 
         //echo var_dump ($estado " " );
 
