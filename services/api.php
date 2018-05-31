@@ -19888,7 +19888,9 @@ public function pp(&$var){
         $idpedido       =   $gestion['gestion']['ID'];
         $crIncidente    =   $gestion['gestion']['INCIDENTE'];
 
+
         $observacion    =   $gestion['gestion']['OBSERVACIONES_PROCESO'];
+        $MalaAsignacion =   $gestion['gestion']['MalaAsignacion'];
 
         //echo var_dump ($estado " " );
 
