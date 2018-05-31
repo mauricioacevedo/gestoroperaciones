@@ -255,15 +255,16 @@
                                                     </option>
                                                 </select>
                                             </div>
+
                                             <div class="form-group" ng-show="InfoPedido.ESTADO_PROCESO">
                                             <label for="MalaAsignacion" class="control-label">Mal Ingreso ?</label>
                                                 <br>
                                             <td>
                                                             <span class="medium">
                                                                 <input type="checkbox" class="flipswitch"
-                                                                       ng-model="InfoPedido.MalaAsignacion"
-                                                                       name="MalaAsignacion"
-                                                                       id="MalaAsignacion"
+                                                                       ng-model="InfoPedido.MAL_INGRESO"
+                                                                       name="MALINGRESO"
+                                                                       id="MALINGRESO"
                                                                        ng-change="">
 <!--                                                                       ng-true-value="'SI'"-->
 
@@ -272,6 +273,7 @@
 
                                                         </td>
                                             </div>
+
                                             <div class="form-group has-feedback" ng-show="programar">
                                                 <label for="programacion" class="control-label">Programación:</label>
                                                 <input type="text" name="programacion" id="programacion" class="form-control" placeholder="id llamada" ng-model="InfoPedido.PROGRAMACION" datetime-picker date-format="yyyy-MM-dd HH:mm:ss"/>
