@@ -18707,7 +18707,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 $scope.programar				= false;
                 $scope.accRdy					= false;
 
-                console.log($scope.InfoPedido);
+                //console.log($scope.InfoPedido);
 
                 var fechaprogramacion = data.data[2];
                 if(data.data[1]){
