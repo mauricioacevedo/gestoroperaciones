@@ -4326,8 +4326,7 @@ private function getAgentScore($user){
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         $query1= " select count(distinct PEDIDO_ID) as Bogota from informe_petec_pendientesm ".
-                 " where MUNICIPIO_ID IN('BOG-COBRE','BOGCUNCOL') and STATUS = 'PENDI_PETEC' ".
-                 " and CONCEPTO_ID = 'PETEC' ";
+                 " where MUNICIPIO_ID IN('BOG-COBRE','BOGCUNCOL') and STATUS = 'PENDI_PETEC' ";
 
         $rpendientes = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
@@ -18315,32 +18314,13 @@ public function pp(&$var){
             $this->response('',406);
         }
 
-        $datosUsuario    =   json_decode(stripslashes($_COOKIE['logedUser']),true);
-        $datosUsuario    =   stripslashes($_COOKIE['logedUser']);
-        $datosUsuario    =   json_decode($datosUsuario);
-        $datosUsuario    =   json_decode(json_encode($datosUsuario), True);
-
-        //echo var_dump ($datosUsuario);
-        $Login   =   $datosUsuario['login'];
-        $concepto =   $this->_request['concepto'];
-
-        if ($Login == "JQUICEVA" || $Login == "JBEDOGOM")
-        {
-            $query = " select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
-                " where STATUS = 'PENDI_PETEC' AND CONCEPTO_ID = '$concepto' ".
-                " and MUNICIPIO_ID IN('BOG-COBRE','BOGCUNCOL') ".
-                " group by ZONA order by TOTAL desc ";
-        }
-        else
-        {
-            $query=	" select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
-                    " where STATUS = 'PENDI_PETEC' and ZONA not in ('NULL') AND CONCEPTO_ID = '$concepto' ".
-                    " and MUNICIPIO_ID not in ('BOG-COBRE','BOGCUNCOL') ".
-                    " group by ZONA order by TOTAL desc ";
-        }
-
         //$pedido = json_decode(file_get_contents("php://input"),true);
         //$iddd=$pedido['pedido']['CONCEPTO_ID'];
+
+        $concepto =   $this->_request['concepto'];
+
+        $query=	" select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
+            "where STATUS = 'PENDI_PETEC' and ZONA not in ('NULL') AND CONCEPTO_ID = '$concepto' group by ZONA order by TOTAL desc ";
 
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -19888,10 +19868,7 @@ public function pp(&$var){
         $idpedido       =   $gestion['gestion']['ID'];
         $crIncidente    =   $gestion['gestion']['INCIDENTE'];
 
-
         $observacion    =   $gestion['gestion']['OBSERVACIONES_PROCESO'];
-        //$MalaAsignacion =   $gestion['gestion']['MalaAsignacion'];
-        //echo var_dump($gestion);
 
         //echo var_dump ($estado " " );
 
