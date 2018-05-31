@@ -18324,7 +18324,7 @@ public function pp(&$var){
         $Login   =   $datosUsuario['login'];
         $concepto =   $this->_request['concepto'];
 
-        if ($Login == "JQUICEVA")
+        if ($Login == "JQUICEVA" || $Login == "JBEDOGOM")
         {
             $query = " select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
                 " where STATUS = 'PENDI_PETEC' AND CONCEPTO_ID = '$concepto' ".
