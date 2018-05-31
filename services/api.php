@@ -19870,7 +19870,7 @@ public function pp(&$var){
 
         $observacion    =   $gestion['gestion']['OBSERVACIONES_PROCESO'];
 
-        echo var_dump ($gestion);
+        //echo var_dump ($gestion);
 
         $malo           =   false;
         $programado     =   false;
