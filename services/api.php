@@ -18314,6 +18314,14 @@ public function pp(&$var){
             $this->response('',406);
         }
 
+        $datosUsuario    =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $datosUsuario    =   stripslashes($_COOKIE['logedUser']);
+        $datosUsuario    =   json_decode($datosUsuario);
+        $datosUsuario    =   json_decode(json_encode($datosUsuario), True);
+
+        echo var_dump ($datosUsuario);
+        $Login   =   $datosUsuario['GRUPO'];
+
         //$pedido = json_decode(file_get_contents("php://input"),true);
         //$iddd=$pedido['pedido']['CONCEPTO_ID'];
 
