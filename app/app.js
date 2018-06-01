@@ -18676,7 +18676,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 TECNOLOGIA_ID: gestion.TECNOLOGIA_ID,
                 FECHA: gestion.FECHA_ESTADO,
                 ID: gestion.ID,
-                MALINGRESO: InfoPedido.MAL_INGRESO
+                MALINGRESO: InfoPedido.MAL_INGRESO,
+                MOTIVOMALINGRESO: InfoPedido.MOTIVO_MAL_INGRESO
             };
 
             //console.log("cambio concepto " + gestion.CONCEPTO_ID);

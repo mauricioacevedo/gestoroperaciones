@@ -19848,29 +19848,30 @@ public function pp(&$var){
 
         //echo ("INGRESOOOO");
 
-        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
-        $usuarioPc      =   gethostbyaddr ($usuarioIp);
-        $galleta        =   json_decode (stripslashes ($_COOKIE['logedUser']), true);
-        $galleta        =   stripslashes ($_COOKIE['logedUser']);
-        $galleta        =   json_decode ($galleta);
-        $galleta        =   json_decode (json_encode ($galleta), True);
-        $usuarioGalleta =   $galleta['login'];
-        $nombreGalleta  =   $galleta['name'];
-        $grupoGalleta   =   $galleta['GRUPO'];
+        $usuarioIp          =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc          =   gethostbyaddr ($usuarioIp);
+        $galleta            =   json_decode (stripslashes ($_COOKIE['logedUser']), true);
+        $galleta            =   stripslashes ($_COOKIE['logedUser']);
+        $galleta            =   json_decode ($galleta);
+        $galleta            =   json_decode (json_encode ($galleta), True);
+        $usuarioGalleta     =   $galleta['login'];
+        $nombreGalleta      =   $galleta['name'];
+        $grupoGalleta       =   $galleta['GRUPO'];
 
-        $gestion        =   json_decode (file_get_contents ("php://input"), true);
-        $fechaServidor  =   date("Y-m-d H:i:s");
-        $usuario        =   $gestion['gestion']['user'];
-        $fuente         =   $gestion['gestion']['fuente'];
-        $estado         =   $gestion['gestion']['ESTADO_ID'];
-        $programacion   =   $gestion['gestion']['horaLlamar'];
-        $pedido         =   $gestion['gestion']['pedido'];
-        $conceptoId     =   $gestion['gestion']['CONCEPTO_ANTERIOR'];
-        $idpedido       =   $gestion['gestion']['ID'];
-        $crIncidente    =   $gestion['gestion']['INCIDENTE'];
+        $gestion            =   json_decode (file_get_contents ("php://input"), true);
+        $fechaServidor      =   date("Y-m-d H:i:s");
+        $usuario            =   $gestion['gestion']['user'];
+        $fuente             =   $gestion['gestion']['fuente'];
+        $estado             =   $gestion['gestion']['ESTADO_ID'];
+        $programacion       =   $gestion['gestion']['horaLlamar'];
+        $pedido             =   $gestion['gestion']['pedido'];
+        $conceptoId         =   $gestion['gestion']['CONCEPTO_ANTERIOR'];
+        $idpedido           =   $gestion['gestion']['ID'];
+        $crIncidente        =   $gestion['gestion']['INCIDENTE'];
 
-        $observacion    =   $gestion['gestion']['OBSERVACIONES_PROCESO'];
-        $malingreso     =   $gestion['gestion']['MALINGRESO'];
+        $observacion        =   $gestion['gestion']['OBSERVACIONES_PROCESO'];
+        $malingreso         =   $gestion['gestion']['MALINGRESO'];
+        $motivoMalIngreso   =   $gestion['gestion']['MOTIVOMALINGRESO'];
 
 
 
