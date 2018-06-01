@@ -19922,7 +19922,7 @@ public function pp(&$var){
         }
         */
 
-        $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo','fecha_estado','concepto_final','source','fecha_cita','DEPARTAMENTO','TIPO_TRABAJO','TECNOLOGIA_ID','MAL_INGRESO');
+        $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo','fecha_estado','concepto_final','source','fecha_cita','DEPARTAMENTO','TIPO_TRABAJO','TECNOLOGIA_ID');
         $keys = array_keys($gestion['gestion']);
 
         //echo var_dump ($programado);
@@ -20070,7 +20070,7 @@ public function pp(&$var){
                 $values = $values."'".$gestion['gestion'][$desired_key]."',";
             }
 
-            $queryGestion = "INSERT INTO pedidos(".trim($columns,',').") VALUES(".trim($values,',').")";
+            $queryGestion = "INSERT INTO pedidos(".trim($columns,',').",'MAL_INGRESO') VALUES(".trim($values,',').",'$malingreso')";
 
             //echo "INSERT: $queryGestion";
 
