@@ -19873,6 +19873,8 @@ public function pp(&$var){
         $malingreso         =   $gestion['gestion']['MALINGRESO'];
         $motivoMalIngreso   =   $gestion['gestion']['MOTIVOMALINGRESO'];
 
+        echo var_dump ($motivoMalIngreso);
+
 
 
         //echo var_dump($malingreso);
