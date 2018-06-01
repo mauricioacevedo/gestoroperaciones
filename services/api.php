@@ -19873,7 +19873,7 @@ public function pp(&$var){
         $malingreso         =   $gestion['gestion']['MALINGRESO'];
         $motivoMalIngreso   =   $gestion['gestion']['MOTIVOMALINGRESO'];
 
-        echo var_dump ($motivoMalIngreso);
+        //echo var_dump ($motivoMalIngreso);
 
 
 
@@ -20082,7 +20082,7 @@ public function pp(&$var){
                 $values = $values."'".$gestion['gestion'][$desired_key]."',";
             }
 
-            $queryGestion = "INSERT INTO pedidos(".trim($columns,',').",MAL_INGRESO) VALUES(".trim($values,',').",'$malingreso')";
+            $queryGestion = "INSERT INTO pedidos(".trim($columns,',').",MAL_INGRESO) VALUES(".trim($values,',').",'$motivoMalIngreso')";
 
             /*$query = " INSERT INTO  tbl_RegistrosPNI (".trim($columns,',').",RESPONSABLE, FECHAINI) VALUES(".trim($values,',').",'$usuarioGalleta','$fechaini')";*/
             //echo "INSERT: $queryGestion";
