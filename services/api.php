@@ -19931,7 +19931,7 @@ public function pp(&$var){
         if ($malingreso <> 'SI')
         {
             //$malingreso = 'NO';
-            $motivoMalIngreso = 'NO'
+            $motivoMalIngreso = 'NO';
         }
 
 
