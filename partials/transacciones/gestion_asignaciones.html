@@ -271,6 +271,20 @@
 
                                                         </td>
                                             </div>
+                                            <div class="form-group " ng-show="InfoPedido.ESTADO_PROCESO" ng-class="{ 'has-error' : seguimiento_form.obs.$pristine && seguimiento_form.obs.$invalid}">
+                                                <label for="MotivoMalIngreso" class="control-label">Motivo Mal Ingreso:</label>
+                                                <select id="MotivoMalIngreso"
+                                                        class= "form-control btn-xs"
+                                                        name="MotivoMalIngreso"
+                                                        ng-model="InfoPedido.MotivoMalIngreso"
+                                                        ng-change="" required>
+                                                    <option value="" disabled>--Seleccione--</option>
+                                                    <option value="TRANSACCION COMBINADA" disabled>TRANSACCION COMBINADA</option>
+                                                    <option value="TRANSACCION COMBINADA" disabled>PORTABILIDAD NUMERICA</option>
+                                                    <option value="TRANSACCION COMBINADA" disabled>SIN PAGINACION</option>
+                                                    <option value="TRANSACCION COMBINADA" disabled>DIRECCION MAL INGRESADA</option>
+                                                </select>
+                                            </div>
 
                                             <div class="form-group has-feedback" ng-show="programar">
                                                 <label for="programacion" class="control-label">Programación:</label>
