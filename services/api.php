@@ -19922,7 +19922,7 @@ public function pp(&$var){
         }
         */
 
-        $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo','fecha_estado','concepto_final','source','fecha_cita','DEPARTAMENTO','TIPO_TRABAJO','TECNOLOGIA_ID');
+        $column_names = array('pedido', 'fuente', 'actividad', 'ESTADO_ID', 'OBSERVACIONES_PROCESO', 'estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID','CONCEPTO_ANTERIOR','idllamada','nuevopedido','motivo_malo','fecha_estado','concepto_final','source','fecha_cita','DEPARTAMENTO','TIPO_TRABAJO','TECNOLOGIA_ID','MAL_INGRESO');
         $keys = array_keys($gestion['gestion']);
 
         //echo var_dump ($programado);
