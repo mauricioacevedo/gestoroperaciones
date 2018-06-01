@@ -19871,8 +19871,8 @@ public function pp(&$var){
         $observacion    =   $gestion['gestion']['OBSERVACIONES_PROCESO'];
         $malingreso     =   $gestion['gestion']['MALINGRESO'];
 
-        echo var_dump("Mal Ingrso" + $malingreso);
-        echo var_dump ($gestion);
+        echo var_dump($malingreso);
+        //echo var_dump ($gestion);
 
         $malo           =   false;
         $programado     =   false;
