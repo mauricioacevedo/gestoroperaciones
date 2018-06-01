@@ -19869,8 +19869,9 @@ public function pp(&$var){
         $crIncidente    =   $gestion['gestion']['INCIDENTE'];
 
         $observacion    =   $gestion['gestion']['OBSERVACIONES_PROCESO'];
+        $malingreso     =   $gestion['gestion']['MALINGRESO'];
 
-        echo var_dump ($gestion);
+        //echo var_dump ($gestion);
 
         $malo           =   false;
         $programado     =   false;
