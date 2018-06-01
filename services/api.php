@@ -4326,7 +4326,8 @@ private function getAgentScore($user){
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         $query1= " select count(distinct PEDIDO_ID) as Bogota from informe_petec_pendientesm ".
-                 " where MUNICIPIO_ID IN('BOG-COBRE','BOGCUNCOL') and STATUS = 'PENDI_PETEC' ";
+                 " where MUNICIPIO_ID IN('BOG-COBRE','BOGCUNCOL') and STATUS = 'PENDI_PETEC' ".
+                 " and CONCEPTO_ID = 'PETEC' ";
 
         $rpendientes = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
