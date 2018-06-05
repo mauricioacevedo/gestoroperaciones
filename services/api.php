@@ -1459,6 +1459,9 @@ class API extends REST {
         $observaciones = $pedido1['observacion'];
         $departamento = $pedido1['departamento'];
         $ciudad = $pedido1['ciudad'];
+        $estado_id = $pedido1['ESTADO_ID'];
+
+        echo $estado_id;
 
         //echo $pedido;
         $concepto = $pedido1['concepto'];
@@ -1476,7 +1479,7 @@ class API extends REST {
                 //echo "ingreso";
         }
 
-        $column_names = array('pedido', 'fuente', 'actividad','estado','ESTADO_ID', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','concepto_final');
+        $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','concepto_final');
         $keys = array_keys($pedido);
 
         //echo var_dump ($pedido);guardarPedidoGestionguardarPedidoGestion
@@ -1503,7 +1506,7 @@ class API extends REST {
         //$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
         if(!empty($pedido)){
             //$concepto_final=$this->updateFenix($pedido);
-            $query = "INSERT INTO pedidos(".trim($columns,',').",source,OBSERVACIONES_PROCESO, pedido_id,DEPARTAMENTO, municipio_id) VALUES(".trim($values,',').",'MANUAL', '$observaciones', '$pedidoid','$departamento','$ciudad')";
+            $query = "INSERT INTO pedidos(".trim($columns,',').",source,OBSERVACIONES_PROCESO, pedido_id,DEPARTAMENTO, municipio_id,'ESTADO_ID') VALUES(".trim($values,',').",'MANUAL', '$observaciones', '$pedidoid','$departamento','$ciudad','$estado_id')";
 
             echo var_dump($query);
             //echo $query;
