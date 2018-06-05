@@ -1504,6 +1504,8 @@ class API extends REST {
         if(!empty($pedido)){
             //$concepto_final=$this->updateFenix($pedido);
             $query = "INSERT INTO pedidos(".trim($columns,',').",source,OBSERVACIONES_PROCESO, pedido_id,DEPARTAMENTO, municipio_id) VALUES(".trim($values,',').",'MANUAL', '$observaciones', '$pedidoid','$departamento','$ciudad')";
+
+            echo var_dump($query);
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
