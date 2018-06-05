@@ -1459,9 +1459,9 @@ class API extends REST {
         $observaciones = $pedido1['observacion'];
         $departamento = $pedido1['departamento'];
         $ciudad = $pedido1['ciudad'];
-        $estado_id = $pedido1['ESTADO_ID'];
+        $estado_id = $pedido1['concepto'];
 
-        echo var_dump($pedido1);
+        //echo var_dump($pedido1);
 
         //echo $pedido;
         $concepto = $pedido1['concepto'];
@@ -1508,7 +1508,7 @@ class API extends REST {
             //$concepto_final=$this->updateFenix($pedido);
             $query = "INSERT INTO pedidos(".trim($columns,',').",source,OBSERVACIONES_PROCESO, pedido_id,DEPARTAMENTO, municipio_id, ESTADO_ID) VALUES(".trim($values,',').",'MANUAL', '$observaciones', '$pedidoid','$departamento','$ciudad','$estado_id')";
 
-            echo var_dump($query);
+            //echo var_dump($query);
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
