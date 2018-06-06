@@ -8719,6 +8719,7 @@ private function getAgentScore($user){
         $prioridad      =   $this->_request['prioridad'];
 
         $zona           =   $this->_request['zona'];
+
         echo var_dump ($zona);
         echo var_dump ($plaza);
 
@@ -9008,7 +9009,7 @@ private function getAgentScore($user){
                 $plaza2=" AND MUNICIPIO_ID='$plaza' ";
             }
 
-            if($zona=='TODOS'){
+            if($plaza=='TODOS'){
                 $zona2="";
             }else{
                 $zona2=" AND ZONA='$zona' ";
@@ -9137,7 +9138,7 @@ private function getAgentScore($user){
             " and b.ASESOR ='' ".
             $tipo_trabajo.
             $concepto." ".
-            $plaza.
+            //$plaza.
             $zona2.
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
@@ -9216,7 +9217,7 @@ private function getAgentScore($user){
                     " from informe_petec_pendientesm b ".
                     " where b.STATUS='$STATUS'  and b.ASESOR ='' ".
                     "  $concepto ".
-                    $plaza.
+                    //$plaza.
                     $zona2.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
                     " order by b.$parametroBusqueda2 $parametroOrden";
