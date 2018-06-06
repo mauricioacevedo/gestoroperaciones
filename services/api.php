@@ -17310,6 +17310,7 @@ public function pp(&$var){
             "	, m.IDENTIFICADOR_ID ".
             "	, m.VEL_IDEN ".
             "	, m.VEL_SOLI ".
+            "	, m.PEDIDO_CRM ".
             "	, m.TECNOLOGIA_ID ".
             "	, m.MUNICIPIO_ID ".
             "	, m.DIRECCION_SERVICIO ".
