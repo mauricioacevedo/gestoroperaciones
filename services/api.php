@@ -8719,7 +8719,8 @@ private function getAgentScore($user){
         $prioridad      =   $this->_request['prioridad'];
 
         $zona           =   $this->_request['zona'];
-        echo var_dump ('zona' + $zona + 'plaza' + $plaza);
+        echo var_dump ($zona);
+        echo var_dump ($plaza);
 
 
 
