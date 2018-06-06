@@ -17307,6 +17307,9 @@ public function pp(&$var){
             "	, m.UEN_CALCULADA ".
             "	, m.ESTRATO ".
             "	, m.CONCEPTO_ID ".
+            "	, m.IDENTIFICADOR_ID ".
+            "	, m.VEL_IDEN ".
+            "	, m.VEL_SOLI ".
             "	, m.TECNOLOGIA_ID ".
             "	, m.MUNICIPIO_ID ".
             "	, m.DIRECCION_SERVICIO ".
