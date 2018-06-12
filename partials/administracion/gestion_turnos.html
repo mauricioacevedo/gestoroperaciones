@@ -211,7 +211,7 @@
                                          ng-class="{ 'has-error' : contact_form.login.$touched && contact_form.login.$invalid}">
                                         <h4> Ingresar Turno </h4>
                                         <br>
-
+                                        <div class="col-md-6">
                                          <div class="from-group" id="datetimepicker">
                                             <label for="fechaSolicitud">
                                                 Fecha Inicio
@@ -220,15 +220,18 @@
                                             <input type="text" name="fechaSolicitud" id="fechaSolicitud" class="form-control"
                                                 ng-model="transaccion.FECHASOLICITUD" datetime-picker date-format="yyyy-MM-dd H:mm:00">
                                          </div>
+                                        </div>
 
-                                        <div class="from-group" id="datetimepicker">
-                                            <label for="fechaSolicitud">
-                                                Fecha Fin
-                                            </label>
-                                            <br>
-                                            <input type="text" name="fechaSolicitud" id="fechaSolicitud" class="form-control"
-                                                ng-model="transaccion.FECHASOLICITUD" datetime-picker date-format="yyyy-MM-dd H:mm:00">
-                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="from-group" id="datetimepicker">
+                                                <label for="fechaSolicitud">
+                                                    Fecha Fin
+                                                </label>
+                                                <br>
+                                                <input type="text" name="fechaSolicitud" id="fechaSolicitud" class="form-control"
+                                                    ng-model="transaccion.FECHASOLICITUD" datetime-picker date-format="yyyy-MM-dd H:mm:00">
+                                             </div>
+                                        </div>
 
                                         <label class="col-md-4 control-label">Login</label>
                                         <div class="col-md-4 inputGroupContainer">
