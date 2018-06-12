@@ -15261,7 +15261,7 @@ public function pp(&$var){
             " u.INTERVENTOR, ".
             " u.ESTADO ".
             " FROM portalbd.tbl_usuarios u ".
-            " left join portalbd.tbl_cargos c on u.CARGO_ID=c.ID_CARGO ";
+            " left join portalbd.tbl_cargos c on u.CARGO_ID=c.ID_CARGO where u.ESTADO not in ('INACTIVO') ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
