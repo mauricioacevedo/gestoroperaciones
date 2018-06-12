@@ -78,12 +78,12 @@
                                         ng-show="sortType== 'ID' && !sortReverse" class="fa fa-caret-down"></span><span
                                         ng-show="sortType == 'ID' && sortReverse" class="fa fa-caret-up"></span></a>
                             </th>
-                            <th>
+                           <!-- <th>
                                 <a href="" ng-click="sortType = 'USUARIO_ID'; sortReverse = !sortReverse">USUARIO_ID
                                     <span ng-show="sortType == 'USUARIO_ID' && !sortReverse"
                                           class="fa fa-caret-down"></span>
                                     <span ng-show="sortType == 'USUARIO_ID' && sortReverse"
-                                          class="fa fa-caret-up"></span></a></th>
+                                          class="fa fa-caret-up"></span></a></th>-->
                             <th><a href="" ng-click="sortType = 'USUARIO_NOMBRE'; sortReverse =!sortReverse">NOMBRE
                                 <span ng-show="sortType == 'USUARIO_NOMBRE' && !sortReverse"
                                       class="fa fa-caret-down"></span>
@@ -113,7 +113,7 @@
                         <tbody>
                         <tr ng-repeat="data in listaUsuarios  | orderBy:sortType:sortReverse | filter:filtroInput as results"
                             class="animated bounceInRight">
-                            <td><span class="small">{{data.ID}}</span></td>
+                            <!--<td><span class="small">{{data.ID}}</span></td>-->
                             <td><span class="small">{{data.USUARIO_ID}}</span></td>
                             <td><span class="small">{{data.USUARIO_NOMBRE}}</span></td>
                             <td><span class="small">{{data.CEDULA_ID}}</span></td>
