@@ -199,19 +199,7 @@
 
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12">
-	                            <h4> Ingreso Turnos </h4>
-	                            <ul>
-		                        	<li>Se utiliza cuando estamos brindando una asesoría comercial o información sobre infraestructura del pedido</li>
-		                        	<li>Cuando vamos a cancelar un pedido por decisión del usuario</li>
-		                        	<li>Cuando el pedido anterior ingresa porque fue anulado en otra área por error y técnico está en sitio</li>
-		                        	<li>Cuando es un cambio de tecnología en la TV o BA la red es bidireccional y el usuario desea el cambio de tecnología en la TO</li>
-		                        	<li>Reenumeración por traslado nuevo y retiro y usuario quiere conservar numero</li>
-		                        	<li>Cuando es una migración y solo migraron uno de los servicios</li>
-		                        	<li>Cuando se requiere conservar número</li>
-		                        	<li>Además de lo que no se pueda tipificar dentro de las siguientes 3 causas actividades</li>
-	                        	</ul>
-	                        </div>
+
                         <div class="col-md-12">
                             <form class="well form-horizontal small" action=" " method="post" name="contact_form"
                                   id="contact_form">
@@ -221,6 +209,8 @@
 
                                     <div class="form-group"
                                          ng-class="{ 'has-error' : contact_form.login.$touched && contact_form.login.$invalid}">
+                                        <h4> Ingreso Turnos </h4>
+                                        <br>
                                         <label class="col-md-4 control-label">Login</label>
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
