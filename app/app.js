@@ -4945,7 +4945,7 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 		$scope.idUsuario = data.ID;
 		$scope.UsuarioNom = data.USUARIO_NOMBRE;
 		$scope.editaInfo = data;
-		$scope.TituloModal = "Agregar Noevedad :";
+		$scope.TituloModal = "Agregar Novedad :";
 		$scope.UsuarioNuevo = false;
         //console.log(editaInfo);
         $scope.cargoLabel = null;
