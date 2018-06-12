@@ -107,7 +107,7 @@
                                     ng-show="sortType == 'ESTADO' && !sortReverse" class="fa fa-caret-down"></span>
                                 <span ng-show="sortType == 'ESTADO' && sortReverse" class="fa fa-caret-up"></span></a>
                             </th>
-                            <th>ACCIÓN</th>
+                            <th>NOVEDAD</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -130,12 +130,12 @@
                                         ng-disabled="loading">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </button>
-                                <button type="button" uib-tooltip="Editar: {{data.USUARIO_ID}}" tooltip-placement="left"
+                                <!--<button type="button" uib-tooltip="Editar: {{data.USUARIO_ID}}" tooltip-placement="left"
                                         class="btn btn-default btn-circle-xss" ng-click="borrarModal(data)"
                                         data-toggle="modal" data-target="#eliminaUsuario" data-backdrop="static"
                                         ng-disabled="loading">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
-                                </button>
+                                </button>-->
                             </td>
 
                         </tr>
