@@ -15280,6 +15280,48 @@ public function pp(&$var){
 
     }
 
+    private function listadoUsuariosOnline(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        //counter
+
+        $query="SELECT count(*) as counter from tbl_usuarios";
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter = $row['counter'];
+            }
+        }
+
+
+        $query=	" SELECT max(B.id), A.ID, ".
+            " A.USUARIO_ID, A.USUARIO_NOMBRE, A.CEDULA_ID, A.GRUPO, ".
+            " A.TURNO, B.status as ESTADO ".
+            " FROM portalbd.tbl_usuarios A ".
+            " inner join registro_ingreso_usuarios B on A.USUARIO_ID = B.usuario ".
+            " where B.status = 'logged in' ".
+            " and B.fecha_ingreso between '2018-06-14 00:00:00' and '2018-06-14 23:59:59' ".
+            " group by A.USUARIO_ID ";
+        //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                //$result[] = $row;
+                //echo "name: ".utf8_encode($row['USUARIO_NOMBRE'])."\n ";
+                $row['USUARIO_NOMBRE']=utf8_encode($row['USUARIO_NOMBRE']);
+                $result[] = $row;
+            }
+            $this->response($this->json(array($result,$counter)), 200); // send user details
+        }
+        $this->response('',204);        // If no records "No Content" status
+
+    }
+
     //--------------------------FUNCIONES GESTION PEDIDOSMALOS----------------
 
     private function csvPedidosMalos(){
