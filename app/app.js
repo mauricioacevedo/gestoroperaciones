@@ -17045,14 +17045,14 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
         );
     };
 
-    $scope.checkMunicipiosAsignaciones = function () {
+/*    $scope.checkMunicipiosAsignaciones = function () {
         $rootScope.errorDatos = null;
         if(!angular.equals($scope.iconcepto, {})){
-            //$scope.listarMunicipiosAsignacionesSiebel($scope.iconcepto, 'FENIX_NAL');
-            //console.log($scope.iconcepto);
+            $scope.listarMunicipiosAsignacionesSiebel($scope.iconcepto, 'FENIX_NAL');
+            console.log($scope.iconcepto);
         }
 
-    };
+    };*/
   //  $scope.checkMunicipiosAsignaciones();
 
 });
