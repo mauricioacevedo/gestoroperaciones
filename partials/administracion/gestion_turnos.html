@@ -276,6 +276,20 @@
                                         </div>
 
                                         <div class="col-md-3">
+                                        <label for="fechafinNovedad">
+                                            Tipo Novedad
+                                        </label>
+                                        <select name="TipoNovedad" class="form-control selectpicker"
+                                                        ng-model="editaInfo.TIPO_NOVEDAD">
+                                                    <option selected="selected">ACTIVO</option>
+                                                    <option value = 'TURNO'>TURNO</option>
+                                                    <option value = 'VACACIONES'>VACACIONES</option>
+                                                    <option value = 'LICENCIA'>LICENCIA</option>
+                                                    <option value = 'INCAPACIDAD'>INCAPACIDAD</option>
+                                        </select>
+                                        </div>
+
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="descripcionNovedad">
                                                     Descripcion:
