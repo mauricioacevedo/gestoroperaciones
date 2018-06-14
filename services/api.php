@@ -15300,7 +15300,8 @@ public function pp(&$var){
 
         $query=	" SELECT max(B.id), A.ID, ".
             " A.USUARIO_ID, A.USUARIO_NOMBRE, A.CEDULA_ID, A.GRUPO, ".
-            " A.TURNO, B.status as ESTADO ".
+            " A.TURNO, B.status as ESTADO, ".
+            " date_format(B.fecha_ingreso,'%H:%m:%s') as INGRESO ".
             " FROM portalbd.tbl_usuarios A ".
             " inner join registro_ingreso_usuarios B on A.USUARIO_ID = B.usuario ".
             " where B.status = 'logged in' ".
