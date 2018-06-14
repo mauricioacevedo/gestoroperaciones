@@ -15284,7 +15284,8 @@ public function pp(&$var){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
-        //counter
+
+        $fecha = date("Y-m-d");
 
         $query="SELECT count(*) as counter from tbl_usuarios";
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -15303,7 +15304,7 @@ public function pp(&$var){
             " FROM portalbd.tbl_usuarios A ".
             " inner join registro_ingreso_usuarios B on A.USUARIO_ID = B.usuario ".
             " where B.status = 'logged in' ".
-            " and B.fecha_ingreso between '2018-06-14 00:00:00' and '2018-06-14 23:59:59' ".
+            " and B.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59' ".
             " group by A.USUARIO_ID ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
