@@ -15300,7 +15300,7 @@ public function pp(&$var){
         }
 
 
-        $query=	" SELECT max(B.id), A.ID, ".
+        $query=	" SELECT A.ID, ".
             " A.USUARIO_ID, A.USUARIO_NOMBRE, A.CEDULA_ID, A.GRUPO, ".
             " B.status as ESTADO, ".
             " date_format(B.fecha_ingreso,'%T') as INGRESO, ".
