@@ -15348,6 +15348,7 @@ public function pp(&$var){
 
 
         $id=$params['editaInfo']['ID'];
+        $Login=$params['editaInfo']['USUARIO_ID'];
         $FechaIni=$params['editaInfo']['FECHAINICIO'];
         $FechaFin=$params['editaInfo']['FECHAFIN'];
         $FechaIniNovedad=$params['editaInfo']['FECHAININOVEDAD'];
@@ -15356,13 +15357,14 @@ public function pp(&$var){
         $Descripcion=$params['editaInfo']['Descripcion'];
 
 
-        var_dump($params['editaInfo']);
+        //var_dump($params['editaInfo']);
 
        /* if($passEdita!=""){
             $passcode=" , PASSWORD=MD5('".$passEdita."')";
         }
 */
-        $sql = "";
+        $sql = " insert into Tbl_Turnos (USUARIO,FECHAINI,FECHAFIN,FECHAINI_NOVEDAD,FECHAFIN_NOVEDAD,DESCRIPCION,PROGRAMO) ".
+               " values ('$Login','$FechaIni','$FechaFin','$FechaIniNovedad','$FechaFinNovedad','$TipoNovedad','$Descripcion')";
 
         //echo $sql;
 
