@@ -15302,7 +15302,7 @@ public function pp(&$var){
 
         $query=	" SELECT max(B.id), A.ID, ".
             " A.USUARIO_ID, A.USUARIO_NOMBRE, A.CEDULA_ID, A.GRUPO, ".
-            " A.TURNO, B.status as ESTADO, ".
+            " B.status as ESTADO, ".
             " date_format(B.fecha_ingreso,'%T') as INGRESO, ".
             " C.FECHAINI, C.FECHAFIN ".
             " FROM portalbd.tbl_usuarios A ".
