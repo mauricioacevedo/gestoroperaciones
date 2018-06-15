@@ -758,13 +758,23 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
     //************************************************************************************************
 
-	obj.getListadoUsuarios = function () {
-		return $http.get(serviceBase + 'listadoUsuarios');
-	};
-
+	//******************************************MICHAEL TURNOS******************************************
     obj.getListadoUsuariosOnline = function () {
 		return $http.get(serviceBase + 'listadoUsuariosOnline');
 	};
+
+    obj.editUsuario = function (editaInfo) {
+		return $http.post(serviceBase + 'editarTurnos', {
+			"editaInfo": editaInfo
+		});
+	};
+    //******************************************MICHAEL TURNOS******************************************
+
+
+    obj.getListadoUsuarios = function () {
+		return $http.get(serviceBase + 'listadoUsuarios');
+	};
+
 
     obj.getListadoPedidosMalos = function () {
 		return $http.get(serviceBase + 'listadoPedidosMalos');

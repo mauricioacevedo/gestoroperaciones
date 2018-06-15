@@ -18914,6 +18914,75 @@ public function pp(&$var){
     }//Funcion para listar la productividad del grupo
 
 
+    private function editarTurnos(){
+
+
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+
+
+        $params = json_decode(file_get_contents('php://input'),true);
+
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+
+        $id=$params['editaInfo']['ID'];
+
+
+        //var_dump($params['editaInfo']);
+
+        if($passEdita!=""){
+            $passcode=" , PASSWORD=MD5('".$passEdita."')";
+        }
+
+        $sql = "";
+
+        //echo $sql;
+
+
+        $rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
+
+        // SQL Feed----------------------------------
+        $sql_log=   "insert into portalbd.activity_feed ( ".
+            " USER ".
+            ", USER_NAME ".
+            ", GRUPO ".
+            ", STATUS ".
+            ", PEDIDO_OFERTA ".
+            ", ACCION ".
+            ", CONCEPTO_ID ".
+            ", IP_HOST ".
+            ", CP_HOST ".
+            ") values( ".
+            " UPPER('$usuarioGalleta')".
+            ", UPPER('$nombreGalleta')".
+            ", UPPER('$grupoGalleta')".
+            ",'OK' ".
+            ",'SIN PEDIDO' ".
+            ",'EDITO USUARIO' ".
+            ",'$usuarioEdita EDITADO' ".
+            ",'$usuarioIp' ".
+            ",'$usuarioPc')";
+
+        $rlog = $this->mysqli->query($sql_log);
+        // ---------------------------------- SQL Feed
+
+        $error="Usuario Editado.";
+        $this->response($this->json($error), 200);
+
+
+    }//Funcion para listar la productividad del grupo
+
+
     private function municipiosAsignacionesSiebel(){
 
         if($this->get_request_method() != "POST"){
