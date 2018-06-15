@@ -126,8 +126,11 @@
                             <td><span class="small">{{data.USUARIO_NOMBRE}}</span></td>
                             <!--<td><span class="small">{{data.CEDULA_ID}}</span></td>-->
                             <td><span class="small">{{data.GRUPO}}</span></td>
-                            <td><span ng-class="{'label label-success': data.FECHAINI != '', 'label label-warning': data.FECHAINI == 'SIN PROGRAMACION'}" >{{data.FECHAINI}}</span></td>
+
+                            <td><span ng-class="{'label label-success': data.FECHAINI != '', 'label label-danger': data.FECHAINI == 'SIN PROGRAMACION'}" >{{data.FECHAINI}}</span></td>
+
                             <td><span ng-class="{'label label-danger': data.FECHAFIN != '', 'label label-warning': data.FECHAFIN == 'SIN PROGRAMACION'}">{{data.FECHAFIN}}</span></td>
+
                             <td><span class="small">{{data.INGRESO}}</span></td>
                             <td><span class="small"
                                       ng-class="{'ACTIVO': 'label label-success','INACTIVO': 'label label-default'}[data.ESTADO]">{{data.ESTADO}}</span>
