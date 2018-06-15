@@ -15365,7 +15365,7 @@ public function pp(&$var){
 */
         $sql = " insert into Tbl_Turnos (USUARIO,FECHAINI,FECHAFIN,FECHAINI_NOVEDAD, ".
                " FECHAFIN_NOVEDAD, TIPONOVEDAD,DESCRIPCION,PROGRAMO) ".
-               " values '$Login','$FechaIni','$FechaFin','$FechaIniNovedad','$FechaFinNovedad', ".
+               " values ('$Login','$FechaIni','$FechaFin','$FechaIniNovedad','$FechaFinNovedad', ".
                " '$TipoNovedad','$Descripcion','$usuarioGalleta')";
 
         //echo $sql;
