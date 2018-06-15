@@ -15307,7 +15307,7 @@ public function pp(&$var){
             " C.FECHAINI, C.FECHAFIN ".
             " FROM portalbd.tbl_usuarios A ".
             " inner join registro_ingreso_usuarios B on A.USUARIO_ID = B.usuario ".
-            " left join Tbl_Turnos C on A.USUARIO_ID = C.USUARIO ".
+            " left outer join Tbl_Turnos C on A.USUARIO_ID = C.USUARIO ".
             " where B.status = 'logged in' ".
             " and B.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59' ".
             " group by A.USUARIO_ID ";
