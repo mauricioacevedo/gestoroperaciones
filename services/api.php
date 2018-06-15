@@ -15347,15 +15347,17 @@ public function pp(&$var){
         $grupoGalleta   =   $galleta['GRUPO'];
 
 
+        echo var_dump($params);
+
         $id=$params['editaInfo']['ID'];
 
 
         //var_dump($params['editaInfo']);
 
-        if($passEdita!=""){
+       /* if($passEdita!=""){
             $passcode=" , PASSWORD=MD5('".$passEdita."')";
         }
-
+*/
         $sql = "";
 
         //echo $sql;
@@ -15364,31 +15366,31 @@ public function pp(&$var){
         $rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
 
         // SQL Feed----------------------------------
-        $sql_log=   "insert into portalbd.activity_feed ( ".
-            " USER ".
-            ", USER_NAME ".
-            ", GRUPO ".
-            ", STATUS ".
-            ", PEDIDO_OFERTA ".
-            ", ACCION ".
-            ", CONCEPTO_ID ".
-            ", IP_HOST ".
-            ", CP_HOST ".
-            ") values( ".
-            " UPPER('$usuarioGalleta')".
-            ", UPPER('$nombreGalleta')".
-            ", UPPER('$grupoGalleta')".
-            ",'OK' ".
-            ",'SIN PEDIDO' ".
-            ",'EDITO USUARIO' ".
-            ",'$usuarioEdita EDITADO' ".
-            ",'$usuarioIp' ".
-            ",'$usuarioPc')";
-
-        $rlog = $this->mysqli->query($sql_log);
+//        $sql_log=   "insert into portalbd.activity_feed ( ".
+//            " USER ".
+//            ", USER_NAME ".
+//            ", GRUPO ".
+//            ", STATUS ".
+//            ", PEDIDO_OFERTA ".
+//            ", ACCION ".
+//            ", CONCEPTO_ID ".
+//            ", IP_HOST ".
+//            ", CP_HOST ".
+//            ") values( ".
+//            " UPPER('$usuarioGalleta')".
+//            ", UPPER('$nombreGalleta')".
+//            ", UPPER('$grupoGalleta')".
+//            ",'OK' ".
+//            ",'SIN PEDIDO' ".
+//            ",'EDITO USUARIO' ".
+//            ",'$usuarioEdita EDITADO' ".
+//            ",'$usuarioIp' ".
+//            ",'$usuarioPc')";
+//
+//        $rlog = $this->mysqli->query($sql_log);
         // ---------------------------------- SQL Feed
 
-        $error="Usuario Editado.";
+        $error="Guardado con exito.";
         $this->response($this->json($error), 200);
 
 
