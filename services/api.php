@@ -15300,20 +15300,20 @@ public function pp(&$var){
         }
 
 
-        $query=	" SELECT A.ID, ".
-            " A.USUARIO_ID, A.USUARIO_NOMBRE, A.CEDULA_ID, A.GRUPO, ".
-            " B.status as ESTADO, ".
-            " date_format(B.fecha_ingreso,'%T') as INGRESO, ".
-            " (CASE WHEN C.FECHAINI IS NULL THEN 'SIN PROGRAMACION' ".
-            " ELSE CAST(C.FECHAINI AS CHAR(100) CHARACTER SET utf8) END) AS FECHAINI, ".
-            " (CASE WHEN C.FECHAFIN IS NULL THEN 'SIN PROGRAMACION' ".
-            " ELSE CAST(C.FECHAFIN AS CHAR(100) CHARACTER SET utf8) END) AS FECHAFIN, ".
-            " FROM tbl_usuarios A ".
-            " inner join registro_ingreso_usuarios B on A.USUARIO_ID = B.usuario ".
-            " left outer join Tbl_Turnos C on A.USUARIO_ID = C.USUARIO ".
-            " where B.status = 'logged in' ".
-            " and B.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59' ".
-            " group by A.USUARIO_ID ";
+        $query=	"SELECT A.ID, ".
+	            " A.USUARIO_ID, A.USUARIO_NOMBRE,  A.GRUPO, ".
+	            " B.status as ESTADO, date_format(B.fecha_ingreso,'%T') as INGRESO, ".
+                " (CASE WHEN C.FECHAINI IS NULL THEN 'SIN PROGRAMACION' ".
+                " ELSE CAST(C.FECHAINI AS CHAR(100) CHARACTER SET utf8) END) AS FECHAINI, ".
+                " (CASE WHEN C.FECHAFIN IS NULL THEN 'SIN PROGRAMACION' ".
+                " ELSE CAST(C.FECHAFIN AS CHAR(100) CHARACTER SET utf8) END) AS FECHAFIN, ".
+                " C.PROGRAMO, C.FECHACARGA ".
+	            " FROM portalbd.tbl_usuarios A ".
+	            " inner join registro_ingreso_usuarios B on A.USUARIO_ID = B.usuario ".
+	            " left outer join Tbl_Turnos C on A.USUARIO_ID = C.USUARIO ".
+	            " where B.status = 'logged in' ".
+	            " and B.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59' ".
+	            " group by A.USUARIO_ID ;";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
