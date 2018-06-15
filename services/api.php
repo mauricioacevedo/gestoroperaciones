@@ -15304,7 +15304,10 @@ public function pp(&$var){
             " A.USUARIO_ID, A.USUARIO_NOMBRE, A.CEDULA_ID, A.GRUPO, ".
             " B.status as ESTADO, ".
             " date_format(B.fecha_ingreso,'%T') as INGRESO, ".
-            " C.FECHAINI, C.FECHAFIN ".
+            " (CASE WHEN C.FECHAINI IS NULL THEN 'SIN PROGRAMACION' ".
+            " ELSE CAST(C.FECHAINI AS CHAR(100) CHARACTER SET utf8) END) AS FECHAINI, ".
+            " (CASE WHEN C.FECHAFIN IS NULL THEN 'SIN PROGRAMACION' ".
+            " ELSE CAST(C.FECHAFIN AS CHAR(100) CHARACTER SET utf8) END) AS FECHAFIN, ".
             " FROM portalbd.tbl_usuarios A ".
             " inner join registro_ingreso_usuarios B on A.USUARIO_ID = B.usuario ".
             " left outer join Tbl_Turnos C on A.USUARIO_ID = C.USUARIO ".
