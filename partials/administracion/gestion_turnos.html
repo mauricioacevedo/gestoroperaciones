@@ -126,7 +126,7 @@
                             <td><span class="small">{{data.USUARIO_NOMBRE}}</span></td>
                             <!--<td><span class="small">{{data.CEDULA_ID}}</span></td>-->
                             <td><span class="small">{{data.GRUPO}}</span></td>
-                            <td><span ng-class="{'label label-success': data.FECHAINI != ''}" >{{data.FECHAINI}}</span></td>
+                            <td><span ng-class="{'label label-success': data.FECHAINI != '', 'label label-warning': data.FECHAINI == ''}" >{{data.FECHAINI}}</span></td>
                             <td><span class="small">{{data.FECHAFIN}}</span></td>
                             <td><span class="small">{{data.INGRESO}}</span></td>
                             <td><span class="small"
