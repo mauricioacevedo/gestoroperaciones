@@ -1459,6 +1459,9 @@ class API extends REST {
         $observaciones = $pedido1['observacion'];
         $departamento = $pedido1['departamento'];
         $ciudad = $pedido1['ciudad'];
+        $estado_id = $pedido1['concepto'];
+
+        //echo var_dump($pedido1);
 
         //echo $pedido;
         $concepto = $pedido1['concepto'];
@@ -1503,7 +1506,9 @@ class API extends REST {
         //$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
         if(!empty($pedido)){
             //$concepto_final=$this->updateFenix($pedido);
-            $query = "INSERT INTO pedidos(".trim($columns,',').",source,OBSERVACIONES_PROCESO, pedido_id,DEPARTAMENTO, municipio_id) VALUES(".trim($values,',').",'MANUAL', '$observaciones', '$pedidoid','$departamento','$ciudad')";
+            $query = "INSERT INTO pedidos(".trim($columns,',').",source,OBSERVACIONES_PROCESO, pedido_id,DEPARTAMENTO, municipio_id, ESTADO_ID) VALUES(".trim($values,',').",'MANUAL', '$observaciones', '$pedidoid','$departamento','$ciudad','$estado_id')";
+
+            //echo var_dump($query);
             //echo $query;
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -8714,7 +8719,9 @@ private function getAgentScore($user){
         $prioridad      =   $this->_request['prioridad'];
 
         $zona           =   $this->_request['zona'];
-        //echo "zona = $zona";
+
+        //echo var_dump ($zona);
+        //echo var_dump ($plaza);
 
 
 
@@ -9002,7 +9009,7 @@ private function getAgentScore($user){
                 $plaza2=" AND MUNICIPIO_ID='$plaza' ";
             }
 
-            if($zona=='TODOS'){
+            if($plaza=='TODOS'){
                 $zona2="";
             }else{
                 $zona2=" AND ZONA='$zona' ";
@@ -9131,7 +9138,7 @@ private function getAgentScore($user){
             " and b.ASESOR ='' ".
             $tipo_trabajo.
             $concepto." ".
-            $plaza.
+            //$plaza.
             $zona2.
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
@@ -9210,7 +9217,7 @@ private function getAgentScore($user){
                     " from informe_petec_pendientesm b ".
                     " where b.STATUS='$STATUS'  and b.ASESOR ='' ".
                     "  $concepto ".
-                    $plaza.
+                    //$plaza.
                     $zona2.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
                     " order by b.$parametroBusqueda2 $parametroOrden";
@@ -15254,7 +15261,7 @@ public function pp(&$var){
             " u.INTERVENTOR, ".
             " u.ESTADO ".
             " FROM portalbd.tbl_usuarios u ".
-            " left join portalbd.tbl_cargos c on u.CARGO_ID=c.ID_CARGO ";
+            " left join portalbd.tbl_cargos c on u.CARGO_ID=c.ID_CARGO where u.ESTADO not in ('INACTIVO') ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -15272,6 +15279,135 @@ public function pp(&$var){
         $this->response('',204);        // If no records "No Content" status
 
     }
+
+
+    //**************************************MICHAEL GESTION TURNOS ***********************************
+    private function listadoUsuariosOnline(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+
+        $fecha = date("Y-m-d");
+
+        $query="SELECT count(*) as counter from tbl_usuarios";
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter = $row['counter'];
+            }
+        }
+
+
+        $query=	" SELECT max(B.id), A.ID, ".
+            " A.USUARIO_ID, A.USUARIO_NOMBRE, A.CEDULA_ID, A.GRUPO, ".
+            " B.status as ESTADO, ".
+            " date_format(B.fecha_ingreso,'%T') as INGRESO, ".
+            " C.FECHAINI, C.FECHAFIN ".
+            " FROM portalbd.tbl_usuarios A ".
+            " inner join registro_ingreso_usuarios B on A.USUARIO_ID = B.usuario ".
+            " left outer join Tbl_Turnos C on A.USUARIO_ID = C.USUARIO ".
+            " where B.status = 'logged in' ".
+            " and B.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59' ".
+            " group by A.USUARIO_ID ";
+        //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                //$result[] = $row;
+                //echo "name: ".utf8_encode($row['USUARIO_NOMBRE'])."\n ";
+                $row['USUARIO_NOMBRE']=utf8_encode($row['USUARIO_NOMBRE']);
+                $result[] = $row;
+            }
+            $this->response($this->json(array($result,$counter)), 200); // send user details
+        }
+        $this->response('',204);        // If no records "No Content" status
+
+    }
+
+    private function editarTurnos(){
+
+
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+
+
+        $params = json_decode(file_get_contents('php://input'),true);
+
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+
+        $id=$params['editaInfo']['ID'];
+        $Login=$params['editaInfo']['USUARIO_ID'];
+        $FechaIni=$params['editaInfo']['FECHAINICIO'];
+        $FechaFin=$params['editaInfo']['FECHAFIN'];
+        $FechaIniNovedad=$params['editaInfo']['FECHAININOVEDAD'];
+        $FechaFinNovedad=$params['editaInfo']['FECHAFIN_NOVEDAD'];
+        $TipoNovedad=$params['editaInfo']['TIPO_NOVEDAD'];
+        $Descripcion=$params['editaInfo']['Descripcion'];
+
+
+        //var_dump($params['editaInfo']);
+
+       /* if($passEdita!=""){
+            $passcode=" , PASSWORD=MD5('".$passEdita."')";
+        }
+*/
+        $sql = " insert into Tbl_Turnos (USUARIO,FECHAINI,FECHAFIN,FECHAINI_NOVEDAD, ".
+               " FECHAFIN_NOVEDAD, TIPONOVEDAD,DESCRIPCION,PROGRAMO) ".
+               " values ('$Login','$FechaIni','$FechaFin','$FechaIniNovedad','$FechaFinNovedad', ".
+               " '$TipoNovedad','$Descripcion','$usuarioGalleta')";
+
+        //echo $sql;
+
+
+        $rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
+
+        // SQL Feed----------------------------------
+//        $sql_log=   "insert into portalbd.activity_feed ( ".
+//            " USER ".
+//            ", USER_NAME ".
+//            ", GRUPO ".
+//            ", STATUS ".
+//            ", PEDIDO_OFERTA ".
+//            ", ACCION ".
+//            ", CONCEPTO_ID ".
+//            ", IP_HOST ".
+//            ", CP_HOST ".
+//            ") values( ".
+//            " UPPER('$usuarioGalleta')".
+//            ", UPPER('$nombreGalleta')".
+//            ", UPPER('$grupoGalleta')".
+//            ",'OK' ".
+//            ",'SIN PEDIDO' ".
+//            ",'EDITO USUARIO' ".
+//            ",'$usuarioEdita EDITADO' ".
+//            ",'$usuarioIp' ".
+//            ",'$usuarioPc')";
+//
+//        $rlog = $this->mysqli->query($sql_log);
+        // ---------------------------------- SQL Feed
+
+        $error="Guardado con exito.";
+        $this->response($this->json($error), 200);
+
+
+    }
+
+    //**************************************MICHAEL GESTION TURNOS ***********************************
+
 
     //--------------------------FUNCIONES GESTION PEDIDOSMALOS----------------
 
@@ -17302,6 +17438,10 @@ public function pp(&$var){
             "	, m.UEN_CALCULADA ".
             "	, m.ESTRATO ".
             "	, m.CONCEPTO_ID ".
+            "	, m.IDENTIFICADOR_ID ".
+            "	, m.VEL_IDEN ".
+            "	, m.VEL_SOLI ".
+            "	, m.PEDIDO_CRM ".
             "	, m.TECNOLOGIA_ID ".
             "	, m.MUNICIPIO_ID ".
             "	, m.DIRECCION_SERVICIO ".
@@ -18859,6 +18999,9 @@ public function pp(&$var){
     }//Funcion para listar la productividad del grupo
 
 
+
+
+
     private function municipiosAsignacionesSiebel(){
 
         if($this->get_request_method() != "POST"){
@@ -19848,29 +19991,32 @@ public function pp(&$var){
 
         //echo ("INGRESOOOO");
 
-        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
-        $usuarioPc      =   gethostbyaddr ($usuarioIp);
-        $galleta        =   json_decode (stripslashes ($_COOKIE['logedUser']), true);
-        $galleta        =   stripslashes ($_COOKIE['logedUser']);
-        $galleta        =   json_decode ($galleta);
-        $galleta        =   json_decode (json_encode ($galleta), True);
-        $usuarioGalleta =   $galleta['login'];
-        $nombreGalleta  =   $galleta['name'];
-        $grupoGalleta   =   $galleta['GRUPO'];
+        $usuarioIp          =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc          =   gethostbyaddr ($usuarioIp);
+        $galleta            =   json_decode (stripslashes ($_COOKIE['logedUser']), true);
+        $galleta            =   stripslashes ($_COOKIE['logedUser']);
+        $galleta            =   json_decode ($galleta);
+        $galleta            =   json_decode (json_encode ($galleta), True);
+        $usuarioGalleta     =   $galleta['login'];
+        $nombreGalleta      =   $galleta['name'];
+        $grupoGalleta       =   $galleta['GRUPO'];
 
-        $gestion        =   json_decode (file_get_contents ("php://input"), true);
-        $fechaServidor  =   date("Y-m-d H:i:s");
-        $usuario        =   $gestion['gestion']['user'];
-        $fuente         =   $gestion['gestion']['fuente'];
-        $estado         =   $gestion['gestion']['ESTADO_ID'];
-        $programacion   =   $gestion['gestion']['horaLlamar'];
-        $pedido         =   $gestion['gestion']['pedido'];
-        $conceptoId     =   $gestion['gestion']['CONCEPTO_ANTERIOR'];
-        $idpedido       =   $gestion['gestion']['ID'];
-        $crIncidente    =   $gestion['gestion']['INCIDENTE'];
+        $gestion            =   json_decode (file_get_contents ("php://input"), true);
+        $fechaServidor      =   date("Y-m-d H:i:s");
+        $usuario            =   $gestion['gestion']['user'];
+        $fuente             =   $gestion['gestion']['fuente'];
+        $estado             =   $gestion['gestion']['ESTADO_ID'];
+        $programacion       =   $gestion['gestion']['horaLlamar'];
+        $pedido             =   $gestion['gestion']['pedido'];
+        $conceptoId         =   $gestion['gestion']['CONCEPTO_ANTERIOR'];
+        $idpedido           =   $gestion['gestion']['ID'];
+        $crIncidente        =   $gestion['gestion']['INCIDENTE'];
 
-        $observacion    =   $gestion['gestion']['OBSERVACIONES_PROCESO'];
-        $malingreso     =   $gestion['gestion']['MALINGRESO'];
+        $observacion        =   $gestion['gestion']['OBSERVACIONES_PROCESO'];
+        $malingreso         =   $gestion['gestion']['MALINGRESO'];
+        $motivoMalIngreso   =   $gestion['gestion']['MOTIVOMALINGRESO'];
+
+        //echo var_dump ($motivoMalIngreso);
 
 
 
@@ -19927,7 +20073,8 @@ public function pp(&$var){
 
         if ($malingreso <> 'SI')
         {
-            $malingreso = 'NO';
+            //$malingreso = 'NO';
+            $motivoMalIngreso = 'NO';
         }
 
 
@@ -20079,7 +20226,7 @@ public function pp(&$var){
                 $values = $values."'".$gestion['gestion'][$desired_key]."',";
             }
 
-            $queryGestion = "INSERT INTO pedidos(".trim($columns,',').",MAL_INGRESO) VALUES(".trim($values,',').",'$malingreso')";
+            $queryGestion = "INSERT INTO pedidos(".trim($columns,',').",MAL_INGRESO) VALUES(".trim($values,',').",'$motivoMalIngreso')";
 
             /*$query = " INSERT INTO  tbl_RegistrosPNI (".trim($columns,',').",RESPONSABLE, FECHAINI) VALUES(".trim($values,',').",'$usuarioGalleta','$fechaini')";*/
             //echo "INSERT: $queryGestion";

@@ -280,6 +280,8 @@
                                     class="fa fa-users DemePedidoBlue"></span> Usuarios</a></li>
                             <li ng-show="logedUser.CARGO_ID=='1' || logedUser.CARGO_ID<='5'"><a href=".#/Malos/"><span
                                     class="fa fa-cogs DemePedidoBlue"></span> Pedidos Malos</a></li>
+                            <li ng-show="logedUser.CARGO_ID=='1' || logedUser.CARGO_ID<='5'"><a href=".#/Turnos/"><span
+                                    class="fa fa-calendar"></span> Gestion Turnos</a></li>
                             <li ng-show="logedUser.CARGO_ID<='5'"><a href=".#/admontips/"><span
                                     class="fa fa-file-code-o DemePedidoBlue"></span> Tips</a></li>
                         </ul>

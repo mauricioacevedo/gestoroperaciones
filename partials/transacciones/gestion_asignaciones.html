@@ -265,11 +265,28 @@
                                                                        ng-model="InfoPedido.MAL_INGRESO"
                                                                        name="MALINGRESO"
                                                                        id="MALINGRESO"
-                                                                       ng-change="onChangeAccion(InfoPedido.MAL_INGRESO)"
-                                                                       ng-true-value="'SI'">
+                                                                       ng-change="true"
+                                                                       ng-true-value="'SI'"                                         >
+
                                                             </span>
 
                                                         </td>
+                                            </div>
+                                            <div class="form-group " ng-show="MALINGRESO = 'SI'" ng-class="">
+                                                <label for="MotivoMalIngreso" class="control-label">Motivo Mal Ingreso:</label>
+                                                <select id="MotivoMalIngreso"
+                                                        class= "form-control btn-xs"
+                                                        name="MotivoMalIngreso"
+                                                        ng-model="InfoPedido.MOTIVO_MAL_INGRESO"
+                                                        ng-change="" required>
+                                                    <option value="" disabled>--Seleccione--</option>
+                                                    <option value="TRANSACCION COMBINADA">TRANSACCION COMBINADA</option>
+                                                    <option value="PORTABILIDAD NUMERICA">PORTABILIDAD NUMERICA</option>
+                                                    <option value="SIN PAGINACION">SIN PAGINACION</option>
+                                                    <option value="DIRECCION MAL INGRESADA">DIRECCION MAL INGRESADA</option>
+                                                    <option value="PLAN NO EXISTE">PLAN NO EXISTE</option>
+
+                                                </select>
                                             </div>
 
                                             <div class="form-group has-feedback" ng-show="programar">

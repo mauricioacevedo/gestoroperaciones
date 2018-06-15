@@ -758,9 +758,23 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
     //************************************************************************************************
 
-	obj.getListadoUsuarios = function () {
+	//******************************************MICHAEL TURNOS******************************************
+    obj.getListadoUsuariosOnline = function () {
+		return $http.get(serviceBase + 'listadoUsuariosOnline');
+	};
+
+    obj.editTurnos = function (editaInfo) {
+		return $http.post(serviceBase + 'editarTurnos', {
+			"editaInfo": editaInfo
+		});
+	};
+    //******************************************MICHAEL TURNOS******************************************
+
+
+    obj.getListadoUsuarios = function () {
 		return $http.get(serviceBase + 'listadoUsuarios');
 	};
+
 
     obj.getListadoPedidosMalos = function () {
 		return $http.get(serviceBase + 'listadoPedidosMalos');
@@ -4825,6 +4839,376 @@ app.controller('UsersCtrl', function ($scope, $rootScope, $location, $routeParam
 });
 
 //------------ fin controlador usuarios ---------------------------
+
+app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services) {
+
+	var userID = $cookieStore.get('logedUser').login;
+	$rootScope.logedUser = $cookieStore.get('logedUser');
+	document.getElementById('logout').className = "btn btn-md btn-danger";
+	var divi = document.getElementById("logoutdiv");
+	divi.style.visibility = "visible";
+	divi.style.position = "relative";
+	$rootScope.iconcepto = "TODO";
+	$rootScope.actualView = "usuarios";
+
+	$scope.usert = {};
+	$scope.usert.EQUIPO_ID = "MANUAL";
+	$scope.usert.ID = "";
+
+	$scope.doubleDigit = function (num) {
+
+		if (num < 0) {
+			num = 0;
+		}
+
+		if (num <= 9) {
+			return "0" + num;
+		}
+		return num;
+	};
+
+	$rootScope.logout = function () {
+		services.logout($rootScope.logedUser.login);
+		$cookieStore.remove('logedUser');
+		$rootScope.logedUser = undefined;
+		$scope.pedidos = {};
+		document.getElementById('logout').className = "btn btn-md btn-danger hide";
+		var divi = document.getElementById("logoutdiv");
+		divi.style.position = "absolute";
+		divi.style.visibility = "hidden";
+		$location.path('/');
+	};
+
+
+
+	$rootScope.errorDatos = null;
+	$scope.fechiniExpoIO = "";
+	$scope.fechafiniExpoIO = "";
+
+
+	$scope.usuarioFill = function (usuario_id) {
+		$scope.filtroInput = usuario_id;
+
+
+	};
+
+
+	//Obtener listado de usuarios del GEOP
+	$scope.listadoUsuariosGeop = function (usuario_id) {
+		$rootScope.errorDatos = null;
+		services.getListadoUsuariosOnline(usuario_id).then(
+
+			function (data) {
+				$errorDatos = null;
+
+                $scope.listaUsuarios = data.data[0];
+
+				// console.log($scope.listaUsuarios);
+				$scope.cantidad = data.data.length;
+				$scope.sortType = 'USUARIO_ID'; // set the default sort type
+				$scope.sortReverse = false; // set the default sort order
+				$scope.csvUsers = false;
+				$scope.fechiniExpoIO = '';
+
+				return data.data;
+			},
+			function errorCallback(response) {
+
+				$rootScope.errorDatos = "Usuario no existe.";
+
+				// console.log($rootScope.errorDatos);
+
+			});
+
+
+	};
+	$scope.listadoUsuariosGeop();
+
+	//Exportes: Inicio
+	$scope.csvUsuarios = function (filtroInput) {
+
+		services.expCsvUsuarios().then(
+
+			function (data) {
+
+				//console.log(data.data[0]);
+				window.location.href = "tmp/" + data.data[0];
+				$scope.csvUsers = true;
+				return data.data;
+
+			},
+			function errorCallback(response) {
+
+				$rootScope.errorDatos = "No hay datos.";
+				$scope.csvUsers = false;
+
+				//console.log($rootScope.errorDatos);
+
+			}
+		);
+
+	};
+	//Exportes: Fin
+
+
+
+	//modales
+	//Modal para editar usuarios
+	$scope.editarModal = function (data) {
+		$rootScope.errorDatos = null;
+		$scope.idUsuario = data.ID;
+		$scope.UsuarioNom = data.USUARIO_NOMBRE;
+		$scope.editaInfo = data;
+		$scope.TituloModal = "Gestion Turnos :";
+		$scope.UsuarioNuevo = false;
+        //console.log(editaInfo);
+        $scope.cargoLabel = null;
+        $scope.msgLdap = null;
+        $scope.pic = 'images/avatar_2x.png';
+		//$scope.editaInfo.CARGO_ID=data.CARGO_ID;
+	};
+	//Modal para Crear Usuario Nuevo
+	$scope.crearUsuarioModal = function () {
+		$scope.editaInfo = {};
+		$rootScope.errorDatos = null;
+		$scope.idUsuario = '';
+		$scope.UsuarioNom = '';
+		$scope.TituloModal = "Crear Usuario Nuevo.";
+		$scope.UsuarioNuevo = true;
+        $scope.cargoLabel = null;
+        $scope.msgLdap = null;
+        $scope.pic = 'images/avatar_2x.png';
+	};
+	//Modal para borrar usuarios.
+	$scope.borrarModal = function (data) {
+		$rootScope.errorDatos = null;
+		$scope.idUsuario = data.ID;
+		$scope.UsuarioNom = data.USUARIO_NOMBRE;
+		// console.log(data);
+		console.log("ID a borrar: " + $scope.idUsuario);
+	};
+
+
+	$scope.borrarUsuario = function (id) {
+		$scope.idBorrar = id;
+		services.deleteUsuario($scope.idBorrar).then(
+			function (data) {
+				$scope.listadoUsuariosGeop();
+				$rootScope.errorDatos = null;
+
+
+			},
+			function errorCallback(response) {
+
+				$rootScope.errorDatos = "No se borro";
+
+				//console.log($rootScope.errorDatos);
+
+			}
+
+		);
+
+
+	}; //Borrar Usuario
+
+	//Editar Turno Servicio
+	$scope.editarTurnos = function (editaInfo) {
+
+		services.editTurnos(editaInfo).then(
+
+			function (data) {
+
+				$scope.listadoUsuariosGeop();
+				$rootScope.errorDatos = null;
+
+
+			},
+			function errorCallback(response) {
+
+				$rootScope.errorDatos = "Error editando";
+
+				//console.log($rootScope.errorDatos);
+
+			});
+	}; //Editar Usuario Servicio
+
+	//Crear Usuario
+	$scope.crearUsuario = function (editaInfo) {
+
+		services.putUsuarioNuevo(editaInfo).then(
+
+			function (data) {
+
+				$scope.listadoUsuariosGeop();
+				$rootScope.errorDatos = null;
+
+				//console.log(novedades);
+
+			},
+			function errorCallback(response) {
+
+				$rootScope.errorDatos = "Campos vacíos. Revise";
+
+				// console.log($rootScope.errorDatos);
+
+			});
+	}; //Crear Usuario
+
+	$scope.sendEmail = function (data) {
+
+		//console.log(data);
+		$scope.infoEmail = data;
+		var email = data.Correo;
+		//var email="pepitagota@chupaverlga.com";
+		var ingreso = data.Hora_ingreso;
+		var salida = data.Hora_salida;
+		var fecha = data.Fecha;
+		var nombre = data.nombre;
+		var url = "http://10.100.82.125/autobots/plugins/img/";
+		var urlpath = window.location.pathname;
+
+
+
+		var body = "Hola <b>" + nombre + "</b>, <br> El dia: <b>" + fecha + "</b>  No cerraste, sesion." +
+			"<br><br><br><br><br><br> Este es un correo generado automaticamente.<br> " +
+			"Si tienes alguna duda por favor acercate al puesto de tu supervisor.<br> " +
+			"<hr><br><img src='" + url + "geop_logo.png'>";
+		//var body="<html><b>Hola</b> "+nombre+",\n El dia: "+fecha+" No cerraste, sesion</html>";
+
+		var subject = "Gestor Operaciones: No cerro sesion.";
+
+		$scope.url = 'http://10.100.82.125/autobots/plugins/email_sesiones.php';
+
+		$http.post($scope.url, {
+			"name": nombre,
+			"email": email,
+			"message": body,
+			"fecha": fecha,
+			"asunto": subject
+		}).
+		then(function successCallback(response) {
+
+			console.log("Por fin envio");
+			//console.log(response);
+			$notification.success("Enviado", "Correo enviado exitosamente");
+
+		}, function errorCallback(response) {
+
+			$timeout(function () {
+				$notification.error("Error", "No se envió el correo.", $scope.sendEmailMaunal($scope.infoEmail));
+			}, 700);
+
+		})
+
+
+	};
+
+	$scope.sendEmailMaunal = function (data) {
+
+		//console.log(data);
+
+		var email = data.Correo;
+		var ingreso = data.Hora_ingreso;
+		var salida = data.Hora_salida;
+		var fecha = data.Fecha;
+		var nombre = data.nombre;
+		var body = "Hola " + nombre + ",\n El dia: " + fecha + " No cerraste, sesion" +
+			"\n\n\n\n\n\n Este es un correo generado automaticamente.\n" +
+			"Si tienes alguna duda por favor acercate al puesto de tu supervisor.";
+		//var body="<html><b>Hola</b> "+nombre+",\n El dia: "+fecha+" No cerraste, sesion</html>";
+
+		var subject = "Gestor Operaciones: No cerró sesión.";
+		var link = "mailto:" + email +
+			"?subject=" + escape(subject) +
+			"&body=" + escape(body);
+		//+ "&body="+body;
+		//+ "&body=" + encodeURIComponent(body);
+		//+ "&HTMLBody="+escape("<html><head><meta http-equiv='content-type' content='text/html; charset=UTF-8'></head><body><b>Gika</b</body></html>");
+
+		window.location.href = link;
+	};
+
+
+	$scope.csvUsuarios = function (filtroInput) {
+
+		services.expCsvUsuarios().then(
+
+			function (data) {
+
+				//console.log(data.data[0]);
+				window.location.href = "tmp/" + data.data[0];
+				$scope.csvUsers = true;
+				return data.data;
+
+			},
+			function errorCallback(response) {
+
+				$rootScope.errorDatos = "No hay datos.";
+				$scope.csvUsers = false;
+
+				//console.log($rootScope.errorDatos);
+
+			}
+		);
+
+	};
+
+	$scope.abrirsuk = function () {
+
+		var msg = {
+			type: "message",
+			text: "Holi",
+			id: '1',
+			date: Date.now(),
+			data: {
+				message: "Hello world!"
+			}
+		};
+
+
+	};
+
+	$scope.buscarIdLdap = function (userid) {
+        $rootScope.errorDatos = null;
+		$http.get('./services/getLdapUserInfo?userbusqueda='+userid).then(
+			function (data){
+
+				if(data.status!=201){
+					$scope.msgLdap = "Usuario encontrado";
+                    $scope.editaInfo = {
+                        USUARIO_ID: data.data[0].USUARIO_ID,
+                        USUARIO_NOMBRE: data.data[0].USUARIO_NOMBRE,
+                        CEDULA_ID: data.data[0].CEDULA_ID,
+                        CORREO_USUARIO: data.data[0].CORREO_USUARIO,
+                        ESTADO: 'ACTIVO'
+                    };
+                    $scope.cargoLabel = data.data[0].CARGO;
+                    if(data.data[0].PICTURE!==''){
+                        $scope.pic = 'data:image/jpeg;base64,'+data.data[0].PICTURE;
+					}else{
+                        $scope.pic = 'images/avatar_2x.png';
+					}
+
+
+                    //console.log(data.data[0]);
+
+				}else{
+
+                    $scope.msgLdap = data.data[0];
+                    $scope.cargoLabel = null;
+                    $scope.pic = null;
+				}
+			},
+			function errorCallback(res){
+                $rootScope.errorDatos = res.data;
+                $scope.cargoLabel = null;
+                $scope.msgLdap = $rootScope.errorDatos;
+			}
+		)
+	}
+
+
+});
 
 
 //-----------------------------inicio controlador PedidosMalos--------------------
@@ -15841,7 +16225,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 	$scope.pedidosUnicos = '';
 	$scope.historico_pedido = [];
 	$rootScope.actualView = "asignaciones";
-	$scope.iconcepto = "PETEC";
+	//$scope.iconcepto = "PETEC";
+    $scope.iconcepto = "COORP";
 	$scope.popup = '';
 	$scope.intervalLightKPIS = '';
 	$scope.pedidoinfo = 'Pedido';
@@ -15924,7 +16309,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		);
 	};
 
-    $scope.GenerarOpcionesGestion();
+    /*$scope.GenerarOpcionesGestion();*/
 
 	//funcion que muestra los tip cuando se digita su busqueda.
 	$scope.muestraBusquedaTip = function (texto) {
@@ -16671,14 +17056,14 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
         );
     };
 
-    $scope.checkMunicipiosAsignaciones = function () {
+/*    $scope.checkMunicipiosAsignaciones = function () {
         $rootScope.errorDatos = null;
         if(!angular.equals($scope.iconcepto, {})){
             $scope.listarMunicipiosAsignacionesSiebel($scope.iconcepto, 'FENIX_NAL');
-            //console.log($scope.iconcepto);
+            console.log($scope.iconcepto);
         }
 
-    };
+    };*/
   //  $scope.checkMunicipiosAsignaciones();
 
 });
@@ -18676,7 +19061,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 TECNOLOGIA_ID: gestion.TECNOLOGIA_ID,
                 FECHA: gestion.FECHA_ESTADO,
                 ID: gestion.ID,
-                MALINGRESO: InfoPedido.MAL_INGRESO
+                MALINGRESO: InfoPedido.MAL_INGRESO,
+                MOTIVOMALINGRESO: InfoPedido.MOTIVO_MAL_INGRESO
+
             };
 
             //console.log("cambio concepto " + gestion.CONCEPTO_ID);
@@ -20219,6 +20606,14 @@ app.config(['$routeProvider',
 			title: 'Gestion Usuarios',
 			templateUrl: 'partials/administracion/listado_usuarios.html',
 			controller: 'UsersCtrl',
+            grupos: ['SUPER'],
+            cargos: ['1']
+		})
+
+      .when('/Turnos/', {
+			title: 'Gestion Turnos',
+			templateUrl: 'partials/administracion/gestion_turnos.html',
+			controller: 'TurnosCtrl',
             grupos: ['SUPER'],
             cargos: ['1']
 		})
