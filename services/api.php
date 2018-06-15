@@ -15363,8 +15363,10 @@ public function pp(&$var){
             $passcode=" , PASSWORD=MD5('".$passEdita."')";
         }
 */
-        $sql = " insert into Tbl_Turnos (USUARIO,FECHAINI,FECHAFIN,FECHAINI_NOVEDAD,FECHAFIN_NOVEDAD,DESCRIPCION,PROGRAMO) ".
-               " values ('$Login','$FechaIni','$FechaFin','$FechaIniNovedad','$FechaFinNovedad','$TipoNovedad','$Descripcion')";
+        $sql = " insert into Tbl_Turnos (USUARIO,FECHAINI,FECHAFIN,FECHAINI_NOVEDAD, ".
+               " FECHAFIN_NOVEDAD, TIPONOVEDAD,DESCRIPCION,PROGRAMO) ".
+               " values '$Login','$FechaIni','$FechaFin','$FechaIniNovedad','$FechaFinNovedad', ".
+               " '$TipoNovedad','$Descripcion','$usuarioGalleta')";
 
         //echo $sql;
 
