@@ -15347,9 +15347,13 @@ public function pp(&$var){
         $grupoGalleta   =   $galleta['GRUPO'];
 
 
-        echo var_dump($params);
-
         $id=$params['editaInfo']['ID'];
+        $FechaIni=$params['editaIndo']['FECHAINICIO'];
+        $FechaFin=$params['editaIndo']['FECHAFIN'];
+        $FechaIniNovedad=$params['editaIndo']['FECHAININOVEDAD'];
+        $FechaFinNovedad=$params['editaIndo']['FECHAFIN_NOVEDAD'];
+        $TipoNovedad=$params['editaIndo']['TIPO_NOVEDAD'];
+        $Descripcion=$params['editaIndo']['Descripcion'];
 
 
         //var_dump($params['editaInfo']);
