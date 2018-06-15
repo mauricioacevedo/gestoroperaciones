@@ -763,7 +763,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoUsuariosOnline');
 	};
 
-    obj.editUsuario = function (editaInfo) {
+    obj.editTurnos = function (editaInfo) {
 		return $http.post(serviceBase + 'editarTurnos', {
 			"editaInfo": editaInfo
 		});
@@ -4959,7 +4959,7 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 		$scope.idUsuario = data.ID;
 		$scope.UsuarioNom = data.USUARIO_NOMBRE;
 		$scope.editaInfo = data;
-		$scope.TituloModal = "Agregar Novedad :";
+		$scope.TituloModal = "Gestion Turnos :";
 		$scope.UsuarioNuevo = false;
         //console.log(editaInfo);
         $scope.cargoLabel = null;
@@ -5011,10 +5011,10 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 
 	}; //Borrar Usuario
 
-	//Editar Usuario Servicio
-	$scope.editarUsuario = function (editaInfo) {
+	//Editar Turno Servicio
+	$scope.editarTurnos = function (editaInfo) {
 
-		services.editUsuario(editaInfo).then(
+		services.editTurnos(editaInfo).then(
 
 			function (data) {
 
