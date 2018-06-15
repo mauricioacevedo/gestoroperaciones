@@ -15356,7 +15356,7 @@ public function pp(&$var){
         $Descripcion=$params['editaInfo']['Descripcion'];
 
 
-        //var_dump($params['editaInfo']);
+        var_dump($params['editaInfo']);
 
        /* if($passEdita!=""){
             $passcode=" , PASSWORD=MD5('".$passEdita."')";
