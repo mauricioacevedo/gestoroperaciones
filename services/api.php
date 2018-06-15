@@ -15348,12 +15348,12 @@ public function pp(&$var){
 
 
         $id=$params['editaInfo']['ID'];
-        $FechaIni=$params['editaIndo']['FECHAINICIO'];
-        $FechaFin=$params['editaIndo']['FECHAFIN'];
-        $FechaIniNovedad=$params['editaIndo']['FECHAININOVEDAD'];
-        $FechaFinNovedad=$params['editaIndo']['FECHAFIN_NOVEDAD'];
-        $TipoNovedad=$params['editaIndo']['TIPO_NOVEDAD'];
-        $Descripcion=$params['editaIndo']['Descripcion'];
+        $FechaIni=$params['editaInfo']['FECHAINICIO'];
+        $FechaFin=$params['editaInfo']['FECHAFIN'];
+        $FechaIniNovedad=$params['editaInfo']['FECHAININOVEDAD'];
+        $FechaFinNovedad=$params['editaInfo']['FECHAFIN_NOVEDAD'];
+        $TipoNovedad=$params['editaInfo']['TIPO_NOVEDAD'];
+        $Descripcion=$params['editaInfo']['Descripcion'];
 
 
         //var_dump($params['editaInfo']);
