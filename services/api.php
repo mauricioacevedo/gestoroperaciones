@@ -15374,6 +15374,8 @@ public function pp(&$var){
         $sql = " insert into Tbl_Turnos (USUARIO,FECHAINI,FECHAFIN,PROGRAMO) ".
                " values ('$Login','$FechaIni','$FechaFin','$usuarioGalleta')";
 
+        $rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
+
         if ($Novedad == 'SI')
         {
              //$sqlUltimoTurno = "select max(ID) from Tbl_Turnos where USUARIO = '$Login' and ESTADO = 'Activo' ";
@@ -15382,17 +15384,10 @@ public function pp(&$var){
                   $rst2 = mysql_query ($sqlUltimoid);
                   if ($row = mysql_fetch_row($rst2)) {
                       $Carga = trim($row[0]);
-                       echo "Ultimo".$Carga;
+                       echo $Carga;
                       }
 
         }
-
-
-
-        //echo $sql;
-
-
-        $rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
 
         // SQL Feed----------------------------------
 //        $sql_log=   "insert into portalbd.activity_feed ( ".
