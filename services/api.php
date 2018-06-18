@@ -15362,6 +15362,8 @@ public function pp(&$var){
         $Descripcion=$params['editaInfo']['Descripcion'];
         $Novedad=$params['editaInfo']['NOVEDAD'];
 
+        echo var_dump ($Novedad);
+
 
         //var_dump($params['editaInfo']);
 
