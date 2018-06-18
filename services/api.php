@@ -15381,10 +15381,12 @@ public function pp(&$var){
              $rst = $this->mysqli->query($sqlUltimoTurno) or die($this->mysqli->error.__LINE__);
                   if ($row = mysql_fetch_row($rst)) {
                       $TurnoActivo = trim($row[0]);
-                      }
+                      echo var_dump ($TurnoActivo);
+                    }
+
         }
 
-        echo var_dump ($TurnoActivo);
+
 
         //echo $sql;
 
