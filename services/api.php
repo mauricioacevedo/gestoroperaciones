@@ -15360,6 +15360,7 @@ public function pp(&$var){
         $FechaFinNovedad=$params['editaInfo']['FECHAFIN_NOVEDAD'];
         $TipoNovedad=$params['editaInfo']['TIPO_NOVEDAD'];
         $Descripcion=$params['editaInfo']['Descripcion'];
+        $Novedad=$params['editaInfo']['NOVEDAD'];
 
 
         //var_dump($params['editaInfo']);
@@ -15368,10 +15369,13 @@ public function pp(&$var){
             $passcode=" , PASSWORD=MD5('".$passEdita."')";
         }
 */
-        $sql = " insert into Tbl_Turnos (USUARIO,FECHAINI,FECHAFIN,FECHAINI_NOVEDAD, ".
-               " FECHAFIN_NOVEDAD, TIPONOVEDAD,DESCRIPCION,PROGRAMO) ".
-               " values ('$Login','$FechaIni','$FechaFin','$FechaIniNovedad','$FechaFinNovedad', ".
-               " '$TipoNovedad','$Descripcion','$usuarioGalleta')";
+        $sql = " insert into Tbl_Turnos (USUARIO,FECHAINI,FECHAFIN,PROGRAMO) ".
+               " values ('$Login','$FechaIni','$FechaFin','$usuarioGalleta')";
+
+       /* if ($Novedad == 'SI')
+        {
+            $sql =
+        }*/
 
         //echo $sql;
 
