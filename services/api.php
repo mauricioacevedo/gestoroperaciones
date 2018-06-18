@@ -15384,9 +15384,9 @@ public function pp(&$var){
                   $rst2 = mysql_query ($sqlUltimoid);
                   if ($row = mysql_fetch_row($rst2)) {
                       $Carga = trim($row[0]);
-                       echo var_dump ($Carga);
-
                       }
+                          echo var_dump ($Login);
+                          echo var_dump ($Carga);
                           echo var_dump ($rst2);
         }
 
