@@ -15376,17 +15376,15 @@ public function pp(&$var){
 
         if ($Novedad == 'SI')
         {
-           $sqlUltimoTurno = "select max(ID) Tbl_Turnos where USUARIO = '$Login' and ESTADO = 'Activo' ";
-
+             $sqlUltimoTurno = "select max(ID) Tbl_Turnos where USUARIO = '$Login' and ESTADO = 'Activo' ";
 
              $rst = mysql_query ($sqlUltimoTurno);
                   if ($row = mysql_fetch_row($rst)) {
                       $TurnoActivo = trim($row[0]);
                       }
-            echo var_dump ($TurnoActivo);
-
         }
 
+        echo var_dump ($TurnoActivo);
 
         //echo $sql;
 
