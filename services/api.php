@@ -15362,7 +15362,7 @@ public function pp(&$var){
         $Descripcion=$params['editaInfo']['Descripcion'];
         $Novedad=$params['editaInfo']['NOVEDAD'];
 
-        echo var_dump ($Novedad);
+        //echo var_dump ($Novedad);
 
 
         //var_dump($params['editaInfo']);
@@ -15374,10 +15374,19 @@ public function pp(&$var){
         $sql = " insert into Tbl_Turnos (USUARIO,FECHAINI,FECHAFIN,PROGRAMO) ".
                " values ('$Login','$FechaIni','$FechaFin','$usuarioGalleta')";
 
-       /* if ($Novedad == 'SI')
+        if ($Novedad == 'SI')
         {
-            $sql =
-        }*/
+           $sqlUltimoTurno = "select max(ID) Tbl_Turnos where USUARIO = '$Login' and ESTADO = 'Activo' ";
+
+
+             $rst = mysql_query ($sqlUltimoTurno);
+                  if ($row = mysql_fetch_row($rst)) {
+                      $TurnoActivo = trim($row[0]);
+
+                      }
+
+        }
+        echo var_dump ($TurnoActivo);
 
         //echo $sql;
 
