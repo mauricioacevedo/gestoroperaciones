@@ -126,8 +126,11 @@
                             <td><span class="small">{{data.USUARIO_NOMBRE}}</span></td>
                             <!--<td><span class="small">{{data.CEDULA_ID}}</span></td>-->
                             <td><span class="small">{{data.GRUPO}}</span></td>
-                            <td><span class="small">FECHA_INI</span></td>
-                            <td><span class="small">FICHA_FIN</span></td>
+
+                            <td><span ng-class="{'label label-success': data.FECHAINI != '', 'label label-danger': data.FECHAINI == 'SIN PROGRAMACION'}" >{{data.FECHAINI}}</span></td>
+
+                            <td><span ng-class="{'label label-success': data.FECHAFIN != '', 'label label-danger': data.FECHAFIN == 'SIN PROGRAMACION'}">{{data.FECHAFIN}}</span></td>
+
                             <td><span class="small">{{data.INGRESO}}</span></td>
                             <td><span class="small"
                                       ng-class="{'ACTIVO': 'label label-success','INACTIVO': 'label label-default'}[data.ESTADO]">{{data.ESTADO}}</span>
@@ -161,7 +164,7 @@
                     <div class="col-md-6">
 
                         <ul class="nav navbar-nav navbar-left">
-                            <li>Online: <span class="badge badge-default">{{results.length}}</span></li>
+                            <li>Online: <span class="label label-success">{{results.length}}</span></li>
 
                         </ul>
 
@@ -391,12 +394,12 @@
             <div class="modal-footer">
 
 
-                <button type="button" class="btn btn-success" ng-click="editarUsuario(editaInfo)" data-dismiss="modal"
+                <button type="button" class="btn btn-success" ng-click="editarTurnos(editaInfo)" data-dismiss="modal"
                         ng-disabled="contact_form.$invalid" ng-hide="UsuarioNuevo">Guardar
                 </button>
-                <button type="button" class="btn btn-success" ng-click="crearUsuario(editaInfo)" data-dismiss="modal"
+               <!-- <button type="button" class="btn btn-success" ng-click="crearUsuario(editaInfo)" data-dismiss="modal"
                         ng-disabled="contact_form.$invalid" ng-show="UsuarioNuevo">Crear
-                </button>
+                </button>-->
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>

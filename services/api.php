@@ -15280,6 +15280,8 @@ public function pp(&$var){
 
     }
 
+
+    //**************************************MICHAEL GESTION TURNOS ***********************************
     private function listadoUsuariosOnline(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -15298,15 +15300,20 @@ public function pp(&$var){
         }
 
 
-        $query=	" SELECT max(B.id), A.ID, ".
-            " A.USUARIO_ID, A.USUARIO_NOMBRE, A.CEDULA_ID, A.GRUPO, ".
-            " A.TURNO, B.status as ESTADO, ".
-            " date_format(B.fecha_ingreso,'%T') as INGRESO ".
-            " FROM portalbd.tbl_usuarios A ".
-            " inner join registro_ingreso_usuarios B on A.USUARIO_ID = B.usuario ".
-            " where B.status = 'logged in' ".
-            " and B.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59' ".
-            " group by A.USUARIO_ID ";
+        $query=	"SELECT A.ID, ".
+	            " A.USUARIO_ID, A.USUARIO_NOMBRE,  A.GRUPO, ".
+	            " B.status as ESTADO, date_format(B.fecha_ingreso,'%T') as INGRESO, ".
+                " (CASE WHEN C.FECHAINI IS NULL THEN 'SIN PROGRAMACION' ".
+                " ELSE CAST(C.FECHAINI AS CHAR(100) CHARACTER SET utf8) END) AS FECHAINI, ".
+                " (CASE WHEN C.FECHAFIN IS NULL THEN 'SIN PROGRAMACION' ".
+                " ELSE CAST(C.FECHAFIN AS CHAR(100) CHARACTER SET utf8) END) AS FECHAFIN, ".
+                " C.PROGRAMO, C.FECHACARGA ".
+	            " FROM portalbd.tbl_usuarios A ".
+	            " inner join registro_ingreso_usuarios B on A.USUARIO_ID = B.usuario ".
+	            " left outer join Tbl_Turnos C on A.USUARIO_ID = C.USUARIO ".
+	            " where B.status = 'logged in' ".
+	            " and B.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59' ".
+	            " group by A.USUARIO_ID ;";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -15323,6 +15330,87 @@ public function pp(&$var){
         $this->response('',204);        // If no records "No Content" status
 
     }
+
+    private function editarTurnos(){
+
+
+        if($this->get_request_method() != "POST"){
+            $this->response('',406);
+        }
+
+
+        $params = json_decode(file_get_contents('php://input'),true);
+
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+
+        $id=$params['editaInfo']['ID'];
+        $Login=$params['editaInfo']['USUARIO_ID'];
+        $FechaIni=$params['editaInfo']['FECHAINICIO'];
+        $FechaFin=$params['editaInfo']['FECHAFIN'];
+        $FechaIniNovedad=$params['editaInfo']['FECHAININOVEDAD'];
+        $FechaFinNovedad=$params['editaInfo']['FECHAFIN_NOVEDAD'];
+        $TipoNovedad=$params['editaInfo']['TIPO_NOVEDAD'];
+        $Descripcion=$params['editaInfo']['Descripcion'];
+
+
+        //var_dump($params['editaInfo']);
+
+       /* if($passEdita!=""){
+            $passcode=" , PASSWORD=MD5('".$passEdita."')";
+        }
+*/
+        $sql = " insert into Tbl_Turnos (USUARIO,FECHAINI,FECHAFIN,FECHAINI_NOVEDAD, ".
+               " FECHAFIN_NOVEDAD, TIPONOVEDAD,DESCRIPCION,PROGRAMO) ".
+               " values ('$Login','$FechaIni','$FechaFin','$FechaIniNovedad','$FechaFinNovedad', ".
+               " '$TipoNovedad','$Descripcion','$usuarioGalleta')";
+
+        //echo $sql;
+
+
+        $rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
+
+        // SQL Feed----------------------------------
+//        $sql_log=   "insert into portalbd.activity_feed ( ".
+//            " USER ".
+//            ", USER_NAME ".
+//            ", GRUPO ".
+//            ", STATUS ".
+//            ", PEDIDO_OFERTA ".
+//            ", ACCION ".
+//            ", CONCEPTO_ID ".
+//            ", IP_HOST ".
+//            ", CP_HOST ".
+//            ") values( ".
+//            " UPPER('$usuarioGalleta')".
+//            ", UPPER('$nombreGalleta')".
+//            ", UPPER('$grupoGalleta')".
+//            ",'OK' ".
+//            ",'SIN PEDIDO' ".
+//            ",'EDITO USUARIO' ".
+//            ",'$usuarioEdita EDITADO' ".
+//            ",'$usuarioIp' ".
+//            ",'$usuarioPc')";
+//
+//        $rlog = $this->mysqli->query($sql_log);
+        // ---------------------------------- SQL Feed
+
+        $error="Guardado con exito.";
+        $this->response($this->json($error), 200);
+
+
+    }
+
+    //**************************************MICHAEL GESTION TURNOS ***********************************
+
 
     //--------------------------FUNCIONES GESTION PEDIDOSMALOS----------------
 
@@ -18912,6 +19000,9 @@ public function pp(&$var){
 
 
     }//Funcion para listar la productividad del grupo
+
+
+
 
 
     private function municipiosAsignacionesSiebel(){
