@@ -15376,9 +15376,9 @@ public function pp(&$var){
 
         if ($Novedad == 'SI')
         {
-             $sqlUltimoTurno = "select max(ID) Tbl_Turnos where USUARIO = '$Login' and ESTADO = 'Activo' ";
+             $sqlUltimoTurno = "select max(ID) from Tbl_Turnos where USUARIO = '$Login' and ESTADO = 'Activo' ";
 
-             $rst = mysql_query ($sqlUltimoTurno);
+             $rst = $this->mysqli->query($sqlUltimoTurno) or die($this->mysqli->error.__LINE__);
                   if ($row = mysql_fetch_row($rst)) {
                       $TurnoActivo = trim($row[0]);
                       }
