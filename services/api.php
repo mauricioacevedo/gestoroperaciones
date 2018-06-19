@@ -15389,33 +15389,10 @@ public function pp(&$var){
                                                    values ('$idTurno','$FechaIniNovedad','$FechaFinNovedad', ".
                                                           " '$TipoNovedad','$Descripcion','$Login') ";
 
+            $rst = $this->mysqli->query($sqlNovedad) or die($this->mysqli->error.__LINE__);
+
                 //echo var_dump ($id);
         }
-
-        // SQL Feed----------------------------------
-//        $sql_log=   "insert into portalbd.activity_feed ( ".
-//            " USER ".
-//            ", USER_NAME ".
-//            ", GRUPO ".
-//            ", STATUS ".
-//            ", PEDIDO_OFERTA ".
-//            ", ACCION ".
-//            ", CONCEPTO_ID ".
-//            ", IP_HOST ".
-//            ", CP_HOST ".
-//            ") values( ".
-//            " UPPER('$usuarioGalleta')".
-//            ", UPPER('$nombreGalleta')".
-//            ", UPPER('$grupoGalleta')".
-//            ",'OK' ".
-//            ",'SIN PEDIDO' ".
-//            ",'EDITO USUARIO' ".
-//            ",'$usuarioEdita EDITADO' ".
-//            ",'$usuarioIp' ".
-//            ",'$usuarioPc')";
-//
-//        $rlog = $this->mysqli->query($sql_log);
-        // ---------------------------------- SQL Feed
 
         $error="Guardado con exito.";
         $this->response($this->json($error), 200);
