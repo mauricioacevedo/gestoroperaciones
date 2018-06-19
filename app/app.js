@@ -4867,6 +4867,10 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 		return num;
 	};
 
+    $scope.changeStatus = function(data){
+    console.log(data);
+    }
+
 	$rootScope.logout = function () {
 		services.logout($rootScope.logedUser.login);
 		$cookieStore.remove('logedUser');
@@ -4888,12 +4892,10 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 
 	$scope.usuarioFill = function (usuario_id) {
 		$scope.filtroInput = usuario_id;
-
-
 	};
 
 
-	//Obtener listado de usuarios del GEOP
+	//listado de usuarios Online
 	$scope.listadoUsuariosGeop = function (usuario_id) {
 		$rootScope.errorDatos = null;
 		services.getListadoUsuariosOnline(usuario_id).then(
@@ -4905,8 +4907,8 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 
 				// console.log($scope.listaUsuarios);
 				$scope.cantidad = data.data.length;
-				$scope.sortType = 'USUARIO_ID'; // set the default sort type
-				$scope.sortReverse = false; // set the default sort order
+				$scope.sortType = 'USUARIO_ID';
+				$scope.sortReverse = false;
 				$scope.csvUsers = false;
 				$scope.fechiniExpoIO = '';
 
@@ -4915,7 +4917,6 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 			function errorCallback(response) {
 
 				$rootScope.errorDatos = "Usuario no existe.";
-
 				// console.log($rootScope.errorDatos);
 
 			});
@@ -4924,7 +4925,7 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 	};
 	$scope.listadoUsuariosGeop();
 
-	//Exportes: Inicio
+
 	$scope.csvUsuarios = function (filtroInput) {
 
 		services.expCsvUsuarios().then(
@@ -5007,7 +5008,7 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 		);
 
 
-	}; //Borrar Usuario
+	};
 
 	//Editar Turno Servicio
 	$scope.GuardarTurnos = function (editaInfo) {
