@@ -15380,16 +15380,18 @@ public function pp(&$var){
         {
              //$sqlUltimoTurno = "select max(ID) from Tbl_Turnos where USUARIO = '$Login' and ESTADO = 'Activo' ";
 
-                  $ultimoid = "select max(ID) from Tbl_Turnos where USUARIO = '$Login' and ESTADO = 'Activo'";
+                  $ultimoid = "select max(ID) AS ID from Tbl_Turnos where USUARIO = '$Login' and ESTADO = 'Activo'";
                   $rst2 = $this->mysqli->query($ultimoid) or die($this->mysqli->error.__LINE__);
                   //$rst2 = mysql_query ($sqlUltimoid);
                   if ($row = mysql_fetch_row($rst2)) {
+                      $row['ID']=utf8_encode($row['ID']);
                       $Carga = trim($row[0]);
                       }
                           echo var_dump ($ultimoid);
                           echo var_dump ($Login);
                           echo var_dump ($Carga);
                           echo var_dump ($rst2);
+                          echo var_dump ($row);
         }
 
         // SQL Feed----------------------------------
