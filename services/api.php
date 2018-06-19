@@ -15362,11 +15362,6 @@ public function pp(&$var){
         $Descripcion=$params['editaInfo']['Descripcion'];
         $Novedad=$params['editaInfo']['NOVEDAD'];
 
-        $sql = " insert into Tbl_Turnos (USUARIO,FECHAINI,FECHAFIN,PROGRAMO) ".
-               " values ('$Login','$FechaIni','$FechaFin','$usuarioGalleta')";
-
-        $rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
-
         if ($Novedad == 'SI')
         {
              //$sqlUltimoTurno = "select max(ID) from Tbl_Turnos where USUARIO = '$Login' and ESTADO = 'Activo' ";
@@ -15375,7 +15370,7 @@ public function pp(&$var){
                   $rst2 = $this->mysqli->query($ultimoid) or die($this->mysqli->error.__LINE__);
 
                         if($rst2->num_rows > 0){
-                        $result = array();
+                        //$result = array();
                         while($row = $rst2->fetch_assoc()){
                             $row['ID']=utf8_encode($row['ID']);
                             //$result[] = $row;
@@ -15392,6 +15387,15 @@ public function pp(&$var){
             $rst = $this->mysqli->query($sqlNovedad) or die($this->mysqli->error.__LINE__);
 
                 //echo var_dump ($id);
+        }
+
+        else
+        {
+
+        $sql = " insert into Tbl_Turnos (USUARIO,FECHAINI,FECHAFIN,PROGRAMO) ".
+               " values ('$Login','$FechaIni','$FechaFin','$usuarioGalleta')";
+
+        $rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
         }
 
         $error="Guardado con exito.";
