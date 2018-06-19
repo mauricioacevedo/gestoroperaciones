@@ -257,7 +257,7 @@
                                         </div>-->
 
                                         <div class="col-md-3">
-                                             <div class="from-group" id="datetimepicker">
+                                             <div class="from-group" id="datetimepicker" ng-show="editaInfo.NOVEDAD == 'SI'">
                                                 <label for="fechaininovedad">
                                                     Inicio Novedad
                                                 </label>
@@ -278,7 +278,7 @@
                                              </div>
                                         </div>
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" ng-show="editaInfo.NOVEDAD == 'SI'">
                                         <label for="fechafinNovedad">
                                             Tipo Novedad
                                         </label>
@@ -292,7 +292,7 @@
                                         </select>
                                         </div>
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" ng-show="editaInfo.NOVEDAD == 'SI'">
                                             <div class="form-group">
                                                 <label for="descripcionNovedad">
                                                     Descripcion:
