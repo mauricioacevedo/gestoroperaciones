@@ -15387,7 +15387,7 @@ public function pp(&$var){
             $sqlNovedad = "insert into Tbl_Novedad_Turnos (IDTURNO,FECHAINI_NOVEDAD,FECHAFIN_NOVEDAD,TIPONOVEDAD, ".
                                                                   " DESCRIPCION ,INGRESO_NOVEDAD) "."
                                                    values ('$idTurno','$FechaIniNovedad','$FechaFinNovedad', ".
-                                                          " '$TipoNovedad','$Descripcion','$Login') ";
+                                                          " '$TipoNovedad','$Descripcion','$usuarioGalleta') ";
 
             $rst = $this->mysqli->query($sqlNovedad) or die($this->mysqli->error.__LINE__);
 
