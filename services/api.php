@@ -15362,15 +15362,6 @@ public function pp(&$var){
         $Descripcion=$params['editaInfo']['Descripcion'];
         $Novedad=$params['editaInfo']['NOVEDAD'];
 
-        //echo var_dump ($Novedad);
-
-
-        //var_dump($params['editaInfo']);
-
-       /* if($passEdita!=""){
-            $passcode=" , PASSWORD=MD5('".$passEdita."')";
-        }
-*/
         $sql = " insert into Tbl_Turnos (USUARIO,FECHAINI,FECHAFIN,PROGRAMO) ".
                " values ('$Login','$FechaIni','$FechaFin','$usuarioGalleta')";
 
@@ -15388,12 +15379,17 @@ public function pp(&$var){
                         while($row = $rst2->fetch_assoc()){
                             $row['ID']=utf8_encode($row['ID']);
                             //$result[] = $row;
-                            $id = trim($row['ID']);
+                            $idTurno = trim($row['ID']);
                             }
 
                         }
-                          echo var_dump ($result);
-                          echo var_dump ($id);
+
+            $sqlNovedad = "insert into Tbl_Novedad_Turnos (IDTURNO,FECHAINI_NOVEDAD,FECHAFIN_NOVEDAD,TIPONOVEDAD, ".
+                                                                  " DESCRIPCION ,INGRESO_NOVEDAD) "."
+                                                   values ('$idTurno','$FechaIniNovedad','$FechaFinNovedad', ".
+                                                          " '$TipoNovedad','$Descripcion','$Login') ";
+
+                //echo var_dump ($id);
         }
 
         // SQL Feed----------------------------------
