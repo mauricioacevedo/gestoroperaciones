@@ -763,8 +763,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoUsuariosOnline');
 	};
 
-    obj.editTurnos = function (editaInfo) {
-		return $http.post(serviceBase + 'editarTurnos', {
+    obj.GuardarTurnos = function (editaInfo) {
+		return $http.post(serviceBase + 'GuardarTurnos', {
 			"editaInfo": editaInfo
 		});
 	};
@@ -5012,9 +5012,9 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 	}; //Borrar Usuario
 
 	//Editar Turno Servicio
-	$scope.editarTurnos = function (editaInfo) {
+	$scope.GuardarTurnos = function (editaInfo) {
 
-		services.editTurnos(editaInfo).then(
+		services.GuardarTurnos(editaInfo).then(
 
 			function (data) {
 

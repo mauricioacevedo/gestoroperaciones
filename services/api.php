@@ -15331,7 +15331,7 @@ public function pp(&$var){
 
     }
 
-    private function editarTurnos(){
+    private function GuardarTurnos(){
 
 
         if($this->get_request_method() != "POST"){
