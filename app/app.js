@@ -4867,8 +4867,8 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 		return num;
 	};
 
-    $scope.changeStatus = function(logedUser){
-    console.log(logedUser);
+    $scope.changeStatus = function(editaInfo){
+    console.log(editaInfo);
     }
 
 	$rootScope.logout = function () {
