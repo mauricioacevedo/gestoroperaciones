@@ -15395,10 +15395,12 @@ public function pp(&$var){
                             //echo "name: ".utf8_encode($row['USUARIO_NOMBRE'])."\n ";
                             $row['ID']=utf8_encode($row['ID']);
                             $result[] = $row;
+                            $id = trim($row['ID']);
                             }
 
                         }
                           echo var_dump ($result);
+                          echo var_dump ($id);
         }
 
         // SQL Feed----------------------------------
