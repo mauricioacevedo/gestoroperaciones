@@ -15382,19 +15382,12 @@ public function pp(&$var){
 
                   $ultimoid = "select max(ID) AS ID from Tbl_Turnos where USUARIO = '$Login' and ESTADO = 'Activo'";
                   $rst2 = $this->mysqli->query($ultimoid) or die($this->mysqli->error.__LINE__);
-                  //$rst2 = mysql_query ($sqlUltimoid);
-                  /*if ($row = mysql_fetch_row($rst2)) {
-                      $row['ID']=utf8_encode($row['ID']);
-                      $Carga = trim($row[0]);
-                      }*/
 
                         if($rst2->num_rows > 0){
                         $result = array();
                         while($row = $rst2->fetch_assoc()){
-                            //$result[] = $row;
-                            //echo "name: ".utf8_encode($row['USUARIO_NOMBRE'])."\n ";
                             $row['ID']=utf8_encode($row['ID']);
-                            $result[] = $row;
+                            //$result[] = $row;
                             $id = trim($row['ID']);
                             }
 
