@@ -4849,7 +4849,7 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 	divi.style.visibility = "visible";
 	divi.style.position = "relative";
 	$rootScope.iconcepto = "TODO";
-	$rootScope.actualView = "usuarios";
+	$rootScope.actualView = "Turnos";
 
 	$scope.usert = {};
 	$scope.usert.EQUIPO_ID = "MANUAL";
@@ -4950,9 +4950,6 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 	};
 	//Exportes: Fin
 
-
-
-	//modales
 	//Modal para editar usuarios
 	$scope.editarModal = function (data) {
 		$rootScope.errorDatos = null;
@@ -4979,7 +4976,8 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
         $scope.msgLdap = null;
         $scope.pic = 'images/avatar_2x.png';
 	};
-	//Modal para borrar usuarios.
+
+    //Modal para borrar Turno.
 	$scope.borrarModal = function (data) {
 		$rootScope.errorDatos = null;
 		$scope.idUsuario = data.ID;
@@ -5054,79 +5052,7 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 			});
 	}; //Crear Usuario
 
-	$scope.sendEmail = function (data) {
 
-		//console.log(data);
-		$scope.infoEmail = data;
-		var email = data.Correo;
-		//var email="pepitagota@chupaverlga.com";
-		var ingreso = data.Hora_ingreso;
-		var salida = data.Hora_salida;
-		var fecha = data.Fecha;
-		var nombre = data.nombre;
-		var url = "http://10.100.82.125/autobots/plugins/img/";
-		var urlpath = window.location.pathname;
-
-
-
-		var body = "Hola <b>" + nombre + "</b>, <br> El dia: <b>" + fecha + "</b>  No cerraste, sesion." +
-			"<br><br><br><br><br><br> Este es un correo generado automaticamente.<br> " +
-			"Si tienes alguna duda por favor acercate al puesto de tu supervisor.<br> " +
-			"<hr><br><img src='" + url + "geop_logo.png'>";
-		//var body="<html><b>Hola</b> "+nombre+",\n El dia: "+fecha+" No cerraste, sesion</html>";
-
-		var subject = "Gestor Operaciones: No cerro sesion.";
-
-		$scope.url = 'http://10.100.82.125/autobots/plugins/email_sesiones.php';
-
-		$http.post($scope.url, {
-			"name": nombre,
-			"email": email,
-			"message": body,
-			"fecha": fecha,
-			"asunto": subject
-		}).
-		then(function successCallback(response) {
-
-			console.log("Por fin envio");
-			//console.log(response);
-			$notification.success("Enviado", "Correo enviado exitosamente");
-
-		}, function errorCallback(response) {
-
-			$timeout(function () {
-				$notification.error("Error", "No se envió el correo.", $scope.sendEmailMaunal($scope.infoEmail));
-			}, 700);
-
-		})
-
-
-	};
-
-	$scope.sendEmailMaunal = function (data) {
-
-		//console.log(data);
-
-		var email = data.Correo;
-		var ingreso = data.Hora_ingreso;
-		var salida = data.Hora_salida;
-		var fecha = data.Fecha;
-		var nombre = data.nombre;
-		var body = "Hola " + nombre + ",\n El dia: " + fecha + " No cerraste, sesion" +
-			"\n\n\n\n\n\n Este es un correo generado automaticamente.\n" +
-			"Si tienes alguna duda por favor acercate al puesto de tu supervisor.";
-		//var body="<html><b>Hola</b> "+nombre+",\n El dia: "+fecha+" No cerraste, sesion</html>";
-
-		var subject = "Gestor Operaciones: No cerró sesión.";
-		var link = "mailto:" + email +
-			"?subject=" + escape(subject) +
-			"&body=" + escape(body);
-		//+ "&body="+body;
-		//+ "&body=" + encodeURIComponent(body);
-		//+ "&HTMLBody="+escape("<html><head><meta http-equiv='content-type' content='text/html; charset=UTF-8'></head><body><b>Gika</b</body></html>");
-
-		window.location.href = link;
-	};
 
 
 	$scope.csvUsuarios = function (filtroInput) {
@@ -5152,61 +5078,6 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 		);
 
 	};
-
-	$scope.abrirsuk = function () {
-
-		var msg = {
-			type: "message",
-			text: "Holi",
-			id: '1',
-			date: Date.now(),
-			data: {
-				message: "Hello world!"
-			}
-		};
-
-
-	};
-
-	$scope.buscarIdLdap = function (userid) {
-        $rootScope.errorDatos = null;
-		$http.get('./services/getLdapUserInfo?userbusqueda='+userid).then(
-			function (data){
-
-				if(data.status!=201){
-					$scope.msgLdap = "Usuario encontrado";
-                    $scope.editaInfo = {
-                        USUARIO_ID: data.data[0].USUARIO_ID,
-                        USUARIO_NOMBRE: data.data[0].USUARIO_NOMBRE,
-                        CEDULA_ID: data.data[0].CEDULA_ID,
-                        CORREO_USUARIO: data.data[0].CORREO_USUARIO,
-                        ESTADO: 'ACTIVO'
-                    };
-                    $scope.cargoLabel = data.data[0].CARGO;
-                    if(data.data[0].PICTURE!==''){
-                        $scope.pic = 'data:image/jpeg;base64,'+data.data[0].PICTURE;
-					}else{
-                        $scope.pic = 'images/avatar_2x.png';
-					}
-
-
-                    //console.log(data.data[0]);
-
-				}else{
-
-                    $scope.msgLdap = data.data[0];
-                    $scope.cargoLabel = null;
-                    $scope.pic = null;
-				}
-			},
-			function errorCallback(res){
-                $rootScope.errorDatos = res.data;
-                $scope.cargoLabel = null;
-                $scope.msgLdap = $rootScope.errorDatos;
-			}
-		)
-	}
-
 
 });
 
