@@ -5167,6 +5167,8 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
                            }
                         }
 
+                console.log(TotalMalos);
+
                 if ($scope.cantidadIgnorados !== null){
                            $scope.TotalIgnorados=0;
                            //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
