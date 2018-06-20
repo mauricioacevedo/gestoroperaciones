@@ -15304,8 +15304,6 @@ public function pp(&$var){
         if($r2->num_rows > 0){
             $novedades = array();
             while($row = $r2->fetch_assoc()){
-                //$counter = $row['counter'];
-                //$counter[] = $row;
                 $novedades[] = $row;
             }
         }
