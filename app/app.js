@@ -4906,12 +4906,12 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
                 $scope.listaUsuarios = data.data[0];
                 $scope.novedades = data.data[2];
 
-                $scope.www = $scope.novedades[0].length;
+                $scope.www = $scope.novedades[0];
 
                 if ($scope.novedades !== null){
                            $scope.TotalNovedades=0;
                            //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
-                           var TotalNovedades = $scope.novedades.length;
+                           var TotalNovedades = $scope.novedades[0];
 
                            for (var i = 0; i < TotalNovedades; i++){
                            $scope.TotalNovedades=+$scope.TotalNovedades + +$scope.novedades[i].novedades;
