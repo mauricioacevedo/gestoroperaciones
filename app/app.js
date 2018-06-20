@@ -4918,16 +4918,6 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
                            }
                 }
 
-
-              /*  if ($scope.TotalNovedades !== null){
-                           $scope.Total=0;
-                           var Total = $scope.TotalNovedades.length;
-
-                           for (var i = 0; i < Total; i++){
-                           $scope.Total=+$scope.Total + +$scope.TotalNovedades[i].NovedadesTurno;
-                           }
-                        }*/
-
                 console.log($scope.www);
                 console.log(TotalNovedades);
 
