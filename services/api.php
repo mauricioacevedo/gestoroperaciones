@@ -15303,11 +15303,24 @@ public function pp(&$var){
         $r2 = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         if($r2->num_rows > 0){
             $Novedades = array();
-            if($row = $r2->fetch_assoc()){
-                //$Novedades = $row['Novedades'];
+            while($row = $r2->fetch_assoc()){
+                //$counter = $row['counter'];
+                //$counter[] = $row;
                 $Novedades[] = $row;
             }
         }
+
+/*        $queryIgnorados= " select count(distinct PEDIDO_ID) as ignorados from tbl_PedidosIgnorados";
+        $rr = $this->mysqli->query($queryIgnorados) or die($this->mysqli->error.__LINE__);
+        $counter=0;
+        if($rr->num_rows > 0){
+            $result2 = array();
+            while($row = $rr->fetch_assoc()){
+                //$counter = $row['counter'];
+                //$counter[] = $row;
+                $result2[] = $row;
+            }
+        }*/
 
 
         $query=	"SELECT A.ID, ".
