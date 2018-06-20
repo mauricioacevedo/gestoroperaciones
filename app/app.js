@@ -4904,21 +4904,21 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 				$errorDatos = null;
 
                 $scope.listaUsuarios = data.data[0];
-                $scope.Novedades = data.data[2];
+                $scope.TotalNovedades = data.data[2];
 
-                console.log($scope.Novedades);
+                //console.log($scope.Novedades);
 
-                if ($scope.Novedades !== null){
-                           $scope.TotalNovedades=0;
+                if ($scope.TotalNovedades !== null){
+                           $scope.Total=0;
                            //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
-                           var TotalNovedades = $scope.Novedades;
+                           var Total = $scope.TotalNovedades.lenght;
 
                            for (var i = 0; i < TotalNovedades; i++){
-                           $scope.TotalNovedades=+$scope.TotalNovedades + +$scope.Novedades[i].Novedades;
+                           $scope.Total=+$scope.Total++$scope.TotalNovedades[i].Novedades;
                            }
                         }
 
-                console.log(TotalNovedades);
+                console.log(Total);
 
 
 				// console.log($scope.listaUsuarios);
