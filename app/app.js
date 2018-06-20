@@ -4908,8 +4908,6 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 
                 console.log($scope.TotalNovedades);
 
-
-
                 if ($scope.TotalNovedades !== null){
                            $scope.TotalMalos=0;
                            //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
@@ -4918,6 +4916,7 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
                            for (var i = 0; i < TotalMalos; i++){
                            $scope.TotalMalos=+$scope.TotalMalos + +$scope.TotalNovedades[i].NovedadesTurno;
                            }
+                }
 
 
               /*  if ($scope.TotalNovedades !== null){
