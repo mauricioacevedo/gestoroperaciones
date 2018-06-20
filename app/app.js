@@ -4907,7 +4907,7 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 
 				// console.log($scope.listaUsuarios);
 				$scope.cantidad = data.data.length;
-                console.log($scope.cantidad);
+                //console.log($scope.cantidad);
 				$scope.sortType = 'USUARIO_ID';
 				$scope.sortReverse = false;
 				$scope.csvUsers = false;
