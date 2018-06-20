@@ -15299,6 +15299,16 @@ public function pp(&$var){
             }
         }
 
+        $query="SELECT count(*) as Novedades from Tbl_Novedad_Turnos";
+        $r2 = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $Novedades=0;
+        if($r2->num_rows > 0){
+            $result = array();
+            if($row = $r2->fetch_assoc()){
+                $Novedades = $row['Novedades'];
+            }
+        }
+
 
         $query=	"SELECT A.ID, ".
 	            " A.USUARIO_ID, A.USUARIO_NOMBRE,  A.GRUPO, ".
@@ -15325,7 +15335,7 @@ public function pp(&$var){
                 $row['USUARIO_NOMBRE']=utf8_encode($row['USUARIO_NOMBRE']);
                 $result[] = $row;
             }
-            $this->response($this->json(array($result,$counter)), 200); // send user details
+            $this->response($this->json(array($result,$counter,$Novedades)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
