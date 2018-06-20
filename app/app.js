@@ -5161,11 +5161,12 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
                            $scope.TotalMalos=0;
                            //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
                            var TotalMalos = $scope.cantidadMalos.length;
-                           console.log(TotalMalos);
+
 
                            for (var i = 0; i < TotalMalos; i++){
                            $scope.TotalMalos=+$scope.TotalMalos + +$scope.cantidadMalos[i].counter;
                            }
+                            console.log(TotalMalos);
                         }
 
 
