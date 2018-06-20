@@ -15310,19 +15310,6 @@ public function pp(&$var){
             }
         }
 
-/*        $queryIgnorados= " select count(distinct PEDIDO_ID) as ignorados from tbl_PedidosIgnorados";
-        $rr = $this->mysqli->query($queryIgnorados) or die($this->mysqli->error.__LINE__);
-        $counter=0;
-        if($rr->num_rows > 0){
-            $result2 = array();
-            while($row = $rr->fetch_assoc()){
-                //$counter = $row['counter'];
-                //$counter[] = $row;
-                $result2[] = $row;
-            }
-        }*/
-
-
         $query=	"SELECT A.ID, ".
 	            " A.USUARIO_ID, A.USUARIO_NOMBRE,  A.GRUPO, ".
 	            " B.status as ESTADO, date_format(B.fecha_ingreso,'%T') as INGRESO, ".
