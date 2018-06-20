@@ -4918,7 +4918,7 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
                            }
                 }
 
-                console.log($scope.www);
+                //console.log($scope.www);
                 console.log(TotalNovedades);
 
 				// console.log($scope.listaUsuarios);
