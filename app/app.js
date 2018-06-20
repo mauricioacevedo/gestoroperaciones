@@ -4906,7 +4906,9 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
                 $scope.listaUsuarios = data.data[0];
                 $scope.novedades = data.data[2];
 
-                //console.log($scope.TotalNovedades);
+                $scope.www = $scope.novedades[0];
+
+                console.log($scope.TotalNovedades);
 
                 if ($scope.novedades !== null){
                            $scope.TotalNovedades=0;
@@ -4928,6 +4930,7 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
                            }
                         }*/
 
+                console.log($scope.www);
                 console.log(TotalNovedades);
 
 				// console.log($scope.listaUsuarios);
