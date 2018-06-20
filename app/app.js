@@ -4906,7 +4906,7 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
                 $scope.listaUsuarios = data.data[0];
                 $scope.TotalNovedades = data.data[2];
 
-                console.log($scope.TotalNovedades);
+                //console.log($scope.TotalNovedades);
 
                 if ($scope.TotalNovedades !== null){
                            $scope.TotalMalos=0;
