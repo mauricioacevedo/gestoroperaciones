@@ -4910,7 +4910,7 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 
                 if ($scope.TotalNovedades !== null){
                            $scope.Total=0;
-                           $scope.totalestadofinal = $scope.TotalNovedades.length - 1;
+                           $scope.totalestadofinal = $scope.TotalNovedades.length;
                            var Total = $scope.TotalNovedades.length;
 
                            for (var i = 0; i < Total; i++){
