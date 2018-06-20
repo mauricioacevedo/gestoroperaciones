@@ -4908,8 +4908,6 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 
                 $scope.www = $scope.novedades[0];
 
-                console.log($scope.TotalNovedades);
-
                 if ($scope.novedades !== null){
                            $scope.TotalNovedades=0;
                            //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
