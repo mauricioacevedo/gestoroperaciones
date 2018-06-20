@@ -4910,8 +4910,8 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 
                 if ($scope.TotalNovedades !== null){
                            $scope.Total=0;
-                           //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
-                           var Total = $scope.TotalNovedades;
+                           $scope.totalestadofinal = $scope.TotalNovedades.length;
+                           var Total = $scope.TotalNovedades.length;
 
                            for (var i = 0; i < Total; i++){
                            $scope.Total=+$scope.Total + +$scope.TotalNovedades[i].NovedadesTurno;
@@ -4919,6 +4919,7 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
                         }
 
                 console.log(Total);
+                console.log($scope.totalestadofinal);
 
 
 				// console.log($scope.listaUsuarios);
