@@ -4914,7 +4914,7 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
                            var Total = $scope.TotalNovedades.lenght;
 
                            for (var i = 0; i < TotalNovedades; i++){
-                           $scope.Total=+$scope.Total++$scope.TotalNovedades[i].Novedades;
+                           $scope.Total=+$scope.Total + +$scope.TotalNovedades[i].Total;
                            }
                         }
 
