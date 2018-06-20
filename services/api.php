@@ -15301,9 +15301,8 @@ public function pp(&$var){
 
         $query="SELECT count(*) as NovedadesTurno from Tbl_Novedad_Turnos";
         $r2 = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-        $Novedades = array();
         if($r2->num_rows > 0){
-            $result = array();
+            $Novedades = array();
             if($row = $r2->fetch_assoc()){
                 //$Novedades = $row['Novedades'];
                 $Novedades[] = $row;
