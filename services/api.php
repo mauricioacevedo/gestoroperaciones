@@ -15299,7 +15299,7 @@ public function pp(&$var){
             }
         }
 
-        $query="SELECT count(*) as NovedadesTurno from Tbl_Novedad_Turnos";
+        $query="SELECT count(*) as novedades from Tbl_Novedad_Turnos";
         $r2 = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         if($r2->num_rows > 0){
             $novedades = array();
