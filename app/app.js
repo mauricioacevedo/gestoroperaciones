@@ -763,6 +763,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoUsuariosOnline');
 	};
 
+    obj.getListadoNovedades = function () {
+		return $http.get(serviceBase + 'listadoNovedades');
+	};
+
     obj.GuardarTurnos = function (editaInfo) {
 		return $http.post(serviceBase + 'GuardarTurnos', {
 			"editaInfo": editaInfo
@@ -4940,7 +4944,58 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 
 
 	};
-	$scope.listadoUsuariosGeop();
+    $scope.listadoUsuariosGeop();
+
+    //*************************LISTADO NOVEDADES*************************************
+    $scope.listadoNovedades = function () {
+		$rootScope.errorDatos = null;
+		services.getListadoNovedades().then(
+
+			function (data) {
+				$errorDatos = null;
+
+                $scope.listaNovedades = data.data[0];
+
+                /*$scope.CantidadNovedades = data.data[2];
+
+                if ($scope.CantidadNovedades !== null){
+                           $scope.TotalNovedades=0;
+                           //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
+                           var TotalNovedades = $scope.CantidadNovedades.length;
+
+                           for (var i = 0; i < TotalNovedades; i++){
+                           $scope.TotalNovedades=+$scope.TotalNovedades + +$scope.CantidadNovedades[i].novedades;
+                           }
+                }*/
+
+                //console.log($scope.www);
+                //console.log(TotalNovedades);
+
+				// console.log($scope.listaUsuarios);
+				//$scope.cantidad = data.data.length;
+                //console.log($scope.cantidad);
+				$scope.sortType = 'USUARIO_ID';
+				$scope.sortReverse = false;
+				$scope.csvUsers = false;
+				$scope.fechiniExpoIO = '';
+
+				return data.data;
+			},
+			function errorCallback(response) {
+
+				$rootScope.errorDatos = "Usuario no existe.";
+				// console.log($rootScope.errorDatos);
+
+			});
+
+
+	};
+
+    $scope.listadoNovedades();
+
+    //*************************LISTADO NOVEDADES*************************************
+
+
 
 
 	$scope.csvUsuarios = function (filtroInput) {
