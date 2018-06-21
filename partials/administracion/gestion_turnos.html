@@ -122,18 +122,18 @@
                         <tr ng-repeat="data in listaUsuarios  | orderBy:sortType:sortReverse | filter:filtroInput as results"
                             class="animated bounceInRight">
                             <!--<td><span class="small">{{data.ID}}</span></td>-->
-                            <td><span class="small">{{data.USUARIO_ID}}</span></td>
-                            <td><span class="small">{{data.USUARIO_NOMBRE}}</span></td>
+                            <td><h5><span class="small">{{data.USUARIO_ID}}</span></h5></td>
+                            <td><h5><span class="small">{{data.USUARIO_NOMBRE}}</span></h5></td>
                             <!--<td><span class="small">{{data.CEDULA_ID}}</span></td>-->
-                            <td><span class="small">{{data.GRUPO}}</span></td>
+                            <td><h5><span class="small">{{data.GRUPO}}</span></h5></td>
 
                             <td><h5> <span ng-class="{'label label-success': data.FECHAINI != '', 'label label-danger': data.FECHAINI == 'SIN PROGRAMACION'}" >  {{data.FECHAINI}} </span></h5></td>
 
-                            <td><span ng-class="{'label label-success': data.FECHAFIN != '', 'label label-danger': data.FECHAFIN == 'SIN PROGRAMACION'}">{{data.FECHAFIN}}</span></td>
+                            <td><h5><span ng-class="{'label label-success': data.FECHAFIN != '', 'label label-danger': data.FECHAFIN == 'SIN PROGRAMACION'}">{{data.FECHAFIN}}</span></h5>   </td>
 
-                            <td><span class="small">{{data.INGRESO}}</span></td>
-                            <td><span class="small"
-                                      ng-class="{'ACTIVO': 'label label-success','INACTIVO': 'label label-default'}[data.ESTADO]">{{data.ESTADO}}</span>
+                            <td><h5><span class="small">{{data.INGRESO}}</span></h5></td>
+                            <td><h5><span class="small"
+                                      ng-class="{'ACTIVO': 'label label-success','INACTIVO': 'label label-default'}[data.ESTADO]">{{data.ESTADO}}</span></h5>
                             </td>
                             <!--<td><span class="small">{{data.CORREO_USUARIO}}</span></td>-->
                             <!--<td><span class="small">{{data.CARGO_ID}} - {{data.NOMBRE_CARGO}}</span></td>-->
