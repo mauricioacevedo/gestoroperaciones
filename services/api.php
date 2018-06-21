@@ -15412,6 +15412,35 @@ public function pp(&$var){
 
     }
 
+    private function listadoNovedades(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+
+        $fecha = date("Y-m-d");
+
+        $query=	" select A.ID AS TURNO,A.USUARIO,A.FECHAINI AS INICIATURNO,A.FECHAFIN AS TERMINATURNO,".
+                " A.PROGRAMO,B.FECHAINI_NOVEDAD,B.FECHAFIN_NOVEDAD, B.TIPONOVEDAD,B.DESCRIPCION, ".
+                " B.INGRESO_NOVEDAD from Tbl_Turnos A inner join Tbl_Novedad_Turnos B on A.ID = B.IDTURNO ";
+        //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $ListaNovedades = array();
+            while($row = $r->fetch_assoc()){
+                //$result[] = $row;
+                //echo "name: ".utf8_encode($row['USUARIO_NOMBRE'])."\n ";
+                $row['TURNO']=utf8_encode($row['TURNO']);
+                $ListaNovedades[] = $row;
+            }
+            $this->response($this->json(array($ListaNovedades)), 200); // send user details
+        }
+        $this->response('',204);        // If no records "No Content" status
+
+    }
+
+
+
     //**************************************MICHAEL GESTION TURNOS ***********************************
 
 
