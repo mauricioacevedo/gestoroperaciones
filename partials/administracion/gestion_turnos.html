@@ -172,7 +172,7 @@
                     <div class="col-md-6">
                          <ul class="nav navbar-nav navbar-right">
                             <li>Novedades Semana: <span class="label label-success">{{TotalNovedades}}</span></li>
-                            <button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#ModalPendiBrutal" data-backdrop="static" data-placement="top" data-html="true" data-selector=""><i class="fa fa-eye" aria-hidden="true"> </i>&nbsp;&nbsp;Ver
+                            <button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#ModalNovedades" data-backdrop="static" data-placement="top" data-html="true" data-selector=""><i class="fa fa-eye" aria-hidden="true"> </i>&nbsp;&nbsp;Ver
 												</button>
                         </ul>
 
@@ -453,4 +453,54 @@
 
     </div>
 
-</div><!-- Modal Eliminar Novedad-->
+</div>
+
+<div id="ModalNovedades"  class="modal fade"  role="dialog">
+ <div class="modal-dialog modal-lg">
+  <div class="modal-content" >
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Listado Novedades&nbsp;&nbsp;</h4>
+    </div>
+    <div class="modal-body fixed-panel-agenda">
+        	<div class = "panel panel-default">
+			    <div class = "panel-heading">
+			        <h4 class="modal-title">Listado de Novedades</h4>
+			    </div>
+			    <div class="panel-body fixed-panel">
+          					<table class="table table small table-striped table-hover table-condensed">
+										<thead>
+											<tr>
+												<th><center>Usuario</center></th>
+												<th><center>Inicia Turno</center></th>
+												<th><center>Termina Turno</center></th>
+												<th><center>Programo</center></th>
+                                                <th><center>Inicio Novedad</center></th>
+                                                <th><center>Termina Novedad</center></th>
+                                                <th><center>Tipo Novedad</center></th>
+                                                <th><center>Descripcion</center></th>
+                                                <th><center>Ingreso</center></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="data in pendientesBrutal">
+											    <td>{{data.pedido}}</td>
+											   	<td><center>{{data.departamento}}</center></td>
+											   	<td>{{data.pendiente}}</td>
+											   	<td><center>{{data.observacion}}</center></td>
+											</tr>
+										</tbody>
+							</table>
+      			</div>
+    		</div>
+    </div>
+
+    <div class="modal-footer">
+    <!--	<button type="button" class="btn btn-primary btn-xs" ng-click="exportarDatos('totalmismodia')" >Exportar
+		</button>-->
+        <button type="button" ng-disabled="contact_form.$invalid" class="btn btn-default btn-xs" data-dismiss="modal">Cerrar</button>
+    </div>
+ </div>
+</div>
+</div>
+<!-- Modal Eliminar Novedad-->
