@@ -483,11 +483,16 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr ng-repeat="data in pendientesBrutal">
-											    <td>{{data.pedido}}</td>
-											   	<td><center>{{data.departamento}}</center></td>
-											   	<td>{{data.pendiente}}</td>
-											   	<td><center>{{data.observacion}}</center></td>
+											<tr ng-repeat="data in listaNovedades">
+											    <td>{{data.USUARIO}}</td>
+											   	<td><center>{{data.INICIATURNO}}</center></td>
+											   	<td>{{data.TERMINATURNO}}</td>
+											   	<td><center>{{data.PROGRAMO}}</center></td>
+                                                <td><center>{{data.FECHAINI_NOVEDAD}}</center></td>
+                                                <td><center>{{data.FECHAFIN_NOVEDAD}}</center></td>
+                                                <td><center>{{data.TIPONOVEDAD}}</center></td>
+                                                <td><center>{{data.DESCRIPCION}}</center></td>
+                                                <td><center>{{data.INGRESO_NOVEDAD}}</center></td>
 											</tr>
 										</tbody>
 							</table>
