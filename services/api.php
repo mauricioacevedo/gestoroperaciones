@@ -15293,7 +15293,6 @@ public function pp(&$var){
 
         //echo $semana;
 
-
         $query="SELECT count(*) as counter from tbl_usuarios";
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         $counter=0;
