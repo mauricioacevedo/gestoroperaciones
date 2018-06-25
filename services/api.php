@@ -15288,7 +15288,7 @@ public function pp(&$var){
         }
 
         $fecha = date("Y-m-d");
-        $semana = $fecha + INTERVAL +6 day;
+        $semana = date('Y-m-d', strtotime( '+6 day',strtotime($fecha))) ;
         echo $semana;
 
 
