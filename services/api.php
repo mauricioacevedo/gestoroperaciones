@@ -15320,14 +15320,7 @@ public function pp(&$var){
                 //this->mysqli->query($update);
             }
 
-            //echo "Ingrso";
-            /*while($row = $r3->fetch_assoc()){
-                  $IDs['ID']=utf8_encode($row['ID']);
-                  echo $IDs;
-                  $update = "update Tbl_Turnos set ESTADO = 'FINALIZADO' where ID = '$IDs' and FECHAFIN <= now();";
-                  $this->mysqli->query($update);*/
-                  //$r = $this->mysqli->query($update) or die($this->mysqli->error.__LINE__);
-            }
+        }
 
 
         $query=	"SELECT A.ID, ".
