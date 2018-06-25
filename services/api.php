@@ -15316,7 +15316,8 @@ public function pp(&$var){
             {
                 $id = $row['ID'];
                 $update = "update Tbl_Turnos set ESTADO = 'FINALIZADO' where ID = '$id' and FECHAFIN <= now()";
-                this->mysqli->query($update);
+                $r = $this->mysqli->query($update) or die($this->mysqli->error.__LINE__);
+                //this->mysqli->query($update);
             }
 
             //echo "Ingrso";
