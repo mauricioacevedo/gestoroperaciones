@@ -15337,7 +15337,7 @@ public function pp(&$var){
                 " (CASE WHEN C.FECHAFIN IS NULL OR C.FECHAFIN < now() THEN 'SIN PROGRAMACION' ".
                 " ELSE CAST(C.FECHAFIN AS CHAR(100) CHARACTER SET utf8) END) AS FECHAFIN, ".
                 " C.PROGRAMO, C.FECHACARGA ".
-	            " FROM portalbd.tbl_usuarios A ".
+	            " FROM tbl_usuarios A ".
 	            " inner join registro_ingreso_usuarios B on A.USUARIO_ID = B.usuario ".
 	            " left outer join Tbl_Turnos C on A.USUARIO_ID = C.USUARIO ".
 	            " where B.status = 'logged in' ".
