@@ -15315,7 +15315,7 @@ public function pp(&$var){
             foreach($r3 as $row)
             {
                 $id = $row['ID'];
-                $update = "update Tbl_Turnos set ESTADO = 'FINALIZADO' where ID = '$id' and FECHAFIN <= now()";
+                $update = "update Tbl_Turnos set ESTADO = 'CUMPLIDO' where ID = '$id' and FECHAFIN <= now()";
                 $r = $this->mysqli->query($update) or die($this->mysqli->error.__LINE__);
                 //this->mysqli->query($update);
             }
