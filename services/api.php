@@ -15311,7 +15311,7 @@ public function pp(&$var){
         $TurnoFinalizado="SELECT ID from Tbl_Turnos where FECHAFIN <= now()";
         $r3 = $this->mysqli->query($TurnoFinalizado) or die($this->mysqli->error.__LINE__);
         if($r3->num_rows > 0){
-            echo "Ingrso";
+            //echo "Ingrso";
             while($row = $r3->fetch_assoc()){
                   $IDs['ID']=utf8_encode($row['ID']);
                   //echo $IDs;
