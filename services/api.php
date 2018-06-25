@@ -15336,8 +15336,8 @@ public function pp(&$var){
 	            " inner join registro_ingreso_usuarios B on A.USUARIO_ID = B.usuario ".
 	            " left outer join Tbl_Turnos C on A.USUARIO_ID = C.USUARIO ".
 	            " where B.status = 'logged in' ".
-	            " and B.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59'";
-	            //" group by A.USUARIO_ID ;";
+	            " and B.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59' ".
+	            " group by A.USUARIO_ID, C.ID";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
