@@ -15287,9 +15287,11 @@ public function pp(&$var){
             $this->response('',406);
         }
 
+        //SUMA FECHAS
         $fecha = date("Y-m-d");
         $semana = date('Y-m-d', strtotime( '+6 day',strtotime($fecha))) ;
-        echo $semana;
+
+        //echo $semana;
 
 
         $query="SELECT count(*) as counter from tbl_usuarios";
