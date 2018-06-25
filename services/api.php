@@ -15288,6 +15288,9 @@ public function pp(&$var){
         }
 
         $fecha = date("Y-m-d");
+        $semana = $fecha,INTERVAL +6 day;
+        echo $semana;
+
 
         $query="SELECT count(*) as counter from tbl_usuarios";
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
