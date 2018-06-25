@@ -15303,7 +15303,7 @@ public function pp(&$var){
             }
         }
 
-        $query="SELECT count(*) as novedades from Tbl_Novedad_Turnos";
+        $query="SELECT count(*) as novedades from Tbl_Novedad_Turnos0 ";
         $r2 = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         if($r2->num_rows > 0){
             $novedades = array();
@@ -15331,7 +15331,7 @@ public function pp(&$var){
         $query=	"SELECT MAX(A.ID), ".
 	            " A.USUARIO_ID, A.USUARIO_NOMBRE,  A.GRUPO, ".
 	            " B.status as ESTADO, date_format(B.fecha_ingreso,'%T') as INGRESO, ".
-                " (CASE WHEN C.FECHAINI IS NULL OR C.FECHAFIN < now() THEN 'SIN PROGRAMACION' ".
+                " (CASE WHEN C.FECHAINI IS NULL OR C.FECHAFIN < now() OR C.ESTADO !='CUMPLIDO' THEN 'SIN PROGRAMACION' ".
                 " ELSE CAST(C.FECHAINI AS CHAR(100) CHARACTER SET utf8) END) AS FECHAINI, ".
                 " (CASE WHEN C.FECHAFIN IS NULL OR C.FECHAFIN < now() THEN 'SIN PROGRAMACION' ".
                 " ELSE CAST(C.FECHAFIN AS CHAR(100) CHARACTER SET utf8) END) AS FECHAFIN, ".
