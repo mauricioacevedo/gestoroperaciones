@@ -15331,7 +15331,7 @@ public function pp(&$var){
 
         $query=	"SELECT MAX(A.ID), ".
 	            " A.USUARIO_ID, A.USUARIO_NOMBRE,  A.GRUPO, ".
-	            " B.status as ESTADO, date_format(B.fecha_ingreso,'%T') as INGRESO, ".
+	            " C.ESTADO as ESTADO, date_format(B.fecha_ingreso,'%T') as INGRESO, ".
                 " (CASE WHEN C.FECHAINI IS NULL OR C.FECHAFIN < now() THEN 'SIN PROGRAMACION' ".
                 " ELSE CAST(C.FECHAINI AS CHAR(100) CHARACTER SET utf8) END) AS FECHAINI, ".
                 " (CASE WHEN C.FECHAFIN IS NULL OR C.FECHAFIN < now() THEN 'SIN PROGRAMACION' ".
