@@ -108,10 +108,10 @@
                                 <span ng-show="sortType == 'CARGO_ID' && sortReverse" class="fa fa-caret-up"></span></a>
                             </th>
 
-                            <th><a href="" ng-click="sortType = 'INGRESO'; sortReverse = !sortReverse">INGRESO <span
+                         <!--   <th><a href="" ng-click="sortType = 'INGRESO'; sortReverse = !sortReverse">INGRESO <span
                                     ng-show="sortType == 'INGRESO' && !sortReverse" class="fa fa-caret-down"></span>
                                 <span ng-show="sortType == 'INGRESO' && sortReverse" class="fa fa-caret-up"></span></a>
-                            </th>
+                            </th>-->
 
                             <th><a href="" ng-click="sortType = 'FECHA_FIN'; sortReverse = !sortReverse">ESTADO<span
                                     ng-show="sortType == 'FECHA_FIN' && !sortReverse" class="fa fa-caret-down"></span>
@@ -133,7 +133,7 @@
 
                             <td><h5><span ng-class="{'label label-success': data.FECHAFIN != '', 'label label-danger': data.FECHAFIN == 'SIN PROGRAMACION'}">{{data.FECHAFIN}}</span></h5>   </td>
 
-                            <td><h5><span class="small">{{data.INGRESO}}</span></h5></td>
+                            <!--<td><h5><span class="small">{{data.INGRESO}}</span></h5></td>-->
                             <td><h5><span class="small"
                                       ng-class="">{{data.ESTADO}}</span></h5>
                             </td>
