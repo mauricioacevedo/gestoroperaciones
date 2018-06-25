@@ -15311,7 +15311,7 @@ public function pp(&$var){
         $query="SELECT ID from Tbl_Turnos where FECHAFIN <= now()";
         if($r3->num_rows > 0){
             //$result = array();
-            while($row = $r->fetch_assoc()){
+            while($row = $r3->fetch_assoc()){
                   $IDs['ID']=utf8_encode($row['ID']);
                   //echo $IDs;
                   $update = "update Tbl_Turnos set ESTADO = 'FINALIZADO' where ID = '$IDs' and FECHAFIN <= now();";
