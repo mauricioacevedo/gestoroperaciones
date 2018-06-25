@@ -15310,7 +15310,7 @@ public function pp(&$var){
 
         $query="SELECT ID from Tbl_Turnos where FECHAFIN <= now()";
         if($r3->num_rows > 0){
-            //$result = array();
+            echo "Ingrso";
             while($row = $r3->fetch_assoc()){
                   $IDs['ID']=utf8_encode($row['ID']);
                   //echo $IDs;
