@@ -15313,7 +15313,7 @@ public function pp(&$var){
             //$result = array();
             while($row = $r->fetch_assoc()){
                   $IDs['ID']=utf8_encode($row['ID']);
-                  $update = "update Tbl_Turnos set ESTADO = 'FINALIZADO' where ID = '$IDs' FECHAFIN <= now();";
+                  $update = "update Tbl_Turnos set ESTADO = 'FINALIZADO' where ID = '$IDs' and FECHAFIN <= now();";
                   $this->mysqli->query($update);
                       //$r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
             }
