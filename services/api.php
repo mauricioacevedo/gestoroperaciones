@@ -15311,15 +15311,22 @@ public function pp(&$var){
         $TurnoFinalizado="SELECT ID from Tbl_Turnos where FECHAFIN <= now()";
         $r3 = $this->mysqli->query($TurnoFinalizado) or die($this->mysqli->error.__LINE__);
         if($r3->num_rows > 0){
+
+            foreach($r3 as $row)
+            {
+                $id = $row['ID'];
+                echo $id;
+            }
+
             //echo "Ingrso";
-            while($row = $r3->fetch_assoc()){
+            /*while($row = $r3->fetch_assoc()){
                   $IDs['ID']=utf8_encode($row['ID']);
                   echo $IDs;
                   $update = "update Tbl_Turnos set ESTADO = 'FINALIZADO' where ID = '$IDs' and FECHAFIN <= now();";
-                  $this->mysqli->query($update);
+                  $this->mysqli->query($update);*/
                   //$r = $this->mysqli->query($update) or die($this->mysqli->error.__LINE__);
             }
-        }
+
 
         $query=	"SELECT A.ID, ".
 	            " A.USUARIO_ID, A.USUARIO_NOMBRE,  A.GRUPO, ".
