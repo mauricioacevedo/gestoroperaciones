@@ -15329,7 +15329,7 @@ public function pp(&$var){
 	            " B.status as ESTADO, date_format(B.fecha_ingreso,'%T') as INGRESO, ".
                 " (CASE WHEN C.FECHAINI IS NULL THEN 'SIN PROGRAMACION' ".
                 " ELSE CAST(C.FECHAINI AS CHAR(100) CHARACTER SET utf8) END) AS FECHAINI, ".
-                " (CASE WHEN C.FECHAFIN IS NULL or C.ESTADO !='CUMPLIDO' THEN 'SIN PROGRAMACION' ".
+                " (CASE WHEN C.FECHAFIN IS NULL or C.ESTADO !=='CUMPLIDO' THEN 'SIN PROGRAMACION' ".
                 " ELSE CAST(C.FECHAFIN AS CHAR(100) CHARACTER SET utf8) END) AS FECHAFIN, ".
                 " C.PROGRAMO, C.FECHACARGA ".
 	            " FROM portalbd.tbl_usuarios A ".
