@@ -15308,7 +15308,8 @@ public function pp(&$var){
             }
         }
 
-        $query="SELECT ID from Tbl_Turnos where FECHAFIN <= now()";
+        $TurnoFinalizado="SELECT ID from Tbl_Turnos where FECHAFIN <= now()";
+        $r3 = $this->mysqli->query($TurnoFinalizado) or die($this->mysqli->error.__LINE__);
         if($r3->num_rows > 0){
             echo "Ingrso";
             while($row = $r3->fetch_assoc()){
