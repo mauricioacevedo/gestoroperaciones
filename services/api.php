@@ -15335,8 +15335,8 @@ public function pp(&$var){
 	            " FROM portalbd.tbl_usuarios A ".
 	            " inner join registro_ingreso_usuarios B on A.USUARIO_ID = B.usuario ".
 	            " left outer join Tbl_Turnos C on A.USUARIO_ID = C.USUARIO ".
-	            " where B.status = 'logged in' and C.ESTADO <> 'CUMPLIDO' ".
-	            " and B.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59' ".
+	            " where B.status = 'logged in' ".
+	            " and B.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59' and C.ESTADO <> 'CUMPLIDO' ".
 	            " group by A.USUARIO_ID ;";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
