@@ -15343,7 +15343,7 @@ public function pp(&$var){
 	            " RIGHT outer join Tbl_Turnos C on A.USUARIO_ID = C.USUARIO ".
 	            " where B.status = 'logged in' ".
 	            " and B.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59' ".
-	            " and C.ESTADO not in ('CUMPLIDO') group by A.USUARIO_ID, C.ID";
+	            " group by A.USUARIO_ID, C.ID";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
