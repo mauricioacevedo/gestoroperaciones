@@ -15329,7 +15329,7 @@ public function pp(&$var){
 
 
 
-        $query=	"SELECT MAX(A.ID), ".
+        $query=	" SELECT * FROM (SELECT MAX(A.ID), ".
 	            " A.USUARIO_ID, A.USUARIO_NOMBRE,  A.GRUPO, ".
 	            " (CASE WHEN C.ESTADO IS NULL THEN 'ACTIVO' ELSE C.ESTADO END) as ESTADO, ".
                 // " date_format(B.fecha_ingreso,'%T') as INGRESO, ".
@@ -15343,7 +15343,7 @@ public function pp(&$var){
 	            " left outer join Tbl_Turnos C on A.USUARIO_ID = C.USUARIO ".
 	            " where B.status = 'logged in' ".
 	            " and B.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59' ".
-	            " group by A.USUARIO_ID, C.ID";
+	            " group by A.USUARIO_ID, C.ID) D WHERE D.ESTADO NOT IN 'CUMPLIDO' ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
