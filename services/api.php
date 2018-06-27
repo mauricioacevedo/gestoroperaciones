@@ -18529,7 +18529,7 @@ public function pp(&$var){
 
         else if ($concepto == "EQURED")
         {
-            $concepto= "and CONCEPTO_ID in ('PETEC') and (TIPO_ELEMENTO_ID IN ('EQURED') )" ;
+            $concepto= "and CONCEPTO_ID in ('PETEC') and (TIPO_ELEMENTO_ID IN ('EQURED')) AND STATUS = ('PENDI_PETEC') " ;
         }
 
         else
