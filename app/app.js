@@ -18173,6 +18173,10 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
     $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
 	/*$rootScope.getZonasGestor();*/
 
+    $scope.changeStatus = function(InfoPedido){
+    console.log(InfoPedido);
+    }
+
     $scope.manual = function () {
 		$scope.peds = {};
 		$scope.error = "";
