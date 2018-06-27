@@ -18527,6 +18527,11 @@ public function pp(&$var){
             $concepto= "and CONCEPTO_ID in ('PETEC') and (TIPO_ELEMENTO_ID IN ('STBOX') )" ;
         }
 
+        else if ($concepto == "EQURED")
+        {
+            $concepto= "and CONCEPTO_ID in ('PETEC') and (TIPO_ELEMENTO_ID IN ('EQURED') )" ;
+        }
+
         else
         {
             $concepto = "and CONCEPTO_ID = ('$concepto') ";
