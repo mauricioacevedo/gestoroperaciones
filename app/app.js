@@ -1651,7 +1651,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 				//alert(data.GRUPO);
 
 				if ($cookieStore.get('logedUser').GRUPO == 'ASIGNACIONES') {
-					$location.path('/asignacion/');
+					$location.path('/tx/asignaciones/');
 				} else if ($cookieStore.get('logedUser').GRUPO == 'AGENDAMIENTO') {
 					$location.path('/agendamiento/reagendamiento');
 				} else if ($cookieStore.get('logedUser').GRUPO == 'ACTIVACION') {
