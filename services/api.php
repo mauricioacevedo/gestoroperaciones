@@ -8917,6 +8917,10 @@ private function getAgentScore($user){
 
 
         }
+        else if ($concepto=="EQURED")
+        {
+            $concepto = "and b.CONCEPTO_ID in ('PETEC') and (b.TIPO_ELEMENTO_ID IN ('EQURED'))";
+        }
 
         else if($concepto=="14" || $concepto=="99" || $concepto=="O-101" || $concepto=="OT-C08" || $concepto=="RC-SIEBEL" ){
             //echo var_dump("INGRESO");
