@@ -18517,8 +18517,16 @@ public function pp(&$var){
 
         $concepto =   $this->_request['concepto'];
 
+        if ($concepto == "COORP")
+        {
+            $concepto=" and CONCEPTO_ID in ('PETEC') and (TIPO_ELEMENTO_ID IN ('E2MB','P2MB','INSTIP','CNTXIP','SEDECX','PLANT','PLP','PTLAN','MTLAN', 'PMULT','EPCM','PPCM','PBRI','PPRI','TV','TP','BDID','TDID','BDIDE1','TDIDE1','BDODE1','TDODE1','SLL','TC','SLLBRI','TCBRI','SLLE1','TCE1','SLLPRI','TCPRI','SEDEIP','CONECT','ACCESO') )"
+        }
+
         $query=	" select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
-            "where STATUS = 'PENDI_PETEC' and ZONA not in ('NULL') AND CONCEPTO_ID = '$concepto' group by ZONA order by TOTAL desc ";
+            "where STATUS = 'PENDI_PETEC' and ZONA not in ('NULL') $concepto group by ZONA order by TOTAL desc ";
+
+        /*$query=	" select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
+            "where STATUS = 'PENDI_PETEC' and ZONA not in ('NULL') AND CONCEPTO_ID = '$concepto' group by ZONA order by TOTAL desc ";*/
 
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
