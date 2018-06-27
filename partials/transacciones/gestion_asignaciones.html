@@ -371,18 +371,19 @@
                                                 <br>
                                                         <td>
                                                             <span class="small">
-                                                                <input type="checkbox" class="flipswitch"
+                                                                <input type="checkbox" class="flipswitch ng-valid ng-dirty ng-valid-parse ng-empty ng-touched" ng-model="editaInfo.NOVEDAD" name="Novedad" id="Novedad" ng-true-value="'SI'" ng-change="changeStatus(editaInfo.NOVEDAD)">
+                                                                <!--<input type="checkbox" class="flipswitch"
                                                                        ng-model="InfoPedido.MAL_INGRESO"
                                                                        name="MALINGRESO"
                                                                        id="MALINGRESO"
-                                                                       ng-change="changeStatus(InfoPedido.MAL_INGRESO)"
-                                                                       ng-true-value="'SI'"                                         >
+                                                                       ng-change="true"
+                                                                       ng-true-value="'SI'"                                         >-->
 
                                                             </span>
 
                                                         </td>
                                             </div>
-                                            <div class="form-group " ng-show="InfoPedido.MALINGRESO == 'SI'" >
+                                            <div class="form-group " ng-show="MALINGRESO = 'SI'" ng-class="">
                                                 <label for="MotivoMalIngreso" class="control-label">Motivo Mal Ingreso:</label>
                                                 <select id="MotivoMalIngreso"
                                                         class= "form-control btn-xs"
