@@ -20102,7 +20102,7 @@ public function pp(&$var){
         $motivoMalIngreso   =   $gestion['gestion']['MOTIVOMALINGRESO'];
         $observacionAsesor  =   $gestion['gestion']['ObservacionAsesor'];
 
-        echo var_dump ($observacionAsesor);
+        //echo var_dump ($observacionAsesor);
 
         //echo var_dump ($motivoMalIngreso);
 
@@ -20340,7 +20340,7 @@ public function pp(&$var){
             {
 
                 $queryReconf = "update informe_petec_pendientesm set CONCEPTO_ID = 'RC-SIEBEL', STATUS = 'PENDI_PETEC'".
-                                " WHERE ID = '$idpedido' ";
+                                " OBSERVACIONES = '$observacionAsesor' WHERE ID = '$idpedido' ";
                 $insertReconf = $this->mysqli->query($queryReconf);
                 //echo var_dump("ingreso");
             }
