@@ -20099,6 +20099,9 @@ public function pp(&$var){
         $observacion        =   $gestion['gestion']['OBSERVACIONES_PROCESO'];
         $malingreso         =   $gestion['gestion']['MALINGRESO'];
         $motivoMalIngreso   =   $gestion['gestion']['MOTIVOMALINGRESO'];
+        $observacionAsesor  =   $gestion['gestion']['ObservacionAsesor'];
+
+        echo $observacionAsesor;
 
         //echo var_dump ($motivoMalIngreso);
 
