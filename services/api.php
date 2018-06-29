@@ -20340,7 +20340,7 @@ public function pp(&$var){
             {
 
                 $queryReconf = "update informe_petec_pendientesm set CONCEPTO_ID = 'RC-SIEBEL', STATUS = 'PENDI_PETEC'".
-                                ", OBSERVACIONES = '$observacionAsesor' WHERE ID = '$idpedido' ";
+                                " ,OBSERVACIONES = '$observacionAsesor' WHERE ID = '$idpedido' ";
                 $insertReconf = $this->mysqli->query($queryReconf);
                 //echo var_dump("ingreso");
             }
