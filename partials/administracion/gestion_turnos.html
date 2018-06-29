@@ -54,7 +54,7 @@
                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                         </button>-->
                                         <button type="button" uib-tooltip="Exportar" tooltip-placement="top"
-                                                class="btn btn-primary btn-circle-xs" ng-click="csvUsuarios()"
+                                                class="btn btn-primary btn-circle-xs" ng-click=""
                                                 ng-disabled="loading">
                                             <i class="fa fa-cloud-download" aria-hidden="true"></i>
                                         </button>
@@ -83,34 +83,36 @@
                                     <span ng-show="sortType == 'USUARIO_ID' && !sortReverse"
                                           class="fa fa-caret-down"></span>
                                     <span ng-show="sortType == 'USUARIO_ID' && sortReverse"
-                                          class="fa fa-caret-up"></span></a></th>
+                                          class="fa fa-caret-up"></span></a>
+                            </th>
+
                             <th><a href="" ng-click="sortType = 'USUARIO_NOMBRE'; sortReverse =!sortReverse">NOMBRE
                                 <span ng-show="sortType == 'USUARIO_NOMBRE' && !sortReverse"
-                                      class="fa fa-caret-down"></span>
+                                      class=""></span>
                                 <span ng-show="sortType == 'USUARIO_NOMBRE' && sortReverse"
-                                      class="fa fa-caret-up"></span></a></th>
-                            <!--<th><a href="" ng-click="sortType = 'parseInt(CEDULA_ID)'; sortReverse = !sortReverse">CEDULA
-                                <span ng-show="sortType == 'parseInt(CEDULA_ID)' && !sortReverse"
-                                      class="fa fa-caret-down"></span>
-                                <span ng-show="sortType == 'parseInt(CEDULA_ID)' && sortReverse"
-                                      class="fa fa-caret-up"></span></a></th>-->
+                                      class=""></span></a>
+                            </th>
+
                             <th><a href="" ng-click="sortType = 'GRUPO'; sortReverse = !sortReverse">GRUPO <span
                                     ng-show="sortType == 'GRUPO' && !sortReverse" class="fa fa-caret-down"></span>
                                 <span ng-show="sortType == 'GRUPO' && sortReverse" class="fa fa-caret-up"></span></a>
                             </th>
                             <!--<th>CORREO</th>-->
-                            <th><a href="" ng-click="sortType = 'FECHA_INI'; sortReverse = !sortReverse">FECHA_INI <span
+                            <th><a href="" ng-click="sortType = 'FECHA_INI'; sortReverse = !sortReverse">INICIA_TURNO <span
                                     ng-show="sortType == 'FECHA_INI' && !sortReverse" class="fa fa-caret-down"></span>
                                 <span ng-show="sortType == 'FECHA_INI' && sortReverse" class="fa fa-caret-up"></span></a>
                             </th>
-                            <th><a href="" ng-click="sortType = 'CARGO_ID'; sortReverse = !sortReverse">FECHA_FIN <span
+
+                            <th><a href="" ng-click="sortType = 'CARGO_ID'; sortReverse = !sortReverse">TERMINA_TURNO <span
                                     ng-show="sortType == 'CARGO_ID' && !sortReverse" class="fa fa-caret-down"></span>
                                 <span ng-show="sortType == 'CARGO_ID' && sortReverse" class="fa fa-caret-up"></span></a>
                             </th>
-                            <th><a href="" ng-click="sortType = 'INGRESO'; sortReverse = !sortReverse">INGRESO <span
+
+                         <!--   <th><a href="" ng-click="sortType = 'INGRESO'; sortReverse = !sortReverse">INGRESO <span
                                     ng-show="sortType == 'INGRESO' && !sortReverse" class="fa fa-caret-down"></span>
                                 <span ng-show="sortType == 'INGRESO' && sortReverse" class="fa fa-caret-up"></span></a>
-                            </th>
+                            </th>-->
+
                             <th><a href="" ng-click="sortType = 'FECHA_FIN'; sortReverse = !sortReverse">ESTADO<span
                                     ng-show="sortType == 'FECHA_FIN' && !sortReverse" class="fa fa-caret-down"></span>
                                 <span ng-show="sortType == 'FECHA_FIN' && sortReverse" class="fa fa-caret-up"></span></a>
@@ -122,18 +124,18 @@
                         <tr ng-repeat="data in listaUsuarios  | orderBy:sortType:sortReverse | filter:filtroInput as results"
                             class="animated bounceInRight">
                             <!--<td><span class="small">{{data.ID}}</span></td>-->
-                            <td><span class="small">{{data.USUARIO_ID}}</span></td>
-                            <td><span class="small">{{data.USUARIO_NOMBRE}}</span></td>
+                            <td><h5><span class="small">{{data.USUARIO_ID}}</span></h5></td>
+                            <td><h5><span class="small">{{data.USUARIO_NOMBRE}}</span></h5></td>
                             <!--<td><span class="small">{{data.CEDULA_ID}}</span></td>-->
-                            <td><span class="small">{{data.GRUPO}}</span></td>
+                            <td><h5><span class="small">{{data.GRUPO}}</span></h5></td>
 
-                            <td><span ng-class="{'label label-success': data.FECHAINI != '', 'label label-danger': data.FECHAINI == 'SIN PROGRAMACION'}" >{{data.FECHAINI}}</span></td>
+                            <td><h5> <span ng-class="{'label label-success': data.FECHAINI != '', 'label label-danger': data.FECHAINI == 'SIN PROGRAMACION'}" >  {{data.FECHAINI}} </span></h5></td>
 
-                            <td><span ng-class="{'label label-success': data.FECHAFIN != '', 'label label-danger': data.FECHAFIN == 'SIN PROGRAMACION'}">{{data.FECHAFIN}}</span></td>
+                            <td><h5><span ng-class="{'label label-success': data.FECHAFIN != '', 'label label-danger': data.FECHAFIN == 'SIN PROGRAMACION'}">{{data.FECHAFIN}}</span></h5>   </td>
 
-                            <td><span class="small">{{data.INGRESO}}</span></td>
-                            <td><span class="small"
-                                      ng-class="{'ACTIVO': 'label label-success','INACTIVO': 'label label-default'}[data.ESTADO]">{{data.ESTADO}}</span>
+                            <!--<td><h5><span class="small">{{data.INGRESO}}</span></h5></td>-->
+                            <td><h5><span class="small"
+                                      ng-class="">{{data.ESTADO}}</span></h5>
                             </td>
                             <!--<td><span class="small">{{data.CORREO_USUARIO}}</span></td>-->
                             <!--<td><span class="small">{{data.CARGO_ID}} - {{data.NOMBRE_CARGO}}</span></td>-->
@@ -170,6 +172,11 @@
 
                     </div>
                     <div class="col-md-6">
+                         <ul class="nav navbar-nav navbar-right">
+                            <li>Novedades Semana: <span class="label label-success">{{TotalNovedades}}</span></li>
+                            <button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" ng-click="listadoNovedades();" data-target="#ModalNovedades" data-backdrop="static" data-placement="top" data-html="true" data-selector=""><i class="fa fa-eye" aria-hidden="true"> </i>&nbsp;&nbsp;Ver
+												</button>
+                        </ul>
 
                     </div>
 
@@ -249,15 +256,20 @@
 
                                         <div class="col-md-12">
                                         <br>
-                                        <center> <h4> ¿ Novedad ? </h4> </center>
+                                        <center> <h4> ¿ Novedad ? <input type="checkbox" class="flipswitch ng-valid ng-dirty ng-valid-parse ng-empty ng-touched" ng-model="editaInfo.NOVEDAD" name="Novedad" id="Novedad" ng-true-value="'SI'" ng-change="changeStatus(editaInfo.NOVEDAD)">  </h4>
+                                              </center>
                                         </div>
+
+
+
+
 
                                       <!--  <div class="col-md-1">
                                         espacios
                                         </div>-->
 
                                         <div class="col-md-3">
-                                             <div class="from-group" id="datetimepicker">
+                                             <div class="from-group" id="datetimepicker" ng-show="editaInfo.NOVEDAD == 'SI'">
                                                 <label for="fechaininovedad">
                                                     Inicio Novedad
                                                 </label>
@@ -268,7 +280,7 @@
                                         </div>
 
                                         <div class="col-md-3">
-                                            <div class="from-group" id="datetimepicker">
+                                            <div class="from-group" id="datetimepicker" ng-show="editaInfo.NOVEDAD == 'SI'">
                                                 <label for="fechafinNovedad">
                                                     Fin Novedad
                                                 </label>
@@ -278,7 +290,7 @@
                                              </div>
                                         </div>
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" ng-show="editaInfo.NOVEDAD == 'SI'">
                                         <label for="fechafinNovedad">
                                             Tipo Novedad
                                         </label>
@@ -292,7 +304,7 @@
                                         </select>
                                         </div>
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" ng-show="editaInfo.NOVEDAD == 'SI'">
                                             <div class="form-group">
                                                 <label for="descripcionNovedad">
                                                     Descripcion:
@@ -394,7 +406,7 @@
             <div class="modal-footer">
 
 
-                <button type="button" class="btn btn-success" ng-click="editarTurnos(editaInfo)" data-dismiss="modal"
+                <button type="button" class="btn btn-success" ng-click="GuardarTurnos(editaInfo)" data-dismiss="modal"
                         ng-disabled="contact_form.$invalid" ng-hide="UsuarioNuevo">Guardar
                 </button>
                <!-- <button type="button" class="btn btn-success" ng-click="crearUsuario(editaInfo)" data-dismiss="modal"
@@ -415,7 +427,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Eliminar el usuario con el id: <span
+                <h4 class="modal-title">Eliminar Novedad: <span
                         class="label label-info">{{idUsuario}}</span></h4>
 
             </div>
@@ -425,7 +437,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            Esta seguro que quiere elminiar este usuario?
+                            Esta seguro que quiere elminiar esta Novedad?
                             <p><strong>{{UsuarioNom}}</strong></p>
                         </div>
                     </div>
@@ -446,4 +458,59 @@
 
     </div>
 
-</div><!-- Modal Eliminar Novedad-->
+</div>
+
+<div id="ModalNovedades"  class="modal fade"  role="dialog">
+ <div class="modal-dialog modal-lg">
+  <div class="modal-content" >
+    <!--<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Listado Novedades&nbsp;&nbsp;</h4>
+    </div>-->
+    <div class="modal-body fixed-panel-agenda">
+        	<div class = "panel panel-default">
+			    <div class = "panel-heading">
+			        <h4 class="modal-title">Listado de Novedades</h4>
+			    </div>
+			    <div class="panel-body fixed-panel">
+          					<table class="table table small table-striped table-hover table-condensed">
+										<thead>
+											<tr>
+												<th><center>Usuario</center></th>
+												<th><center>Inicia Turno</center></th>
+												<th><center>Termina Turno</center></th>
+												<th><center>Programo</center></th>
+                                                <th><center>Inicio Novedad</center></th>
+                                                <th><center>Termina Novedad</center></th>
+                                                <th><center>Tipo Novedad</center></th>
+                                                <th><center>Descripcion</center></th>
+                                                <th><center>Ingreso</center></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="data in listaNovedades">
+											    <td>{{data.USUARIO}}</td>
+											   	<td><center>{{data.INICIATURNO}}</center></td>
+											   	<td>{{data.TERMINATURNO}}</td>
+											   	<td><center>{{data.PROGRAMO}}</center></td>
+                                                <td><center>{{data.FECHAINI_NOVEDAD}}</center></td>
+                                                <td><center>{{data.FECHAFIN_NOVEDAD}}</center></td>
+                                                <td><center>{{data.TIPONOVEDAD}}</center></td>
+                                                <td><center>{{data.DESCRIPCION}}</center></td>
+                                                <td><center>{{data.INGRESO_NOVEDAD}}</center></td>
+											</tr>
+										</tbody>
+							</table>
+      			</div>
+    		</div>
+    </div>
+
+    <div class="modal-footer">
+    <!--	<button type="button" class="btn btn-primary btn-xs" ng-click="exportarDatos('totalmismodia')" >Exportar
+		</button>-->
+        <button type="button" ng-disabled="contact_form.$invalid" class="btn btn-default btn-xs" data-dismiss="modal">Cerrar</button>
+    </div>
+ </div>
+</div>
+</div>
+<!-- Modal Eliminar Novedad-->

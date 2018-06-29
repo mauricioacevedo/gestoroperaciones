@@ -763,8 +763,12 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoUsuariosOnline');
 	};
 
-    obj.editTurnos = function (editaInfo) {
-		return $http.post(serviceBase + 'editarTurnos', {
+    obj.getListadoNovedades = function () {
+		return $http.get(serviceBase + 'listadoNovedades');
+	};
+
+    obj.GuardarTurnos = function (editaInfo) {
+		return $http.post(serviceBase + 'GuardarTurnos', {
 			"editaInfo": editaInfo
 		});
 	};
@@ -1512,7 +1516,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 		divi.style.position = "relative";
 
 		if ($cookieStore.get('logedUser').GRUPO == 'ASIGNACIONES') {
-			$location.path('/asignacion/');
+			$location.path('/tx/asignaciones/');
 		} else if ($cookieStore.get('logedUser').GRUPO == 'AGENDAMIENTO') {
 			$location.path('/agendamiento/reagendamiento');
 		} else if ($cookieStore.get('logedUser').GRUPO == 'ACTIVACION') {
@@ -1647,7 +1651,7 @@ app.controller('login', function ($scope, $route, $rootScope, $location, $routeP
 				//alert(data.GRUPO);
 
 				if ($cookieStore.get('logedUser').GRUPO == 'ASIGNACIONES') {
-					$location.path('/asignacion/');
+					$location.path('/tx/asignaciones/');
 				} else if ($cookieStore.get('logedUser').GRUPO == 'AGENDAMIENTO') {
 					$location.path('/agendamiento/reagendamiento');
 				} else if ($cookieStore.get('logedUser').GRUPO == 'ACTIVACION') {
@@ -4849,7 +4853,7 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 	divi.style.visibility = "visible";
 	divi.style.position = "relative";
 	$rootScope.iconcepto = "TODO";
-	$rootScope.actualView = "usuarios";
+	$rootScope.actualView = "Turnos";
 
 	$scope.usert = {};
 	$scope.usert.EQUIPO_ID = "MANUAL";
@@ -4866,6 +4870,10 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 		}
 		return num;
 	};
+
+    $scope.changeStatus = function(editaInfo){
+    console.log(editaInfo);
+    }
 
 	$rootScope.logout = function () {
 		services.logout($rootScope.logedUser.login);
@@ -4888,12 +4896,10 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 
 	$scope.usuarioFill = function (usuario_id) {
 		$scope.filtroInput = usuario_id;
-
-
 	};
 
 
-	//Obtener listado de usuarios del GEOP
+	//listado de usuarios Online
 	$scope.listadoUsuariosGeop = function (usuario_id) {
 		$rootScope.errorDatos = null;
 		services.getListadoUsuariosOnline(usuario_id).then(
@@ -4902,11 +4908,28 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 				$errorDatos = null;
 
                 $scope.listaUsuarios = data.data[0];
+                $scope.CantidadNovedades = data.data[2];
+
+                //$scope.www = $scope.novedades[0];
+
+                if ($scope.CantidadNovedades !== null){
+                           $scope.TotalNovedades=0;
+                           //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
+                           var TotalNovedades = $scope.CantidadNovedades.length;
+
+                           for (var i = 0; i < TotalNovedades; i++){
+                           $scope.TotalNovedades=+$scope.TotalNovedades + +$scope.CantidadNovedades[i].novedades;
+                           }
+                }
+
+                //console.log($scope.www);
+                //console.log(TotalNovedades);
 
 				// console.log($scope.listaUsuarios);
-				$scope.cantidad = data.data.length;
-				$scope.sortType = 'USUARIO_ID'; // set the default sort type
-				$scope.sortReverse = false; // set the default sort order
+				//$scope.cantidad = data.data.length;
+                //console.log($scope.cantidad);
+				$scope.sortType = 'USUARIO_ID';
+				$scope.sortReverse = false;
 				$scope.csvUsers = false;
 				$scope.fechiniExpoIO = '';
 
@@ -4915,16 +4938,66 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 			function errorCallback(response) {
 
 				$rootScope.errorDatos = "Usuario no existe.";
-
 				// console.log($rootScope.errorDatos);
 
 			});
 
 
 	};
-	$scope.listadoUsuariosGeop();
+    $scope.listadoUsuariosGeop();
 
-	//Exportes: Inicio
+    //*************************LISTADO NOVEDADES*************************************
+    $scope.listadoNovedades = function () {
+		$rootScope.errorDatos = null;
+		services.getListadoNovedades().then(
+
+			function (data) {
+				$errorDatos = null;
+
+                $scope.listaNovedades = data.data[0];
+
+                /*$scope.CantidadNovedades = data.data[2];
+
+                if ($scope.CantidadNovedades !== null){
+                           $scope.TotalNovedades=0;
+                           //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
+                           var TotalNovedades = $scope.CantidadNovedades.length;
+
+                           for (var i = 0; i < TotalNovedades; i++){
+                           $scope.TotalNovedades=+$scope.TotalNovedades + +$scope.CantidadNovedades[i].novedades;
+                           }
+                }*/
+
+                //console.log($scope.www);
+                //console.log(TotalNovedades);
+
+				// console.log($scope.listaUsuarios);
+				//$scope.cantidad = data.data.length;
+                //console.log($scope.cantidad);
+				$scope.sortType = 'USUARIO_ID';
+				$scope.sortReverse = false;
+				$scope.csvUsers = false;
+				$scope.fechiniExpoIO = '';
+
+				return data.data;
+			},
+			function errorCallback(response) {
+
+				$rootScope.errorDatos = "Usuario no existe.";
+				// console.log($rootScope.errorDatos);
+
+			});
+
+
+	};
+
+    $scope.listadoNovedades();
+
+    //*************************LISTADO NOVEDADES*************************************
+
+
+
+
 	$scope.csvUsuarios = function (filtroInput) {
 
 		services.expCsvUsuarios().then(
@@ -4950,9 +5023,6 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 	};
 	//Exportes: Fin
 
-
-
-	//modales
 	//Modal para editar usuarios
 	$scope.editarModal = function (data) {
 		$rootScope.errorDatos = null;
@@ -4979,7 +5049,8 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
         $scope.msgLdap = null;
         $scope.pic = 'images/avatar_2x.png';
 	};
-	//Modal para borrar usuarios.
+
+    //Modal para borrar Turno.
 	$scope.borrarModal = function (data) {
 		$rootScope.errorDatos = null;
 		$scope.idUsuario = data.ID;
@@ -5009,12 +5080,12 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 		);
 
 
-	}; //Borrar Usuario
+	};
 
 	//Editar Turno Servicio
-	$scope.editarTurnos = function (editaInfo) {
+	$scope.GuardarTurnos = function (editaInfo) {
 
-		services.editTurnos(editaInfo).then(
+		services.GuardarTurnos(editaInfo).then(
 
 			function (data) {
 
@@ -5054,79 +5125,7 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 			});
 	}; //Crear Usuario
 
-	$scope.sendEmail = function (data) {
 
-		//console.log(data);
-		$scope.infoEmail = data;
-		var email = data.Correo;
-		//var email="pepitagota@chupaverlga.com";
-		var ingreso = data.Hora_ingreso;
-		var salida = data.Hora_salida;
-		var fecha = data.Fecha;
-		var nombre = data.nombre;
-		var url = "http://10.100.82.125/autobots/plugins/img/";
-		var urlpath = window.location.pathname;
-
-
-
-		var body = "Hola <b>" + nombre + "</b>, <br> El dia: <b>" + fecha + "</b>  No cerraste, sesion." +
-			"<br><br><br><br><br><br> Este es un correo generado automaticamente.<br> " +
-			"Si tienes alguna duda por favor acercate al puesto de tu supervisor.<br> " +
-			"<hr><br><img src='" + url + "geop_logo.png'>";
-		//var body="<html><b>Hola</b> "+nombre+",\n El dia: "+fecha+" No cerraste, sesion</html>";
-
-		var subject = "Gestor Operaciones: No cerro sesion.";
-
-		$scope.url = 'http://10.100.82.125/autobots/plugins/email_sesiones.php';
-
-		$http.post($scope.url, {
-			"name": nombre,
-			"email": email,
-			"message": body,
-			"fecha": fecha,
-			"asunto": subject
-		}).
-		then(function successCallback(response) {
-
-			console.log("Por fin envio");
-			//console.log(response);
-			$notification.success("Enviado", "Correo enviado exitosamente");
-
-		}, function errorCallback(response) {
-
-			$timeout(function () {
-				$notification.error("Error", "No se envió el correo.", $scope.sendEmailMaunal($scope.infoEmail));
-			}, 700);
-
-		})
-
-
-	};
-
-	$scope.sendEmailMaunal = function (data) {
-
-		//console.log(data);
-
-		var email = data.Correo;
-		var ingreso = data.Hora_ingreso;
-		var salida = data.Hora_salida;
-		var fecha = data.Fecha;
-		var nombre = data.nombre;
-		var body = "Hola " + nombre + ",\n El dia: " + fecha + " No cerraste, sesion" +
-			"\n\n\n\n\n\n Este es un correo generado automaticamente.\n" +
-			"Si tienes alguna duda por favor acercate al puesto de tu supervisor.";
-		//var body="<html><b>Hola</b> "+nombre+",\n El dia: "+fecha+" No cerraste, sesion</html>";
-
-		var subject = "Gestor Operaciones: No cerró sesión.";
-		var link = "mailto:" + email +
-			"?subject=" + escape(subject) +
-			"&body=" + escape(body);
-		//+ "&body="+body;
-		//+ "&body=" + encodeURIComponent(body);
-		//+ "&HTMLBody="+escape("<html><head><meta http-equiv='content-type' content='text/html; charset=UTF-8'></head><body><b>Gika</b</body></html>");
-
-		window.location.href = link;
-	};
 
 
 	$scope.csvUsuarios = function (filtroInput) {
@@ -5152,61 +5151,6 @@ app.controller('TurnosCtrl', function ($scope, $rootScope, $location, $routePara
 		);
 
 	};
-
-	$scope.abrirsuk = function () {
-
-		var msg = {
-			type: "message",
-			text: "Holi",
-			id: '1',
-			date: Date.now(),
-			data: {
-				message: "Hello world!"
-			}
-		};
-
-
-	};
-
-	$scope.buscarIdLdap = function (userid) {
-        $rootScope.errorDatos = null;
-		$http.get('./services/getLdapUserInfo?userbusqueda='+userid).then(
-			function (data){
-
-				if(data.status!=201){
-					$scope.msgLdap = "Usuario encontrado";
-                    $scope.editaInfo = {
-                        USUARIO_ID: data.data[0].USUARIO_ID,
-                        USUARIO_NOMBRE: data.data[0].USUARIO_NOMBRE,
-                        CEDULA_ID: data.data[0].CEDULA_ID,
-                        CORREO_USUARIO: data.data[0].CORREO_USUARIO,
-                        ESTADO: 'ACTIVO'
-                    };
-                    $scope.cargoLabel = data.data[0].CARGO;
-                    if(data.data[0].PICTURE!==''){
-                        $scope.pic = 'data:image/jpeg;base64,'+data.data[0].PICTURE;
-					}else{
-                        $scope.pic = 'images/avatar_2x.png';
-					}
-
-
-                    //console.log(data.data[0]);
-
-				}else{
-
-                    $scope.msgLdap = data.data[0];
-                    $scope.cargoLabel = null;
-                    $scope.pic = null;
-				}
-			},
-			function errorCallback(res){
-                $rootScope.errorDatos = res.data;
-                $scope.cargoLabel = null;
-                $scope.msgLdap = $rootScope.errorDatos;
-			}
-		)
-	}
-
 
 });
 
@@ -5273,10 +5217,14 @@ app.controller('PedidosMalosCtrl', function ($scope, $rootScope, $location, $rou
                            //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
                            var TotalMalos = $scope.cantidadMalos.length;
 
+
                            for (var i = 0; i < TotalMalos; i++){
                            $scope.TotalMalos=+$scope.TotalMalos + +$scope.cantidadMalos[i].counter;
                            }
+                           //console.log(TotalMalos);
                         }
+
+
 
                 if ($scope.cantidadIgnorados !== null){
                            $scope.TotalIgnorados=0;
@@ -18225,6 +18173,112 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
     $rootScope.getConceptosGestor();						// Inicializo la variable Global para los conceptos.
 	/*$rootScope.getZonasGestor();*/
 
+    $scope.changeStatus = function(InfoPedido){
+    console.log(InfoPedido);
+    }
+
+    $scope.manual = function () {
+		$scope.peds = {};
+		$scope.error = "";
+		$scope.pedido1 = "";
+		$scope.mpedido = {};
+		$scope.bpedido = '';
+		$scope.busy = "";
+		$scope.historico_pedido = [];
+		$scope.mpedido.active = 1;
+		$scope.mpedido.fuente = 'FENIX_NAL';
+
+        $scope.timeInit = new Date().getTime();
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+	};
+
+    $scope.msavePedido = function () {
+
+		var loader = document.getElementById("mloader");
+		mloader.className = 'glyphicon glyphicon-refresh fa-spin';
+
+		console.log($scope.mpedido);
+		$scope.pedido = {};
+		$scope.error = "";
+		angular.copy($scope.mpedido, $scope.pedido);
+		//alert($scope.mpedido.pedido);
+		if ($scope.mpedido.pedido == "" || $scope.mpedido.pedido == {} || $scope.mpedido.pedido === undefined) {
+			alert("Pedido vacio.");
+			mloader.className = '';
+			return;
+		}
+		$scope.pedido.user = $rootScope.logedUser.login;
+		$scope.pedido.username = $rootScope.logedUser.name;
+		$scope.pedido.duracion = new Date().getTime() - $scope.timeInit;
+		var df = new Date($scope.pedido.duracion);
+		$scope.pedido.duracion = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
+		$scope.pedido.actividad = "ESTUDIO";
+		$scope.pedido.concepto_final = $scope.mpedido.concepto;
+		$scope.pedido.fecha_inicio = $scope.fecha_inicio;
+
+
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+		$scope.pedido.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+		//console.log($scope.pedido);
+		services.insertMPedido($scope.pedido).then(function (status) {
+            $scope.agentScore=status.data['agent_score'];
+			return status;
+		});
+
+		if ($scope.pedidos == "") {
+			$scope.pedidos = new Array();
+		}
+		$scope.pedidos = $scope.pedidos.concat($scope.pedido);
+		if ($scope.historico_pedido == "") {
+			$scope.historico_pedido = new Array();
+		}
+		//console.log($scope.historico_pedido);
+
+		$scope.baby($scope.pedido.pedido);
+		$scope.pedido1 = $scope.pedido.pedido;
+
+		$scope.timeInit = new Date().getTime();
+		date1 = new Date();
+		year = date1.getFullYear();
+		month = $scope.doubleDigit(date1.getMonth() + 1);
+		day = $scope.doubleDigit(date1.getDate());
+		hour = $scope.doubleDigit(date1.getHours());
+		minute = $scope.doubleDigit(date1.getMinutes());
+		seconds = $scope.doubleDigit(date1.getSeconds());
+
+		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+		$scope.pedido = {};
+		$scope.peds = {};
+		$scope.pedido1 = "";
+		$scope.mpedido = {};
+		$scope.bpedido = '';
+		$scope.historico_pedido = [];
+		$scope.mpedido.active = 1;
+		$scope.mpedido.fuente = 'FENIX_NAL';
+		$scope.busy = "";
+		$scope.mpedido.active = 0;
+		$scope.pedidoinfo = 'Pedido';
+		mloader.className = '';
+	};
+
+
     $rootScope.getZonasGestor = function (concepto) {
 
         var concepto = $scope.iconcepto.CONCEPTO_ID;
@@ -18290,6 +18344,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	};
 	$scope.onChangeAccion = function (valor) {
 		$scope.accRdy = true;
+        console.log(valor);
 		if(valor=='VOLVER A LLAMAR'||valor=='GESTIONAR MAS TARDE'){
 			$scope.programar=true;
 		}
@@ -19061,6 +19116,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 TECNOLOGIA_ID: gestion.TECNOLOGIA_ID,
                 FECHA: gestion.FECHA_ESTADO,
                 ID: gestion.ID,
+                ObservacionAsesor: InfoPedido.ObservacionAsesor,
                 MALINGRESO: InfoPedido.MAL_INGRESO,
                 MOTIVOMALINGRESO: InfoPedido.MOTIVO_MAL_INGRESO
 

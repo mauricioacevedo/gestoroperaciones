@@ -8919,6 +8919,10 @@ private function getAgentScore($user){
 
 
         }
+        else if ($concepto=="EQURED")
+        {
+            $concepto = "and b.CONCEPTO_ID in ('PETEC') and (b.TIPO_ELEMENTO_ID IN ('EQURED'))";
+        }
 
         else if($concepto=="14" || $concepto=="99" || $concepto=="O-101" || $concepto=="OT-C08" || $concepto=="RC-SIEBEL" ){
             //echo var_dump("INGRESO");
@@ -15289,7 +15293,11 @@ public function pp(&$var){
             $this->response('',406);
         }
 
+        //SUMA FECHAS
         $fecha = date("Y-m-d");
+        $semana = date('Y-m-d', strtotime( '+6 day',strtotime($fecha))) ;
+
+        //echo $semana;
 
         $query="SELECT count(*) as counter from tbl_usuarios";
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -15301,21 +15309,45 @@ public function pp(&$var){
             }
         }
 
+        $query="SELECT count(*) as novedades from Tbl_Novedad_Turnos ";
+        $r2 = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        if($r2->num_rows > 0){
+            $novedades = array();
+            while($row = $r2->fetch_assoc()){
+                $novedades[] = $row;
+            }
+        }
 
-        $query=	"SELECT A.ID, ".
+        $TurnoFinalizado="SELECT ID from Tbl_Turnos where FECHAFIN <= now()";
+        $r3 = $this->mysqli->query($TurnoFinalizado) or die($this->mysqli->error.__LINE__);
+        if($r3->num_rows > 0){
+
+            foreach($r3 as $row)
+            {
+                $id = $row['ID'];
+                $update = "update Tbl_Turnos set ESTADO = 'CUMPLIDO' where ID = '$id' and FECHAFIN <= now() ".
+                          "and ESTADO <> 'CUMPLIDO' ";
+                $r = $this->mysqli->query($update) or die($this->mysqli->error.__LINE__);
+                //this->mysqli->query($update);
+            }
+
+            }
+
+        $query=	" SELECT * FROM (SELECT MAX(A.ID), ".
 	            " A.USUARIO_ID, A.USUARIO_NOMBRE,  A.GRUPO, ".
-	            " B.status as ESTADO, date_format(B.fecha_ingreso,'%T') as INGRESO, ".
-                " (CASE WHEN C.FECHAINI IS NULL THEN 'SIN PROGRAMACION' ".
+	            " (CASE WHEN C.ESTADO IS NULL THEN 'ACTIVO' ELSE C.ESTADO END) as ESTADO, ".
+                // " date_format(B.fecha_ingreso,'%T') as INGRESO, ".
+                " (CASE WHEN C.FECHAINI IS NULL OR C.FECHAFIN < now() THEN 'SIN PROGRAMACION' ".
                 " ELSE CAST(C.FECHAINI AS CHAR(100) CHARACTER SET utf8) END) AS FECHAINI, ".
-                " (CASE WHEN C.FECHAFIN IS NULL THEN 'SIN PROGRAMACION' ".
+                " (CASE WHEN C.FECHAFIN IS NULL OR C.FECHAFIN < now() THEN 'SIN PROGRAMACION' ".
                 " ELSE CAST(C.FECHAFIN AS CHAR(100) CHARACTER SET utf8) END) AS FECHAFIN, ".
                 " C.PROGRAMO, C.FECHACARGA ".
-	            " FROM portalbd.tbl_usuarios A ".
+	            " FROM tbl_usuarios A ".
 	            " inner join registro_ingreso_usuarios B on A.USUARIO_ID = B.usuario ".
 	            " left outer join Tbl_Turnos C on A.USUARIO_ID = C.USUARIO ".
 	            " where B.status = 'logged in' ".
 	            " and B.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59' ".
-	            " group by A.USUARIO_ID ;";
+	            " group by A.USUARIO_ID, C.ID) D WHERE D.ESTADO NOT IN ('CUMPLIDO') ";
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -15327,13 +15359,13 @@ public function pp(&$var){
                 $row['USUARIO_NOMBRE']=utf8_encode($row['USUARIO_NOMBRE']);
                 $result[] = $row;
             }
-            $this->response($this->json(array($result,$counter)), 200); // send user details
+            $this->response($this->json(array($result,$counter,$novedades)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
     }
 
-    private function editarTurnos(){
+    private function GuardarTurnos(){
 
 
         if($this->get_request_method() != "POST"){
@@ -15362,54 +15394,78 @@ public function pp(&$var){
         $FechaFinNovedad=$params['editaInfo']['FECHAFIN_NOVEDAD'];
         $TipoNovedad=$params['editaInfo']['TIPO_NOVEDAD'];
         $Descripcion=$params['editaInfo']['Descripcion'];
+        $Novedad=$params['editaInfo']['NOVEDAD'];
 
+        if ($Novedad == 'SI')
+        {
+             //$sqlUltimoTurno = "select max(ID) from Tbl_Turnos where USUARIO = '$Login' and ESTADO = 'Activo' ";
 
-        //var_dump($params['editaInfo']);
+                  $ultimoid = "select max(ID) AS ID from Tbl_Turnos where USUARIO = '$Login' and ESTADO = 'Activo'";
+                  $rst2 = $this->mysqli->query($ultimoid) or die($this->mysqli->error.__LINE__);
 
-       /* if($passEdita!=""){
-            $passcode=" , PASSWORD=MD5('".$passEdita."')";
+                        if($rst2->num_rows > 0){
+                        //$result = array();
+                        while($row = $rst2->fetch_assoc()){
+                            $row['ID']=utf8_encode($row['ID']);
+                            //$result[] = $row;
+                            $idTurno = trim($row['ID']);
+                            }
+
+                        }
+
+            $sqlNovedad = "insert into Tbl_Novedad_Turnos (IDTURNO,FECHAINI_NOVEDAD,FECHAFIN_NOVEDAD,TIPONOVEDAD, ".
+                                                                  " DESCRIPCION ,INGRESO_NOVEDAD) "."
+                                                   values ('$idTurno','$FechaIniNovedad','$FechaFinNovedad', ".
+                                                          " '$TipoNovedad','$Descripcion','$usuarioGalleta') ";
+
+            $rst = $this->mysqli->query($sqlNovedad) or die($this->mysqli->error.__LINE__);
+
+                //echo var_dump ($id);
         }
-*/
-        $sql = " insert into Tbl_Turnos (USUARIO,FECHAINI,FECHAFIN,FECHAINI_NOVEDAD, ".
-               " FECHAFIN_NOVEDAD, TIPONOVEDAD,DESCRIPCION,PROGRAMO) ".
-               " values ('$Login','$FechaIni','$FechaFin','$FechaIniNovedad','$FechaFinNovedad', ".
-               " '$TipoNovedad','$Descripcion','$usuarioGalleta')";
 
-        //echo $sql;
+        else
+        {
 
+        $sql = " insert into Tbl_Turnos (USUARIO,FECHAINI,FECHAFIN,PROGRAMO) ".
+               " values ('$Login','$FechaIni','$FechaFin','$usuarioGalleta')";
 
         $rst = $this->mysqli->query($sql) or die($this->mysqli->error.__LINE__);
-
-        // SQL Feed----------------------------------
-//        $sql_log=   "insert into portalbd.activity_feed ( ".
-//            " USER ".
-//            ", USER_NAME ".
-//            ", GRUPO ".
-//            ", STATUS ".
-//            ", PEDIDO_OFERTA ".
-//            ", ACCION ".
-//            ", CONCEPTO_ID ".
-//            ", IP_HOST ".
-//            ", CP_HOST ".
-//            ") values( ".
-//            " UPPER('$usuarioGalleta')".
-//            ", UPPER('$nombreGalleta')".
-//            ", UPPER('$grupoGalleta')".
-//            ",'OK' ".
-//            ",'SIN PEDIDO' ".
-//            ",'EDITO USUARIO' ".
-//            ",'$usuarioEdita EDITADO' ".
-//            ",'$usuarioIp' ".
-//            ",'$usuarioPc')";
-//
-//        $rlog = $this->mysqli->query($sql_log);
-        // ---------------------------------- SQL Feed
+        }
 
         $error="Guardado con exito.";
         $this->response($this->json($error), 200);
 
 
     }
+
+    private function listadoNovedades(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+
+        $fecha = date("Y-m-d");
+
+        $query=	" select A.ID AS TURNO,A.USUARIO,A.FECHAINI AS INICIATURNO,A.FECHAFIN AS TERMINATURNO,".
+                " A.PROGRAMO,B.FECHAINI_NOVEDAD,B.FECHAFIN_NOVEDAD, B.TIPONOVEDAD,B.DESCRIPCION, ".
+                " B.INGRESO_NOVEDAD from Tbl_Turnos A inner join Tbl_Novedad_Turnos B on A.ID = B.IDTURNO ";
+        //echo $query;
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $ListaNovedades = array();
+            while($row = $r->fetch_assoc()){
+                //$result[] = $row;
+                //echo "name: ".utf8_encode($row['USUARIO_NOMBRE'])."\n ";
+                $row['TURNO']=utf8_encode($row['TURNO']);
+                $ListaNovedades[] = $row;
+            }
+            $this->response($this->json(array($ListaNovedades)), 200); // send user details
+        }
+        $this->response('',204);        // If no records "No Content" status
+
+    }
+
+
 
     //**************************************MICHAEL GESTION TURNOS ***********************************
 
@@ -18465,8 +18521,33 @@ public function pp(&$var){
 
         $concepto =   $this->_request['concepto'];
 
+        if ($concepto == "COORP")
+        {
+            $concepto=" and CONCEPTO_ID in ('PETEC') and (TIPO_ELEMENTO_ID IN ('E2MB','P2MB','INSTIP','CNTXIP','SEDECX','PLANT','PLP','PTLAN','MTLAN', 'PMULT','EPCM','PPCM','PBRI','PPRI','TV','TP','BDID','TDID','BDIDE1','TDIDE1','BDODE1','TDODE1','SLL','TC','SLLBRI','TCBRI','SLLE1','TCE1','SLLPRI','TCPRI','SEDEIP','CONECT','ACCESO') )";
+        }
+
+        else if ($concepto == "STBOX")
+        {
+            $concepto= "and CONCEPTO_ID in ('PETEC') and (TIPO_ELEMENTO_ID IN ('STBOX') )" ;
+        }
+
+        else if ($concepto == "EQURED")
+        {
+            $concepto= "and CONCEPTO_ID in ('PETEC') and TIPO_ELEMENTO_ID IN ('EQURED')" ;
+        }
+
+        else
+        {
+            $concepto = "and CONCEPTO_ID = ('$concepto') ";
+        }
+
         $query=	" select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
-            "where STATUS = 'PENDI_PETEC' and ZONA not in ('NULL') AND CONCEPTO_ID = '$concepto' group by ZONA order by TOTAL desc ";
+            "where STATUS = 'PENDI_PETEC' and ZONA not in ('NULL') $concepto group by ZONA order by TOTAL desc ";
+
+        //echo $query;
+
+        /*$query=	" select ZONA, count(ZONA) AS TOTAL from informe_petec_pendientesm ".
+            "where STATUS = 'PENDI_PETEC' and ZONA not in ('NULL') AND CONCEPTO_ID = '$concepto' group by ZONA order by TOTAL desc ";*/
 
         //echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -19988,6 +20069,7 @@ public function pp(&$var){
     /**
      * Funcin para guardar la gestion de Asignaciones.
      * */
+
     private function guardarGestionAsignaciones()
     {
         if ($this->get_request_method () != "POST") {
@@ -20020,6 +20102,9 @@ public function pp(&$var){
         $observacion        =   $gestion['gestion']['OBSERVACIONES_PROCESO'];
         $malingreso         =   $gestion['gestion']['MALINGRESO'];
         $motivoMalIngreso   =   $gestion['gestion']['MOTIVOMALINGRESO'];
+        $observacionAsesor  =   $gestion['gestion']['ObservacionAsesor'];
+
+        //echo var_dump ($observacionAsesor);
 
         //echo var_dump ($motivoMalIngreso);
 
@@ -20257,7 +20342,7 @@ public function pp(&$var){
             {
 
                 $queryReconf = "update informe_petec_pendientesm set CONCEPTO_ID = 'RC-SIEBEL', STATUS = 'PENDI_PETEC'".
-                                " WHERE ID = '$idpedido' ";
+                                " ,OBSERVACIONES = '$observacionAsesor' WHERE ID = '$idpedido' ";
                 $insertReconf = $this->mysqli->query($queryReconf);
                 //echo var_dump("ingreso");
             }
