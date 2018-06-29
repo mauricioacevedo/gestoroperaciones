@@ -20102,7 +20102,7 @@ public function pp(&$var){
         $motivoMalIngreso   =   $gestion['gestion']['MOTIVOMALINGRESO'];
         $observacionAsesor  =   $gestion['gestion']['ObservacionAsesor'];
 
-        echo $observacionAsesor;
+        echo var_dump ($observacionAsesor);
 
         //echo var_dump ($motivoMalIngreso);
 
