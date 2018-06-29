@@ -15331,8 +15331,6 @@ public function pp(&$var){
 
             }
 
-
-
         $query=	" SELECT * FROM (SELECT MAX(A.ID), ".
 	            " A.USUARIO_ID, A.USUARIO_NOMBRE,  A.GRUPO, ".
 	            " (CASE WHEN C.ESTADO IS NULL THEN 'ACTIVO' ELSE C.ESTADO END) as ESTADO, ".
