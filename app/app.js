@@ -19116,6 +19116,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
                 TECNOLOGIA_ID: gestion.TECNOLOGIA_ID,
                 FECHA: gestion.FECHA_ESTADO,
                 ID: gestion.ID,
+                ObservacionAsesor: InfoPedido.ObservacionAsesor,
                 MALINGRESO: InfoPedido.MAL_INGRESO,
                 MOTIVOMALINGRESO: InfoPedido.MOTIVO_MAL_INGRESO
 
