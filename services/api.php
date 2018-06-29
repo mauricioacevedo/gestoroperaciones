@@ -20067,6 +20067,7 @@ public function pp(&$var){
     /**
      * Funcin para guardar la gestion de Asignaciones.
      * */
+
     private function guardarGestionAsignaciones()
     {
         if ($this->get_request_method () != "POST") {
