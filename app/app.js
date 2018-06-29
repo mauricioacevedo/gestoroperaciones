@@ -18344,7 +18344,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 	};
 	$scope.onChangeAccion = function (valor) {
 		$scope.accRdy = true;
-        console.log(InfoPedido.OBSERVACIONES_PROCESO);
+        console.log(valor);
 		if(valor=='VOLVER A LLAMAR'||valor=='GESTIONAR MAS TARDE'){
 			$scope.programar=true;
 		}
