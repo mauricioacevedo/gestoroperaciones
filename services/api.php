@@ -4518,7 +4518,7 @@ private function getAgentScore($user){
             " 	PP.COLA_ID ".
             "  FROM informe_activacion_pendientesm PP   ".
             "   where (PP.STATUS= 'PENDI_ACTIVACION' )  ".
-            "  AND COLA_ID NOT IN ('CBAPON','TOIPON','CTVPONS','TRGPON','GPONSR') ".
+            "  AND COLA_ID NOT IN ('CBAPON','TOIPON','CTVPONS','TRGPON','GPONSR','CTVPONST') ".
             "   ) C1  ".
             "  group by C1.COLA_ID order by count(*) DESC ";
 
