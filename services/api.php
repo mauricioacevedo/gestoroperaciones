@@ -20185,7 +20185,8 @@ public function pp(&$var){
         //echo var_dump ($programado);
 
         if($malo){
-            $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='$estado',ASESOR='' WHERE ID=$idpedido";
+            $sqlupdate = "update informe_petec_pendientesm set FECHA_FINAL='$fechaServidor',STATUS='$estado',ASESOR='', ".
+            "fecha_estado = '$fechaServidor' WHERE ID=$idpedido";
             $varFeed = "GUARDO PEDIDO MALO";
             $cerrar = false;
 
