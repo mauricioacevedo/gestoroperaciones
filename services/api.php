@@ -755,7 +755,7 @@ class API extends REST {
             " ,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_PENDIENTE ".
             " FROM  informe_activacion_pendientesm
                 WHERE  STATUS ='PENDI_ACTIVACION'
-                AND COLA_ID NOT IN ('CBAPON','TOIPON','CTVPONS','TRGPON','GPONSR') ";
+                AND COLA_ID NOT IN ('CBAPON','TOIPON','CTVPONS','TRGPON','GPONSR','CTVPONST') ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -5524,7 +5524,7 @@ private function getAgentScore($user){
         $query= " SELECT cola_id as label, COUNT(*) as value ".
             " FROM  informe_activacion_pendientesm ".
             " WHERE (STATUS='PENDI_ACTIVACION') ".
-            " AND COLA_ID NOT IN ('CBAPON','TOIPON','CTVPONS','TRGPON','GPONSR') ".
+            " AND COLA_ID NOT IN ('CBAPON','TOIPON','CTVPONS','TRGPON','GPONSR','CTVPONST') ".
             " GROUP BY cola_id ".
             " ORDER BY COUNT(*) DESC" ;
         //echo $query;
