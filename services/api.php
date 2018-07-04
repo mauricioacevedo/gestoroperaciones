@@ -5522,6 +5522,7 @@ private function getAgentScore($user){
         $query= " SELECT cola_id as label, COUNT(*) as value ".
             " FROM  informe_activacion_pendientesm ".
             " WHERE (STATUS='PENDI_ACTIVACION') ".
+            " AND COLA_ID NOT IN ('CBAPON','TOIPON','CTVPONS','TRGPON','GPONSR')".
             " GROUP BY cola_id ".
             " ORDER BY COUNT(*) DESC" ;
         //echo $query;
