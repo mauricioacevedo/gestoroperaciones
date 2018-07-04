@@ -10680,7 +10680,6 @@ app.controller('RegistrosAgendamientoCtrl', function ($scope, $rootScope, $locat
 			$scope.data.totalItems3 = data.data[3];
 			$scope.data.totalItems4 = data.data[4];
 			$scope.data.totalItems5 = data.data[5];
-            $scope.data.totalItems6 = data.data[6];
 			//$scope.data1.concepto=sconcept;
 			return data.data;
 		});
@@ -13621,7 +13620,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
                       $scope.totalItems3=data.data[3];
                         $scope.totalItems4=data.data[4];
                         $scope.totalItems5=data.data[5];
-                        $scope.data.totalItems6=data.data[6];
+                        //$scope.data.totalItems6=data.data[6];
 						//$scope.data.totalItems7=data.data[7];
 
                     //console.log(data.data[2]);
