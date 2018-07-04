@@ -4518,6 +4518,7 @@ private function getAgentScore($user){
             " 	PP.COLA_ID ".
             "  FROM informe_activacion_pendientesm PP   ".
             "   where (PP.STATUS= 'PENDI_ACTIVACION' )  ".
+            "  AND COLA_ID NOT IN ('CBAPON','TOIPON','CTVPONS','TRGPON','GPONSR')".
             "   ) C1  ".
             "  group by C1.COLA_ID order by count(*) DESC ";
 
@@ -5523,7 +5524,6 @@ private function getAgentScore($user){
         $query= " SELECT cola_id as label, COUNT(*) as value ".
             " FROM  informe_activacion_pendientesm ".
             " WHERE (STATUS='PENDI_ACTIVACION') ".
-            " AND COLA_ID NOT IN ('CBAPON','TOIPON','CTVPONS','TRGPON','GPONSR')".
             " GROUP BY cola_id ".
             " ORDER BY COUNT(*) DESC" ;
         //echo $query;
