@@ -7372,7 +7372,7 @@ private function getAgentScore($user){
                 $counter2 = $row['counter'];
             }
         }
-         $query=" SELECT COUNT(*) as counter FROM  informe_activacion_pendientesm  WHERE  STATUS ='PENDI_ACTIVACION' ";
+         $query=" SELECT COUNT(*) as counter FROM  informe_activacion_pendientesm  WHERE  STATUS ='PENDI_ACTIVACION' AND COLA_ID NOT IN ('CBAPON','TOIPON','CTVPONS','TRGPON','GPONSR','CTVPONST') ";
 
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
@@ -7392,6 +7392,17 @@ private function getAgentScore($user){
             $result = array();
             if($row = $rr->fetch_assoc()){
                 $counter4 = $row['counter'];
+            }
+        }
+
+        $query=" SELECT  COUNT(*) as counter from informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION' ";
+
+        $rr = $this->mysqli->query($query) or die ($this->mysqli->error.__LINE__);
+        $counter5=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter5 = $row['counter'];
             }
         }
 
