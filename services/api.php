@@ -1520,7 +1520,7 @@ class API extends REST {
             //echo $sqlInsertIngresos;/
             $r = $this->mysqli->query($sqlInsertIngresos) or die($this->mysqli->error.__LINE__);
 
-
+                echo var_dump ($pedidoid + $estado_id);
             if($estado_id == "RC-SIEBEL"){
                 echo var_dump ($pedidoid + $estado_id);
 
