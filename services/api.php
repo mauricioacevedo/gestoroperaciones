@@ -1522,7 +1522,9 @@ class API extends REST {
 
 
             if($estado_id == "RC-SIEBEL"){
-                $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado_id',STATUS = 'PENDI_PETEC' ".
+                echo var_dump ($pedidoid + $estado_id);
+
+                $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado_id', STATUS = 'PENDI_PETEC' ".
                          " WHERE PEDIDO_ID = '$pedidoid' ".
                          " AND STATUS = 'CERRADO_PETEC' ";
                  $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
