@@ -1463,7 +1463,7 @@ class API extends REST {
         $ciudad = $pedido1['ciudad'];
         $estado_id = $pedido1['concepto'];
 
-        //echo var_dump($pedido1);
+        echo var_dump($estado_id);
 
         //echo $pedido;
         $concepto = $pedido1['concepto'];
