@@ -1521,6 +1521,14 @@ class API extends REST {
             $r = $this->mysqli->query($sqlInsertIngresos) or die($this->mysqli->error.__LINE__);
 
 
+            if($estado_id == "RC-SIEBEL"){
+                $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado_id',STATUS = 'PENDI_PETEC' ".
+                         " WHERE PEDIDO_ID = '$pedidoid' ".
+                         " AND STATUS = 'CERRADO_PETEC' ";
+                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+            }
+
+
             //echo $sqlCerrarManuales;
 
             //Fix insertMPedido: se agregan campos y se habilita para insertar.
