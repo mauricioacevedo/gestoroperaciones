@@ -1524,10 +1524,11 @@ class API extends REST {
 
 
             if($estado == "RC-SIEBEL"){
+                echo 'ingreso';
 
                 $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado', STATUS = 'PENDI_PETEC' ".
                          " WHERE PEDIDO_ID = '$pedidoid' ".
-                         " AND STATUS = 'CERRADO_PETEC' ";
+                         " AND STATUS = 'PENDI_PETEC'  ";
                  $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
             }
 
