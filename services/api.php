@@ -1469,22 +1469,20 @@ class API extends REST {
 
         $user=$pedido1['user'];
 
-        //echo ($observaciones);
-
-         if($estado == "RC-SIEBEL"){
-                echo "ingreso";
-                $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado', STATUS = 'PENDI_PETEC' ".
-                         " WHERE PEDIDO_ID = '$pedidoid' ".
-                         " AND STATUS = 'PENDI_PETEC'  ";
-                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-            }
-
         if ($concepto=="CERRADO" && $estado == "GESTIONADO"){
                 $sqlCerrarManuales = "update informe_petec_pendientesm set STATUS = 'CERRADO_PETEC' where PEDIDO_ID = '$pedidoid' ".
                 " and STATUS = 'PENDI_PETEC' ";
                 $r = $this->mysqli->query($sqlCerrarManuales) or die($this->mysqli->error.__LINE__);
                 //echo "ingreso";
         }
+
+        else if($concepto == "ENRUTADO" && $estado == "RC-SIEBEL"){
+                echo var_dump ('ingreso');
+                $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado', STATUS = 'PENDI_PETEC' ".
+                         " WHERE PEDIDO_ID = '$pedidoid' ".
+                         " AND STATUS = 'PENDI_PETEC'  ";
+                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+            }
 
         $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','concepto_final');
         $keys = array_keys($pedido);
