@@ -1464,8 +1464,8 @@ class API extends REST {
         $estado_id = $pedido1['concepto'];
         $estado = $pedido1['estado'];
 
-        echo var_dump($pedidoid);
-        echo var_dump($pedido1);
+        echo var_dump('1'+$pedidoid);
+        echo var_dump('2'+$pedido1);
 
         //echo $pedido;
         $concepto = $pedido1['concepto'];
@@ -1523,6 +1523,7 @@ class API extends REST {
             $r = $this->mysqli->query($sqlInsertIngresos) or die($this->mysqli->error.__LINE__);
 
 
+            echo var_dump($estado);
             if($estado == "RC-SIEBEL"){
                 echo 'ingreso';
 
