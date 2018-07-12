@@ -1464,8 +1464,8 @@ class API extends REST {
         $estado_id = $pedido1['concepto'];
         $estado = $pedido1['estado'];
 
-        echo var_dump('1'+$pedidoid);
-        echo var_dump('2'+$pedido1);
+        echo var_dump($pedidoid);
+        //echo var_dump('2'+$pedido1);
 
         //echo $pedido;
         $concepto = $pedido1['concepto'];
@@ -1525,7 +1525,7 @@ class API extends REST {
 
             echo var_dump($estado);
             if($estado == "RC-SIEBEL"){
-                echo 'ingreso';
+
 
                 $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado', STATUS = 'PENDI_PETEC' ".
                          " WHERE PEDIDO_ID = '$pedidoid' ".
