@@ -1465,6 +1465,7 @@ class API extends REST {
         $estado = $pedido1['estado'];
 
         echo var_dump($pedidoid);
+        echo var_dump($estado);
 
         $user=$pedido1['user'];
 
@@ -1516,7 +1517,7 @@ class API extends REST {
             $r = $this->mysqli->query($sqlInsertIngresos) or die($this->mysqli->error.__LINE__);
 
 
-            echo var_dump($estado);
+
             if($estado == "RC-SIEBEL"){
 
 
