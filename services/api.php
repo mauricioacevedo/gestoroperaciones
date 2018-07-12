@@ -1470,6 +1470,15 @@ class API extends REST {
         $user=$pedido1['user'];
 
         //echo ($observaciones);
+
+         if($estado == "RC-SIEBEL"){
+                echo 'ingreso';
+                $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado', STATUS = 'PENDI_PETEC' ".
+                         " WHERE PEDIDO_ID = '$pedidoid' ".
+                         " AND STATUS = 'PENDI_PETEC'  ";
+                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+            }
+
         if ($concepto=="CERRADO" && $estado == "GESTIONADO"){
                 $sqlCerrarManuales = "update informe_petec_pendientesm set STATUS = 'CERRADO_PETEC' where PEDIDO_ID = '$pedidoid' ".
                 " and STATUS = 'PENDI_PETEC' ";
@@ -1499,13 +1508,7 @@ class API extends REST {
         }
         $today = date("Y-m-d H:i:s");
 
-        if($estado == "RC-SIEBEL"){
-                echo 'ingreso';
-                $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado', STATUS = 'PENDI_PETEC' ".
-                         " WHERE PEDIDO_ID = '$pedidoid' ".
-                         " AND STATUS = 'PENDI_PETEC'  ";
-                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-            }
+
 
         //$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
         if(!empty($pedido)){
