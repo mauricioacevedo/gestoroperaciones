@@ -1472,7 +1472,7 @@ class API extends REST {
         //echo ($observaciones);
 
          if($estado == "RC-SIEBEL"){
-                echo 'ingreso';
+                echo "ingreso";
                 $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado', STATUS = 'PENDI_PETEC' ".
                          " WHERE PEDIDO_ID = '$pedidoid' ".
                          " AND STATUS = 'PENDI_PETEC'  ";
