@@ -1464,7 +1464,7 @@ class API extends REST {
         $estado_id = $pedido1['concepto'];
         $estado = $pedido1['estado'];
 
-        //echo var_dump($estado);
+        echo var_dump($pedido1 + $pedidoid);
 
         //echo $pedido;
         $concepto = $pedido1['concepto'];
@@ -1519,7 +1519,7 @@ class API extends REST {
             values ('".$pedido1['pedido']."','".$pedido1['pedido']."','".$pedido1['ciudad']."','NULL','NULL','NULL','".$pedido1['fecha_inicio']."','9999-01-01','NULL','NULL','MANUAL','MANUAL','NULL','NULL','NULL','".$pedido1['fuente']."','".$pedido1['fecha_inicio']."','HG','NULL','".$pedido1['fecha_inicio']."','N','','".$pedido1['actividad']."','ASIGNACIONES', 'NULL','".$pedido1['departamento']."','CERRADO_PETEC', '".$pedido1['observacion']."','$usuarioGalleta')";
 
             //echo $sqlInsertIngresos;/
-            $r = $this->mysqli->query($sqlInsertIngresos) or die($this->mysqli->error.__LINE__);
+            //$r = $this->mysqli->query($sqlInsertIngresos) or die($this->mysqli->error.__LINE__);
 
 
             if($estado == "RC-SIEBEL"){
