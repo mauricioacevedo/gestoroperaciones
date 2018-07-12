@@ -1477,10 +1477,10 @@ class API extends REST {
         }
 
 
-        echo var_dump($concepto);
+        echo var_dump($estado_id);
         echo var_dump($estado);
 
-        if($concepto == "ENRRUTADO" && $estado == "RC-SIEBEL"){
+        if($estado_id == "ENRRUTADO" && $estado == "RC-SIEBEL"){
                 echo var_dump ('ingreso');
                 $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado', STATUS = 'PENDI_PETEC' ".
                          " WHERE PEDIDO_ID = '$pedidoid' ".
