@@ -1477,8 +1477,8 @@ class API extends REST {
         }
 
 
-        echo var_dump($estado_id);
-        echo var_dump($estado);
+        //echo var_dump($estado_id);
+        //echo var_dump($estado);
 
         if($estado_id == "ENRRUTADO" && $estado == "RC-SIEBEL"){
                 echo var_dump ('ingreso');
