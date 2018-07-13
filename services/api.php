@@ -7415,7 +7415,7 @@ private function getAgentScore($user){
                 $counter3 = $row['counter'];
             }
         }
-        $query=" select COUNT(*) as counter FROM pendientes_amarillas b where b.STATUS in ('PENDI_ACTI','MALO') AND COLA_ID NOT IN ('CBAPON','TOIPON','CTVPONS','TRGPON','GPONSR','CTVPONST') ";
+        $query=" select COUNT(*) as counter FROM pendientes_amarillas b where b.STATUS in ('PENDI_ACTI','MALO') ";
 
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
