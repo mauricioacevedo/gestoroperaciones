@@ -7410,16 +7410,16 @@ private function getAgentScore($user){
             }
         }
 
-        //$query=" SELECT  COUNT(*) as counter from informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION' ";
+        $query=" select((SELECT count(*) FROM  informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION' and cola_id in ('CBAPON','TRGPON') and TIPO_TRABAJO IN ('RETIR'))+(SELECT count(*) FROM  informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION' and cola_id in ('GPONSR'))+(SELECT count(*) FROM  informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION'and cola_id in ('TOIPON') and ACTIVIDAD_ID IN ('ANOLT','DEOLT'))+(SELECT count(*) FROM  informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION' and cola_id in ('VRMAT') and CONCEPTO_ID NOT IN ('PROG'))+(SELECT count(*) FROM  informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION' and cola_id in ('CTVPONST') and estado_id='PENDI' AND ACTIVIDAD_ID IN ('DEGTV')) )as counter; ";
 
-        //$rr = $this->mysqli->query($query) or die ($this->mysqli->error.__LINE__);
-        //$counter5=0;
-        //if($rr->num_rows > 0){
-          //  $result = array();
-            //if($row = $rr->fetch_assoc()){
-              //  $counter5 = $row['counter'];
-            //}
-        //}
+        $rr = $this->mysqli->query($query) or die ($this->mysqli->error.__LINE__);
+        $counter5=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter5 = $row['counter'];
+            }
+        }
 
         $query= "SELECT ORDER_SEQ_ID,PEDIDO, ESTADO, FECHA_CREACION, FECHA_EXCEPCION,TRANSACCION ".
             " , PRODUCTO,ASESOR,FECHA_GESTION,TIPIFICACION,FECHA_INICIO,FECHA_FIN,TABLA ".
@@ -7443,7 +7443,7 @@ private function getAgentScore($user){
                 // var_dump($result);
             }
 
-            $this->response($this->json(array($result,$counter,$counter1,$counter2,$counter3,$counter4)), 200); // send user details
+            $this->response($this->json(array($result,$counter,$counter1,$counter2,$counter3,$counter4,$counter5)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
 
