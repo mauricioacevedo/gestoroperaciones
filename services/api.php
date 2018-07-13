@@ -4628,7 +4628,7 @@ private function getAgentScore($user){
 "    , sum( CASE WHEN (C2.RANGO_PENDIENTE) > 48 THEN 1 ELSE 0 END) as 'Masde48'   ".
 "    FROM(SELECT   ".
 "    C1.PEDIDO_ID   ".
-"    , MAX(C1.CONCEPTO_ID) AS CONCEPTO_ID   ".
+"    , C1.CONCEPTO_ID AS CONCEPTO_ID   ".
 "    , MAX(C1.RANGO_PENDIENTE) AS RANGO_PENDIENTE   ".
 "    FROM(select   ".
 "    PP.PEDIDO_ID   ".
@@ -4642,7 +4642,7 @@ private function getAgentScore($user){
 "    FROM portalbd.informe_petec_pendientesm PP   ".
 "    WHERE PP.STATUS IN ('PENDI_PETEC','MALO') ".
 " AND FUENTE!='OPEN_PEREIRA' ) C1    ".
-"    GROUP BY C1.PEDIDO_ID ) C2   ".
+"    GROUP BY C1.PEDIDO_ID,C1.CONCEPTO_ID ) C2   ".
 "    GROUP BY C2.CONCEPTO_ID   ".
 " union ".
 " SELECT   ".
@@ -4657,7 +4657,7 @@ private function getAgentScore($user){
 "    , sum( CASE WHEN (C2.RANGO_PENDIENTE) > 48 THEN 1 ELSE 0 END) as 'Masde48'   ".
 "    FROM(SELECT   ".
 "    C1.PEDIDO_ID   ".
-"    , MAX(C1.CONCEPTO_ID) AS CONCEPTO_ID   ".
+"    , C1.CONCEPTO_ID AS CONCEPTO_ID   ".
 "    , MAX(C1.RANGO_PENDIENTE) AS RANGO_PENDIENTE   ".
 "    FROM(select   ".
 "    PP.CLIENTE_ID AS PEDIDO_ID   ".
@@ -4672,7 +4672,7 @@ private function getAgentScore($user){
 "    WHERE PP.STATUS IN ('PENDI_PETEC','MALO')  ".
 "   AND FUENTE='OPEN_PEREIRA' ".
 " ) C1    ".
-"    GROUP BY C1.PEDIDO_ID ) C2   ".
+"    GROUP BY C1.PEDIDO_ID,C1.CONCEPTO_ID ) C2   ".
 "    GROUP BY C2.CONCEPTO_ID   ".
 "    ) X ORDER BY X.CANTIDAD DESC ";
         $rr = $this->mysqli->query($queryConceptos) or die($this->mysqli->error.__LINE__);
