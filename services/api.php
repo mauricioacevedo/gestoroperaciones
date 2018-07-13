@@ -4718,7 +4718,7 @@ private function getAgentScore($user){
 "      GROUP BY C1.PEDIDO_ID, C1.CONCEPTO_ID ) C2    ".
 "      WHERE C2.TIPO_TRABAJO='NUEVO'    ".
 "      GROUP BY C2.CONCEPTO_ID     ".
-" ) X ORDER BY X.CANTIDAD DESC ";
+" ) X ORDER BY X.CONCEPTO_ID DESC ";
         //echo $queryConceptosNUEVO;
 
         $rr = $this->mysqli->query($queryConceptosNUEVO) or die($this->mysqli->error.__LINE__);
