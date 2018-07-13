@@ -4687,63 +4687,97 @@ private function getAgentScore($user){
             }
         }
 
-        $queryConceptosNUEVO="     SELECT  ".
-            "    C2.CONCEPTO_ID  ".
-            "    , COUNT(*) AS CANTIDAD  ".
-            "    , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 0 AND (C2.RANGO_PENDIENTE) <= 2 THEN 1 ELSE 0 END) as 'Entre02'  ".
-            "    , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 3 AND (C2.RANGO_PENDIENTE) <= 4 THEN 1 ELSE 0 END) as 'Entre34'  ".
-            "    , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 5 AND (C2.RANGO_PENDIENTE) <= 6 THEN 1 ELSE 0 END) as 'Entre56'  ".
-            "    , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 7 AND (C2.RANGO_PENDIENTE) <= 12 THEN 1 ELSE 0 END) as 'Entre712'  ".
-            "    , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 13 AND (C2.RANGO_PENDIENTE) <= 24 THEN 1 ELSE 0 END) as 'Entre1324'  ".
-            "    , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 25 AND (C2.RANGO_PENDIENTE) <= 48 THEN 1 ELSE 0 END) as 'Entre2548'  ".
-            "    , sum( CASE WHEN (C2.RANGO_PENDIENTE) > 48 THEN 1 ELSE 0 END) as 'Masde48'  ".
-            "    FROM( ".
-            "    SELECT ".
-            "    C1.PEDIDO_ID ".
-            "    , C1.CONCEPTO_ID ".
-            "    , group_concat(DISTINCT C1.TIPO_TRABAJO order by 1 asc) AS TIPO_TRABAJO ".
-            "    , group_concat(DISTINCT C1.FUENTE) AS FUENTE ".
-            "    , group_concat(DISTINCT C1.RADICADO_TEMPORAL) AS RADICADO_TEMPORAL ".
-            "    , MAX(C1.RANGO_PENDIENTE) as RANGO_PENDIENTE ".
-            "    FROM ( ".
-            "    SELECT  ".
-            "    PEDIDO_ID ".
-            "    , SUBPEDIDO_ID ".
-            "    , SOLICITUD_ID ".
-            "    , CASE ".
-            "    	when FUENTE='FENIX_BOG' and CONCEPTO_ID='PETEC' and STATUS!='MALO' then 'PETEC-BOG'  ".
-            "        when FUENTE='FENIX_NAL' and CONCEPTO_ID='PETEC' and STATUS!='MALO' then 'PETEC-NAL'  ".
-            "        when STATUS='MALO' then 'MALO' ".
-            "        ELSE CONCEPTO_ID ".
-            "     END AS CONCEPTO_ID ".
-            "    , CASE ".
-            /*
-            "    	when DESC_TIPO_TRABAJO='NA NUEVO' then 'NUEVO' ".
-            "        when DESC_TIPO_TRABAJO='MODIFICACION,NA NUEVO' then 'CAMBI,NUEVO' ".
-            "        when TIPO_TRABAJO='CAMBIO' then 'CAMBI' ".
-            "        when TIPO_TRABAJO='NUEVO,RETIR' then 'NUEVO' ".
-            "        when TIPO_TRABAJO='8' then 'NUEVO' ".
-            "        when TIPO_TRABAJO='CAMBI,NUEVO,RETIR' then 'CAMBI,NUEVO' ".
-            "        when TIPO_TRABAJO='CAMBIO,VENTA' then 'CAMBI,NUEVO' ".
-            */
-
-            " WHEN UPPER(TIPO_TRABAJO) like '%NUEVO%' OR UPPER(TIPO_TRABAJO) LIKE '%TRASL%' OR UPPER(TIPO_TRABAJO)='CAMBIO DE DOMICILIO' THEN 'NUEVO' ".
-            " else 'CAMBIO' ".
-            "        end as TIPO_TRABAJO ".
-            "    , FUENTE ".
-            "    , RADICADO_TEMPORAL ".
-            "    , HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO))) AS RANGO_PENDIENTE  ".
-            "    FROM portalbd.informe_petec_pendientesm ".
-            "    where 1=1 ".
-            "    and STATUS in ('PENDI_PETEC','MALO') ".
-            "    and fuente in ('FENIX_NAL','FENIX_BOG','SIEBEL','POBLACIONES') ".
-            //"    and CONCEPTO_ID NOT IN ('OT-C11','OT-C08','OT-T01','OT-T04','OT-T05') )C1 ".
-            //2018-04-27 Monica pide dejar que se muestren todos los conceptos nuevos.
-            "     )C1 ".
-            "    GROUP BY C1.PEDIDO_ID, C1.CONCEPTO_ID ) C2 ".
-            "    WHERE C2.TIPO_TRABAJO='NUEVO' ".
-            "    GROUP BY C2.CONCEPTO_ID  ".
-            "    order by count(*) DESC";
+        $queryConceptosNUEVO=" SELECT X.* FROM (     ".
+" SELECT     ".
+"      C2.CONCEPTO_ID     ".
+"      , COUNT(*) AS CANTIDAD     ".
+"      , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 0 AND (C2.RANGO_PENDIENTE) <= 2 THEN 1 ELSE 0 END) as 'Entre02'     ".
+"      , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 3 AND (C2.RANGO_PENDIENTE) <= 4 THEN 1 ELSE 0 END) as 'Entre34'     ".
+"      , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 5 AND (C2.RANGO_PENDIENTE) <= 6 THEN 1 ELSE 0 END) as 'Entre56'     ".
+"      , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 7 AND (C2.RANGO_PENDIENTE) <= 12 THEN 1 ELSE 0 END) as 'Entre712'     ".
+"      , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 13 AND (C2.RANGO_PENDIENTE) <= 24 THEN 1 ELSE 0 END) as 'Entre1324'     ".
+"      , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 25 AND (C2.RANGO_PENDIENTE) <= 48 THEN 1 ELSE 0 END) as 'Entre2548'     ".
+"      , sum( CASE WHEN (C2.RANGO_PENDIENTE) > 48 THEN 1 ELSE 0 END) as 'Masde48'     ".
+"      FROM(    ".
+"      SELECT    ".
+"      C1.PEDIDO_ID    ".
+"      , C1.CONCEPTO_ID    ".
+"      , group_concat(DISTINCT C1.TIPO_TRABAJO order by 1 asc) AS TIPO_TRABAJO    ".
+"      , group_concat(DISTINCT C1.FUENTE) AS FUENTE    ".
+"      , group_concat(DISTINCT C1.RADICADO_TEMPORAL) AS RADICADO_TEMPORAL    ".
+"      , MAX(C1.RANGO_PENDIENTE) as RANGO_PENDIENTE    ".
+"      FROM (    ".
+"      SELECT     ".
+"      PEDIDO_ID    ".
+"      , SUBPEDIDO_ID    ".
+"      , SOLICITUD_ID    ".
+"      , CASE    ".
+"       when FUENTE='FENIX_BOG' and CONCEPTO_ID='PETEC' and STATUS!='MALO' then 'PETEC-BOG'     ".
+"          when FUENTE='FENIX_NAL' and CONCEPTO_ID='PETEC' and STATUS!='MALO' then 'PETEC-NAL'     ".
+"          when STATUS='MALO' then 'MALO'    ".
+"          ELSE CONCEPTO_ID    ".
+"       END AS CONCEPTO_ID    ".
+"      , CASE    ".
+"   WHEN UPPER(TIPO_TRABAJO) like '%NUEVO%' OR UPPER(TIPO_TRABAJO) LIKE '%TRASL%' OR UPPER(TIPO_TRABAJO)='CAMBIO DE DOMICILIO' THEN 'NUEVO'    ".
+"   else 'CAMBIO'    ".
+"          end as TIPO_TRABAJO    ".
+"      , FUENTE    ".
+"      , RADICADO_TEMPORAL    ".
+"      , HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO))) AS RANGO_PENDIENTE     ".
+"      FROM portalbd.informe_petec_pendientesm    ".
+"      where 1=1    ".
+"      and STATUS in ('PENDI_PETEC','MALO')    ".
+"      and fuente in ('FENIX_NAL','FENIX_BOG','SIEBEL','POBLACIONES')    ".
+"       )C1    ".
+"      GROUP BY C1.PEDIDO_ID, C1.CONCEPTO_ID ) C2    ".
+"      WHERE C2.TIPO_TRABAJO='NUEVO'    ".
+"      GROUP BY C2.CONCEPTO_ID     ".
+" UNION ".
+"     SELECT     ".
+"      C2.CONCEPTO_ID     ".
+"      , COUNT(*) AS CANTIDAD     ".
+"      , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 0 AND (C2.RANGO_PENDIENTE) <= 2 THEN 1 ELSE 0 END) as 'Entre02'     ".
+"      , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 3 AND (C2.RANGO_PENDIENTE) <= 4 THEN 1 ELSE 0 END) as 'Entre34'     ".
+"      , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 5 AND (C2.RANGO_PENDIENTE) <= 6 THEN 1 ELSE 0 END) as 'Entre56'     ".
+"      , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 7 AND (C2.RANGO_PENDIENTE) <= 12 THEN 1 ELSE 0 END) as 'Entre712'     ".
+"      , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 13 AND (C2.RANGO_PENDIENTE) <= 24 THEN 1 ELSE 0 END) as 'Entre1324'     ".
+"      , sum( CASE WHEN (C2.RANGO_PENDIENTE) >= 25 AND (C2.RANGO_PENDIENTE) <= 48 THEN 1 ELSE 0 END) as 'Entre2548'     ".
+"      , sum( CASE WHEN (C2.RANGO_PENDIENTE) > 48 THEN 1 ELSE 0 END) as 'Masde48'     ".
+"      FROM(    ".
+"      SELECT    ".
+"      C1.PEDIDO_ID    ".
+"      , C1.CONCEPTO_ID    ".
+"      , group_concat(DISTINCT C1.TIPO_TRABAJO order by 1 asc) AS TIPO_TRABAJO    ".
+"      , group_concat(DISTINCT C1.FUENTE) AS FUENTE    ".
+"      , group_concat(DISTINCT C1.RADICADO_TEMPORAL) AS RADICADO_TEMPORAL    ".
+"      , MAX(C1.RANGO_PENDIENTE) as RANGO_PENDIENTE    ".
+"      FROM (    ".
+"      SELECT     ".
+"      CLIENTE_ID AS PEDIDO_ID    ".
+"      , SUBPEDIDO_ID    ".
+"      , SOLICITUD_ID    ".
+"      , CASE    ".
+"       when FUENTE='FENIX_BOG' and CONCEPTO_ID='PETEC' and STATUS!='MALO' then 'PETEC-BOG'     ".
+"          when FUENTE='FENIX_NAL' and CONCEPTO_ID='PETEC' and STATUS!='MALO' then 'PETEC-NAL'     ".
+"          when STATUS='MALO' then 'MALO'    ".
+"          ELSE CONCEPTO_ID    ".
+"       END AS CONCEPTO_ID    ".
+"      , CASE    ".
+"   WHEN UPPER(TIPO_TRABAJO) like '%NUEVO%' OR UPPER(TIPO_TRABAJO) LIKE '%TRASL%' OR UPPER(TIPO_TRABAJO)='CAMBIO DE DOMICILIO' THEN 'NUEVO'    ".
+"   else 'CAMBIO'    ".
+"          end as TIPO_TRABAJO    ".
+"      , FUENTE    ".
+"      , RADICADO_TEMPORAL    ".
+"      , HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO))) AS RANGO_PENDIENTE     ".
+"      FROM portalbd.informe_petec_pendientesm    ".
+"      where 1=1    ".
+"      and STATUS in ('PENDI_PETEC','MALO')    ".
+"      and fuente = 'OPEN_PEREIRA'  ".
+"       )C1    ".
+"      GROUP BY C1.PEDIDO_ID, C1.CONCEPTO_ID ) C2    ".
+"      WHERE C2.TIPO_TRABAJO='NUEVO'    ".
+"      GROUP BY C2.CONCEPTO_ID     ".
+" ) X ORDER BY X.CANTIDAD DESC ";
         //echo $queryConceptosNUEVO;
 
         $rr = $this->mysqli->query($queryConceptosNUEVO) or die($this->mysqli->error.__LINE__);
