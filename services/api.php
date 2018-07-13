@@ -7382,7 +7382,7 @@ private function getAgentScore($user){
                 $counter = $row['counter'];
             }
         }
-         $query="SELECT  COUNT(*) as counter from gestor_activacion_pendientes_activador_suspecore where status in ('PENDI_ACTI','MALO')";
+         $query="SELECT COUNT(*) as counter FROM gestor_activacion_pendientes_activador_suspecore WHERE  ESTADO ='in_progress' AND STATUS IN ('PENDI_ACTI','MALO') AND MOTIVOEXCEPCIONACT <>'La Cuenta NO existe.'";
 
 
         $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
