@@ -4577,7 +4577,7 @@ private function getAgentScore($user){
 "    , case     ".
 "           when PP.FUENTE='FENIX_NAL' and PP.CONCEPTO_ID='PETEC' AND PP.STATUS!='MALO' then 'PETEC-NAL'    ".
 "           when PP.FUENTE='FENIX_BOG' and PP.CONCEPTO_ID='PETEC' AND PP.STATUS!='MALO' then 'PETEC-BOG'    ".
-"           when PP.FUENTE='POBLACIONES' then 'POBLACIONES'    ".
+"           when PP.FUENTE='POBLACIONES' then 'OPEN_POBLACIONES'    ".
 "           WHEN PP.STATUS='MALO' THEN 'MALO'   ".
 "           else PP.CONCEPTO_ID    ".
 "         end as CONCEPTO_ID   ".
@@ -4655,7 +4655,7 @@ private function getAgentScore($user){
 "      , CASE    ".
 "       when FUENTE='FENIX_BOG' and CONCEPTO_ID='PETEC' and STATUS!='MALO' then 'PETEC-BOG'     ".
 "          when FUENTE='FENIX_NAL' and CONCEPTO_ID='PETEC' and STATUS!='MALO' then 'PETEC-NAL'     ".
-"          when FUENTE='POBLACIONES' then 'POBLACIONES'   ".
+"          when FUENTE='POBLACIONES' then 'OPEN_POBLACIONES'   ".
 "          when STATUS='MALO' then 'MALO'    ".
 "          ELSE CONCEPTO_ID    ".
 "       END AS CONCEPTO_ID    ".
