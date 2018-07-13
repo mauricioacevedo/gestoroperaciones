@@ -4604,9 +4604,7 @@ private function getAgentScore($user){
 "    FROM(select   ".
 "    PP.CLIENTE_ID AS PEDIDO_ID   ".
 "    , case     ".
-"           when PP.FUENTE='FENIX_NAL' and PP.CONCEPTO_ID='PETEC' AND PP.STATUS!='MALO' then 'PETEC-NAL'    ".
-"           when PP.FUENTE='FENIX_BOG' and PP.CONCEPTO_ID='PETEC' AND PP.STATUS!='MALO' then 'PETEC-BOG'    ".
-"           WHEN PP.STATUS='MALO' THEN 'MALO'   ".
+"           when PP.FUENTE='OPEN_PEREIRA' then 'OPEN_PEREIRA'    ".
 "           else PP.CONCEPTO_ID    ".
 "         end as CONCEPTO_ID   ".
 "    , HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) AS RANGO_PENDIENTE   ".
@@ -4699,13 +4697,11 @@ private function getAgentScore($user){
 "      , SUBPEDIDO_ID    ".
 "      , SOLICITUD_ID    ".
 "      , CASE    ".
-"       when FUENTE='FENIX_BOG' and CONCEPTO_ID='PETEC' and STATUS!='MALO' then 'PETEC-BOG'     ".
-"          when FUENTE='FENIX_NAL' and CONCEPTO_ID='PETEC' and STATUS!='MALO' then 'PETEC-NAL'     ".
-"          when STATUS='MALO' then 'MALO'    ".
+"       when FUENTE='OPEN_PEREIRA'  then 'OPEN_PEREIRA'     ".
 "          ELSE CONCEPTO_ID    ".
 "       END AS CONCEPTO_ID    ".
 "      , CASE    ".
-"   WHEN UPPER(TIPO_TRABAJO) like '%NUEVO%' OR UPPER(TIPO_TRABAJO) LIKE '%TRASL%' OR UPPER(TIPO_TRABAJO)='CAMBIO DE DOMICILIO' THEN 'NUEVO'    ".
+"   WHEN UPPER(TIPO_TRABAJO) like '%NUEVO%' THEN 'NUEVO'    ".
 "   else 'CAMBIO'    ".
 "          end as TIPO_TRABAJO    ".
 "      , FUENTE    ".
