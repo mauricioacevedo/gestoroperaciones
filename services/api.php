@@ -4333,8 +4333,25 @@ private function getAgentScore($user){
             "         else CONCEPTO_ID  ".
             "     end as CONCEPTO_ID  ".
             "     from informe_petec_pendientesm ".
-            "     where status in ('PENDI_PETEC','MALO','PENDI_RENUMS') ) c1 ".
-            "     group by c1.CONCEPTO_ID ";
+            "     where status in ('PENDI_PETEC','MALO','PENDI_RENUMS') and fuente !='OPEN_PEREIRA'  ) c1 ".
+            "     group by c1.CONCEPTO_ID "+
+            " UNION "+
+            " select  "+
+            "  count(*) AS COUNTER, c1.CONCEPTO_ID  "+
+            "  from(  "+
+            "    select distinct CLIENTE_ID  "+
+            "  , case   "+
+            "       when FUENTE='FENIX_BOG' and CONCEPTO_ID='PETEC' then 'PETEC-BOG'   "+
+            "       when CONCEPTO_ID='14' AND STATUS='PENDI_RENUMS' then '14-RENUMS'   "+
+            "       when CONCEPTO_ID='PETEC' and RADICADO_TEMPORAL='EQURED' then 'EQURED'  "+
+            "       when STATUS='MALO' then 'MALO'  "+
+            "      else CONCEPTO_ID   "+
+            "  end as CONCEPTO_ID   "+
+            "  from informe_petec_pendientesm  "+
+            "  where status in ('PENDI_PETEC','MALO')  "+
+            " and fuente ='OPEN_PEREIRA' "+
+            " ) c1  "+
+            "  group by c1.CONCEPTO_ID ";
 
 
 
