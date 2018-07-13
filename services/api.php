@@ -4660,7 +4660,8 @@ private function getAgentScore($user){
 "          ELSE CONCEPTO_ID    ".
 "       END AS CONCEPTO_ID    ".
 "      , CASE    ".
-"   WHEN UPPER(TIPO_TRABAJO) like '%NUEVO%' OR UPPER(TIPO_TRABAJO) LIKE '%TRASL%' OR UPPER(TIPO_TRABAJO)='CAMBIO DE DOMICILIO' THEN 'NUEVO'    ".
+//"   WHEN UPPER(TIPO_TRABAJO) like '%NUEVO%' OR UPPER(TIPO_TRABAJO) LIKE '%TRASL%' OR UPPER(TIPO_TRABAJO)='CAMBIO DE DOMICILIO' THEN 'NUEVO'    ".
+"   WHEN UPPER(TIPO_TRABAJO) like '%NUEVO%' THEN 'NUEVO'  ".
 "   else 'CAMBIO'    ".
 "          end as TIPO_TRABAJO    ".
 "      , FUENTE    ".
