@@ -4557,64 +4557,6 @@ private function getAgentScore($user){
             $this->response('',406);
         }
 
-        /*
-         * Query viejo, cuenta por servicios.*
-
-        $queryConceptos=" select".
-            " C1.CONCEPTO_ID".
-            " , count(*) as CANTIDAD".
-            " , sum(if(C1.RANGO_PENDIENTE='Entre 0-2', 1,0)) as 'Entre02',".
-            "   sum(if(C1.RANGO_PENDIENTE='Entre 3-4', 1,0)) as 'Entre34', ".
-            "   sum(if(C1.RANGO_PENDIENTE='Entre 5-6', 1,0)) as 'Entre56', ".
-            "   sum(if(C1.RANGO_PENDIENTE='Entre 7-12', 1,0)) as 'Entre712', ".
-            "   sum(if(C1.RANGO_PENDIENTE='Entre 13-24', 1,0)) as 'Entre1324', ".
-            "   sum(if(C1.RANGO_PENDIENTE='Entre 25-48', 1,0)) as 'Entre2548', ".
-            "   sum(if(C1.RANGO_PENDIENTE='Mas de 48', 1,0)) as 'Masde48' ".
-            " from (SELECT ".
-            "     PP.`PEDIDO`, ".
-            "     PP.`PEDIDO_ID`, ".
-            "     PP.`FECHA_INGRESO`, ".
-            "     PP.`FECHA_ESTADO`, ".
-            "     case  ".
-            "       when PP.FUENTE='FENIX_NAL' and PP.CONCEPTO_ID='PETEC' then 'PETEC-NAL' ".
-            "       when PP.FUENTE='FENIX_BOG' and PP.CONCEPTO_ID='PETEC' then 'PETEC-BOG' ".
-            "       else PP.CONCEPTO_ID ".
-            "     end as CONCEPTO_ID,  ".
-            "     PP.`MUNICIPIO_ID`, ".
-            "     PP.`DIRECCION_SERVICIO`, ".
-            "     PP.`FECHAINGRESO_SOLA`, ".
-            "     PP.`HORAINGRESO`, ".
-            "     DATE((PP.`FECHAESTADO_SOLA`)) as FECHAESTADO_SOLA, ".
-            "     PP.`HORAESTADO`, ".
-            "     PP.`DIANUM_ESTADO`, ".
-            "     PP.`DIANOM_ESTADO`, ".
-            "     PP.`RANGO_CARGA`, ".
-            "     PP.`FECHA_CARGA`, ".
-            "     DATE_FORMAT((PP.FECHA_CARGA),'%H') AS HORA_CARGA, ".
-            "     PP.`DIA_CARGA`, ".
-            "     PP.`MESNOMBRE_CARGA`, ".
-            "     PP.`MESNUMERO_CARGA`, ".
-            "     PP.`SEMANA_CARGA`, ".
-            "     PP.`SEMANA_ANO_CARGA`, ".
-            "     PP.`ANO_CARGA`, ".
-            "     PP.`FUENTE`, ".
-            "     PP.`STATUS`, ".
-            "     PP.`VIEWS` ".
-            "     , CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO)) AS CHAR(255)) AS TIEMPO_PENDIENTE_FULL ".
-            "     , CASE ".
-            "        WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) >= 0 and HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) <= 2 THEN 'Entre 0-2'  ".
-            "        WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) >= 3 and HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) <= 4 THEN 'Entre 3-4'   ".
-            "        WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) >= 5 and HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) <= 6 THEN 'Entre 5-6'   ".
-            "        WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) >= 7 and HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) <= 12 THEN 'Entre 7-12'   ".
-            "        WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) >= 13 and HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) <= 24 THEN 'Entre 13-24'  ".
-            "        WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) >= 25 and HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) <= 48 THEN 'Entre 25-48' ".
-            "        WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) > 48 THEN 'Mas de 48'  ".
-            "     END AS RANGO_PENDIENTE ".
-            " FROM `portalbd`.`informe_petec_pendientesm` PP ".
-            " where (PP.STATUS= 'PENDI_PETEC' or PP.STATUS= 'MALO' ) and PP.FUENTE in ('FENIX_NAL','FENIX_BOG','EDATEL','SIEBEL')) C1".
-            " group by C1.CONCEPTO_ID order by count(*) DESC";
-        */
-
         $queryConceptos=" SELECT X.* FROM (  ".
 " SELECT   ".
 "    C2.CONCEPTO_ID   ".
@@ -4674,7 +4616,7 @@ private function getAgentScore($user){
 " ) C1    ".
 "    GROUP BY C1.PEDIDO_ID,C1.CONCEPTO_ID ) C2   ".
 "    GROUP BY C2.CONCEPTO_ID   ".
-"    ) X ORDER BY X.CANTIDAD DESC ";
+"    ) X ORDER BY X.CONCEPTO_ID DESC ";
         $rr = $this->mysqli->query($queryConceptos) or die($this->mysqli->error.__LINE__);
 
         $queryConceptos = array();
