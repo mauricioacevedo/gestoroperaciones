@@ -4397,7 +4397,7 @@ private function getAgentScore($user){
             $this->response($this->json(array($result,$agentScore,$result1)), 200); // send user details
             }
 
-        $this->response('',204);        // If no records "No Content" status
+        $this->response('',200);        // If no records "No Content" status
     }
 //----------------------KPIS maestro tabla informe_petec_pendientesm ------------------------asignaciones----
 
