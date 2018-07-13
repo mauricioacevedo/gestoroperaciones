@@ -4354,7 +4354,7 @@ private function getAgentScore($user){
             "  group by c1.CONCEPTO_ID ";
 
 
-
+        echo $query;
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
