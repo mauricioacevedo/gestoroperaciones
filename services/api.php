@@ -1,7 +1,7 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
 
 
 require_once("Rest.inc.php");
@@ -4353,8 +4353,6 @@ private function getAgentScore($user){
             " ) c1  ".
             "  group by c1.CONCEPTO_ID ";
 
-
-        echo $query;
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
