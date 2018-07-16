@@ -7425,7 +7425,7 @@ private function getAgentScore($user){
             }
         }
 
-        $query=" select((SELECT count(*) FROM  informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION' and cola_id in ('CBAPON','TRGPON') and TIPO_TRABAJO IN ('RETIR'))+(SELECT count(*) FROM  informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION' and cola_id in ('GPONSR'))+(SELECT count(*) FROM  informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION'and cola_id in ('TOIPON') and ACTIVIDAD_ID IN ('ANOLT','DEOLT'))+(SELECT count(*) FROM  informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION' and cola_id in ('VRMAT') and CONCEPTO_ID NOT IN ('PROG'))+(SELECT count(*) FROM  informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION' and cola_id in ('CTVPONST') and estado_id='PENDI' AND ACTIVIDAD_ID IN ('DEGTV')) )as counter; ";
+        $query=" select((SELECT count(*) FROM  informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION' and cola_id in ('CBAPON','TRGPON') and TIPO_TRABAJO IN ('RETIR'))+(SELECT count(*) FROM  informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION' and cola_id in ('GPONSR'))+(SELECT count(*) FROM  informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION'and cola_id in ('TOIPON') and ACTIVIDAD_ID IN ('ANOLT','DEOLT'))+(SELECT count(*) FROM  informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION' and cola_id in ('VRMAT') and CONCEPTO_ID NOT IN ('PROG'))+(SELECT count(*) FROM  informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION' and cola_id in ('CTVPONST') and estado_id='PENDI' AND ACTIVIDAD_ID IN ('DEGTV')) )as counter";
 
         $rr = $this->mysqli->query($query) or die ($this->mysqli->error.__LINE__);
         $counter5=0;
