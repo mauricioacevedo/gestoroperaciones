@@ -9524,13 +9524,13 @@ private function getAgentScore($user){
             'UNE TV'))";
         }
 
-        if ($concepto=="21-OPEN_PEREIRA")
+        else if ($concepto=="21-OPEN_PEREIRA")
         {
             $concepto = "and b.CONCEPTO_ID in ('21-OPEN_PEREIRA') and (b.TIPO_ELEMENTO_ID IN ('LÍNEA BÁSICA','INTERNET BANDA ANCHA',
             'UNE TV'))";
         }
 
-        if ($concepto=="CAMBIO-OPEN_PEREIRA"){
+        else if ($concepto=="CAMBIO-OPEN_PEREIRA"){
             $concepto = "and b.CONCEPTO_ID in ('CAMBIO-OPEN_PEREIRA') and (b.TIPO_ELEMENTO_ID IN ('LÍNEA BÁSICA','INTERNET BANDA ANCHA','UNE TV'))";
         }
 
