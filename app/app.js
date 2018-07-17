@@ -16174,7 +16174,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 	$scope.historico_pedido = [];
 	$rootScope.actualView = "asignaciones";
 	//$scope.iconcepto = "PETEC";
-    $scope.iconcepto = "COORP";
+    $scope.iconcepto = "8-OPEN_PEREIRA";
 	$scope.popup = '';
 	$scope.intervalLightKPIS = '';
 	$scope.pedidoinfo = 'Pedido';
