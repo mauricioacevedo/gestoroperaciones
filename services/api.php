@@ -9551,7 +9551,7 @@ private function getAgentScore($user){
                 $tipo_trabajo=" ";
             }
 
-            $sqlllamadas=   "SELECT PEDIDO_ID, ".
+            $sqlllamadas=   "SELECT CLIENTE_ID,PEDIDO_ID, ".
                 " SUBPEDIDO_ID, ".
                 " SOLICITUD_ID, ".
                 " FECHA_ESTADO, ".
