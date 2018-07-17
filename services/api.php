@@ -9531,7 +9531,7 @@ private function getAgentScore($user){
         }
 
         else if ($concepto=="CAMBIO-OPEN_PEREIRA"){
-            $concepto = "and b.CONCEPTO_ID in ('CAMBIO-OPEN_PEREIRA') and (b.TIPO_ELEMENTO_ID IN ('LÍNEA BÁSICA','INTERNET BANDA ANCHA','UNE TV'))";
+            $concepto = "and b.CONCEPTO_ID in ('CAMBIO-OPEN PEREIRA') and (b.TIPO_ELEMENTO_ID IN ('LÍNEA BÁSICA','INTERNET BANDA ANCHA','UNE TV'))";
         }
 
         else if($fuente=="SIEBEL"){
