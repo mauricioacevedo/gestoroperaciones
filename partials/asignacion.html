@@ -123,16 +123,26 @@
                         <option disabled>───────</option>
                         <option value='EQURED'>EQURED</option>
                         <option value='STBOX'>STBOX</option>
-
                     </select>-->
 
-                      <select name="TipoNovedad" style="width: 100px" class="form-control"
+                    <select name="TipoNovedad" style="width: 100px" class="form-control"
+                        ng-model="iconcepto">
+                        <option value='' disabled>--SELECCIONE--</option>
+                        <option value='8-OPEN_PEREIRA'>8-OPEN_PEREIRA</option>
+                        <option value='21-OPEN_PEREIRA'>21-OPEN_PEREIRA</option>
+                        <option value='CAMBIO-OPEN_PEREIRA'>CAMBIO-OPEN_PEREIRA</option>
+                        </select>
+
+                      <!--CONCEPTOS VIEJOS ASIGNACIONES-->
+                      <!--<select name="TipoNovedad" style="width: 100px" class="form-control"
                         ng-model="iconcepto">
                         <option value='' disabled>--SELECCIONE--</option>
                         <option value='COORP'>COORP</option>
                         <option value='EQURED'>EQURED</option>
                         <option value='STBOX'>STBOX</option>
-                        </select>
+                        </select>-->
+
+
                     <!--label for="Plaza">Plaza:</label-->
                       <select id="Plaza" class="form-control"
                             style="width: 150px"
