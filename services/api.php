@@ -19228,6 +19228,13 @@ public function pp(&$var){
            $actividad ="RECONFIGURACION";
         }
 
+        if ($concep == "8-OPEN_PEREIRA")
+        {
+           $fuente = "FENIX_NAL";
+           $grupo = "ASIGNACIONES";
+           $actividad ="ESTUDIO";
+        }
+
         $today		= date("Y-m-d");
 
         /*$parametroBusqueda= $this->demePedido('concepto');
