@@ -9534,7 +9534,7 @@ private function getAgentScore($user){
             $concepto = "and b.CONCEPTO_ID in ('CAMBIO-OPEN_PEREIRA') and (b.TIPO_ELEMENTO_ID IN ('LINEA BASICA','INTERNET BANDA ANCHA','UNE TV'))";
         }
 
-        else if($fuente=="SIEBEL"){
+       /* else if($fuente=="SIEBEL"){
 
             if($plaza=='TODOS'){
                 $plaza2="";
@@ -9596,7 +9596,7 @@ private function getAgentScore($user){
 
 
             $concepto=" and b.CONCEPTO_ID in ('$concepto')";
-        }
+        }*/
 
         else{
             $concepto=" and b.CONCEPTO_ID='$concepto' ";
