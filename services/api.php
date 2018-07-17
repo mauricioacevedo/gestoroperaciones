@@ -9575,7 +9575,8 @@ private function getAgentScore($user){
             if($rr->num_rows > 0){//recorro los registros de la consulta para
                 while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
                     $result[] = $row;
-                    $mypedido=$row['PEDIDO_ID'];
+                    //$mypedido=$row['PEDIDO_ID'];
+                    $mypedido=$row['CLIENTE_ID'];
                     $mypedidoresult=$rta;
                     $ATENCION_INMEDIATA="1";
                     break;
@@ -9762,7 +9763,7 @@ private function getAgentScore($user){
             " b.APROVISIONADOR, ".
             " b.PEDIDO_CRM ".
             " from informe_petec_pendientesm b 	".
-            " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto order by b.FECHA_ESTADO asc";
+            " where b.CLIENTE_ID = '$mypedido' and b.STATUS='$STATUS' $concepto order by b.FECHA_ESTADO asc";
 
             //echo "ingreso 1: $query1";
 
