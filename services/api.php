@@ -9579,6 +9579,7 @@ private function getAgentScore($user){
                     $mypedido=$row['CLIENTE_ID'];
                     $mypedidoresult=$rta;
                     $ATENCION_INMEDIATA="1";
+                    echo var_dump ($mypedido);
                     break;
                 }
             }
