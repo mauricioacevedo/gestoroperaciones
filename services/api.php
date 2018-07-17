@@ -9569,7 +9569,7 @@ private function getAgentScore($user){
                 $plaza2.
                 $zona2.
                 " ORDER BY $parametroBusqueda2 $parametroOrden ";
-            echo var_dump ($sqlllamadas);
+            //echo var_dump ($sqlllamadas);
 
             $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
@@ -9580,7 +9580,7 @@ private function getAgentScore($user){
                     $mypedido=$row['CLIENTE_ID'];
                     $mypedidoresult=$rta;
                     $ATENCION_INMEDIATA="1";
-                    echo var_dump ($mypedido);
+                    //echo var_dump ($mypedido);
                     break;
                 }
             }
