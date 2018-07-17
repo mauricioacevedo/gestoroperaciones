@@ -1144,6 +1144,13 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'demePedido?userID=' + user + '&concepto=' + concepto + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&prioridad=' + prioridad + '&fuente=' + fuente + '&zona=' + zona);
 	};
 
+
+    //DEMEPEDIDO OPEN
+    obj.demePedidoOpen = function (user, concepto, pedido_actual, plaza, username, prioridad, fuente,zona) {
+		return $http.get(serviceBase + 'demePedidoOpen?userID=' + user + '&concepto=' + concepto + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&prioridad=' + prioridad + '&fuente=' + fuente + '&zona=' + zona);
+	};
+
+
     //***************************************MICHAEL EDATEL LLAMADO A LOS SERVICIOS **********************************************
 
     obj.demePedidoEdatel = function (user, concepto, pedido_actual, plaza, username, prioridad, fuente) { //deme pedido asignacion
@@ -16905,7 +16912,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		demePedidoButton.setAttribute("disabled", "disabled");
 		demePedidoButton.className = "btn btn-sm btn-success disabled";
 
-		var kami = services.demePedido($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', 'FENIX_NAL',$scope.izona).then(function (data) {
+
+        var kami = services.demePedidoOpen($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', 'FENIX_NAL',$scope.izona).then(function (data) {
 
 			//console.log("este es el municipio" + $scope.peds[0].MUNICIPIO_ID);
 			//$scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
