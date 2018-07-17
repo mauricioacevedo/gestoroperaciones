@@ -9534,77 +9534,12 @@ private function getAgentScore($user){
             $concepto = "and b.CONCEPTO_ID in ('CAMBIO-OPEN_PEREIRA') and (b.TIPO_ELEMENTO_ID IN ('LINEA BASICA','INTERNET BANDA ANCHA','UNE TV'))";
         }
 
-       /* else if($fuente=="SIEBEL"){
-
-            if($plaza=='TODOS'){
-                $plaza2="";
-            }else{
-                $plaza2=" AND MUNICIPIO_ID='$plaza' ";
-            }
-
-            if($plaza=='TODOS'){
-                $zona2="";
-            }else{
-                $zona2=" AND ZONA='$zona' ";
-            }
-
-            $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
-            $parametroOrden= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
-
-            $parametroBusqueda2=$parametroBusqueda;
-            $tipo_trabajo="";
-            if($parametroBusqueda=="NUEVOS_PRIMERO"){
-                $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%')";
-                $parametroBusqueda2="FECHA_ESTADO";
-            }else{
-                $tipo_trabajo=" ";
-            }
-
-            $sqlllamadas=   "SELECT CLIENTE_ID,PEDIDO_ID, ".
-                " SUBPEDIDO_ID, ".
-                " SOLICITUD_ID, ".
-                " FECHA_ESTADO, ".
-                " FECHA_INGRESO, ".
-                " FECHA_CITA ".
-                " FROM  informe_petec_pendientesm ".
-                " WHERE 1=1 ".
-                //" and (TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
-                $tipo_trabajo.
-                //" AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
-                //" and RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM','MIG','REPARMIG','MIGGPON','GPON','AAA')  ".
-                " AND ASESOR='' ".
-                " AND CONCEPTO_ID = '$concepto' ".
-                " AND STATUS='PENDI_PETEC' ".
-                $plaza2.
-                $zona2.
-                " ORDER BY $parametroBusqueda2 $parametroOrden ";
-            //echo var_dump ($sqlllamadas);
-
-            $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
-
-            if($rr->num_rows > 0){//recorro los registros de la consulta para
-                while($row = $rr->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
-                    $result[] = $row;
-                    //$mypedido=$row['PEDIDO_ID'];
-                    $mypedido=$row['CLIENTE_ID'];
-                    $mypedidoresult=$rta;
-                    $ATENCION_INMEDIATA="1";
-                    //echo var_dump ($mypedido);
-                    break;
-                }
-            }
-
-
-            $concepto=" and b.CONCEPTO_ID in ('$concepto')";
-        }*/
-
         else{
             $concepto=" and b.CONCEPTO_ID='$concepto' ";
         }
 
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
         $parametroOrden= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
-
         $parametroBusqueda2=$parametroBusqueda;
 
         if($parametroBusqueda2=="NUEVOS_PRIMERO"){
