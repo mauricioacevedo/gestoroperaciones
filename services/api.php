@@ -9517,34 +9517,9 @@ private function getAgentScore($user){
         $STATUS="PENDI_PETEC";
 
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
-        $parametroOrdenRecon= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO_R');
         $parametroOrdenAsig= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
 
-        if($concepto=="PETEC"){
-            if($plaza=="BOG-COBRE"){
-                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') ";
-            }else {
-                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA','INSTIP','STBOX','EQURED') ";
-                if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
-                $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
-                    //Obtener un registro de cualquier plaza menos los de bogota
-
-                }
-
-                //echo var_dump ($plaza);
-
-                if ($plaza == "BOGOTA" || $plaza == "BOGCUNCOL")
-                {
-
-                    $plaza=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID IN ('BOG-COBRE','BOGCUNCOL','BOGOTA')) ";
-                    //$plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
-                    //$plaza2=" AND b.MUNICIPIO_ID IN ('$plaza') ";
-                }
-            }
-
-        }
-
-        else if ($concepto=="8-OPEN_PEREIRA"){
+        if ($concepto=="8-OPEN_PEREIRA"){
             $concepto = "and b.CONCEPTO_ID in ('8-OPEN_PEREIRA') and (b.TIPO_ELEMENTO_ID IN ('LÍNEA BÁSICA','INTERNET BANDA ANCHA',
             'UNE TV'))";
         }
@@ -9594,11 +9569,6 @@ private function getAgentScore($user){
                 $plaza2.
                 $zona2.
                 " ORDER BY $parametroBusqueda2 $parametroOrden ";
-
-                //echo "ingreso 4: $sqlllamadas ";
-
-
-
 
             $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
