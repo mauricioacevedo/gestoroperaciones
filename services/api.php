@@ -9640,14 +9640,14 @@ private function getAgentScore($user){
                 while($row = $rr->fetch_assoc()){
                     $result[] = $row;
 
-                    $pedidos_ignorados.=$row['PEDIDO_ID'].",";
+                    $pedidos_ignorados.=$row['CLIENTE_ID'].",";
 
                     $rta=$this->pedidoOcupadoFenix($row);
                     //echo $rta;
                     if($rta=="No rows!!!!"){//me sirve, salgo del ciclo y busco este pedido...
                         //echo "el pedido es: ".$row['PEDIDO_ID'];
 
-                        $mypedido=$row['PEDIDO_ID'];
+                        $mypedido=$row['CLIENTE_ID'];
                         $mypedidoresult=$rta;
                         //echo var_dump($mypedido);
                         break;
@@ -9762,6 +9762,7 @@ private function getAgentScore($user){
             " b.TELEFONO_AVISAR,	".
             " b.PROGRAMACION, ".
             " b.ZONA, ".
+            " b.CLIENTE_ID, ".
             " case when b.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ALTA' else 'NORMAL' end as PRIORIDAD, 	".
             " b.APROVISIONADOR, ".
             " b.PEDIDO_CRM ".
