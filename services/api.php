@@ -9614,48 +9614,11 @@ private function getAgentScore($user){
 
 
             $concepto=" and b.CONCEPTO_ID in ('$concepto')";
-        }else if($concepto=="STBOX"){
-            $concepto=" and b.CONCEPTO_ID in ('PETEC','15') and (b.TIPO_ELEMENTO_ID IN ('STBOX') )";
-
-
-        }else if($concepto=="EQURED"){
-
-            $concepto=" and b.CONCEPTO_ID in ('PETEC') and (b.RADICADO_TEMPORAL = 'EQURED' )";
-
         }
-        else if($concepto=="RENUM"){
-            $concepto=" and b.CONCEPTO_ID='14' ";
-            $STATUS="PENDI_RENUMS";
-        }else if($concepto=="14B2B"){
-            $concepto=" and b.CONCEPTO_ID='$concepto' and ( b.UEN_CALCULADA !='HG' ) ";
-        }else{
-            //$concepto=" and b.CONCEPTO_ID='$concepto' and b.TIPO_ELEMENTO_ID IN('ACCESP','INSIP','INSHFC','TO','TOIP','STBOX','EQURED')";
+
+        else{
             $concepto=" and b.CONCEPTO_ID='$concepto' ";
         }
-
-        //echo var_dump($concepto);
-        if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
-
-            if($fuente=='SIEBEL'){
-                $plaza="";
-            }
-
-            if ($fuente == "FENIX_NAL")
-                {
-                  $plaza="";
-                }
-
-            else {
-                $plaza=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
-                }
-        }else if ($plaza == "BOGCUNCOL") {
-            //$plaza=" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ";
-            //$plaza=" AND b.MUNICIPIO_ID IN ('$plaza') ";
-            $plaza="AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID IN ('BOG-COBRE','BOGCUNCOL'))";
-        }
-
-        //$parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
-
 
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
         $parametroOrden= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
@@ -9675,7 +9638,6 @@ private function getAgentScore($user){
             $zona2=" AND b.ZONA='$zona' ";
         }
 
-
         //echo var_dump ($concepto);
         //echo var_dump ($plaza);
 
@@ -9692,13 +9654,7 @@ private function getAgentScore($user){
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             " order by b.$parametroBusqueda2 $parametroOrden ";
-            //echo var_dump ($concepto);
-            //echo var_dump ($query1);
 
-        //echo "ingreso 3: $query1";
-
-        // echo var_dump($query1);
-        //echo var_dump ($plaza);
 
         if($mypedido==""){
 
@@ -9711,19 +9667,6 @@ private function getAgentScore($user){
                     $result[] = $row;
 
                     $pedidos_ignorados.=$row['PEDIDO_ID'].",";
-
-
-
-                    //la idea es que este codigo permita optimizar el pedido entregado
-                    //la idea es entregar de primero los pedidos con agenda para mañana cuando el parametro es fecha cita
-                    /*if($parametroBusqueda=='FECHA_CITA'){
-                        $today = date("Y-m-d");
-                        $date = $row[FECHA_CITA];
-
-                        if($today>=$date){
-                            continue;
-                        }
-                    }*/
 
                     $rta=$this->pedidoOcupadoFenix($row);
                     //echo $rta;
