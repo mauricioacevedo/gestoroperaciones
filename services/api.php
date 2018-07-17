@@ -9569,6 +9569,7 @@ private function getAgentScore($user){
                 $plaza2.
                 $zona2.
                 " ORDER BY $parametroBusqueda2 $parametroOrden ";
+            echo var_dump ($sqlllamadas);
 
             $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
