@@ -9653,7 +9653,7 @@ private function getAgentScore($user){
                 }
                 //2.traigo solo los pedidos mas viejos en la base de datos...
             } else {
-                $query1="select b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO, b.FECHA_CITA, b.TIPO_ELEMENTO_ID ".
+                $query1="select b.CLIENTE_ID,b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO, b.FECHA_CITA, b.TIPO_ELEMENTO_ID ".
                     " from informe_petec_pendientesm b ".
                     " where b.STATUS='$STATUS'  and b.ASESOR ='' ".
                     "  $concepto ".
@@ -9676,7 +9676,7 @@ private function getAgentScore($user){
                         if($rta=="No rows!!!!"){//me sirve, salgo del ciclo y busco este pedido...
                             //echo "el pedido es: ".$row['PEDIDO_ID'];
 
-                            $mypedido=$row['PEDIDO_ID'];
+                            $mypedido=$row['CLIENTE_ID'];
                             $mypedidoresult=$rta;
 
                             break;
