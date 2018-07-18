@@ -16189,7 +16189,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
     $scope.accRdy = false;
     $scope.deme_pedidos = [{PEDIDO_ID:" NUEVO "}];
     $scope.agentScore="-1";
-    $scope.izona="CON AGENDA";
+    $scope.TipoPendiente="CON AGENDA";
 //    $scope.izona="TODAS";
 
 	var pedidos = services.getPedidosUser(userID).then(function (data) {
