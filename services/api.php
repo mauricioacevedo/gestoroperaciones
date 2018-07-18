@@ -9482,7 +9482,7 @@ private function getAgentScore($user){
         $username       =   $this->_request['username'];
         $prioridad      =   $this->_request['prioridad'];
 
-        $pendiente      =   $this->_request['tipopendiente'];
+        $pendiente      =   $this->_request['izona'];
 
         echo var_dump ($pendiente);
 
