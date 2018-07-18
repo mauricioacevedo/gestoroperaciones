@@ -9481,7 +9481,7 @@ private function getAgentScore($user){
         $fuente         =   $this->_request['fuente'];
         $username       =   $this->_request['username'];
         $prioridad      =   $this->_request['prioridad'];
-        $zona           =   $this->_request['TipoPendiente'];
+        $TipoPendiente  =   $this->_request['TipoPendiente'];
 
         //echo var_dump($zona);
 
@@ -9492,8 +9492,8 @@ private function getAgentScore($user){
         //echo var_dump ($Diasiguiente);
         //echo var_dump ($plaza);
 
-        if($zona==""||$zona=="null"||$zona=="undefined") $zona="TODOS";
-        echo var_dump($zona);
+        if($TipoPendiente==""||$TipoPendiente=="null"||$TipoPendiente=="undefined"||$TipoPendiente<>'CON AGENDA') $TipoPendiente="TODOS";
+        echo var_dump($TipoPendiente);
 
         $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
