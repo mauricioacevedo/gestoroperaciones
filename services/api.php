@@ -9484,6 +9484,8 @@ private function getAgentScore($user){
 
         $pendiente      =   $this->_request['tipopendiente'];
 
+        echo var_dump ($pendiente);
+
         $fechaservidor  =   date('Y-m-d');
         $Diasiguiente   =   date('Y-m-d',strtotime($fechaservidor."+ 1 days"));
 
