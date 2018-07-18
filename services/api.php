@@ -9560,11 +9560,11 @@ private function getAgentScore($user){
             $zona2=" AND b.ZONA='$zona' ";
         }
 
-        if ($pendiente == "CON AGENDA"){
+        /*if ($pendiente == "CON AGENDA"){
 
             $pendiente = "and FECHA_CITA not in ('9999-00-00','SIN AGENDA','')";
         }
-
+*/
         //echo var_dump ($concepto);
         //echo var_dump ($plaza);
 
