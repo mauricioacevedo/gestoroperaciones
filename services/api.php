@@ -9723,6 +9723,7 @@ private function getAgentScore($user){
             " from informe_petec_pendientesm b 	".
             " where b.CLIENTE_ID = '$mypedido' and b.STATUS='$STATUS' $concepto order by b.FECHA_ESTADO asc";
 
+
             //echo "ingreso 1: $query1";
 
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
