@@ -9559,12 +9559,25 @@ private function getAgentScore($user){
             $zona2=" AND b.ZONA='$TipoPendiente' ";
         }
 
-        /*if ($pendiente == "CON AGENDA"){
+        if ($TipoPendiente == "CON AGENDA"){
 
-            $pendiente = "and FECHA_CITA not in ('9999-00-00','SIN AGENDA','')";
+            $Pendiente = "and b.FECHA_CITA not in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
         }
-*/
-        //echo var_dump ($concepto);
+        else if ($TipoPendiente == "SIN AGENDA"){
+
+            $Pendiente = "and b.FECHA_CITA in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
+        }
+        else if ($TipoPendiente == "B2B"){
+
+            $Pendiente = "and b.UEN_CALCULADA = 'B2B' and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
+
+        }
+        else{
+            $Pendiente = "";
+        }
+
+
+        echo var_dump ($concepto);
         //echo var_dump ($plaza);
 
         $query1="select b.CLIENTE_ID,b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO,b.FECHA_CITA ".
