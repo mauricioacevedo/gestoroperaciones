@@ -9492,7 +9492,7 @@ private function getAgentScore($user){
         //echo var_dump ($Diasiguiente);
         //echo var_dump ($plaza);
 
-        if($TipoPendiente==""||$TipoPendiente=="null"||$TipoPendiente=="undefined"||$TipoPendiente<>'CON AGENDA') $TipoPendiente="TODOS";
+        if($TipoPendiente==""||$TipoPendiente=="null"||$TipoPendiente=="undefined"||$TipoPendiente<>'CON AGENDA'||$TipoPendiente<>'SIN AGENDA'||$TipoPendiente<>'B2B') $TipoPendiente="TODOS";
         echo var_dump($TipoPendiente);
 
         $filename = '../tmp/control-threads.txt';
@@ -9553,10 +9553,10 @@ private function getAgentScore($user){
             $tipo_trabajo="";
         }
 
-        if($zona=='TODOS'){
+        if($TipoPendiente=='TODOS'){
             $zona2="";
         }else{
-            $zona2=" AND b.ZONA='$zona' ";
+            $zona2=" AND b.ZONA='$TipoPendiente' ";
         }
 
         /*if ($pendiente == "CON AGENDA"){
