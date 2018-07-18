@@ -16189,7 +16189,8 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
     $scope.accRdy = false;
     $scope.deme_pedidos = [{PEDIDO_ID:" NUEVO "}];
     $scope.agentScore="-1";
-    $scope.izona="TODOS";
+    $scope.izona="CON AGENDA";
+//    $scope.izona="TODAS";
 
 	var pedidos = services.getPedidosUser(userID).then(function (data) {
 		$scope.pedidos = data.data[0];
@@ -16914,7 +16915,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 
         var kami = services.demePedidoOpen($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', 'FENIX_NAL',$scope.izona).then(function (data) {
-            console.log($scope.izona);
+            //console.log($scope.izona);
 
 			//console.log("este es el municipio" + $scope.peds[0].MUNICIPIO_ID);
 			//$scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
@@ -16933,7 +16934,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 				document.getElementById("warning").innerHTML = "";
 				$scope.pedido1 = $scope.peds[0].PEDIDO_ID;
 				$scope.pedidoinfo = $scope.peds[0].PEDIDO_ID;
-                console.log($scope.peds);
+                //console.log($scope.peds);
 
 
 
