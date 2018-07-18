@@ -9483,7 +9483,7 @@ private function getAgentScore($user){
         $prioridad      =   $this->_request['prioridad'];
         $zona           =   $this->_request['zona'];
 
-        echo var_dump($zona);
+        //echo var_dump($zona);
 
         $fechaservidor  =   date('Y-m-d');
         $Diasiguiente   =   date('Y-m-d',strtotime($fechaservidor."+ 1 days"));
@@ -9493,7 +9493,7 @@ private function getAgentScore($user){
         //echo var_dump ($plaza);
 
         if($zona==""||$zona=="null"||$zona=="undefined") $zona="TODOS";
-
+        echo var_dump($zona);
 
         $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
