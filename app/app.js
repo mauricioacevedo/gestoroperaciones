@@ -16914,6 +16914,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 
         var kami = services.demePedidoOpen($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', 'FENIX_NAL',$scope.izona).then(function (data) {
+            console.log($scope.izona);
 
 			//console.log("este es el municipio" + $scope.peds[0].MUNICIPIO_ID);
 			//$scope.MUNICIPIO = $scope.peds[0].MUNICIPIO_ID;
