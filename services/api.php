@@ -9554,7 +9554,7 @@ private function getAgentScore($user){
             $tipo_trabajo="";
         }
 
-        if($zona=='TODOS'){
+        if($zona=='CON AGENDA'){
             $zona2="";
         }else{
             $zona2=" AND b.ZONA='$zona' ";
