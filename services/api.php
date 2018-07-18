@@ -9482,7 +9482,7 @@ private function getAgentScore($user){
         $username       =   $this->_request['username'];
         $prioridad      =   $this->_request['prioridad'];
 
-        $zona           =   $this->_request['zona'];
+        $pendiente      =   $this->_request['tipopendiente'];
 
         $fechaservidor  =   date('Y-m-d');
         $Diasiguiente   =   date('Y-m-d',strtotime($fechaservidor."+ 1 days"));
@@ -9524,8 +9524,7 @@ private function getAgentScore($user){
         $parametroOrdenAsig= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
 
         if ($concepto=="8-OPEN_PEREIRA"){
-            $concepto = "and b.CONCEPTO_ID in ('8-OPEN_PEREIRA') and (b.TIPO_ELEMENTO_ID IN ('LINEA BASICA','INTERNET BANDA ANCHA',
-            'UNE TV'))";
+            $concepto = "and b.CONCEPTO_ID in ('8-OPEN_PEREIRA') and (b.TIPO_ELEMENTO_ID IN ('LINEA BASICA','INTERNET BANDA ANCHA','UNE TV'))";
         }
 
         else if ($concepto=="21-OPEN_PEREIRA")
@@ -9557,6 +9556,11 @@ private function getAgentScore($user){
             $zona2="";
         }else{
             $zona2=" AND b.ZONA='$zona' ";
+        }
+
+        if ($pendiente == "CON AGENDA"){
+
+            $pendiente = "and FECHA_CITA not in ('9999-00-00','SIN AGENDA','')";
         }
 
         //echo var_dump ($concepto);
