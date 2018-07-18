@@ -9482,9 +9482,9 @@ private function getAgentScore($user){
         $username       =   $this->_request['username'];
         $prioridad      =   $this->_request['prioridad'];
 
-        $pendiente      =   $this->_request['izona'];
+        $zona      =   $this->_request['izona'];
 
-        echo var_dump($pendiente);
+        echo var_dump($zona);
 
         $fechaservidor  =   date('Y-m-d');
         $Diasiguiente   =   date('Y-m-d',strtotime($fechaservidor."+ 1 days"));
