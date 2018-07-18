@@ -9485,9 +9485,10 @@ private function getAgentScore($user){
         $zona           =   $this->_request['zona'];
 
         $fechaservidor  =   date('Y-m-d');
-        //$Fechamanana    =   date('Y-m-d', strtotime($fechaservidor'+ 1 days'));
+        $Diasiguiente    =   date('Y-m-d');
 
-        //echo var_dump ($fechamanana);
+
+        echo var_dump ($Diasiguiente);
         //echo var_dump ($plaza);
 
         if($zona==""||$zona=="null"||$zona=="undefined") $zona="TODOS";
