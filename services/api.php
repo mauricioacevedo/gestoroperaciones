@@ -9594,7 +9594,7 @@ private function getAgentScore($user){
             //" order by b.$parametroBusqueda2 $parametroOrden ";
 
             echo var_dump ($query1);
-            return;
+            //return;
 
 
         if($mypedido==""){
