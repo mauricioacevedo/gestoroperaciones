@@ -9493,7 +9493,7 @@ private function getAgentScore($user){
         //echo var_dump ($plaza);
 
         if($TipoPendiente==""||$TipoPendiente=="null"||$TipoPendiente=="undefined"||$TipoPendiente<>'CON AGENDA'||$TipoPendiente<>'SIN AGENDA'||$TipoPendiente<>'B2B') $TipoPendiente="TODOS";
-        echo var_dump($TipoPendiente);
+        //echo var_dump($TipoPendiente);
 
         $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
@@ -9567,14 +9567,14 @@ private function getAgentScore($user){
 
             $Pendiente = "and b.FECHA_CITA in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
         }
-        else if ($TipoPendiente == "B2B"){
+        else ($TipoPendiente == "B2B"){
 
             $Pendiente = "and b.UEN_CALCULADA = 'B2B' and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
 
-        }
-        else{
-            $Pendiente = "";
-        }
+       // }
+        //else{
+        //    $Pendiente = "";
+        //}
 
 
         echo var_dump ($Pendiente);
@@ -9734,7 +9734,7 @@ private function getAgentScore($user){
             " b.APROVISIONADOR, ".
             " b.PEDIDO_CRM ".
             " from informe_petec_pendientesm b 	".
-            " where b.CLIENTE_ID = '$mypedido' and b.STATUS='$STATUS' $concepto order by b.FECHA_ESTADO asc";
+            " where b.CLIENTE_ID = '$mypedido' and b.STATUS='$STATUS' $concepto $Pendiente";
 
 
             //echo "ingreso 1: $query1";
