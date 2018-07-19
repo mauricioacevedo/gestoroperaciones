@@ -9567,7 +9567,8 @@ private function getAgentScore($user){
 
             $Pendiente = "and b.FECHA_CITA in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
         }
-       else if ($TipoPendiente == "B2B"){
+
+        else if ($TipoPendiente == "B2B"){
             $Pendiente = "and b.UEN_CALCULADA in ('B2B') order by b.FECHA_INGRESO asc";
             //echo "ingreso";
 
@@ -9737,7 +9738,8 @@ private function getAgentScore($user){
             " where b.CLIENTE_ID = '$mypedido' and b.STATUS='$STATUS' $concepto $Pendiente";
 
 
-            //echo "ingreso 1: $query1";
+
+            echo "ingreso 1: $query1";
 
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
