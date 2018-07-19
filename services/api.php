@@ -9627,7 +9627,7 @@ private function getAgentScore($user){
 
                         $mypedido=$row['CLIENTE_ID'];
                         $mypedidoresult=$rta;
-                        //echo var_dump($mypedido);
+                        echo var_dump($mypedido);
                         break;
                     }
 
@@ -9748,7 +9748,7 @@ private function getAgentScore($user){
             " where b.CLIENTE_ID = '$mypedido' and b.STATUS='$STATUS' $concepto $Pendiente";
 
 
-            echo "ingreso 1: $query1";
+            //echo "ingreso 1: $query1";
 
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
