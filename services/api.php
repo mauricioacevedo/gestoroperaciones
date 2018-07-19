@@ -9594,7 +9594,7 @@ private function getAgentScore($user){
         //return;
 
 
-        echo var_dump ($Pendiente);
+
 
         //echo var_dump ($plaza);
 
@@ -9613,7 +9613,7 @@ private function getAgentScore($user){
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             //" order by b.$parametroBusqueda2 $parametroOrden ";
 
-
+            echo var_dump ($query1);
 
 
         if($mypedido==""){
