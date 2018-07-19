@@ -9588,7 +9588,7 @@ private function getAgentScore($user){
         }
 
 
-        //echo var_dump ($Pendiente);
+        echo var_dump ($Pendiente);
         //echo var_dump ($plaza);
 
         $query1="select b.CLIENTE_ID,b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO,b.FECHA_CITA ".
@@ -9607,7 +9607,7 @@ private function getAgentScore($user){
             //" order by b.$parametroBusqueda2 $parametroOrden ";
 
 
-        echo var_dump ($query1);
+        //echo var_dump ($query1);
 
         if($mypedido==""){
 
