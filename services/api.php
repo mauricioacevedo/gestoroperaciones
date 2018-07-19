@@ -9582,10 +9582,10 @@ private function getAgentScore($user){
 
             $Pendiente = "and b.UEN_CALCULADA = 'B2B' and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
 
-/*       }
-        else{
-           $Pendiente = "";
-        }*/
+        }
+       // else{
+        //   $Pendiente = "";
+       // }
 
 
         //echo var_dump ($Pendiente);
