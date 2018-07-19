@@ -9583,11 +9583,11 @@ private function getAgentScore($user){
         }
        else if ($TipoPendiente == "B2B"){
             $Pendiente = "and b.UEN_CALCULADA in ('B2B') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
-            echo "ingreso";
+            //echo "ingreso";
 
         }
 
-        return;
+        //return;
 
         //echo var_dump ($plaza);
 
@@ -9607,6 +9607,7 @@ private function getAgentScore($user){
             //" order by b.$parametroBusqueda2 $parametroOrden ";
 
             echo var_dump ($query1);
+        return;
 
 
         if($mypedido==""){
