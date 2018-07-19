@@ -9573,7 +9573,7 @@ private function getAgentScore($user){
 */
                         //**********Tipo pendiente**************************
 
-       if ($TipoPendiente == "CON AGENDA"){
+/*       if ($TipoPendiente == "CON AGENDA"){
 
             $Pendiente = "and b.FECHA_CITA not in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc"
         }
@@ -9586,7 +9586,7 @@ private function getAgentScore($user){
 
             $Pendiente = "and b.UEN_CALCULADA in ('B2B') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc"
 
-        }
+        }*/
         //echo "xy";
 
         //return;
