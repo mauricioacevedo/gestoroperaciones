@@ -9500,7 +9500,7 @@ private function getAgentScore($user){
 
       //  if($TipoPendiente<>'CON AGENDA'){ $TipoPendiente=="TODOS";
 
-        echo var_dump($TipoPendiente);
+        //echo var_dump($TipoPendiente);
           //                              }
 
         $filename = '../tmp/control-threads.txt';
@@ -9570,22 +9570,22 @@ private function getAgentScore($user){
 
 
 
-/*        if ($TipoPendiente == "CON AGENDA"){
+        if ($TipoPendiente == "CON AGENDA"){
 
             $Pendiente = "and b.FECHA_CITA not in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
         }
-        else if ($TipoPendiente == "SIN AGENDA"){
+    /*    else if ($TipoPendiente == "SIN AGENDA"){
 
             $Pendiente = "and b.FECHA_CITA in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
         }
         else if ($TipoPendiente == "B2B"){
 
-            $Pendiente = "and b.UEN_CALCULADA = 'B2B' and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";*/
+            $Pendiente = "and b.UEN_CALCULADA = 'B2B' and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
 
-       // }
-        //else{
-        //    $Pendiente = "";
-        //}
+       }
+        else{
+           $Pendiente = "";
+        }*/
 
 
         //echo var_dump ($Pendiente);
@@ -9748,7 +9748,7 @@ private function getAgentScore($user){
             " where b.CLIENTE_ID = '$mypedido' and b.STATUS='$STATUS' $concepto $Pendiente";
 
 
-            //echo "ingreso 1: $query1";
+            echo "ingreso 1: $query1";
 
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
