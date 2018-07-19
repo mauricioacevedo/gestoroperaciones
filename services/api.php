@@ -9607,7 +9607,7 @@ private function getAgentScore($user){
             //" order by b.$parametroBusqueda2 $parametroOrden ";
 
 
-        echo var_dump ($query1);
+        //echo var_dump ($query1);
 
         if($mypedido==""){
 
@@ -9628,7 +9628,7 @@ private function getAgentScore($user){
 
                         $mypedido=$row['CLIENTE_ID'];
                         $mypedidoresult=$rta;
-                        //echo var_dump($mypedido);
+                        echo var_dump($mypedido);
                         break;
                     }
 
