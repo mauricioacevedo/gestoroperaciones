@@ -9654,7 +9654,7 @@ private function getAgentScore($user){
                         $result[] = $row;
 
                         $rta=$this->pedidoOcupadoFenix($row);
-                        var_dump($rta);
+                        //var_dump($rta);
 
                         if($rta=="No rows!!!!"){//me sirve, salgo del ciclo y busco este pedido...
                             //echo "el pedido es: ".$row['PEDIDO_ID'];
@@ -9750,7 +9750,7 @@ private function getAgentScore($user){
             " where b.CLIENTE_ID = '$mypedido' and b.STATUS='$STATUS' $concepto $Pendiente";
 
 
-            //echo "ingreso 1: $query1";
+            echo "ingreso 1: $query1";
 
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
