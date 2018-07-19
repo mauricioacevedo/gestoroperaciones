@@ -9645,7 +9645,7 @@ private function getAgentScore($user){
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
                     //" order by b.$parametroBusqueda2 $parametroOrden";
 
-                echo "ingreso 2: $query1";
+                //echo "ingreso 2: $query1";
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
                 $mypedidoresult=array();
@@ -9654,7 +9654,7 @@ private function getAgentScore($user){
                         $result[] = $row;
 
                         $rta=$this->pedidoOcupadoFenix($row);
-                        //var_dump($rta);
+                        var_dump($rta);
 
                         if($rta=="No rows!!!!"){//me sirve, salgo del ciclo y busco este pedido...
                             //echo "el pedido es: ".$row['PEDIDO_ID'];
