@@ -9495,10 +9495,10 @@ private function getAgentScore($user){
         //if($TipoPendiente==""||$TipoPendiente=="null"||$TipoPendiente=="undefined"||$TipoPendiente<>'CON //AGENDA'||$TipoPendiente<>'SIN AGENDA'||$TipoPendiente<>'B2B'){ $TipoPendiente=="TODOS";
         //}
 
-        if($TipoPendiente<>'CON AGENDA'){ $TipoPendiente=="TODOS";
+      //  if($TipoPendiente<>'CON AGENDA'){ $TipoPendiente=="TODOS";
 
-        echo var_dump($TipoPendiente);
-                                        }
+        //echo var_dump($TipoPendiente);
+          //                              }
 
         $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
