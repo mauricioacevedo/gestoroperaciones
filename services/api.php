@@ -9598,7 +9598,8 @@ private function getAgentScore($user){
             " where b.STATUS='$STATUS'  ".
             " and b.ASESOR ='' ".
             $tipo_trabajo.
-            $concepto." ".
+            $concepto.
+            $Pendiente." ".
             //$plaza.
             //$zona2.
             //" and b.CONCEPTO_ID='$concepto' ".
