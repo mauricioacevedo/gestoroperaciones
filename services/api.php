@@ -9628,7 +9628,7 @@ private function getAgentScore($user){
 
                         $mypedido=$row['CLIENTE_ID'];
                         $mypedidoresult=$rta;
-                        echo var_dump($mypedido);
+                        //echo var_dump($mypedido);
                         break;
                     }
 
@@ -9645,7 +9645,7 @@ private function getAgentScore($user){
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
                     " order by b.$parametroBusqueda2 $parametroOrden";
 
-                //echo "ingreso 2: $query1";
+                echo "ingreso 2: $query1";
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
                 $mypedido="";
                 $mypedidoresult=array();
