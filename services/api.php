@@ -9570,10 +9570,10 @@ private function getAgentScore($user){
 */
 
 
- /*       if ($TipoPendiente == "CON AGENDA"){
+       if ($TipoPendiente == "CON AGENDA"){
 
             $Pendiente = "and b.FECHA_CITA not in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
-        }*/
+        }
     /*    else if ($TipoPendiente == "SIN AGENDA"){
 
             $Pendiente = "and b.FECHA_CITA in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
@@ -9600,13 +9600,13 @@ private function getAgentScore($user){
             $tipo_trabajo.
             $concepto." ".
             //$plaza.
-            $zona2.
+            //$zona2.
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             " order by b.$parametroBusqueda2 $parametroOrden ";
 
 
-        //echo var_dump ($query1);
+        echo var_dump ($query1);
 
         if($mypedido==""){
 
@@ -9748,7 +9748,7 @@ private function getAgentScore($user){
             " where b.CLIENTE_ID = '$mypedido' and b.STATUS='$STATUS' $concepto $Pendiente";
 
 
-            echo "ingreso 1: $query1";
+            //echo "ingreso 1: $query1";
 
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
