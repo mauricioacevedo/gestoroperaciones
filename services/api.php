@@ -9570,10 +9570,10 @@ private function getAgentScore($user){
 */
 
 
-        if ($TipoPendiente == "CON AGENDA"){
+ /*       if ($TipoPendiente == "CON AGENDA"){
 
             $Pendiente = "and b.FECHA_CITA not in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
-        }
+        }*/
     /*    else if ($TipoPendiente == "SIN AGENDA"){
 
             $Pendiente = "and b.FECHA_CITA in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
