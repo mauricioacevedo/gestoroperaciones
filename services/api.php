@@ -9584,17 +9584,16 @@ private function getAgentScore($user){
        else {
             $Pendiente = "and b.UEN_CALCULADA in ('B2B') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
 
+
         }
 
 
 
 
-        //echo "xy";
-
-        //return;
 
 
-        echo var_dump ($Pendiente);
+
+        //echo var_dump ($Pendiente);
 
         //echo var_dump ($plaza);
 
@@ -9613,7 +9612,8 @@ private function getAgentScore($user){
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             //" order by b.$parametroBusqueda2 $parametroOrden ";
 
-
+        echo ($query1);
+        return;
 
 
         if($mypedido==""){
