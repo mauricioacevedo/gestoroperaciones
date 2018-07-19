@@ -9589,12 +9589,12 @@ private function getAgentScore($user){
 
 
 
-        echo "xy";
+        //echo "xy";
 
-        return;
+        //return;
 
 
-        //echo var_dump ($Pendiente);
+        echo var_dump ($Pendiente);
 
         //echo var_dump ($plaza);
 
