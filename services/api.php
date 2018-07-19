@@ -9606,7 +9606,7 @@ private function getAgentScore($user){
             " order by b.$parametroBusqueda2 $parametroOrden ";
 
 
-        echo var_dump ($query1);
+        //echo var_dump ($query1);
 
         if($mypedido==""){
 
@@ -9748,7 +9748,7 @@ private function getAgentScore($user){
             " where b.CLIENTE_ID = '$mypedido' and b.STATUS='$STATUS' $concepto $Pendiente";
 
 
-            //echo "ingreso 1: $query1";
+            echo "ingreso 1: $query1";
 
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
