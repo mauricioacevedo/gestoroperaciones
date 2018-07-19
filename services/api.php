@@ -9492,10 +9492,13 @@ private function getAgentScore($user){
         //echo var_dump ($Diasiguiente);
         //echo var_dump ($plaza);
 
-        if($TipoPendiente==""||$TipoPendiente=="null"||$TipoPendiente=="undefined"||$TipoPendiente<>'CON AGENDA'||$TipoPendiente<>'SIN AGENDA'||$TipoPendiente<>'B2B'){ $TipoPendiente=="TODOS";
-        }
+        //if($TipoPendiente==""||$TipoPendiente=="null"||$TipoPendiente=="undefined"||$TipoPendiente<>'CON //AGENDA'||$TipoPendiente<>'SIN AGENDA'||$TipoPendiente<>'B2B'){ $TipoPendiente=="TODOS";
+        //}
+
+        if($TipoPendiente<>'CON AGENDA'){ $TipoPendiente=="TODOS";
 
         echo var_dump($TipoPendiente);
+                                        }
 
         $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
@@ -9554,6 +9557,7 @@ private function getAgentScore($user){
         }else{
             $tipo_trabajo="";
         }
+
 
         if($TipoPendiente=='TODOS'){
             $zona2="";
