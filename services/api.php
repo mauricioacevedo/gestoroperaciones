@@ -9492,7 +9492,8 @@ private function getAgentScore($user){
         //echo var_dump ($Diasiguiente);
         //echo var_dump ($plaza);
 
-        if($TipoPendiente==""||$TipoPendiente=="null"||$TipoPendiente=="undefined"||$TipoPendiente<>'CON AGENDA'||$TipoPendiente<>'SIN AGENDA'||$TipoPendiente<>'B2B') $TipoPendiente="TODOS";
+        if($TipoPendiente==""||$TipoPendiente=="null"||$TipoPendiente=="undefined"||$TipoPendiente<>'CON AGENDA'||$TipoPendiente<>'SIN AGENDA'||$TipoPendiente<>'B2B') $TipoPendiente=="TODOS";
+
         echo var_dump($TipoPendiente);
 
         $filename = '../tmp/control-threads.txt';
