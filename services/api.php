@@ -9498,11 +9498,6 @@ private function getAgentScore($user){
         }
 
 
-      //  if($TipoPendiente<>'CON AGENDA'){ $TipoPendiente=="TODOS";
-
-        //echo var_dump($TipoPendiente);
-          //                              }
-
         $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
             sleep(1);
@@ -9562,15 +9557,6 @@ private function getAgentScore($user){
             $tipo_trabajo="";
         }
 
-
-
-       /* if($TipoPendiente=='TODOS'){
-            $zona2="";
-        }else{
-            $zona2=" AND b.ZONA='$TipoPendiente' ";
-        }
-*/
-                        //**********Tipo pendiente**************************
 
        if ($TipoPendiente == "CON AGENDA"){
 
