@@ -9498,11 +9498,6 @@ private function getAgentScore($user){
         }
 
 
-      //  if($TipoPendiente<>'CON AGENDA'){ $TipoPendiente=="TODOS";
-
-        //echo var_dump($TipoPendiente);
-          //                              }
-
         $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
             sleep(1);
@@ -9563,15 +9558,6 @@ private function getAgentScore($user){
         }
 
 
-
-       /* if($TipoPendiente=='TODOS'){
-            $zona2="";
-        }else{
-            $zona2=" AND b.ZONA='$TipoPendiente' ";
-        }
-*/
-                        //**********Tipo pendiente**************************
-
        if ($TipoPendiente == "CON AGENDA"){
 
             $Pendiente = "and b.FECHA_CITA not in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
@@ -9581,6 +9567,7 @@ private function getAgentScore($user){
 
             $Pendiente = "and b.FECHA_CITA in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
         }
+
        else {
             $Pendiente = "and b.UEN_CALCULADA in ('B2B') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
 
@@ -9588,12 +9575,8 @@ private function getAgentScore($user){
         }
 
 
-
-
-
-
-
         //echo var_dump ($Pendiente);
+
 
         //echo var_dump ($plaza);
 
@@ -9614,6 +9597,8 @@ private function getAgentScore($user){
 
         echo ($query1);
         return;
+
+
 
 
         if($mypedido==""){
@@ -9651,6 +9636,7 @@ private function getAgentScore($user){
                     //$zona2.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
                     " order by b.$parametroBusqueda2 $parametroOrden";
+                    //echo "ingreso 2";
 
                 //echo "ingreso 2: $query1";
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
@@ -9757,7 +9743,9 @@ private function getAgentScore($user){
             " where b.CLIENTE_ID = '$mypedido' and b.STATUS='$STATUS' $concepto $Pendiente";
 
 
+
             //echo "ingreso 1: $query1";
+        //return;
 
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
