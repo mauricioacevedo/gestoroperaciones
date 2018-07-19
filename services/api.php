@@ -9532,26 +9532,6 @@ private function getAgentScore($user){
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
         $parametroOrdenAsig= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
 
-                //**********Tipo pendiente**************************
-
-       if ($TipoPendiente == "CON AGENDA"){
-
-            $Pendiente = "and b.FECHA_CITA not in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
-        }
-        else if ($TipoPendiente == "SIN AGENDA"){
-
-            $Pendiente = "and b.FECHA_CITA in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
-        }
-        else if ($TipoPendiente == "B2B"){
-
-            $Pendiente = "and b.UEN_CALCULADA in ('B2B') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
-
-        }
-        else{
-            $Pendiente = "";
-        }
-
-
         //**********Consepto**************************
 
         if ($concepto=="8-OPEN_PEREIRA"){
@@ -9584,12 +9564,31 @@ private function getAgentScore($user){
         }
 
 
+
        /* if($TipoPendiente=='TODOS'){
             $zona2="";
         }else{
             $zona2=" AND b.ZONA='$TipoPendiente' ";
         }
 */
+                        //**********Tipo pendiente**************************
+
+       if ($TipoPendiente == "CON AGENDA"){
+
+            $Pendiente = "and b.FECHA_CITA not in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
+        }
+        else if ($TipoPendiente == "SIN AGENDA"){
+
+            $Pendiente = "and b.FECHA_CITA in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
+        }
+        else if ($TipoPendiente == "B2B"){
+
+            $Pendiente = "and b.UEN_CALCULADA in ('B2B') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
+
+        }
+        else{
+            $Pendiente = "";
+        }
 
         //echo "xy";
 
