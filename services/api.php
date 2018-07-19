@@ -9582,7 +9582,7 @@ private function getAgentScore($user){
             $Pendiente = "and b.FECHA_CITA in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
         }
        else if ($TipoPendiente == "B2B"){
-            $Pendiente = "and b.UEN_CALCULADA in ('B2B') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
+            $Pendiente = "and b.UEN_CALCULADA in ('B2B') order by b.FECHA_INGRESO asc";
             //echo "ingreso";
 
         }
@@ -9607,7 +9607,7 @@ private function getAgentScore($user){
             //" order by b.$parametroBusqueda2 $parametroOrden ";
 
             echo var_dump ($query1);
-        return;
+            return;
 
 
         if($mypedido==""){
