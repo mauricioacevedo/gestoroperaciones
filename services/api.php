@@ -9595,9 +9595,7 @@ private function getAgentScore($user){
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             //" order by b.$parametroBusqueda2 $parametroOrden ";
 
-        echo ($query1);
-        $this->response(json_encode('No hay registros!'),200);
-        return;
+
 
 
 
@@ -9606,6 +9604,10 @@ private function getAgentScore($user){
 
             $rr = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
+
+        echo ($query1);
+        $this->response(json_encode('No hay registros!'),200);
+        return;
             $mypedidoresult=array();
             $pedidos_ignorados="";
             if($rr->num_rows > 0){//recorro los registros de la consulta para
