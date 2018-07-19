@@ -9492,8 +9492,10 @@ private function getAgentScore($user){
         //echo var_dump ($Diasiguiente);
         //echo var_dump ($plaza);
 
-        //if($TipoPendiente==""||$TipoPendiente=="null"||$TipoPendiente=="undefined"||$TipoPendiente<>'CON //AGENDA'||$TipoPendiente<>'SIN AGENDA'||$TipoPendiente<>'B2B'){ $TipoPendiente=="TODOS";
-        //}
+        if($TipoPendiente==""||$TipoPendiente=="null"||$TipoPendiente=="undefined"||$TipoPendiente<>'CON AGENDA'||$TipoPendiente<>'SIN AGENDA'||$TipoPendiente<>'B2B'){
+
+            $TipoPendiente=="TODOS";
+        }
 
       //  if($TipoPendiente<>'CON AGENDA'){ $TipoPendiente=="TODOS";
 
@@ -9567,7 +9569,7 @@ private function getAgentScore($user){
 
 
 
-        if ($TipoPendiente == "CON AGENDA"){
+/*        if ($TipoPendiente == "CON AGENDA"){
 
             $Pendiente = "and b.FECHA_CITA not in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
         }
@@ -9575,9 +9577,9 @@ private function getAgentScore($user){
 
             $Pendiente = "and b.FECHA_CITA in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
         }
-        else ($TipoPendiente == "B2B"){
+        else if ($TipoPendiente == "B2B"){
 
-            $Pendiente = "and b.UEN_CALCULADA = 'B2B' and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
+            $Pendiente = "and b.UEN_CALCULADA = 'B2B' and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";*/
 
        // }
         //else{
