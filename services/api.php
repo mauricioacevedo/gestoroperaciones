@@ -9599,12 +9599,12 @@ private function getAgentScore($user){
             " and b.ASESOR ='' ".
             $tipo_trabajo.
             $concepto.
-            $Pendiente." ".
+            $Pendiente;
             //$plaza.
             //$zona2.
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-            " order by b.$parametroBusqueda2 $parametroOrden ";
+            //" order by b.$parametroBusqueda2 $parametroOrden ";
 
 
         echo var_dump ($query1);
