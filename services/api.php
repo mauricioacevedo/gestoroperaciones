@@ -9589,7 +9589,7 @@ private function getAgentScore($user){
 =======
 
         }*/
->>>>>>> origin/master
+
         //echo "xy";
 
         //return;
