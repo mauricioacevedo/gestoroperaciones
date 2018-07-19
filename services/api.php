@@ -9503,6 +9503,10 @@ private function getAgentScore($user){
         //echo var_dump($TipoPendiente);
           //                              }
 
+        echo "xy";
+
+        return;
+
         $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
             sleep(1);
