@@ -1,7 +1,7 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
 
 
 require_once("Rest.inc.php");
@@ -9583,9 +9583,7 @@ private function getAgentScore($user){
         }
        else ($TipoPendiente == "B2B")
         {
-
             $Pendiente = "and b.UEN_CALCULADA in ('B2B') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc"
-
         }
         //echo "xy";
 
