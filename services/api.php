@@ -9497,9 +9497,10 @@ private function getAgentScore($user){
             $TipoPendiente=="TODOS";
         }
 
+
       //  if($TipoPendiente<>'CON AGENDA'){ $TipoPendiente=="TODOS";
 
-        //echo var_dump($TipoPendiente);
+        echo var_dump($TipoPendiente);
           //                              }
 
         $filename = '../tmp/control-threads.txt';
