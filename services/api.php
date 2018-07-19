@@ -9574,7 +9574,7 @@ private function getAgentScore($user){
 
             $Pendiente = "and b.FECHA_CITA not in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
         }
-    /*    else if ($TipoPendiente == "SIN AGENDA"){
+        else if ($TipoPendiente == "SIN AGENDA"){
 
             $Pendiente = "and b.FECHA_CITA in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
         }
@@ -9585,7 +9585,7 @@ private function getAgentScore($user){
        }
         else{
            $Pendiente = "";
-        }*/
+        }
 
 
         //echo var_dump ($Pendiente);
@@ -9607,7 +9607,7 @@ private function getAgentScore($user){
             //" order by b.$parametroBusqueda2 $parametroOrden ";
 
 
-        //echo var_dump ($query1);
+        echo var_dump ($query1);
 
         if($mypedido==""){
 
@@ -9639,11 +9639,11 @@ private function getAgentScore($user){
                     " from informe_petec_pendientesm b ".
                     " where b.STATUS='$STATUS'  and b.ASESOR ='' ".
                     "  $concepto ".
-                    "  $Pendiente";
+                    //"  $Pendiente";
                     //$plaza.
                     //$zona2.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-                    //" order by b.$parametroBusqueda2 $parametroOrden";
+                    " order by b.$parametroBusqueda2 $parametroOrden";
 
                 //echo "ingreso 2: $query1";
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
@@ -9750,7 +9750,7 @@ private function getAgentScore($user){
             " where b.CLIENTE_ID = '$mypedido' and b.STATUS='$STATUS' $concepto $Pendiente";
 
 
-            echo "ingreso 1: $query1";
+            //echo "ingreso 1: $query1";
 
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
 
