@@ -9639,11 +9639,11 @@ private function getAgentScore($user){
                     " from informe_petec_pendientesm b ".
                     " where b.STATUS='$STATUS'  and b.ASESOR ='' ".
                     "  $concepto ".
-                    //"  $Pendiente";
+                    "  $Pendiente";
                     //$plaza.
                     //$zona2.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-                    " order by b.$parametroBusqueda2 $parametroOrden";
+                    //" order by b.$parametroBusqueda2 $parametroOrden";
 
                 echo "ingreso 2: $query1";
                 $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
