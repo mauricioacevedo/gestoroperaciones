@@ -9562,12 +9562,12 @@ private function getAgentScore($user){
         }
 
 
-        if($TipoPendiente=='TODOS'){
+       /* if($TipoPendiente=='TODOS'){
             $zona2="";
         }else{
             $zona2=" AND b.ZONA='$TipoPendiente' ";
         }
-
+*/
 
 
         if ($TipoPendiente == "CON AGENDA"){
