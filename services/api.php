@@ -9493,7 +9493,7 @@ private function getAgentScore($user){
         //echo var_dump ($plaza);
 
         if($TipoPendiente==""||$TipoPendiente=="null"||$TipoPendiente=="undefined"||$TipoPendiente<>'CON AGENDA'||$TipoPendiente<>'SIN AGENDA'||$TipoPendiente<>'B2B') $TipoPendiente="TODOS";
-        //echo var_dump($TipoPendiente);
+        echo var_dump($TipoPendiente);
 
         $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
@@ -9559,6 +9559,8 @@ private function getAgentScore($user){
             $zona2=" AND b.ZONA='$TipoPendiente' ";
         }
 
+
+
         if ($TipoPendiente == "CON AGENDA"){
 
             $Pendiente = "and b.FECHA_CITA not in ('9999-00-00','SIN AGENDA','') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
@@ -9577,7 +9579,7 @@ private function getAgentScore($user){
         //}
 
 
-        echo var_dump ($Pendiente);
+        //echo var_dump ($Pendiente);
         //echo var_dump ($plaza);
 
         $query1="select b.CLIENTE_ID,b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO,b.FECHA_CITA ".
