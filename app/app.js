@@ -7672,6 +7672,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 	divi.style.position = "relative";
 	$rootScope.actualView = "actividades";
 	$scope.actividades = [];
+    $scope.usuario="";
 
 	var actividades = services.getactividadesUser(userID).then(function (data) {
 		$scope.actividades = data.data;
