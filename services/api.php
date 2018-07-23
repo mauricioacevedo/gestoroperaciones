@@ -9738,7 +9738,7 @@ private function getAgentScore($user){
             " b.PROGRAMACION, ".
             " b.ZONA, ".
             " b.CLIENTE_ID, ".
-            " case when b.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ALTA' else 'NORMAL' end as PRIORIDAD, 	".
+            //" case when b.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ALTA' else 'NORMAL' end as PRIORIDAD, 	".
             " b.APROVISIONADOR, ".
             " b.PEDIDO_CRM ".
             " from informe_petec_pendientesm b 	".
