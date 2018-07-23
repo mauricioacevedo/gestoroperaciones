@@ -13515,6 +13515,8 @@ private function demePedidoEdatel(){
             }
         }
 
+        echo "usuario: $id ";
+
 
         $query="SELECT * FROM transacciones_actividades where USUARIO='$id' and FECHA between '$fechaini 00:00:00' and '$fechafin 23:59:59' order by FECHA desc limit 100 offset $page";
         //echo $query;
@@ -13526,7 +13528,7 @@ private function demePedidoEdatel(){
             }
             $this->response($this->json(array($result,$counter)), 200); // send user details
         }
-        $this->response('',204);        // If no records "No Content" status
+        $this->response('',200);        // If no records "No Content" status
 
     }
 
