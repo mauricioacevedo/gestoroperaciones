@@ -9763,11 +9763,13 @@ private function getAgentScore($user){
                 $ids=$ids.$sep.$row['ID'];
                 $sep=",";
             }
-            $sqlupdate="update informe_petec_pendientesm set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
-            $x = $this->mysqli->query($sqlupdate);
+
+            $sqlsetAsesor=" update informe_petec_pendientesm set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids) ".
+                          " and STATUS = 'PENDI_PETEC' ";
+            $x = $this->mysqli->query($sqlsetAsesor);
 
 
-            $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
+            $INSERTLOG=" insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
             $x = $this->mysqli->query($INSERTLOG);
 
             // SQL Feed----------------------------------
