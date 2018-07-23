@@ -13515,11 +13515,11 @@ private function demePedidoEdatel(){
             }
         }
 
-        echo "usuario: $id ";
+        //echo "usuario: $id ";
 
 
         $query="SELECT * FROM transacciones_actividades where USUARIO='$id' and FECHA between '$fechaini 00:00:00' and '$fechafin 23:59:59' order by FECHA desc limit 100 offset $page";
-        //echo $query;
+        echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         if($r->num_rows > 0){
             $result = array();
