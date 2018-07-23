@@ -7880,7 +7880,8 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 		numPerPage: 100,
 		totalItems: 0,
 		fechaIni: "",
-		fechaFin: ""
+		fechaFin: "",
+        usuarioBuscar: ""
 	};
 
 	var date1 = new Date();
@@ -7922,7 +7923,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 	}
 
 	$scope.pageChanged = function () {
-		services.getListadoTransaccionesActividades($scope.usuario,$scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage).then(function (data) {
+		services.getListadoTransaccionesActividades($scope.data.usuarioBuscar,$scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage).then(function (data) {
 			$scope.listado_transaccionesActividades = data.data[0];
 			$scope.data.totalItems1 = data.data[1];
 			return data.data;
