@@ -9765,6 +9765,8 @@ private function getAgentScore($user){
             }
             //$sqlupdate="update informe_petec_pendientesm set ASESOR='$user',VIEWS=VIEWS+1 where ID in ($ids)";
             //$x = $this->mysqli->query($sqlupdate);
+            echo var_dump($ids);
+
             $INSERTLOG="insert into vistas_pedidos(user,pedido_id) values ('$user','$mypedido')";
             $x = $this->mysqli->query($INSERTLOG);
 
