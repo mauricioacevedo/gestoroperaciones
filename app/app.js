@@ -7672,6 +7672,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 	divi.style.position = "relative";
 	$rootScope.actualView = "actividades";
 	$scope.actividades = [];
+    $scope.usuario="";
 
 	var actividades = services.getactividadesUser(userID).then(function (data) {
 		$scope.actividades = data.data;
@@ -7921,7 +7922,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 	}
 
 	$scope.pageChanged = function () {
-		services.getListadoTransaccionesActividades($scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage).then(function (data) {
+		services.getListadoTransaccionesActividades($scope.usuario,$scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage).then(function (data) {
 			$scope.listado_transaccionesActividades = data.data[0];
 			$scope.data.totalItems1 = data.data[1];
 			return data.data;
