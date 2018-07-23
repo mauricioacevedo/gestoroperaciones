@@ -9475,7 +9475,7 @@ private function getAgentScore($user){
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
 
-        echo var_dump($usuarioGalleta);
+        //echo var_dump($usuarioGalleta);
 
         $user           =   $this->_request['userID'];
         $concepto       =   $this->_request['concepto'];
