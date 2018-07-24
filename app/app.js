@@ -3547,6 +3547,54 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	});
 
 
+    $scope.listadoUsuariosGeop = function (usuario_id) {
+		$rootScope.errorDatos = null;
+		services.getListadoUsuariosOnline(usuario_id).then(
+
+			function (data) {
+				$errorDatos = null;
+
+                $scope.listaUsuarios = data.data[0];
+                $scope.CantidadNovedades = data.data[2];
+
+                //$scope.www = $scope.novedades[0];
+
+                if ($scope.CantidadNovedades !== null){
+                           $scope.TotalNovedades=0;
+                           //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
+                           var TotalNovedades = $scope.CantidadNovedades.length;
+
+                           for (var i = 0; i < TotalNovedades; i++){
+                           $scope.TotalNovedades=+$scope.TotalNovedades + +$scope.CantidadNovedades[i].novedades;
+                           }
+                }
+
+                //console.log($scope.www);
+                //console.log(TotalNovedades);
+
+				// console.log($scope.listaUsuarios);
+				//$scope.cantidad = data.data.length;
+                //console.log($scope.cantidad);
+				$scope.sortType = 'USUARIO_ID';
+				$scope.sortReverse = false;
+				$scope.csvUsers = false;
+				$scope.fechiniExpoIO = '';
+
+				return data.data;
+			},
+			function errorCallback(response) {
+
+				$rootScope.errorDatos = "Usuario no existe.";
+				// console.log($rootScope.errorDatos);
+
+			});
+
+
+	};
+
+    $scope.listadoUsuariosGeop();
+
+
 
 	var date1 = new Date();
 	var year = date1.getFullYear();
