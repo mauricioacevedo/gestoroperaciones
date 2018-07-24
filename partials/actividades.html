@@ -93,8 +93,6 @@
                                         <input type="text" class="form-control" style="min-width: 90px" id="fromDate" name="fromDate" ng-model="data.fechaIni" />
                                         <span class="input-group-addon">Hasta</span>
                                         <input type="text" class="form-control" style="min-width: 90px" id="toDate" name="toDate" ng-model="data.fechaFin" />
-                                        <input type="text" size="13px" class="form-control btn-group btn btn-md btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba usuario a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Buscador de usuarios" ng-model="data.usuarioBuscar">
-
 
                                         <span class="input-group-btn">
                                                 <button class="btn btn-primary btn-sm" value="actualizar!" ng-click="pageChanged();"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
@@ -111,7 +109,7 @@
 
                 <!--button type="button" class="form-control btn btn-md btn-primary"  title="Buscar usuario" data-toggle="tooltip" data-placement="top" ng-click="buscarDatos(data.usuarioBuscar);"><i class="fa fa-search" aria-hidden="true"></i></button-->
 
-
+                <input type="text" size="13px" class="form-control btn-group btn btn-md btn-default" onClick="this.setSelectionRange(0, this.value.length)" title="Escriba usuario a Buscar" data-toggle="tooltip" data-placement="top" placeholder="Buscador de usuarios" ng-model="data.usuarioBuscar">
 
 
                 </div>
