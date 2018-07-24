@@ -7866,7 +7866,8 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 	var pathy = $location.path();
 
 	if (pathy == "/actividades/") { //esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
-		services.getListadoTransaccionesActividades(userID, fecha_inicio, fecha_fin, $scope.data.currentPage).then(function (data) {
+        //se coloca el usuario en blanco para que muestre todos los registros inicialmente
+		services.getListadoTransaccionesActividades("", fecha_inicio, fecha_fin, $scope.data.currentPage).then(function (data) {
 			$scope.listado_transaccionesActividades = data.data[0];
 			$scope.data.totalItems = data.data[1];
 			return data.data;
