@@ -9475,6 +9475,8 @@ private function getAgentScore($user){
         $nombreGalleta  =   $galleta['name'];
         $grupoGalleta   =   $galleta['GRUPO'];
 
+        //echo var_dump($usuarioGalleta);
+
         $user           =   $this->_request['userID'];
         $concepto       =   $this->_request['concepto'];
         $plaza          =   $this->_request['plaza'];
@@ -9736,7 +9738,7 @@ private function getAgentScore($user){
             " b.PROGRAMACION, ".
             " b.ZONA, ".
             " b.CLIENTE_ID, ".
-            " case when b.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ALTA' else 'NORMAL' end as PRIORIDAD, 	".
+            //" case when b.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ALTA' else 'NORMAL' end as PRIORIDAD, 	".
             " b.APROVISIONADOR, ".
             " b.PEDIDO_CRM ".
             " from informe_petec_pendientesm b 	".
