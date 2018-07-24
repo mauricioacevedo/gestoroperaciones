@@ -9742,7 +9742,7 @@ private function getAgentScore($user){
             " b.APROVISIONADOR, ".
             " b.PEDIDO_CRM ".
             " from informe_petec_pendientesm b 	".
-            " where b.CLIENTE_ID = '$mypedido' and b.STATUS='$STATUS' $concepto $Pendiente";
+            " where b.CLIENTE_ID = '$mypedido' and b.STATUS='$STATUS' ";
 
 
 
