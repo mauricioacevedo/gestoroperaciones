@@ -13315,10 +13315,10 @@ private function demePedidoEdatel(){
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('FECHA','TIPO_TRABAJO','APLICACION_ACTIVIDADES','COLA','AMANECIERON','GESTIONADO_DIA','QUEDAN_PENDIENTES','OBSERVACIONES','USUARIO','FECHA_INICIO','FECHA_FIN','DURACION','DURACION_SEGUNDOS'));
+            fputcsv($fp, array('FECHA','TIPO_TRABAJO','APLICACION_ACTIVIDADES','COLA','AMANECIERON','GESTIONADO_DIA','QUEDAN_PENDIENTES','OBSERVACIONES','USUARIO','FECHA_INICIO','FECHA_FIN','DURACION','DURACION_SEGUNDOS'),';');
             while($row = $r->fetch_assoc()){
                 //$result[] = $row;
-                fputcsv($fp, $row);
+                fputcsv($fp, $row,';');
             }
             fclose($fp);
 
