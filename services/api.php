@@ -15837,7 +15837,7 @@ public function pp(&$var){
 
         $query=	" select * from tbl_usuarios A ".
 	            " where A.status = 'logged in' ".
-	            " and A.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59'";
+	            " and A.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59' ";
 
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
