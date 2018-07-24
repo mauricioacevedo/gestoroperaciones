@@ -3562,19 +3562,19 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
                 $scope.listaUsuarios = data.data[0];
                 console.log($scope.listaUsuarios);
-                $scope.CantidadNovedades = data.data[2];
+                /*$scope.CantidadNovedades = data.data[2];
 
-                //$scope.www = $scope.novedades[0];
+
 
                 if ($scope.CantidadNovedades !== null){
                            $scope.TotalNovedades=0;
-                           //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
+
                            var TotalNovedades = $scope.CantidadNovedades.length;
 
                            for (var i = 0; i < TotalNovedades; i++){
                            $scope.TotalNovedades=+$scope.TotalNovedades + +$scope.CantidadNovedades[i].novedades;
                            }
-                }
+                }*/
 
 				$scope.sortType = 'USUARIO_ID';
 				$scope.sortReverse = false;
