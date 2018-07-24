@@ -1026,6 +1026,7 @@
 												<th><center>Usuario</center></th>
                                                 <th><center>Grupo</center></th>
                                                 <th><center>Parametro Entrega</center></th>
+                                                <th><center>Orden</center></th>
                                                 <th><center>Estado</center></th>
 											</tr>
 										</thead>
@@ -1037,7 +1038,9 @@
                                                         <option value="FECHA_ESTADO">FECHA ESTADO</option>
                                                         <option value="NUEVOS_PRIMERO">NUEVOS_PRIMERO</option>
                                                         </select></center>
-                                                    </td>
+                                                <button class="btn btn-success btn-xs" title="Guardar" ng-click="updateParametro('ORDEN_ENTREGA_PEDIDO',ordenEntregaPedido);">
+                                                <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                                                </td>
                                                 <td><center>{{data.ESTADO}}</center></td>
 
 
