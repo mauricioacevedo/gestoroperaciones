@@ -3553,7 +3553,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	});
 
 
-    $scope.listadoUsuariosOnline = function (usuario_id) {
+    $scope.listaUsuariosOnline = function (usuario_id) {
 		$rootScope.errorDatos = null;
 		services.getUsuariosOnline(usuario_id).then(
 
@@ -3593,7 +3593,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 	};
 
-    $scope.listadoUsuariosOnline();
+    $scope.listaUsuariosOnline();
 
 
 
