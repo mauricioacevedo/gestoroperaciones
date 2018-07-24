@@ -7872,7 +7872,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 			return data.data;
 		});
 	}
-
+    /*
 	$scope.listado_transaccionesActividades1 = [];
 	$scope.data = {
 		maxSize: 5,
@@ -7882,7 +7882,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 		fechaIni: "",
 		fechaFin: "",
         usuarioBuscar: ""
-	};
+	};*/
 
 	var date1 = new Date();
 	var year = date1.getFullYear();
