@@ -15836,9 +15836,9 @@ public function pp(&$var){
             }*/
 
         $query=	" select * from tbl_usuarios A inner join registro_ingreso_usuarios B ".
-	            " on A.USUARIO_ID = B.usuario".
+	            " on A.USUARIO_ID = B.usuario ".
                 " where B.status = 'logged in' ".
-	            " and A.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59' ";
+	            " and B.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59' ";
 
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
