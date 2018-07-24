@@ -3555,6 +3555,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				$errorDatos = null;
 
                 $scope.listaUsuarios = data.data[0];
+                console.log($scope.listaUsuarios);
                 $scope.CantidadNovedades = data.data[2];
 
                 //$scope.www = $scope.novedades[0];
