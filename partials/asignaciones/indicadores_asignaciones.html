@@ -1034,7 +1034,11 @@
 											    <td><center>{{data.USUARIO_ID}}</center></td>
 											   	<td><center>{{data.GRUPO}}</center></td>
 											   	<td><center>{{data.ESTADO}}</center></td>
-											   	<td><center>{{PENDIENTE}}</center></td>
+                                                    <select class="btn btn-default btn-xs grupo-select ng-pristine ng-valid ng-touched" id="demerec" ng-model="ordenamientoDemepedidoReconfiguracion" style="width:auto;">
+                                                        <option value="FECHA_ESTADO">FECHA ESTADO</option>
+                                                        <option value="NUEVOS_PRIMERO">NUEVOS_PRIMERO</option>
+                                                    </select>
+                                                <td><center>{{PENDIENTE}}</center></td>
 											</tr>
 										</tbody>
 							</table>
