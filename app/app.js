@@ -775,6 +775,12 @@ app.factory("services", ['$http', '$timeout', function ($http) {
     //******************************************MICHAEL TURNOS******************************************
 
 
+    //***********************************PARAMETROS ENTREGA INDIVIDUAL***********************************
+    obj.getUsuariosOnline = function () {
+		return $http.get(serviceBase + 'getUsuariosOnline');
+	};
+    //***********************************PARAMETROS ENTREGA INDIVIDUAL***********************************
+
     obj.getListadoUsuarios = function () {
 		return $http.get(serviceBase + 'listadoUsuarios');
 	};
@@ -3545,6 +3551,49 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		$scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
 		return data.data;
 	});
+
+
+    $scope.listaUsuariosOnline = function (usuario_id) {
+		$rootScope.errorDatos = null;
+		services.getUsuariosOnline(usuario_id).then(
+
+			function (data) {
+				$errorDatos = null;
+
+                $scope.listaUsuarios = data.data[0];
+                console.log($scope.listaUsuarios);
+                $scope.CantidadNovedades = data.data[2];
+
+                //$scope.www = $scope.novedades[0];
+
+                if ($scope.CantidadNovedades !== null){
+                           $scope.TotalNovedades=0;
+                           //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
+                           var TotalNovedades = $scope.CantidadNovedades.length;
+
+                           for (var i = 0; i < TotalNovedades; i++){
+                           $scope.TotalNovedades=+$scope.TotalNovedades + +$scope.CantidadNovedades[i].novedades;
+                           }
+                }
+
+				$scope.sortType = 'USUARIO_ID';
+				$scope.sortReverse = false;
+				$scope.csvUsers = false;
+				$scope.fechiniExpoIO = '';
+
+				return data.data;
+			},
+			function errorCallback(response) {
+
+				$rootScope.errorDatos = "Usuario no existe.";
+				// console.log($rootScope.errorDatos);
+
+			});
+
+
+	};
+
+    $scope.listaUsuariosOnline();
 
 
 
@@ -7866,13 +7915,14 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 	var pathy = $location.path();
 
 	if (pathy == "/actividades/") { //esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
-		services.getListadoTransaccionesActividades(userID, fecha_inicio, fecha_fin, $scope.data.currentPage).then(function (data) {
+        //se coloca el usuario en blanco para que muestre todos los registros inicialmente
+		services.getListadoTransaccionesActividades("", fecha_inicio, fecha_fin, $scope.data.currentPage).then(function (data) {
 			$scope.listado_transaccionesActividades = data.data[0];
 			$scope.data.totalItems = data.data[1];
 			return data.data;
 		});
 	}
-
+    /*
 	$scope.listado_transaccionesActividades1 = [];
 	$scope.data = {
 		maxSize: 5,
@@ -7882,7 +7932,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 		fechaIni: "",
 		fechaFin: "",
         usuarioBuscar: ""
-	};
+	};*/
 
 	var date1 = new Date();
 	var year = date1.getFullYear();
@@ -7896,7 +7946,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 	//$scope.transaccionA.FECHA=year+"-"+month+"-"+day;
 
 
-
+/*
 	var pathy = $location.path();
 
 	if (pathy == "/actividades/") { //esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
@@ -7905,7 +7955,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 			$scope.data.totalItems = data.data[1];
 			return data.data;
 		});
-	}
+	}*/
 
 	if (pathy == "/actividades/transaccion") {
 		var date1 = new Date();
@@ -7947,8 +7997,8 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 
 
 	$scope.csvactividades = function () {
-		var login = $rootScope.logedUser.login;
-		services.getCsvactividades(login, $scope.data.fechaIni, $scope.data.fechaFin).then(function (data) {
+		//var login = $rootScope.logedUser.login;
+		services.getCsvactividades($scope.data.usuarioBuscar, $scope.data.fechaIni, $scope.data.fechaFin).then(function (data) {
 			//console.log(data.data[0]);
 			window.location.href = "tmp/" + data.data[0];
 			return data.data;

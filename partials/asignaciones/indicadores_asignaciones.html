@@ -176,14 +176,26 @@
                                         </button>
                                     </td>
                                 </tr>
+
                             </table>
+
+                            <div class="panel-footer clearfix">
+                                <ul class="nav navbar-nav navbar-left">
+                                <b>Paremetro Entrega Individual</b>
+                                <button type="button" uib-tooltip="Asignar:" tooltip-placement="left" class="btn btn-default btn-circle-xss" ng-click="editarModal(data)" data-toggle="modal" data-target="#ModalParametrosEntrega" data-backdrop="static" ng-disabled="loading">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </button>
+                                </ul>
+                            </div>
                         </div>
+
                         <div class="panel-footer clearfix">
                             <div class="col-md-8">
                                 <ul class="nav navbar-nav navbar-left">
                                 </ul>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -994,6 +1006,59 @@
             </div>
         </div>
     </div>
+
+<div id="ModalParametrosEntrega"  class="modal fade"  role="dialog">
+ <div class="modal-dialog modal-lg">
+  <div class="modal-content" >
+    <!--<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Listado Novedades&nbsp;&nbsp;</h4>
+    </div>-->
+    <div class="modal-body fixed-panel-agenda">
+        	<div class = "panel panel-default">
+			    <div class = "panel-heading">
+			        <h4 class="modal-title">Asignar Parametros de Entrega</h4>
+			    </div>
+			    <div class="panel-body fixed-panel">
+          					<table class="table table small table-striped table-hover table-condensed">
+										<thead>
+											<tr>
+												<th><center>Usuario</center></th>
+                                                <th><center>Grupo</center></th>
+                                                <th><center>Parametro Entrega</center></th>
+                                                <th><center>Orden</center></th>
+                                                <th><center>Estado</center></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="data in listaUsuarios">
+											    <td><center>{{data.USUARIO_ID}}</center></td>
+											   	<td><center>{{data.GRUPO}}</center></td>
+											   	<td><center><select class="btn btn-default btn-xs grupo-select ng-pristine ng-valid ng-touched" id="demerec" ng-model="ordenamientoDemepedidoReconfiguracion" style="width:auto;">
+                                                        <option value="FECHA_ESTADO">FECHA ESTADO</option>
+                                                        <option value="NUEVOS_PRIMERO">NUEVOS_PRIMERO</option>
+                                                        </select><button class="btn btn-success btn-xs" title="Guardar" ng-click="updateParametro('ORDEN_ENTREGA_PEDIDO',ordenEntregaPedido);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button></center>
+                                                </td>
+                                                <td><center>{{data.ESTADO}}</center></td>
+
+
+                                                <!--<td><center>{{PENDIENTE}}</center></td>-->
+											</tr>
+										</tbody>
+							</table>
+      			</div>
+    		</div>
+    </div>
+
+    <div class="modal-footer">
+    <!--	<button type="button" class="btn btn-primary btn-xs" ng-click="exportarDatos('totalmismodia')" >Exportar
+		</button>-->
+        <button type="button" ng-disabled="contact_form.$invalid" class="btn btn-default btn-xs" data-dismiss="modal">Cerrar</button>
+    </div>
+ </div>
+</div>
+</div>
+
 </div><!-- Modal Eliminar Novedad-->
 <!-- Flecha Arriba Estilo, dentro del head-->
 <script>
