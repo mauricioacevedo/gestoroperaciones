@@ -775,6 +775,12 @@ app.factory("services", ['$http', '$timeout', function ($http) {
     //******************************************MICHAEL TURNOS******************************************
 
 
+    //***********************************PARAMETROS ENTREGA INDIVIDUAL***********************************
+    obj.getUsuariosOnline = function () {
+		return $http.get(serviceBase + 'getUsuariosOnline');
+	};
+    //***********************************PARAMETROS ENTREGA INDIVIDUAL***********************************
+
     obj.getListadoUsuarios = function () {
 		return $http.get(serviceBase + 'listadoUsuarios');
 	};
@@ -3547,9 +3553,9 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	});
 
 
-    $scope.listadoUsuariosGeop = function (usuario_id) {
+    $scope.listadoUsuariosOnline = function (usuario_id) {
 		$rootScope.errorDatos = null;
-		services.getListadoUsuariosOnline(usuario_id).then(
+		services.getUsuariosOnline(usuario_id).then(
 
 			function (data) {
 				$errorDatos = null;
@@ -3570,12 +3576,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                            }
                 }
 
-                //console.log($scope.www);
-                //console.log(TotalNovedades);
-
-				// console.log($scope.listaUsuarios);
-				//$scope.cantidad = data.data.length;
-                //console.log($scope.cantidad);
 				$scope.sortType = 'USUARIO_ID';
 				$scope.sortReverse = false;
 				$scope.csvUsers = false;
@@ -3593,7 +3593,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 	};
 
-    $scope.listadoUsuariosGeop();
+    $scope.listadoUsuariosOnline();
 
 
 

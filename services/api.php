@@ -15788,6 +15788,75 @@ public function pp(&$var){
 
     }
 
+    //************************************LISTADO USUARIOS ONLINE********************************
+
+    private function getUsuariosOnline(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+
+        //SUMA FECHAS
+        $fecha = date("Y-m-d");
+        $semana = date('Y-m-d', strtotime( '+6 day',strtotime($fecha))) ;
+
+        //echo $semana;
+
+        $query="SELECT count(*) as counter from tbl_usuarios";
+        $rr = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        $counter=0;
+        if($rr->num_rows > 0){
+            $result = array();
+            if($row = $rr->fetch_assoc()){
+                $counter = $row['counter'];
+            }
+        }
+
+        /*$query="SELECT count(*) as novedades from Tbl_Novedad_Turnos ";
+        $r2 = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+        if($r2->num_rows > 0){
+            $novedades = array();
+            while($row = $r2->fetch_assoc()){
+                $novedades[] = $row;
+            }
+        }
+
+        $TurnoFinalizado="SELECT ID from Tbl_Turnos where FECHAFIN <= now()";
+        $r3 = $this->mysqli->query($TurnoFinalizado) or die($this->mysqli->error.__LINE__);
+        if($r3->num_rows > 0){
+
+            foreach($r3 as $row)
+            {
+                $id = $row['ID'];
+                $update = "update Tbl_Turnos set ESTADO = 'CUMPLIDO' where ID = '$id' and FECHAFIN <= now() ".
+                          "and ESTADO <> 'CUMPLIDO' ";
+                $r = $this->mysqli->query($update) or die($this->mysqli->error.__LINE__);
+                //this->mysqli->query($update);
+            }
+
+            }*/
+
+        $query=	" select * from tbl_usuarios A ".
+	            " where A.status = 'logged in' ".
+	            " and A.fecha_ingreso between '$fecha 00:00:00' and '$fecha 23:59:59'";
+
+
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            while($row = $r->fetch_assoc()){
+                //$result[] = $row;
+                //echo "name: ".utf8_encode($row['USUARIO_NOMBRE'])."\n ";
+                $row['USUARIO_NOMBRE']=utf8_encode($row['USUARIO_NOMBRE']);
+                $result[] = $row;
+            }
+            $this->response($this->json(array($result,$counter)), 200); // send user details
+        }
+        $this->response('',204);        // If no records "No Content" status
+
+    }
+
+
     private function GuardarTurnos(){
 
 
