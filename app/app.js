@@ -7948,8 +7948,8 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 
 
 	$scope.csvactividades = function () {
-		var login = $rootScope.logedUser.login;
-		services.getCsvactividades(login, $scope.data.fechaIni, $scope.data.fechaFin).then(function (data) {
+		//var login = $rootScope.logedUser.login;
+		services.getCsvactividades($scope.data.usuarioBuscar, $scope.data.fechaIni, $scope.data.fechaFin).then(function (data) {
 			//console.log(data.data[0]);
 			window.location.href = "tmp/" + data.data[0];
 			return data.data;

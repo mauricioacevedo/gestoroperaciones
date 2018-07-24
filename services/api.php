@@ -13292,6 +13292,13 @@ private function demePedidoEdatel(){
 
         $filename="ACTIVIDADES-$login-$today.csv";
 
+        $sqlUsuario=" and USUARIO='$login' ";
+
+        if($login==''||$login=='undefined'){
+            $sqlUsuario="";
+        }
+
+
         $query= " SELECT FECHA,TIPO_TRABAJO ".
             " ,APLICACION_ACTIVIDADES,COLA,AMANECIERON ".
             " ,GESTIONADO_DIA,QUEDAN_PENDIENTES ".
@@ -13299,6 +13306,8 @@ private function demePedidoEdatel(){
             " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION".
             " ,(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION_SEGUNDOS".
             " from transacciones_actividades ".
+            " where FECHA BETWEEN '$fechaIni 00:00:00' AND '$fechaFin 23:59:59' ".
+            $sqlUsuario.
             " order by FECHA ASC ";
 
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
