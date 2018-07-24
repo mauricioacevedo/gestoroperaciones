@@ -7896,7 +7896,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 	//$scope.transaccionA.FECHA=year+"-"+month+"-"+day;
 
 
-
+/*
 	var pathy = $location.path();
 
 	if (pathy == "/actividades/") { //esto es para controlar que no se vuelva a llamar este listado cuando se usa la vista de edicion-nuevo
@@ -7905,7 +7905,7 @@ app.controller('ActividadesCtrl', function ($scope, $rootScope, $location, $rout
 			$scope.data.totalItems = data.data[1];
 			return data.data;
 		});
-	}
+	}*/
 
 	if (pathy == "/actividades/transaccion") {
 		var date1 = new Date();
