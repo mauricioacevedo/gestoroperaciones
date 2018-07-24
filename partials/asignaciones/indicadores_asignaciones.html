@@ -1026,19 +1026,20 @@
 												<th><center>Usuario</center></th>
                                                 <th><center>Grupo</center></th>
                                                 <th><center>Parametro Entrega</center></th>
-                                                <th><center>Orden Entrega</center></th>
+                                                <th><center>Estado</center></th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr ng-repeat="data in listaUsuarios">
 											    <td><center>{{data.USUARIO_ID}}</center></td>
 											   	<td><center>{{data.GRUPO}}</center></td>
-											   	<td><center>{{data.ESTADO}}</center></td>
-                                                    <td><center><select class="btn btn-default btn-xs grupo-select ng-pristine ng-valid ng-touched" id="demerec" ng-model="ordenamientoDemepedidoReconfiguracion" style="width:auto;">
+											   	<td><center><select class="btn btn-default btn-xs grupo-select ng-pristine ng-valid ng-touched" id="demerec" ng-model="ordenamientoDemepedidoReconfiguracion" style="width:auto;">
                                                         <option value="FECHA_ESTADO">FECHA ESTADO</option>
                                                         <option value="NUEVOS_PRIMERO">NUEVOS_PRIMERO</option>
                                                         </select></center>
                                                     </td>
+                                                <td><center>{{data.ESTADO}}</center></td>
+
 
                                                 <!--<td><center>{{PENDIENTE}}</center></td>-->
 											</tr>
