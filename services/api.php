@@ -9573,7 +9573,6 @@ private function getAgentScore($user){
        else {
             $Pendiente = " and b.UEN_CALCULADA in ('B2B') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
 
-
         }
 
 
