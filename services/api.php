@@ -18526,7 +18526,7 @@ public function pp(&$var){
                  " informe_petec_pendientesm ".
                  " WHERE ".
                  " ASESOR NOT IN ('') ".
-                 " AND STATUS in ('PENDI_PETEC','CERRADO_PETEC')".
+                 " AND STATUS in ('PENDI_PETEC','MALO')".
                  " group by ASESOR ".
                  " ORDER BY ANSPEDIDO DESC ";
 
