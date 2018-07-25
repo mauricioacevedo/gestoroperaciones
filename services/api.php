@@ -9632,12 +9632,13 @@ private function getAgentScore($user){
                 $query1="select b.CLIENTE_ID,b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO, b.FECHA_CITA, b.TIPO_ELEMENTO_ID ".
                     " from informe_petec_pendientesm b ".
                     " where b.STATUS='$STATUS'  and b.ASESOR ='' ".
-                    "  $concepto ".
+                    " $concepto ".
+                    " $Pendiente ";
                     //"  $Pendiente";
                     //$plaza.
                     //$zona2.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-                    " order by b.$parametroBusqueda2 $parametroOrden";
+                    //" order by b.$parametroBusqueda2 $parametroOrden";
                     //echo "ingreso 2";
 
                 //echo "ingreso 2: $query1";
