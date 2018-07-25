@@ -1999,7 +1999,7 @@ private function getAgentScore($user){
             ||$novedad=='ERROR SIEBEL 8.1' ||$novedad=='MIGRACION HFC' || $novedad=='NO DESEA EL SERVICIO' ||$novedad=='PEDIDO EN OTRO CONCEPTO'
             ||$novedad=='PENDIENTE RECONFIGUAR PEDIDO' ||$novedad=='PENDIENTE OTRO CONCEPTO' || $novedad=='YA ESTA CUMPLIDO'
             || $novedad=='YA ESTA ANULADO'||$novedad=='YA ESTA ANULADO-CERRADO'||$novedad=='YA ESTA ANULADO-PENDIENTE'
-            ||$novedad=='YA ESTA CUMPLIDO–CERRADO'||$novedad=='YA ESTA CUMPLIDO–PENDIENTE' ||$novedad=='ANULADO POR ASESOR' || $novedad== 'YA ESTA CUMPLIDO PENDIENTE' || $novedad== 'YA ESTA CUMPLIDO CERRADO' || $novedad== 'YA ESTA ANULADO PENDIENTE' || $novedad== 'YA ESTA ANULADO CERRADO' ||$novedad== 'ERROR SIEBEL' || $novedad=='YA ESTA CUMPLIDO' || $novedad=='NO SUBIO A CLICK' || $novedad=='PEDIDO EXCEPCIONADO'
+            ||$novedad=='YA ESTA CUMPLIDO–CERRADO'||$novedad=='YA ESTA CUMPLIDO–PENDIENTE' ||$novedad=='ANULADO POR ASESOR' || $novedad== 'YA ESTA CUMPLIDO PENDIENTE' || $novedad== 'YA ESTA CUMPLIDO CERRADO' || $novedad== 'YA ESTA ANULADO PENDIENTE' || $novedad== 'YA ESTA ANULADO CERRADO' || $novedad== 'TECNICO EN SITIO' || $novedad== 'ANULADO MOTIVO TECNICO'  ||$novedad== 'ERROR SIEBEL' || $novedad=='YA ESTA CUMPLIDO' || $novedad=='NO SUBIO A CLICK' || $novedad=='PEDIDO EXCEPCIONADO'
             || $novedad=='GPON' || $novedad=='ANULADO AXGAR' || $novedad=='ANULADO 42' || $novedad=='ANULADO APRCT'){
             $sqlupdate="update gestor_pendientes_reagendamiento set FECHA_ACTUALIZACION='$today',STATUS='MALO',FECHA_CITA_REAGENDA='$fecha_cita_reagen',TODAY_TRIES=(SELECT COUNT(*) FROM gestor_historicos_reagendamiento WHERE PEDIDO_ID='$PEDIDO_ID' and NOVEDAD in ('AGENDADO','AGENDADO FUTURO','ANULADO 42','ANULADO AXGAR','ANULADO APRCT','LLAMADA SIN INFORMACION-MUDA','NO PUEDE ATENDER LLAMADA','LLAMAR FUTURO','INCUMPLIMIENTO FECHA CITA HOY','SE BRINDA INFORMACION','YA ESTA ANULADO-PENDIENTE','YA ESTA CUMPLIDO-PENDIENTE','PENDIENTE RECONFIGURAR PEDIDO','CONFIRMA SOLUCION','CLIENTE NO AUTORIZA','CLIENTE ILOCALIZADO','CONFIRMADA','CONFIRMADA-DATOS ERRADOS','CLIENTES NOS ESPERA') ),PROGRAMACION='',ASESOR='' WHERE ID=$parent ";
         } else {
@@ -9742,7 +9742,7 @@ private function getAgentScore($user){
             " b.APROVISIONADOR, ".
             " b.PEDIDO_CRM ".
             " from informe_petec_pendientesm b 	".
-            " where b.CLIENTE_ID = '$mypedido' and b.STATUS='$STATUS' ";
+            " where b.CLIENTE_ID = '$mypedido' and b.STATUS='$STATUS' $concepto $Pendiente";
 
 
 
@@ -15811,7 +15811,7 @@ public function pp(&$var){
             }
         }
 
-        /*$query="SELECT count(*) as novedades from Tbl_Novedad_Turnos ";
+        /*$query    ="SELECT count(*) as novedades from Tbl_Novedad_Turnos ";
         $r2 = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
         if($r2->num_rows > 0){
             $novedades = array();
