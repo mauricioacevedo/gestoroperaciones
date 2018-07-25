@@ -518,6 +518,7 @@ class API extends REST {
                 //$row['NOVEDAD'] = trim(preg_replace('/\s+|,', ' ', $row['NOVEDAD']));
                 $row['CONCEPTOS'] =  str_replace(',', ' ', $row['CONCEPTOS']);
                 $row['ACTIVIDADES'] =  str_replace(',', ' ', $row['ACTIVIDADES']);
+                $row['OBSERVACION_FENIX'] =  str_replace('...', ' ', $row['OBSERVACION_FENIX']);
 
                 $result[] = $row;
 
