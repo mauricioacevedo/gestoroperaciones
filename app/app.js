@@ -3418,7 +3418,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		}
 		return num;
 	};
-
+    //funcion para los KPIS
     $scope.intervalLightKPIS = setInterval(function () {
 		$scope.actualizarLightKPIS();
 	}, 60000);
