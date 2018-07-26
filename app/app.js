@@ -3403,6 +3403,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 	};
 
+    $scope.actualizarLightKPIS();
+
 	$scope.doubleDigit = function (num) {
 
 		if (num < 0) {
