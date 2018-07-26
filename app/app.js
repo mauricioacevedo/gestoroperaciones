@@ -775,11 +775,19 @@ app.factory("services", ['$http', '$timeout', function ($http) {
     //******************************************MICHAEL TURNOS******************************************
 
 
-    //***********************************PARAMETROS ENTREGA INDIVIDUAL***********************************
+    //***********************************MICHAEL PARAMETROS ENTREGA INDIVIDUAL***********************************
     obj.getUsuariosOnline = function () {
 		return $http.get(serviceBase + 'getUsuariosOnline');
 	};
+
+    obj.editParametroEntrega = function (editaInfo) {
+		return $http.post(serviceBase + 'editarParametroEntrega', {
+			"editaInfo": editaInfo
+		});
+	};
     //***********************************PARAMETROS ENTREGA INDIVIDUAL***********************************
+
+
 
     obj.getListadoUsuarios = function () {
 		return $http.get(serviceBase + 'listadoUsuarios');
@@ -3594,6 +3602,26 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	};
 
     $scope.listaUsuariosOnline();
+
+    $scope.editarParametroEntrega = function (editaInfo) {
+
+		services.editParametroEntrega(editaInfo).then(
+
+			function (data) {
+
+				$scope.listaUsuariosOnline();
+				$rootScope.errorDatos = null;
+
+
+			},
+			function errorCallback(response) {
+
+				$rootScope.errorDatos = "Error editando";
+
+				//console.log($rootScope.errorDatos);
+
+			});
+	};
 
 
 
