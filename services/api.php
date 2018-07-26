@@ -15791,7 +15791,8 @@ public function pp(&$var){
 
     }
 
-    //************************************LISTADO USUARIOS ONLINE********************************
+
+    //*****************************parametros de entrega por asesor*********************************
 
     private function getUsuariosOnline(){
         if($this->get_request_method() != "GET"){
@@ -15980,6 +15981,31 @@ public function pp(&$var){
         $this->response(json_encode(array("OK","PARAMETRO ACTUALIZADO")), 200);
 
     }
+
+    private function buscarParametroAsesor(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $param = $this->_request['parametro'];
+
+        $sql="SELECT * FROM tbl_usuarios ".
+            " WHERE USUARIO_ID = '$usuarioGalleta' limit 1";
+
+        //echo var_dump($param);
+
+        $rr = $this->mysqli->query($sql);
+        if($rr->num_rows > 0){
+            if($row = $rr->fetch_assoc()){
+                $this->response(json_encode($row), 200);
+                //return $row['VALOR'];
+            }
+        }else{
+            //return "SYSTEM PANIC";
+            $this->response(json_encode(array("ERROR","NO ROWS!")), 200);
+        }
+    }
+
+//*****************************parametros de entrega por asesor*********************************
 
 
 
