@@ -789,6 +789,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
     obj.updateParametroAsesor = function (valor, user) {
 		return $http.get(serviceBase + 'updateParametroAsesor?valor=' + valor + '&user=' + user);
 	};
+
+    obj.buscarParametroAsesor = function (parametro) {
+		return $http.get(serviceBase + 'buscarParametroAsesor?parametro=' + parametro);
+	};
     //***********************************PARAMETROS ENTREGA INDIVIDUAL***********************************
 
 
@@ -3767,6 +3771,37 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 
     };
+
+    $scope.buscarParametroAsesor = function (parametro) {
+
+		services.buscarParametroAsesor(parametro).then(function (data) {
+			if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
+				$scope.UsuarioParametro = data.data['USUARIO_ID'];
+				$scope.ordenamientoDemepedido = data.data['VALOR'];
+				$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
+			}
+
+			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION") {
+				$scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
+				$scope.ordenamientoDemepedidoReconfiguracion = data.data['VALOR'];
+                $scope.prioridadDemepedidoNuevoR = data.data['VALOR'];
+                //$scope.ordenEntregapedidoR = data.data['ORDEN'];
+				$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
+			}
+
+
+           if (parametro == "ORDEN_ENTREGA_PEDIDO") {
+				$scope.ordenEntregaPedido = data.data['VALOR'];
+			}
+
+            if (parametro == "ORDEN_ENTREGA_PEDIDO_R") {
+				$scope.ordenEntregaPedidoR = data.data['VALOR'];
+			}
+
+			return data.data;
+		});
+
+	};
 
     $scope.listaUsuariosOnline = function (usuario_id) {
 		$rootScope.errorDatos = null;
