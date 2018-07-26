@@ -474,7 +474,7 @@ class API extends REST {
         $today = date("Y-m-d h:i:s");
         $filename="Agendamiento-Fenix_NAL-$login-$today.csv";
 
-        $query=" SELECT ".
+        $query=" (SELECT ".
             " a.PEDIDO_ID,a.CONCEPTOS,a.ACTIVIDADES,a.NOVEDAD,a.FECHA_CITA_FENIX ".
             " ,a.FECHA_CITA_REAGENDA,a.JORNADA_CITA ".
             " ,a.FECHA_INGRESO,a.FECHA_CARGA,a.ASESOR,a.FECHA_INICIO,a.FECHA_FIN ".
@@ -490,7 +490,7 @@ class API extends REST {
             "   WHERE b.PEDIDO_ID =  a.PEDIDO_ID) )AS INTENTOS_CONTACTO ".
             " , (SELECT hr.TECNOLOGIA_ID FROM gestor_pendientes_reagendamiento hr WHERE hr.ID = (SELECT MAX( b.id )  ".
             "      FROM gestor_pendientes_reagendamiento b ".
-            "   WHERE b.PEDIDO_ID =  a.PEDIDO_ID) )AS TECNOLOGIA_ID ,a.OBSERVACION_GESTOR ".
+            "   WHERE b.PEDIDO_ID =  a.PEDIDO_ID) )AS TECNOLOGIA_ID ,a.OBSERVACION_GESTOR) ".
             " from gestor_historicos_reagendamiento a ".
             "  where fecha_fin between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' ";
 
