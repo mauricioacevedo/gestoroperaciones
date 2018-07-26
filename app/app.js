@@ -3383,6 +3383,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.ordenamientoDemepedidoUpdate = '';
     $rootScope.errorDatos = null;
 
+    $scope.intervalLightKPIS = '';
+
 	$scope.intervalGrafica = 0;
 
 	$scope.totalAD = "0";
@@ -3416,6 +3418,161 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		}
 		return num;
 	};
+
+    $scope.intervalLightKPIS = setInterval(function () {
+		$scope.actualizarLightKPIS();
+	}, 60000);
+
+	$scope.actualizarLightKPIS = function () {
+		services.getLightKPIS().then(function (data) {
+			$rootScope.oldlightkpi = $rootScope.lightkpi;
+			$rootScope.lightkpi = data.data[0];
+            $scope.agentScore=data.data[1];
+
+            $scope.PendiBogota = data.data[2];
+
+              if ($scope.PendiBogota !== null){
+                           $scope.P_Bogota=0;
+                           //$scope.totalestadofinal = $scope.TotalEstadosFinales.length;
+                           var PendientesBogota = $scope.PendiBogota.length;
+
+                           for (var i = 0; i < PendientesBogota; i++){
+                           $scope.P_Bogota=+$scope.P_Bogota + +$scope.PendiBogota[i].Bogota;
+                           }
+                        }
+            //console.log("Total" + $rootScope.P_Bogota);
+            //console.log("Total" + PendientesBogota);
+
+			if ($rootScope.oldlightkpi == "" || $rootScope.oldlightkpi == undefined) {
+				$rootScope.oldlightkpi = $rootScope.lightkpi;
+			}
+
+			//console.log($rootScope.lightkpi);
+			//
+			var arrayLength = $rootScope.lightkpi.length;
+			var arrayLength2 = $rootScope.oldlightkpi.length;
+
+
+			var negocioAsingaciones = "<table class='table small table-striped table-hover table-bordered table-condensed'>" +
+				"<thead>" +
+				"<th>Concepto</th>" +
+				"<th>Cantidad</th>" +
+				"</thead>" +
+				"<tbody>";
+			var negocioReconfiguracion = "<table class='table small table-striped table-hover table-bordered table-condensed'>" +
+				"<thead>" +
+				"<th>Concepto</th>" +
+				"<th>Cantidad</th>" +
+				"</thead>" +
+				"<tbody>";
+
+			var negocioOtros = "<table class='table small table-striped table-hover table-bordered table-condensed'>" +
+				"<thead>" +
+				"<th>Concepto</th>" +
+				"<th>Cantidad</th>" +
+				"</thead>" +
+				"<tbody>";
+
+
+			$rootScope.totalNegocioAsignacionesOld = $rootScope.totalNegocioAsignaciones;
+			$rootScope.totalNegocioReconfiguracionOld = $rootScope.totalNegocioReconfiguracion;
+			$rootScope.totalNegocioOtrosOld = $rootScope.totalNegocioOtros;
+
+
+			$rootScope.totalNegocioAsignaciones = 0;
+			$rootScope.totalNegocioReconfiguracion = 0;
+			$rootScope.totalNegocioOtros = 0;
+
+
+			for (var i = 0; i < arrayLength; i++) {
+				var counter = $rootScope.lightkpi[i].COUNTER;
+				var concepto_id = $rootScope.lightkpi[i].CONCEPTO_ID;
+
+				if (concepto_id == 'PETEC' || concepto_id == 'OKRED' || concepto_id == 'PETEC-BOG' || concepto_id == 'PEOPP' || concepto_id == '19' || concepto_id == 'O-13' || concepto_id == 'O-15' || concepto_id == 'O-106' || concepto_id == 'PUMED' || concepto_id == 'COBERTURA' || concepto_id == 'CONSTRUCCION' || concepto_id == 'DISENO' || concepto_id == 'DISPONIBILIDAD'  || concepto_id == 'VERIFICAR DISPONIBILIDAD' || concepto_id == 'PENDIENTE PROVISION' || concepto_id == 'FACTIBILIDAD MANUAL' || concepto_id == 'VERIFICAR ASIGNACION' || concepto_id == 'CONSERVAR NUMERO' || concepto_id == 'RECONFIGURAR POR COBERTURA' || concepto_id == 'RESPUESTA DISEÑO') {
+                    var conceptosFenix= ['PETEC','OKRED','PETEC-BOG','PEOPP','19','O-13','O-15','O-106','PUMED'];
+                    var pedido_oferta='';
+                    if(conceptosFenix.indexOf(concepto_id)>-1) pedido_oferta='Pedidos';
+                    else pedido_oferta='Ofertas';
+					negocioAsingaciones += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; "+pedido_oferta+"</strong></i></font></td></tr>";
+					$rootScope.totalNegocioAsignaciones = parseInt($rootScope.totalNegocioAsignaciones) + parseInt(counter);
+				} else if (concepto_id == '14' || concepto_id == '99' || concepto_id == '92' || concepto_id
+                           == 'RC-SIEBEL' || concepto_id == 'OT-C08' || concepto_id == 'OT-C11') {
+                    var conceptosFenix= [ '14','99','92'];
+                    var pedido_oferta='';
+                    if(conceptosFenix.indexOf(concepto_id) > -1) pedido_oferta='Pedidos';
+                    else pedido_oferta='Ofertas';
+
+					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; "+pedido_oferta+"</strong></i></font></td></tr>";
+					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
+				} else if (concepto_id == 'O-101' || concepto_id == 'RC-SIEBEL' || concepto_id == 'RECONFIGURACION EN OFERTA' || concepto_id == 'OT-C08' || concepto_id == 'OT-C11') {
+                    var conceptosFenix= [ 'O-101'];
+                    var pedido_oferta='';
+                    if(conceptosFenix.indexOf(concepto_id) > -1) pedido_oferta='Pedidos';
+                    else pedido_oferta='Ofertas';
+
+
+					negocioReconfiguracion += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; "+pedido_oferta+"</strong></i></font></td></tr>";
+					$rootScope.totalNegocioReconfiguracion = parseInt($rootScope.totalNegocioReconfiguracion) + parseInt(counter);
+				} else {
+					negocioOtros += "<tr><td><a href='./#/registros/" + concepto_id + "'>" + concepto_id + "</a></td><td>" + counter + "<font color='DarkGray'><strong><i>&nbsp;&nbsp; Pedidos</strong></i></font></td></tr>";
+					$rootScope.totalNegocioOtros = parseInt($rootScope.totalNegocioOtros) + parseInt(counter);
+				}
+			}
+
+			$rootScope.nasignacionesstyle = {};
+			$rootScope.nreconfiguracionstyle = {};
+			$rootScope.notrosstyle = {};
+
+
+			if ($rootScope.totalNegocioAsignaciones > $rootScope.totalNegocioAsignacionesOld) {
+				$rootScope.nasignacionesstyle.ICON = "fa fa-arrow-circle-up fa-2x";
+				$rootScope.nasignacionesstyle.STYLE = "red";
+			} else if ($rootScope.totalNegocioAsignaciones < $rootScope.totalNegocioAsignacionesOld) {
+				$rootScope.nasignacionesstyle.ICON = "fa fa-arrow-circle-down fa-2x";
+				$rootScope.nasignacionesstyle.STYLE = "green";
+			} else {
+				$rootScope.nasignacionesstyle.ICON = "fa fa-minus-circle fa-2x";
+				$rootScope.nasignacionesstyle.STYLE = "gray";
+			}
+
+			if ($rootScope.totalNegocioReconfiguracion > $rootScope.totalNegocioReconfiguracionOld) {
+				$rootScope.nreconfiguracionstyle.ICON = "fa fa-arrow-circle-up fa-2x";
+				$rootScope.nreconfiguracionstyle.STYLE = "red";
+			} else if ($rootScope.totalNegocioReconfiguracion < $rootScope.totalNegocioReconfiguracionOld) {
+				$rootScope.nreconfiguracionstyle.ICON = "fa fa-arrow-circle-down fa-2x";
+				$rootScope.nreconfiguracionstyle.STYLE = "green";
+			} else {
+				$rootScope.nreconfiguracionstyle.ICON = "fa fa-minus-circle fa-2x";
+				$rootScope.nreconfiguracionstyle.STYLE = "gray";
+			}
+
+
+			if ($rootScope.totalNegocioOtros > $rootScope.totalNegocioOtrosOld) {
+				$rootScope.notrosstyle.ICON = "fa fa-arrow-circle-up fa-2x";
+				$rootScope.notrosstyle.STYLE = "red";
+			} else if ($rootScope.totalNegocioOtros < $rootScope.totalNegocioOtrosOld) {
+				$rootScope.notrosstyle.ICON = "fa fa-arrow-circle-down fa-2x";
+				$rootScope.notrosstyle.STYLE = "green";
+			} else {
+				$rootScope.notrosstyle.ICON = "fa fa-minus-circle fa-2x";
+				$rootScope.notrosstyle.STYLE = "gray";
+			}
+
+
+			document.getElementById("nasignaciones").innerHTML = negocioAsingaciones + "</tbody></table>";
+			document.getElementById("nreconfiguracion").innerHTML = negocioReconfiguracion + "</tbody></table>";
+			document.getElementById("notros").innerHTML = negocioOtros + "</tbody></table>";
+
+			return data.data;
+		});
+	};
+
+	$scope.$on(
+		"$destroy",
+		function (event) {
+			$timeout.cancel($scope.intervalLightKPIS);
+			clearInterval($scope.intervalLightKPIS);
+		});
 
 
 
