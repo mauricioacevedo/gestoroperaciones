@@ -3405,7 +3405,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 	};
 
-    //$scope.actualizarLightKPIS();
+
 
 	$scope.doubleDigit = function (num) {
 
@@ -3566,6 +3566,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			return data.data;
 		});
 	};
+
+    $scope.actualizarLightKPIS();
 
 	$scope.$on(
 		"$destroy",
