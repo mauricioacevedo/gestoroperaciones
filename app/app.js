@@ -3782,17 +3782,24 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
     };
 
-    $scope.buscarParametroAsesor = function (parametro) {
+    $scope.buscarParametroAsesor = function (valor) {
 
-		services.buscarParametroAsesor(parametro).then(function (data) {
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
+		services.buscarParametroAsesor(valor).then(function (data) {
+			if (valor == "FECHA_ESTADO") {
 				$scope.UsuarioParametro = data.data['USUARIO_ID'];
-				$scope.ordenamientoDemepedido = data.data['VALOR'];
-				$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
+				$scope.ordenamientoDemepedido = data.data['ORDEN_ENTREGA'];
 			}
 
-           if (parametro == "ORDEN_ENTREGA_PEDIDO") {
-				$scope.ordenEntregaPedido = data.data['VALOR'];
+            services.buscarParametroAsesor(valor).then(function (data) {
+			if (valor == "NUEVOS_PRIMERO") {
+				$scope.UsuarioParametro = data.data['USUARIO_ID'];
+				$scope.ordenamientoDemepedido = data.data['ORDEN_ENTREGA'];
+			}
+
+            services.buscarParametroAsesor(valor).then(function (data) {
+			if (valor == "CAMBIOS") {
+				$scope.UsuarioParametro = data.data['USUARIO_ID'];
+				$scope.ordenamientoDemepedido = data.data['ORDEN_ENTREGA'];
 			}
 
 			return data.data;
