@@ -3426,7 +3426,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		}
 		return num;
 	};
-    //*********************************funcion para los KPIS********************
+    //********funcion para los KPIS************
     $scope.intervalLightKPIS = setInterval(function () {
 		$scope.actualizarLightKPIS();
 	}, 60000);
@@ -3742,12 +3742,22 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			var seconds = $scope.doubleDigit(date1.getSeconds());
 			$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
+			if (valor == "FECHA_ESTADO") {
 				$scope.ordenamientoDemepedidoNuevo = valor;
                 //$scope.ordenEntregaPedido = ordenEntregaPedido;
 			}
 
-			$scope.buscarParametro(parametro);
+            if (valor == "NUEVOS_PRIMERO") {
+				$scope.ordenamientoDemepedidoNuevo = valor;
+                //$scope.ordenEntregaPedido = ordenEntregaPedido;
+			}
+
+            if (valor == "CAMBIOS") {
+				$scope.ordenamientoDemepedidoNuevo = valor;
+                //$scope.ordenEntregaPedido = ordenEntregaPedido;
+			}
+
+			$scope.buscarParametroAsesor(valor);
 			return data.data;
 		});
 
