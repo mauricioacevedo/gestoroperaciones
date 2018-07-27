@@ -3426,7 +3426,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		}
 		return num;
 	};
-    //funcion para los KPIS
+    //*********************************funcion para los KPIS********************
     $scope.intervalLightKPIS = setInterval(function () {
 		$scope.actualizarLightKPIS();
 	}, 60000);
@@ -3729,7 +3729,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		return data.data;
 	});
 
-
+//---para asesores----//
     $scope.updateParametroAsesor = function (valor) {
 
 		services.updateParametroAsesor(valor, $rootScope.logedUser.login).then(function (data) {
@@ -3781,21 +3781,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
 			}
 
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION") {
-				$scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
-				$scope.ordenamientoDemepedidoReconfiguracion = data.data['VALOR'];
-                $scope.prioridadDemepedidoNuevoR = data.data['VALOR'];
-                //$scope.ordenEntregapedidoR = data.data['ORDEN'];
-				$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
-			}
-
-
            if (parametro == "ORDEN_ENTREGA_PEDIDO") {
 				$scope.ordenEntregaPedido = data.data['VALOR'];
-			}
-
-            if (parametro == "ORDEN_ENTREGA_PEDIDO_R") {
-				$scope.ordenEntregaPedidoR = data.data['VALOR'];
 			}
 
 			return data.data;
