@@ -15948,7 +15948,7 @@ public function pp(&$var){
 
 
         $sql="UPDATE tbl_usuarios ".
-            " SET ORDEN_ENTREGA='$value' WHERE USUARIO_ID = '$usuarioGalleta' ";
+            " SET ORDEN_ENTREGA='$value' WHERE USUARIO_ID = '$user' ";
         $rr = $this->mysqli->query($sql);
 
         // SQL Feed----------------------------------
@@ -15986,10 +15986,10 @@ public function pp(&$var){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
-        $param = $this->_request['parametro'];
+        $param = $this->_request['valor'];
 
         $sql="SELECT * FROM tbl_usuarios ".
-            " WHERE USUARIO_ID = '$usuarioGalleta' limit 1";
+            " WHERE USUARIO_ID = '$user' limit 1";
 
         //echo var_dump($param);
 
