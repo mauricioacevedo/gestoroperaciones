@@ -3730,7 +3730,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	});
 
 //---para asesores----//
-    $scope.updateParametroAsesor = function (valor) {
+/*    $scope.updateParametroAsesor = function (valor) {
 
 		services.updateParametroAsesor(valor, $rootScope.logedUser.login).then(function (data) {
 			var date1 = new Date();
@@ -3786,7 +3786,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			return data.data;
 		});
 
-	};
+	};*/
 
     $scope.listaUsuariosOnline = function (usuario_id) {
 		$rootScope.errorDatos = null;
