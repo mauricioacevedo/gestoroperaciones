@@ -3730,6 +3730,12 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	});
 
 //---para asesores----//
+
+    //$scope.updateParametroAsesor = function (valor){
+
+        //services.updateParametroAsesor ($rootScope.logedUser.login,$scope.valor).then(function(data))
+    //}
+
     $scope.updateParametroAsesor = function (valor) {
 
 		services.updateParametroAsesor(valor, $rootScope.logedUser.login).then(function (data) {
