@@ -3736,7 +3736,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         //services.updateParametroAsesor ($rootScope.logedUser.login,$scope.valor).then(function(data))
     //}
 
-/*
+
     $scope.updateParametroAsesor = function (valor) {
 
 		services.updateParametroAsesor(valor, $rootScope.logedUser.login).then(function (data) {
@@ -3791,7 +3791,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		});
 
 	};
-*/
+
 
     $scope.listaUsuariosOnline = function (usuario_id) {
 		$rootScope.errorDatos = null;
