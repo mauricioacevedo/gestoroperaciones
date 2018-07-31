@@ -3708,6 +3708,11 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
 			}
 
+            if (parametro == "FECHA_ORDEN_DEMEPEDIDO_OPENPEREIRA") {
+				$scope.UsuarioParametroOpenPereira = data.data['USUARIO_ID'];
+				$scope.ordenamientoDemepedidoOpenPereira = data.data['VALOR'];
+				$scope.ordenamientoDemepedidoUpdateOpenPereira = data.data['ULTIMA_ACTUALIZACION'];
+			}
 
            if (parametro == "ORDEN_ENTREGA_PEDIDO") {
 				$scope.ordenEntregaPedido = data.data['VALOR'];
