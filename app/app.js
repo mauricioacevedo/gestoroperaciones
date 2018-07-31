@@ -3627,6 +3627,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
             if (parametro == "ORDEN_ENTREGA_PEDIDO_OP") {
 				$scope.ordenEntregaPedidoOP = valor;
+				console.log($scope.ordenEntregaPedidoOP);
             }
 
 			$scope.buscarParametro(parametro);
