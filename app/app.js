@@ -1166,6 +1166,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'demePedido?userID=' + user + '&concepto=' + concepto + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&prioridad=' + prioridad + '&fuente=' + fuente + '&zona=' + zona);
 	};
 
+    //EJEMPLO
+
 
     //DEMEPEDIDO OPEN
     obj.demePedidoOpen = function (user, concepto, pedido_actual, plaza, username, prioridad, fuente,TipoPendiente) {
