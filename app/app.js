@@ -3613,7 +3613,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
             if (parametro == "FECHA_ORDEN_DEMEPEDIDO_OPENPEREIRA") {
 				$scope.ordenamientoDemepedidoOpenPereira = valor;
-                console.log($scope.ordenamientoDemepedidoOpenPereira);
+                console.log(valor);
 				//$scope.ordenEntregapedidOP = orden;
 			}
 
