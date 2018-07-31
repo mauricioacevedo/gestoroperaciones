@@ -3388,6 +3388,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
     $scope.ordenEntregaPedido = '';
     $scope.ordenEntregaPedidoR = '';
 	$scope.ordenamientoDemepedidoReconfiguracion = '';
+    $scope.ordenamientoDemepedidoOpenPereira = '';
 	$scope.ordenamientoDemepedidoUpdate = '';
     $rootScope.errorDatos = null;
 
@@ -3606,6 +3607,11 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION") {
 				$scope.ordenamientoDemepedidoReconfiguracion = valor;
+                //$scope.ordenEntregapedidoR = orden;
+			}
+
+            if (parametro == "FECHA_ORDEN_DEMEPEDIDO_OPENPEREIRA") {
+				$scope.ordenamientoDemepedidoOpenPereira = valor;
                 //$scope.ordenEntregapedidoR = orden;
 			}
 
