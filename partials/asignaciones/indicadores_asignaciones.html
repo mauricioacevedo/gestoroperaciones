@@ -176,6 +176,41 @@
                                         </button>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>OpenPereira</td>
+                                    <td><font color='blue'>{{ordenamientoDemepedidoUpdateReconfiguracion}}</font></td>
+                                    <td>{{UsuarioParametroReconfiguracion}}</td>
+                                    <td>
+                                        <select class="btn btn-default btn-xs grupo-select" id="demerec"
+                                                ng-model="ordenamientoDemepedidoReconfiguracion" style="width:auto;">
+                                            <!--option value="FECHA_CITA">FECHA CITA</option-->
+                                            <option value="FECHA_ESTADO">FECHA ESTADO</option>
+                                            <option value="NUEVOS_PRIMERO">NUEVOS_PRIMERO</option>
+                                            <!--option value="FECHA_INGRESO">FECHA INGRESO</option-->
+                                        </select>
+
+                                         <select class="btn btn-default btn-xs grupo-select" id="demerec2"
+                                                ng-model="ordenEntregaPedidoR" style="width:auto;">
+                                            <!--option value="FECHA_CITA">FECHA CITA</option-->
+                                            <option value="DESC">DESC</option>
+                                            <!--option value="FECHA_INGRESO">FECHA INGRESO</option-->
+                                            <option value="ASC">ASC</option>
+
+                                        </select>
+
+
+                                        <br>
+                                        <button class="btn btn-success btn-xs" title="Guardar"
+                                                ng-click="updateParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION',ordenamientoDemepedidoReconfiguracion);">
+                                            <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                                        <button type="button" class="btn btn-default btn-circle-xs"
+                                                ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION')"
+                                                title="Actualizar" data-toggle="tooltip" data-placement="left"
+                                                ng-disabled="loading">
+                                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                </tr>
 
                             </table>
 
