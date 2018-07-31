@@ -3669,6 +3669,24 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		          });
             }
 
+            if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION")
+            {
+				parametro = 'ORDEN_ENTREGA_PEDIDO_R';
+                valor = $scope.ordenEntregaPedidoR;
+				services.updateParametro(parametro, valor, $rootScope.logedUser.login).then(function (data) {
+                var date1 = new Date();
+				var year = date1.getFullYear();
+				var month = $scope.doubleDigit(date1.getMonth() + 1);
+				var day = $scope.doubleDigit(date1.getDate());
+				var hour = $scope.doubleDigit(date1.getHours());
+				var minute = $scope.doubleDigit(date1.getMinutes());
+				var seconds = $scope.doubleDigit(date1.getSeconds());
+
+				$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+				//console.log($scope.ordenamientoDemepedido);
+		          });
+            }
+
 
     };
 
