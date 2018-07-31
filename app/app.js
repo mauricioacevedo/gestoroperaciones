@@ -3722,6 +3722,10 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				$scope.ordenEntregaPedidoR = data.data['VALOR'];
 			}
 
+            if (parametro == "ORDEN_ENTREGA_PEDIDO_OP") {
+				$scope.ordenEntregaPedidoOP = data.data['VALOR'];
+			}
+
 			return data.data;
 		});
 
@@ -3760,6 +3764,19 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		//$scope.ordenamientoDemepedidoNuevo=data.data['VALOR'];
 		$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
 		$scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
+		return data.data;
+	});
+
+	    services.buscarParametro('ORDEN_ENTREGA_PEDIDO_OP').then(function (data) {
+        $scope.ordenEntregaPedidoOP = data.data['VALOR'];
+		return data.data;
+	});
+
+	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_OPENPEREIRA').then(function (data) {
+
+		$scope.ordenamientoDemepedidoOpenPereira = data.data['VALOR'];
+		$scope.ordenamientoDemepedidoUpdateOpenPereira = data.data['ULTIMA_ACTUALIZACION'];
+		$scope.UsuarioParametroOpenPereira = data.data['USUARIO_ID'];
 		return data.data;
 	});
 
