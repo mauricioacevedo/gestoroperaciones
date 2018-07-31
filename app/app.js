@@ -3387,6 +3387,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.ordenamientoDemepedido = '';
     $scope.ordenEntregaPedido = '';
     $scope.ordenEntregaPedidoR = '';
+    $scope.ordenEntregaPedidoOP = '';
 	$scope.ordenamientoDemepedidoReconfiguracion = '';
     $scope.ordenamientoDemepedidoOpenPereira = '';
 	$scope.ordenamientoDemepedidoUpdate = '';
@@ -3625,7 +3626,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
             }
 
             if (parametro == "ORDEN_ENTREGA_PEDIDO_OP") {
-				$scope.ordenEntregaPedidoR = valor;
+				$scope.ordenEntregaPedidoOP = valor;
             }
 
 			$scope.buscarParametro(parametro);
