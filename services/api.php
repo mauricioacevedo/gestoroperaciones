@@ -9528,13 +9528,18 @@ private function getAgentScore($user){
         //SE UTILIZA ESTA VARIABLE PARA PARAMETRIZAR EL STATUS
         $STATUS="PENDI_PETEC";
 
-        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
-        $parametroOrdenAsig= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
+        //$parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
+        //$parametroOrdenAsig= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
+
+        $parametroBusqueda= $this->buscarParametroFechaDemePedidoOpen('FECHA_ORDEN_DEMEPEDIDO_OPENPEREIRA');
+		echo var_dump($parametroBusqueda);
+        $parametroOrdenOpen= $this->buscarParametroFechaDemePedidoOpen('ORDEN_ENTREGA_PEDIDO_OP');
 
         //**********Consepto**************************
 
-        if ($concepto=="8-OPEN_PEREIRA"){
-            $concepto = " and b.CONCEPTO_ID in ('8-OPEN_PEREIRA') and (b.TIPO_ELEMENTO_ID IN ('LINEA BASICA','INTERNET BANDA ANCHA','UNE TV'))";
+
+        if ($parametroBusquedaOpen=="NUEVOS_PRIMERO"){
+            $tipo_trabajo = " and b.CONCEPTO_ID in ('8-OPEN_PEREIRA') and (b.TIPO_ELEMENTO_ID IN ('LINEA BASICA','INTERNET BANDA ANCHA','UNE TV'))";
         }
 
         else if ($concepto=="21-OPEN_PEREIRA")
@@ -9542,15 +9547,11 @@ private function getAgentScore($user){
             $concepto = " and b.CONCEPTO_ID in ('21-OPEN_PEREIRA') and (b.TIPO_ELEMENTO_ID IN ('LINEA BASICA','INTERNET BANDA ANCHA','UNE TV'))";
         }
 
-        else if ($concepto=="CAMBIO-OPEN_PEREIRA"){
-            $concepto = " and b.CONCEPTO_ID in ('CAMBIO-OPEN_PEREIRA') and (b.TIPO_ELEMENTO_ID IN ('LINEA BASICA','INTERNET BANDA ANCHA','UNE TV'))";
-        }
-
         else{
-            $concepto=" and b.CONCEPTO_ID='$concepto' ";
+            $tipo_trabajo="";
         }
 
-        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
+/*        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
         $parametroOrden= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
         $parametroBusqueda2=$parametroBusqueda;
 
@@ -9559,7 +9560,7 @@ private function getAgentScore($user){
             $parametroBusqueda2="FECHA_ESTADO";
         }else{
             $tipo_trabajo="";
-        }
+        }*/
 
 
        if ($TipoPendiente == "CON AGENDA"){
@@ -9591,7 +9592,7 @@ private function getAgentScore($user){
             " where b.STATUS='$STATUS'  ".
             " and b.ASESOR ='' ".
             $tipo_trabajo.
-            $concepto.
+            //$concepto.
             $Pendiente;
             //$plaza.
             //$zona2.
