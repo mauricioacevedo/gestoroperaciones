@@ -49,17 +49,38 @@
                 <div class="col-lg-6">
                     <div class="row">
 
-                           <div class="form-group">
+                           <div class="form-group" ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
                                 <label for="Negocio">
                                     Negocio
                                 </label>
-                                <select ng-model="transaccion.NEGOCIO" id="estado" name="estado" class="form-control" style="" ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}" >
+                                <select ng-model="transaccion.NEGOCIO" id="estado" name="estado" class="form-control" style="" required>
                                         <option value='' disabled>---SELECCIONE---</option>
                                         <option value='EDATEL'>EDATEL</option>
                                         <option value='UNE'>UNE</option>
                                         <option value='ETP'>ETP</option>
                                 </select>
                             </div>
+
+                        <!--<div class="form-group " ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
+                                                <label for="estado" class="control-label">Estado Gestión:</label>
+
+                                                <select id="estado"
+                                                        class= "form-control btn-xs"
+                                                        name="estado"
+                                                        ng-model="InfoPedido.ESTADO_PROCESO"
+                                                        ng-disabled="ocupado"
+                                                        ng-click="onChangeEstado()"
+                                                        required>
+                                                    <option value="" disabled>--Seleccione--</option>
+                                                    <option
+                                                            ng-repeat="d in listaOpcionesGestion | unique:'ESTADO_ID'"
+
+                                                            value="{{d.ESTADO_ID}}">
+                                                        {{d.ESTADO_ID}}
+                                                    </option>
+                                                </select>
+
+                                            </div>-->
 
                           <!--  <div class="form-group">
                                 <label for="FechaSoli">
