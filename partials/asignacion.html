@@ -76,8 +76,8 @@
         <div class="panel-heading">
             <div class="row"><!--Row Concepto Plaza - Buscador Tips -->
 
-                <div class="col-lg-6 col-xs-5 form-inline">
-                      <label for="Plaza">Pendi:</label>
+                <div class="col-lg-5 col-xs-4 form-inline">
+                      <label for="Plaza">Pendiente:</label>
 
                     <select id="Zona" class="form-control" style="width: 150px" ng-model="TipoPendiente">
                         <option value="" disabled>--Seleccione Pendiente--</option>
@@ -101,7 +101,7 @@
                     -->
 
 
-                    <label for="concepto">Concepto:</label>
+                  <!--  <label for="concepto">Concepto:</label>-->
                   <!--  <select id="concepto" ng-model="iconcepto"
                             class="form-control" style="width: 100px"
                             ng-change="GenerarOpcionesGestion()">
@@ -117,13 +117,13 @@
                         <option value='STBOX'>STBOX</option>
                     </select>-->
 
-                    <select name="TipoNovedad" style="width: 100px" class="form-control"
+                    <!--<select name="TipoNovedad" style="width: 100px" class="form-control"
                         ng-model="iconcepto">
                         <option value='' disabled>--SELECCIONE--</option>
                         <option value='8-OPEN_PEREIRA'>8-OPEN_PEREIRA</option>
                         <option value='21-OPEN_PEREIRA'>21-OPEN_PEREIRA</option>
                         <option value='CAMBIO-OPEN_PEREIRA'>CAMBIO-OPEN_PEREIRA</option>
-                        </select>
+                        </select>-->
 
                       <!--CONCEPTOS VIEJOS ASIGNACIONES-->
                       <!--<select name="TipoNovedad" style="width: 100px" class="form-control"
@@ -136,17 +136,30 @@
 
 
                     <!--label for="Plaza">Plaza:</label-->
-                      <select id="Plaza" class="form-control"
+                      <!--<select id="Plaza" class="form-control"
                             style="width: 150px"
-                            ng-model="iplaza">
+                            ng-model="iplaza">-->
                         <!--<option value="" disabled>Seleccione Municipio</option>-->
-                        <option value="TODOS" selected>TODOS</option>
+                        <!--<option value="TODOS" selected>TODOS</option>-->
                         <!--<option value="BOGCUNCOL">BOGOTA</option>-->
-                    </select>
+                    <!--</select>-->
+
 
                     </div>
 
-                <div class="col-lg-3 col-xs-3">
+					<div class="col-lg-4 col-xs-6" >
+					    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-default" title="Click para copiar"
+                                data-toggle="tooltip" data-placement="top" ng-click="executeCopy(pedidoinfo);">
+                            {{pedidoinfo}}
+                        </button>
+                        <button id="iniciar" type="button" class="btn-group btn btn-sm btn-success"
+                                ng-click="start(pedido);">DemePedido
+                        </button>
+						</div>
+					</div>
+
+           <!--     <div class="col-lg-3 col-xs-3">
 
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-default" title="Click para copiar"
@@ -159,7 +172,7 @@
 
                     </div>
 
-                </div>
+                </div>-->
 
                 <div class="col-lg-3 col-xs-4">
 
