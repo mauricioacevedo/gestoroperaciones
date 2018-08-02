@@ -9538,17 +9538,19 @@ private function getAgentScore($user){
         //**********Consepto**************************
 
 
-        if ($parametroBusquedaOpen=="NUEVOS_PRIMERO"){
+        if ($parametroBusqueda=="NUEVOS_PRIMERO"){
             $tipo_trabajo = " and b.CONCEPTO_ID = '8-OPEN_PEREIRA' = 'NUEVO' order by b.FECHA_CITA, b.FECHA_INGRESO ";
         }
 
-        else if $parametroBusquedaOpen=="FECHA ESTADO"{
+        else {
             $tipo_trabajo=" order by b.FECHA_ESTADO ";
         }
 
-		else{
-			$tipo_trabajo = "";
-		}
+		//else{
+			//$tipo_trabajo = "";
+		//}
+
+
 
 /*        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
         $parametroOrden= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
@@ -9579,7 +9581,7 @@ private function getAgentScore($user){
         }
 
 
-        echo var_dump ($Pendiente);
+        //echo var_dump ($Pendiente);
 
 
         //echo var_dump ($plaza);
