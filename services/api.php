@@ -9534,22 +9534,22 @@ private function getAgentScore($user){
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_OPENPEREIRA');
 		//echo var_dump($parametroBusqueda);
         $parametroOrden= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO_OP');
-		echo var_dump($parametroOrden);
+		//echo var_dump($parametroOrden);
         //**********Consepto**************************
 
 
-/*        if ($parametroBusquedaOpen=="NUEVOS_PRIMERO"){
+        if ($parametroBusquedaOpen=="NUEVOS_PRIMERO"){
             $tipo_trabajo = " and b.CONCEPTO_ID in ('8-OPEN_PEREIRA') and (b.TIPO_ELEMENTO_ID IN ('LINEA BASICA','INTERNET BANDA ANCHA','UNE TV'))";
         }
 
         else if ($parametroBusquedaOpen=="FECHA ESTADO")
         {
-            $concepto = " and b.CONCEPTO_ID in ('21-OPEN_PEREIRA') and (b.TIPO_ELEMENTO_ID IN ('LINEA BASICA','INTERNET BANDA ANCHA','UNE TV'))";
+            $tipo_trabajo = " b.FECHA_INGRESO";
         }
 
         else{
             $tipo_trabajo="";
-        }*/
+        }
 
 /*        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
         $parametroOrden= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
@@ -9565,12 +9565,12 @@ private function getAgentScore($user){
 
        if ($TipoPendiente == "CON AGENDA"){
 
-            $Pendiente = " and b.FECHA_CITA not in ('9999-00-00','SIN AGENDA','') and b.UEN_CALCULADA not in ('B2B') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
+            $Pendiente = " and b.FECHA_CITA not in ('9999-00-00','9999-99-99','SIN AGENDA','') and b.UEN_CALCULADA not in ('B2B') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
        }
 
         else if ($TipoPendiente == "SIN AGENDA"){
 
-            $Pendiente = "  and (b.FECHA_CITA in ('9999-00-00','SIN AGENDA','') or b.FECHA_CITA < '$Diasiguiente') and b.UEN_CALCULADA not in ('B2B') order by  b.FECHA_INGRESO asc";
+            $Pendiente = "  and (b.FECHA_CITA in ('9999-00-00','9999-99-99','SIN AGENDA','') or b.FECHA_CITA < '$Diasiguiente') and b.UEN_CALCULADA not in ('B2B') order by  b.FECHA_INGRESO asc";
         }
 
        else {
@@ -9637,7 +9637,6 @@ private function getAgentScore($user){
                     " where b.STATUS='$STATUS'  and b.ASESOR ='' ".
                     " $concepto ".
                     " $Pendiente ";
-                    //"  $Pendiente";
                     //$plaza.
                     //$zona2.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
