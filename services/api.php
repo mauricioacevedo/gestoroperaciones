@@ -9532,9 +9532,9 @@ private function getAgentScore($user){
         //$parametroOrdenAsig= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
 
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_OPENPEREIRA');
-		echo var_dump($parametroBusqueda);
+		//echo var_dump($parametroBusqueda);
         $parametroOrden= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO_OP');
-
+		echo var_dump($parametroOrden);
         //**********Consepto**************************
 
 
