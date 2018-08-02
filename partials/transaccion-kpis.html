@@ -46,20 +46,42 @@
 					<div class="row"><hr style="margin:0; padding:0; background-color: #5c5c3d; border: 0; height:1px;" >
                             <br></div>
 
-                <div class="col-lg-6">
+                    <form name="kpis" id="kpis">
+                    <div class="col-lg-6">
                     <div class="row">
 
-                           <div class="form-group">
+                           <div class="form-group" ng-class="{ 'has-error' : kpis.negocio.$pristine && kpis.negocio.$invalid}">
                                 <label for="Negocio">
                                     Negocio
                                 </label>
-                                <select ng-model="transaccion.NEGOCIO" class="form-control" style="" >
+                                <select ng-model="transaccion.NEGOCIO" id="negocio" name="negocio" class="form-control" style="" required>
                                         <option value='' disabled>---SELECCIONE---</option>
                                         <option value='EDATEL'>EDATEL</option>
                                         <option value='UNE'>UNE</option>
                                         <option value='ETP'>ETP</option>
                                 </select>
                             </div>
+
+                        <!--<div class="form-group " ng-class="{ 'has-error' : seguimiento_form.estado.$pristine && seguimiento_form.estado.$invalid}">
+                                                <label for="estado" class="control-label">Estado Gestión:</label>
+
+                                                <select id="estado"
+                                                        class= "form-control btn-xs"
+                                                        name="estado"
+                                                        ng-model="InfoPedido.ESTADO_PROCESO"
+                                                        ng-disabled="ocupado"
+                                                        ng-click="onChangeEstado()"
+                                                        required>
+                                                    <option value="" disabled>--Seleccione--</option>
+                                                    <option
+                                                            ng-repeat="d in listaOpcionesGestion | unique:'ESTADO_ID'"
+
+                                                            value="{{d.ESTADO_ID}}">
+                                                        {{d.ESTADO_ID}}
+                                                    </option>
+                                                </select>
+
+                                            </div>-->
 
                           <!--  <div class="form-group">
                                 <label for="FechaSoli">
@@ -141,6 +163,7 @@
 
                         </div>
                     </div>
+                    </form>
 
                     <div class="col-lg-6" >
                         <div class="row2">
