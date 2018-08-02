@@ -9531,9 +9531,9 @@ private function getAgentScore($user){
         //$parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
         //$parametroOrdenAsig= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
 
-        $parametroBusqueda= $this->buscarParametroFechaDemePedidon('FECHA_ORDEN_DEMEPEDIDO_OPENPEREIRA');
+        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO_OPENPEREIRA');
 		echo var_dump($parametroBusqueda);
-        $parametroOrdenOpen= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO_OP');
+        $parametroOrden= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO_OP');
 
         //**********Consepto**************************
 
