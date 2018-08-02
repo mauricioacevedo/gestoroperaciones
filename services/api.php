@@ -9531,25 +9531,25 @@ private function getAgentScore($user){
         //$parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
         //$parametroOrdenAsig= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
 
-        $parametroBusqueda= $this->buscarParametroFechaDemePedidoOpen('FECHA_ORDEN_DEMEPEDIDO_OPENPEREIRA');
+        $parametroBusqueda= $this->buscarParametroFechaDemePedidon('FECHA_ORDEN_DEMEPEDIDO_OPENPEREIRA');
 		echo var_dump($parametroBusqueda);
-        $parametroOrdenOpen= $this->buscarParametroFechaDemePedidoOpen('ORDEN_ENTREGA_PEDIDO_OP');
+        $parametroOrdenOpen= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO_OP');
 
         //**********Consepto**************************
 
 
-        if ($parametroBusquedaOpen=="NUEVOS_PRIMERO"){
+/*        if ($parametroBusquedaOpen=="NUEVOS_PRIMERO"){
             $tipo_trabajo = " and b.CONCEPTO_ID in ('8-OPEN_PEREIRA') and (b.TIPO_ELEMENTO_ID IN ('LINEA BASICA','INTERNET BANDA ANCHA','UNE TV'))";
         }
 
-        else if ($concepto=="21-OPEN_PEREIRA")
+        else if ($parametroBusquedaOpen=="FECHA ESTADO")
         {
             $concepto = " and b.CONCEPTO_ID in ('21-OPEN_PEREIRA') and (b.TIPO_ELEMENTO_ID IN ('LINEA BASICA','INTERNET BANDA ANCHA','UNE TV'))";
         }
 
         else{
             $tipo_trabajo="";
-        }
+        }*/
 
 /*        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
         $parametroOrden= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
