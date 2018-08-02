@@ -9539,16 +9539,11 @@ private function getAgentScore($user){
 
 
         if ($parametroBusquedaOpen=="NUEVOS_PRIMERO"){
-            $tipo_trabajo = " and b.CONCEPTO_ID in ('8-OPEN_PEREIRA') and (b.TIPO_ELEMENTO_ID IN ('LINEA BASICA','INTERNET BANDA ANCHA','UNE TV'))";
-        }
-
-        else if ($parametroBusquedaOpen=="FECHA ESTADO")
-        {
-            $tipo_trabajo = " b.FECHA_INGRESO";
+            $tipo_trabajo = " and b.CONCEPTO_ID = '8-OPEN_PEREIRA' = 'NUEVO' order by b.FECHA_CITA, b.FECHA_INGRESO ";
         }
 
         else{
-            $tipo_trabajo="";
+            $tipo_trabajo=" order by b.FECHA_ESTADO ";
         }
 
 /*        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
@@ -9565,22 +9560,22 @@ private function getAgentScore($user){
 
        if ($TipoPendiente == "CON AGENDA"){
 
-            $Pendiente = " and b.FECHA_CITA not in ('9999-00-00','9999-99-99','SIN AGENDA','') and b.UEN_CALCULADA not in ('B2B') and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
+            $Pendiente = " and b.FECHA_CITA not in ('9999-00-00','9999-99-99','SIN AGENDA','') and b.UEN_CALCULADA not in ('B2B') and b.FECHA_CITA >= '$Diasiguiente' $tipo_trabajo ";
        }
 
         else if ($TipoPendiente == "SIN AGENDA"){
 
-            $Pendiente = "  and (b.FECHA_CITA in ('9999-00-00','9999-99-99','SIN AGENDA','') or b.FECHA_CITA < '$Diasiguiente') and b.UEN_CALCULADA not in ('B2B') order by  b.FECHA_INGRESO asc";
+            $Pendiente = "  and (b.FECHA_CITA in ('9999-00-00','9999-99-99','SIN AGENDA','') or b.FECHA_CITA < '$Diasiguiente') and b.UEN_CALCULADA not in ('B2B') $tipo_trabajo ";
         }
 
        else {
            //echo 'ingreso';
-            $Pendiente = " and b.UEN_CALCULADA = 'B2B' and b.FECHA_CITA >= '$Diasiguiente' order by b.FECHA_CITA, b.FECHA_INGRESO asc";
+            $Pendiente = " and b.UEN_CALCULADA = 'B2B' and b.FECHA_CITA >= '$Diasiguiente' $tipo_trabajo ";
 
         }
 
 
-        //echo var_dump ($Pendiente);
+        echo var_dump ($Pendiente);
 
 
         //echo var_dump ($plaza);
@@ -9591,7 +9586,7 @@ private function getAgentScore($user){
             " from informe_petec_pendientesm b ".
             " where b.STATUS='$STATUS'  ".
             " and b.ASESOR ='' ".
-            $tipo_trabajo.
+            //$tipo_trabajo.
             //$concepto.
             $Pendiente;
             //$plaza.
@@ -9635,7 +9630,7 @@ private function getAgentScore($user){
                 $query1="select b.CLIENTE_ID,b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO, b.FECHA_CITA, b.TIPO_ELEMENTO_ID ".
                     " from informe_petec_pendientesm b ".
                     " where b.STATUS='$STATUS'  and b.ASESOR ='' ".
-                    " $concepto ".
+                    //" $concepto ".
                     " $Pendiente ";
                     //$plaza.
                     //$zona2.
