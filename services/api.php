@@ -9581,7 +9581,7 @@ private function getAgentScore($user){
         }
 
 
-        echo var_dump ($Pendiente);
+        //echo var_dump ($Pendiente);
 
 
         //echo var_dump ($plaza);
