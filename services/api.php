@@ -9542,9 +9542,13 @@ private function getAgentScore($user){
             $tipo_trabajo = " and b.CONCEPTO_ID = '8-OPEN_PEREIRA' = 'NUEVO' order by b.FECHA_CITA, b.FECHA_INGRESO ";
         }
 
-        else{
+        else if $parametroBusquedaOpen=="FECHA ESTADO"{
             $tipo_trabajo=" order by b.FECHA_ESTADO ";
         }
+
+		else{
+			$tipo_trabajo = "";
+		}
 
 /*        $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
         $parametroOrden= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
