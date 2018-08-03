@@ -9594,13 +9594,14 @@ private function getAgentScore($user){
             " and b.ASESOR ='' ".
             //$tipo_trabajo.
             //$concepto.
-            $Pendiente;
+            $Pendiente.
             //$plaza.
             //$zona2.
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-            //" order by b.$parametroBusqueda2 $parametroOrden ";
-        //echo var_dump($query1);
+            //" order by b.$parametroBusqueda2
+			$parametroOrden;
+        echo var_dump($query1);
 
 
 
@@ -9637,11 +9638,12 @@ private function getAgentScore($user){
                     " from informe_petec_pendientesm b ".
                     " where b.STATUS='$STATUS'  and b.ASESOR ='' ".
                     //" $concepto ".
-                    " $Pendiente ";
+                    " $Pendiente ".
                     //$plaza.
                     //$zona2.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
-                    //" order by b.$parametroBusqueda2 $parametroOrden";
+                    //" order by b.$parametroBusqueda2
+					"$parametroOrden";
                     //echo "ingreso 2";
 
                 //echo "ingreso 2: $query1";
@@ -9686,7 +9688,7 @@ private function getAgentScore($user){
         //de una lo ocupo cucho cucho!!!!
 
 
-        if($ATENCION_INMEDIATA=="1") $concepto="";
+        if($ATENCION_INMEDIATA=="1") //$concepto="";
         //echo "Ingreso";
 
         $sqlupdate="update informe_petec_pendientesm set ASESOR='$user',PROGRAMACION='',VIEWS=VIEWS+1,FECHA_VISTO_ASESOR='$fecha_visto' where PEDIDO_ID = '$mypedido' and (STATUS='PENDI_PETEC'||STATUS='BUSCADO_PETEC' || STATUS='PENDI_RENUMS')";
