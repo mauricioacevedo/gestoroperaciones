@@ -9752,7 +9752,7 @@ private function getAgentScore($user){
 
 
 
-            echo "ingreso 1: $query1";
+            //echo "ingreso 1: $query1";
         //return;
 
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
