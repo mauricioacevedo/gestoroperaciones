@@ -3699,11 +3699,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.buscarParametro = function (parametro) {
 
 		services.buscarParametro(parametro).then(function (data) {
-			if (parametro == "FECHA_ORDEN_DEMEPEDIDO") {
-				$scope.UsuarioParametro = data.data['USUARIO_ID'];
-				$scope.ordenamientoDemepedido = data.data['VALOR'];
-				$scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
-			}
 
 			if (parametro == "FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION") {
 				$scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
@@ -3793,7 +3788,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
     //}
 
 
-    $scope.updateParametroAsesor = function (valor) {
+    $scope.updateParametroAsesor = function (parametro, valor) {
 
 		services.updateParametroAsesor(valor, $rootScope.logedUser.login).then(function (data) {
 			var date1 = new Date();
@@ -3805,20 +3800,10 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			var seconds = $scope.doubleDigit(date1.getSeconds());
 			$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
-			if (valor == "FECHA_ESTADO") {
-				$scope.ordenamientoDemepedidoNuevo = valor;
-                //$scope.ordenEntregaPedido = ordenEntregaPedido;
-			}
+			if (parametro == "ENTREGA_PEDIDO_ASESOR") {
+				$scope.EntregaPedidoAsesor = data.data['VALOR'];  ;
 
-            if (valor == "NUEVOS_PRIMERO") {
-				$scope.ordenamientoDemepedidoNuevo = valor;
-                //$scope.ordenEntregaPedido = ordenEntregaPedido;
-			}
-
-            if (valor == "CAMBIOS") {
-				$scope.ordenamientoDemepedidoNuevo = valor;
-                //$scope.ordenEntregaPedido = ordenEntregaPedido;
-			}
+            }
 
 			$scope.buscarParametroAsesor(valor);
 			return data.data;
@@ -3891,27 +3876,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
     $scope.listaUsuariosOnline();
 
-    $scope.editarParametroEntrega = function (editaInfo) {
-
-		services.editParametroEntrega(editaInfo).then(
-
-			function (data) {
-
-				$scope.listaUsuariosOnline();
-				$rootScope.errorDatos = null;
-
-
-			},
-			function errorCallback(response) {
-
-				$rootScope.errorDatos = "Error editando";
-
-				//console.log($rootScope.errorDatos);
-
-			});
-	};
-
-/*		$scope.editarModal = function (data) {
+		$scope.editarParametroEntregaAsesor = function (data) {
 		$rootScope.errorDatos = null;
 		$scope.idUsuario = data.ID;
 		$scope.UsuarioNom = data.USUARIO_NOMBRE;
@@ -3923,7 +3888,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         $scope.msgLdap = null;
         $scope.pic = 'images/avatar_2x.png';
 		//$scope.editaInfo.CARGO_ID=data.CARGO_ID;
-	};*/
+	};
 
 	var date1 = new Date();
 	var year = date1.getFullYear();
