@@ -3911,7 +3911,19 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			});
 	};
 
-
+		$scope.editarModal = function (data) {
+		$rootScope.errorDatos = null;
+		$scope.idUsuario = data.ID;
+		$scope.UsuarioNom = data.USUARIO_NOMBRE;
+		$scope.editaInfo = data;
+		$scope.TituloModal = "Gestion Turnos :";
+		$scope.UsuarioNuevo = false;
+        //console.log(editaInfo);
+        $scope.cargoLabel = null;
+        $scope.msgLdap = null;
+        $scope.pic = 'images/avatar_2x.png';
+		//$scope.editaInfo.CARGO_ID=data.CARGO_ID;
+	};
 
 	var date1 = new Date();
 	var year = date1.getFullYear();
