@@ -9539,7 +9539,7 @@ private function getAgentScore($user){
 
 
         if ($parametroBusqueda=="NUEVOS_PRIMERO"){
-            $tipo_trabajo = " and b.CONCEPTO_ID = '8-OPEN_PEREIRA' = 'NUEVO' order by b.FECHA_CITA, b.FECHA_INGRESO ";
+            $tipo_trabajo = " and b.CONCEPTO_ID = '8-OPEN_PEREIRA' order by b.FECHA_CITA, b.FECHA_INGRESO ";
         }
 
         else {
@@ -9594,14 +9594,14 @@ private function getAgentScore($user){
             " and b.ASESOR ='' ".
             //$tipo_trabajo.
             //$concepto.
-            $Pendiente.
+            " $Pendiente ".
             //$plaza.
             //$zona2.
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             //" order by b.$parametroBusqueda2
-			$parametroOrden;
-        echo var_dump($query1);
+			" $parametroOrden ";
+        //echo var_dump($query1);
 
 
 
@@ -9643,7 +9643,7 @@ private function getAgentScore($user){
                     //$zona2.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
                     //" order by b.$parametroBusqueda2
-					"$parametroOrden";
+					" $parametroOrden ";
                     //echo "ingreso 2";
 
                 //echo "ingreso 2: $query1";
