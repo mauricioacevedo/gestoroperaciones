@@ -1069,18 +1069,20 @@
 											<tr ng-repeat="data in listaUsuarios">
 											    <td><center>{{data.USUARIO_ID}}</center></td>
 											   	<td><center>{{data.GRUPO}}</center></td>
-											   	<td><center><select class="btn btn-default btn-xs grupo-select ng-pristine ng-valid ng-touched" id="demerec" ng-model="editainfo.ParametroIndividual" style="width:auto;">
+											   	<td><center><select class="btn btn-default btn-xs grupo-select ng-pristine ng-valid ng-touched" id="demeuser" ng-model="ordenamientoDemepedidoAsesor" style="width:auto;">
+													<!--editainfo.ParametroIndividual-->
                                                         <option value="FECHA_ESTADO">FECHA ESTADO</option>
                                                         <option value="NUEVOS_PRIMERO">NUEVOS_PRIMERO</option>
                                                         <option value="CAMBIOS">CAMBIOS</option>
 															</select>
 															<select class="btn btn-default btn-xs grupo-select" id="sel1"
-                                                			ng-model="ordenEntregaPedido" style="width:auto;">
+                                                			ng-model="ordenEntregaPedidoAsesor" style="width:auto;">
                                             					<option value="DESC">DESC</option>
                                             					<option value="ASC">ASC</option>
-                                        					</select><button class="btn btn-success btn-xs" title="Guardar" ng-click="updateParametroAsesor('ENTREGA_PEDIDO_ASESOR',EntregaPedidoAsesor);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                                        					</select><button class="btn btn-success btn-xs" title="Guardar" ng-click="updateParametroAsesor('ORDEN_ENTREGA_PEDIDO_ASESOR',ordenEntregaPedidoAsesor);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+
 															<button type="button" class="btn btn-default btn-circle-xs"
-                                                				ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO')" title="Actualizar"
+                                                				ng-click="buscarParametro('ENTREGA_PEDIDO_ASESOR')" title="Actualizar"
                                                 				data-toggle="tooltip" data-placement="left" ng-disabled="loading">
                                             				<i class="fa fa-refresh" aria-hidden="true"></i>
                                         					</button>
