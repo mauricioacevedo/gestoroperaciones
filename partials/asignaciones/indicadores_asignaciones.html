@@ -1063,8 +1063,6 @@
 												<th><center>Usuario</center></th>
                                                 <th><center>Grupo</center></th>
                                                 <th><center>Parametro Entrega</center></th>
-                                                <th><center>Orden</center></th>
-                                                <th><center>Estado</center></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -1075,10 +1073,16 @@
                                                         <option value="FECHA_ESTADO">FECHA ESTADO</option>
                                                         <option value="NUEVOS_PRIMERO">NUEVOS_PRIMERO</option>
                                                         <option value="CAMBIOS">CAMBIOS</option>
-                                                        </select><button class="btn btn-success btn-xs" title="Guardar" ng-click="updateParametroAsesor('ENTREGA_PEDIDO_ASESOR',EntregaPedidoAsesor);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button></center>
+														<select class="btn btn-default btn-xs grupo-select" id="sel1"
+                                                			ng-model="ordenEntregaPedido" style="width:auto;">
+                                            					<option value="DESC">DESC</option>
+                                            					<option value="ASC">ASC</option>
+                                        				</select>
+                                                        </select><button class="btn btn-success btn-xs" title="Guardar" ng-click="updateParametroAsesor('ENTREGA_PEDIDO_ASESOR',EntregaPedidoAsesor);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+													</center>
                                                 </td>
-                                                <!--<td><center>{{data.ORDEN}}</center></td>-->
-                                                <td><center>{{data.ESTADO}}</center></td>
+                                                <!--<td><center>{{data.ORDEN}}</center></td>
+                                                <td><center>{{data.ESTADO}}</center></td>-->
 
 
                                                 <!--<td><center>{{PENDIENTE}}</center></td>-->
