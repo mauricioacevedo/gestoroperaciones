@@ -1079,6 +1079,11 @@
                                             					<option value="DESC">DESC</option>
                                             					<option value="ASC">ASC</option>
                                         					</select><button class="btn btn-success btn-xs" title="Guardar" ng-click="updateParametroAsesor('ENTREGA_PEDIDO_ASESOR',EntregaPedidoAsesor);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+															<button type="button" class="btn btn-default btn-circle-xs"
+                                                				ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO')" title="Actualizar"
+                                                				data-toggle="tooltip" data-placement="left" ng-disabled="loading">
+                                            				<i class="fa fa-refresh" aria-hidden="true"></i>
+                                        					</button>
 													</center>
                                                 </td>
                                                 <!--<td><center>{{data.ORDEN}}</center></td>
