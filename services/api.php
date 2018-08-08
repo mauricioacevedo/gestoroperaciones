@@ -9543,7 +9543,7 @@ private function getAgentScore($user){
         }
 
         else {
-            $tipo_trabajo=" and b.CONCEPTO_ID = '8-OPEN_PEREIRA' order by b.FECHA_CITA, b.FECHA_ESTADO ";
+            $tipo_trabajo=" order by b.FECHA_CITA, b.FECHA_ESTADO ";
         }
 
 
