@@ -9593,6 +9593,7 @@ private function getAgentScore($user){
             " from informe_petec_pendientesm b ".
             " where b.STATUS='$STATUS'  ".
             " and b.ASESOR ='' ".
+			" and b.FUENTE='OPEN_PEREIRA' ".
             //$tipo_trabajo.
             //$concepto.
             " $Pendiente ".
@@ -9637,7 +9638,7 @@ private function getAgentScore($user){
             } else {
                 $query1="select b.CLIENTE_ID,b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_INGRESO, b.FECHA_CITA, b.TIPO_ELEMENTO_ID ".
                     " from informe_petec_pendientesm b ".
-                    " where b.STATUS='$STATUS'  and b.ASESOR ='' ".
+                    " where b.STATUS='$STATUS'  and b.ASESOR ='' and b.FUENTE='OPEN_PEREIRA' ".
                     //" $concepto ".
                     //" $Pendiente ".
                     //$plaza.
