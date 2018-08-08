@@ -9543,7 +9543,7 @@ private function getAgentScore($user){
         }
 
         else {
-            $tipo_trabajo=" order by b.FECHA_ESTADO ";
+            $tipo_trabajo=" order by b.FECHA_CITA, b.FECHA_ESTADO ";
         }
 
 
