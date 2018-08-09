@@ -9502,7 +9502,7 @@ private function getAgentScore($user){
             $TipoPendiente=="TODOS";
         }
 
-		if($Municipioid=="undefined"||$Municipioid=="null"||$Municipioid<>'PEREIRA'||$Municipioid<>'IBAGUE'||$Municipioid<>'DOSQUEBRADAS'||$Municipioid<>'CARTAGO'||$Municipioid<>'LA TEBAIDA'||$Municipioid<> 'MONTENEGRO'||$Municipioid<>'SANTA ROSA DE CABAL'||$Municipioid<>'LA VIRGINIA'||$Municipioid<>'QUIMBAYA'){
+		if($Municipioid=="--Seleccione Municipio--"$Municipioid=="undefined"||$Municipioid=="null"||$Municipioid<>'PEREIRA'||$Municipioid<>'IBAGUE'||$Municipioid<>'DOSQUEBRADAS'||$Municipioid<>'CARTAGO'||$Municipioid<>'LA TEBAIDA'||$Municipioid<> 'MONTENEGRO'||$Municipioid<>'SANTA ROSA DE CABAL'||$Municipioid<>'LA VIRGINIA'||$Municipioid<>'QUIMBAYA'){
 
 			$Municipioid=="TODOS";
 		}
