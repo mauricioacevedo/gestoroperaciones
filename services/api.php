@@ -9488,7 +9488,7 @@ private function getAgentScore($user){
         $TipoPendiente  =   $this->_request['TipoPendiente'];
 		$Municipioid	=	$this->_request['iMunicipios'];
 
-        //echo var_dump($TipoPendiente);
+        echo var_dump($TipoPendiente);
 
         $fechaservidor  =   date('Y-m-d');
         $Diasiguiente   =   date('Y-m-d',strtotime($fechaservidor."+ 1 days"));
@@ -9605,7 +9605,7 @@ private function getAgentScore($user){
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             //" order by b.$parametroBusqueda2
 			" $parametroOrden ";
-        echo var_dump($query1);
+        //echo var_dump($query1);
 
 
 
