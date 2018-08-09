@@ -9502,9 +9502,9 @@ private function getAgentScore($user){
             $TipoPendiente=="TODOS";
         }
 
-		if($Municipioid=="--Seleccione Municipio--"$Municipioid=="undefined"||$Municipioid=="null"||$Municipioid<>'PEREIRA'||$Municipioid<>'IBAGUE'||$Municipioid<>'DOSQUEBRADAS'||$Municipioid<>'CARTAGO'||$Municipioid<>'LA TEBAIDA'||$Municipioid<> 'MONTENEGRO'||$Municipioid<>'SANTA ROSA DE CABAL'||$Municipioid<>'LA VIRGINIA'||$Municipioid<>'QUIMBAYA'){
+		if($Municipioid=="undefined"||$Municipioid=="null"){
 
-			$Municipioid=="TODOS";
+			$Municipioid=="";
 		}
 
 		echo var_dump ($Municipioid);
@@ -9612,7 +9612,7 @@ private function getAgentScore($user){
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             //" order by b.$parametroBusqueda2
 			" $parametroOrden ";
-        echo var_dump($query1);
+        //echo var_dump($query1);
 
 
 
