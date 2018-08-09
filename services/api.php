@@ -9502,6 +9502,11 @@ private function getAgentScore($user){
             $TipoPendiente=="TODOS";
         }
 
+		if($Municipioid=="undefined"||$Municipioid==""||$Municipioid=="null"||$Municipioid<>'PEREIRA'||$Municipioid<>'IBAGUE'||$Municipioid<>'DOSQUEBRADAS'||$Municipioid<>'CARTAGO'||$Municipioid<>'LA TEBAIDA'|| $Municipioid<> 'MONTENEGRO'||$Municipioid<>'SANTA ROSA DE CABAL'||$Municipioid<>'LA VIRGINIA'||$Municipioid<>'QUIMBAYA'){
+
+			$Municipioid==""
+		}
+
 
         $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
