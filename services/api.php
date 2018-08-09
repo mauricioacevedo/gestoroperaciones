@@ -9486,8 +9486,9 @@ private function getAgentScore($user){
         $username       =   $this->_request['username'];
         $prioridad      =   $this->_request['prioridad'];
         $TipoPendiente  =   $this->_request['TipoPendiente'];
+		$Municipioid	=	$this->_request['iMunicipios'];
 
-        //echo var_dump($zona);
+        echo var_dump($Municipioid);
 
         $fechaservidor  =   date('Y-m-d');
         $Diasiguiente   =   date('Y-m-d',strtotime($fechaservidor."+ 1 days"));
@@ -9594,6 +9595,7 @@ private function getAgentScore($user){
             " where b.STATUS='$STATUS'  ".
             " and b.ASESOR ='' ".
 			" and b.FUENTE='OPEN_PEREIRA' ".
+			" and MUNICIPIO_ID = '$Municipioid' "
             //$tipo_trabajo.
             //$concepto.
             " $Pendiente ".
