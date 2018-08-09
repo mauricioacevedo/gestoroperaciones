@@ -9488,7 +9488,7 @@ private function getAgentScore($user){
         $TipoPendiente  =   $this->_request['TipoPendiente'];
 		$Municipioid	=	$this->_request['iMunicipios'];
 
-        echo var_dump($TipoPendiente);
+        echo var_dump($Municipioid);
 
         $fechaservidor  =   date('Y-m-d');
         $Diasiguiente   =   date('Y-m-d',strtotime($fechaservidor."+ 1 days"));
