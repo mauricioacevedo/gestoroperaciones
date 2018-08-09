@@ -9504,7 +9504,7 @@ private function getAgentScore($user){
 
 		if($Municipioid==""||$Municipioid=="null"||$Municipioid=="undefined"||$Municipioid<>'PEREIRA'||$Municipioid<>'IBAGUE'||$Municipioid<>'DOSQUEBRADAS'){
 
-            $Municipioid=="TODOS";
+            $Municipioid="TODOS";
         }
 
 		echo var_dump ($Municipioid);
