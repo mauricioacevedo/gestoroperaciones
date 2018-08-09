@@ -9504,7 +9504,7 @@ private function getAgentScore($user){
 
 		if($Municipioid==""||$Municipioid=="null"||$Municipioid=="undefined"){
 
-            $Municipioid="";
+            $Municipioid="MUNICIPIO_ID";
         }
 
 		//echo var_dump ($Municipioid);
@@ -9602,7 +9602,7 @@ private function getAgentScore($user){
             " where b.STATUS='$STATUS'  ".
             " and b.ASESOR ='' ".
 			" and b.FUENTE='OPEN_PEREIRA' ".
-			" and MUNICIPIO_ID = '$Municipioid' ".
+			" and MUNICIPIO_ID = $Municipioid ".
             //$tipo_trabajo.
             //$concepto.
             " $Pendiente ".
@@ -9612,7 +9612,7 @@ private function getAgentScore($user){
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             //" order by b.$parametroBusqueda2
 			" $parametroOrden ";
-        //echo var_dump($query1);
+        echo var_dump($query1);
 
 
 
