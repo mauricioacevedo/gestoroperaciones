@@ -16593,6 +16593,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
     $scope.deme_pedidos = [{PEDIDO_ID:" NUEVO "}];
     $scope.agentScore="-1";
     $scope.TipoPendiente="CON AGENDA";
+	$scope.iMunicipios="PEREIRA";
     $scope.iplaza="TODOS";
 
 	var pedidos = services.getPedidosUser(userID).then(function (data) {
