@@ -17318,7 +17318,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		demePedidoButton.className = "btn btn-sm btn-success disabled";
 
 
-        var kami = services.demePedidoOpen($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', 'FENIX_NAL',$scope.TipoPendiente,$scope.iMunicipios).then(function (data) {
+        var kami = services.demePedidoOpen($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iMunicipios.MUNICIPIO_ID, $rootScope.logedUser.name, '', 'FENIX_NAL',$scope.TipoPendiente).then(function (data) {
             //console.log($scope.izona);
 
 			//console.log("este es el municipio" + $scope.peds[0].MUNICIPIO_ID);
