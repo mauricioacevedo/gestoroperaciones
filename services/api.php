@@ -9504,7 +9504,7 @@ private function getAgentScore($user){
 
 		if($Municipioid=="undefined"||$Municipioid=="null"||$Municipioid<>'PEREIRA'||$Municipioid<>'IBAGUE'||$Municipioid<>'DOSQUEBRADAS'||$Municipioid<>'CARTAGO'||$Municipioid<>'LA TEBAIDA'||$Municipioid<> 'MONTENEGRO'||$Municipioid<>'SANTA ROSA DE CABAL'||$Municipioid<>'LA VIRGINIA'||$Municipioid<>'QUIMBAYA'){
 
-			$Municipioid==""
+			$Municipioid=="";
 		}
 
 
