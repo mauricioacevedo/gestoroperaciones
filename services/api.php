@@ -9504,10 +9504,10 @@ private function getAgentScore($user){
 
 		if($Municipioid==""||$Municipioid=="null"||$Municipioid=="undefined"||$Municipioid<>'PEREIRA'||$Municipioid<>'IBAGUE'||$Municipioid<>'DOSQUEBRADAS'||$Municipioid<>'CARTAGO'||$Municipioid<>'LA TEBAIDA'||$Municipioid<> 'MONTENEGRO'||$Municipioid<>'SANTA ROSA DE CABAL'||$Municipioid<>'LA VIRGINIA'||$Municipioid<>'QUIMBAYA'){
 
-            $Municipioid="nada";
+            $Municipioid="";
         }
 
-		echo var_dump ($Municipioid);
+		//echo var_dump ($Municipioid);
 
 
         $filename = '../tmp/control-threads.txt';
@@ -9612,7 +9612,7 @@ private function getAgentScore($user){
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             //" order by b.$parametroBusqueda2
 			" $parametroOrden ";
-        //echo var_dump($query1);
+        echo var_dump($query1);
 
 
 
