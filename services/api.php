@@ -9502,10 +9502,10 @@ private function getAgentScore($user){
             $TipoPendiente=="TODOS";
         }
 
-		if($Municipioid=="undefined"||$Municipioid=="null"){
+		if($Municipioid==""||$Municipioid=="null"||$Municipioid=="undefined"||$Municipioid<>'PEREIRA'||$Municipioid<>'IBAGUE'||$Municipioid<>'DOSQUEBRADAS'){
 
-			$Municipioid=="";
-		}
+            $Municipioid=="TODOS";
+        }
 
 		echo var_dump ($Municipioid);
 
