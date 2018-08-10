@@ -9486,7 +9486,7 @@ private function getAgentScore($user){
         $username       =   $this->_request['username'];
         $prioridad      =   $this->_request['prioridad'];
         $TipoPendiente  =   $this->_request['TipoPendiente'];
-		$Municipioid	=	$this->_request['iMunicipios'];
+		//$Municipioid	=	$this->_request['iMunicipios'];
 
         //echo var_dump($Municipioid);
 
@@ -9502,10 +9502,10 @@ private function getAgentScore($user){
             $TipoPendiente=="TODOS";
         }
 
-		if($Municipioid==""||$Municipioid=="null"||$Municipioid=="undefined"||$Municipioid=="TODOS"){
+/*		if($Municipioid==""||$Municipioid=="null"||$Municipioid=="undefined"||$Municipioid=="TODOS"){
 
             $Municipioid="MUNICIPIO_ID";
-        }
+        }*/
 
 		//echo var_dump ($Municipioid);
 
@@ -9602,7 +9602,7 @@ private function getAgentScore($user){
             " where b.STATUS='$STATUS'  ".
             " and b.ASESOR ='' ".
 			" and b.FUENTE='OPEN_PEREIRA' ".
-			" and MUNICIPIO_ID = $Municipioid ".
+			//" and MUNICIPIO_ID = $Municipioid ".
             //$tipo_trabajo.
             //$concepto.
             " $Pendiente ".
