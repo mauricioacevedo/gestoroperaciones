@@ -7000,8 +7000,8 @@ private function getAgentScore($user){
             " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
             " AND a.PEDIDO_ID LIKE '$bpedido%' ".
             " order by a.FECHA_ESTADO ";
-        echo "es este";
-		echo $query;
+        //echo "es este";
+		//echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
@@ -7221,7 +7221,7 @@ private function getAgentScore($user){
             " from informe_petec_pendientesm a ".
             " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
             " order by a.FECHA_ESTADO ASC limit 100 offset $page";
-        //echo $query;
+        echo "es este";
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
