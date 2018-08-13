@@ -7193,9 +7193,9 @@ private function getAgentScore($user){
             }else{
                 $concepto=" and a.CONCEPTO_ID='$concepto' ";
             }
-        }else if($concepto!="POBLACIONES"){
-            $concepto=" and a.FUENTE = 'POBLACIONES' ";
-        }else{
+        }else if ($concepto=="8-POBLACIONES"){
+			$concepto=" and a.FUENTE = 'POBLACIONES' ";
+		}else{
 			$concepto="";
 		}
 
