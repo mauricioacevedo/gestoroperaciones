@@ -7193,9 +7193,12 @@ private function getAgentScore($user){
             }else{
                 $concepto=" and a.CONCEPTO_ID='$concepto' ";
             }
+        }else if($concepto!="POBLACIONES"){
+            $concepto=" and a.FUENTE = 'POBLACIONES' ";
         }else{
-            $concepto="";
-        }
+			$concepto="";
+		}
+
 
         //calcular counter
         $query="SELECT count(*) as counter from informe_petec_pendientesm a where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ";
