@@ -19149,7 +19149,7 @@ public function pp(&$var){
 
         else
         {
-            $grupo = "in ('ASIGNACIONES','POBLACIONES','RECONFIGURACION') ";
+            $grupo = "in ('ASIGNACIONES','POBLACIONES','RECONFIGURACION','OPEN_PEREIRA') ";
             $query=	" SELECT * FROM portalbd.gestor_conceptos where GRUPO $grupo ";
         }
 
