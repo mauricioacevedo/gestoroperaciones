@@ -7224,7 +7224,7 @@ private function getAgentScore($user){
             " from informe_petec_pendientesm a ".
             " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
             " order by a.FECHA_ESTADO ASC limit 100 offset $page";
-        //echo $query;
+        echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
