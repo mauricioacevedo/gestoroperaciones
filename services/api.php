@@ -7190,8 +7190,10 @@ private function getAgentScore($user){
         if($concepto!="TODO"){
             if($concepto=="PETEC"){
                 $concepto=" and a.CONCEPTO_ID IN ('PETEC','OKRED') ";
-            }else if ($concepto=="8-POBLACIONES"){
+            }else if ($concepto=="POBLACIONES"){
 				$concepto=" and a.FUENTE = 'POBLACIONES' ";
+			}else if ($concepto=="OPEN_PEREIRA"){
+				$concepto=" and a.FUENTE = 'OPEN_PEREIRA' ";
 			}else{
                 $concepto=" and a.CONCEPTO_ID='$concepto' ";
             }
