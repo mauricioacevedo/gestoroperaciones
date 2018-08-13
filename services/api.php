@@ -7000,7 +7000,8 @@ private function getAgentScore($user){
             " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
             " AND a.PEDIDO_ID LIKE '$bpedido%' ".
             " order by a.FECHA_ESTADO ";
-        echo $query;
+        echo "es este";
+		echo $query;
         $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
         if($r->num_rows > 0){
