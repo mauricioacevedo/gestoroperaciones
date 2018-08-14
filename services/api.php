@@ -9608,7 +9608,7 @@ private function getAgentScore($user){
             $Pendiente = " and b.UEN_CALCULADA = 'B2B' and b.FECHA_CITA >= '$Diasiguiente' $tipo_trabajo ";
         }
 
-		if ($Subpedidoid != "IMPAS"){
+		if ($Subpedidoid == "IMPAS"){
 
 			$Subpedidoid=" and SUBPEDIDO_ID = 'IMPAS' ";
 
