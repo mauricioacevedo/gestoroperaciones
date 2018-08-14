@@ -9504,7 +9504,7 @@ private function getAgentScore($user){
 		$Subpedidoid	=	$this->_request['iSubpedido'];
 		//$Municipioid	=	$this->_request['iMunicipios'];
 
-        echo var_dump($Subpedidoid);
+
 
         $fechaservidor  =   date('Y-m-d');
         $Diasiguiente   =   date('Y-m-d',strtotime($fechaservidor."+ 1 days"));
@@ -9524,6 +9524,7 @@ private function getAgentScore($user){
         }*/
 
 		//echo var_dump ($Municipioid);
+		echo var_dump($Subpedidoid);
 
 
         $filename = '../tmp/control-threads.txt';
