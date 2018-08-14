@@ -1170,8 +1170,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
 
     //DEMEPEDIDO OPEN
-    obj.demePedidoOpen = function (user, concepto, pedido_actual, plaza, username, prioridad, fuente,TipoPendiente) {
-		return $http.get(serviceBase + 'demePedidoOpen?userID=' + user + '&concepto=' + concepto + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&prioridad=' + prioridad + '&fuente=' + fuente + '&TipoPendiente=' + TipoPendiente);
+    obj.demePedidoOpen = function (user, concepto, pedido_actual, plaza, username, prioridad, fuente,TipoPendiente,iSubpedido) {
+		return $http.get(serviceBase + 'demePedidoOpen?userID=' + user + '&concepto=' + concepto + '&pedido_actual=' + pedido_actual + '&plaza=' + plaza + '&username=' + username + '&prioridad=' + prioridad + '&fuente=' + fuente + '&TipoPendiente=' + TipoPendiente + '&iSubpedido' + iSubpedido);
 	};
 
 	// + '&iMunicipios=' + iMunicipios
@@ -16594,6 +16594,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
     $scope.deme_pedidos = [{PEDIDO_ID:" NUEVO "}];
     $scope.agentScore="-1";
     $scope.TipoPendiente="CON AGENDA";
+	$scope.iSubpedido="TODO";
 	//$scope.iMunicipios="TODOS";
     $scope.iplaza="TODOS";
 
@@ -17319,7 +17320,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 		demePedidoButton.className = "btn btn-sm btn-success disabled";
 
 
-        var kami = services.demePedidoOpen($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', 'FENIX_NAL',$scope.TipoPendiente).then(function (data) {
+        var kami = services.demePedidoOpen($rootScope.logedUser.login, $scope.iconcepto, $scope.pedido1, $scope.iplaza.MUNICIPIO_ID, $rootScope.logedUser.name, '', 'FENIX_NAL',$scope.TipoPendiente,$scope.iSubpedido).then(function (data) {
             //console.log($scope.izona);
 
 			//console.log("este es el municipio" + $scope.peds[0].MUNICIPIO_ID);,$scope.iMunicipios
