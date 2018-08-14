@@ -9518,7 +9518,7 @@ private function getAgentScore($user){
             $TipoPendiente=="TODOS";
         }
 
-		if($Subpedidoid==""||$Subpedidoid=="null"||$Subpedidoid=="undefined"||$Subpedidoid<>"IMPAS"||$Subpedidoid<>"ORPLE"||$Subpedidoid=="TODOS"){
+		if($Subpedidoid==""||$Subpedidoid=="null"||$Subpedidoid=="undefined"||$Subpedidoid<>"'IMPAS'"||$Subpedidoid<>"'ORPLE'"||$Subpedidoid=="TODOS"){
 
             $Subpedidoid="MUNICIPIO_ID";
         }
