@@ -6283,10 +6283,19 @@ private function getAgentScore($user){
         $today = date("Y-m-d h:i:s");
 
         if($concepto!="TODO"){
-            $concepto=" AND a.CONCEPTO_ID='$concepto' ";
+			if($concepto=="PETEC"){
+                $concepto=" and a.CONCEPTO_ID IN ('PETEC','OKRED') ";
+            }else if ($concepto=="POBLACIONES"){
+				$concepto=" and a.FUENTE = 'POBLACIONES' ";
+			}else if ($concepto=="OPEN_PEREIRA"){
+				$concepto=" and a.FUENTE = 'OPEN_PEREIRA' ";
+			}else{
+                $concepto=" and a.CONCEPTO_ID='$concepto' ";
+            }
         }else{
             $concepto="";
         }
+
 
         $filename="Pendientes-$login-$today.csv";
 
