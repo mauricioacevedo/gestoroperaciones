@@ -9528,7 +9528,7 @@ private function getAgentScore($user){
             $Municipioid="MUNICIPIO_ID";
         }*/
 
-		//echo var_dump ($Municipioid);
+		echo var_dump ($Subpedidoid);
 
         $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
