@@ -9501,10 +9501,10 @@ private function getAgentScore($user){
         $username       =   $this->_request['username'];
         $prioridad      =   $this->_request['prioridad'];
         $TipoPendiente  =   $this->_request['TipoPendiente'];
-		$Subpedido		=	$this->_request['iSubpedido'];
+		$Subpedidoid	=	$this->_request['iSubpedido'];
 		//$Municipioid	=	$this->_request['iMunicipios'];
 
-        echo var_dump($Subpedido);
+        echo var_dump($Subpedidoid);
 
         $fechaservidor  =   date('Y-m-d');
         $Diasiguiente   =   date('Y-m-d',strtotime($fechaservidor."+ 1 days"));
