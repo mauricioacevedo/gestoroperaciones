@@ -16594,7 +16594,7 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
     $scope.deme_pedidos = [{PEDIDO_ID:" NUEVO "}];
     $scope.agentScore="-1";
     $scope.TipoPendiente="CON AGENDA";
-	$scope.iSubpedido="";
+	$scope.iSubpedido="TODOS";
 	//$scope.iMunicipios="TODOS";
     $scope.iplaza="TODOS";
 
