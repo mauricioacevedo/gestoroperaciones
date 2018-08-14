@@ -9518,7 +9518,7 @@ private function getAgentScore($user){
             $TipoPendiente=="TODOS";
         }
 
-		if($Subpedidoid==""||$Subpedidoid=="null"||$Subpedidoid=="undefined"||$Subpedidoid<>"IMPAS"||$Subpedidoid<>"ORPLE"){
+		if($Subpedidoid==""||$Subpedidoid=="null"||$Subpedidoid=="undefined"||$Subpedidoid=="TODOS"){
 
             $Subpedidoid="TODOS";
         }
