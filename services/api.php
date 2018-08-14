@@ -9501,6 +9501,7 @@ private function getAgentScore($user){
         $username       =   $this->_request['username'];
         $prioridad      =   $this->_request['prioridad'];
         $TipoPendiente  =   $this->_request['TipoPendiente'];
+		$Subpedido		=	$this->_request['iSubpedido'];
 		//$Municipioid	=	$this->_request['iMunicipios'];
 
         //echo var_dump($Municipioid);
