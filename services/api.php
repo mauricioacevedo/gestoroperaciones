@@ -9637,9 +9637,9 @@ private function getAgentScore($user){
 			//" and MUNICIPIO_ID = $Municipioid ".
             //$tipo_trabajo.
             //$concepto.
-            " $Pendiente ".
 			" $Subpedidoid ".
-            //$plaza.
+            " $Pendiente ".
+			//$plaza.
             //$zona2.
             //" and b.CONCEPTO_ID='$concepto' ".
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
