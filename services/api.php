@@ -9518,9 +9518,9 @@ private function getAgentScore($user){
             $TipoPendiente=="TODOS";
         }
 
-		if($Subpedidoid==""||$Subpedidoid=="null"||$Subpedidoid=="undefined"||$Subpedidoid<>'IMPAS'||$Subpedidoid<>'ORPLE'){
+		if($Subpedidoid==""||$Subpedidoid=="null"||$Subpedidoid=="undefined"||$Subpedidoid<>"IMPAS"||$Subpedidoid<>"ORPLE"||$Subpedidoid=="TODOS"){
 
-            $Subpedidoid=="TODOS";
+            $Subpedidoid="MUNICIPIO_ID";
         }
 
 /*		if($Municipioid==""||$Municipioid=="null"||$Municipioid=="undefined"||$Municipioid=="TODOS"){
@@ -9529,8 +9529,6 @@ private function getAgentScore($user){
         }*/
 
 		//echo var_dump ($Municipioid);
-		echo var_dump($Subpedidoid);
-
 
         $filename = '../tmp/control-threads.txt';
         if(file_exists($filename)){
