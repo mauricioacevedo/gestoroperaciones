@@ -9518,9 +9518,9 @@ private function getAgentScore($user){
             $TipoPendiente=="TODOS";
         }
 
-		if($Subpedidoid==""||$Subpedidoid=="null"||$Subpedidoid=="undefined"||$Subpedidoid<>"'IMPAS'"||$Subpedidoid<>"'ORPLE'"||$Subpedidoid=="TODOS"){
+		if($Subpedidoid==""||$Subpedidoid=="null"||$Subpedidoid=="undefined"||$Subpedidoid<>"IMPAS"||$Subpedidoid<>"ORPLE"){
 
-            $Subpedidoid="MUNICIPIO_ID";
+            $Subpedidoid="TODOS";
         }
 
 /*		if($Municipioid==""||$Municipioid=="null"||$Municipioid=="undefined"||$Municipioid=="TODOS"){
@@ -9606,8 +9606,20 @@ private function getAgentScore($user){
        else {
            //echo 'ingreso';
             $Pendiente = " and b.UEN_CALCULADA = 'B2B' and b.FECHA_CITA >= '$Diasiguiente' $tipo_trabajo ";
-
         }
+
+		if ($Subpedidoid != "IMPAS"){
+
+			$Subpedidoid=" and SUBPEDIDO_ID = 'IMPAS' ";
+
+		}else if($Subpedidoid=="ORPLE"){
+
+			$Subpedidoid=" and SUBPEDIDO_ID = 'ORPLE' ";
+
+		}else{
+			$Subpedidoid="";
+		}
+
 
 
         //echo var_dump ($Pendiente);
@@ -9626,6 +9638,7 @@ private function getAgentScore($user){
             //$tipo_trabajo.
             //$concepto.
             " $Pendiente ".
+			" $Subpedidoid".
             //$plaza.
             //$zona2.
             //" and b.CONCEPTO_ID='$concepto' ".
