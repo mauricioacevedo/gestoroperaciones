@@ -9504,7 +9504,7 @@ private function getAgentScore($user){
 		$Subpedido		=	$this->_request['iSubpedido'];
 		//$Municipioid	=	$this->_request['iMunicipios'];
 
-        //echo var_dump($Municipioid);
+        echo var_dump($Subpedido);
 
         $fechaservidor  =   date('Y-m-d');
         $Diasiguiente   =   date('Y-m-d',strtotime($fechaservidor."+ 1 days"));
