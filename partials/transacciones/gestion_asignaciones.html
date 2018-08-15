@@ -9,6 +9,18 @@
                         <div class="col-md-6 col-xs-12">
                             <b><i class="fa fa-bars"></i> DemePedido {{iconcepto.GRUPO}}</b>
 
+
+                             <!--FORMA DE PRODUCTIVIDAD DE ASESORES-->
+                            <div class="col-lg-3 col-xs-3" ng-show="true">
+                                <div>
+                                    <div class="col-md-4" style="background-color:{{getAgentColor(agentScore)}}; color:white;"><font color="white" size="6">{{agentScore}}</font></div>
+                                    <div><img ng-show="getAgentColor(agentScore)=='red'" src="images/exclamation-point.gif" class="img-responsive" alt="Some picture" width="50" height="70"></div>
+                                </div>
+                            </div>
+
+
+
+
                         </div>
                         <!--Botones de herramientas -->
                         <btn-tools class="col-md-6 " ng-show="tools" ng-class="tools==false?'animated bounceOutRight':'animated fadeInUp'"> </btn-tools>
