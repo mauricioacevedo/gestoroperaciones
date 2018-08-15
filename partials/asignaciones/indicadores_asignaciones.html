@@ -1075,19 +1075,42 @@
                                                         <option value="NUEVOS_PRIMERO">NUEVOS_PRIMERO</option>
                                                         <option value="CAMBIOS">CAMBIOS</option>
 															</select>
-															<select class="btn btn-default btn-xs grupo-select" id="sel1"
+															<select class="btn btn-default btn-xs grupo-select" id="demeuser2"
                                                 			ng-model="ordenEntregaPedidoAsesor" style="width:auto;">
                                             					<option value="DESC">DESC</option>
                                             					<option value="ASC">ASC</option>
                                         					</select><button class="btn btn-success btn-xs" title="Guardar" ng-click="updateParametroAsesor('ORDEN_ENTREGA_PEDIDO_ASESOR',ordenEntregaPedidoAsesor);"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
 
 															<button type="button" class="btn btn-default btn-circle-xs"
-                                                				ng-click="buscarParametro('ENTREGA_PEDIDO_ASESOR')" title="Actualizar"
+                                                				ng-click="buscarParametroAsesor('ENTREGA_PEDIDO_ASESOR')" title="Actualizar"
                                                 				data-toggle="tooltip" data-placement="left" ng-disabled="loading">
                                             				<i class="fa fa-refresh" aria-hidden="true"></i>
                                         					</button>
 													</center>
                                                 </td>
+<!--
+                                        <select class="btn btn-default btn-xs grupo-select" id="demeop"
+                                                ng-model="ordenamientoDemepedidoOpenPereira" style="width:auto;">
+                                            <option value="FECHA_ESTADO">FECHA ESTADO</option>
+                                            <option value="NUEVOS_PRIMERO">NUEVOS_PRIMERO</option>
+                                        </select>
+
+                                         <select class="btn btn-default btn-xs grupo-select" id="demeop2"
+                                                ng-model="ordenEntregaPedidoOP" style="width:auto;">
+                                            <option value="DESC">DESC</option>
+                                            <option value="ASC">ASC</option>
+
+                                        <button class="btn btn-success btn-xs" title="Guardar"
+                                                ng-click="updateParametro('ORDEN_ENTREGA_PEDIDO_OP',ordenEntregaPedidoOP);">
+                                            <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+
+                                        <button type="button" class="btn btn-default btn-circle-xs"
+                                                ng-click="buscarParametro('FECHA_ORDEN_DEMEPEDIDO_OPENPEREIRA')"
+                                                title="Actualizar" data-toggle="tooltip" data-placement="left"
+                                                ng-disabled="loading">
+                                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                                        </button>
+-->
                                                 <!--<td><center>{{data.ORDEN}}</center></td>
                                                 <td><center>{{data.ESTADO}}</center></td>-->
 
