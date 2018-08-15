@@ -3789,12 +3789,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		return data.data;
 	});
 
-//---para asesores----//
+/*-- FUNCION PARA ACTUALIZAR LOS PARAMETROS DEL ASESOR --*/
 
-    //$scope.updateParametroAsesor = function (valor){
-
-        //services.updateParametroAsesor ($rootScope.logedUser.login,$scope.valor).then(function(data))
-    //}
 
 
 	$scope.updateParametroAsesor = function (parametro, valor) {
