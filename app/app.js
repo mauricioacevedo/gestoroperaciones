@@ -18578,6 +18578,8 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
     $scope.pedidoIsActive 		= false;
     $scope.imunicipio           = {};
     $scope.listadoMunicipios    =[];
+    $scope.agentScore           ="-1";                       // variable donde se lleva el score total de un asesor por dia!!!
+
 	//var varDondeGuardar 		= '';
 	//var varEstadoGuardar		= '';
 	//var varObsesGuardar			= '';
@@ -18589,6 +18591,17 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
     $scope.changeStatus = function(InfoPedido){
     console.log(InfoPedido);
     }
+
+    $scope.getAgentColor = function(agentScore){
+
+        if(agentScore<80) return "red";
+
+        //if(agentScore<115) return "#f0ad4e";
+        if(agentScore<115) return "orange";
+
+        //return "#5cb85cy";
+        return "green";
+    };
 
     $scope.manual = function () {
 		$scope.peds = {};
@@ -18809,7 +18822,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		services.getLightKPIS().then(function (data) {
 			$rootScope.oldlightkpi = $rootScope.lightkpi;
 			$rootScope.lightkpi = data.data[0];
-
+            $scope.agentScore=data.data[1];
 
 			if ($rootScope.oldlightkpi == "" || $rootScope.oldlightkpi == undefined) {
 				$rootScope.oldlightkpi = $rootScope.lightkpi;
