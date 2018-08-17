@@ -1606,7 +1606,20 @@ private function getAgentScore($user){
 
     $today = date("Y-m-d");
 
-    $sqlScore="SELECT  ".
+        $sqlScore=" select y.user ".
+        "       ,sum( ".
+        "           case  ".
+        "               WHEN y.fuente='SIEBEL' THEN 2 ".
+        "               WHEN y.fuente='FENIX_NAL' THEN 1 ".
+        "           ELSE 0 END) AS AGENTSCORE ".
+        "   from ".
+        "       (select  user,fuente,pedido_id ".
+        "           from pedidos ".
+        "               where fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
+        "                   group by user,pedido_id ) y  ".
+        "       where user = '$user'  ";
+
+/*    $sqlScore="SELECT  ".
         "      sum(  ".
         "                  CASE  ".
         "                   WHEN FUENTE='SIEBEL' THEN 2 ".
@@ -1618,7 +1631,7 @@ private function getAgentScore($user){
         "    SELECT DISTINCT A.PEDIDO_ID ".
         "    ,(SELECT B.FUENTE FROM pedidos B where A.PEDIDO_ID=B.PEDIDO_ID LIMIT 1) AS FUENTE ".
         "    FROM pedidos A where A.FECHA_FIN BETWEEN '$today 00:00:00' AND '$today 23:59:59' ".
-        "    AND A.USER='$user' ) C ";
+        "    AND A.USER='$user' ) C ";*/
 
 
     $r = $this->mysqli->query($sqlScore) or die($this->mysqli->error.__LINE__);
