@@ -18594,13 +18594,14 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     $scope.getAgentColor = function(agentScore){
 
-        if(agentScore<50) return "red";
+        if(agentScore<50){ return "red";
+                          }
 
         //if(agentScore<115) return "#f0ad4e";
-        if(agentScore<100) return "orange";
+        if(agentScore<100){ return "#f0ad4e";}
 
         //return "#5cb85cy";
-        if(agentScore<150) return "green";
+        if(agentScore<150){ return "green";}
     };
 
     $scope.manual = function () {
