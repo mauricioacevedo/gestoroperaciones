@@ -18597,7 +18597,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         if(agentScore < 50) {
             return "red";
         } else if (agentScore < 150) {
-            return "#f0ad4e";
+            return "orange";
         } else {
             return "green";
         }
