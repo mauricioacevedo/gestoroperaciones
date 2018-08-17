@@ -16638,10 +16638,10 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
     $scope.getAgentColor = function(agentScore){
 
-        if(agentScore<80) return "red";
+        if(agentScore<160) return "red";
 
         //if(agentScore<115) return "#f0ad4e";
-        if(agentScore<115) return "orange";
+        if(agentScore<200) return "orange";
 
         //return "#5cb85cy";
         return "green";
