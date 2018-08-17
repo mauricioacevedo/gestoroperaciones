@@ -18600,7 +18600,7 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
         if(agentScore<100) return "orange";
 
         //return "#5cb85cy";
-        return "green";
+        if(agentScore<150) return "green";
     };
 
     $scope.manual = function () {
