@@ -14467,6 +14467,9 @@ private function demePedidoEdatel(){
         $FECHA_FIN='';
         $FECHA_GESTION='';
         $TABLA='';
+        $FECHA_EXPORTE='';
+        $HORA_EXPORTE='';
+        $HORA_GESTION='';
         $today = date("Y-m-d");
 
 
@@ -14591,7 +14594,7 @@ private function demePedidoEdatel(){
 
 
                 $sqldatos="insert into gestor_historico_activacion (FECHA_EXCEPCION,HORA,PEDIDO,PRODUCTO,TRANSACCION,APLICATIVO,OBSERVACION,NUMERO_CR,TIPIFICACION,ASESOR
-,PEDIDO_FENIX,TABLA,FECHA_GESTION,SOURCE,FECHA_INICIO,FECHA_FIN) values ($guardar,'MANUAL','$today','$today'                )";
+,PEDIDO_FENIX,TABLA,FECHA_EXPORTE,HORA_EXPORTE,FECHA_GESTION,HORA_GESTION,SOURCE,FECHA_INICIO,FECHA_FIN) values ($guardar,'MANUAL','$today','$today'                )";
                 //  echo  $sqldatos;
                 $r = $this->mysqli->query($sqldatos) or die($this->mysqli->error.__LINE__);
 
@@ -14615,14 +14618,15 @@ private function demePedidoEdatel(){
             $FECHA_INICIO="";
             $FECHA_FIN="";
             $TABLA="";
+            $FECHA_EXPORTE="";
+            $HORA_EXPORTE="";
             $FECHA_GESTION="";
-
-
+            $HORA_GESTION="";
 
             $table .= "</tr>";
         }
 
-
+        echo var_dump($sqldatos);
 
         $this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
 
