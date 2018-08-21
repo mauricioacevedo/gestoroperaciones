@@ -18594,9 +18594,9 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     $scope.getAgentColor = function(agentScore){
 
-        if(agentScore < 160) {
+        if(agentScore < 50) {
             return "red";
-        } else if (agentScore < 200) {
+        } else if (agentScore < 100) {
             return "orange";
         } else {
             return "green";
