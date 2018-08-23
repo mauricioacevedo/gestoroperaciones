@@ -51,10 +51,13 @@
 							<th>PRODUCTO</th>
                             <th>ASESOR</th>
 							<th>TRANSACCION</th>
-                            <th>FECHA_GESTION</th>
                             <th>DURACION</th>
                             <th>TIPIFICACION</th>
 							<th>TABLA</th>
+                            <th>FECHA_EXPORTE</th>
+                            <th>HORA_EXPORTE</th>
+                            <th>FECHA_GESTION</th>
+                            <th>HORA_GESTION</th>
 						</thead>
 						<tbody>
 							<tr ng-repeat="data in listadoactivacion | filter:filtroInput as results">
@@ -64,10 +67,13 @@
 							<td><span class="small">{{data.PRODUCTO}}</span></td>
                             <td><span class="small">{{data.ASESOR}}</span></td>
 							<td><span class="small">{{data.TRANSACCION}}</span></td>
-                                <td><span class="small">{{data.FECHA_GESTION}}</span></td>
                                 <td><span class="small">{{data.DURACION}}</span></td>
                                 <td><span class="small">{{data.TIPIFICACION}}</span></td>
 								<td><span class="small">{{data.TABLA}}</span></td>
+                                <td><span class="small">{{data.FECHA_EXPORTE}}</span></td>
+                                <td><span class="small">{{data.HORA_EXPORTE}}</span></td>
+                                <td><span class="small">{{data.FECHA_GESTION}}</span></td>
+                                <td><span class="small">{{data.HORA_GESTION}}</span></td>
                             </tr>
                         </tbody>
                     </table>
