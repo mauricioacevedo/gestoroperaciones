@@ -14467,10 +14467,10 @@ private function demePedidoEdatel(){
         $SOURCE='';
         $FECHA_INICIO='';
         $FECHA_FIN='';
-        $FECHA_GESTION='';
         $TABLA='';
         $FECHA_EXPORTE='';
         $HORA_EXPORTE='';
+        $FECHA_GESTION='';
         $HORA_GESTION='';
         $today = date("Y-m-d");
 
