@@ -14625,7 +14625,7 @@ private function demePedidoEdatel(){
             $table .= "</tr>";
         }
 
-        //echo var_dump($sqldatos);
+        echo var_dump($sqldatos);
 
         $this->response(json_encode(array("msg"=>"OK","data" => $today)),200);
 
