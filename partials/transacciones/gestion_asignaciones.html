@@ -3,29 +3,26 @@
         <div class="col-md-12">
             <div class = "panel panel-default">
 
-                <div class = "panel-heading">
+<div class = "panel-heading">
 
                     <div class="row">
                         <div class="col-md-6 col-xs-12">
                             <b><i class="fa fa-bars"></i> DemePedido {{iconcepto.GRUPO}}</b>
 
-
+                            <div class="col-xs-10 col-lg-2"><img ng-show="getAgentColor(agentScore)=='red'" src="images/exclamation-point.gif" class="img-responsive" alt="Some picture" width="40" height="60"></div>
 
                              <!--FORMA DE PRODUCTIVIDAD DE ASESORES-->
 
-                            <div class="col-lg-2 col-xs-3" ng-show="true">
+                            <div class="col-lg-5 col-xs-3" ng-show="true">
 
 <!--                                <div><img ng-show="getAgentColor(agentScore)=='red'" src="images/exclamation-point.gif" class="img-responsive" alt="Some picture" width="40" height="60">
                                 </div>-->
-                                <div class="col-lg-2 col-xs-3" ng-show="true"><h3>Puntos = </h3></div>
                                 <div>
-
-                                    <span class="badge badge-secondary" style="background-color:{{getAgentColor(agentScore)}}; color:white;" disabled="disabled"><font color="white" size="6">{{agentScore}}</font></span>
+                                    <span class="badge badge-secondary" style="background-color:{{getAgentColor(agentScore)}}; color:white;" disabled="disabled"><font color="white" size="6">Puntos{{agentScore}}</font></span>
 
                               </div>
 
                             </div>
-                            <div class="col-xs-10 col-lg-2"><img ng-show="getAgentColor(agentScore)=='red'" src="images/exclamation-point.gif" class="img-responsive" alt="Some picture" width="40" height="60"></div>
 
                         </div>
 
@@ -36,7 +33,6 @@
                     </div>
 
                 </div>
-
 
 
                 <div class = "panel-heading nav navbar-default">
