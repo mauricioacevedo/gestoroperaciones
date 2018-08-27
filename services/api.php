@@ -9419,7 +9419,7 @@ private function getAgentScore($user){
             " b.ZONA, ".
             " case when b.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ALTA' else 'NORMAL' end as PRIORIDAD, 	".
             " b.APROVISIONADOR, ".
-            " b.PEDIDO_CRM ".
+            " b.PEDIDO_CRM, ".
             " b.ESTADO_GIS ".
             " from informe_petec_pendientesm b 	".
             " where b.PEDIDO_ID = '$mypedido' and b.STATUS='$STATUS' $concepto order by b.FECHA_ESTADO asc";
