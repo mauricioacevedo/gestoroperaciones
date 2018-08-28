@@ -814,7 +814,19 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
 	obj.updateParametro = function (parametro, valor, user) {
 
-		return $http.get(serviceBase + 'updateParametro?parametro=' + parametro + '&valor=' + valor + '&user=' + user);
+        var tiempo = new Date().getTime();
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = (date1.getMonth() + 1 <= 9) ? '0' + (date1.getMonth() + 1) : (date1.getMonth() + 1);
+		var day = (date1.getDate() <= 9) ? '0' + date1.getDate() : date1.getDate();
+		var hour = (date1.getHours() <= 9) ? '0' + date1.getHours() : date1.getHours();
+		var minute = (date1.getMinutes() <= 9) ? '0' + date1.getMinutes() : date1.getMinutes();
+		var seconds = (date1.getSeconds() <= 9) ? '0' + date1.getSeconds() : date1.getSeconds();
+
+		tiempo = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+
+		return $http.get(serviceBase + 'updateParametro?parametro=' + parametro + '&valor=' + valor + '&user=' + user + '&time=' + tiempo);
 	};
 
 	obj.buscarParametro = function (parametro) {
