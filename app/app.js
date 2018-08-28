@@ -813,7 +813,18 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 	};
 
 	obj.updateParametro = function (parametro, valor, user) {
-		return $http.get(serviceBase + 'updateParametro?parametro=' + parametro + '&valor=' + valor + '&user=' + user);
+
+        var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+		var tiempo = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+		return $http.get(serviceBase + 'updateParametro?parametro=' + parametro + '&valor=' + valor + '&user=' + user+'&time='+tiempo);
 	};
 
 	obj.buscarParametro = function (parametro) {
