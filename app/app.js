@@ -3737,11 +3737,20 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			}
 
            if (parametro == "ORDEN_ENTREGA_PEDIDO") {
+                $scope.UsuarioParametro = data.data['USUARIO_ID'];
 				$scope.ordenEntregaPedido = data.data['VALOR'];
+                $scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
 			}
 
             if (parametro == "ORDEN_ENTREGA_PEDIDO_R") {
+
 				$scope.ordenEntregaPedidoR = data.data['VALOR'];
+                $scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
+				$scope.ordenamientoDemepedidoReconfiguracion = data.data['VALOR'];
+                $scope.prioridadDemepedidoNuevoR = data.data['VALOR'];
+                //$scope.ordenEntregapedidoR = data.data['ORDEN'];
+				$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
+
 			}
 
             if (parametro == "ORDEN_ENTREGA_PEDIDO_OP") {
