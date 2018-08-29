@@ -7473,7 +7473,7 @@ private function getAgentScore($user){
             " ,my_sec_to_time(timestampdiff(second,fecha_inicio,fecha_fin)) as DURACION ".
             " from gestor_historico_activacion ".
             " where fecha_fin between '$fechaini 00:00:00' ".
-            " and '$fechafin 23:59:59'  order by fecha_fin desc limit 100 offset $page";
+            " and '$fechafin 23:59:59'  order by fecha_fin desc offset $page";
 
 
         //echo $query;
