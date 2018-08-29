@@ -14575,6 +14575,21 @@ private function demePedidoEdatel(){
                     $cellValue1 = gmdate("Y-m-d H:i:s",$timestamp);//fecha formateada+
                     $table .= "<td>";
                 }
+                if($h=="N"){
+                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue1);//fecha larga
+                    $cellValue1 = gmdate("H:i:s",$timestamp);//fecha formateada+
+                    $table .= "<td>";
+                }
+                if($h=="O"){
+                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue1);//fecha larga
+                    $cellValue1 = gmdate("Y-m-d H:i:s",$timestamp);//fecha formateada+
+                    $table .= "<td>";
+                }
+                if($h=="P"){
+                    $timestamp = PHPExcel_Shared_Date::ExcelToPHP($cellValue1);//fecha larga
+                    $cellValue1 = gmdate("H:i:s",$timestamp);//fecha formateada+
+                    $table .= "<td>";
+                }
 
 
                 $table .= "<td>";
