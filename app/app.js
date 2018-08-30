@@ -3607,6 +3607,54 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 
 
+    /*
+    2018-08-29, MAURICIO: SE DESARROLLA UN NUEVO METODO PARA LA ACTUALIZACION DE LAS VARIABLES DE ORDENAMIENTO DE LA PANTALLA DE
+                            INDICADORES YA QUE LA ACTUAL ES CONFUSA..... NO ESTOY SEGURO SI FUE CHECHO, CARLOS
+    */
+
+
+
+    $scope.updateParametrosOrdenamiento = function (proceso){
+
+        var variable1="";
+        var valor1="";
+
+        var variable2="";
+        var valor2="";
+
+        if(proceso=='ASIGNACIONES'){
+            variable1="FECHA_ORDEN_DEMEPEDIDO";
+            valor1=$scope.ordenamientoDemepedidoNuevo;
+
+            variable2="ORDEN_ENTREGA_PEDIDO";
+            valor2=$scope.ordenEntregaPedido;
+
+        }else if(proceso=='RECONFIGURACION'){
+            variable1="FECHA_ORDEN_DEMEPEDIDO";
+            valor1=$scope.ordenamientoDemepedidoNuevo;
+
+            variable2="ORDEN_ENTREGA_PEDIDO";
+            valor2=$scope.ordenEntregaPedido;
+
+        }else if(proceso=='OPEN_PEREIRA'){
+            variable1="FECHA_ORDEN_DEMEPEDIDO";
+            valor1=$scope.ordenamientoDemepedidoNuevo;
+
+            variable2="ORDEN_ENTREGA_PEDIDO";
+            valor2=$scope.ordenEntregaPedido;
+
+        }
+
+        console.log("var1: "+variable1+", valor: "+valor1);
+        console.log("var2: "+variable2+", valor2: "+valor2);
+
+    }
+
+
+
+
+
+
 	/* FUNCION PARA ACTUALIZAR LOS PARAMETROS DEL SISTEMA */
 	$scope.updateParametro = function (parametro, valor) {
 
