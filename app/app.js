@@ -845,7 +845,7 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		tiempo = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
 
-		return $http.get(serviceBase + 'updateParametrosOrdenamiento?variable1=' + variable1 + '&valo1r=' + valor1 +'&variable2='+variable2+'&valor2=' + valor2 + '&user=' + user + '&time=' + tiempo);
+		return $http.get(serviceBase + 'updateParametrosOrdenamiento?variable1=' + variable1 + '&valor1=' + valor1 +'&variable2='+variable2+'&valor2=' + valor2 + '&user=' + user + '&time=' + tiempo);
 	};
 
 
