@@ -8725,6 +8725,7 @@ private function getAgentScore($user){
 
         $variable1 = $this->_request['variable1'];
         $valor1 = $this->_request['valor1'];
+
         $variable2 = $this->_request['variable2'];
         $valor2 = $this->_request['valor2'];
 
@@ -8737,7 +8738,7 @@ private function getAgentScore($user){
             " SET VALOR='$valor1',USUARIO_ID='$user',ULTIMA_ACTUALIZACION='$time' ".
             " where VARIABLE='$variable1'";
 
-        echo "$sql\n";
+        //echo "$sql\n";
 
         $rrr = $this->mysqli->query($sql);
 
@@ -8747,7 +8748,7 @@ private function getAgentScore($user){
 
         $rr = $this->mysqli->query($sql);
 
-        echo "$sql\n";
+        //echo "$sql\n";
 
         // SQL Feed----------------------------------
         $sql_log=   "insert into portalbd.activity_feed ( ".
