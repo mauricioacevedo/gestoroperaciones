@@ -829,6 +829,28 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'updateParametro?parametro=' + parametro + '&valor=' + valor + '&user=' + user + '&time=' + tiempo);
 	};
 
+
+
+    obj.updateParametrosOrdenamiento = function (variable1, valor1,variable2,valor2, user) {
+
+        var tiempo = new Date().getTime();
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = (date1.getMonth() + 1 <= 9) ? '0' + (date1.getMonth() + 1) : (date1.getMonth() + 1);
+		var day = (date1.getDate() <= 9) ? '0' + date1.getDate() : date1.getDate();
+		var hour = (date1.getHours() <= 9) ? '0' + date1.getHours() : date1.getHours();
+		var minute = (date1.getMinutes() <= 9) ? '0' + date1.getMinutes() : date1.getMinutes();
+		var seconds = (date1.getSeconds() <= 9) ? '0' + date1.getSeconds() : date1.getSeconds();
+
+		tiempo = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+
+		return $http.get(serviceBase + 'updateParametrosOrdenamiento?variable1=' + variable1 + '&valo1r=' + valor1 +'&variable2=oñ'+ '&user=' + user + '&time=' + tiempo);
+	};
+
+
+
+
 	obj.buscarParametro = function (parametro) {
 		return $http.get(serviceBase + 'buscarParametro?parametro=' + parametro);
 	};
@@ -3630,23 +3652,40 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
             valor2=$scope.ordenEntregaPedido;
 
         }else if(proceso=='RECONFIGURACION'){
-            variable1="FECHA_ORDEN_DEMEPEDIDO";
-            valor1=$scope.ordenamientoDemepedidoNuevo;
+            variable1="FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION";
+            valor1=$scope.ordenamientoDemepedidoReconfiguracion;
 
-            variable2="ORDEN_ENTREGA_PEDIDO";
-            valor2=$scope.ordenEntregaPedido;
+            variable2="ORDEN_ENTREGA_PEDIDO_R";
+            valor2=$scope.ordenEntregaPedidoR;
 
         }else if(proceso=='OPEN_PEREIRA'){
-            variable1="FECHA_ORDEN_DEMEPEDIDO";
-            valor1=$scope.ordenamientoDemepedidoNuevo;
+            variable1="FECHA_ORDEN_DEMEPEDIDO_OPENPEREIRA";
+            valor1=$scope.ordenamientoDemepedidoOpenPereira;
 
-            variable2="ORDEN_ENTREGA_PEDIDO";
-            valor2=$scope.ordenEntregaPedido;
+            variable2="ORDEN_ENTREGA_PEDIDO_OP";
+            valor2=$scope.ordenEntregaPedidoOP;
 
         }
 
         console.log("var1: "+variable1+", valor: "+valor1);
         console.log("var2: "+variable2+", valor2: "+valor2);
+
+        services.updateParametrosOrdenamiento(variable1, valor1,variable2,valor2, $rootScope.logedUser.login).then(function (data) {
+
+            /*var date1 = new Date();
+			var year = date1.getFullYear();
+			var month = $scope.doubleDigit(date1.getMonth() + 1);
+			var day = $scope.doubleDigit(date1.getDate());
+			var hour = $scope.doubleDigit(date1.getHours());
+			var minute = $scope.doubleDigit(date1.getMinutes());
+			var seconds = $scope.doubleDigit(date1.getSeconds());
+			$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+            */
+
+			$scope.buscarParametro(parametro);
+			return data.data;
+		});
+
 
     }
 

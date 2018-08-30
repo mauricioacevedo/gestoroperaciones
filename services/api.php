@@ -8705,6 +8705,80 @@ private function getAgentScore($user){
 
     }
 
+
+
+    public function updateParametrosOrdenamiento(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+
+        //echo var_dump(get_request_method);
+
+        $variable1 = $this->_request['variable1'];
+        $valor1 = $this->_request['valor1'];
+        $variable2 = $this->_request['variable2'];
+        $valor2 = $this->_request['valor2'];
+
+
+        $user = $this->_request['user'];
+        $time = $this->_request['time'];
+
+
+        $sql="UPDATE gestor_parametros ".
+            " SET VALOR='$valor1',USUARIO_ID='$user',ULTIMA_ACTUALIZACION='$time' ".
+            " where VARIABLE='$variable1'";
+
+        $rr = $this->mysqli->query($sql);
+
+        $sql="UPDATE gestor_parametros ".
+            " SET VALOR='$valor2',USUARIO_ID='$user',ULTIMA_ACTUALIZACION='$time' ".
+            " where VARIABLE='$variable2'";
+
+        $rr = $this->mysqli->query($sql);
+
+
+
+        // SQL Feed----------------------------------
+        $sql_log=   "insert into portalbd.activity_feed ( ".
+            " USER ".
+            ", USER_NAME ".
+            ", GRUPO ".
+            ", STATUS ".
+            ", PEDIDO_OFERTA ".
+            ", ACCION ".
+            ", CONCEPTO_ID ".
+            ", IP_HOST ".
+            ", CP_HOST ".
+            ") values( ".
+            " UPPER('$usuarioGalleta')".
+            ", UPPER('$nombreGalleta')".
+            ", UPPER('$grupoGalleta')".
+            ",'$valor1-$valor2' ".
+            ",'SIN PEDIDO' ".
+            ",'ACTUALIZO PARAMETRO' ".
+            ",'$variable1-$variable2' ".
+            ",'$usuarioIp' ".
+            ",'$usuarioPc')";
+
+        $rlog = $this->mysqli->query($sql_log);
+        // ---------------------------------- SQL Feed
+        //$sqlfeed="insert into activity_feed(user,user_name, grupo,status,pedido_oferta,accion,concepto_id) values ('$user','$username','ADMIN','','','UPDATEPARAMETRO','$param:$value') ";
+        //$rr = $this->mysqli->query($sqlfeed) or die($this->mysqli->error.__LINE__);
+
+        $this->response(json_encode(array("OK","PARAMETRO ACTUALIZADO")), 200);
+
+    }
+
+
     private function buscarParametroFechaDemePedido($param){
 
         $sql="SELECT * FROM gestor_parametros ".
