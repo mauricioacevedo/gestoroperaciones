@@ -8737,7 +8737,9 @@ private function getAgentScore($user){
             " SET VALOR='$valor1',USUARIO_ID='$user',ULTIMA_ACTUALIZACION='$time' ".
             " where VARIABLE='$variable1'";
 
-        $rr = $this->mysqli->query($sql);
+        echo "$sql\n";
+
+        $rrr = $this->mysqli->query($sql);
 
         $sql="UPDATE gestor_parametros ".
             " SET VALOR='$valor2',USUARIO_ID='$user',ULTIMA_ACTUALIZACION='$time' ".
@@ -8745,7 +8747,7 @@ private function getAgentScore($user){
 
         $rr = $this->mysqli->query($sql);
 
-
+        echo "$sql\n";
 
         // SQL Feed----------------------------------
         $sql_log=   "insert into portalbd.activity_feed ( ".
