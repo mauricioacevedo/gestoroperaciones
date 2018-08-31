@@ -3919,7 +3919,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         //lo entrega bien
         //console.log($scope.ordenEntregaPedido);
 		return data.data;
-	});*/
+	});
 
 	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION').then(function (data) {
 
@@ -3943,6 +3943,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		$scope.UsuarioParametroOpenPereira = data.data['USUARIO_ID'];
 		return data.data;
 	});
+*/
+
 
 /*-- FUNCION PARA ACTUALIZAR LOS PARAMETROS DEL ASESOR --*/
 
