@@ -848,7 +848,9 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'updateParametrosOrdenamiento?variable1=' + variable1 + '&valor1=' + valor1 +'&variable2='+variable2+'&valor2=' + valor2 + '&user=' + user + '&time=' + tiempo);
 	};
 
-
+    obj.buscarParametrosOrdenamiento = function(proceso){
+        return $http.get(serviceBase + 'buscarParametrosOrdenamiento?proceso=' + proceso);
+    }
 
 
 	obj.buscarParametro = function (parametro) {
@@ -3632,6 +3634,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
     /*
     2018-08-29, MAURICIO: SE DESARROLLA UN NUEVO METODO PARA LA ACTUALIZACION DE LAS VARIABLES DE ORDENAMIENTO DE LA PANTALLA DE
                             INDICADORES YA QUE LA ACTUAL ES CONFUSA..... NO ESTOY SEGURO SI FUE CHECHO, CARLOS
+
+    2018-08-31, MAURICIO: FUNCIONA MELO!!
     */
 
 
@@ -3667,8 +3671,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
         }
 
-        console.log("var1: "+variable1+", valor: "+valor1);
-        console.log("var2: "+variable2+", valor2: "+valor2);
+        //console.log("var1: "+variable1+", valor: "+valor1);
+        //console.log("var2: "+variable2+", valor2: "+valor2);
 
         services.updateParametrosOrdenamiento(variable1, valor1,variable2,valor2, $rootScope.logedUser.login).then(function (data) {
 
@@ -3682,7 +3686,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
             */
 
-			$scope.buscarParametro(parametro);
+			//$scope.buscarParametro(parametro);
+            $scope.buscarParametrosOrdenamiento(proceso);
 			return data.data;
 		});
 
@@ -3799,6 +3804,42 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
     };
 
 
+    $scope.buscarParametrosOrdenamiento = function (proceso) {
+
+        services.buscarParametrosOrdenamiento(proceso).then(function (data) {
+
+			if (proceso == "ASIGNACIONES") {
+                $scope.UsuarioParametro = data.data['USUARIO_ID'];
+                $scope.ordenamientoDemepedidoNuevo = data.data['FECHA_ORDEN_DEMEPEDIDO'];
+                $scope.ordenEntregaPedido = data.data['ORDEN_ENTREGA_PEDIDO'];
+                $scope.ordenamientoDemepedidoUpdate = data.data['ULTIMA_ACTUALIZACION'];
+            }
+
+			if (proceso == "RECONFIGURACION") {
+				$scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
+				$scope.ordenamientoDemepedidoReconfiguracion = data.data['FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION'];
+                $scope.ordenEntregaPedidoR = data.data['ORDEN_ENTREGA_PEDIDO_R'];
+                //$scope.ordenEntregapedidoR = data.data['ORDEN'];
+				$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
+			}
+
+            if (proceso == "OPEN_PEREIRA") {
+				$scope.UsuarioParametroOpenPereira = data.data['USUARIO_ID'];
+				$scope.ordenamientoDemepedidoOpenPereira = data.data['FECHA_ORDEN_DEMEPEDIDO_OPENPEREIRA'];
+                $scope.ordenEntregaPedidoOP = data.data['ORDEN_ENTREGA_PEDIDO_OP'];
+
+				$scope.ordenamientoDemepedidoUpdateOpenPereira = data.data['ULTIMA_ACTUALIZACION'];
+			}
+
+			return data.data;
+		});
+
+
+
+
+    }
+
+
 	$scope.buscarParametro = function (parametro) {
 
 		services.buscarParametro(parametro).then(function (data) {
@@ -3849,8 +3890,15 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 	};
 
+
 	//para inicializar la variable ordenamientoDemepedido
-	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO').then(function (data) {
+
+    $scope.buscarParametrosOrdenamiento('ASIGNACIONES');
+    $scope.buscarParametrosOrdenamiento('RECONFIGURACION');
+    $scope.buscarParametrosOrdenamiento('OPEN_PEREIRA');
+
+    /*
+    services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO').then(function (data) {
 
 		$scope.ordenamientoDemepedido = data.data['VALOR'];
 		$scope.ordenamientoDemepedidoNuevo = data.data['VALOR'];
@@ -3897,6 +3945,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		$scope.UsuarioParametroOpenPereira = data.data['USUARIO_ID'];
 		return data.data;
 	});
+*/
+
 
 /*-- FUNCION PARA ACTUALIZAR LOS PARAMETROS DEL ASESOR --*/
 
