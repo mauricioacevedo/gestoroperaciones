@@ -3458,7 +3458,12 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 	};
 
+    // validacion de permisos de usuarios//
+/*    $scope.alarma = function (){
 
+        if (logedUser = 'DEMO' )
+            return alert("Sin permiso");
+    }*/
 
 	$scope.doubleDigit = function (num) {
 
