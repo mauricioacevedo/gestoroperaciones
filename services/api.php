@@ -8705,7 +8705,63 @@ private function getAgentScore($user){
 
     }
 
+    public function buscarParametrosOrdenamiento(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
 
+        //echo var_dump(get_request_method);
+
+        $proceso = $this->_request['proceso'];
+
+
+
+
+
+         if($proceso=='ASIGNACIONES'){
+            $variable1="FECHA_ORDEN_DEMEPEDIDO";
+            $variable2="ORDEN_ENTREGA_PEDIDO";
+
+        }else if($proceso=='RECONFIGURACION'){
+            $variable1="FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION";
+            $variable2="ORDEN_ENTREGA_PEDIDO_R";
+
+        }else if($proceso=='OPEN_PEREIRA'){
+            $variable1="FECHA_ORDEN_DEMEPEDIDO_OPENPEREIRA";
+            $variable2="ORDEN_ENTREGA_PEDIDO_OP";
+        }
+
+
+        $sql="SELECT ".
+             "MAX(CASE WHEN VARIABLE='$variable1' THEN VALOR END) AS $variable1 ".
+             ",MAX(CASE WHEN VARIABLE='$variable2' THEN VALOR END ) AS $variable2 ".
+             ",MAX(ULTIMA_ACTUALIZACION) AS ULTIMA_ACTUALIZACION ".
+             ",MAX(USUARIO_ID) AS USUARIO_ID ".
+             " FROM portalbd.gestor_parametros ".
+             " where VARIABLE IN ('$variable1','$variable2')";
+
+        $rr = $this->mysqli->query($sql);
+        if($rr->num_rows > 0){
+            if($row = $rr->fetch_assoc()){
+
+                $this->response(json_encode($row), 200);
+                return;
+                //return $row['VALOR'];
+            }
+        }else{
+            //return "SYSTEM PANIC";
+        }
+        $this->response(json_encode(array("SOMETHING WRONG HAPPENED!!")), 200);
+    }
 
     public function updateParametrosOrdenamiento(){
         if($this->get_request_method() != "GET"){
