@@ -3902,9 +3902,9 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 
 
-	$scope.updateParametroAsesor = function (parametro, valor) {
+	$scope.updateParametroAsesor = function (parametro, valor, USUARIO) {
 
-		services.updateParametroAsesor(parametro, valor, $rootScope.logedUser.login).then(function (data) {
+		services.updateParametroAsesor(parametro, valor, USUARIO, $rootScope.logedUser.login).then(function (data) {
 			var date1 = new Date();
 			var year = date1.getFullYear();
 			var month = $scope.doubleDigit(date1.getMonth() + 1);
@@ -3916,6 +3916,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 			if (parametro == "ENTREGA_PEDIDO_ASESOR") {
 				$scope.ordenamientoDemepedidoAsesor = valor;
+                $scope.LoginAsesor = USUARIO;
 			}
 
            if (parametro == "ORDEN_ENTREGA_PEDIDO_ASESOR") {
@@ -3930,7 +3931,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
             {
 				parametro = 'ENTREGA_PEDIDO_ASESOR';
                 valor = $scope.ordenamientoDemepedidoAsesor;
-				services.updateParametro(parametro, valor, $rootScope.logedUser.login).then(function (data) {
+                valor = $scope.LoginAsesor;
+				services.updateParametro(parametro, valor, USUARIO, $rootScope.logedUser.login).then(function (data) {
                 var date1 = new Date();
 				var year = date1.getFullYear();
 				var month = $scope.doubleDigit(date1.getMonth() + 1);
@@ -3953,6 +3955,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		services.buscarParametroAsesor(parametro).then(function (data) {
 
 			if (parametro == "ENTREGA_PEDIDO_ASESOR") {
+                $scope.LoginAsesor= data.data['USUARIO'];
                 $scope.UsuarioParametroAsesor = data.data['USUARIO_ID'];
                 $scope.ordenamientoDemepedidoAsesor = data.data['VALOR'];
                 $scope.ordenamientoDemepedidoUpdateAsesor = data.data['ULTIMA_ACTUALIZACION'];
@@ -3973,6 +3976,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		$scope.ordenamientoDemepedidoAsesor = data.data['VALOR'];
 		$scope.ordenamientoDemepedidoUpdateAsesor = data.data['ULTIMA_ACTUALIZACION'];
 		$scope.UsuarioParametroAsesor = data.data['USUARIO_ID'];
+        $scope.LoginAsesor= data.data['USUARIO'];
 		return data.data;
 	});
 

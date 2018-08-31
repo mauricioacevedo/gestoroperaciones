@@ -1079,7 +1079,7 @@
 										</thead>
 										<tbody>
 											<tr ng-repeat="data in listaUsuarios">
-											    <td><center>{{data.USUARIO_ID}}</center></td>
+											    <td id="demeuser3" ng-model="LoginAsesor">{{data.USUARIO_ID}} ><center>{{data.USUARIO_ID}}</center></td>
 											   	<td><center>{{data.GRUPO}}</center></td>
 											   	<td><center><select class="btn btn-default btn-xs grupo-select ng-pristine ng-valid ng-touched" id="demeuser" ng-model="ordenamientoDemepedidoAsesor" style="width:auto;">
 													<!--editainfo.ParametroIndividual-->

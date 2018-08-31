@@ -16107,7 +16107,8 @@ public function pp(&$var){
         //echo var_dump(get_request_method);
 
         $value = $this->_request['valor'];
-        $user = $this->_request['user'];
+        $user = $this->_request['USUARIO'];
+        $parametro = $this->_request['parametro'];
 
 
         $sql="UPDATE tbl_usuarios ".
