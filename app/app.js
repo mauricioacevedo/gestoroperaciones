@@ -3684,7 +3684,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
             */
 
-			$scope.buscarParametro(parametro);
+			//$scope.buscarParametro(parametro);
+            $scope.buscarParametrosOrdenamiento(proceso);
 			return data.data;
 		});
 
@@ -3815,14 +3816,16 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 			if (proceso == "RECONFIGURACION") {
 				$scope.UsuarioParametroReconfiguracion = data.data['USUARIO_ID'];
 				$scope.ordenamientoDemepedidoReconfiguracion = data.data['FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION'];
-                $scope.prioridadDemepedidoNuevoR = data.data['ORDEN_ENTREGA_PEDIDO_R'];
+                $scope.ordenEntregaPedidoR = data.data['ORDEN_ENTREGA_PEDIDO_R'];
                 //$scope.ordenEntregapedidoR = data.data['ORDEN'];
 				$scope.ordenamientoDemepedidoUpdateReconfiguracion = data.data['ULTIMA_ACTUALIZACION'];
 			}
 
             if (proceso == "OPEN_PEREIRA") {
 				$scope.UsuarioParametroOpenPereira = data.data['USUARIO_ID'];
-				$scope.ordenamientoDemepedidoOpenPereira = data.data['VALOR'];
+				$scope.ordenamientoDemepedidoOpenPereira = data.data['FECHA_ORDEN_DEMEPEDIDO_OPENPEREIRA'];
+                $scope.ordenEntregaPedidoOP = data.data['ORDEN_ENTREGA_PEDIDO_OP'];
+
 				$scope.ordenamientoDemepedidoUpdateOpenPereira = data.data['ULTIMA_ACTUALIZACION'];
 			}
 
@@ -3885,8 +3888,15 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 	};
 
+
 	//para inicializar la variable ordenamientoDemepedido
-	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO').then(function (data) {
+
+    $scope.buscarParametrosOrdenamiento('ASIGNACIONES');
+    $scope.buscarParametrosOrdenamiento('RECONFIGURACION');
+    $scope.buscarParametrosOrdenamiento('OPEN_PEREIRA');
+
+    /*
+    services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO').then(function (data) {
 
 		$scope.ordenamientoDemepedido = data.data['VALOR'];
 		$scope.ordenamientoDemepedidoNuevo = data.data['VALOR'];
@@ -3909,7 +3919,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         //lo entrega bien
         //console.log($scope.ordenEntregaPedido);
 		return data.data;
-	});
+	});*/
 
 	services.buscarParametro('FECHA_ORDEN_DEMEPEDIDO_RECONFIGURACION').then(function (data) {
 
