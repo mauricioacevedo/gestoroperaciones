@@ -9,7 +9,7 @@
                         <div class="col-md-6 col-xs-12">
                             <b><i class="fa fa-bars"></i> DemePedido {{iconcepto.GRUPO}}</b>
 
-                            <div class="col-xs-10 col-lg-2"><img ng-show="getAgentColor(agentScore)=='red'" src="images/exclamation-point.gif" class="img-responsive" alt="Some picture" width="40" height="60"></div>
+                            <!--<div class="col-xs-10 col-lg-2"><img ng-show="getAgentColor(agentScore)=='red'" src="images/exclamation-point.gif" class="img-responsive" alt="Some picture" width="40" height="60"></div>-->
 
                              <!--FORMA DE PRODUCTIVIDAD DE ASESORES-->
 
@@ -17,7 +17,7 @@
 
 <!--                                <div><img ng-show="getAgentColor(agentScore)=='red'" src="images/exclamation-point.gif" class="img-responsive" alt="Some picture" width="40" height="60">
                                 </div>-->
-                                   <span class="badge badge-secondary" style="background-color:{{getAgentColor(agentScore)}}; color:white;" disabled="disabled"><font color="white" size="6">Puntos {{agentScore}}</font></span>
+                                   <span class="badge badge-secondary" style="background-color:{{getAgentColor(agentScore)}}; color:white;" disabled="disabled"><font color="gray" size="6">Puntos {{agentScore}}</font></span>
 
 
                             </div>
@@ -771,6 +771,7 @@
             <div class="modal-footer">
                 <span class="pull-left">Pedidos: <span class="label label-success">{{pedidosUnicos || 0}}</span></span>&nbsp; &nbsp;
                 <span class="pull-left">Transacciones: <span class="label label-success">{{pedis.length || 0}}</span></span>
+                <span class="pull-left">Puntos: <span class="label label-success" style="background-color:{{getAgentColor(agentScore)}}; color:white;"><font color="gray" size="6">{{agentScore}}</font></span></span>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
