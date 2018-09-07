@@ -3413,7 +3413,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 
 	var userID = $cookieStore.get('logedUser').login;
-    console.log($rootScope.logedUser);
+    console.log( $cookieStore.get('logedUser'));
     console.log(userID);
 	$rootScope.logedUser = $cookieStore.get('logedUser');
 	document.getElementById('logout').className = "btn btn-md btn-danger";
@@ -3458,13 +3458,9 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		//$state.go('login', null, {reload: true});
 
 	};
+/*    $scope.PermisoUsuario = function ($cookieStore.get('logedUser')) {
 
-    // validacion de permisos de usuarios//
-/*    $scope.alarma = function (){
-
-        if (logedUser = 'DEMO' )
-            return alert("Sin permiso");
-    }*/
+    };*/
 
 	$scope.doubleDigit = function (num) {
 
