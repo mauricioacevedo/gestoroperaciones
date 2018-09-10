@@ -7330,7 +7330,7 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 	$rootScope.iconcepto = "TODO";
 	$rootScope.actualView = "georreferencia";
 
-    $scope.mpedido={};
+    //$scope.mpedido={};
 
 
 
