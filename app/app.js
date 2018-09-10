@@ -1296,6 +1296,12 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return data;
 	};
 
+
+
+    obj.inicioPedidoManual = function(user,fecha_inicio,pantalla){
+		return $http.get(serviceBase + 'inicioPedidoManual?asesor=' + user + '&pantalla='+pantalla + '&fecha_inicio='+fecha_inicio);
+    };
+
 	obj.getCustomer = function (customerID) {
 		return $http.get(serviceBase + 'customer?id=' + customerID);
 	};
@@ -6742,6 +6748,24 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 	$scope.nuevoRegistroNCA = function () {
 		$rootScope.transaccion = {};
 		$rootScope.transaccion.ID = '';
+
+
+        $scope.timeInit = new Date().getTime();
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+
+        services.inicioPedidoManual($rootScope.logedUser.login,$scope.fecha_inicio,'ASIGNACIONES SIEBEL MANUAL').then(function (status) {
+	       return status;
+        });
+
 		$location.path('/nca/transaccion');
 	};
 
@@ -7331,6 +7355,10 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 	$rootScope.iconcepto = "TODO";
 	$rootScope.actualView = "georreferencia";
 
+    //$scope.mpedido={};
+
+
+
     $scope.doubleDigit = function (num) {
 
 		if (num < 0) {
@@ -7357,6 +7385,33 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 		$location.path('/');
 	};
 
+
+    $scope.manual = function () {
+		$scope.peds = {};
+		$scope.error = "";
+		$scope.pedido1 = "";
+		$scope.mpedido = {};
+		$scope.bpedido = '';
+		$scope.busy = "";
+		$scope.historico_pedido = [];
+		$scope.mpedido.active = 1;
+		$scope.mpedido.fuente = 'POBLACIONES';
+
+        $scope.timeInit = new Date().getTime();
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+        services.inicioPedidoManual($rootScope.logedUser.login,$scope.fecha_inicio,'POBLACIONES MANUAL').then(function (status) {
+	       return status;
+        });
+	};
 
 
     $scope.saveTransaccionGeo = function (transaccion) {
@@ -17145,6 +17200,9 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
+        services.inicioPedidoManual($rootScope.logedUser.login,$scope.fecha_inicio,'OPEN_PEREIRA MANUAL').then(function (status) {
+	       return status;
+        });
 	};
 
 	$scope.validaMunicipio = function (index) {
@@ -18800,6 +18858,11 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
 		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+
+        services.inicioPedidoManual($rootScope.logedUser.login,$scope.fecha_inicio,'ASIGNACIONES MANUAL').then(function (status) {
+			return status;
+		});
 
 	};
 

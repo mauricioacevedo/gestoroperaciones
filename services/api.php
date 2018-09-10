@@ -1472,6 +1472,9 @@ class API extends REST {
 
         $user=$pedido1['user'];
 
+
+        $this->terminarPedidoManualPrivate($user);
+
         if ($concepto=="CERRADO" && $estado == "GESTIONADO"){
                 $sqlCerrarManuales = "update informe_petec_pendientesm set STATUS = 'CERRADO_PETEC' where PEDIDO_ID = '$pedidoid' ".
                 " and STATUS = 'PENDI_PETEC' ";
@@ -1599,6 +1602,130 @@ class API extends REST {
 
     }
 //-------------------------------------fin insertar pedido ---------asignacion------
+
+
+
+private function inicioPedidoManual(){
+            if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+        $login = $this->_request['asesor'];
+        $pantalla = $this->_request['pantalla'];
+        $fecha_inicio = $this->_request['fecha_inicio'];
+
+        //termino cualquier instancia de pedido manual que exista....
+        $this->terminarPedidoManualPrivate($login);
+
+        $today = date("Y-m-d h:i:s");
+        //$filename="Fenix_Agendamiento-$login-$today.csv";
+
+        $query=" insert into gestor_gestion_pedidos_manuales(asesor,pantalla,fecha_inicio) values ('$login','$pantalla','$fecha_inicio')";
+
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+
+        $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'SIN PEDIDO' ".
+                ",'INICIO PEDIDO' ".
+                ",'MANUAL' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
+
+
+
+        $this->response(json_encode(array("msg"=>"OK")),200);
+
+}
+
+private function terminarPedidoManual(){
+            if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+        $login = $this->_request['asesor'];
+
+
+        $today = date("Y-m-d h:i:s");
+        //$filename="Fenix_Agendamiento-$login-$today.csv";
+
+        $query=" delete from gestor_gestion_pedidos_manuales where asesor= '$login' ";
+
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+
+        $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'SIN PEDIDO' ".
+                ",'TERMINAR PEDIDO' ".
+                ",'MANUAL' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
+
+
+
+        $this->response(json_encode(array("msg"=>"OK")),200);
+
+}
+
+private function terminarPedidoManualPrivate($login){
+
+        $query=" delete from gestor_gestion_pedidos_manuales where asesor= '$login' ";
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+
+        return 'OK';
+
+}
+
+
 
 //-------------insertar pedido reconfiguracion---------------asignacion------------
 
@@ -8937,6 +9064,7 @@ private function getAgentScore($user){
         //echo var_dump ($zona);
         //echo var_dump ($plaza);
 
+        $this->terminarPedidoManualPrivate($user);
 
 
         //echo var_dump($plaza);
@@ -9367,7 +9495,7 @@ private function getAgentScore($user){
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             " order by b.$parametroBusqueda2 $parametroOrden ";
             //echo var_dump ($concepto);
-            //echo var_dump ($query1);
+            //echo var_dump ($query1  );
 
         //echo "ingreso 3: $query1";
 
@@ -9656,6 +9784,7 @@ private function getAgentScore($user){
 		$Subpedidoid	=	$this->_request['iSubpedido'];
 		//$Municipioid	=	$this->_request['iMunicipios'];
 
+        $this->terminarPedidoManualPrivate($user);
 
 
         $fechaservidor  =   date('Y-m-d');
@@ -10041,6 +10170,9 @@ private function demePedidoEdatel(){
         $prioridad      =   $this->_request['prioridad'];
 
         //echo "concepto: $concepto, plaza: $localidad\n\n";
+
+
+        $this->terminarPedidoManualPrivate($user);
 
         if($localidad=="TODOS"){
             $localidad="";
@@ -18887,17 +19019,24 @@ public function pp(&$var){
 
         $today = date("Y-m-d");
 
-        $query=	"SELECT DISTINCT ASESOR, ".
-                 " GRUPO, CONCEPTO_ID as CONCEPTO, ".
-                 " date_format(FECHA_INGRESO,'%Y-%m-%d') AS FECHA_INGRESO, ".
-                 " CAST(TIMEDIFF(now(),FECHA_ESTADO) AS CHAR (255)) AS ANSPEDIDO ".
-                 " FROM ".
-                 " informe_petec_pendientesm ".
-                 " WHERE ".
-                 " ASESOR NOT IN ('') ".
-                 " AND STATUS in ('PENDI_PETEC','MALO')".
-                 " group by ASESOR ".
-                 " ORDER BY ANSPEDIDO DESC ";
+        $query=	"SELECT X.* FROM (SELECT DISTINCT ASESOR, ".
+                " GRUPO, CONCEPTO_ID as CONCEPTO, ".
+                " date_format(FECHA_INGRESO,'%Y-%m-%d') AS FECHA_INGRESO, ".
+                " CAST(TIMEDIFF(now(),FECHA_ESTADO) AS CHAR (255)) AS ANSPEDIDO ".
+                " FROM ".
+                " informe_petec_pendientesm ".
+                " WHERE ".
+                " ASESOR NOT IN ('') ".
+                " AND STATUS in ('PENDI_PETEC','MALO') ".
+                " group by ASESOR ".
+                //" ORDER BY ANSPEDIDO DESC ".
+                " UNION ".
+                " select A.ASESOR ".
+                " , (SELECT B.GRUPO FROM portalbd.tbl_usuarios B WHERE A.ASESOR=B.USUARIO_ID) AS GRUPO ".
+                " , A.PANTALLA AS CONCEPTO ".
+                " ,DATE_FORMAT(FECHA_INICIO,'%Y-%m-%d') as FECHA_INGRESO ".
+                " , 'N/A' AS ANSPEDIDO ".
+                " from gestor_gestion_pedidos_manuales A ) X ORDER BY X.ANSPEDIDO DESC";
 
         //echo var_dump($query);
 
@@ -20982,6 +21121,8 @@ public function pp(&$var){
         //echo var_dump ($motivoMalIngreso);
 
 
+
+        $this->terminarPedidoManualPrivate($usuario);
 
         //echo var_dump($malingreso);
         //echo var_dump ($gestion);
