@@ -7330,6 +7330,8 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 	$rootScope.iconcepto = "TODO";
 	$rootScope.actualView = "georreferencia";
 
+    $scope.mpedido.active=0;
+
     $scope.doubleDigit = function (num) {
 
 		if (num < 0) {
@@ -17144,6 +17146,9 @@ app.controller('AsignacionesCtrl', function ($scope, $rootScope, $location, $rou
 
 		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
+        services.inicioPedidoManual($rootScope.logedUser.login,$scope.fecha_inicio,'OPEN_PEREIRA MANUAL').then(function (status) {
+	       return status;
+        });
 	};
 
 	$scope.validaMunicipio = function (index) {
