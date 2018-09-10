@@ -6741,6 +6741,24 @@ app.controller('NCACtrl', function ($scope, $rootScope, $location, $routeParams,
 	$scope.nuevoRegistroNCA = function () {
 		$rootScope.transaccion = {};
 		$rootScope.transaccion.ID = '';
+
+
+        $scope.timeInit = new Date().getTime();
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+
+        services.inicioPedidoManual($rootScope.logedUser.login,$scope.fecha_inicio,'ASIGNACIONES SIEBEL MANUAL').then(function (status) {
+	       return status;
+        });
+
 		$location.path('/nca/transaccion');
 	};
 

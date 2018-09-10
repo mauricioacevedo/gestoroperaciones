@@ -1472,6 +1472,9 @@ class API extends REST {
 
         $user=$pedido1['user'];
 
+
+        $this->terminarPedidoManualPrivate($user);
+
         if ($concepto=="CERRADO" && $estado == "GESTIONADO"){
                 $sqlCerrarManuales = "update informe_petec_pendientesm set STATUS = 'CERRADO_PETEC' where PEDIDO_ID = '$pedidoid' ".
                 " and STATUS = 'PENDI_PETEC' ";
@@ -9061,6 +9064,7 @@ private function getAgentScore($user){
         //echo var_dump ($zona);
         //echo var_dump ($plaza);
 
+        $this->terminarPedidoManualPrivate($user);
 
 
         //echo var_dump($plaza);
@@ -9491,7 +9495,7 @@ private function getAgentScore($user){
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             " order by b.$parametroBusqueda2 $parametroOrden ";
             //echo var_dump ($concepto);
-            //echo var_dump ($query1);
+            //echo var_dump ($query1  );
 
         //echo "ingreso 3: $query1";
 
@@ -9780,6 +9784,7 @@ private function getAgentScore($user){
 		$Subpedidoid	=	$this->_request['iSubpedido'];
 		//$Municipioid	=	$this->_request['iMunicipios'];
 
+        $this->terminarPedidoManualPrivate($user);
 
 
         $fechaservidor  =   date('Y-m-d');
@@ -10165,6 +10170,9 @@ private function demePedidoEdatel(){
         $prioridad      =   $this->_request['prioridad'];
 
         //echo "concepto: $concepto, plaza: $localidad\n\n";
+
+
+        $this->terminarPedidoManualPrivate($user);
 
         if($localidad=="TODOS"){
             $localidad="";
@@ -19019,7 +19027,7 @@ public function pp(&$var){
                 " informe_petec_pendientesm ".
                 " WHERE ".
                 " ASESOR NOT IN ('') ".
-                " AND STATUS in ('PENDI_PETEC','MALO')".
+                " AND STATUS in ('PENDI_PETEC','MALO') ".
                 " group by ASESOR ".
                 //" ORDER BY ANSPEDIDO DESC ".
                 " UNION ".
@@ -21113,6 +21121,8 @@ public function pp(&$var){
         //echo var_dump ($motivoMalIngreso);
 
 
+
+        $this->terminarPedidoManualPrivate($usuario);
 
         //echo var_dump($malingreso);
         //echo var_dump ($gestion);
