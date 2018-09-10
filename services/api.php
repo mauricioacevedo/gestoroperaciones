@@ -1619,6 +1619,8 @@ private function inicioPedidoManual(){
         $pantalla = $this->_request['pantalla'];
         $fecha_inicio = $this->_request['fecha_inicio'];
 
+        //termino cualquier instancia de pedido manual que exista....
+        $this->terminarPedidoManualPrivate($login);
 
         $today = date("Y-m-d h:i:s");
         //$filename="Fenix_Agendamiento-$login-$today.csv";
