@@ -19011,7 +19011,7 @@ public function pp(&$var){
 
         $today = date("Y-m-d");
 
-        $query=	"SELECT DISTINCT ASESOR, ".
+        $query=	"SELECT X.* FROM (SELECT DISTINCT ASESOR, ".
                 " GRUPO, CONCEPTO_ID as CONCEPTO, ".
                 " date_format(FECHA_INGRESO,'%Y-%m-%d') AS FECHA_INGRESO, ".
                 " CAST(TIMEDIFF(now(),FECHA_ESTADO) AS CHAR (255)) AS ANSPEDIDO ".
@@ -19021,14 +19021,14 @@ public function pp(&$var){
                 " ASESOR NOT IN ('') ".
                 " AND STATUS in ('PENDI_PETEC','MALO')".
                 " group by ASESOR ".
-                " ORDER BY ANSPEDIDO DESC ".
+                //" ORDER BY ANSPEDIDO DESC ".
                 " UNION ".
                 " select A.ASESOR ".
                 " , (SELECT B.GRUPO FROM portalbd.tbl_usuarios B WHERE A.ASESOR=B.USUARIO_ID) AS GRUPO ".
                 " , A.PANTALLA AS CONCEPTO ".
                 " ,DATE_FORMAT(FECHA_INICIO,'%Y-%m-%d') as FECHA_INGRESO ".
                 " , 'N/A' AS ANSPEDIDO ".
-                " from gestor_gestion_pedidos_manuales A ";
+                " from gestor_gestion_pedidos_manuales A ) X ORDER BY X.ANSPEDIDO DESC";
 
         //echo var_dump($query);
 
