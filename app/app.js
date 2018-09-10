@@ -3419,7 +3419,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 
 	var userID = $cookieStore.get('logedUser').login;
-    console.log( $cookieStore.get('logedUser'));
+    //console.log( $cookieStore.get('logedUser'));
     console.log(userID);
 	$rootScope.logedUser = $cookieStore.get('logedUser');
 	document.getElementById('logout').className = "btn btn-md btn-danger";
