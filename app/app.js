@@ -7331,7 +7331,7 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 	$rootScope.actualView = "georreferencia";
 
     $scope.mpedido={};
-    $scope.mpedido.active=0;
+
 
 
     $scope.doubleDigit = function (num) {
@@ -7360,6 +7360,33 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 		$location.path('/');
 	};
 
+
+    $scope.manual = function () {
+		$scope.peds = {};
+		$scope.error = "";
+		$scope.pedido1 = "";
+		$scope.mpedido = {};
+		$scope.bpedido = '';
+		$scope.busy = "";
+		$scope.historico_pedido = [];
+		$scope.mpedido.active = 1;
+		$scope.mpedido.fuente = 'FENIX_NAL';
+
+        $scope.timeInit = new Date().getTime();
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+        services.inicioPedidoManual($rootScope.logedUser.login,$scope.fecha_inicio,'OPEN_PEREIRA MANUAL').then(function (status) {
+	       return status;
+        });
+	};
 
 
     $scope.saveTransaccionGeo = function (transaccion) {
