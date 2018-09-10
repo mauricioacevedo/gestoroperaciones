@@ -7370,7 +7370,7 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 		$scope.busy = "";
 		$scope.historico_pedido = [];
 		$scope.mpedido.active = 1;
-		$scope.mpedido.fuente = 'FENIX_NAL';
+		$scope.mpedido.fuente = 'POBLACIONES';
 
         $scope.timeInit = new Date().getTime();
 		var date1 = new Date();
@@ -7383,7 +7383,7 @@ app.controller('GEORREFCtrl', function ($scope, $rootScope, $location, $routePar
 
 		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
-        services.inicioPedidoManual($rootScope.logedUser.login,$scope.fecha_inicio,'OPEN_PEREIRA MANUAL').then(function (status) {
+        services.inicioPedidoManual($rootScope.logedUser.login,$scope.fecha_inicio,'POBLACIONES MANUAL').then(function (status) {
 	       return status;
         });
 	};
