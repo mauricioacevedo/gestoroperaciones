@@ -3458,9 +3458,16 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		//$state.go('login', null, {reload: true});
 
 	};
-/*    $scope.PermisoUsuario = function ($cookieStore.get('logedUser')) {
+    $scope.PermisoUsuario = function () {
 
-    };*/
+        var usuario =  $cookieStore.get('logedUser');
+
+            if (usuario.CARGO_ID == '6'){
+                location.href ="http://10.100.82.125/gestoroperaciones/#/tx/asignaciones/";
+            }else{
+
+            }
+    };
 
 	$scope.doubleDigit = function (num) {
 
