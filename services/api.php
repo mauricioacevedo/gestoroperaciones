@@ -1600,6 +1600,128 @@ class API extends REST {
     }
 //-------------------------------------fin insertar pedido ---------asignacion------
 
+
+
+private function inicioPedidoManual(){
+            if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+        $login = $this->_request['asesor'];
+        $pantalla = $this->_request['pantalla'];
+        $fecha_inicio = $this->_request['fecha_inicio'];
+
+
+        $today = date("Y-m-d h:i:s");
+        //$filename="Fenix_Agendamiento-$login-$today.csv";
+
+        $query=" insert into gestor_gestion_pedidos_manuales(asesor,pantalla,fecha_inicio) values ('$login','$pantalla','$fecha_inicio')";
+
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+
+        $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'SIN PEDIDO' ".
+                ",'INICIO PEDIDO' ".
+                ",'MANUAL' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
+
+
+
+        $this->response(json_encode(array("msg"=>"OK")),200);
+
+}
+
+private function terminarPedidoManual(){
+            if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $usuarioIp      =   $_SERVER['REMOTE_ADDR'];
+        $usuarioPc      =   gethostbyaddr($usuarioIp);
+        $galleta        =   json_decode(stripslashes($_COOKIE['logedUser']),true);
+        $galleta        =   stripslashes($_COOKIE['logedUser']);
+        $galleta        =   json_decode($galleta);
+        $galleta        =   json_decode(json_encode($galleta), True);
+        $usuarioGalleta =   $galleta['login'];
+        $nombreGalleta  =   $galleta['name'];
+        $grupoGalleta   =   $galleta['GRUPO'];
+        $login = $this->_request['asesor'];
+
+
+        $today = date("Y-m-d h:i:s");
+        //$filename="Fenix_Agendamiento-$login-$today.csv";
+
+        $query=" delete from gestor_gestion_pedidos_manuales where asesor= '$login' ";
+
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+
+        $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'SIN PEDIDO' ".
+                ",'TERMINAR PEDIDO' ".
+                ",'MANUAL' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
+
+
+
+        $this->response(json_encode(array("msg"=>"OK")),200);
+
+}
+
+private function terminarPedidoManualPrivate($login){
+
+        $query=" delete from gestor_gestion_pedidos_manuales where asesor= '$login' ";
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+
+        return 'OK';
+
+}
+
+
+
 //-------------insertar pedido reconfiguracion---------------asignacion------------
 
 

@@ -1296,6 +1296,12 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return data;
 	};
 
+
+
+    obj.inicioPedidoManual = function(user,fecha_inicio,pantalla){
+		return $http.get(serviceBase + 'inicioPedidoManual?asesor=' + user + '&pantalla='+pantalla + '&fecha_inicio='+fecha_inicio);
+    };
+
 	obj.getCustomer = function (customerID) {
 		return $http.get(serviceBase + 'customer?id=' + customerID);
 	};
@@ -18793,6 +18799,11 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 		var seconds = $scope.doubleDigit(date1.getSeconds());
 
 		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+
+        services.inicioPedidoManual($rootScope.logedUser.login,$scope.fecha_inicio,'ASIGNACIONES MANUAL').then(function (status) {
+			return status;
+		});
 
 	};
 
