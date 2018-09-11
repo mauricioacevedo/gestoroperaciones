@@ -3468,10 +3468,10 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
         var usuario =  $cookieStore.get('logedUser');
 
-            if ( usuario.CARGO_ID == 6 ){
-                alert("No tienes permisos para este sitio")
+            if ( usuario.CARGO_ID == '6' ){
+                alert("No tienes permisos para este sitio");
             }else{
-
+                alert("Si tienes permisos para este sitio");
             }
     };
 
