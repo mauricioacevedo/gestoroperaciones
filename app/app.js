@@ -3469,9 +3469,9 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         var usuario =  $cookieStore.get('logedUser');
 
             if ( usuario.CARGO_ID == "6" ){
-                alert("No tienes permisos para este sitio");
+                window.location="https://www.google.com.co";
             }else{
-                alert("Si tienes permisos para este sitio");
+                window.location="http://10.100.82.125/gestoroperaciones-dev/#/indicadores/";
             }
     };
 
