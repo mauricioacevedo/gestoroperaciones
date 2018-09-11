@@ -3474,6 +3474,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                 alert("Si tienes permisos para este sitio");
             }
     };
+    console.log(usuario);
 
 	$scope.doubleDigit = function (num) {
 
