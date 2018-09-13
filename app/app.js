@@ -3470,7 +3470,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
         //var usuario =  $cookieStore.get('logedUser');
 
-            if ( cargoID == "6"){
+            if ( cargoID == 6){
                 alert("no puedes");
             }else{
 
