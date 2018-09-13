@@ -3477,6 +3477,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
             }
     };
 
+    $scope.PermisosUsuario();
+
 	$scope.doubleDigit = function (num) {
 
 		if (num < 0) {
