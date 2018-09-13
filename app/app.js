@@ -3471,7 +3471,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         var usuario =  $cookieStore.get('logedUser');
 
             if ( usuario.CARGO_ID == 6){
-                window.location.href = "https://www.google.com.co/webhp";
+                location.href = "https://www.google.com.co/webhp";
             }else{
 
             }
