@@ -3470,7 +3470,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
         var usuario =  $cookieStore.get('logedUser');
 
-            if ( (usuario.CARGO_ID == "6") || (usuario.CARGO_ID == "7") || (usuario.CARGO_ID == "8") || (usuario.CARGO_ID == "9") || (usuario.CARGO_ID == "10") || (usuario.CARGO_ID == "11") ){
+            if ( (usuario.CARGO_ID == "6") || (usuario.CARGO_ID == "7")){
                 location.href = "http://10.100.82.125/gestoroperaciones/#/";
             }else{
 
