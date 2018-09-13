@@ -3422,7 +3422,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
     var cargoID = $cookieStore.get('logedUser').CARGO_ID;
     //console.log( $cookieStore.get('logedUser'));
     console.log(userID);
-    console.log(cargoID);
+    //console.log(cargoID);
 	$rootScope.logedUser = $cookieStore.get('logedUser');
 	document.getElementById('logout').className = "btn btn-md btn-danger";
 	var divi = document.getElementById("logoutdiv");
@@ -3466,16 +3466,16 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		//$state.go('login', null, {reload: true});
 
 	};
-/*    $scope.PermisosUsuario = function () {
+    $scope.PermisosUsuario = function (cargoID) {
 
-        var usuario =  $cookieStore.get('logedUser');
+        //var usuario =  $cookieStore.get('logedUser');
 
-            if ( usuario.login == "BARANGOV"){
-                location.pathname = "https://www.google.com.co";
+            if ( cargoID == "6"){
+                alert("no puedes");
             }else{
 
             }
-    };*/
+    };
 
 	$scope.doubleDigit = function (num) {
 
