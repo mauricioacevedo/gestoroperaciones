@@ -3464,12 +3464,12 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		//$state.go('login', null, {reload: true});
 
 	};
-    $scope.PermisoUsuario = function () {
+    $scope.PermisosUsuario = function () {
 
         var usuario =  $cookieStore.get('logedUser');
 
             if ( usuario.CARGO_ID == "6" ){
-                location.href = "https://www.google.com.co";
+                window.location.pathname = "https://www.google.com.co";
             }else{
 
             }
