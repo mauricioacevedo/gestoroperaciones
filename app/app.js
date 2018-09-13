@@ -8604,6 +8604,19 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
     //alert($routeParams.conceptoid);
 
+    $scope.PermisosUsuario = function () {
+
+        var usuario =  $cookieStore.get('logedUser');
+
+            if ( (usuario.CARGO_ID >= "6") || (usuario.CARGO_ID == "4") ){
+                location.href = "/gestoroperaciones/#/";
+            }else{
+
+            }
+    };
+
+    $scope.PermisosUsuario();
+
     $scope.doubleDigit = function (num) {
 
         if (num < 0) {
