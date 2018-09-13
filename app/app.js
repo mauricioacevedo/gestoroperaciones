@@ -3420,9 +3420,9 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 	var userID = $cookieStore.get('logedUser').login;
     var cargoID = $cookieStore.get('logedUser').CARGO_ID;
-    console.log( $cookieStore.get('logedUser'));
-    console.log(userID);
-    console.log(cargoID);
+    //console.log( $cookieStore.get('logedUser'));
+    //console.log(userID);
+    //console.log(cargoID);
 	$rootScope.logedUser = $cookieStore.get('logedUser');
 	document.getElementById('logout').className = "btn btn-md btn-danger";
 	var divi = document.getElementById("logoutdiv");
@@ -3470,7 +3470,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
         var usuario =  $cookieStore.get('logedUser');
 
-            if ( usuario.CARGO_ID == 6){
+            if ( usuario.CARGO_ID == "6"){
                 location.href = "https://www.google.com.co/webhp";
             }else{
 
