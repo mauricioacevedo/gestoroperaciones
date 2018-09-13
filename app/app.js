@@ -3469,7 +3469,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
         var usuario =  $cookieStore.get('logedUser');
 
             if ( usuario.CARGO_ID == "6" ){
-                window.location.pathname = "https://www.google.com.co";
+                location.pathname = "https://www.google.com.co";
             }else{
 
             }
