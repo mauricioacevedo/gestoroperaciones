@@ -3419,8 +3419,10 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 
 	var userID = $cookieStore.get('logedUser').login;
+    //var cargoID = $cookieStore.get('logedUser').CARGO_ID;
     //console.log( $cookieStore.get('logedUser'));
     console.log(userID);
+    //console.log(cargoID);
 	$rootScope.logedUser = $cookieStore.get('logedUser');
 	document.getElementById('logout').className = "btn btn-md btn-danger";
 	var divi = document.getElementById("logoutdiv");
@@ -3464,16 +3466,18 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		//$state.go('login', null, {reload: true});
 
 	};
-    $scope.PermisoUsuario = function () {
+    $scope.PermisosUsuario = function () {
 
         var usuario =  $cookieStore.get('logedUser');
 
-            if ( usuario.CARGO_ID == "6" ){
-                window.location="https://www.google.com.co";
+            if ( (usuario.CARGO_ID >= "6") || (usuario.CARGO_ID == "4") ){
+                location.href = "/gestoroperaciones/#/";
             }else{
-                window.location="http://10.100.82.125/gestoroperaciones-dev/#/indicadores/";
+
             }
     };
+
+    $scope.PermisosUsuario();
 
 	$scope.doubleDigit = function (num) {
 
@@ -8599,6 +8603,19 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     $rootScope.getConceptosGestor();
 
     //alert($routeParams.conceptoid);
+
+    $scope.PermisosUsuario = function () {
+
+        var usuario =  $cookieStore.get('logedUser');
+
+            if ( (usuario.CARGO_ID >= "6") || (usuario.CARGO_ID == "4") ){
+                location.href = "/gestoroperaciones/#/";
+            }else{
+
+            }
+    };
+
+    $scope.PermisosUsuario();
 
     $scope.doubleDigit = function (num) {
 
