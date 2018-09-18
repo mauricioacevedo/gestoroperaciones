@@ -21302,6 +21302,13 @@ app.config(['$routeProvider',
             grupos: ['ACTIVACION','SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
+        .when('/activacion-poblaciones', {
+			title: 'Activacion Poblaciones',
+			templateUrl: 'partials/activacion-poblaciones.html',
+			controller: 'siebelActivacionCtrl',
+            grupos: ['ACTIVACION','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
+		})
 
         .when('/amarillas', {
 			title: 'Amarillas Activacion',
