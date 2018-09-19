@@ -6,6 +6,11 @@
 					<b><i class="fa fa-bars" aria-hidden="true"></i> Activacion Poblaciones</b>
 					<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
 
+
+
+                    <button id="manual" type="button" class="form-control btn-circle-xss btn-danger" title="" data-toggle="tooltip" data-placement="top" ng-click="manual();" data-original-title="Ingrese Pedido Manual"><i class="fa fa-user-times" aria-hidden="true"></i></button>
+
+
 				</div>
 
 				<div class = "panel-heading nav navbar-default">
@@ -142,7 +147,7 @@
                                     <button type="button" class="btn btn-success btn-xs" ng-click="guardarPedido(InfoPedido,gestion[0],status,actividad)"  ng-disabled="!accRdy || guardando || loading">
                                         Guardar <span ng-show="guardando"><i class="fa fa-spinner fa-spin"></i></span>
                                     </button></div-->
-                                 <button type="button" class="btn btn-success btn-xs"  ng-click="guardar(InfoPedido,gestion[0],status);"><span id="mloader"></span>&nbsp; Guardar</button>
+                                 <!--button type="button" class="btn btn-success btn-xs"  ng-click="guardar(InfoPedido,gestion[0],status);"><span id="mloader"></span>&nbsp; Guardar</button-->
                             </li>
                              <li>&nbsp; | &nbsp;</li>
                             <li>
