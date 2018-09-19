@@ -15076,6 +15076,36 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 		});
 	};
 
+
+    $scope.manual = function () {
+		$scope.peds = {};
+		$scope.error = "";
+		$scope.pedido1 = "";
+		$scope.mpedido = {};
+		$scope.bpedido = '';
+		$scope.busy = "";
+		$scope.historico_pedido = [];
+		$scope.mpedido.active = 1;
+		$scope.mpedido.fuente = 'POBLACIONES';
+
+        $scope.timeInit = new Date().getTime();
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+        services.inicioPedidoManual($rootScope.logedUser.login,$scope.fecha_inicio,'ACTIVACION POBLACIONES MANUAL').then(function (status) {
+	       return status;
+        });
+	};
+
+
+
 	$scope.start = function (pedido) {
 
 		var pedido1 = '';
@@ -21298,6 +21328,13 @@ app.config(['$routeProvider',
 		.when('/demepedido-activacion', {
 			title: 'DemePedido Activacion',
 			templateUrl: 'partials/demepedido-activacion.html',
+			controller: 'siebelActivacionCtrl',
+            grupos: ['ACTIVACION','SUPER'],
+            cargos: ['1','2','3','4','5','6','7','8','9']
+		})
+        .when('/activacion-poblaciones', {
+			title: 'Activacion Poblaciones',
+			templateUrl: 'partials/activacion-poblaciones.html',
 			controller: 'siebelActivacionCtrl',
             grupos: ['ACTIVACION','SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
