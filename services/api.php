@@ -11694,6 +11694,8 @@ private function demePedidoEdatel(){
                 "WHEN  PORCENTAJE_OCUPACION < 0.75 THEN 'DISPONIBLE' ELSE 'NO DISPONIBLE' END AS PLAN_30MB ".
                 ",CASE ".
                 "WHEN  PORCENTAJE_OCUPACION < 0.68 THEN 'DISPONIBLE' ELSE 'NO DISPONIBLE' END AS PLAN_50MB ".
+                ",CASE ".
+                "WHEN  PORCENTAJE_OCUPACION < 0.60 THEN 'DISPONIBLE' ELSE 'NO DISPONIBLE' END AS PLAN_150MB ".
                 " FROM portalbd.gestor_cmts_por_archivo ".
                 " WHERE ND_CD like '%$nodo%' limit 100";
 
