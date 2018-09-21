@@ -786,8 +786,8 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		});
 	};
 
-    obj.updateParametroAsesor = function (valor, user) {
-		return $http.get(serviceBase + 'updateParametroAsesor?valor=' + valor + '&user=' + user);
+    obj.updateParametroAsesor = function (parametro,valor, usuario) {
+		return $http.get(serviceBase + 'updateParametroAsesor?parametro' + parametro + '&valor=' + valor + '&usuario=' + usuario);
 	};
 
     obj.buscarParametroAsesor = function (parametro) {
@@ -3971,25 +3971,18 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 
 
-	$scope.updateParametroAsesor = function (parametro, valor, USUARIO) {
+	$scope.updateParametroAsesor = function (parametro, valor, usuario) {
 
-		services.updateParametroAsesor(parametro, valor, USUARIO, $rootScope.logedUser.login).then(function (data) {
-			var date1 = new Date();
-			var year = date1.getFullYear();
-			var month = $scope.doubleDigit(date1.getMonth() + 1);
-			var day = $scope.doubleDigit(date1.getDate());
-			var hour = $scope.doubleDigit(date1.getHours());
-			var minute = $scope.doubleDigit(date1.getMinutes());
-			var seconds = $scope.doubleDigit(date1.getSeconds());
-			$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+		services.updateParametroAsesor(parametro, valor, usuario, $rootScope.logedUser.login).then(function (data) {
+
+            $scope.LoginAsesor = usuario;
 
 			if (parametro == "ENTREGA_PEDIDO_ASESOR") {
 				$scope.ordenamientoDemepedidoAsesor = valor;
-                $scope.LoginAsesor = USUARIO;
 			}
 
            if (parametro == "ORDEN_ENTREGA_PEDIDO_ASESOR") {
-				$scope.ordenEntregaPedidoAsesor = valor  ;
+				$scope.ordenEntregaPedidoAsesor = valor ;
 
 			$scope.buscarParametroAsesor(parametro);
 			return data.data;
@@ -4002,21 +3995,12 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
                 valor = $scope.ordenamientoDemepedidoAsesor;
                 valor = $scope.LoginAsesor;
 				services.updateParametro(parametro, valor, USUARIO, $rootScope.logedUser.login).then(function (data) {
-                var date1 = new Date();
-				var year = date1.getFullYear();
-				var month = $scope.doubleDigit(date1.getMonth() + 1);
-				var day = $scope.doubleDigit(date1.getDate());
-				var hour = $scope.doubleDigit(date1.getHours());
-				var minute = $scope.doubleDigit(date1.getMinutes());
-				var seconds = $scope.doubleDigit(date1.getSeconds());
 
-				$scope.ordenamientoDemepedidoUpdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-				//console.log($scope.ordenamientoDemepedido);
-		          });
+                });
             }
 
 
-    };
+    }   ;
 
 
 	$scope.buscarParametroAsesor = function (parametro) {
