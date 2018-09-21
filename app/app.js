@@ -15106,6 +15106,92 @@ app.controller('siebelActivacionCtrl', function ($scope, $rootScope, $location, 
 
 
 
+    $scope.msavePedido = function () {
+
+		var loader = document.getElementById("mloader");
+		mloader.className = 'glyphicon glyphicon-refresh fa-spin';
+
+		console.log($scope.mpedido);
+		$scope.pedido = {};
+		$scope.error = "";
+		angular.copy($scope.mpedido, $scope.pedido);
+		//alert($scope.mpedido.pedido);
+		if ($scope.mpedido.pedido == "" || $scope.mpedido.pedido == {} || $scope.mpedido.pedido === undefined) {
+			alert("Pedido vacio.");
+			mloader.className = '';
+			return;
+		}
+		$scope.pedido.user = $rootScope.logedUser.login;
+		$scope.pedido.username = $rootScope.logedUser.name;
+		$scope.pedido.duracion = new Date().getTime() - $scope.timeInit;
+		var df = new Date($scope.pedido.duracion);
+		$scope.pedido.duracion = $scope.doubleDigit(df.getHours() - 19) + ":" + $scope.doubleDigit(df.getMinutes()) + ":" + $scope.doubleDigit(df.getSeconds());
+		$scope.pedido.actividad = "ACTIVACION";
+		$scope.pedido.concepto_final = $scope.mpedido.concepto;
+		$scope.pedido.fecha_inicio = $scope.fecha_inicio;
+
+
+		var date1 = new Date();
+		var year = date1.getFullYear();
+		var month = $scope.doubleDigit(date1.getMonth() + 1);
+		var day = $scope.doubleDigit(date1.getDate());
+		var hour = $scope.doubleDigit(date1.getHours());
+		var minute = $scope.doubleDigit(date1.getMinutes());
+		var seconds = $scope.doubleDigit(date1.getSeconds());
+
+		$scope.pedido.fecha_fin = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+		//console.log($scope.pedido);
+		services.insertMPedido($scope.pedido).then(function (status) {
+            $scope.agentScore=status.data['agent_score'];
+			return status;
+		});
+
+		if ($scope.pedidos == "") {
+			$scope.pedidos = new Array();
+		}
+		$scope.pedidos = $scope.pedidos.concat($scope.pedido);
+		if ($scope.historico_pedido == "") {
+			$scope.historico_pedido = new Array();
+		}
+		//console.log($scope.historico_pedido);
+
+		$scope.baby2($scope.pedido.pedido);
+		$scope.pedido1 = $scope.pedido.pedido;
+
+		$scope.timeInit = new Date().getTime();
+		date1 = new Date();
+		year = date1.getFullYear();
+		month = $scope.doubleDigit(date1.getMonth() + 1);
+		day = $scope.doubleDigit(date1.getDate());
+		hour = $scope.doubleDigit(date1.getHours());
+		minute = $scope.doubleDigit(date1.getMinutes());
+		seconds = $scope.doubleDigit(date1.getSeconds());
+
+		$scope.fecha_inicio = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+
+		$scope.pedido = {};
+		$scope.peds = {};
+		$scope.pedido1 = "";
+		$scope.mpedido = {};
+		$scope.bpedido = '';
+		$scope.historico_pedido = [];
+		$scope.mpedido.active = 1;
+		$scope.mpedido.fuente = 'FENIX_NAL';
+		$scope.busy = "";
+		$scope.mpedido.active = 0;
+		$scope.pedidoinfo = 'Pedido';
+		mloader.className = '';
+	};
+
+		$scope.baby2 = function (pedido) {
+		//console.log(pedido);
+		services.getPedidosPorPedido(pedido).then(function (data) {
+			// console.log(data.data);
+			$scope.historico_pedido = data.data;
+			return data.data;
+		});
+	};
+
 	$scope.start = function (pedido) {
 
 		var pedido1 = '';
