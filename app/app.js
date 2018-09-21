@@ -21327,7 +21327,8 @@ app.config(['$routeProvider',
 			templateUrl: 'partials/asignaciones/historico_asignaciones.html',
 			controller: 'RegistrosCtrl',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION','ACTIVACION','CONSULTAS','SUPER'],
-            cargos: ['1','2','3','4','5','6','7','8','9']
+            //cargos: ['1','2','3','4','5','6','7','8','9']
+            cargos: ['1','2','3','4','5']
 		})
 		.when('/pendientes_asignaciones/', {
 			title: 'Registros',
