@@ -8815,7 +8815,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         });
     console.log($scope.idPermisos); */
     //$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
-    $scope.habilitarPrioridad = function (pedinfo){
+/*    $scope.habilitarPrioridad = function (pedinfo){
 //        console.log(pedinfo);
         services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.RADICADO_TEMPORAL,userID, false).then(
             function(data) {
@@ -8829,7 +8829,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
                 //console.log(data);
             }
         );
-    };
+    };*/
 
     $scope.statuses = [
         {value: 'PENDI_PETEC', text: 'PENDI_PETEC'},
