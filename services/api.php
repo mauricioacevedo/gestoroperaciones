@@ -9062,7 +9062,7 @@ private function getAgentScore($user){
         $zona           =   $this->_request['zona'];
 
         //echo var_dump ($usuarioGalleta);
-        echo var_dump ($user);
+        //echo var_dump ($user);
 
         $this->terminarPedidoManualPrivate($user);
 
@@ -9149,9 +9149,15 @@ private function getAgentScore($user){
 
         $STATUS="PENDI_PETEC";
 
+        $parametroAsesor="select PARAMETRO_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user')";
+        $parametroOrdenAsesor="select ORDEN_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user')";
+
+        echo var_dump($parametroAsesor);
+
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
         $parametroOrdenRecon= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO_R');
         $parametroOrdenAsig= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
+
 
         //echo var_dump("Michael ".$concepto);
         /* if($fuente="SIEBEL"){
