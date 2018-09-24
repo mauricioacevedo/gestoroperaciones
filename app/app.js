@@ -3999,7 +3999,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
             }
 
     };
-
+console.log($scope.updateParametroAsesor);
 
 	$scope.buscarParametroAsesor = function (parametro) {
 
