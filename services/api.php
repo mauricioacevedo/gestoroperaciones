@@ -9150,10 +9150,19 @@ private function getAgentScore($user){
         $STATUS="PENDI_PETEC";
 
         $parametroAsesor="select PARAMETRO_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user')";
-        $parametroOrdenAsesor="select ORDEN_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user')";
 
-        $$parametroAsesor2 = $this->query($parametroAsesor)
-        echo var_dump($$parametroAsesor2);
+        $para = $this->mysqli->query($parametroAsesor) or die($this->mysqli->error.__LINE__);
+
+            if($para->num_rows > 0){//recorro los registros de la consulta para
+                while($row = $para->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
+                    $result[] = $row;
+                    $myparametro=$row['PARAMETRO_ENTREGA'];
+                    break;
+                }
+            }
+        echo var_dump($myparametro);
+        //$parametroOrdenAsesor="select ORDEN_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user')";
+
 
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
         $parametroOrdenRecon= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO_R');
