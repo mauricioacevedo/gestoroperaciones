@@ -8587,6 +8587,303 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
     $rootScope.getConceptosGestor();
 
     //alert($routeParams.conceptoid);
+    $scope.PermisosUsuario = function () {
+
+        var usuario =  $cookieStore.get('logedUser');
+
+            if ( (usuario.CARGO_ID >= "6") || (usuario.CARGO_ID == "4") ){
+                location.href = "/gestoroperaciones/#/";
+            }else{
+
+            }
+    };
+
+    $scope.PermisosUsuario();
+
+    $scope.doubleDigit = function (num) {
+
+        if (num < 0) {
+            num = 0;
+        }
+
+        if (num <= 9) {
+            return "0" + num;
+        }
+        return num;
+    };
+
+
+    //variables de paginacion
+    //$scope.currentPage = 1;
+    $scope.data = {
+        maxSize: 5,
+        currentPage: 1,
+        numPerPage: 100,
+        totalItems: 0,
+        fechaIni: "",
+        fechaFin: "",
+        campo: "TODO",
+        valorCampo: ""
+    };
+    //$scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaIni:"", fechaFin: "",concepto: "TODO" }
+
+    if ($routeParams.conceptoid == undefined) {
+        $scope.data1 = {
+            maxSize: 5,
+            currentPage: 1,
+            numPerPage: 100,
+            totalItems: 0,
+            fechaIni: "",
+            fechaFin: "",
+            concepto: "TODO"
+        }
+    } else {
+        $scope.data1 = {
+            maxSize: 5,
+            currentPage: 1,
+            numPerPage: 100,
+            totalItems: 0,
+            fechaIni: "",
+            fechaFin: ""
+        }
+    }
+
+    if (!angular.isDefined($scope.currentPage)) {
+        $scope.currentPage = 1;
+    }
+
+    $scope.setPage = function (pageNo) {
+        $scope.data.currentPage = pageNo;
+    };
+
+    $rootScope.logout = function () {
+        if($rootScope.logedUser != undefined) services.logout($rootScope.logedUser.login);
+        $cookieStore.remove('logedUser');
+        $rootScope.logedUser = undefined;
+        $scope.pedidos = {};
+        document.getElementById('logout').className = "btn btn-md btn-danger hide";
+        var divi = document.getElementById("logoutdiv");
+        divi.style.position = "absolute";
+        divi.style.visibility = "hidden";
+        $location.path('/');
+    };
+
+
+    $scope.listado_pedidos = [];
+    var date1 = new Date();
+    var year = date1.getFullYear();
+    var month = $scope.doubleDigit(date1.getMonth() + 1);
+    var day = $scope.doubleDigit(date1.getDate());
+
+    var fecha_inicio = year + "-" + month + "-" + day;
+    var fecha_fin = year + "-" + month + "-" + day;
+
+    $scope.data.fechaIni = fecha_inicio;
+    //$scope.data1.fechaIni = fecha_inicio;
+
+    $scope.data.fechaFin = fecha_fin;
+    //$scope.data1.fechaFin = fecha_fin;
+
+    $rootScope.actualView = "registros";
+
+    services.getListadoPedidos(fecha_inicio, fecha_fin, $scope.data.currentPage).then(function (data) {
+        $scope.listado_pedidos = data.data[0];
+        $scope.data.totalItems = data.data[1];
+
+        return data.data;
+    });
+
+
+	/*services.getListadoPendientes2(fecha_inicio,fecha_fin,$scope.iconcepto).then(function(data){
+	 $scope.listado_pendientes=data.data;
+	 return data.data;
+	 });
+	 */
+
+    //$scope.calcularPendientes($scope.data1.concepto);
+
+    $scope.calcularListado = function () {
+        $scope.listado_pedidos = [];
+        services.getListadoPedidos($scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage, $scope.data.campo, $scope.data.valorCampo).then(function (data) {
+            $scope.listado_pedidos = data.data[0];
+            $scope.data.totalItems = data.data[1];
+            return data.data;
+        });
+
+
+    };
+
+
+    $scope.cutString = function (str, howMuch) {
+
+        if(str === undefined || str=='' || str == null) return str;
+
+        if (str.length > howMuch) {
+            return (str.slice(0, howMuch) + ".. ");
+        } else {
+            return str;
+        }
+    };
+
+    //get another portions of data on page changed
+    $scope.pageChanged = function (forma) {
+        if (forma == "listadoPedidos") {
+            $scope.calcularListado();
+        }
+        if (forma == "listadoPendientes") {
+            $scope.calcularPendientes($scope.data1.concepto);
+        }
+    };
+
+/*    $scope.buscarPedidoRegistro = function (bpedido) {
+
+        if (bpedido.length == 0 || bpedido == '') {
+            $scope.calcularPendientes($scope.data1.concepto);
+
+        }
+        if (bpedido.length >= 7) {
+            services.getBuscarPedidoRegistro(bpedido, $scope.data1.concepto).then(function (data) {
+                //console.log(data.data[0]);
+                $scope.listado_pendientes = data.data[0];
+                return data.data;
+            });
+        }
+    };*/
+
+/*    $scope.csvPendientes = function (concep) {
+        var login = $rootScope.logedUser.login;
+        services.getCsvPendientes(login, concep).then(function (data) {
+            //console.log(data.data[0]);
+           window.location.href = "tmp/" + data.data[0];
+            return data.data;
+        });
+    };
+    $scope.csvPreInstalaciones = function () {
+        var login = $rootScope.logedUser.login;
+        services.getCsvPreInstalaciones(login).then(function (data) {
+            //console.log(data.data[0]);
+            window.location.href = "tmp/" + data.data[0];
+            return data.data;
+        });
+    };
+
+    $scope.csvMalos = function (concep) {
+        var login = $rootScope.logedUser.login;
+        services.getCsvMalos(login, concep).then(function (data) {
+            //console.log(data.data[0]);
+            window.location.href = "tmp/" + data.data[0];
+            return data.data;
+        });
+
+    };*/
+
+
+    $scope.csvHistoricos = function () {
+        var login = $rootScope.logedUser.login;
+        services.getCsvHistoricos(login, $scope.data.fechaIni, $scope.data.fechaFin, $scope.data.campo, $scope.data.valorCampo).then(function (data) {
+            console.log(data.data[0]);
+            window.location.href = "tmp/" + data.data[0];
+            return data.data;
+        });
+
+    };
+
+
+    $scope.datepickerOptions = {
+        format: 'yyyy-mm-dd',
+        language: 'es',
+        autoclose: true,
+        weekStart: 0
+    };
+
+    if ($routeParams.conceptoid != undefined) {
+        //alert("hola");
+        $scope.calcularPendientes($routeParams.conceptoid);
+    }
+    idPermisos.getIds().then(
+        function (data) {
+            $scope.idPermisos = data;
+        }, function(){
+            $scope.errorDatos = "Error en permisos";
+        });
+    /*
+    $scope.idPermisos = idPermisos.getIds().then(
+        function(data){
+            $scope.idPermisos=data;
+    }, function(data){
+            console.log(data);
+        });
+    console.log($scope.idPermisos); */
+    //$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
+    $scope.habilitarPrioridad = function (pedinfo){
+//        console.log(pedinfo);
+        services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.RADICADO_TEMPORAL,userID, false).then(
+            function(data) {
+                $scope.data.RADICADO_TEMPORAL=pedinfo.PRIORIDAD;
+                notify({
+                    message: data.data[0],
+                    duration: '1000',
+                    classes: 'btn-primary',
+                    position: 'right'
+                });
+                //console.log(data);
+            }
+        );
+    };
+
+    $scope.statuses = [
+        {value: 'PENDI_PETEC', text: 'PENDI_PETEC'},
+        {value: 'MALO', text: 'MALO'},
+        {value: 'CERRADO_PETEC', text: 'CERRADO_PETEC'}
+    ];
+
+    $scope.obsStatuses = [
+        {value: 'AUTOCONSUMOS', text: 'AUTOCONSUMOS'},
+        {value: 'CABEZA DEL PAQUETE EN PETEC', text: 'CABEZA DEL PAQUETE EN PETEC'},
+        {value: 'CONSTRUCCION - PENDIENTE', text: 'CONSTRUCCION - PENDIENTE'},
+        {value: 'EQURED EN PETEC', text: 'EQURED EN PETEC'},
+        {value: 'NO APLICA ASIGNACIONES', text: 'NO APLICA ASIGNACIONES'},
+        {value: 'NO APLICA RECONFIGURACION', text: 'NO APLICA RECONFIGURACION'},
+        {value: 'NO CARGO COMPONENTES', text: 'NO CARGO COMPONENTES'},
+        {value: 'NO REQUIERE ASIGNACION MANUAL', text: 'NO REQUIERE ASIGNACION MANUAL'},
+        {value: 'PEDIDO NO SE DEJA GESTIONAR', text: 'PEDIDO NO SE DEJA GESTIONAR'},
+        {value: 'PENDIENTE ACCESO', text: 'PENDIENTE ACCESO'},
+        {value: 'PENDIENTE B2B', text: 'PENDIENTE B2B'},
+        {value: 'SE ENVIA CR', text: 'SE ENVIA CR'},
+        {value: 'SERHFC EN PETEC', text: 'SERHFC EN PETEC'},
+        {value: 'TELEV EN PETEC', text: 'TELEV EN PETEC'},
+		{value: 'PENDIENTE CUMPLIR PEDIDO DE RETIRO', text: 'PENDIENTE CUMPLIR PEDIDO DE RETIRO'},
+        {value: 'PENDIENTE ADECUACION CIRCUITO', text: 'PENDIENTE ADECUACION CIRCUITO'}
+    ];
+
+    $scope.updateStatus = function(data, updobs) {
+    	//console.log(data);
+        return $http.post('services/actualizarSatusPedidosAsignacion', {
+        	id: data.ID,
+			pedido: data.PEDIDO_ID,
+			status:data.STATUS,
+			obs:data.OBS,
+			usuario:userID,
+			updateobs:updobs});
+    };
+
+    //$scope.listarPedidosAuditados();
+
+});
+
+app.controller('RegistrosPendientesCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services, notify, idPermisos) {
+
+    var userID = $cookieStore.get('logedUser').login;
+    $rootScope.logedUser = $cookieStore.get('logedUser');
+    document.getElementById('logout').className = "btn btn-md btn-danger";
+    var divi = document.getElementById("logoutdiv");
+    divi.style.visibility = "visible";
+    divi.style.position = "relative";
+    $scope.checho = "-1";
+    $rootScope.errorDatos=null;
+    $rootScope.getConceptosGestor();
+
+    //alert($routeParams.conceptoid);
 
     $scope.doubleDigit = function (num) {
 
@@ -8782,30 +9079,6 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
     };
 
-    $scope.PermisosUsuario = function () {
-
-        var usuario =  $cookieStore.get('logedUser');
-
-            if ( (usuario.CARGO_ID >= "6") || (usuario.CARGO_ID == "4") ){
-                location.href = "/gestoroperaciones/#/";
-            }else{
-
-            }
-    };
-
-    $scope.PermisosUsuario();
-
-    $scope.csvHistoricos = function () {
-        var login = $rootScope.logedUser.login;
-        services.getCsvHistoricos(login, $scope.data.fechaIni, $scope.data.fechaFin, $scope.data.campo, $scope.data.valorCampo).then(function (data) {
-            console.log(data.data[0]);
-            window.location.href = "tmp/" + data.data[0];
-            return data.data;
-        });
-
-    };
-
-
     $scope.datepickerOptions = {
         format: 'yyyy-mm-dd',
         language: 'es',
@@ -8823,15 +9096,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
         }, function(){
             $scope.errorDatos = "Error en permisos";
         });
-    /*
-    $scope.idPermisos = idPermisos.getIds().then(
-        function(data){
-            $scope.idPermisos=data;
-    }, function(data){
-            console.log(data);
-        });
-    console.log($scope.idPermisos); */
-    //$scope.idPermisos=['YGOMEZGA', 'EYEPESA', 'DCHALARC', 'JMONTOPI', 'JGONZAC', 'DQUINTEG', 'NALZATEC', 'MHUERTAS', 'CGONZGO','DEMO'];
+
     $scope.habilitarPrioridad = function (pedinfo){
 //        console.log(pedinfo);
         services.putPrioridadPedidos(pedinfo.PEDIDO_ID, pedinfo.RADICADO_TEMPORAL,userID, false).then(
@@ -21300,7 +21565,7 @@ app.config(['$routeProvider',
 			title: 'Registros',
 			//templateUrl: 'partials/registros.html',
 			templateUrl: 'partials/asignaciones/pendientes_asignaciones.html',
-			controller: 'RegistrosCtrl',
+			controller: 'RegistrosPendientesCtrl',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION','ACTIVACION','CONSULTAS','SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
@@ -21315,14 +21580,14 @@ app.config(['$routeProvider',
 		.when('/pendientes_asignaciones/', {
 			title: 'Registros',
 			templateUrl: 'partials/asignaciones/pendientes_asignaciones.html',
-			controller: 'RegistrosCtrl',
+			controller: 'RegistrosPendientesCtrl',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION','ACTIVACION','CONSULTAS','SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
 		.when('/pendientes_asignaciones/:conceptoid', {
 			title: 'Registros',
 			templateUrl: 'partials/pendientes_asignaciones.html',
-			controller: 'RegistrosCtrl',
+			controller: 'RegistrosPendientesCtrl',
             grupos: ['ASIGNACIONES', 'RECONFIGURACION','ACTIVACION','CONSULTAS','SUPER'],
             cargos: ['1','2','3','4','5','6','7','8','9']
 		})
