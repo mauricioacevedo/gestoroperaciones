@@ -3439,6 +3439,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
     $scope.ordenEntregaPedidoR = '';
     $scope.ordenEntregaPedidoOP = '';
 	$scope.ordenEntregaPedidoAsesor = '';
+    $scope.LoginAsesor = '';
 	$scope.ordenamientoDemepedidoReconfiguracion = '';
     $scope.ordenamientoDemepedidoOpenPereira = '';
 	$scope.ordenamientoDemepedidoAsesor = '';
