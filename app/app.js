@@ -3994,13 +3994,10 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 				parametro = 'ENTREGA_PEDIDO_ASESOR';
                 valor = $scope.ordenamientoDemepedidoAsesor;
                 valor = $scope.LoginAsesor;
-				services.updateParametro(parametro, valor, USUARIO, $rootScope.logedUser.login).then(function (data) {
 
-                });
             }
 
-
-    }   ;
+    };
 
 
 	$scope.buscarParametroAsesor = function (parametro) {
@@ -4008,10 +4005,8 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		services.buscarParametroAsesor(parametro).then(function (data) {
 
 			if (parametro == "ENTREGA_PEDIDO_ASESOR") {
-                $scope.LoginAsesor= data.data['USUARIO'];
-                $scope.UsuarioParametroAsesor = data.data['USUARIO_ID'];
+                $scope.LoginAsesor= data.data['usuario'];
                 $scope.ordenamientoDemepedidoAsesor = data.data['VALOR'];
-                $scope.ordenamientoDemepedidoUpdateAsesor = data.data['ULTIMA_ACTUALIZACION'];
             }
 
            if (parametro == "ORDEN_ENTREGA_PEDIDO_ASESOR") {
@@ -4027,8 +4022,6 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	services.buscarParametroAsesor('ENTREGA_PEDIDO_ASESOR').then(function (data) {
 
 		$scope.ordenamientoDemepedidoAsesor = data.data['VALOR'];
-		$scope.ordenamientoDemepedidoUpdateAsesor = data.data['ULTIMA_ACTUALIZACION'];
-		$scope.UsuarioParametroAsesor = data.data['USUARIO_ID'];
         $scope.LoginAsesor= data.data['USUARIO'];
 		return data.data;
 	});

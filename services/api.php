@@ -16297,12 +16297,13 @@ public function pp(&$var){
         //echo var_dump(get_request_method);
 
         $value = $this->_request['valor'];
-        $user = $this->_request['USUARIO'];
+        $user = $this->_request['usuario'];
         $parametro = $this->_request['parametro'];
 
 
-        $sql="UPDATE tbl_usuarios ".
-            " SET ORDEN_ENTREGA='$value' WHERE USUARIO_ID = '$user' ";
+        $sql=" UPDATE tbl_usuarios ".
+             " SET ORDEN_ENTREGA ='$value', PARAMETRO_ENTREGA = '$parametro' ".
+             " WHERE USUARIO_ID = '$user' ";
         $rr = $this->mysqli->query($sql);
 
         // SQL Feed----------------------------------
@@ -16340,7 +16341,9 @@ public function pp(&$var){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
-        $param = $this->_request['valor'];
+        $value = $this->_request['valor'];
+        $user = $this->_request['usuario'];
+        $parametro = $this->_request['parametro'];
 
         $sql="SELECT * FROM tbl_usuarios ".
             " WHERE USUARIO_ID = '$user' limit 1";
