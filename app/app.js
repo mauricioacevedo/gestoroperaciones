@@ -3973,7 +3973,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
 
 	$scope.updateParametroAsesor = function (parametro, valor, usuario) {
-
+        console.log($scope.updateParametroAsesor);
 		services.updateParametroAsesor(parametro, valor, usuario, $rootScope.logedUser.login).then(function (data) {
 
             $scope.LoginAsesor = usuario;
@@ -3999,7 +3999,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
             }
 
     };
-console.log($scope.updateParametroAsesor);
+
 
 	$scope.buscarParametroAsesor = function (parametro) {
 
