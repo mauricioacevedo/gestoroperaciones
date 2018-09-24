@@ -9061,8 +9061,8 @@ private function getAgentScore($user){
 
         $zona           =   $this->_request['zona'];
 
-        //echo var_dump ($zona);
-        //echo var_dump ($plaza);
+        echo var_dump ($usuarioGalleta);
+        echo var_dump ($user);
 
         $this->terminarPedidoManualPrivate($user);
 
