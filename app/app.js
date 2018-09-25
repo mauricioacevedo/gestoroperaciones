@@ -3468,6 +3468,17 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		//$state.go('login', null, {reload: true});
 
 	};
+
+    $scope.getFontGPON = function (){
+            if($scope.gestionGPONDIA<40){
+                    return 'green';
+            }else{
+                    return 'red';
+            }
+    }
+
+
+
     $scope.PermisosUsuario = function () {
 
         var usuario =  $cookieStore.get('logedUser');
