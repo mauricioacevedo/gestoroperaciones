@@ -19077,7 +19077,7 @@ public function pp(&$var){
             $rr = $this->mysqli->query($sqlGPON) or die($this->mysqli->error.__LINE__);
             $counterGPON="0";
             if($rr->num_rows > 0){
-                $row2 = $r->fetch_assoc();
+                $row2 = $rr->fetch_assoc();
                 $counterGPON=$row2['COUNTER'];
             }else{
                 $counterGPON="0";
