@@ -9061,8 +9061,8 @@ private function getAgentScore($user){
 
         $zona           =   $this->_request['zona'];
 
-        //echo var_dump ($zona);
-        //echo var_dump ($plaza);
+        //echo var_dump ($usuarioGalleta);
+        //echo var_dump ($user);
 
         $this->terminarPedidoManualPrivate($user);
 
@@ -9149,9 +9149,25 @@ private function getAgentScore($user){
 
         $STATUS="PENDI_PETEC";
 
+        /*$parametroAsesor="select PARAMETRO_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user')";
+
+        $para = $this->mysqli->query($parametroAsesor) or die($this->mysqli->error.__LINE__);
+
+            if($para->num_rows > 0){//recorro los registros de la consulta para
+                while($row = $para->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
+                    $result[] = $row;
+                    $myparametro=$row['PARAMETRO_ENTREGA'];
+                    break;
+                }
+            }
+        echo var_dump($myparametro);*/
+        //$parametroOrdenAsesor="select ORDEN_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user')";
+
+
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
         $parametroOrdenRecon= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO_R');
         $parametroOrdenAsig= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO');
+
 
         //echo var_dump("Michael ".$concepto);
         /* if($fuente="SIEBEL"){
@@ -16297,12 +16313,13 @@ public function pp(&$var){
         //echo var_dump(get_request_method);
 
         $value = $this->_request['valor'];
-        $user = $this->_request['USUARIO'];
+        $user = $this->_request['usuario'];
         $parametro = $this->_request['parametro'];
 
 
-        $sql="UPDATE tbl_usuarios ".
-            " SET ORDEN_ENTREGA='$value' WHERE USUARIO_ID = '$user' ";
+        $sql=" UPDATE tbl_usuarios ".
+             " SET ORDEN_ENTREGA ='$value', PARAMETRO_ENTREGA = '$parametro' ".
+             " WHERE USUARIO_ID = '$user' ";
         $rr = $this->mysqli->query($sql);
 
         // SQL Feed----------------------------------
@@ -16340,7 +16357,9 @@ public function pp(&$var){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
         }
-        $param = $this->_request['valor'];
+        $value = $this->_request['valor'];
+        $user = $this->_request['usuario'];
+        $parametro = $this->_request['parametro'];
 
         $sql="SELECT * FROM tbl_usuarios ".
             " WHERE USUARIO_ID = '$user' limit 1";
