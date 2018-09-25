@@ -3444,6 +3444,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 	$scope.ordenamientoDemepedidoAsesor = '';
 	$scope.ordenamientoDemepedidoUpdate = '';
     $rootScope.errorDatos = null;
+    $scope.gestionGPONDIA ='0';     //variable para el control de getiones diarias por gpon.
 
     $scope.intervalLightKPIS = '';
 
@@ -4099,7 +4100,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 
     $scope.listaUsuariosOnline();
 
-		$scope.editarParametroEntregaAsesor = function (data) {
+    $scope.editarParametroEntregaAsesor = function (data) {
 		$rootScope.errorDatos = null;
 		$scope.idUsuario = data.ID;
 		$scope.UsuarioNom = data.USUARIO_NOMBRE;
@@ -4990,6 +4991,7 @@ app.controller('IndicadoresCtrl', function ($scope, $rootScope, $location, $rout
 		services.getDistribucionGrupo().then(
 			function (data) {
 				$scope.listaDistriucionGrupo = data.data[0];
+                $scope.gestionGPONDIA = data.data[3];
 				return data.data;
 
 			},
