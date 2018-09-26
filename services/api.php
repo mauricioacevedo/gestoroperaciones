@@ -9149,20 +9149,31 @@ private function getAgentScore($user){
 
         $STATUS="PENDI_PETEC";
 
-        /*$parametroAsesor="select PARAMETRO_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user')";
+        $parametroAsesor = " select PARAMETRO_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user') ";
 
-        $para = $this->mysqli->query($parametroAsesor) or die($this->mysqli->error.__LINE__);
+        $paramAsesor = $this->mysqli->query($parametroAsesor) or die($this->mysqli->error.__LINE__);
 
-            if($para->num_rows > 0){//recorro los registros de la consulta para
-                while($row = $para->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
+            if($paramAsesor->num_rows > 0){//recorro los registros de la consulta para
+                while($row = $paramAsesor->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
                     $result[] = $row;
                     $myparametro=$row['PARAMETRO_ENTREGA'];
                     break;
                 }
             }
-        echo var_dump($myparametro);*/
-        //$parametroOrdenAsesor="select ORDEN_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user')";
 
+        echo var_dump($myparametro);
+
+        $parametroOrdenAsesor = " select ORDEN_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user') ";
+
+        $paramOrden = $this->mysqli->query($parametroOrdenAsesor) or die($this->mysqli->error.__LINE__);
+
+            if($paramOrden->num_rows > 0){//recorro los registros de la consulta para
+                while($row = $paramOrden->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
+                    $result[] = $row;
+                    $myOrden=$row['ORDEN_ENTREGA'];
+                    break;
+                }
+            }
 
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
         $parametroOrdenRecon= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO_R');
