@@ -9374,7 +9374,7 @@ private function getAgentScore($user){
 
                 //echo "ingreso 5: $sqlllamadas ";
 
-                echo $sqlllamadas;
+                //echo $sqlllamadas;
 
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
@@ -9440,7 +9440,7 @@ private function getAgentScore($user){
                 $zona2.
                 " ORDER BY $parametroBusqueda2 $parametroOrden ";
 
-                //echo "ingreso 4: $sqlllamadas ";
+                echo "ingreso 4: $sqlllamadas ";
 
 
 
