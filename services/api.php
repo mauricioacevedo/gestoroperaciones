@@ -1516,7 +1516,9 @@ class API extends REST {
         }
         $today = date("Y-m-d H:i:s");
 
-
+        if($estado_id=='GESTIONADO_GPON'){
+            $observaciones='GESTIONADO_GPON';
+        }
 
         //$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
         if(!empty($pedido)){
@@ -19082,7 +19084,19 @@ public function pp(&$var){
                 $result[] = $row;
             }
 
-            $this->response($this->json(array($result,$grupo,$today)), 200); // send user details
+            $sqlGPON="select count(*) as COUNTER from pedidos where fecha_fin between '$today 00:00:00' and '$today 23:59:59' ".
+                " and observaciones_proceso='GESTIONADO_GPON' ";
+
+            $rr = $this->mysqli->query($sqlGPON) or die($this->mysqli->error.__LINE__);
+            $counterGPON="0";
+            if($rr->num_rows > 0){
+                $row2 = $rr->fetch_assoc();
+                $counterGPON=$row2['COUNTER'];
+            }else{
+                $counterGPON="0";
+            }
+
+            $this->response($this->json(array($result,$grupo,$today,$counterGPON)), 200); // send user details
         }
         $this->response('',204);        // If no records "No Content" status
     }
