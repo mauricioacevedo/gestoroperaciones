@@ -9175,12 +9175,6 @@ private function getAgentScore($user){
                 }
             }
 
-        if ($myOrden == "DESC"){
-
-            echo "funciona";
-        }else{
-            echo "no sirve";
-        }
         //echo var_dump($myOrden);
 
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
@@ -9344,13 +9338,27 @@ private function getAgentScore($user){
 
                     $parametroBusquedaRec2=$parametroBusquedaRec;
                     $tipo_trabajo="";
+
+/*                if ($myparametro == "NUEVOS_PRIMERO"){
+                    $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO LIKE '%NUEVO%' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%') $plaza2 ORDER BY FECHA_ESTADO $myOrden ";
+                }
+                else if ($myparametro == "FECHA_ESTADO"){
+                    $tipo_trabajo=" $plaza2 ORDER BY FECHA_ESTADO $myOrden ";
+                }
+                else{
                     if($parametroBusquedaRec=="NUEVOS_PRIMERO"){
+                        $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO LIKE '%NUEVO%' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%') $plaza2 ORDER BY FECHA_ESTADO $parametroOrdenRec";
+                    }else{
+                        $tipo_trabajo=" ";
+                    }
+                }*/
+
+                if($parametroBusquedaRec=="NUEVOS_PRIMERO"){
                         $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO LIKE '%NUEVO%' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%')";
                         $parametroBusquedaRec2="FECHA_ESTADO";
                     }else{
                         $tipo_trabajo=" ";
                     }
-
 
 
                 $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA ".
@@ -9366,7 +9374,7 @@ private function getAgentScore($user){
 
                 //echo "ingreso 5: $sqlllamadas ";
 
-                //echo $sqlllamadas;
+                echo $sqlllamadas;
 
                 $rra = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
