@@ -9163,8 +9163,6 @@ private function getAgentScore($user){
                 }
             }
 
-        echo var_dump($myparametro);
-
         $parametroOrdenAsesor = " select ORDEN_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user') ";
 
         $paramOrden = $this->mysqli->query($parametroOrdenAsesor) or die($this->mysqli->error.__LINE__);
@@ -9176,6 +9174,7 @@ private function getAgentScore($user){
                     break;
                 }
             }
+        echo var_dump($myOrden);
 
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
         $parametroOrdenRecon= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO_R');
