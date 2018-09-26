@@ -1516,7 +1516,9 @@ class API extends REST {
         }
         $today = date("Y-m-d H:i:s");
 
-
+        if($estado_id=='GESTIONADO_GPON'){
+            $observaciones='GESTIONADO_GPON';
+        }
 
         //$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
         if(!empty($pedido)){
