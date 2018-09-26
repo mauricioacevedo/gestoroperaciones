@@ -9174,7 +9174,14 @@ private function getAgentScore($user){
                     break;
                 }
             }
-        echo var_dump($myOrden);
+
+        if ($myOrden == "DESC"){
+
+            echo "funciona";
+        }else{
+            echo "no sirve";
+        }
+        //echo var_dump($myOrden);
 
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
         $parametroOrdenRecon= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO_R');
