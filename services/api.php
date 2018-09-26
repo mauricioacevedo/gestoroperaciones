@@ -9440,7 +9440,7 @@ private function getAgentScore($user){
                 $zona2.
                 " ORDER BY $parametroBusqueda2 $parametroOrden ";
 
-                echo "ingreso 4: $sqlllamadas ";
+                //echo "ingreso 4: $sqlllamadas ";
 
 
 
