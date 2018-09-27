@@ -9892,10 +9892,17 @@ private function getAgentScore($user){
 
         if ($parametroBusqueda=="NUEVOS_PRIMERO"){
             $tipo_trabajo = " and b.CONCEPTO_ID = '8-OPEN_PEREIRA' order by b.FECHA_CITA, b.FECHA_INGRESO ";
+            $UEN_CALCULADA = "'HG'";
+        }
+
+        else if ($parametroBusqueda=="RURAL"){
+            $tipo_trabajo = " order by b.FECHA_CITA, b.FECHA_ESTADO ";
+            $UEN_CALCULADA = "'RURAL'";
         }
 
         else {
             $tipo_trabajo=" order by b.FECHA_CITA, b.FECHA_ESTADO ";
+            $UEN_CALCULADA = "'HG'";
         }
 
 
@@ -9919,12 +9926,14 @@ private function getAgentScore($user){
 
        if ($TipoPendiente == "CON AGENDA"){
 
-            $Pendiente = " and b.FECHA_CITA not in ('9999-00-00','9999-99-99','SIN AGENDA','') and b.UEN_CALCULADA not in ('B2B') and b.FECHA_CITA >= '$Diasiguiente' $tipo_trabajo ";
+            //$Pendiente = " and b.FECHA_CITA not in ('9999-00-00','9999-99-99','SIN AGENDA','') and b.UEN_CALCULADA not in ('B2B') and b.FECHA_CITA >= '$Diasiguiente' $tipo_trabajo ";
+            $Pendiente = " and b.FECHA_CITA not in ('9999-00-00','9999-99-99','SIN AGENDA','') and b.UEN_CALCULADA in ($UEN_CALCULADA) and b.FECHA_CITA >= '$Diasiguiente' $tipo_trabajo ";
        }
 
         else if ($TipoPendiente == "SIN AGENDA"){
 
-            $Pendiente = "  and (b.FECHA_CITA in ('9999-00-00','9999-99-99','SIN AGENDA','') or b.FECHA_CITA < '$Diasiguiente') and b.UEN_CALCULADA not in ('B2B') $tipo_trabajo ";
+            //$Pendiente = "  and (b.FECHA_CITA in ('9999-00-00','9999-99-99','SIN AGENDA','') or b.FECHA_CITA < '$Diasiguiente') and b.UEN_CALCULADA not in ('B2B') $tipo_trabajo ";
+            $Pendiente = "  and (b.FECHA_CITA in ('9999-00-00','9999-99-99','SIN AGENDA','') or b.FECHA_CITA < '$Diasiguiente') and b.UEN_CALCULADA in ($UEN_CALCULADA) $tipo_trabajo ";
         }
 
        else {
@@ -9969,7 +9978,7 @@ private function getAgentScore($user){
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             //" order by b.$parametroBusqueda2
 			" $parametroOrden ";
-        //echo var_dump($query1);
+        echo var_dump($query1);
 
 
 
