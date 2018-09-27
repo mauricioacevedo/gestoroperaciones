@@ -9892,7 +9892,7 @@ private function getAgentScore($user){
 
         if ($parametroBusqueda=="NUEVOS_PRIMERO"){
             $tipo_trabajo = " and b.CONCEPTO_ID = '8-OPEN_PEREIRA' order by b.FECHA_CITA, b.FECHA_INGRESO ";
-            $UEN_CALCULADA = "'HG'";
+            $UEN_CALCULADA = "'HG','RURAL'";
         }
 
         else if ($parametroBusqueda=="RURAL"){
@@ -9902,7 +9902,7 @@ private function getAgentScore($user){
 
         else {
             $tipo_trabajo=" order by b.FECHA_CITA, b.FECHA_ESTADO ";
-            $UEN_CALCULADA = "'HG'";
+            $UEN_CALCULADA = "'HG','RURAL'";
         }
 
 
