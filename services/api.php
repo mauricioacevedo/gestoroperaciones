@@ -9151,7 +9151,7 @@ private function getAgentScore($user){
 
         $STATUS="PENDI_PETEC";
 
-/*        $parametroAsesor = " select PARAMETRO_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user') ";
+       $parametroAsesor = " select PARAMETRO_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user') ";
 
         $paramAsesor = $this->mysqli->query($parametroAsesor) or die($this->mysqli->error.__LINE__);
 
@@ -9173,7 +9173,7 @@ private function getAgentScore($user){
                     $myOrden=$row['ORDEN_ENTREGA'];
                     break;
                 }
-            }*/
+            }
 
         //echo var_dump($myOrden);
 
@@ -9414,12 +9414,29 @@ private function getAgentScore($user){
 
             $parametroBusqueda2=$parametroBusqueda;
             $tipo_trabajo="";
-            if($parametroBusqueda=="NUEVOS_PRIMERO"){
+
+            if ($myparametro == "NUEVOS_PRIMERO"){
+                    $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%')";
+                    $parametroBusqueda2="FECHA_ESTADO";
+                }
+                else if ($myparametro == "FECHA_ESTADO"){
+                    $tipo_trabajo=" ";
+                }
+                else{
+                    if($parametroBusqueda=="NUEVOS_PRIMERO"){
+                    $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%')";
+                    $parametroBusqueda2="FECHA_ESTADO";
+                    }else{
+                        $tipo_trabajo=" ";
+                    }
+                }
+
+/*            if($parametroBusqueda=="NUEVOS_PRIMERO"){
                 $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%')";
                 $parametroBusqueda2="FECHA_ESTADO";
             }else{
                 $tipo_trabajo=" ";
-            }
+            }*/
 
             $sqlllamadas=   "SELECT PEDIDO_ID, ".
                 " SUBPEDIDO_ID, ".
