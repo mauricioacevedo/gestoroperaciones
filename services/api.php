@@ -9945,17 +9945,20 @@ private function getAgentScore($user){
 
             //$Pendiente = " and b.FECHA_CITA not in ('9999-00-00','9999-99-99','SIN AGENDA','') and b.UEN_CALCULADA not in ('B2B') and b.FECHA_CITA >= '$Diasiguiente' $tipo_trabajo ";
             $Pendiente = " and b.FECHA_CITA not in ('9999-00-00','9999-99-99','SIN AGENDA','') and b.UEN_CALCULADA in ($UEN_CALCULADA) and b.FECHA_CITA >= '$Diasiguiente' $tipo_trabajo ";
+            $Pendiente2 = " and b.FECHA_CITA not in ('9999-00-00','9999-99-99','SIN AGENDA','')";
        }
 
         else if ($TipoPendiente == "SIN AGENDA"){
 
             //$Pendiente = "  and (b.FECHA_CITA in ('9999-00-00','9999-99-99','SIN AGENDA','') or b.FECHA_CITA < '$Diasiguiente') and b.UEN_CALCULADA not in ('B2B') $tipo_trabajo ";
             $Pendiente = "  and (b.FECHA_CITA in ('9999-00-00','9999-99-99','SIN AGENDA','') or b.FECHA_CITA < '$Diasiguiente') and b.UEN_CALCULADA in ($UEN_CALCULADA) $tipo_trabajo ";
+            $Pendiente2 = "  and (b.FECHA_CITA in ('9999-00-00','9999-99-99','SIN AGENDA','') or b.FECHA_CITA < '$Diasiguiente')";
         }
 
        else {
            //echo 'ingreso';
             $Pendiente = " and b.UEN_CALCULADA = 'B2B' and b.FECHA_CITA >= '$Diasiguiente' $tipo_trabajo ";
+            $Pendiente2 = "";
         }
 
 		if ($Subpedidoid == "IMPAS"){
@@ -10033,7 +10036,7 @@ private function getAgentScore($user){
                     " where b.STATUS='$STATUS'  and b.ASESOR ='' and b.FUENTE='OPEN_PEREIRA' ".
 					//" and MUNICIPIO_ID = '$Municipioid' ".
                     //" $concepto ".
-                    //" $Pendiente ".
+                    " $Pendiente2 ".
                     //$plaza.
                     //$zona2.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
@@ -10148,7 +10151,7 @@ private function getAgentScore($user){
 
 
             //echo "ingreso 1: $query1";
-            echo var_dump($query1)
+            //echo var_dump($query1)
         //return;
 
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
