@@ -9151,7 +9151,7 @@ private function getAgentScore($user){
 
         $STATUS="PENDI_PETEC";
 
-       $parametroAsesor = " select PARAMETRO_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user') ";
+/*       $parametroAsesor = " select PARAMETRO_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user') ";
 
         $paramAsesor = $this->mysqli->query($parametroAsesor) or die($this->mysqli->error.__LINE__);
 
@@ -9173,7 +9173,7 @@ private function getAgentScore($user){
                     $myOrden=$row['ORDEN_ENTREGA'];
                     break;
                 }
-            }
+            }*/
 
         //echo var_dump($myOrden);
 
@@ -9415,7 +9415,7 @@ private function getAgentScore($user){
             $parametroBusqueda2=$parametroBusqueda;
             $tipo_trabajo="";
 
-            if ($myparametro == "NUEVOS_PRIMERO"){
+/*            if ($myparametro == "NUEVOS_PRIMERO"){
                     $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%')";
                     $parametroBusqueda2="FECHA_ESTADO";
                 }
@@ -9429,14 +9429,14 @@ private function getAgentScore($user){
                     }else{
                         $tipo_trabajo=" ";
                     }
-                }
+                }*/
 
-/*            if($parametroBusqueda=="NUEVOS_PRIMERO"){
+            if($parametroBusqueda=="NUEVOS_PRIMERO"){
                 $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%')";
                 $parametroBusqueda2="FECHA_ESTADO";
             }else{
                 $tipo_trabajo=" ";
-            }*/
+            }
 
             $sqlllamadas=   "SELECT PEDIDO_ID, ".
                 " SUBPEDIDO_ID, ".
@@ -9913,7 +9913,7 @@ private function getAgentScore($user){
         }
 
         else if ($parametroBusqueda=="RURAL"){
-            $tipo_trabajo = " order by b.FECHA_CITA, b.FECHA_ESTADO ";
+            $tipo_trabajo = " order by b.FECHA_CITA,b.FECHA_INGRESO ";
             $UEN_CALCULADA = "'RURAL'";
         }
 
@@ -9995,7 +9995,7 @@ private function getAgentScore($user){
             //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
             //" order by b.$parametroBusqueda2
 			" $parametroOrden ";
-        //echo var_dump($query1);
+        echo var_dump($query1);
 
 
 
