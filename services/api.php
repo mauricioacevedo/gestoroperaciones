@@ -9151,20 +9151,31 @@ private function getAgentScore($user){
 
         $STATUS="PENDI_PETEC";
 
-        /*$parametroAsesor="select PARAMETRO_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user')";
+/*       $parametroAsesor = " select PARAMETRO_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user') ";
 
-        $para = $this->mysqli->query($parametroAsesor) or die($this->mysqli->error.__LINE__);
+        $paramAsesor = $this->mysqli->query($parametroAsesor) or die($this->mysqli->error.__LINE__);
 
-            if($para->num_rows > 0){//recorro los registros de la consulta para
-                while($row = $para->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
+            if($paramAsesor->num_rows > 0){//recorro los registros de la consulta para
+                while($row = $paramAsesor->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
                     $result[] = $row;
                     $myparametro=$row['PARAMETRO_ENTREGA'];
                     break;
                 }
             }
-        echo var_dump($myparametro);*/
-        //$parametroOrdenAsesor="select ORDEN_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user')";
 
+        $parametroOrdenAsesor = " select ORDEN_ENTREGA from tbl_usuarios where USUARIO_ID in ('$user') ";
+
+        $paramOrden = $this->mysqli->query($parametroOrdenAsesor) or die($this->mysqli->error.__LINE__);
+
+            if($paramOrden->num_rows > 0){//recorro los registros de la consulta para
+                while($row = $paramOrden->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
+                    $result[] = $row;
+                    $myOrden=$row['ORDEN_ENTREGA'];
+                    break;
+                }
+            }*/
+
+        //echo var_dump($myOrden);
 
         $parametroBusqueda= $this->buscarParametroFechaDemePedido('FECHA_ORDEN_DEMEPEDIDO');
         $parametroOrdenRecon= $this->buscarParametroFechaDemePedido('ORDEN_ENTREGA_PEDIDO_R');
@@ -9327,13 +9338,27 @@ private function getAgentScore($user){
 
                     $parametroBusquedaRec2=$parametroBusquedaRec;
                     $tipo_trabajo="";
+
+/*                if ($myparametro == "NUEVOS_PRIMERO"){
+                    $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO LIKE '%NUEVO%' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%') $plaza2 ORDER BY FECHA_ESTADO $myOrden ";
+                }
+                else if ($myparametro == "FECHA_ESTADO"){
+                    $tipo_trabajo=" $plaza2 ORDER BY FECHA_ESTADO $myOrden ";
+                }
+                else{
                     if($parametroBusquedaRec=="NUEVOS_PRIMERO"){
+                        $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO LIKE '%NUEVO%' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%') $plaza2 ORDER BY FECHA_ESTADO $parametroOrdenRec";
+                    }else{
+                        $tipo_trabajo=" ";
+                    }
+                }*/
+
+                if($parametroBusquedaRec=="NUEVOS_PRIMERO"){
                         $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO LIKE '%NUEVO%' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%')";
                         $parametroBusquedaRec2="FECHA_ESTADO";
                     }else{
                         $tipo_trabajo=" ";
                     }
-
 
 
                 $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA ".
@@ -9389,6 +9414,23 @@ private function getAgentScore($user){
 
             $parametroBusqueda2=$parametroBusqueda;
             $tipo_trabajo="";
+
+/*            if ($myparametro == "NUEVOS_PRIMERO"){
+                    $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%')";
+                    $parametroBusqueda2="FECHA_ESTADO";
+                }
+                else if ($myparametro == "FECHA_ESTADO"){
+                    $tipo_trabajo=" ";
+                }
+                else{
+                    if($parametroBusqueda=="NUEVOS_PRIMERO"){
+                    $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%')";
+                    $parametroBusqueda2="FECHA_ESTADO";
+                    }else{
+                        $tipo_trabajo=" ";
+                    }
+                }*/
+
             if($parametroBusqueda=="NUEVOS_PRIMERO"){
                 $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%')";
                 $parametroBusqueda2="FECHA_ESTADO";
@@ -9867,10 +9909,17 @@ private function getAgentScore($user){
 
         if ($parametroBusqueda=="NUEVOS_PRIMERO"){
             $tipo_trabajo = " and b.CONCEPTO_ID = '8-OPEN_PEREIRA' order by b.FECHA_CITA, b.FECHA_INGRESO ";
+            $UEN_CALCULADA = "'HG','RURAL'";
+        }
+
+        else if ($parametroBusqueda=="RURAL"){
+            $tipo_trabajo = " order by b.FECHA_CITA,b.FECHA_INGRESO ";
+            $UEN_CALCULADA = "'RURAL'";
         }
 
         else {
             $tipo_trabajo=" order by b.FECHA_CITA, b.FECHA_ESTADO ";
+            $UEN_CALCULADA = "'HG','RURAL'";
         }
 
 
@@ -9894,17 +9943,22 @@ private function getAgentScore($user){
 
        if ($TipoPendiente == "CON AGENDA"){
 
-            $Pendiente = " and b.FECHA_CITA not in ('9999-00-00','9999-99-99','SIN AGENDA','') and b.UEN_CALCULADA not in ('B2B') and b.FECHA_CITA >= '$Diasiguiente' $tipo_trabajo ";
+            //$Pendiente = " and b.FECHA_CITA not in ('9999-00-00','9999-99-99','SIN AGENDA','') and b.UEN_CALCULADA not in ('B2B') and b.FECHA_CITA >= '$Diasiguiente' $tipo_trabajo ";
+            $Pendiente = " and b.FECHA_CITA not in ('9999-00-00','9999-99-99','SIN AGENDA','') and b.UEN_CALCULADA in ($UEN_CALCULADA) and b.FECHA_CITA >= '$Diasiguiente' $tipo_trabajo ";
+            $Pendiente2 = " and b.FECHA_CITA not in ('9999-00-00','9999-99-99','SIN AGENDA','')";
        }
 
         else if ($TipoPendiente == "SIN AGENDA"){
 
-            $Pendiente = "  and (b.FECHA_CITA in ('9999-00-00','9999-99-99','SIN AGENDA','') or b.FECHA_CITA < '$Diasiguiente') and b.UEN_CALCULADA not in ('B2B') $tipo_trabajo ";
+            //$Pendiente = "  and (b.FECHA_CITA in ('9999-00-00','9999-99-99','SIN AGENDA','') or b.FECHA_CITA < '$Diasiguiente') and b.UEN_CALCULADA not in ('B2B') $tipo_trabajo ";
+            $Pendiente = "  and (b.FECHA_CITA in ('9999-00-00','9999-99-99','SIN AGENDA','') or b.FECHA_CITA < '$Diasiguiente') and b.UEN_CALCULADA in ($UEN_CALCULADA) $tipo_trabajo ";
+            $Pendiente2 = "  and (b.FECHA_CITA in ('9999-00-00','9999-99-99','SIN AGENDA','') or b.FECHA_CITA < '$Diasiguiente')";
         }
 
        else {
            //echo 'ingreso';
             $Pendiente = " and b.UEN_CALCULADA = 'B2B' and b.FECHA_CITA >= '$Diasiguiente' $tipo_trabajo ";
+            $Pendiente2 = "";
         }
 
 		if ($Subpedidoid == "IMPAS"){
@@ -9982,7 +10036,7 @@ private function getAgentScore($user){
                     " where b.STATUS='$STATUS'  and b.ASESOR ='' and b.FUENTE='OPEN_PEREIRA' ".
 					//" and MUNICIPIO_ID = '$Municipioid' ".
                     //" $concepto ".
-                    //" $Pendiente ".
+                    " $Pendiente2 ".
                     //$plaza.
                     //$zona2.
                     //" AND b.MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.PLAZA='$plaza') ".
@@ -10096,7 +10150,8 @@ private function getAgentScore($user){
 
 
 
-           // echo "ingreso 1: $query1";
+            //echo "ingreso 1: $query1";
+            //echo var_dump($query1)
         //return;
 
         $r = $this->mysqli->query($query1) or die($this->mysqli->error.__LINE__);
