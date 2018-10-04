@@ -270,6 +270,7 @@
                                 <div class = "panel-heading">
                                     <b><i class="fa fa-tasks" aria-hidden="true"> </i> INFORMACIÓN</b>
                                     <span class="pull-right">
+                                        Prioridad: <span ng-show="service.RADICADO_TEMPORAL"  class="ng-binding label label-danger">{{service.RADICADO_TEMPORAL}}</span>
                                         Concepto: <span class="btn btn-info btn-xs">{{info.CONCEPTO_ID}} </span>
                                         Pedido CRM: <button  class="btn btn-info btn-xs" ng-click="executeCopy(info.PEDIDO_CRM)">{{info.PEDIDO_CRM || 'SIN'}} </button>
                                     </span>
@@ -286,7 +287,7 @@
                                             </button> </li>
                                             <li class="list-group-item small" ><b>SUBPEDIDO:</b> <span class="small">{{service.SUBPEDIDO_ID}}</span>  </li>
                                             <li class="list-group-item small" ><b>AGENDA: </b><span ng-show="service.FECHA_CITA"  class="ng-binding label label-danger">{{service.FECHA_CITA}}</span></li>
-                                            <li class="list-group-item small" ><b>Prioridad: </b><span ng-show="service.RADICADO_TEMPORAL"  class="ng-binding label label-danger">{{service.RADICADO_TEMPORAL}}</span></li>
+                                            <!--<li class="list-group-item small" ><b>Prioridad: </b><span ng-show="service.RADICADO_TEMPORAL"  class="ng-binding label label-danger">{{service.RADICADO_TEMPORAL}}</span></li>-->
                                             <li class="list-group-item small" ><b>MUNICIPIO:</b> {{service.MUNICIPIO_ID}} </li>
                                             <li class="list-group-item small" ><b>UEN:</b> {{service.UEN_CALCULADA}} </li>
                                             <li class="list-group-item small" >
