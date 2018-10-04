@@ -9226,24 +9226,24 @@ private function getAgentScore($user){
 
 
 
-                /*
-                 * Prioridad vieja, Deshabilitada para que priorice, nuevos, hogares y/o Arbol
-                 *
+
+                // * Prioridad vieja, Deshabilitada para que priorice, nuevos, hogares y/o Arbol
+                //*
                 //HAGO LA CONSULTA DE PRIORIDAD POR ARBOL
                 $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA ".
                     " FROM  informe_petec_pendientesm ".
                     " WHERE ".
                     " TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
                     " AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
-                    " RADICADO_TEMPORAL IN ('ARBOL','INMEDIAT','TEM') ".
+                    " RADICADO_TEMPORAL IN ('RECONFIGURADO') ".
                     " AND ASESOR='' ".
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
-                    " ORDER BY FECHA_ESTADO ASC "; */
+                    " ORDER BY FECHA_ESTADO ASC ";
 
 
-                /** 23-10-2017: SE MODIFICA LA FORMA DE ENTREGAR PEDIDOS, SE RETIRAN LAS PRIORIDADES DEFINIDDAS.
+                /* 23-10-2017: SE MODIFICA LA FORMA DE ENTREGAR PEDIDOS, SE RETIRAN LAS PRIORIDADES DEFINIDDAS.
                 $sqlllamadas=   "SELECT PEDIDO_ID, ".
                     " SUBPEDIDO_ID, ".
                     " SOLICITUD_ID, ".
@@ -9260,7 +9260,7 @@ private function getAgentScore($user){
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
-                    " ORDER BY RADICADO_TEMPORAL DESC ";
+                    " ORDER BY RADICADO_TEMPORAL DESC ";*/
 
                 //echo $sqlllamadas;
 
@@ -9278,7 +9278,7 @@ private function getAgentScore($user){
 
 
                 $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA','INSTIP','STBOX','EQURED') ";
-                */
+
 
             }
 
