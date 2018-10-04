@@ -9261,7 +9261,7 @@ private function getAgentScore($user){
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
-                    " ORDER BY RADICADO_TEMPORAL DESC ";*/
+                    " ORDER BY RADICADO_TEMPORAL DESC ";
 
                 //echo $sqlllamadas;
 
@@ -9278,7 +9278,7 @@ private function getAgentScore($user){
                 }
 
 
-                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA','INSTIP','STBOX','EQURED') ";
+                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA','INSTIP','STBOX','EQURED') ";*/
 
 
             }
