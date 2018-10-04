@@ -8879,7 +8879,7 @@ app.controller('RegistrosCtrl', function ($scope, $rootScope, $location, $routeP
 
 });
 
-app.controller('RegistrosPendientesCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services, notify) {
+app.controller('RegistrosPendientesCtrl', function ($scope, $rootScope, $location, $routeParams, $cookies, $cookieStore, $http, services, notify, idPermisos) {
 
     var userID = $cookieStore.get('logedUser').login;
     $rootScope.logedUser = $cookieStore.get('logedUser');
