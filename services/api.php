@@ -9561,7 +9561,7 @@ private function getAgentScore($user){
 
         //echo "ingreso 3: $query1";
 
-        // echo var_dump($query1);
+         echo var_dump($query1);
         //echo var_dump ($plaza);
 
         if($mypedido==""){
