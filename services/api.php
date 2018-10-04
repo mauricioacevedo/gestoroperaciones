@@ -20498,7 +20498,7 @@ public function pp(&$var){
         }
 
         if($prioridad){
-            $prioridad='ARBOL';
+            $prioridad='RECONFIGURADO';
         }else{
             $prioridad='NO';
         }
