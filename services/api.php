@@ -9206,7 +9206,7 @@ private function getAgentScore($user){
             if($plaza=="BOG-COBRE"){
                 $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') ";
             }else {
-                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA','INSTIP','STBOX','EQURED') ";
+                $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED')  ";
                 if($plaza=="TODOS"){//para que sea posible obtener un registro de cualquier plaza
                 $plaza2=" AND MUNICIPIO_ID IN (select a.MUNICIPIO_ID from tbl_plazas a where a.MUNICIPIO_ID NOT IN ('BOG-COBRE','BOGCUNCOL'))";
                     //Obtener un registro de cualquier plaza menos los de bogota
@@ -9231,17 +9231,17 @@ private function getAgentScore($user){
                 // * Prioridad vieja, Deshabilitada para que priorice, nuevos, hogares y/o Arbol
                 //*
                 //HAGO LA CONSULTA DE PRIORIDAD POR ARBOL
-                $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA ".
-                    " FROM  informe_petec_pendientesm ".
+                $sqlllamadas="SELECT b.PEDIDO_ID,b.SUBPEDIDO_ID,b.SOLICITUD_ID,b.FECHA_ESTADO,b.FECHA_CITA ".
+                    " FROM  informe_petec_pendientesm b ".
                     " WHERE ".
                     //" TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
                     //" AND UEN_CALCULADA = 'HG' ". //CAMBIO DE PRIORIDAD 2017-02-16
-                    " RADICADO_TEMPORAL IN ('RECONFIGURADO') ".
-                    " AND ASESOR='' ".
-                    " AND CONCEPTO_ID = '$concepto' ".
-                    " AND STATUS='PENDI_PETEC' ".
+                    " b.RADICADO_TEMPORAL IN ('RECONFIGURADO') ".
+                    " AND b.ASESOR='' ".
+                    " $concepto ".
+                    " AND b.STATUS='PENDI_PETEC' ".
                     //$plaza2.
-                    " ORDER BY FECHA_ESTADO ASC ";
+                    " ORDER BY b.FECHA_ESTADO ASC ";
 
                 //echo $sqlllamadas;
 
@@ -9561,7 +9561,7 @@ private function getAgentScore($user){
 
         //echo "ingreso 3: $query1";
 
-         echo var_dump($query1);
+         //echo var_dump($query1);
         //echo var_dump ($plaza);
 
         if($mypedido==""){
