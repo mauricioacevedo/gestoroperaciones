@@ -1739,7 +1739,7 @@ private function getAgentScore($user){
         $sqlScore=" select y.user ".
         "       ,sum( ".
         "           case  ".
-        "               WHEN y.fuente='SIEBEL' THEN 2 ".
+        "               WHEN y.fuente='SIEBEL' THEN 1 ".
         "               WHEN y.fuente='FENIX_NAL' THEN 1 ".
         "           ELSE 0 END) AS AGENTSCORE ".
         "   from ".
