@@ -9243,7 +9243,7 @@ private function getAgentScore($user){
                     //$plaza2.
                     " ORDER BY FECHA_ESTADO ASC ";
 
-                echo $sqlllamadas;
+                //echo $sqlllamadas;
 
                 /* 23-10-2017: SE MODIFICA LA FORMA DE ENTREGAR PEDIDOS, SE RETIRAN LAS PRIORIDADES DEFINIDDAS.
                 $sqlllamadas=   "SELECT PEDIDO_ID, ".
@@ -9265,7 +9265,7 @@ private function getAgentScore($user){
                     " ORDER BY RADICADO_TEMPORAL DESC ";
 
                 //echo $sqlllamadas;
-
+                */
                 $rr = $this->mysqli->query($sqlllamadas) or die($this->mysqli->error.__LINE__);
 
                 if($rr->num_rows > 0){//recorro los registros de la consulta para
