@@ -9278,7 +9278,7 @@ private function getAgentScore($user){
                     }
                 }
 
-
+                /*
                 $concepto=" and b.CONCEPTO_ID IN ('PETEC','OKRED') and b.TIPO_ELEMENTO_ID IN ('ACCESP','INSIP','INSHFC','TO','TOIP','INSTA','INSTIP','STBOX','EQURED') ";*/
 
 
