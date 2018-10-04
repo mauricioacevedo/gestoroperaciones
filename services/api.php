@@ -9240,7 +9240,7 @@ private function getAgentScore($user){
                     " AND ASESOR='' ".
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
-                    $plaza2.
+                    //$plaza2.
                     " ORDER BY FECHA_ESTADO ASC ";
 
                 echo $sqlllamadas;
