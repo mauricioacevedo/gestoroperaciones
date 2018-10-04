@@ -9231,7 +9231,7 @@ private function getAgentScore($user){
                 // * Prioridad vieja, Deshabilitada para que priorice, nuevos, hogares y/o Arbol
                 //*
                 //HAGO LA CONSULTA DE PRIORIDAD POR ARBOL
-                $sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA ".
+                /*$sqlllamadas="SELECT PEDIDO_ID,SUBPEDIDO_ID,SOLICITUD_ID,FECHA_ESTADO,FECHA_CITA ".
                     " FROM  informe_petec_pendientesm ".
                     " WHERE ".
                     " TIPO_TRABAJO = 'NUEVO' ".//CAMBIO DE PRIORIDAD 2017-02-16
@@ -9241,7 +9241,7 @@ private function getAgentScore($user){
                     " AND CONCEPTO_ID = '$concepto' ".
                     " AND STATUS='PENDI_PETEC' ".
                     $plaza2.
-                    " ORDER BY FECHA_ESTADO ASC ";
+                    " ORDER BY FECHA_ESTADO ASC ";*/
 
 
                 /* 23-10-2017: SE MODIFICA LA FORMA DE ENTREGAR PEDIDOS, SE RETIRAN LAS PRIORIDADES DEFINIDDAS.
