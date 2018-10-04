@@ -8201,6 +8201,7 @@ private function getAgentScore($user){
             " , a.EJECUTIVO_ID ".
             " , a.CANAL_ID ".
             " , a.PROGRAMACION ".
+            " , a.RADICADO_TEMPORAL	".
             " , cast(ifnull(c.Total_Contactos,'SIN LLAMADAS') AS CHAR(255)) as LLAMADAS ".
             " , c.ULTIMO_CONTACTO	".
             " from informe_petec_pendientesm a ".
