@@ -99,8 +99,8 @@
                             </li>
                             <li>
 
-                                <button id="ped" type="button" class="btn btn-xs btn-default"  ng-show="pedidoIsActive" ng-class="pedidoIsActive==false?'animated bounceOutRight':'animated fadeInUp'" ng-click="executeCopy(pedidoinfo)" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="<i class='fa fa-clipboard'></i> Copiar">{{pedidoinfo}}
-                                </button>
+                                <!--button id="ped" type="button" class="btn btn-xs btn-default"  ng-show="pedidoIsActive" ng-class="pedidoIsActive==false?'animated bounceOutRight':'animated fadeInUp'" ng-click="executeCopy(pedidoinfo)" popover data-trigger="hover" data-placement="left" data-html="true" data-selector="" data-content="<i class='fa fa-clipboard'></i> Copiar">{{pedidoinfo}}
+                                </button-->
                                 <button type="button" id="iniciar" class="btn btn-success btn-DemePedido-xs" ng-click="start(pedido);"   ng-disabled="false">
                                     DemePedido
                                 </button>
@@ -272,20 +272,20 @@
                                     <span class="pull-right">
 
                                         Concepto: <span class="btn btn-info btn-xs">{{info.CONCEPTO_ID}} </span>
-                                        Pedido CRM: <button  class="btn btn-info btn-xs" ng-click="executeCopy(info.PEDIDO_CRM)">{{info.PEDIDO_CRM || 'SIN'}} </button>
+                                        Pedido CRM: <button  class="btn btn-info btn-xs" ng-click="executeCopy(info.PEDIDO_CRM)">{{info.PEDIDO_CRM || 'SIN OFERTA'}} </button>
                                     </span>
                                 </div>
                                 <div class="panel-body">
                                     <ul class="list-group" ng-repeat="service in peds  as gestion" >
                                         <div class="col-md-6">
 
-                                            <li class="list-group-item small" ><b>PEDIDO: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.PEDIDO_ID)">
-                                                {{service.PEDIDO_ID}}
+                                            <li class="list-group-item small" ><b>PEDIDO: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.PEDIDO_CRM)">
+                                                {{info.CONCEPTO_ID=='PETEC' && service.UEN_CALCULADA=='HG' ? service.PEDIDO_CRM:service.PEDIDO_ID}}
                                             </button> </li>
-                                            <li class="list-group-item small" ><b>OFERTA: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.PEDIDO_CRM)">
+                                            <!--li class="list-group-item small" ><b>OFERTA: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.PEDIDO_CRM)">
                                                 {{service.PEDIDO_CRM || 'NO TIENE'}}
-                                            </button> </li>
-                                            <li class="list-group-item small" ><b>SUBPEDIDO:</b> <span class="small">{{service.SUBPEDIDO_ID}}</span>  </li>
+                                            </button> </li-->
+                                            <!--li class="list-group-item small" ><b>SUBPEDIDO:</b> <span class="small">{{service.SUBPEDIDO_ID}}</span>  </li-->
                                             <li class="list-group-item small" ><b>AGENDA: </b><span ng-show="service.FECHA_CITA"  class="ng-binding label label-danger">{{service.FECHA_CITA}}</span></li>
                                             <li class="list-group-item small" ><b>Prioridad: </b><span ng-show="service.RADICADO_TEMPORAL"  class="ng-binding label label-danger">{{service.RADICADO_TEMPORAL}}</span></li>
                                             <li class="list-group-item small" ><b>MUNICIPIO:</b> {{service.MUNICIPIO_ID}} </li>
