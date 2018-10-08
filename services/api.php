@@ -2717,8 +2717,6 @@ private function getAgentScore($user){
                     ", '$motivoMalo' ".
                     ", '$concepto_anterior') ";*/
 
-
-
                 //echo ("ingreso");
 
                 /*$rstMalos = $this->mysqli->query($sql_PedidosMalos) or die($this->mysqli->error.__LINE__);*/
