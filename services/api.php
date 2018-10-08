@@ -8492,6 +8492,7 @@ private function getAgentScore($user){
             "              and NN.SOLICITUD_ID=N.SOLICITUD_ID) ) AS CONCEPTO_ID_ANTERIOR_NOV  ".
             "  , FNX_PEDIDOS.CELULAR_AVISAR ".
             "  , FNX_PEDIDOS.TELEFONO_AVISAR ".
+            "  , FNX_PEDIDOS.PEDIDO_CRM ".
             "  FROM FNX_SOLICITUDES SOL ".
             "  , FNX_PEDIDOS ".
             "  , FNX_SUBPEDIDOS ".
