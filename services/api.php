@@ -20348,6 +20348,15 @@ public function pp(&$var){
            $actividad ="ESTUDIO";
         }
 
+        if ($concep == "PETEC")
+        {
+           $fuente = "FENIX_NAL";
+           $grupo = "ASIGNACIONES";
+           $actividad ="ESTUDIO";
+        }
+
+
+
         $today		= date("Y-m-d");
 
         /*$parametroBusqueda= $this->demePedido('concepto');
