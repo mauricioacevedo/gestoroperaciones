@@ -4573,6 +4573,74 @@ private function getAgentScore($user){
 
 //------------------pendientes por colas activacion----------------------------activacion-----------------
 
+
+    private function pendientesPorColaRECONActivacion(){
+
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+
+        $queryConcepto="  select  ".
+            "  C1.CONCEPTO_ID  ".
+            "  , count(*) as CANTIDAD  ".
+            " , sum(if(C1.RANGO_PENDIENTE='1 HORA', 1,0)) as '1HORA',".
+            " , sum(if(C1.RANGO_PENDIENTE='2 HORAS', 1,0)) as '2HORA',".
+            " , sum(if(C1.RANGO_PENDIENTE='3 HORAS', 1,0)) as '3HORA',".
+            "   sum(if(C1.RANGO_PENDIENTE='+4HORAS', 1,0)) as '4HORA' ".
+            "  from ( ".
+            " SELECT   ".
+            "      PP.`PEDIDO_ID`,   ".
+            "      PP.`SUBPEDIDO_ID`,   ".
+            "      PP.`SOLICITUD_ID`,   ".
+            "      PP.`TIPO_ELEMENTO_ID`,   ".
+            "      PP.`FECHA_ESTADO`,   ".
+            "      PP.`FECHA_FINAL`,   ".
+            "      PP.`PRODUCTO`,   ".
+            "      PP.`CONCEPTO_ID`,     ".
+            "      PP.`RANGO_CARGA`,   ".
+            "      PP.`FECHA_CARGA`,   ".
+            "      DATE_FORMAT((PP.FECHA_CARGA),'%H') AS HORA_CARGA,   ".
+            "      PP.`DIA_CARGA`,   ".
+            "      PP.`SEMANA_CARGA`,   ".
+            "      PP.`SEMANA_ANO_CARGA`,   ".
+            "      PP.`FUENTE`,   ".
+            "      PP.`STATUS`,   ".
+            "      PP.`VIEWS`   ".
+            "      , CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO)) AS CHAR(255)) AS TIEMPO_PENDIENTE_FULL   ".
+            "      , CASE   ".
+            "        WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) >= 0 and HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) <= 1 THEN '1 HORA'  ".
+            "        WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) = 2 THEN '2 HORAS'   ".
+            "        WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) = 3 THEN '3 HORAS'   ".
+            "        WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) >= 4 THEN '+4 HORAS'  ".
+            "      END AS RANGO_PENDIENTE, ".
+            " 	PP.COLA_ID ".
+            "  FROM informe_activacion_pendientesm PP   ".
+            "   where (PP.STATUS= 'PENDI_ACTIVACION'  AND PP.TIPO_TRABAJO='RECON' )  ".
+            "   ) C1  ".
+            "  group by C1.CONCEPTO_ID order by count(*) DESC ";
+
+
+        $r = $this->mysqli->query($queryConcepto) or die($this->mysqli->error.__LINE__);
+
+        $resultConcepto = array();
+        if($r->num_rows > 0){
+
+            while($row = $r->fetch_assoc()){
+                $resultConcepto[] = $row;
+            }
+
+            $this->response($this->json(array($resultConcepto)), 200); // send user details
+        }
+
+
+        $this->response('',204);        // If no records "No Content" status
+
+
+
+
+    }
+
+
     private function pendientesPorColaConceptoActivacion(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
