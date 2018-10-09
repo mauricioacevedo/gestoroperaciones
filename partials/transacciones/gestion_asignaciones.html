@@ -279,8 +279,8 @@
                                     <ul class="list-group" ng-repeat="service in peds  as gestion" >
                                         <div class="col-md-6">
 
-                                            <li class="list-group-item small" ><b>PEDIDO: </b><button type="button" class="btn btn-xs btn-info" ng-click="info.CONCEPTO_ID=='PETEC' && service.UEN_CALCULADA=='HG' ? executeCopy(service.PEDIDO_CRM):executeCopy(service.PEDIDO_ID)">
-                                                {{info.CONCEPTO_ID=='PETEC' && service.UEN_CALCULADA=='HG' && service.PEDIDO_CRM !='' && service.PEDIDO_CRM !='null' && service.PEDIDO_CRM !='NULL' ? service.PEDIDO_CRM:service.PEDIDO_ID}}
+                                            <li class="list-group-item small" ><b>PEDIDO: </b><button type="button" class="btn btn-xs btn-info" ng-click="service.PEDIDO_CRM ? executeCopy(service.PEDIDO_CRM):executeCopy(service.PEDIDO_ID)">
+                                                <!--SPAN>info.CONCEPTO_ID=='PETEC' && service.UEN_CALCULADA=='HG' && service.PEDIDO_CRM !='' && service.PEDIDO_CRM !='null' && service.PEDIDO_CRM !='NULL' ? service.PEDIDO_CRM:service.PEDIDO_ID</SPAN-->
                                                 {{service.PEDIDO_CRM?service.PEDIDO_CRM:service.PEDIDO_ID}}
                                             </button> </li>
                                             <!--li class="list-group-item small" ><b>OFERTA: </b><button type="button" class="btn btn-xs btn-info" ng-click="executeCopy(service.PEDIDO_CRM)">
