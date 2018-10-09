@@ -4581,12 +4581,12 @@ private function getAgentScore($user){
         }
 
         $queryConcepto="  select  ".
-            "  C1.CONCEPTO_ID  ".
+            "  C1.COLA_ID  ".
             "  , count(*) as CANTIDAD  ".
             " , sum(if(C1.RANGO_PENDIENTE='1 HORA', 1,0)) as 'HORA1' ".
             " , sum(if(C1.RANGO_PENDIENTE='2 HORAS', 1,0)) as 'HORA2' ".
             " , sum(if(C1.RANGO_PENDIENTE='3 HORAS', 1,0)) as 'HORA3' ".
-            " , sum(if(C1.RANGO_PENDIENTE='+4HORAS', 1,0)) as 'HORA4' ".
+            " , sum(if(C1.RANGO_PENDIENTE='+4 HORAS', 1,0)) as 'HORA4' ".
             "  from ( ".
             " SELECT   ".
             "      PP.`PEDIDO_ID`,   ".
@@ -4617,7 +4617,7 @@ private function getAgentScore($user){
             "  FROM informe_activacion_pendientesm PP   ".
             "   where (PP.STATUS= 'PENDI_ACTIVACION'  AND PP.TIPO_TRABAJO='RECON' )  ".
             "   ) C1  ".
-            "  group by C1.CONCEPTO_ID order by count(*) DESC ";
+            "  group by C1.COLA_ID order by count(*) DESC ";
 
 
         $r = $this->mysqli->query($queryConcepto) or die($this->mysqli->error.__LINE__);

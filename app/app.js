@@ -14580,8 +14580,8 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
     };
 
 
-      $scope.calcularListado();
-
+    $scope.calcularListado();
+    $scope.calcularListadoRECON();
 
     $scope.pageChanged = function(forma) {
 
