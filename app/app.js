@@ -444,6 +444,11 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoactivacion?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin + '&page=' + page);
 	};
 
+    obj.getListadoActivacionRECON = function () { //Listado activacion
+		return $http.get(serviceBase + 'pendientesPorColaRECONActivacion');
+	};
+
+
 	obj.getListadoActivacionTabla = function (fecha_inicio, fecha_fin) { //listado tabla activacion
 		return $http.get(serviceBase + 'listadoactivaciontabla?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin);
 	};
@@ -14429,7 +14434,7 @@ app.controller('Tabla_agendamientoCtrl', function ($scope, $rootScope, $location
 
 app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,$timeout, services) {
 
-      var userID=$cookieStore.get('logedUser').login;
+    var userID=$cookieStore.get('logedUser').login;
     $rootScope.logedUser=$cookieStore.get('logedUser');
     document.getElementById('logout').className="btn btn-md btn-danger";
     var divi=document.getElementById("logoutdiv");
@@ -14492,9 +14497,10 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
      };
 
 
-     $scope.listadoactivacion=[];
+    $scope.listadoactivacion=[];
+    $scope.listadoactivacionRECON=[];
 
-        $scope.data = {
+    $scope.data = {
 		maxSize: 5,
 		currentPage: 1,
 		numPerPage: 100,
@@ -14545,6 +14551,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
         $scope.fecha_inicio=year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
         $scope.fecha_fin=year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
+
    $scope.calcularListado = function () {
         services.getListadoActivacion($scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage).then(function (data) {
             $scope.listadoactivacion = data.data[0];
@@ -14554,6 +14561,23 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 
     };
 
+
+    $scope.calcularListadoRECON = function () {
+        services.getListadoActivacionRECON().then(function (data) {
+            $scope.listadoactivacionRECON = data.data[0];
+
+
+            $scope.listadoactivacionRECON.totales = 0;
+            $scope.listadoactivacionRECON.total1HORA = 0;
+            $scope.listadoactivacionRECON.total2HORAS = 0;
+            $scope.listadoactivacionRECON.total3HORAS = 0;
+            $scope.listadoactivacionRECON.total4HORAS = 0;
+
+
+
+            return data.data;
+        });
+    };
 
 
       $scope.calcularListado();

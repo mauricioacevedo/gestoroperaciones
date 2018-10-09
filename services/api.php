@@ -4583,10 +4583,10 @@ private function getAgentScore($user){
         $queryConcepto="  select  ".
             "  C1.CONCEPTO_ID  ".
             "  , count(*) as CANTIDAD  ".
-            " , sum(if(C1.RANGO_PENDIENTE='1 HORA', 1,0)) as '1HORA' ".
-            " , sum(if(C1.RANGO_PENDIENTE='2 HORAS', 1,0)) as '2HORA' ".
-            " , sum(if(C1.RANGO_PENDIENTE='3 HORAS', 1,0)) as '3HORA' ".
-            " , sum(if(C1.RANGO_PENDIENTE='+4HORAS', 1,0)) as '4HORA' ".
+            " , sum(if(C1.RANGO_PENDIENTE='1 HORA', 1,0)) as 'HORA1' ".
+            " , sum(if(C1.RANGO_PENDIENTE='2 HORAS', 1,0)) as 'HORA2' ".
+            " , sum(if(C1.RANGO_PENDIENTE='3 HORAS', 1,0)) as 'HORA3' ".
+            " , sum(if(C1.RANGO_PENDIENTE='+4HORAS', 1,0)) as 'HORA4' ".
             "  from ( ".
             " SELECT   ".
             "      PP.`PEDIDO_ID`,   ".
