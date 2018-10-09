@@ -8268,7 +8268,7 @@ private function getAgentScore($user){
             " , a.RADICADO_TEMPORAL	".
             " , cast(ifnull(c.Total_Contactos,'SIN LLAMADAS') AS CHAR(255)) as LLAMADAS ".
             " , c.ULTIMO_CONTACTO	".
-            " , c.PEDIDO_CRM	".
+            " , a.PEDIDO_CRM	".
             " from informe_petec_pendientesm a ".
             " left join (SELECT a.pedido_id, count(a.pedido_id) as Total_Contactos, ".
             " max(a.fecha_fin) as Ultimo_Contacto	".
