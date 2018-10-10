@@ -7258,6 +7258,7 @@ private function getAgentScore($user){
             ", a.FUENTE, a.CONCEPTO_ID, a.FECHA_ESTADO, a.FECHA_CITA, a.STATUS, a.PROGRAMACION ".
             ", RADICADO_TEMPORAL ".
             ", ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin Observaciones') as OBS ".
+            " ,( select count(b.PEDIDO_ID) FROM pedidos b where b.PEDIDO_ID=a.PEDIDO_ID AND b.CONCEPTO_ANTERIOR=a.CONCEPTO_ID  ) as GESTIONES ".
             " from informe_petec_pendientesm a ".
             " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
             " AND a.PEDIDO_ID LIKE '$bpedido%' ".
