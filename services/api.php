@@ -6583,6 +6583,7 @@ private function getAgentScore($user){
             " ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin') as OBS, ".
             " ifnull((Select  p.INCIDENTE from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin') as INCIDENTE, ".
             " a.RADICADO_TEMPORAL ".
+            " ,( select count(b.PEDIDO_ID) FROM pedidos b where b.PEDIDO_ID=a.PEDIDO_ID AND b.CONCEPTO_ANTERIOR=a.CONCEPTO_ID  ) as GESTIONES ".
             " from informe_petec_pendientesm a ".
             " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ";
 
@@ -6591,7 +6592,7 @@ private function getAgentScore($user){
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','PEDIDO','PEDIDO_CRM','SUBPEDIDO_ID','SOLICITUD_ID','PROGRAMACION','TIPO_TRABAJO','TIPO_TRABAJO_ORIGINAL','TIPO_ELEMENTO_ID','PRODUCTO','PRODUCTO_ID','UEN_CALCULADA','ESTRATO','MUNICIPIO_ID','PAGINA_SERVICIO','DIRECCION_SERVICIO','TIEMPO_COLA','TIEMPO_INGRESO','FUENTE','CONCEPTO_ID','FECHA_ESTADO','FECHA_INGRESO','FECHA_CARGA','FECHA_CITA','STATUS','MOTIVO_MALO','INCIDENTE','RADICADO_TEMPORAL','PEDIDOFNX', 'CONCEPTO_CRM','ZONA'));
+            fputcsv($fp, array('PEDIDO_ID','PEDIDO','PEDIDO_CRM','SUBPEDIDO_ID','SOLICITUD_ID','PROGRAMACION','TIPO_TRABAJO','TIPO_TRABAJO_ORIGINAL','TIPO_ELEMENTO_ID','PRODUCTO','PRODUCTO_ID','UEN_CALCULADA','ESTRATO','MUNICIPIO_ID','PAGINA_SERVICIO','DIRECCION_SERVICIO','TIEMPO_COLA','TIEMPO_INGRESO','FUENTE','CONCEPTO_ID','FECHA_ESTADO','FECHA_INGRESO','FECHA_CARGA','FECHA_CITA','STATUS','MOTIVO_MALO','INCIDENTE','RADICADO_TEMPORAL','GESTIONES','PEDIDOFNX', 'CONCEPTO_CRM','ZONA'));
             while($row = $r->fetch_assoc()){
                 $pedidoCrm = $row['PEDIDO_ID'];
                 $objRtaFenix = $this->conceptoPedidoSiebelFenix ($pedidoCrm);
