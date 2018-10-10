@@ -8898,6 +8898,7 @@ app.controller('RegistrosPendientesCtrl', function ($scope, $rootScope, $locatio
     divi.style.position = "relative";
     $scope.checho = "-1";
     $rootScope.errorDatos=null;
+
     $rootScope.getConceptosGestor();
 
     //alert($routeParams.conceptoid);
@@ -8988,12 +8989,13 @@ app.controller('RegistrosPendientesCtrl', function ($scope, $rootScope, $locatio
 
     $rootScope.actualView = "registros";
 
+    /*
     services.getListadoPedidos(fecha_inicio, fecha_fin, $scope.data.currentPage).then(function (data) {
         $scope.listado_pedidos = data.data[0];
         $scope.data.totalItems = data.data[1];
 
         return data.data;
-    });
+    });*/
 
 
 	/*services.getListadoPendientes2(fecha_inicio,fecha_fin,$scope.iconcepto).then(function(data){
