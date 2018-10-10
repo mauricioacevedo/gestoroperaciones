@@ -14455,6 +14455,10 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
         };
 
 
+    $scope.parseInt = function (numbero) {
+		return parseInt(numbero);
+	};
+
     $scope.data = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaini:"", fechafin: "" };
 
     $scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaini:"", fechafin: "" } ;
@@ -14629,7 +14633,8 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 			return data.data;
 		});
 	};
-$scope.csvActivacioncolas = function () {
+
+    $scope.csvActivacioncolas = function () {
 		var login = $rootScope.logedUser.login;
 		services.getCsvActivacioncolas(login).then(function (data) {
 
@@ -14638,6 +14643,14 @@ $scope.csvActivacioncolas = function () {
 		});
 	};
 
+    $scope.csvActivacionRECON = function () {
+		var login = $rootScope.logedUser.login;
+		services.getCsvActivacionRECON(login).then(function (data) {
+
+			window.location.href = "tmp/" + data.data[0];
+			return data.data;
+		});
+	};
 
 	$scope.csvAmarillas = function () {
 		var login = $rootScope.logedUser.login;

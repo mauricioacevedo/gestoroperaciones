@@ -455,7 +455,7 @@
 										<button type="button" class="btn btn-default btn-circle-xs" ng-click="calcularListadoRECON()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
 											<i class="fa fa-refresh"  aria-hidden="true"></i>
 										</button>
-										<button type="button" class="btn btn-default btn-circle-xs" ng-click="csvActivacion()" title="Exportar Pendientes" data-toggle="tooltip" data-placement="left" ng-disabled="loading">
+										<button type="button" class="btn btn-default btn-circle-xs" ng-click="csvActivacionRECON()" title="Exportar Pendientes" data-toggle="tooltip" data-placement="left" ng-disabled="loading">
 											<i class="fa fa-cloud-download"  aria-hidden="true"></i>
 										</button>
 									</div>
@@ -479,7 +479,7 @@
                                </thead>
                                <tbody>
                                    <tr ng-repeat="data in listadoactivacionRECON | orderBy:'fecha_fin':true | filter:filtroInput">
-									   	<td>{{data.CONCEPTO_ID}}</td>
+									   	<td>{{data.COLA_ID}}</td>
 										<td ng-init="listadoactivacionRECON.totales = parseInt(listadoactivacionRECON.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
 										<td ng-init="listadoactivacionRECON.total1HORA = parseInt(listadoactivacionRECON.total1HORA) + parseInt(data.HORA1)">{{data.HORA1}}</td>
 										<td ng-init="listadoactivacionRECON.total2HORAS = parseInt(listadoactivacionRECON.total2HORAS) + parseInt(data.HORA2)">{{data.HORA2}}</td>
@@ -502,19 +502,6 @@
 						</table>
 
 				</div>
-				<div class="panel-footer clearfix" >
-
-					<div class="col-md-8">
-
-						<ul class="nav navbar-nav navbar-left">
-							Total: <span class="label label-success">{{listado_colas.totales}}</span>
-						</ul>
-
-					</div>
-
-
-				</div>
-
 
 				</div>
 			</div>

@@ -778,6 +778,51 @@ class API extends REST {
 
     }
 
+    private function csvActivacionRECON(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $login = $this->_request['login'];
+
+        $today = date("Y-m-d h:i:s");
+        $filename="Fenix_Activacion-$login-$today.csv";
+        $query=" SELECT ".
+            "  REQUERIMIENTO_ID  ".
+            " , PEDIDO_ID  ".
+            " , SUBPEDIDO_ID  ".
+            " , SOLICITUD_ID  ".
+            " , TIPO_ELEMENTO_ID  ".
+            " , TIPO_TRABAJO  ".
+            " , FECHA_ESTADO  ".
+            " , ETAPA_ID  ".
+            " , ESTADO_ID  ".
+            " , COLA_ID  ".
+            " , ACTIVIDAD_ID  ".
+            " , NOMBRE_ACTIVIDAD  ".
+            " , CONCEPTO_ID  ".
+            " ,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_PENDIENTE ".
+            " FROM  informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION' AND TIPO_TRABAJO='RECON'  ";
+
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            $fp = fopen("../tmp/$filename", 'w');
+            fputcsv($fp, array('REQUERIMIENTO_ID','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','TIPO_ELEMENTO_ID','TIPO_TRABAJO','FECHA_ESTADO','ETAPA_ID','ESTADO_ID','COLA_ID','ACTIVIDAD_ID','NOMBRE_ACTIVIDAD','CONCEPTO_ID','TIEMPO_PENDIENTE'));
+            while($row = $r->fetch_assoc()){
+                $result[] = $row;
+                fputcsv($fp, $row);
+            }
+            fclose($fp);
+
+            $this->response($this->json(array($filename,$login)), 200); // send user details
+        }
+
+        $this->response('',204);        // If no records "No Content" status
+
+    }
+
+
     private function csvActivacioncolas(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
