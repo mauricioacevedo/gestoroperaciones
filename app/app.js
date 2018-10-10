@@ -525,6 +525,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'csvActivacion?login=' + login);
 	};
 
+    obj.getCsvActivacion = function (login) { //exportar activacion
+		return $http.get(serviceBase + 'csvActivacionRECON?login=' + login);
+	};
+
 	obj.getCsvActivacioncolas = function (login) { //exportar activacion
 		return $http.get(serviceBase + 'csvActivacioncolas?login=' + login);
 	};
