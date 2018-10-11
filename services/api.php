@@ -778,6 +778,51 @@ class API extends REST {
 
     }
 
+    private function csvActivacionRECON(){
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+        $login = $this->_request['login'];
+
+        $today = date("Y-m-d h:i:s");
+        $filename="Fenix_Activacion-$login-$today.csv";
+        $query=" SELECT ".
+            "  REQUERIMIENTO_ID  ".
+            " , PEDIDO_ID  ".
+            " , SUBPEDIDO_ID  ".
+            " , SOLICITUD_ID  ".
+            " , TIPO_ELEMENTO_ID  ".
+            " , TIPO_TRABAJO  ".
+            " , FECHA_ESTADO  ".
+            " , ETAPA_ID  ".
+            " , ESTADO_ID  ".
+            " , COLA_ID  ".
+            " , ACTIVIDAD_ID  ".
+            " , NOMBRE_ACTIVIDAD  ".
+            " , CONCEPTO_ID  ".
+            " ,CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(FECHA_ESTADO)) AS CHAR(255)) as TIEMPO_PENDIENTE ".
+            " FROM  informe_activacion_pendientesm WHERE  STATUS ='PENDI_ACTIVACION' AND TIPO_TRABAJO='RECON'  ";
+
+        $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+        if($r->num_rows > 0){
+            $result = array();
+            $fp = fopen("../tmp/$filename", 'w');
+            fputcsv($fp, array('REQUERIMIENTO_ID','PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','TIPO_ELEMENTO_ID','TIPO_TRABAJO','FECHA_ESTADO','ETAPA_ID','ESTADO_ID','COLA_ID','ACTIVIDAD_ID','NOMBRE_ACTIVIDAD','CONCEPTO_ID','TIEMPO_PENDIENTE'));
+            while($row = $r->fetch_assoc()){
+                $result[] = $row;
+                fputcsv($fp, $row);
+            }
+            fclose($fp);
+
+            $this->response($this->json(array($filename,$login)), 200); // send user details
+        }
+
+        $this->response('',204);        // If no records "No Content" status
+
+    }
+
+
     private function csvActivacioncolas(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -4573,6 +4618,72 @@ private function getAgentScore($user){
 
 //------------------pendientes por colas activacion----------------------------activacion-----------------
 
+
+    private function pendientesPorColaRECONActivacion(){
+
+        if($this->get_request_method() != "GET"){
+            $this->response('',406);
+        }
+
+        $queryConcepto="  select  ".
+            "  C1.COLA_ID  ".
+            "  , count(*) as CANTIDAD  ".
+            " , sum(if(C1.RANGO_PENDIENTE='1 HORA', 1,0)) as 'HORA1' ".
+            " , sum(if(C1.RANGO_PENDIENTE='2 HORAS', 1,0)) as 'HORA2' ".
+            " , sum(if(C1.RANGO_PENDIENTE='3 HORAS', 1,0)) as 'HORA3' ".
+            " , sum(if(C1.RANGO_PENDIENTE='+4 HORAS', 1,0)) as 'HORA4' ".
+            "  from ( ".
+            " SELECT   ".
+            "      PP.`PEDIDO_ID`,   ".
+            "      PP.`SUBPEDIDO_ID`,   ".
+            "      PP.`SOLICITUD_ID`,   ".
+            "      PP.`TIPO_ELEMENTO_ID`,   ".
+            "      PP.`FECHA_ESTADO`,   ".
+            "      PP.`FECHA_FINAL`,   ".
+            "      PP.`PRODUCTO`,   ".
+            "      PP.`CONCEPTO_ID`,     ".
+            "      PP.`RANGO_CARGA`,   ".
+            "      PP.`FECHA_CARGA`,   ".
+            "      DATE_FORMAT((PP.FECHA_CARGA),'%H') AS HORA_CARGA,   ".
+            "      PP.`DIA_CARGA`,   ".
+            "      PP.`SEMANA_CARGA`,   ".
+            "      PP.`SEMANA_ANO_CARGA`,   ".
+            "      PP.`FUENTE`,   ".
+            "      PP.`STATUS`,   ".
+            "      PP.`VIEWS`   ".
+            "      , CAST(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO)) AS CHAR(255)) AS TIEMPO_PENDIENTE_FULL   ".
+            "      , CASE   ".
+            "        WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) >= 0 and HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) <= 1 THEN '1 HORA'  ".
+            "        WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) = 2 THEN '2 HORAS'   ".
+            "        WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) = 3 THEN '3 HORAS'   ".
+            "        WHEN HOUR(TIMEDIFF(CURRENT_TIMESTAMP(),(PP.FECHA_ESTADO))) >= 4 THEN '+4 HORAS'  ".
+            "      END AS RANGO_PENDIENTE, ".
+            " 	PP.COLA_ID ".
+            "  FROM informe_activacion_pendientesm PP   ".
+            "   where (PP.STATUS= 'PENDI_ACTIVACION'  AND PP.TIPO_TRABAJO='RECON' )  ".
+            "   ) C1  ".
+            "  group by C1.COLA_ID order by count(*) DESC ";
+
+
+        $r = $this->mysqli->query($queryConcepto) or die($this->mysqli->error.__LINE__);
+
+        $resultConcepto = array();
+        if($r->num_rows > 0){
+
+            while($row = $r->fetch_assoc()){
+                $resultConcepto[] = $row;
+            }
+
+            $this->response($this->json(array($resultConcepto)), 200); // send user details
+        }
+
+
+        $this->response('',204);        // If no records "No Content" status
+
+
+    }
+
+
     private function pendientesPorColaConceptoActivacion(){
         if($this->get_request_method() != "GET"){
             $this->response('',406);
@@ -6472,6 +6583,7 @@ private function getAgentScore($user){
             " ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin') as OBS, ".
             " ifnull((Select  p.INCIDENTE from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin') as INCIDENTE, ".
             " a.RADICADO_TEMPORAL ".
+            " ,( select count(b.PEDIDO_ID) FROM pedidos b where b.PEDIDO_ID=a.PEDIDO_ID AND b.CONCEPTO_ANTERIOR in ('14','RC-SIEBEL','OT-C08')  ) as GESTIONES ".
             " from informe_petec_pendientesm a ".
             " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ";
 
@@ -6480,7 +6592,7 @@ private function getAgentScore($user){
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','PEDIDO','PEDIDO_CRM','SUBPEDIDO_ID','SOLICITUD_ID','PROGRAMACION','TIPO_TRABAJO','TIPO_TRABAJO_ORIGINAL','TIPO_ELEMENTO_ID','PRODUCTO','PRODUCTO_ID','UEN_CALCULADA','ESTRATO','MUNICIPIO_ID','PAGINA_SERVICIO','DIRECCION_SERVICIO','TIEMPO_COLA','TIEMPO_INGRESO','FUENTE','CONCEPTO_ID','FECHA_ESTADO','FECHA_INGRESO','FECHA_CARGA','FECHA_CITA','STATUS','MOTIVO_MALO','INCIDENTE','RADICADO_TEMPORAL','PEDIDOFNX', 'CONCEPTO_CRM','ZONA'));
+            fputcsv($fp, array('PEDIDO_ID','PEDIDO','PEDIDO_CRM','SUBPEDIDO_ID','SOLICITUD_ID','PROGRAMACION','TIPO_TRABAJO','TIPO_TRABAJO_ORIGINAL','TIPO_ELEMENTO_ID','PRODUCTO','PRODUCTO_ID','UEN_CALCULADA','ESTRATO','MUNICIPIO_ID','PAGINA_SERVICIO','DIRECCION_SERVICIO','TIEMPO_COLA','TIEMPO_INGRESO','FUENTE','CONCEPTO_ID','FECHA_ESTADO','FECHA_INGRESO','FECHA_CARGA','FECHA_CITA','STATUS','MOTIVO_MALO','INCIDENTE','RADICADO_TEMPORAL','GESTIONES_RECONFIG','PEDIDOFNX', 'CONCEPTO_CRM','ZONA'));
             while($row = $r->fetch_assoc()){
                 $pedidoCrm = $row['PEDIDO_ID'];
                 $objRtaFenix = $this->conceptoPedidoSiebelFenix ($pedidoCrm);
@@ -7146,6 +7258,7 @@ private function getAgentScore($user){
             ", a.FUENTE, a.CONCEPTO_ID, a.FECHA_ESTADO, a.FECHA_CITA, a.STATUS, a.PROGRAMACION ".
             ", RADICADO_TEMPORAL ".
             ", ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin Observaciones') as OBS ".
+            " ,( select count(b.PEDIDO_ID) FROM pedidos b where b.PEDIDO_ID=a.PEDIDO_ID AND b.CONCEPTO_ANTERIOR in ('14','RC-SIEBEL','OT-C08')  ) as GESTIONES ".
             " from informe_petec_pendientesm a ".
             " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
             " AND a.PEDIDO_ID LIKE '$bpedido%' ".
@@ -7373,6 +7486,7 @@ private function getAgentScore($user){
             ", case when a.RADICADO_TEMPORAL in ('ARBOL','INMEDIAT') then 'ARBOL' else a.RADICADO_TEMPORAL end as RADICADO_TEMPORAL ".
             ", if(a.RADICADO_TEMPORAL='ARBOL','true','false') as PRIORIDAD ".
             ", ifnull((Select  p.OBSERVACIONES_PROCESO from portalbd.pedidos p  where 1=1  and estado_id='MALO'  and p.pedido_id=a.pedido_id  order by p.id desc   limit 1 ),'Sin') as OBS ".
+            " ,( select count(b.PEDIDO_ID) FROM pedidos b where b.PEDIDO_ID=a.PEDIDO_ID AND b.CONCEPTO_ANTERIOR in ('14','RC-SIEBEL','OT-C08')  ) as GESTIONES ".
             " from informe_petec_pendientesm a ".
             " where (a.STATUS='PENDI_PETEC' or a.STATUS='MALO') $concepto ".
             " order by a.FECHA_ESTADO ASC limit 100 offset $page";
@@ -8202,6 +8316,7 @@ private function getAgentScore($user){
             " , a.RADICADO_TEMPORAL	".
             " , cast(ifnull(c.Total_Contactos,'SIN LLAMADAS') AS CHAR(255)) as LLAMADAS ".
             " , c.ULTIMO_CONTACTO	".
+            " , a.PEDIDO_CRM	".
             " from informe_petec_pendientesm a ".
             " left join (SELECT a.pedido_id, count(a.pedido_id) as Total_Contactos, ".
             " max(a.fecha_fin) as Ultimo_Contacto	".
@@ -8492,6 +8607,7 @@ private function getAgentScore($user){
             "              and NN.SOLICITUD_ID=N.SOLICITUD_ID) ) AS CONCEPTO_ID_ANTERIOR_NOV  ".
             "  , FNX_PEDIDOS.CELULAR_AVISAR ".
             "  , FNX_PEDIDOS.TELEFONO_AVISAR ".
+            "  , FNX_PEDIDOS.PEDIDO_CRM ".
             "  FROM FNX_SOLICITUDES SOL ".
             "  , FNX_PEDIDOS ".
             "  , FNX_SUBPEDIDOS ".
@@ -20279,6 +20395,15 @@ public function pp(&$var){
            $grupo = "ASIGNACIONES";
            $actividad ="ESTUDIO";
         }
+
+        if ($concep == "PETEC")
+        {
+           $fuente = "FENIX_NAL";
+           $grupo = "ASIGNACIONES";
+           $actividad ="ESTUDIO";
+        }
+
+
 
         $today		= date("Y-m-d");
 

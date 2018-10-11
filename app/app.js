@@ -444,6 +444,11 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 		return $http.get(serviceBase + 'listadoactivacion?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin + '&page=' + page);
 	};
 
+    obj.getListadoActivacionRECON = function () { //Listado activacion
+		return $http.get(serviceBase + 'pendientesPorColaRECONActivacion');
+	};
+
+
 	obj.getListadoActivacionTabla = function (fecha_inicio, fecha_fin) { //listado tabla activacion
 		return $http.get(serviceBase + 'listadoactivaciontabla?fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin);
 	};
@@ -518,6 +523,10 @@ app.factory("services", ['$http', '$timeout', function ($http) {
 
 	obj.getCsvActivacion = function (login) { //exportar activacion
 		return $http.get(serviceBase + 'csvActivacion?login=' + login);
+	};
+
+    obj.getCsvActivacionRECON = function (login) { //exportar activacion
+		return $http.get(serviceBase + 'csvActivacionRECON?login=' + login);
 	};
 
 	obj.getCsvActivacioncolas = function (login) { //exportar activacion
@@ -8889,6 +8898,7 @@ app.controller('RegistrosPendientesCtrl', function ($scope, $rootScope, $locatio
     divi.style.position = "relative";
     $scope.checho = "-1";
     $rootScope.errorDatos=null;
+
     $rootScope.getConceptosGestor();
 
     //alert($routeParams.conceptoid);
@@ -8979,12 +8989,13 @@ app.controller('RegistrosPendientesCtrl', function ($scope, $rootScope, $locatio
 
     $rootScope.actualView = "registros";
 
+    /*
     services.getListadoPedidos(fecha_inicio, fecha_fin, $scope.data.currentPage).then(function (data) {
         $scope.listado_pedidos = data.data[0];
         $scope.data.totalItems = data.data[1];
 
         return data.data;
-    });
+    });*/
 
 
 	/*services.getListadoPendientes2(fecha_inicio,fecha_fin,$scope.iconcepto).then(function(data){
@@ -14429,7 +14440,7 @@ app.controller('Tabla_agendamientoCtrl', function ($scope, $rootScope, $location
 
 app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeParams,$cookies,$cookieStore,$timeout, services) {
 
-      var userID=$cookieStore.get('logedUser').login;
+    var userID=$cookieStore.get('logedUser').login;
     $rootScope.logedUser=$cookieStore.get('logedUser');
     document.getElementById('logout').className="btn btn-md btn-danger";
     var divi=document.getElementById("logoutdiv");
@@ -14449,6 +14460,10 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
             return num;
         };
 
+
+    $scope.parseInt = function (numbero) {
+		return parseInt(numbero);
+	};
 
     $scope.data = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaini:"", fechafin: "" };
 
@@ -14492,9 +14507,10 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
      };
 
 
-     $scope.listadoactivacion=[];
+    $scope.listadoactivacion=[];
+    $scope.listadoactivacionRECON=[];
 
-        $scope.data = {
+    $scope.data = {
 		maxSize: 5,
 		currentPage: 1,
 		numPerPage: 100,
@@ -14545,6 +14561,7 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
         $scope.fecha_inicio=year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
         $scope.fecha_fin=year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
 
+
    $scope.calcularListado = function () {
         services.getListadoActivacion($scope.data.fechaIni, $scope.data.fechaFin, $scope.data.currentPage).then(function (data) {
             $scope.listadoactivacion = data.data[0];
@@ -14555,9 +14572,26 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
     };
 
 
+    $scope.calcularListadoRECON = function () {
+        services.getListadoActivacionRECON().then(function (data) {
+            $scope.listadoactivacionRECON = data.data[0];
 
-      $scope.calcularListado();
 
+            $scope.listadoactivacionRECON.totales = 0;
+            $scope.listadoactivacionRECON.total1HORA = 0;
+            $scope.listadoactivacionRECON.total2HORAS = 0;
+            $scope.listadoactivacionRECON.total3HORAS = 0;
+            $scope.listadoactivacionRECON.total4HORAS = 0;
+
+
+
+            return data.data;
+        });
+    };
+
+
+    $scope.calcularListado();
+    $scope.calcularListadoRECON();
 
     $scope.pageChanged = function(forma) {
 
@@ -14605,7 +14639,8 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 			return data.data;
 		});
 	};
-$scope.csvActivacioncolas = function () {
+
+    $scope.csvActivacioncolas = function () {
 		var login = $rootScope.logedUser.login;
 		services.getCsvActivacioncolas(login).then(function (data) {
 
@@ -14614,6 +14649,14 @@ $scope.csvActivacioncolas = function () {
 		});
 	};
 
+    $scope.csvActivacionRECON = function () {
+		var login = $rootScope.logedUser.login;
+		services.getCsvActivacionRECON(login).then(function (data) {
+
+			window.location.href = "tmp/" + data.data[0];
+			return data.data;
+		});
+	};
 
 	$scope.csvAmarillas = function () {
 		var login = $rootScope.logedUser.login;
@@ -19224,13 +19267,29 @@ app.controller('gestionAsignacionesCtrl', function ($scope, $rootScope, $locatio
 
     $scope.getAgentColor = function(agentScore){
 
-        if(agentScore < 99) {
-            return "white";
-        } else if (agentScore < 120) {
-            return "orange";
-        } else {
-            return "green";
+        if($scope.iconcepto=='14'||$scope.iconcepto=='99'||$scope.iconcepto=='O-101'||$scope.iconcepto=='OT-C08' || $scope.iconcepto=='OT-C11' ||$scope.iconcepto=='RC-SIEBEL'){
+           if(agentScore < 15) {
+                return "white";
+            } else if (agentScore < 25) {
+                return "orange";
+            } else {
+                return "green";
+            }
+
+        }else{
+          if(agentScore < 99) {
+                return "white";
+            } else if (agentScore < 120) {
+                return "orange";
+            } else {
+                return "green";
+            }
+
+
         }
+
+
+
     };
 
     $scope.manual = function () {
