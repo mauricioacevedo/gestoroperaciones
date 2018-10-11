@@ -165,7 +165,7 @@ class API extends REST {
         $today = date("Y-m-d h:i:s");
         $filename="Fenix_NAL-$login-$today.csv";
         $query=" SELECT ".
-            " pedido_id,subpedido_id,solicitud_id,municipio_id, fuente, actividad, fecha_fin, estado,duracion,INCIDENTE,concepto_final,concepto_anterior,user,idllamada,motivo,nuevopedido,caracteristica,motivo_malo ".
+            " pedido_id,subpedido_id,solicitud_id,municipio_id, fuente, actividad, fecha_fin, estado,estado_id,duracion,INCIDENTE,concepto_final,concepto_anterior,user,idllamada,motivo,nuevopedido,caracteristica,motivo_malo ".
             " from pedidos where ".
             " fecha_fin between '$fechaIni 00:00:00' and '$fechaFin 23:59:59' $filtro ";
 
@@ -174,7 +174,7 @@ class API extends REST {
         if($r->num_rows > 0){
             $result = array();
             $fp = fopen("../tmp/$filename", 'w');
-            fputcsv($fp, array('PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID',' FUENTE',' ACTIVIDAD',' FECHA_FIN',' ESTADO', 'DURACION','ACCION','CONCEPTO_FINAL','CONCEPTO_ANTERIOR','USER','IDLLAMADA','MOTIVO','NUEVOPEDIDO','CARACTERISTICA','MOTIVO MALO'));
+            fputcsv($fp, array('PEDIDO_ID','SUBPEDIDO_ID','SOLICITUD_ID','MUNICIPIO_ID',' FUENTE',' ACTIVIDAD',' FECHA_FIN',' ESTADO', 'ESTADO_ID', 'DURACION','ACCION','CONCEPTO_FINAL','CONCEPTO_ANTERIOR','USER','IDLLAMADA','MOTIVO','NUEVOPEDIDO','CARACTERISTICA','MOTIVO MALO'));
             while($row = $r->fetch_assoc()){
                 //$result[] = $row;
                 fputcsv($fp, $row);
@@ -9463,7 +9463,7 @@ private function getAgentScore($user){
                 }
                 else{
                     if($parametroBusquedaRec=="NUEVOS_PRIMERO"){
-                        $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO LIKE '%NUEVO%' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%') $plaza2 ORDER BY FECHA_ESTADO $parametroOrdenRec";
+                        $tipo_trabajo=" AND (TIPO_TRABAJO='NA NUEVO' or TIPO_TRABAJO LIKE '%NUEVO%' or TIPO_TRABAJO='NA Nuevo' or TIPO_TRABAJO LIKE '%TRASL%' OR TIPO_TRABAJO LIKE '%CAMBIO DE DOMICILIO%') $plaza2 ORDER BY FECHA_ESTADO $parametroOrdenRec" ;
                     }else{
                         $tipo_trabajo=" ";
                     }
