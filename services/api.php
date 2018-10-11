@@ -9400,7 +9400,7 @@ private function getAgentScore($user){
 
         }
         else if($concepto=="COORP"){
-            $concepto=" and b.CONCEPTO_ID in ('PETEC') and (b.TIPO_ELEMENTO_ID IN ('E2MB','P2MB','INSTIP','CNTXIP','SEDECX','PLANT','PLP','PTLAN','MTLAN', 'PMULT','EPCM','PPCM','PBRI','PPRI','TV','TP','BDID','TDID','BDIDE1','TDIDE1','BDODE1','TDODE1','SLL','TC','SLLBRI','TCBRI','SLLE1','TCE1','SLLPRI','TCPRI','SEDEIP','CONECT','ACCESO') )";
+            $concepto=" and b.CONCEPTO_ID in ('PETEC') and (b.TIPO_ELEMENTO_ID IN ('E2MB','P2MB','INSTIP','CNTXIP','SEDECX','PLANT','PLP','PTLAN','MTLAN', 'PMULT','EPCM','PPCM','PBRI','PPRI','TV','TP','BDID','TDID','BDIDE1','TDIDE1','BDODE1','TDODE1','SLL','TC','SLLBRI','TCBRI','SLLE1','TCE1','SLLPRI','TCPRI','SEDEIP','CONECT','ACCESO','2MB','INSTA','TRKSIP') )";
 
 
         }
