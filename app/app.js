@@ -14465,6 +14465,12 @@ app.controller('ActivacionCtrl',function ($scope, $rootScope, $location, $routeP
 		return parseInt(numbero);
 	};
 
+    $scope.dangerClass = function (numbero) {
+		if( parseInt(numbero) > 0) return true;
+
+        return false;
+	};
+
     $scope.data = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaini:"", fechafin: "" };
 
     $scope.data1 = { maxSize: 5, currentPage: 1, numPerPage: 100, totalItems: 0, fechaini:"", fechafin: "" } ;
