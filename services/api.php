@@ -20404,6 +20404,13 @@ public function pp(&$var){
         }
 
 
+        if ($concep == "OT-C08" )
+        {
+           $fuente 	= "SIEBEL";
+           $grupo = "RECONFIGURACION";
+           $actividad ="RECONFIGURACION";
+        }
+
 
         $today		= date("Y-m-d");
 
