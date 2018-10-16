@@ -1538,7 +1538,7 @@ class API extends REST {
                          " WHERE PEDIDO_ID = '$pedidoid' ".
                          " AND STATUS = 'PENDI_PETEC'  ";
                  $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-			echo var_dump ($query);
+			//echo var_dump ($query);
             }
 /*		else($estado_id == "CERRADO" && $estado == "RC-SIEBEL"){
 
