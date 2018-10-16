@@ -1516,6 +1516,7 @@ class API extends REST {
         //echo var_dump($estado);
 
         $user=$pedido1['user'];
+		$today = date("Y-m-d");
 
 
         $this->terminarPedidoManualPrivate($user);
@@ -1533,7 +1534,7 @@ class API extends REST {
 
         if($estado_id == "ENRRUTADO" && $estado == "RC-SIEBEL"){
                 //echo var_dump ('ingreso');
-                $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado',  CONCEPTO_ANTERIOR = '$estado',  STATUS = 'PENDI_PETEC' ".
+                $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado',  CONCEPTO_ANTERIOR = '$estado',  STATUS = 'PENDI_PETEC', FECHA_ESTADO = '$today' ".
                          " WHERE PEDIDO_ID = '$pedidoid' ".
                          " AND STATUS = 'PENDI_PETEC'  ";
                  $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
