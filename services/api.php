@@ -1516,7 +1516,7 @@ class API extends REST {
         //echo var_dump($estado);
 
         $user=$pedido1['user'];
-		$today = date("Y-m-d");
+		$today = date("Y-m-d H:i:s");
 
 
         $this->terminarPedidoManualPrivate($user);
