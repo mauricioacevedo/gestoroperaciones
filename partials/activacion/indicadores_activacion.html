@@ -321,6 +321,82 @@
                 </div>
 				
 
+        <div class="col-md-12">
+			<div class = "panel panel-default">
+				<div class = "panel-heading nav navbar-default">
+					<div class="row">
+						<div class="col-md-6">
+							<ul class="nav navbar-nav navbar-left">
+								<b>Reconexiones Pendientes por Cola</b>
+								<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
+
+							</ul>
+						</div>
+						<div class="col-md-6">
+							<ul class="nav navbar-nav navbar-right">
+								<div class="col-md-1 col-xs-1 ">
+											<div data-ng-if="loading">
+												<img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="img/loader.gif" />
+											</div>
+									</div>
+								<li>
+									<div class="col-md-12 col-xs-6 ">
+										<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
+										<button type="button" class="btn btn-default btn-circle-xs" ng-click="calcularListadoRECON()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
+											<i class="fa fa-refresh"  aria-hidden="true"></i>
+										</button>
+										<button type="button" class="btn btn-default btn-circle-xs" ng-click="csvActivacionRECON()" title="Exportar Pendientes" data-toggle="tooltip" data-placement="left" ng-disabled="loading">
+											<i class="fa fa-cloud-download"  aria-hidden="true"></i>
+										</button>
+									</div>
+								</li>
+							</ul>
+							</div>
+
+
+						</div>
+				</div>
+				<div class="panel-body fixed-panel">
+
+						<table class="table small table-striped table-hover table-bordered table-condensed">
+							<thead>
+								<th>Cola</th>
+								<th>Total</th>
+								<th> 1 HORA</th>
+								<th> 2 HORAS</th>
+								<th> 3 HORAS</th>
+								<th> +4 HORAS</th>
+                               </thead>
+                               <tbody>
+                                   <tr ng-repeat="data in listadoactivacionRECON | orderBy:'fecha_fin':true | filter:filtroInput">
+									   	<td>{{data.COLA_ID}}</td>
+										<td ng-init="listadoactivacionRECON.totales = parseInt(listadoactivacionRECON.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
+										<td ng-init="listadoactivacionRECON.total1HORA = parseInt(listadoactivacionRECON.total1HORA) + parseInt(data.HORA1)">{{data.HORA1}}</td>
+										<td ng-init="listadoactivacionRECON.total2HORAS = parseInt(listadoactivacionRECON.total2HORAS) + parseInt(data.HORA2)">{{data.HORA2}}</td>
+                                       <td ng-init="listadoactivacionRECON.total3HORAS = parseInt(listadoactivacionRECON.total3HORAS) + parseInt(data.HORA3)" class='danger'><b>{{data.HORA3}}</b></td>
+										<td ng-init="listadoactivacionRECON.total4HORAS = parseInt(listadoactivacionRECON.total4HORAS) + parseInt(data.HORA4)" class='danger'><b>{{data.HORA4}}</b></td>
+
+                                        </tr>
+                                </tbody>
+                                <tfoot>
+									<tr class="info">
+									 	<th>Totales</th>
+										<th>{{listadoactivacionRECON.totales}}</th>
+										<th>{{listadoactivacionRECON.total1HORA}}</th>
+										<th>{{listadoactivacionRECON.total2HORAS}}</th>
+										<th>{{listadoactivacionRECON.total3HORAS}}</th>
+										<th>{{listadoactivacionRECON.total4HORAS}}</th>
+									</tr>
+
+                                </tfoot>
+						</table>
+
+				</div>
+
+				</div>
+			</div>
+
+
 		<div class="col-md-12">
 			<div class = "panel panel-default">
 				<div class = "panel-heading nav navbar-default">
@@ -418,109 +494,6 @@
 
 				</div>
 			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <div class="col-md-12">
-			<div class = "panel panel-default">
-				<div class = "panel-heading nav navbar-default">
-					<div class="row">
-						<div class="col-md-6">
-							<ul class="nav navbar-nav navbar-left">
-								<b>Reconexiones Pendientes por Cola</b>
-								<span style="color:red" class="pull-right"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ng-hide="errorDatos==null"></i> {{errorDatos}}</span>
-
-							</ul>
-						</div>
-						<div class="col-md-6">
-							<ul class="nav navbar-nav navbar-right">
-								<div class="col-md-1 col-xs-1 ">
-											<div data-ng-if="loading">
-												<img title="Esperando respuesta" data-toggle="tooltip" data-placement="top" src="img/loader.gif" />
-											</div>
-									</div>
-								<li>
-									<div class="col-md-12 col-xs-6 ">
-										<input style="width:120px"  class="btn btn-default btn-xs " type="text" ng-model="filtroInput" placeholder="Filtro" ng-disabled="loading" select-on-click capitalize/>
-										<button type="button" class="btn btn-default btn-circle-xs" ng-click="calcularListadoRECON()"  title="Actualizar" data-toggle="tooltip" data-placement="left" ng-disabled="loading" >
-											<i class="fa fa-refresh"  aria-hidden="true"></i>
-										</button>
-										<button type="button" class="btn btn-default btn-circle-xs" ng-click="csvActivacionRECON()" title="Exportar Pendientes" data-toggle="tooltip" data-placement="left" ng-disabled="loading">
-											<i class="fa fa-cloud-download"  aria-hidden="true"></i>
-										</button>
-									</div>
-								</li>
-							</ul>
-							</div>
-
-
-						</div>
-				</div>
-				<div class="panel-body fixed-panel">
-
-						<table class="table small table-striped table-hover table-bordered table-condensed">
-							<thead>
-								<th>Cola</th>
-								<th>Total</th>
-								<th> 1 HORA</th>
-								<th> 2 HORAS</th>
-								<th> 3 HORAS</th>
-								<th> +4 HORAS</th>
-                               </thead>
-                               <tbody>
-                                   <tr ng-repeat="data in listadoactivacionRECON | orderBy:'fecha_fin':true | filter:filtroInput">
-									   	<td>{{data.COLA_ID}}</td>
-										<td ng-init="listadoactivacionRECON.totales = parseInt(listadoactivacionRECON.totales) + parseInt(data.CANTIDAD)">{{data.CANTIDAD}}</td>
-										<td ng-init="listadoactivacionRECON.total1HORA = parseInt(listadoactivacionRECON.total1HORA) + parseInt(data.HORA1)">{{data.HORA1}}</td>
-										<td ng-init="listadoactivacionRECON.total2HORAS = parseInt(listadoactivacionRECON.total2HORAS) + parseInt(data.HORA2)">{{data.HORA2}}</td>
-                                       <td ng-init="listadoactivacionRECON.total3HORAS = parseInt(listadoactivacionRECON.total3HORAS) + parseInt(data.HORA3)" bgcolor='red'><b>{{data.HORA3}}</b></td>
-										<td ng-init="listadoactivacionRECON.total4HORAS = parseInt(listadoactivacionRECON.total4HORAS) + parseInt(data.HORA4)" bgcolor='red'><b>{{data.HORA4}}</b></td>
-
-                                        </tr>
-                                </tbody>
-                                <tfoot>
-									<tr class="info">
-									 	<th>Totales</th>
-										<th>{{listadoactivacionRECON.totales}}</th>
-										<th>{{listadoactivacionRECON.total1HORA}}</th>
-										<th>{{listadoactivacionRECON.total2HORAS}}</th>
-										<th>{{listadoactivacionRECON.total3HORAS}}</th>
-										<th>{{listadoactivacionRECON.total4HORAS}}</th>
-									</tr>
-
-                                </tfoot>
-						</table>
-
-				</div>
-
-				</div>
-			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
