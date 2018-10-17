@@ -1539,7 +1539,7 @@ class API extends REST {
 
 				 $rr = $this->mysqli->query($queyid) or die($this->mysqli->error.__LINE__);
 
-					echo var_dump ($queyid);
+					echo var_dump ($rr);
 
                 $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado',  CONCEPTO_ANTERIOR = '$estado', ".  		  " STATUS = 'PENDI_PETEC', FECHA_ESTADO = '$today', FECHA_CARGA = '$today', FECHA_INGRESO='$today'".
                          " WHERE PEDIDO_ID = '$pedidoid' ".
