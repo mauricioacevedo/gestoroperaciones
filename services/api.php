@@ -1545,13 +1545,14 @@ class API extends REST {
                     break;
                 }
             }
-                echo var_dump ($ID1);
+                //echo var_dump ($ID1);
 
                 $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado',  CONCEPTO_ANTERIOR = '$estado', ".  		  " STATUS = 'PENDI_PETEC', FECHA_ESTADO = '$today', FECHA_CARGA = '$today', FECHA_INGRESO='$today'".
                          " WHERE PEDIDO_ID = '$pedidoid' ".
+						 " AND ID = '$ID1'  ".
                          " AND STATUS = 'PENDI_PETEC'  ";
                  $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-			//echo var_dump ($query);
+			echo var_dump ($query);
             }
 
 /*		else($estado_id == "CERRADO" && $estado == "RC-SIEBEL"){
