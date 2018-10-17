@@ -1533,7 +1533,19 @@ class API extends REST {
         //echo var_dump($estado);
 
         if($estado_id == "ENRRUTADO" && $estado == "RC-SIEBEL"){
-                //echo var_dump ('ingreso');
+
+			$queryselect = " select ID from informe_petec_pendientesm where PEDIDO_ID = '$pedidoid' order by ID desc limit 1 ";
+
+        		$ID = $this->mysqli->query($queryselect) or die($this->mysqli->error.__LINE__);
+
+            if($ID->num_rows > 0){//recorro los registros de la consulta para
+                while($row = $ID->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
+                    $result[] = $row;
+                    $ID1=$row['ID'];
+                    break;
+                }
+            }
+                echo var_dump ($ID1);
 
                 $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado',  CONCEPTO_ANTERIOR = '$estado', ".  		  " STATUS = 'PENDI_PETEC', FECHA_ESTADO = '$today', FECHA_CARGA = '$today', FECHA_INGRESO='$today'".
                          " WHERE PEDIDO_ID = '$pedidoid' ".
@@ -1541,6 +1553,7 @@ class API extends REST {
                  $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 			//echo var_dump ($query);
             }
+
 /*		else($estado_id == "CERRADO" && $estado == "RC-SIEBEL"){
 
 			$query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado', STATUS = 'CERRADO_PETEC' ".
