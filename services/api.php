@@ -1538,13 +1538,13 @@ class API extends REST {
 
         		$ID = $this->mysqli->query($queryselect) or die($this->mysqli->error.__LINE__);
 
-            if($ID->num_rows > 0){//recorro los registros de la consulta para
-                while($row = $ID->fetch_assoc()){//si encuentra un pedido ENTREGUELO COMO SEA NECESARIO!!!!!!!
-                    $result[] = $row;
-                    $ID1=$row['ID'];
-                    break;
-                }
-            }
+				if($ID->num_rows > 0){
+					while($row = $ID->fetch_assoc()){
+						$result[] = $row;
+						$ID1=$row['ID'];
+						break;
+					}
+				}
                 //echo var_dump ($ID1);
 
                 $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado',  CONCEPTO_ANTERIOR = '$estado', ".  		  " STATUS = 'PENDI_PETEC', FECHA_ESTADO = '$today', FECHA_CARGA = '$today', FECHA_INGRESO='$today'".
@@ -1552,7 +1552,7 @@ class API extends REST {
 						 " AND ID = '$ID1'  ".
                          " AND STATUS = 'PENDI_PETEC'  ";
                  $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-			echo var_dump ($query);
+			//echo var_dump ($query);
             }
 
 /*		else($estado_id == "CERRADO" && $estado == "RC-SIEBEL"){
