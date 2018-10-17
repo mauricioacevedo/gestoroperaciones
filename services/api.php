@@ -1534,6 +1534,13 @@ class API extends REST {
 
         if($estado_id == "ENRRUTADO" && $estado == "RC-SIEBEL"){
                 //echo var_dump ('ingreso');
+
+				$queyid = "select ID from informe_petec_pendientesm where PEDIDO_ID = $pedidoid' order by ID desc limit 1" ;
+
+				 $rr = $this->mysqli->query($queyid) or die($this->mysqli->error.__LINE__);
+
+					echo var_dump ($queyid);
+
                 $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado',  CONCEPTO_ANTERIOR = '$estado', ".  		  " STATUS = 'PENDI_PETEC', FECHA_ESTADO = '$today', FECHA_CARGA = '$today', FECHA_INGRESO='$today'".
                          " WHERE PEDIDO_ID = '$pedidoid' ".
                          " AND STATUS = 'PENDI_PETEC'  ";
