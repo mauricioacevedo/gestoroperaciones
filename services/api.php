@@ -1535,7 +1535,6 @@ class API extends REST {
         if($estado_id == "ENRRUTADO" && $estado == "RC-SIEBEL"){
 
 			$queryselect = " select ID from informe_petec_pendientesm where PEDIDO_ID = '$pedidoid' order by ID desc limit 1 ";
-
         		$ID = $this->mysqli->query($queryselect) or die($this->mysqli->error.__LINE__);
 
 				if($ID->num_rows > 0){
