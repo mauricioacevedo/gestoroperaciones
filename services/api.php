@@ -1557,6 +1557,8 @@ class API extends REST {
 
                  $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
+					$ManualP= "ACTUALIZADO";
+
 				}else{
 					$ManualP= "RC-SIEBEL";
 				}
@@ -1668,6 +1670,36 @@ class API extends REST {
             // ---------------------------------- SQL Feed
             //echo ("ingresooooooo");
             //$this->response(json_encode(array("msg"=>"N/A","data" => $today,"agent_score"=>$agentScore)),200);
+		}else if ($ManualP == "ACTUALIZADO"){
+            $query = "INSERT INTO pedidos(".trim($columns,',').",source,OBSERVACIONES_PROCESO, pedido_id,DEPARTAMENTO, municipio_id, ESTADO_ID) VALUES(".trim($values,',').",'MANUAL', '$observaciones', '$pedidoid','$departamento','$ciudad','$estado_id')";
+
+            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+            $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'SIN PEDIDO' ".
+                ",'GUARDO PEDIDO' ".
+                ",'MANUAL' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
+
+            $rlog = $this->mysqli->query($sql_log);
+            $agentScore=$this->getAgentScore($usuarioGalleta);
+            $this->response(json_encode(array("msg"=>"N/A","data" => $today,"agent_score"=>$agentScore)),200);
+
 		}else if (!empty($pedido)) {
 
 				$query = "INSERT INTO pedidos(".trim($columns,',').",source,OBSERVACIONES_PROCESO, pedido_id,DEPARTAMENTO, municipio_id, ESTADO_ID) VALUES(".trim($values,',').",'MANUAL', '$observaciones', '$pedidoid','$departamento','$ciudad','$estado_id')";
@@ -1705,12 +1737,8 @@ class API extends REST {
 				$agentScore=$this->getAgentScore($usuarioGalleta);
             	$this->response(json_encode(array("msg"=>"N/A","data" => $today,"agent_score"=>$agentScore)),200);
 
-				}
-
-
-
-        else {
-            $this->response('',204);        //"No Content" status
+				}else {
+            		$this->response('',204);        //"No Content" status
             //$this->response("$query",200);        //"No Content" status
         }
 
