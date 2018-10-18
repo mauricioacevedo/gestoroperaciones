@@ -1605,7 +1605,7 @@ class API extends REST {
             //echo $sqlInsertIngresos;/
             $r = $this->mysqli->query($sqlInsertIngresos) or die($this->mysqli->error.__LINE__);
 
-			}
+
 
 			else {
 
@@ -1679,7 +1679,7 @@ class API extends REST {
             // ---------------------------------- SQL Feed
             //echo ("ingresooooooo");
             //$this->response(json_encode(array("msg"=>"N/A","data" => $today,"agent_score"=>$agentScore)),200);
-
+		}
 
 
 
