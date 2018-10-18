@@ -1517,6 +1517,7 @@ class API extends REST {
 
         $user=$pedido1['user'];
 		$today = date("Y-m-d H:i:s");
+		$ManualP = "";
 
 
         $this->terminarPedidoManualPrivate($user);
@@ -1547,12 +1548,18 @@ class API extends REST {
 				}
                 //echo var_dump ($ID1);
 
-                $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado',  CONCEPTO_ANTERIOR = '$estado', ".  		  " STATUS = 'PENDI_PETEC', FECHA_ESTADO = '$today', FECHA_CARGA = '$today', FECHA_INGRESO='$today'".
+                if(!empty($ID1)){
+
+				$query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado',  CONCEPTO_ANTERIOR = '$estado', ".  		  " STATUS = 'PENDI_PETEC', FECHA_ESTADO = '$today', FECHA_CARGA = '$today', FECHA_INGRESO='$today'".
                          " WHERE PEDIDO_ID = '$pedidoid' ".
 						 " AND ID = '$ID1'  ".
                          " AND STATUS = 'PENDI_PETEC'  ";
 
                  $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+				}else{
+					$ManualP= "RC-SIEBEL";
+				}
 			//echo var_dump ($query);
             }
 
@@ -1591,7 +1598,7 @@ class API extends REST {
         }
 
         //$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
-        if(!empty($ID1)) {
+        if($ManualP == "RC-SIEBEL") {
             //$concepto_final=$this->updateFenix($pedido);
             $query = "INSERT INTO pedidos(".trim($columns,',').",source,OBSERVACIONES_PROCESO, pedido_id,DEPARTAMENTO, municipio_id, ESTADO_ID) VALUES(".trim($values,',').",'MANUAL', '$observaciones', '$pedidoid','$departamento','$ciudad','$estado_id')";
 
