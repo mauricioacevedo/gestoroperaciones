@@ -1553,8 +1553,6 @@ class API extends REST {
                          " AND STATUS = 'PENDI_PETEC'  ";
 
                  $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-
-			$rc= "RC-SIEBEL"
 			//echo var_dump ($query);
             }
 
@@ -1593,7 +1591,7 @@ class API extends REST {
         }
 
         //$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
-        if($rc == "RC-SIEBEL") {
+        if(!empty($ID1)) {
             //$concepto_final=$this->updateFenix($pedido);
             $query = "INSERT INTO pedidos(".trim($columns,',').",source,OBSERVACIONES_PROCESO, pedido_id,DEPARTAMENTO, municipio_id, ESTADO_ID) VALUES(".trim($values,',').",'MANUAL', '$observaciones', '$pedidoid','$departamento','$ciudad','$estado_id')";
 
