@@ -1534,8 +1534,9 @@ class API extends REST {
 
         if($estado_id == "ENRRUTADO" && $estado == "RC-SIEBEL"){
 
-			$queryselect = " select ID from informe_petec_pendientesm where PEDIDO_ID = '$pedidoid' order by ID desc limit 1 ";
-        		$ID = $this->mysqli->query($queryselect) or die($this->mysqli->error.__LINE__);
+		 $queryselect = " select ID from informe_petec_pendientesm where PEDIDO_ID = '$pedidoid' order by ID desc limit 1 ";
+
+			$ID = $this->mysqli->query($queryselect) or die($this->mysqli->error.__LINE__);
 
 				if($ID->num_rows > 0){
 					while($row = $ID->fetch_assoc()){
@@ -1550,6 +1551,7 @@ class API extends REST {
                          " WHERE PEDIDO_ID = '$pedidoid' ".
 						 " AND ID = '$ID1'  ".
                          " AND STATUS = 'PENDI_PETEC'  ";
+
                  $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 			//echo var_dump ($query);
             }
@@ -1589,7 +1591,7 @@ class API extends REST {
         }
 
         //$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
-        if(!empty($pedido)){
+        if(!empty($ID1)){
             //$concepto_final=$this->updateFenix($pedido);
             $query = "INSERT INTO pedidos(".trim($columns,',').",source,OBSERVACIONES_PROCESO, pedido_id,DEPARTAMENTO, municipio_id, ESTADO_ID) VALUES(".trim($values,',').",'MANUAL', '$observaciones', '$pedidoid','$departamento','$ciudad','$estado_id')";
 
@@ -1600,13 +1602,21 @@ class API extends REST {
             $sqlInsertIngresos="insert into informe_petec_pendientesm (PEDIDO_ID, PEDIDO, MUNICIPIO_ID ,TIPO_ELEMENTO_ID, TIPO_TRABAJO, DESC_TIPO_TRABAJO, FECHA_INGRESO, FECHA_CITA, PRODUCTO_ID, PRODUCTO, CONCEPTO_ID, CONCEPTO_ANTERIOR, DIRECCION_SERVICIO, PAGINA_SERVICIO, TECNOLOGIA_ID, FUENTE, FECHA_ESTADO, UEN_CALCULADA, ESTRATO, FECHA_CARGA, ESTADO_BLOQUEO, USUARIO_BLOQUEO_FENIX, ACTIVIDAD, GRUPO, CLIENTE_ID, DEPARTAMENTO,STATUS,OBSERVACIONES,ASESOR)
             values ('".$pedido1['pedido']."','".$pedido1['pedido']."','".$pedido1['ciudad']."','NULL','NULL','NULL','".$pedido1['fecha_inicio']."','9999-01-01','NULL','NULL','".$pedido1['estado']."','".$pedido1['estado']."','NULL','NULL','NULL','".$pedido1['fuente']."','".$pedido1['fecha_inicio']."','HG','NULL','".$pedido1['fecha_inicio']."','N','','".$pedido1['actividad']."','ASIGNACIONES', 'NULL','".$pedido1['departamento']."','PENDI_PETEC', '".$pedido1['observacion']."','$usuarioGalleta')";
 
-
-			/*$sqlInsertIngresos="insert into informe_petec_pendientesm (PEDIDO_ID, PEDIDO, MUNICIPIO_ID ,TIPO_ELEMENTO_ID, TIPO_TRABAJO, DESC_TIPO_TRABAJO, FECHA_INGRESO, FECHA_CITA, PRODUCTO_ID, PRODUCTO, CONCEPTO_ID, CONCEPTO_ANTERIOR, DIRECCION_SERVICIO, PAGINA_SERVICIO, TECNOLOGIA_ID, FUENTE, FECHA_ESTADO, UEN_CALCULADA, ESTRATO, FECHA_CARGA, ESTADO_BLOQUEO, USUARIO_BLOQUEO_FENIX, ACTIVIDAD, GRUPO, CLIENTE_ID, DEPARTAMENTO,STATUS,OBSERVACIONES,ASESOR)
-            values ('".$pedido1['pedido']."','".$pedido1['pedido']."','".$pedido1['ciudad']."','NULL','NULL','NULL','".$pedido1['fecha_inicio']."','9999-01-01','NULL','NULL','MANUAL','MANUAL','NULL','NULL','NULL','".$pedido1['fuente']."','".$pedido1['fecha_inicio']."','HG','NULL','".$pedido1['fecha_inicio']."','N','','".$pedido1['actividad']."','ASIGNACIONES', 'NULL','".$pedido1['departamento']."','CERRADO_PETEC', '".$pedido1['observacion']."','$usuarioGalleta')";*/
-
-
             //echo $sqlInsertIngresos;/
             $r = $this->mysqli->query($sqlInsertIngresos) or die($this->mysqli->error.__LINE__);
+
+			else if {
+
+				$query = "INSERT INTO pedidos(".trim($columns,',').",source,OBSERVACIONES_PROCESO, pedido_id,DEPARTAMENTO, municipio_id, ESTADO_ID) VALUES(".trim($values,',').",'MANUAL', '$observaciones', '$pedidoid','$departamento','$ciudad','$estado_id')";
+
+                $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+				$sqlInsertIngresos="insert into informe_petec_pendientesm (PEDIDO_ID, PEDIDO, MUNICIPIO_ID ,TIPO_ELEMENTO_ID, TIPO_TRABAJO, DESC_TIPO_TRABAJO, FECHA_INGRESO, FECHA_CITA, PRODUCTO_ID, PRODUCTO, CONCEPTO_ID, CONCEPTO_ANTERIOR, DIRECCION_SERVICIO, PAGINA_SERVICIO, TECNOLOGIA_ID, FUENTE, FECHA_ESTADO, UEN_CALCULADA, ESTRATO, FECHA_CARGA, ESTADO_BLOQUEO, USUARIO_BLOQUEO_FENIX, ACTIVIDAD, GRUPO, CLIENTE_ID, DEPARTAMENTO,STATUS,OBSERVACIONES,ASESOR)
+            	values ('".$pedido1['pedido']."','".$pedido1['pedido']."','".$pedido1['ciudad']."','NULL','NULL','NULL','".$pedido1['fecha_inicio']."','9999-01-01','NULL','NULL','MANUAL','MANUAL','NULL','NULL','NULL','".$pedido1['fuente']."','".$pedido1['fecha_inicio']."','HG','NULL','".$pedido1['fecha_inicio']."','N','','".$pedido1['actividad']."','ASIGNACIONES', 'NULL','".$pedido1['departamento']."','CERRADO_PETEC', '".$pedido1['observacion']."','$usuarioGalleta')";
+
+				$r = $this->mysqli->query($sqlInsertIngresos) or die($this->mysqli->error.__LINE__);
+
+			}
 
 
 
