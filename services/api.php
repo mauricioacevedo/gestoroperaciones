@@ -1516,6 +1516,8 @@ class API extends REST {
         //echo var_dump($estado);
 
         $user=$pedido1['user'];
+		$today = date("Y-m-d H:i:s");
+		$ManualP = "";
 
 
         $this->terminarPedidoManualPrivate($user);
@@ -1532,12 +1534,44 @@ class API extends REST {
         //echo var_dump($estado);
 
         if($estado_id == "ENRRUTADO" && $estado == "RC-SIEBEL"){
-                //echo var_dump ('ingreso');
-                $query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado', STATUS = 'PENDI_PETEC' ".
+
+		 $queryselect = " select ID from informe_petec_pendientesm where PEDIDO_ID = '$pedidoid' order by ID desc limit 1 ";
+
+			$ID = $this->mysqli->query($queryselect) or die($this->mysqli->error.__LINE__);
+
+				if($ID->num_rows > 0){
+					while($row = $ID->fetch_assoc()){
+						$result[] = $row;
+						$ID1=$row['ID'];
+						break;
+					}
+				}
+                //echo var_dump ($ID1);
+
+                if(!empty($ID1)){
+
+				$query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado',  CONCEPTO_ANTERIOR = '$estado', ".  		  " STATUS = 'PENDI_PETEC', FECHA_ESTADO = '$today', FECHA_CARGA = '$today', FECHA_INGRESO='$today'".
+                         " WHERE PEDIDO_ID = '$pedidoid' ".
+						 " AND ID = '$ID1'  ".
+                         " AND STATUS = 'PENDI_PETEC'  ";
+
+                 $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+					$ManualP= "ACTUALIZADO";
+
+				}else{
+					$ManualP= "RC-SIEBEL";
+				}
+			//echo var_dump ($query);
+            }
+
+/*		else($estado_id == "CERRADO" && $estado == "RC-SIEBEL"){
+
+			$query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado', STATUS = 'CERRADO_PETEC' ".
                          " WHERE PEDIDO_ID = '$pedidoid' ".
                          " AND STATUS = 'PENDI_PETEC'  ";
                  $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
-            }
+		}*/
 
         $column_names = array('pedido', 'fuente', 'actividad','estado', 'user','duracion','INCIDENTE','fecha_inicio','fecha_fin','concepto_final');
         $keys = array_keys($pedido);
@@ -1566,7 +1600,7 @@ class API extends REST {
         }
 
         //$query = "INSERT INTO pedidos(".trim($columns,',').",fecha_estado) VALUES(".trim($values,',').",'$fecha_estado')";
-        if(!empty($pedido)){
+        if($ManualP == "RC-SIEBEL") {
             //$concepto_final=$this->updateFenix($pedido);
             $query = "INSERT INTO pedidos(".trim($columns,',').",source,OBSERVACIONES_PROCESO, pedido_id,DEPARTAMENTO, municipio_id, ESTADO_ID) VALUES(".trim($values,',').",'MANUAL', '$observaciones', '$pedidoid','$departamento','$ciudad','$estado_id')";
 
@@ -1575,12 +1609,10 @@ class API extends REST {
             $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
             $sqlInsertIngresos="insert into informe_petec_pendientesm (PEDIDO_ID, PEDIDO, MUNICIPIO_ID ,TIPO_ELEMENTO_ID, TIPO_TRABAJO, DESC_TIPO_TRABAJO, FECHA_INGRESO, FECHA_CITA, PRODUCTO_ID, PRODUCTO, CONCEPTO_ID, CONCEPTO_ANTERIOR, DIRECCION_SERVICIO, PAGINA_SERVICIO, TECNOLOGIA_ID, FUENTE, FECHA_ESTADO, UEN_CALCULADA, ESTRATO, FECHA_CARGA, ESTADO_BLOQUEO, USUARIO_BLOQUEO_FENIX, ACTIVIDAD, GRUPO, CLIENTE_ID, DEPARTAMENTO,STATUS,OBSERVACIONES,ASESOR)
-            values ('".$pedido1['pedido']."','".$pedido1['pedido']."','".$pedido1['ciudad']."','NULL','NULL','NULL','".$pedido1['fecha_inicio']."','9999-01-01','NULL','NULL','MANUAL','MANUAL','NULL','NULL','NULL','".$pedido1['fuente']."','".$pedido1['fecha_inicio']."','HG','NULL','".$pedido1['fecha_inicio']."','N','','".$pedido1['actividad']."','ASIGNACIONES', 'NULL','".$pedido1['departamento']."','CERRADO_PETEC', '".$pedido1['observacion']."','$usuarioGalleta')";
+            values ('".$pedido1['pedido']."','".$pedido1['pedido']."','".$pedido1['ciudad']."','NULL','NULL','NULL','".$pedido1['fecha_inicio']."','9999-01-01','NULL','NULL','".$pedido1['estado']."','".$pedido1['estado']."','NULL','NULL','NULL','".$pedido1['fuente']."','".$pedido1['fecha_inicio']."','HG','NULL','".$pedido1['fecha_inicio']."','N','','".$pedido1['actividad']."','ASIGNACIONES', 'NULL','".$pedido1['departamento']."','PENDI_PETEC', '".$pedido1['observacion']."','$usuarioGalleta')";
 
             //echo $sqlInsertIngresos;/
             $r = $this->mysqli->query($sqlInsertIngresos) or die($this->mysqli->error.__LINE__);
-
-
 
             //echo $sqlCerrarManuales;
 
@@ -1638,12 +1670,75 @@ class API extends REST {
             // ---------------------------------- SQL Feed
             //echo ("ingresooooooo");
             //$this->response(json_encode(array("msg"=>"N/A","data" => $today,"agent_score"=>$agentScore)),200);
+		}else if ($ManualP == "ACTUALIZADO"){
+            $query = "INSERT INTO pedidos(".trim($columns,',').",source,OBSERVACIONES_PROCESO, pedido_id,DEPARTAMENTO, municipio_id, ESTADO_ID) VALUES(".trim($values,',').",'MANUAL', '$observaciones', '$pedidoid','$departamento','$ciudad','$estado_id')";
 
-        }
+            $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
+            $sql_log=   "insert into portalbd.activity_feed ( ".
+                " USER ".
+                ", USER_NAME ".
+                ", GRUPO ".
+                ", STATUS ".
+                ", PEDIDO_OFERTA ".
+                ", ACCION ".
+                ", CONCEPTO_ID ".
+                ", IP_HOST ".
+                ", CP_HOST ".
+                ") values( ".
+                " UPPER('$usuarioGalleta')".
+                ", UPPER('$nombreGalleta')".
+                ", UPPER('$grupoGalleta')".
+                ",'OK' ".
+                ",'SIN PEDIDO' ".
+                ",'GUARDO PEDIDO' ".
+                ",'MANUAL' ".
+                ",'$usuarioIp' ".
+                ",'$usuarioPc')";
 
-        else {
-            $this->response('',204);        //"No Content" status
+            $rlog = $this->mysqli->query($sql_log);
+            $agentScore=$this->getAgentScore($usuarioGalleta);
+            $this->response(json_encode(array("msg"=>"N/A","data" => $today,"agent_score"=>$agentScore)),200);
+
+		}else if (!empty($pedido)) {
+
+				$query = "INSERT INTO pedidos(".trim($columns,',').",source,OBSERVACIONES_PROCESO, pedido_id,DEPARTAMENTO, municipio_id, ESTADO_ID) VALUES(".trim($values,',').",'MANUAL', '$observaciones', '$pedidoid','$departamento','$ciudad','$estado_id')";
+
+                $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
+
+				$sqlInsertIngresos="insert into informe_petec_pendientesm (PEDIDO_ID, PEDIDO, MUNICIPIO_ID ,TIPO_ELEMENTO_ID, TIPO_TRABAJO, DESC_TIPO_TRABAJO, FECHA_INGRESO, FECHA_CITA, PRODUCTO_ID, PRODUCTO, CONCEPTO_ID, CONCEPTO_ANTERIOR, DIRECCION_SERVICIO, PAGINA_SERVICIO, TECNOLOGIA_ID, FUENTE, FECHA_ESTADO, UEN_CALCULADA, ESTRATO, FECHA_CARGA, ESTADO_BLOQUEO, USUARIO_BLOQUEO_FENIX, ACTIVIDAD, GRUPO, CLIENTE_ID, DEPARTAMENTO,STATUS,OBSERVACIONES,ASESOR)
+            	values ('".$pedido1['pedido']."','".$pedido1['pedido']."','".$pedido1['ciudad']."','NULL','NULL','NULL','".$pedido1['fecha_inicio']."','9999-01-01','NULL','NULL','MANUAL','MANUAL','NULL','NULL','NULL','".$pedido1['fuente']."','".$pedido1['fecha_inicio']."','HG','NULL','".$pedido1['fecha_inicio']."','N','','".$pedido1['actividad']."','ASIGNACIONES', 'NULL','".$pedido1['departamento']."','CERRADO_PETEC', '".$pedido1['observacion']."','$usuarioGalleta')";
+
+				$r = $this->mysqli->query($sqlInsertIngresos) or die($this->mysqli->error.__LINE__);
+
+				$sql_log=   "insert into portalbd.activity_feed ( ".
+					" USER ".
+					", USER_NAME ".
+					", GRUPO ".
+					", STATUS ".
+					", PEDIDO_OFERTA ".
+					", ACCION ".
+					", CONCEPTO_ID ".
+					", IP_HOST ".
+					", CP_HOST ".
+					") values( ".
+					" UPPER('$usuarioGalleta')".
+					", UPPER('$nombreGalleta')".
+					", UPPER('$grupoGalleta')".
+					",'OK' ".
+					",'SIN PEDIDO' ".
+					",'GUARDO PEDIDO' ".
+					",'MANUAL' ".
+					",'$usuarioIp' ".
+					",'$usuarioPc')";
+
+				$rlog = $this->mysqli->query($sql_log);
+
+				$agentScore=$this->getAgentScore($usuarioGalleta);
+            	$this->response(json_encode(array("msg"=>"N/A","data" => $today,"agent_score"=>$agentScore)),200);
+
+				}else {
+            		$this->response('',204);        //"No Content" status
             //$this->response("$query",200);        //"No Content" status
         }
 
