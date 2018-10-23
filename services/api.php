@@ -1552,8 +1552,7 @@ class API extends REST {
 
 				$query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado',  CONCEPTO_ANTERIOR = '$estado', ".  		  " STATUS = 'PENDI_PETEC', FECHA_ESTADO = '$today', FECHA_CARGA = '$today', FECHA_INGRESO='$today'".
                          " WHERE PEDIDO_ID = '$pedidoid' ".
-						 " AND ID = '$ID1'  ".
-                         " AND STATUS = 'PENDI_PETEC'  ";
+						 " AND ID = '$ID1'  ";
 
                  $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
