@@ -1551,8 +1551,7 @@ class API extends REST {
                 if(!empty($ID1)){
 
 				$query = " update informe_petec_pendientesm set CONCEPTO_ID = '$estado',  CONCEPTO_ANTERIOR = '$estado', ".  		  " STATUS = 'PENDI_PETEC', FECHA_ESTADO = '$today', FECHA_CARGA = '$today', FECHA_INGRESO='$today'".
-                         " WHERE PEDIDO_ID = '$pedidoid' ".
-						 " AND ID = '$ID1'  ";
+                         " WHERE ID = '$ID1' ";
 
                  $r = $this->mysqli->query($query) or die($this->mysqli->error.__LINE__);
 
@@ -1561,7 +1560,7 @@ class API extends REST {
 				}else{
 					$ManualP= "RC-SIEBEL";
 				}
-			//echo var_dump ($query);
+			echo var_dump ($query);
             }
 
 /*		else($estado_id == "CERRADO" && $estado == "RC-SIEBEL"){
